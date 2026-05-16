@@ -944,6 +944,7 @@ const state = {
   wordLearning: initialWordLearning(),
   exerciseResults: read(`lesson:${lesson.id}:exerciseResults`, []),
   interactionProgress: initialInteractionProgress(),
+  grammarPractice: initialGrammarPractice(),
   currentVoiceId: read(`lesson:${lesson.id}:currentVoiceId`, defaultVoiceId),
   audioStatus: null,
   audioStatusVoiceId: "",
@@ -962,6 +963,11 @@ const state = {
   recordingWordId: "",
   recordingStoppingWordId: "",
   recordingError: "",
+  grammarRecordingPreparingId: "",
+  grammarRecordingId: "",
+  grammarRecordingStoppingId: "",
+  grammarRecordingErrorKey: "",
+  grammarRecordingError: "",
   answer: "",
   submitted: false,
   modal: null
@@ -1055,6 +1061,11 @@ function resetWordLearningData(shouldRender = true) {
   state.recordingWordId = "";
   state.recordingStoppingWordId = "";
   state.recordingError = "";
+  state.grammarRecordingPreparingId = "";
+  state.grammarRecordingId = "";
+  state.grammarRecordingStoppingId = "";
+  state.grammarRecordingErrorKey = "";
+  state.grammarRecordingError = "";
   lastAutoSpokenWord = null;
   pendingAutoSpeakWordId = "";
   if (shouldRender) render();
@@ -1072,6 +1083,68 @@ function initialInteractionProgress() {
 
 function writeInteractionProgress() {
   write(`lesson:${lesson.id}:interactionProgress`, state.interactionProgress);
+}
+
+function defaultGrammarPractice() {
+  return {
+    answer: "",
+    submitted: false,
+    correct: false,
+    attempts: 0,
+    updatedAt: "",
+    revealed: false,
+    pronunciationPassed: false,
+    pronunciationScore: 0,
+    accuracyScore: 0,
+    fluencyScore: 0,
+    completenessScore: 0,
+    pronunciationReasons: [],
+    recognizedText: "",
+    debugAudioUrl: "",
+    debugAudioPath: "",
+    pronunciationDuration: 0,
+    pronunciationPeak: 0,
+    pronunciationAttempts: 0,
+    collapsed: false
+  };
+}
+
+function grammarPracticeKey(grammarId, exampleId) {
+  return `${grammarId}:${exampleId}`;
+}
+
+function initialGrammarPractice() {
+  const saved = read(`lesson:${lesson.id}:grammarPractice`, {});
+  const fallback = {};
+  lesson.grammar.forEach((grammar) => {
+    const practiceItems = grammarPracticeItems(grammar).items;
+    practiceItems.forEach((item) => {
+      const exampleId = item.id;
+      fallback[grammarPracticeKey(grammar.id, exampleId)] = defaultGrammarPractice();
+    });
+  });
+  return Object.fromEntries(Object.entries(fallback).map(([key, base]) => [key, { ...base, ...(saved[key] || {}) }]));
+}
+
+function writeGrammarPractice() {
+  write(`lesson:${lesson.id}:grammarPractice`, state.grammarPractice);
+}
+
+function grammarPracticeState(grammarId, exampleId) {
+  return state.grammarPractice[grammarPracticeKey(grammarId, exampleId)] || defaultGrammarPractice();
+}
+
+function updateGrammarPractice(grammarId, exampleId, patch) {
+  const key = grammarPracticeKey(grammarId, exampleId);
+  const previous = grammarPracticeState(grammarId, exampleId);
+  state.grammarPractice = { ...state.grammarPractice, [key]: { ...previous, ...patch } };
+  writeGrammarPractice();
+}
+
+function resetGrammarPractice(grammarId, exampleId) {
+  const key = grammarPracticeKey(grammarId, exampleId);
+  state.grammarPractice = { ...state.grammarPractice, [key]: defaultGrammarPractice() };
+  writeGrammarPractice();
 }
 
 function navigate(path) {
@@ -1124,6 +1197,38 @@ function wordByText(text) {
 
 function grammarById(id) {
   return lesson.grammar.find((grammar) => grammar.id === id);
+}
+
+const grammarClozeTargets = {
+  g1: ["子供の時", "映画を見る時", "学生の時", "入る時", "小さい時", "休みの時", "朝や夕方の涼しい時"],
+  g2: ["見ながら", "しながら", "踊りながら", "遊びながら"],
+  g3: ["でしょう？"],
+  g4: ["しています", "していました", "している", "集まっている"],
+  g5: ["仕事で"],
+  g6: ["と会っていた"],
+  g7: ["アルバイトをしながら"],
+  g8: ["学校に通っている", "学校に通っています"],
+  g9: ["大勢の人", "大勢の"],
+  g10: ["お年寄り"],
+  g11: ["そう言えば"],
+  g12: ["へえ"],
+  g13: ["有料", "入園料"]
+};
+
+function grammarExampleTarget(grammar, sentenceText) {
+  const candidates = grammarClozeTargets[grammar.id] || [];
+  return candidates.find((candidate) => sentenceText.includes(candidate)) || "";
+}
+
+function grammarExampleCloze(grammar, sentenceText) {
+  const target = grammarExampleTarget(grammar, sentenceText);
+  if (!target) {
+    return { target: "", cloze: sentenceText.replace(/[^\s、。？]+/, "＿＿＿＿") };
+  }
+  return {
+    target,
+    cloze: sentenceText.replace(target, "＿＿＿＿")
+  };
 }
 
 function sanitizeAudioPath(path) {
@@ -1864,8 +1969,8 @@ function grammarPage() {
     <div class="page-head">
       <div>
         <p class="eyebrow">${lesson.title} · 语法回顾</p>
-        <h2>语法点与课文例句相互连接</h2>
-        <p class="hint"><span class="kbd">↑</span><span class="kbd">↓</span> 切换上一个 / 下一个语法</p>
+        <h2>语法点与例句回忆</h2>
+        <p class="hint"><span class="kbd">↑</span><span class="kbd">↓</span> 切换上一个 / 下一个语法。先挖空回忆，再揭晓对照。</p>
       </div>
       <button class="primary" data-nav="/lesson/${lesson.id}/exercises">开始练习</button>
     </div>
@@ -1900,54 +2005,100 @@ function grammarNavGroup(title, entries) {
   `;
 }
 
+function grammarPracticeItems(grammar) {
+  const coreItems = (grammar.examples || [])
+    .map((id) => ({ kind: "core", id, sentence: sentenceById(id) }))
+    .filter((item) => item.sentence);
+  const hasCore = coreItems.length > 0;
+  const supplementalSource = grammar.extraExamples || [];
+  const fallbackCoreItems = hasCore ? [] : supplementalSource.slice(0, 1).map((example, index) => ({
+    kind: "extra",
+    id: `extra-${index}`,
+    sentence: { id: `extra-${index}`, text: example.text, kana: "", translation: example.translation },
+    example
+  }));
+  const supplementalExamples = supplementalSource.slice(hasCore ? 0 : 1).map((example, index) => ({
+    id: `extra-${hasCore ? index : index + 1}`,
+    text: example.text,
+    translation: example.translation,
+    sourceIndex: hasCore ? index : index + 1
+  }));
+  return {
+    items: hasCore ? coreItems : fallbackCoreItems,
+    supplementalExamples
+  };
+}
+
+function grammarPracticeSummary(grammar) {
+  const { items } = grammarPracticeItems(grammar);
+  const completed = items.filter((item) => grammarPracticeMastered(grammarPracticeState(grammar.id, item.id))).length;
+  return { completed, total: items.length };
+}
+
+function grammarExampleStatus(practice) {
+  if (!practice.submitted) return "待练";
+  if (practice.pronunciationAttempts === 0) return practice.correct ? "待跟读" : "已检查";
+  if (practice.correct && practice.pronunciationPassed) return "已会";
+  return "需复习";
+}
+
+function grammarPracticeMastered(practice) {
+  return Boolean(practice.correct && practice.pronunciationPassed);
+}
+
+function grammarExampleTargetTone(sentence) {
+  return sentence.translation || sentence.kana || "请补全上面的关键语法点。";
+}
+
+function renderGrammarCloze(grammar, sentence) {
+  const { target, cloze } = grammarExampleCloze(grammar, sentence.text);
+  return { target, cloze: target ? cloze : sentence.text };
+}
+
 function grammarDetail(grammar) {
   const relatedExercises = lesson.exercises
     .map((exercise, index) => ({ exercise, index }))
     .filter(({ exercise }) => exercise.relatedGrammar.includes(grammar.id));
-  const existingExampleTexts = new Set(
-    grammar.examples
-      .map((id) => sentenceById(id)?.text)
-      .filter(Boolean)
-      .map(normalizeLookupText)
-  );
-  const supplementalExamples = (grammar.extraExamples || [])
-    .map((example, index) => ({ ...example, sourceIndex: index }))
-    .filter((example) => !existingExampleTexts.has(normalizeLookupText(example.text)));
-  const shouldShowSupplementalExamples = supplementalExamples.length && (isGrammarPattern(grammar) || grammar.examples.length === 0);
+  const { items: practiceItems, supplementalExamples } = grammarPracticeItems(grammar);
+  const progress = grammarPracticeSummary(grammar);
+  const supplementCount = grammar.extraExamples?.length || 0;
   return `
     <h2>${grammar.pattern}</h2>
+    <div class="grammar-summary-grid">
+      <div class="grammar-summary-item">
+        <span>核心例句</span>
+        <strong>${progress.completed}/${progress.total || 0}</strong>
+      </div>
+      <div class="grammar-summary-item">
+        <span>补充例句</span>
+        <strong>${supplementCount}</strong>
+      </div>
+      <div class="grammar-summary-item">
+        <span>相关练习</span>
+        <strong>${relatedExercises.length}</strong>
+      </div>
+    </div>
+    <p class="muted grammar-progress">${progress.total ? `核心例句完成 ${progress.completed}/${progress.total}` : "当前语法点暂无核心例句"}</p>
     <div class="meta-list">
       ${meta("简要解释", grammar.meaning)}
       ${meta("结构", grammar.structure)}
       ${meta("当前课文中的用法", grammar.usage)}
       <div class="meta-line">
-        <span class="label">教材例句 / 课文出现位置</span>
+        <span class="label">核心例句回忆</span>
         <div class="stack">
-          ${grammar.examples.map((id) => {
-            const sentence = sentenceById(id);
-            const exampleId = `${grammar.id}:${id}`;
-            const progress = interactionState("grammarExample", exampleId);
-            if (!sentence) return "";
-            return `
-              <div class="example-practice ${progress.pronunciationState === "smooth" ? "mastered" : "pending"}">
-                <div class="example-row">
-                  <button class="sentence ${progress.pronunciationState === "smooth" ? "current" : ""}" data-nav="/lesson/${lesson.id}/text?sentenceId=${id}">${sentenceHoverContent(sentence)}</button>
-                  <button class="icon-button" aria-label="播放例句" title="播放例句" data-speak="${sentence.text}" data-audio="${audioUrl("sentence", sentence.id)}">🔊</button>
-                </div>
-                ${compactGrammarShadowControls(exampleId, sentence.text, audioUrl("sentence", sentence.id))}
-              </div>
-            `;
-          }).join("")}
+          ${practiceItems.length ? practiceItems.map((item, index) => grammarExamplePracticeCard(grammar, item, index)).join("") : "<span class='muted'>暂无核心例句。</span>"}
         </div>
       </div>
-      ${shouldShowSupplementalExamples ? `
+      ${supplementalExamples.length ? `
         <div class="meta-line">
-          <span class="label">教材补充例句</span>
+          <span class="label">教材补充例句（可选）</span>
           <div class="stack">
-            ${supplementalExamples.map((example) => `
-              <div class="example-row supplemental-example">
-                <span class="sentence">${sentenceHoverContent(example)}</span>
-                <button class="icon-button" aria-label="播放补充例句" title="播放补充例句" data-speak="${example.text}" data-audio="${extraExampleAudioUrl(grammar.id, example.sourceIndex)}">🔊</button>
+            ${supplementalExamples.map((example, index) => `
+              <div class="supplemental-example-card supplemental-example">
+                <div class="example-row">
+                  <span class="sentence supplemental-preview">${sentenceHoverContent({ text: example.text, translation: example.translation })}</span>
+                  <button class="icon-button" aria-label="播放补充例句" title="播放补充例句" data-speak="${example.text}" data-audio="${extraExampleAudioUrl(grammar.id, example.sourceIndex)}">🔊</button>
+                </div>
               </div>
             `).join("")}
           </div>
@@ -1968,6 +2119,177 @@ function grammarDetail(grammar) {
       </div>
     </div>
   `;
+}
+
+function grammarExamplePracticeCard(grammar, item, index) {
+  const sentence = item.sentence;
+  const practice = grammarPracticeState(grammar.id, item.id);
+  const { target, cloze } = renderGrammarCloze(grammar, sentence);
+  const clozeText = target ? cloze : sentence.text;
+  const ready = practice.submitted;
+  const mastered = grammarPracticeMastered(practice);
+  const judgementReady = ready && practice.pronunciationAttempts > 0;
+  const statusClass = mastered ? "passed" : judgementReady ? "failed" : "pending";
+  const targetText = target || sentence.text;
+  const locationText = item.kind === "extra" ? "补充例句" : sentencePosition(sentence.id);
+  const collapsed = Boolean(practice.collapsed);
+  return `
+    <article class="grammar-practice-card ${statusClass} ${collapsed ? "collapsed" : ""}">
+      <div class="grammar-practice-head">
+        <div class="grammar-practice-head-main">
+          <span class="grammar-practice-no">${index + 1}</span>
+          <div>
+            <strong>${grammarExampleTargetTone(sentence)}</strong>
+            <small>${locationText}</small>
+          </div>
+        </div>
+        <div class="grammar-practice-head-actions">
+          <span class="practice-status ${mastered ? "success" : ready && practice.pronunciationAttempts > 0 ? "danger" : ""}">${grammarExampleStatus(practice)}</span>
+          <button class="ghost grammar-toggle-button" data-grammar-toggle-collapse="${grammarPracticeKey(grammar.id, item.id)}">${collapsed ? "展开" : "收起"}</button>
+          <button class="ghost grammar-reset-button" data-grammar-reset="${grammarPracticeKey(grammar.id, item.id)}">重置</button>
+        </div>
+      </div>
+      ${ready ? `
+        <div class="grammar-answer-inline ${practice.correct ? "passed" : "failed"}">
+          <div class="diff-line">填空结果：${practice.correct ? "正确" : "错误"}；标准答案：${escapeHtml(targetText)}</div>
+        </div>
+      ` : ""}
+      <div class="grammar-practice-body ${collapsed ? "collapsed" : ""}">
+        <div class="grammar-practice-cloze">${escapeHtml(clozeText)}</div>
+        <div class="grammar-practice-form">
+          <input class="answer-input" data-grammar-answer="${grammarPracticeKey(grammar.id, item.id)}" value="${escapeHtml(practice.answer || "")}" placeholder="补全空缺部分" />
+          <button class="primary" data-grammar-check="${grammarPracticeKey(grammar.id, item.id)}">检查</button>
+        </div>
+        ${grammarPronunciationPanel(grammar, item)}
+      ${judgementReady ? `
+        <div class="grammar-practice-result ${mastered ? "passed" : "failed"}">
+          <strong>${mastered ? "已会" : "需复习"}</strong>
+          <span>${mastered ? "填空和跟读都已通过。" : practice.correct ? "填空已对，继续完成跟读。" : "先补全关键语法点，再进行跟读。"} </span>
+        </div>
+      ` : ""}
+      </div>
+    </article>
+  `;
+}
+
+function grammarPronunciationPanel(grammar, item) {
+  const sentence = item.sentence;
+  const key = grammarPracticeKey(grammar.id, item.id);
+  const practice = grammarPracticeState(grammar.id, item.id);
+  const preparing = state.grammarRecordingPreparingId === key;
+  const recording = state.grammarRecordingId === key;
+  const stopping = state.grammarRecordingStoppingId === key;
+  const recordLabel = stopping ? "正在评价" : recording ? "正在说话" : preparing ? "准备中" : "长按跟读";
+  const recordHint = stopping
+    ? "正在收尾录音，马上提交评价..."
+    : recording
+      ? "请继续按住按钮，说完后松手提交评价。"
+      : preparing
+        ? "正在准备麦克风，等按钮变为正在说话后再开口。"
+        : "先听标准音，再长按录音按钮。按钮变成“正在说话”后再开口，松手自动停止并评价。";
+  return `
+    <div class="recall-box pronunciation-box grammar-pronunciation-box">
+      <div class="grammar-pronunciation-head">
+        <span class="label">开口或跟读</span>
+      </div>
+      <div class="button-row">
+        <button class="secondary" data-speak="${sentence.text}" data-audio="${audioUrl("sentence", sentence.id)}">听标准音</button>
+        <button
+          class="hold-record-button ${preparing ? "preparing" : ""} ${recording ? "recording" : ""} ${stopping ? "stopping" : ""}"
+          data-hold-record-grammar="${key}"
+          aria-label="${recordLabel}"
+          ${stopping ? "disabled" : ""}
+        >
+          <span class="record-icon"></span>
+          <span>${recordLabel}</span>
+        </button>
+      </div>
+      ${(state.grammarRecordingError && state.grammarRecordingErrorKey === key) ? `<p class="hint danger-text">${state.grammarRecordingError}</p>` : ""}
+      ${practice.pronunciationAttempts ? grammarPronunciationResult(practice) : ""}
+    </div>
+  `;
+}
+
+function grammarPronunciationResult(practice) {
+  const recordingText = practice.pronunciationDuration
+    ? `录音 ${practice.pronunciationDuration.toFixed(1)} 秒，音量峰值 ${Number(practice.pronunciationPeak || 0).toFixed(2)}`
+    : "";
+  return `
+    <div class="pronunciation-result ${practice.pronunciationPassed ? "passed" : "failed"}">
+      <strong>${practice.pronunciationPassed ? "发音通过" : "发音需复习"}</strong>
+      <span>总分 ${practice.pronunciationScore || 0} · 准确 ${practice.accuracyScore || 0} · 流畅 ${practice.fluencyScore || 0} · 完整 ${practice.completenessScore || 0}${recordingText ? ` · ${recordingText}` : ""}</span>
+      ${practice.pronunciationReasons?.length ? `<small>${practice.pronunciationReasons.join(" / ")}</small>` : ""}
+      ${practice.debugAudioUrl ? `
+        <div class="debug-recording">
+          <audio controls src="${practice.debugAudioUrl}"></audio>
+        </div>
+      ` : ""}
+      ${practice.recognizedText ? `
+        <div class="diff-box">
+          <div><span class="diff-label">你说的是</span><p class="diff-line">${escapeHtml(practice.recognizedText)}</p></div>
+        </div>
+      ` : ""}
+    </div>
+  `;
+}
+
+function handleGrammarPracticeInput(key, value) {
+  const current = state.grammarPractice[key] || defaultGrammarPractice();
+  state.grammarPractice = { ...state.grammarPractice, [key]: { ...current, answer: value, revealed: false } };
+  writeGrammarPractice();
+}
+
+function handleGrammarPracticeCheck(key) {
+  const [grammarId, exampleId] = key.split(":");
+  const grammar = grammarById(grammarId);
+  if (!grammar) return;
+  const item = grammarPracticeItemByKey(grammar, exampleId);
+  if (!item) return;
+  const practice = grammarPracticeState(grammarId, exampleId);
+  const target = grammarPracticeTargetText(grammar, item);
+  const correct = normalizeForDiff(practice.answer || "") === normalizeForDiff(target || "");
+  updateGrammarPractice(grammarId, exampleId, {
+    submitted: true,
+    correct,
+    attempts: (practice.attempts || 0) + 1,
+    revealed: true,
+    updatedAt: new Date().toISOString()
+  });
+  recordInteraction("grammarExample", key, correct ? "smooth" : "retry");
+  render();
+}
+
+function handleGrammarPracticeReset(key) {
+  const [grammarId, exampleId] = key.split(":");
+  resetGrammarPractice(grammarId, exampleId);
+  render();
+}
+
+function toggleGrammarPracticeCollapse(key) {
+  const [grammarId, exampleId] = key.split(":");
+  const practice = grammarPracticeState(grammarId, exampleId);
+  updateGrammarPractice(grammarId, exampleId, { collapsed: !practice.collapsed });
+  render();
+}
+
+function grammarPracticeItemByKey(grammar, exampleId) {
+  const core = (grammar.examples || []).find((id) => id === exampleId);
+  if (core) {
+    const sentence = sentenceById(core);
+    if (sentence) return { kind: "core", id: core, sentence };
+  }
+  const extraIndex = Number(String(exampleId).replace(/^extra-/, ""));
+  const extra = (grammar.extraExamples || [])[extraIndex];
+  if (extra) {
+    return { kind: "extra", id: exampleId, sentence: { id: exampleId, text: extra.text, kana: "", translation: extra.translation } };
+  }
+  return null;
+}
+
+function grammarPracticeTargetText(grammar, item) {
+  if (!item?.sentence?.text) return "";
+  const { target } = grammarExampleCloze(grammar, item.sentence.text);
+  return target || item.sentence.text;
 }
 
 function audioManagePage() {
@@ -2641,6 +2963,213 @@ function endWordRecording(wordId, event) {
   releaseWordRecording(wordId);
 }
 
+function releaseGrammarRecording(key) {
+  if (!key || state.grammarRecordingStoppingId) return;
+  recordingReleaseRequested = true;
+  if (recordingSession?.kind === "grammar" && recordingSession?.key === key) {
+    stopGrammarRecording(key);
+  }
+}
+
+async function startGrammarRecording(key) {
+  if (!key || recordingSession || state.grammarRecordingStoppingId) return;
+  const [grammarId, exampleId] = key.split(":");
+  const grammar = grammarById(grammarId);
+  if (!grammar) return;
+  const item = grammarPracticeItemByKey(grammar, exampleId);
+  if (!item?.sentence?.text) return;
+  state.grammarRecordingPreparingId = key;
+  state.grammarRecordingError = "";
+  recordingPressWordId = "";
+  recordingReleaseRequested = false;
+  recordingPointerId = null;
+  render();
+  try {
+    stopCurrentAudio();
+    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+    const audioContext = new AudioContext({ sampleRate: 16000 });
+    const source = audioContext.createMediaStreamSource(stream);
+    const processor = audioContext.createScriptProcessor(4096, 1, 1);
+    const chunks = [];
+    processor.onaudioprocess = (event) => {
+      chunks.push(new Float32Array(event.inputBuffer.getChannelData(0)));
+    };
+    source.connect(processor);
+    processor.connect(audioContext.destination);
+    recordingSession = {
+      kind: "grammar",
+      key,
+      stream,
+      audioContext,
+      source,
+      processor,
+      chunks,
+      referenceText: item.sentence.text,
+      label: item.sentence.text,
+      startedAt: Date.now(),
+      sampleRate: audioContext.sampleRate,
+      ready: false
+    };
+    await delay(250);
+    if (!recordingSession || recordingSession.key !== key) return;
+    if (recordingReleaseRequested) {
+      cleanupRecordingSession(recordingSession);
+      recordingSession = null;
+      recordingReleaseRequested = false;
+      recordingPointerId = null;
+      state.grammarRecordingPreparingId = "";
+      state.grammarRecordingId = "";
+      state.grammarRecordingErrorKey = key;
+      state.grammarRecordingError = "录音尚未准备好，请长按到按钮变为“正在说话”后再开口。";
+      render();
+      return;
+    }
+    recordingSession.ready = true;
+    state.grammarRecordingPreparingId = "";
+    state.grammarRecordingId = key;
+    state.grammarRecordingStoppingId = "";
+    state.grammarRecordingError = "";
+    render();
+  } catch (error) {
+    state.grammarRecordingPreparingId = "";
+    cleanupRecordingSession(recordingSession);
+    recordingSession = null;
+    recordingReleaseRequested = false;
+    recordingPointerId = null;
+    state.grammarRecordingErrorKey = key;
+    state.grammarRecordingError = `无法录音：${error.message || error}`;
+    render();
+  }
+}
+
+async function stopGrammarRecording(key) {
+  if (!recordingSession || recordingSession.key !== key) return;
+  const session = recordingSession;
+  if (session.stopping) return;
+  if (!session.ready) {
+    cleanupRecordingSession(session);
+    recordingSession = null;
+    recordingReleaseRequested = false;
+    recordingPointerId = null;
+    state.grammarRecordingPreparingId = "";
+    state.grammarRecordingId = "";
+    state.grammarRecordingStoppingId = "";
+    state.grammarRecordingErrorKey = key;
+    state.grammarRecordingError = "录音尚未准备好，请长按到按钮变为“正在说话”后再开口。";
+    render();
+    return;
+  }
+  session.stopping = true;
+  state.grammarRecordingPreparingId = "";
+  state.grammarRecordingStoppingId = key;
+  state.grammarRecordingErrorKey = key;
+  state.grammarRecordingError = "";
+  render();
+  await delay(800);
+  if (recordingSession !== session) return;
+  recordingSession = null;
+  session.processor.disconnect();
+  session.source.disconnect();
+  session.stream.getTracks().forEach((track) => track.stop());
+  await session.audioContext.close();
+  state.grammarRecordingId = "";
+  state.grammarRecordingStoppingId = "";
+  state.grammarRecordingErrorKey = key;
+  state.grammarRecordingError = "正在提交发音评价...";
+  render();
+  const [grammarId, exampleId] = key.split(":");
+  const grammar = grammarById(grammarId);
+  const item = grammarPracticeItemByKey(grammar, exampleId);
+  if (!grammar || !item?.sentence?.text) {
+    state.grammarRecordingError = "未找到对应语法例句。";
+    render();
+    return;
+  }
+  const stats = audioStats(session.chunks, session.sampleRate);
+  if (stats.duration < 0.25 || stats.peak < 0.01) {
+    state.grammarRecordingError = `录音音量过低或时长太短：${stats.duration.toFixed(1)} 秒，峰值 ${stats.peak.toFixed(3)}。请靠近麦克风重试。`;
+    recordingReleaseRequested = false;
+    recordingPointerId = null;
+    render();
+    return;
+  }
+  const wav = encodeWav(session.chunks, session.sampleRate);
+  const form = new FormData();
+  form.append("wordId", `grammar:${grammar.id}:${item.id}`);
+  form.append("referenceText", item.sentence.text);
+  form.append("kana", item.sentence.kana || "");
+  form.append("audio", new Blob([wav], { type: "audio/wav" }), `${grammar.id}-${item.id}.wav`);
+  try {
+    const response = await fetch("/api/pronunciation/evaluate", { method: "POST", body: form });
+    const data = await response.json();
+    if (!response.ok || data.error) throw new Error(data.error || "发音评价失败");
+    updateGrammarPractice(grammar.id, item.id, {
+      pronunciationPassed: data.passed,
+      pronunciationScore: data.pronunciationScore,
+      accuracyScore: data.accuracyScore,
+      fluencyScore: data.fluencyScore,
+      completenessScore: data.completenessScore,
+      pronunciationReasons: [...(data.reasons || []), `录音 ${stats.duration.toFixed(1)} 秒，音量峰值 ${stats.peak.toFixed(2)}`],
+      recognizedText: data.recognizedText || "",
+      debugAudioUrl: data.debugAudioUrl || "",
+      debugAudioPath: data.debugAudioPath || "",
+      pronunciationDuration: stats.duration,
+      pronunciationPeak: stats.peak,
+      pronunciationAttempts: (grammarPracticeState(grammar.id, item.id).pronunciationAttempts || 0) + 1
+    });
+    state.grammarRecordingError = "";
+    state.grammarRecordingErrorKey = key;
+    recordingReleaseRequested = false;
+    recordingPointerId = null;
+    render();
+  } catch (error) {
+    updateGrammarPractice(grammar.id, item.id, {
+      pronunciationPassed: false,
+      pronunciationReasons: [String(error.message || error)],
+      debugAudioUrl: "",
+      debugAudioPath: "",
+      pronunciationDuration: 0,
+      pronunciationPeak: 0,
+      pronunciationAttempts: (grammarPracticeState(grammar.id, item.id).pronunciationAttempts || 0) + 1
+    });
+    state.grammarRecordingErrorKey = key;
+    state.grammarRecordingError = String(error.message || error);
+    recordingReleaseRequested = false;
+    recordingPointerId = null;
+    render();
+  }
+}
+
+function startGrammarHold(button, key, event) {
+  if (!key || recordingSession || state.grammarRecordingStoppingId) return;
+  if (event?.pointerId != null) recordingPointerId = event.pointerId;
+  if (event?.currentTarget?.setPointerCapture && event?.pointerId != null) {
+    try {
+      event.currentTarget.setPointerCapture(event.pointerId);
+    } catch {
+      // Ignore capture failures; document/window listeners remain as fallback.
+    }
+  }
+  recordingReleaseRequested = false;
+  startGrammarRecording(key);
+}
+
+function endGrammarHold(key, event) {
+  if (!key) return;
+  if (recordingPointerId != null && event?.pointerId != null && event.pointerId !== recordingPointerId) return;
+  if (event?.currentTarget?.releasePointerCapture && event?.pointerId != null) {
+    try {
+      event.currentTarget.releasePointerCapture(event.pointerId);
+    } catch {
+      // Ignore capture release failures.
+    }
+  }
+  recordingReleaseRequested = true;
+  if (recordingSession?.kind === "grammar" && recordingSession?.key === key) {
+    stopGrammarRecording(key);
+  }
+}
+
 function delay(ms) {
   return new Promise((resolve) => window.setTimeout(resolve, ms));
 }
@@ -3150,6 +3679,33 @@ function bind() {
     state.currentGrammar = Number(button.dataset.grammarIndex);
     render();
   }));
+  app.querySelectorAll("[data-grammar-answer]").forEach((input) => input.addEventListener("input", (event) => {
+    handleGrammarPracticeInput(input.dataset.grammarAnswer, event.target.value);
+  }));
+  app.querySelectorAll("[data-grammar-check]").forEach((button) => button.addEventListener("click", () => {
+    handleGrammarPracticeCheck(button.dataset.grammarCheck);
+  }));
+  app.querySelectorAll("[data-grammar-reset]").forEach((button) => button.addEventListener("click", () => {
+    handleGrammarPracticeReset(button.dataset.grammarReset);
+  }));
+  app.querySelectorAll("[data-grammar-toggle-collapse]").forEach((button) => button.addEventListener("click", () => {
+    toggleGrammarPracticeCollapse(button.dataset.grammarToggleCollapse);
+  }));
+  app.querySelectorAll("[data-hold-record-grammar]").forEach((button) => {
+    button.addEventListener("pointerdown", (event) => {
+      event.preventDefault();
+      startGrammarHold(button, button.dataset.holdRecordGrammar, event);
+    });
+    button.addEventListener("pointerup", (event) => {
+      endGrammarHold(button.dataset.holdRecordGrammar, event);
+    });
+    button.addEventListener("pointercancel", (event) => {
+      endGrammarHold(button.dataset.holdRecordGrammar, event);
+    });
+    button.addEventListener("lostpointercapture", (event) => {
+      endGrammarHold(button.dataset.holdRecordGrammar, event);
+    });
+  });
   app.querySelectorAll("[data-exercise-index]").forEach((button) => button.addEventListener("click", () => {
     state.currentExercise = Number(button.dataset.exerciseIndex);
     state.answer = "";
@@ -3209,9 +3765,11 @@ document.addEventListener("pointerdown", (event) => {
 }, true);
 document.addEventListener("pointerup", () => {
   releaseWordRecording(recordingPressWordId || recordingSession?.wordId || state.recordingPreparingWordId);
+  releaseGrammarRecording(state.grammarRecordingId || state.grammarRecordingPreparingId || recordingSession?.key);
 }, true);
 document.addEventListener("pointercancel", () => {
   releaseWordRecording(recordingPressWordId || recordingSession?.wordId || state.recordingPreparingWordId);
+  releaseGrammarRecording(state.grammarRecordingId || state.grammarRecordingPreparingId || recordingSession?.key);
 }, true);
 document.addEventListener("click", (event) => {
   const button = event.target.closest?.("[data-selection-speak]");
