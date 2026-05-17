@@ -968,6 +968,7 @@ const state = {
   grammarRecordingStoppingId: "",
   grammarRecordingErrorKey: "",
   grammarRecordingError: "",
+  playbackRate: Number(read(`lesson:${lesson.id}:playbackRate`, 1)) || 1,
   answer: "",
   submitted: false,
   modal: null
@@ -981,6 +982,8 @@ let speechPrimed = false;
 let lastHoverSpeech = { text: "", at: 0 };
 let lastKeyAction = { key: "", at: 0 };
 let activeAudio = null;
+let currentSpeechText = "";
+let currentSpeechOnEnded = null;
 let selectionLookupToken = 0;
 let recordingSession = null;
 let recordingPressWordId = "";
@@ -1235,15 +1238,31 @@ function sanitizeAudioPath(path) {
   return path ? `${path}?v=${audioVersions[path] || 0}` : "";
 }
 
-function speak(text) {
-  if (!("speechSynthesis" in window)) return;
+function speak(text, onEnded) {
+  if (!("speechSynthesis" in window)) {
+    if (onEnded) window.setTimeout(onEnded, 0);
+    return;
+  }
   primeSpeech();
   stopCurrentAudio();
   speechSynthesis.cancel();
+  currentSpeechText = text;
+  currentSpeechOnEnded = onEnded || null;
   const utterance = new SpeechSynthesisUtterance(text);
   utterance.lang = "ja-JP";
+  utterance.rate = state.playbackRate;
   const voice = speechSynthesis.getVoices().find((item) => item.lang.toLowerCase().startsWith("ja"));
   if (voice) utterance.voice = voice;
+  utterance.onend = () => {
+    if (currentSpeechText === text) currentSpeechText = "";
+    const ended = currentSpeechOnEnded;
+    currentSpeechOnEnded = null;
+    if (ended) ended();
+  };
+  utterance.onerror = () => {
+    if (currentSpeechText === text) currentSpeechText = "";
+    currentSpeechOnEnded = null;
+  };
   speechSynthesis.speak(utterance);
 }
 
@@ -1266,12 +1285,16 @@ function extraExampleAudioUrl(grammarId, index) {
 function playAudio(text, audio, onEnded) {
   stopCurrentAudio();
   if ("speechSynthesis" in window) speechSynthesis.cancel();
+  currentSpeechText = "";
+  currentSpeechOnEnded = null;
   if (audio) {
     activeAudio = new Audio(sanitizeAudioPath(audio));
     activeAudio.preload = "auto";
+    activeAudio.playbackRate = state.playbackRate;
     activeAudio.currentTime = 0;
     const start = () => {
       if (!activeAudio) return;
+      activeAudio.playbackRate = state.playbackRate;
       activeAudio.currentTime = 0;
       activeAudio.play().catch(() => {
         activeAudio = null;
@@ -1282,20 +1305,19 @@ function playAudio(text, audio, onEnded) {
       start();
     } else {
       activeAudio.addEventListener("canplaythrough", start, { once: true });
-      activeAudio.addEventListener("error", () => {
-        activeAudio = null;
-        speak(text);
-      }, { once: true });
       activeAudio.load();
     }
     activeAudio.addEventListener("ended", () => {
       activeAudio = null;
       if (onEnded) onEnded();
     }, { once: true });
+    activeAudio.addEventListener("error", () => {
+      activeAudio = null;
+      speak(text, onEnded);
+    }, { once: true });
     return;
   }
-  speak(text);
-  if (onEnded) window.setTimeout(onEnded, 1200);
+  speak(text, onEnded);
 }
 
 function stopCurrentAudio() {
@@ -1303,6 +1325,8 @@ function stopCurrentAudio() {
   activeAudio.pause();
   activeAudio.currentTime = 0;
   activeAudio = null;
+  currentSpeechText = "";
+  currentSpeechOnEnded = null;
 }
 
 function primeSpeech() {
@@ -1316,6 +1340,26 @@ function speakFromHover(text, audio) {
   if (lastHoverSpeech.text === text && now - lastHoverSpeech.at < 700) return;
   lastHoverSpeech = { text, at: now };
   playAudio(text, audio);
+}
+
+function setPlaybackRate(rate) {
+  const next = Number(rate);
+  if (!Number.isFinite(next) || next <= 0) return;
+  state.playbackRate = next;
+  write(`lesson:${lesson.id}:playbackRate`, state.playbackRate);
+  if (activeAudio) {
+    activeAudio.playbackRate = state.playbackRate;
+  }
+  if (("speechSynthesis" in window) && (speechSynthesis.speaking || speechSynthesis.pending) && currentSpeechText) {
+    const text = currentSpeechText;
+    const onEnded = currentSpeechOnEnded;
+    currentSpeechOnEnded = null;
+    speechSynthesis.cancel();
+    window.setTimeout(() => {
+      speak(text, onEnded || null);
+    }, 0);
+  }
+  render();
 }
 
 function escapeHtml(value) {
@@ -1499,15 +1543,20 @@ function layout(content) {
           ${navLink(`/lesson/${lesson.id}/grammar`, "语法", current === "grammar")}
           ${navLink(`/lesson/${lesson.id}/text`, "课文", current === "text")}
           ${navLink(`/lesson/${lesson.id}/exercises`, "练习", current === "exercises")}
-          ${navLink(`/lesson/${lesson.id}/result`, "结果", current === "result")}
-          <div class="manage-menu ${current === "audio" ? "active" : ""}">
-            <button class="manage-trigger" type="button" data-nav="/lesson/${lesson.id}/audio">管理</button>
-            <div class="manage-dropdown">
-              ${navLink(`/lesson/${lesson.id}/audio`, "音频", current === "audio")}
-            </div>
-          </div>
-        </nav>
-      </header>
+      ${navLink(`/lesson/${lesson.id}/result`, "结果", current === "result")}
+      <div class="manage-menu ${current === "audio" ? "active" : ""}">
+        <button class="manage-trigger" type="button" data-nav="/lesson/${lesson.id}/audio">管理</button>
+        <div class="manage-dropdown">
+          ${navLink(`/lesson/${lesson.id}/audio`, "音频", current === "audio")}
+        </div>
+      </div>
+    </nav>
+    <div class="playback-control" aria-label="播放速度">
+      ${[1, 0.6, 0.8, 1.2, 1.5].map((rate) => `
+        <button class="playback-rate ${state.playbackRate === rate ? "active" : ""}" data-playback-rate="${rate}" type="button">${rate.toFixed(1)}x</button>
+      `).join("")}
+    </div>
+  </header>
       <main class="main">${content}</main>
       ${state.modal ? modal(state.modal) : ""}
     </div>
@@ -1996,13 +2045,40 @@ function grammarNavGroup(title, entries) {
     <div class="grammar-nav-group">
       <div class="grammar-nav-title">${title}</div>
       ${entries.map(({ item, index }, groupIndex) => `
-        <button class="numbered-nav-item ${index === state.currentGrammar ? "active" : ""}" data-grammar-index="${index}">
+        <button class="numbered-nav-item ${grammarNavProgress(item).statusClass} ${index === state.currentGrammar ? "active" : ""}" data-grammar-index="${index}">
           <span class="nav-number">${groupIndex + 1}</span>
-          <span>${item.pattern}</span>
+          <span class="nav-content">
+            <span class="nav-title">${item.pattern}</span>
+            ${grammarNavStatus(item)}
+          </span>
         </button>
       `).join("")}
     </div>
   `;
+}
+
+function grammarNavProgress(grammar) {
+  const { items } = grammarPracticeItems(grammar);
+  const total = items.length;
+  if (!total) {
+    return { statusClass: "empty", label: "暂无", progress: "0/0" };
+  }
+  const practices = items.map((item) => grammarPracticeState(grammar.id, item.id));
+  const mastered = practices.filter((item) => grammarPracticeMastered(item)).length;
+  const started = practices.filter((item) => item.submitted || item.pronunciationAttempts > 0).length;
+  const statusClass = mastered === total
+    ? "done"
+    : started === 0
+      ? "new"
+      : mastered === 0
+        ? "failed"
+        : "learning";
+  return { statusClass, label: mastered === total ? "已学完" : started === 0 ? "未学" : mastered === 0 ? "未通过" : "学习中", progress: `${mastered}/${total}` };
+}
+
+function grammarNavStatus(grammar) {
+  const progress = grammarNavProgress(grammar);
+  return `<span class="nav-meta"><span class="nav-status ${progress.statusClass}">${progress.label}</span><span class="nav-progress">${progress.progress}</span></span>`;
 }
 
 function grammarPracticeItems(grammar) {
@@ -3568,6 +3644,9 @@ function bind() {
     });
   });
   app.querySelectorAll("[data-nav]").forEach((button) => button.addEventListener("click", () => navigate(button.dataset.nav)));
+  app.querySelectorAll("[data-playback-rate]").forEach((button) => button.addEventListener("click", () => {
+    setPlaybackRate(button.dataset.playbackRate);
+  }));
   app.querySelectorAll("[data-speak]").forEach((button) => {
     button.addEventListener("click", () => playAudio(button.dataset.speak, button.dataset.audio));
     button.addEventListener("pointerenter", () => speakFromHover(button.dataset.speak, button.dataset.audio));
