@@ -603,7 +603,7 @@ const standardExercises = [
     groupTitle: "练习 I · 1",
     category: "替换练习",
     instruction: "仿照例句替换画线部分进行练习。",
-    example: "子供です / 横浜に住んでいました → 子供の時、横浜に住んでいました。",
+    example: "__子供です__ / 横浜に住んでいました → __子供の時__、横浜に住んでいました。",
     type: "fill",
     question: "病気です / 1か月会社を休みました",
     answer: "病気の時、1か月会社を休みました。",
@@ -618,7 +618,52 @@ const standardExercises = [
     groupTitle: "练习 I · 1",
     category: "替换练习",
     instruction: "仿照例句替换画线部分进行练习。",
-    example: "子供です / 横浜に住んでいました → 子供の時、横浜に住んでいました。",
+    example: "__子供です__ / 横浜に住んでいました → __子供の時__、横浜に住んでいました。",
+    type: "fill",
+    question: "休みです / 子供とサッカーをします",
+    answer: "休みの時、子供とサッカーをします。",
+    referenceAnswers: ["休みの時、子供とサッカーをします。"],
+    relatedGrammar: ["g1"],
+    relatedSentences: [],
+    explanation: "名词「休み」后接「の時」，表示休息或休假时。"
+  },
+  {
+    id: "ex-i-1-3",
+    groupId: "i-1",
+    groupTitle: "练习 I · 1",
+    category: "替换练习",
+    instruction: "仿照例句替换画线部分进行练习。",
+    example: "__子供です__ / 横浜に住んでいました → __子供の時__、横浜に住んでいました。",
+    type: "fill",
+    question: "信号が青です / 道を渡ってもいいです",
+    answer: "信号が青の時、道を渡ってもいいです。",
+    referenceAnswers: ["信号が青の時、道を渡ってもいいです。"],
+    relatedGrammar: ["g1"],
+    relatedSentences: [],
+    explanation: "二类形容词「青」作名词性状态使用时，接「の時」。"
+  },
+  {
+    id: "ex-i-1-4",
+    groupId: "i-1",
+    groupTitle: "练习 I · 1",
+    category: "替换练习",
+    instruction: "仿照例句替换画线部分进行练习。",
+    example: "__子供です__ / 横浜に住んでいました → __子供の時__、横浜に住んでいました。",
+    type: "fill",
+    question: "信号が赤です / 道を渡ってはいけません",
+    answer: "信号が赤の時、道を渡ってはいけません。",
+    referenceAnswers: ["信号が赤の時、道を渡ってはいけません。"],
+    relatedGrammar: ["g1"],
+    relatedSentences: [],
+    explanation: "二类形容词「赤」作名词性状态使用时，接「の時」。"
+  },
+  {
+    id: "ex-i-1-5",
+    groupId: "i-1",
+    groupTitle: "练习 I · 1",
+    category: "替换练习",
+    instruction: "仿照例句替换画线部分进行练习。",
+    example: "__子供です__ / 横浜に住んでいました → __子供の時__、横浜に住んでいました。",
     type: "fill",
     question: "海外旅行です / パスポートが要ります",
     answer: "海外旅行の時、パスポートが要ります。",
@@ -633,7 +678,37 @@ const standardExercises = [
     groupTitle: "练习 I · 2",
     category: "替换练习",
     instruction: "仿照例句替换画线部分进行练习。",
-    example: "天気がいいです / 友達と野球をします → 天気がいい時、友達と野球をします。",
+    example: "__天気がいいです__ / 友達と野球をします → __天気がいい時__、友達と野球をします。",
+    type: "fill",
+    question: "寂しいです / 明るい曲を聞きます",
+    answer: "寂しい時、明るい曲を聞きます。",
+    referenceAnswers: ["寂しい時、明るい曲を聞きます。"],
+    relatedGrammar: ["g1"],
+    relatedSentences: [],
+    explanation: "一类形容词接「時」时直接连接。"
+  },
+  {
+    id: "ex-i-2-2",
+    groupId: "i-2",
+    groupTitle: "练习 I · 2",
+    category: "替换练习",
+    instruction: "仿照例句替换画线部分进行练习。",
+    example: "__天気がいいです__ / 友達と野球をします → __天気がいい時__、友達と野球をします。",
+    type: "fill",
+    question: "夜静かです / 詩を書きます",
+    answer: "夜静かな時、詩を書きます。",
+    referenceAnswers: ["夜静かな時、詩を書きます。"],
+    relatedGrammar: ["g1"],
+    relatedSentences: [],
+    explanation: "二类形容词接「時」时用「な時」。"
+  },
+  {
+    id: "ex-i-2-3",
+    groupId: "i-2",
+    groupTitle: "练习 I · 2",
+    category: "替换练习",
+    instruction: "仿照例句替换画线部分进行练习。",
+    example: "__天気がいいです__ / 友達と野球をします → __天気がいい時__、友達と野球をします。",
     type: "fill",
     question: "困りました / わたしに相談してください",
     answer: "困った時、わたしに相談してください。",
@@ -643,12 +718,27 @@ const standardExercises = [
     explanation: "已经发生或处于该状态时，用动词た形 +「時」。"
   },
   {
-    id: "ex-i-2-2",
+    id: "ex-i-2-4",
     groupId: "i-2",
     groupTitle: "练习 I · 2",
     category: "替换练习",
     instruction: "仿照例句替换画线部分进行练习。",
-    example: "コーヒーを飲みます / 砂糖を入れます → コーヒーを飲む時、砂糖を入れます。",
+    example: "__天気がいいです__ / 友達と野球をします → __天気がいい時__、友達と野球をします。",
+    type: "fill",
+    question: "紙を切ります / はさみを使います",
+    answer: "紙を切る時、はさみを使います。",
+    referenceAnswers: ["紙を切る時、はさみを使います。"],
+    relatedGrammar: ["g1"],
+    relatedSentences: [],
+    explanation: "表示做某动作时，用动词基本形 +「時」。"
+  },
+  {
+    id: "ex-i-2-5",
+    groupId: "i-2",
+    groupTitle: "练习 I · 2",
+    category: "替换练习",
+    instruction: "仿照例句替换画线部分进行练习。",
+    example: "__仕事が暇です__ / 残業しません → __仕事が暇な時__、残業しません。",
     type: "fill",
     question: "部屋を使いません / 電気を消してください",
     answer: "部屋を使わない時、電気を消してください。",
@@ -658,12 +748,57 @@ const standardExercises = [
     explanation: "否定的“使用房间的时候”要用动词ない形 +「時」。"
   },
   {
+    id: "ex-i-2-6",
+    groupId: "i-2",
+    groupTitle: "练习 I · 2",
+    category: "替换练习",
+    instruction: "仿照例句替换画线部分进行练习。",
+    example: "__仕事が暇です__ / 残業しません → __仕事が暇な時__、残業しません。",
+    type: "fill",
+    question: "お金がありません / どうしますか",
+    answer: "お金がない時、どうしますか。",
+    referenceAnswers: ["お金がない時、どうしますか。"],
+    relatedGrammar: ["g1"],
+    relatedSentences: [],
+    explanation: "「ありません」的普通否定形是「ない」，接「時」。"
+  },
+  {
+    id: "ex-i-2-7",
+    groupId: "i-2",
+    groupTitle: "练习 I · 2",
+    category: "替换练习",
+    instruction: "仿照例句替换画线部分进行练习。",
+    example: "__仕事が暇です__ / 残業しません → __仕事が暇な時__、残業しません。",
+    type: "fill",
+    question: "都合が悪いです / すぐ連絡してください",
+    answer: "都合が悪い時、すぐ連絡してください。",
+    referenceAnswers: ["都合が悪い時、すぐ連絡してください。"],
+    relatedGrammar: ["g1"],
+    relatedSentences: [],
+    explanation: "一类形容词「悪い」直接接「時」。"
+  },
+  {
+    id: "ex-i-2-8",
+    groupId: "i-2",
+    groupTitle: "练习 I · 2",
+    category: "替换练习",
+    instruction: "仿照例句替换画线部分进行练习。",
+    example: "__コーヒーを飲みます__ / 砂糖を入れます → __コーヒーを飲む時__、砂糖を入れます。",
+    type: "fill",
+    question: "朝友達に会いました / 「おはよう」と言います",
+    answer: "朝友達に会った時、「おはよう」と言います。",
+    referenceAnswers: ["朝友達に会った時、「おはよう」と言います。", "朝友達に会った時、おはようと言います。"],
+    relatedGrammar: ["g1"],
+    relatedSentences: [],
+    explanation: "已经见到朋友时，用动词た形 +「時」。"
+  },
+  {
     id: "ex-i-3-1",
     groupId: "i-3",
     groupTitle: "练习 I · 3",
     category: "听力练习",
     instruction: "听录音，仿照例句回答录音中的提问。",
-    example: "子供の時、どこに住んでいましたか。 / 上海 → 上海に住んでいました。",
+    example: "例：子供の時、どこに住んでいましたか。上海に住んでいました。",
     type: "listening",
     audioRequired: true,
     hasAnswer: false,
@@ -680,11 +815,79 @@ const standardExercises = [
     groupTitle: "练习 I · 3",
     category: "听力练习",
     instruction: "听录音，仿照例句回答录音中的提问。",
-    example: "子供の時、どこに住んでいましたか。 / 上海 → 上海に住んでいました。",
+    example: "例：子供の時、どこに住んでいましたか。上海に住んでいました。",
+    type: "listening",
+    audioRequired: true,
+    hasAnswer: false,
+    question: "お金とパスポート",
+    answer: "",
+    referenceAnswers: [],
+    relatedGrammar: ["g1"],
+    relatedSentences: [],
+    explanation: "本题需要教材录音。当前未提供录音，暂不判分。"
+  },
+  {
+    id: "ex-i-3-3",
+    groupId: "i-3",
+    groupTitle: "练习 I · 3",
+    category: "听力练习",
+    instruction: "听录音，仿照例句回答录音中的提问。",
+    example: "例：子供の時、どこに住んでいましたか。上海に住んでいました。",
     type: "listening",
     audioRequired: true,
     hasAnswer: false,
     question: "旅行",
+    answer: "",
+    referenceAnswers: [],
+    relatedGrammar: ["g1"],
+    relatedSentences: [],
+    explanation: "本题需要教材录音。当前未提供录音，暂不判分。"
+  },
+  {
+    id: "ex-i-3-4",
+    groupId: "i-3",
+    groupTitle: "练习 I · 3",
+    category: "听力练习",
+    instruction: "听录音，仿照例句回答录音中的提问。",
+    example: "例：子供の時、どこに住んでいましたか。上海に住んでいました。",
+    type: "listening",
+    audioRequired: true,
+    hasAnswer: false,
+    question: "「お先に失礼します」",
+    answer: "",
+    referenceAnswers: [],
+    relatedGrammar: ["g1"],
+    relatedSentences: [],
+    explanation: "本题需要教材录音。当前未提供录音，暂不判分。"
+  },
+  {
+    id: "ex-i-3-5",
+    groupId: "i-3",
+    groupTitle: "练习 I · 3",
+    category: "听力练习",
+    instruction: "听录音，仿照例句回答录音中的提问。",
+    example: "例：子供の時、どこに住んでいましたか。上海に住んでいました。",
+    type: "listening",
+    audioRequired: true,
+    hasAnswer: false,
+    question: "家族や友達",
+    answer: "",
+    referenceAnswers: [],
+    relatedGrammar: ["g1"],
+    relatedSentences: [],
+    explanation: "本题需要教材录音。当前未提供录音，暂不判分。"
+  },
+  {
+    id: "ex-i-3-6",
+    groupId: "i-3",
+    groupTitle: "练习 I · 3",
+    category: "听力练习",
+    instruction: "听录音，仿照例句回答录音中的提问。",
+    example: "例：子供の時、どこに住んでいましたか。上海に住んでいました。",
+    type: "listening",
+    audioRequired: true,
+    hasAnswer: false,
+    question: "卓球やバスケットボール",
     answer: "",
     referenceAnswers: [],
     relatedGrammar: ["g1"],
@@ -697,7 +900,7 @@ const standardExercises = [
     groupTitle: "练习 I · 4",
     category: "替换练习",
     instruction: "仿照例句替换画线部分进行练习。",
-    example: "雑誌を読みます / ご飯を食べます → 雑誌を読みながら、ご飯を食べています。",
+    example: "例1：__雑誌を読みます__ / ご飯を食べます → 甲：李さんは何をしていますか。乙：__雑誌を読みながら__、ご飯を食べています。",
     type: "fill",
     question: "ラジオを聞きます / 食事の準備をします",
     answer: "ラジオを聞きながら、食事の準備をしています。",
@@ -710,9 +913,69 @@ const standardExercises = [
     id: "ex-i-4-2",
     groupId: "i-4",
     groupTitle: "练习 I · 4",
+    category: "替换练习",
+    instruction: "仿照例句替换画线部分进行练习。",
+    example: "例1：__雑誌を読みます__ / ご飯を食べます → 甲：李さんは何をしていますか。乙：__雑誌を読みながら__、ご飯を食べています。",
+    type: "fill",
+    question: "長島さんと話します / 写真を選びます",
+    answer: "長島さんと話しながら、写真を選んでいます。",
+    referenceAnswers: ["長島さんと話しながら、写真を選んでいます。"],
+    relatedGrammar: ["g2", "g4"],
+    relatedSentences: [],
+    explanation: "「話します」去掉「ます」接「ながら」，后项用「選んでいます」。"
+  },
+  {
+    id: "ex-i-4-3",
+    groupId: "i-4",
+    groupTitle: "练习 I · 4",
+    category: "替换练习",
+    instruction: "仿照例句替换画线部分进行练习。",
+    example: "例1：__雑誌を読みます__ / ご飯を食べます → 甲：李さんは何をしていますか。乙：__雑誌を読みながら__、ご飯を食べています。",
+    type: "fill",
+    question: "手をたたきます / 歌ったり踊ったりします",
+    answer: "手をたたきながら、歌ったり踊ったりしています。",
+    referenceAnswers: ["手をたたきながら、歌ったり踊ったりしています。"],
+    relatedGrammar: ["g2", "g4"],
+    relatedSentences: [],
+    explanation: "「手をたたきながら」表示一边拍手一边唱歌跳舞。"
+  },
+  {
+    id: "ex-i-4-4",
+    groupId: "i-4",
+    groupTitle: "练习 I · 4",
+    category: "替换练习",
+    instruction: "仿照例句替换画线部分进行练习。",
+    example: "例1：__雑誌を読みます__ / ご飯を食べます → 甲：李さんは何をしていますか。乙：__雑誌を読みながら__、ご飯を食べています。",
+    type: "fill",
+    question: "部屋の中を歩きます / スピーチの練習をします",
+    answer: "部屋の中を歩きながら、スピーチの練習をしています。",
+    referenceAnswers: ["部屋の中を歩きながら、スピーチの練習をしています。"],
+    relatedGrammar: ["g2"],
+    relatedSentences: [],
+    explanation: "「歩きながら」表示一边走一边做后项动作。"
+  },
+  {
+    id: "ex-i-4-5",
+    groupId: "i-4",
+    groupTitle: "练习 I · 4",
+    category: "替换练习",
+    instruction: "仿照例句替换画线部分进行练习。",
+    example: "例1：__雑誌を読みます__ / ご飯を食べます → 甲：李さんは何をしていますか。乙：__雑誌を読みながら__、ご飯を食べています。",
+    type: "fill",
+    question: "表やグラフを見せます / 新しい企画の説明をします",
+    answer: "表やグラフを見せながら、新しい企画の説明をしています。",
+    referenceAnswers: ["表やグラフを見せながら、新しい企画の説明をしています。"],
+    relatedGrammar: ["g2", "g4"],
+    relatedSentences: [],
+    explanation: "「見せます」去掉「ます」接「ながら」，表示一边展示表格和图表一边说明。"
+  },
+  {
+    id: "ex-i-4-6",
+    groupId: "i-4",
+    groupTitle: "练习 I · 4",
     category: "确认表达练习",
     instruction: "仿照例句，用「でしょう？」确认对方信息。",
-    example: "野球が好きです / ええ、大好きです → 森さん、野球が好きでしょう？",
+    example: "例2：野球が好きです / ええ、大好きです → 甲：森さん、野球が好きでしょう？ 乙：ええ、大好きです。",
     type: "fill",
     question: "明日から出張です / はい、1週間の予定です",
     answer: "明日から出張でしょう？",
@@ -722,12 +985,72 @@ const standardExercises = [
     explanation: "向对方确认自己认为基本确定的事情时，用升调的「でしょう？」。"
   },
   {
+    id: "ex-i-4-7",
+    groupId: "i-4",
+    groupTitle: "练习 I · 4",
+    category: "确认表达练习",
+    instruction: "仿照例句，用「でしょう？」确认对方信息。",
+    example: "例2：野球が好きです / ええ、大好きです → 甲：森さん、野球が好きでしょう？ 乙：ええ、大好きです。",
+    type: "fill",
+    question: "ここにカメラがありました / さあ、気がつきませんでしたが...",
+    answer: "ここにカメラがあったでしょう？",
+    referenceAnswers: ["ここにカメラがあったでしょう？"],
+    relatedGrammar: ["g3"],
+    relatedSentences: [],
+    explanation: "过去的存在确认用「ありました」的普通形「あった」加「でしょう？」。"
+  },
+  {
+    id: "ex-i-4-8",
+    groupId: "i-4",
+    groupTitle: "练习 I · 4",
+    category: "确认表达练习",
+    instruction: "仿照例句，用「でしょう？」确认对方信息。",
+    example: "例2：野球が好きです / ええ、大好きです → 甲：森さん、野球が好きでしょう？ 乙：ええ、大好きです。",
+    type: "fill",
+    question: "日本に恋人がいます / えっ！ いいえ、いません",
+    answer: "日本に恋人がいるでしょう？",
+    referenceAnswers: ["日本に恋人がいるでしょう？"],
+    relatedGrammar: ["g3"],
+    relatedSentences: [],
+    explanation: "「います」的普通形是「いる」，确认时接「でしょう？」。"
+  },
+  {
+    id: "ex-i-4-9",
+    groupId: "i-4",
+    groupTitle: "练习 I · 4",
+    category: "确认表达练习",
+    instruction: "仿照例句，用「でしょう？」确认对方信息。",
+    example: "例2：野球が好きです / ええ、大好きです → 甲：森さん、野球が好きでしょう？ 乙：ええ、大好きです。",
+    type: "fill",
+    question: "スキーができます / ええ。でも、上手ではありません",
+    answer: "スキーができるでしょう？",
+    referenceAnswers: ["スキーができるでしょう？"],
+    relatedGrammar: ["g3"],
+    relatedSentences: [],
+    explanation: "「できます」的普通形是「できる」，确认时接「でしょう？」。"
+  },
+  {
+    id: "ex-i-4-10",
+    groupId: "i-4",
+    groupTitle: "练习 I · 4",
+    category: "确认表达练习",
+    instruction: "仿照例句，用「でしょう？」确认对方信息。",
+    example: "例2：野球が好きです / ええ、大好きです → 甲：森さん、野球が好きでしょう？ 乙：ええ、大好きです。",
+    type: "fill",
+    question: "スペイン語は難しいです / いいえ、そんなに難しくないですよ",
+    answer: "スペイン語は難しいでしょう？",
+    referenceAnswers: ["スペイン語は難しいでしょう？"],
+    relatedGrammar: ["g3"],
+    relatedSentences: [],
+    explanation: "一类形容词可直接接「でしょう？」进行确认。"
+  },
+  {
     id: "ex-i-5-1",
     groupId: "i-5",
     groupTitle: "练习 I · 5",
     category: "句型变换",
     instruction: "仿照例句替换画线部分进行练习。",
-    example: "姉は銀行で働きます → 姉は銀行で働いています。",
+    example: "__姉は銀行で働きます__ → __姉は銀行で働いています__。",
     type: "fill",
     question: "父は市役所で働きます",
     answer: "父は市役所で働いています。",
@@ -737,16 +1060,125 @@ const standardExercises = [
     explanation: "表示职业、习惯或持续状态时，可用「働いています」。"
   },
   {
+    id: "ex-i-5-2",
+    groupId: "i-5",
+    groupTitle: "练习 I · 5",
+    category: "句型变换",
+    instruction: "仿照例句替换画线部分进行练习。",
+    example: "__姉は銀行で働きます__ → __姉は銀行で働いています__。",
+    type: "fill",
+    question: "兄は大学で国際関係学を勉強します",
+    answer: "兄は大学で国際関係学を勉強しています。",
+    referenceAnswers: ["兄は大学で国際関係学を勉強しています。"],
+    relatedGrammar: ["g4"],
+    relatedSentences: [],
+    explanation: "表示正在学习或持续性的学习状态时，用「勉強しています」。"
+  },
+  {
+    id: "ex-i-5-3",
+    groupId: "i-5",
+    groupTitle: "练习 I · 5",
+    category: "句型变换",
+    instruction: "仿照例句替换画线部分进行练习。",
+    example: "__姉は銀行で働きます__ → __姉は銀行で働いています__。",
+    type: "fill",
+    question: "母は毎日病院に通います",
+    answer: "母は毎日病院に通っています。",
+    referenceAnswers: ["母は毎日病院に通っています。"],
+    relatedGrammar: ["g4"],
+    relatedSentences: [],
+    explanation: "表示反复或持续的习惯时，用「通っています」。"
+  },
+  {
+    id: "ex-i-5-4",
+    groupId: "i-5",
+    groupTitle: "练习 I · 5",
+    category: "句型变换",
+    instruction: "仿照例句替换画线部分进行练习。",
+    example: "__姉は銀行で働きます__ → __姉は銀行で働いています__。",
+    type: "fill",
+    question: "駅前のスーパーは安い品物を売ります",
+    answer: "駅前のスーパーは安い品物を売っています。",
+    referenceAnswers: ["駅前のスーパーは安い品物を売っています。"],
+    relatedGrammar: ["g4"],
+    relatedSentences: [],
+    explanation: "表示店铺长期销售某类商品时，用「売っています」。"
+  },
+  {
+    id: "ex-i-5-5",
+    groupId: "i-5",
+    groupTitle: "练习 I · 5",
+    category: "句型变换",
+    instruction: "仿照例句替换画线部分进行练习。",
+    example: "__姉は銀行で働きます__ → __姉は銀行で働いています__。",
+    type: "fill",
+    question: "わたしは毎日運動します",
+    answer: "わたしは毎日運動しています。",
+    referenceAnswers: ["わたしは毎日運動しています。"],
+    relatedGrammar: ["g4"],
+    relatedSentences: [],
+    explanation: "表示每天持续进行的习惯时，用「運動しています」。"
+  },
+  {
+    id: "ex-i-5-6",
+    groupId: "i-5",
+    groupTitle: "练习 I · 5",
+    category: "句型变换",
+    instruction: "仿照例句替换画线部分进行练习。",
+    example: "__姉は銀行で働きます__ → __姉は銀行で働いています__。",
+    type: "fill",
+    question: "弟の会社はパソコンの部品を作ります",
+    answer: "弟の会社はパソコンの部品を作っています。",
+    referenceAnswers: ["弟の会社はパソコンの部品を作っています。"],
+    relatedGrammar: ["g4"],
+    relatedSentences: [],
+    explanation: "表示公司长期生产某类产品时，用「作っています」。"
+  },
+  {
     id: "ex-i-6-1",
     groupId: "i-6",
     groupTitle: "练习 I · 6",
     category: "听力会话",
     instruction: "听录音，仿照例句替换画线部分练习会话。",
-    example: "葉子さん / 大学に通います → 甲：あのう、葉子さんでしょう？ 乙：あっ、李さん、しばらくですね。",
+    example: "例：__葉子さん__ / __李さん__ / __大学に通います__ → 甲：あのう、__葉子さん__でしょう？ 乙：あっ、__李さん__、しばらくですね。甲：本当に、お元気ですか。乙：ええ。去年からこの近くの__大学に通っています__。",
     type: "listening",
     audioRequired: true,
     hasAnswer: false,
     question: "キムさん / 木下さん / スーパーで働きます",
+    answer: "",
+    referenceAnswers: [],
+    relatedGrammar: ["g3", "g4"],
+    relatedSentences: [],
+    explanation: "本题需要教材录音。当前未提供录音，暂不判分。"
+  },
+  {
+    id: "ex-i-6-2",
+    groupId: "i-6",
+    groupTitle: "练习 I · 6",
+    category: "听力会话",
+    instruction: "听录音，仿照例句替换画线部分练习会话。",
+    example: "例：__葉子さん__ / __李さん__ / __大学に通います__ → 甲：あのう、__葉子さん__でしょう？ 乙：あっ、__李さん__、しばらくですね。甲：本当に、お元気ですか。乙：ええ。去年からこの近くの__大学に通っています__。",
+    type: "listening",
+    audioRequired: true,
+    hasAnswer: false,
+    question: "田中さん / 張さん / マンションに住みます",
+    answer: "",
+    referenceAnswers: [],
+    relatedGrammar: ["g3", "g4"],
+    relatedSentences: [],
+    explanation: "本题需要教材录音。当前未提供录音，暂不判分。"
+  },
+  {
+    id: "ex-i-6-3",
+    groupId: "i-6",
+    groupTitle: "练习 I · 6",
+    category: "听力会话",
+    instruction: "听录音，仿照例句替换画线部分练习会话。",
+    example: "例：__葉子さん__ / __李さん__ / __大学に通います__ → 甲：あのう、__葉子さん__でしょう？ 乙：あっ、__李さん__、しばらくですね。甲：本当に、お元気ですか。乙：ええ。去年からこの近くの__大学に通っています__。",
+    type: "listening",
+    audioRequired: true,
+    hasAnswer: false,
+    question: "陳さん / 田村さん / 会社で働きます",
     answer: "",
     referenceAnswers: [],
     relatedGrammar: ["g3", "g4"],
@@ -759,7 +1191,7 @@ const standardExercises = [
     groupTitle: "练习 II · 1",
     category: "看图造句",
     instruction: "看图，仿照例句造句。",
-    example: "テレビを見ながら、晩ご飯を食べています。",
+    example: "例：__テレビを見ます__ / 晩ご飯を食べます → __テレビを見ながら__、晩ご飯を食べています。",
     type: "fill",
     question: "タバコを吸います / テレビを見ます",
     answer: "タバコを吸いながら、テレビを見ています。",
@@ -767,6 +1199,51 @@ const standardExercises = [
     relatedGrammar: ["g2", "g4"],
     relatedSentences: [],
     explanation: "「吸います」去掉「ます」接「ながら」。"
+  },
+  {
+    id: "ex-ii-1-2",
+    groupId: "ii-1",
+    groupTitle: "练习 II · 1",
+    category: "看图造句",
+    instruction: "看图，仿照例句造句。",
+    example: "例：__テレビを見ます__ / 晩ご飯を食べます → __テレビを見ながら__、晩ご飯を食べています。",
+    type: "fill",
+    question: "歌を歌います / 公園を散歩します",
+    answer: "歌を歌いながら、公園を散歩しています。",
+    referenceAnswers: ["歌を歌いながら、公園を散歩しています。"],
+    relatedGrammar: ["g2", "g4"],
+    relatedSentences: [],
+    explanation: "「歌います」去掉「ます」接「ながら」。"
+  },
+  {
+    id: "ex-ii-1-3",
+    groupId: "ii-1",
+    groupTitle: "练习 II · 1",
+    category: "看图造句",
+    instruction: "看图，仿照例句造句。",
+    example: "例：__テレビを見ます__ / 晩ご飯を食べます → __テレビを見ながら__、晩ご飯を食べています。",
+    type: "fill",
+    question: "お茶を飲みます / 音楽を聞きます",
+    answer: "お茶を飲みながら、音楽を聞いています。",
+    referenceAnswers: ["お茶を飲みながら、音楽を聞いています。"],
+    relatedGrammar: ["g2", "g4"],
+    relatedSentences: [],
+    explanation: "「飲みながら」表示一边喝茶，一边听音乐。"
+  },
+  {
+    id: "ex-ii-1-4",
+    groupId: "ii-1",
+    groupTitle: "练习 II · 1",
+    category: "看图造句",
+    instruction: "看图，仿照例句造句。",
+    example: "例：__テレビを見ます__ / 晩ご飯を食べます → __テレビを見ながら__、晩ご飯を食べています。",
+    type: "fill",
+    question: "笑います / アルバムを見ます",
+    answer: "笑いながら、アルバムを見ています。",
+    referenceAnswers: ["笑いながら、アルバムを見ています。"],
+    relatedGrammar: ["g2", "g4"],
+    relatedSentences: [],
+    explanation: "「笑います」去掉「ます」接「ながら」。"
   },
   {
     id: "ex-ii-2-1",
@@ -777,7 +1254,7 @@ const standardExercises = [
     example: "ご飯を食べる時に使う物です。（はし）",
     type: "choice",
     question: "紙を切る時に使う道具です。",
-    choices: ["食堂", "携帯電話", "はさみ", "クレジットカード", "郵便局"],
+    choices: ["食堂", "携帯電話", "はし", "はさみ", "クレジットカード", "郵便局"],
     answer: "はさみ",
     relatedGrammar: ["g1"],
     relatedSentences: [],
@@ -792,11 +1269,56 @@ const standardExercises = [
     example: "ご飯を食べる時に使う物です。（はし）",
     type: "choice",
     question: "買い物する時に使う物です。",
-    choices: ["食堂", "携帯電話", "はさみ", "クレジットカード", "郵便局"],
+    choices: ["食堂", "携帯電話", "はし", "はさみ", "クレジットカード", "郵便局"],
     answer: "クレジットカード",
     relatedGrammar: ["g1"],
     relatedSentences: [],
     explanation: "购物时使用的物品是「クレジットカード」。"
+  },
+  {
+    id: "ex-ii-2-3",
+    groupId: "ii-2",
+    groupTitle: "练习 II · 2",
+    category: "选词填空",
+    instruction: "从词库中选择适当的词语填入括号中。",
+    example: "ご飯を食べる時に使う物です。（はし）",
+    type: "choice",
+    question: "話したりメールを送ったりする時に使う物です。",
+    choices: ["食堂", "携帯電話", "はし", "はさみ", "クレジットカード", "郵便局"],
+    answer: "携帯電話",
+    relatedGrammar: ["g1"],
+    relatedSentences: [],
+    explanation: "打电话或发邮件时使用的物品是「携帯電話」。"
+  },
+  {
+    id: "ex-ii-2-4",
+    groupId: "ii-2",
+    groupTitle: "练习 II · 2",
+    category: "选词填空",
+    instruction: "从词库中选择适当的词语填入括号中。",
+    example: "ご飯を食べる時に使う物です。（はし）",
+    type: "choice",
+    question: "ご飯を食べる時に行く所です。",
+    choices: ["食堂", "携帯電話", "はし", "はさみ", "クレジットカード", "郵便局"],
+    answer: "食堂",
+    relatedGrammar: ["g1"],
+    relatedSentences: [],
+    explanation: "吃饭时去的地方是「食堂」。"
+  },
+  {
+    id: "ex-ii-2-5",
+    groupId: "ii-2",
+    groupTitle: "练习 II · 2",
+    category: "选词填空",
+    instruction: "从词库中选择适当的词语填入括号中。",
+    example: "ご飯を食べる時に使う物です。（はし）",
+    type: "choice",
+    question: "切手を買ったり荷物を送ったりする時に行く所です。",
+    choices: ["食堂", "携帯電話", "はし", "はさみ", "クレジットカード", "郵便局"],
+    answer: "郵便局",
+    relatedGrammar: ["g1"],
+    relatedSentences: [],
+    explanation: "买邮票或寄包裹时去的地方是「郵便局」。"
   },
   {
     id: "ex-ii-3-1",
@@ -804,7 +1326,7 @@ const standardExercises = [
     groupTitle: "练习 II · 3",
     category: "变形完成句子",
     instruction: "将括号中的词语变成适当的形式，完成句子。",
-    example: "疲れます → 疲れた時、ゆっくりお風呂に入ります。",
+    example: "__疲れます__ → __疲れた時__、ゆっくりお風呂に入ります。",
     type: "fill",
     question: "あそこで電話を（かけます→）人はだれですか。",
     answer: "あそこで電話をかけている人はだれですか。",
@@ -819,7 +1341,37 @@ const standardExercises = [
     groupTitle: "练习 II · 3",
     category: "变形完成句子",
     instruction: "将括号中的词语变成适当的形式，完成句子。",
-    example: "疲れます → 疲れた時、ゆっくりお風呂に入ります。",
+    example: "__疲れます__ → __疲れた時__、ゆっくりお風呂に入ります。",
+    type: "fill",
+    question: "あなたが（好きです→）音楽は何ですか。",
+    answer: "あなたが好きな音楽は何ですか。",
+    referenceAnswers: ["あなたが好きな音楽は何ですか。"],
+    relatedGrammar: ["g1"],
+    relatedSentences: [],
+    explanation: "二类形容词「好き」修饰名词时用「好きな」。"
+  },
+  {
+    id: "ex-ii-3-3",
+    groupId: "ii-3",
+    groupTitle: "练习 II · 3",
+    category: "变形完成句子",
+    instruction: "将括号中的词语变成适当的形式，完成句子。",
+    example: "__疲れます__ → __疲れた時__、ゆっくりお風呂に入ります。",
+    type: "fill",
+    question: "吉田さんは昨日（来ませんでした→）でしょう？",
+    answer: "吉田さんは昨日来なかったでしょう？",
+    referenceAnswers: ["吉田さんは昨日来なかったでしょう？"],
+    relatedGrammar: ["g3"],
+    relatedSentences: [],
+    explanation: "「来ませんでした」的普通形过去否定是「来なかった」。"
+  },
+  {
+    id: "ex-ii-3-4",
+    groupId: "ii-3",
+    groupTitle: "练习 II · 3",
+    category: "变形完成句子",
+    instruction: "将括号中的词语变成适当的形式，完成句子。",
+    example: "__疲れます__ → __疲れた時__、ゆっくりお風呂に入ります。",
     type: "fill",
     question: "李さんは歌を（歌います→）ながら、掃除しています。",
     answer: "李さんは歌を歌いながら、掃除しています。",
@@ -827,6 +1379,21 @@ const standardExercises = [
     relatedGrammar: ["g2"],
     relatedSentences: ["s16"],
     explanation: "「歌います」去掉「ます」接「ながら」，变为「歌いながら」。"
+  },
+  {
+    id: "ex-ii-3-5",
+    groupId: "ii-3",
+    groupTitle: "练习 II · 3",
+    category: "变形完成句子",
+    instruction: "将括号中的词语变成适当的形式，完成句子。",
+    example: "__疲れます__ → __疲れた時__、ゆっくりお風呂に入ります。",
+    type: "fill",
+    question: "あの店は日曜日は（休みです→）かもしれません。",
+    answer: "あの店は日曜日は休みかもしれません。",
+    referenceAnswers: ["あの店は日曜日は休みかもしれません。"],
+    relatedGrammar: ["g1"],
+    relatedSentences: [],
+    explanation: "名词或二类形容词接「かもしれません」时不加「です」。"
   },
   {
     id: "ex-ii-4-1",
@@ -876,6 +1443,30 @@ const standardExercises = [
 ];
 
 lesson.exercises = standardExercises;
+
+const lessonCatalog = [
+  {
+    id: 27,
+    title: "第27课",
+    subtitle: "子供の時、大きな地震がありました",
+    status: "ready",
+    description: "围绕第 27 课完成单词、语法、课文朗读、标准练习和结果复盘。"
+  },
+  {
+    id: 28,
+    title: "第28课",
+    subtitle: "待初始化",
+    status: "pending",
+    description: "课程内容尚未采集，后续可继续按同一结构初始化。"
+  },
+  {
+    id: 29,
+    title: "第29课",
+    subtitle: "待初始化",
+    status: "pending",
+    description: "课程内容尚未采集，后续可继续按同一结构初始化。"
+  }
+];
 
 const textStructure = [
   {
@@ -945,6 +1536,10 @@ const state = {
   wordProgress: initialWordProgress(),
   wordLearning: initialWordLearning(),
   exerciseResults: read(`lesson:${lesson.id}:exerciseResults`, []),
+  exerciseGroupAnswers: read(`lesson:${lesson.id}:exerciseGroupAnswers`, {}),
+  exerciseGroupSubmitted: read(`lesson:${lesson.id}:exerciseGroupSubmitted`, {}),
+  wrongBook: read(`lesson:${lesson.id}:wrongBook`, {}),
+  wrongPractice: { current: 0, answer: "", submitted: false, result: null },
   interactionProgress: initialInteractionProgress(),
   grammarPractice: initialGrammarPractice(),
   currentVoiceId: read(`lesson:${lesson.id}:currentVoiceId`, defaultVoiceId),
@@ -952,10 +1547,15 @@ const state = {
   audioStatusVoiceId: "",
   audioBusy: "",
   audioMessage: "",
+  initStatus: null,
+  initStatusLessonId: "",
+  initBusy: "",
+  initMessage: "",
   currentWord: 0,
   currentSentence: 0,
   currentGrammar: 0,
   currentExercise: 0,
+  currentExerciseGroup: read(`lesson:${lesson.id}:currentExerciseGroup`, 0),
   vocabPhase: "pronunciation",
   vocabTestQueue: read(`lesson:${lesson.id}:vocabTestQueue`, []),
   currentVocabTest: read(`lesson:${lesson.id}:currentVocabTest`, 0),
@@ -1248,6 +1848,8 @@ function navigate(path) {
 
 function route() {
   const pathname = decodeURIComponent(location.pathname).replace(/[\s\u3000/]+$/u, "");
+  const lessonMatch = pathname.match(/^\/lesson\/(\d+)$/);
+  if (lessonMatch) return { lessonId: lessonMatch[1], page: "lesson" };
   const match = pathname.match(/^\/lesson\/(\d+)\/([^/]+)$/);
   return match ? { lessonId: match[1], page: match[2] } : { page: "home" };
 }
@@ -1535,7 +2137,11 @@ function escapeHtml(value) {
 }
 
 function normalizeAnswer(value) {
-  return value.trim().replace(/\s+/g, "").replace(/[。．.、，,「」『』]/g, "");
+  return String(value || "")
+    .trim()
+    .replace(/\s+/g, "")
+    .replace(/[「」『』]/g, "")
+    .replace(/[。．.、，,!?！？]+$/g, "");
 }
 
 function normalizeLookupText(value) {
@@ -1692,7 +2298,9 @@ function pronunciationText(status) {
 }
 
 function layout(content) {
-  const current = route().page;
+  const currentRoute = route();
+  const current = currentRoute.page;
+  const inLesson = Boolean(currentRoute.lessonId) && String(currentRoute.lessonId) === String(lesson.id);
   return `
     <div class="shell">
       <header class="topbar">
@@ -1702,18 +2310,22 @@ function layout(content) {
         </div>
         <nav class="nav">
           ${navLink("/", "首页", current === "home")}
-          ${navLink(`/lesson/${lesson.id}/vocab`, "单词预热", current === "vocab")}
-          ${navLink(`/lesson/${lesson.id}/grammar`, "语法", current === "grammar")}
-          ${navLink(`/lesson/${lesson.id}/text`, "课文", current === "text")}
-          ${navLink(`/lesson/${lesson.id}/exercises`, "练习", current === "exercises")}
-      ${navLink(`/lesson/${lesson.id}/result`, "结果", current === "result")}
-      <div class="manage-menu ${current === "audio" ? "active" : ""}">
-        <button class="manage-trigger" type="button" data-nav="/lesson/${lesson.id}/audio">管理</button>
-        <div class="manage-dropdown">
-          ${navLink(`/lesson/${lesson.id}/audio`, "音频", current === "audio")}
-        </div>
-      </div>
-    </nav>
+          ${inLesson ? navLink(`/lesson/${lesson.id}`, "课程", current === "lesson") : ""}
+          ${inLesson ? navLink(`/lesson/${lesson.id}/vocab`, "单词预热", current === "vocab") : ""}
+          ${inLesson ? navLink(`/lesson/${lesson.id}/grammar`, "语法", current === "grammar") : ""}
+          ${inLesson ? navLink(`/lesson/${lesson.id}/text`, "课文", current === "text") : ""}
+          ${inLesson ? navLink(`/lesson/${lesson.id}/exercises`, "练习", current === "exercises") : ""}
+          ${inLesson ? navLink(`/lesson/${lesson.id}/wrongbook`, "错题集", current === "wrongbook") : ""}
+          ${inLesson ? navLink(`/lesson/${lesson.id}/result`, "结果", current === "result") : ""}
+          ${inLesson ? `
+            <div class="manage-menu ${current === "audio" ? "active" : ""}">
+              <button class="manage-trigger" type="button" data-nav="/lesson/${lesson.id}/audio">管理</button>
+              <div class="manage-dropdown">
+                ${navLink(`/lesson/${lesson.id}/audio`, "音频", current === "audio")}
+              </div>
+            </div>
+          ` : ""}
+        </nav>
     <div class="playback-control" aria-label="播放速度">
       ${[1, 0.6, 0.8, 1.2, 1.5].map((rate) => `
         <button class="playback-rate ${state.playbackRate === rate ? "active" : ""}" data-playback-rate="${rate}" type="button">${rate.toFixed(1)}x</button>
@@ -1731,31 +2343,158 @@ function navLink(path, text, active) {
 }
 
 function home() {
-  const seen = Object.values(state.wordProgress).filter((status) => status !== "unseen").length;
-  const done = state.exerciseResults.length;
   return layout(`
-    <section class="hero">
-      <div class="hero-copy">
-        <p class="eyebrow">教材驱动的逐步聚焦学习闭环</p>
-        <h1>JapaFlow</h1>
-        <p class="lead">从单词预热进入课文，再回到语法和练习反馈。当前原型聚焦一课的完整学习路径。</p>
-        <div class="button-row">
-          <button class="primary" data-nav="/lesson/${lesson.id}/vocab">开始学习</button>
-          <button class="secondary" data-nav="/lesson/${lesson.id}/result">查看进度</button>
+    <section class="course-home">
+      <div class="page-head">
+        <div>
+          <p class="eyebrow">JapaFlow · 课程列表</p>
+          <h1>选择一课开始学习</h1>
+          <p class="lead">首页只负责选课和总览。进入具体课次后，再完成单词、语法、课文、练习和结果复盘。</p>
         </div>
       </div>
-      <aside class="panel lesson-board">
-        <div>
-          <p class="eyebrow">当前学习课次</p>
-          <h2>${lesson.title} · ${lesson.subtitle}</h2>
-          <p class="muted">目标：完成单词预热、逐句课文、语法回顾、练习反馈和错误回溯。</p>
-        </div>
-        ${progressRow("单词预热", seen, activeVocabulary().length)}
-        ${progressRow("课文句子", state.currentSentence + 1, lesson.sentences.length)}
-        ${progressRow("练习完成", done, lesson.exercises.length)}
-      </aside>
+      <div class="course-grid">
+        ${lessonCatalog.map((item) => courseCard(item)).join("")}
+      </div>
     </section>
   `);
+}
+
+function courseCard(item) {
+  const ready = item.status === "ready";
+  const summary = ready ? lessonProgressSummary() : null;
+  const status = ready ? lessonStudyStatus(summary) : { label: "待初始化", className: "pending" };
+  return `
+    <article class="course-card ${ready ? "ready" : "pending"}" ${ready ? "" : `data-nav="/lesson/${item.id}/init"`}>
+      <div class="course-card-head">
+        <div>
+          <p class="eyebrow">${item.title}</p>
+          <h2>${item.subtitle}</h2>
+        </div>
+        <span class="course-status ${status.className}">${status.label}</span>
+      </div>
+      <p class="muted">${item.description}</p>
+      ${ready ? `
+        <div class="course-progress-grid">
+          ${courseMetric("单词", summary.vocab.completed, summary.vocab.total)}
+          ${courseMetric("语法", summary.grammar.completed, summary.grammar.total)}
+          ${courseMetric("课文", summary.text.completed, summary.text.total)}
+          ${courseMetric("练习", summary.exercises.completed, summary.exercises.total)}
+        </div>
+        <div class="button-row">
+          <button class="primary" data-nav="/lesson/${item.id}">${summary.started ? "继续学习" : "开始学习"}</button>
+          <button class="secondary" data-nav="/lesson/${item.id}/result">查看结果</button>
+        </div>
+      ` : `
+        <div class="course-placeholder">课程数据尚未初始化</div>
+        <button class="primary" data-nav="/lesson/${item.id}/init">初始化课程</button>
+      `}
+    </article>
+  `;
+}
+
+function lessonDashboard() {
+  const currentRoute = route();
+  const catalogItem = lessonCatalog.find((item) => String(item.id) === String(currentRoute.lessonId));
+  if (!catalogItem || catalogItem.status !== "ready") return pendingLessonPage(catalogItem);
+  const summary = lessonProgressSummary();
+  const next = nextLessonStep(summary);
+  return layout(`
+    <section class="lesson-dashboard">
+      <div class="page-head">
+        <div>
+          <p class="eyebrow">${lesson.title} · 课程首页</p>
+          <h1>${lesson.subtitle}</h1>
+          <p class="lead">按推荐路径完成学习，也可以直接进入任意模块处理薄弱点。</p>
+        </div>
+        <div class="button-row">
+          <button class="primary" data-nav="${next.path}">${next.label}</button>
+          <button class="secondary" data-nav="/lesson/${lesson.id}/result">查看结果</button>
+        </div>
+      </div>
+      <div class="dashboard-summary">
+        ${progressRow("单词掌握", summary.vocab.completed, summary.vocab.total)}
+        ${progressRow("语法通过", summary.grammar.completed, summary.grammar.total)}
+        ${progressRow("课文朗读", summary.text.completed, summary.text.total)}
+        ${progressRow("练习完成", summary.exercises.completed, summary.exercises.total)}
+      </div>
+      <div class="module-grid">
+        ${moduleCard("单词", "先完成全词表发音与打乱测试。", summary.vocab, `/lesson/${lesson.id}/vocab`)}
+        ${moduleCard("语法", "围绕核心例句完成填空和跟读。", summary.grammar, `/lesson/${lesson.id}/grammar`)}
+        ${moduleCard("课文", "按基本课文和应用课文连续朗读，再复盘弱句。", summary.text, `/lesson/${lesson.id}/text`)}
+        ${moduleCard("练习", "使用标准练习做最终验收。", summary.exercises, `/lesson/${lesson.id}/exercises`)}
+        ${moduleCard("结果", `当前弱项 ${summary.weak.total} 个。`, { completed: summary.weak.resolved, total: summary.weak.total }, `/lesson/${lesson.id}/result`)}
+        ${moduleCard("音频", "管理全局默认声音和缺失音频。", summary.audio, `/lesson/${lesson.id}/audio`)}
+      </div>
+    </section>
+  `);
+}
+
+function pendingLessonPage(item) {
+  return layout(`
+    <section class="panel pending-lesson">
+      <p class="eyebrow">${item?.title || "课程"} · 待初始化</p>
+      <h1>${item?.subtitle || "课程数据不存在"}</h1>
+      <p class="lead">这课还没有导入单词、课文、语法和练习数据。请先完成数据初始化后再进入学习模块。</p>
+      <div class="button-row">
+        <button class="primary" data-nav="/lesson/${item?.id || ""}/init">初始化课程</button>
+        <button class="secondary" data-nav="/">返回课程列表</button>
+      </div>
+    </section>
+  `);
+}
+
+function courseMetric(label, value, total) {
+  const pct = total ? Math.round((value / total) * 100) : 0;
+  return `<div class="course-metric"><span>${label}</span><strong>${value}/${total}</strong><small>${pct}%</small></div>`;
+}
+
+function moduleCard(title, description, progress, path) {
+  return `
+    <article class="module-card" data-nav="${path}">
+      <div class="module-card-head">
+        <h3>${title}</h3>
+        <strong>${progress.completed}/${progress.total}</strong>
+      </div>
+      <p class="muted">${description}</p>
+      ${progressRow("进度", progress.completed, progress.total)}
+    </article>
+  `;
+}
+
+function lessonProgressSummary() {
+  const vocab = activeVocabulary();
+  const vocabCompleted = vocab.filter((word) => wordLearningState(word.id).mainStatus === "mastered").length;
+  const grammarSummaries = lesson.grammar.map((item) => grammarPracticeSummary(item));
+  const grammarCompleted = grammarSummaries.filter((item) => item.total > 0 && item.completed === item.total).length;
+  const textCompleted = lesson.sentences.filter((sentence) => sentencePracticeState(sentence.id).pronunciationPassed).length;
+  const exerciseCompleted = state.exerciseResults.filter((item) => lesson.exercises.some((exercise) => exercise.id === item.exerciseId)).length;
+  const weakTotal = activeWrongItems().length + weakInteractionItems().length;
+  return {
+    vocab: { completed: vocabCompleted, total: vocab.length },
+    grammar: { completed: grammarCompleted, total: lesson.grammar.length },
+    text: { completed: textCompleted, total: lesson.sentences.length },
+    exercises: { completed: exerciseCompleted, total: lesson.exercises.length },
+    weak: { resolved: 0, total: weakTotal },
+    audio: { completed: 0, total: 0 },
+    started: vocabCompleted > 0 || grammarCompleted > 0 || textCompleted > 0 || exerciseCompleted > 0
+  };
+}
+
+function lessonStudyStatus(summary) {
+  const totals = [summary.vocab, summary.grammar, summary.text, summary.exercises];
+  const completed = totals.every((item) => item.total > 0 && item.completed >= item.total);
+  if (completed) return { label: "已完成", className: "done" };
+  if (summary.weak.total > 0) return { label: "需复习", className: "review" };
+  if (summary.started) return { label: "学习中", className: "learning" };
+  return { label: "未开始", className: "new" };
+}
+
+function nextLessonStep(summary) {
+  if (summary.vocab.completed < summary.vocab.total) return { label: "继续单词", path: `/lesson/${lesson.id}/vocab` };
+  if (summary.grammar.completed < summary.grammar.total) return { label: "进入语法", path: `/lesson/${lesson.id}/grammar` };
+  if (summary.text.completed < summary.text.total) return { label: "进入课文", path: `/lesson/${lesson.id}/text` };
+  if (summary.exercises.completed < summary.exercises.total) return { label: "开始练习", path: `/lesson/${lesson.id}/exercises` };
+  return { label: "查看结果", path: `/lesson/${lesson.id}/result` };
 }
 
 function progressRow(label, value, total) {
@@ -2655,88 +3394,469 @@ function audioAssetRow(item) {
   `;
 }
 
+const initBuckets = [
+  { id: "text", label: "课文", hint: "基本课文、应用课文、对话和翻译。" },
+  { id: "grammar", label: "语法", hint: "语法解释、接续、用法、教材例句和补充例句。" },
+  { id: "vocabulary", label: "单词", hint: "单词表、假名、中文释义。" },
+  { id: "exercises", label: "练习", hint: "练习题、例题、选项、答案和说明，题目不能丢。" }
+];
+
+function initLessonId() {
+  return route().lessonId || "";
+}
+
+function initCatalogItem() {
+  const id = initLessonId();
+  return lessonCatalog.find((item) => String(item.id) === String(id)) || { id, title: `第${id}课`, subtitle: "待初始化" };
+}
+
+function initDraftSummary(draft) {
+  if (!draft) return null;
+  return {
+    vocabulary: draft.vocabulary?.length || 0,
+    sentences: draft.sentences?.length || 0,
+    grammar: draft.grammar?.length || 0,
+    exercises: draft.exercises?.length || 0
+  };
+}
+
+function initStepState(status) {
+  const parseConfirmed = Boolean(status?.state?.parseConfirmed);
+  const audioConfirmed = Boolean(status?.state?.audioConfirmed);
+  return {
+    parse: audioConfirmed ? "done" : parseConfirmed ? "done" : status?.draft ? "review" : "active",
+    audio: audioConfirmed ? "done" : parseConfirmed ? "active" : "locked"
+  };
+}
+
+function initStepBadge(value) {
+  return {
+    active: "进行中",
+    review: "待确认",
+    locked: "未开始",
+    done: "已确认"
+  }[value] || "未开始";
+}
+
+function initPage() {
+  const item = initCatalogItem();
+  const status = state.initStatus;
+  const draft = status?.draft;
+  const codexTask = status?.codexTask || status?.state?.codexTaskPath ? {
+    taskPath: status?.codexTask?.taskPath || status?.state?.codexTaskPath,
+    taskUrl: status?.codexTask?.taskUrl || `/data/lesson-init/lesson${item.id}-codex-task.md`,
+    draftPath: status?.codexTask?.draftPath || status?.state?.draftPath
+  } : null;
+  const summary = initDraftSummary(draft);
+  const steps = initStepState(status);
+  const audio = status?.audio || { items: [], generated: 0, missing: 0, total: 0 };
+  const draftText = draft ? escapeHtml(JSON.stringify(draft, null, 2)) : "";
+  return layout(`
+    <section class="init-page">
+      <div class="page-head">
+        <div>
+          <p class="eyebrow">${item.title} · 课程初始化</p>
+          <h1>${item.subtitle}</h1>
+          <p class="lead">先上传四类教材图片并解析为课程数据，确认无误后再生成所有标准音频。</p>
+        </div>
+        <div class="button-row">
+          <button class="secondary" data-nav="/">返回首页</button>
+        </div>
+      </div>
+      ${state.initMessage ? `<p class="hint">${escapeHtml(state.initMessage)}</p>` : ""}
+      ${state.initBusy ? `<div class="locked-panel">${escapeHtml(state.initBusy)}</div>` : ""}
+      <div class="init-steps">
+        <article class="panel init-step ${steps.parse}">
+          <div class="init-step-head">
+            <div>
+              <span class="course-status ${steps.parse === "done" ? "done" : steps.parse === "review" ? "review" : "learning"}">${initStepBadge(steps.parse)}</span>
+              <h2>1. 图片解析</h2>
+            </div>
+            <div class="button-row">
+              <button class="primary" data-init-parse ${state.initBusy ? "disabled" : ""}>生成 Codex 解析任务</button>
+              <button class="secondary" data-init-refresh ${state.initBusy ? "disabled" : ""}>刷新结果</button>
+            </div>
+          </div>
+          <div class="init-upload-grid">
+            ${initBuckets.map((bucket) => initUploadBox(bucket, status?.images?.[bucket.id] || [])).join("")}
+          </div>
+          ${codexTask && !summary ? `
+            <div class="init-task-box">
+              <h3>Codex CLI 解析任务已生成</h3>
+              <p class="muted">任务文件：<a href="${codexTask.taskUrl}" target="_blank">${escapeHtml(codexTask.taskPath)}</a></p>
+              <p class="muted">预期输出：${escapeHtml(codexTask.draftPath || "")}</p>
+              ${status?.state?.codexCommand ? `<pre class="command-box">${escapeHtml(status.state.codexCommand)}</pre>` : ""}
+              <p class="hint">在当前 Codex 会话里让我执行这个任务，或在终端运行上面的命令。完成后点击“刷新结果”。</p>
+            </div>
+          ` : ""}
+          ${summary ? `
+            <div class="audio-summary init-summary">
+              <div><span>单词</span><strong>${summary.vocabulary}</strong></div>
+              <div><span>课文句子</span><strong>${summary.sentences}</strong></div>
+              <div><span>语法</span><strong>${summary.grammar}</strong></div>
+              <div><span>练习</span><strong>${summary.exercises}</strong></div>
+            </div>
+            <textarea class="init-draft-json" data-init-draft-json spellcheck="false">${draftText}</textarea>
+            <div class="button-row">
+              <button class="primary" data-init-confirm-parse ${state.initBusy ? "disabled" : ""}>确认解析结果</button>
+            </div>
+          ` : `<p class="muted">上传图片后生成 Codex 解析任务。确认前请重点检查练习题、语法例句和课文句子是否完整。</p>`}
+        </article>
+
+        <article class="panel init-step ${steps.audio}">
+          <div class="init-step-head">
+            <div>
+              <span class="course-status ${steps.audio === "done" ? "done" : steps.audio === "active" ? "learning" : "pending"}">${initStepBadge(steps.audio)}</span>
+              <h2>2. 音频生成</h2>
+            </div>
+            <div class="button-row">
+              <button class="primary" data-init-generate-audio ${!status?.state?.parseConfirmed || state.initBusy || !audio.missing ? "disabled" : ""}>生成缺失 ${audio.missing || 0}</button>
+              <button class="secondary" data-init-confirm-audio ${!status?.state?.parseConfirmed || state.initBusy || audio.missing ? "disabled" : ""}>确认音频</button>
+            </div>
+          </div>
+          <div class="audio-summary init-summary">
+            <div><span>已生成</span><strong>${audio.generated || 0}</strong></div>
+            <div><span>缺失</span><strong>${audio.missing || 0}</strong></div>
+            <div><span>总计</span><strong>${audio.total || 0}</strong></div>
+          </div>
+          <div class="audio-item-list init-audio-list">
+            ${audio.items?.length ? audio.items.map((item) => initAudioRow(item)).join("") : "<span class='muted'>确认解析结果后会列出所有待生成音频。</span>"}
+          </div>
+        </article>
+      </div>
+    </section>
+  `);
+}
+
+function initUploadBox(bucket, images) {
+  return `
+    <div class="init-upload-box">
+      <div>
+        <h3>${bucket.label}</h3>
+        <p class="muted">${bucket.hint}</p>
+      </div>
+      <input type="file" accept="image/*" multiple data-init-upload="${bucket.id}" ${state.initBusy ? "disabled" : ""} />
+      <div class="init-image-list">
+        ${images.length ? images.map((image) => `<a href="${image.url}" target="_blank">${escapeHtml(image.name)}</a>`).join("") : "<span class='muted'>尚未上传</span>"}
+      </div>
+    </div>
+  `;
+}
+
+function initAudioRow(item) {
+  const label = item.type === "word" ? "单词" : item.type === "exercise" ? "练习" : "句子";
+  return `
+    <div class="audio-asset-row ${item.exists ? "ready" : "missing"}" ${item.exists ? `data-speak="${escapeHtml(item.text)}" data-audio="${item.url}"` : ""}>
+      <span class="audio-type">${label}</span>
+      <span class="audio-title">${escapeHtml(item.text || item.label || item.id)}</span>
+      <span class="audio-state">${item.exists ? "已生成" : "未生成"}</span>
+      <button class="secondary compact-action" ${item.exists ? "" : "disabled"}>播放</button>
+    </div>
+  `;
+}
+
+function exerciseGroups() {
+  const map = new Map();
+  lesson.exercises.forEach((exercise) => {
+    const key = exercise.groupId || exercise.id;
+    if (!map.has(key)) {
+      map.set(key, {
+        id: key,
+        title: exercise.groupTitle || "练习",
+        category: exercise.category,
+        instruction: exercise.instruction,
+        example: exercise.example,
+        items: []
+      });
+    }
+    map.get(key).items.push(exercise);
+  });
+  return [...map.values()];
+}
+
+function currentExerciseGroup() {
+  const groups = exerciseGroups();
+  const index = Math.min(Math.max(Number(state.currentExerciseGroup) || 0, 0), groups.length - 1);
+  state.currentExerciseGroup = index;
+  return groups[index];
+}
+
+function exerciseResultById(exerciseId) {
+  return state.exerciseResults.find((item) => item.exerciseId === exerciseId);
+}
+
+function exerciseGroupStatus(group) {
+  const complete = Boolean(state.exerciseGroupSubmitted[group.id]) && group.items.every((exercise) => exerciseResultById(exercise.id));
+  if (!complete) return { status: "pending", label: "未完成", correct: 0, scored: 0 };
+  const results = group.items.map((exercise) => exerciseResultById(exercise.id)).filter(Boolean);
+  const scored = results.filter((item) => !item.isSkipped);
+  const wrong = scored.filter((item) => !item.isCorrect);
+  if (wrong.length) return { status: "wrong", label: "有错题", correct: scored.length - wrong.length, scored: scored.length };
+  return { status: "passed", label: "全通过", correct: scored.length, scored: scored.length };
+}
+
+function exerciseProgressSummary(groups) {
+  const statuses = groups.map(exerciseGroupStatus);
+  const completed = statuses.filter((item) => item.status !== "pending").length;
+  const passed = statuses.filter((item) => item.status === "passed").length;
+  const wrong = statuses.filter((item) => item.status === "wrong").length;
+  return { total: groups.length, completed, passed, wrong, pending: groups.length - completed };
+}
+
+function activeWrongItems(includeResolved = false) {
+  return Object.values(state.wrongBook)
+    .filter((item) => includeResolved || item.status !== "resolved")
+    .sort((a, b) => {
+      const statusOrder = { active: 0, reviewing: 1, resolved: 2 };
+      return (statusOrder[a.status] ?? 9) - (statusOrder[b.status] ?? 9)
+        || String(b.lastWrongAt || b.lastPracticedAt || "").localeCompare(String(a.lastWrongAt || a.lastPracticedAt || ""));
+    });
+}
+
 function exercisesPage() {
-  const exercise = lesson.exercises[state.currentExercise];
-  const result = state.submitted ? buildFeedback(exercise, state.answer) : null;
-  const groupItems = lesson.exercises.filter((item) => item.groupId === exercise.groupId);
-  const groupIndex = groupItems.findIndex((item) => item.id === exercise.id);
+  const groups = exerciseGroups();
+  const group = currentExerciseGroup();
+  const summary = exerciseProgressSummary(groups);
+  const groupStatus = exerciseGroupStatus(group);
+  const submitted = Boolean(state.exerciseGroupSubmitted[group.id]) && group.items.every((exercise) => exerciseResultById(exercise.id));
+  const results = group.items.map((exercise) => exerciseResultById(exercise.id)).filter(Boolean);
+  const scored = results.filter((item) => !item.isSkipped);
+  const correct = scored.filter((item) => item.isCorrect).length;
   return layout(`
     <section class="exercise-box">
       <div class="page-head">
         <div>
           <p class="eyebrow">${lesson.title} · 标准练习题</p>
-          <h2>${exercise.groupTitle}</h2>
-          <p>${exercise.category} · 小题 ${groupIndex + 1} / ${groupItems.length}</p>
+          <h2>${group.title}</h2>
+          <p>${group.category} · 大题 ${state.currentExerciseGroup + 1} / ${groups.length} · 小题 ${group.items.length} 道</p>
         </div>
-        <button class="secondary" data-nav="/lesson/${lesson.id}/result">查看结果</button>
+        <div class="button-row">
+          <button class="secondary" data-nav="/lesson/${lesson.id}/wrongbook">错题集 ${activeWrongItems().length}</button>
+          <button class="secondary" data-nav="/lesson/${lesson.id}/result">查看结果</button>
+        </div>
       </div>
-      <article class="panel">
-        <div class="exercise-context">
-          <span class="exercise-badge">${exercise.category}</span>
-          <div class="meta-line">
-            <span class="label">要求</span>
-            <span>${exercise.instruction}</span>
-          </div>
-          ${exercise.example ? `<div class="meta-line"><span class="label">例</span><span>${exercise.example}</span></div>` : ""}
-          ${exercise.audioRequired ? `
-            <div class="audio-placeholder">
-              <button class="secondary" disabled>录音暂无</button>
-              <span class="muted">本题保留教材录音入口；当前未提供录音，暂不判分。</span>
+      ${exerciseProgressOverview(groups, summary)}
+      <div class="exercise-workspace">
+        <article class="panel exercise-main-panel">
+          <div class="exercise-context">
+            <span class="exercise-badge">${group.category}</span>
+            <div class="meta-line">
+              <span class="label">要求</span>
+              <span>${group.instruction}</span>
             </div>
-          ` : ""}
-        </div>
-        <p class="label">原题</p>
-        <div class="question">${exercise.question}</div>
-        ${answerControl(exercise)}
-        <div class="button-row" style="margin-top:16px">
-          <button class="primary" data-submit-answer ${state.submitted ? "disabled" : ""}>${exercise.audioRequired ? "记录并继续" : "提交"}</button>
-        </div>
-      </article>
-      ${result ? feedbackView(exercise, result) : ""}
+            ${submitted ? `<div class="group-score">本大题 ${correct} / ${scored.length || group.items.length} 正确</div>` : ""}
+          </div>
+          <div class="exercise-group-list">
+            ${exerciseGroupItems(group, submitted)}
+          </div>
+        </article>
+        <aside class="panel exercise-action-panel">
+          <div class="exercise-action-sticky">
+            <span class="exercise-action-label">当前大题</span>
+            <strong>${group.title}</strong>
+            <small>${group.category} · ${groupStatus.label}${groupStatus.scored ? ` · ${groupStatus.correct}/${groupStatus.scored}` : ""}</small>
+            <div class="exercise-action-buttons">
+              <button class="secondary" data-prev-exercise-group ${state.currentExerciseGroup === 0 ? "disabled" : ""}>上一大题</button>
+              <button class="primary" data-submit-exercise-group ${submitted ? "disabled" : ""}>提交本大题</button>
+              <button class="secondary" data-next-exercise-group>${state.currentExerciseGroup === groups.length - 1 ? "进入结果页" : "下一大题"}</button>
+            </div>
+          </div>
+        </aside>
+      </div>
+      ${submitted ? exerciseGroupFeedback(group) : ""}
     </section>
   `);
+}
+
+function exerciseProgressOverview(groups, summary) {
+  return `
+    <section class="exercise-progress-overview" aria-label="练习进展概览">
+      <div class="exercise-progress-summary">
+        <span>大题进展</span>
+        <strong>${summary.completed}/${summary.total} 完成 · ${summary.passed} 全通过 · ${summary.wrong} 有错题 · ${summary.pending} 未完成</strong>
+      </div>
+      <div class="exercise-progress-nav">
+        ${groups.map((group, index) => {
+          const status = exerciseGroupStatus(group);
+          const active = index === state.currentExerciseGroup;
+          return `
+            <button class="exercise-progress-chip ${status.status} ${active ? "active" : ""}" data-exercise-group-index="${index}" type="button" title="${group.title} · ${status.label}">
+              <span class="progress-chip-no">${index + 1}</span>
+              <span class="progress-chip-state">${status.label}</span>
+            </button>
+          `;
+        }).join("")}
+      </div>
+    </section>
+  `;
 }
 
 function exerciseType(type) {
   return { fill: "填空题", choice: "选择题", translation: "翻译题", sentence_making: "造句题", listening: "听力题" }[type];
 }
 
-function answerControl(exercise) {
+function exerciseGroupItem(exercise, index, submitted) {
+  const result = exerciseResultById(exercise.id);
+  const answer = state.exerciseGroupAnswers[exercise.id] || "";
+  return `
+    <article class="exercise-item ${submitted && result?.isCorrect ? "passed" : submitted && !result?.isCorrect ? "wrong" : ""}">
+      <div class="exercise-item-head">
+        <span class="related-exercise-no">${index + 1}</span>
+        <div class="question">${exercise.question}</div>
+        ${submitted && result ? `<span class="practice-status ${result.isCorrect ? "success" : "danger"}">${result.isSkipped ? "已记录" : result.isCorrect ? "正确" : "错误"}</span>` : ""}
+      </div>
+      ${answerControl(exercise, answer, { id: exercise.id, mode: "group", disabled: submitted })}
+    </article>
+  `;
+}
+
+function exerciseGroupItems(group, submitted) {
+  const uniqueExamples = uniqueExerciseExamples(group.items);
+  const sameCategory = new Set(group.items.map((exercise) => exercise.category)).size === 1;
+  if (uniqueExamples.length && sameCategory) {
+    return `${exerciseExampleSection({ category: group.category, examples: uniqueExamples })}${group.items.map((exercise, index) => exerciseGroupItem(exercise, index, submitted)).join("")}`;
+  }
+  let previousKey = "";
+  return group.items.map((exercise, index) => {
+    const key = `${exercise.category || ""}:${exercise.example || ""}`;
+    const section = key !== previousKey ? exerciseExampleSection({ category: exercise.category, examples: [exercise.example] }) : "";
+    previousKey = key;
+    return `${section}${exerciseGroupItem(exercise, index, submitted)}`;
+  }).join("");
+}
+
+function uniqueExerciseExamples(items) {
+  const examples = [];
+  items.forEach((exercise) => {
+    if (exercise.example && !examples.includes(exercise.example)) examples.push(exercise.example);
+  });
+  return examples;
+}
+
+function exerciseExampleSection({ category, examples }) {
+  const validExamples = (examples || []).filter(Boolean);
+  if (!validExamples.length) return "";
+  return `
+    <div class="exercise-example-section">
+      <span>${category}</span>
+      <div class="exercise-example-lines">
+        ${validExamples.map((example) => `<div class="exercise-example">${formatExerciseExample(example)}</div>`).join("")}
+      </div>
+    </div>
+  `;
+}
+
+function formatExerciseExample(example) {
+  const escaped = escapeHtml(example);
+  const marked = escaped.replace(/__([^_]+?)__/g, `<span class="example-underline">$1</span>`);
+  const normalized = marked
+    .replace(/\s*→\s*/g, "<br>")
+    .replace(/\s*(甲：)/g, "<br>$1")
+    .replace(/\s*(乙：)/g, "<br>$1");
+  return normalized.replace(/^<br>/, "");
+}
+
+function answerControl(exercise, value = "", options = {}) {
+  const mode = options.mode || "single";
+  const disabled = options.disabled ? "disabled" : "";
   if (exercise.audioRequired) {
     return `<div class="answer-input muted">等待录音材料后补充作答。</div>`;
   }
   if (exercise.type === "choice") {
-    return `<div class="choices">${exercise.choices.map((choice) => `
-      <button class="choice ${state.answer === choice ? "selected" : ""}" data-choice="${choice}">${choice}</button>
-    `).join("")}</div>`;
+    return `
+      <select class="answer-input choice-select" data-${mode}-answer data-exercise-id="${options.id || exercise.id}" ${disabled}>
+        <option value="">选择答案</option>
+        ${exercise.choices.map((choice) => `<option value="${escapeHtml(choice)}" ${value === choice ? "selected" : ""}>${escapeHtml(choice)}</option>`).join("")}
+      </select>
+    `;
   }
   if (exercise.type === "sentence_making") {
-    return `<textarea class="answer-input" data-answer placeholder="输入你的造句">${state.answer}</textarea>`;
+    return `<textarea class="answer-input" data-${mode}-answer data-exercise-id="${options.id || exercise.id}" placeholder="输入你的造句" ${disabled}>${escapeHtml(value)}</textarea>`;
   }
-  return `<input class="answer-input" data-answer value="${state.answer}" placeholder="输入答案" />`;
+  return `<input class="answer-input" data-${mode}-answer data-exercise-id="${options.id || exercise.id}" value="${escapeHtml(value)}" placeholder="输入答案" ${disabled} />`;
 }
 
 function buildFeedback(exercise, answer) {
+  const now = new Date().toISOString();
   if (exercise.audioRequired || exercise.hasAnswer === false) {
     return {
       exerciseId: exercise.id,
+      groupId: exercise.groupId,
       userAnswer: "",
       isCorrect: true,
       isSkipped: true,
       relatedGrammar: exercise.relatedGrammar,
       relatedSentences: exercise.relatedSentences,
-      createdAt: new Date().toISOString()
+      createdAt: now
     };
   }
   const correct = isCorrect(exercise, answer);
   return {
     exerciseId: exercise.id,
+    groupId: exercise.groupId,
     userAnswer: answer,
     isCorrect: correct,
     relatedGrammar: exercise.relatedGrammar,
     relatedSentences: exercise.relatedSentences,
-    createdAt: new Date().toISOString()
+    createdAt: now
   };
+}
+
+function exerciseGroupFeedback(group) {
+  const results = group.items.map((exercise) => ({ exercise, result: exerciseResultById(exercise.id) })).filter((item) => item.result);
+  const reviewItems = results.filter(({ result }) => result.isSkipped || !result.isCorrect);
+  const wrong = reviewItems.filter(({ result }) => !result.isSkipped);
+  return `
+    <article class="panel feedback">
+      <div class="feedback-verdict">
+        <strong>本大题反馈</strong>
+        <span>${wrong.length ? `有 ${wrong.length} 道错题，已加入错题集。` : reviewItems.length ? "本大题没有错题，以下题目暂不判分。" : "本大题没有错题。"}</span>
+      </div>
+      ${reviewItems.length ? `
+        <div class="exercise-feedback-list">
+          ${reviewItems.map(({ exercise, result }) => {
+            const originalIndex = group.items.findIndex((item) => item.id === exercise.id);
+            return exerciseFeedbackRow(exercise, result, originalIndex);
+          }).join("")}
+        </div>
+      ` : ""}
+      <div class="button-row">
+        ${wrong.length ? `<button class="primary" data-nav="/lesson/${lesson.id}/wrongbook">只练错题</button>` : ""}
+        <button class="secondary" data-next-exercise-group>${state.currentExerciseGroup === exerciseGroups().length - 1 ? "进入结果页" : "进入下一大题"}</button>
+      </div>
+    </article>
+  `;
+}
+
+function exerciseFeedbackRow(exercise, result, index) {
+  const correctText = exercise.referenceAnswers?.join(" / ") || exercise.answer || "暂无标准答案";
+  return `
+    <div class="exercise-feedback-row ${result.isCorrect ? "passed" : "wrong"}">
+      <div class="exercise-item-head">
+        <span class="related-exercise-no">${index + 1}</span>
+        <div>
+          <strong>${result.isSkipped ? "已记录" : result.isCorrect ? "正确" : "错误"}</strong>
+          <p>${exercise.question}</p>
+        </div>
+      </div>
+      ${meta("你的答案", result.userAnswer || "未作答")}
+      ${meta(exercise.type === "sentence_making" ? "参考答案" : "正确答案", correctText)}
+      ${!result.isCorrect ? meta("错误说明", exercise.explanation) : ""}
+      <div class="meta-line">
+        <span class="label">相关语法</span>
+        <div class="tags">${exercise.relatedGrammar.map((id) => grammarTag(id)).join("")}</div>
+      </div>
+      ${exercise.relatedSentences.length ? `
+        <div class="meta-line">
+          <span class="label">相关课文</span>
+          <div class="tags">${exercise.relatedSentences.map((id) => {
+            const sentence = sentenceById(id);
+            return `<button class="tag" data-nav="/lesson/${lesson.id}/text?sentenceId=${id}">第 ${sentence.order} 句</button>`;
+          }).join("")}</div>
+        </div>
+      ` : ""}
+    </div>
+  `;
 }
 
 function feedbackView(exercise, result) {
@@ -2836,6 +3956,7 @@ function resultPage() {
   const validResults = state.exerciseResults.filter((item) => lesson.exercises.some((exercise) => exercise.id === item.exerciseId));
   const scored = validResults.filter((item) => !item.isSkipped);
   const wrong = scored.filter((item) => !item.isCorrect);
+  const activeWrong = activeWrongItems();
   const wordDiagnostics = activeVocabulary()
     .map((word) => ({ word, learning: wordLearningState(word.id) }))
     .filter(({ learning }) => learning.mainStatus !== "mastered");
@@ -2847,12 +3968,15 @@ function resultPage() {
         <p class="eyebrow">${lesson.title} · 结果页 / 错误回溯</p>
         <h2>本课学习表现</h2>
       </div>
-      <button class="primary" data-nav="/lesson/${lesson.id}/vocab">重新学习</button>
+      <div class="button-row">
+        <button class="primary" data-nav="/lesson/${lesson.id}/wrongbook">错题集 ${activeWrong.length}</button>
+        <button class="secondary" data-nav="/lesson/${lesson.id}/vocab">重新学习</button>
+      </div>
     </div>
     <section class="result-grid">
       <article class="panel metric"><span class="muted">完成题数</span><strong>${validResults.length}</strong></article>
       <article class="panel metric"><span class="muted">正确题数</span><strong>${scored.filter((item) => item.isCorrect).length}</strong></article>
-      <article class="panel metric"><span class="muted">错题数</span><strong>${wrong.length}</strong></article>
+      <article class="panel metric"><span class="muted">重点错题</span><strong>${activeWrong.length}</strong></article>
     </section>
     <section class="split">
       <div class="stack">
@@ -2886,7 +4010,7 @@ function resultPage() {
       <article class="panel">
         <h3>错题列表</h3>
         <div class="stack">
-          ${wrong.length ? wrong.map((item) => wrongItem(item)).join("") : "<p class='muted'>还没有错题。完成练习后这里会展示错误回溯入口。</p>"}
+          ${activeWrong.length ? activeWrong.map((item) => wrongItem(item)).join("") : "<p class='muted'>还没有需要复练的错题。完成练习后这里会展示错误回溯入口。</p>"}
         </div>
       </article>
     </section>
@@ -2897,16 +4021,90 @@ function wrongItem(item) {
   const exercise = lesson.exercises.find((entry) => entry.id === item.exerciseId);
   return `
     <div class="card panel">
-      <p class="label">${exercise.groupTitle} · ${exercise.category}</p>
+      <p class="label">${exercise.groupTitle} · ${exercise.category} · ${wrongStatusText(item.status)}</p>
       <h3>${exercise.question}</h3>
       ${meta("你的答案", item.userAnswer || "未作答")}
       ${meta("正确答案 / 参考答案", exercise.referenceAnswers?.join(" / ") || exercise.answer)}
+      ${meta("错题状态", `${wrongStatusText(item.status)} · 错误 ${item.wrongCount || 1} 次 · 连续正确 ${item.correctStreak || 0} 次`)}
       <div class="tags">${exercise.relatedGrammar.map((id) => grammarTag(id)).join("")}</div>
       <div class="button-row" style="margin-top:12px">
         <button class="secondary" data-wrong-detail="${exercise.id}">查看详情</button>
+        <button class="primary" data-nav="/lesson/${lesson.id}/wrongbook">进入错题集</button>
         ${exercise.relatedSentences.map((id) => `<button class="ghost" data-nav="/lesson/${lesson.id}/text?sentenceId=${id}">回到课文</button>`).join("")}
       </div>
     </div>
+  `;
+}
+
+function wrongStatusText(status) {
+  return { active: "重点错题", reviewing: "复练中", resolved: "已归档" }[status] || "重点错题";
+}
+
+function wrongBookPage() {
+  const activeItems = activeWrongItems();
+  const allItems = activeWrongItems(true);
+  const submittedResult = state.wrongPractice.submitted ? state.wrongPractice.result : null;
+  if (!activeItems.length && !submittedResult) {
+    return layout(`
+      <div class="page-head">
+        <div>
+          <p class="eyebrow">${lesson.title} · 错题集</p>
+          <h2>暂无需要复练的错题</h2>
+        </div>
+        <button class="secondary" data-nav="/lesson/${lesson.id}/exercises">返回练习</button>
+      </div>
+      <article class="panel">
+        <p class="muted">做错的标准练习会自动进入这里。连续正确两次后，错题会进入归档状态。</p>
+        ${allItems.length ? `<h3>已归档错题</h3><div class="stack">${allItems.filter((item) => item.status === "resolved").map((item) => wrongItem(item)).join("")}</div>` : ""}
+      </article>
+    `);
+  }
+  state.wrongPractice.current = Math.min(Math.max(state.wrongPractice.current || 0, 0), activeItems.length - 1);
+  const item = submittedResult ? state.wrongBook[submittedResult.exerciseId] : activeItems[state.wrongPractice.current];
+  const exercise = lesson.exercises.find((entry) => entry.id === item.exerciseId);
+  const result = submittedResult;
+  return layout(`
+    <section class="exercise-box">
+      <div class="page-head">
+        <div>
+          <p class="eyebrow">${lesson.title} · 错题集</p>
+          <h2>${exercise.groupTitle}</h2>
+          <p>${wrongStatusText(item.status)} · ${activeItems.length ? `第 ${state.wrongPractice.current + 1} / ${activeItems.length} 题` : "本轮错题已清空"}</p>
+        </div>
+        <div class="button-row">
+          <button class="secondary" data-nav="/lesson/${lesson.id}/exercises">返回练习</button>
+          <button class="secondary" data-nav="/lesson/${lesson.id}/result">结果页</button>
+        </div>
+      </div>
+      <article class="panel">
+        <div class="exercise-context">
+          <span class="exercise-badge">${exercise.category}</span>
+          <div class="meta-line"><span class="label">要求</span><span>${exercise.instruction}</span></div>
+          ${exercise.example ? `<div class="meta-line"><span class="label">例</span><span>${exercise.example}</span></div>` : ""}
+          <div class="group-score">错误 ${item.wrongCount || 1} 次 · 连续正确 ${item.correctStreak || 0} 次</div>
+        </div>
+        <p class="label">原题</p>
+        <div class="question">${exercise.question}</div>
+        ${answerControl(exercise, state.wrongPractice.answer, { id: exercise.id, mode: "wrong", disabled: state.wrongPractice.submitted })}
+        <div class="button-row" style="margin-top:16px">
+          <button class="primary" data-submit-wrong-practice ${state.wrongPractice.submitted ? "disabled" : ""}>提交错题</button>
+          <button class="secondary" data-next-wrong-practice>${activeItems.length ? state.wrongPractice.current === activeItems.length - 1 ? "回到第一题" : "下一道错题" : "查看错题集"}</button>
+        </div>
+      </article>
+      ${result ? wrongPracticeFeedback(exercise, result, state.wrongBook[exercise.id]) : ""}
+    </section>
+  `);
+}
+
+function wrongPracticeFeedback(exercise, result, wrongItemState) {
+  return `
+    <article class="panel feedback ${result.isCorrect ? "passed" : "wrong"}">
+      <div class="feedback-verdict">
+        <strong>${result.isCorrect ? "订正正确" : "仍需复练"}</strong>
+        <span>${wrongStatusText(wrongItemState?.status)} · 连续正确 ${wrongItemState?.correctStreak || 0} 次</span>
+      </div>
+      ${exerciseFeedbackRow(exercise, result, 0)}
+    </article>
   `;
 }
 
@@ -2959,6 +4157,101 @@ function commitResult() {
   state.exerciseResults.push(result);
   write(`lesson:${lesson.id}:exerciseResults`, state.exerciseResults);
   state.submitted = true;
+  render();
+}
+
+function persistExerciseState() {
+  write(`lesson:${lesson.id}:exerciseResults`, state.exerciseResults);
+  write(`lesson:${lesson.id}:exerciseGroupAnswers`, state.exerciseGroupAnswers);
+  write(`lesson:${lesson.id}:exerciseGroupSubmitted`, state.exerciseGroupSubmitted);
+  write(`lesson:${lesson.id}:wrongBook`, state.wrongBook);
+  write(`lesson:${lesson.id}:currentExerciseGroup`, state.currentExerciseGroup);
+}
+
+function upsertExerciseResult(result) {
+  state.exerciseResults = state.exerciseResults.filter((item) => item.exerciseId !== result.exerciseId);
+  state.exerciseResults.push(result);
+}
+
+function updateWrongBookFromResult(exercise, result) {
+  if (result.isSkipped) return;
+  const now = new Date().toISOString();
+  const existing = state.wrongBook[exercise.id];
+  const correctAnswer = exercise.referenceAnswers?.[0] || exercise.answer || "";
+  if (result.isCorrect) {
+    if (!existing) return;
+    const correctStreak = (existing.correctStreak || 0) + 1;
+    state.wrongBook[exercise.id] = {
+      ...existing,
+      correctStreak,
+      status: correctStreak >= 2 ? "resolved" : "reviewing",
+      lastPracticedAt: now,
+      dueAt: now
+    };
+    return;
+  }
+  state.wrongBook[exercise.id] = {
+    lessonId: String(lesson.id),
+    exerciseId: exercise.id,
+    groupId: exercise.groupId,
+    userAnswer: result.userAnswer || "",
+    correctAnswer,
+    relatedGrammar: exercise.relatedGrammar,
+    relatedSentences: exercise.relatedSentences,
+    wrongCount: (existing?.wrongCount || 0) + 1,
+    correctStreak: 0,
+    firstWrongAt: existing?.firstWrongAt || now,
+    lastWrongAt: now,
+    lastPracticedAt: now,
+    dueAt: now,
+    status: "active"
+  };
+}
+
+function commitExerciseGroup() {
+  const group = currentExerciseGroup();
+  group.items.forEach((exercise) => {
+    const answer = state.exerciseGroupAnswers[exercise.id] || "";
+    const result = buildFeedback(exercise, answer);
+    upsertExerciseResult(result);
+    updateWrongBookFromResult(exercise, result);
+  });
+  state.exerciseGroupSubmitted[group.id] = true;
+  persistExerciseState();
+  render();
+}
+
+function moveExerciseGroup(delta) {
+  const groups = exerciseGroups();
+  const next = state.currentExerciseGroup + delta;
+  if (next >= groups.length) {
+    navigate(`/lesson/${lesson.id}/result`);
+    return;
+  }
+  state.currentExerciseGroup = Math.min(Math.max(next, 0), groups.length - 1);
+  write(`lesson:${lesson.id}:currentExerciseGroup`, state.currentExerciseGroup);
+  render();
+}
+
+function commitWrongPractice() {
+  const item = activeWrongItems()[state.wrongPractice.current];
+  if (!item) return;
+  const exercise = lesson.exercises.find((entry) => entry.id === item.exerciseId);
+  const result = buildFeedback(exercise, state.wrongPractice.answer);
+  updateWrongBookFromResult(exercise, result);
+  state.wrongPractice = { ...state.wrongPractice, submitted: true, result };
+  write(`lesson:${lesson.id}:wrongBook`, state.wrongBook);
+  render();
+}
+
+function nextWrongPractice() {
+  const items = activeWrongItems();
+  state.wrongPractice = {
+    current: items.length ? (state.wrongPractice.current + 1) % items.length : 0,
+    answer: "",
+    submitted: false,
+    result: null
+  };
   render();
 }
 
@@ -3916,6 +5209,137 @@ async function postAudioApi(path, body) {
   return data;
 }
 
+async function loadInitStatus(force = false) {
+  const lessonId = initLessonId();
+  if (!lessonId) return;
+  if (!force && state.initStatusLessonId === lessonId && state.initStatus) return;
+  state.initStatusLessonId = lessonId;
+  try {
+    const response = await fetch(`/api/init/status?lessonId=${encodeURIComponent(lessonId)}&voiceId=${encodeURIComponent(state.currentVoiceId)}`);
+    const data = await response.json();
+    if (!response.ok) throw new Error(data.error || "读取初始化状态失败");
+    state.initStatus = data;
+    state.initMessage = "";
+  } catch (error) {
+    state.initStatus = null;
+    state.initMessage = String(error.message || error);
+  }
+  if (route().page === "init") render();
+}
+
+async function uploadInitImages(bucket, files) {
+  const lessonId = initLessonId();
+  if (!lessonId || !files?.length) return;
+  state.initBusy = `正在上传${initBuckets.find((item) => item.id === bucket)?.label || ""}图片...`;
+  state.initMessage = "";
+  render();
+  const form = new FormData();
+  form.append("lessonId", lessonId);
+  form.append("bucket", bucket);
+  [...files].forEach((file) => form.append("images", file, file.name));
+  try {
+    const response = await fetch("/api/init/upload", { method: "POST", body: form });
+    const data = await response.json();
+    if (!response.ok || data.error) throw new Error(data.error || "上传失败");
+    state.initStatus = { ...(state.initStatus || {}), images: data.images, state: data.state };
+    state.initBusy = "";
+    state.initMessage = `已上传 ${data.files?.length || 0} 张图片。`;
+    await loadInitStatus(true);
+  } catch (error) {
+    state.initBusy = "";
+    state.initMessage = String(error.message || error);
+    render();
+  }
+}
+
+async function parseInitImages() {
+  const lessonId = initLessonId();
+  if (!lessonId) return;
+  state.initBusy = "正在生成 Codex CLI 解析任务...";
+  state.initMessage = "";
+  render();
+  try {
+    const data = await postAudioApi("/api/init/parse", { lessonId });
+    state.initStatus = { ...(state.initStatus || {}), draft: data.draft, state: data.state, codexTask: data.task };
+    state.initBusy = "";
+    state.initMessage = "Codex 解析任务已生成。请用当前 Codex 会话执行任务，或在终端运行页面中的命令；完成后刷新结果。";
+    await loadInitStatus(true);
+  } catch (error) {
+    state.initBusy = "";
+    state.initMessage = String(error.message || error);
+    render();
+  }
+}
+
+async function confirmInitParse() {
+  const lessonId = initLessonId();
+  const textarea = app.querySelector("[data-init-draft-json]");
+  let draft = state.initStatus?.draft;
+  try {
+    if (textarea?.value) draft = JSON.parse(textarea.value);
+  } catch (error) {
+    state.initMessage = `JSON 格式不正确：${error.message || error}`;
+    render();
+    return;
+  }
+  if (!draft) {
+    state.initMessage = "还没有可确认的解析结果。";
+    render();
+    return;
+  }
+  state.initBusy = "正在保存课程数据...";
+  state.initMessage = "";
+  render();
+  try {
+    const data = await postAudioApi("/api/init/confirm-parse", { lessonId, draft });
+    state.initStatus = { ...(state.initStatus || {}), draft: data.draft, state: data.state };
+    state.initBusy = "";
+    state.initMessage = "课程数据已确认保存，可以生成音频。";
+    await loadInitStatus(true);
+  } catch (error) {
+    state.initBusy = "";
+    state.initMessage = String(error.message || error);
+    render();
+  }
+}
+
+async function generateInitAudio() {
+  const lessonId = initLessonId();
+  if (!lessonId) return;
+  state.initBusy = "正在生成缺失音频，完成前请保持服务运行...";
+  state.initMessage = "";
+  render();
+  try {
+    const data = await postAudioApi("/api/init/audio/generate", { lessonId, voiceId: state.currentVoiceId, scope: "all" });
+    state.initBusy = "";
+    state.initMessage = `音频生成完成：生成 ${data.generated || 0} 个${data.failed ? `，失败 ${data.failed} 个。` : "。"}`;
+    await loadInitStatus(true);
+  } catch (error) {
+    state.initBusy = "";
+    state.initMessage = String(error.message || error);
+    render();
+  }
+}
+
+async function confirmInitAudio() {
+  const lessonId = initLessonId();
+  if (!lessonId) return;
+  state.initBusy = "正在确认音频完整性...";
+  state.initMessage = "";
+  render();
+  try {
+    const data = await postAudioApi("/api/init/confirm-audio", { lessonId, voiceId: state.currentVoiceId });
+    state.initStatus = { ...(state.initStatus || {}), state: data.state, audio: data.audio };
+    state.initBusy = "";
+    state.initMessage = "该课初始化已完成。";
+    render();
+  } catch (error) {
+    state.initBusy = "";
+    state.initMessage = String(error.message || error);
+    render();
+  }
+}
+
 function waitClient(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
@@ -4012,12 +5436,13 @@ async function setDefaultVoice(voiceId) {
 
 function render() {
   const current = route().page;
-  const views = { home, vocab, text: textPage, grammar: grammarPage, exercises: exercisesPage, audio: audioManagePage, result: resultPage };
+  const views = { home, lesson: lessonDashboard, init: initPage, vocab, text: textPage, grammar: grammarPage, exercises: exercisesPage, wrongbook: wrongBookPage, audio: audioManagePage, result: resultPage };
   hideSelectionBubble();
   app.innerHTML = (views[current] || home)();
   ensurePageFocus();
   bind();
   if (current === "audio") loadAudioStatus();
+  if (current === "init") loadInitStatus();
   if (current === "vocab" && state.vocabPhase === "pronunciation" && !state.modal) {
     const word = activeVocabulary()[state.currentWord];
     if (word && lastAutoSpokenWord !== word.id) {
@@ -4090,6 +5515,14 @@ function bind() {
     event.stopPropagation();
     generateManagedAudio(button.dataset.generateAudio);
   }));
+  app.querySelectorAll("[data-init-upload]").forEach((input) => input.addEventListener("change", (event) => {
+    uploadInitImages(input.dataset.initUpload, event.target.files);
+  }));
+  app.querySelector("[data-init-parse]")?.addEventListener("click", parseInitImages);
+  app.querySelector("[data-init-refresh]")?.addEventListener("click", () => loadInitStatus(true));
+  app.querySelector("[data-init-confirm-parse]")?.addEventListener("click", confirmInitParse);
+  app.querySelector("[data-init-generate-audio]")?.addEventListener("click", generateInitAudio);
+  app.querySelector("[data-init-confirm-audio]")?.addEventListener("click", confirmInitAudio);
   app.querySelectorAll("[data-word-index]").forEach((button) => button.addEventListener("click", () => {
     setCurrentWord(Number(button.dataset.wordIndex), true);
   }));
@@ -4236,10 +5669,17 @@ function bind() {
     });
   });
   app.querySelectorAll("[data-exercise-index]").forEach((button) => button.addEventListener("click", () => {
-    state.currentExercise = Number(button.dataset.exerciseIndex);
-    state.answer = "";
-    state.submitted = false;
+    const exerciseIndex = Number(button.dataset.exerciseIndex);
+    const exercise = lesson.exercises[exerciseIndex];
+    const groupIndex = exerciseGroups().findIndex((group) => group.id === exercise.groupId);
+    state.currentExerciseGroup = Math.max(groupIndex, 0);
+    write(`lesson:${lesson.id}:currentExerciseGroup`, state.currentExerciseGroup);
     navigate(`/lesson/${lesson.id}/exercises`);
+  }));
+  app.querySelectorAll("[data-exercise-group-index]").forEach((button) => button.addEventListener("click", () => {
+    state.currentExerciseGroup = Number(button.dataset.exerciseGroupIndex);
+    write(`lesson:${lesson.id}:currentExerciseGroup`, state.currentExerciseGroup);
+    render();
   }));
   app.querySelectorAll("[data-grammar-modal]").forEach((button) => button.addEventListener("click", () => {
     state.modal = { type: "grammar", id: button.dataset.grammarModal };
@@ -4259,11 +5699,40 @@ function bind() {
   app.querySelector("[data-answer]")?.addEventListener("input", (event) => {
     state.answer = event.target.value;
   });
+  app.querySelectorAll("[data-group-answer]").forEach((input) => {
+    const handler = (event) => {
+    state.exerciseGroupAnswers[event.target.dataset.exerciseId] = event.target.value;
+    write(`lesson:${lesson.id}:exerciseGroupAnswers`, state.exerciseGroupAnswers);
+    };
+    input.addEventListener("input", handler);
+    input.addEventListener("change", handler);
+  });
+  app.querySelectorAll("[data-group-choice]").forEach((button) => button.addEventListener("click", () => {
+    state.exerciseGroupAnswers[button.dataset.exerciseId] = button.dataset.groupChoice;
+    write(`lesson:${lesson.id}:exerciseGroupAnswers`, state.exerciseGroupAnswers);
+    render();
+  }));
+  app.querySelectorAll("[data-wrong-answer]").forEach((input) => {
+    const handler = (event) => {
+      state.wrongPractice.answer = event.target.value;
+    };
+    input.addEventListener("input", handler);
+    input.addEventListener("change", handler);
+  });
+  app.querySelectorAll("[data-wrong-choice]").forEach((button) => button.addEventListener("click", () => {
+    state.wrongPractice.answer = button.dataset.wrongChoice;
+    render();
+  }));
   app.querySelectorAll("[data-choice]").forEach((button) => button.addEventListener("click", () => {
     state.answer = button.dataset.choice;
     render();
   }));
   app.querySelector("[data-submit-answer]")?.addEventListener("click", commitResult);
+  app.querySelectorAll("[data-submit-exercise-group]").forEach((button) => button.addEventListener("click", commitExerciseGroup));
+  app.querySelectorAll("[data-prev-exercise-group]").forEach((button) => button.addEventListener("click", () => moveExerciseGroup(-1)));
+  app.querySelectorAll("[data-next-exercise-group]").forEach((button) => button.addEventListener("click", () => moveExerciseGroup(1)));
+  app.querySelector("[data-submit-wrong-practice]")?.addEventListener("click", commitWrongPractice);
+  app.querySelector("[data-next-wrong-practice]")?.addEventListener("click", nextWrongPractice);
   app.querySelector("[data-next-exercise]")?.addEventListener("click", () => {
     if (state.currentExercise === lesson.exercises.length - 1) {
       state.answer = "";
