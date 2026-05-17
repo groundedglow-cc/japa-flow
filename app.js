@@ -879,6 +879,7 @@ lesson.exercises = standardExercises;
 
 const textStructure = [
   {
+    id: "basic",
     title: "基本课文",
     groups: [
       { title: "基本句", kind: "statements", ids: ["s1", "s2", "s3", "s4"] },
@@ -889,6 +890,7 @@ const textStructure = [
     ]
   },
   {
+    id: "application",
     title: "应用课文 · 朝の公園",
     groups: [
       { title: "到分公司后", kind: "dialogue", ids: ["s12", "s13", "s14", "s15", "s16"] },
@@ -968,6 +970,14 @@ const state = {
   grammarRecordingStoppingId: "",
   grammarRecordingErrorKey: "",
   grammarRecordingError: "",
+  textCurrentTab: read(`lesson:${lesson.id}:textCurrentTab`, "basic"),
+  textCurrentSentenceByTab: read(`lesson:${lesson.id}:textCurrentSentenceByTab`, { basic: 0, application: 0 }),
+  textPromptLanguage: read(`lesson:${lesson.id}:textPromptLanguage`, "zh"),
+  textRecordingPreparingId: "",
+  textRecordingId: "",
+  textRecordingStoppingId: "",
+  textRecordingError: "",
+  sentencePractice: initialSentencePractice(),
   playbackRate: Number(read(`lesson:${lesson.id}:playbackRate`, 1)) || 1,
   answer: "",
   submitted: false,
@@ -1112,6 +1122,26 @@ function defaultGrammarPractice() {
   };
 }
 
+function defaultSentencePractice() {
+  return {
+    submitted: false,
+    pronunciationPassed: false,
+    pronunciationScore: 0,
+    accuracyScore: 0,
+    fluencyScore: 0,
+    completenessScore: 0,
+    pronunciationReasons: [],
+    recognizedText: "",
+    debugAudioUrl: "",
+    debugAudioPath: "",
+    pronunciationDuration: 0,
+    pronunciationPeak: 0,
+    pronunciationAttempts: 0,
+    collapsed: false,
+    updatedAt: ""
+  };
+}
+
 function grammarPracticeKey(grammarId, exampleId) {
   return `${grammarId}:${exampleId}`;
 }
@@ -1133,6 +1163,47 @@ function writeGrammarPractice() {
   write(`lesson:${lesson.id}:grammarPractice`, state.grammarPractice);
 }
 
+function initialSentencePractice() {
+  const saved = read(`lesson:${lesson.id}:sentencePractice`, {});
+  const fallback = Object.fromEntries(lesson.sentences.map((sentence) => [sentence.id, defaultSentencePractice()]));
+  return Object.fromEntries(lesson.sentences.map((sentence) => [
+    sentence.id,
+    { ...fallback[sentence.id], ...(saved[sentence.id] || {}) }
+  ]));
+}
+
+function writeSentencePractice() {
+  write(`lesson:${lesson.id}:sentencePractice`, state.sentencePractice);
+}
+
+function writeTextProgress() {
+  write(`lesson:${lesson.id}:textCurrentTab`, state.textCurrentTab);
+  write(`lesson:${lesson.id}:textCurrentSentenceByTab`, state.textCurrentSentenceByTab);
+  write(`lesson:${lesson.id}:textPromptLanguage`, state.textPromptLanguage);
+}
+
+function sentencePracticeState(sentenceId) {
+  return state.sentencePractice[sentenceId] || defaultSentencePractice();
+}
+
+function updateSentencePractice(sentenceId, patch) {
+  const current = sentencePracticeState(sentenceId);
+  state.sentencePractice = {
+    ...state.sentencePractice,
+    [sentenceId]: {
+      ...current,
+      ...patch,
+      updatedAt: new Date().toISOString()
+    }
+  };
+  writeSentencePractice();
+}
+
+function resetSentencePractice(sentenceId) {
+  state.sentencePractice = { ...state.sentencePractice, [sentenceId]: defaultSentencePractice() };
+  writeSentencePractice();
+}
+
 function grammarPracticeState(grammarId, exampleId) {
   return state.grammarPractice[grammarPracticeKey(grammarId, exampleId)] || defaultGrammarPractice();
 }
@@ -1148,6 +1219,26 @@ function resetGrammarPractice(grammarId, exampleId) {
   const key = grammarPracticeKey(grammarId, exampleId);
   state.grammarPractice = { ...state.grammarPractice, [key]: defaultGrammarPractice() };
   writeGrammarPractice();
+}
+
+function resetTextLearningData() {
+  stopCurrentAudio();
+  removeStored(`lesson:${lesson.id}:sentencePractice`);
+  state.sentencePractice = Object.fromEntries(lesson.sentences.map((sentence) => [sentence.id, defaultSentencePractice()]));
+  const progress = initialInteractionProgress();
+  state.interactionProgress = { ...progress, sentences: {} };
+  writeInteractionProgress();
+  state.textCurrentTab = "basic";
+  state.textCurrentSentenceByTab = { basic: 0, application: 0 };
+  state.textPromptLanguage = "zh";
+  writeTextProgress();
+  state.currentSentence = 0;
+  state.textRecordingPreparingId = "";
+  state.textRecordingId = "";
+  state.textRecordingStoppingId = "";
+  state.textRecordingError = "";
+  lastAutoSpokenSentence = null;
+  render();
 }
 
 function navigate(path) {
@@ -1182,6 +1273,78 @@ function activeVocabulary() {
 
 function sentenceById(id) {
   return lesson.sentences.find((sentence) => sentence.id === id);
+}
+
+function textSectionById(tabId) {
+  return textStructure.find((section) => section.id === tabId) || textStructure[0];
+}
+
+function textSentencesForTab(tabId) {
+  const section = textSectionById(tabId);
+  return section.groups.flatMap((group) => group.ids.map((id) => sentenceById(id)).filter(Boolean));
+}
+
+function textSentenceIdsForTab(tabId) {
+  return textSentencesForTab(tabId).map((sentence) => sentence.id);
+}
+
+function textTabProgress(tabId) {
+  const sentences = textSentencesForTab(tabId);
+  const total = sentences.length;
+  const completed = sentences.filter((sentence) => sentencePracticeState(sentence.id).pronunciationPassed).length;
+  return { completed, total };
+}
+
+function textReviewUnlocked(tabId = state.textCurrentTab) {
+  const sentences = textSentencesForTab(tabId);
+  return sentences.length > 0 && sentences.every((sentence) => sentencePracticeState(sentence.id).pronunciationAttempts > 0);
+}
+
+function textLessonCompletedCount() {
+  return lesson.sentences.filter((sentence) => sentencePracticeState(sentence.id).pronunciationPassed).length;
+}
+
+function textActiveSentenceIndex(tabId = state.textCurrentTab) {
+  const total = textSentencesForTab(tabId).length;
+  const saved = Number(state.textCurrentSentenceByTab?.[tabId] ?? 0);
+  return clamp(Number.isFinite(saved) ? saved : 0, 0, Math.max(0, total - 1));
+}
+
+function currentTextSentence() {
+  const sentences = textSentencesForTab(state.textCurrentTab);
+  return sentences[textActiveSentenceIndex()] || sentences[0] || null;
+}
+
+function textTabIdForSentence(sentenceId) {
+  return textStructure.find((section) => section.groups.some((group) => group.ids.includes(sentenceId)))?.id || "basic";
+}
+
+function setTextTab(tabId, sentenceIndex = 0) {
+  const sentences = textSentencesForTab(tabId);
+  const nextIndex = clamp(sentenceIndex, 0, Math.max(0, sentences.length - 1));
+  state.textCurrentTab = tabId;
+  state.textCurrentSentenceByTab = { ...state.textCurrentSentenceByTab, [tabId]: nextIndex };
+  state.currentSentence = nextIndex;
+  state.textRecordingError = "";
+  state.textRecordingPreparingId = "";
+  state.textRecordingId = "";
+  state.textRecordingStoppingId = "";
+  lastAutoSpokenSentence = null;
+  writeTextProgress();
+}
+
+function setTextSentenceIndex(index) {
+  const tabId = state.textCurrentTab;
+  const sentences = textSentencesForTab(tabId);
+  const nextIndex = clamp(index, 0, Math.max(0, sentences.length - 1));
+  state.currentSentence = nextIndex;
+  state.textCurrentSentenceByTab = { ...state.textCurrentSentenceByTab, [tabId]: nextIndex };
+  state.textRecordingError = "";
+  writeTextProgress();
+}
+
+function textLessonComplete() {
+  return lesson.sentences.every((sentence) => sentencePracticeState(sentence.id).pronunciationPassed);
 }
 
 function wordById(id) {
@@ -1878,101 +2041,162 @@ function canLeaveCurrentWord() {
 }
 
 function textPage() {
+  if (!["zh", "ja"].includes(state.textPromptLanguage)) {
+    state.textPromptLanguage = "zh";
+    writeTextProgress();
+  }
   const requested = new URLSearchParams(location.search).get("sentenceId");
   if (requested) {
-    const index = lesson.sentences.findIndex((sentence) => sentence.id === requested);
-    if (index >= 0) state.currentSentence = index;
+    const tabId = textTabIdForSentence(requested);
+    const index = textSentencesForTab(tabId).findIndex((sentence) => sentence.id === requested);
+    if (index >= 0) setTextTab(tabId, index);
     history.replaceState({}, "", lessonPath(`/lesson/${lesson.id}/text`));
   }
-  const sentence = lesson.sentences[state.currentSentence];
-  const sentenceReady = interactionDone("sentence", sentence.id);
-  const weakSentences = weakInteractionItems().filter((item) => item.type === "sentence");
+  const section = textSectionById(state.textCurrentTab);
+  state.currentSentence = textActiveSentenceIndex(section.id);
+  const sentences = textSentencesForTab(section.id);
+  const sentence = currentTextSentence() || sentences[0] || null;
+  const complete = textLessonComplete();
+  const progress = textTabProgress(section.id);
   return layout(`
-    <div class="page-head">
+    <div class="page-head text-page-head">
       <div>
         <p class="eyebrow">${lesson.title} · 课文逐句学习</p>
-        <h2>聚焦当前句子，右侧同步解释</h2>
+        <h2>先连续读完整段，再回头复盘弱句</h2>
+        <p class="hint">当前已通过 ${progress.completed}/${progress.total} 句，${complete ? "所有句子都已通过" : "未通过的句子会标红"}。</p>
       </div>
-      <button class="primary" data-nav="/lesson/${lesson.id}/grammar">进入语法回顾</button>
-    </div>
-    <section class="text-layout">
-      <div class="sentence-list">
-        ${renderTextStructure()}
-      </div>
-      <aside class="panel detail-panel">
-        <h2>${sentenceHoverContent(sentence)}</h2>
-        <p class="hint"><span class="kbd">↑</span><span class="kbd">↓</span> 切换句子，定位后自动发音。${weakSentences.length ? `弱句 ${weakSentences.length} 个。` : ""}</p>
-        ${shadowControls("sentence", sentence.id, sentence.text, audioUrl("sentence", sentence.id), { hint: "跟读当前句子后，解释面板会展开。" })}
-        ${sentenceReady ? sentenceExplanation(sentence) : `<div class="locked-panel">完成跟读反馈后显示中文、单词和语法说明。</div>`}
-        <div class="button-row">
-          <button class="secondary" data-speak="${sentence.text}" data-audio="${audioUrl("sentence", sentence.id)}">播放发音</button>
-          <button class="secondary" data-prev-sentence>上一句</button>
-          <button class="primary" data-next-sentence ${sentenceReady ? "" : "disabled"}>下一句</button>
+      <div class="text-head-actions">
+        <div class="text-tab-switch" role="tablist" aria-label="课文分类">
+          ${textTabs().map((tab) => `
+            <button class="text-tab ${state.textCurrentTab === tab.id ? "active" : ""}" data-text-tab="${tab.id}" type="button">${tab.title}<span>${textTabProgress(tab.id).completed}/${textTabProgress(tab.id).total}</span></button>
+          `).join("")}
         </div>
-      </aside>
+        <div class="text-prompt-switch" aria-label="提示语言">
+          <button class="text-lang ${state.textPromptLanguage === "zh" ? "active" : ""}" data-text-prompt-lang="zh" type="button">中文</button>
+          <button class="text-lang ${state.textPromptLanguage === "ja" ? "active" : ""}" data-text-prompt-lang="ja" type="button">日语</button>
+        </div>
+      </div>
+    </div>
+    <section class="text-stage">
+      <div class="text-stage-summary ${complete ? "complete" : ""}">
+        <div>
+          <span class="label">总体评价</span>
+          <strong>${complete ? "所有句子都已达到标准" : `已通过 ${progress.completed}/${progress.total}`}</strong>
+        </div>
+        <div class="text-stage-summary-meta">
+          <span>当前句：${sentence ? sentence.order || sentence.id : "-"}</span>
+          <span>${textReviewUnlocked(section.id) ? "可针对弱句重读" : "读完当前课文后显示评分"}</span>
+        </div>
+      </div>
+      <div class="sentence-list">
+        ${renderTextStructure(section)}
+      </div>
     </section>
   `);
 }
 
-function sentenceExplanation(sentence) {
+function sentencePronunciationResult(practice) {
+  const recordingText = practice.pronunciationDuration
+    ? `录音 ${practice.pronunciationDuration.toFixed(1)} 秒，音量峰值 ${Number(practice.pronunciationPeak || 0).toFixed(2)}`
+    : "";
   return `
-    <div class="meta-list">
-      ${meta("课文位置", sentencePosition(sentence.id))}
-      ${sentence.speaker ? meta("说话人", sentence.speaker) : ""}
-      ${meta("假名", sentence.kana)}
-      ${meta("中文翻译", sentence.translation)}
-      <div class="meta-line">
-        <span class="label">单词列表</span>
-        <div class="tags">${sentence.words.map((id) => {
-          const word = wordById(id);
-          return `<button class="word-chip" data-word-modal="${id}">${word.jp} · ${word.cn}</button>`;
-        }).join("") || "<span class='muted'>本句无重点单词</span>"}</div>
-      </div>
-      <div class="meta-line">
-        <span class="label">相关语法</span>
-        <div class="tags">${sentence.grammar.map((id) => grammarTag(id)).join("") || "<span class='muted'>本句无语法标签</span>"}</div>
-      </div>
+    <div class="pronunciation-result ${practice.pronunciationPassed ? "passed" : "failed"}">
+      <strong>${practice.pronunciationPassed ? "发音通过" : "发音需复读"}</strong>
+      <span>总分 ${practice.pronunciationScore || 0} · 准确 ${practice.accuracyScore || 0} · 流畅 ${practice.fluencyScore || 0} · 完整 ${practice.completenessScore || 0}${recordingText ? ` · ${recordingText}` : ""}</span>
+      ${practice.pronunciationReasons?.length ? `<small>${practice.pronunciationReasons.join(" / ")}</small>` : ""}
+      ${practice.recognizedText ? `
+        <div class="diff-box">
+          <div><span class="diff-label">你说的是</span><p class="diff-line">${escapeHtml(practice.recognizedText)}</p></div>
+        </div>
+      ` : ""}
     </div>
   `;
 }
 
-function renderTextStructure() {
-  return textStructure.map((section) => `
+function textTabs() {
+  return textStructure.map((section) => ({ id: section.id, title: section.title }));
+}
+
+function textGroupProgress(ids) {
+  const total = ids.length;
+  const completed = ids.filter((id) => sentencePracticeState(id).pronunciationPassed).length;
+  return `${completed}/${total}`;
+}
+
+function renderTextStructure(section) {
+  if (!section) return "";
+  return section.groups.map((group) => `
     <section class="text-section">
-      <h3>${section.title}</h3>
-      ${section.groups.map((group) => `
-        <div class="text-group ${group.kind}">
-          <div class="text-group-title">${group.title}</div>
-          <div class="${group.kind === "statements" ? "statement-group" : "dialogue-group"}">
-            ${group.ids.map((id) => {
-              const sentence = sentenceById(id);
-              const index = lesson.sentences.findIndex((item) => item.id === id);
-              return sentence ? sentenceListItem(sentence, index, group) : "";
-            }).join("")}
-          </div>
-        </div>
-      `).join("")}
+      <div class="text-group-title">
+        <span>${group.title}</span>
+        <span class="text-group-progress">${textGroupProgress(group.ids)}</span>
+      </div>
+      <div class="${group.kind === "statements" ? "statement-group" : "dialogue-group"}">
+        ${group.ids.map((id) => {
+          const sentence = sentenceById(id);
+          const index = textSentencesForTab(section.id).findIndex((item) => item.id === id);
+          return sentence ? sentenceListItem(sentence, index, section.id) : "";
+        }).join("")}
+      </div>
     </section>
   `).join("");
 }
 
-function sentenceListItem(item, index) {
-  const current = index === state.currentSentence ? "current" : "";
-  if (!item.speaker) {
-    return `
-      <button class="sentence statement ${current}" data-sentence-index="${index}">
-        ${sentenceHoverContent(item)}
-      </button>
-    `;
-  }
-
+function sentenceListItem(item, index, tabId) {
+  const practice = sentencePracticeState(item.id);
+  const current = tabId === state.textCurrentTab && index === state.currentSentence ? "current" : "";
+  const stateClass = practice.pronunciationAttempts === 0 ? "new" : practice.pronunciationPassed ? "done" : "failed";
+  const status = practice.pronunciationAttempts === 0 ? "未学" : practice.pronunciationPassed ? "已通过" : "需复读";
+  const statusClass = practice.pronunciationAttempts === 0 ? "new" : practice.pronunciationPassed ? "done" : "failed";
+  const displayJapanese = state.textPromptLanguage === "ja";
+  const visibleText = displayJapanese ? item.text : item.translation;
   return `
-    <button class="sentence dialogue ${current}" data-sentence-index="${index}">
-      <span class="speaker">${item.speaker}</span>
-      <span class="bubble">
-        ${sentenceHoverContent(item)}
-      </span>
-    </button>
+    <article class="sentence-card ${item.speaker ? "dialogue" : "statement"} ${current} ${stateClass}" data-sentence-index="${index}">
+      <div class="sentence-card-head">
+        ${item.speaker ? `<span class="speaker">${item.speaker}</span>` : ""}
+        <div class="sentence-text">
+          <div class="${displayJapanese ? "sentence-jp" : "sentence-translation primary"}">${visibleText || ""}</div>
+        </div>
+        <span class="sentence-status ${statusClass}">${status}</span>
+      </div>
+      ${sentencePracticeBlock(item, tabId, practice, Boolean(current))}
+    </article>
+  `;
+}
+
+function sentencePracticeBlock(item, tabId, practice, current) {
+  const attempts = practice.pronunciationAttempts || 0;
+  const showScores = textReviewUnlocked(tabId);
+  const scoreBlock = showScores && attempts > 0 ? sentencePronunciationResult(practice) : "";
+  const audioBlock = attempts > 0 ? `
+    <div class="text-recording-row">
+      <div class="text-recording-label">${practice.pronunciationPassed ? "本次录音" : "你刚才的录音"}</div>
+      ${practice.debugAudioUrl ? `<audio controls src="${practice.debugAudioUrl}"></audio>` : ""}
+    </div>
+  ` : "";
+  const currentControls = current ? `
+    <div class="sentence-actions">
+      <button class="secondary" data-speak="${item.text}" data-audio="${audioUrl("sentence", item.id)}">听标准音</button>
+      <button
+        class="hold-record-button ${state.textRecordingPreparingId === item.id ? "preparing" : ""} ${state.textRecordingId === item.id ? "recording" : ""} ${state.textRecordingStoppingId === item.id ? "stopping" : ""}"
+        data-hold-record-sentence="${item.id}"
+        aria-label="长按跟读"
+        ${state.textRecordingStoppingId === item.id ? "disabled" : ""}
+      >
+        <span class="record-icon"></span>
+        <span>${state.textRecordingStoppingId === item.id ? "正在评价" : state.textRecordingId === item.id ? "正在说话" : state.textRecordingPreparingId === item.id ? "准备中" : "长按跟读"}</span>
+      </button>
+    </div>
+  ` : "";
+  return `
+    <div class="sentence-card-body">
+      ${currentControls}
+      ${current && state.textRecordingError ? `<p class="hint danger-text">${state.textRecordingError}</p>` : ""}
+      ${audioBlock}
+      ${scoreBlock}
+      ${showScores && attempts > 0 && !practice.pronunciationPassed ? `<div class="text-weak-hint">此句未通过，点开后重读直到通过。</div>` : ""}
+      ${showScores && attempts > 0 ? "" : ""}
+    </div>
   `;
 }
 
@@ -3246,6 +3470,205 @@ function endGrammarHold(key, event) {
   }
 }
 
+function releaseTextRecording(sentenceId) {
+  if (!sentenceId || state.textRecordingStoppingId) return;
+  recordingReleaseRequested = true;
+  if (recordingSession?.kind === "sentence" && recordingSession?.sentenceId === sentenceId) {
+    stopTextRecording(sentenceId);
+  }
+}
+
+async function startTextRecording(sentenceId) {
+  const sentence = sentenceById(sentenceId);
+  if (!sentence || recordingSession || state.textRecordingStoppingId) return;
+  state.textRecordingPreparingId = sentenceId;
+  state.textRecordingError = "";
+  recordingPressWordId = "";
+  recordingReleaseRequested = false;
+  recordingPointerId = null;
+  render();
+  try {
+    stopCurrentAudio();
+    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+    const audioContext = new AudioContext({ sampleRate: 16000 });
+    const source = audioContext.createMediaStreamSource(stream);
+    const processor = audioContext.createScriptProcessor(4096, 1, 1);
+    const chunks = [];
+    processor.onaudioprocess = (event) => {
+      chunks.push(new Float32Array(event.inputBuffer.getChannelData(0)));
+    };
+    source.connect(processor);
+    processor.connect(audioContext.destination);
+    recordingSession = {
+      kind: "sentence",
+      sentenceId,
+      stream,
+      audioContext,
+      source,
+      processor,
+      chunks,
+      referenceText: sentence.text,
+      label: sentence.text,
+      startedAt: Date.now(),
+      sampleRate: audioContext.sampleRate,
+      ready: false
+    };
+    await delay(250);
+    if (!recordingSession || recordingSession.sentenceId !== sentenceId) return;
+    if (recordingReleaseRequested) {
+      cleanupRecordingSession(recordingSession);
+      recordingSession = null;
+      recordingReleaseRequested = false;
+      recordingPointerId = null;
+      state.textRecordingPreparingId = "";
+      state.textRecordingId = "";
+      state.textRecordingError = "录音尚未准备好，请长按到按钮变为“正在说话”后再开口。";
+      render();
+      return;
+    }
+    recordingSession.ready = true;
+    state.textRecordingPreparingId = "";
+    state.textRecordingId = sentenceId;
+    state.textRecordingStoppingId = "";
+    state.textRecordingError = "";
+    render();
+  } catch (error) {
+    state.textRecordingPreparingId = "";
+    cleanupRecordingSession(recordingSession);
+    recordingSession = null;
+    recordingReleaseRequested = false;
+    recordingPointerId = null;
+    state.textRecordingError = `无法录音：${error.message || error}`;
+    render();
+  }
+}
+
+async function stopTextRecording(sentenceId) {
+  if (!recordingSession || recordingSession.sentenceId !== sentenceId) return;
+  const session = recordingSession;
+  if (session.stopping) return;
+  if (!session.ready) {
+    cleanupRecordingSession(session);
+    recordingSession = null;
+    recordingReleaseRequested = false;
+    recordingPointerId = null;
+    state.textRecordingPreparingId = "";
+    state.textRecordingId = "";
+    state.textRecordingStoppingId = "";
+    state.textRecordingError = "录音尚未准备好，请长按到按钮变为“正在说话”后再开口。";
+    render();
+    return;
+  }
+  session.stopping = true;
+  state.textRecordingPreparingId = "";
+  state.textRecordingStoppingId = sentenceId;
+  state.textRecordingError = "";
+  render();
+  await delay(800);
+  if (recordingSession !== session) return;
+  recordingSession = null;
+  session.processor.disconnect();
+  session.source.disconnect();
+  session.stream.getTracks().forEach((track) => track.stop());
+  await session.audioContext.close();
+  state.textRecordingId = "";
+  state.textRecordingStoppingId = "";
+  state.textRecordingError = "正在提交发音评价...";
+  render();
+  const sentence = sentenceById(sentenceId);
+  const stats = audioStats(session.chunks, session.sampleRate);
+  if (stats.duration < 0.25 || stats.peak < 0.01) {
+    state.textRecordingError = `录音音量过低或时长太短：${stats.duration.toFixed(1)} 秒，峰值 ${stats.peak.toFixed(3)}。请靠近麦克风重试。`;
+    recordingReleaseRequested = false;
+    recordingPointerId = null;
+    render();
+    return;
+  }
+  const wav = encodeWav(session.chunks, session.sampleRate);
+  const form = new FormData();
+  form.append("wordId", `sentence:${sentence.id}`);
+  form.append("referenceText", sentence.text);
+  form.append("kana", sentence.kana || "");
+  form.append("audio", new Blob([wav], { type: "audio/wav" }), `${sentence.id}.wav`);
+  try {
+    const response = await fetch("/api/pronunciation/evaluate", { method: "POST", body: form });
+    const data = await response.json();
+    if (!response.ok || data.error) throw new Error(data.error || "发音评价失败");
+    updateSentencePractice(sentence.id, {
+      submitted: true,
+      pronunciationPassed: data.passed,
+      pronunciationScore: data.pronunciationScore,
+      accuracyScore: data.accuracyScore,
+      fluencyScore: data.fluencyScore,
+      completenessScore: data.completenessScore,
+      pronunciationReasons: [...(data.reasons || []), `录音 ${stats.duration.toFixed(1)} 秒，音量峰值 ${stats.peak.toFixed(2)}`],
+      recognizedText: data.recognizedText || "",
+      debugAudioUrl: data.debugAudioUrl || "",
+      debugAudioPath: data.debugAudioPath || "",
+      pronunciationDuration: stats.duration,
+      pronunciationPeak: stats.peak,
+      pronunciationAttempts: sentencePracticeState(sentence.id).pronunciationAttempts + 1
+    });
+    recordInteraction("sentence", sentence.id, data.passed ? "smooth" : "retry");
+    state.textRecordingError = "";
+    recordingReleaseRequested = false;
+    recordingPointerId = null;
+    render();
+    window.setTimeout(() => {
+      if (route().page !== "text") return;
+      if (state.textRecordingId || state.textRecordingPreparingId || state.textRecordingStoppingId) return;
+      const tabSentences = textSentencesForTab(state.textCurrentTab);
+      if (state.currentSentence >= tabSentences.length - 1) return;
+      setTextSentenceIndex(state.currentSentence + 1);
+      history.replaceState({}, "", lessonPath(`/lesson/${lesson.id}/text`));
+      render();
+    }, 350);
+  } catch (error) {
+    updateSentencePractice(sentence.id, {
+      submitted: true,
+      pronunciationPassed: false,
+      pronunciationReasons: [String(error.message || error)],
+      debugAudioUrl: "",
+      debugAudioPath: "",
+      pronunciationDuration: 0,
+      pronunciationPeak: 0,
+      pronunciationAttempts: sentencePracticeState(sentence.id).pronunciationAttempts + 1
+    });
+    recordInteraction("sentence", sentence.id, "retry");
+    state.textRecordingError = String(error.message || error);
+    recordingReleaseRequested = false;
+    recordingPointerId = null;
+    render();
+  }
+}
+
+function startTextHold(button, sentenceId, event) {
+  if (!sentenceId || recordingSession || state.textRecordingStoppingId) return;
+  if (event?.pointerId != null) recordingPointerId = event.pointerId;
+  if (event?.currentTarget?.setPointerCapture && event?.pointerId != null) {
+    try {
+      event.currentTarget.setPointerCapture(event.pointerId);
+    } catch {
+      // Ignore capture failures; document/window listeners remain as fallback.
+    }
+  }
+  recordingReleaseRequested = false;
+  startTextRecording(sentenceId);
+}
+
+function endTextHold(sentenceId, event) {
+  if (!sentenceId) return;
+  if (recordingPointerId != null && event?.pointerId != null && event.pointerId !== recordingPointerId) return;
+  if (event?.currentTarget?.releasePointerCapture && event?.pointerId != null) {
+    try {
+      event.currentTarget.releasePointerCapture(event.pointerId);
+    } catch {
+      // Ignore capture release failures.
+    }
+  }
+  releaseTextRecording(sentenceId);
+}
+
 function delay(ms) {
   return new Promise((resolve) => window.setTimeout(resolve, ms));
 }
@@ -3621,13 +4044,6 @@ function render() {
       }
     }
   }
-  if (current === "text" && !state.modal) {
-    const sentence = lesson.sentences[state.currentSentence];
-    if (sentence && lastAutoSpokenSentence !== sentence.id) {
-      lastAutoSpokenSentence = sentence.id;
-      window.setTimeout(() => playAudio(sentence.text, audioUrl("sentence", sentence.id)), 80);
-    }
-  }
 }
 
 function ensurePageFocus() {
@@ -3739,19 +4155,38 @@ function bind() {
   app.querySelectorAll("[data-regenerate-word]").forEach((button) => button.addEventListener("click", () => {
     handleRegenerateWordAudio(button.dataset.regenerateWord);
   }));
-  app.querySelectorAll("[data-sentence-index]").forEach((button) => button.addEventListener("click", () => {
-    state.currentSentence = Number(button.dataset.sentenceIndex);
+  app.querySelectorAll("[data-text-tab]").forEach((button) => button.addEventListener("click", () => {
+    setTextTab(button.dataset.textTab, textActiveSentenceIndex(button.dataset.textTab));
+    render();
+  }));
+  app.querySelectorAll("[data-text-prompt-lang]").forEach((button) => button.addEventListener("click", () => {
+    state.textPromptLanguage = button.dataset.textPromptLang;
+    writeTextProgress();
+    render();
+  }));
+  app.querySelectorAll("[data-sentence-index]").forEach((button) => button.addEventListener("click", (event) => {
+    if (event.target.closest?.("button, audio")) return;
+    setTextSentenceIndex(Number(button.dataset.sentenceIndex));
     history.replaceState({}, "", lessonPath(`/lesson/${lesson.id}/text`));
     render();
   }));
+  app.querySelector("[data-start-text-flow]")?.addEventListener("click", () => {
+    stopCurrentAudio();
+    setTextSentenceIndex(0);
+    lastAutoSpokenSentence = null;
+    history.replaceState({}, "", lessonPath(`/lesson/${lesson.id}/text`));
+    render();
+  });
+  app.querySelector("[data-reset-text-learning]")?.addEventListener("click", resetTextLearningData);
   app.querySelector("[data-prev-sentence]")?.addEventListener("click", () => {
-    state.currentSentence = Math.max(0, state.currentSentence - 1);
+    setTextSentenceIndex(state.currentSentence - 1);
     render();
   });
   app.querySelector("[data-next-sentence]")?.addEventListener("click", () => {
-    const sentence = lesson.sentences[state.currentSentence];
+    const sentence = currentTextSentence();
+    if (!sentence) return;
     if (!interactionDone("sentence", sentence.id)) return;
-    state.currentSentence = Math.min(lesson.sentences.length - 1, state.currentSentence + 1);
+    setTextSentenceIndex(state.currentSentence + 1);
     render();
   });
   app.querySelectorAll("[data-grammar-index]").forEach((button) => button.addEventListener("click", () => {
@@ -3783,6 +4218,21 @@ function bind() {
     });
     button.addEventListener("lostpointercapture", (event) => {
       endGrammarHold(button.dataset.holdRecordGrammar, event);
+    });
+  });
+  app.querySelectorAll("[data-hold-record-sentence]").forEach((button) => {
+    button.addEventListener("pointerdown", (event) => {
+      event.preventDefault();
+      startTextHold(button, button.dataset.holdRecordSentence, event);
+    });
+    button.addEventListener("pointerup", (event) => {
+      endTextHold(button.dataset.holdRecordSentence, event);
+    });
+    button.addEventListener("pointercancel", (event) => {
+      endTextHold(button.dataset.holdRecordSentence, event);
+    });
+    button.addEventListener("lostpointercapture", (event) => {
+      endTextHold(button.dataset.holdRecordSentence, event);
     });
   });
   app.querySelectorAll("[data-exercise-index]").forEach((button) => button.addEventListener("click", () => {
@@ -3845,10 +4295,12 @@ document.addEventListener("pointerdown", (event) => {
 document.addEventListener("pointerup", () => {
   releaseWordRecording(recordingPressWordId || recordingSession?.wordId || state.recordingPreparingWordId);
   releaseGrammarRecording(state.grammarRecordingId || state.grammarRecordingPreparingId || recordingSession?.key);
+  releaseTextRecording(state.textRecordingId || state.textRecordingPreparingId || recordingSession?.sentenceId);
 }, true);
 document.addEventListener("pointercancel", () => {
   releaseWordRecording(recordingPressWordId || recordingSession?.wordId || state.recordingPreparingWordId);
   releaseGrammarRecording(state.grammarRecordingId || state.grammarRecordingPreparingId || recordingSession?.key);
+  releaseTextRecording(state.textRecordingId || state.textRecordingPreparingId || recordingSession?.sentenceId);
 }, true);
 document.addEventListener("click", (event) => {
   const button = event.target.closest?.("[data-selection-speak]");
@@ -3884,7 +4336,7 @@ function handleKeyboard(event) {
     event.preventDefault();
     lastKeyAction = { key: actionKey, at: now };
     const step = key === "ArrowDown" || event.code === "ArrowDown" ? 1 : -1;
-    state.currentSentence = clamp(state.currentSentence + step, 0, lesson.sentences.length - 1);
+    setTextSentenceIndex(state.currentSentence + step);
     render();
   }
 
