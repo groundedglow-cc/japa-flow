@@ -1740,12 +1740,20 @@ button.tag {
 }
 
 .exercise-box ruby,
-.dialog ruby {
+.dialog ruby,
+.sentence-card ruby,
+.grammar-practice-card ruby,
+.related-exercise-title ruby,
+.supplemental-preview ruby {
   ruby-position: over;
 }
 
 .exercise-box rt,
-.dialog rt {
+.dialog rt,
+.sentence-card rt,
+.grammar-practice-card rt,
+.related-exercise-title rt,
+.supplemental-preview rt {
   color: var(--muted);
   font-size: 0.68em;
   font-weight: 760;

@@ -2138,8 +2138,39 @@ function escapeHtml(value) {
 
 const exerciseRubyEntries = [
   ["国際関係学", "こくさいかんけいがく"],
+  ["日本の経済", "にほんのけいざい"],
   ["スピーチの練習", "スピーチのれんしゅう"],
   ["パソコンの部品", "パソコンのぶひん"],
+  ["スポーツセンター", "スポーツセンター"],
+  ["社交ダンス", "しゃこうダンス"],
+  ["太極拳", "たいきょくけん"],
+  ["アルバイト", "アルバイト"],
+  ["お年寄り", "おとしより"],
+  ["入園料", "にゅうえんりょう"],
+  ["気持ち", "きもち"],
+  ["この前", "このまえ"],
+  ["書類", "しょるい"],
+  ["整理", "せいり"],
+  ["学校", "がっこう"],
+  ["大変", "たいへん"],
+  ["楊さん", "ようさん"],
+  ["今朝", "けさ"],
+  ["大勢", "おおぜい"],
+  ["集ま", "あつま"],
+  ["多", "おお"],
+  ["払", "はら"],
+  ["利用", "りよう"],
+  ["割引", "わりびき"],
+  ["小さい", "ちいさい"],
+  ["祖母", "そぼ"],
+  ["遊", "あそ"],
+  ["夕方", "ゆうがた"],
+  ["涼しい", "すずしい"],
+  ["時々", "ときどき"],
+  ["教室", "きょうしつ"],
+  ["加藤さん", "かとうさん"],
+  ["息子さん", "むすこさん"],
+  ["展覧会", "てんらんかい"],
   ["新しい企画", "あたらしいきかく"],
   ["食事の準備", "しょくじのじゅんび"],
   ["1か月会社", "いっかげつかいしゃ"],
@@ -2274,6 +2305,21 @@ const exerciseRubyEntries = [
   ["笑", "わら"],
   ["道具", "どうぐ"],
   ["食堂", "しょくどう"],
+  ["経済", "けいざい"],
+  ["学部", "がくぶ"],
+  ["高校", "こうこう"],
+  ["日記", "にっき"],
+  ["教師", "きょうし"],
+  ["体操", "たいそう"],
+  ["有料", "ゆうりょう"],
+  ["映画", "えいが"],
+  ["後ろ", "うしろ"],
+  ["席", "せき"],
+  ["座", "すわ"],
+  ["学生", "がくせい"],
+  ["分", "わ"],
+  ["絵", "え"],
+  ["賞", "しょう"],
   ["切手", "きって"],
   ["買", "か"],
   ["荷物", "にもつ"],
@@ -2304,6 +2350,10 @@ function renderExerciseText(value, options = {}) {
       .replace(/^<br>/, "");
   }
   return html;
+}
+
+function renderJapaneseText(value, options = {}) {
+  return renderExerciseText(value, options);
 }
 
 function rubyExerciseText(source) {
@@ -3075,12 +3125,13 @@ function sentenceListItem(item, index, tabId) {
   const statusClass = practice.pronunciationAttempts === 0 ? "new" : practice.pronunciationPassed ? "done" : "failed";
   const displayJapanese = state.textPromptLanguage === "ja";
   const visibleText = displayJapanese ? item.text : item.translation;
+  const displayText = displayJapanese ? renderJapaneseText(visibleText) : escapeHtml(visibleText || "");
   return `
     <article class="sentence-card ${item.speaker ? "dialogue" : "statement"} ${current} ${stateClass}" data-sentence-index="${index}">
       <div class="sentence-card-head">
         ${item.speaker ? `<span class="speaker">${item.speaker}</span>` : ""}
         <div class="sentence-text">
-          <div class="${displayJapanese ? "sentence-jp" : "sentence-translation primary"}">${visibleText || ""}</div>
+          <div class="${displayJapanese ? "sentence-jp" : "sentence-translation primary"}">${displayText}</div>
         </div>
         <span class="sentence-status ${statusClass}">${status}</span>
       </div>
@@ -3140,8 +3191,8 @@ function sentenceHoverContent(sentence, fallbackText = "") {
   return `
     <span class="hover-translation">
       <span class="translation-switch" title="悬浮查看中文" aria-label="悬浮查看中文">⇄</span>
-      <span class="jp-text">${jp}</span>
-      <span class="cn-text">${cn}</span>
+      <span class="jp-text">${renderJapaneseText(jp)}</span>
+      <span class="cn-text">${escapeHtml(cn)}</span>
     </span>
   `;
 }
@@ -3336,7 +3387,7 @@ function grammarDetail(grammar) {
             <div class="related-exercise-row">
               <span class="related-exercise-no">${index + 1}</span>
               <span class="exercise-badge">${exercise.category}</span>
-              <span class="related-exercise-title">${exercise.groupTitle} · ${exercise.question}</span>
+              <span class="related-exercise-title">${escapeHtml(exercise.groupTitle)} · ${renderJapaneseText(exercise.question)}</span>
               <button class="secondary compact-action" data-exercise-index="${index}">去练习</button>
             </div>
           `).join("") : "<span class='muted'>暂无相关练习。</span>"}
@@ -3376,11 +3427,11 @@ function grammarExamplePracticeCard(grammar, item, index) {
       </div>
       ${ready ? `
         <div class="grammar-answer-inline ${practice.correct ? "passed" : "failed"}">
-          <div class="diff-line">填空结果：${practice.correct ? "正确" : "错误"}；标准答案：${escapeHtml(targetText)}</div>
+          <div class="diff-line">填空结果：${practice.correct ? "正确" : "错误"}；标准答案：${renderJapaneseText(targetText)}</div>
         </div>
       ` : ""}
       <div class="grammar-practice-body ${collapsed ? "collapsed" : ""}">
-        <div class="grammar-practice-cloze">${escapeHtml(clozeText)}</div>
+        <div class="grammar-practice-cloze">${renderJapaneseText(clozeText)}</div>
         <div class="grammar-practice-form">
           <input class="answer-input" data-grammar-answer="${grammarPracticeKey(grammar.id, item.id)}" value="${escapeHtml(practice.answer || "")}" placeholder="补全空缺部分" />
           <button class="primary" data-grammar-check="${grammarPracticeKey(grammar.id, item.id)}">检查</button>
