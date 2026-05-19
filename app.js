@@ -2136,6 +2136,192 @@ function escapeHtml(value) {
     .replaceAll("'", "&#039;");
 }
 
+const exerciseRubyEntries = [
+  ["国際関係学", "こくさいかんけいがく"],
+  ["スピーチの練習", "スピーチのれんしゅう"],
+  ["パソコンの部品", "パソコンのぶひん"],
+  ["新しい企画", "あたらしいきかく"],
+  ["食事の準備", "しょくじのじゅんび"],
+  ["1か月会社", "いっかげつかいしゃ"],
+  ["海外旅行", "かいがいりょこう"],
+  ["携帯電話", "けいたいでんわ"],
+  ["明るい曲", "あかるいきょく"],
+  ["駅前のスーパー", "えきまえのスーパー"],
+  ["大きな地震", "おおきなじしん"],
+  ["お先に失礼", "おさきにしつれい"],
+  ["都合が悪い", "つごうがわるい"],
+  ["毎日病院", "まいにちびょういん"],
+  ["荷物を送", "にもつをおく"],
+  ["写真を選", "しゃしんをえら"],
+  ["道を渡", "みちをわた"],
+  ["紙を切", "かみをき"],
+  ["部屋の中", "へやのなか"],
+  ["電気を消", "でんきをけ"],
+  ["友達に会", "ともだちにあ"],
+  ["表やグラフ", "ひょうやグラフ"],
+  ["説明をし", "せつめいをし"],
+  ["市役所", "しやくしょ"],
+  ["郵便局", "ゆうびんきょく"],
+  ["喫茶店", "きっさてん"],
+  ["長島さん", "ながしまさん"],
+  ["吉田さん", "よしださん"],
+  ["田中さん", "たなかさん"],
+  ["田村さん", "たむらさん"],
+  ["木下さん", "きのしたさん"],
+  ["張さん", "ちょうさん"],
+  ["陳さん", "ちんさん"],
+  ["葉子さん", "ようこさん"],
+  ["李さん", "りさん"],
+  ["森さん", "もりさん"],
+  ["子供", "こども"],
+  ["横浜", "よこはま"],
+  ["病気", "びょうき"],
+  ["会社", "かいしゃ"],
+  ["休み", "やすみ"],
+  ["信号", "しんごう"],
+  ["青", "あお"],
+  ["赤", "あか"],
+  ["道", "みち"],
+  ["渡", "わた"],
+  ["要", "い"],
+  ["寂しい", "さびしい"],
+  ["明るい", "あかるい"],
+  ["曲", "きょく"],
+  ["聞", "き"],
+  ["夜", "よる"],
+  ["静か", "しずか"],
+  ["詩", "し"],
+  ["書", "か"],
+  ["困", "こま"],
+  ["相談", "そうだん"],
+  ["紙", "かみ"],
+  ["切", "き"],
+  ["使", "つか"],
+  ["仕事", "しごと"],
+  ["暇", "ひま"],
+  ["残業", "ざんぎょう"],
+  ["部屋", "へや"],
+  ["電気", "でんき"],
+  ["消", "け"],
+  ["お金", "おかね"],
+  ["都合", "つごう"],
+  ["悪い", "わるい"],
+  ["連絡", "れんらく"],
+  ["朝", "あさ"],
+  ["友達", "ともだち"],
+  ["会", "あ"],
+  ["言", "い"],
+  ["紅茶", "こうちゃ"],
+  ["旅行", "りょこう"],
+  ["先", "さき"],
+  ["失礼", "しつれい"],
+  ["家族", "かぞく"],
+  ["卓球", "たっきゅう"],
+  ["雑誌", "ざっし"],
+  ["読", "よ"],
+  ["ご飯", "ごはん"],
+  ["食", "た"],
+  ["何", "なに"],
+  ["話", "はな"],
+  ["写真", "しゃしん"],
+  ["選", "えら"],
+  ["手", "て"],
+  ["歌", "うた"],
+  ["踊", "おど"],
+  ["中", "なか"],
+  ["歩", "ある"],
+  ["練習", "れんしゅう"],
+  ["表", "ひょう"],
+  ["見", "み"],
+  ["新しい", "あたらしい"],
+  ["企画", "きかく"],
+  ["説明", "せつめい"],
+  ["明日", "あした"],
+  ["出張", "しゅっちょう"],
+  ["週間", "しゅうかん"],
+  ["予定", "よてい"],
+  ["気", "き"],
+  ["日本", "にほん"],
+  ["恋人", "こいびと"],
+  ["上手", "じょうず"],
+  ["語", "ご"],
+  ["難", "むずか"],
+  ["姉", "あね"],
+  ["銀行", "ぎんこう"],
+  ["働", "はたら"],
+  ["父", "ちち"],
+  ["兄", "あに"],
+  ["大学", "だいがく"],
+  ["勉強", "べんきょう"],
+  ["母", "はは"],
+  ["毎日", "まいにち"],
+  ["病院", "びょういん"],
+  ["通", "かよ"],
+  ["駅前", "えきまえ"],
+  ["安い", "やすい"],
+  ["品物", "しなもの"],
+  ["売", "う"],
+  ["運動", "うんどう"],
+  ["弟", "おとうと"],
+  ["部品", "ぶひん"],
+  ["作", "つく"],
+  ["去年", "きょねん"],
+  ["近く", "ちかく"],
+  ["公園", "こうえん"],
+  ["散歩", "さんぽ"],
+  ["お茶", "おちゃ"],
+  ["音楽", "おんがく"],
+  ["笑", "わら"],
+  ["道具", "どうぐ"],
+  ["食堂", "しょくどう"],
+  ["切手", "きって"],
+  ["買", "か"],
+  ["荷物", "にもつ"],
+  ["送", "おく"],
+  ["所", "ところ"],
+  ["電話", "でんわ"],
+  ["人", "ひと"],
+  ["好き", "すき"],
+  ["昨日", "きのう"],
+  ["来", "こ"],
+  ["行", "い"],
+  ["入", "はい"],
+  ["掃除", "そうじ"],
+  ["店", "みせ"],
+  ["日曜日", "にちようび"],
+  ["地震", "じしん"]
+].sort((a, b) => b[0].length - a[0].length);
+
+function renderExerciseText(value, options = {}) {
+  const source = String(value || "");
+  let html = rubyExerciseText(source);
+  html = html.replace(/__([\s\S]+?)__/g, `<span class="example-underline">$1</span>`);
+  if (options.exampleBreaks) {
+    html = html
+      .replace(/\s*→\s*/g, "<br>")
+      .replace(/\s*(甲：)/g, "<br>$1")
+      .replace(/\s*(乙：)/g, "<br>$1")
+      .replace(/^<br>/, "");
+  }
+  return html;
+}
+
+function rubyExerciseText(source) {
+  let html = "";
+  for (let index = 0; index < source.length;) {
+    const entry = exerciseRubyEntries.find(([text]) => source.startsWith(text, index));
+    if (entry) {
+      const [text, reading] = entry;
+      html += `<ruby>${escapeHtml(text)}<rt>${escapeHtml(reading)}</rt></ruby>`;
+      index += text.length;
+    } else {
+      html += escapeHtml(source[index]);
+      index += 1;
+    }
+  }
+  return html;
+}
+
 function normalizeAnswer(value) {
   return String(value || "")
     .trim()
@@ -3702,7 +3888,7 @@ function exerciseGroupItem(exercise, index, submitted) {
     <article class="exercise-item ${submitted && result?.isCorrect ? "passed" : submitted && !result?.isCorrect ? "wrong" : ""}">
       <div class="exercise-item-head">
         <span class="related-exercise-no">${index + 1}</span>
-        <div class="question">${exercise.question}</div>
+        <div class="question">${renderExerciseText(exercise.question)}</div>
         ${submitted && result ? `<span class="practice-status ${result.isCorrect ? "success" : "danger"}">${result.isSkipped ? "已记录" : result.isCorrect ? "正确" : "错误"}</span>` : ""}
       </div>
       ${answerControl(exercise, answer, { id: exercise.id, mode: "group", disabled: submitted })}
@@ -3747,13 +3933,7 @@ function exerciseExampleSection({ category, examples }) {
 }
 
 function formatExerciseExample(example) {
-  const escaped = escapeHtml(example);
-  const marked = escaped.replace(/__([^_]+?)__/g, `<span class="example-underline">$1</span>`);
-  const normalized = marked
-    .replace(/\s*→\s*/g, "<br>")
-    .replace(/\s*(甲：)/g, "<br>$1")
-    .replace(/\s*(乙：)/g, "<br>$1");
-  return normalized.replace(/^<br>/, "");
+  return renderExerciseText(example, { exampleBreaks: true });
 }
 
 function answerControl(exercise, value = "", options = {}) {
@@ -3836,11 +4016,11 @@ function exerciseFeedbackRow(exercise, result, index) {
         <span class="related-exercise-no">${index + 1}</span>
         <div>
           <strong>${result.isSkipped ? "已记录" : result.isCorrect ? "正确" : "错误"}</strong>
-          <p>${exercise.question}</p>
+          <p>${renderExerciseText(exercise.question)}</p>
         </div>
       </div>
-      ${meta("你的答案", result.userAnswer || "未作答")}
-      ${meta(exercise.type === "sentence_making" ? "参考答案" : "正确答案", correctText)}
+      ${meta("你的答案", result.userAnswer ? renderExerciseText(result.userAnswer) : "未作答")}
+      ${meta(exercise.type === "sentence_making" ? "参考答案" : "正确答案", renderExerciseText(correctText))}
       ${!result.isCorrect ? meta("错误说明", exercise.explanation) : ""}
       <div class="meta-line">
         <span class="label">相关语法</span>
@@ -3864,7 +4044,7 @@ function feedbackView(exercise, result) {
     return `
       <article class="panel feedback">
         <h3>录音题暂不判分</h3>
-        ${meta("题目", exercise.question)}
+        ${meta("题目", renderExerciseText(exercise.question))}
         ${meta("说明", exercise.explanation)}
         <div class="button-row">
           <button class="primary" data-next-exercise>${state.currentExercise === lesson.exercises.length - 1 ? "进入结果页" : "下一题"}</button>
@@ -3880,8 +4060,8 @@ function feedbackView(exercise, result) {
         <strong>${result.isCorrect ? "通过" : "不通过"}</strong>
         <span>${result.isCorrect ? "答案与正确答案一致" : "答案与正确答案不一致"}</span>
       </div>
-      ${meta("你的答案", result.userAnswer || "未作答")}
-      ${meta(exercise.type === "sentence_making" ? "参考答案" : "正确答案", correctText)}
+      ${meta("你的答案", result.userAnswer ? renderExerciseText(result.userAnswer) : "未作答")}
+      ${meta(exercise.type === "sentence_making" ? "参考答案" : "正确答案", renderExerciseText(correctText))}
       <div class="meta-line">
         <span class="label">差异对比</span>
         ${result.isCorrect ? "<span>答案与参考要求一致。</span>" : `
@@ -4022,9 +4202,9 @@ function wrongItem(item) {
   return `
     <div class="card panel">
       <p class="label">${exercise.groupTitle} · ${exercise.category} · ${wrongStatusText(item.status)}</p>
-      <h3>${exercise.question}</h3>
-      ${meta("你的答案", item.userAnswer || "未作答")}
-      ${meta("正确答案 / 参考答案", exercise.referenceAnswers?.join(" / ") || exercise.answer)}
+      <h3>${renderExerciseText(exercise.question)}</h3>
+      ${meta("你的答案", item.userAnswer ? renderExerciseText(item.userAnswer) : "未作答")}
+      ${meta("正确答案 / 参考答案", renderExerciseText(exercise.referenceAnswers?.join(" / ") || exercise.answer))}
       ${meta("错题状态", `${wrongStatusText(item.status)} · 错误 ${item.wrongCount || 1} 次 · 连续正确 ${item.correctStreak || 0} 次`)}
       <div class="tags">${exercise.relatedGrammar.map((id) => grammarTag(id)).join("")}</div>
       <div class="button-row" style="margin-top:12px">
@@ -4080,11 +4260,11 @@ function wrongBookPage() {
         <div class="exercise-context">
           <span class="exercise-badge">${exercise.category}</span>
           <div class="meta-line"><span class="label">要求</span><span>${exercise.instruction}</span></div>
-          ${exercise.example ? `<div class="meta-line"><span class="label">例</span><span>${exercise.example}</span></div>` : ""}
+          ${exercise.example ? `<div class="meta-line"><span class="label">例</span><span>${formatExerciseExample(exercise.example)}</span></div>` : ""}
           <div class="group-score">错误 ${item.wrongCount || 1} 次 · 连续正确 ${item.correctStreak || 0} 次</div>
         </div>
         <p class="label">原题</p>
-        <div class="question">${exercise.question}</div>
+        <div class="question">${renderExerciseText(exercise.question)}</div>
         ${answerControl(exercise, state.wrongPractice.answer, { id: exercise.id, mode: "wrong", disabled: state.wrongPractice.submitted })}
         <div class="button-row" style="margin-top:16px">
           <button class="primary" data-submit-wrong-practice ${state.wrongPractice.submitted ? "disabled" : ""}>提交错题</button>

@@ -1739,6 +1739,19 @@ button.tag {
   line-height: 1.6;
 }
 
+.exercise-box ruby,
+.dialog ruby {
+  ruby-position: over;
+}
+
+.exercise-box rt,
+.dialog rt {
+  color: var(--muted);
+  font-size: 0.68em;
+  font-weight: 760;
+  line-height: 1;
+}
+
 .example-underline {
   color: var(--accent);
   font-family: inherit;
