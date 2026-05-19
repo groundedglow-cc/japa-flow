@@ -1,7 +1,7 @@
 import { createServer } from "node:http";
 import { existsSync } from "node:fs";
-import { mkdir, readFile, writeFile } from "node:fs/promises";
-import { dirname, extname, join, normalize } from "node:path";
+import { mkdir, readFile, readdir, writeFile } from "node:fs/promises";
+import { basename, dirname, extname, join, normalize } from "node:path";
 import vm from "node:vm";
 
 const root = process.cwd();
@@ -35,9 +35,41 @@ const types = {
   ".json": "application/json; charset=utf-8",
   ".md": "text/markdown; charset=utf-8",
   ".svg": "image/svg+xml",
+  ".png": "image/png",
+  ".jpg": "image/jpeg",
+  ".jpeg": "image/jpeg",
+  ".webp": "image/webp",
   ".mp3": "audio/mpeg",
   ".wav": "audio/wav"
 };
+
+const initBuckets = ["text", "grammar", "vocabulary", "exercises"];
+const lessonCatalog = [
+  {
+    id: 27,
+    title: "第27课",
+    subtitle: "子供の時、大きな地震がありました",
+    status: "ready",
+    description: "围绕第 27 课完成单词、语法、课文朗读、标准练习和结果复盘。",
+    runtimeReady: true
+  },
+  {
+    id: 28,
+    title: "第28课",
+    subtitle: "待初始化",
+    status: "pending",
+    description: "课程内容尚未采集，后续可继续按同一结构初始化。",
+    runtimeReady: false
+  },
+  {
+    id: 29,
+    title: "第29课",
+    subtitle: "待初始化",
+    status: "pending",
+    description: "课程内容尚未采集，后续可继续按同一结构初始化。",
+    runtimeReady: false
+  }
+];
 
 function headers(type) {
   return {
@@ -68,6 +100,80 @@ function safeFileSegment(value) {
     .replace(/-+/g, "-")
     .replace(/^-|-$/g, "")
     .slice(0, 80) || "recording";
+}
+
+function safeLessonId(value) {
+  const id = Number(value);
+  if (!Number.isInteger(id) || id <= 0 || id > 999) throw new Error("Invalid lessonId.");
+  return id;
+}
+
+function initStatePath(lessonId) {
+  return join(root, "data", "lesson-init", `lesson${lessonId}-state.json`);
+}
+
+function initDraftPath(lessonId) {
+  return join(root, "data", "lesson-drafts", `lesson${lessonId}.json`);
+}
+
+function initLessonPath(lessonId) {
+  return join(root, "data", "lessons", `lesson${lessonId}.json`);
+}
+
+function initCodexTaskPath(lessonId) {
+  return join(root, "data", "lesson-init", `lesson${lessonId}-codex-task.md`);
+}
+
+function imageBucketDir(lessonId, bucket) {
+  if (!initBuckets.includes(bucket)) throw new Error("Invalid image bucket.");
+  return join(root, "course-assets", `lesson${lessonId}`, bucket);
+}
+
+async function readJsonFile(filePath, fallback = null) {
+  try {
+    return JSON.parse(await readFile(filePath, "utf8"));
+  } catch {
+    return fallback;
+  }
+}
+
+async function writeJsonFile(filePath, value) {
+  await mkdir(dirname(filePath), { recursive: true });
+  await writeFile(filePath, `${JSON.stringify(value, null, 2)}\n`);
+}
+
+async function initializedLessonCatalog() {
+  return Promise.all(lessonCatalog.map(async (item) => {
+    if (item.runtimeReady) return item;
+    const lessonData = await readJsonFile(initLessonPath(item.id), null);
+    const initState = await readJsonFile(initStatePath(item.id), {});
+    const initialized = Boolean(lessonData && initState.parseConfirmed && initState.audioConfirmed);
+    if (!initialized) return item;
+    return {
+      ...item,
+      subtitle: lessonData.subtitle || item.subtitle,
+      status: "initialized",
+      statusLabel: "已初始化",
+      description: `课程数据和音频已完成：${lessonData.vocabulary?.length || 0} 个单词，${lessonData.grammar?.length || 0} 个语法，${lessonData.sentences?.length || 0} 句课文，${lessonData.exercises?.length || 0} 道练习。`,
+      runtimeReady: false,
+      initializedAt: initState.completedAt || initState.parseConfirmedAt || "",
+      counts: {
+        vocabulary: lessonData.vocabulary?.length || 0,
+        grammar: lessonData.grammar?.length || 0,
+        sentences: lessonData.sentences?.length || 0,
+        exercises: lessonData.exercises?.length || 0
+      }
+    };
+  }));
+}
+
+function firstFile(value) {
+  return Array.isArray(value) ? value[0] : value;
+}
+
+function fileList(value) {
+  if (!value) return [];
+  return Array.isArray(value) ? value : [value];
 }
 
 async function savePronunciationDebugAudio({ lessonId, wordId, audioBuffer }) {
@@ -116,7 +222,12 @@ async function readMultipart(req) {
     const value = body.slice(headerEnd + 4, next - 2);
     const name = header.match(/name="([^"]+)"/)?.[1];
     const filename = header.match(/filename="([^"]+)"/)?.[1];
-    if (name && filename) files[name] = { filename, buffer: value };
+    const contentType = header.match(/content-type:\s*([^\r\n]+)/i)?.[1] || "application/octet-stream";
+    if (name && filename) {
+      const file = { filename, contentType, buffer: value };
+      if (files[name]) files[name] = [...fileList(files[name]), file];
+      else files[name] = file;
+    }
     if (name && !filename) fields[name] = value.toString("utf8");
     cursor = next;
   }
@@ -156,6 +267,16 @@ function audioStatus(voiceId, type, id) {
   return { exists: false, url: voiceUrl(voiceId, type, id), source: "" };
 }
 
+function audioStatusForLesson(lessonIdValue, voiceId, type, id) {
+  if (existsSync(audioPathForLesson(lessonIdValue, voiceId, type, id))) {
+    return { exists: true, url: audioUrlForLesson(lessonIdValue, voiceId, type, id), source: "voice" };
+  }
+  if (lessonIdValue === lessonId && voiceId === defaultVoiceId && existsSync(legacyPath(type, id))) {
+    return { exists: true, url: legacyUrl(type, id), source: "legacy" };
+  }
+  return { exists: false, url: audioUrlForLesson(lessonIdValue, voiceId, type, id), source: "" };
+}
+
 function lessonAudioJobs(lesson) {
   return [
     ...lesson.vocabulary.map((word) => ({ id: word.id, type: "word", label: word.jp, text: word.jp, kana: word.kana, cn: word.cn })),
@@ -168,6 +289,202 @@ function lessonAudioJobs(lesson) {
       cn: example.translation
     })))
   ];
+}
+
+function audioPathForLesson(lessonIdValue, voiceId, type, id) {
+  return join(root, "audio", `lesson${lessonIdValue}`, "voices", voiceId, `${type}s`, `${id}.mp3`);
+}
+
+function audioUrlForLesson(lessonIdValue, voiceId, type, id) {
+  return `/audio/lesson${lessonIdValue}/voices/${voiceId}/${type}s/${id}.mp3`;
+}
+
+function addUniqueJob(jobs, seen, job) {
+  const key = `${job.type}:${job.id}:${job.text}`;
+  if (!job.text || seen.has(key)) return;
+  seen.add(key);
+  jobs.push(job);
+}
+
+function lessonTextValue(value) {
+  if (typeof value === "string") return value;
+  return value?.text || value?.jp || "";
+}
+
+function lessonTextLabel(value) {
+  return lessonTextValue(value) || value?.label || "";
+}
+
+function lessonDraftAudioJobs(lesson) {
+  const jobs = [];
+  const seen = new Set();
+  (lesson.vocabulary || []).forEach((word) => {
+    addUniqueJob(jobs, seen, { id: word.id, type: "word", label: word.jp, text: word.jp, source: "vocabulary" });
+  });
+  (lesson.sentences || []).forEach((sentence) => {
+    addUniqueJob(jobs, seen, { id: sentence.id, type: "sentence", label: sentence.text, text: sentence.text, source: "text" });
+  });
+  (lesson.grammar || []).forEach((grammar) => {
+    (grammar.extraExamples || []).forEach((example, index) => {
+      const text = lessonTextValue(example);
+      addUniqueJob(jobs, seen, {
+        id: `${grammar.id}-extra-${index + 1}`,
+        type: "sentence",
+        label: lessonTextLabel(example),
+        text,
+        source: "grammar"
+      });
+    });
+  });
+  (lesson.exercises || []).forEach((exercise) => {
+    [
+      ["answer", exercise.answer],
+      ...((exercise.referenceAnswers || []).map((value, index) => [`reference-${index + 1}`, value]))
+    ].forEach(([part, text]) => {
+      addUniqueJob(jobs, seen, {
+        id: `${exercise.id}-${part}`,
+        type: "exercise",
+        label: `${exercise.groupTitle || "练习"} · ${exercise.question || exercise.id}`,
+        text,
+        source: "exercise"
+      });
+    });
+  });
+  return jobs;
+}
+
+async function initImageManifest(lessonIdValue) {
+  const result = {};
+  for (const bucket of initBuckets) {
+    const dir = imageBucketDir(lessonIdValue, bucket);
+    let entries = [];
+    try {
+      entries = await readdir(dir, { withFileTypes: true });
+    } catch {
+      entries = [];
+    }
+    result[bucket] = entries
+      .filter((entry) => entry.isFile())
+      .map((entry) => ({
+        name: entry.name,
+        url: `/course-assets/lesson${lessonIdValue}/${bucket}/${entry.name}`
+      }))
+      .sort((a, b) => a.name.localeCompare(b.name));
+  }
+  return result;
+}
+
+function validateLessonDraft(draft, expectedLessonId) {
+  if (!draft || typeof draft !== "object") throw new Error("Draft must be an object.");
+  draft.id = safeLessonId(draft.id || expectedLessonId);
+  if (draft.id !== expectedLessonId) throw new Error(`Draft lesson id ${draft.id} does not match lesson ${expectedLessonId}.`);
+  draft.title = draft.title || `第${expectedLessonId}课`;
+  draft.subtitle = draft.subtitle || "待确认";
+  for (const key of ["vocabulary", "sentences", "grammar", "exercises"]) {
+    if (!Array.isArray(draft[key])) throw new Error(`Draft missing ${key} array.`);
+  }
+  if (!Array.isArray(draft.textStructure)) draft.textStructure = [];
+  return draft;
+}
+
+async function codexParseTask(lessonIdValue) {
+  const manifest = await initImageManifest(lessonIdValue);
+  const imagePaths = [];
+  for (const bucket of initBuckets) {
+    for (const image of manifest[bucket]) {
+      imagePaths.push(join(root, image.url.replace(/^\//, "")));
+    }
+  }
+  if (!imagePaths.length) throw new Error("No uploaded images found for this lesson.");
+  const taskPath = initCodexTaskPath(lessonIdValue);
+  const draftPath = initDraftPath(lessonIdValue);
+  await mkdir(dirname(taskPath), { recursive: true });
+  await mkdir(dirname(draftPath), { recursive: true });
+  const imageArgs = imagePaths.map((filePath) => `--image ${JSON.stringify(filePath)}`).join(" ");
+  const command = `codex exec -C ${JSON.stringify(root)} -s workspace-write -a never ${imageArgs} "Read ${taskPath} and write the requested JSON draft."`;
+  const prompt = [
+    `# Codex Course Parse Task - Lesson ${lessonIdValue}`,
+    "",
+    "You are extracting a Japanese textbook lesson from the attached images into strict JapaFlow lesson JSON.",
+    "",
+    "## Output",
+    "",
+    `Write the final JSON to: \`${draftPath}\``,
+    "",
+    "Do not edit `app.js` for this task. Do not overwrite existing lesson 27 data.",
+    "",
+    "## Required JSON Shape",
+    "",
+    "Follow the existing lesson 27 structure as closely as possible:",
+    "",
+    "- `id`",
+    "- `title`",
+    "- `subtitle`",
+    "- `vocabulary[]`: `{ id, jp, kana, cn }`",
+    "- `sentences[]`: `{ id, order, speaker?, text, kana, translation, words, grammar }`",
+    "- `textStructure[]`: preserve textbook text sections and group sentence ids in order",
+    "- `grammar[]`: `{ id, pattern, meaning, structure, usage, examples, extraExamples }`",
+    "- `exercises[]`: `{ id, groupId, groupTitle, category, instruction, example?, type, question, choices?, answer, referenceAnswers, relatedGrammar, relatedSentences, explanation }`",
+    "",
+    "## Extraction Rules",
+    "",
+    "- Completeness is more important than brevity.",
+    "- Do not omit any exercise question.",
+    "- Do not merge separate exercise items into one item.",
+    "- Preserve examples and model answers if visible.",
+    "- Preserve grammar explanation text, sentence patterns, example sentences, and extra examples.",
+    "- Preserve listening exercises even if answers are not visible; set `audioRequired: true` and `hasAnswer: false` when appropriate.",
+    "- Use empty strings or empty arrays when source images do not show a value.",
+    "- Use stable ids: `w1`, `s1`, `g1`, `ex-i-1-1` style where possible.",
+    "- Keep Japanese punctuation and kana exactly where visible.",
+    "- For uncertain OCR, keep the visible text and add a concise note in `explanation` only when needed.",
+    "",
+    "## Image Manifest",
+    "",
+    ...initBuckets.flatMap((bucket) => [
+      `### ${bucket}`,
+      ...((manifest[bucket] || []).map((image) => `- ${join(root, image.url.replace(/^\//, ""))}`)),
+      ""
+    ]),
+    "## Validation Before Writing",
+    "",
+    "- Confirm every uploaded exercise image has corresponding `exercises[]` items.",
+    "- Confirm every uploaded grammar image has corresponding `grammar[]` entries or `extraExamples[]`.",
+    "- Confirm every uploaded vocabulary image has corresponding `vocabulary[]` entries.",
+    "- Confirm every text/dialogue line is represented in `sentences[]` and `textStructure[]`.",
+    "",
+    "Write only the JSON file. In your final message, report counts for vocabulary, sentences, grammar, and exercises."
+  ].join("\n");
+  await writeFile(taskPath, prompt);
+  return {
+    taskPath,
+    taskUrl: `/data/lesson-init/lesson${lessonIdValue}-codex-task.md`,
+    draftPath,
+    command,
+    imagePaths,
+    manifest
+  };
+}
+
+function initAudioStatus(lesson, voiceId) {
+  return lessonDraftAudioJobs(lesson).map((job) => {
+    const filePath = audioPathForLesson(lesson.id, voiceId, job.type, job.id);
+    const exists = existsSync(filePath);
+    return {
+      ...job,
+      exists,
+      url: audioUrlForLesson(lesson.id, voiceId, job.type, job.id),
+      source: exists ? "voice" : ""
+    };
+  });
+}
+
+async function generateInitAudioJob(lessonIdValue, voiceId, job) {
+  const filePath = audioPathForLesson(lessonIdValue, voiceId, job.type, job.id);
+  if (existsSync(filePath)) return { ...job, exists: true, generated: false, url: audioUrlForLesson(lessonIdValue, voiceId, job.type, job.id) };
+  await mkdir(dirname(filePath), { recursive: true });
+  await writeFile(filePath, await synthesizeWithRetry(job.text, voiceId));
+  return { ...job, exists: true, generated: true, url: audioUrlForLesson(lessonIdValue, voiceId, job.type, job.id) };
 }
 
 async function synthesize(text, voiceId) {
@@ -277,30 +594,210 @@ async function evaluatePronunciation({ referenceText, audioBuffer }) {
 
 async function handleApi(req, res, url) {
   try {
+    if (url.pathname === "/api/lesson-catalog") {
+      sendJson(res, 200, { lessons: await initializedLessonCatalog() });
+      return true;
+    }
+    if (url.pathname === "/api/init/status") {
+      const requestedLessonId = safeLessonId(url.searchParams.get("lessonId"));
+      const voiceId = url.searchParams.get("voiceId") || defaultVoiceId;
+      const state = await readJsonFile(initStatePath(requestedLessonId), {});
+      const draft = await readJsonFile(initDraftPath(requestedLessonId), null);
+      const lessonData = await readJsonFile(initLessonPath(requestedLessonId), null);
+      const lessonForAudio = lessonData || draft;
+      const audioItems = lessonForAudio ? initAudioStatus(lessonForAudio, voiceId) : [];
+      const taskPath = initCodexTaskPath(requestedLessonId);
+      sendJson(res, 200, {
+        lessonId: requestedLessonId,
+        voiceId,
+        buckets: initBuckets,
+        images: await initImageManifest(requestedLessonId),
+        state,
+        codexTask: existsSync(taskPath) ? {
+          taskPath,
+          taskUrl: `/data/lesson-init/lesson${requestedLessonId}-codex-task.md`,
+          draftPath: initDraftPath(requestedLessonId)
+        } : null,
+        draft,
+        lessonSaved: Boolean(lessonData),
+        audio: {
+          items: audioItems,
+          generated: audioItems.filter((item) => item.exists).length,
+          missing: audioItems.filter((item) => !item.exists).length,
+          total: audioItems.length
+        }
+      });
+      return true;
+    }
+    if (url.pathname === "/api/init/upload" && req.method === "POST") {
+      const { fields, files } = await readMultipart(req);
+      const requestedLessonId = safeLessonId(fields.lessonId);
+      const bucket = fields.bucket || "";
+      const uploads = fileList(files.images);
+      if (!uploads.length) throw new Error("Missing uploaded images.");
+      const dir = imageBucketDir(requestedLessonId, bucket);
+      await mkdir(dir, { recursive: true });
+      const saved = [];
+      for (const [index, file] of uploads.entries()) {
+        const rawExt = extname(file.filename).toLowerCase();
+        const ext = [".png", ".jpg", ".jpeg", ".webp"].includes(rawExt) ? rawExt : ".png";
+        const name = `${Date.now()}-${index + 1}-${safeFileSegment(basename(file.filename, rawExt))}${ext}`;
+        const filePath = join(dir, name);
+        await writeFile(filePath, file.buffer);
+        saved.push({ name, url: `/course-assets/lesson${requestedLessonId}/${bucket}/${name}` });
+      }
+      const state = { ...(await readJsonFile(initStatePath(requestedLessonId), {})), parseConfirmed: false, audioConfirmed: false, updatedAt: new Date().toISOString() };
+      await writeJsonFile(initStatePath(requestedLessonId), state);
+      sendJson(res, 200, { lessonId: requestedLessonId, bucket, files: saved, images: await initImageManifest(requestedLessonId), state });
+      return true;
+    }
+    if (url.pathname === "/api/init/parse" && req.method === "POST") {
+      const { lessonId: bodyLessonId } = await readJson(req);
+      const requestedLessonId = safeLessonId(bodyLessonId);
+      const task = await codexParseTask(requestedLessonId);
+      const state = {
+        ...(await readJsonFile(initStatePath(requestedLessonId), {})),
+        codexTaskCreatedAt: new Date().toISOString(),
+        codexTaskPath: task.taskPath,
+        codexCommand: task.command,
+        draftPath: task.draftPath,
+        parseConfirmed: false,
+        audioConfirmed: false
+      };
+      await writeJsonFile(initStatePath(requestedLessonId), state);
+      sendJson(res, 200, { lessonId: requestedLessonId, task, state, draft: await readJsonFile(initDraftPath(requestedLessonId), null) });
+      return true;
+    }
+    if (url.pathname === "/api/init/import-json" && req.method === "POST") {
+      const { lessonId: bodyLessonId, draft } = await readJson(req);
+      const requestedLessonId = safeLessonId(bodyLessonId);
+      const validDraft = validateLessonDraft(draft, requestedLessonId);
+      await writeJsonFile(initDraftPath(requestedLessonId), validDraft);
+      const state = {
+        ...(await readJsonFile(initStatePath(requestedLessonId), {})),
+        draftPath: initDraftPath(requestedLessonId),
+        jsonImportedAt: new Date().toISOString(),
+        parseConfirmed: false,
+        audioConfirmed: false
+      };
+      await writeJsonFile(initStatePath(requestedLessonId), state);
+      sendJson(res, 200, { lessonId: requestedLessonId, draft: validDraft, state, audio: initAudioStatus(validDraft, defaultVoiceId) });
+      return true;
+    }
+    if (url.pathname === "/api/init/confirm-parse" && req.method === "POST") {
+      const { lessonId: bodyLessonId, draft } = await readJson(req);
+      const requestedLessonId = safeLessonId(bodyLessonId);
+      const validDraft = validateLessonDraft(draft || await readJsonFile(initDraftPath(requestedLessonId), null), requestedLessonId);
+      await writeJsonFile(initDraftPath(requestedLessonId), validDraft);
+      await writeJsonFile(initLessonPath(requestedLessonId), validDraft);
+      const state = {
+        ...(await readJsonFile(initStatePath(requestedLessonId), {})),
+        parseConfirmed: true,
+        parseConfirmedAt: new Date().toISOString(),
+        audioConfirmed: false
+      };
+      await writeJsonFile(initStatePath(requestedLessonId), state);
+      sendJson(res, 200, { lessonId: requestedLessonId, draft: validDraft, state, audio: initAudioStatus(validDraft, defaultVoiceId) });
+      return true;
+    }
+    if (url.pathname === "/api/init/audio/generate" && req.method === "POST") {
+      const { lessonId: bodyLessonId, voiceId = defaultVoiceId, id = "", scope = "all", limit = 0 } = await readJson(req);
+      const requestedLessonId = safeLessonId(bodyLessonId);
+      const lessonData = await readJsonFile(initLessonPath(requestedLessonId), null);
+      if (!lessonData) throw new Error("Please confirm parsed course data before generating audio.");
+      const jobs = lessonDraftAudioJobs(lessonData);
+      const missingJobs = jobs.filter((job) => !existsSync(audioPathForLesson(requestedLessonId, voiceId, job.type, job.id)));
+      const batchLimit = Math.max(0, Math.min(Number(limit) || 0, 20));
+      const targets = scope === "one" && id
+        ? jobs.filter((job) => `${job.type}:${job.id}` === id || job.id === id)
+        : (batchLimit ? missingJobs.slice(0, batchLimit) : missingJobs);
+      const items = [];
+      for (const [index, job] of targets.entries()) {
+        try {
+          items.push(await generateInitAudioJob(requestedLessonId, voiceId, job));
+        } catch (error) {
+          items.push({ ...job, exists: false, generated: false, error: String(error.message || error), url: audioUrlForLesson(requestedLessonId, voiceId, job.type, job.id) });
+        }
+        if (index < targets.length - 1) await wait(generationDelayMs);
+      }
+      const status = initAudioStatus(lessonData, voiceId);
+      const generated = items.filter((item) => item.generated).length;
+      const failed = items.filter((item) => item.error).length;
+      sendJson(res, 200, {
+        lessonId: requestedLessonId,
+        voiceId,
+        generated,
+        failed,
+        skipped: targets.length - generated - failed,
+        attempted: targets.length,
+        remainingBefore: missingJobs.length,
+        items,
+        status,
+        audio: {
+          items: status,
+          generated: status.filter((item) => item.exists).length,
+          missing: status.filter((item) => !item.exists).length,
+          total: status.length
+        }
+      });
+      return true;
+    }
+    if (url.pathname === "/api/init/confirm-audio" && req.method === "POST") {
+      const { lessonId: bodyLessonId, voiceId = defaultVoiceId } = await readJson(req);
+      const requestedLessonId = safeLessonId(bodyLessonId);
+      const lessonData = await readJsonFile(initLessonPath(requestedLessonId), null);
+      if (!lessonData) throw new Error("Please confirm parsed course data before confirming audio.");
+      const audioItems = initAudioStatus(lessonData, voiceId);
+      const missing = audioItems.filter((item) => !item.exists);
+      if (missing.length) throw new Error(`Audio is not complete. Missing ${missing.length} item(s).`);
+      const state = {
+        ...(await readJsonFile(initStatePath(requestedLessonId), {})),
+        parseConfirmed: true,
+        audioConfirmed: true,
+        completedAt: new Date().toISOString(),
+        voiceId
+      };
+      await writeJsonFile(initStatePath(requestedLessonId), state);
+      sendJson(res, 200, { lessonId: requestedLessonId, voiceId, state, audio: { items: audioItems, generated: audioItems.length, missing: 0, total: audioItems.length } });
+      return true;
+    }
     if (url.pathname === "/api/audio/voices") {
       sendJson(res, 200, { voices, defaultVoiceId, sampleText });
       return true;
     }
     if (url.pathname === "/api/audio/status") {
       const voiceId = url.searchParams.get("voiceId") || defaultVoiceId;
-      const lesson = await loadLesson();
-      const items = lessonAudioJobs(lesson).map((job) => ({ ...job, ...audioStatus(voiceId, job.type, job.id) }));
-      sendJson(res, 200, { voiceId, items });
+      const requestedLessonId = safeLessonId(url.searchParams.get("lessonId") || lessonId);
+      const lessonData = requestedLessonId === lessonId
+        ? await loadLesson()
+        : await readJsonFile(initLessonPath(requestedLessonId), null);
+      if (!lessonData) throw new Error(`Lesson ${requestedLessonId} is not available.`);
+      const jobs = requestedLessonId === lessonId ? lessonAudioJobs(lessonData) : lessonDraftAudioJobs(lessonData);
+      const items = jobs.map((job) => ({ ...job, ...audioStatusForLesson(requestedLessonId, voiceId, job.type, job.id) }));
+      sendJson(res, 200, { lessonId: requestedLessonId, voiceId, items });
       return true;
     }
     if (url.pathname === "/api/audio/generate" && req.method === "POST") {
-      const { voiceId = defaultVoiceId, type, id, scope = "one" } = await readJson(req);
-      const lesson = await loadLesson();
-      const jobs = lessonAudioJobs(lesson);
-      const targets = scope === "all" ? jobs.filter((job) => !audioStatus(voiceId, job.type, job.id).exists) : jobs.filter((job) => job.type === type && job.id === id);
+      const { lessonId: bodyLessonId = lessonId, voiceId = defaultVoiceId, type, id, scope = "one" } = await readJson(req);
+      const requestedLessonId = safeLessonId(bodyLessonId);
+      const lessonData = requestedLessonId === lessonId
+        ? await loadLesson()
+        : await readJsonFile(initLessonPath(requestedLessonId), null);
+      if (!lessonData) throw new Error(`Lesson ${requestedLessonId} is not available.`);
+      const jobs = requestedLessonId === lessonId ? lessonAudioJobs(lessonData) : lessonDraftAudioJobs(lessonData);
+      const targets = scope === "all"
+        ? jobs.filter((job) => !audioStatusForLesson(requestedLessonId, voiceId, job.type, job.id).exists)
+        : jobs.filter((job) => job.type === type && job.id === id);
       if (!targets.length) {
-        sendJson(res, 200, { voiceId, generated: 0, skipped: scope === "all" ? jobs.length : 1, items: [] });
+        sendJson(res, 200, { lessonId: requestedLessonId, voiceId, generated: 0, skipped: scope === "all" ? jobs.length : 1, items: [] });
         return true;
       }
       const items = [];
       for (const [index, job] of targets.entries()) {
         try {
-          items.push({ id: job.id, type: job.type, ...(await generateAudio(voiceId, job.type, job.id, job.text)) });
+          items.push(requestedLessonId === lessonId
+            ? { id: job.id, type: job.type, ...(await generateAudio(voiceId, job.type, job.id, job.text)) }
+            : await generateInitAudioJob(requestedLessonId, voiceId, job));
         } catch (error) {
           items.push({
             id: job.id,
@@ -308,7 +805,7 @@ async function handleApi(req, res, url) {
             exists: false,
             generated: false,
             error: String(error.message || error),
-            url: voiceUrl(voiceId, job.type, job.id),
+            url: audioUrlForLesson(requestedLessonId, voiceId, job.type, job.id),
             source: ""
           });
         }
@@ -316,7 +813,7 @@ async function handleApi(req, res, url) {
       }
       const generated = items.filter((item) => item.generated).length;
       const failed = items.filter((item) => item.error).length;
-      sendJson(res, 200, { voiceId, generated, failed, skipped: targets.length - generated - failed, items });
+      sendJson(res, 200, { lessonId: requestedLessonId, voiceId, generated, failed, skipped: targets.length - generated - failed, items });
       return true;
     }
     if (url.pathname === "/api/audio/sample" && req.method === "POST") {
@@ -329,9 +826,10 @@ async function handleApi(req, res, url) {
       const { fields, files } = await readMultipart(req);
       const referenceText = fields.referenceText || "";
       if (!referenceText) throw new Error("Missing referenceText.");
-      if (!files.audio?.buffer?.length) throw new Error("Missing audio file.");
-      const debugAudio = await savePronunciationDebugAudio({ lessonId, wordId: fields.wordId || "unknown", audioBuffer: files.audio.buffer });
-      const result = await evaluatePronunciation({ referenceText, audioBuffer: files.audio.buffer });
+      const audioFile = firstFile(files.audio);
+      if (!audioFile?.buffer?.length) throw new Error("Missing audio file.");
+      const debugAudio = await savePronunciationDebugAudio({ lessonId, wordId: fields.wordId || "unknown", audioBuffer: audioFile.buffer });
+      const result = await evaluatePronunciation({ referenceText, audioBuffer: audioFile.buffer });
       sendJson(res, 200, { wordId: fields.wordId || "", referenceText, ...debugAudio, ...result });
       return true;
     }
@@ -344,7 +842,11 @@ async function handleApi(req, res, url) {
 
 createServer(async (req, res) => {
   const url = new URL(req.url || "/", `http://${req.headers.host}`);
-  if (url.pathname.startsWith("/api/") && await handleApi(req, res, url)) return;
+  if (url.pathname.startsWith("/api/")) {
+    if (await handleApi(req, res, url)) return;
+    sendJson(res, 404, { error: `Unknown API route or method: ${req.method} ${url.pathname}` });
+    return;
+  }
   let filePath = safePath(url.pathname);
 
   try {

@@ -1711,6 +1711,13 @@ button.tag {
   line-height: 1.4;
 }
 
+.answer-guidance {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 760;
+}
+
 .exercise-feedback-row .meta-line {
   margin: 0;
 }
@@ -2618,8 +2625,17 @@ textarea.answer-input {
   margin: 0 0 6px;
 }
 
-.init-upload-box input {
-  max-width: 100%;
+.init-upload-button {
+  justify-self: start;
+}
+
+.init-upload-input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
 }
 
 .init-image-list {
@@ -2669,6 +2685,38 @@ textarea.answer-input {
   font-size: 13px;
   line-height: 1.55;
   resize: vertical;
+}
+
+.init-import-json {
+  width: 100%;
+  min-height: 180px;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+  color: var(--ink);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 13px;
+  line-height: 1.55;
+  resize: vertical;
+}
+
+.init-preview-line {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 760;
+}
+
+.init-preview-line strong {
+  padding: 4px 8px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: white;
+  color: var(--ink);
 }
 
 .init-audio-list {

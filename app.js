@@ -1,4 +1,4 @@
-const lesson = {
+let lesson = {
   id: 27,
   title: "第27课",
   subtitle: "子供の時、大きな地震がありました",
@@ -1468,7 +1468,7 @@ const lessonCatalog = [
   }
 ];
 
-const textStructure = [
+let textStructure = [
   {
     id: "basic",
     title: "基本课文",
@@ -1509,6 +1509,7 @@ const audioVoices = [
 ];
 const defaultVoiceId = "Japanese_IntellectualSenior";
 const sampleAudioText = "子供の時、大きな地震がありました。";
+const bundledLessonRuntime = JSON.parse(JSON.stringify({ lesson, textStructure }));
 const externalWordDistractors = [
   { id: "d-keiei", jp: "経営", kana: "けいえい", cn: "经营" },
   { id: "d-keiki", jp: "景気", kana: "けいき", cn: "景气，行情" },
@@ -1547,8 +1548,14 @@ const state = {
   audioStatusVoiceId: "",
   audioBusy: "",
   audioMessage: "",
+  lessonCatalogStatus: null,
+  lessonCatalogLoading: false,
+  lessonCatalogMessage: "",
   initStatus: null,
   initStatusLessonId: "",
+  initStatusVoiceId: "",
+  initStatusLoading: false,
+  initImportJson: "",
   initBusy: "",
   initMessage: "",
   currentWord: 0,
@@ -1600,7 +1607,10 @@ let recordingPressWordId = "";
 let recordingReleaseRequested = false;
 let recordingPointerId = null;
 let vocabTestAdvanceTimer = null;
-const audioVersions = read(`lesson:${lesson.id}:audioVersions`, {});
+let audioVersions = read(`lesson:${lesson.id}:audioVersions`, {});
+let runtimeLessonLoadingId = "";
+let runtimeLessonErrorId = "";
+let runtimeLessonError = "";
 
 function read(key, fallback) {
   try {
@@ -1616,6 +1626,82 @@ function write(key, value) {
 
 function removeStored(key) {
   localStorage.removeItem(`japaflow:${key}`);
+}
+
+function normalizeRuntimeLesson(data) {
+  const nextLesson = JSON.parse(JSON.stringify(data || {}));
+  nextLesson.vocabulary = Array.isArray(nextLesson.vocabulary) ? nextLesson.vocabulary : [];
+  nextLesson.sentences = Array.isArray(nextLesson.sentences) ? nextLesson.sentences : [];
+  nextLesson.grammar = Array.isArray(nextLesson.grammar) ? nextLesson.grammar : [];
+  nextLesson.exercises = Array.isArray(nextLesson.exercises) ? nextLesson.exercises : [];
+  nextLesson.textStructure = Array.isArray(nextLesson.textStructure) ? nextLesson.textStructure : [];
+  return nextLesson;
+}
+
+function applyRuntimeLesson(data) {
+  const nextLesson = normalizeRuntimeLesson(data);
+  lesson = nextLesson;
+  textStructure = nextLesson.textStructure;
+  reloadLessonScopedState();
+}
+
+function restoreBundledLesson() {
+  lesson = JSON.parse(JSON.stringify(bundledLessonRuntime.lesson));
+  textStructure = JSON.parse(JSON.stringify(bundledLessonRuntime.textStructure));
+  reloadLessonScopedState();
+}
+
+function reloadLessonScopedState() {
+  stopCurrentAudio();
+  state.wordProgress = initialWordProgress();
+  state.wordLearning = initialWordLearning();
+  state.exerciseResults = read(`lesson:${lesson.id}:exerciseResults`, []);
+  state.exerciseGroupAnswers = read(`lesson:${lesson.id}:exerciseGroupAnswers`, {});
+  state.exerciseGroupSubmitted = read(`lesson:${lesson.id}:exerciseGroupSubmitted`, {});
+  state.wrongBook = read(`lesson:${lesson.id}:wrongBook`, {});
+  state.wrongPractice = { current: 0, answer: "", submitted: false, result: null };
+  state.interactionProgress = initialInteractionProgress();
+  state.grammarPractice = initialGrammarPractice();
+  state.currentVoiceId = read(`lesson:${lesson.id}:currentVoiceId`, defaultVoiceId);
+  state.audioStatus = null;
+  state.audioStatusVoiceId = "";
+  state.audioBusy = "";
+  state.audioMessage = "";
+  state.currentWord = 0;
+  state.currentSentence = 0;
+  state.currentGrammar = 0;
+  state.currentExercise = 0;
+  state.currentExerciseGroup = read(`lesson:${lesson.id}:currentExerciseGroup`, 0);
+  state.vocabPhase = "pronunciation";
+  state.vocabTestQueue = read(`lesson:${lesson.id}:vocabTestQueue`, []);
+  state.currentVocabTest = read(`lesson:${lesson.id}:currentVocabTest`, 0);
+  state.recallResult = "";
+  state.vocabReveal = null;
+  state.recordingPreparingWordId = "";
+  state.recordingWordId = "";
+  state.recordingStoppingWordId = "";
+  state.recordingError = "";
+  state.grammarRecordingPreparingId = "";
+  state.grammarRecordingId = "";
+  state.grammarRecordingStoppingId = "";
+  state.grammarRecordingErrorKey = "";
+  state.grammarRecordingError = "";
+  state.textCurrentTab = read(`lesson:${lesson.id}:textCurrentTab`, textStructure[0]?.id || "basic");
+  state.textCurrentSentenceByTab = read(`lesson:${lesson.id}:textCurrentSentenceByTab`, Object.fromEntries(textStructure.map((section) => [section.id, 0])));
+  state.textPromptLanguage = read(`lesson:${lesson.id}:textPromptLanguage`, "zh");
+  state.textRecordingPreparingId = "";
+  state.textRecordingId = "";
+  state.textRecordingStoppingId = "";
+  state.textRecordingError = "";
+  state.sentencePractice = initialSentencePractice();
+  state.playbackRate = Number(read(`lesson:${lesson.id}:playbackRate`, 1)) || 1;
+  state.answer = "";
+  state.submitted = false;
+  state.modal = null;
+  audioVersions = read(`lesson:${lesson.id}:audioVersions`, {});
+  lastAutoSpokenSentence = null;
+  lastAutoSpokenWord = null;
+  pendingAutoSpeakWordId = "";
 }
 
 function initialWordProgress() {
@@ -2579,6 +2665,7 @@ function navLink(path, text, active) {
 }
 
 function home() {
+  const catalog = courseCatalogItems();
   return layout(`
     <section class="course-home">
       <div class="page-head">
@@ -2589,18 +2676,52 @@ function home() {
         </div>
       </div>
       <div class="course-grid">
-        ${lessonCatalog.map((item) => courseCard(item)).join("")}
+        ${catalog.map((item) => courseCard(item)).join("")}
+      </div>
+      ${state.lessonCatalogMessage ? `<p class="form-error">${escapeHtml(state.lessonCatalogMessage)}</p>` : ""}
+    </section>
+  `);
+}
+
+function runtimeLoadingPage(lessonId) {
+  return layout(`
+    <section class="panel pending-lesson">
+      <p class="eyebrow">第${lessonId}课 · 加载中</p>
+      <h1>正在读取课程数据</h1>
+      <p class="lead">正在加载 data/lessons/lesson${lessonId}.json。</p>
+    </section>
+  `);
+}
+
+function runtimeErrorPage(lessonId) {
+  return layout(`
+    <section class="panel pending-lesson">
+      <p class="eyebrow">第${lessonId}课 · 加载失败</p>
+      <h1>无法进入学习运行时</h1>
+      <p class="lead">${escapeHtml(runtimeLessonError || "课程数据读取失败。")}</p>
+      <div class="button-row">
+        <button class="primary" data-nav="/lesson/${lessonId}/init">查看初始化结果</button>
+        <button class="secondary" data-nav="/">返回首页</button>
       </div>
     </section>
   `);
 }
 
+function courseCatalogItems() {
+  if (!state.lessonCatalogStatus?.length) return lessonCatalog;
+  return lessonCatalog.map((item) => ({
+    ...item,
+    ...(state.lessonCatalogStatus.find((entry) => Number(entry.id) === Number(item.id)) || {})
+  }));
+}
+
 function courseCard(item) {
-  const ready = item.status === "ready";
-  const summary = ready ? lessonProgressSummary() : null;
-  const status = ready ? lessonStudyStatus(summary) : { label: "待初始化", className: "pending" };
+  const runtimeReady = item.status === "ready" && item.runtimeReady !== false;
+  const initialized = item.status === "initialized";
+  const summary = runtimeReady ? lessonProgressSummary() : null;
+  const status = runtimeReady ? lessonStudyStatus(summary) : initialized ? { label: item.statusLabel || "已初始化", className: "done" } : { label: "待初始化", className: "pending" };
   return `
-    <article class="course-card ${ready ? "ready" : "pending"}" ${ready ? "" : `data-nav="/lesson/${item.id}/init"`}>
+    <article class="course-card ${runtimeReady ? "ready" : initialized ? "initialized" : "pending"}" ${runtimeReady ? "" : `data-nav="/lesson/${item.id}/init"`}>
       <div class="course-card-head">
         <div>
           <p class="eyebrow">${item.title}</p>
@@ -2609,7 +2730,7 @@ function courseCard(item) {
         <span class="course-status ${status.className}">${status.label}</span>
       </div>
       <p class="muted">${item.description}</p>
-      ${ready ? `
+      ${runtimeReady ? `
         <div class="course-progress-grid">
           ${courseMetric("单词", summary.vocab.completed, summary.vocab.total)}
           ${courseMetric("语法", summary.grammar.completed, summary.grammar.total)}
@@ -2619,6 +2740,17 @@ function courseCard(item) {
         <div class="button-row">
           <button class="primary" data-nav="/lesson/${item.id}">${summary.started ? "继续学习" : "开始学习"}</button>
           <button class="secondary" data-nav="/lesson/${item.id}/result">查看结果</button>
+        </div>
+      ` : initialized ? `
+        <div class="course-progress-grid">
+          ${courseMetric("单词", item.counts?.vocabulary || 0, item.counts?.vocabulary || 0)}
+          ${courseMetric("语法", item.counts?.grammar || 0, item.counts?.grammar || 0)}
+          ${courseMetric("课文", item.counts?.sentences || 0, item.counts?.sentences || 0)}
+          ${courseMetric("练习", item.counts?.exercises || 0, item.counts?.exercises || 0)}
+        </div>
+        <div class="button-row">
+          <button class="primary" data-nav="/lesson/${item.id}">开始学习</button>
+          <button class="secondary" data-nav="/lesson/${item.id}/init">初始化结果</button>
         </div>
       ` : `
         <div class="course-placeholder">课程数据尚未初始化</div>
@@ -2630,8 +2762,8 @@ function courseCard(item) {
 
 function lessonDashboard() {
   const currentRoute = route();
-  const catalogItem = lessonCatalog.find((item) => String(item.id) === String(currentRoute.lessonId));
-  if (!catalogItem || catalogItem.status !== "ready") return pendingLessonPage(catalogItem);
+  const catalogItem = courseCatalogItems().find((item) => String(item.id) === String(currentRoute.lessonId));
+  if (String(lesson.id) !== String(currentRoute.lessonId)) return pendingLessonPage(catalogItem);
   const summary = lessonProgressSummary();
   const next = nextLessonStep(summary);
   return layout(`
@@ -3657,6 +3789,15 @@ function initDraftSummary(draft) {
   };
 }
 
+function initImportPreview() {
+  if (!state.initImportJson?.trim()) return null;
+  try {
+    return initDraftSummary(JSON.parse(state.initImportJson));
+  } catch {
+    return { invalid: true };
+  }
+}
+
 function initStepState(status) {
   const parseConfirmed = Boolean(status?.state?.parseConfirmed);
   const audioConfirmed = Boolean(status?.state?.audioConfirmed);
@@ -3687,6 +3828,7 @@ function initPage() {
   const summary = initDraftSummary(draft);
   const steps = initStepState(status);
   const audio = status?.audio || { items: [], generated: 0, missing: 0, total: 0 };
+  const audioHint = initAudioHint(status, audio);
   const draftText = draft ? escapeHtml(JSON.stringify(draft, null, 2)) : "";
   return layout(`
     <section class="init-page">
@@ -3726,6 +3868,7 @@ function initPage() {
               <p class="hint">在当前 Codex 会话里让我执行这个任务，或在终端运行上面的命令。完成后点击“刷新结果”。</p>
             </div>
           ` : ""}
+          ${initJsonImportBox()}
           ${summary ? `
             <div class="audio-summary init-summary">
               <div><span>单词</span><strong>${summary.vocabulary}</strong></div>
@@ -3751,6 +3894,7 @@ function initPage() {
               <button class="secondary" data-init-confirm-audio ${!status?.state?.parseConfirmed || state.initBusy || audio.missing ? "disabled" : ""}>确认音频</button>
             </div>
           </div>
+          ${audioHint ? `<p class="hint">${escapeHtml(audioHint)}</p>` : ""}
           <div class="audio-summary init-summary">
             <div><span>已生成</span><strong>${audio.generated || 0}</strong></div>
             <div><span>缺失</span><strong>${audio.missing || 0}</strong></div>
@@ -3765,14 +3909,54 @@ function initPage() {
   `);
 }
 
+function initAudioHint(status, audio) {
+  if (!status?.draft) return "音频生成会在导入或解析出 JSON 草稿后计算待生成项目。";
+  if (!status?.state?.parseConfirmed) return "已经有 JSON 草稿，但还没有确认解析结果。请先审核草稿并点击“确认解析结果”，确认后才能生成音频。";
+  if (!audio.total) return "已确认课程数据，但没有可生成的日语音频项目。请检查 JSON 中的 vocabulary、sentences、grammar.extraExamples、exercises.answer/referenceAnswers。";
+  if (!audio.missing) return "音频已完整，可以确认音频。";
+  return "";
+}
+
+function initJsonImportBox() {
+  const preview = initImportPreview();
+  return `
+    <div class="init-task-box">
+      <h3>人工导入 JSON 草稿</h3>
+      <p class="muted">这条路径跳过图片 OCR。先把 JSON 放进文本框，再点击“导入文本框为草稿”。导入后还要审核并点击“确认解析结果”，音频生成才会解锁。</p>
+      <textarea class="init-import-json" data-init-import-json spellcheck="false" placeholder="粘贴 lesson JSON，或点击“读取 JSON 文件到文本框”">${escapeHtml(state.initImportJson || "")}</textarea>
+      ${preview ? initImportPreviewLine(preview) : ""}
+      <div class="button-row">
+        <button class="secondary" type="button" data-init-json-file-trigger ${state.initBusy ? "disabled" : ""}>读取 JSON 文件到文本框</button>
+        <button class="primary" type="button" data-init-import-json-submit ${state.initBusy || !state.initImportJson?.trim() ? "disabled" : ""}>导入文本框为草稿</button>
+      </div>
+      <input class="init-upload-input" type="file" accept="application/json,.json" data-init-json-file ${state.initBusy ? "disabled" : ""} />
+    </div>
+  `;
+}
+
+function initImportPreviewLine(preview) {
+  if (preview.invalid) return `<p class="hint danger-text">文本框里的内容还不是合法 JSON，暂不能导入。</p>`;
+  return `
+    <div class="init-preview-line">
+      <span>待导入预览</span>
+      <strong>单词 ${preview.vocabulary}</strong>
+      <strong>句子 ${preview.sentences}</strong>
+      <strong>语法 ${preview.grammar}</strong>
+      <strong>练习 ${preview.exercises}</strong>
+    </div>
+  `;
+}
+
 function initUploadBox(bucket, images) {
+  const inputId = `init-upload-${bucket.id}`;
   return `
     <div class="init-upload-box">
       <div>
         <h3>${bucket.label}</h3>
         <p class="muted">${bucket.hint}</p>
       </div>
-      <input type="file" accept="image/*" multiple data-init-upload="${bucket.id}" ${state.initBusy ? "disabled" : ""} />
+      <button class="secondary init-upload-button" type="button" data-init-upload-trigger="${bucket.id}" ${state.initBusy ? "disabled" : ""}>选择文件</button>
+      <input id="${inputId}" class="init-upload-input" type="file" accept="image/*" multiple data-init-upload="${bucket.id}" ${state.initBusy ? "disabled" : ""} />
       <div class="init-image-list">
         ${images.length ? images.map((image) => `<a href="${image.url}" target="_blank">${escapeHtml(image.name)}</a>`).join("") : "<span class='muted'>尚未上传</span>"}
       </div>
@@ -3879,7 +4063,7 @@ function exercisesPage() {
             <span class="exercise-badge">${group.category}</span>
             <div class="meta-line">
               <span class="label">要求</span>
-              <span>${group.instruction}</span>
+              <span>${group.instruction}${exerciseGroupAnswerGuidance(group) ? ` ${exerciseGroupAnswerGuidance(group)}` : ""}</span>
             </div>
             ${submitted ? `<div class="group-score">本大题 ${correct} / ${scored.length || group.items.length} 正确</div>` : ""}
           </div>
@@ -3942,9 +4126,24 @@ function exerciseGroupItem(exercise, index, submitted) {
         <div class="question">${renderExerciseText(exercise.question)}</div>
         ${submitted && result ? `<span class="practice-status ${result.isCorrect ? "success" : "danger"}">${result.isSkipped ? "已记录" : result.isCorrect ? "正确" : "错误"}</span>` : ""}
       </div>
+      ${exerciseAnswerGuidance(exercise) ? `<p class="answer-guidance">${exerciseAnswerGuidance(exercise)}</p>` : ""}
       ${answerControl(exercise, answer, { id: exercise.id, mode: "group", disabled: submitted })}
     </article>
   `;
+}
+
+function exerciseRequiresFullSentence(exercise) {
+  return ["i-4", "ii-3"].includes(exercise.groupId);
+}
+
+function exerciseAnswerGuidance(exercise) {
+  if (!exerciseRequiresFullSentence(exercise)) return "";
+  return "请写出完整句子，并包含句末标点。不要只填写变形或替换后的片段。";
+}
+
+function exerciseGroupAnswerGuidance(group) {
+  if (!group.items.some(exerciseRequiresFullSentence)) return "";
+  return "作答时请写完整句子，并保留句末标点。";
 }
 
 function exerciseGroupItems(group, submitted) {
@@ -4004,7 +4203,8 @@ function answerControl(exercise, value = "", options = {}) {
   if (exercise.type === "sentence_making") {
     return `<textarea class="answer-input" data-${mode}-answer data-exercise-id="${options.id || exercise.id}" placeholder="输入你的造句" ${disabled}>${escapeHtml(value)}</textarea>`;
   }
-  return `<input class="answer-input" data-${mode}-answer data-exercise-id="${options.id || exercise.id}" value="${escapeHtml(value)}" placeholder="输入答案" ${disabled} />`;
+  const placeholder = exerciseRequiresFullSentence(exercise) ? "输入完整句子，包含句末标点" : "输入答案";
+  return `<input class="answer-input" data-${mode}-answer data-exercise-id="${options.id || exercise.id}" value="${escapeHtml(value)}" placeholder="${placeholder}" ${disabled} />`;
 }
 
 function buildFeedback(exercise, answer) {
@@ -5416,7 +5616,7 @@ async function loadAudioStatus(force = false) {
   if (!force && state.audioStatusVoiceId === state.currentVoiceId && state.audioStatus) return;
   state.audioStatusVoiceId = state.currentVoiceId;
   try {
-    const response = await fetch(`/api/audio/status?voiceId=${encodeURIComponent(state.currentVoiceId)}`);
+    const response = await fetch(`/api/audio/status?lessonId=${encodeURIComponent(lesson.id)}&voiceId=${encodeURIComponent(state.currentVoiceId)}`);
     const data = await response.json();
     if (!response.ok) throw new Error(data.error || "读取音频状态失败");
     state.audioStatus = data;
@@ -5426,6 +5626,53 @@ async function loadAudioStatus(force = false) {
     state.audioMessage = String(error.message || error);
   }
   if (route().page === "audio") render();
+}
+
+async function loadCourseCatalog(force = false) {
+  if (state.lessonCatalogLoading) return;
+  if (!force && state.lessonCatalogStatus) return;
+  state.lessonCatalogLoading = true;
+  try {
+    const response = await fetch("/api/lesson-catalog");
+    const data = await response.json();
+    if (!response.ok) throw new Error(data.error || "读取课程目录失败");
+    state.lessonCatalogStatus = data.lessons || [];
+    state.lessonCatalogMessage = "";
+  } catch (error) {
+    state.lessonCatalogMessage = String(error.message || error);
+  } finally {
+    state.lessonCatalogLoading = false;
+  }
+  if (route().page === "home") render();
+}
+
+function routeRuntimeLessonId() {
+  const currentRoute = route();
+  if (!currentRoute.lessonId || currentRoute.page === "init") return "";
+  return String(currentRoute.lessonId);
+}
+
+async function ensureRuntimeLesson(lessonId) {
+  if (!lessonId || runtimeLessonLoadingId === lessonId) return;
+  runtimeLessonLoadingId = lessonId;
+  runtimeLessonErrorId = "";
+  runtimeLessonError = "";
+  try {
+    if (lessonId === String(bundledLessonRuntime.lesson.id)) {
+      restoreBundledLesson();
+      return;
+    }
+    const response = await fetch(`/data/lessons/lesson${encodeURIComponent(lessonId)}.json`);
+    const data = await response.json();
+    if (!response.ok) throw new Error(data.error || `第 ${lessonId} 课还没有可加载的课程 JSON`);
+    applyRuntimeLesson(data);
+  } catch (error) {
+    runtimeLessonErrorId = lessonId;
+    runtimeLessonError = String(error.message || error);
+  } finally {
+    runtimeLessonLoadingId = "";
+  }
+  render();
 }
 
 async function postAudioApi(path, body) {
@@ -5443,8 +5690,11 @@ async function postAudioApi(path, body) {
 async function loadInitStatus(force = false) {
   const lessonId = initLessonId();
   if (!lessonId) return;
-  if (!force && state.initStatusLessonId === lessonId && state.initStatus) return;
+  if (state.initStatusLoading && state.initStatusLessonId === lessonId && state.initStatusVoiceId === state.currentVoiceId) return;
+  if (!force && state.initStatusLessonId === lessonId && state.initStatusVoiceId === state.currentVoiceId && (state.initStatus || state.initMessage)) return;
   state.initStatusLessonId = lessonId;
+  state.initStatusVoiceId = state.currentVoiceId;
+  state.initStatusLoading = true;
   try {
     const response = await fetch(`/api/init/status?lessonId=${encodeURIComponent(lessonId)}&voiceId=${encodeURIComponent(state.currentVoiceId)}`);
     const data = await response.json();
@@ -5454,6 +5704,8 @@ async function loadInitStatus(force = false) {
   } catch (error) {
     state.initStatus = null;
     state.initMessage = String(error.message || error);
+  } finally {
+    state.initStatusLoading = false;
   }
   if (route().page === "init") render();
 }
@@ -5502,6 +5754,35 @@ async function parseInitImages() {
   }
 }
 
+async function importInitJsonDraft() {
+  const lessonId = initLessonId();
+  const textarea = app.querySelector("[data-init-import-json]");
+  const source = textarea?.value || state.initImportJson || "";
+  let draft;
+  try {
+    draft = JSON.parse(source);
+  } catch (error) {
+    state.initMessage = `导入 JSON 格式不正确：${error.message || error}`;
+    render();
+    return;
+  }
+  state.initBusy = "正在导入 JSON 草稿...";
+  state.initMessage = "";
+  render();
+  try {
+    const data = await postAudioApi("/api/init/import-json", { lessonId, draft });
+    state.initStatus = { ...(state.initStatus || {}), draft: data.draft, state: data.state, audio: data.audio };
+    state.initImportJson = "";
+    state.initBusy = "";
+    state.initMessage = "JSON 草稿已导入。请审核后确认解析结果。";
+    await loadInitStatus(true);
+  } catch (error) {
+    state.initBusy = "";
+    state.initMessage = String(error.message || error);
+    render();
+  }
+}
+
 async function confirmInitParse() {
   const lessonId = initLessonId();
   const textarea = app.querySelector("[data-init-draft-json]");
@@ -5537,13 +5818,31 @@ async function confirmInitParse() {
 async function generateInitAudio() {
   const lessonId = initLessonId();
   if (!lessonId) return;
-  state.initBusy = "正在生成缺失音频，完成前请保持服务运行...";
+  const batchSize = 3;
+  let generatedTotal = 0;
+  let failedTotal = 0;
+  let lastMissing = state.initStatus?.audio?.missing || 0;
+  state.initBusy = `正在生成音频：已生成 0 个，剩余 ${lastMissing} 个。`;
   state.initMessage = "";
   render();
   try {
-    const data = await postAudioApi("/api/init/audio/generate", { lessonId, voiceId: state.currentVoiceId, scope: "all" });
+    while (true) {
+      const data = await postAudioApi("/api/init/audio/generate", { lessonId, voiceId: state.currentVoiceId, scope: "all", limit: batchSize });
+      generatedTotal += data.generated || 0;
+      failedTotal += data.failed || 0;
+      if (data.audio) {
+        state.initStatus = { ...(state.initStatus || {}), audio: data.audio };
+        lastMissing = data.audio.missing || 0;
+      }
+      state.initBusy = `正在生成音频：本次已生成 ${generatedTotal} 个，剩余 ${lastMissing} 个。`;
+      render();
+      if (failedTotal || !data.attempted || !lastMissing) break;
+      await waitClient(120);
+    }
     state.initBusy = "";
-    state.initMessage = `音频生成完成：生成 ${data.generated || 0} 个${data.failed ? `，失败 ${data.failed} 个。` : "。"}`;
+    state.initMessage = failedTotal
+      ? `音频生成已暂停：成功 ${generatedTotal} 个，失败 ${failedTotal} 个。请检查服务端环境变量或失败项后重试。`
+      : `音频生成完成：生成 ${generatedTotal} 个。`;
     await loadInitStatus(true);
   } catch (error) {
     state.initBusy = "";
@@ -5563,6 +5862,7 @@ async function confirmInitAudio() {
     state.initStatus = { ...(state.initStatus || {}), state: data.state, audio: data.audio };
     state.initBusy = "";
     state.initMessage = "该课初始化已完成。";
+    await loadCourseCatalog(true);
     render();
   } catch (error) {
     state.initBusy = "";
@@ -5617,7 +5917,7 @@ async function generateManagedAudio(value) {
         state.audioMessage = `已生成 ${generated} 个，失败 ${failed} 个，剩余 ${targets.length - index} 个。`;
         render();
         try {
-          const data = await postAudioApi("/api/audio/generate", { voiceId: state.currentVoiceId, type: item.type, id: item.id });
+          const data = await postAudioApi("/api/audio/generate", { lessonId: lesson.id, voiceId: state.currentVoiceId, type: item.type, id: item.id });
           const itemUpdate = data.items?.[0];
           if (itemUpdate?.error) failed += 1;
           if (itemUpdate?.generated || itemUpdate?.exists) generated += 1;
@@ -5636,8 +5936,8 @@ async function generateManagedAudio(value) {
       return;
     }
     const data = await postAudioApi("/api/audio/generate", isAll
-      ? { voiceId: state.currentVoiceId, scope: "all" }
-      : { voiceId: state.currentVoiceId, type, id });
+      ? { lessonId: lesson.id, voiceId: state.currentVoiceId, scope: "all" }
+      : { lessonId: lesson.id, voiceId: state.currentVoiceId, type, id });
     state.audioBusy = "";
     state.audioMessage = `生成 ${data.generated} 个，跳过 ${data.skipped} 个${data.failed ? `，失败 ${data.failed} 个。可稍后再次点击继续生成剩余缺失音频。` : "。"}`;
     await loadAudioStatus(true);
@@ -5669,9 +5969,18 @@ function render() {
   const current = route().page;
   const views = { home, lesson: lessonDashboard, init: initPage, vocab, text: textPage, grammar: grammarPage, exercises: exercisesPage, wrongbook: wrongBookPage, audio: audioManagePage, result: resultPage };
   hideSelectionBubble();
+  const runtimeLessonId = routeRuntimeLessonId();
+  if (runtimeLessonId && String(lesson.id) !== runtimeLessonId) {
+    if (runtimeLessonErrorId !== runtimeLessonId) ensureRuntimeLesson(runtimeLessonId);
+    app.innerHTML = runtimeLessonErrorId === runtimeLessonId ? runtimeErrorPage(runtimeLessonId) : runtimeLoadingPage(runtimeLessonId);
+    ensurePageFocus();
+    bind();
+    return;
+  }
   app.innerHTML = (views[current] || home)();
   ensurePageFocus();
   bind();
+  if (current === "home") loadCourseCatalog();
   if (current === "audio") loadAudioStatus();
   if (current === "init") loadInitStatus();
   if (current === "vocab" && state.vocabPhase === "pronunciation" && !state.modal) {
@@ -5748,7 +6057,25 @@ function bind() {
   }));
   app.querySelectorAll("[data-init-upload]").forEach((input) => input.addEventListener("change", (event) => {
     uploadInitImages(input.dataset.initUpload, event.target.files);
+    event.target.value = "";
   }));
+  app.querySelectorAll("[data-init-upload-trigger]").forEach((button) => button.addEventListener("click", () => {
+    app.querySelector(`[data-init-upload="${button.dataset.initUploadTrigger}"]`)?.click();
+  }));
+  app.querySelector("[data-init-import-json]")?.addEventListener("input", (event) => {
+    state.initImportJson = event.target.value;
+  });
+  app.querySelector("[data-init-json-file-trigger]")?.addEventListener("click", () => {
+    app.querySelector("[data-init-json-file]")?.click();
+  });
+  app.querySelector("[data-init-json-file]")?.addEventListener("change", async (event) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+    state.initImportJson = await file.text();
+    event.target.value = "";
+    render();
+  });
+  app.querySelector("[data-init-import-json-submit]")?.addEventListener("click", importInitJsonDraft);
   app.querySelector("[data-init-parse]")?.addEventListener("click", parseInitImages);
   app.querySelector("[data-init-refresh]")?.addEventListener("click", () => loadInitStatus(true));
   app.querySelector("[data-init-confirm-parse]")?.addEventListener("click", confirmInitParse);
