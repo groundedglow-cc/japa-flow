@@ -36,6 +36,7 @@ The initialized data is first saved as a reviewable lesson JSON draft under `dat
 14. The user confirms audio. The lesson initialization is marked complete in `data/lesson-init/lesson{lessonId}-state.json`.
 15. The home page reads the server-side lesson catalog and shows a completed initialized lesson as "initialized" instead of "pending".
 16. Clicking an initialized lesson opens `/lesson/{lessonId}`. The frontend loads `data/lessons/lesson{lessonId}.json`, switches the active runtime lesson, and initializes lesson-scoped local progress from `localStorage`.
+17. The global top navigation only contains app-level destinations such as home and the active course. Lesson modules such as vocabulary, grammar, text, exercises, wrong book, result, and audio are rendered as a lesson-level secondary navigation bar.
 
 ## Data Requirements
 
@@ -110,6 +111,8 @@ Audio files are stored under:
 - `audio/lesson{lessonId}/voices/{voiceId}/words/{wordId}.mp3`
 - `audio/lesson{lessonId}/voices/{voiceId}/sentences/{sentenceId}.mp3`
 - `audio/lesson{lessonId}/voices/{voiceId}/exercises/{exerciseAudioId}.mp3`
+
+For dynamically initialized lessons, the default voice also uses the `voices/{voiceId}` path. The legacy default path without `voices/{voiceId}` is only kept for the bundled lesson 27 assets.
 
 The page must show generated/missing counts and allow playback for generated audio.
 
@@ -275,5 +278,7 @@ Marks initialization complete only if no audio jobs are missing.
 - Initialized lessons can be opened from the home page and are loaded from `data/lessons/lesson{lessonId}.json`.
 - Lesson-specific local progress is isolated by `lesson:{lessonId}:...` keys.
 - Audio management uses the current lesson id and does not accidentally show lesson 27 audio for a dynamically loaded lesson.
+- Default voice playback for initialized lessons uses generated files under `audio/lesson{lessonId}/voices/{voiceId}/...`, not browser speech synthesis fallback.
+- Lesson modules are shown in a secondary lesson navigation bar rather than mixed into the global top navigation.
 - Unrecognized `/api/*` routes return JSON 404 errors, not the SPA `index.html`.
 - Existing lesson 27 learning behavior remains unchanged.

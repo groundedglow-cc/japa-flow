@@ -2118,14 +2118,15 @@ function speak(text, onEnded) {
 }
 
 function audioUrl(type, id) {
-  if (state.currentVoiceId && state.currentVoiceId !== defaultVoiceId) {
-    return `/audio/lesson${lesson.id}/voices/${state.currentVoiceId}/${type}s/${id}.mp3`;
+  const lid = routeRuntimeLessonId() || String(lesson.id);
+  if (state.currentVoiceId && (state.currentVoiceId !== defaultVoiceId || lid !== String(bundledLessonRuntime.lesson.id))) {
+    return `/audio/lesson${lid}/voices/${state.currentVoiceId}/${type}s/${id}.mp3`;
   }
-  return `/audio/lesson${lesson.id}/${type}s/${id}.mp3`;
+  return `/audio/lesson${lid}/${type}s/${id}.mp3`;
 }
 
 function managedAudioUrl(voiceId, type, id) {
-  if (voiceId === defaultVoiceId) return `/audio/lesson${lesson.id}/${type}s/${id}.mp3`;
+  if (voiceId === defaultVoiceId && String(lesson.id) === String(bundledLessonRuntime.lesson.id)) return `/audio/lesson${lesson.id}/${type}s/${id}.mp3`;
   return `/audio/lesson${lesson.id}/voices/${voiceId}/${type}s/${id}.mp3`;
 }
 
@@ -2622,7 +2623,9 @@ function pronunciationText(status) {
 function layout(content) {
   const currentRoute = route();
   const current = currentRoute.page;
-  const inLesson = Boolean(currentRoute.lessonId) && String(currentRoute.lessonId) === String(lesson.id);
+  const runtimeLessonId = routeRuntimeLessonId();
+  const inLesson = Boolean(runtimeLessonId);
+  const showLessonSubnav = inLesson && current !== "init";
   return `
     <div class="shell">
       <header class="topbar">
@@ -2632,28 +2635,15 @@ function layout(content) {
         </div>
         <nav class="nav">
           ${navLink("/", "首页", current === "home")}
-          ${inLesson ? navLink(`/lesson/${lesson.id}`, "课程", current === "lesson") : ""}
-          ${inLesson ? navLink(`/lesson/${lesson.id}/vocab`, "单词预热", current === "vocab") : ""}
-          ${inLesson ? navLink(`/lesson/${lesson.id}/grammar`, "语法", current === "grammar") : ""}
-          ${inLesson ? navLink(`/lesson/${lesson.id}/text`, "课文", current === "text") : ""}
-          ${inLesson ? navLink(`/lesson/${lesson.id}/exercises`, "练习", current === "exercises") : ""}
-          ${inLesson ? navLink(`/lesson/${lesson.id}/wrongbook`, "错题集", current === "wrongbook") : ""}
-          ${inLesson ? navLink(`/lesson/${lesson.id}/result`, "结果", current === "result") : ""}
-          ${inLesson ? `
-            <div class="manage-menu ${current === "audio" ? "active" : ""}">
-              <button class="manage-trigger" type="button" data-nav="/lesson/${lesson.id}/audio">管理</button>
-              <div class="manage-dropdown">
-                ${navLink(`/lesson/${lesson.id}/audio`, "音频", current === "audio")}
-              </div>
-            </div>
-          ` : ""}
+          ${inLesson ? navLink(`/lesson/${runtimeLessonId}`, "课程", current === "lesson") : ""}
         </nav>
-    <div class="playback-control" aria-label="播放速度">
-      ${[1, 0.6, 0.8, 1.2, 1.5].map((rate) => `
-        <button class="playback-rate ${state.playbackRate === rate ? "active" : ""}" data-playback-rate="${rate}" type="button">${rate.toFixed(1)}x</button>
-      `).join("")}
-    </div>
-  </header>
+        <div class="playback-control" aria-label="播放速度">
+          ${[1, 0.6, 0.8, 1.2, 1.5].map((rate) => `
+            <button class="playback-rate ${state.playbackRate === rate ? "active" : ""}" data-playback-rate="${rate}" type="button">${rate.toFixed(1)}x</button>
+          `).join("")}
+        </div>
+      </header>
+      ${showLessonSubnav ? lessonSubnav(runtimeLessonId, current) : ""}
       <main class="main">${content}</main>
       ${state.modal ? modal(state.modal) : ""}
     </div>
@@ -2662,6 +2652,20 @@ function layout(content) {
 
 function navLink(path, text, active) {
   return `<a href="${path}" class="${active ? "active" : ""}" data-link>${text}</a>`;
+}
+
+function lessonSubnav(lessonId, current) {
+  return `
+    <nav class="lesson-subnav" aria-label="课程模块导航">
+      ${navLink(`/lesson/${lessonId}/vocab`, "单词预热", current === "vocab")}
+      ${navLink(`/lesson/${lessonId}/grammar`, "语法", current === "grammar")}
+      ${navLink(`/lesson/${lessonId}/text`, "课文", current === "text")}
+      ${navLink(`/lesson/${lessonId}/exercises`, "练习", current === "exercises")}
+      ${navLink(`/lesson/${lessonId}/wrongbook`, "错题集", current === "wrongbook")}
+      ${navLink(`/lesson/${lessonId}/result`, "结果", current === "result")}
+      ${navLink(`/lesson/${lessonId}/audio`, "音频", current === "audio")}
+    </nav>
+  `;
 }
 
 function home() {
@@ -2718,10 +2722,11 @@ function courseCatalogItems() {
 function courseCard(item) {
   const runtimeReady = item.status === "ready" && item.runtimeReady !== false;
   const initialized = item.status === "initialized";
+  const cardNav = runtimeReady || initialized ? "" : `data-nav="/lesson/${item.id}/init"`;
   const summary = runtimeReady ? lessonProgressSummary() : null;
   const status = runtimeReady ? lessonStudyStatus(summary) : initialized ? { label: item.statusLabel || "已初始化", className: "done" } : { label: "待初始化", className: "pending" };
   return `
-    <article class="course-card ${runtimeReady ? "ready" : initialized ? "initialized" : "pending"}" ${runtimeReady ? "" : `data-nav="/lesson/${item.id}/init"`}>
+    <article class="course-card ${runtimeReady ? "ready" : initialized ? "initialized" : "pending"}" ${cardNav}>
       <div class="course-card-head">
         <div>
           <p class="eyebrow">${item.title}</p>
