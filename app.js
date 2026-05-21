@@ -2734,11 +2734,17 @@ function runtimeErrorPage(lessonId) {
 }
 
 function courseCatalogItems() {
-  if (!state.lessonCatalogStatus?.length) return lessonCatalog;
-  return lessonCatalog.map((item) => ({
-    ...item,
-    ...(state.lessonCatalogStatus.find((entry) => Number(entry.id) === Number(item.id)) || {})
-  }));
+  const base = state.lessonCatalogStatus?.length
+    ? lessonCatalog.map((item) => ({
+        ...item,
+        ...(state.lessonCatalogStatus.find((entry) => Number(entry.id) === Number(item.id)) || {})
+      }))
+    : lessonCatalog;
+  // 学员模式只展示可学习的课程（已绑定运行时 / 已初始化），过滤掉待初始化的占位卡片。
+  if (!ADMIN_MODE) {
+    return base.filter((item) => (item.status === "ready" && item.runtimeReady !== false) || item.status === "initialized");
+  }
+  return base;
 }
 
 function courseCard(item) {
