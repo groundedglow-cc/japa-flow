@@ -154,93 +154,127 @@ git checkout -b split/admin-student
   - **(b) 调第三方 API + 密钥**：需要保留一个最小后端代理。
   - **(c) 暂时是 mock / 未实现**：直接砍掉或保留 mock。
 
-### Step 4.2 按结论处理
+### Step 4.2 用户决策（已敲定）
 
-**情况 (a)：** 把算法搬到 `app.js`，删除 `/api/pronunciation/evaluate`。
-**情况 (b)：** 暂不处理，记入 Phase 7 待办，学员端先把按钮置灰或提示"该功能即将上线"。
-**情况 (c)：** 删除路由 + 删除前端调用，UI 临时隐藏。
+**用户目标：**
+- Web：本地 `npm run dev` 即可，**不部署到服务器，密钥风险不考虑**。
+- App：iOS/Android，**离线可用**，覆盖通勤场景。
+- 发音评测：**Web 和 App 都要支持**。
 
-**✅ 验证**：学员端在纯静态环境下行为符合预期（功能可用 / 优雅降级）。
+**最终策略：**
+- Web 端 → 不动 server.mjs，发音评测继续走 `/api/pronunciation/evaluate`。
+- App 端 → 前端直连 Azure，密钥内嵌 App 包（仅本人安装，零泄露风险）。
+- 统一抽象：在前端添加一个 `evaluatePronunciation()` 函数，运行时根据环境选实现：
+  - Web 模式 → POST 到本地 server `/api/pronunciation/evaluate`
+  - App 模式 → 用 `@capacitor/http` 直接 POST 到 Azure REST 端点
+
+### Step 4.3 实施步骤
+
+1. **抽取前端发音评测调用**：把 app.js 中 3 处 `fetch("/api/pronunciation/evaluate")` 统一替换为 `evaluatePronunciation(...)` 函数。
+2. **加运行时环境检测**：`const IS_NATIVE_APP = !!window.Capacitor?.isNativePlatform?.();`
+3. **App 模式实现**：用 `@capacitor/http` 调 `https://${REGION}.stt.speech.microsoft.com/...`，密钥从构建期注入的 `config.js` 读取（该文件在 `.gitignore` 中）。
+4. **Web 模式实现**：保留现有 fetch 行为。
+
+**✅ 验证**：
+- Web 模式：本地 `npm run dev`，发音评测正常。
+- App 模式：稍后在 Phase 5 完成 Capacitor 集成后真机验证。
 
 **🛑 Phase 4 完成提交：`chore: handle pronunciation evaluation in static deployment`**
 
 ---
 
-## Phase 5：物理拆分仓库（确认契约后再动）
+## Phase 5：接入 Capacitor，打包成 iOS/Android App
 
-**前提：Phase 3、4 完成且验证通过。否则不要进入本阶段。**
+**前提：Phase 3、4 完成且 Web 端验证通过。**
 
-**目标：拆成两个仓库（或一个 monorepo 的两个目录）。**
+**目标：用 Capacitor 把学员端打包成可在自己手机上运行的离线 App。**
 
-### Step 5.1 决定结构（二选一）
-- **方案 A：双仓库** —— `japa-flow-admin`（本地用）、`japa-flow-student`（上线用）。
-- **方案 B：单仓库双目录** —— `apps/admin/`、`apps/student/`、`packages/shared/`。
-
-**推荐方案 B**：迁移成本低，共享代码方便，部署时只发布 `apps/student/` 的产物。
-
-### Step 5.2 创建目录结构（以方案 B 为例）
-```
-japa-flow/
-├── apps/
-│   ├── admin/        # 当前 server.mjs + 管理端 UI + 初始化 scripts
-│   └── student/      # index.html + 学员端 app.js + 静态 data/
-├── packages/
-│   └── shared/       # 学员端 + 管理端共用的类型/工具
-└── data-pipeline/    # 管理端产物 → 同步到 apps/student/data/ 的脚本
+### Step 5.1 安装 Capacitor
+```bash
+npm install @capacitor/core @capacitor/cli @capacitor/ios @capacitor/android @capacitor/http
+npx cap init "JapaFlow" "com.tangyefei.japaflow" --web-dir=app-dist
 ```
 
-### Step 5.3 迁移文件（一次一类，每次验证）
-1. 复制 `index.html`、学员端 `app.js`、`styles.css`、`data/`、`audio/`、`course-assets/` → `apps/student/`。
-2. 复制 `server.mjs`、管理端代码、`scripts/` → `apps/admin/`。
-3. 暂时**两份代码并存**，根目录保留旧代码作为 fallback。
-4. 在 `apps/student/` 下跑 `npx http-server`，验证学员端所有功能。
-5. 在 `apps/admin/` 下跑 `node server.mjs`，验证管理端所有功能。
-6. 全部通过后再删除根目录的重复文件。
+### Step 5.2 准备 App 打包产物目录
+- 新建 `app-dist/`，包含纯静态的学员端：
+  - `index.html` + `app.js` + `styles.css`
+  - `data/`（全部课程 JSON，**含 Phase 3 生成的 catalog.json**）
+  - `audio/`（全部音频文件，离线播放）
+- 写 `scripts/build-app-dist.mjs`：从仓库根复制所需文件到 `app-dist/`。
+- ADMIN_MODE 在 App 包里始终关闭（构建脚本可强制移除/置 false）。
 
-**✅ 验证**：两个 app 独立运行，功能完全等价于 Phase 4 结束时的状态。
+### Step 5.3 注入 Azure 密钥（仅 App 构建）
+- 新建 `app-dist-config.local.js`（**`.gitignore`**）：
+  ```js
+  window.JAPAFLOW_CONFIG = {
+    AZURE_SPEECH_KEY: "your-key",
+    AZURE_SPEECH_REGION: "eastasia"
+  };
+  ```
+- `index.html` 在 App 构建时引入该文件。
+- `app.js` 的 App 模式发音评测从 `window.JAPAFLOW_CONFIG` 读取密钥。
 
-### Step 5.4 建立"数据同步管道"
-- 写 `data-pipeline/publish.mjs`：把 `apps/admin/data/` 和 `apps/admin/audio/` 同步到 `apps/student/data/` 和 `apps/student/audio/`。
-- 命令：`npm run publish`。
+### Step 5.4 添加原生平台
+```bash
+npx cap add ios       # 需要 macOS + Xcode
+npx cap add android   # 需要 Android Studio
+```
 
-**✅ 验证**：在管理端生成新课程 → 跑 `npm run publish` → 学员端能看到新课程。
+### Step 5.5 配置原生 HTTP 权限
+- `capacitor.config.json` 配置允许 cleartext / HTTPS to Azure 域名。
+- iOS 的 `Info.plist` 加 NSMicrophoneUsageDescription（发音评测要录音）。
+- Android 的 `AndroidManifest.xml` 加 `RECORD_AUDIO` 权限。
 
-**🛑 Phase 5 完成提交：`refactor: split into admin and student apps`**
+**✅ 验证**：
+- `npm run build:app` 产出 `app-dist/`。
+- `npx cap sync` 同步到原生项目。
+- `npx cap open ios` / `npx cap open android` 打开原生 IDE。
+
+**🛑 Phase 5 完成提交：`feat: integrate capacitor for ios/android packaging`**
 
 ---
 
-## Phase 6：部署学员端（首次上线，仍用本地音频）
+## Phase 6：构建并安装到本人手机
 
-**目标：让学员端上线跑起来，音频暂时跟着仓库一起部署（不引入 OSS）。**
+**目标：把 App 装到自己手机上，离线可用，覆盖通勤场景。**
 
-### Step 6.1 选择静态托管
-- 候选：Nginx（自己的服务器）/ Cloudflare Pages / Vercel。
-- 既然你"已经有服务器和域名"，**走自己的 Nginx**。
+### Step 6.1 iOS 构建（如果有 Mac）
+1. `npm run build:app && npx cap sync ios`
+2. `npx cap open ios` 打开 Xcode
+3. 配置签名（个人 Apple ID 免费 7 天证书 / 开发者账号永久）
+4. 连接 iPhone → Run → 装机
+5. iOS 设置 → 通用 → VPN 与设备管理 → 信任开发者证书
 
-### Step 6.2 构建产物准备
-- `apps/student/` 目录直接就是部署产物，不需要构建。
-- 写 `apps/student/.deployignore` 或部署脚本，排除 `*.md`、`debug-*` 等。
+### Step 6.2 Android 构建
+1. `npm run build:app && npx cap sync android`
+2. `npx cap open android` 打开 Android Studio
+3. 连接 Android 手机（开启 USB 调试） → Run
+4. 或导出 APK → 手机直接安装
 
-### Step 6.3 服务器部署
-- 服务器上：
-  ```
-  /var/www/japa-flow/  ← rsync 同步 apps/student/ 的内容
-  ```
-- Nginx 配置：
-  - root 指向 `/var/www/japa-flow/`
-  - HTTPS（Let's Encrypt + certbot）
-  - 配置 `.mp3`、`.json` 的长缓存
-  - SPA fallback（如果用了前端路由）
-
-### Step 6.4 发布脚本
-- 本地：`npm run publish && rsync -avz apps/student/ user@server:/var/www/japa-flow/`。
+### Step 6.3 离线验证（断网测试）
+- 飞行模式下：
+  - 浏览课程目录 ✓
+  - 学习词汇/语法/课文/练习 ✓
+  - 播放音频 ✓
+  - **发音评测在飞行模式下应失败**（需要 Azure 网络）；连 WiFi/数据后应成功 ✓
 
 **✅ 验证**：
-- 通过域名访问，学员端所有功能正常（发音评测按 Phase 4 结论行事）。
-- 浏览器 Network 面板：所有请求都是静态文件，无 4xx/5xx。
-- 麦克风功能在 HTTPS 下可用。
+- 自己手机离线能跑学员端核心功能。
+- 联网状态下发音评测正常返回评分。
+- 关闭 App 重启，进度数据（localStorage）保留。
 
-**🛑 Phase 6 完成提交：`feat: deploy student app to production server`**
+**🛑 Phase 6 完成提交：`feat: ship app to personal devices`**
+
+---
+
+## Phase 9（推迟）：Web 上线到服务器
+
+仅当未来想让 Web 端也对外可访问时再做。届时需要：
+- 选 Phase 4 的 A 方案（最小后端代理）部署发音评测
+- Nginx + HTTPS + 静态资源部署
+- OSS 视音频体量决定
+
+**当前阶段暂不实施。**
 
 ---
 
