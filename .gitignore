@@ -1,6 +1,10 @@
 # EFE plugin: local session state (auto-generated, do not track)
 /.efe/state/sessions/
 
+# macOS noise
+.DS_Store
+**/.DS_Store
+
 # Debug recordings (local-only, do not track)
 debug-recordings/
 
