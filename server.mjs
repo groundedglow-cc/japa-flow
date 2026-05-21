@@ -594,10 +594,15 @@ async function evaluatePronunciation({ referenceText, audioBuffer }) {
 
 async function handleApi(req, res, url) {
   try {
+    // ============ STUDENT RUNTIME APIs ============
+    // 学员端运行时依赖的接口。Phase 3 起 lesson-catalog 改为静态 JSON。
     if (url.pathname === "/api/lesson-catalog") {
       sendJson(res, 200, { lessons: await initializedLessonCatalog() });
       return true;
     }
+
+    // ============ ADMIN INITIALIZATION APIs ============
+    // 课程初始化与音频生成相关接口，仅管理端使用。Phase 5 起从学员端剥离。
     if (url.pathname === "/api/init/status") {
       const requestedLessonId = safeLessonId(url.searchParams.get("lessonId"));
       const voiceId = url.searchParams.get("voiceId") || defaultVoiceId;
@@ -822,6 +827,7 @@ async function handleApi(req, res, url) {
       sendJson(res, 200, { voiceId, text: sampleText, ...result });
       return true;
     }
+    // ============ STUDENT RUNTIME APIs (continued) ============
     if (url.pathname === "/api/pronunciation/evaluate" && req.method === "POST") {
       const { fields, files } = await readMultipart(req);
       const referenceText = fields.referenceText || "";

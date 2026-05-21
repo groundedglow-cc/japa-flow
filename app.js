@@ -1592,6 +1592,28 @@ const state = {
 };
 
 const app = document.querySelector("#app");
+
+// ============ ADMIN MODE SWITCH ============
+// 管理端能力（课程初始化、音频生成等）仅当 URL 带 ?admin=1 或 sessionStorage 标记时启用。
+// 默认（学员端）：隐藏所有管理入口，并阻止访问 /init、/audio 路由。
+const ADMIN_ROUTES = new Set(["init", "audio"]);
+const ADMIN_NAV_PATTERN = /\/(init|audio)(\/|$|\?)/;
+const ADMIN_MODE = (() => {
+  try {
+    const params = new URLSearchParams(location.search);
+    if (params.has("admin")) {
+      const enabled = params.get("admin") !== "0";
+      sessionStorage.setItem("japaflow:adminMode", enabled ? "1" : "0");
+      return enabled;
+    }
+    return sessionStorage.getItem("japaflow:adminMode") === "1";
+  } catch (error) {
+    return false;
+  }
+})();
+if (ADMIN_MODE) document.body.classList.add("admin-mode");
+// ============================================
+
 let lastAutoSpokenSentence = null;
 let lastAutoSpokenWord = null;
 let pendingAutoSpeakWordId = "";
@@ -5972,6 +5994,12 @@ async function setDefaultVoice(voiceId) {
 
 function render() {
   const current = route().page;
+  // ADMIN_MODE 关闭时，访问管理路由（init/audio）直接重定向到课程主页或首页。
+  if (!ADMIN_MODE && ADMIN_ROUTES.has(current)) {
+    const currentRoute = route();
+    history.replaceState({}, "", currentRoute.lessonId ? `/lesson/${currentRoute.lessonId}` : "/");
+    return render();
+  }
   const views = { home, lesson: lessonDashboard, init: initPage, vocab, text: textPage, grammar: grammarPage, exercises: exercisesPage, wrongbook: wrongBookPage, audio: audioManagePage, result: resultPage };
   hideSelectionBubble();
   const runtimeLessonId = routeRuntimeLessonId();
@@ -6023,6 +6051,13 @@ function ensurePageFocus() {
 }
 
 function bind() {
+  // 学员模式：隐藏所有跳转到管理路由（/init、/audio）的入口按钮。
+  if (!ADMIN_MODE) {
+    app.querySelectorAll("[data-nav]").forEach((el) => {
+      const target = el.getAttribute("data-nav") || "";
+      if (ADMIN_NAV_PATTERN.test(target)) el.style.display = "none";
+    });
+  }
   app.querySelectorAll("[data-link]").forEach((link) => {
     link.addEventListener("click", (event) => {
       event.preventDefault();
