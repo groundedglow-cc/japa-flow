@@ -1612,7 +1612,77 @@ const ADMIN_MODE = (() => {
   }
 })();
 if (ADMIN_MODE) document.body.classList.add("admin-mode");
+
+// 运行时环境检测：Capacitor 原生壳里 isNativePlatform() 返回 true。
+const IS_NATIVE_APP = typeof window !== "undefined" && Boolean(window.Capacitor?.isNativePlatform?.());
 // ============================================
+
+// ============ PRONUNCIATION EVALUATION (DUAL MODE) ============
+// Web 模式：POST 到本地 server 的 /api/pronunciation/evaluate（密钥在服务端）。
+// App 模式：直接调 Azure REST 端点，密钥从打包期注入的 window.JAPAFLOW_CONFIG 读取。
+// 调用方传入 FormData（字段：referenceText / wordId / audio），返回评分对象。
+async function evaluatePronunciation(form) {
+  if (IS_NATIVE_APP) return evaluatePronunciationViaAzure(form);
+  const response = await fetch("/api/pronunciation/evaluate", { method: "POST", body: form });
+  const data = await response.json();
+  if (!response.ok || data.error) throw new Error(data.error || "发音评价失败");
+  return data;
+}
+
+async function evaluatePronunciationViaAzure(form) {
+  const config = window.JAPAFLOW_CONFIG || {};
+  const key = config.AZURE_SPEECH_KEY;
+  const region = String(config.AZURE_SPEECH_REGION || "").trim().toLowerCase().replace(/\s+/g, "");
+  if (!key || !region) throw new Error("App 缺少 Azure 配置（JAPAFLOW_CONFIG.AZURE_SPEECH_KEY/REGION）。");
+  const referenceText = form.get("referenceText") || "";
+  if (!referenceText) throw new Error("Missing referenceText.");
+  const audioPart = form.get("audio");
+  const audioBuffer = audioPart instanceof Blob ? await audioPart.arrayBuffer() : audioPart;
+  if (!audioBuffer || !audioBuffer.byteLength) throw new Error("Missing audio data.");
+  const assessment = btoa(JSON.stringify({
+    ReferenceText: referenceText,
+    GradingSystem: "HundredMark",
+    Granularity: "Phoneme",
+    Dimension: "Comprehensive",
+    EnableMiscue: true
+  }));
+  const endpoint = `https://${region}.stt.speech.microsoft.com/speech/recognition/conversation/cognitiveservices/v1?language=ja-JP`;
+  const response = await fetch(endpoint, {
+    method: "POST",
+    headers: {
+      "Ocp-Apim-Subscription-Key": key,
+      "Content-Type": "audio/wav; codecs=audio/pcm; samplerate=16000",
+      "Accept": "application/json",
+      "Pronunciation-Assessment": assessment
+    },
+    body: audioBuffer
+  });
+  const text = await response.text();
+  if (!response.ok) throw new Error(`Azure Speech HTTP ${response.status}: ${text}`);
+  const raw = JSON.parse(text);
+  const best = raw.NBest?.[0] || {};
+  const pa = best.PronunciationAssessment || best;
+  const scores = {
+    pronunciationScore: Math.round(pa.PronScore ?? 0),
+    accuracyScore: Math.round(pa.AccuracyScore ?? 0),
+    fluencyScore: Math.round(pa.FluencyScore ?? 0),
+    completenessScore: Math.round(pa.CompletenessScore ?? 0)
+  };
+  const reasons = [];
+  if (scores.accuracyScore < 75) reasons.push("发音不标准");
+  if (scores.fluencyScore < 70) reasons.push("流畅度不足");
+  if (scores.completenessScore < 80) reasons.push("发音不完整");
+  return {
+    wordId: form.get("wordId") || "",
+    referenceText,
+    passed: scores.pronunciationScore >= 75 && scores.accuracyScore >= 75 && scores.fluencyScore >= 70 && scores.completenessScore >= 80,
+    ...scores,
+    recognizedText: raw.DisplayText || "",
+    reasons,
+    raw
+  };
+}
+// ===============================================================
 
 let lastAutoSpokenSentence = null;
 let lastAutoSpokenWord = null;
@@ -4938,9 +5008,7 @@ async function stopWordRecording(wordId) {
   try {
     const currentWordIndex = state.currentWord;
     const currentWordId = word.id;
-    const response = await fetch("/api/pronunciation/evaluate", { method: "POST", body: form });
-    const data = await response.json();
-    if (!response.ok || data.error) throw new Error(data.error || "发音评价失败");
+    const data = await evaluatePronunciation(form);
     const previous = wordLearningState(word.id);
     updateWordLearning(word.id, {
       pronunciationPassed: data.passed,
@@ -5157,9 +5225,7 @@ async function stopGrammarRecording(key) {
   form.append("kana", item.sentence.kana || "");
   form.append("audio", new Blob([wav], { type: "audio/wav" }), `${grammar.id}-${item.id}.wav`);
   try {
-    const response = await fetch("/api/pronunciation/evaluate", { method: "POST", body: form });
-    const data = await response.json();
-    if (!response.ok || data.error) throw new Error(data.error || "发音评价失败");
+    const data = await evaluatePronunciation(form);
     updateGrammarPractice(grammar.id, item.id, {
       pronunciationPassed: data.passed,
       pronunciationScore: data.pronunciationScore,
@@ -5348,9 +5414,7 @@ async function stopTextRecording(sentenceId) {
   form.append("kana", sentence.kana || "");
   form.append("audio", new Blob([wav], { type: "audio/wav" }), `${sentence.id}.wav`);
   try {
-    const response = await fetch("/api/pronunciation/evaluate", { method: "POST", body: form });
-    const data = await response.json();
-    if (!response.ok || data.error) throw new Error(data.error || "发音评价失败");
+    const data = await evaluatePronunciation(form);
     updateSentencePractice(sentence.id, {
       submitted: true,
       pronunciationPassed: data.passed,
