@@ -5660,9 +5660,17 @@ async function loadCourseCatalog(force = false) {
   if (!force && state.lessonCatalogStatus) return;
   state.lessonCatalogLoading = true;
   try {
-    const response = await fetch("/api/lesson-catalog");
-    const data = await response.json();
-    if (!response.ok) throw new Error(data.error || "读取课程目录失败");
+    // 学员端读静态 JSON（适用于纯静态部署 / App）；管理端读 API（看实时状态）。
+    let data;
+    if (ADMIN_MODE) {
+      const response = await fetch("/api/lesson-catalog");
+      data = await response.json();
+      if (!response.ok) throw new Error(data.error || "读取课程目录失败");
+    } else {
+      const response = await fetch("/data/catalog.json", { cache: "no-store" });
+      if (!response.ok) throw new Error(`读取课程目录失败 (${response.status})`);
+      data = await response.json();
+    }
     state.lessonCatalogStatus = data.lessons || [];
     state.lessonCatalogMessage = "";
   } catch (error) {

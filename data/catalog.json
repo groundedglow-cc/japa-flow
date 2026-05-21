@@ -1,0 +1,37 @@
+{
+  "lessons": [
+    {
+      "id": 27,
+      "title": "第27课",
+      "subtitle": "子供の時、大きな地震がありました",
+      "status": "ready",
+      "description": "围绕第 27 课完成单词、语法、课文朗读、标准练习和结果复盘。",
+      "runtimeReady": true
+    },
+    {
+      "id": 28,
+      "title": "第28课",
+      "subtitle": "森さんの新居",
+      "status": "initialized",
+      "description": "课程数据和音频已完成：36 个单词，9 个语法，25 句课文，48 道练习。",
+      "runtimeReady": false,
+      "statusLabel": "已初始化",
+      "initializedAt": "2026-05-19T16:47:37.826Z",
+      "counts": {
+        "vocabulary": 36,
+        "grammar": 9,
+        "sentences": 25,
+        "exercises": 48
+      }
+    },
+    {
+      "id": 29,
+      "title": "第29课",
+      "subtitle": "待初始化",
+      "status": "pending",
+      "description": "课程内容尚未采集，后续可继续按同一结构初始化。",
+      "runtimeReady": false
+    }
+  ],
+  "generatedAt": "2026-05-21T13:07:03.262Z"
+}
