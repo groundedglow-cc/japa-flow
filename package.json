@@ -5,6 +5,14 @@
   "type": "module",
   "scripts": {
     "dev": "node server.mjs",
-    "export:catalog": "node scripts/export-catalog.mjs"
+    "export:catalog": "node scripts/export-catalog.mjs",
+    "build:app": "node scripts/export-catalog.mjs && node scripts/build-app-dist.mjs",
+    "sync:ios": "npm run build:app && npx cap sync ios",
+    "open:ios": "npx cap open ios"
+  },
+  "dependencies": {
+    "@capacitor/cli": "^8.3.4",
+    "@capacitor/core": "^8.3.4",
+    "@capacitor/ios": "^8.3.4"
   }
 }
