@@ -27,11 +27,19 @@
     {
       "id": 29,
       "title": "第29课",
-      "subtitle": "待初始化",
-      "status": "pending",
-      "description": "课程内容尚未采集，后续可继续按同一结构初始化。",
-      "runtimeReady": false
+      "subtitle": "森さんの新居",
+      "status": "initialized",
+      "description": "课程数据和音频已完成：36 个单词，9 个语法，25 句课文，48 道练习。",
+      "runtimeReady": false,
+      "statusLabel": "已初始化",
+      "initializedAt": "2026-05-21T13:56:03.609Z",
+      "counts": {
+        "vocabulary": 36,
+        "grammar": 9,
+        "sentences": 25,
+        "exercises": 48
+      }
     }
   ],
-  "generatedAt": "2026-05-21T13:07:03.262Z"
+  "generatedAt": "2026-05-21T13:59:48.557Z"
 }
