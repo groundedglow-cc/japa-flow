@@ -760,10 +760,24 @@ h3 {
 .status-item {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   gap: 10px;
+  width: 100%;
+  border: 0;
   border-bottom: 1px solid var(--line);
   padding-bottom: 10px;
+  background: transparent;
   color: var(--muted);
+  text-align: left;
+  cursor: pointer;
+}
+
+.status-item.current {
+  color: var(--ink);
+}
+
+.status-item.current span {
+  font-weight: 700;
 }
 
 .status-familiar {

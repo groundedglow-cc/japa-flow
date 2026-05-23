@@ -2979,8 +2979,12 @@ function progressRow(label, value, total) {
   `;
 }
 
-function pronunciationPreheatDone() {
-  return activeVocabulary().every((word) => wordLearningState(word.id).attempts.pronunciation > 0);
+function wordHasLearningRecord(wordId) {
+  return wordLearningState(wordId).mainStatus !== "new";
+}
+
+function vocabReadyForTest() {
+  return activeVocabulary().every((word) => wordHasLearningRecord(word.id));
 }
 
 function ensureVocabTestQueue() {
@@ -3007,6 +3011,11 @@ function currentVocabTestTask() {
 }
 
 function startVocabTest() {
+  if (!vocabReadyForTest()) {
+    state.recallResult = "所有单词都有学习记录后才能进入系统测试。";
+    render();
+    return;
+  }
   ensureVocabTestQueue();
   state.vocabPhase = "test";
   state.recallResult = "";
@@ -3029,7 +3038,8 @@ function vocab() {
   const finished = vocabWords.every((item) => wordLearningState(item.id).mainStatus === "mastered");
   const weakItems = vocabWords.filter((item) => wordLearningState(item.id).mainStatus === "review");
   const testing = state.vocabPhase === "test";
-  const preheated = pronunciationPreheatDone();
+  const readyForTest = vocabReadyForTest();
+  const wordsWithoutRecord = vocabWords.length - vocabWords.filter((item) => wordHasLearningRecord(item.id)).length;
   const task = testing ? currentVocabTestTask() : null;
   return layout(`
     <div class="page-head">
@@ -3039,7 +3049,7 @@ function vocab() {
         <p>${testing ? "测试阶段不会展示假名、释义或右侧词表，避免短期提示干扰结果。" : "所有单词先走一遍听音和发音评价，再进入系统测试。"}</p>
       </div>
       <div class="button-row">
-        ${!testing && preheated ? `<button class="primary" data-start-vocab-test>进入系统测试</button>` : ""}
+        ${!testing ? `<button class="primary" data-start-vocab-test ${readyForTest ? "" : "disabled"}>进入系统测试</button>` : ""}
         <button class="primary ${finished ? "emphasis" : ""}" data-nav="/lesson/${lesson.id}/grammar">进入语法</button>
       </div>
     </div>
@@ -3061,7 +3071,7 @@ function vocab() {
         </article>
         ${testing ? "" : `<div class="rail">
           ${vocabWords.map((item, index) => `
-            <button class="${index === state.currentWord ? "current" : ""} ${wordLearningState(item.id).mainStatus === "mastered" ? "done" : ""}" data-word-index="${index}" ${index === state.currentWord ? "" : "disabled"}>
+            <button class="${index === state.currentWord ? "current" : ""} ${wordLearningState(item.id).mainStatus === "mastered" ? "done" : ""}" data-word-index="${index}">
               ${item.jp}
             </button>
           `).join("")}
@@ -3078,13 +3088,14 @@ function vocab() {
             <button class="secondary" data-regenerate-word="${word.id}">勘误：重生成当前词发音</button>
             <button class="danger" data-reset-word-learning>重置单词学习数据</button>
           </div>
+          ${readyForTest ? "" : `<p class="hint">还有 ${wordsWithoutRecord} 个单词没有学习记录，全部记录后可进入系统测试。</p>`}
           ${weakItems.length ? `<p class="hint">待复习 ${weakItems.length} 个。系统会保留进阶入口，但建议复习弱项。</p>` : ""}
           <div class="status-list">
-            ${vocabWords.map((item) => `
-              <div class="status-item">
+            ${vocabWords.map((item, index) => `
+              <button class="status-item ${index === state.currentWord ? "current" : ""}" data-word-index="${index}">
                 <span>${item.jp} · ${item.cn}</span>
                 <strong class="status-${state.wordProgress[item.id]}">${wordMainStatusText(wordLearningState(item.id).mainStatus)}</strong>
-              </div>
+              </button>
             `).join("")}
           </div>
         `}
@@ -3243,11 +3254,6 @@ function setCurrentWord(index, shouldSpeak = false) {
   state.recordingError = "";
   pendingAutoSpeakWordId = shouldSpeak ? vocabWords[nextIndex]?.id || "" : "";
   render();
-}
-
-function canLeaveCurrentWord() {
-  const word = activeVocabulary()[state.currentWord];
-  return wordLearningState(word.id).mainStatus !== "new";
 }
 
 function textPage() {
@@ -4072,7 +4078,7 @@ function initAudioRow(item) {
   return `
     <div class="audio-asset-row ${item.exists ? "ready" : "missing"}" ${item.exists ? `data-speak="${escapeHtml(item.text)}" data-audio="${item.url}"` : ""}>
       <span class="audio-type">${label}</span>
-      <span class="audio-title">${escapeHtml(item.text || item.label || item.id)}</span>
+      <span class="audio-title">${escapeHtml(item.label || item.text || item.id)}</span>
       <span class="audio-state">${item.exists ? "已生成" : "未生成"}</span>
       <button class="secondary compact-action" ${item.exists ? "" : "disabled"}>播放</button>
     </div>
@@ -4857,7 +4863,7 @@ function revealAndAdvanceTest(word, selectedWordId, correct, mode) {
   state.vocabReveal = { wordId: word.id, selectedWordId, correct };
   state.recallResult = correct ? "正确。" : "不正确。系统已记录该弱项，稍后会进入复习。";
   render();
-  const delayMs = 2500;
+  const delayMs = 1700;
   const audioMustEnd = mode === "wordToMeaning";
   let audioEnded = !audioMustEnd;
   const startedAt = Date.now();
@@ -6471,7 +6477,6 @@ function handleKeyboard(event) {
 
   if (current === "vocab" && (key === "ArrowLeft" || event.code === "ArrowLeft" || key === "ArrowRight" || event.code === "ArrowRight")) {
     event.preventDefault();
-    if (!canLeaveCurrentWord()) return;
     lastKeyAction = { key: actionKey, at: now };
     const step = key === "ArrowRight" || event.code === "ArrowRight" ? 1 : -1;
     setCurrentWord(state.currentWord + step, true);

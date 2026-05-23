@@ -297,9 +297,13 @@ function audioStatusForLesson(lessonIdValue, voiceId, type, id) {
   return { exists: false, url: audioUrlForLesson(lessonIdValue, voiceId, type, id), source: "" };
 }
 
+function wordAudioText(word) {
+  return word?.kana || word?.jp || "";
+}
+
 function lessonAudioJobs(lesson) {
   return [
-    ...lesson.vocabulary.map((word) => ({ id: word.id, type: "word", label: word.jp, text: word.jp, kana: word.kana, cn: word.cn })),
+    ...lesson.vocabulary.map((word) => ({ id: word.id, type: "word", label: word.jp, text: wordAudioText(word), kana: word.kana, cn: word.cn })),
     ...lesson.sentences.map((sentence) => ({ id: sentence.id, type: "sentence", label: sentence.text, text: sentence.text, cn: sentence.translation })),
     ...lesson.grammar.flatMap((grammar) => (grammar.extraExamples || []).map((example, index) => ({
       id: `${grammar.id}-extra-${index + 1}`,
@@ -339,7 +343,7 @@ function lessonDraftAudioJobs(lesson) {
   const jobs = [];
   const seen = new Set();
   (lesson.vocabulary || []).forEach((word) => {
-    addUniqueJob(jobs, seen, { id: word.id, type: "word", label: word.jp, text: word.jp, source: "vocabulary" });
+    addUniqueJob(jobs, seen, { id: word.id, type: "word", label: word.jp, text: wordAudioText(word), source: "vocabulary" });
   });
   (lesson.sentences || []).forEach((sentence) => {
     addUniqueJob(jobs, seen, { id: sentence.id, type: "sentence", label: sentence.text, text: sentence.text, source: "text" });

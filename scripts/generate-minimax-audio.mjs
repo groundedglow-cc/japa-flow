@@ -27,7 +27,7 @@ if (lesson.id !== lessonId) {
 let jobs = [
   ...lesson.vocabulary.map((word) => ({
     id: word.id,
-    text: word.jp,
+    text: word.kana || word.jp,
     type: "word",
     path: join("audio", `lesson${lesson.id}`, "words", `${word.id}.mp3`)
   })),

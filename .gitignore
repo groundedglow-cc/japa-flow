@@ -10,6 +10,7 @@ debug-recordings/
 
 # Node
 node_modules/
+.npm-cache/
 
 # Local env (never commit secrets)
 .env
