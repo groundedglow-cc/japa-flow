@@ -2226,6 +2226,26 @@ function extraExampleAudioUrl(grammarId, index) {
   return audioUrl("sentence", `${grammarId}-extra-${index + 1}`);
 }
 
+function isIncorrectGrammarExample(example) {
+  const text = String(example?.text || "").trim();
+  return Boolean(example?.isIncorrect || example?.incorrect || example?.correct === false || /^[×xX✕]/.test(text));
+}
+
+function cleanGrammarExampleText(text) {
+  return String(text || "").trim().replace(/^[×xX✕]\s*/, "");
+}
+
+function normalizedGrammarExtraExamples(grammar) {
+  return (grammar.extraExamples || [])
+    .map((example, index) => ({
+      ...example,
+      sourceIndex: index,
+      text: cleanGrammarExampleText(example.text),
+      isIncorrect: isIncorrectGrammarExample(example)
+    }))
+    .filter((example) => example.text);
+}
+
 function playAudio(text, audio, onEnded) {
   stopCurrentAudio();
   if ("speechSynthesis" in window) speechSynthesis.cancel();
@@ -2378,6 +2398,7 @@ const exerciseRubyEntries = [
   ["田中さん", "たなかさん"],
   ["田村さん", "たむらさん"],
   ["木下さん", "きのしたさん"],
+  ["馬さん", "ばさん"],
   ["張さん", "ちょうさん"],
   ["陳さん", "ちんさん"],
   ["葉子さん", "ようこさん"],
@@ -2476,6 +2497,8 @@ const exerciseRubyEntries = [
   ["部品", "ぶひん"],
   ["作", "つく"],
   ["去年", "きょねん"],
+  ["今度", "こんど"],
+  ["近所", "きんじょ"],
   ["近く", "ちかく"],
   ["公園", "こうえん"],
   ["散歩", "さんぽ"],
@@ -2508,7 +2531,15 @@ const exerciseRubyEntries = [
   ["人", "ひと"],
   ["好き", "すき"],
   ["昨日", "きのう"],
-  ["来", "こ"],
+  ["来なかった", "こなかった"],
+  ["来ません", "きません"],
+  ["来ました", "きました"],
+  ["来て", "きて"],
+  ["来る", "くる"],
+  ["来ない", "こない"],
+  ["来週", "らいしゅう"],
+  ["来月", "らいげつ"],
+  ["来年", "らいねん"],
   ["行", "い"],
   ["入", "はい"],
   ["掃除", "そうじ"],
@@ -2519,11 +2550,11 @@ const exerciseRubyEntries = [
 
 function renderExerciseText(value, options = {}) {
   const source = String(value || "");
-  let html = rubyExerciseText(source);
+  let html = options.kana ? rubyTextFromKana(source, options.kana) || rubyExerciseText(source) : rubyExerciseText(source);
   html = html.replace(/__([\s\S]+?)__/g, `<span class="example-underline">$1</span>`);
   if (options.exampleBreaks) {
     html = html
-      .replace(/\s*→\s*/g, "<br>")
+      .replace(/\s*→\s*/g, `<br><span class="example-arrow">→</span> `)
       .replace(/\s*(甲：)/g, "<br>$1")
       .replace(/\s*(乙：)/g, "<br>$1")
       .replace(/^<br>/, "");
@@ -2533,6 +2564,219 @@ function renderExerciseText(value, options = {}) {
 
 function renderJapaneseText(value, options = {}) {
   return renderExerciseText(value, options);
+}
+
+function rubyTextFromKana(source, kana) {
+  const text = String(source || "");
+  const reading = String(kana || "");
+  if (!text || !reading || !hasKanji(text)) return null;
+  const result = alignRubyFromKana(text, reading);
+  return result && readingFullyConsumed(reading, result.readingIndex) ? result.html : null;
+}
+
+function alignRubyFromKana(text, reading) {
+  const memo = new Map();
+
+  function finish(key, tail, build) {
+    const result = tail ? build(tail) : null;
+    memo.set(key, result);
+    return result;
+  }
+
+  function walk(textIndex, readingIndex) {
+    readingIndex = skipReadingSpaces(reading, readingIndex);
+    const key = `${textIndex}:${readingIndex}`;
+    if (memo.has(key)) return memo.get(key);
+    if (textIndex >= text.length) {
+      const done = readingFullyConsumed(reading, readingIndex) ? { html: "", readingIndex } : null;
+      memo.set(key, done);
+      return done;
+    }
+
+    const char = text[textIndex];
+    if (/\s/.test(char)) {
+      return finish(key, walk(textIndex + 1, readingIndex), (tail) => ({
+        html: escapeHtml(char) + tail.html,
+        readingIndex: tail.readingIndex
+      }));
+    }
+
+    if (isJapanesePunctuation(char)) {
+      const punctuationIndex = skipReadingSpaces(reading, readingIndex);
+      const nextReadingIndex = isJapanesePunctuation(reading[punctuationIndex]) ? punctuationIndex + 1 : punctuationIndex;
+      return finish(key, walk(textIndex + 1, nextReadingIndex), (tail) => ({
+        html: escapeHtml(char) + tail.html,
+        readingIndex: tail.readingIndex
+      }));
+    }
+
+    if (!isKanjiChar(char)) {
+      const end = nextPlainRunEnd(text, textIndex);
+      const plain = text.slice(textIndex, end);
+      const taken = takeReadingChars(reading, readingIndex, plain.length);
+      if (!taken || !kanaSame(plain, taken.text)) {
+        memo.set(key, null);
+        return null;
+      }
+      return finish(key, walk(end, taken.end), (tail) => ({
+        html: escapeHtml(plain) + tail.html,
+        readingIndex: tail.readingIndex
+      }));
+    }
+
+    const known = knownRubyMatch(text, textIndex, reading, readingIndex);
+    for (const entry of known) {
+      const tail = walk(textIndex + entry.text.length, entry.readingEnd);
+      if (tail) {
+        const done = {
+          html: rubyKanjiSegment(entry.text, entry.reading) + tail.html,
+          readingIndex: tail.readingIndex
+        };
+        memo.set(key, done);
+        return done;
+      }
+    }
+
+    const segmentEnds = possibleKanjiSegmentEnds(text, textIndex);
+    for (const end of segmentEnds) {
+      const surface = text.slice(textIndex, end);
+      const suffix = kanjiSegmentSuffix(surface);
+      const minLength = Math.max(1, suffix.length + 1);
+      const candidates = readingCandidates(reading, readingIndex, minLength);
+      for (const candidate of candidates) {
+        if (/\s/.test(candidate.raw.trim())) continue;
+        if (suffix && !kanaEndsWith(candidate.text, suffix)) continue;
+        const tail = walk(end, candidate.end);
+        if (tail) {
+          const done = { html: rubyKanjiSegment(surface, candidate.text) + tail.html, readingIndex: tail.readingIndex };
+          memo.set(key, done);
+          return done;
+        }
+      }
+    }
+
+    memo.set(key, null);
+    return null;
+  }
+
+  return walk(0, 0);
+}
+
+function nextPlainRunEnd(text, index) {
+  let end = index;
+  while (end < text.length && !isKanjiChar(text[end]) && !isJapanesePunctuation(text[end]) && !/\s/.test(text[end])) end += 1;
+  return end;
+}
+
+function possibleKanjiSegmentEnds(text, index) {
+  const ends = [];
+  for (let end = index + 1; end <= text.length; end += 1) {
+    const previous = text[end - 1];
+    if (isJapanesePunctuation(previous) || /\s/.test(previous)) break;
+    if (hasKanji(text.slice(index, end))) ends.push(end);
+    const next = text[end];
+    if (!next || isJapanesePunctuation(next) || /\s/.test(next)) break;
+  }
+  return ends.sort((a, b) => b - a);
+}
+
+function kanjiSegmentSuffix(surface) {
+  let lastKanji = -1;
+  for (let index = 0; index < surface.length; index += 1) {
+    if (isKanjiChar(surface[index])) lastKanji = index;
+  }
+  return lastKanji >= 0 ? surface.slice(lastKanji + 1) : "";
+}
+
+function rubyKanjiSegment(surface, reading) {
+  const suffix = kanjiSegmentSuffix(surface);
+  const kanjiText = suffix ? surface.slice(0, surface.length - suffix.length) : surface;
+  const rt = suffix && kanaEndsWith(reading, suffix) ? reading.slice(0, reading.length - suffix.length) : reading;
+  if (!rt) return escapeHtml(surface);
+  return `<ruby>${escapeHtml(kanjiText)}<rt>${escapeHtml(rt)}</rt></ruby>${escapeHtml(suffix)}`;
+}
+
+function hasKanji(value) {
+  return /[\u3400-\u9fff]/u.test(String(value || ""));
+}
+
+function isKanjiChar(char) {
+  return /[\u3400-\u9fff]/u.test(char || "");
+}
+
+function isJapanesePunctuation(char) {
+  return /[。、，．,.！？!?「」『』（）()［］\[\]【】・:：;；]/u.test(char || "");
+}
+
+function kanaSame(left, right) {
+  return comparableKana(left) === comparableKana(right);
+}
+
+function kanaEndsWith(value, suffix) {
+  return comparableKana(value).endsWith(comparableKana(suffix));
+}
+
+function comparableKana(value) {
+  return String(value || "").replace(/\s+/g, "").replace(/[\u30a1-\u30f6]/g, (char) => String.fromCharCode(char.charCodeAt(0) - 0x60));
+}
+
+function knownRubyMatch(text, textIndex, reading, readingIndex) {
+  return rubyKnownEntries()
+    .filter(([surface]) => text.startsWith(surface, textIndex))
+    .map(([surface, ruby]) => {
+      const taken = takeReadingChars(reading, readingIndex, String(ruby).length);
+      if (!taken || !kanaSame(ruby, taken.text)) return null;
+      return { text: surface, reading: ruby, readingEnd: taken.end };
+    })
+    .filter(Boolean);
+}
+
+function rubyKnownEntries() {
+  const vocabEntries = Array.isArray(lesson?.vocabulary)
+    ? lesson.vocabulary
+      .filter((word) => word?.jp && word?.kana && hasKanji(word.jp))
+      .map((word) => [word.jp, word.kana])
+    : [];
+  return [...vocabEntries, ...exerciseRubyEntries]
+    .filter(([surface]) => String(surface).length > 1)
+    .sort((a, b) => b[0].length - a[0].length);
+}
+
+function skipReadingSpaces(reading, index) {
+  let next = index;
+  while (next < reading.length && /\s/.test(reading[next])) next += 1;
+  return next;
+}
+
+function readingFullyConsumed(reading, index) {
+  return skipReadingSpaces(reading, index) >= reading.length;
+}
+
+function takeReadingChars(reading, index, visibleLength) {
+  let end = skipReadingSpaces(reading, index);
+  let text = "";
+  while (end < reading.length && text.length < visibleLength) {
+    if (!/\s/.test(reading[end])) text += reading[end];
+    end += 1;
+  }
+  return text.length === visibleLength ? { text, end } : null;
+}
+
+function readingCandidates(reading, index, minVisibleLength) {
+  const candidates = [];
+  let end = skipReadingSpaces(reading, index);
+  let visible = "";
+  const start = end;
+  while (end < reading.length) {
+    const char = reading[end];
+    if (isJapanesePunctuation(char)) break;
+    if (!/\s/.test(char)) visible += char;
+    end += 1;
+    if (visible.length >= minVisibleLength) {
+      candidates.push({ raw: reading.slice(start, end), text: visible, end });
+    }
+  }
+  return candidates;
 }
 
 function rubyExerciseText(source) {
@@ -2820,11 +3064,18 @@ function courseCatalogItems() {
 function courseCard(item) {
   const runtimeReady = item.status === "ready" && item.runtimeReady !== false;
   const initialized = item.status === "initialized";
+  const invalid = item.status === "invalid";
   const cardNav = runtimeReady || initialized ? "" : `data-nav="/lesson/${item.id}/init"`;
   const summary = runtimeReady ? lessonProgressSummary() : null;
-  const status = runtimeReady ? lessonStudyStatus(summary) : initialized ? { label: item.statusLabel || "已初始化", className: "done" } : { label: "待初始化", className: "pending" };
+  const status = runtimeReady
+    ? lessonStudyStatus(summary)
+    : initialized
+      ? { label: item.statusLabel || "已初始化", className: "done" }
+      : invalid
+        ? { label: item.statusLabel || "数据待校验", className: "invalid" }
+        : { label: "待初始化", className: "pending" };
   return `
-    <article class="course-card ${runtimeReady ? "ready" : initialized ? "initialized" : "pending"}" ${cardNav}>
+    <article class="course-card ${runtimeReady ? "ready" : initialized ? "initialized" : invalid ? "invalid" : "pending"}" ${cardNav}>
       <div class="course-card-head">
         <div>
           <p class="eyebrow">${item.title}</p>
@@ -2856,8 +3107,8 @@ function courseCard(item) {
           <button class="secondary" data-nav="/lesson/${item.id}/init">初始化结果</button>
         </div>
       ` : `
-        <div class="course-placeholder">课程数据尚未初始化</div>
-        <button class="primary" data-nav="/lesson/${item.id}/init">初始化课程</button>
+        <div class="course-placeholder">${invalid ? "课程数据需要重新核对，暂不展示统计数量" : "课程数据尚未初始化"}</div>
+        <button class="primary" data-nav="/lesson/${item.id}/init">${invalid ? "查看并修正" : "初始化课程"}</button>
       `}
     </article>
   `;
@@ -3366,7 +3617,7 @@ function sentenceListItem(item, index, tabId) {
   const statusClass = practice.pronunciationAttempts === 0 ? "new" : practice.pronunciationPassed ? "done" : "failed";
   const displayJapanese = state.textPromptLanguage === "ja";
   const visibleText = displayJapanese ? item.text : item.translation;
-  const displayText = displayJapanese ? renderJapaneseText(visibleText) : escapeHtml(visibleText || "");
+  const displayText = displayJapanese ? renderJapaneseText(visibleText, { kana: item.kana }) : escapeHtml(visibleText || "");
   return `
     <article class="sentence-card ${item.speaker ? "dialogue" : "statement"} ${current} ${stateClass}" data-sentence-index="${index}">
       <div class="sentence-card-head">
@@ -3432,7 +3683,7 @@ function sentenceHoverContent(sentence, fallbackText = "") {
   return `
     <span class="hover-translation">
       <span class="translation-switch" title="悬浮查看中文" aria-label="悬浮查看中文">⇄</span>
-      <span class="jp-text">${renderJapaneseText(jp)}</span>
+      <span class="jp-text">${renderJapaneseText(jp, { kana: sentence?.kana })}</span>
       <span class="cn-text">${escapeHtml(cn)}</span>
     </span>
   `;
@@ -3523,25 +3774,29 @@ function grammarNavStatus(grammar) {
 }
 
 function grammarPracticeItems(grammar) {
-  const coreItems = (grammar.examples || [])
+  const grammarExamples = normalizedGrammarExtraExamples(grammar);
+  const correctGrammarExamples = grammarExamples.filter((example) => !example.isIncorrect);
+  const relatedSentenceItems = (grammar.examples || [])
     .map((id) => ({ kind: "core", id, sentence: sentenceById(id) }))
     .filter((item) => item.sentence);
-  const hasCore = coreItems.length > 0;
-  const supplementalSource = grammar.extraExamples || [];
-  const fallbackCoreItems = hasCore ? [] : supplementalSource.slice(0, 1).map((example, index) => ({
+  const coreItems = correctGrammarExamples.map((example) => ({
     kind: "extra",
-    id: `extra-${index}`,
-    sentence: { id: `extra-${index}`, text: example.text, kana: "", translation: example.translation },
-    example
+    id: `extra-${example.sourceIndex}`,
+    sentence: { id: `extra-${example.sourceIndex}`, text: example.text, kana: "", translation: example.translation },
+    example,
+    extraSourceIndex: example.sourceIndex
   }));
-  const supplementalExamples = supplementalSource.slice(hasCore ? 0 : 1).map((example, index) => ({
-    id: `extra-${hasCore ? index : index + 1}`,
-    text: example.text,
-    translation: example.translation,
-    sourceIndex: hasCore ? index : index + 1
-  }));
+  const fallbackCoreItems = coreItems.length ? [] : relatedSentenceItems;
+  const supplementalExamples = coreItems.length ? relatedSentenceItems.map((item) => ({
+    id: item.id,
+    text: item.sentence.text,
+    kana: item.sentence.kana,
+    translation: item.sentence.translation,
+    audioId: item.id,
+    sourceLabel: sentencePosition(item.id)
+  })) : [];
   return {
-    items: hasCore ? coreItems : fallbackCoreItems,
+    items: coreItems.length ? coreItems : fallbackCoreItems,
     supplementalExamples
   };
 }
@@ -3578,7 +3833,7 @@ function grammarDetail(grammar) {
     .filter(({ exercise }) => exercise.relatedGrammar.includes(grammar.id));
   const { items: practiceItems, supplementalExamples } = grammarPracticeItems(grammar);
   const progress = grammarPracticeSummary(grammar);
-  const supplementCount = grammar.extraExamples?.length || 0;
+  const supplementCount = supplementalExamples.length;
   return `
     <h2>${grammar.pattern}</h2>
     <div class="grammar-summary-grid">
@@ -3613,9 +3868,10 @@ function grammarDetail(grammar) {
             ${supplementalExamples.map((example, index) => `
               <div class="supplemental-example-card supplemental-example">
                 <div class="example-row">
-                  <span class="sentence supplemental-preview">${sentenceHoverContent({ text: example.text, translation: example.translation })}</span>
-                  <button class="icon-button" aria-label="播放补充例句" title="播放补充例句" data-speak="${example.text}" data-audio="${extraExampleAudioUrl(grammar.id, example.sourceIndex)}">🔊</button>
+                  <span class="sentence supplemental-preview">${sentenceHoverContent({ text: example.text, kana: example.kana, translation: example.translation })}</span>
+                  <button class="icon-button" aria-label="播放补充例句" title="播放补充例句" data-speak="${example.text}" data-audio="${audioUrl("sentence", example.audioId)}">🔊</button>
                 </div>
+                ${example.sourceLabel ? `<small class="muted">${example.sourceLabel}</small>` : ""}
               </div>
             `).join("")}
           </div>
@@ -3668,11 +3924,11 @@ function grammarExamplePracticeCard(grammar, item, index) {
       </div>
       ${ready ? `
         <div class="grammar-answer-inline ${practice.correct ? "passed" : "failed"}">
-          <div class="diff-line">填空结果：${practice.correct ? "正确" : "错误"}；标准答案：${renderJapaneseText(targetText)}</div>
+          <div class="diff-line">填空结果：${practice.correct ? "正确" : "错误"}；标准答案：${renderJapaneseText(targetText, { kana: sentence.kana })}</div>
         </div>
       ` : ""}
       <div class="grammar-practice-body ${collapsed ? "collapsed" : ""}">
-        <div class="grammar-practice-cloze">${renderJapaneseText(clozeText)}</div>
+        <div class="grammar-practice-cloze">${renderJapaneseText(clozeText, { kana: target ? "" : sentence.kana })}</div>
         <div class="grammar-practice-form">
           <input class="answer-input" data-grammar-answer="${grammarPracticeKey(grammar.id, item.id)}" value="${escapeHtml(practice.answer || "")}" placeholder="补全空缺部分" />
           <button class="primary" data-grammar-check="${grammarPracticeKey(grammar.id, item.id)}">检查</button>
@@ -3710,7 +3966,7 @@ function grammarPronunciationPanel(grammar, item) {
         <span class="label">开口或跟读</span>
       </div>
       <div class="button-row">
-        <button class="secondary" data-speak="${sentence.text}" data-audio="${audioUrl("sentence", sentence.id)}">听标准音</button>
+        <button class="secondary" data-speak="${sentence.text}" data-audio="${grammarPracticeAudioUrl(grammar, item)}">听标准音</button>
         <button
           class="hold-record-button ${preparing ? "preparing" : ""} ${recording ? "recording" : ""} ${stopping ? "stopping" : ""}"
           data-hold-record-grammar="${key}"
@@ -3725,6 +3981,11 @@ function grammarPronunciationPanel(grammar, item) {
       ${practice.pronunciationAttempts ? grammarPronunciationResult(practice) : ""}
     </div>
   `;
+}
+
+function grammarPracticeAudioUrl(grammar, item) {
+  if (Number.isInteger(item.extraSourceIndex)) return extraExampleAudioUrl(grammar.id, item.extraSourceIndex);
+  return audioUrl("sentence", item.sentence.id);
 }
 
 function grammarPronunciationResult(practice) {
@@ -3790,15 +4051,23 @@ function toggleGrammarPracticeCollapse(key) {
 }
 
 function grammarPracticeItemByKey(grammar, exampleId) {
+  const extraIndex = Number(String(exampleId).replace(/^extra-/, ""));
+  if (Number.isInteger(extraIndex)) {
+    const extra = normalizedGrammarExtraExamples(grammar).find((example) => example.sourceIndex === extraIndex);
+    if (extra && !extra.isIncorrect) {
+      return {
+        kind: "extra",
+        id: exampleId,
+        sentence: { id: exampleId, text: extra.text, kana: "", translation: extra.translation },
+        example: extra,
+        extraSourceIndex: extra.sourceIndex
+      };
+    }
+  }
   const core = (grammar.examples || []).find((id) => id === exampleId);
   if (core) {
     const sentence = sentenceById(core);
     if (sentence) return { kind: "core", id: core, sentence };
-  }
-  const extraIndex = Number(String(exampleId).replace(/^extra-/, ""));
-  const extra = (grammar.extraExamples || [])[extraIndex];
-  if (extra) {
-    return { kind: "extra", id: exampleId, sentence: { id: exampleId, text: extra.text, kana: "", translation: extra.translation } };
   }
   return null;
 }
@@ -4256,11 +4525,6 @@ function exerciseGroupAnswerGuidance(group) {
 }
 
 function exerciseGroupItems(group, submitted) {
-  const uniqueExamples = uniqueExerciseExamples(group.items);
-  const sameCategory = new Set(group.items.map((exercise) => exercise.category)).size === 1;
-  if (uniqueExamples.length && sameCategory) {
-    return `${exerciseExampleSection({ category: group.category, examples: uniqueExamples })}${group.items.map((exercise, index) => exerciseGroupItem(exercise, index, submitted)).join("")}`;
-  }
   let previousKey = "";
   return group.items.map((exercise, index) => {
     const key = `${exercise.category || ""}:${exercise.example || ""}`;
@@ -4268,14 +4532,6 @@ function exerciseGroupItems(group, submitted) {
     previousKey = key;
     return `${section}${exerciseGroupItem(exercise, index, submitted)}`;
   }).join("");
-}
-
-function uniqueExerciseExamples(items) {
-  const examples = [];
-  items.forEach((exercise) => {
-    if (exercise.example && !examples.includes(exercise.example)) examples.push(exercise.example);
-  });
-  return examples;
 }
 
 function exerciseExampleSection({ category, examples }) {

@@ -87,10 +87,19 @@ The extracted JSON must follow the lesson 27 shape as closely as possible:
 
 The extraction prompt must prioritize completeness over elegance:
 
+- Shared extraction rules must live in `data/lesson-init/codex-parse-common.md`; per-lesson task files should only declare lesson id, output path, and image category directories.
+- Per-lesson tasks must read all image files in each category directory by filename sort order. Image names are ordering keys only and must not be used to infer content.
 - Do not omit any exercise question.
 - Do not merge separate exercise items into one item.
 - Preserve examples and model answers if visible.
 - Preserve grammar example sentences, including extra examples that are not part of the main text.
+- Preserve sentence `kana` exactly enough to drive ruby display: keep visible kana spacing as word/phrase boundaries, and align each sentence's kana to its Japanese `text`.
+- Extract exercises by visual block order. Each visible `[例]` starts an example block, and all following numbered questions belong to that example until the next `[例]` or next exercise heading.
+- Store the active example block on every related exercise item in `example`; do not pool examples at group level or attach later questions to earlier examples.
+- For replacement-dialogue examples, preserve the complete example in each item: short replacement prompt(s), `→`, full transformed sentence/dialogue, speaker labels, and all visible turns. Do not store only the short prompt(s).
+- Treat every numbered grammar/expression heading as a separate visual block. Grammar example sentences belong only to the block where they appear; do not borrow examples from a later block even when the form is related.
+- Store grammar-block example sentences in `extraExamples[]`. Store related main-text/dialogue sentence ids in `examples[]`.
+- If a grammar example is marked with `×`, preserve it in `extraExamples[]` with `isIncorrect: true` and a short `note`; do not use it as a correct/core practice example.
 - Use empty strings or empty arrays when the source image lacks an answer or explanation.
 - Listening exercises that have no visible answer must be preserved with `audioRequired: true`, `hasAnswer: false`, `answer: ""`, and `referenceAnswers: []`; do not invent answers.
 - Manual JSON imports must still pass the same validation and review flow as Codex-generated drafts.

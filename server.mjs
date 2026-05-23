@@ -144,9 +144,17 @@ function initCodexTaskPath(lessonId) {
   return join(root, "data", "lesson-init", `lesson${lessonId}-codex-task.md`);
 }
 
+function initCodexCommonRulesPath() {
+  return join(root, "data", "lesson-init", "codex-parse-common.md");
+}
+
 function imageBucketDir(lessonId, bucket) {
   if (!initBuckets.includes(bucket)) throw new Error("Invalid image bucket.");
   return join(root, "course-assets", `lesson${lessonId}`, bucket);
+}
+
+function isInitImageFile(name) {
+  return [".png", ".jpg", ".jpeg", ".webp"].includes(extname(name).toLowerCase());
 }
 
 async function readJsonFile(filePath, fallback = null) {
@@ -162,29 +170,69 @@ async function writeJsonFile(filePath, value) {
   await writeFile(filePath, `${JSON.stringify(value, null, 2)}\n`);
 }
 
+function lessonCounts(lessonData) {
+  return {
+    vocabulary: lessonData?.vocabulary?.length || 0,
+    grammar: lessonData?.grammar?.length || 0,
+    sentences: lessonData?.sentences?.length || 0,
+    exercises: lessonData?.exercises?.length || 0
+  };
+}
+
+function lessonContentSignature(lessonData) {
+  if (!lessonData) return "";
+  return JSON.stringify({
+    vocabulary: lessonData.vocabulary || [],
+    sentences: lessonData.sentences || [],
+    grammar: lessonData.grammar || [],
+    exercises: lessonData.exercises || []
+  });
+}
+
 async function initializedLessonCatalog() {
-  return Promise.all(lessonCatalog.map(async (item) => {
+  const records = await Promise.all(lessonCatalog.map(async (item) => ({
+    item,
+    lessonData: item.runtimeReady ? null : await readJsonFile(initLessonPath(item.id), null),
+    initState: item.runtimeReady ? {} : await readJsonFile(initStatePath(item.id), {})
+  })));
+  const signatureOwners = new Map();
+  records.forEach(({ item, lessonData, initState }) => {
+    if (item.runtimeReady || !lessonData || !initState.parseConfirmed || !initState.audioConfirmed) return;
+    const signature = lessonContentSignature(lessonData);
+    if (!signatureOwners.has(signature)) signatureOwners.set(signature, []);
+    signatureOwners.get(signature).push(item.id);
+  });
+
+  return records.map(({ item, lessonData, initState }) => {
     if (item.runtimeReady) return item;
-    const lessonData = await readJsonFile(initLessonPath(item.id), null);
-    const initState = await readJsonFile(initStatePath(item.id), {});
     const initialized = Boolean(lessonData && initState.parseConfirmed && initState.audioConfirmed);
     if (!initialized) return item;
+    const duplicateLessonIds = signatureOwners.get(lessonContentSignature(lessonData)) || [];
+    const duplicateOf = Number(duplicateLessonIds[0]) === Number(item.id) ? null : duplicateLessonIds[0];
+    if (duplicateOf) {
+      return {
+        ...item,
+        subtitle: lessonData.subtitle || item.subtitle,
+        status: "invalid",
+        statusLabel: "数据待校验",
+        description: `课程数据与第${duplicateOf}课完全重复，统计数量暂不作为真实课程数据展示。请重新核对原始截图并生成本课 JSON。`,
+        runtimeReady: false,
+        initializedAt: initState.completedAt || initState.parseConfirmedAt || "",
+        validationIssues: [`core-data-duplicates-lesson-${duplicateOf}`]
+      };
+    }
+    const counts = lessonCounts(lessonData);
     return {
       ...item,
       subtitle: lessonData.subtitle || item.subtitle,
       status: "initialized",
       statusLabel: "已初始化",
-      description: `课程数据和音频已完成：${lessonData.vocabulary?.length || 0} 个单词，${lessonData.grammar?.length || 0} 个语法，${lessonData.sentences?.length || 0} 句课文，${lessonData.exercises?.length || 0} 道练习。`,
+      description: `课程数据和音频已完成：${counts.vocabulary} 个单词，${counts.grammar} 个语法，${counts.sentences} 句课文，${counts.exercises} 道练习。`,
       runtimeReady: false,
       initializedAt: initState.completedAt || initState.parseConfirmedAt || "",
-      counts: {
-        vocabulary: lessonData.vocabulary?.length || 0,
-        grammar: lessonData.grammar?.length || 0,
-        sentences: lessonData.sentences?.length || 0,
-        exercises: lessonData.exercises?.length || 0
-      }
+      counts
     };
-  }));
+  });
 }
 
 function firstFile(value) {
@@ -305,13 +353,16 @@ function lessonAudioJobs(lesson) {
   return [
     ...lesson.vocabulary.map((word) => ({ id: word.id, type: "word", label: word.jp, text: wordAudioText(word), kana: word.kana, cn: word.cn })),
     ...lesson.sentences.map((sentence) => ({ id: sentence.id, type: "sentence", label: sentence.text, text: sentence.text, cn: sentence.translation })),
-    ...lesson.grammar.flatMap((grammar) => (grammar.extraExamples || []).map((example, index) => ({
-      id: `${grammar.id}-extra-${index + 1}`,
-      type: "sentence",
-      label: example.text,
-      text: example.text,
-      cn: example.translation
-    })))
+    ...lesson.grammar.flatMap((grammar) => (grammar.extraExamples || [])
+      .map((example, index) => ({ example, index }))
+      .filter(({ example }) => !isIncorrectLessonExample(example))
+      .map(({ example, index }) => ({
+        id: `${grammar.id}-extra-${index + 1}`,
+        type: "sentence",
+        label: lessonTextLabel(example),
+        text: lessonTextValue(example),
+        cn: example.translation
+      })))
   ];
 }
 
@@ -331,12 +382,17 @@ function addUniqueJob(jobs, seen, job) {
 }
 
 function lessonTextValue(value) {
-  if (typeof value === "string") return value;
-  return value?.text || value?.jp || "";
+  const text = typeof value === "string" ? value : value?.text || value?.jp || "";
+  return String(text || "").trim().replace(/^[×xX✕]\s*/, "");
 }
 
 function lessonTextLabel(value) {
   return lessonTextValue(value) || value?.label || "";
+}
+
+function isIncorrectLessonExample(value) {
+  const text = typeof value === "string" ? value : value?.text || value?.jp || "";
+  return Boolean(value?.isIncorrect || value?.incorrect || value?.correct === false || /^[×xX✕]/.test(String(text || "").trim()));
 }
 
 function lessonDraftAudioJobs(lesson) {
@@ -350,6 +406,7 @@ function lessonDraftAudioJobs(lesson) {
   });
   (lesson.grammar || []).forEach((grammar) => {
     (grammar.extraExamples || []).forEach((example, index) => {
+      if (isIncorrectLessonExample(example)) return;
       const text = lessonTextValue(example);
       addUniqueJob(jobs, seen, {
         id: `${grammar.id}-extra-${index + 1}`,
@@ -388,7 +445,7 @@ async function initImageManifest(lessonIdValue) {
       entries = [];
     }
     result[bucket] = entries
-      .filter((entry) => entry.isFile())
+      .filter((entry) => entry.isFile() && isInitImageFile(entry.name))
       .map((entry) => ({
         name: entry.name,
         url: `/course-assets/lesson${lessonIdValue}/${bucket}/${entry.name}`
@@ -426,58 +483,37 @@ async function codexParseTask(lessonIdValue) {
   await mkdir(dirname(draftPath), { recursive: true });
   const imageArgs = imagePaths.map((filePath) => `--image ${JSON.stringify(filePath)}`).join(" ");
   const command = `codex exec -C ${JSON.stringify(root)} -s workspace-write -a never ${imageArgs} "Read ${taskPath} and write the requested JSON draft."`;
+  const commonRulesPath = initCodexCommonRulesPath();
+  const lessonAssetRoot = join(root, "course-assets", `lesson${lessonIdValue}`);
   const prompt = [
     `# Codex Course Parse Task - Lesson ${lessonIdValue}`,
     "",
-    "You are extracting a Japanese textbook lesson from the attached images into strict JapaFlow lesson JSON.",
+    "You are extracting a Japanese textbook lesson from local images into strict JapaFlow lesson JSON.",
+    "",
+    "Read and obey the shared extraction rules first:",
+    "",
+    `- \`${commonRulesPath}\``,
     "",
     "## Output",
     "",
-    `Write the final JSON to: \`${draftPath}\``,
+    "Write the final JSON to:",
     "",
-    "Do not edit `app.js` for this task. Do not overwrite existing lesson 27 data.",
+    `- \`${draftPath}\``,
     "",
-    "## Required JSON Shape",
+    "Do not edit `app.js`. Do not overwrite existing lesson 27 data.",
     "",
-    "Follow the existing lesson 27 structure as closely as possible:",
+    "## Lesson Context",
     "",
-    "- `id`",
-    "- `title`",
-    "- `subtitle`",
-    "- `vocabulary[]`: `{ id, jp, kana, cn }`",
-    "- `sentences[]`: `{ id, order, speaker?, text, kana, translation, words, grammar }`",
-    "- `textStructure[]`: preserve textbook text sections and group sentence ids in order",
-    "- `grammar[]`: `{ id, pattern, meaning, structure, usage, examples, extraExamples }`",
-    "- `exercises[]`: `{ id, groupId, groupTitle, category, instruction, example?, type, question, choices?, answer, referenceAnswers, relatedGrammar, relatedSentences, explanation }`",
+    `- Lesson id: \`${lessonIdValue}\``,
+    `- Lesson asset root: \`${lessonAssetRoot}\``,
     "",
-    "## Extraction Rules",
+    "Read all image files under these directories in filename sort order. Ignore image names except for ordering.",
     "",
-    "- Completeness is more important than brevity.",
-    "- Do not omit any exercise question.",
-    "- Do not merge separate exercise items into one item.",
-    "- Preserve examples and model answers if visible.",
-    "- Preserve grammar explanation text, sentence patterns, example sentences, and extra examples.",
-    "- Preserve listening exercises even if answers are not visible; set `audioRequired: true` and `hasAnswer: false` when appropriate.",
-    "- Use empty strings or empty arrays when source images do not show a value.",
-    "- Use stable ids: `w1`, `s1`, `g1`, `ex-i-1-1` style where possible.",
-    "- Keep Japanese punctuation and kana exactly where visible.",
-    "- For uncertain OCR, keep the visible text and add a concise note in `explanation` only when needed.",
+    ...initBuckets.map((bucket) => `- \`${bucket}\`: \`${imageBucketDir(lessonIdValue, bucket)}\``),
     "",
-    "## Image Manifest",
+    "If a category directory is empty or missing, skip that category and use empty arrays where the source images do not show values.",
     "",
-    ...initBuckets.flatMap((bucket) => [
-      `### ${bucket}`,
-      ...((manifest[bucket] || []).map((image) => `- ${join(root, image.url.replace(/^\//, ""))}`)),
-      ""
-    ]),
-    "## Validation Before Writing",
-    "",
-    "- Confirm every uploaded exercise image has corresponding `exercises[]` items.",
-    "- Confirm every uploaded grammar image has corresponding `grammar[]` entries or `extraExamples[]`.",
-    "- Confirm every uploaded vocabulary image has corresponding `vocabulary[]` entries.",
-    "- Confirm every text/dialogue line is represented in `sentences[]` and `textStructure[]`.",
-    "",
-    "Write only the JSON file. In your final message, report counts for vocabulary, sentences, grammar, and exercises."
+    "Before writing, perform the validation checklist from the shared rules, especially the exercise `number -> question -> answer` checklist and furigana-based disambiguation."
   ].join("\n");
   await writeFile(taskPath, prompt);
   return {

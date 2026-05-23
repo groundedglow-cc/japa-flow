@@ -37,12 +37,15 @@ let jobs = [
     type: "sentence",
     path: join("audio", `lesson${lesson.id}`, "sentences", `${sentence.id}.mp3`)
   })),
-  ...lesson.grammar.flatMap((grammar) => (grammar.extraExamples || []).map((example, index) => ({
-    id: `${grammar.id}-extra-${index + 1}`,
-    text: example.text,
-    type: "sentence",
-    path: join("audio", `lesson${lesson.id}`, "sentences", `${grammar.id}-extra-${index + 1}.mp3`)
-  })))
+  ...lesson.grammar.flatMap((grammar) => (grammar.extraExamples || [])
+    .map((example, index) => ({ example, index }))
+    .filter(({ example }) => !isIncorrectGrammarExample(example))
+    .map(({ example, index }) => ({
+      id: `${grammar.id}-extra-${index + 1}`,
+      text: grammarExampleText(example),
+      type: "sentence",
+      path: join("audio", `lesson${lesson.id}`, "sentences", `${grammar.id}-extra-${index + 1}.mp3`)
+    })))
 ];
 
 if (only) {
@@ -79,6 +82,15 @@ async function loadLesson() {
   const match = appJs.match(/const lesson = ([\s\S]*?\n};)/);
   if (!match) throw new Error("Could not find lesson object in app.js");
   return vm.runInNewContext(`(${match[1].replace(/;$/, "")})`);
+}
+
+function grammarExampleText(example) {
+  return String(example?.text || "").trim().replace(/^[×xX✕]\s*/, "");
+}
+
+function isIncorrectGrammarExample(example) {
+  const text = String(example?.text || "").trim();
+  return Boolean(example?.isIncorrect || example?.incorrect || example?.correct === false || /^[×xX✕]/.test(text));
 }
 
 async function synthesize(text) {
