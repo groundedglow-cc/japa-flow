@@ -6813,6 +6813,22 @@ document.addEventListener("pointercancel", () => {
   releaseGrammarRecording(state.grammarRecordingId || state.grammarRecordingPreparingId || recordingSession?.key);
   releaseTextRecording(state.textRecordingId || state.textRecordingPreparingId || recordingSession?.sentenceId);
 }, true);
+document.addEventListener("copy", (e) => {
+  const selection = window.getSelection();
+  if (!selection || selection.isCollapsed) return;
+  const range = selection.getRangeAt(0);
+  const fragment = range.cloneContents();
+  const temp = document.createElement("div");
+  temp.appendChild(fragment);
+  // Remove ruby rt elements before copying
+  temp.querySelectorAll("rt").forEach((rt) => rt.remove());
+  const plainText = temp.innerText || temp.textContent || "";
+  if (plainText) {
+    e.clipboardData?.setData("text/plain", plainText);
+    e.preventDefault();
+  }
+});
+
 document.addEventListener("click", (event) => {
   const button = event.target.closest?.("[data-selection-speak]");
   if (!button) return;
