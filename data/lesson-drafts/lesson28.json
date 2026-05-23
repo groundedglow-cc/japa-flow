@@ -885,6 +885,7 @@
       "example": "森さん / 地図 → 森さんはわたしに地図をくれました。",
       "type": "fill",
       "question": "林 / ネックレス",
+      "questionKana": "はやし / ネックレス",
       "answer": "林さんはわたしにネックレスをくれました。",
       "referenceAnswers": [
         "林さんはわたしにネックレスをくれました。"
@@ -895,7 +896,12 @@
       "relatedSentences": [
         "s1"
       ],
-      "explanation": "别人给说话人某物，用「くれました」。"
+      "explanation": "别人给说话人某物，用「くれました」。",
+      "exampleKana": "もりさん / ちず → もりさんはわたしにちずをくれました。",
+      "answerKana": "はやしさんはわたしにネックレスをくれました。",
+      "referenceAnswerKana": [
+        "はやしさんはわたしにネックレスをくれました。"
+      ]
     },
     {
       "id": "ex-i-1-2",
@@ -916,7 +922,13 @@
       "relatedSentences": [
         "s1"
       ],
-      "explanation": ""
+      "explanation": "",
+      "questionKana": "りさん / くすり",
+      "exampleKana": "もりさん / ちず → もりさんはわたしにちずをくれました。",
+      "answerKana": "りさんはわたしにくすりをくれました。",
+      "referenceAnswerKana": [
+        "りさんはわたしにくすりをくれました。"
+      ]
     },
     {
       "id": "ex-i-1-3",
@@ -937,7 +949,13 @@
       "relatedSentences": [
         "s1"
       ],
-      "explanation": ""
+      "explanation": "",
+      "questionKana": "あに / パソコン",
+      "answerKana": "あにはわたしにパソコンをくれました。",
+      "referenceAnswerKana": [
+        "あにはわたしにパソコンをくれました。"
+      ],
+      "exampleKana": "もりさん / ちず → もりさんはわたしにちずをくれました。"
     },
     {
       "id": "ex-i-1-4",
@@ -958,7 +976,13 @@
       "relatedSentences": [
         "s1"
       ],
-      "explanation": ""
+      "explanation": "",
+      "questionKana": "ともだち / ちゅうごくのおみやげ",
+      "exampleKana": "もりさん / ちず → もりさんはわたしにちずをくれました。",
+      "answerKana": "ともだちはわたしにちゅうごくのおみやげをくれました。",
+      "referenceAnswerKana": [
+        "ともだちはわたしにちゅうごくのおみやげをくれました。"
+      ]
     },
     {
       "id": "ex-i-1-5",
@@ -979,7 +1003,12 @@
       "relatedSentences": [
         "s3"
       ],
-      "explanation": ""
+      "explanation": "",
+      "questionKana": "ゆうめいなレストランをしょうかいします",
+      "answerKana": "もりさんはりさんにゆうめいなレストランをしょうかいしてもらいました。",
+      "referenceAnswerKana": [
+        "もりさんはりさんにゆうめいなレストランをしょうかいしてもらいました。"
+      ]
     },
     {
       "id": "ex-i-1-6",
@@ -990,9 +1019,14 @@
       "example": "北京を案内します → 森さんは李さんに北京を案内してもらいました。",
       "type": "fill",
       "question": "食事をごちそうします",
+      "questionKana": "しょくじを ごちそうします",
       "answer": "森さんは李さんに食事をごちそうしてもらいました。",
+      "answerKana": "もりさんは りさんに しょくじを ごちそうして もらいました。",
       "referenceAnswers": [
         "森さんは李さんに食事をごちそうしてもらいました。"
+      ],
+      "referenceAnswerKana": [
+        "もりさんは りさんに しょくじを ごちそうして もらいました。"
       ],
       "relatedGrammar": [
         "g3"
@@ -1021,7 +1055,12 @@
       "relatedSentences": [
         "s3"
       ],
-      "explanation": ""
+      "explanation": "",
+      "questionKana": "かぞくのしゃしんをみせます",
+      "answerKana": "もりさんはりさんにかぞくのしゃしんをみせてもらいました。",
+      "referenceAnswerKana": [
+        "もりさんはりさんにかぞくのしゃしんをみせてもらいました。"
+      ]
     },
     {
       "id": "ex-i-1-8",
@@ -1042,7 +1081,12 @@
       "relatedSentences": [
         "s3"
       ],
-      "explanation": ""
+      "explanation": "",
+      "questionKana": "きっぷのかいかたをおしえます",
+      "answerKana": "もりさんはりさんにきっぷのかいかたをおしえてもらいました。",
+      "referenceAnswerKana": [
+        "もりさんはりさんにきっぷのかいかたをおしえてもらいました。"
+      ]
     },
     {
       "id": "ex-i-1-9",
@@ -1063,7 +1107,13 @@
       "relatedSentences": [
         "s2"
       ],
-      "explanation": ""
+      "explanation": "",
+      "questionKana": "おうさん / じてんしゃ / かします",
+      "exampleKana": "もりさん / デジカメ / かします → わたしはもりさんにデジカメをかしてあげました。",
+      "answerKana": "わたしはおうさんにじてんしゃをかしてあげました。",
+      "referenceAnswerKana": [
+        "わたしはおうさんにじてんしゃをかしてあげました。"
+      ]
     },
     {
       "id": "ex-i-1-10",
@@ -1084,7 +1134,13 @@
       "relatedSentences": [
         "s2"
       ],
-      "explanation": ""
+      "explanation": "",
+      "questionKana": "キムさん / えいご / おしえます",
+      "exampleKana": "もりさん / デジカメ / かします → わたしはもりさんにデジカメをかしてあげました。",
+      "answerKana": "わたしはキムさんにえいごをおしえてあげました。",
+      "referenceAnswerKana": [
+        "わたしはキムさんにえいごをおしえてあげました。"
+      ]
     },
     {
       "id": "ex-i-1-11",
@@ -1105,7 +1161,13 @@
       "relatedSentences": [
         "s2"
       ],
-      "explanation": ""
+      "explanation": "",
+      "questionKana": "たむらさん / しごと / しょうかいします",
+      "exampleKana": "もりさん / デジカメ / かします → わたしはもりさんにデジカメをかしてあげました。",
+      "answerKana": "わたしはたむらさんにしごとをしょうかいしてあげました。",
+      "referenceAnswerKana": [
+        "わたしはたむらさんにしごとをしょうかいしてあげました。"
+      ]
     },
     {
       "id": "ex-i-1-12",
@@ -1126,7 +1188,13 @@
       "relatedSentences": [
         "s2"
       ],
-      "explanation": ""
+      "explanation": "",
+      "questionKana": "りさん / パソコン / かします",
+      "exampleKana": "もりさん / デジカメ / かします → わたしはもりさんにデジカメをかしてあげました。",
+      "answerKana": "わたしはりさんにパソコンをかしてあげました。",
+      "referenceAnswerKana": [
+        "わたしはりさんにパソコンをかしてあげました。"
+      ]
     },
     {
       "id": "ex-i-1-13",
@@ -1147,7 +1215,13 @@
       "relatedSentences": [
         "s11"
       ],
-      "explanation": ""
+      "explanation": "",
+      "questionKana": "しんせんなやさい / おくります",
+      "exampleKana": "おいしいおちゃ / おくります → おのさんがおいしいおちゃをおくってくれました。",
+      "answerKana": "おのさんがしんせんなやさいをおくってくれました。",
+      "referenceAnswerKana": [
+        "おのさんがしんせんなやさいをおくってくれました。"
+      ]
     },
     {
       "id": "ex-i-1-14",
@@ -1168,7 +1242,13 @@
       "relatedSentences": [
         "s11"
       ],
-      "explanation": ""
+      "explanation": "",
+      "questionKana": "りょこうのおみやげ / とどけます",
+      "exampleKana": "おいしいおちゃ / おくります → おのさんがおいしいおちゃをおくってくれました。",
+      "answerKana": "おのさんがりょこうのおみやげをとどけてくれました。",
+      "referenceAnswerKana": [
+        "おのさんがりょこうのおみやげをとどけてくれました。"
+      ]
     },
     {
       "id": "ex-i-1-15",
@@ -1189,7 +1269,13 @@
       "relatedSentences": [
         "s11"
       ],
-      "explanation": ""
+      "explanation": "",
+      "questionKana": "にほんご / おしえます",
+      "exampleKana": "おいしいおちゃ / おくります → おのさんがおいしいおちゃをおくってくれました。",
+      "answerKana": "おのさんがにほんごをおしえてくれました。",
+      "referenceAnswerKana": [
+        "おのさんがにほんごをおしえてくれました。"
+      ]
     },
     {
       "id": "ex-i-1-16",
@@ -1210,7 +1296,13 @@
       "relatedSentences": [
         "s11"
       ],
-      "explanation": ""
+      "explanation": "",
+      "questionKana": "しごと / おそくまでてつだいます",
+      "exampleKana": "おいしいおちゃ / おくります → おのさんがおいしいおちゃをおくってくれました。",
+      "answerKana": "おのさんがしごとをおそくまでてつだってくれました。",
+      "referenceAnswerKana": [
+        "おのさんがしごとをおそくまでてつだってくれました。"
+      ]
     },
     {
       "id": "ex-i-2-1",
@@ -1229,7 +1321,13 @@
         "g4"
       ],
       "relatedSentences": [],
-      "explanation": ""
+      "explanation": "",
+      "answerKana": "りさんがみせてくれました。",
+      "referenceAnswerKana": [
+        "りさんがみせてくれました。"
+      ],
+      "questionKana": "そのちず、だれがみせてくれましたか。",
+      "exampleKana": "そのほん、だれがくれましたか。——りさんがくれました。"
     },
     {
       "id": "ex-i-2-2",
@@ -1248,7 +1346,13 @@
         "g3"
       ],
       "relatedSentences": [],
-      "explanation": ""
+      "explanation": "",
+      "answerKana": "りさんにみせてもらいました。",
+      "referenceAnswerKana": [
+        "りさんにみせてもらいました。"
+      ],
+      "questionKana": "そのちず、だれにみせてもらいましたか。",
+      "exampleKana": "そのほん、だれにあげましたか。——りさんにあげました。"
     },
     {
       "id": "ex-i-2-3",
@@ -1269,7 +1373,13 @@
         "g4"
       ],
       "relatedSentences": [],
-      "explanation": ""
+      "explanation": "",
+      "answerKana": "わたしにみせてくれました。",
+      "referenceAnswerKana": [
+        "わたしにみせてくれました。",
+        "わたしにみせてあげました。"
+      ],
+      "questionKana": "りさんはちずをだれにみせてあげましたか。"
     },
     {
       "id": "ex-i-2-4",
@@ -1288,7 +1398,12 @@
         "g3"
       ],
       "relatedSentences": [],
-      "explanation": ""
+      "explanation": "",
+      "questionKana": "もりさんはじてんしゃをだれにかしてもらいましたか。",
+      "answerKana": "ちんさんにかしてもらいました。",
+      "referenceAnswerKana": [
+        "ちんさんにかしてもらいました。"
+      ]
     },
     {
       "id": "ex-i-2-5",
@@ -1307,7 +1422,12 @@
         "g2"
       ],
       "relatedSentences": [],
-      "explanation": ""
+      "explanation": "",
+      "questionKana": "ちんさんはじてんしゃをだれにかしてあげましたか。",
+      "answerKana": "もりさんにかしてあげました。",
+      "referenceAnswerKana": [
+        "もりさんにかしてあげました。"
+      ]
     },
     {
       "id": "ex-i-3-1",
@@ -1326,7 +1446,13 @@
         "g3"
       ],
       "relatedSentences": [],
-      "explanation": ""
+      "explanation": "",
+      "questionKana": "コンピュータのぶひん / こうかんします / うまくうごきません",
+      "exampleKana": "てんぷらのつくりかた / おしえます / うまくできません → てんぷらのつくりかたをおしえてもらいましたが、うまくできません。",
+      "answerKana": "コンピュータのぶひんをこうかんしてもらいましたが、うまくうごきません。",
+      "referenceAnswerKana": [
+        "コンピュータのぶひんをこうかんしてもらいましたが、うまくうごきません。"
+      ]
     },
     {
       "id": "ex-i-3-2",
@@ -1345,7 +1471,13 @@
         "g3"
       ],
       "relatedSentences": [],
-      "explanation": ""
+      "explanation": "",
+      "questionKana": "なかだせんせいのじゅうしょ / しらべます / わかりませんでした",
+      "exampleKana": "てんぷらのつくりかた / おしえます / うまくできません → てんぷらのつくりかたをおしえてもらいましたが、うまくできません。",
+      "answerKana": "なかだせんせいのじゅうしょをしらべてもらいましたが、わかりませんでした。",
+      "referenceAnswerKana": [
+        "なかだせんせいのじゅうしょをしらべてもらいましたが、わかりませんでした。"
+      ]
     },
     {
       "id": "ex-i-3-3",
@@ -1364,7 +1496,13 @@
         "g3"
       ],
       "relatedSentences": [],
-      "explanation": ""
+      "explanation": "",
+      "questionKana": "にほんごのはつおん / なおします / まだうまくできません",
+      "answerKana": "にほんごのはつおんをなおしてもらいましたが、まだうまくできません。",
+      "referenceAnswerKana": [
+        "にほんごのはつおんをなおしてもらいましたが、まだうまくできません。"
+      ],
+      "exampleKana": "てんぷらのつくりかた / おしえます / うまくできません → てんぷらのつくりかたをおしえてもらいましたが、うまくできません。"
     },
     {
       "id": "ex-i-3-4",
@@ -1383,7 +1521,13 @@
         "g3"
       ],
       "relatedSentences": [],
-      "explanation": ""
+      "explanation": "",
+      "questionKana": "たいしかんのでんわばんごう / おしえます / かいたメモをなくしました",
+      "answerKana": "たいしかんのでんわばんごうをおしえてもらいましたが、かいたメモをなくしました。",
+      "referenceAnswerKana": [
+        "たいしかんのでんわばんごうをおしえてもらいましたが、かいたメモをなくしました。"
+      ],
+      "exampleKana": "てんぷらのつくりかた / おしえます / うまくできません → てんぷらのつくりかたをおしえてもらいましたが、うまくできません。"
     },
     {
       "id": "ex-i-4-1",
@@ -1402,7 +1546,12 @@
         "g4"
       ],
       "relatedSentences": [],
-      "explanation": ""
+      "explanation": "",
+      "exampleKana": "テレビをつけます / おちゃをはいれます",
+      "questionKana": "えんぴつをかします / じしょもかします",
+      "referenceAnswerKana": [
+        "ちょっとえんぴつをかしてくれますか。それから、じしょもかしてくれませんか。"
+      ]
     },
     {
       "id": "ex-i-4-2",
@@ -1421,7 +1570,12 @@
         "g4"
       ],
       "relatedSentences": [],
-      "explanation": ""
+      "explanation": "",
+      "exampleKana": "テレビをつけます / おちゃをはいれます",
+      "questionKana": "これを5まいコピーします / ぶちょうにとどけます",
+      "referenceAnswerKana": [
+        "これを5まいコピーしてくれますか。それから、ぶちょうにとどけてくれませんか。"
+      ]
     },
     {
       "id": "ex-i-4-3",
@@ -1440,7 +1594,12 @@
         "g3"
       ],
       "relatedSentences": [],
-      "explanation": ""
+      "explanation": "",
+      "questionKana": "1ひとでつくります / てつだいます",
+      "referenceAnswerKana": [
+        "いいえ。てつだってもらいました。"
+      ],
+      "exampleKana": "1ひとでかえります / くるまでおくります"
     },
     {
       "id": "ex-i-4-4",
@@ -1459,7 +1618,12 @@
         "g3"
       ],
       "relatedSentences": [],
-      "explanation": ""
+      "explanation": "",
+      "questionKana": "1ひとでこのてかみをよみます / やくします",
+      "referenceAnswerKana": [
+        "いいえ。やくしてもらいました。"
+      ],
+      "exampleKana": "1ひとでかえります / くるまでおくります"
     },
     {
       "id": "ex-ii-1-1",
@@ -1478,7 +1642,13 @@
         "g2"
       ],
       "relatedSentences": [],
-      "explanation": ""
+      "explanation": "",
+      "questionKana": "ちち（を・に）パソコンのざっし（を・に）かってあげました。",
+      "answerKana": "ちちにパソコンのざっしをかってあげました。",
+      "referenceAnswerKana": [
+        "ちちにパソコンのざっしをかってあげました。"
+      ],
+      "exampleKana": "むすめさんがわたし（を・に）くうこうまでおくってくれました。"
     },
     {
       "id": "ex-ii-1-2",
@@ -1497,7 +1667,12 @@
         "g4"
       ],
       "relatedSentences": [],
-      "explanation": ""
+      "explanation": "",
+      "questionKana": "ともだち（に・が）ひっこし（を・に）てつだってくれるから、だいじょうぶです。",
+      "answerKana": "ともだちがひっこしをてつだってくれるから、だいじょうぶです。",
+      "referenceAnswerKana": [
+        "ともだちがひっこしをてつだってくれるから、だいじょうぶです。"
+      ]
     },
     {
       "id": "ex-ii-1-3",
@@ -1516,7 +1691,12 @@
         "g3"
       ],
       "relatedSentences": [],
-      "explanation": ""
+      "explanation": "",
+      "questionKana": "わたしはまごさん（が・に）にもつ（に・を）もってもらいました。",
+      "answerKana": "わたしはまごさんににもつをもってもらいました。",
+      "referenceAnswerKana": [
+        "わたしはまごさんににもつをもってもらいました。"
+      ]
     },
     {
       "id": "ex-ii-1-4",
@@ -1535,7 +1715,12 @@
         "g4"
       ],
       "relatedSentences": [],
-      "explanation": ""
+      "explanation": "",
+      "questionKana": "わたしにきたちゅうごくごのてがみを、りさんがやくして（あげました・くれました）。",
+      "answerKana": "わたしにきたちゅうごくごのてがみを、りさんがやくしてくれました。",
+      "referenceAnswerKana": [
+        "りさんがやくしてくれました。"
+      ]
     },
     {
       "id": "ex-ii-1-5",
@@ -1554,7 +1739,12 @@
         "g3"
       ],
       "relatedSentences": [],
-      "explanation": ""
+      "explanation": "",
+      "questionKana": "わたしはおのさんにとうきょうをあんないして（くれました・もらいました）。",
+      "answerKana": "わたしはおのさんにとうきょうをあんないしてもらいました。",
+      "referenceAnswerKana": [
+        "わたしはおのさんにとうきょうをあんないしてもらいました。"
+      ]
     },
     {
       "id": "ex-ii-1-6",
@@ -1573,7 +1763,12 @@
         "g2"
       ],
       "relatedSentences": [],
-      "explanation": ""
+      "explanation": "",
+      "questionKana": "わからないんですか。じゃあ、おしえて（あげましょう・くれませんか）。",
+      "answerKana": "わからないんですか。じゃあ、おしえてあげましょう。",
+      "referenceAnswerKana": [
+        "おしえてあげましょう。"
+      ]
     },
     {
       "id": "ex-ii-2-1",
@@ -1599,7 +1794,13 @@
       ],
       "relatedGrammar": [],
       "relatedSentences": [],
-      "explanation": ""
+      "explanation": "",
+      "answerKana": "もしかしたら",
+      "referenceAnswerKana": [
+        "もしかしたら"
+      ],
+      "questionKana": "（　）おうさんはいかないかもしれません。",
+      "exampleKana": "あのみせのりょうりは（なかなか）おいしかったですよ。"
     },
     {
       "id": "ex-ii-2-2",
@@ -1629,7 +1830,12 @@
       "relatedSentences": [
         "s14"
       ],
-      "explanation": ""
+      "explanation": "",
+      "answerKana": "それに",
+      "referenceAnswerKana": [
+        "それに"
+      ],
+      "questionKana": "あのひとはえいごとフランスごがじょうずです。（　）かんこくごもできます。"
     },
     {
       "id": "ex-ii-2-3",
@@ -1655,7 +1861,12 @@
       ],
       "relatedGrammar": [],
       "relatedSentences": [],
-      "explanation": ""
+      "explanation": "",
+      "answerKana": "すぐに",
+      "referenceAnswerKana": [
+        "すぐに"
+      ],
+      "questionKana": "じかんがありませんから、（　）きてください。"
     },
     {
       "id": "ex-ii-2-4",
@@ -1681,7 +1892,12 @@
       ],
       "relatedGrammar": [],
       "relatedSentences": [],
-      "explanation": ""
+      "explanation": "",
+      "questionKana": "あさはパンですか、ごはんですか。——（　）ごはんです。",
+      "answerKana": "ほとんど",
+      "referenceAnswerKana": [
+        "ほとんど"
+      ]
     },
     {
       "id": "ex-ii-2-5",
@@ -1707,7 +1923,12 @@
       ],
       "relatedGrammar": [],
       "relatedSentences": [],
-      "explanation": ""
+      "explanation": "",
+      "answerKana": "それで",
+      "referenceAnswerKana": [
+        "それで"
+      ],
+      "questionKana": "あしたの あさ、よこはまへ いかなければなりません。（　）、すみませんが、かいしゃへ いくのが すこし おくれます。"
     },
     {
       "id": "ex-ii-2-6",
@@ -1727,13 +1948,18 @@
         "それに",
         "ほとんど"
       ],
-      "answer": "そう言えば",
-      "referenceAnswers": [
-        "そう言えば"
-      ],
-      "relatedGrammar": [],
-      "relatedSentences": [],
-      "explanation": ""
+  "answer": "そう言えば",
+  "referenceAnswers": [
+    "そう言えば"
+  ],
+  "questionKana": "（　）、あしたは 9がつ1にち、ぼくの たんじょうびだ。",
+  "relatedGrammar": [],
+  "relatedSentences": [],
+  "explanation": "",
+      "answerKana": "そういえば",
+      "referenceAnswerKana": [
+        "そういえば"
+      ]
     },
     {
       "id": "ex-ii-3-1",
@@ -1753,7 +1979,9 @@
         "s5",
         "s6"
       ],
-      "explanation": "需要教材录音判断，当前截图未提供标准答案。"
+      "explanation": "需要教材录音判断，当前截图未提供标准答案。",
+      "questionKana": "もりさんはおちゃをはいれます。",
+      "exampleKana": "もりさんはおのさんにマフラーをもらいました。"
     },
     {
       "id": "ex-ii-3-2",
@@ -1770,7 +1998,8 @@
       "referenceAnswers": [],
       "relatedGrammar": [],
       "relatedSentences": [],
-      "explanation": "需要教材录音判断，当前截图未提供标准答案。"
+      "explanation": "需要教材录音判断，当前截图未提供标准答案。",
+      "questionKana": "りさんは かさを かして あげました。"
     },
     {
       "id": "ex-ii-3-3",
@@ -1787,7 +2016,8 @@
       "referenceAnswers": [],
       "relatedGrammar": [],
       "relatedSentences": [],
-      "explanation": "需要教材录音判断，当前截图未提供标准答案。"
+      "explanation": "需要教材录音判断，当前截图未提供标准答案。",
+      "questionKana": "もりさんがしょるいをコピーしてくれました。"
     },
     {
       "id": "ex-ii-3-4",
@@ -1804,7 +2034,8 @@
       "referenceAnswers": [],
       "relatedGrammar": [],
       "relatedSentences": [],
-      "explanation": "需要教材录音判断，当前截图未提供标准答案。"
+      "explanation": "需要教材录音判断，当前截图未提供标准答案。",
+      "questionKana": "ながしまさんは えきまで おくって もらいました。"
     },
     {
       "id": "ex-ii-4-1",
@@ -1825,7 +2056,11 @@
       "relatedSentences": [
         "s1"
       ],
-      "explanation": ""
+      "explanation": "",
+      "answerKana": "ばさんは わたしに ちずを くれました。",
+      "referenceAnswerKana": [
+        "ばさんは わたしに ちずを くれました。"
+      ]
     },
     {
       "id": "ex-ii-4-2",
@@ -1846,7 +2081,11 @@
       "relatedSentences": [
         "s3"
       ],
-      "explanation": ""
+      "explanation": "",
+      "answerKana": "もりさんは りさんに ぺきんを あんないして もらいました。",
+      "referenceAnswerKana": [
+        "もりさんは りさんに ぺきんを あんないして もらいました。"
+      ]
     },
     {
       "id": "ex-ii-4-3",
@@ -1868,7 +2107,11 @@
         "s7",
         "s8"
       ],
-      "explanation": ""
+      "explanation": "",
+      "answerKana": "もりさんは あした ひっこしですね。ええ、みんなで てつだって あげましょう。",
+      "referenceAnswerKana": [
+        "もりさんは あした ひっこしですね。ええ、みんなで てつだって あげましょう。"
+      ]
     }
   ]
 }

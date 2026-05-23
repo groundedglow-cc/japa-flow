@@ -1465,6 +1465,13 @@ const lessonCatalog = [
     subtitle: "待初始化",
     status: "pending",
     description: "课程内容尚未采集，后续可继续按同一结构初始化。"
+  },
+  {
+    id: 30,
+    title: "第30课",
+    subtitle: "待初始化",
+    status: "pending",
+    description: "课程内容尚未采集，后续可继续按同一结构初始化。"
   }
 ];
 
@@ -1743,6 +1750,18 @@ function restoreBundledLesson() {
   reloadLessonScopedState();
 }
 
+function lessonAudioVoiceId() {
+  return lesson.audioVoiceId || lesson.voiceId || defaultVoiceId;
+}
+
+function lessonCurrentVoiceId() {
+  const preferred = lessonAudioVoiceId();
+  const stored = read(`lesson:${lesson.id}:currentVoiceId`, "");
+  if (!stored) return preferred;
+  if (preferred !== defaultVoiceId && stored === defaultVoiceId) return preferred;
+  return stored;
+}
+
 function reloadLessonScopedState() {
   stopCurrentAudio();
   state.wordProgress = initialWordProgress();
@@ -1754,7 +1773,7 @@ function reloadLessonScopedState() {
   state.wrongPractice = { current: 0, answer: "", submitted: false, result: null };
   state.interactionProgress = initialInteractionProgress();
   state.grammarPractice = initialGrammarPractice();
-  state.currentVoiceId = read(`lesson:${lesson.id}:currentVoiceId`, defaultVoiceId);
+  state.currentVoiceId = lessonCurrentVoiceId();
   state.audioStatus = null;
   state.audioStatusVoiceId = "";
   state.audioBusy = "";
@@ -2059,9 +2078,22 @@ function textSectionById(tabId) {
   return textStructure.find((section) => section.id === tabId) || textStructure[0];
 }
 
+function textSectionGroups(section) {
+  if (!section) return [];
+  if (Array.isArray(section.groups)) return section.groups;
+  if (Array.isArray(section.sentenceIds)) {
+    return [{
+      title: section.title || "课文",
+      kind: section.kind || "statement",
+      ids: section.sentenceIds
+    }];
+  }
+  return [];
+}
+
 function textSentencesForTab(tabId) {
   const section = textSectionById(tabId);
-  return section.groups.flatMap((group) => group.ids.map((id) => sentenceById(id)).filter(Boolean));
+  return textSectionGroups(section).flatMap((group) => (group.ids || []).map((id) => sentenceById(id)).filter(Boolean));
 }
 
 function textSentenceIdsForTab(tabId) {
@@ -2096,7 +2128,7 @@ function currentTextSentence() {
 }
 
 function textTabIdForSentence(sentenceId) {
-  return textStructure.find((section) => section.groups.some((group) => group.ids.includes(sentenceId)))?.id || "basic";
+  return textStructure.find((section) => textSectionGroups(section).some((group) => (group.ids || []).includes(sentenceId)))?.id || "basic";
 }
 
 function setTextTab(tabId, sentenceIndex = 0) {
@@ -2143,38 +2175,6 @@ function wordByText(text) {
 
 function grammarById(id) {
   return lesson.grammar.find((grammar) => grammar.id === id);
-}
-
-const grammarClozeTargets = {
-  g1: ["子供の時", "映画を見る時", "学生の時", "入る時", "小さい時", "休みの時", "朝や夕方の涼しい時"],
-  g2: ["見ながら", "しながら", "踊りながら", "遊びながら"],
-  g3: ["でしょう？"],
-  g4: ["しています", "していました", "している", "集まっている"],
-  g5: ["仕事で"],
-  g6: ["と会っていた"],
-  g7: ["アルバイトをしながら"],
-  g8: ["学校に通っている", "学校に通っています"],
-  g9: ["大勢の人", "大勢の"],
-  g10: ["お年寄り"],
-  g11: ["そう言えば"],
-  g12: ["へえ"],
-  g13: ["有料", "入園料"]
-};
-
-function grammarExampleTarget(grammar, sentenceText) {
-  const candidates = grammarClozeTargets[grammar.id] || [];
-  return candidates.find((candidate) => sentenceText.includes(candidate)) || "";
-}
-
-function grammarExampleCloze(grammar, sentenceText) {
-  const target = grammarExampleTarget(grammar, sentenceText);
-  if (!target) {
-    return { target: "", cloze: sentenceText.replace(/[^\s、。？]+/, "＿＿＿＿") };
-  }
-  return {
-    target,
-    cloze: sentenceText.replace(target, "＿＿＿＿")
-  };
 }
 
 function sanitizeAudioPath(path) {
@@ -2227,7 +2227,7 @@ function extraExampleAudioUrl(grammarId, index) {
 }
 
 function isIncorrectGrammarExample(example) {
-  const text = String(example?.text || "").trim();
+  const text = String(lessonTextValue(example)).trim();
   return Boolean(example?.isIncorrect || example?.incorrect || example?.correct === false || /^[×xX✕]/.test(text));
 }
 
@@ -2235,12 +2235,19 @@ function cleanGrammarExampleText(text) {
   return String(text || "").trim().replace(/^[×xX✕]\s*/, "");
 }
 
+function lessonTextValue(value) {
+  if (!value) return "";
+  if (typeof value === "string") return value;
+  return value.text || value.jp || value.kana || "";
+}
+
 function normalizedGrammarExtraExamples(grammar) {
   return (grammar.extraExamples || [])
     .map((example, index) => ({
       ...example,
       sourceIndex: index,
-      text: cleanGrammarExampleText(example.text),
+      text: cleanGrammarExampleText(lessonTextValue(example)),
+      translation: example.translation || example.cn || "",
       isIncorrect: isIncorrectGrammarExample(example)
     }))
     .filter((example) => example.text);
@@ -2372,6 +2379,7 @@ const exerciseRubyEntries = [
   ["展覧会", "てんらんかい"],
   ["新しい企画", "あたらしいきかく"],
   ["食事の準備", "しょくじのじゅんび"],
+  ["食事", "しょくじ"],
   ["1か月会社", "いっかげつかいしゃ"],
   ["海外旅行", "かいがいりょこう"],
   ["携帯電話", "けいたいでんわ"],
@@ -2504,6 +2512,7 @@ const exerciseRubyEntries = [
   ["散歩", "さんぽ"],
   ["お茶", "おちゃ"],
   ["音楽", "おんがく"],
+  ["中国", "ちゅうごく"],
   ["笑", "わら"],
   ["道具", "どうぐ"],
   ["食堂", "しょくどう"],
@@ -2550,7 +2559,12 @@ const exerciseRubyEntries = [
 
 function renderExerciseText(value, options = {}) {
   const source = String(value || "");
-  let html = options.kana ? rubyTextFromKana(source, options.kana) || rubyExerciseText(source) : rubyExerciseText(source);
+  const allowStaticFallback = options.allowStaticFallback !== false;
+  let html = options.kana
+    ? rubyTextFromKana(source, options.kana) || (allowStaticFallback ? rubyExerciseText(source) : escapeHtml(source))
+    : allowStaticFallback
+      ? rubyExerciseText(source)
+      : escapeHtml(source);
   html = html.replace(/__([\s\S]+?)__/g, `<span class="example-underline">$1</span>`);
   if (options.exampleBreaks) {
     html = html
@@ -2564,6 +2578,31 @@ function renderExerciseText(value, options = {}) {
 
 function renderJapaneseText(value, options = {}) {
   return renderExerciseText(value, options);
+}
+
+function exerciseQuestionHtml(exercise) {
+  return renderExerciseText(exercise?.question || "", { kana: exercise?.questionKana, allowStaticFallback: false });
+}
+
+function exerciseExampleHtml(exercise, example = exercise?.example || "") {
+  return renderExerciseText(example, { kana: exercise?.exampleKana, exampleBreaks: true, allowStaticFallback: false });
+}
+
+function exerciseAnswerHtml(exercise, value = exercise?.answer || "") {
+  return renderExerciseText(value, { kana: exercise?.answerKana, allowStaticFallback: false });
+}
+
+function exerciseReferenceAnswerHtml(exercise, value, index) {
+  const kana = Array.isArray(exercise?.referenceAnswerKana) ? exercise.referenceAnswerKana[index] : "";
+  return renderExerciseText(value, { kana: kana || (value === exercise?.answer ? exercise?.answerKana : ""), allowStaticFallback: false });
+}
+
+function exerciseCorrectAnswerHtml(exercise, fallback = "暂无标准答案") {
+  const references = Array.isArray(exercise?.referenceAnswers) ? exercise.referenceAnswers.filter(Boolean) : [];
+  if (references.length) {
+    return references.map((value, index) => exerciseReferenceAnswerHtml(exercise, value, index)).join(" / ");
+  }
+  return exercise?.answer ? exerciseAnswerHtml(exercise) : fallback;
 }
 
 function rubyTextFromKana(source, kana) {
@@ -2961,7 +3000,7 @@ function layout(content) {
   const current = currentRoute.page;
   const runtimeLessonId = routeRuntimeLessonId();
   const inLesson = Boolean(runtimeLessonId);
-  const showLessonSubnav = inLesson && current !== "init";
+  const showLessonSubnav = inLesson && ["vocab", "grammar", "text", "exercises", "wrongbook", "result"].includes(current);
   return `
     <div class="shell">
       <header class="topbar">
@@ -3141,7 +3180,7 @@ function lessonDashboard() {
       </div>
       <div class="module-grid">
         ${moduleCard("单词", "先完成全词表发音与打乱测试。", summary.vocab, `/lesson/${lesson.id}/vocab`)}
-        ${moduleCard("语法", "围绕核心例句完成填空和跟读。", summary.grammar, `/lesson/${lesson.id}/grammar`)}
+        ${moduleCard("语法", "围绕核心例句完成中译日和跟读。", summary.grammar, `/lesson/${lesson.id}/grammar`)}
         ${moduleCard("课文", "按基本课文和应用课文连续朗读，再复盘弱句。", summary.text, `/lesson/${lesson.id}/text`)}
         ${moduleCard("练习", "使用标准练习做最终验收。", summary.exercises, `/lesson/${lesson.id}/exercises`)}
         ${moduleCard("结果", `当前弱项 ${summary.weak.total} 个。`, { completed: summary.weak.resolved, total: summary.weak.total }, `/lesson/${lesson.id}/result`)}
@@ -3592,7 +3631,7 @@ function textGroupProgress(ids) {
 
 function renderTextStructure(section) {
   if (!section) return "";
-  return section.groups.map((group) => `
+  return textSectionGroups(section).map((group) => `
     <section class="text-section">
       <div class="text-group-title">
         <span>${group.title}</span>
@@ -3670,7 +3709,7 @@ function sentencePracticeBlock(item, tabId, practice, current) {
 
 function sentencePosition(sentenceId) {
   for (const section of textStructure) {
-    for (const group of section.groups) {
+    for (const group of textSectionGroups(section)) {
       if (group.ids.includes(sentenceId)) return `${section.title} · ${group.title}`;
     }
   }
@@ -3818,13 +3857,8 @@ function grammarPracticeMastered(practice) {
   return Boolean(practice.correct && practice.pronunciationPassed);
 }
 
-function grammarExampleTargetTone(sentence) {
-  return sentence.translation || sentence.kana || "请补全上面的关键语法点。";
-}
-
-function renderGrammarCloze(grammar, sentence) {
-  const { target, cloze } = grammarExampleCloze(grammar, sentence.text);
-  return { target, cloze: target ? cloze : sentence.text };
+function grammarExamplePromptText(sentence) {
+  return sentence.translation || sentence.cn || "请将中文翻译成日语。";
 }
 
 function grammarDetail(grammar) {
@@ -3884,7 +3918,7 @@ function grammarDetail(grammar) {
             <div class="related-exercise-row">
               <span class="related-exercise-no">${index + 1}</span>
               <span class="exercise-badge">${exercise.category}</span>
-              <span class="related-exercise-title">${escapeHtml(exercise.groupTitle)} · ${renderJapaneseText(exercise.question)}</span>
+              <span class="related-exercise-title">${escapeHtml(exercise.groupTitle)} · ${exerciseQuestionHtml(exercise)}</span>
               <button class="secondary compact-action" data-exercise-index="${index}">去练习</button>
             </div>
           `).join("") : "<span class='muted'>暂无相关练习。</span>"}
@@ -3897,22 +3931,21 @@ function grammarDetail(grammar) {
 function grammarExamplePracticeCard(grammar, item, index) {
   const sentence = item.sentence;
   const practice = grammarPracticeState(grammar.id, item.id);
-  const { target, cloze } = renderGrammarCloze(grammar, sentence);
-  const clozeText = target ? cloze : sentence.text;
   const ready = practice.submitted;
   const mastered = grammarPracticeMastered(practice);
   const judgementReady = ready && practice.pronunciationAttempts > 0;
   const statusClass = mastered ? "passed" : judgementReady ? "failed" : "pending";
-  const targetText = target || sentence.text;
+  const targetText = sentence.text;
   const locationText = item.kind === "extra" ? "补充例句" : sentencePosition(sentence.id);
   const collapsed = Boolean(practice.collapsed);
+  const promptText = grammarExamplePromptText(sentence);
   return `
     <article class="grammar-practice-card ${statusClass} ${collapsed ? "collapsed" : ""}">
       <div class="grammar-practice-head">
         <div class="grammar-practice-head-main">
           <span class="grammar-practice-no">${index + 1}</span>
           <div>
-            <strong>${grammarExampleTargetTone(sentence)}</strong>
+            <strong>${promptText}</strong>
             <small>${locationText}</small>
           </div>
         </div>
@@ -3924,20 +3957,20 @@ function grammarExamplePracticeCard(grammar, item, index) {
       </div>
       ${ready ? `
         <div class="grammar-answer-inline ${practice.correct ? "passed" : "failed"}">
-          <div class="diff-line">填空结果：${practice.correct ? "正确" : "错误"}；标准答案：${renderJapaneseText(targetText, { kana: sentence.kana })}</div>
+          <div class="diff-line">翻译结果：${practice.correct ? "正确" : "错误"}；标准答案：${renderJapaneseText(targetText, { kana: sentence.kana })}</div>
         </div>
       ` : ""}
       <div class="grammar-practice-body ${collapsed ? "collapsed" : ""}">
-        <div class="grammar-practice-cloze">${renderJapaneseText(clozeText, { kana: target ? "" : sentence.kana })}</div>
+        <div class="grammar-practice-cloze grammar-prompt-cn">${escapeHtml(promptText)}</div>
         <div class="grammar-practice-form">
-          <input class="answer-input" data-grammar-answer="${grammarPracticeKey(grammar.id, item.id)}" value="${escapeHtml(practice.answer || "")}" placeholder="补全空缺部分" />
+          <input class="answer-input" data-grammar-answer="${grammarPracticeKey(grammar.id, item.id)}" value="${escapeHtml(practice.answer || "")}" placeholder="翻译中文为日语" />
           <button class="primary" data-grammar-check="${grammarPracticeKey(grammar.id, item.id)}">检查</button>
         </div>
         ${grammarPronunciationPanel(grammar, item)}
       ${judgementReady ? `
         <div class="grammar-practice-result ${mastered ? "passed" : "failed"}">
           <strong>${mastered ? "已会" : "需复习"}</strong>
-          <span>${mastered ? "填空和跟读都已通过。" : practice.correct ? "填空已对，继续完成跟读。" : "先补全关键语法点，再进行跟读。"} </span>
+          <span>${mastered ? "翻译和跟读都已通过。" : practice.correct ? "翻译已对，继续完成跟读。" : "先把中文翻成日语，再进行跟读。"} </span>
         </div>
       ` : ""}
       </div>
@@ -4024,7 +4057,7 @@ function handleGrammarPracticeCheck(key) {
   const item = grammarPracticeItemByKey(grammar, exampleId);
   if (!item) return;
   const practice = grammarPracticeState(grammarId, exampleId);
-  const target = grammarPracticeTargetText(grammar, item);
+  const target = item.sentence?.text || "";
   const correct = normalizeForDiff(practice.answer || "") === normalizeForDiff(target || "");
   updateGrammarPractice(grammarId, exampleId, {
     submitted: true,
@@ -4070,12 +4103,6 @@ function grammarPracticeItemByKey(grammar, exampleId) {
     if (sentence) return { kind: "core", id: core, sentence };
   }
   return null;
-}
-
-function grammarPracticeTargetText(grammar, item) {
-  if (!item?.sentence?.text) return "";
-  const { target } = grammarExampleCloze(grammar, item.sentence.text);
-  return target || item.sentence.text;
 }
 
 function audioManagePage() {
@@ -4501,7 +4528,7 @@ function exerciseGroupItem(exercise, index, submitted) {
     <article class="exercise-item ${submitted && result?.isCorrect ? "passed" : submitted && !result?.isCorrect ? "wrong" : ""}">
       <div class="exercise-item-head">
         <span class="related-exercise-no">${index + 1}</span>
-        <div class="question">${renderExerciseText(exercise.question)}</div>
+        <div class="question">${exerciseQuestionHtml(exercise)}</div>
         ${submitted && result ? `<span class="practice-status ${result.isCorrect ? "success" : "danger"}">${result.isSkipped ? "已记录" : result.isCorrect ? "正确" : "错误"}</span>` : ""}
       </div>
       ${exerciseAnswerGuidance(exercise) ? `<p class="answer-guidance">${exerciseAnswerGuidance(exercise)}</p>` : ""}
@@ -4528,27 +4555,27 @@ function exerciseGroupItems(group, submitted) {
   let previousKey = "";
   return group.items.map((exercise, index) => {
     const key = `${exercise.category || ""}:${exercise.example || ""}`;
-    const section = key !== previousKey ? exerciseExampleSection({ category: exercise.category, examples: [exercise.example] }) : "";
+    const section = key !== previousKey ? exerciseExampleSection({ exercise, category: exercise.category, examples: [exercise.example] }) : "";
     previousKey = key;
     return `${section}${exerciseGroupItem(exercise, index, submitted)}`;
   }).join("");
 }
 
-function exerciseExampleSection({ category, examples }) {
+function exerciseExampleSection({ exercise, category, examples }) {
   const validExamples = (examples || []).filter(Boolean);
   if (!validExamples.length) return "";
   return `
     <div class="exercise-example-section">
       <span>${category}</span>
       <div class="exercise-example-lines">
-        ${validExamples.map((example) => `<div class="exercise-example">${formatExerciseExample(example)}</div>`).join("")}
+        ${validExamples.map((example) => `<div class="exercise-example">${formatExerciseExample(example, exercise)}</div>`).join("")}
       </div>
     </div>
   `;
 }
 
-function formatExerciseExample(example) {
-  return renderExerciseText(example, { exampleBreaks: true });
+function formatExerciseExample(example, exercise = null) {
+  return exercise ? exerciseExampleHtml(exercise, example) : renderExerciseText(example, { exampleBreaks: true });
 }
 
 function answerControl(exercise, value = "", options = {}) {
@@ -4625,18 +4652,17 @@ function exerciseGroupFeedback(group) {
 }
 
 function exerciseFeedbackRow(exercise, result, index) {
-  const correctText = exercise.referenceAnswers?.join(" / ") || exercise.answer || "暂无标准答案";
   return `
     <div class="exercise-feedback-row ${result.isCorrect ? "passed" : "wrong"}">
       <div class="exercise-item-head">
         <span class="related-exercise-no">${index + 1}</span>
         <div>
           <strong>${result.isSkipped ? "已记录" : result.isCorrect ? "正确" : "错误"}</strong>
-          <p>${renderExerciseText(exercise.question)}</p>
+          <p>${exerciseQuestionHtml(exercise)}</p>
         </div>
       </div>
       ${meta("你的答案", result.userAnswer ? renderExerciseText(result.userAnswer) : "未作答")}
-      ${meta(exercise.type === "sentence_making" ? "参考答案" : "正确答案", renderExerciseText(correctText))}
+      ${meta(exercise.type === "sentence_making" ? "参考答案" : "正确答案", exerciseCorrectAnswerHtml(exercise))}
       ${!result.isCorrect ? meta("错误说明", exercise.explanation) : ""}
       <div class="meta-line">
         <span class="label">相关语法</span>
@@ -4660,7 +4686,7 @@ function feedbackView(exercise, result) {
     return `
       <article class="panel feedback">
         <h3>录音题暂不判分</h3>
-        ${meta("题目", renderExerciseText(exercise.question))}
+        ${meta("题目", exerciseQuestionHtml(exercise))}
         ${meta("说明", exercise.explanation)}
         <div class="button-row">
           <button class="primary" data-next-exercise>${state.currentExercise === lesson.exercises.length - 1 ? "进入结果页" : "下一题"}</button>
@@ -4668,7 +4694,6 @@ function feedbackView(exercise, result) {
       </article>
     `;
   }
-  const correctText = exercise.referenceAnswers?.join(" / ") || exercise.answer;
   const diff = answerDiff(result.userAnswer || "", exercise.answer);
   return `
     <article class="panel feedback ${result.isCorrect ? "passed" : "wrong"}">
@@ -4677,7 +4702,7 @@ function feedbackView(exercise, result) {
         <span>${result.isCorrect ? "答案与正确答案一致" : "答案与正确答案不一致"}</span>
       </div>
       ${meta("你的答案", result.userAnswer ? renderExerciseText(result.userAnswer) : "未作答")}
-      ${meta(exercise.type === "sentence_making" ? "参考答案" : "正确答案", renderExerciseText(correctText))}
+      ${meta(exercise.type === "sentence_making" ? "参考答案" : "正确答案", exerciseCorrectAnswerHtml(exercise, ""))}
       <div class="meta-line">
         <span class="label">差异对比</span>
         ${result.isCorrect ? "<span>答案与参考要求一致。</span>" : `
@@ -4818,9 +4843,9 @@ function wrongItem(item) {
   return `
     <div class="card panel">
       <p class="label">${exercise.groupTitle} · ${exercise.category} · ${wrongStatusText(item.status)}</p>
-      <h3>${renderExerciseText(exercise.question)}</h3>
+      <h3>${exerciseQuestionHtml(exercise)}</h3>
       ${meta("你的答案", item.userAnswer ? renderExerciseText(item.userAnswer) : "未作答")}
-      ${meta("正确答案 / 参考答案", renderExerciseText(exercise.referenceAnswers?.join(" / ") || exercise.answer))}
+      ${meta("正确答案 / 参考答案", exerciseCorrectAnswerHtml(exercise, ""))}
       ${meta("错题状态", `${wrongStatusText(item.status)} · 错误 ${item.wrongCount || 1} 次 · 连续正确 ${item.correctStreak || 0} 次`)}
       <div class="tags">${exercise.relatedGrammar.map((id) => grammarTag(id)).join("")}</div>
       <div class="button-row" style="margin-top:12px">
@@ -4876,11 +4901,11 @@ function wrongBookPage() {
         <div class="exercise-context">
           <span class="exercise-badge">${exercise.category}</span>
           <div class="meta-line"><span class="label">要求</span><span>${exercise.instruction}</span></div>
-          ${exercise.example ? `<div class="meta-line"><span class="label">例</span><span>${formatExerciseExample(exercise.example)}</span></div>` : ""}
+          ${exercise.example ? `<div class="meta-line"><span class="label">例</span><span>${formatExerciseExample(exercise.example, exercise)}</span></div>` : ""}
           <div class="group-score">错误 ${item.wrongCount || 1} 次 · 连续正确 ${item.correctStreak || 0} 次</div>
         </div>
         <p class="label">原题</p>
-        <div class="question">${renderExerciseText(exercise.question)}</div>
+        <div class="question">${exerciseQuestionHtml(exercise)}</div>
         ${answerControl(exercise, state.wrongPractice.answer, { id: exercise.id, mode: "wrong", disabled: state.wrongPractice.submitted })}
         <div class="button-row" style="margin-top:16px">
           <button class="primary" data-submit-wrong-practice ${state.wrongPractice.submitted ? "disabled" : ""}>提交错题</button>
@@ -6185,30 +6210,46 @@ async function confirmInitParse() {
 async function generateInitAudio() {
   const lessonId = initLessonId();
   if (!lessonId) return;
-  const batchSize = 3;
+  if (!state.initStatus?.audio?.items?.length) await loadInitStatus(true);
+  const targets = (state.initStatus?.audio?.items || []).filter((item) => !item.exists);
+  if (!targets.length) {
+    state.initMessage = "音频已完整，可以确认音频。";
+    render();
+    return;
+  }
   let generatedTotal = 0;
   let failedTotal = 0;
-  let lastMissing = state.initStatus?.audio?.missing || 0;
-  state.initBusy = `正在生成音频：已生成 0 个，剩余 ${lastMissing} 个。`;
+  let completedTotal = 0;
+  state.initBusy = `正在并行发起 ${targets.length} 个音频生成请求...`;
   state.initMessage = "";
   render();
   try {
-    while (true) {
-      const data = await postAudioApi("/api/init/audio/generate", { lessonId, voiceId: state.currentVoiceId, scope: "all", limit: batchSize });
-      generatedTotal += data.generated || 0;
-      failedTotal += data.failed || 0;
-      if (data.audio) {
-        state.initStatus = { ...(state.initStatus || {}), audio: data.audio };
-        lastMissing = data.audio.missing || 0;
+    const requests = targets.map(async (item) => {
+      try {
+        const data = await postAudioApi("/api/init/audio/generate", {
+          lessonId,
+          voiceId: state.currentVoiceId,
+          scope: "one",
+          id: `${item.type}:${item.id}`
+        });
+        const itemUpdate = data.items?.[0];
+        if (itemUpdate?.error) failedTotal += 1;
+        if (itemUpdate?.generated || itemUpdate?.exists) generatedTotal += 1;
+        updateInitAudioItemStatus(itemUpdate);
+      } catch (error) {
+        failedTotal += 1;
+        updateInitAudioItemStatus({ ...item, error: String(error.message || error), exists: false, generated: false });
+      } finally {
+        completedTotal += 1;
+        const remaining = targets.length - completedTotal;
+        state.initBusy = `正在生成音频：已完成 ${completedTotal} / ${targets.length}，成功 ${generatedTotal} 个，失败 ${failedTotal} 个，剩余 ${remaining} 个。`;
+        render();
       }
-      state.initBusy = `正在生成音频：本次已生成 ${generatedTotal} 个，剩余 ${lastMissing} 个。`;
-      render();
-      if (failedTotal || !data.attempted || !lastMissing) break;
-      await waitClient(120);
-    }
+    });
+    await Promise.all(requests);
     state.initBusy = "";
     state.initMessage = failedTotal
-      ? `音频生成已暂停：成功 ${generatedTotal} 个，失败 ${failedTotal} 个。请检查服务端环境变量或失败项后重试。`
+      ? `音频生成完成：成功 ${generatedTotal} 个，失败 ${failedTotal} 个。可稍后再次点击继续补齐。`
       : `音频生成完成：生成 ${generatedTotal} 个。`;
     await loadInitStatus(true);
   } catch (error) {
@@ -6216,6 +6257,25 @@ async function generateInitAudio() {
     state.initMessage = String(error.message || error);
     render();
   }
+}
+
+function updateInitAudioItemStatus(itemUpdate) {
+  if (!state.initStatus?.audio?.items || !itemUpdate) return;
+  const items = state.initStatus.audio.items.map((item) => {
+    if (item.type !== itemUpdate.type || item.id !== itemUpdate.id) return item;
+    return { ...item, ...itemUpdate };
+  });
+  const generated = items.filter((item) => item.exists).length;
+  state.initStatus = {
+    ...(state.initStatus || {}),
+    audio: {
+      ...(state.initStatus.audio || {}),
+      items,
+      generated,
+      missing: Math.max(0, items.length - generated),
+      total: items.length
+    }
+  };
 }
 
 async function confirmInitAudio() {
@@ -6350,7 +6410,19 @@ function render() {
     bind();
     return;
   }
-  app.innerHTML = (views[current] || home)();
+  try {
+    app.innerHTML = (views[current] || home)();
+  } catch (error) {
+    console.error(error);
+    app.innerHTML = layout(`
+      <section class="panel">
+        <p class="eyebrow">页面渲染失败</p>
+        <h2>当前模块暂时无法显示</h2>
+        <p class="lead">${escapeHtml(String(error.message || error))}</p>
+        <button class="secondary" data-nav="/lesson/${route().lessonId || lesson.id}">返回课程</button>
+      </section>
+    `);
+  }
   ensurePageFocus();
   bind();
   if (current === "home") loadCourseCatalog();

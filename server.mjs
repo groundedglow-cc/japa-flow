@@ -88,6 +88,14 @@ const lessonCatalog = [
     status: "pending",
     description: "课程内容尚未采集，后续可继续按同一结构初始化。",
     runtimeReady: false
+  },
+  {
+    id: 30,
+    title: "第30课",
+    subtitle: "待初始化",
+    status: "pending",
+    description: "课程内容尚未采集，后续可继续按同一结构初始化。",
+    runtimeReady: false
   }
 ];
 
@@ -179,6 +187,12 @@ function lessonCounts(lessonData) {
   };
 }
 
+function lessonSubtitleForCatalog(lessonData, fallback) {
+  const subtitle = String(lessonData?.subtitle || "").trim();
+  if (subtitle && subtitle !== "待确认" && subtitle !== "待初始化") return subtitle;
+  return lessonData?.sentences?.[0]?.text || fallback;
+}
+
 function lessonContentSignature(lessonData) {
   if (!lessonData) return "";
   return JSON.stringify({
@@ -212,11 +226,12 @@ async function initializedLessonCatalog() {
     if (duplicateOf) {
       return {
         ...item,
-        subtitle: lessonData.subtitle || item.subtitle,
+        subtitle: lessonSubtitleForCatalog(lessonData, item.subtitle),
         status: "invalid",
         statusLabel: "数据待校验",
         description: `课程数据与第${duplicateOf}课完全重复，统计数量暂不作为真实课程数据展示。请重新核对原始截图并生成本课 JSON。`,
         runtimeReady: false,
+        voiceId: initState.voiceId || defaultVoiceId,
         initializedAt: initState.completedAt || initState.parseConfirmedAt || "",
         validationIssues: [`core-data-duplicates-lesson-${duplicateOf}`]
       };
@@ -224,15 +239,22 @@ async function initializedLessonCatalog() {
     const counts = lessonCounts(lessonData);
     return {
       ...item,
-      subtitle: lessonData.subtitle || item.subtitle,
+      subtitle: lessonSubtitleForCatalog(lessonData, item.subtitle),
       status: "initialized",
       statusLabel: "已初始化",
       description: `课程数据和音频已完成：${counts.vocabulary} 个单词，${counts.grammar} 个语法，${counts.sentences} 句课文，${counts.exercises} 道练习。`,
       runtimeReady: false,
+      voiceId: initState.voiceId || defaultVoiceId,
       initializedAt: initState.completedAt || initState.parseConfirmedAt || "",
       counts
     };
   });
+}
+
+async function syncStudentCatalog() {
+  const lessons = await initializedLessonCatalog();
+  await writeJsonFile(join(root, "data", "catalog.json"), { lessons, generatedAt: new Date().toISOString() });
+  return lessons;
 }
 
 function firstFile(value) {
@@ -460,12 +482,209 @@ function validateLessonDraft(draft, expectedLessonId) {
   draft.id = safeLessonId(draft.id || expectedLessonId);
   if (draft.id !== expectedLessonId) throw new Error(`Draft lesson id ${draft.id} does not match lesson ${expectedLessonId}.`);
   draft.title = draft.title || `第${expectedLessonId}课`;
-  draft.subtitle = draft.subtitle || "待确认";
   for (const key of ["vocabulary", "sentences", "grammar", "exercises"]) {
     if (!Array.isArray(draft[key])) throw new Error(`Draft missing ${key} array.`);
   }
   if (!Array.isArray(draft.textStructure)) draft.textStructure = [];
+  draft.subtitle = draft.subtitle || draft.sentences?.[0]?.text || "待确认";
+  backfillExerciseKana(draft);
   return draft;
+}
+
+const exerciseKanaSupplementEntries = [
+  ["地図", "ちず"],
+  ["切符", "きっぷ"],
+  ["買い方", "かいかた"],
+  ["紹介", "しょうかい"],
+  ["薬", "くすり"],
+  ["友達", "ともだち"],
+  ["お土産", "おみやげ"],
+  ["有名", "ゆうめい"],
+  ["野菜", "やさい"],
+  ["新鮮", "しんせん"],
+  ["旅行", "りょこう"],
+  ["仕事", "しごと"],
+  ["大使館", "たいしかん"],
+  ["電話番号", "でんわばんごう"],
+  ["番号", "ばんごう"],
+  ["住所", "じゅうしょ"],
+  ["発音", "はつおん"],
+  ["直", "なお"],
+  ["調べ", "しらべ"],
+  ["交換", "こうかん"],
+  ["動", "うご"],
+  ["部品", "ぶひん"],
+  ["自転車", "じてんしゃ"],
+  ["英語", "えいご"],
+  ["フランス語", "フランスご"],
+  ["韓国語", "かんこくご"],
+  ["上手", "じょうず"],
+  ["時間", "じかん"],
+  ["朝", "あさ"],
+  ["会社", "かいしゃ"],
+  ["横浜", "よこはま"],
+  ["誕生日", "たんじょうび"],
+  ["大丈夫", "だいじょうぶ"],
+  ["案内", "あんない"],
+  ["訳", "やく"],
+  ["引っ越し", "ひっこし"],
+  ["手伝", "てつだ"],
+  ["貸", "か"],
+  ["見せ", "みせ"],
+  ["持", "も"],
+  ["来", "き"],
+  ["でき", "でき"],
+  ["分か", "わか"],
+  ["教え", "おしえ"],
+  ["届", "とど"],
+  ["送", "おく"],
+  ["書", "か"],
+  ["読", "よ"],
+  ["会", "あ"],
+  ["行", "い"],
+  ["買", "か"],
+  ["使", "つか"],
+  ["作", "つく"],
+  ["帰", "かえ"],
+  ["部長", "ぶちょう"],
+  ["荷物", "にもつ"],
+  ["手紙", "てがみ"],
+  ["中国語", "ちゅうごくご"],
+  ["日本語", "にほんご"],
+  ["東京", "とうきょう"],
+  ["本", "ほん"],
+  ["王さん", "おうさん"],
+  ["小野さん", "おのさん"],
+  ["中田先生", "なかだせんせい"],
+  ["娘さん", "むすめさん"],
+  ["空港", "くうこう"],
+  ["鉛筆", "えんぴつ"],
+  ["辞書", "じしょ"],
+  ["枚", "まい"],
+  ["天ぷら", "てんぷら"],
+  ["作り方", "つくりかた"],
+  ["車", "くるま"],
+  ["店", "みせ"],
+  ["料理", "りょうり"],
+  ["お茶", "おちゃ"],
+  ["森さん", "もりさん"],
+  ["林さん", "はやしさん"]
+];
+
+function backfillExerciseKana(draft) {
+  const dictionary = buildExerciseKanaDictionary(draft);
+  for (const exercise of draft.exercises || []) {
+    if (exercise.question && !exercise.questionKana) {
+      const kana = deriveExerciseKana(exercise.question, dictionary);
+      if (kana) exercise.questionKana = kana;
+    }
+    if (exercise.example && !exercise.exampleKana) {
+      const kana = deriveExerciseKana(exercise.example, dictionary);
+      if (kana) exercise.exampleKana = kana;
+    }
+    if (exercise.answer && !exercise.answerKana) {
+      const kana = deriveExerciseKana(exercise.answer, dictionary);
+      if (kana) exercise.answerKana = kana;
+    }
+    if (Array.isArray(exercise.referenceAnswers)) {
+      const kanaList = Array.isArray(exercise.referenceAnswerKana) ? [...exercise.referenceAnswerKana] : [];
+      let changed = false;
+      for (let index = 0; index < exercise.referenceAnswers.length; index += 1) {
+        if (kanaList[index]) continue;
+        const kana = deriveExerciseKana(exercise.referenceAnswers[index], dictionary);
+        if (kana) {
+          kanaList[index] = kana;
+          changed = true;
+        }
+      }
+      if (changed || (!exercise.referenceAnswerKana && kanaList.some(Boolean))) {
+        exercise.referenceAnswerKana = kanaList;
+      }
+    }
+  }
+}
+
+function buildExerciseKanaDictionary(draft) {
+  const map = new Map();
+  const add = (surface, reading) => {
+    const text = String(surface || "").trim();
+    const kana = String(reading || "").trim();
+    if (!text || !kana) return;
+    const current = map.get(text);
+    if (!current || current.length < kana.length) map.set(text, kana);
+  };
+
+  for (const [surface, reading] of exerciseKanaSupplementEntries) add(surface, reading);
+  for (const word of draft.vocabulary || []) add(word.jp, word.kana);
+  for (const sentence of draft.sentences || []) {
+    add(sentence.text, sentence.kana);
+    for (const [surface, reading] of extractRubyPairs(sentence.text, sentence.kana)) add(surface, reading);
+  }
+  for (const exercise of draft.exercises || []) {
+    if (exercise.question && exercise.questionKana) add(exercise.question, exercise.questionKana);
+    if (exercise.example && exercise.exampleKana) add(exercise.example, exercise.exampleKana);
+    if (exercise.answer && exercise.answerKana) add(exercise.answer, exercise.answerKana);
+    for (let index = 0; index < (exercise.referenceAnswers || []).length; index += 1) {
+      const reading = Array.isArray(exercise.referenceAnswerKana) ? exercise.referenceAnswerKana[index] : "";
+      if (reading) add(exercise.referenceAnswers[index], reading);
+    }
+  }
+  return [...map.entries()].sort((a, b) => b[0].length - a[0].length);
+}
+
+function deriveExerciseKana(text, entries) {
+  const source = String(text || "");
+  if (!source) return "";
+  let result = "";
+  for (let index = 0; index < source.length;) {
+    const char = source[index];
+    if (/\s/.test(char) || isExercisePunctuation(char)) {
+      result += char;
+      index += 1;
+      continue;
+    }
+    let matched = null;
+    for (const [surface, reading] of entries) {
+      if (source.startsWith(surface, index)) {
+        matched = [surface, reading];
+        break;
+      }
+    }
+    if (matched) {
+      result += matched[1];
+      index += matched[0].length;
+      continue;
+    }
+    if (/[\u3040-\u30ffA-Za-z0-9０-９]/u.test(char)) {
+      result += char;
+      index += 1;
+      continue;
+    }
+    if (/[\u3400-\u9fff]/u.test(char)) return "";
+    result += char;
+    index += 1;
+  }
+  return result;
+}
+
+function isExercisePunctuation(char) {
+  return /[。、，．,.！？!?「」『』（）()［］\[\]【】・:：;；／\/—\-]/u.test(char || "");
+}
+
+function extractRubyPairs(text, reading) {
+  const result = [];
+  const surface = String(text || "");
+  const kana = String(reading || "");
+  if (!surface || !kana) return result;
+  const patterns = [
+    ["地図", "ちず"],
+    ["仕事", "しごと"],
+    ["大使館", "たいしかん"]
+  ];
+  for (const [needle, ruby] of patterns) {
+    if (surface.includes(needle) && kana.includes(ruby)) result.push([needle, ruby]);
+  }
+  return result;
 }
 
 async function codexParseTask(lessonIdValue) {
@@ -665,8 +884,8 @@ async function handleApi(req, res, url) {
     // 课程初始化与音频生成相关接口，仅管理端使用。Phase 5 起从学员端剥离。
     if (url.pathname === "/api/init/status") {
       const requestedLessonId = safeLessonId(url.searchParams.get("lessonId"));
-      const voiceId = url.searchParams.get("voiceId") || defaultVoiceId;
       const state = await readJsonFile(initStatePath(requestedLessonId), {});
+      const voiceId = state.voiceId || url.searchParams.get("voiceId") || defaultVoiceId;
       const draft = await readJsonFile(initDraftPath(requestedLessonId), null);
       const lessonData = await readJsonFile(initLessonPath(requestedLessonId), null);
       const lessonForAudio = lessonData || draft;
@@ -768,10 +987,15 @@ async function handleApi(req, res, url) {
     if (url.pathname === "/api/init/audio/generate" && req.method === "POST") {
       const { lessonId: bodyLessonId, voiceId = defaultVoiceId, id = "", scope = "all", limit = 0 } = await readJson(req);
       const requestedLessonId = safeLessonId(bodyLessonId);
+      const initState = await readJsonFile(initStatePath(requestedLessonId), {});
+      const targetVoiceId = initState.voiceId || voiceId || defaultVoiceId;
+      if (initState.voiceId !== targetVoiceId) {
+        await writeJsonFile(initStatePath(requestedLessonId), { ...initState, voiceId: targetVoiceId, updatedAt: new Date().toISOString() });
+      }
       const lessonData = await readJsonFile(initLessonPath(requestedLessonId), null);
       if (!lessonData) throw new Error("Please confirm parsed course data before generating audio.");
       const jobs = lessonDraftAudioJobs(lessonData);
-      const missingJobs = jobs.filter((job) => !existsSync(audioPathForLesson(requestedLessonId, voiceId, job.type, job.id)));
+      const missingJobs = jobs.filter((job) => !existsSync(audioPathForLesson(requestedLessonId, targetVoiceId, job.type, job.id)));
       const batchLimit = Math.max(0, Math.min(Number(limit) || 0, 20));
       const targets = scope === "one" && id
         ? jobs.filter((job) => `${job.type}:${job.id}` === id || job.id === id)
@@ -779,18 +1003,18 @@ async function handleApi(req, res, url) {
       const items = [];
       for (const [index, job] of targets.entries()) {
         try {
-          items.push(await generateInitAudioJob(requestedLessonId, voiceId, job));
+          items.push(await generateInitAudioJob(requestedLessonId, targetVoiceId, job));
         } catch (error) {
-          items.push({ ...job, exists: false, generated: false, error: String(error.message || error), url: audioUrlForLesson(requestedLessonId, voiceId, job.type, job.id) });
+          items.push({ ...job, exists: false, generated: false, error: String(error.message || error), url: audioUrlForLesson(requestedLessonId, targetVoiceId, job.type, job.id) });
         }
         if (index < targets.length - 1) await wait(generationDelayMs);
       }
-      const status = initAudioStatus(lessonData, voiceId);
+      const status = initAudioStatus(lessonData, targetVoiceId);
       const generated = items.filter((item) => item.generated).length;
       const failed = items.filter((item) => item.error).length;
       sendJson(res, 200, {
         lessonId: requestedLessonId,
-        voiceId,
+        voiceId: targetVoiceId,
         generated,
         failed,
         skipped: targets.length - generated - failed,
@@ -810,20 +1034,30 @@ async function handleApi(req, res, url) {
     if (url.pathname === "/api/init/confirm-audio" && req.method === "POST") {
       const { lessonId: bodyLessonId, voiceId = defaultVoiceId } = await readJson(req);
       const requestedLessonId = safeLessonId(bodyLessonId);
+      const initState = await readJsonFile(initStatePath(requestedLessonId), {});
+      const targetVoiceId = initState.voiceId || voiceId || defaultVoiceId;
       const lessonData = await readJsonFile(initLessonPath(requestedLessonId), null);
       if (!lessonData) throw new Error("Please confirm parsed course data before confirming audio.");
-      const audioItems = initAudioStatus(lessonData, voiceId);
+      const audioItems = initAudioStatus(lessonData, targetVoiceId);
       const missing = audioItems.filter((item) => !item.exists);
       if (missing.length) throw new Error(`Audio is not complete. Missing ${missing.length} item(s).`);
       const state = {
-        ...(await readJsonFile(initStatePath(requestedLessonId), {})),
+        ...initState,
         parseConfirmed: true,
         audioConfirmed: true,
         completedAt: new Date().toISOString(),
-        voiceId
+        voiceId: targetVoiceId
       };
+      await writeJsonFile(initLessonPath(requestedLessonId), { ...lessonData, audioVoiceId: targetVoiceId });
       await writeJsonFile(initStatePath(requestedLessonId), state);
-      sendJson(res, 200, { lessonId: requestedLessonId, voiceId, state, audio: { items: audioItems, generated: audioItems.length, missing: 0, total: audioItems.length } });
+      const catalog = await syncStudentCatalog();
+      sendJson(res, 200, {
+        lessonId: requestedLessonId,
+        voiceId: targetVoiceId,
+        state,
+        audio: { items: audioItems, generated: audioItems.length, missing: 0, total: audioItems.length },
+        catalog
+      });
       return true;
     }
     if (url.pathname === "/api/audio/voices") {

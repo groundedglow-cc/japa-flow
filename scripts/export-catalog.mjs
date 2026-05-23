@@ -35,6 +35,14 @@ const lessonCatalog = [
     status: "pending",
     description: "课程内容尚未采集，后续可继续按同一结构初始化。",
     runtimeReady: false
+  },
+  {
+    id: 30,
+    title: "第30课",
+    subtitle: "待初始化",
+    status: "pending",
+    description: "课程内容尚未采集，后续可继续按同一结构初始化。",
+    runtimeReady: false
   }
 ];
 
@@ -55,6 +63,12 @@ function initStatePath(id) {
   return join(root, "data", "lesson-init", `lesson${id}-state.json`);
 }
 
+function lessonSubtitleForCatalog(lessonData, fallback) {
+  const subtitle = String(lessonData?.subtitle || "").trim();
+  if (subtitle && subtitle !== "待确认" && subtitle !== "待初始化") return subtitle;
+  return lessonData?.sentences?.[0]?.text || fallback;
+}
+
 async function buildCatalog() {
   return Promise.all(lessonCatalog.map(async (item) => {
     if (item.runtimeReady) return item;
@@ -64,11 +78,12 @@ async function buildCatalog() {
     if (!initialized) return item;
     return {
       ...item,
-      subtitle: lessonData.subtitle || item.subtitle,
+      subtitle: lessonSubtitleForCatalog(lessonData, item.subtitle),
       status: "initialized",
       statusLabel: "已初始化",
       description: `课程数据和音频已完成：${lessonData.vocabulary?.length || 0} 个单词，${lessonData.grammar?.length || 0} 个语法，${lessonData.sentences?.length || 0} 句课文，${lessonData.exercises?.length || 0} 道练习。`,
       runtimeReady: false,
+      voiceId: initState.voiceId || "Japanese_IntellectualSenior",
       initializedAt: initState.completedAt || initState.parseConfirmedAt || "",
       counts: {
         vocabulary: lessonData.vocabulary?.length || 0,

@@ -76,11 +76,15 @@ The extracted JSON must follow the lesson 27 shape as closely as possible:
   - `category`
   - `instruction`
   - optional `example`
+  - optional `exampleKana`
   - `type`
   - `question`
+  - optional `questionKana`
   - optional `choices[]`
   - `answer`
+  - optional `answerKana`
   - `referenceAnswers[]`
+  - optional `referenceAnswerKana[]`
   - `relatedGrammar[]`
   - `relatedSentences[]`
   - `explanation`
@@ -94,6 +98,7 @@ The extraction prompt must prioritize completeness over elegance:
 - Preserve examples and model answers if visible.
 - Preserve grammar example sentences, including extra examples that are not part of the main text.
 - Preserve sentence `kana` exactly enough to drive ruby display: keep visible kana spacing as word/phrase boundaries, and align each sentence's kana to its Japanese `text`.
+- Preserve exercise kana enough to drive ruby display: store visible furigana/readings in `questionKana`, `answerKana`, `referenceAnswerKana[]`, and `exampleKana`, aligned to the matching exercise text.
 - Extract exercises by visual block order. Each visible `[例]` starts an example block, and all following numbered questions belong to that example until the next `[例]` or next exercise heading.
 - Store the active example block on every related exercise item in `example`; do not pool examples at group level or attach later questions to earlier examples.
 - For replacement-dialogue examples, preserve the complete example in each item: short replacement prompt(s), `→`, full transformed sentence/dialogue, speaker labels, and all visible turns. Do not store only the short prompt(s).
