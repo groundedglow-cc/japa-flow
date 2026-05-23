@@ -1711,6 +1711,22 @@ let runtimeLessonLoadingId = "";
 let runtimeLessonErrorId = "";
 let runtimeLessonError = "";
 
+function parseMarkdown(text) {
+  if (!text) return "";
+  const escaped = escapeHtml(text);
+  return escaped
+    .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
+    .replace(/\*(.+?)\*/g, "<em>$1</em>")
+    .replace(/`(.+?)`/g, "<code>$1</code>")
+    .replace(/^### (.+)$/gm, "<h4>$1</h4>")
+    .replace(/^## (.+)$/gm, "<h3>$1</h3>")
+    .replace(/^# (.+)$/gm, "<h2>$1</h2>")
+    .replace(/^---$/gm, "<hr>")
+    .replace(/^- (.+)$/gm, "<li>$1</li>")
+    .replace(/(<li>.*<\/li>)/s, "<ul>$1</ul>")
+    .replace(/\n/g, "<br>");
+}
+
 function read(key, fallback) {
   try {
     return JSON.parse(localStorage.getItem(`japaflow:${key}`)) || fallback;
@@ -4486,6 +4502,10 @@ function exercisesPage() {
               <button class="primary" data-submit-exercise-group ${submitted ? "disabled" : ""}>提交本大题</button>
               <button class="secondary" data-next-exercise-group>${state.currentExerciseGroup === groups.length - 1 ? "进入结果页" : "下一大题"}</button>
             </div>
+            <div class="exercise-notes-area">
+              <span class="exercise-action-label">笔记</span>
+              <div class="exercise-notes-textarea" data-exercise-group-note contenteditable="true" data-placeholder="记录学习笔记...">${parseMarkdown(read(`lesson:${lesson.id}:exerciseGroupNotes:${group.id}`, ""))}</div>
+            </div>
           </div>
         </aside>
       </div>
@@ -6741,6 +6761,18 @@ function bind() {
   app.querySelectorAll("[data-submit-exercise-group]").forEach((button) => button.addEventListener("click", commitExerciseGroup));
   app.querySelectorAll("[data-prev-exercise-group]").forEach((button) => button.addEventListener("click", () => moveExerciseGroup(-1)));
   app.querySelectorAll("[data-next-exercise-group]").forEach((button) => button.addEventListener("click", () => moveExerciseGroup(1)));
+  app.querySelectorAll("[data-exercise-group-note]").forEach((el) => {
+    el.addEventListener("input", (e) => {
+      e.target.style.height = "auto";
+      e.target.style.height = e.target.scrollHeight + "px";
+      const group = currentExerciseGroup();
+      const noteKey = `lesson:${lesson.id}:exerciseGroupNotes:${group.id}`;
+      write(noteKey, e.target.innerText);
+    });
+    // auto-grow on page load
+    el.style.height = "auto";
+    el.style.height = el.scrollHeight + "px";
+  });
   app.querySelector("[data-submit-wrong-practice]")?.addEventListener("click", commitWrongPractice);
   app.querySelector("[data-next-wrong-practice]")?.addEventListener("click", nextWrongPractice);
   app.querySelector("[data-next-exercise]")?.addEventListener("click", () => {

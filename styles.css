@@ -1526,7 +1526,7 @@ button.tag {
 }
 
 .exercise-box {
-  max-width: 860px;
+  max-width: 1060px;
   margin: 0 auto;
 }
 
@@ -1610,7 +1610,7 @@ button.tag {
 
 .exercise-workspace {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 190px;
+  grid-template-columns: minmax(0, 1fr) 390px;
   gap: 14px;
   align-items: start;
 }
@@ -1655,6 +1655,50 @@ button.tag {
 .exercise-action-buttons button {
   width: 100%;
   justify-content: center;
+}
+
+.exercise-notes-area {
+  margin-top: 12px;
+  display: grid;
+  gap: 4px;
+}
+
+.exercise-notes-textarea {
+  height: 80px;
+  padding: 8px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-size: 13px;
+  line-height: 1.5;
+  overflow-y: auto;
+  box-sizing: border-box;
+  outline: none;
+  white-space: pre-wrap;
+}
+
+.exercise-notes-textarea:empty::before {
+  content: attr(data-placeholder);
+  color: var(--muted);
+  pointer-events: none;
+}
+
+.exercise-notes-textarea h2,
+.exercise-notes-textarea h3,
+.exercise-notes-textarea h4 {
+  margin: 4px 0;
+  font-size: 14px;
+}
+
+.exercise-notes-textarea code {
+  background: #f0f0f0;
+  padding: 1px 4px;
+  border-radius: 3px;
+  font-size: 12px;
+}
+
+.exercise-notes-textarea ul {
+  margin: 4px 0;
+  padding-left: 16px;
 }
 
 .exercise-progress-overview {
