@@ -4,24 +4,125 @@ Use these rules for every JapaFlow textbook image extraction task.
 
 ## Required JSON Shape
 
-Follow the existing lesson 27 structure as closely as possible:
+Use `data/lessons/lesson28.json` as the structural standard for all future initialized lessons. Generate one complete lesson JSON object with these top-level fields:
 
-- `id`
-- `title`
-- `subtitle`
-- `vocabulary[]`: `{ id, jp, kana, cn }`
-- `sentences[]`: `{ id, order, speaker?, text, kana, translation, words, grammar }`
-- `textStructure[]`: preserve textbook text sections as flat section records in visual order. Each section must use `{ id, title, note?, sentenceIds[] }`. Do not emit nested `groups`; if a section has multiple visible sub-blocks, preserve their order by listing the sentence ids in the exact visible order and use `note` for any section caption printed in the image.
-- `grammar[]`: `{ id, pattern, meaning, structure, usage, examples, extraExamples }`
-- `exercises[]`: `{ id, groupId, groupTitle, category, instruction, example?, exampleKana?, type, question, questionKana?, choices?, answer, answerKana?, referenceAnswers, referenceAnswerKana?, relatedGrammar, relatedSentences, explanation }`
+- `id`: numeric lesson id.
+- `title`: Chinese lesson title, for example `第28课`.
+- `subtitle`: main Japanese lesson title or first representative sentence.
+- `vocabulary[]`: word list in textbook order.
+- `sentences[]`: every textbook basic/application sentence or dialogue line.
+- `textStructure[]`: nested lesson text navigation using sections and groups.
+- `grammar[]`: grammar/expression blocks in textbook order.
+- `exercises[]`: every visible exercise item in textbook order.
+- `audioVoiceId?`: optional voice id, only include when the lesson audio voice is known.
+
+### `vocabulary[]`
+
+Each vocabulary item must use:
+
+- `{ id, jp, kana, cn }`
+- `id`: stable sequential id, for example `w1`.
+- `jp`: Japanese headword exactly as visible.
+- `kana`: visible reading, or a reliable reading only when the textbook clearly supplies it.
+- `cn`: Chinese meaning exactly as visible, preserving short glosses and punctuation.
+
+### `sentences[]`
+
+Each sentence item must use:
+
+- `{ id, order, speaker?, text, kana, translation, words, grammar }`
+- `id`: stable sequential id, for example `s1`.
+- `order`: textbook/display order. Use numbers when possible; use strings only when the visible order requires labels.
+- `speaker?`: dialogue speaker label when visible, such as `甲`, `乙`, `森`, `馬`.
+- `text`: Japanese sentence/dialogue line.
+- `kana`: aligned reading for the full `text`.
+- `translation`: Chinese translation.
+- `words`: array of related `vocabulary[].id` values. Use `[]` when no clear relation is visible.
+- `grammar`: array of related `grammar[].id` values. Use `[]` when no clear relation is visible.
+
+### `textStructure[]`
+
+Use the nested groups structure from lesson 28. Do not generate the older flat `{ sentenceIds[] }` structure for new lessons.
+
+Each section must use:
+
+- `{ id, title, groups }`
+- `id`: stable semantic id when possible, for example `basic`, `application`.
+- `title`: section tab title, for example `基本课文` or `应用课文 · 森的新居`.
+- `groups`: ordered list of visible sub-blocks inside the section.
+
+Each group must use:
+
+- `{ title, kind, ids, note? }`
+- `title`: group title, for example `基本句`, `对话 A`, or an application-scene caption.
+- `kind`: `statements` for non-dialogue basic sentence groups, otherwise `dialogue`.
+- `ids`: ordered `sentences[].id` values belonging to this group.
+- `note?`: short printed or necessary scene note, for example `第二个星期`.
+
+Every `sentences[].id` must appear exactly once in `textStructure[].groups[].ids`. Do not duplicate sentence ids across groups.
+
+Recommended grouping:
+
+- Basic text: one `basic` section with groups such as `基本句`, `对话 A`, `对话 B`, `对话 C`, `对话 D`.
+- Application text: one `application` section with scene/dialogue groups in visual order.
+- If a textbook lesson has additional major text sections, add more sections, but keep the same `{ id, title, groups }` schema.
+
+### `grammar[]`
+
+Each grammar item must use:
+
+- `{ id, pattern, meaning, structure, usage, examples, extraExamples }`
+- `id`: stable sequential id, for example `g1`.
+- `pattern`: visible grammar/expression heading.
+- `meaning`: concise Chinese meaning.
+- `structure`: connection/formula/formation rule.
+- `usage`: textbook explanation of usage and constraints.
+- `examples`: array of related `sentences[].id` values, not duplicated sentence text.
+- `extraExamples`: visible grammar-block example sentences, one item per sentence/dialogue line.
+
+Each `extraExamples[]` item should use:
+
+- `{ jp, kana, cn, isIncorrect?, note? }`
+- `jp`: Japanese example.
+- `kana`: aligned reading when visible or reliably supplied by the image.
+- `cn`: Chinese meaning.
+- `isIncorrect?`: `true` for examples marked with `×`.
+- `note?`: short note for incorrect examples or special usage.
+
+### `exercises[]`
+
+Each exercise item must use:
+
+- `{ id, groupId, groupTitle, category, instruction, example, exampleKana, type, question, questionKana, choices, answer, answerKana, referenceAnswers, referenceAnswerKana, relatedGrammar, relatedSentences, explanation, audioRequired?, hasAnswer? }`
+- `id`: stable id in textbook order, for example `ex-i-1-1`.
+- `groupId`: exercise group id, for example `ex-i-1`.
+- `groupTitle`: visible group title, for example `练习I 1`.
+- `category`: stable category label such as `replacement`, `picture-answer`, `listening-dialogue`, `particle-choice`, `choice`, `word-choice`, `listening-true-false`, `translation`.
+- `instruction`: visible instruction or concise task description.
+- `example`: nearest visible example block for this item. Use `""` if no example is visible.
+- `exampleKana`: aligned reading for `example`. Use `""` if not visible.
+- `type`: stable answer interaction type, such as `transform`, `short-answer`, `listening`, `choice`, `translation`.
+- `question`: visible prompt/question.
+- `questionKana`: aligned reading for `question`. Use `""` if not visible.
+- `choices`: array of visible choices. Use `[]` when not a choice item.
+- `answer`: primary expected answer. Use `""` if answer is not visible.
+- `answerKana`: aligned reading for `answer`. Use `""` if not visible.
+- `referenceAnswers`: array of accepted answers. Include `answer` when there is a visible or reliable answer; use `[]` when no answer is visible.
+- `referenceAnswerKana`: array aligned by index to `referenceAnswers`; use `[]` or empty strings when readings are not visible.
+- `relatedGrammar`: array of related `grammar[].id` values.
+- `relatedSentences`: array of related `sentences[].id` values.
+- `explanation`: concise explanation or OCR uncertainty note. Use `""` when unnecessary.
+- `audioRequired?`: `true` for listening/speaking items that require audio.
+- `hasAnswer?`: `false` when the item is visible but the answer is not shown.
 
 ## Image Reading Order
 
 - The lesson task lists category directories, not semantic file names.
 - In each category directory, read every image file in filename sort order.
 - Use file names only as ordering keys. Do not infer content, section, or meaning from the file name.
-- Use the directory category as the semantic bucket: `text`, `grammar`, `vocabulary`, `exercises`.
-- Process categories in this order unless the lesson task says otherwise: `text`, `grammar`, `vocabulary`, `exercises`.
+- Use the directory category or inferred image group as the semantic bucket: `text`, `grammar`, `vocabulary`, `word`, `exercises`.
+- Process categories in this order unless the lesson task says otherwise: `text`, `grammar`, `vocabulary`, `word`, `exercises`.
+- If the lesson uses `course-assets/by-lesson/lessonXX`, map the sorted 10 images by index: `text` = 1, 5, 6; `grammar` = 2, 3; `vocabulary` = 4, 5; `word` = 10; `exercises` = 7, 8, 9. The same source image may belong to more than one semantic bucket.
 
 ## Extraction Rules
 
@@ -29,7 +130,7 @@ Follow the existing lesson 27 structure as closely as possible:
 - First transcribe from the image into an independent checklist, then compare with any existing JSON if needed.
 - Do not use any existing lesson JSON or draft files from another lesson as content sources. Only use the current lesson images plus this prompt/rules as references.
 - If a previous lesson draft is visible in the workspace, treat it only as a structural example after the image transcription is complete; never copy its content or carry over its wording.
-- Do not use another lesson's vocabulary, sentence, grammar, or exercise content to fill a gap in the current lesson. If the image does not show a value, leave it empty or mark it unknown; do not infer from lesson 28/29/30 content patterns.
+- Do not use another lesson's vocabulary, sentence, grammar, or exercise content to fill a gap in the current lesson. Lesson 28 is only the schema/template reference; never copy its content into another lesson.
 - Do not let a prior lesson's example block, question wording, or answer pattern anchor the current lesson's extraction. Each lesson must be rebuilt from the visible page only.
 - Completeness is more important than brevity.
 - Do not omit any exercise question.
@@ -42,7 +143,21 @@ Follow the existing lesson 27 structure as closely as possible:
 - Keep Japanese punctuation and kana exactly where visible.
 - Sentence `kana` is the primary source for ruby display. Preserve visible kana spacing as word/phrase boundaries, and keep each sentence's kana aligned to its `text` instead of relying on a static reading guess.
 - Exercise `questionKana`, `answerKana`, `referenceAnswerKana[]`, and `exampleKana` are the primary source for ruby display inside exercises. When the image shows furigana for an exercise prompt, example, answer, or option, store that reading aligned to the corresponding Japanese text. If a reading is not visible, leave the kana field empty instead of guessing.
+- Keep `referenceAnswerKana[]` index-aligned with `referenceAnswers[]`. If a reference answer lacks a visible reading, use an empty string at that index rather than shifting later readings.
+- Always include `choices` on exercise items. Use an empty array for non-choice exercises.
 - For uncertain OCR, keep the visible text and add a concise note in `explanation` only when needed.
+
+## Text Structure Rules
+
+- Build `textStructure[]` after all `sentences[]` have stable ids.
+- Use section tabs for major textbook text areas, usually `basic` and `application`.
+- Use groups for visible sentence clusters, such as `基本句`, `对话 A`, `对话 B`, or application-scene captions.
+- Use `kind: "statements"` only for non-dialogue basic sentence lists. Use `kind: "dialogue"` for any group that has speakers or dialogue turns.
+- Preserve visual order: section order, group order, and ids inside every group must match the textbook.
+- Put scene captions or timing notes in `group.note` when they are not suitable as the group title.
+- Do not create one section per small dialogue unless the textbook truly presents it as a major tab-level section.
+- Do not emit `sentenceIds[]` for new lessons. The target schema is `textStructure[].groups[].ids`.
+- Validate that every `sentences[].id` appears exactly once in the nested groups.
 
 ## OCR Accuracy Rules
 
@@ -90,6 +205,8 @@ Follow the existing lesson 27 structure as closely as possible:
 - Confirm every grammar entry's `extraExamples[]` only contains sentences from that entry's visual block.
 - Confirm every `×` grammar example is marked `isIncorrect: true` and is not mixed into correct examples.
 - Confirm every uploaded vocabulary image has corresponding `vocabulary[]` entries.
-- Confirm every text/dialogue line is represented in `sentences[]` and `textStructure[]`, and that `textStructure[]` uses the flat section schema above rather than a nested `groups` structure.
+- Confirm every text/dialogue line is represented in `sentences[]` and exactly once in `textStructure[].groups[].ids`.
+- Confirm `textStructure[]` uses the nested `{ id, title, groups }` schema and does not use the older flat `sentenceIds[]` schema.
+- Confirm all exercise items include the standard fields from this document, including `choices`, kana fields, `referenceAnswers`, and `referenceAnswerKana`.
 
 Write only the requested JSON file. In the final message, report counts for vocabulary, sentences, grammar, and exercises.

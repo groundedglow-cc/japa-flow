@@ -11,40 +11,47 @@ import { join } from "node:path";
 const root = process.cwd();
 
 // Keep this list in sync with server.mjs `lessonCatalog`.
-const lessonCatalog = [
-  {
-    id: 27,
-    title: "第27课",
-    subtitle: "子供の時、大きな地震がありました",
-    status: "ready",
-    description: "围绕第 27 课完成单词、语法、课文朗读、标准练习和结果复盘。",
-    runtimeReady: true
-  },
-  {
-    id: 28,
-    title: "第28课",
-    subtitle: "待初始化",
-    status: "pending",
-    description: "课程内容尚未采集，后续可继续按同一结构初始化。",
-    runtimeReady: false
-  },
-  {
-    id: 29,
-    title: "第29课",
-    subtitle: "待初始化",
-    status: "pending",
-    description: "课程内容尚未采集，后续可继续按同一结构初始化。",
-    runtimeReady: false
-  },
-  {
-    id: 30,
-    title: "第30课",
-    subtitle: "待初始化",
-    status: "pending",
-    description: "课程内容尚未采集，后续可继续按同一结构初始化。",
-    runtimeReady: false
-  }
-];
+const lessonCatalogMetadata = {
+  25: "これは明日会議で使う資料です",
+  26: "自転車に2人で乗るのは危ないです",
+  27: "子供の時、大きな地震がありました",
+  28: "馬さんはわたしに地図をくれました",
+  29: "電気を消せ",
+  30: "もう11時だから寝よう",
+  31: "このボタンを押すと，電源が入ります",
+  32: "今度の日曜日に遊園地へ行くつもりです",
+  33: "電車が急に止まりました",
+  34: "壁にカレンダーが掛けてあります",
+  35: "明日雨が降ったら，マラソン大会は中止です",
+  36: "遅くなって，すみません",
+  37: "優勝すれば，オリンピックに出場することができます",
+  38: "戴さんは英語が話せます",
+  39: "眼鏡をかけて本を読みます",
+  40: "これから友達と食事に行くところです",
+  41: "李さんは部長にほめられました",
+  42: "テレビをつけたまま，出かけてしまいました",
+  43: "陳さんは，息子をアメリカに留学させます",
+  44: "玄関のところにだれかいるようです",
+  45: "少子化が進んで，日本の人口はだんだん減っていくでしょう",
+  46: "これは柔らかくて，まるで本物の毛皮のようです",
+  47: "周先生は明日日本へ行かれます",
+  48: "お荷物は私がお持ちします"
+};
+
+const lessonCatalog = Array.from({ length: 48 }, (_, index) => {
+  const id = index + 1;
+  const runtimeReady = id === 27;
+  return {
+    id,
+    title: `第${id}课`,
+    subtitle: lessonCatalogMetadata[id] || "待初始化",
+    status: runtimeReady ? "ready" : "pending",
+    description: runtimeReady
+      ? "围绕第 27 课完成单词、语法、课文朗读、标准练习和结果复盘。"
+      : "课程内容尚未采集，后续可继续按同一结构初始化。",
+    runtimeReady
+  };
+});
 
 async function readJsonFile(path, fallback) {
   if (!existsSync(path)) return fallback;

@@ -517,6 +517,42 @@ h3 {
   margin-bottom: 0;
 }
 
+.home-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 8px;
+  min-width: 300px;
+}
+
+.page-number-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.page-number {
+  width: 38px;
+  height: 38px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: white;
+  color: var(--muted);
+  font-weight: 800;
+}
+
+.page-number.active {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: white;
+}
+
+.home-pagination button:disabled {
+  cursor: default;
+  opacity: 0.48;
+}
+
 .focus-layout {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 340px;
@@ -940,6 +976,17 @@ h3 {
   color: var(--muted);
   font-size: 13px;
   font-weight: 820;
+}
+
+.text-group-title span:first-child {
+  display: grid;
+  gap: 3px;
+}
+
+.text-group-title small {
+  color: var(--soft);
+  font-size: 11px;
+  font-weight: 720;
 }
 
 .text-group-progress {
@@ -2748,8 +2795,21 @@ textarea.answer-input {
   background: var(--soft);
 }
 
+.init-upload-box.inferred {
+  background: rgba(76, 120, 92, 0.08);
+}
+
 .init-upload-box h3 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   margin: 0 0 6px;
+}
+
+.init-upload-box h3 small {
+  color: var(--accent);
+  font-size: 11px;
+  font-weight: 820;
 }
 
 .init-upload-button {
@@ -2772,10 +2832,18 @@ textarea.answer-input {
 }
 
 .init-image-list a {
+  display: flex;
+  gap: 6px;
   overflow: hidden;
   color: var(--accent);
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.init-image-list a span {
+  color: var(--muted);
+  flex: 0 0 auto;
+  font-weight: 820;
 }
 
 .init-task-box {
@@ -2920,6 +2988,12 @@ textarea.answer-input {
 
   .page-head .button-row {
     width: 100%;
+  }
+
+  .home-pagination {
+    justify-content: flex-start;
+    width: 100%;
+    min-width: 0;
   }
 
   .page-head .button-row > button {

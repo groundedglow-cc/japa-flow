@@ -7,6 +7,7 @@
     "dev": "node server.mjs",
     "export:catalog": "node scripts/export-catalog.mjs",
     "build:app": "node scripts/export-catalog.mjs && node scripts/build-app-dist.mjs",
+    "init:task": "node scripts/create-codex-parse-task.mjs",
     "diff:lesson": "node scripts/diff-lesson-init.mjs",
     "backfill:exercise-kana": "node scripts/backfill-exercise-kana.mjs",
     "sync:ios": "npm run build:app && npx cap sync ios",

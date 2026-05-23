@@ -1444,36 +1444,47 @@ const standardExercises = [
 
 lesson.exercises = standardExercises;
 
-const lessonCatalog = [
-  {
-    id: 27,
-    title: "第27课",
-    subtitle: "子供の時、大きな地震がありました",
-    status: "ready",
-    description: "围绕第 27 课完成单词、语法、课文朗读、标准练习和结果复盘。"
-  },
-  {
-    id: 28,
-    title: "第28课",
-    subtitle: "待初始化",
-    status: "pending",
-    description: "课程内容尚未采集，后续可继续按同一结构初始化。"
-  },
-  {
-    id: 29,
-    title: "第29课",
-    subtitle: "待初始化",
-    status: "pending",
-    description: "课程内容尚未采集，后续可继续按同一结构初始化。"
-  },
-  {
-    id: 30,
-    title: "第30课",
-    subtitle: "待初始化",
-    status: "pending",
-    description: "课程内容尚未采集，后续可继续按同一结构初始化。"
-  }
-];
+const lessonCatalogMetadata = {
+  25: "これは明日会議で使う資料です",
+  26: "自転車に2人で乗るのは危ないです",
+  27: "子供の時、大きな地震がありました",
+  28: "馬さんはわたしに地図をくれました",
+  29: "電気を消せ",
+  30: "もう11時だから寝よう",
+  31: "このボタンを押すと，電源が入ります",
+  32: "今度の日曜日に遊園地へ行くつもりです",
+  33: "電車が急に止まりました",
+  34: "壁にカレンダーが掛けてあります",
+  35: "明日雨が降ったら，マラソン大会は中止です",
+  36: "遅くなって，すみません",
+  37: "優勝すれば，オリンピックに出場することができます",
+  38: "戴さんは英語が話せます",
+  39: "眼鏡をかけて本を読みます",
+  40: "これから友達と食事に行くところです",
+  41: "李さんは部長にほめられました",
+  42: "テレビをつけたまま，出かけてしまいました",
+  43: "陳さんは，息子をアメリカに留学させます",
+  44: "玄関のところにだれかいるようです",
+  45: "少子化が進んで，日本の人口はだんだん減っていくでしょう",
+  46: "これは柔らかくて，まるで本物の毛皮のようです",
+  47: "周先生は明日日本へ行かれます",
+  48: "お荷物は私がお持ちします"
+};
+
+const lessonCatalog = Array.from({ length: 48 }, (_, index) => {
+  const id = index + 1;
+  const runtimeReady = id === 27;
+  return {
+    id,
+    title: `第${id}课`,
+    subtitle: lessonCatalogMetadata[id] || "待初始化",
+    status: runtimeReady ? "ready" : "pending",
+    description: runtimeReady
+      ? "围绕第 27 课完成单词、语法、课文朗读、标准练习和结果复盘。"
+      : "课程内容尚未采集，后续可继续按同一结构初始化。",
+    runtimeReady
+  };
+});
 
 let textStructure = [
   {
@@ -3061,6 +3072,11 @@ function lessonSubnav(lessonId, current) {
 
 function home() {
   const catalog = courseCatalogItems();
+  const pageSize = 12;
+  const pageCount = Math.max(1, Math.ceil(catalog.length / pageSize));
+  const currentPage = currentHomePage(pageCount);
+  const start = (currentPage - 1) * pageSize;
+  const pageItems = catalog.slice(start, start + pageSize);
   return layout(`
     <section class="course-home">
       <div class="page-head">
@@ -3069,13 +3085,42 @@ function home() {
           <h1>选择一课开始学习</h1>
           <p class="lead">首页只负责选课和总览。进入具体课次后，再完成单词、语法、课文、练习和结果复盘。</p>
         </div>
+        ${homePagination(currentPage, pageCount)}
       </div>
       <div class="course-grid">
-        ${catalog.map((item) => courseCard(item)).join("")}
+        ${pageItems.map((item) => courseCard(item)).join("")}
       </div>
       ${state.lessonCatalogMessage ? `<p class="form-error">${escapeHtml(state.lessonCatalogMessage)}</p>` : ""}
     </section>
   `);
+}
+
+function currentHomePage(pageCount) {
+  const value = Number(new URLSearchParams(location.search).get("page"));
+  if (!Number.isFinite(value) || value < 1) return 1;
+  return clamp(Math.floor(value), 1, pageCount);
+}
+
+function homePagePath(page) {
+  const params = new URLSearchParams(location.search);
+  params.set("page", String(page));
+  const query = params.toString();
+  return query ? `/?${query}` : "/";
+}
+
+function homePagination(currentPage, pageCount) {
+  const pages = Array.from({ length: pageCount }, (_, index) => index + 1);
+  return `
+    <nav class="home-pagination" aria-label="课程分页">
+      <button class="secondary compact-action" type="button" ${currentPage <= 1 ? "disabled" : `data-nav="${homePagePath(currentPage - 1)}"`}>上一页</button>
+      <div class="page-number-row">
+        ${pages.map((page) => `
+          <button class="page-number ${page === currentPage ? "active" : ""}" type="button" ${page === currentPage ? "aria-current=\"page\"" : `data-nav="${homePagePath(page)}"`}>${page}</button>
+        `).join("")}
+      </div>
+      <button class="secondary compact-action" type="button" ${currentPage >= pageCount ? "disabled" : `data-nav="${homePagePath(currentPage + 1)}"`}>下一页</button>
+    </nav>
+  `;
 }
 
 function runtimeLoadingPage(lessonId) {
@@ -3109,10 +3154,6 @@ function courseCatalogItems() {
         ...(state.lessonCatalogStatus.find((entry) => Number(entry.id) === Number(item.id)) || {})
       }))
     : lessonCatalog;
-  // 学员模式只展示可学习的课程（已绑定运行时 / 已初始化），过滤掉待初始化的占位卡片。
-  if (!ADMIN_MODE) {
-    return base.filter((item) => (item.status === "ready" && item.runtimeReady !== false) || item.status === "initialized");
-  }
   return base;
 }
 
@@ -3120,7 +3161,7 @@ function courseCard(item) {
   const runtimeReady = item.status === "ready" && item.runtimeReady !== false;
   const initialized = item.status === "initialized";
   const invalid = item.status === "invalid";
-  const cardNav = runtimeReady || initialized ? "" : `data-nav="/lesson/${item.id}/init"`;
+  const cardNav = runtimeReady || initialized || !ADMIN_MODE ? "" : `data-nav="/lesson/${item.id}/init"`;
   const summary = runtimeReady ? lessonProgressSummary() : null;
   const status = runtimeReady
     ? lessonStudyStatus(summary)
@@ -3650,7 +3691,7 @@ function renderTextStructure(section) {
   return textSectionGroups(section).map((group) => `
     <section class="text-section">
       <div class="text-group-title">
-        <span>${group.title}</span>
+        <span>${escapeHtml(group.title)}${group.note ? `<small>${escapeHtml(group.note)}</small>` : ""}</span>
         <span class="text-group-progress">${textGroupProgress(group.ids)}</span>
       </div>
       <div class="${group.kind === "statements" ? "statement-group" : "dialogue-group"}">
@@ -4188,6 +4229,7 @@ const initBuckets = [
   { id: "text", label: "课文", hint: "基本课文、应用课文、对话和翻译。" },
   { id: "grammar", label: "语法", hint: "语法解释、接续、用法、教材例句和补充例句。" },
   { id: "vocabulary", label: "单词", hint: "单词表、假名、中文释义。" },
+  { id: "word", label: "单词页", hint: "单词专页或补充词汇页。" },
   { id: "exercises", label: "练习", hint: "练习题、例题、选项、答案和说明，题目不能丢。" }
 ];
 
@@ -4241,6 +4283,7 @@ function initPage() {
   const item = initCatalogItem();
   const status = state.initStatus;
   const draft = status?.draft;
+  const inferredImages = initBuckets.some((bucket) => (status?.images?.[bucket.id] || []).some((image) => image.source === "by-lesson"));
   const codexTask = status?.codexTask || status?.state?.codexTaskPath ? {
     taskPath: status?.codexTask?.taskPath || status?.state?.codexTaskPath,
     taskUrl: status?.codexTask?.taskUrl || `/data/lesson-init/lesson${item.id}-codex-task.md`,
@@ -4257,7 +4300,7 @@ function initPage() {
         <div>
           <p class="eyebrow">${item.title} · 课程初始化</p>
           <h1>${item.subtitle}</h1>
-          <p class="lead">先上传四类教材图片并解析为课程数据，确认无误后再生成所有标准音频。</p>
+          <p class="lead">${inferredImages ? "系统已从 course-assets/by-lesson 自动匹配教材图片。直接生成 Codex 解析任务，确认无误后再生成标准音频。" : "先上传教材图片并解析为课程数据，确认无误后再生成所有标准音频。"}</p>
         </div>
         <div class="button-row">
           <button class="secondary" data-nav="/">返回首页</button>
@@ -4301,7 +4344,7 @@ function initPage() {
             <div class="button-row">
               <button class="primary" data-init-confirm-parse ${state.initBusy ? "disabled" : ""}>确认解析结果</button>
             </div>
-          ` : `<p class="muted">上传图片后生成 Codex 解析任务。确认前请重点检查练习题、语法例句和课文句子是否完整。</p>`}
+          ` : `<p class="muted">${inferredImages ? "已自动匹配教材图片。点击“生成 Codex 解析任务”即可得到可执行命令；确认前请重点检查练习题、语法例句和课文句子是否完整。" : "上传图片后生成 Codex 解析任务。确认前请重点检查练习题、语法例句和课文句子是否完整。"}</p>`}
         </article>
 
         <article class="panel init-step ${steps.audio}">
@@ -4370,16 +4413,19 @@ function initImportPreviewLine(preview) {
 
 function initUploadBox(bucket, images) {
   const inputId = `init-upload-${bucket.id}`;
+  const inferred = images.some((image) => image.source === "by-lesson");
   return `
-    <div class="init-upload-box">
+    <div class="init-upload-box ${inferred ? "inferred" : ""}">
       <div>
-        <h3>${bucket.label}</h3>
+        <h3>${bucket.label}${inferred ? "<small>自动匹配</small>" : ""}</h3>
         <p class="muted">${bucket.hint}</p>
       </div>
-      <button class="secondary init-upload-button" type="button" data-init-upload-trigger="${bucket.id}" ${state.initBusy ? "disabled" : ""}>选择文件</button>
-      <input id="${inputId}" class="init-upload-input" type="file" accept="image/*" multiple data-init-upload="${bucket.id}" ${state.initBusy ? "disabled" : ""} />
+      ${inferred ? "" : `
+        <button class="secondary init-upload-button" type="button" data-init-upload-trigger="${bucket.id}" ${state.initBusy ? "disabled" : ""}>选择文件</button>
+        <input id="${inputId}" class="init-upload-input" type="file" accept="image/*" multiple data-init-upload="${bucket.id}" ${state.initBusy ? "disabled" : ""} />
+      `}
       <div class="init-image-list">
-        ${images.length ? images.map((image) => `<a href="${image.url}" target="_blank">${escapeHtml(image.name)}</a>`).join("") : "<span class='muted'>尚未上传</span>"}
+        ${images.length ? images.map((image) => `<a href="${image.url}" target="_blank">${image.index ? `<span>#${image.index}</span>` : ""}${escapeHtml(image.name)}</a>`).join("") : "<span class='muted'>尚未上传</span>"}
       </div>
     </div>
   `;

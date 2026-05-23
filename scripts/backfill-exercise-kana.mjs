@@ -4,13 +4,8 @@ import path from "node:path";
 
 const root = process.cwd();
 const targetPaths = [
-  "28/lesson28.json",
   "data/lesson-drafts/lesson28.json",
-  "data/lessons/lesson28.json",
-  "data/lesson-drafts/lesson29.json",
-  "data/lessons/lesson29.json",
-  "data/lesson-drafts/lesson30.json",
-  "data/lessons/lesson30.json"
+  "data/lessons/lesson28.json"
 ];
 
 const staticEntries = extractStaticExerciseEntries(path.join(root, "app.js"));
