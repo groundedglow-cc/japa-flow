@@ -88,6 +88,14 @@ const lessonCatalog = [
     status: "pending",
     description: "课程内容尚未采集，后续可继续按同一结构初始化。",
     runtimeReady: false
+  },
+  {
+    id: 30,
+    title: "第30课",
+    subtitle: "待初始化",
+    status: "pending",
+    description: "课程内容尚未采集，后续可继续按同一结构初始化。",
+    runtimeReady: false
   }
 ];
 
