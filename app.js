@@ -1551,6 +1551,30 @@ const externalWordDistractors = [
   { id: "d-kizuku", jp: "気をつけます", kana: "きをつけます", cn: "小心，注意" }
 ];
 
+// ============ OSS (Alibaba Cloud Object Storage) CONFIGURATION ============
+// In web mode, fetched from the server. In native mode, read from window.JAPAFLOW_CONFIG.
+let ossEnabled = false;
+let ossBaseUrl = "";
+
+async function fetchFrontendConfig() {
+  if (IS_NATIVE_APP) {
+    const config = window.JAPAFLOW_CONFIG || {};
+    ossEnabled = Boolean(config.OSS_ENABLED);
+    ossBaseUrl = config.OSS_BASE_URL || "";
+    return;
+  }
+  try {
+    const response = await fetch("/api/frontend-config");
+    const data = await response.json();
+    if (!response.ok || data.error) throw new Error(data.error || "Failed to fetch frontend config");
+    ossEnabled = data.ossEnabled;
+    ossBaseUrl = data.ossBaseUrl;
+  } catch (e) {
+    console.error("fetchFrontendConfig failed:", e.message);
+    // Fall back to defaults (local audio)
+  }
+}
+
 const state = {
   wordProgress: initialWordProgress(),
   wordLearning: initialWordLearning(),
@@ -1705,10 +1729,13 @@ async function evaluatePronunciationViaAzure(form) {
 let lastAutoSpokenSentence = null;
 let lastAutoSpokenWord = null;
 let pendingAutoSpeakWordId = "";
+let autoWordPlaybackToken = 0;
 let speechPrimed = false;
 let lastHoverSpeech = { text: "", at: 0 };
 let lastKeyAction = { key: "", at: 0 };
 let activeAudio = null;
+let audioPlaybackToken = 0;
+const silentPrerollUrls = new Map();
 let currentSpeechText = "";
 let currentSpeechOnEnded = null;
 let selectionLookupToken = 0;
@@ -2238,15 +2265,25 @@ function speak(text, onEnded) {
 
 function audioUrl(type, id) {
   const lid = routeRuntimeLessonId() || String(lesson.id);
+  let relative;
   if (state.currentVoiceId && (state.currentVoiceId !== defaultVoiceId || lid !== String(bundledLessonRuntime.lesson.id))) {
-    return `/audio/lesson${lid}/voices/${state.currentVoiceId}/${type}s/${id}.mp3`;
+    relative = `/audio/lesson${lid}/voices/${state.currentVoiceId}/${type}s/${id}.mp3`;
+  } else {
+    relative = `/audio/lesson${lid}/${type}s/${id}.mp3`;
   }
-  return `/audio/lesson${lid}/${type}s/${id}.mp3`;
+  if (ossEnabled && ossBaseUrl) return `${ossBaseUrl}${relative}`;
+  return relative;
 }
 
 function managedAudioUrl(voiceId, type, id) {
-  if (voiceId === defaultVoiceId && String(lesson.id) === String(bundledLessonRuntime.lesson.id)) return `/audio/lesson${lesson.id}/${type}s/${id}.mp3`;
-  return `/audio/lesson${lesson.id}/voices/${voiceId}/${type}s/${id}.mp3`;
+  let relative;
+  if (voiceId === defaultVoiceId && String(lesson.id) === String(bundledLessonRuntime.lesson.id)) {
+    relative = `/audio/lesson${lesson.id}/${type}s/${id}.mp3`;
+  } else {
+    relative = `/audio/lesson${lesson.id}/voices/${voiceId}/${type}s/${id}.mp3`;
+  }
+  if (ossEnabled && ossBaseUrl) return `${ossBaseUrl}${relative}`;
+  return relative;
 }
 
 function extraExampleAudioUrl(grammarId, index) {
@@ -2280,45 +2317,134 @@ function normalizedGrammarExtraExamples(grammar) {
     .filter((example) => example.text);
 }
 
-function playAudio(text, audio, onEnded) {
+function playAudio(text, audio, onEnded, options = {}) {
   stopCurrentAudio();
   if ("speechSynthesis" in window) speechSynthesis.cancel();
   currentSpeechText = "";
   currentSpeechOnEnded = null;
   if (audio) {
-    activeAudio = new Audio(sanitizeAudioPath(audio));
-    activeAudio.preload = "auto";
-    activeAudio.playbackRate = state.playbackRate;
-    activeAudio.currentTime = 0;
+    const token = ++audioPlaybackToken;
+    const audioEl = new Audio(sanitizeAudioPath(audio));
+    activeAudio = audioEl;
+    audioEl.preload = "auto";
+    audioEl.playbackRate = state.playbackRate;
+    audioEl.currentTime = 0;
     const start = () => {
-      if (!activeAudio) return;
-      activeAudio.playbackRate = state.playbackRate;
-      activeAudio.currentTime = 0;
-      activeAudio.play().catch(() => {
-        activeAudio = null;
-        speak(text);
-      });
+      if (activeAudio !== audioEl || token !== audioPlaybackToken) return;
+      const playNow = () => {
+        if (activeAudio !== audioEl || token !== audioPlaybackToken) return;
+        audioEl.playbackRate = state.playbackRate;
+        audioEl.currentTime = 0;
+        audioEl.play().catch(() => {
+          if (activeAudio === audioEl) activeAudio = null;
+          speak(text, onEnded);
+        });
+      };
+      if (options.startDelayMs) {
+        window.setTimeout(playNow, options.startDelayMs);
+        return;
+      }
+      playNow();
     };
-    if (activeAudio.readyState >= 2) {
+    const fallbackToSpeech = () => {
+      if (activeAudio !== audioEl || token !== audioPlaybackToken) return;
+      if (activeAudio === audioEl) activeAudio = null;
+      speak(text, onEnded);
+    };
+    if (audioEl.readyState >= 2) {
       start();
     } else {
-      activeAudio.addEventListener("canplaythrough", start, { once: true });
-      activeAudio.load();
+      audioEl.addEventListener("canplay", start, { once: true });
+      audioEl.load();
     }
-    activeAudio.addEventListener("ended", () => {
+    audioEl.addEventListener("ended", () => {
+      if (activeAudio !== audioEl || token !== audioPlaybackToken) return;
       activeAudio = null;
       if (onEnded) onEnded();
     }, { once: true });
-    activeAudio.addEventListener("error", () => {
-      activeAudio = null;
-      speak(text, onEnded);
-    }, { once: true });
+    audioEl.addEventListener("error", fallbackToSpeech, { once: true });
     return;
   }
   speak(text, onEnded);
 }
 
+function silentPrerollUrl(durationMs = 650) {
+  const key = Math.max(100, Math.floor(durationMs));
+  if (silentPrerollUrls.has(key)) return silentPrerollUrls.get(key);
+  const sampleRate = 8000;
+  const samples = Math.ceil(sampleRate * key / 1000);
+  const bytesPerSample = 2;
+  const dataSize = samples * bytesPerSample;
+  const buffer = new ArrayBuffer(44 + dataSize);
+  const view = new DataView(buffer);
+  const writeString = (offset, value) => {
+    for (let index = 0; index < value.length; index += 1) {
+      view.setUint8(offset + index, value.charCodeAt(index));
+    }
+  };
+  writeString(0, "RIFF");
+  view.setUint32(4, 36 + dataSize, true);
+  writeString(8, "WAVE");
+  writeString(12, "fmt ");
+  view.setUint32(16, 16, true);
+  view.setUint16(20, 1, true);
+  view.setUint16(22, 1, true);
+  view.setUint32(24, sampleRate, true);
+  view.setUint32(28, sampleRate * bytesPerSample, true);
+  view.setUint16(32, bytesPerSample, true);
+  view.setUint16(34, 16, true);
+  writeString(36, "data");
+  view.setUint32(40, dataSize, true);
+  const url = URL.createObjectURL(new Blob([buffer], { type: "audio/wav" }));
+  silentPrerollUrls.set(key, url);
+  return url;
+}
+
+function playAudioAfterSilentPreroll(text, audio, onEnded, prerollMs = 650) {
+  stopCurrentAudio();
+  if ("speechSynthesis" in window) speechSynthesis.cancel();
+  currentSpeechText = "";
+  currentSpeechOnEnded = null;
+  const token = ++audioPlaybackToken;
+  const silentAudio = new Audio(silentPrerollUrl(prerollMs));
+  activeAudio = silentAudio;
+  silentAudio.preload = "auto";
+  const continueToWord = () => {
+    if (activeAudio !== silentAudio || token !== audioPlaybackToken) return;
+    activeAudio = null;
+    playAudio(text, audio, onEnded);
+  };
+  silentAudio.addEventListener("ended", continueToWord, { once: true });
+  silentAudio.addEventListener("error", continueToWord, { once: true });
+  silentAudio.play().catch(() => {
+    if (activeAudio === silentAudio) activeAudio = null;
+    playAudio(text, audio, onEnded);
+  });
+}
+
+function scheduleAutoWordAudio(word, delayMs = 650) {
+  const token = ++autoWordPlaybackToken;
+  const wordId = word?.id || "";
+  const text = word?.jp || "";
+  if (!wordId || !text) return;
+  const audio = audioUrl("word", wordId);
+  window.requestAnimationFrame(() => {
+    window.requestAnimationFrame(() => {
+      window.setTimeout(() => {
+        if (token !== autoWordPlaybackToken) return;
+        if (route().page !== "vocab") return;
+        if (state.vocabPhase !== "pronunciation" && state.vocabPhase !== "test") return;
+        if (state.vocabPhase === "pronunciation" && activeVocabulary()[state.currentWord]?.id !== wordId) return;
+        if (state.recordingWordId || state.recordingPreparingWordId || state.recordingStoppingWordId) return;
+        playAudioAfterSilentPreroll(text, audio, null, 700);
+      }, delayMs);
+    });
+  });
+}
+
 function stopCurrentAudio() {
+  audioPlaybackToken += 1;
+  autoWordPlaybackToken += 1;
   if (!activeAudio) return;
   activeAudio.pause();
   activeAudio.currentTime = 0;
@@ -3522,6 +3648,7 @@ function vocabTestPanel(task) {
   }
   const word = wordById(task.wordId);
   const options = testOptions(word, task.type);
+  const optionLabels = ["A", "B", "C", "D"];
   const label = task.type === "audioToWord" ? "听音选日文" : "日文选中文";
   return `
     <div class="recall-box">
@@ -3537,16 +3664,22 @@ function vocabTestPanel(task) {
         </div>
       ` : ""}
       <div class="choices compact">
-        ${options.map((item) => {
+        ${options.map((item, index) => {
           const selected = state.vocabReveal?.selectedWordId === item.id;
           const correctAnswer = state.vocabReveal && item.id === word.id;
           const revealed = Boolean(state.vocabReveal);
           const classes = ["choice"];
           if (revealed && correctAnswer) classes.push("correct");
           if (revealed && selected && !correctAnswer) classes.push("wrong");
-          return `<button class="${classes.join(" ")}" data-word-quiz="${task.type}:${item.id}" ${revealed ? "disabled" : ""}>${task.type === "audioToWord" ? item.jp : item.cn}</button>`;
+          return `
+            <button class="${classes.join(" ")}" data-word-quiz="${task.type}:${item.id}" ${revealed ? "disabled" : ""}>
+              <span class="choice-key">${optionLabels[index]}</span>
+              <span>${task.type === "audioToWord" ? item.jp : item.cn}</span>
+            </button>
+          `;
         }).join("")}
       </div>
+      <p class="hint compact-hint">也可以按键盘 A / B / C / D 选择对应选项。</p>
       ${state.recallResult ? `<p class="hint">${state.recallResult}</p>` : ""}
     </div>
   `;
@@ -3564,6 +3697,21 @@ function testOptions(word, type) {
     .slice(0, 3)
     .map(({ item }) => item);
   return [word, ...candidates].sort((a, b) => stableOptionOrder(a.id) - stableOptionOrder(b.id));
+}
+
+function chooseVocabTestOptionByKey(key) {
+  if (state.vocabPhase !== "test" || state.vocabReveal) return false;
+  const letter = String(key || "").toUpperCase();
+  const index = ["A", "B", "C", "D"].indexOf(letter);
+  if (index < 0) return false;
+  const task = currentVocabTestTask();
+  if (!task) return false;
+  const word = wordById(task.wordId);
+  if (!word) return false;
+  const option = testOptions(word, task.type)[index];
+  if (!option) return false;
+  handleWordQuiz(task.type, option.id);
+  return true;
 }
 
 function wordSimilarity(base, candidate) {
@@ -3595,6 +3743,7 @@ function setCurrentWord(index, shouldSpeak = false) {
     startVocabTest();
     return;
   }
+  stopCurrentAudio();
   state.currentWord = nextIndex;
   state.vocabPhase = "pronunciation";
   state.recallResult = "";
@@ -4264,9 +4413,11 @@ function initImportPreview() {
 function initStepState(status) {
   const parseConfirmed = Boolean(status?.state?.parseConfirmed);
   const audioConfirmed = Boolean(status?.state?.audioConfirmed);
+  const lessonSaved = Boolean(status?.lessonSaved);
+  const audioComplete = Boolean(status?.audio?.total) && !status?.audio?.missing;
   return {
-    parse: audioConfirmed ? "done" : parseConfirmed ? "done" : status?.draft ? "review" : "active",
-    audio: audioConfirmed ? "done" : parseConfirmed ? "active" : "locked"
+    parse: audioConfirmed || parseConfirmed || lessonSaved ? "done" : status?.draft ? "review" : "active",
+    audio: audioConfirmed ? "done" : parseConfirmed || lessonSaved || audioComplete ? "active" : "locked"
   };
 }
 
@@ -4292,11 +4443,14 @@ function initPage() {
   const summary = initDraftSummary(draft);
   const steps = initStepState(status);
   const audio = status?.audio || { items: [], generated: 0, missing: 0, total: 0 };
+  const lessonSaved = Boolean(status?.lessonSaved);
+  const hasConfirmedOrSavedLesson = Boolean(status?.state?.parseConfirmed || lessonSaved);
+  const canConfirmAudio = Boolean((hasConfirmedOrSavedLesson || audio.total) && audio.total && !audio.missing && !state.initBusy);
   const audioHint = initAudioHint(status, audio);
   const draftText = draft ? escapeHtml(JSON.stringify(draft, null, 2)) : "";
   return layout(`
     <section class="init-page">
-      <div class="page-head">
+      <div class="page-head init-page-head">
         <div>
           <p class="eyebrow">${item.title} · 课程初始化</p>
           <h1>${item.subtitle}</h1>
@@ -4307,7 +4461,7 @@ function initPage() {
         </div>
       </div>
       ${state.initMessage ? `<p class="hint">${escapeHtml(state.initMessage)}</p>` : ""}
-      ${state.initBusy ? `<div class="locked-panel">${escapeHtml(state.initBusy)}</div>` : ""}
+      ${state.initBusy ? `<div class="locked-panel init-busy-panel ${isInitAudioBusy() ? "loading" : ""}">${isInitAudioBusy() ? "<span class=\"loading-spinner\" aria-hidden=\"true\"></span>" : ""}<span>${escapeHtml(state.initBusy)}</span></div>` : ""}
       <div class="init-steps">
         <article class="panel init-step ${steps.parse}">
           <div class="init-step-head">
@@ -4354,8 +4508,8 @@ function initPage() {
               <h2>2. 音频生成</h2>
             </div>
             <div class="button-row">
-              <button class="primary" data-init-generate-audio ${!status?.state?.parseConfirmed || state.initBusy || !audio.missing ? "disabled" : ""}>生成缺失 ${audio.missing || 0}</button>
-              <button class="secondary" data-init-confirm-audio ${!status?.state?.parseConfirmed || state.initBusy || audio.missing ? "disabled" : ""}>确认音频</button>
+              <button class="primary" data-init-generate-audio ${!hasConfirmedOrSavedLesson || state.initBusy || !audio.missing ? "disabled" : ""}>生成缺失 ${audio.missing || 0}</button>
+              <button class="secondary" data-init-confirm-audio ${canConfirmAudio ? "" : "disabled"}>确认音频</button>
             </div>
           </div>
           ${audioHint ? `<p class="hint">${escapeHtml(audioHint)}</p>` : ""}
@@ -4374,11 +4528,17 @@ function initPage() {
 }
 
 function initAudioHint(status, audio) {
-  if (!status?.draft) return "音频生成会在导入或解析出 JSON 草稿后计算待生成项目。";
-  if (!status?.state?.parseConfirmed) return "已经有 JSON 草稿，但还没有确认解析结果。请先审核草稿并点击“确认解析结果”，确认后才能生成音频。";
+  const lessonSaved = Boolean(status?.lessonSaved);
+  const hasConfirmedOrSavedLesson = Boolean(status?.state?.parseConfirmed || lessonSaved);
+  if (!status?.draft && !lessonSaved) return "音频生成会在导入或解析出 JSON 草稿后计算待生成项目。";
+  if (!hasConfirmedOrSavedLesson) return "已经有 JSON 草稿，但还没有确认解析结果。请先审核草稿并点击“确认解析结果”，确认后才能生成音频。";
   if (!audio.total) return "已确认课程数据，但没有可生成的日语音频项目。请检查 JSON 中的 vocabulary、sentences、grammar.extraExamples、exercises.answer/referenceAnswers。";
   if (!audio.missing) return "音频已完整，可以确认音频。";
   return "";
+}
+
+function isInitAudioBusy() {
+  return /^正在(?:并行发起|生成音频)/.test(state.initBusy || "");
 }
 
 function initJsonImportBox() {
@@ -5210,7 +5370,7 @@ function revealAndAdvanceTest(word, selectedWordId, correct, mode) {
   state.vocabReveal = { wordId: word.id, selectedWordId, correct };
   state.recallResult = correct ? "正确。" : "不正确。系统已记录该弱项，稍后会进入复习。";
   render();
-  const delayMs = 1700;
+  const delayMs = 1200;
   const audioMustEnd = mode === "wordToMeaning";
   let audioEnded = !audioMustEnd;
   const startedAt = Date.now();
@@ -6356,7 +6516,7 @@ async function confirmInitAudio() {
     state.initBusy = "";
     state.initMessage = "该课初始化已完成。";
     await loadCourseCatalog(true);
-    render();
+    navigate("/");
   } catch (error) {
     state.initBusy = "";
     state.initMessage = String(error.message || error);
@@ -6500,13 +6660,7 @@ function render() {
       lastAutoSpokenWord = word.id;
       const shouldDelay = pendingAutoSpeakWordId === word.id;
       pendingAutoSpeakWordId = "";
-      window.setTimeout(() => {
-        if (route().page !== "vocab") return;
-        if (state.vocabPhase !== "pronunciation") return;
-        if (activeVocabulary()[state.currentWord]?.id !== word.id) return;
-        if (state.recordingWordId || state.recordingPreparingWordId || state.recordingStoppingWordId) return;
-        playAudio(word.jp, audioUrl("word", word.id));
-      }, shouldDelay ? 260 : 100);
+      scheduleAutoWordAudio(word, shouldDelay ? 650 : 450);
     }
   }
   if (current === "vocab" && state.vocabPhase === "test" && !state.modal) {
@@ -6516,7 +6670,7 @@ function render() {
       const key = `test:${task.id}`;
       if (word && lastAutoSpokenWord !== key) {
         lastAutoSpokenWord = key;
-        window.setTimeout(() => playAudio(word.jp, audioUrl("word", word.id)), 80);
+        scheduleAutoWordAudio(word, 450);
       }
     }
   }
@@ -6548,11 +6702,6 @@ function bind() {
   }));
   app.querySelectorAll("[data-speak]").forEach((button) => {
     button.addEventListener("click", () => playAudio(button.dataset.speak, button.dataset.audio));
-    button.addEventListener("pointerenter", () => speakFromHover(button.dataset.speak, button.dataset.audio));
-    button.addEventListener("pointermove", () => speakFromHover(button.dataset.speak, button.dataset.audio));
-    button.addEventListener("mouseenter", () => speakFromHover(button.dataset.speak, button.dataset.audio));
-    button.addEventListener("mouseover", () => speakFromHover(button.dataset.speak, button.dataset.audio));
-    button.addEventListener("focus", () => speakFromHover(button.dataset.speak, button.dataset.audio));
   });
   app.querySelectorAll(".voice-main[data-voice-id]").forEach((button) => button.addEventListener("click", () => {
     state.currentVoiceId = button.dataset.voiceId;
@@ -6843,8 +6992,6 @@ function bind() {
 window.addEventListener("popstate", render);
 document.addEventListener("keydown", handleKeyboard, true);
 document.addEventListener("keyup", handleKeyboard, true);
-document.addEventListener("pointerover", handleSpeakHover, true);
-document.addEventListener("pointermove", handleSpeakHover, true);
 document.addEventListener("selectionchange", () => window.setTimeout(handleSelectionLookup, 0));
 document.addEventListener("pointerdown", (event) => {
   if (!event.target.closest?.("#selection-bubble")) hideSelectionBubble();
@@ -6884,7 +7031,7 @@ window.addEventListener("pointerdown", primeSpeech, { once: true });
 if ("speechSynthesis" in window) {
   speechSynthesis.addEventListener?.("voiceschanged", primeSpeech);
 }
-render();
+fetchFrontendConfig().then(render);
 
 function handleKeyboard(event) {
   if (event.metaKey || event.ctrlKey || event.altKey) return;
@@ -6896,6 +7043,12 @@ function handleKeyboard(event) {
   const now = Date.now();
   const actionKey = `${current}:${key || event.code}:${event.type}`;
   if (event.type === "keyup" && lastKeyAction.key === `${current}:${key || event.code}:keydown` && now - lastKeyAction.at < 180) return;
+
+  if (event.type === "keydown" && current === "vocab" && chooseVocabTestOptionByKey(key)) {
+    event.preventDefault();
+    lastKeyAction = { key: actionKey, at: now };
+    return;
+  }
 
   if (current === "vocab" && (key === "ArrowLeft" || event.code === "ArrowLeft" || key === "ArrowRight" || event.code === "ArrowRight")) {
     event.preventDefault();

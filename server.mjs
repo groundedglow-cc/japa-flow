@@ -24,6 +24,8 @@ import vm from "node:vm";
   }
 })();
 
+import { isOSSEnabled, getOSSConfig, ossUrl, uploadToOSS } from "./scripts/oss-utils.mjs";
+
 const root = process.cwd();
 const port = Number(process.env.PORT || 5173);
 const lessonId = 27;
@@ -352,7 +354,7 @@ async function readMultipart(req) {
 
 async function loadLesson() {
   const appJs = await readFile(join(root, "app.js"), "utf8");
-  const match = appJs.match(/const lesson = ([\s\S]*?\n};)/);
+  const match = appJs.match(/(?:const|let) lesson = ([\s\S]*?\n};)/);
   if (!match) throw new Error("Could not find lesson object in app.js");
   return vm.runInNewContext(`(${match[1].replace(/;$/, "")})`);
 }
@@ -362,7 +364,9 @@ function voicePath(voiceId, type, id) {
 }
 
 function voiceUrl(voiceId, type, id) {
-  return `/audio/lesson${lessonId}/voices/${voiceId}/${type}s/${id}.mp3`;
+  const relative = `audio/lesson${lessonId}/voices/${voiceId}/${type}s/${id}.mp3`;
+  if (isOSSEnabled()) return ossUrl(relative);
+  return `/${relative}`;
 }
 
 function legacyPath(type, id) {
@@ -370,7 +374,9 @@ function legacyPath(type, id) {
 }
 
 function legacyUrl(type, id) {
-  return `/audio/lesson${lessonId}/${type}s/${id}.mp3`;
+  const relative = `audio/lesson${lessonId}/${type}s/${id}.mp3`;
+  if (isOSSEnabled()) return ossUrl(relative);
+  return `/${relative}`;
 }
 
 function audioStatus(voiceId, type, id) {
@@ -419,7 +425,9 @@ function audioPathForLesson(lessonIdValue, voiceId, type, id) {
 }
 
 function audioUrlForLesson(lessonIdValue, voiceId, type, id) {
-  return `/audio/lesson${lessonIdValue}/voices/${voiceId}/${type}s/${id}.mp3`;
+  const relative = `audio/lesson${lessonIdValue}/voices/${voiceId}/${type}s/${id}.mp3`;
+  if (isOSSEnabled()) return ossUrl(relative);
+  return `/${relative}`;
 }
 
 function addUniqueJob(jobs, seen, job) {
@@ -816,7 +824,13 @@ async function generateInitAudioJob(lessonIdValue, voiceId, job) {
   const filePath = audioPathForLesson(lessonIdValue, voiceId, job.type, job.id);
   if (existsSync(filePath)) return { ...job, exists: true, generated: false, url: audioUrlForLesson(lessonIdValue, voiceId, job.type, job.id) };
   await mkdir(dirname(filePath), { recursive: true });
-  await writeFile(filePath, await synthesizeWithRetry(job.text, voiceId));
+  const buffer = await synthesizeWithRetry(job.text, voiceId);
+  await writeFile(filePath, buffer);
+  if (isOSSEnabled()) {
+    const ossKey = `audio/lesson${lessonIdValue}/voices/${voiceId}/${job.type}s/${job.id}.mp3`;
+    try { await uploadToOSS(ossKey, buffer); }
+    catch (e) { console.error(`OSS upload failed: ${ossKey}`, e.message); }
+  }
   return { ...job, exists: true, generated: true, url: audioUrlForLesson(lessonIdValue, voiceId, job.type, job.id) };
 }
 
@@ -866,7 +880,13 @@ async function generateAudio(voiceId, type, id, text) {
   if (status.exists) return { ...status, generated: false };
   const filePath = voicePath(voiceId, type, id);
   await mkdir(dirname(filePath), { recursive: true });
-  await writeFile(filePath, await synthesizeWithRetry(text, voiceId));
+  const buffer = await synthesizeWithRetry(text, voiceId);
+  await writeFile(filePath, buffer);
+  if (isOSSEnabled()) {
+    const ossKey = `audio/lesson${lessonId}/voices/${voiceId}/${type}s/${id}.mp3`;
+    try { await uploadToOSS(ossKey, buffer); }
+    catch (e) { console.error(`OSS upload failed: ${ossKey}`, e.message); }
+  }
   return { exists: true, url: voiceUrl(voiceId, type, id), source: "voice", generated: true };
 }
 
@@ -1176,6 +1196,13 @@ async function handleApi(req, res, url) {
       return true;
     }
     // ============ STUDENT RUNTIME APIs (continued) ============
+    if (url.pathname === "/api/frontend-config" && req.method === "GET") {
+      sendJson(res, 200, {
+        ossEnabled: isOSSEnabled(),
+        ossBaseUrl: isOSSEnabled() ? getOSSConfig().baseUrl : ""
+      });
+      return true;
+    }
     if (url.pathname === "/api/pronunciation/evaluate" && req.method === "POST") {
       const { fields, files } = await readMultipart(req);
       const referenceText = fields.referenceText || "";
