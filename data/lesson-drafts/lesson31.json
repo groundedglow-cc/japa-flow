@@ -1,0 +1,2405 @@
+{
+  "id": 31,
+  "title": "第31课",
+  "subtitle": "このボタンを押すと、電源が入ります",
+  "vocabulary": [
+    {
+      "id": "w1",
+      "jp": "ボタン",
+      "kana": "ボタン",
+      "cn": "按钮；纽扣"
+    },
+    {
+      "id": "w2",
+      "jp": "ブローチ",
+      "kana": "ブローチ",
+      "cn": "胸针"
+    },
+    {
+      "id": "w3",
+      "jp": "カーテン",
+      "kana": "カーテン",
+      "cn": "窗帘，帘子"
+    },
+    {
+      "id": "w4",
+      "jp": "コンクリート",
+      "kana": "コンクリート",
+      "cn": "混凝土，水泥"
+    },
+    {
+      "id": "w5",
+      "jp": "プラスチック",
+      "kana": "プラスチック",
+      "cn": "塑料，塑胶"
+    },
+    {
+      "id": "w6",
+      "jp": "ひすい",
+      "kana": "ひすい",
+      "cn": "翡翠"
+    },
+    {
+      "id": "w7",
+      "jp": "サービスセンター",
+      "kana": "サービスセンター",
+      "cn": "维修服务中心"
+    },
+    {
+      "id": "w8",
+      "jp": "会員",
+      "kana": "かいいん",
+      "cn": "会员"
+    },
+    {
+      "id": "w9",
+      "jp": "特典",
+      "kana": "とくてん",
+      "cn": "优惠"
+    },
+    {
+      "id": "w10",
+      "jp": "お手洗い",
+      "kana": "おてあらい",
+      "cn": "洗手间，厕所"
+    },
+    {
+      "id": "w11",
+      "jp": "階段",
+      "kana": "かいだん",
+      "cn": "楼梯，台阶"
+    },
+    {
+      "id": "w12",
+      "jp": "以降",
+      "kana": "いこう",
+      "cn": "以后"
+    },
+    {
+      "id": "w13",
+      "jp": "そば",
+      "kana": "そば",
+      "cn": "旁边"
+    },
+    {
+      "id": "w14",
+      "jp": "卓球台",
+      "kana": "たっきゅうだい",
+      "cn": "乒乓球台"
+    },
+    {
+      "id": "w15",
+      "jp": "サイズ",
+      "kana": "サイズ",
+      "cn": "大小，尺寸"
+    },
+    {
+      "id": "w16",
+      "jp": "人間",
+      "kana": "にんげん",
+      "cn": "人，人类"
+    },
+    {
+      "id": "w17",
+      "jp": "白鳥",
+      "kana": "はくちょう",
+      "cn": "天鹅"
+    },
+    {
+      "id": "w18",
+      "jp": "電源",
+      "kana": "でんげん",
+      "cn": "电源"
+    },
+    {
+      "id": "w19",
+      "jp": "スイカ",
+      "kana": "スイカ",
+      "cn": "西瓜"
+    },
+    {
+      "id": "w20",
+      "jp": "押します",
+      "kana": "おします",
+      "cn": "按，推，挤"
+    },
+    {
+      "id": "w21",
+      "jp": "つきます",
+      "kana": "つきます",
+      "cn": "灯亮，灯开"
+    },
+    {
+      "id": "w22",
+      "jp": "下がります",
+      "kana": "さがります",
+      "cn": "下降，降低"
+    },
+    {
+      "id": "w23",
+      "jp": "怒ります",
+      "kana": "おこります",
+      "cn": "生气"
+    },
+    {
+      "id": "w24",
+      "jp": "回します",
+      "kana": "まわします",
+      "cn": "转，旋转，传送"
+    },
+    {
+      "id": "w25",
+      "jp": "動きます",
+      "kana": "うごきます",
+      "cn": "运转，转动"
+    },
+    {
+      "id": "w26",
+      "jp": "生きます",
+      "kana": "いきます",
+      "cn": "活，生存"
+    },
+    {
+      "id": "w27",
+      "jp": "下ります",
+      "kana": "おります",
+      "cn": "下，下来"
+    },
+    {
+      "id": "w28",
+      "jp": "まとめます",
+      "kana": "まとめます",
+      "cn": "总结，整理；汇集"
+    },
+    {
+      "id": "w29",
+      "jp": "フリーズします",
+      "kana": "フリーズします",
+      "cn": "死机"
+    },
+    {
+      "id": "w30",
+      "jp": "故障します",
+      "kana": "こしょうします",
+      "cn": "故障"
+    },
+    {
+      "id": "w31",
+      "jp": "美しい",
+      "kana": "うつくしい",
+      "cn": "美丽"
+    },
+    {
+      "id": "w32",
+      "jp": "うまい",
+      "kana": "うまい",
+      "cn": "高明，好吃，可口"
+    },
+    {
+      "id": "w33",
+      "jp": "詳しい",
+      "kana": "くわしい",
+      "cn": "详细"
+    },
+    {
+      "id": "w34",
+      "jp": "自由",
+      "kana": "じゆう",
+      "cn": "随便，自由"
+    },
+    {
+      "id": "w35",
+      "jp": "丁寧",
+      "kana": "ていねい",
+      "cn": "精心，细心，恭敬"
+    },
+    {
+      "id": "w36",
+      "jp": "きちんと",
+      "kana": "きちんと",
+      "cn": "好好地；正经地"
+    },
+    {
+      "id": "w37",
+      "jp": "ただし",
+      "kana": "ただし",
+      "cn": "不过，只是"
+    },
+    {
+      "id": "w38",
+      "jp": "しかし",
+      "kana": "しかし",
+      "cn": "可是，但是"
+    },
+    {
+      "id": "w39",
+      "jp": "気持ち悪い",
+      "kana": "きもちわるい",
+      "cn": "不舒服"
+    },
+    {
+      "id": "w40",
+      "jp": "〜メートル／〜つ目",
+      "kana": "〜メートル／〜つめ",
+      "cn": "〜米／第〜个"
+    }
+  ],
+  "sentences": [
+    {
+      "id": "s1",
+      "order": 1,
+      "text": "このボタンを押すと、電源が入ります。",
+      "kana": "このボタンをおすと、でんげんがはいります。",
+      "translation": "按下这个按钮，电源就接通了。",
+      "words": [
+        "w18",
+        "w20"
+      ],
+      "grammar": [
+        "g1"
+      ]
+    },
+    {
+      "id": "s2",
+      "order": 2,
+      "text": "そのパソコンは、たまにフリーズすることがあります。",
+      "kana": "そのパソコンは、たまにフリーズすることがあります。",
+      "translation": "那台电脑偶尔会死机。",
+      "words": [
+        "w29"
+      ],
+      "grammar": [
+        "g2"
+      ]
+    },
+    {
+      "id": "s3",
+      "order": 3,
+      "text": "馬さんはとても上手にレポートをまとめました。",
+      "kana": "ばさんはとてもじょうずにレポートをまとめました。",
+      "translation": "小马出色地整理了报告。",
+      "words": [
+        "w28"
+      ],
+      "grammar": [
+        "g3"
+      ]
+    },
+    {
+      "id": "s4",
+      "order": 4,
+      "text": "李さんは来るでしょうか。",
+      "kana": "りさんはくるでしょうか。",
+      "translation": "小李会来吗？",
+      "words": [],
+      "grammar": [
+        "g4"
+      ]
+    },
+    {
+      "id": "s5",
+      "order": 5,
+      "speaker": "甲",
+      "text": "すみません。市役所へはどう行くんですか。",
+      "kana": "すみません。しやくしょへはどういくんですか。",
+      "translation": "请问，去市政府怎么走？",
+      "words": [],
+      "grammar": []
+    },
+    {
+      "id": "s6",
+      "order": 6,
+      "speaker": "乙",
+      "text": "この道をまっすぐ行くと、デパートがあります。市役所はその隣ですよ。",
+      "kana": "このみちをまっすぐいくと、デパートがあります。しやくしょはそのとなりですよ。",
+      "translation": "沿着这条路一直走，有一家百货商店。市政府就在它旁边。",
+      "words": [],
+      "grammar": [
+        "g1"
+      ]
+    },
+    {
+      "id": "s7",
+      "order": 7,
+      "speaker": "甲",
+      "text": "ありがとうございます。",
+      "kana": "ありがとうございます。",
+      "translation": "谢谢。",
+      "words": [],
+      "grammar": []
+    },
+    {
+      "id": "s8",
+      "order": 8,
+      "speaker": "甲",
+      "text": "朝ご飯は毎日きちんと食べますか。",
+      "kana": "あさごはんはまいにちきちんとたべますか。",
+      "translation": "你每天都正经吃早饭吗？",
+      "words": [
+        "w36"
+      ],
+      "grammar": [
+        "g5"
+      ]
+    },
+    {
+      "id": "s9",
+      "order": 9,
+      "speaker": "乙",
+      "text": "ええ。でも、たまに食べないことがあります。",
+      "kana": "ええ。でも、たまにたべないことがあります。",
+      "translation": "是的。不过偶尔也有不吃的时候。",
+      "words": [],
+      "grammar": [
+        "g2"
+      ]
+    },
+    {
+      "id": "s10",
+      "order": 10,
+      "speaker": "甲",
+      "text": "あっ、雨ですよ。",
+      "kana": "あっ、あめですよ。",
+      "translation": "啊，下雨了。",
+      "words": [],
+      "grammar": []
+    },
+    {
+      "id": "s11",
+      "order": 11,
+      "speaker": "乙",
+      "text": "本当ですね。早く家に帰りましょう。",
+      "kana": "ほんとうですね。はやくいえにかえりましょう。",
+      "translation": "真的呢。早点回家吧。",
+      "words": [],
+      "grammar": [
+        "g3"
+      ]
+    },
+    {
+      "id": "s12",
+      "order": 12,
+      "speaker": "甲",
+      "text": "すみません、馬さんはどちらでしょうか。",
+      "kana": "すみません、ばさんはどちらでしょうか。",
+      "translation": "请问，小马在哪里？",
+      "words": [],
+      "grammar": [
+        "g4"
+      ]
+    },
+    {
+      "id": "s13",
+      "order": 13,
+      "speaker": "乙",
+      "text": "馬さんはさっき出かけましたよ。",
+      "kana": "ばさんはさっきでかけましたよ。",
+      "translation": "小马刚才出去了。",
+      "words": [],
+      "grammar": []
+    },
+    {
+      "id": "s14",
+      "order": 14,
+      "speaker": "馬",
+      "text": "ここを曲がると小さな公園があって、子供たちがよく卓球をしているんですよ。",
+      "kana": "ここをまがるとちいさなこうえんがあって、こどもたちがよくたっきゅうをしているんですよ。",
+      "translation": "从这里拐过去有一个小公园，孩子们经常在那里打乒乓球。",
+      "words": [
+        "w14"
+      ],
+      "grammar": [
+        "g1"
+      ]
+    },
+    {
+      "id": "s15",
+      "order": 15,
+      "speaker": "森",
+      "text": "卓球ですか？公園で？",
+      "kana": "たっきゅうですか？こうえんで？",
+      "translation": "乒乓球？在公园里？",
+      "words": [],
+      "grammar": [
+        "g6"
+      ]
+    },
+    {
+      "id": "s16",
+      "order": 16,
+      "speaker": "馬",
+      "text": "そうです。その公園にはコンクリートでできた卓球台があるんです。",
+      "kana": "そうです。そのこうえんにはコンクリートでできたたっきゅうだいがあるんです。",
+      "translation": "是的。那个公园里有混凝土做的乒乓球台。",
+      "words": [
+        "w4",
+        "w14"
+      ],
+      "grammar": [
+        "g7"
+      ]
+    },
+    {
+      "id": "s17",
+      "order": 17,
+      "speaker": "森",
+      "text": "コンクリートの卓球台？へえ、おもしろいですね。",
+      "kana": "コンクリートのたっきゅうだい？へえ、おもしろいですね。",
+      "translation": "混凝土的乒乓球台？嘿，真有意思啊。",
+      "words": [
+        "w4",
+        "w14"
+      ],
+      "grammar": []
+    },
+    {
+      "id": "s18",
+      "order": 18,
+      "speaker": "馬",
+      "text": "ええ、卓球をしたい時にいつでもできるんです。たまに公園のそばを通ることがあるんですが、必ずだれかがやっていますね。",
+      "kana": "ええ、たっきゅうをしたいときにいつでもできるんです。たまにこうえんのそばをとおることがあるんですが、かならずだれかがやっていますね。",
+      "translation": "是的，想打乒乓球的时候随时可以打。偶尔从公园旁边经过的时候，肯定有人在打。",
+      "words": [
+        "w13"
+      ],
+      "grammar": [
+        "g2"
+      ]
+    },
+    {
+      "id": "s19",
+      "order": 19,
+      "speaker": "馬",
+      "text": "ここから300メートルほど行くと、スポーツセンターがあります。",
+      "kana": "ここからさんびゃくメートルほどいくと、スポーツセンターがあります。",
+      "translation": "从这里大概走300米左右，有个体育中心。",
+      "words": [
+        "w40"
+      ],
+      "grammar": [
+        "g1",
+        "g8"
+      ]
+    },
+    {
+      "id": "s20",
+      "order": 20,
+      "speaker": "森",
+      "text": "スポーツセンター？だれでも自由に利用することができるんでしょうか。",
+      "kana": "スポーツセンター？だれでもじゆうにりようすることができるんでしょうか。",
+      "translation": "体育中心？谁都可以自由利用吗？",
+      "words": [
+        "w34"
+      ],
+      "grammar": [
+        "g4"
+      ]
+    },
+    {
+      "id": "s21",
+      "order": 21,
+      "speaker": "馬",
+      "text": "ええ、だれでも利用することができます。ただし、有料ですが。",
+      "kana": "ええ、だれでもりようすることができます。ただし、ゆうりょうですが。",
+      "translation": "是的，谁都可以利用。不过，是收费的。",
+      "words": [
+        "w37"
+      ],
+      "grammar": [
+        "g9"
+      ]
+    },
+    {
+      "id": "s22",
+      "order": 22,
+      "speaker": "森",
+      "text": "馬さんもよく利用するんですか。",
+      "kana": "ばさんもよくりようするんですか。",
+      "translation": "小马你也经常利用吗？",
+      "words": [],
+      "grammar": []
+    },
+    {
+      "id": "s23",
+      "order": 23,
+      "speaker": "馬",
+      "text": "たまにプールで泳ぐことがあります。でも、会員じゃないと夜8時以降は利用することができないんです。だから会員になろうと思っているんです。",
+      "kana": "たまにプールでおよぐことがあります。でも、かいいんじゃないとよるはちじいこうはりようすることができないんです。だからかいいんになろうとおもっているんです。",
+      "translation": "偶尔在游泳池游泳。但是，不是会员的话晚上8点以后就不能利用了。所以我想成为会员。",
+      "words": [
+        "w8",
+        "w12"
+      ],
+      "grammar": [
+        "g2"
+      ]
+    },
+    {
+      "id": "s24",
+      "order": 24,
+      "speaker": "森",
+      "text": "会員になると、ほかにも特典があるんですか。",
+      "kana": "かいいんになると、ほかにもとくてんがあるんですか。",
+      "translation": "成为会员的话，还有其他优惠吗？",
+      "words": [
+        "w8",
+        "w9"
+      ],
+      "grammar": [
+        "g1"
+      ]
+    },
+    {
+      "id": "s25",
+      "order": 25,
+      "speaker": "馬",
+      "text": "会員の家族も安く利用することができるんです。",
+      "kana": "かいいんのかぞくもやすくりようすることができるんです。",
+      "translation": "会员的家人也可以便宜地利用。",
+      "words": [
+        "w8"
+      ],
+      "grammar": [
+        "g3"
+      ]
+    },
+    {
+      "id": "s26",
+      "order": 26,
+      "speaker": "森",
+      "text": "今何時でしょうか。",
+      "kana": "いまなんじでしょうか。",
+      "translation": "现在几点了？",
+      "words": [],
+      "grammar": [
+        "g4"
+      ]
+    },
+    {
+      "id": "s27",
+      "order": 27,
+      "speaker": "馬",
+      "text": "もうすぐ1時15分になります。",
+      "kana": "もうすぐいちじじゅうごふんになります。",
+      "translation": "马上就到1点15分了。",
+      "words": [],
+      "grammar": []
+    },
+    {
+      "id": "s28",
+      "order": 28,
+      "speaker": "森",
+      "text": "じゃあ、早く帰らないと、午後の会議が始まりますね。",
+      "kana": "じゃあ、はやくかえらないと、ごごのかいぎがはじまりますね。",
+      "translation": "那得早点回去，下午的会议要开始了。",
+      "words": [],
+      "grammar": [
+        "g1",
+        "g3"
+      ]
+    }
+  ],
+  "textStructure": [
+    {
+      "id": "basic",
+      "title": "基本课文",
+      "groups": [
+        {
+          "title": "基本句",
+          "kind": "statements",
+          "ids": [
+            "s1",
+            "s2",
+            "s3",
+            "s4"
+          ]
+        },
+        {
+          "title": "对话 A",
+          "kind": "dialogue",
+          "ids": [
+            "s5",
+            "s6",
+            "s7"
+          ]
+        },
+        {
+          "title": "对话 B",
+          "kind": "dialogue",
+          "ids": [
+            "s8",
+            "s9"
+          ]
+        },
+        {
+          "title": "对话 C",
+          "kind": "dialogue",
+          "ids": [
+            "s10",
+            "s11"
+          ]
+        },
+        {
+          "title": "对话 D",
+          "kind": "dialogue",
+          "ids": [
+            "s12",
+            "s13"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "application",
+      "title": "应用课文 · 散歩",
+      "groups": [
+        {
+          "title": "在公园附近",
+          "kind": "dialogue",
+          "ids": [
+            "s14",
+            "s15",
+            "s16",
+            "s17",
+            "s18"
+          ]
+        },
+        {
+          "title": "体育中心",
+          "kind": "dialogue",
+          "ids": [
+            "s19",
+            "s20",
+            "s21",
+            "s22",
+            "s23",
+            "s24",
+            "s25"
+          ]
+        },
+        {
+          "title": "回公司",
+          "kind": "dialogue",
+          "ids": [
+            "s26",
+            "s27",
+            "s28"
+          ]
+        }
+      ]
+    }
+  ],
+  "grammar": [
+    {
+      "id": "g1",
+      "pattern": "小句1（动词基本形/ない形）と、小句2",
+      "meaning": "表示恒常性状态、真理、反复性状态、习惯等，\"一……就……\"。也可表示由于某种行为而发现了新情况。",
+      "structure": "小句1（动词基本形/ない形）＋と、小句2",
+      "usage": "\"〜と\"用在表述恒常性状态、真理、反复性状态、习惯等内容的句子里，表示\"小句1\"是\"小句2\"的条件。另外还可以表示由于某种行为而发现了新情况。\n注意：用\"〜と\"的复句，\"小句2\"不能是自己的意志、愿望或向听话人提出要求、劝诱等内容。",
+      "examples": [
+        "s1",
+        "s6",
+        "s14",
+        "s19",
+        "s24",
+        "s28"
+      ],
+      "extraExamples": [
+        {
+          "jp": "このボタンを押すと、電源が入ります。",
+          "kana": "このボタンをおすと、でんげんがはいります。",
+          "cn": "按下这个按钮，电源就接通了。（恒常性状态）"
+        },
+        {
+          "jp": "食べ物を食べないと、人間は生きることができません。",
+          "kana": "たべものをたべないと、にんげんはいきることができません。",
+          "cn": "不吃食物，人就没法活。（真理）"
+        },
+        {
+          "jp": "わたしは、その店へ行くと、いつもコーヒーを飲みます。",
+          "kana": "わたしは、そのみせへいくと、いつもコーヒーをのみます。",
+          "cn": "我去那个店的时候总要喝咖啡。（反复性状态）"
+        },
+        {
+          "jp": "この道をまっすぐ行くと、デパートがあります。",
+          "kana": "このみちをまっすぐいくと、デパートがあります。",
+          "cn": "沿着这条路一直走，有一家百货商店。"
+        },
+        {
+          "jp": "カーテンを開けると、美しい山が見えました。",
+          "kana": "カーテンをあけると、うつくしいやまがみえました。",
+          "cn": "打开窗帘，就看见了美丽的山。"
+        },
+        {
+          "jp": "夜になると、電気がつきます。",
+          "kana": "よるになると、でんきがつきます。",
+          "cn": "到了晚上灯就亮了。"
+        },
+        {
+          "jp": "×夜になると、食事に行きましょう。",
+          "kana": "よるになると、しょくじにいきましょう。",
+          "cn": "到了晚上，去吃饭吧。",
+          "isIncorrect": true,
+          "note": "\"小句2\"不能是劝诱等内容，应使用\"〜から\"或\"〜ので\""
+        }
+      ]
+    },
+    {
+      "id": "g2",
+      "pattern": "动词（基本形/ない形）ことがあります",
+      "meaning": "表示有时会发生某种事态。",
+      "structure": "动词基本形 ＋ ことがあります\n动词ない形 ＋ ことがあります",
+      "usage": "\"动词基本形＋ことがあります\"\"动词ない形＋ことがあります\"表示有时会发生某种事态。往往和\"たまに\"\"時々\"等副词呼应使用。\n注意：本句型和第21课学的句型\"〜たことがあります\"是两种完全不同的句型。",
+      "examples": [
+        "s2",
+        "s9",
+        "s18",
+        "s23"
+      ],
+      "extraExamples": [
+        {
+          "jp": "そのパソコンは、たまにフリーズすることがあります。",
+          "kana": "そのパソコンは、たまにフリーズすることがあります。",
+          "cn": "那台电脑偶尔会死机。"
+        },
+        {
+          "jp": "時々寝坊することがあります。",
+          "kana": "ときどきねぼうすることがあります。",
+          "cn": "有时睡懒觉。"
+        },
+        {
+          "jp": "たまに朝ご飯を食べないことがあります。",
+          "kana": "たまにあさごはんをたべないことがあります。",
+          "cn": "偶尔不吃早餐。"
+        }
+      ]
+    },
+    {
+      "id": "g3",
+      "pattern": "形容词的副词性用法",
+      "meaning": "形容词像副词一样修饰动词。",
+      "structure": "一类形容词：词尾「い」→「く」＋动词\n二类形容词：＋「に」＋动词",
+      "usage": "有的形容词可以像副词一样修饰动词。这时候一类形容词要把词尾的\"い\"变成\"く\"，二类形容词后面要加\"に\"。",
+      "examples": [
+        "s3",
+        "s11",
+        "s25",
+        "s28"
+      ],
+      "extraExamples": [
+        {
+          "jp": "早く家に帰りましょう。",
+          "kana": "はやくいえにかえりましょう。",
+          "cn": "早点回家吧。"
+        },
+        {
+          "jp": "馬さんはとても上手にレポートをまとめました。",
+          "kana": "ばさんはとてもじょうずにレポートをまとめました。",
+          "cn": "小马出色地整理了报告。"
+        },
+        {
+          "jp": "静かにドアを閉めてください。",
+          "kana": "しずかにドアをしめてください。",
+          "cn": "请轻轻地关门。"
+        }
+      ]
+    },
+    {
+      "id": "g4",
+      "pattern": "小句（简体形）でしょうか",
+      "meaning": "礼貌程度高的疑问表达方式。",
+      "structure": "动词/一类形容词小句（简体形）＋でしょうか\n二类形容词/名词小句（简体形，去「だ」）＋でしょうか",
+      "usage": "句尾用\"でしょうか\"来表示疑问的句子，是礼貌程度高的表达方式。和\"〜ますか\"意思相同，但\"〜でしょうか\"的礼貌程度比\"〜ますか\"高一级。动词和一类形容词小句以简体形接\"でしょうか\"，二类形容词小句和名词小句则把其简体形的\"だ\"换成\"でしょうか\"即可。",
+      "examples": [
+        "s4",
+        "s12",
+        "s20",
+        "s26"
+      ],
+      "extraExamples": [
+        {
+          "jp": "李さんは来るでしょうか。",
+          "kana": "りさんはくるでしょうか。",
+          "cn": "小李会来吗？"
+        },
+        {
+          "jp": "李さんは来ますか。",
+          "kana": "りさんはきますか。",
+          "cn": "小李来吗？"
+        },
+        {
+          "jp": "馬さんはもう帰ったでしょうか。",
+          "kana": "ばさんはもうかえったでしょうか。",
+          "cn": "小马已经回家了吗？"
+        },
+        {
+          "jp": "3月の東京は寒いでしょうか。",
+          "kana": "さんがつのとうきょうはさむいでしょうか。",
+          "cn": "3月的东京冷吗？"
+        },
+        {
+          "jp": "これは中国のお菓子でしょうか。",
+          "kana": "これはちゅうごくのおかしでしょうか。",
+          "cn": "这是中国的点心吗？"
+        }
+      ]
+    },
+    {
+      "id": "g5",
+      "pattern": "きちんと",
+      "meaning": "表示正确、无误、恰当等意思。",
+      "structure": "きちんと ＋ 动词",
+      "usage": "用于表示正确、无误、恰当等意思。基本课文B中表示每天都正经地用早餐的意思。",
+      "examples": [
+        "s8"
+      ],
+      "extraExamples": [
+        {
+          "jp": "朝ご飯は毎日きちんと食べますか。",
+          "kana": "あさごはんはまいにちきちんとたべますか。",
+          "cn": "你每天都正经吃早饭吗？"
+        },
+        {
+          "jp": "部屋をきちんと片づけてください。",
+          "kana": "へやをきちんとかたづけてください。",
+          "cn": "请把房间彻底打扫干净。"
+        }
+      ]
+    },
+    {
+      "id": "g6",
+      "pattern": "疑问句的分开说法",
+      "meaning": "吃惊时将疑问句拆分为两个短问句的表达方式。",
+      "structure": "名词＋ですか？＋补充信息＋で？",
+      "usage": "日本人对于某些难以想象的场面会非常吃惊地反问，采用了将疑问句拆分为两个短问句的表达方式。正常的语序是被拆开的完整问句，但吃惊的时候，人们往往抛开这种规则，先去询问自己最关心的部分。",
+      "examples": [
+        "s15"
+      ],
+      "extraExamples": [
+        {
+          "jp": "わたしが浴衣を作ります。—浴衣ですか？自分で？",
+          "kana": "わたしがゆかたをつくります。—ゆかたですか？じぶんで？",
+          "cn": "我自己做浴衣。—浴衣？你自己做？"
+        },
+        {
+          "jp": "明日からアメリカへ出張します。—えっ。出張ですか？アメリカへ？",
+          "kana": "あしたからアメリカへしゅっちょうします。—えっ。しゅっちょうですか？アメリカへ？",
+          "cn": "明天去美国出差。—啊？出差？去美国？"
+        }
+      ]
+    },
+    {
+      "id": "g7",
+      "pattern": "〜でできた〜",
+      "meaning": "表示\"用～做成的～\"。",
+      "structure": "名词（材料）＋でできた＋名词",
+      "usage": "表示\"用～做成的～\"时，日语中一般不说\"〜で作った〜\"而说\"〜でできた〜\"。",
+      "examples": [
+        "s16"
+      ],
+      "extraExamples": [
+        {
+          "jp": "その公園にはコンクリートでできた卓球台があるんです。",
+          "kana": "そのこうえんにはコンクリートでできたたっきゅうだいがあるんです。",
+          "cn": "那个公园里有混凝土做的乒乓球台。"
+        },
+        {
+          "jp": "それはプラスチックでできた箱です。",
+          "kana": "それはプラスチックでできたはこです。",
+          "cn": "那是塑料的盒子。"
+        },
+        {
+          "jp": "これはひすいでできた白鳥のブローチです。",
+          "kana": "これはひすいでできたはくちょうのブローチです。",
+          "cn": "这是翡翠做的天鹅胸针。"
+        },
+        {
+          "jp": "木でできたおもちゃを孫に買ってあげました。",
+          "kana": "きでできたおもちゃをまごにかってあげました。",
+          "cn": "给孙子买了一个木制的玩具。"
+        }
+      ]
+    },
+    {
+      "id": "g8",
+      "pattern": "ほど 和 ぐらい",
+      "meaning": "都表示大致的数量或分量，但用法有区别。",
+      "structure": "数量词＋ほど／ぐらい",
+      "usage": "\"数量词＋ほど\"和\"数量词＋ぐらい\"都表示大致的数量或分量。但是，表示某序列中的一点时，可以用\"ぐらい\"，但不能用\"ほど\"。另外\"ぐらい\"可以接在\"この／その／あの／どの\"后面，但\"ほど\"不能。",
+      "examples": [
+        "s19"
+      ],
+      "extraExamples": [
+        {
+          "jp": "ここから300メートルほど行くと、スポーツセンターがあります。（〇ぐらい）",
+          "kana": "ここからさんびゃくメートルほどいくと、スポーツセンターがあります。",
+          "cn": "从这里大概走300米左右，有个体育中心。"
+        },
+        {
+          "jp": "わたしは30歳ぐらいからスポーツを始めました。（✕ほど）",
+          "kana": "わたしはさんじゅっさいぐらいからスポーツをはじめました。",
+          "cn": "我大概从30岁左右开始体育运动的。"
+        },
+        {
+          "jp": "ここから2つ目ぐらいの信号を右に曲がったところに、たしかスーパーがありましたよね。（✕ほど）",
+          "kana": "ここからふたつめぐらいのしんごうをみぎにまがったところに、たしかスーパーがありましたよね。",
+          "cn": "从这里大概是第2个红绿灯向右拐，好像有一个超市吧？"
+        },
+        {
+          "jp": "このぐらいのサイズの箱が欲しいんですが。（✕ほど）",
+          "kana": "このぐらいのサイズのはこがほしいんですが。",
+          "cn": "我想要这样大小的箱子。"
+        }
+      ]
+    },
+    {
+      "id": "g9",
+      "pattern": "ただし",
+      "meaning": "表示基本肯定前面句子内容的基础上，附加一些条件、限制，或者补充一些例外的情况。",
+      "structure": "前句。ただし、＋ 附加条件/限制",
+      "usage": "意思与\"しかし\"相似，但\"しかし\"可用来连接与前句完全相反的内容，而\"ただし\"只能用来表示对前句内容的部分限制或补充。",
+      "examples": [
+        "s21"
+      ],
+      "extraExamples": [
+        {
+          "jp": "このスポーツセンターは、だれでも利用することができます。ただし、有料ですが。",
+          "kana": "このスポーツセンターは、だれでもりようすることができます。ただし、ゆうりょうですが。",
+          "cn": "谁都可以利用这个体育中心，不过是收费的。"
+        },
+        {
+          "jp": "このスポーツセンターは、だれでも利用することができます。しかし、会費は高いです。",
+          "kana": "このスポーツセンターは、だれでもりようすることができます。しかし、かいひはたかいです。",
+          "cn": "谁都可以利用这个体育中心，但是会费有点高。"
+        },
+        {
+          "jp": "このプールは女性は利用することができます。しかし、男性はだめです。",
+          "kana": "このプールはじょせいはりようすることができます。しかし、だんせいはだめです。",
+          "cn": "这个游泳池女性可以利用，但是男性不可以。"
+        }
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "ex-i-1-1",
+      "groupId": "ex-i-1",
+      "groupTitle": "练习I 1",
+      "category": "replacement",
+      "instruction": "仿照例句替换画线部分进行练习。",
+      "example": "このボタンを押します／電源が入ります→このボタンを押すと、電源が入ります。",
+      "exampleKana": "このボタンをおします／でんげんがはいります→このボタンをおすと、でんげんがはいります。",
+      "type": "transform",
+      "question": "（1）ここに立ちます／ドアが開きます",
+      "questionKana": "",
+      "choices": [],
+      "answer": "ここに立つと、ドアが開きます。",
+      "answerKana": "ここにたつと、ドアがあきます。",
+      "referenceAnswers": [
+        "ここに立つと、ドアが開きます。"
+      ],
+      "referenceAnswerKana": [
+        "ここにたつと、ドアがあきます。"
+      ],
+      "relatedGrammar": [
+        "g1"
+      ],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": false,
+      "hasAnswer": true
+    },
+    {
+      "id": "ex-i-1-2",
+      "groupId": "ex-i-1",
+      "groupTitle": "练习I 1",
+      "category": "replacement",
+      "instruction": "仿照例句替换画线部分进行练习。",
+      "example": "このボタンを押します／電源が入ります→このボタンを押すと、電源が入ります。",
+      "exampleKana": "このボタンをおします／でんげんがはいります→このボタンをおすと、でんげんがはいります。",
+      "type": "transform",
+      "question": "（2）ここにお金を入れます／切符が出ます",
+      "questionKana": "",
+      "choices": [],
+      "answer": "ここにお金を入れると、切符が出ます。",
+      "answerKana": "ここにおかねをいれると、きっぷがでます。",
+      "referenceAnswers": [
+        "ここにお金を入れると、切符が出ます。"
+      ],
+      "referenceAnswerKana": [
+        "ここにおかねをいれると、きっぷがでます。"
+      ],
+      "relatedGrammar": [
+        "g1"
+      ],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": false,
+      "hasAnswer": true
+    },
+    {
+      "id": "ex-i-1-3",
+      "groupId": "ex-i-1",
+      "groupTitle": "练习I 1",
+      "category": "replacement",
+      "instruction": "仿照例句替换画线部分进行练习。",
+      "example": "このボタンを押します／電源が入ります→このボタンを押すと、電源が入ります。",
+      "exampleKana": "このボタンをおします／でんげんがはいります→このボタンをおすと、でんげんがはいります。",
+      "type": "transform",
+      "question": "（3）春になります／花が咲きます",
+      "questionKana": "",
+      "choices": [],
+      "answer": "春になると、花が咲きます。",
+      "answerKana": "はるになると、はながさきます。",
+      "referenceAnswers": [
+        "春になると、花が咲きます。"
+      ],
+      "referenceAnswerKana": [
+        "はるになると、はながさきます。"
+      ],
+      "relatedGrammar": [
+        "g1"
+      ],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": false,
+      "hasAnswer": true
+    },
+    {
+      "id": "ex-i-1-4",
+      "groupId": "ex-i-1",
+      "groupTitle": "练习I 1",
+      "category": "replacement",
+      "instruction": "仿照例句替换画线部分进行练习。",
+      "example": "練習しません／上手になりません→練習しないと、上手になりません。",
+      "exampleKana": "れんしゅうしません／じょうずになりません→れんしゅうしないと、じょうずになりません。",
+      "type": "transform",
+      "question": "（4）この橋を渡りません／駅へ行くことができません",
+      "questionKana": "",
+      "choices": [],
+      "answer": "この橋を渡らないと、駅へ行くことができません。",
+      "answerKana": "このはしをわたらないと、えきへいくことができません。",
+      "referenceAnswers": [
+        "この橋を渡らないと、駅へ行くことができません。"
+      ],
+      "referenceAnswerKana": [
+        "このはしをわたらないと、えきへいくことができません。"
+      ],
+      "relatedGrammar": [
+        "g1"
+      ],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": false,
+      "hasAnswer": true
+    },
+    {
+      "id": "ex-i-1-5",
+      "groupId": "ex-i-1",
+      "groupTitle": "练习I 1",
+      "category": "replacement",
+      "instruction": "仿照例句替换画线部分进行练习。",
+      "example": "練習しません／上手になりません→練習しないと、上手になりません。",
+      "exampleKana": "れんしゅうしません／じょうずになりません→れんしゅうしないと、じょうずになりません。",
+      "type": "transform",
+      "question": "（5）言葉が分かりません／とても不便です",
+      "questionKana": "",
+      "choices": [],
+      "answer": "言葉が分からないと、とても不便です。",
+      "answerKana": "ことばがわからないと、とてもふべんです。",
+      "referenceAnswers": [
+        "言葉が分からないと、とても不便です。"
+      ],
+      "referenceAnswerKana": [
+        "ことばがわからないと、とてもふべんです。"
+      ],
+      "relatedGrammar": [
+        "g1"
+      ],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": false,
+      "hasAnswer": true
+    },
+    {
+      "id": "ex-i-1-6",
+      "groupId": "ex-i-1",
+      "groupTitle": "练习I 1",
+      "category": "replacement",
+      "instruction": "仿照例句替换画线部分进行练习。",
+      "example": "練習しません／上手になりません→練習しないと、上手になりません。",
+      "exampleKana": "れんしゅうしません／じょうずになりません→れんしゅうしないと、じょうずになりません。",
+      "type": "transform",
+      "question": "（6）薬を飲みません／病気が治りません",
+      "questionKana": "",
+      "choices": [],
+      "answer": "薬を飲まないと、病気が治りません。",
+      "answerKana": "くすりをのまないと、びょうきがなおりません。",
+      "referenceAnswers": [
+        "薬を飲まないと、病気が治りません。"
+      ],
+      "referenceAnswerKana": [
+        "くすりをのまないと、びょうきがなおりません。"
+      ],
+      "relatedGrammar": [
+        "g1"
+      ],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": false,
+      "hasAnswer": true
+    },
+    {
+      "id": "ex-i-1-7",
+      "groupId": "ex-i-1",
+      "groupTitle": "练习I 1",
+      "category": "replacement",
+      "instruction": "仿照例句替换画线部分进行练习。",
+      "example": "練習しません／上手になりません→練習しないと、上手になりません。",
+      "exampleKana": "れんしゅうしません／じょうずになりません→れんしゅうしないと、じょうずになりません。",
+      "type": "transform",
+      "question": "（7）このスイッチを切りません／機械は止まりません",
+      "questionKana": "",
+      "choices": [],
+      "answer": "このスイッチを切らないと、機械は止まりません。",
+      "answerKana": "このスイッチをきらないと、きかいはとまりません。",
+      "referenceAnswers": [
+        "このスイッチを切らないと、機械は止まりません。"
+      ],
+      "referenceAnswerKana": [
+        "このスイッチをきらないと、きかいはとまりません。"
+      ],
+      "relatedGrammar": [
+        "g1"
+      ],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": false,
+      "hasAnswer": true
+    },
+    {
+      "id": "ex-i-1-8",
+      "groupId": "ex-i-1",
+      "groupTitle": "练习I 1",
+      "category": "replacement",
+      "instruction": "仿照例句替换画线部分进行练习。",
+      "example": "お酒を飲みます／気持ち悪くなります／楽しくなります→甲：わたしはお酒を飲むと、気持ち悪くなります。乙：そうですか。わたしは楽しくなります。",
+      "exampleKana": "",
+      "type": "transform",
+      "question": "（8）ご飯を食べます／すぐ眠くなります／元気になります",
+      "questionKana": "",
+      "choices": [],
+      "answer": "甲：わたしはご飯を食べると、すぐ眠くなります。乙：そうですか。わたしは元気になります。",
+      "answerKana": "",
+      "referenceAnswers": [
+        "甲：わたしはご飯を食べると、すぐ眠くなります。乙：そうですか。わたしは元気になります。"
+      ],
+      "referenceAnswerKana": [],
+      "relatedGrammar": [
+        "g1"
+      ],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": false,
+      "hasAnswer": true
+    },
+    {
+      "id": "ex-i-1-9",
+      "groupId": "ex-i-1",
+      "groupTitle": "练习I 1",
+      "category": "replacement",
+      "instruction": "仿照例句替换画线部分进行练习。",
+      "example": "お酒を飲みます／気持ち悪くなります／楽しくなります→甲：わたしはお酒を飲むと、気持ち悪くなります。乙：そうですか。わたしは楽しくなります。",
+      "exampleKana": "",
+      "type": "transform",
+      "question": "（9）難しい本を読みます／眠くなります／寝ることができなくなります",
+      "questionKana": "",
+      "choices": [],
+      "answer": "甲：わたしは難しい本を読むと、眠くなります。乙：そうですか。わたしは寝ることができなくなります。",
+      "answerKana": "",
+      "referenceAnswers": [
+        "甲：わたしは難しい本を読むと、眠くなります。乙：そうですか。わたしは寝ることができなくなります。"
+      ],
+      "referenceAnswerKana": [],
+      "relatedGrammar": [
+        "g1"
+      ],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": false,
+      "hasAnswer": true
+    },
+    {
+      "id": "ex-i-1-10",
+      "groupId": "ex-i-1",
+      "groupTitle": "练习I 1",
+      "category": "replacement",
+      "instruction": "仿照例句替换画线部分进行练习。",
+      "example": "お酒を飲みます／気持ち悪くなります／楽しくなります→甲：わたしはお酒を飲むと、気持ち悪くなります。乙：そうですか。わたしは楽しくなります。",
+      "exampleKana": "",
+      "type": "transform",
+      "question": "（10）家に帰ります／すぐお風呂に入ります／まずテレビのスイッチを入れます",
+      "questionKana": "",
+      "choices": [],
+      "answer": "甲：わたしは家に帰ると、すぐお風呂に入ります。乙：そうですか。わたしはまずテレビのスイッチを入れます。",
+      "answerKana": "",
+      "referenceAnswers": [
+        "甲：わたしは家に帰ると、すぐお風呂に入ります。乙：そうですか。わたしはまずテレビのスイッチを入れます。"
+      ],
+      "referenceAnswerKana": [],
+      "relatedGrammar": [
+        "g1"
+      ],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": false,
+      "hasAnswer": true
+    },
+    {
+      "id": "ex-i-1-11",
+      "groupId": "ex-i-1",
+      "groupTitle": "练习I 1",
+      "category": "replacement",
+      "instruction": "仿照例句替换画线部分进行练习。",
+      "example": "お酒を飲みます／気持ち悪くなります／楽しくなります→甲：わたしはお酒を飲むと、気持ち悪くなります。乙：そうですか。わたしは楽しくなります。",
+      "exampleKana": "",
+      "type": "transform",
+      "question": "（11）朝起きます／まずコーヒーを飲みます／すぐメールをチェックします",
+      "questionKana": "",
+      "choices": [],
+      "answer": "甲：わたしは朝起きると、まずコーヒーを飲みます。乙：そうですか。わたしはすぐメールをチェックします。",
+      "answerKana": "",
+      "referenceAnswers": [
+        "甲：わたしは朝起きると、まずコーヒーを飲みます。乙：そうですか。わたしはすぐメールをチェックします。"
+      ],
+      "referenceAnswerKana": [],
+      "relatedGrammar": [
+        "g1"
+      ],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": false,
+      "hasAnswer": true
+    },
+    {
+      "id": "ex-i-2-1",
+      "groupId": "ex-i-2",
+      "groupTitle": "练习I 2",
+      "category": "replacement",
+      "instruction": "看图，仿照例句替换画线部分进行练习。",
+      "example": "この道／まっすぐ行きます／交差点→この道をまっすぐ行くと、交差点があります。",
+      "exampleKana": "このみち／まっすぐいきます／こうさてん→このみちをまっすぐいくと、こうさてんがあります。",
+      "type": "transform",
+      "question": "（1）この橋／まっすぐ行きます／右に病院",
+      "questionKana": "",
+      "choices": [],
+      "answer": "この橋をまっすぐ行くと、右に病院があります。",
+      "answerKana": "このはしをまっすぐいくと、みぎにびょういんがあります。",
+      "referenceAnswers": [
+        "この橋をまっすぐ行くと、右に病院があります。"
+      ],
+      "referenceAnswerKana": [
+        "このはしをまっすぐいくと、みぎにびょういんがあります。"
+      ],
+      "relatedGrammar": [
+        "g1"
+      ],
+      "relatedSentences": [
+        "s6"
+      ],
+      "explanation": "",
+      "audioRequired": false,
+      "hasAnswer": true
+    },
+    {
+      "id": "ex-i-2-2",
+      "groupId": "ex-i-2",
+      "groupTitle": "练习I 2",
+      "category": "replacement",
+      "instruction": "看图，仿照例句替换画线部分进行练习。",
+      "example": "この道／まっすぐ行きます／交差点→この道をまっすぐ行くと、交差点があります。",
+      "exampleKana": "このみち／まっすぐいきます／こうさてん→このみちをまっすぐいくと、こうさてんがあります。",
+      "type": "transform",
+      "question": "（2）信号のある交差点／右に曲がります／左にスーパー",
+      "questionKana": "",
+      "choices": [],
+      "answer": "信号のある交差点を右に曲がると、左にスーパーがあります。",
+      "answerKana": "しんごうのあるこうさてんをみぎにまがると、ひだりにスーパーがあります。",
+      "referenceAnswers": [
+        "信号のある交差点を右に曲がると、左にスーパーがあります。"
+      ],
+      "referenceAnswerKana": [
+        "しんごうのあるこうさてんをみぎにまがると、ひだりにスーパーがあります。"
+      ],
+      "relatedGrammar": [
+        "g1"
+      ],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": false,
+      "hasAnswer": true
+    },
+    {
+      "id": "ex-i-2-3",
+      "groupId": "ex-i-2",
+      "groupTitle": "练习I 2",
+      "category": "replacement",
+      "instruction": "看图，仿照例句替换画线部分进行练习。",
+      "example": "この道／まっすぐ行きます／交差点→この道をまっすぐ行くと、交差点があります。",
+      "exampleKana": "このみち／まっすぐいきます／こうさてん→このみちをまっすぐいくと、こうさてんがあります。",
+      "type": "transform",
+      "question": "（3）橋／渡ります／右に銀行",
+      "questionKana": "",
+      "choices": [],
+      "answer": "橋を渡ると、右に銀行があります。",
+      "answerKana": "はしをわたると、みぎにぎんこうがあります。",
+      "referenceAnswers": [
+        "橋を渡ると、右に銀行があります。"
+      ],
+      "referenceAnswerKana": [
+        "はしをわたると、みぎにぎんこうがあります。"
+      ],
+      "relatedGrammar": [
+        "g1"
+      ],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": false,
+      "hasAnswer": true
+    },
+    {
+      "id": "ex-i-2-4",
+      "groupId": "ex-i-2",
+      "groupTitle": "练习I 2",
+      "category": "replacement",
+      "instruction": "看图，仿照例句替换画线部分进行练习。",
+      "example": "この道／まっすぐ行きます／交差点→この道をまっすぐ行くと、交差点があります。",
+      "exampleKana": "このみち／まっすぐいきます／こうさてん→このみちをまっすぐいくと、こうさてんがあります。",
+      "type": "transform",
+      "question": "（4）あの横断歩道／渡ります／すぐに郵便局",
+      "questionKana": "",
+      "choices": [],
+      "answer": "あの横断歩道を渡ると、すぐに郵便局があります。",
+      "answerKana": "あのおうだんほどうをわたると、すぐにゆうびんきょくがあります。",
+      "referenceAnswers": [
+        "あの横断歩道を渡ると、すぐに郵便局があります。"
+      ],
+      "referenceAnswerKana": [
+        "あのおうだんほどうをわたると、すぐにゆうびんきょくがあります。"
+      ],
+      "relatedGrammar": [
+        "g1"
+      ],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": false,
+      "hasAnswer": true
+    },
+    {
+      "id": "ex-i-3-1",
+      "groupId": "ex-i-3",
+      "groupTitle": "练习I 3",
+      "category": "replacement",
+      "instruction": "仿照例句替换画线部分进行练习。",
+      "example": "このパソコンは、たまにフリーズします。→このパソコンは、たまにフリーズすることがあります。",
+      "exampleKana": "",
+      "type": "transform",
+      "question": "（1）この車は時々故障します",
+      "questionKana": "",
+      "choices": [],
+      "answer": "この車は時々故障することがあります。",
+      "answerKana": "このくるまはときどきこしょうすることがあります。",
+      "referenceAnswers": [
+        "この車は時々故障することがあります。"
+      ],
+      "referenceAnswerKana": [
+        "このくるまはときどきこしょうすることがあります。"
+      ],
+      "relatedGrammar": [
+        "g2"
+      ],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": false,
+      "hasAnswer": true
+    },
+    {
+      "id": "ex-i-3-2",
+      "groupId": "ex-i-3",
+      "groupTitle": "练习I 3",
+      "category": "replacement",
+      "instruction": "仿照例句替换画线部分进行练习。",
+      "example": "このパソコンは、たまにフリーズします。→このパソコンは、たまにフリーズすることがあります。",
+      "exampleKana": "",
+      "type": "transform",
+      "question": "（2）父はたまに怒ります",
+      "questionKana": "",
+      "choices": [],
+      "answer": "父はたまに怒ることがあります。",
+      "answerKana": "ちちはたまにおこることがあります。",
+      "referenceAnswers": [
+        "父はたまに怒ることがあります。"
+      ],
+      "referenceAnswerKana": [
+        "ちちはたまにおこることがあります。"
+      ],
+      "relatedGrammar": [
+        "g2"
+      ],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": false,
+      "hasAnswer": true
+    },
+    {
+      "id": "ex-i-3-3",
+      "groupId": "ex-i-3",
+      "groupTitle": "练习I 3",
+      "category": "replacement",
+      "instruction": "仿照例句替换画线部分进行练习。",
+      "example": "このパソコンは、たまにフリーズします。→このパソコンは、たまにフリーズすることがあります。",
+      "exampleKana": "",
+      "type": "transform",
+      "question": "（3）わたしは1年に1、2回風邪を引きます",
+      "questionKana": "",
+      "choices": [],
+      "answer": "わたしは1年に1、2回風邪を引くことがあります。",
+      "answerKana": "わたしはいちねんにいち、にかいかぜをひくことがあります。",
+      "referenceAnswers": [
+        "わたしは1年に1、2回風邪を引くことがあります。"
+      ],
+      "referenceAnswerKana": [
+        "わたしはいちねんにいち、にかいかぜをひくことがあります。"
+      ],
+      "relatedGrammar": [
+        "g2"
+      ],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": false,
+      "hasAnswer": true
+    },
+    {
+      "id": "ex-i-3-4",
+      "groupId": "ex-i-3",
+      "groupTitle": "练习I 3",
+      "category": "replacement",
+      "instruction": "仿照例句替换画线部分进行练习。",
+      "example": "このパソコンは、たまにフリーズします。→このパソコンは、たまにフリーズすることがあります。",
+      "exampleKana": "",
+      "type": "transform",
+      "question": "（4）母は時々財布を忘れます",
+      "questionKana": "",
+      "choices": [],
+      "answer": "母は時々財布を忘れることがあります。",
+      "answerKana": "はははときどきさいふをわすれることがあります。",
+      "referenceAnswers": [
+        "母は時々財布を忘れることがあります。"
+      ],
+      "referenceAnswerKana": [
+        "はははときどきさいふをわすれることがあります。"
+      ],
+      "relatedGrammar": [
+        "g2"
+      ],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": false,
+      "hasAnswer": true
+    },
+    {
+      "id": "ex-i-4-1",
+      "groupId": "ex-i-4",
+      "groupTitle": "练习I 4",
+      "category": "listening-dialogue",
+      "instruction": "听录音，仿照例句替换画线部分进行练习。",
+      "example": "いつも朝ご飯を食べます／食べません→甲：いつも朝ご飯を食べますか。乙：ええ。でも、たまに食べないことがあります。",
+      "exampleKana": "",
+      "type": "listening",
+      "question": "（1）いつも電車で行きます／バスで行きます",
+      "questionKana": "",
+      "choices": [],
+      "answer": "甲：いつも電車で行きますか。乙：ええ。でも、たまにバスで行くことがあります。",
+      "answerKana": "",
+      "referenceAnswers": [
+        "甲：いつも電車で行きますか。乙：ええ。でも、たまにバスで行くことがあります。"
+      ],
+      "referenceAnswerKana": [],
+      "relatedGrammar": [
+        "g2"
+      ],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": true,
+      "hasAnswer": true
+    },
+    {
+      "id": "ex-i-4-2",
+      "groupId": "ex-i-4",
+      "groupTitle": "练习I 4",
+      "category": "listening-dialogue",
+      "instruction": "听录音，仿照例句替换画线部分进行练习。",
+      "example": "いつも朝ご飯を食べます／食べません→甲：いつも朝ご飯を食べますか。乙：ええ。でも、たまに食べないことがあります。",
+      "exampleKana": "",
+      "type": "listening",
+      "question": "（2）毎朝新聞を読みます／忘れます",
+      "questionKana": "",
+      "choices": [],
+      "answer": "甲：毎朝新聞を読みますか。乙：ええ。でも、たまに忘れることがあります。",
+      "answerKana": "",
+      "referenceAnswers": [
+        "甲：毎朝新聞を読みますか。乙：ええ。でも、たまに忘れることがあります。"
+      ],
+      "referenceAnswerKana": [],
+      "relatedGrammar": [
+        "g2"
+      ],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": true,
+      "hasAnswer": true
+    },
+    {
+      "id": "ex-i-4-3",
+      "groupId": "ex-i-4",
+      "groupTitle": "练习I 4",
+      "category": "listening-dialogue",
+      "instruction": "听录音，仿照例句替换画线部分进行练习。",
+      "example": "いつも朝ご飯を食べます／食べません→甲：いつも朝ご飯を食べますか。乙：ええ。でも、たまに食べないことがあります。",
+      "exampleKana": "",
+      "type": "listening",
+      "question": "（3）いつも昼ご飯を食べないんです／食べます",
+      "questionKana": "",
+      "choices": [],
+      "answer": "甲：いつも昼ご飯を食べないんですか。乙：ええ。でも、たまに食べることがあります。",
+      "answerKana": "",
+      "referenceAnswers": [
+        "甲：いつも昼ご飯を食べないんですか。乙：ええ。でも、たまに食べることがあります。"
+      ],
+      "referenceAnswerKana": [],
+      "relatedGrammar": [
+        "g2"
+      ],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": true,
+      "hasAnswer": true
+    },
+    {
+      "id": "ex-i-4-4",
+      "groupId": "ex-i-4",
+      "groupTitle": "练习I 4",
+      "category": "listening-dialogue",
+      "instruction": "听录音，仿照例句替换画线部分进行练习。",
+      "example": "いつも朝ご飯を食べます／食べません→甲：いつも朝ご飯を食べますか。乙：ええ。でも、たまに食べないことがあります。",
+      "exampleKana": "",
+      "type": "listening",
+      "question": "（4）毎朝ジョギングをします／しません",
+      "questionKana": "",
+      "choices": [],
+      "answer": "甲：毎朝ジョギングをしますか。乙：ええ。でも、たまにしないことがあります。",
+      "answerKana": "",
+      "referenceAnswers": [
+        "甲：毎朝ジョギングをしますか。乙：ええ。でも、たまにしないことがあります。"
+      ],
+      "referenceAnswerKana": [],
+      "relatedGrammar": [
+        "g2"
+      ],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": true,
+      "hasAnswer": true
+    },
+    {
+      "id": "ex-i-5-1",
+      "groupId": "ex-i-5",
+      "groupTitle": "练习I 5",
+      "category": "replacement",
+      "instruction": "仿照例句替换画线部分进行练习。",
+      "example": "うまい→馬さんはとてもうまく説明しました。",
+      "exampleKana": "",
+      "type": "transform",
+      "question": "（1）短い",
+      "questionKana": "みじかい",
+      "choices": [],
+      "answer": "馬さんはとても短く説明しました。",
+      "answerKana": "ばさんはとてもみじかくせつめいしました。",
+      "referenceAnswers": [
+        "馬さんはとても短く説明しました。"
+      ],
+      "referenceAnswerKana": [
+        "ばさんはとてもみじかくせつめいしました。"
+      ],
+      "relatedGrammar": [
+        "g3"
+      ],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": false,
+      "hasAnswer": true
+    },
+    {
+      "id": "ex-i-5-2",
+      "groupId": "ex-i-5",
+      "groupTitle": "练习I 5",
+      "category": "replacement",
+      "instruction": "仿照例句替换画线部分进行练习。",
+      "example": "うまい→馬さんはとてもうまく説明しました。",
+      "exampleKana": "",
+      "type": "transform",
+      "question": "（2）詳しい",
+      "questionKana": "くわしい",
+      "choices": [],
+      "answer": "馬さんはとても詳しく説明しました。",
+      "answerKana": "ばさんはとてもくわしくせつめいしました。",
+      "referenceAnswers": [
+        "馬さんはとても詳しく説明しました。"
+      ],
+      "referenceAnswerKana": [
+        "ばさんはとてもくわしくせつめいしました。"
+      ],
+      "relatedGrammar": [
+        "g3"
+      ],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": false,
+      "hasAnswer": true
+    },
+    {
+      "id": "ex-i-5-3",
+      "groupId": "ex-i-5",
+      "groupTitle": "练习I 5",
+      "category": "replacement",
+      "instruction": "仿照例句替换画线部分进行练习。",
+      "example": "うまい→馬さんはとてもうまく説明しました。",
+      "exampleKana": "",
+      "type": "transform",
+      "question": "（3）おもしろい",
+      "questionKana": "",
+      "choices": [],
+      "answer": "馬さんはとてもおもしろく説明しました。",
+      "answerKana": "ばさんはとてもおもしろくせつめいしました。",
+      "referenceAnswers": [
+        "馬さんはとてもおもしろく説明しました。"
+      ],
+      "referenceAnswerKana": [
+        "ばさんはとてもおもしろくせつめいしました。"
+      ],
+      "relatedGrammar": [
+        "g3"
+      ],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": false,
+      "hasAnswer": true
+    },
+    {
+      "id": "ex-i-5-4",
+      "groupId": "ex-i-5",
+      "groupTitle": "练习I 5",
+      "category": "replacement",
+      "instruction": "仿照例句替换画线部分进行练习。",
+      "example": "上手→馬さんはとても上手にレポートをまとめました。",
+      "exampleKana": "",
+      "type": "transform",
+      "question": "（4）簡単",
+      "questionKana": "かんたん",
+      "choices": [],
+      "answer": "馬さんはとても簡単にレポートをまとめました。",
+      "answerKana": "ばさんはとてもかんたんにレポートをまとめました。",
+      "referenceAnswers": [
+        "馬さんはとても簡単にレポートをまとめました。"
+      ],
+      "referenceAnswerKana": [
+        "ばさんはとてもかんたんにレポートをまとめました。"
+      ],
+      "relatedGrammar": [
+        "g3"
+      ],
+      "relatedSentences": [
+        "s3"
+      ],
+      "explanation": "",
+      "audioRequired": false,
+      "hasAnswer": true
+    },
+    {
+      "id": "ex-i-5-5",
+      "groupId": "ex-i-5",
+      "groupTitle": "练习I 5",
+      "category": "replacement",
+      "instruction": "仿照例句替换画线部分进行练习。",
+      "example": "上手→馬さんはとても上手にレポートをまとめました。",
+      "exampleKana": "",
+      "type": "transform",
+      "question": "（5）きれい",
+      "questionKana": "",
+      "choices": [],
+      "answer": "馬さんはとてもきれいにレポートをまとめました。",
+      "answerKana": "ばさんはとてもきれいにレポートをまとめました。",
+      "referenceAnswers": [
+        "馬さんはとてもきれいにレポートをまとめました。"
+      ],
+      "referenceAnswerKana": [
+        "ばさんはとてもきれいにレポートをまとめました。"
+      ],
+      "relatedGrammar": [
+        "g3"
+      ],
+      "relatedSentences": [
+        "s3"
+      ],
+      "explanation": "",
+      "audioRequired": false,
+      "hasAnswer": true
+    },
+    {
+      "id": "ex-i-5-6",
+      "groupId": "ex-i-5",
+      "groupTitle": "练习I 5",
+      "category": "replacement",
+      "instruction": "仿照例句替换画线部分进行练习。",
+      "example": "上手→馬さんはとても上手にレポートをまとめました。",
+      "exampleKana": "",
+      "type": "transform",
+      "question": "（6）丁寧",
+      "questionKana": "ていねい",
+      "choices": [],
+      "answer": "馬さんはとても丁寧にレポートをまとめました。",
+      "answerKana": "ばさんはとてもていねいにレポートをまとめました。",
+      "referenceAnswers": [
+        "馬さんはとても丁寧にレポートをまとめました。"
+      ],
+      "referenceAnswerKana": [
+        "ばさんはとてもていねいにレポートをまとめました。"
+      ],
+      "relatedGrammar": [
+        "g3"
+      ],
+      "relatedSentences": [
+        "s3"
+      ],
+      "explanation": "",
+      "audioRequired": false,
+      "hasAnswer": true
+    },
+    {
+      "id": "ex-i-5-7",
+      "groupId": "ex-i-5",
+      "groupTitle": "练习I 5",
+      "category": "replacement",
+      "instruction": "仿照例句替换画线部分进行练习。",
+      "example": "馬さんは来ます→馬さんは来るでしょうか。",
+      "exampleKana": "",
+      "type": "transform",
+      "question": "（7）これは小野さんの本です",
+      "questionKana": "",
+      "choices": [],
+      "answer": "これは小野さんの本でしょうか。",
+      "answerKana": "これはおのさんのほんでしょうか。",
+      "referenceAnswers": [
+        "これは小野さんの本でしょうか。"
+      ],
+      "referenceAnswerKana": [
+        "これはおのさんのほんでしょうか。"
+      ],
+      "relatedGrammar": [
+        "g4"
+      ],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": false,
+      "hasAnswer": true
+    },
+    {
+      "id": "ex-i-5-8",
+      "groupId": "ex-i-5",
+      "groupTitle": "练习I 5",
+      "category": "replacement",
+      "instruction": "仿照例句替换画线部分进行练习。",
+      "example": "馬さんは来ます→馬さんは来るでしょうか。",
+      "exampleKana": "",
+      "type": "transform",
+      "question": "（8）この料理は辛いです",
+      "questionKana": "",
+      "choices": [],
+      "answer": "この料理は辛いでしょうか。",
+      "answerKana": "このりょうりはからいでしょうか。",
+      "referenceAnswers": [
+        "この料理は辛いでしょうか。"
+      ],
+      "referenceAnswerKana": [
+        "このりょうりはからいでしょうか。"
+      ],
+      "relatedGrammar": [
+        "g4"
+      ],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": false,
+      "hasAnswer": true
+    },
+    {
+      "id": "ex-i-5-9",
+      "groupId": "ex-i-5",
+      "groupTitle": "练习I 5",
+      "category": "replacement",
+      "instruction": "仿照例句替换画线部分进行练习。",
+      "example": "馬さんは来ます→馬さんは来るでしょうか。",
+      "exampleKana": "",
+      "type": "transform",
+      "question": "（9）森さんは今日遅れません",
+      "questionKana": "",
+      "choices": [],
+      "answer": "森さんは今日遅れないでしょうか。",
+      "answerKana": "もりさんはきょうおくれないでしょうか。",
+      "referenceAnswers": [
+        "森さんは今日遅れないでしょうか。"
+      ],
+      "referenceAnswerKana": [
+        "もりさんはきょうおくれないでしょうか。"
+      ],
+      "relatedGrammar": [
+        "g4"
+      ],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": false,
+      "hasAnswer": true
+    },
+    {
+      "id": "ex-i-5-10",
+      "groupId": "ex-i-5",
+      "groupTitle": "练习I 5",
+      "category": "replacement",
+      "instruction": "仿照例句替换画线部分进行练习。",
+      "example": "馬さんは来ます→馬さんは来るでしょうか。",
+      "exampleKana": "",
+      "type": "transform",
+      "question": "（10）馬さんはもう帰りました",
+      "questionKana": "",
+      "choices": [],
+      "answer": "馬さんはもう帰ったでしょうか。",
+      "answerKana": "ばさんはもうかえったでしょうか。",
+      "referenceAnswers": [
+        "馬さんはもう帰ったでしょうか。"
+      ],
+      "referenceAnswerKana": [
+        "ばさんはもうかえったでしょうか。"
+      ],
+      "relatedGrammar": [
+        "g4"
+      ],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": false,
+      "hasAnswer": true
+    },
+    {
+      "id": "ex-i-5-11",
+      "groupId": "ex-i-5",
+      "groupTitle": "练习I 5",
+      "category": "replacement",
+      "instruction": "仿照例句替换画线部分进行练习。",
+      "example": "馬さんは来ます→馬さんは来るでしょうか。",
+      "exampleKana": "",
+      "type": "transform",
+      "question": "（11）陳さんは来ませんでした",
+      "questionKana": "",
+      "choices": [],
+      "answer": "陳さんは来なかったでしょうか。",
+      "answerKana": "ちんさんはこなかったでしょうか。",
+      "referenceAnswers": [
+        "陳さんは来なかったでしょうか。"
+      ],
+      "referenceAnswerKana": [
+        "ちんさんはこなかったでしょうか。"
+      ],
+      "relatedGrammar": [
+        "g4"
+      ],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": false,
+      "hasAnswer": true
+    },
+    {
+      "id": "ex-i-5-12",
+      "groupId": "ex-i-5",
+      "groupTitle": "练习I 5",
+      "category": "replacement",
+      "instruction": "仿照例句替换画线部分进行练习。",
+      "example": "馬さんは来ます→馬さんは来るでしょうか。",
+      "exampleKana": "",
+      "type": "transform",
+      "question": "（12）李さんはスイカが好きです",
+      "questionKana": "",
+      "choices": [],
+      "answer": "李さんはスイカが好きでしょうか。",
+      "answerKana": "りさんはスイカがすきでしょうか。",
+      "referenceAnswers": [
+        "李さんはスイカが好きでしょうか。"
+      ],
+      "referenceAnswerKana": [
+        "りさんはスイカがすきでしょうか。"
+      ],
+      "relatedGrammar": [
+        "g4"
+      ],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": false,
+      "hasAnswer": true
+    },
+    {
+      "id": "ex-i-6-1",
+      "groupId": "ex-i-6",
+      "groupTitle": "练习I 6",
+      "category": "listening-dialogue",
+      "instruction": "听录音，仿照例句替换画线部分进行练习。",
+      "example": "市役所へ行きたいです／この道をまっすぐ行きます／左にあります→甲：あのう、すみません。市役所へ行きたいんですが…。乙：この道をまっすぐ行くと、左にありますよ。甲：ああ、どうもありがとうございます。乙：いいえ、どういたしまして。",
+      "exampleKana": "",
+      "type": "listening",
+      "question": "（1）切符が買えません／これを左に回します／出ます",
+      "questionKana": "",
+      "choices": [],
+      "answer": "甲：あのう、すみません。切符が買えないんですが…。乙：これを左に回すと、出ますよ。甲：ああ、どうもありがとうございます。乙：いいえ、どういたしまして。",
+      "answerKana": "",
+      "referenceAnswers": [
+        "甲：あのう、すみません。切符が買えないんですが…。乙：これを左に回すと、出ますよ。甲：ああ、どうもありがとうございます。乙：いいえ、どういたしまして。"
+      ],
+      "referenceAnswerKana": [],
+      "relatedGrammar": [
+        "g1"
+      ],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": true,
+      "hasAnswer": true
+    },
+    {
+      "id": "ex-i-6-2",
+      "groupId": "ex-i-6",
+      "groupTitle": "练习I 6",
+      "category": "listening-dialogue",
+      "instruction": "听录音，仿照例句替换画线部分进行练习。",
+      "example": "市役所へ行きたいです／この道をまっすぐ行きます／左にあります→甲：あのう、すみません。市役所へ行きたいんですが…。乙：この道をまっすぐ行くと、左にありますよ。甲：ああ、どうもありがとうございます。乙：いいえ、どういたしまして。",
+      "exampleKana": "",
+      "type": "listening",
+      "question": "（2）パソコンが動かなくなりました／サービスセンターに電話します／教えてくれます",
+      "questionKana": "",
+      "choices": [],
+      "answer": "甲：あのう、すみません。パソコンが動かなくなったんですが…。乙：サービスセンターに電話すると、教えてくれますよ。甲：ああ、どうもありがとうございます。乙：いいえ、どういたしまして。",
+      "answerKana": "",
+      "referenceAnswers": [
+        "甲：あのう、すみません。パソコンが動かなくなったんですが…。乙：サービスセンターに電話すると、教えてくれますよ。甲：ああ、どうもありがとうございます。乙：いいえ、どういたしまして。"
+      ],
+      "referenceAnswerKana": [],
+      "relatedGrammar": [
+        "g1"
+      ],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": true,
+      "hasAnswer": true
+    },
+    {
+      "id": "ex-i-6-3",
+      "groupId": "ex-i-6",
+      "groupTitle": "练习I 6",
+      "category": "listening-dialogue",
+      "instruction": "听录音，仿照例句替换画线部分进行练习。",
+      "example": "市役所へ行きたいです／この道をまっすぐ行きます／左にあります→甲：あのう、すみません。市役所へ行きたいんですが…。乙：この道をまっすぐ行くと、左にありますよ。甲：ああ、どうもありがとうございます。乙：いいえ、どういたしまして。",
+      "exampleKana": "",
+      "type": "listening",
+      "question": "（3）お手洗いを探しています／あの階段を下ります／右にあります",
+      "questionKana": "",
+      "choices": [],
+      "answer": "甲：あのう、すみません。お手洗いを探しているんですが…。乙：あの階段を下りると、右にありますよ。甲：ああ、どうもありがとうございます。乙：いいえ、どういたしまして。",
+      "answerKana": "",
+      "referenceAnswers": [
+        "甲：あのう、すみません。お手洗いを探しているんですが…。乙：あの階段を下りると、右にありますよ。甲：ああ、どうもありがとうございます。乙：いいえ、どういたしまして。"
+      ],
+      "referenceAnswerKana": [],
+      "relatedGrammar": [
+        "g1"
+      ],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": true,
+      "hasAnswer": true
+    },
+    {
+      "id": "ex-ii-1-1",
+      "groupId": "ex-ii-1",
+      "groupTitle": "练习II 1",
+      "category": "replacement",
+      "instruction": "将（）中的词语变成适当的形式，完成句子。",
+      "example": "薬を（飲みます→飲む）と、元気になります。",
+      "exampleKana": "",
+      "type": "transform",
+      "question": "（1）課長は森さんの説明を（静かです→ ）聞いています。",
+      "questionKana": "",
+      "choices": [],
+      "answer": "静かに",
+      "answerKana": "",
+      "referenceAnswers": [
+        "静かに"
+      ],
+      "referenceAnswerKana": [],
+      "relatedGrammar": [
+        "g3"
+      ],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": false,
+      "hasAnswer": true
+    },
+    {
+      "id": "ex-ii-1-2",
+      "groupId": "ex-ii-1",
+      "groupTitle": "练习II 1",
+      "category": "replacement",
+      "instruction": "将（）中的词语变成适当的形式，完成句子。",
+      "example": "薬を（飲みます→飲む）と、元気になります。",
+      "exampleKana": "",
+      "type": "transform",
+      "question": "（2）ボタンを（押します→ ）と、電気がつきます。",
+      "questionKana": "",
+      "choices": [],
+      "answer": "押す",
+      "answerKana": "",
+      "referenceAnswers": [
+        "押す"
+      ],
+      "referenceAnswerKana": [],
+      "relatedGrammar": [
+        "g1"
+      ],
+      "relatedSentences": [
+        "s1"
+      ],
+      "explanation": "",
+      "audioRequired": false,
+      "hasAnswer": true
+    },
+    {
+      "id": "ex-ii-1-3",
+      "groupId": "ex-ii-1",
+      "groupTitle": "练习II 1",
+      "category": "replacement",
+      "instruction": "将（）中的词语变成适当的形式，完成句子。",
+      "example": "薬を（飲みます→飲む）と、元気になります。",
+      "exampleKana": "",
+      "type": "transform",
+      "question": "（3）馬さんはもう（帰りました→ ）でしょうか。",
+      "questionKana": "",
+      "choices": [],
+      "answer": "帰った",
+      "answerKana": "",
+      "referenceAnswers": [
+        "帰った"
+      ],
+      "referenceAnswerKana": [],
+      "relatedGrammar": [
+        "g4"
+      ],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": false,
+      "hasAnswer": true
+    },
+    {
+      "id": "ex-ii-1-4",
+      "groupId": "ex-ii-1",
+      "groupTitle": "练习II 1",
+      "category": "replacement",
+      "instruction": "将（）中的词语变成适当的形式，完成句子。",
+      "example": "薬を（飲みます→飲む）と、元気になります。",
+      "exampleKana": "",
+      "type": "transform",
+      "question": "（4）春になると、花が（美しいです→ ）咲きます。",
+      "questionKana": "",
+      "choices": [],
+      "answer": "美しく",
+      "answerKana": "",
+      "referenceAnswers": [
+        "美しく"
+      ],
+      "referenceAnswerKana": [],
+      "relatedGrammar": [
+        "g3"
+      ],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": false,
+      "hasAnswer": true
+    },
+    {
+      "id": "ex-ii-1-5",
+      "groupId": "ex-ii-1",
+      "groupTitle": "练习II 1",
+      "category": "replacement",
+      "instruction": "将（）中的词语变成适当的形式，完成句子。",
+      "example": "薬を（飲みます→飲む）と、元気になります。",
+      "exampleKana": "",
+      "type": "transform",
+      "question": "（5）たまに雪が（降ります→ ）ことがあります。",
+      "questionKana": "",
+      "choices": [],
+      "answer": "降る",
+      "answerKana": "",
+      "referenceAnswers": [
+        "降る"
+      ],
+      "referenceAnswerKana": [],
+      "relatedGrammar": [
+        "g2"
+      ],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": false,
+      "hasAnswer": true
+    },
+    {
+      "id": "ex-ii-1-6",
+      "groupId": "ex-ii-1",
+      "groupTitle": "练习II 1",
+      "category": "replacement",
+      "instruction": "将（）中的词语变成适当的形式，完成句子。",
+      "example": "薬を（飲みます→飲む）と、元気になります。",
+      "exampleKana": "",
+      "type": "transform",
+      "question": "（6）子供は（元気です→ ）遊んでいます。",
+      "questionKana": "",
+      "choices": [],
+      "answer": "元気に",
+      "answerKana": "",
+      "referenceAnswers": [
+        "元気に"
+      ],
+      "referenceAnswerKana": [],
+      "relatedGrammar": [
+        "g3"
+      ],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": false,
+      "hasAnswer": true
+    },
+    {
+      "id": "ex-ii-1-7",
+      "groupId": "ex-ii-1",
+      "groupTitle": "练习II 1",
+      "category": "replacement",
+      "instruction": "将（）中的词语变成适当的形式，完成句子。",
+      "example": "薬を（飲みます→飲む）と、元気になります。",
+      "exampleKana": "",
+      "type": "transform",
+      "question": "（7）仕事が（ありません→ ）と、困ります。",
+      "questionKana": "",
+      "choices": [],
+      "answer": "ない",
+      "answerKana": "",
+      "referenceAnswers": [
+        "ない"
+      ],
+      "referenceAnswerKana": [],
+      "relatedGrammar": [
+        "g1"
+      ],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": false,
+      "hasAnswer": true
+    },
+    {
+      "id": "ex-ii-2-1",
+      "groupId": "ex-ii-2",
+      "groupTitle": "练习II 2",
+      "category": "choice",
+      "instruction": "看图，将与句子内容一致的序号填入（）中。",
+      "example": "郵便局はどこですか。—駅からまっすぐ行くと、交差点があります。そこを右に曲がって少し行くと、左にあります。郵便局は（②）です。",
+      "exampleKana": "",
+      "type": "choice",
+      "question": "（1）デパートはどこですか。—駅からまっすぐ行くと、交差点があります。交差点を渡ると、右の隣にあります。デパートは（ ）です。",
+      "questionKana": "",
+      "choices": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤",
+        "⑥",
+        "⑦",
+        "⑧"
+      ],
+      "answer": "③",
+      "answerKana": "",
+      "referenceAnswers": [
+        "③"
+      ],
+      "referenceAnswerKana": [],
+      "relatedGrammar": [],
+      "relatedSentences": [],
+      "explanation": "看图选择，答案基于地图",
+      "audioRequired": false,
+      "hasAnswer": true
+    },
+    {
+      "id": "ex-ii-2-2",
+      "groupId": "ex-ii-2",
+      "groupTitle": "练习II 2",
+      "category": "choice",
+      "instruction": "看图，将与句子内容一致的序号填入（）中。",
+      "example": "郵便局はどこですか。—駅からまっすぐ行くと、交差点があります。そこを右に曲がって少し行くと、左にあります。郵便局は（②）です。",
+      "exampleKana": "",
+      "type": "choice",
+      "question": "（2）市役所はどこですか。—駅からまっすぐ行くと、交差点があります。そこを渡って少し行くと、前に大きい交差点があります。市役所は交差点の隣にあります。市役所は（ ）です。",
+      "questionKana": "",
+      "choices": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤",
+        "⑥",
+        "⑦",
+        "⑧"
+      ],
+      "answer": "⑧",
+      "answerKana": "",
+      "referenceAnswers": [
+        "⑧"
+      ],
+      "referenceAnswerKana": [],
+      "relatedGrammar": [],
+      "relatedSentences": [],
+      "explanation": "看图选择，答案基于地图",
+      "audioRequired": false,
+      "hasAnswer": true
+    },
+    {
+      "id": "ex-ii-3-1",
+      "groupId": "ex-ii-3",
+      "groupTitle": "练习II 3",
+      "category": "replacement",
+      "instruction": "看第2题的图，在（）中填入适当的词，说明如何去图书馆。",
+      "example": "",
+      "exampleKana": "",
+      "type": "short-answer",
+      "question": "駅から（ ）行くと、（ ）があります。そこを（ ）に曲がって少し行くと、橋があります。橋を（ ）と、（ ）に図書館があります。",
+      "questionKana": "",
+      "choices": [],
+      "answer": "まっすぐ 交差点 右 渡る 左",
+      "answerKana": "",
+      "referenceAnswers": [
+        "まっすぐ 交差点 右 渡る 左"
+      ],
+      "referenceAnswerKana": [],
+      "relatedGrammar": [
+        "g1"
+      ],
+      "relatedSentences": [
+        "s6"
+      ],
+      "explanation": "看图填空，答案基于地图",
+      "audioRequired": false,
+      "hasAnswer": true
+    },
+    {
+      "id": "ex-ii-4-1",
+      "groupId": "ex-ii-4",
+      "groupTitle": "练习II 4",
+      "category": "translation",
+      "instruction": "将下面的句子译成日语。",
+      "example": "",
+      "exampleKana": "",
+      "type": "translation",
+      "question": "（1）按下这个按钮，电源就接通了。",
+      "questionKana": "",
+      "choices": [],
+      "answer": "このボタンを押すと、電源が入ります。",
+      "answerKana": "このボタンをおすと、でんげんがはいります。",
+      "referenceAnswers": [
+        "このボタンを押すと、電源が入ります。"
+      ],
+      "referenceAnswerKana": [
+        "このボタンをおすと、でんげんがはいります。"
+      ],
+      "relatedGrammar": [
+        "g1"
+      ],
+      "relatedSentences": [
+        "s1"
+      ],
+      "explanation": "",
+      "audioRequired": false,
+      "hasAnswer": true
+    },
+    {
+      "id": "ex-ii-4-2",
+      "groupId": "ex-ii-4",
+      "groupTitle": "练习II 4",
+      "category": "translation",
+      "instruction": "将下面的句子译成日语。",
+      "example": "",
+      "exampleKana": "",
+      "type": "translation",
+      "question": "（2）（你）每天都正经吃早饭吗？—是的。不过偶尔也有不吃的时候。",
+      "questionKana": "",
+      "choices": [],
+      "answer": "朝ご飯は毎日きちんと食べますか。—ええ。でも、たまに食べないことがあります。",
+      "answerKana": "あさごはんはまいにちきちんとたべますか。—ええ。でも、たまにたべないことがあります。",
+      "referenceAnswers": [
+        "朝ご飯は毎日きちんと食べますか。—ええ。でも、たまに食べないことがあります。"
+      ],
+      "referenceAnswerKana": [
+        "あさごはんはまいにちきちんとたべますか。—ええ。でも、たまにたべないことがあります。"
+      ],
+      "relatedGrammar": [
+        "g2",
+        "g5"
+      ],
+      "relatedSentences": [
+        "s8",
+        "s9"
+      ],
+      "explanation": "",
+      "audioRequired": false,
+      "hasAnswer": true
+    },
+    {
+      "id": "ex-ii-4-3",
+      "groupId": "ex-ii-4",
+      "groupTitle": "练习II 4",
+      "category": "translation",
+      "instruction": "将下面的句子译成日语。",
+      "example": "",
+      "exampleKana": "",
+      "type": "translation",
+      "question": "（3）请问，小马在哪里？",
+      "questionKana": "",
+      "choices": [],
+      "answer": "すみません、馬さんはどちらでしょうか。",
+      "answerKana": "すみません、ばさんはどちらでしょうか。",
+      "referenceAnswers": [
+        "すみません、馬さんはどちらでしょうか。"
+      ],
+      "referenceAnswerKana": [
+        "すみません、ばさんはどちらでしょうか。"
+      ],
+      "relatedGrammar": [
+        "g4"
+      ],
+      "relatedSentences": [
+        "s12"
+      ],
+      "explanation": "",
+      "audioRequired": false,
+      "hasAnswer": true
+    }
+  ]
+}

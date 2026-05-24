@@ -925,7 +925,7 @@ async function evaluatePronunciation({ referenceText, audioBuffer }) {
     body: audioBuffer
   });
   const text = await response.text();
-  if (!response.ok) throw new Error(`Azure Speech HTTP ${response.status}: ${text}`);
+  if (!response.ok) throw new Error(`Azure Speech HTTP ${response.status} (region=${region}): ${text}`);
   const raw = JSON.parse(text);
   const best = raw.NBest?.[0] || {};
   const pa = best.PronunciationAssessment || best;
