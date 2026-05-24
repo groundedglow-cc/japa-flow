@@ -1,0 +1,9 @@
+name: japaflow
+
+services:
+  japaflow-fe:
+    image: ${ECR_REGISTRY}/japaflow/japaflow-fe:latest
+    container_name: japaflow-fe
+    restart: unless-stopped
+    ports:
+      - "8091:80"

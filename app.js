@@ -1571,7 +1571,9 @@ async function fetchFrontendConfig() {
     ossBaseUrl = data.ossBaseUrl;
   } catch (e) {
     console.error("fetchFrontendConfig failed:", e.message);
-    // Fall back to defaults (local audio)
+    const config = window.JAPAFLOW_CONFIG || {};
+    ossEnabled = Boolean(config.OSS_ENABLED);
+    ossBaseUrl = config.OSS_BASE_URL || "";
   }
 }
 
@@ -3259,6 +3261,7 @@ function lessonSubnav(lessonId, current) {
 
 function home() {
   const catalog = courseCatalogItems();
+  const overallProgress = overallLearningProgress(catalog);
   const pageSize = 12;
   const pageCount = Math.max(1, Math.ceil(catalog.length / pageSize));
   const currentPage = currentHomePage(pageCount);
@@ -3274,6 +3277,7 @@ function home() {
         </div>
         ${homePagination(currentPage, pageCount)}
       </div>
+      ${overallProgressPanel(overallProgress)}
       <div class="course-grid">
         ${pageItems.map((item) => courseCard(item)).join("")}
       </div>
@@ -3307,6 +3311,32 @@ function homePagination(currentPage, pageCount) {
       </div>
       <button class="secondary compact-action" type="button" ${currentPage >= pageCount ? "disabled" : `data-nav="${homePagePath(currentPage + 1)}"`}>下一页</button>
     </nav>
+  `;
+}
+
+function overallProgressPanel(summary) {
+  return `
+    <section class="overall-progress" aria-label="总体学习进度">
+      <div class="overall-progress-head">
+        <div>
+          <span>总体学习进度</span>
+          <strong>${summary.percent}%</strong>
+        </div>
+        <small>四类各占 25%</small>
+      </div>
+      <div class="overall-progress-bar" aria-label="总体学习进度 ${summary.percent}%">
+        <span style="--value:${summary.percent}%"></span>
+      </div>
+      <div class="overall-progress-metrics">
+        ${summary.categories.map((item) => `
+          <div>
+            <span>${item.label}</span>
+            <strong>${item.percent}%</strong>
+            <small>${item.completed}/${item.total}</small>
+          </div>
+        `).join("")}
+      </div>
+    </section>
   `;
 }
 
@@ -3349,11 +3379,11 @@ function courseCard(item) {
   const initialized = item.status === "initialized";
   const invalid = item.status === "invalid";
   const cardNav = runtimeReady || initialized || !ADMIN_MODE ? "" : `data-nav="/lesson/${item.id}/init"`;
-  const summary = runtimeReady ? lessonProgressSummary() : null;
+  const summary = runtimeReady ? lessonProgressSummary() : initialized ? catalogLessonProgressSummary(item) : null;
   const status = runtimeReady
     ? lessonStudyStatus(summary)
     : initialized
-      ? { label: item.statusLabel || "已初始化", className: "done" }
+      ? lessonStudyStatus(summary)
       : invalid
         ? { label: item.statusLabel || "数据待校验", className: "invalid" }
         : { label: "待初始化", className: "pending" };
@@ -3380,10 +3410,10 @@ function courseCard(item) {
         </div>
       ` : initialized ? `
         <div class="course-progress-grid">
-          ${courseMetric("单词", item.counts?.vocabulary || 0, item.counts?.vocabulary || 0)}
-          ${courseMetric("语法", item.counts?.grammar || 0, item.counts?.grammar || 0)}
-          ${courseMetric("课文", item.counts?.sentences || 0, item.counts?.sentences || 0)}
-          ${courseMetric("练习", item.counts?.exercises || 0, item.counts?.exercises || 0)}
+          ${courseMetric("单词", summary.vocab.completed, summary.vocab.total)}
+          ${courseMetric("语法", summary.grammar.completed, summary.grammar.total)}
+          ${courseMetric("课文", summary.text.completed, summary.text.total)}
+          ${courseMetric("练习", summary.exercises.completed, summary.exercises.total)}
         </div>
         <div class="button-row">
           <button class="primary" data-nav="/lesson/${item.id}">开始学习</button>
@@ -3451,6 +3481,82 @@ function pendingLessonPage(item) {
 function courseMetric(label, value, total) {
   const pct = total ? Math.round((value / total) * 100) : 0;
   return `<div class="course-metric"><span>${label}</span><strong>${value}/${total}</strong><small>${pct}%</small></div>`;
+}
+
+function overallLearningProgress(items) {
+  const categories = [
+    { key: "vocab", label: "单词" },
+    { key: "grammar", label: "语法" },
+    { key: "text", label: "课文" },
+    { key: "exercises", label: "练习" }
+  ].map((category) => ({ ...category, completed: 0, total: 0 }));
+  items
+    .filter((item) => item.status === "ready" || item.status === "initialized")
+    .forEach((item) => {
+      const summary = catalogLessonProgressSummary(item);
+      categories.forEach((category) => {
+        category.completed += summary[category.key].completed;
+        category.total += summary[category.key].total;
+      });
+    });
+  const normalized = categories.map((category) => ({
+    ...category,
+    percent: category.total ? Math.round((category.completed / category.total) * 100) : 0
+  }));
+  const percent = Math.round(normalized.reduce((total, category) => total + category.percent, 0) / normalized.length);
+  return { percent, categories: normalized };
+}
+
+function readLessonStoredValue(lessonId, key, fallback) {
+  return read(`lesson:${lessonId}:${key}`, fallback);
+}
+
+function objectCount(value, predicate = () => true) {
+  return Object.values(value || {}).filter(predicate).length;
+}
+
+function catalogLessonProgressSummary(item) {
+  const lessonId = item.id;
+  const counts = item.counts || {};
+  const wordLearning = readLessonStoredValue(lessonId, "wordLearning", {});
+  const wordProgress = readLessonStoredValue(lessonId, "wordProgress", {});
+  const grammarPractice = readLessonStoredValue(lessonId, "grammarPractice", {});
+  const sentencePractice = readLessonStoredValue(lessonId, "sentencePractice", {});
+  const exerciseResults = readLessonStoredValue(lessonId, "exerciseResults", []);
+  const interactionProgress = readLessonStoredValue(lessonId, "interactionProgress", { words: {}, sentences: {}, grammarExamples: {} });
+  const vocabCompleted = Math.min(
+    counts.vocabulary || 0,
+    Math.max(
+      objectCount(wordLearning, (entry) => entry?.mainStatus === "mastered"),
+      objectCount(wordProgress, (entry) => entry === "familiar")
+    )
+  );
+  const grammarCompleted = Math.min(
+    counts.grammar || 0,
+    objectCount(grammarPractice, (entry) => Boolean(entry?.correct && entry?.pronunciationPassed))
+  );
+  const textCompleted = Math.min(
+    counts.sentences || 0,
+    objectCount(sentencePractice, (entry) => Boolean(entry?.pronunciationPassed))
+  );
+  const exerciseCompleted = Math.min(
+    counts.exercises || 0,
+    Array.isArray(exerciseResults) ? new Set(exerciseResults.map((entry) => entry?.exerciseId).filter(Boolean)).size : 0
+  );
+  const weakTotal = [
+    ...Object.values(interactionProgress.words || {}),
+    ...Object.values(interactionProgress.sentences || {}),
+    ...Object.values(interactionProgress.grammarExamples || {})
+  ].filter((entry) => entry?.pronunciationState === "retry" || entry?.skipped).length;
+  return {
+    vocab: { completed: vocabCompleted, total: counts.vocabulary || 0 },
+    grammar: { completed: grammarCompleted, total: counts.grammar || 0 },
+    text: { completed: textCompleted, total: counts.sentences || 0 },
+    exercises: { completed: exerciseCompleted, total: counts.exercises || 0 },
+    weak: { resolved: 0, total: weakTotal },
+    audio: { completed: 0, total: 0 },
+    started: vocabCompleted > 0 || grammarCompleted > 0 || textCompleted > 0 || exerciseCompleted > 0
+  };
 }
 
 function moduleCard(title, description, progress, path) {
