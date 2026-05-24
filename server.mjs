@@ -1260,6 +1260,11 @@ createServer(async (req, res) => {
     });
     res.end(req.method === "HEAD" ? undefined : body);
   } catch {
+    const requestedType = types[extname(filePath)];
+    if (requestedType || url.pathname.startsWith("/debug-recordings/") || url.pathname.startsWith("/audio/")) {
+      sendJson(res, 404, { error: `Static asset not found: ${url.pathname}` });
+      return;
+    }
     const body = await readFile(join(root, "index.html"));
     res.writeHead(200, headers(types[".html"]));
     res.end(body);
