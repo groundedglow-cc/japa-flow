@@ -1,0 +1,2423 @@
+{
+  "id": 30,
+  "title": "第30课",
+  "subtitle": "もう11時だから寝よう。",
+  "vocabulary": [
+    {
+      "id": "w1",
+      "jp": "宅配便",
+      "kana": "たくはいびん",
+      "cn": "送货上门服务"
+    },
+    {
+      "id": "w2",
+      "jp": "報告書",
+      "kana": "ほうこくしょ",
+      "cn": "报告书"
+    },
+    {
+      "id": "w3",
+      "jp": "梅雨",
+      "kana": "つゆ",
+      "cn": "梅雨"
+    },
+    {
+      "id": "w4",
+      "jp": "秋",
+      "kana": "あき",
+      "cn": "秋天，秋季"
+    },
+    {
+      "id": "w5",
+      "jp": "ピクニック",
+      "kana": "ピクニック",
+      "cn": "郊游"
+    },
+    {
+      "id": "w6",
+      "jp": "行楽地",
+      "kana": "こうらくち",
+      "cn": "景点，游览地"
+    },
+    {
+      "id": "w7",
+      "jp": "ピザ",
+      "kana": "ピザ",
+      "cn": "比萨饼"
+    },
+    {
+      "id": "w8",
+      "jp": "終電",
+      "kana": "しゅうでん",
+      "cn": "末班车"
+    },
+    {
+      "id": "w9",
+      "jp": "待合室",
+      "kana": "まちあいしつ",
+      "cn": "候诊室、等候室"
+    },
+    {
+      "id": "w10",
+      "jp": "患者",
+      "kana": "かんじゃ",
+      "cn": "病人、患者"
+    },
+    {
+      "id": "w11",
+      "jp": "灰皿",
+      "kana": "はいざら",
+      "cn": "烟灰缸"
+    },
+    {
+      "id": "w12",
+      "jp": "吸殻",
+      "kana": "すいがら",
+      "cn": "烟头、烟灰、烟蒂"
+    },
+    {
+      "id": "w13",
+      "jp": "歯",
+      "kana": "は",
+      "cn": "牙齿"
+    },
+    {
+      "id": "w14",
+      "jp": "彼",
+      "kana": "かれ",
+      "cn": "他"
+    },
+    {
+      "id": "w15",
+      "jp": "そろいます",
+      "kana": "そろいます",
+      "cn": "到齐，齐全"
+    },
+    {
+      "id": "w16",
+      "jp": "寄ります",
+      "kana": "よります",
+      "cn": "顺便去；靠近"
+    },
+    {
+      "id": "w17",
+      "jp": "開きます",
+      "kana": "ひらきます",
+      "cn": "开，开启"
+    },
+    {
+      "id": "w18",
+      "jp": "引っ越します",
+      "kana": "ひっこします",
+      "cn": "搬迁，搬家"
+    },
+    {
+      "id": "w19",
+      "jp": "迎えます",
+      "kana": "むかえます",
+      "cn": "迎接"
+    },
+    {
+      "id": "w20",
+      "jp": "壊れます",
+      "kana": "こわれます",
+      "cn": "出故障，坏"
+    },
+    {
+      "id": "w21",
+      "jp": "間違えます",
+      "kana": "まちがえます",
+      "cn": "搞错"
+    },
+    {
+      "id": "w22",
+      "jp": "出発します",
+      "kana": "しゅっぱつします",
+      "cn": "出发"
+    },
+    {
+      "id": "w23",
+      "jp": "転職します",
+      "kana": "てんしょくします",
+      "cn": "换工作"
+    },
+    {
+      "id": "w24",
+      "jp": "パンクします",
+      "kana": "パンクします",
+      "cn": "轮胎爆裂，撑破"
+    },
+    {
+      "id": "w25",
+      "jp": "寂しい",
+      "kana": "さびしい",
+      "cn": "寂寞"
+    },
+    {
+      "id": "w26",
+      "jp": "楽しみ",
+      "kana": "たのしみ",
+      "cn": "愉快，期待"
+    },
+    {
+      "id": "w27",
+      "jp": "特別",
+      "kana": "とくべつ",
+      "cn": "特别"
+    },
+    {
+      "id": "w28",
+      "jp": "それでは／それじゃ",
+      "kana": "それでは／それじゃ",
+      "cn": "那么"
+    },
+    {
+      "id": "w29",
+      "jp": "そうか",
+      "kana": "そうか",
+      "cn": "是吗"
+    },
+    {
+      "id": "w30",
+      "jp": "まあ",
+      "kana": "まあ",
+      "cn": "嗯，嘿，哎哟"
+    },
+    {
+      "id": "w31",
+      "jp": "パク",
+      "kana": "パク",
+      "cn": "朴"
+    },
+    {
+      "id": "w32",
+      "jp": "長江下り",
+      "kana": "ちょうこうくだり",
+      "cn": "坐船游长江两岸风光"
+    },
+    {
+      "id": "w33",
+      "jp": "香山",
+      "kana": "こうざん",
+      "cn": "香山"
+    },
+    {
+      "id": "w34",
+      "jp": "北京植物園",
+      "kana": "ペキンしょくぶつえん",
+      "cn": "北京植物园"
+    },
+    {
+      "id": "w35",
+      "jp": "仕方ない",
+      "kana": "しかたない",
+      "cn": "没有办法"
+    }
+  ],
+  "sentences": [
+    {
+      "id": "s1",
+      "order": 1,
+      "text": "もう11時だから寝よう。",
+      "kana": "もうじゅういちじだからねよう。",
+      "translation": "已经11点了，睡觉吧。",
+      "words": [],
+      "grammar": [
+        "g1"
+      ]
+    },
+    {
+      "id": "s2",
+      "order": 2,
+      "text": "今日、会社を休もうと思います。",
+      "kana": "きょう、かいしゃをやすもうとおもいます。",
+      "translation": "我今天不想上班。",
+      "words": [],
+      "grammar": [
+        "g2"
+      ]
+    },
+    {
+      "id": "s3",
+      "order": 3,
+      "text": "今度、長江下りをしようと思っています。",
+      "kana": "こんど、ちょうこうくだりをしようとおもっています。",
+      "translation": "我想下次坐船游长江两岸的风光。",
+      "words": [
+        "w32"
+      ],
+      "grammar": [
+        "g3"
+      ]
+    },
+    {
+      "id": "s4",
+      "order": 4,
+      "text": "荷物が重いので、宅配便で送ります。",
+      "kana": "にもつがおもいので、たくはいびんでおくります。",
+      "translation": "行李很重，所以用送货上门的方式送达。",
+      "words": [
+        "w1"
+      ],
+      "grammar": [
+        "g4"
+      ]
+    },
+    {
+      "id": "s5",
+      "order": 5,
+      "speaker": "甲",
+      "text": "仕事が終わってから、飲みに行こうよ。",
+      "kana": "しごとがおわってから、のみにいこうよ。",
+      "translation": "工作结束后去喝酒吧。",
+      "words": [],
+      "grammar": [
+        "g1"
+      ]
+    },
+    {
+      "id": "s6",
+      "order": 6,
+      "speaker": "乙",
+      "text": "ごめん。明日早いから、今日はちょっと…。",
+      "kana": "ごめん。あしたはやいから、きょうはちょっと…。",
+      "translation": "对不起。明天要早起，今天有点…。",
+      "words": [],
+      "grammar": []
+    },
+    {
+      "id": "s7",
+      "order": 7,
+      "speaker": "甲",
+      "text": "もう遅いので、そろそろ帰ろうと思います。",
+      "kana": "もうおそいので、そろそろかえろうとおもいます。",
+      "translation": "已经很晚了，我该回家了。",
+      "words": [],
+      "grammar": [
+        "g2",
+        "g4"
+      ]
+    },
+    {
+      "id": "s8",
+      "order": 8,
+      "speaker": "乙",
+      "text": "お疲れ様でした。気をつけて。",
+      "kana": "おつかれさまでした。きをつけて。",
+      "translation": "辛苦了。路上小心。",
+      "words": [],
+      "grammar": []
+    },
+    {
+      "id": "s9",
+      "order": 9,
+      "speaker": "甲",
+      "text": "もうすぐゴールデンウィークですね。何か予定がありますか。",
+      "kana": "もうすぐゴールデンウィークですね。なにかよていがありますか。",
+      "translation": "马上就到黄金周了。有什么安排吗？",
+      "words": [],
+      "grammar": []
+    },
+    {
+      "id": "s10",
+      "order": 10,
+      "speaker": "乙",
+      "text": "長江下りをしようと思っています。",
+      "kana": "ちょうこうくだりをしようとおもっています。",
+      "translation": "我想去坐船游长江两岸的风光。",
+      "words": [
+        "w32"
+      ],
+      "grammar": [
+        "g3"
+      ]
+    },
+    {
+      "id": "s11",
+      "order": 11,
+      "speaker": "甲",
+      "text": "土曜日も仕事ですか。",
+      "kana": "どようびもしごとですか。",
+      "translation": "星期六也上班吗？",
+      "words": [],
+      "grammar": []
+    },
+    {
+      "id": "s12",
+      "order": 12,
+      "speaker": "乙",
+      "text": "ええ。香港からお客さんが来るので、空港へ迎えに行きます。",
+      "kana": "ええ。ホンコンからおきゃくさんがくるので、くうこうへむかえにいきます。",
+      "translation": "是的。有客户从香港来，我要去机场迎接。",
+      "words": [
+        "w19"
+      ],
+      "grammar": [
+        "g4"
+      ]
+    },
+    {
+      "id": "s13",
+      "order": 13,
+      "speaker": "李",
+      "text": "今度の連休、みんなでピクニックに行こうと思っているんですが…。",
+      "kana": "こどのれんきゅう、みんなでピクニックにいこうとおもっているんですが…。",
+      "translation": "这次连休，我想和大家一起去郊游…。",
+      "words": [
+        "w5"
+      ],
+      "grammar": [
+        "g3"
+      ]
+    },
+    {
+      "id": "s14",
+      "order": 14,
+      "speaker": "森",
+      "text": "いいですね。どこへ行くんですか。",
+      "kana": "いいですね。どこへいくんですか。",
+      "translation": "好啊。去哪里呢？",
+      "words": [],
+      "grammar": []
+    },
+    {
+      "id": "s15",
+      "order": 15,
+      "speaker": "李",
+      "text": "香山へ行こうと思います。",
+      "kana": "こうざんへいこうとおもいます。",
+      "translation": "我想去香山。",
+      "words": [
+        "w33"
+      ],
+      "grammar": [
+        "g2"
+      ]
+    },
+    {
+      "id": "s16",
+      "order": 16,
+      "speaker": "加藤",
+      "text": "森君、遅いよ。",
+      "kana": "もりくん、おそいよ。",
+      "translation": "森君，你迟到了。",
+      "words": [],
+      "grammar": []
+    },
+    {
+      "id": "s17",
+      "order": 17,
+      "speaker": "森",
+      "text": "すみません。出かけようとした時に、電話があったんです。",
+      "kana": "すみません。でかけようとしたときに、でんわがあったんです。",
+      "translation": "对不起。正要出门的时候，来了电话。",
+      "words": [],
+      "grammar": [
+        "g1"
+      ]
+    },
+    {
+      "id": "s18",
+      "order": 18,
+      "speaker": "加藤",
+      "text": "そうか。それじゃ、まあ、仕方ないな。",
+      "kana": "そうか。それじゃ、まあ、しかたないな。",
+      "translation": "是吗。嗯，那就没办法了。",
+      "words": [
+        "w28",
+        "w30",
+        "w35"
+      ],
+      "grammar": [
+        "g6",
+        "g7",
+        "g8"
+      ]
+    },
+    {
+      "id": "s19",
+      "order": 19,
+      "speaker": "加藤",
+      "text": "馬さん、みんなそろったから、そろそろ出発しようか。",
+      "kana": "ばさん、みんなそろったから、そろそろしゅっぱつしようか。",
+      "translation": "小马，大家都到齐了，准备出发吧。",
+      "words": [
+        "w15",
+        "w22"
+      ],
+      "grammar": [
+        "g1",
+        "g5"
+      ]
+    },
+    {
+      "id": "s20",
+      "order": 20,
+      "speaker": "馬",
+      "text": "ええ、そうしましょう。",
+      "kana": "ええ、そうしましょう。",
+      "translation": "好的，出发吧。",
+      "words": [],
+      "grammar": []
+    },
+    {
+      "id": "s21",
+      "order": 21,
+      "speaker": "李",
+      "text": "近くに北京植物園があるので、帰りに寄ろうと思うんです。",
+      "kana": "ちかくにペキンしょくぶつえんがあるので、かえりによろうとおもうんです。",
+      "translation": "附近有北京植物园，所以我想回来的路上顺便去一下。",
+      "words": [
+        "w16",
+        "w34"
+      ],
+      "grammar": [
+        "g2",
+        "g4"
+      ]
+    },
+    {
+      "id": "s22",
+      "order": 22,
+      "speaker": "森",
+      "text": "いいですね。わたしは花が好きなので、楽しみです。",
+      "kana": "いいですね。わたしははながすきなので、たのしみです。",
+      "translation": "太好了。我喜欢花，所以很期待。",
+      "words": [
+        "w26"
+      ],
+      "grammar": [
+        "g4",
+        "g9"
+      ]
+    },
+    {
+      "id": "s23",
+      "order": 23,
+      "speaker": "森",
+      "text": "人が多いですね。",
+      "kana": "ひとがおおいですね。",
+      "translation": "人真多啊。",
+      "words": [],
+      "grammar": []
+    },
+    {
+      "id": "s24",
+      "order": 24,
+      "speaker": "陳",
+      "text": "今はちょうどピクニックのシーズンですから。",
+      "kana": "いまはちょうどピクニックのシーズンですから。",
+      "translation": "现在正好是郊游的季节。",
+      "words": [
+        "w5"
+      ],
+      "grammar": []
+    },
+    {
+      "id": "s25",
+      "order": 25,
+      "speaker": "馬",
+      "text": "この季節は、どの行楽地も人でいっぱいですよ。",
+      "kana": "このきせつは、どのこうらくちもひとでいっぱいですよ。",
+      "translation": "这个季节，任何一个景点都是游客爆满。",
+      "words": [
+        "w6"
+      ],
+      "grammar": [
+        "g11"
+      ]
+    },
+    {
+      "id": "s26",
+      "order": 26,
+      "speaker": "李",
+      "text": "秋の香山もいいですよ。今度は紅葉を見に来ようと思っています。",
+      "kana": "あきのこうざんもいいですよ。こんどはこうようをみにこようとおもっています。",
+      "translation": "秋天的香山也很好哦。下次我想来看红叶。",
+      "words": [
+        "w4",
+        "w33"
+      ],
+      "grammar": [
+        "g3"
+      ]
+    }
+  ],
+  "textStructure": [
+    {
+      "id": "basic",
+      "title": "基本课文",
+      "groups": [
+        {
+          "title": "基本句",
+          "kind": "statements",
+          "ids": [
+            "s1",
+            "s2",
+            "s3",
+            "s4"
+          ]
+        },
+        {
+          "title": "对话 A",
+          "kind": "dialogue",
+          "ids": [
+            "s5",
+            "s6"
+          ]
+        },
+        {
+          "title": "对话 B",
+          "kind": "dialogue",
+          "ids": [
+            "s7",
+            "s8"
+          ]
+        },
+        {
+          "title": "对话 C",
+          "kind": "dialogue",
+          "ids": [
+            "s9",
+            "s10"
+          ]
+        },
+        {
+          "title": "对话 D",
+          "kind": "dialogue",
+          "ids": [
+            "s11",
+            "s12"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "application",
+      "title": "应用课文 · 春のピクニック",
+      "groups": [
+        {
+          "title": "在办公室",
+          "kind": "dialogue",
+          "ids": [
+            "s13",
+            "s14",
+            "s15"
+          ]
+        },
+        {
+          "title": "当天早晨，在分公司的楼前集合",
+          "note": "森迟到了，跑着过来",
+          "kind": "dialogue",
+          "ids": [
+            "s16",
+            "s17",
+            "s18",
+            "s19",
+            "s20"
+          ]
+        },
+        {
+          "title": "在小汽车中",
+          "kind": "dialogue",
+          "ids": [
+            "s21",
+            "s22"
+          ]
+        },
+        {
+          "title": "到了香山，看到很多游客",
+          "kind": "dialogue",
+          "ids": [
+            "s23",
+            "s24",
+            "s25",
+            "s26"
+          ]
+        }
+      ]
+    }
+  ],
+  "grammar": [
+    {
+      "id": "g1",
+      "pattern": "动词的意志形",
+      "meaning": "说话人表示自己的决心、意志的表达形式。",
+      "structure": "一类动词：基本形最后一个音→相应「お」段＋う\n二类动词：基本形「る」→「よう」\n三类动词：「来る」→「来よう」、「する」→「しよう」",
+      "usage": "动词的意志形是「〜ましょう」的简体形。除了表示意志外，还可以表示提议。",
+      "examples": [
+        "s1",
+        "s5",
+        "s17",
+        "s19"
+      ],
+      "extraExamples": [
+        {
+          "jp": "もう11時だから、寝よう。",
+          "kana": "もうじゅういちじだから、ねよう。",
+          "cn": "已经11点了，睡觉吧。"
+        },
+        {
+          "jp": "仕事が終わってから、飲みに行こうよ。",
+          "kana": "しごとがおわってから、のみにいこうよ。",
+          "cn": "工作结束后去喝酒吧。"
+        },
+        {
+          "jp": "手伝おうか。",
+          "kana": "てつだおうか。",
+          "cn": "我来帮着做吧。"
+        }
+      ]
+    },
+    {
+      "id": "g2",
+      "pattern": "～（意志形）と思います",
+      "meaning": "向听话人表示自己要做某事的意志。",
+      "structure": "动词意志形 ＋ と思います",
+      "usage": "「意志形＋と思います」和「意志形」一样，也表示说话人说话时的意志，但比单纯的意志形更加礼貌、温和。",
+      "examples": [
+        "s2",
+        "s7",
+        "s15",
+        "s21"
+      ],
+      "extraExamples": [
+        {
+          "jp": "もう遅いので、そろそろ帰ろうと思います。",
+          "kana": "もうおそいので、そろそろかえろうとおもいます。",
+          "cn": "已经很晚了，我该回家了。"
+        },
+        {
+          "jp": "今日、会社を休もうと思います。",
+          "kana": "きょう、かいしゃをやすもうとおもいます。",
+          "cn": "我今天不想上班。"
+        }
+      ]
+    },
+    {
+      "id": "g3",
+      "pattern": "～（意志形）と思っています",
+      "meaning": "表示自己已把某种意志持续了一段时间。",
+      "structure": "动词意志形 ＋ と思っています",
+      "usage": "用「意志形＋と思っています」的形式表示一种决心或意志已持续了一段时间。「〜ようと思います」和「〜ようと思っています」都表示决心或意志，但后者用「〜ています」的形式，所以有一种决心或意志尚未最后形成的语感。\n参考：表示当场形成的意志时使用「意志形」，而不能使用「〜ようと思います」和「〜ようと思っています」。",
+      "examples": [
+        "s3",
+        "s10",
+        "s13",
+        "s26"
+      ],
+      "extraExamples": [
+        {
+          "jp": "明日病院へ行こうと思っています。",
+          "kana": "あしたびょういんへいこうとおもっています。",
+          "cn": "明天我想去医院。"
+        },
+        {
+          "jp": "今度、長江下りをしようと思っています。",
+          "kana": "こんど、ちょうこうくだりをしようとおもっています。",
+          "cn": "我想下次坐船游长江两岸的风光。"
+        },
+        {
+          "jp": "その問題について、もう少し考えようと思っています。",
+          "kana": "そのもんだいについて、もうすこしかんがえようとおもっています。",
+          "cn": "关于那个问题我想再考虑考虑。"
+        }
+      ]
+    },
+    {
+      "id": "g4",
+      "pattern": "～ので",
+      "meaning": "表示原因、理由。",
+      "structure": "小句1（简体形）＋ので、小句2\nナ形容词小句和名词小句：简体形「だ」→「な」＋ので\n（「な＋ので」的形式）",
+      "usage": "「〜ので」表示原因、理由，既可以接在简体形后，也可以接在敬体形后，但接简体形较多。\n「〜ので」和「〜から」相比更为礼貌郑重，多用于正式场合。口语中往往发成「〜んで」。\n注意：「小句2」表示提议时，必须使用「〜から」，不能使用「〜ので」。",
+      "examples": [
+        "s4",
+        "s7",
+        "s12",
+        "s21",
+        "s22"
+      ],
+      "extraExamples": [
+        {
+          "jp": "荷物が重いので、宅配便で送ります。",
+          "kana": "にもつがおもいので、たくはいびんでおくります。",
+          "cn": "行李很重，所以用送货上门的方式送达。"
+        },
+        {
+          "jp": "香港からお客さんが来るので、空港へ迎えに行きます。",
+          "kana": "ホンコンからおきゃくさんがくるので、くうこうへむかえにいきます。",
+          "cn": "有客户从香港来，我要去机场迎接。"
+        },
+        {
+          "jp": "ここは静かなので、とても気に入っています。",
+          "kana": "ここはしずかなので、とてもきにいっています。",
+          "cn": "这里很安静，我非常喜欢。"
+        },
+        {
+          "jp": "もう終電の時間なので、帰ります。",
+          "kana": "もうしゅうでんのじかんなので、かえります。",
+          "cn": "已经是末班车的时间了，我回去了。"
+        },
+        {
+          "jp": "電車が遅れたんで、遅刻しました。すみません。",
+          "kana": "でんしゃがおくれたんで、ちこくしました。すみません。",
+          "cn": "电车晚点我迟到了，对不起。"
+        },
+        {
+          "jp": "もう時間がないから、早く行こうよ。",
+          "kana": "もうじかんがないから、はやくいこうよ。",
+          "cn": "已经没有时间了，快走吧。"
+        },
+        {
+          "jp": "×もう時間がないので、早く行こうよ。",
+          "kana": "もうじかんがないので、はやくいこうよ。",
+          "cn": "已经没有时间了，快走吧。",
+          "isIncorrect": true,
+          "note": "小句2为提议时不能使用「〜ので」，应使用「〜から」"
+        }
+      ]
+    },
+    {
+      "id": "g5",
+      "pattern": "そろそろ",
+      "meaning": "表示做某事或某事发生的时间渐渐逼近。",
+      "structure": "そろそろ ＋ 动词",
+      "usage": "用于表示时间渐渐逼近。去别人家里做客，觉得该到回家的时间时一般要说「そろそろ失礼します（我该告辞了）」。另外，使用「そろそろ＋〜ましょうか」或「そろそろ＋意志形＋か」的形式，表示随着时间的逼近该一起做某事，是提醒或催促对方和自己行动的一种说法。",
+      "examples": [
+        "s7",
+        "s19"
+      ],
+      "extraExamples": [
+        {
+          "jp": "そろそろ食事の時間ですよ。",
+          "kana": "そろそろしょくじのじかんですよ。",
+          "cn": "快到吃饭的时间了。"
+        },
+        {
+          "jp": "そろそろ梅雨が始まりますね。",
+          "kana": "そろそろつゆがはじまりますね。",
+          "cn": "梅雨季节就要开始了。"
+        },
+        {
+          "jp": "あっ、もう9時ですね。そろそろ失礼しないと…。",
+          "kana": "あっ、もうくじですね。そろそろしつれいしないと…。",
+          "cn": "啊，已经9点了，我该告辞了…。"
+        },
+        {
+          "jp": "そうですか。気をつけて帰ってください。",
+          "kana": "そうですか。きをつけてかえってください。",
+          "cn": "是吗？路上请小心。"
+        },
+        {
+          "jp": "馬さん、みんなそろったから、そろそろ出発しようか。",
+          "kana": "ばさん、みんなそろったから、そろそろしゅっぱつしようか。",
+          "cn": "小马，大家都到齐了，准备出发吧。"
+        },
+        {
+          "jp": "ええ、そうしましょう。",
+          "kana": "ええ、そうしましょう。",
+          "cn": "好的，出发吧。"
+        }
+      ]
+    },
+    {
+      "id": "g6",
+      "pattern": "それじゃ",
+      "meaning": "「それでは（那么）」的比较随便的说法，用于口语。",
+      "structure": "それじゃ、＋ 小句",
+      "usage": "是「それでは」的比较随便的说法，用于口语。",
+      "examples": [
+        "s18"
+      ],
+      "extraExamples": [
+        {
+          "jp": "甲：どうして昨日来なかったんですか。",
+          "kana": "こう：どうしてきのうこなかったんですか。",
+          "cn": "昨天为什么没来啊？"
+        },
+        {
+          "jp": "乙：熱があったんです。",
+          "kana": "おつ：ねつがあったんです。",
+          "cn": "发烧了。"
+        },
+        {
+          "jp": "甲：それじゃ、仕方ないですね。",
+          "kana": "こう：それじゃ、しかたないですね。",
+          "cn": "那样的话，就没有办法了。"
+        }
+      ]
+    },
+    {
+      "id": "g7",
+      "pattern": "まあ",
+      "meaning": "表示不十分理想，但还能过得去的程度，用于调控自己或对方的不满情绪。",
+      "structure": "まあ、＋ 小句",
+      "usage": "表示虽然不十分理想，但还能过得去。用于调控自己或对方的不满情绪。",
+      "examples": [
+        "s18"
+      ],
+      "extraExamples": [
+        {
+          "jp": "報告書ができました。これでいいですか。",
+          "kana": "ほうこくしょができました。これでいいですか。",
+          "cn": "报告写好了，这样可以吗？"
+        },
+        {
+          "jp": "時間もないから、まあ、いいでしょう。",
+          "kana": "じかんもないから、まあ、いいでしょう。",
+          "cn": "没时间修改了。嗯，就这样吧。"
+        }
+      ]
+    },
+    {
+      "id": "g8",
+      "pattern": "な（自言自语）",
+      "meaning": "自言自语时表示感叹的终助词。",
+      "structure": "简体形 ＋ な",
+      "usage": "自言自语时，可在简体形后接「な」表示感叹。由于是自言自语，因此不用于敬体形。「なあ」是将「な」的音拖长的说法，用于较强烈的感叹。",
+      "examples": [
+        "s18"
+      ],
+      "extraExamples": [
+        {
+          "jp": "今日は本当に寒いな。",
+          "kana": "きょうはほんとうにさむいな。",
+          "cn": "今天真冷啊。"
+        },
+        {
+          "jp": "あっ、財布を忘れた！困ったなあ。",
+          "kana": "あっ、さいふをわすれた！こまったなあ。",
+          "cn": "啊，忘了带钱包，这可糟糕了。"
+        },
+        {
+          "jp": "すみません。出かけようとした時に電話があったんです。",
+          "kana": "すみません。でかけようとしたときにでんわがあったんです。",
+          "cn": "对不起，正要出门的时候，来电话了。"
+        },
+        {
+          "jp": "そうか。それじゃ、まあ、仕方ないな。",
+          "kana": "そうか。それじゃ、まあ、しかたないな。",
+          "cn": "是吗。嗯，那就没办法了。"
+        }
+      ]
+    },
+    {
+      "id": "g9",
+      "pattern": "楽しみです",
+      "meaning": "表示盼望、期待的心情。",
+      "structure": "名词 ＋ が／は ＋ 楽しみです\n动词基本形 ＋ のが ＋ 楽しみです",
+      "usage": "意思同「楽しみにしています」。表示盼望、期待的心情。在表示「请你愉快地期待着」的意思时，要说「楽しみにしていてください」。另外，指感到愉悦的事物、兴趣或娱乐等时，也可以说「楽しみです」。",
+      "examples": [
+        "s22"
+      ],
+      "extraExamples": [
+        {
+          "jp": "甲：夏休みはどこか行きますか。",
+          "kana": "こう：なつやすみはどこかいきますか。",
+          "cn": "暑假去什么地方吗？"
+        },
+        {
+          "jp": "乙：ええ、ヨーロッパへ旅行に行こうと思っています。今からとても楽しみです。",
+          "kana": "おつ：ええ、ヨーロッパへりょこうにいこうとおもっています。いまからとてもたのしみです。",
+          "cn": "是的，我想去欧洲旅行。现在就开始愉快地等待着这一天的到来。"
+        },
+        {
+          "jp": "甲：来週わたしの家に遊びに来てください。",
+          "kana": "こう：らいしゅうわたしのいえにあそびにきてください。",
+          "cn": "下周请来我家玩。"
+        },
+        {
+          "jp": "乙：本当ですか。ありがとうございます。",
+          "kana": "おつ：ほんとうですか。ありがとうございます。",
+          "cn": "真的吗？谢谢您了。"
+        },
+        {
+          "jp": "甲：たくさん料理を作りますから、楽しみにしていてください。",
+          "kana": "こう：たくさんりょうりをつくりますから、たのしみにしていてください。",
+          "cn": "我会给你做很多菜，你就等着吧！"
+        },
+        {
+          "jp": "孫娘に会うのが、父の楽しみです。",
+          "kana": "まごむすめにあうのが、ちちのたのしみです。",
+          "cn": "时不时见见孙女是父亲的乐趣。"
+        }
+      ]
+    },
+    {
+      "id": "g10",
+      "pattern": "行楽地",
+      "meaning": "人们去游览的名胜古迹、有旅游设施以及娱乐设施的场所。",
+      "structure": "行楽地",
+      "usage": "在日语中统称「行楽地（景点）」。在日本，当春季樱花盛开、秋季红叶烂漫，或者黄金周和盂兰盆会前后的连休时，「行楽地」到处都是人山人海，去「行楽地」的汽车往往把附近的公路堵得水泄不通。",
+      "examples": [
+        "s25"
+      ],
+      "extraExamples": []
+    },
+    {
+      "id": "g11",
+      "pattern": "〜でいっぱい",
+      "meaning": "表示某个场所或者某个容器已达到饱和状态，不可能再容纳更多的人或物。",
+      "structure": "名词 ＋ で ＋ いっぱい",
+      "usage": "表示场所或容器已满，不能再容纳。",
+      "examples": [
+        "s25"
+      ],
+      "extraExamples": [
+        {
+          "jp": "この季節は、どの行楽地も人でいっぱいですよ。",
+          "kana": "このきせつは、どのこうらくちもひとでいっぱいですよ。",
+          "cn": "这个季节，任何一个景点都是游客爆满。"
+        },
+        {
+          "jp": "病院の待合室は患者でいっぱいです。",
+          "kana": "びょういんのまちあいしつはかんじゃでいっぱいです。",
+          "cn": "医院的候诊室挤满了病人。"
+        },
+        {
+          "jp": "灰皿がタバコの吸殻でいっぱいになりました。",
+          "kana": "はいざらがタバコのすいがらでいっぱいになりました。",
+          "cn": "烟缸里烟头满满的。"
+        }
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "ex-i-1-1",
+      "groupId": "ex-i-1",
+      "groupTitle": "练习I 1",
+      "category": "listening-dialogue",
+      "instruction": "听录音，填空并反复朗读。",
+      "example": "",
+      "exampleKana": "",
+      "type": "listening",
+      "question": "填写动词的意志形：書く→書こう、急ぐ→①、飲む→②、遊ぶ→③、待つ→④、買う→⑤、洗う→⑥、話す→⑦、消す→⑧、あげる→⑨、やめる→⑩、食べる→⑪、乗る→⑫、相談する→⑬",
+      "questionKana": "",
+      "choices": [],
+      "answer": "①いそごう ②のもう ③あそぼう ④まとう ⑤かおう ⑥あらおう ⑦はなそう ⑧けそう ⑨あげよう ⑩やめよう ⑪たべよう ⑫のろう ⑬そうだんしよう",
+      "answerKana": "①いそごう ②のもう ③あそぼう ④まとう ⑤かおう ⑥あらおう ⑦はなそう ⑧けそう ⑨あげよう ⑩やめよう ⑪たべよう ⑫のろう ⑬そうだんしよう",
+      "referenceAnswers": [
+        "①いそごう ②のもう ③あそぼう ④まとう ⑤かおう ⑥あらおう ⑦はなそう ⑧けそう ⑨あげよう ⑩やめよう ⑪たべよう ⑫のろう ⑬そうだんしよう"
+      ],
+      "referenceAnswerKana": [
+        "①いそごう ②のもう ③あそぼう ④まとう ⑤かおう ⑥あらおう ⑦はなそう ⑧けそう ⑨あげよう ⑩やめよう ⑪たべよう ⑫のろう ⑬そうだんしよう"
+      ],
+      "relatedGrammar": [
+        "g1"
+      ],
+      "relatedSentences": [],
+      "explanation": "听力填空，答案基于意志形变形规则",
+      "audioRequired": true,
+      "hasAnswer": true
+    },
+    {
+      "id": "ex-i-2-1",
+      "groupId": "ex-i-2",
+      "groupTitle": "练习I 2",
+      "category": "replacement",
+      "instruction": "仿照例句，将（）中的词变成意志形。",
+      "example": "もう11時だから（寝ます→寝よう）。",
+      "exampleKana": "もうじゅういちじだから（ねます→ねよう）。",
+      "type": "transform",
+      "question": "（1）疲れたね。ちょっと（休みます→①）。—うん、そう（します→②）。",
+      "questionKana": "",
+      "choices": [],
+      "answer": "①休もう ②しよう",
+      "answerKana": "",
+      "referenceAnswers": [
+        "①休もう ②しよう"
+      ],
+      "referenceAnswerKana": [],
+      "relatedGrammar": [
+        "g1"
+      ],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": false,
+      "hasAnswer": true
+    },
+    {
+      "id": "ex-i-2-2",
+      "groupId": "ex-i-2",
+      "groupTitle": "练习I 2",
+      "category": "replacement",
+      "instruction": "仿照例句，将（）中的词变成意志形。",
+      "example": "もう11時だから（寝ます→寝よう）。",
+      "exampleKana": "もうじゅういちじだから（ねます→ねよう）。",
+      "type": "transform",
+      "question": "（2）安くなったから、この靴を（買います→ ）。",
+      "questionKana": "",
+      "choices": [],
+      "answer": "買おう",
+      "answerKana": "かおう",
+      "referenceAnswers": [
+        "買おう"
+      ],
+      "referenceAnswerKana": [
+        "かおう"
+      ],
+      "relatedGrammar": [
+        "g1"
+      ],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": false,
+      "hasAnswer": true
+    },
+    {
+      "id": "ex-i-2-3",
+      "groupId": "ex-i-2",
+      "groupTitle": "练习I 2",
+      "category": "replacement",
+      "instruction": "仿照例句，将（）中的词变成意志形。",
+      "example": "もう11時だから（寝ます→寝よう）。",
+      "exampleKana": "もうじゅういちじだから（ねます→ねよう）。",
+      "type": "transform",
+      "question": "（3）この時計、気に入っているから、直して（います→ ）。",
+      "questionKana": "",
+      "choices": [],
+      "answer": "いよう",
+      "answerKana": "いよう",
+      "referenceAnswers": [
+        "いよう"
+      ],
+      "referenceAnswerKana": [
+        "いよう"
+      ],
+      "relatedGrammar": [
+        "g1"
+      ],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": false,
+      "hasAnswer": true
+    },
+    {
+      "id": "ex-i-2-4",
+      "groupId": "ex-i-2",
+      "groupTitle": "练习I 2",
+      "category": "replacement",
+      "instruction": "仿照例句，将（）中的词变成意志形。",
+      "example": "もう11時だから（寝ます→寝よう）。",
+      "exampleKana": "もうじゅういちじだから（ねます→ねよう）。",
+      "type": "transform",
+      "question": "（4）みんなそろったから、会議を（始めます→ ）。",
+      "questionKana": "",
+      "choices": [],
+      "answer": "始めよう",
+      "answerKana": "",
+      "referenceAnswers": [
+        "始めよう"
+      ],
+      "referenceAnswerKana": [],
+      "relatedGrammar": [
+        "g1"
+      ],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": false,
+      "hasAnswer": true
+    },
+    {
+      "id": "ex-i-3-1",
+      "groupId": "ex-i-3",
+      "groupTitle": "练习I 3",
+      "category": "replacement",
+      "instruction": "仿照例句替换画线部分进行练习。",
+      "example": "帰ります→そろそろ帰ろうと思います。",
+      "exampleKana": "かえります→そろそろかえろうとおもいます。",
+      "type": "transform",
+      "question": "（1）寝ます",
+      "questionKana": "",
+      "choices": [],
+      "answer": "そろそろ寝ようと思います。",
+      "answerKana": "そろそろねようとおもいます。",
+      "referenceAnswers": [
+        "そろそろ寝ようと思います。"
+      ],
+      "referenceAnswerKana": [
+        "そろそろねようとおもいます。"
+      ],
+      "relatedGrammar": [
+        "g2",
+        "g5"
+      ],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": false,
+      "hasAnswer": true
+    },
+    {
+      "id": "ex-i-3-2",
+      "groupId": "ex-i-3",
+      "groupTitle": "练习I 3",
+      "category": "replacement",
+      "instruction": "仿照例句替换画线部分进行练习。",
+      "example": "帰ります→そろそろ帰ろうと思います。",
+      "exampleKana": "かえります→そろそろかえろうとおもいます。",
+      "type": "transform",
+      "question": "（2）結婚します",
+      "questionKana": "",
+      "choices": [],
+      "answer": "そろそろ結婚しようと思います。",
+      "answerKana": "そろそろけっこんしようとおもいます。",
+      "referenceAnswers": [
+        "そろそろ結婚しようと思います。"
+      ],
+      "referenceAnswerKana": [
+        "そろそろけっこんしようとおもいます。"
+      ],
+      "relatedGrammar": [
+        "g2",
+        "g5"
+      ],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": false,
+      "hasAnswer": true
+    },
+    {
+      "id": "ex-i-3-3",
+      "groupId": "ex-i-3",
+      "groupTitle": "练习I 3",
+      "category": "replacement",
+      "instruction": "仿照例句替换画线部分进行练习。",
+      "example": "帰ります→そろそろ帰ろうと思います。",
+      "exampleKana": "かえります→そろそろかえろうとおもいます。",
+      "type": "transform",
+      "question": "（3）出発します",
+      "questionKana": "（3）しゅっぱつします",
+      "choices": [],
+      "answer": "そろそろ出発しようと思います。",
+      "answerKana": "そろそろしゅっぱつしようとおもいます。",
+      "referenceAnswers": [
+        "そろそろ出発しようと思います。"
+      ],
+      "referenceAnswerKana": [
+        "そろそろしゅっぱつしようとおもいます。"
+      ],
+      "relatedGrammar": [
+        "g2",
+        "g5"
+      ],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": false,
+      "hasAnswer": true
+    },
+    {
+      "id": "ex-i-3-4",
+      "groupId": "ex-i-3",
+      "groupTitle": "练习I 3",
+      "category": "replacement",
+      "instruction": "仿照例句替换画线部分进行练习。",
+      "example": "帰ります→そろそろ帰ろうと思います。",
+      "exampleKana": "かえります→そろそろかえろうとおもいます。",
+      "type": "transform",
+      "question": "（4）片づけます",
+      "questionKana": "",
+      "choices": [],
+      "answer": "そろそろ片づけようと思います。",
+      "answerKana": "そろそろかたづけようとおもいます。",
+      "referenceAnswers": [
+        "そろそろ片づけようと思います。"
+      ],
+      "referenceAnswerKana": [
+        "そろそろかたづけようとおもいます。"
+      ],
+      "relatedGrammar": [
+        "g2",
+        "g5"
+      ],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": false,
+      "hasAnswer": true
+    },
+    {
+      "id": "ex-i-3-5",
+      "groupId": "ex-i-3",
+      "groupTitle": "练习I 3",
+      "category": "replacement",
+      "instruction": "仿照例句替换画线部分进行练习。",
+      "example": "今度、長江下りをします。→今度、長江下りをしようと思っています。",
+      "exampleKana": "こんど、ちょうこうくだりをします。→こんど、ちょうこうくだりをしようとおもっています。",
+      "type": "transform",
+      "question": "（5）来年は北海道に行きます。",
+      "questionKana": "",
+      "choices": [],
+      "answer": "来年は北海道に行こうと思っています。",
+      "answerKana": "らいねんはほっかいどうにいこうとおもっています。",
+      "referenceAnswers": [
+        "来年は北海道に行こうと思っています。"
+      ],
+      "referenceAnswerKana": [
+        "らいねんはほっかいどうにいこうとおもっています。"
+      ],
+      "relatedGrammar": [
+        "g3"
+      ],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": false,
+      "hasAnswer": true
+    },
+    {
+      "id": "ex-i-3-6",
+      "groupId": "ex-i-3",
+      "groupTitle": "练习I 3",
+      "category": "replacement",
+      "instruction": "仿照例句替换画线部分进行练习。",
+      "example": "今度、長江下りをします。→今度、長江下りをしようと思っています。",
+      "exampleKana": "こんど、ちょうこうくだりをします。→こんど、ちょうこうくだりをしようとおもっています。",
+      "type": "transform",
+      "question": "（6）これは大事なので、もう一度彼に言います。",
+      "questionKana": "",
+      "choices": [],
+      "answer": "これは大事なので、もう一度彼に言おうと思っています。",
+      "answerKana": "これはだいじなので、もういちどかれにいおうとおもっています。",
+      "referenceAnswers": [
+        "これは大事なので、もう一度彼に言おうと思っています。"
+      ],
+      "referenceAnswerKana": [
+        "これはだいじなので、もういちどかれにいおうとおもっています。"
+      ],
+      "relatedGrammar": [
+        "g3"
+      ],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": false,
+      "hasAnswer": true
+    },
+    {
+      "id": "ex-i-3-7",
+      "groupId": "ex-i-3",
+      "groupTitle": "练习I 3",
+      "category": "replacement",
+      "instruction": "仿照例句替换画线部分进行练习。",
+      "example": "今度、長江下りをします。→今度、長江下りをしようと思っています。",
+      "exampleKana": "こんど、ちょうこうくだりをします。→こんど、ちょうこうくだりをしようとおもっています。",
+      "type": "transform",
+      "question": "（7）ここはうるさいので、引っ越します。",
+      "questionKana": "（7）ここはうるさいので、ひっこします。",
+      "choices": [],
+      "answer": "ここはうるさいので、引っ越そうと思っています。",
+      "answerKana": "ここはうるさいので、ひっこそうとおもっています。",
+      "referenceAnswers": [
+        "ここはうるさいので、引っ越そうと思っています。"
+      ],
+      "referenceAnswerKana": [
+        "ここはうるさいので、ひっこそうとおもっています。"
+      ],
+      "relatedGrammar": [
+        "g3"
+      ],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": false,
+      "hasAnswer": true
+    },
+    {
+      "id": "ex-i-3-8",
+      "groupId": "ex-i-3",
+      "groupTitle": "练习I 3",
+      "category": "replacement",
+      "instruction": "仿照例句替换画线部分进行练习。",
+      "example": "今度、長江下りをします。→今度、長江下りをしようと思っています。",
+      "exampleKana": "こんど、ちょうこうくだりをします。→こんど、ちょうこうくだりをしようとおもっています。",
+      "type": "transform",
+      "question": "（8）1人では決められないので、父に相談します。",
+      "questionKana": "",
+      "choices": [],
+      "answer": "1人では決められないので、父に相談しようと思っています。",
+      "answerKana": "ひとりではきめられないので、ちちにそうだんしようとおもっています。",
+      "referenceAnswers": [
+        "1人では決められないので、父に相談しようと思っています。"
+      ],
+      "referenceAnswerKana": [
+        "ひとりではきめられないので、ちちにそうだんしようとおもっています。"
+      ],
+      "relatedGrammar": [
+        "g3"
+      ],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": false,
+      "hasAnswer": true
+    },
+    {
+      "id": "ex-i-4-1",
+      "groupId": "ex-i-4",
+      "groupTitle": "练习I 4",
+      "category": "replacement",
+      "instruction": "仿照例句用「〜ので」将两个句子连接成一个句子。",
+      "example": "お客さんが来ます／迎えに行きます→お客さんが来るので、迎えに行きます。",
+      "exampleKana": "おきゃくさんがきます／むかえにいきます→おきゃくさんがくるので、むかえにいきます。",
+      "type": "transform",
+      "question": "（1）社長が来ます／集まってください",
+      "questionKana": "",
+      "choices": [],
+      "answer": "社長が来るので、集まってください。",
+      "answerKana": "しゃちょうがくるので、あつまってください。",
+      "referenceAnswers": [
+        "社長が来るので、集まってください。"
+      ],
+      "referenceAnswerKana": [
+        "しゃちょうがくるので、あつまってください。"
+      ],
+      "relatedGrammar": [
+        "g4"
+      ],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": false,
+      "hasAnswer": true
+    },
+    {
+      "id": "ex-i-4-2",
+      "groupId": "ex-i-4",
+      "groupTitle": "练习I 4",
+      "category": "replacement",
+      "instruction": "仿照例句用「〜ので」将两个句子连接成一个句子。",
+      "example": "お客さんが来ます／迎えに行きます→お客さんが来るので、迎えに行きます。",
+      "exampleKana": "おきゃくさんがきます／むかえにいきます→おきゃくさんがくるので、むかえにいきます。",
+      "type": "transform",
+      "question": "（2）パソコンが壊れました／修理に来てください",
+      "questionKana": "",
+      "choices": [],
+      "answer": "パソコンが壊れたので、修理に来てください。",
+      "answerKana": "パソコンがこわれたので、しゅうりにきてください。",
+      "referenceAnswers": [
+        "パソコンが壊れたので、修理に来てください。"
+      ],
+      "referenceAnswerKana": [
+        "パソコンがこわれたので、しゅうりにきてください。"
+      ],
+      "relatedGrammar": [
+        "g4"
+      ],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": false,
+      "hasAnswer": true
+    },
+    {
+      "id": "ex-i-4-3",
+      "groupId": "ex-i-4",
+      "groupTitle": "练习I 4",
+      "category": "replacement",
+      "instruction": "仿照例句用「〜ので」将两个句子连接成一个句子。",
+      "example": "お客さんが来ます／迎えに行きます→お客さんが来るので、迎えに行きます。",
+      "exampleKana": "おきゃくさんがきます／むかえにいきます→おきゃくさんがくるので、むかえにいきます。",
+      "type": "transform",
+      "question": "（3）来日は帰るのが遅くなります／前の朝連絡します",
+      "questionKana": "",
+      "choices": [],
+      "answer": "来日は帰るのが遅くなるので、前の朝連絡します。",
+      "answerKana": "らいじつはかえるのがおそくなるので、まえのあされんらくします。",
+      "referenceAnswers": [
+        "来日は帰るのが遅くなるので、前の朝連絡します。"
+      ],
+      "referenceAnswerKana": [
+        "らいじつはかえるのがおそくなるので、まえのあされんらくします。"
+      ],
+      "relatedGrammar": [
+        "g4"
+      ],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": false,
+      "hasAnswer": true
+    },
+    {
+      "id": "ex-i-4-4",
+      "groupId": "ex-i-4",
+      "groupTitle": "练习I 4",
+      "category": "replacement",
+      "instruction": "仿照例句用「〜ので」将两个句子连接成一个句子。",
+      "example": "お客さんが来ます／迎えに行きます→お客さんが来るので、迎えに行きます。",
+      "exampleKana": "おきゃくさんがきます／むかえにいきます→おきゃくさんがくるので、むかえにいきます。",
+      "type": "transform",
+      "question": "（4）奥さんには会ったことがありません／写真を見せてください",
+      "questionKana": "",
+      "choices": [],
+      "answer": "奥さんには会ったことがないので、写真を見せてください。",
+      "answerKana": "おくさんにはあったことがないので、しゃしんをみせてください。",
+      "referenceAnswers": [
+        "奥さんには会ったことがないので、写真を見せてください。"
+      ],
+      "referenceAnswerKana": [
+        "おくさんにはあったことがないので、しゃしんをみせてください。"
+      ],
+      "relatedGrammar": [
+        "g4"
+      ],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": false,
+      "hasAnswer": true
+    },
+    {
+      "id": "ex-i-4-5",
+      "groupId": "ex-i-4",
+      "groupTitle": "练习I 4",
+      "category": "replacement",
+      "instruction": "仿照例句用「〜ので」将两个句子连接成一个句子。",
+      "example": "お客さんが来ます／迎えに行きます→お客さんが来るので、迎えに行きます。",
+      "exampleKana": "おきゃくさんがきます／むかえにいきます→おきゃくさんがくるので、むかえにいきます。",
+      "type": "transform",
+      "question": "（5）予約をしたいです／電話番号を教えてください",
+      "questionKana": "",
+      "choices": [],
+      "answer": "予約をしたいので、電話番号を教えてください。",
+      "answerKana": "よやくをしたいので、でんわばんごうをおしえてください。",
+      "referenceAnswers": [
+        "予約をしたいので、電話番号を教えてください。"
+      ],
+      "referenceAnswerKana": [
+        "よやくをしたいので、でんわばんごうをおしえてください。"
+      ],
+      "relatedGrammar": [
+        "g4"
+      ],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": false,
+      "hasAnswer": true
+    },
+    {
+      "id": "ex-i-4-6",
+      "groupId": "ex-i-4",
+      "groupTitle": "练习I 4",
+      "category": "replacement",
+      "instruction": "仿照例句用「〜ので」将两个句子连接成一个句子。",
+      "example": "おなかが痛いです／ちょっと寝ます→おなかが痛いので、ちょっと寝ます。",
+      "exampleKana": "おなかがいたいです／ちょっとねます→おなかがいたいので、ちょっとねます。",
+      "type": "transform",
+      "question": "（6）首が疲れました／ちょっと休みます",
+      "questionKana": "",
+      "choices": [],
+      "answer": "首が疲れたので、ちょっと休みます。",
+      "answerKana": "くびがつかれたので、ちょっとやすみます。",
+      "referenceAnswers": [
+        "首が疲れたので、ちょっと休みます。"
+      ],
+      "referenceAnswerKana": [
+        "くびがつかれたので、ちょっとやすみます。"
+      ],
+      "relatedGrammar": [
+        "g4"
+      ],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": false,
+      "hasAnswer": true
+    },
+    {
+      "id": "ex-i-4-7",
+      "groupId": "ex-i-4",
+      "groupTitle": "练习I 4",
+      "category": "replacement",
+      "instruction": "仿照例句用「〜ので」将两个句子连接成一个句子。",
+      "example": "おなかが痛いです／ちょっと寝ます→おなかが痛いので、ちょっと寝ます。",
+      "exampleKana": "おなかがいたいです／ちょっとねます→おなかがいたいので、ちょっとねます。",
+      "type": "transform",
+      "question": "（7）あの人は有名です／だれでも知っています",
+      "questionKana": "",
+      "choices": [],
+      "answer": "あの人は有名なので、だれでも知っています。",
+      "answerKana": "あのひとはゆうめいなので、だれでもしっています。",
+      "referenceAnswers": [
+        "あの人は有名なので、だれでも知っています。"
+      ],
+      "referenceAnswerKana": [
+        "あのひとはゆうめいなので、だれでもしっています。"
+      ],
+      "relatedGrammar": [
+        "g4"
+      ],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": false,
+      "hasAnswer": true
+    },
+    {
+      "id": "ex-i-4-8",
+      "groupId": "ex-i-4",
+      "groupTitle": "练习I 4",
+      "category": "replacement",
+      "instruction": "仿照例句用「〜ので」将两个句子连接成一个句子。",
+      "example": "おなかが痛いです／ちょっと寝ます→おなかが痛いので、ちょっと寝ます。",
+      "exampleKana": "おなかがいたいです／ちょっとねます→おなかがいたいので、ちょっとねます。",
+      "type": "transform",
+      "question": "（8）静かでした／ゆっくり寝ました",
+      "questionKana": "",
+      "choices": [],
+      "answer": "静かだったので、ゆっくり寝ました。",
+      "answerKana": "しずかだったので、ゆっくりねました。",
+      "referenceAnswers": [
+        "静かだったので、ゆっくり寝ました。"
+      ],
+      "referenceAnswerKana": [
+        "しずかだったので、ゆっくりねました。"
+      ],
+      "relatedGrammar": [
+        "g4"
+      ],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": false,
+      "hasAnswer": true
+    },
+    {
+      "id": "ex-i-4-9",
+      "groupId": "ex-i-4",
+      "groupTitle": "练习I 4",
+      "category": "replacement",
+      "instruction": "仿照例句用「〜ので」将两个句子连接成一个句子。",
+      "example": "おなかが痛いです／ちょっと寝ます→おなかが痛いので、ちょっと寝ます。",
+      "exampleKana": "おなかがいたいです／ちょっとねます→おなかがいたいので、ちょっとねます。",
+      "type": "transform",
+      "question": "（9）今日は特別な日です／ピザを作ります",
+      "questionKana": "",
+      "choices": [],
+      "answer": "今日は特別な日なので、ピザを作ります。",
+      "answerKana": "きょうはとくべつなひなので、ピザをつくります。",
+      "referenceAnswers": [
+        "今日は特別な日なので、ピザを作ります。"
+      ],
+      "referenceAnswerKana": [
+        "きょうはとくべつなひなので、ピザをつくります。"
+      ],
+      "relatedGrammar": [
+        "g4"
+      ],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": false,
+      "hasAnswer": true
+    },
+    {
+      "id": "ex-i-4-10",
+      "groupId": "ex-i-4",
+      "groupTitle": "练习I 4",
+      "category": "replacement",
+      "instruction": "仿照例句用「〜ので」将两个句子连接成一个句子。",
+      "example": "おなかが痛いです／ちょっと寝ます→おなかが痛いので、ちょっと寝ます。",
+      "exampleKana": "おなかがいたいです／ちょっとねます→おなかがいたいので、ちょっとねます。",
+      "type": "transform",
+      "question": "（10）昨日休みでした／友達とサッカーをしました",
+      "questionKana": "",
+      "choices": [],
+      "answer": "昨日休みだったので、友達とサッカーをしました。",
+      "answerKana": "きのうやすみだったので、ともだちとサッカーをしました。",
+      "referenceAnswers": [
+        "昨日休みだったので、友達とサッカーをしました。"
+      ],
+      "referenceAnswerKana": [
+        "きのうやすみだったので、ともだちとサッカーをしました。"
+      ],
+      "relatedGrammar": [
+        "g4"
+      ],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": false,
+      "hasAnswer": true
+    },
+    {
+      "id": "ex-i-5-1",
+      "groupId": "ex-i-5",
+      "groupTitle": "练习I 5",
+      "category": "replacement",
+      "instruction": "仿照例句替换画线部分进行练习。",
+      "example": "頭が痛いです／早く帰ります→頭が痛いので、早く帰りたいんですが。",
+      "exampleKana": "あたまがいたいです／はやくかえります→あたまがいたいので、はやくかえりたいんですが。",
+      "type": "transform",
+      "question": "（1）熱があります／休みます",
+      "questionKana": "",
+      "choices": [],
+      "answer": "熱があるので、休みたいんですが。",
+      "answerKana": "ねつがあるので、やすみたいんですが。",
+      "referenceAnswers": [
+        "熱があるので、休みたいんですが。"
+      ],
+      "referenceAnswerKana": [
+        "ねつがあるので、やすみたいんですが。"
+      ],
+      "relatedGrammar": [
+        "g4"
+      ],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": false,
+      "hasAnswer": true
+    },
+    {
+      "id": "ex-i-5-2",
+      "groupId": "ex-i-5",
+      "groupTitle": "练习I 5",
+      "category": "replacement",
+      "instruction": "仿照例句替换画线部分进行练习。",
+      "example": "頭が痛いです／早く帰ります→頭が痛いので、早く帰りたいんですが。",
+      "exampleKana": "あたまがいたいです／はやくかえります→あたまがいたいので、はやくかえりたいんですが。",
+      "type": "transform",
+      "question": "（2）お金がありません／銀行で下ろします",
+      "questionKana": "",
+      "choices": [],
+      "answer": "お金がないので、銀行で下ろしたいんですが。",
+      "answerKana": "おかねがないので、ぎんこうでおろしたいんですが。",
+      "referenceAnswers": [
+        "お金がないので、銀行で下ろしたいんですが。"
+      ],
+      "referenceAnswerKana": [
+        "おかねがないので、ぎんこうでおろしたいんですが。"
+      ],
+      "relatedGrammar": [
+        "g4"
+      ],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": false,
+      "hasAnswer": true
+    },
+    {
+      "id": "ex-i-5-3",
+      "groupId": "ex-i-5",
+      "groupTitle": "练习I 5",
+      "category": "replacement",
+      "instruction": "仿照例句替换画线部分进行练习。",
+      "example": "頭が痛いです／早く帰ります→頭が痛いので、早く帰りたいんですが。",
+      "exampleKana": "あたまがいたいです／はやくかえります→あたまがいたいので、はやくかえりたいんですが。",
+      "type": "transform",
+      "question": "（3）歯が痛いです／薬を飲みます",
+      "questionKana": "",
+      "choices": [],
+      "answer": "歯が痛いので、薬を飲みたいんですが。",
+      "answerKana": "はがいたいので、くすりをのみたいんですが。",
+      "referenceAnswers": [
+        "歯が痛いので、薬を飲みたいんですが。"
+      ],
+      "referenceAnswerKana": [
+        "はがいたいので、くすりをのみたいんですが。"
+      ],
+      "relatedGrammar": [
+        "g4"
+      ],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": false,
+      "hasAnswer": true
+    },
+    {
+      "id": "ex-i-5-4",
+      "groupId": "ex-i-5",
+      "groupTitle": "练习I 5",
+      "category": "replacement",
+      "instruction": "仿照例句替换画线部分进行练习。",
+      "example": "頭が痛いです／早く帰ります→頭が痛いので、早く帰りたいんですが。",
+      "exampleKana": "あたまがいたいです／はやくかえります→あたまがいたいので、はやくかえりたいんですが。",
+      "type": "transform",
+      "question": "（4）息子の誕生日です／早く帰ります",
+      "questionKana": "",
+      "choices": [],
+      "answer": "息子の誕生日なので、早く帰りたいんですが。",
+      "answerKana": "むすこのたんじょうびなので、はやくかえりたいんですが。",
+      "referenceAnswers": [
+        "息子の誕生日なので、早く帰りたいんですが。"
+      ],
+      "referenceAnswerKana": [
+        "むすこのたんじょうびなので、はやくかえりたいんですが。"
+      ],
+      "relatedGrammar": [
+        "g4"
+      ],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": false,
+      "hasAnswer": true
+    },
+    {
+      "id": "ex-i-5-5",
+      "groupId": "ex-i-5",
+      "groupTitle": "练习I 5",
+      "category": "replacement",
+      "instruction": "仿照例句替换画线部分进行练习。",
+      "example": "頭が痛いです／早く帰ります→頭が痛いので、早く帰りたいんですが。",
+      "exampleKana": "あたまがいたいです／はやくかえります→あたまがいたいので、はやくかえりたいんですが。",
+      "type": "transform",
+      "question": "（5）使い方が簡単です／これを買います",
+      "questionKana": "",
+      "choices": [],
+      "answer": "使い方が簡単なので、これを買いたいんですが。",
+      "answerKana": "つかいかたがかんたんなので、これをかいたいんですが。",
+      "referenceAnswers": [
+        "使い方が簡単なので、これを買いたいんですが。"
+      ],
+      "referenceAnswerKana": [
+        "つかいかたがかんたんなので、これをかいたいんですが。"
+      ],
+      "relatedGrammar": [
+        "g4"
+      ],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": false,
+      "hasAnswer": true
+    },
+    {
+      "id": "ex-i-5-6",
+      "groupId": "ex-i-5",
+      "groupTitle": "练习I 5",
+      "category": "replacement",
+      "instruction": "仿照例句替换画线部分进行练习。",
+      "example": "頭が痛いです／早く帰ります→頭が痛いので、早く帰りたいんですが。",
+      "exampleKana": "あたまがいたいです／はやくかえります→あたまがいたいので、はやくかえりたいんですが。",
+      "type": "transform",
+      "question": "（6）寂しいです／友達を呼びます",
+      "questionKana": "",
+      "choices": [],
+      "answer": "寂しいので、友達を呼びたいんですが。",
+      "answerKana": "さびしいので、ともだちをよびたいんですが。",
+      "referenceAnswers": [
+        "寂しいので、友達を呼びたいんですが。"
+      ],
+      "referenceAnswerKana": [
+        "さびしいので、ともだちをよびたいんですが。"
+      ],
+      "relatedGrammar": [
+        "g4"
+      ],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": false,
+      "hasAnswer": true
+    },
+    {
+      "id": "ex-i-6-1",
+      "groupId": "ex-i-6",
+      "groupTitle": "练习I 6",
+      "category": "listening-dialogue",
+      "instruction": "听录音，仿照例句替换画线部分练习会话。",
+      "example": "テニスをします→甲：週末に何をしますか。乙：テニスをしようと思っています。甲：わたしもそうしようと思っています。乙：じゃあ、いっしょにしませんか。",
+      "exampleKana": "",
+      "type": "listening",
+      "question": "（1）山に登ります",
+      "questionKana": "",
+      "choices": [],
+      "answer": "甲：週末に何をしますか。乙：山に登ろうと思っています。甲：わたしもそうしようと思っています。乙：じゃあ、いっしょにしませんか。",
+      "answerKana": "",
+      "referenceAnswers": [
+        "甲：週末に何をしますか。乙：山に登ろうと思っています。甲：わたしもそうしようと思っています。乙：じゃあ、いっしょにしませんか。"
+      ],
+      "referenceAnswerKana": [],
+      "relatedGrammar": [
+        "g3"
+      ],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": true,
+      "hasAnswer": true
+    },
+    {
+      "id": "ex-i-6-2",
+      "groupId": "ex-i-6",
+      "groupTitle": "练习I 6",
+      "category": "listening-dialogue",
+      "instruction": "听录音，仿照例句替换画线部分练习会话。",
+      "example": "テニスをします→甲：週末に何をしますか。乙：テニスをしようと思っています。甲：わたしもそうしようと思っています。乙：じゃあ、いっしょにしませんか。",
+      "exampleKana": "",
+      "type": "listening",
+      "question": "（2）家族とピクニックに行きます",
+      "questionKana": "",
+      "choices": [],
+      "answer": "甲：週末に何をしますか。乙：家族とピクニックに行こうと思っています。甲：わたしもそうしようと思っています。乙：じゃあ、いっしょにしませんか。",
+      "answerKana": "",
+      "referenceAnswers": [
+        "甲：週末に何をしますか。乙：家族とピクニックに行こうと思っています。甲：わたしもそうしようと思っています。乙：じゃあ、いっしょにしませんか。"
+      ],
+      "referenceAnswerKana": [],
+      "relatedGrammar": [
+        "g3"
+      ],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": true,
+      "hasAnswer": true
+    },
+    {
+      "id": "ex-i-6-3",
+      "groupId": "ex-i-6",
+      "groupTitle": "练习I 6",
+      "category": "listening-dialogue",
+      "instruction": "听录音，仿照例句替换画线部分练习会话。",
+      "example": "テニスをします→甲：週末に何をしますか。乙：テニスをしようと思っています。甲：わたしもそうしようと思っています。乙：じゃあ、いっしょにしませんか。",
+      "exampleKana": "",
+      "type": "listening",
+      "question": "（3）フランス語を勉強します",
+      "questionKana": "",
+      "choices": [],
+      "answer": "甲：週末に何をしますか。乙：フランス語を勉強しようと思っています。甲：わたしもそうしようと思っています。乙：じゃあ、いっしょにしませんか。",
+      "answerKana": "",
+      "referenceAnswers": [
+        "甲：週末に何をしますか。乙：フランス語を勉強しようと思っています。甲：わたしもそうしようと思っています。乙：じゃあ、いっしょにしませんか。"
+      ],
+      "referenceAnswerKana": [],
+      "relatedGrammar": [
+        "g3"
+      ],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": true,
+      "hasAnswer": true
+    },
+    {
+      "id": "ex-i-6-4",
+      "groupId": "ex-i-6",
+      "groupTitle": "练习I 6",
+      "category": "listening-dialogue",
+      "instruction": "听录音，仿照例句替换画线部分练习会话。",
+      "example": "テニスをします→甲：週末に何をしますか。乙：テニスをしようと思っています。甲：わたしもそうしようと思っています。乙：じゃあ、いっしょにしませんか。",
+      "exampleKana": "",
+      "type": "listening",
+      "question": "（4）公園で弁当を食べます",
+      "questionKana": "",
+      "choices": [],
+      "answer": "甲：週末に何をしますか。乙：公園で弁当を食べようと思っています。甲：わたしもそうしようと思っています。乙：じゃあ、いっしょにしませんか。",
+      "answerKana": "",
+      "referenceAnswers": [
+        "甲：週末に何をしますか。乙：公園で弁当を食べようと思っています。甲：わたしもそうしようと思っています。乙：じゃあ、いっしょにしませんか。"
+      ],
+      "referenceAnswerKana": [],
+      "relatedGrammar": [
+        "g3"
+      ],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": true,
+      "hasAnswer": true
+    },
+    {
+      "id": "ex-i-6-5",
+      "groupId": "ex-i-6",
+      "groupTitle": "练习I 6",
+      "category": "listening-dialogue",
+      "instruction": "听录音，仿照例句替换画线部分练习会话。",
+      "example": "道を間違えました→甲：ずいぶん遅かったね。乙：すみません。道を間違えたので、遅くなりました。甲：じゃあ、仕方ないな。",
+      "exampleKana": "",
+      "type": "listening",
+      "question": "（5）自転車がパンクしました",
+      "questionKana": "（5）じてんしゃがパンクしました",
+      "choices": [],
+      "answer": "甲：ずいぶん遅かったね。乙：すみません。自転車がパンクしたので、遅くなりました。甲：じゃあ、仕方ないな。",
+      "answerKana": "",
+      "referenceAnswers": [
+        "甲：ずいぶん遅かったね。乙：すみません。自転車がパンクしたので、遅くなりました。甲：じゃあ、仕方ないな。"
+      ],
+      "referenceAnswerKana": [],
+      "relatedGrammar": [
+        "g4",
+        "g7"
+      ],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": true,
+      "hasAnswer": true
+    },
+    {
+      "id": "ex-i-6-6",
+      "groupId": "ex-i-6",
+      "groupTitle": "练习I 6",
+      "category": "listening-dialogue",
+      "instruction": "听录音，仿照例句替换画线部分练习会话。",
+      "example": "道を間違えました→甲：ずいぶん遅かったね。乙：すみません。道を間違えたので、遅くなりました。甲：じゃあ、仕方ないな。",
+      "exampleKana": "",
+      "type": "listening",
+      "question": "（6）電車が遅れました",
+      "questionKana": "",
+      "choices": [],
+      "answer": "甲：ずいぶん遅かったね。乙：すみません。電車が遅れたので、遅くなりました。甲：じゃあ、仕方ないな。",
+      "answerKana": "",
+      "referenceAnswers": [
+        "甲：ずいぶん遅かったね。乙：すみません。電車が遅れたので、遅くなりました。甲：じゃあ、仕方ないな。"
+      ],
+      "referenceAnswerKana": [],
+      "relatedGrammar": [
+        "g4",
+        "g7"
+      ],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": true,
+      "hasAnswer": true
+    },
+    {
+      "id": "ex-i-6-7",
+      "groupId": "ex-i-6",
+      "groupTitle": "练习I 6",
+      "category": "listening-dialogue",
+      "instruction": "听录音，仿照例句替换画线部分练习会话。",
+      "example": "道を間違えました→甲：ずいぶん遅かったね。乙：すみません。道を間違えたので、遅くなりました。甲：じゃあ、仕方ないな。",
+      "exampleKana": "",
+      "type": "listening",
+      "question": "（7）バスが全然来ませんでした",
+      "questionKana": "",
+      "choices": [],
+      "answer": "甲：ずいぶん遅かったね。乙：すみません。バスが全然来なかったので、遅くなりました。甲：じゃあ、仕方ないな。",
+      "answerKana": "",
+      "referenceAnswers": [
+        "甲：ずいぶん遅かったね。乙：すみません。バスが全然来なかったので、遅くなりました。甲：じゃあ、仕方ないな。"
+      ],
+      "referenceAnswerKana": [],
+      "relatedGrammar": [
+        "g4",
+        "g7"
+      ],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": true,
+      "hasAnswer": true
+    },
+    {
+      "id": "ex-i-6-8",
+      "groupId": "ex-i-6",
+      "groupTitle": "练习I 6",
+      "category": "listening-dialogue",
+      "instruction": "听录音，仿照例句替换画线部分练习会话。",
+      "example": "道を間違えました→甲：ずいぶん遅かったね。乙：すみません。道を間違えたので、遅くなりました。甲：じゃあ、仕方ないな。",
+      "exampleKana": "",
+      "type": "listening",
+      "question": "（8）病院に寄りました",
+      "questionKana": "",
+      "choices": [],
+      "answer": "甲：ずいぶん遅かったね。乙：すみません。病院に寄ったので、遅くなりました。甲：じゃあ、仕方ないな。",
+      "answerKana": "",
+      "referenceAnswers": [
+        "甲：ずいぶん遅かったね。乙：すみません。病院に寄ったので、遅くなりました。甲：じゃあ、仕方ないな。"
+      ],
+      "referenceAnswerKana": [],
+      "relatedGrammar": [
+        "g4",
+        "g7"
+      ],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": true,
+      "hasAnswer": true
+    },
+    {
+      "id": "ex-ii-1-1",
+      "groupId": "ex-ii-1",
+      "groupTitle": "练习II 1",
+      "category": "choice",
+      "instruction": "从中选择动词，变成适当的形式完成句子。",
+      "example": "箱根に（行った）時、富士山を見ました。",
+      "exampleKana": "",
+      "type": "short-answer",
+      "question": "（1）給料をもらったので、新しい靴を（ ）と思います。",
+      "questionKana": "",
+      "choices": [
+        "行きます",
+        "撮ります",
+        "見せます",
+        "届けます",
+        "買います",
+        "します"
+      ],
+      "answer": "買おう",
+      "answerKana": "かおう",
+      "referenceAnswers": [
+        "買おう"
+      ],
+      "referenceAnswerKana": [
+        "かおう"
+      ],
+      "relatedGrammar": [
+        "g2"
+      ],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": false,
+      "hasAnswer": true
+    },
+    {
+      "id": "ex-ii-1-2",
+      "groupId": "ex-ii-1",
+      "groupTitle": "练习II 1",
+      "category": "choice",
+      "instruction": "从中选择动词，变成适当的形式完成句子。",
+      "example": "箱根に（行った）時、富士山を見ました。",
+      "exampleKana": "",
+      "type": "short-answer",
+      "question": "（2）表を（ ）ながら、説明します。",
+      "questionKana": "",
+      "choices": [
+        "行きます",
+        "撮ります",
+        "見せます",
+        "届けます",
+        "買います",
+        "します"
+      ],
+      "answer": "見せ",
+      "answerKana": "みせ",
+      "referenceAnswers": [
+        "見せ"
+      ],
+      "referenceAnswerKana": [
+        "みせ"
+      ],
+      "relatedGrammar": [],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": false,
+      "hasAnswer": true
+    },
+    {
+      "id": "ex-ii-1-3",
+      "groupId": "ex-ii-1",
+      "groupTitle": "练习II 1",
+      "category": "choice",
+      "instruction": "从中选择动词，变成适当的形式完成句子。",
+      "example": "箱根に（行った）時、富士山を見ました。",
+      "exampleKana": "",
+      "type": "short-answer",
+      "question": "（3）雨で、外に出たくなかったので、電話して、ピザを（ ）もらいました。",
+      "questionKana": "",
+      "choices": [
+        "行きます",
+        "撮ります",
+        "見せます",
+        "届けます",
+        "買います",
+        "します"
+      ],
+      "answer": "届けて",
+      "answerKana": "とどけて",
+      "referenceAnswers": [
+        "届けて"
+      ],
+      "referenceAnswerKana": [
+        "とどけて"
+      ],
+      "relatedGrammar": [],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": false,
+      "hasAnswer": true
+    },
+    {
+      "id": "ex-ii-1-4",
+      "groupId": "ex-ii-1",
+      "groupTitle": "练习II 1",
+      "category": "choice",
+      "instruction": "从中选择动词，变成适当的形式完成句子。",
+      "example": "箱根に（行った）時、富士山を見ました。",
+      "exampleKana": "",
+      "type": "short-answer",
+      "question": "（4）来年は道路標識を（ ）と思っています。",
+      "questionKana": "",
+      "choices": [
+        "行きます",
+        "撮ります",
+        "見せます",
+        "届けます",
+        "買います",
+        "します"
+      ],
+      "answer": "撮ろう",
+      "answerKana": "",
+      "referenceAnswers": [
+        "撮ろう"
+      ],
+      "referenceAnswerKana": [],
+      "relatedGrammar": [
+        "g3"
+      ],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": false,
+      "hasAnswer": true
+    },
+    {
+      "id": "ex-ii-1-5",
+      "groupId": "ex-ii-1",
+      "groupTitle": "练习II 1",
+      "category": "choice",
+      "instruction": "从中选择动词，变成适当的形式完成句子。",
+      "example": "箱根に（行った）時、富士山を見ました。",
+      "exampleKana": "",
+      "type": "short-answer",
+      "question": "（5）「撮影禁止」は写真を（ ）なという意味です。",
+      "questionKana": "",
+      "choices": [
+        "行きます",
+        "撮ります",
+        "見せます",
+        "届けます",
+        "買います",
+        "します"
+      ],
+      "answer": "撮る",
+      "answerKana": "",
+      "referenceAnswers": [
+        "撮る"
+      ],
+      "referenceAnswerKana": [],
+      "relatedGrammar": [],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": false,
+      "hasAnswer": true
+    },
+    {
+      "id": "ex-ii-2-1",
+      "groupId": "ex-ii-2",
+      "groupTitle": "练习II 2",
+      "category": "replacement",
+      "instruction": "将（）中的词变成适当的形式完成句子。",
+      "example": "（暑いです→暑い）ので、窓を開けてもいいですか。",
+      "exampleKana": "",
+      "type": "transform",
+      "question": "（1）日本語が（上手ではありません→ ）ので、中国語で話してもいいですか。",
+      "questionKana": "",
+      "choices": [],
+      "answer": "上手ではない",
+      "answerKana": "じょうずではない",
+      "referenceAnswers": [
+        "上手ではない",
+        "上手じゃない"
+      ],
+      "referenceAnswerKana": [
+        "じょうずではない",
+        "じょうずじゃない"
+      ],
+      "relatedGrammar": [
+        "g4"
+      ],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": false,
+      "hasAnswer": true
+    },
+    {
+      "id": "ex-ii-2-2",
+      "groupId": "ex-ii-2",
+      "groupTitle": "练习II 2",
+      "category": "replacement",
+      "instruction": "将（）中的词变成适当的形式完成句子。",
+      "example": "（暑いです→暑い）ので、窓を開けてもいいですか。",
+      "exampleKana": "",
+      "type": "transform",
+      "question": "（2）午後会社へ（行きます→ ）ので、資料を準備してください。",
+      "questionKana": "",
+      "choices": [],
+      "answer": "行く",
+      "answerKana": "いく",
+      "referenceAnswers": [
+        "行く"
+      ],
+      "referenceAnswerKana": [
+        "いく"
+      ],
+      "relatedGrammar": [
+        "g4"
+      ],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": false,
+      "hasAnswer": true
+    },
+    {
+      "id": "ex-ii-2-3",
+      "groupId": "ex-ii-2",
+      "groupTitle": "练习II 2",
+      "category": "replacement",
+      "instruction": "将（）中的词变成适当的形式完成句子。",
+      "example": "（暑いです→暑い）ので、窓を開けてもいいですか。",
+      "exampleKana": "",
+      "type": "transform",
+      "question": "（3）母が（病気です→ ）ので、少し早く帰ります。",
+      "questionKana": "",
+      "choices": [],
+      "answer": "病気だ",
+      "answerKana": "",
+      "referenceAnswers": [
+        "病気だ",
+        "病気な"
+      ],
+      "referenceAnswerKana": [],
+      "relatedGrammar": [
+        "g4"
+      ],
+      "relatedSentences": [],
+      "explanation": "名词+ので，简体形「だ」→「な」＋ので，可用「病気な」",
+      "audioRequired": false,
+      "hasAnswer": true
+    },
+    {
+      "id": "ex-ii-2-4",
+      "groupId": "ex-ii-2",
+      "groupTitle": "练习II 2",
+      "category": "replacement",
+      "instruction": "将（）中的词变成适当的形式完成句子。",
+      "example": "（暑いです→暑い）ので、窓を開けてもいいですか。",
+      "exampleKana": "",
+      "type": "transform",
+      "question": "（4）1年間韓国に（住んでいました→ ）ので、韓国語が少し分かります。",
+      "questionKana": "",
+      "choices": [],
+      "answer": "住んでいた",
+      "answerKana": "",
+      "referenceAnswers": [
+        "住んでいた"
+      ],
+      "referenceAnswerKana": [],
+      "relatedGrammar": [
+        "g4"
+      ],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": false,
+      "hasAnswer": true
+    },
+    {
+      "id": "ex-ii-2-5",
+      "groupId": "ex-ii-2",
+      "groupTitle": "练习II 2",
+      "category": "replacement",
+      "instruction": "将（）中的词变成适当的形式完成句子。",
+      "example": "（暑いです→暑い）ので、窓を開けてもいいですか。",
+      "exampleKana": "",
+      "type": "transform",
+      "question": "（5）王さんはコンピュータ会社で（働いています→ ）ので、コンピュータの使い方をよく知っています。",
+      "questionKana": "",
+      "choices": [],
+      "answer": "働いている",
+      "answerKana": "",
+      "referenceAnswers": [
+        "働いている"
+      ],
+      "referenceAnswerKana": [],
+      "relatedGrammar": [
+        "g4"
+      ],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": false,
+      "hasAnswer": true
+    },
+    {
+      "id": "ex-ii-3",
+      "groupId": "ex-ii-3",
+      "groupTitle": "练习II 3",
+      "category": "listening-dialogue",
+      "instruction": "读下面的文章，回答录音中的提问。",
+      "example": "陳さんは留学生ですか。→はい、そうです。",
+      "exampleKana": "",
+      "type": "listening",
+      "question": "阅读短文后回答录音中的5个提问。短文：陳さんと王さんは留学生です。2年間日本に住んで、日本語を勉強しました。もうすぐ中国へ帰ります。陳さんは料理を作るのが好きなので、日本料理のいろいろな店でアルバイトをしました。おいしいてんぷらや親子丼を作ることができます。だから、中国へ帰って、2人で日本料理の小さな店を開こうと言っています。それで、中国人に日本料理を食べてもらおうと思っています。これは2人の夢です。",
+      "questionKana": "",
+      "choices": [],
+      "answer": "",
+      "answerKana": "",
+      "referenceAnswers": [],
+      "referenceAnswerKana": [],
+      "relatedGrammar": [],
+      "relatedSentences": [],
+      "explanation": "听力理解题，具体提问和答案需听录音",
+      "audioRequired": true,
+      "hasAnswer": false
+    },
+    {
+      "id": "ex-ii-4-1",
+      "groupId": "ex-ii-4",
+      "groupTitle": "练习II 4",
+      "category": "translation",
+      "instruction": "将下面的句子译成日语。",
+      "example": "",
+      "exampleKana": "",
+      "type": "translation",
+      "question": "（1）工作结束后，去喝酒吧。",
+      "questionKana": "",
+      "choices": [],
+      "answer": "仕事が終わってから、飲みに行こうよ。",
+      "answerKana": "しごとがおわってから、のみにいこうよ。",
+      "referenceAnswers": [
+        "仕事が終わってから、飲みに行こうよ。"
+      ],
+      "referenceAnswerKana": [
+        "しごとがおわってから、のみにいこうよ。"
+      ],
+      "relatedGrammar": [
+        "g1"
+      ],
+      "relatedSentences": [
+        "s5"
+      ],
+      "explanation": "",
+      "audioRequired": false,
+      "hasAnswer": true
+    },
+    {
+      "id": "ex-ii-4-2",
+      "groupId": "ex-ii-4",
+      "groupTitle": "练习II 4",
+      "category": "translation",
+      "instruction": "将下面的句子译成日语。",
+      "example": "",
+      "exampleKana": "",
+      "type": "translation",
+      "question": "（2）明天（我）想去医院。",
+      "questionKana": "",
+      "choices": [],
+      "answer": "明日病院へ行こうと思っています。",
+      "answerKana": "あしたびょういんへいこうとおもっています。",
+      "referenceAnswers": [
+        "明日病院へ行こうと思っています。"
+      ],
+      "referenceAnswerKana": [
+        "あしたびょういんへいこうとおもっています。"
+      ],
+      "relatedGrammar": [
+        "g3"
+      ],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": false,
+      "hasAnswer": true
+    },
+    {
+      "id": "ex-ii-4-3",
+      "groupId": "ex-ii-4",
+      "groupTitle": "练习II 4",
+      "category": "translation",
+      "instruction": "将下面的句子译成日语。",
+      "example": "",
+      "exampleKana": "",
+      "type": "translation",
+      "question": "（3）行李很重，所以用送货上门的方式送达。",
+      "questionKana": "",
+      "choices": [],
+      "answer": "荷物が重いので、宅配便で送ります。",
+      "answerKana": "にもつがおもいので、たくはいびんでおくります。",
+      "referenceAnswers": [
+        "荷物が重いので、宅配便で送ります。"
+      ],
+      "referenceAnswerKana": [
+        "にもつがおもいので、たくはいびんでおくります。"
+      ],
+      "relatedGrammar": [
+        "g4"
+      ],
+      "relatedSentences": [
+        "s4"
+      ],
+      "explanation": "",
+      "audioRequired": false,
+      "hasAnswer": true
+    }
+  ]
+}

@@ -3261,7 +3261,6 @@ function lessonSubnav(lessonId, current) {
 
 function home() {
   const catalog = courseCatalogItems();
-  const overallProgress = overallLearningProgress(catalog);
   const pageSize = 12;
   const pageCount = Math.max(1, Math.ceil(catalog.length / pageSize));
   const currentPage = currentHomePage(pageCount);
@@ -3277,7 +3276,6 @@ function home() {
         </div>
         ${homePagination(currentPage, pageCount)}
       </div>
-      ${overallProgressPanel(overallProgress)}
       <div class="course-grid">
         ${pageItems.map((item) => courseCard(item)).join("")}
       </div>
@@ -3311,32 +3309,6 @@ function homePagination(currentPage, pageCount) {
       </div>
       <button class="secondary compact-action" type="button" ${currentPage >= pageCount ? "disabled" : `data-nav="${homePagePath(currentPage + 1)}"`}>下一页</button>
     </nav>
-  `;
-}
-
-function overallProgressPanel(summary) {
-  return `
-    <section class="overall-progress" aria-label="总体学习进度">
-      <div class="overall-progress-head">
-        <div>
-          <span>总体学习进度</span>
-          <strong>${summary.percent}%</strong>
-        </div>
-        <small>四类各占 25%</small>
-      </div>
-      <div class="overall-progress-bar" aria-label="总体学习进度 ${summary.percent}%">
-        <span style="--value:${summary.percent}%"></span>
-      </div>
-      <div class="overall-progress-metrics">
-        ${summary.categories.map((item) => `
-          <div>
-            <span>${item.label}</span>
-            <strong>${item.percent}%</strong>
-            <small>${item.completed}/${item.total}</small>
-          </div>
-        `).join("")}
-      </div>
-    </section>
   `;
 }
 
@@ -3380,6 +3352,7 @@ function courseCard(item) {
   const invalid = item.status === "invalid";
   const cardNav = runtimeReady || initialized || !ADMIN_MODE ? "" : `data-nav="/lesson/${item.id}/init"`;
   const summary = runtimeReady ? lessonProgressSummary() : initialized ? catalogLessonProgressSummary(item) : null;
+  const lessonPct = summary ? lessonPercent(summary) : 0;
   const status = runtimeReady
     ? lessonStudyStatus(summary)
     : initialized
@@ -3397,6 +3370,17 @@ function courseCard(item) {
         <span class="course-status ${status.className}">${status.label}</span>
       </div>
       <p class="muted">${item.description}</p>
+      ${summary ? `
+        <div class="course-mini-progress" aria-label="本课学习进度 ${lessonPct}%">
+          <span class="course-mini-progress-bar" style="--value:${lessonPct}%"></span>
+          <small>${lessonPct}%</small>
+        </div>
+      ` : `
+        <div class="course-mini-progress pending-bar" aria-label="本课学习进度 0%">
+          <span class="course-mini-progress-bar" style="--value:0%"></span>
+          <small>0%</small>
+        </div>
+      `}
       ${runtimeReady ? `
         <div class="course-progress-grid">
           ${courseMetric("单词", summary.vocab.completed, summary.vocab.total)}
@@ -3483,28 +3467,10 @@ function courseMetric(label, value, total) {
   return `<div class="course-metric"><span>${label}</span><strong>${value}/${total}</strong><small>${pct}%</small></div>`;
 }
 
-function overallLearningProgress(items) {
-  const categories = [
-    { key: "vocab", label: "单词" },
-    { key: "grammar", label: "语法" },
-    { key: "text", label: "课文" },
-    { key: "exercises", label: "练习" }
-  ].map((category) => ({ ...category, completed: 0, total: 0 }));
-  items
-    .filter((item) => item.status === "ready" || item.status === "initialized")
-    .forEach((item) => {
-      const summary = catalogLessonProgressSummary(item);
-      categories.forEach((category) => {
-        category.completed += summary[category.key].completed;
-        category.total += summary[category.key].total;
-      });
-    });
-  const normalized = categories.map((category) => ({
-    ...category,
-    percent: category.total ? Math.round((category.completed / category.total) * 100) : 0
-  }));
-  const percent = Math.round(normalized.reduce((total, category) => total + category.percent, 0) / normalized.length);
-  return { percent, categories: normalized };
+function lessonPercent(summary) {
+  const keys = ["vocab", "grammar", "text", "exercises"];
+  const pcts = keys.map((k) => summary[k]?.total ? Math.round((summary[k].completed / summary[k].total) * 100) : 0);
+  return Math.round(pcts.reduce((a, b) => a + b, 0) / pcts.length);
 }
 
 function readLessonStoredValue(lessonId, key, fallback) {

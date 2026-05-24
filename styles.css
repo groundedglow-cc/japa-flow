@@ -545,6 +545,46 @@ h3 {
   font-weight: 760;
 }
 
+.course-mini-progress {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 8px 0 4px;
+}
+
+.course-mini-progress-bar {
+  flex: 1;
+  height: 6px;
+  border-radius: 3px;
+  background: var(--border);
+  overflow: hidden;
+  position: relative;
+}
+
+.course-mini-progress-bar::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: var(--value, 0%);
+  border-radius: 3px;
+  background: var(--blue-primary, #3b82f6);
+  transition: width 0.4s ease;
+}
+
+.course-mini-progress.pending-bar .course-mini-progress-bar::after {
+  background: var(--border);
+}
+
+.course-mini-progress small {
+  font-size: 0.75rem;
+  color: var(--muted);
+  min-width: 2.5em;
+  text-align: right;
+  font-weight: 760;
+}
+
 .dashboard-summary {
   display: grid;
   gap: 12px;
