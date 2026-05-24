@@ -7,3 +7,6 @@ services:
     restart: unless-stopped
     ports:
       - "8091:80"
+    environment:
+      - AZURE_SPEECH_KEY
+      - AZURE_SPEECH_REGION

@@ -60,6 +60,10 @@ jobs:
             export AWS_DEFAULT_REGION="${{ secrets.AWS_REGION }}"
             aws ecr get-login-password --region "${{ secrets.AWS_REGION }}" \
               | sudo docker login --username AWS --password-stdin "${{ env.ECR_REGISTRY }}"
-            sudo docker compose pull
-            sudo docker compose up -d --no-build
+            sudo AZURE_SPEECH_KEY="${{ secrets.AZURE_SPEECH_KEY }}" \
+              AZURE_SPEECH_REGION="${{ secrets.AZURE_SPEECH_REGION }}" \
+              docker compose pull
+            sudo AZURE_SPEECH_KEY="${{ secrets.AZURE_SPEECH_KEY }}" \
+              AZURE_SPEECH_REGION="${{ secrets.AZURE_SPEECH_REGION }}" \
+              docker compose up -d --no-build
             sudo docker image prune -f
