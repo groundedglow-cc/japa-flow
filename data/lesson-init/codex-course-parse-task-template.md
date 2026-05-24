@@ -29,5 +29,6 @@ Before writing, perform the validation checklist from the shared rules, especial
 
 - the exercise `number -> question -> answer` checklist
 - furigana-based disambiguation
+- `vocabulary[]` entries coming only from the `word` bucket, never from `grammar` images
 - every `sentences[].id` appearing exactly once in `textStructure[].groups[].ids`
 - the lesson 28 standard schema described in the shared rules

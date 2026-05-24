@@ -123,6 +123,8 @@ Each exercise item must use:
 - Use the directory category or inferred image group as the semantic bucket: `text`, `grammar`, `vocabulary`, `word`, `exercises`.
 - Process categories in this order unless the lesson task says otherwise: `text`, `grammar`, `vocabulary`, `word`, `exercises`.
 - If the lesson uses `course-assets/by-lesson/lessonXX`, map the sorted 10 images by index: `text` = 1, 5, 6; `grammar` = 2, 3; `vocabulary` = 4, 5; `word` = 10; `exercises` = 7, 8, 9. The same source image may belong to more than one semantic bucket.
+- Vocabulary source boundary: populate top-level `vocabulary[]` only from the `word` bucket, meaning the textbook word-list page(s). Do not add `vocabulary[]` entries from `grammar`, `text`, `vocabulary`, or `exercises` bucket images, even when those pages contain example words, grammar terms, expression notes, or repeated lesson words.
+- Treat the `vocabulary` bucket as expression/wording explanation source material, not as the authoritative source for top-level `vocabulary[]`. Use it only for explanations when a target schema field needs that context; do not turn its incidental terms into word-list entries.
 
 ## Extraction Rules
 
@@ -133,6 +135,7 @@ Each exercise item must use:
 - Do not use another lesson's vocabulary, sentence, grammar, or exercise content to fill a gap in the current lesson. Lesson 28 is only the schema/template reference; never copy its content into another lesson.
 - Do not let a prior lesson's example block, question wording, or answer pattern anchor the current lesson's extraction. Each lesson must be rebuilt from the visible page only.
 - Completeness is more important than brevity.
+- For `vocabulary[]`, completeness means all visible entries from the `word` bucket only. If a useful word appears only in grammar examples or exercise prompts and is absent from the word-list page, do not create a `vocabulary[]` item for it.
 - Do not omit any exercise question.
 - Do not merge separate exercise items into one item.
 - Preserve examples and model answers if visible.
@@ -204,7 +207,7 @@ Each exercise item must use:
 - Confirm each grammar entry's `extraExamples[]` contains every visible example sentence from that grammar block as separate items, including examples that duplicate core text/dialogue sentences already present in `sentences[]`.
 - Confirm every grammar entry's `extraExamples[]` only contains sentences from that entry's visual block.
 - Confirm every `×` grammar example is marked `isIncorrect: true` and is not mixed into correct examples.
-- Confirm every uploaded vocabulary image has corresponding `vocabulary[]` entries.
+- Confirm every uploaded `word` bucket image has corresponding `vocabulary[]` entries, and confirm no `vocabulary[]` entry was sourced only from `grammar`, `text`, `vocabulary`, or `exercises` bucket images.
 - Confirm every text/dialogue line is represented in `sentences[]` and exactly once in `textStructure[].groups[].ids`.
 - Confirm `textStructure[]` uses the nested `{ id, title, groups }` schema and does not use the older flat `sentenceIds[]` schema.
 - Confirm all exercise items include the standard fields from this document, including `choices`, kana fields, `referenceAnswers`, and `referenceAnswerKana`.

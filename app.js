@@ -1781,6 +1781,57 @@ function removeStored(key) {
   localStorage.removeItem(`japaflow:${key}`);
 }
 
+function exportLearningData() {
+  const entries = {};
+  for (let index = 0; index < localStorage.length; index += 1) {
+    const key = localStorage.key(index);
+    if (!key?.startsWith("japaflow:")) continue;
+    entries[key] = localStorage.getItem(key);
+  }
+  const payload = {
+    app: "JapaFlow",
+    type: "learning-progress",
+    version: 1,
+    exportedAt: new Date().toISOString(),
+    entries
+  };
+  const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = `japaflow-progress-${new Date().toISOString().slice(0, 10)}.json`;
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+  URL.revokeObjectURL(url);
+}
+
+async function importLearningData(file) {
+  if (!file) return;
+  const text = await file.text();
+  const payload = JSON.parse(text);
+  const entries = payload?.entries;
+  if (payload?.app !== "JapaFlow" || payload?.type !== "learning-progress" || !entries || typeof entries !== "object") {
+    throw new Error("这不是有效的 JapaFlow 学习数据文件。");
+  }
+  const count = Object.keys(entries).filter((key) => key.startsWith("japaflow:")).length;
+  if (!count) throw new Error("导入文件里没有可用的学习数据。");
+  const ok = window.confirm(`导入会覆盖本机已有学习数据，共 ${count} 项。确定继续吗？`);
+  if (!ok) return;
+  const existingKeys = [];
+  for (let index = 0; index < localStorage.length; index += 1) {
+    const key = localStorage.key(index);
+    if (key?.startsWith("japaflow:")) existingKeys.push(key);
+  }
+  existingKeys.forEach((key) => localStorage.removeItem(key));
+  Object.entries(entries).forEach(([key, value]) => {
+    if (!key.startsWith("japaflow:")) return;
+    localStorage.setItem(key, String(value));
+  });
+  window.alert("学习数据已导入，页面将刷新。");
+  location.reload();
+}
+
 function normalizeRuntimeLesson(data) {
   const nextLesson = JSON.parse(JSON.stringify(data || {}));
   nextLesson.vocabulary = Array.isArray(nextLesson.vocabulary) ? nextLesson.vocabulary : [];
@@ -3165,10 +3216,20 @@ function layout(content) {
           ${navLink("/", "首页", current === "home")}
           ${inLesson ? navLink(`/lesson/${runtimeLessonId}`, "课程", current === "lesson") : ""}
         </nav>
-        <div class="playback-control" aria-label="播放速度">
-          ${[1, 0.6, 0.8, 1.2, 1.5].map((rate) => `
-            <button class="playback-rate ${state.playbackRate === rate ? "active" : ""}" data-playback-rate="${rate}" type="button">${rate.toFixed(1)}x</button>
-          `).join("")}
+        <div class="topbar-actions">
+          <div class="playback-control" aria-label="播放速度">
+            ${[1, 0.6, 0.8, 1.2, 1.5].map((rate) => `
+              <button class="playback-rate ${state.playbackRate === rate ? "active" : ""}" data-playback-rate="${rate}" type="button">${rate.toFixed(1)}x</button>
+            `).join("")}
+          </div>
+          <div class="manage-menu progress-menu">
+            <button class="manage-trigger progress-trigger" type="button" aria-label="学习数据菜单">...</button>
+            <div class="manage-dropdown progress-dropdown">
+              <button type="button" data-export-progress>导出</button>
+              <button type="button" data-import-progress-trigger>导入</button>
+            </div>
+          </div>
+          <input class="hidden" type="file" accept="application/json,.json" data-import-progress-file />
         </div>
       </header>
       ${showLessonSubnav ? lessonSubnav(runtimeLessonId, current) : ""}
@@ -6700,6 +6761,20 @@ function bind() {
   app.querySelectorAll("[data-playback-rate]").forEach((button) => button.addEventListener("click", () => {
     setPlaybackRate(button.dataset.playbackRate);
   }));
+  app.querySelector("[data-export-progress]")?.addEventListener("click", exportLearningData);
+  app.querySelector("[data-import-progress-trigger]")?.addEventListener("click", () => {
+    app.querySelector("[data-import-progress-file]")?.click();
+  });
+  app.querySelector("[data-import-progress-file]")?.addEventListener("change", async (event) => {
+    const file = event.target.files?.[0];
+    event.target.value = "";
+    if (!file) return;
+    try {
+      await importLearningData(file);
+    } catch (error) {
+      window.alert(String(error.message || error));
+    }
+  });
   app.querySelectorAll("[data-speak]").forEach((button) => {
     button.addEventListener("click", () => playAudio(button.dataset.speak, button.dataset.audio));
   });

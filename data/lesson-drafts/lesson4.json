@@ -1,0 +1,2657 @@
+{
+  "id": 4,
+  "title": "第4课",
+  "subtitle": "部屋に机といすがあります。",
+  "audioVoiceId": "",
+  "vocabulary": [
+    {
+      "id": "w1",
+      "jp": "部屋",
+      "kana": "へや",
+      "cn": "房间、屋子"
+    },
+    {
+      "id": "w2",
+      "jp": "庭",
+      "kana": "にわ",
+      "cn": "院子"
+    },
+    {
+      "id": "w3",
+      "jp": "家",
+      "kana": "いえ",
+      "cn": "家"
+    },
+    {
+      "id": "w4",
+      "jp": "居間",
+      "kana": "いま",
+      "cn": "起居室"
+    },
+    {
+      "id": "w5",
+      "jp": "冷蔵庫",
+      "kana": "れいぞうこ",
+      "cn": "冰箱"
+    },
+    {
+      "id": "w6",
+      "jp": "壁",
+      "kana": "かべ",
+      "cn": "墙壁"
+    },
+    {
+      "id": "w7",
+      "jp": "スイッチ",
+      "kana": "スイッチ",
+      "cn": "开关"
+    },
+    {
+      "id": "w8",
+      "jp": "本棚",
+      "kana": "ほんだな",
+      "cn": "书架"
+    },
+    {
+      "id": "w9",
+      "jp": "ベッド",
+      "kana": "ベッド",
+      "cn": "床"
+    },
+    {
+      "id": "w10",
+      "jp": "猫",
+      "kana": "ねこ",
+      "cn": "猫"
+    },
+    {
+      "id": "w11",
+      "jp": "犬",
+      "kana": "いぬ",
+      "cn": "狗"
+    },
+    {
+      "id": "w12",
+      "jp": "箱",
+      "kana": "はこ",
+      "cn": "盒子、箱子"
+    },
+    {
+      "id": "w13",
+      "jp": "眼鏡",
+      "kana": "めがね",
+      "cn": "眼镜"
+    },
+    {
+      "id": "w14",
+      "jp": "ビデオ",
+      "kana": "ビデオ",
+      "cn": "录像机"
+    },
+    {
+      "id": "w15",
+      "jp": "サッカーボール",
+      "kana": "サッカーボール",
+      "cn": "足球"
+    },
+    {
+      "id": "w16",
+      "jp": "ビール",
+      "kana": "ビール",
+      "cn": "啤酒"
+    },
+    {
+      "id": "w17",
+      "jp": "ウイスキー",
+      "kana": "ウイスキー",
+      "cn": "威士忌"
+    },
+    {
+      "id": "w18",
+      "jp": "子供",
+      "kana": "こども",
+      "cn": "孩子、小孩"
+    },
+    {
+      "id": "w19",
+      "jp": "兄弟",
+      "kana": "きょうだい",
+      "cn": "兄弟姐妹"
+    },
+    {
+      "id": "w20",
+      "jp": "両親",
+      "kana": "りょうしん",
+      "cn": "父母、双亲"
+    },
+    {
+      "id": "w21",
+      "jp": "妹",
+      "kana": "いもうと",
+      "cn": "妹妹"
+    },
+    {
+      "id": "w22",
+      "jp": "男",
+      "kana": "おとこ",
+      "cn": "男"
+    },
+    {
+      "id": "w23",
+      "jp": "女",
+      "kana": "おんな",
+      "cn": "女"
+    },
+    {
+      "id": "w24",
+      "jp": "生徒",
+      "kana": "せいと",
+      "cn": "学生"
+    },
+    {
+      "id": "w25",
+      "jp": "上",
+      "kana": "うえ",
+      "cn": "上面"
+    },
+    {
+      "id": "w26",
+      "jp": "外",
+      "kana": "そと",
+      "cn": "外面"
+    },
+    {
+      "id": "w27",
+      "jp": "中",
+      "kana": "なか",
+      "cn": "里面、内部、中间"
+    },
+    {
+      "id": "w28",
+      "jp": "下",
+      "kana": "した",
+      "cn": "下面"
+    },
+    {
+      "id": "w29",
+      "jp": "前",
+      "kana": "まえ",
+      "cn": "前、前面"
+    },
+    {
+      "id": "w30",
+      "jp": "後ろ",
+      "kana": "うしろ",
+      "cn": "后、后面"
+    },
+    {
+      "id": "w31",
+      "jp": "近く",
+      "kana": "ちかく",
+      "cn": "附近、近旁"
+    },
+    {
+      "id": "w32",
+      "jp": "場所",
+      "kana": "ばしょ",
+      "cn": "所在地、地方、场所"
+    },
+    {
+      "id": "w33",
+      "jp": "教室",
+      "kana": "きょうしつ",
+      "cn": "教室"
+    },
+    {
+      "id": "w34",
+      "jp": "会議室",
+      "kana": "かいぎしつ",
+      "cn": "会议室"
+    },
+    {
+      "id": "w35",
+      "jp": "図書室",
+      "kana": "としょしつ",
+      "cn": "图书室"
+    },
+    {
+      "id": "w36",
+      "jp": "公園",
+      "kana": "こうえん",
+      "cn": "公园"
+    },
+    {
+      "id": "w37",
+      "jp": "花屋",
+      "kana": "はなや",
+      "cn": "花店"
+    },
+    {
+      "id": "w38",
+      "jp": "売店",
+      "kana": "ばいてん",
+      "cn": "小卖部、售货亭"
+    },
+    {
+      "id": "w39",
+      "jp": "駅",
+      "kana": "えき",
+      "cn": "车站"
+    },
+    {
+      "id": "w40",
+      "jp": "地下鉄",
+      "kana": "ちかてつ",
+      "cn": "地铁"
+    },
+    {
+      "id": "w41",
+      "jp": "木",
+      "kana": "き",
+      "cn": "树、树木"
+    },
+    {
+      "id": "w42",
+      "jp": "一人暮らし",
+      "kana": "ひとりぐらし",
+      "cn": "单身生活"
+    },
+    {
+      "id": "w43",
+      "jp": "あります",
+      "kana": "あります",
+      "cn": "有，在（非意志者）"
+    },
+    {
+      "id": "w44",
+      "jp": "います",
+      "kana": "います",
+      "cn": "有，在（具意志者）"
+    },
+    {
+      "id": "w45",
+      "jp": "ええと",
+      "kana": "ええと",
+      "cn": "嗯、思忖"
+    },
+    {
+      "id": "w46",
+      "jp": "横浜",
+      "kana": "よこはま",
+      "cn": "横滨"
+    },
+    {
+      "id": "w47",
+      "jp": "名古屋",
+      "kana": "なごや",
+      "cn": "名古屋"
+    },
+    {
+      "id": "w48",
+      "jp": "大阪",
+      "kana": "おおさか",
+      "cn": "大阪"
+    },
+    {
+      "id": "w49",
+      "jp": "JR",
+      "kana": "ジェーアール",
+      "cn": "JR"
+    },
+    {
+      "id": "w50",
+      "jp": "ご〜",
+      "kana": "ご〜",
+      "cn": "敬语前缀"
+    }
+  ],
+  "sentences": [
+    {
+      "id": "s1",
+      "order": 1,
+      "text": "部屋に机といすがあります。",
+      "kana": "へやにつくえといすがあります。",
+      "translation": "房间里有桌子和椅子。",
+      "words": [
+        "w1",
+        "w43"
+      ],
+      "grammar": [
+        "g1",
+        "g2"
+      ]
+    },
+    {
+      "id": "s2",
+      "order": 2,
+      "text": "机の上に猫がいます。",
+      "kana": "つくえのうえにねこがいます。",
+      "translation": "桌子上面有一只猫。",
+      "words": [
+        "w10",
+        "w25",
+        "w44"
+      ],
+      "grammar": [
+        "g1",
+        "g3"
+      ]
+    },
+    {
+      "id": "s3",
+      "order": 3,
+      "text": "売店は駅の外にあります。",
+      "kana": "ばいてんはえきのそとにあります。",
+      "translation": "小卖部在车站的外面。",
+      "words": [
+        "w26",
+        "w38",
+        "w39",
+        "w43"
+      ],
+      "grammar": [
+        "g1",
+        "g3"
+      ]
+    },
+    {
+      "id": "s4",
+      "order": 4,
+      "text": "吉田さんは庭にいます。",
+      "kana": "よしださんはにわにいます。",
+      "translation": "吉田先生在院子里。",
+      "words": [
+        "w2",
+        "w44"
+      ],
+      "grammar": [
+        "g1"
+      ]
+    },
+    {
+      "id": "s5",
+      "order": 5,
+      "speaker": "甲",
+      "text": "その箱の中に何がありますか。",
+      "kana": "そのはこのなかになにがありますか。",
+      "translation": "那个盒子里有什么？",
+      "words": [
+        "w12",
+        "w27",
+        "w43"
+      ],
+      "grammar": [
+        "g1"
+      ]
+    },
+    {
+      "id": "s6",
+      "order": 6,
+      "speaker": "乙",
+      "text": "時計と眼鏡があります。",
+      "kana": "とけいとめがねがあります。",
+      "translation": "有表和眼镜。",
+      "words": [
+        "w13",
+        "w43"
+      ],
+      "grammar": [
+        "g1",
+        "g2"
+      ]
+    },
+    {
+      "id": "s7",
+      "order": 7,
+      "speaker": "甲",
+      "text": "部屋にだれがいますか。",
+      "kana": "へやにだれがいますか。",
+      "translation": "房间里有谁？",
+      "words": [
+        "w1",
+        "w44"
+      ],
+      "grammar": [
+        "g1"
+      ]
+    },
+    {
+      "id": "s8",
+      "order": 8,
+      "speaker": "乙",
+      "text": "だれもいません。",
+      "kana": "だれもいません。",
+      "translation": "谁也没有。",
+      "words": [
+        "w44"
+      ],
+      "grammar": [
+        "g5"
+      ]
+    },
+    {
+      "id": "s9",
+      "order": 9,
+      "speaker": "甲",
+      "text": "小野さんの家はどこにありますか。",
+      "kana": "おのさんのいえはどこにありますか。",
+      "translation": "小野女士的家在哪里？",
+      "words": [
+        "w3",
+        "w43"
+      ],
+      "grammar": [
+        "g1"
+      ]
+    },
+    {
+      "id": "s10",
+      "order": 10,
+      "speaker": "乙",
+      "text": "横浜にあります。",
+      "kana": "よこはまにあります。",
+      "translation": "在横滨。",
+      "words": [
+        "w43",
+        "w46"
+      ],
+      "grammar": [
+        "g1"
+      ]
+    },
+    {
+      "id": "s11",
+      "order": 11,
+      "speaker": "甲",
+      "text": "あそこに犬がいますね。",
+      "kana": "あそこにいぬがいますね。",
+      "translation": "那里有一只狗啊。",
+      "words": [
+        "w11",
+        "w44"
+      ],
+      "grammar": [
+        "g1",
+        "g4"
+      ]
+    },
+    {
+      "id": "s12",
+      "order": 12,
+      "speaker": "乙",
+      "text": "ええ、わたしの犬です。",
+      "kana": "ええ、わたしのいぬです。",
+      "translation": "嗯，是我的狗。",
+      "words": [
+        "w11"
+      ],
+      "grammar": []
+    },
+    {
+      "id": "s13",
+      "order": 13,
+      "speaker": "李",
+      "text": "小野さん、会社はどこにありますか。",
+      "kana": "おのさん、かいしゃはどこにありますか。",
+      "translation": "小野女士，公司在哪里？",
+      "words": [
+        "w43"
+      ],
+      "grammar": [
+        "g1"
+      ]
+    },
+    {
+      "id": "s14",
+      "order": 14,
+      "speaker": "小野",
+      "text": "ええと、ここです。",
+      "kana": "ええと、ここです。",
+      "translation": "嗯……，在这里。",
+      "words": [
+        "w45"
+      ],
+      "grammar": [
+        "g7"
+      ]
+    },
+    {
+      "id": "s15",
+      "order": 15,
+      "speaker": "李",
+      "text": "近くに駅がありますか。",
+      "kana": "ちかくにえきがありますか。",
+      "translation": "附近有车站吗？",
+      "words": [
+        "w31",
+        "w39",
+        "w43"
+      ],
+      "grammar": [
+        "g1"
+      ]
+    },
+    {
+      "id": "s16",
+      "order": 16,
+      "speaker": "小野",
+      "text": "ええ。JRと地下鉄の駅があります。",
+      "kana": "ええ。ジェーアールとちかてつのえきがあります。",
+      "translation": "嗯。有JR和地铁的车站。",
+      "words": [
+        "w39",
+        "w40",
+        "w43",
+        "w49"
+      ],
+      "grammar": [
+        "g1",
+        "g2",
+        "g10"
+      ]
+    },
+    {
+      "id": "s17",
+      "order": 17,
+      "speaker": "小野",
+      "text": "JRの駅はここです。",
+      "kana": "ジェーアールのえきはここです。",
+      "translation": "JR的车站在这里。",
+      "words": [
+        "w39",
+        "w49"
+      ],
+      "grammar": [
+        "g10"
+      ]
+    },
+    {
+      "id": "s18",
+      "order": 18,
+      "speaker": "李",
+      "text": "地下鉄の駅はここですね。",
+      "kana": "ちかてつのえきはここですね。",
+      "translation": "地铁的车站是在这里吧。",
+      "words": [
+        "w39",
+        "w40"
+      ],
+      "grammar": [
+        "g4",
+        "g10"
+      ]
+    },
+    {
+      "id": "s19",
+      "order": 19,
+      "speaker": "小野",
+      "text": "ええ、そうです。JRの駅の隣に地下鉄の駅があります。",
+      "kana": "ええ、そうです。ジェーアールのえきのとなりにちかてつのえきがあります。",
+      "translation": "嗯，是的。JR车站的旁边有地铁车站。",
+      "words": [
+        "w39",
+        "w40",
+        "w43",
+        "w49"
+      ],
+      "grammar": [
+        "g1",
+        "g3",
+        "g10"
+      ]
+    },
+    {
+      "id": "s20",
+      "order": 20,
+      "speaker": "李",
+      "text": "小野さんの家はどちらですか。",
+      "kana": "おのさんのいえはどちらですか。",
+      "translation": "小野女士的家在哪里？",
+      "words": [
+        "w3"
+      ],
+      "grammar": []
+    },
+    {
+      "id": "s21",
+      "order": 21,
+      "speaker": "小野",
+      "text": "わたしの家は横浜です。",
+      "kana": "わたしのいえはよこはまです。",
+      "translation": "我的家在横滨。",
+      "words": [
+        "w3",
+        "w46"
+      ],
+      "grammar": []
+    },
+    {
+      "id": "s22",
+      "order": 22,
+      "speaker": "李",
+      "text": "ご家族も横浜ですか。",
+      "kana": "ごかぞくもよこはまですか。",
+      "translation": "您的家人也在横滨吗？",
+      "words": [
+        "w46"
+      ],
+      "grammar": [
+        "g8"
+      ]
+    },
+    {
+      "id": "s23",
+      "order": 23,
+      "speaker": "小野",
+      "text": "いいえ、わたしは一人暮らしです。",
+      "kana": "いいえ、わたしはひとりぐらしです。",
+      "translation": "不，我一个人生活。",
+      "words": [
+        "w42"
+      ],
+      "grammar": [
+        "g11"
+      ]
+    },
+    {
+      "id": "s24",
+      "order": 24,
+      "speaker": "李",
+      "text": "ご両親はどちらですか。",
+      "kana": "ごりょうしんはどちらですか。",
+      "translation": "您的父母在哪里？",
+      "words": [
+        "w20"
+      ],
+      "grammar": [
+        "g8"
+      ]
+    },
+    {
+      "id": "s25",
+      "order": 25,
+      "speaker": "小野",
+      "text": "両親は名古屋にいます。",
+      "kana": "りょうしんはなごやにいます。",
+      "translation": "父母在名古屋。",
+      "words": [
+        "w20",
+        "w44",
+        "w47"
+      ],
+      "grammar": [
+        "g1"
+      ]
+    },
+    {
+      "id": "s26",
+      "order": 26,
+      "speaker": "李",
+      "text": "ご兄弟は？",
+      "kana": "ごきょうだいは？",
+      "translation": "您的兄弟姐妹呢？",
+      "words": [
+        "w19"
+      ],
+      "grammar": [
+        "g8",
+        "g9"
+      ]
+    },
+    {
+      "id": "s27",
+      "order": 27,
+      "speaker": "小野",
+      "text": "大阪に妹がいます。",
+      "kana": "おおさかにいもうとがいます。",
+      "translation": "在大阪有妹妹。",
+      "words": [
+        "w21",
+        "w44",
+        "w48"
+      ],
+      "grammar": [
+        "g1"
+      ]
+    }
+  ],
+  "textStructure": [
+    {
+      "id": "basic",
+      "title": "基本课文",
+      "groups": [
+        {
+          "title": "基本句",
+          "kind": "statements",
+          "ids": [
+            "s1",
+            "s2",
+            "s3",
+            "s4"
+          ]
+        },
+        {
+          "title": "对话 A",
+          "kind": "dialogue",
+          "ids": [
+            "s5",
+            "s6"
+          ]
+        },
+        {
+          "title": "对话 B",
+          "kind": "dialogue",
+          "ids": [
+            "s7",
+            "s8"
+          ]
+        },
+        {
+          "title": "对话 C",
+          "kind": "dialogue",
+          "ids": [
+            "s9",
+            "s10"
+          ]
+        },
+        {
+          "title": "对话 D",
+          "kind": "dialogue",
+          "ids": [
+            "s11",
+            "s12"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "application",
+      "title": "应用课文 · 会社の場所",
+      "groups": [
+        {
+          "title": "公司所在地",
+          "kind": "dialogue",
+          "note": "今天是星期天。明天开始小李将要到公司本部上班。小野来到小李住的宾馆向她说明公司的地理位置。",
+          "ids": [
+            "s13",
+            "s14",
+            "s15",
+            "s16",
+            "s17",
+            "s18",
+            "s19"
+          ]
+        },
+        {
+          "title": "家庭情况",
+          "kind": "dialogue",
+          "note": "小李询问小野的家庭情况",
+          "ids": [
+            "s20",
+            "s21",
+            "s22",
+            "s23",
+            "s24",
+            "s25",
+            "s26",
+            "s27"
+          ]
+        }
+      ]
+    }
+  ],
+  "grammar": [
+    {
+      "id": "g1",
+      "pattern": "あります和います",
+      "meaning": "表示事物的存在。",
+      "structure": "名[場所]に名[物/人]があります／います\n名[物/人]は名[場所]にあります／います",
+      "usage": "“あります”用于花、草、桌子等不具有意志的事物。“います”用于具有意志的人、动物或昆虫。句型(1)表示存在，相当于汉语的“～有～”；句型(2)表示位置，相当于汉语的“～在～”。第3课学了“～はどこですか”的用法，也可以用“～はどこにありますか／いますか”来表示。",
+      "examples": [
+        "s1",
+        "s2",
+        "s3",
+        "s4",
+        "s5",
+        "s6",
+        "s7",
+        "s9",
+        "s10",
+        "s11",
+        "s13",
+        "s15",
+        "s16",
+        "s19",
+        "s25",
+        "s27"
+      ],
+      "extraExamples": [
+        {
+          "jp": "部屋に机があります。",
+          "kana": "へやにつくえがあります。",
+          "cn": "房间里有桌子。"
+        },
+        {
+          "jp": "ここに本があります。",
+          "kana": "ここにほんがあります。",
+          "cn": "这里有书。"
+        },
+        {
+          "jp": "庭に何がありますか。",
+          "kana": "にわになにがありますか。",
+          "cn": "院子里有什么？"
+        },
+        {
+          "jp": "部屋に猫がいます。",
+          "kana": "へやにねこがいます。",
+          "cn": "房间里有一只猫。"
+        },
+        {
+          "jp": "公園に子供がいます。",
+          "kana": "こうえんにこどもがいます。",
+          "cn": "公园里有孩子。"
+        },
+        {
+          "jp": "あそこにだれがいますか。",
+          "kana": "あそこにだれがいますか。",
+          "cn": "那里有谁？"
+        },
+        {
+          "jp": "いすは部屋にあります。",
+          "kana": "いすはへやにあります。",
+          "cn": "椅子在房间里。"
+        },
+        {
+          "jp": "本はここにあります。",
+          "kana": "ほんはここにあります。",
+          "cn": "书在这儿。"
+        },
+        {
+          "jp": "図書館はどこにありますか。",
+          "kana": "としょかんはどこにありますか。",
+          "cn": "图书馆在哪儿？"
+        },
+        {
+          "jp": "吉田さんは庭にいます。",
+          "kana": "よしださんはにわにいます。",
+          "cn": "吉田先生在院子里。"
+        },
+        {
+          "jp": "子供は公園にいます。",
+          "kana": "こどもはこうえんにいます。",
+          "cn": "孩子在公园。"
+        },
+        {
+          "jp": "犬はどこにいますか。",
+          "kana": "いぬはどこにいますか。",
+          "cn": "狗在哪儿？"
+        }
+      ]
+    },
+    {
+      "id": "g2",
+      "pattern": "名と名[并列]",
+      "meaning": "助词“と”加在两个名词之间表示并列，意思相当于汉语的“和”。",
+      "structure": "名 + と + 名",
+      "usage": "用于并列两个或多个名词。",
+      "examples": [
+        "s1",
+        "s6",
+        "s16"
+      ],
+      "extraExamples": [
+        {
+          "jp": "時計と眼鏡",
+          "kana": "とけいとめがね",
+          "cn": "表和眼镜"
+        },
+        {
+          "jp": "ビールとウイスキー",
+          "kana": "ビールとウイスキー",
+          "cn": "啤酒和威士忌"
+        },
+        {
+          "jp": "居間にテレビとビデオがあります。",
+          "kana": "いまにテレビとビデオがあります。",
+          "cn": "起居室里有电视机和录像机。"
+        }
+      ]
+    },
+    {
+      "id": "g3",
+      "pattern": "上/下/前/後ろ/隣/中/外",
+      "meaning": "表示具体位置时，用“名词＋の＋上／下／前／後ろ／隣／中／外”。",
+      "structure": "名 + の + 上／下／前／後ろ／隣／中／外",
+      "usage": "汉语说“椅子上”“桌子下”，而日语说“いすの上”“机の下”，“の”不能省略。",
+      "examples": [
+        "s2",
+        "s3",
+        "s19"
+      ],
+      "extraExamples": [
+        {
+          "jp": "机の上に猫がいます。",
+          "kana": "つくえのうえにねこがいます。",
+          "cn": "桌子上面有一只猫。"
+        },
+        {
+          "jp": "会社の隣に花屋があります。",
+          "kana": "かいしゃのとなりにはなやがあります。",
+          "cn": "公司旁边有花店。"
+        },
+        {
+          "jp": "猫は箱の中にいます。",
+          "kana": "ねこははこのなかにいます。",
+          "cn": "猫在箱子里。"
+        },
+        {
+          "jp": "売店は駅の外にあります。",
+          "kana": "ばいてんはえきのそとにあります。",
+          "cn": "小卖部在车站的外面。"
+        }
+      ]
+    },
+    {
+      "id": "g4",
+      "pattern": "ね[确认]",
+      "meaning": "当说话人就某事征求听话人的同意时，句尾用助词“ね”，读升调。",
+      "structure": "句子 + ね（升调）",
+      "usage": "用于就某事征求听话人的同意。",
+      "examples": [
+        "s11",
+        "s18"
+      ],
+      "extraExamples": [
+        {
+          "jp": "あそこに犬がいますね。",
+          "kana": "あそこにいぬがいますね。",
+          "cn": "那里有一只狗啊。"
+        },
+        {
+          "jp": "この新聞は林さんのですね。",
+          "kana": "このしんぶんははやしさんのですね。",
+          "cn": "这报纸是林先生的吧。"
+        },
+        {
+          "jp": "駅の前に銀行がありますね。",
+          "kana": "えきのまえにぎんこうがありますね。",
+          "cn": "车站前面有家银行吧。"
+        }
+      ]
+    },
+    {
+      "id": "g5",
+      "pattern": "疑問詞+も+否定",
+      "meaning": "表示全面否定。",
+      "structure": "疑問詞 + も + 動詞否定形",
+      "usage": "“だれもいません”表示“谁也没有”，“何もありません”表示“什么也没有”。",
+      "examples": [
+        "s8"
+      ],
+      "extraExamples": [
+        {
+          "jp": "教室にだれもいません。",
+          "kana": "きょうしつにだれもいません。",
+          "cn": "教室里谁也没有。"
+        },
+        {
+          "jp": "冷蔵庫に何もありません。",
+          "kana": "れいぞうこになにもありません。",
+          "cn": "冰箱里什么也没有。"
+        }
+      ]
+    },
+    {
+      "id": "g6",
+      "pattern": "“上”の範囲",
+      "meaning": "日语“上”所表示的范围比汉语的“上”窄。",
+      "structure": "[垂直上方] + の + 上",
+      "usage": "日语的“上”仅表示垂直上方的范围。汉语的“墙上”意思是墙壁的表面，而日语的“壁の上”意思是墙壁上方的天花板。墙壁的表面用“壁に”。",
+      "examples": [],
+      "extraExamples": [
+        {
+          "jp": "壁にスイッチがあります。",
+          "kana": "かべにスイッチがあります。",
+          "cn": "墙上有开关。"
+        },
+        {
+          "jp": "×壁の上にスイッチがあります。",
+          "kana": "かべのうえにスイッチがあります。",
+          "cn": ""
+        }
+      ]
+    },
+    {
+      "id": "g7",
+      "pattern": "ええと",
+      "meaning": "被问及某事，思考如何回答时说的话。",
+      "structure": "ええと、…",
+      "usage": "表示正在思考。",
+      "examples": [
+        "s14"
+      ],
+      "extraExamples": [
+        {
+          "jp": "小野さん、会社はどこにありますか。",
+          "kana": "おのさん、かいしゃはどこにありますか。",
+          "cn": "小野，公司在哪儿？"
+        },
+        {
+          "jp": "ええと、ここです。",
+          "kana": "ええと、ここです。",
+          "cn": "嗯……在这儿。"
+        }
+      ]
+    },
+    {
+      "id": "g8",
+      "pattern": "ご家族/ご兄弟/ご両親[礼貌语言④]",
+      "meaning": "“ご家族”“ご兄弟”“ご両親”是说到别人亲属时的礼貌说法。",
+      "structure": "ご + 家族／兄弟／両親",
+      "usage": "在会话中用“ご家族”来指对方的家人，而用“家族”来指自己的家人。但不是所有的名词前面都可以加“ご”。",
+      "examples": [
+        "s22",
+        "s24",
+        "s26"
+      ],
+      "extraExamples": []
+    },
+    {
+      "id": "g9",
+      "pattern": "兄弟",
+      "meaning": "“兄弟”指同一父母的人，也用于同父或同母的情况。",
+      "structure": "兄弟（きょうだい）",
+      "usage": "汉字写作“兄弟”，但不单纯指男性兄弟之间，兄妹、姐弟、姐妹也称“きょうだい”。",
+      "examples": [
+        "s26"
+      ],
+      "extraExamples": [
+        {
+          "jp": "ご兄弟がいますか。",
+          "kana": "ごきょうだいがいますか。",
+          "cn": "有兄弟姐妹吗？"
+        },
+        {
+          "jp": "ーええ、妹がいます。",
+          "kana": "ーええ、いもうとがいます。",
+          "cn": "嗯，有妹妹。"
+        }
+      ]
+    },
+    {
+      "id": "g10",
+      "pattern": "JR和地下鉄",
+      "meaning": "JR是Japan Railways的简称。地下鉄是地铁。",
+      "structure": "JR／地下鉄",
+      "usage": "“JR”原本是国铁，叫“国鉄”，是“日本国有鉄道”的简称。1987年民营化之后，变成现在的名称。人们出行时经常利用新干线等JR的列车。",
+      "examples": [
+        "s16",
+        "s17",
+        "s18",
+        "s19"
+      ],
+      "extraExamples": []
+    },
+    {
+      "id": "g11",
+      "pattern": "一人暮らし",
+      "meaning": "离开家人一个人生活。",
+      "structure": "一人 + 暮らし",
+      "usage": "高开家人一个人生活称作“一人暮らし”。",
+      "examples": [
+        "s23"
+      ],
+      "extraExamples": []
+    }
+  ],
+  "exercises": [
+    {
+      "id": "ex-i-1-1",
+      "groupId": "ex-i-1",
+      "groupTitle": "练习I 1",
+      "category": "replacement",
+      "instruction": "仿照例句替换画线部分进行练习。",
+      "example": "いす→部屋にいすがあります。",
+      "exampleKana": "いす→へやにいすがあります。",
+      "type": "transform",
+      "question": "机",
+      "questionKana": "つくえ",
+      "choices": [],
+      "answer": "部屋に机があります。",
+      "answerKana": "へやにつくえがあります。",
+      "referenceAnswers": [
+        "部屋に机があります。"
+      ],
+      "referenceAnswerKana": [
+        "へやにつくえがあります。"
+      ],
+      "relatedGrammar": [
+        "g1"
+      ],
+      "relatedSentences": [
+        "s1"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "ex-i-1-2",
+      "groupId": "ex-i-1",
+      "groupTitle": "练习I 1",
+      "category": "replacement",
+      "instruction": "仿照例句替换画线部分进行练习。",
+      "example": "いす→部屋にいすがあります。",
+      "exampleKana": "いす→へやにいすがあります。",
+      "type": "transform",
+      "question": "時計",
+      "questionKana": "とけい",
+      "choices": [],
+      "answer": "部屋に時計があります。",
+      "answerKana": "へやにとけいがあります。",
+      "referenceAnswers": [
+        "部屋に時計があります。"
+      ],
+      "referenceAnswerKana": [
+        "へやにとけいがあります。"
+      ],
+      "relatedGrammar": [
+        "g1"
+      ],
+      "relatedSentences": [
+        "s1"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "ex-i-1-3",
+      "groupId": "ex-i-1",
+      "groupTitle": "练习I 1",
+      "category": "replacement",
+      "instruction": "仿照例句替换画线部分进行练习。",
+      "example": "いす→部屋にいすがあります。",
+      "exampleKana": "いす→へやにいすがあります。",
+      "type": "transform",
+      "question": "本棚",
+      "questionKana": "ほんだな",
+      "choices": [],
+      "answer": "部屋に本棚があります。",
+      "answerKana": "へやにほんだながあります。",
+      "referenceAnswers": [
+        "部屋に本棚があります。"
+      ],
+      "referenceAnswerKana": [
+        "へやにほんだながあります。"
+      ],
+      "relatedGrammar": [
+        "g1"
+      ],
+      "relatedSentences": [
+        "s1"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "ex-i-1-4",
+      "groupId": "ex-i-1",
+      "groupTitle": "练习I 1",
+      "category": "replacement",
+      "instruction": "仿照例句替换画线部分进行练习。",
+      "example": "いす→部屋にいすがあります。",
+      "exampleKana": "いす→へやにいすがあります。",
+      "type": "transform",
+      "question": "パソコン",
+      "questionKana": "パソコン",
+      "choices": [],
+      "answer": "部屋にパソコンがあります。",
+      "answerKana": "へやにパソコンがあります。",
+      "referenceAnswers": [
+        "部屋にパソコンがあります。"
+      ],
+      "referenceAnswerKana": [
+        "へやにパソコンがあります。"
+      ],
+      "relatedGrammar": [
+        "g1"
+      ],
+      "relatedSentences": [
+        "s1"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "ex-i-1-5",
+      "groupId": "ex-i-1",
+      "groupTitle": "练习I 1",
+      "category": "replacement",
+      "instruction": "仿照例句替换画线部分进行练习。",
+      "example": "いす→部屋にいすがあります。",
+      "exampleKana": "いす→へやにいすがあります。",
+      "type": "transform",
+      "question": "ベッド",
+      "questionKana": "ベッド",
+      "choices": [],
+      "answer": "部屋にベッドがあります。",
+      "answerKana": "へやにベッドがあります。",
+      "referenceAnswers": [
+        "部屋にベッドがあります。"
+      ],
+      "referenceAnswerKana": [
+        "へやにベッドがあります。"
+      ],
+      "relatedGrammar": [
+        "g1"
+      ],
+      "relatedSentences": [
+        "s1"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "ex-i-1-6",
+      "groupId": "ex-i-1",
+      "groupTitle": "练习I 1",
+      "category": "replacement",
+      "instruction": "仿照例句替换画线部分进行练习。",
+      "example": "猫→あそこに猫がいます。",
+      "exampleKana": "ねこ→あそこにねこがいます。",
+      "type": "transform",
+      "question": "犬",
+      "questionKana": "いぬ",
+      "choices": [],
+      "answer": "あそこに犬がいます。",
+      "answerKana": "あそこにいぬがいます。",
+      "referenceAnswers": [
+        "あそこに犬がいます。"
+      ],
+      "referenceAnswerKana": [
+        "あそこにいぬがいます。"
+      ],
+      "relatedGrammar": [
+        "g1"
+      ],
+      "relatedSentences": [
+        "s11"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "ex-i-1-7",
+      "groupId": "ex-i-1",
+      "groupTitle": "练习I 1",
+      "category": "replacement",
+      "instruction": "仿照例句替换画线部分进行练习。",
+      "example": "猫→あそこに猫がいます。",
+      "exampleKana": "ねこ→あそこにねこがいます。",
+      "type": "transform",
+      "question": "男の人",
+      "questionKana": "おとこのひと",
+      "choices": [],
+      "answer": "あそこに男の人がいます。",
+      "answerKana": "あそこにおとこのひとがいます。",
+      "referenceAnswers": [
+        "あそこに男の人がいます。"
+      ],
+      "referenceAnswerKana": [
+        "あそこにおとこのひとがいます。"
+      ],
+      "relatedGrammar": [
+        "g1"
+      ],
+      "relatedSentences": [
+        "s11"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "ex-i-1-8",
+      "groupId": "ex-i-1",
+      "groupTitle": "练习I 1",
+      "category": "replacement",
+      "instruction": "仿照例句替换画线部分进行练习。",
+      "example": "猫→あそこに猫がいます。",
+      "exampleKana": "ねこ→あそこにねこがいます。",
+      "type": "transform",
+      "question": "女の人",
+      "questionKana": "おんなのひと",
+      "choices": [],
+      "answer": "あそこに女の人がいます。",
+      "answerKana": "あそこにおんなのひとがいます。",
+      "referenceAnswers": [
+        "あそこに女の人がいます。"
+      ],
+      "referenceAnswerKana": [
+        "あそこにおんなのひとがいます。"
+      ],
+      "relatedGrammar": [
+        "g1"
+      ],
+      "relatedSentences": [
+        "s11"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "ex-i-1-9",
+      "groupId": "ex-i-1",
+      "groupTitle": "练习I 1",
+      "category": "replacement",
+      "instruction": "仿照例句替换画线部分进行练习。",
+      "example": "猫→あそこに猫がいます。",
+      "exampleKana": "ねこ→あそこにねこがいます。",
+      "type": "transform",
+      "question": "子供",
+      "questionKana": "こども",
+      "choices": [],
+      "answer": "あそこに子供がいます。",
+      "answerKana": "あそこにこどもがいます。",
+      "referenceAnswers": [
+        "あそこに子供がいます。"
+      ],
+      "referenceAnswerKana": [
+        "あそこにこどもがいます。"
+      ],
+      "relatedGrammar": [
+        "g1"
+      ],
+      "relatedSentences": [
+        "s11"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "ex-i-1-10",
+      "groupId": "ex-i-1",
+      "groupTitle": "练习I 1",
+      "category": "replacement",
+      "instruction": "仿照例句替换画线部分进行练习。",
+      "example": "猫→あそこに猫がいます。",
+      "exampleKana": "ねこ→あそこにねこがいます。",
+      "type": "transform",
+      "question": "李さん",
+      "questionKana": "りさん",
+      "choices": [],
+      "answer": "あそこに李さんがいます。",
+      "answerKana": "あそこにりさんがいます。",
+      "referenceAnswers": [
+        "あそこに李さんがいます。"
+      ],
+      "referenceAnswerKana": [
+        "あそこにりさんがいます。"
+      ],
+      "relatedGrammar": [
+        "g1"
+      ],
+      "relatedSentences": [
+        "s11"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "ex-i-2-1",
+      "groupId": "ex-i-2",
+      "groupTitle": "练习I 2",
+      "category": "replacement",
+      "instruction": "仿照例句替换画线部分进行练习。",
+      "example": "机の上→机の上に何がありますか。",
+      "exampleKana": "つくえのうえ→つくえのうえになにがありますか。",
+      "type": "transform",
+      "question": "箱の中",
+      "questionKana": "はこのなか",
+      "choices": [],
+      "answer": "箱の中に何がありますか。",
+      "answerKana": "はこのなかになにがありますか。",
+      "referenceAnswers": [
+        "箱の中に何がありますか。"
+      ],
+      "referenceAnswerKana": [
+        "はこのなかになにがありますか。"
+      ],
+      "relatedGrammar": [
+        "g1",
+        "g3"
+      ],
+      "relatedSentences": [
+        "s5"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "ex-i-2-2",
+      "groupId": "ex-i-2",
+      "groupTitle": "练习I 2",
+      "category": "replacement",
+      "instruction": "仿照例句替换画线部分进行练习。",
+      "example": "机の上→机の上に何がありますか。",
+      "exampleKana": "つくえのうえ→つくえのうえになにがありますか。",
+      "type": "transform",
+      "question": "いすの上",
+      "questionKana": "いすのうえ",
+      "choices": [],
+      "answer": "いすの上に何がありますか。",
+      "answerKana": "いすのうえになにがありますか。",
+      "referenceAnswers": [
+        "いすの上に何がありますか。"
+      ],
+      "referenceAnswerKana": [
+        "いすのうえになにがありますか。"
+      ],
+      "relatedGrammar": [
+        "g1",
+        "g3"
+      ],
+      "relatedSentences": [
+        "s5"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "ex-i-2-3",
+      "groupId": "ex-i-2",
+      "groupTitle": "练习I 2",
+      "category": "replacement",
+      "instruction": "仿照例句替换画线部分进行练习。",
+      "example": "机の上→机の上に何がありますか。",
+      "exampleKana": "つくえのうえ→つくえのうえになにがありますか。",
+      "type": "transform",
+      "question": "箱の下",
+      "questionKana": "はこのした",
+      "choices": [],
+      "answer": "箱の下に何がありますか。",
+      "answerKana": "はこのしたになにがありますか。",
+      "referenceAnswers": [
+        "箱の下に何がありますか。"
+      ],
+      "referenceAnswerKana": [
+        "はこのしたになにがありますか。"
+      ],
+      "relatedGrammar": [
+        "g1",
+        "g3"
+      ],
+      "relatedSentences": [
+        "s5"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "ex-i-2-4",
+      "groupId": "ex-i-2",
+      "groupTitle": "练习I 2",
+      "category": "replacement",
+      "instruction": "仿照例句替换画线部分进行练习。",
+      "example": "机の上→机の上に何がありますか。",
+      "exampleKana": "つくえのうえ→つくえのうえになにがありますか。",
+      "type": "transform",
+      "question": "木の下",
+      "questionKana": "きのした",
+      "choices": [],
+      "answer": "木の下に何がありますか。",
+      "answerKana": "きのしたになにがありますか。",
+      "referenceAnswers": [
+        "木の下に何がありますか。"
+      ],
+      "referenceAnswerKana": [
+        "きのしたになにがありますか。"
+      ],
+      "relatedGrammar": [
+        "g1",
+        "g3"
+      ],
+      "relatedSentences": [
+        "s5"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "ex-i-2-5",
+      "groupId": "ex-i-2",
+      "groupTitle": "练习I 2",
+      "category": "replacement",
+      "instruction": "仿照例句替换画线部分进行练习。",
+      "example": "あそこ→あそこにだれがいますか。",
+      "exampleKana": "あそこ→あそこにだれがいますか。",
+      "type": "transform",
+      "question": "会議室",
+      "questionKana": "かいぎしつ",
+      "choices": [],
+      "answer": "会議室にだれがいますか。",
+      "answerKana": "かいぎしつにだれがいますか。",
+      "referenceAnswers": [
+        "会議室にだれがいますか。"
+      ],
+      "referenceAnswerKana": [
+        "かいぎしつにだれがいますか。"
+      ],
+      "relatedGrammar": [
+        "g1"
+      ],
+      "relatedSentences": [
+        "s7"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "ex-i-2-6",
+      "groupId": "ex-i-2",
+      "groupTitle": "练习I 2",
+      "category": "replacement",
+      "instruction": "仿照例句替换画线部分进行练习。",
+      "example": "あそこ→あそこにだれがいますか。",
+      "exampleKana": "あそこ→あそこにだれがいますか。",
+      "type": "transform",
+      "question": "林さんの後ろ",
+      "questionKana": "はやしさんのうしろ",
+      "choices": [],
+      "answer": "林さんの後ろにだれがいますか。",
+      "answerKana": "はやしさんのうしろにだれがいますか。",
+      "referenceAnswers": [
+        "林さんの後ろにだれがいますか。"
+      ],
+      "referenceAnswerKana": [
+        "はやしさんのうしろにだれがいますか。"
+      ],
+      "relatedGrammar": [
+        "g1"
+      ],
+      "relatedSentences": [
+        "s7"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "ex-i-2-7",
+      "groupId": "ex-i-2",
+      "groupTitle": "练习I 2",
+      "category": "replacement",
+      "instruction": "仿照例句替换画线部分进行练习。",
+      "example": "あそこ→あそこにだれがいますか。",
+      "exampleKana": "あそこ→あそこにだれがいますか。",
+      "type": "transform",
+      "question": "李さんの隣",
+      "questionKana": "りさんのとなり",
+      "choices": [],
+      "answer": "李さんの隣にだれがいますか。",
+      "answerKana": "りさんのとなりにだれがいますか。",
+      "referenceAnswers": [
+        "李さんの隣にだれがいますか。"
+      ],
+      "referenceAnswerKana": [
+        "りさんのとなりにだれがいますか。"
+      ],
+      "relatedGrammar": [
+        "g1"
+      ],
+      "relatedSentences": [
+        "s7"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "ex-i-2-8",
+      "groupId": "ex-i-2",
+      "groupTitle": "练习I 2",
+      "category": "replacement",
+      "instruction": "仿照例句替换画线部分进行练习。",
+      "example": "あそこ→あそこにだれがいますか。",
+      "exampleKana": "あそこ→あそこにだれがいますか。",
+      "type": "transform",
+      "question": "車の中",
+      "questionKana": "くるまのなか",
+      "choices": [],
+      "answer": "車の中にだれがいますか。",
+      "answerKana": "くるまのなかにだれがいますか。",
+      "referenceAnswers": [
+        "車の中にだれがいますか。"
+      ],
+      "referenceAnswerKana": [
+        "くるまのなかにだれがいますか。"
+      ],
+      "relatedGrammar": [
+        "g1"
+      ],
+      "relatedSentences": [
+        "s7"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "ex-i-3-1",
+      "groupId": "ex-i-3",
+      "groupTitle": "练习I 3",
+      "category": "picture-answer",
+      "instruction": "看图，照例句回答问题。",
+      "example": "いすの上に何がありますか。→本があります。",
+      "exampleKana": "いすのうえになにがありますか。→ほんがあります。",
+      "type": "short-answer",
+      "question": "テレビの上に何がありますか。",
+      "questionKana": "テレビのうえになにがありますか。",
+      "choices": [],
+      "answer": "カメラがあります。",
+      "answerKana": "カメラがあります。",
+      "referenceAnswers": [
+        "カメラがあります。"
+      ],
+      "referenceAnswerKana": [
+        "カメラがあります。"
+      ],
+      "relatedGrammar": [
+        "g1",
+        "g3",
+        "g5"
+      ],
+      "relatedSentences": [
+        "s5",
+        "s6"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "ex-i-3-2",
+      "groupId": "ex-i-3",
+      "groupTitle": "练习I 3",
+      "category": "picture-answer",
+      "instruction": "看图，照例句回答问题。",
+      "example": "いすの上に何がありますか。→本があります。",
+      "exampleKana": "いすのうえになにがありますか。→ほんがあります。",
+      "type": "short-answer",
+      "question": "いすの下に何がありますか。",
+      "questionKana": "いすのしたになにがありますか。",
+      "choices": [],
+      "answer": "サッカーボールがあります。",
+      "answerKana": "サッカーボールがあります。",
+      "referenceAnswers": [
+        "サッカーボールがあります。"
+      ],
+      "referenceAnswerKana": [
+        "サッカーボールがあります。"
+      ],
+      "relatedGrammar": [
+        "g1",
+        "g3",
+        "g5"
+      ],
+      "relatedSentences": [
+        "s5",
+        "s6"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "ex-i-3-3",
+      "groupId": "ex-i-3",
+      "groupTitle": "练习I 3",
+      "category": "picture-answer",
+      "instruction": "看图，照例句回答问题。",
+      "example": "いすの上に何がありますか。→本があります。",
+      "exampleKana": "いすのうえになにがありますか。→ほんがあります。",
+      "type": "short-answer",
+      "question": "本棚の横に何がありますか。",
+      "questionKana": "ほんだなのよこになにがありますか。",
+      "choices": [],
+      "answer": "何もありません。",
+      "answerKana": "なにもありません。",
+      "referenceAnswers": [
+        "何もありません。"
+      ],
+      "referenceAnswerKana": [
+        "なにもありません。"
+      ],
+      "relatedGrammar": [
+        "g1",
+        "g3",
+        "g5"
+      ],
+      "relatedSentences": [
+        "s5",
+        "s6"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "ex-i-3-4",
+      "groupId": "ex-i-3",
+      "groupTitle": "练习I 3",
+      "category": "picture-answer",
+      "instruction": "看图，照例句回答问题。",
+      "example": "いすの上に何がありますか。→本があります。",
+      "exampleKana": "いすのうえになにがありますか。→ほんがあります。",
+      "type": "short-answer",
+      "question": "箱の中に何がありますか。",
+      "questionKana": "はこのなかになにがありますか。",
+      "choices": [],
+      "answer": "時計があります。",
+      "answerKana": "とけいがあります。",
+      "referenceAnswers": [
+        "時計があります。"
+      ],
+      "referenceAnswerKana": [
+        "とけいがあります。"
+      ],
+      "relatedGrammar": [
+        "g1",
+        "g3",
+        "g5"
+      ],
+      "relatedSentences": [
+        "s5",
+        "s6"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "ex-i-3-5",
+      "groupId": "ex-i-3",
+      "groupTitle": "练习I 3",
+      "category": "picture-answer",
+      "instruction": "看图，照例句回答问题。",
+      "example": "図書室にだれがいますか。→吉田さんがいます。",
+      "exampleKana": "としょしつにだれがいますか。→よしださんがいます。",
+      "type": "short-answer",
+      "question": "会議室にだれがいますか。",
+      "questionKana": "かいぎしつにだれがいますか。",
+      "choices": [],
+      "answer": "スミスさんがいます。",
+      "answerKana": "スミスさんがいます。",
+      "referenceAnswers": [
+        "スミスさんがいます。"
+      ],
+      "referenceAnswerKana": [
+        "スミスさんがいます。"
+      ],
+      "relatedGrammar": [
+        "g1",
+        "g5"
+      ],
+      "relatedSentences": [
+        "s7",
+        "s8"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "ex-i-3-6",
+      "groupId": "ex-i-3",
+      "groupTitle": "练习I 3",
+      "category": "picture-answer",
+      "instruction": "看图，照例句回答问题。",
+      "example": "図書室にだれがいますか。→吉田さんがいます。",
+      "exampleKana": "としょしつにだれがいますか。→よしださんがいます。",
+      "type": "short-answer",
+      "question": "パソコンの前にだれがいますか。",
+      "questionKana": "パソコンのまえにだれがいますか。",
+      "choices": [],
+      "answer": "李さんがいます。",
+      "answerKana": "りさんがいます。",
+      "referenceAnswers": [
+        "李さんがいます。"
+      ],
+      "referenceAnswerKana": [
+        "りさんがいます。"
+      ],
+      "relatedGrammar": [
+        "g1",
+        "g5"
+      ],
+      "relatedSentences": [
+        "s7",
+        "s8"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "ex-i-3-7",
+      "groupId": "ex-i-3",
+      "groupTitle": "练习I 3",
+      "category": "picture-answer",
+      "instruction": "看图，照例句回答问题。",
+      "example": "図書室にだれがいますか。→吉田さんがいます。",
+      "exampleKana": "としょしつにだれがいますか。→よしださんがいます。",
+      "type": "short-answer",
+      "question": "庭にだれがいますか。",
+      "questionKana": "にわにだれがいますか。",
+      "choices": [],
+      "answer": "森さんがいます。",
+      "answerKana": "もりさんがいます。",
+      "referenceAnswers": [
+        "森さんがいます。"
+      ],
+      "referenceAnswerKana": [
+        "もりさんがいます。"
+      ],
+      "relatedGrammar": [
+        "g1",
+        "g5"
+      ],
+      "relatedSentences": [
+        "s7",
+        "s8"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "ex-i-3-8",
+      "groupId": "ex-i-3",
+      "groupTitle": "练习I 3",
+      "category": "picture-answer",
+      "instruction": "看图，照例句回答问题。",
+      "example": "図書室にだれがいますか。→吉田さんがいます。",
+      "exampleKana": "としょしつにだれがいますか。→よしださんがいます。",
+      "type": "short-answer",
+      "question": "車の後ろにだれがいますか。",
+      "questionKana": "くるまのうしろにだれがいますか。",
+      "choices": [],
+      "answer": "だれもいません。",
+      "answerKana": "だれもいません。",
+      "referenceAnswers": [
+        "だれもいません。"
+      ],
+      "referenceAnswerKana": [
+        "だれもいません。"
+      ],
+      "relatedGrammar": [
+        "g1",
+        "g5"
+      ],
+      "relatedSentences": [
+        "s7",
+        "s8"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "ex-i-4-1",
+      "groupId": "ex-i-4",
+      "groupTitle": "练习I 4",
+      "category": "replacement",
+      "instruction": "照例句，用（）中的词回答问题。",
+      "example": "森さんはどこにいますか。（事務所）→事務所にいます。",
+      "exampleKana": "もりさんはどこにいますか。（じむしょ）→じむしょにいます。",
+      "type": "short-answer",
+      "question": "生徒は教室にいますか。（はい）",
+      "questionKana": "せいとはきょうしつにいますか。（はい）",
+      "choices": [],
+      "answer": "はい、います。",
+      "answerKana": "はい、います。",
+      "referenceAnswers": [
+        "はい、います。"
+      ],
+      "referenceAnswerKana": [
+        "はい、います。"
+      ],
+      "relatedGrammar": [
+        "g1"
+      ],
+      "relatedSentences": [
+        "s9",
+        "s10"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "ex-i-4-2",
+      "groupId": "ex-i-4",
+      "groupTitle": "练习I 4",
+      "category": "replacement",
+      "instruction": "照例句，用（）中的词回答问题。",
+      "example": "森さんはどこにいますか。（事務所）→事務所にいます。",
+      "exampleKana": "もりさんはどこにいますか。（じむしょ）→じむしょにいます。",
+      "type": "short-answer",
+      "question": "林さんの家はどこですか。（横浜）",
+      "questionKana": "はやしさんのいえはどこですか。（よこはま）",
+      "choices": [],
+      "answer": "横浜です。",
+      "answerKana": "よこはまです。",
+      "referenceAnswers": [
+        "横浜です。"
+      ],
+      "referenceAnswerKana": [
+        "よこはまです。"
+      ],
+      "relatedGrammar": [
+        "g1"
+      ],
+      "relatedSentences": [
+        "s9",
+        "s10"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "ex-i-4-3",
+      "groupId": "ex-i-4",
+      "groupTitle": "练习I 4",
+      "category": "replacement",
+      "instruction": "照例句，用（）中的词回答问题。",
+      "example": "森さんはどこにいますか。（事務所）→事務所にいます。",
+      "exampleKana": "もりさんはどこにいますか。（じむしょ）→じむしょにいます。",
+      "type": "short-answer",
+      "question": "JC企画はどこにありますか。（銀行の隣）",
+      "questionKana": "ジェーシーきかくはどこにありますか。（ぎんこうのとなり）",
+      "choices": [],
+      "answer": "銀行の隣にあります。",
+      "answerKana": "ぎんこうのとなりにあります。",
+      "referenceAnswers": [
+        "銀行の隣にあります。"
+      ],
+      "referenceAnswerKana": [
+        "ぎんこうのとなりにあります。"
+      ],
+      "relatedGrammar": [
+        "g1"
+      ],
+      "relatedSentences": [
+        "s9",
+        "s10"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "ex-i-4-4",
+      "groupId": "ex-i-4",
+      "groupTitle": "练习I 4",
+      "category": "replacement",
+      "instruction": "照例句，用（）中的词回答问题。",
+      "example": "森さんはどこにいますか。（事務所）→事務所にいます。",
+      "exampleKana": "もりさんはどこにいますか。（じむしょ）→じむしょにいます。",
+      "type": "short-answer",
+      "question": "李さんは部屋にいますか。（いいえ）",
+      "questionKana": "りさんはへやにいますか。（いいえ）",
+      "choices": [],
+      "answer": "いいえ、いません。",
+      "answerKana": "いいえ、いません。",
+      "referenceAnswers": [
+        "いいえ、いません。"
+      ],
+      "referenceAnswerKana": [
+        "いいえ、いません。"
+      ],
+      "relatedGrammar": [
+        "g1"
+      ],
+      "relatedSentences": [
+        "s9",
+        "s10"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "ex-i-5-1",
+      "groupId": "ex-i-5",
+      "groupTitle": "练习I 5",
+      "category": "picture-answer",
+      "instruction": "看图，仿照例句进行替换练习。",
+      "example": "机の上に時計がありますか。→はい、あります。",
+      "exampleKana": "つくえのうえにとけいがありますか。→はい、あります。",
+      "type": "short-answer",
+      "question": "",
+      "questionKana": "",
+      "choices": [],
+      "answer": "",
+      "answerKana": "",
+      "referenceAnswers": [],
+      "referenceAnswerKana": [],
+      "relatedGrammar": [],
+      "relatedSentences": [],
+      "explanation": ""
+    },
+    {
+      "id": "ex-i-5-2",
+      "groupId": "ex-i-5",
+      "groupTitle": "练习I 5",
+      "category": "picture-answer",
+      "instruction": "看图，仿照例句进行替换练习。",
+      "example": "机の上に時計がありますか。→はい、あります。",
+      "exampleKana": "つくえのうえにとけいがありますか。→はい、あります。",
+      "type": "short-answer",
+      "question": "",
+      "questionKana": "",
+      "choices": [],
+      "answer": "",
+      "answerKana": "",
+      "referenceAnswers": [],
+      "referenceAnswerKana": [],
+      "relatedGrammar": [],
+      "relatedSentences": [],
+      "explanation": ""
+    },
+    {
+      "id": "ex-i-5-3",
+      "groupId": "ex-i-5",
+      "groupTitle": "练习I 5",
+      "category": "picture-answer",
+      "instruction": "看图，仿照例句进行替换练习。",
+      "example": "机の上に時計がありますか。→はい、あります。",
+      "exampleKana": "つくえのうえにとけいがありますか。→はい、あります。",
+      "type": "short-answer",
+      "question": "",
+      "questionKana": "",
+      "choices": [],
+      "answer": "",
+      "answerKana": "",
+      "referenceAnswers": [],
+      "referenceAnswerKana": [],
+      "relatedGrammar": [],
+      "relatedSentences": [],
+      "explanation": ""
+    },
+    {
+      "id": "ex-i-5-4",
+      "groupId": "ex-i-5",
+      "groupTitle": "练习I 5",
+      "category": "picture-answer",
+      "instruction": "看图，仿照例句进行替换练习。",
+      "example": "机の上に時計がありますか。→はい、あります。",
+      "exampleKana": "つくえのうえにとけいがありますか。→はい、あります。",
+      "type": "short-answer",
+      "question": "",
+      "questionKana": "",
+      "choices": [],
+      "answer": "",
+      "answerKana": "",
+      "referenceAnswers": [],
+      "referenceAnswerKana": [],
+      "relatedGrammar": [],
+      "relatedSentences": [],
+      "explanation": ""
+    },
+    {
+      "id": "ex-i-5-5",
+      "groupId": "ex-i-5",
+      "groupTitle": "练习I 5",
+      "category": "picture-answer",
+      "instruction": "看图，仿照例句进行替换练习。",
+      "example": "机の上に時計がありますか。→はい、あります。",
+      "exampleKana": "つくえのうえにとけいがありますか。→はい、あります。",
+      "type": "short-answer",
+      "question": "",
+      "questionKana": "",
+      "choices": [],
+      "answer": "",
+      "answerKana": "",
+      "referenceAnswers": [],
+      "referenceAnswerKana": [],
+      "relatedGrammar": [],
+      "relatedSentences": [],
+      "explanation": ""
+    },
+    {
+      "id": "ex-i-6-1",
+      "groupId": "ex-i-6",
+      "groupTitle": "练习I 6",
+      "category": "listening-dialogue",
+      "instruction": "看国家音，仿照例句回答问题。",
+      "example": "森さんはどこにいますか。→病院の前にいます。",
+      "exampleKana": "もりさんはどこにいますか。→びょういんのまえにいます。",
+      "type": "listening",
+      "question": "",
+      "questionKana": "",
+      "choices": [],
+      "answer": "",
+      "answerKana": "",
+      "referenceAnswers": [],
+      "referenceAnswerKana": [],
+      "relatedGrammar": [],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": true,
+      "hasAnswer": false
+    },
+    {
+      "id": "ex-i-6-2",
+      "groupId": "ex-i-6",
+      "groupTitle": "练习I 6",
+      "category": "listening-dialogue",
+      "instruction": "看国家音，仿照例句回答问题。",
+      "example": "森さんはどこにいますか。→病院の前にいます。",
+      "exampleKana": "もりさんはどこにいますか。→びょういんのまえにいます。",
+      "type": "listening",
+      "question": "",
+      "questionKana": "",
+      "choices": [],
+      "answer": "",
+      "answerKana": "",
+      "referenceAnswers": [],
+      "referenceAnswerKana": [],
+      "relatedGrammar": [],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": true,
+      "hasAnswer": false
+    },
+    {
+      "id": "ex-i-6-3",
+      "groupId": "ex-i-6",
+      "groupTitle": "练习I 6",
+      "category": "listening-dialogue",
+      "instruction": "看国家音，仿照例句回答问题。",
+      "example": "森さんはどこにいますか。→病院の前にいます。",
+      "exampleKana": "もりさんはどこにいますか。→びょういんのまえにいます。",
+      "type": "listening",
+      "question": "",
+      "questionKana": "",
+      "choices": [],
+      "answer": "",
+      "answerKana": "",
+      "referenceAnswers": [],
+      "referenceAnswerKana": [],
+      "relatedGrammar": [],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": true,
+      "hasAnswer": false
+    },
+    {
+      "id": "ex-i-6-4",
+      "groupId": "ex-i-6",
+      "groupTitle": "练习I 6",
+      "category": "listening-dialogue",
+      "instruction": "看国家音，仿照例句回答问题。",
+      "example": "森さんはどこにいますか。→病院の前にいます。",
+      "exampleKana": "もりさんはどこにいますか。→びょういんのまえにいます。",
+      "type": "listening",
+      "question": "",
+      "questionKana": "",
+      "choices": [],
+      "answer": "",
+      "answerKana": "",
+      "referenceAnswers": [],
+      "referenceAnswerKana": [],
+      "relatedGrammar": [],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": true,
+      "hasAnswer": false
+    },
+    {
+      "id": "ex-i-6-5",
+      "groupId": "ex-i-6",
+      "groupTitle": "练习I 6",
+      "category": "listening-dialogue",
+      "instruction": "看国家音，仿照例句回答问题。",
+      "example": "森さんはどこにいますか。→病院の前にいます。",
+      "exampleKana": "もりさんはどこにいますか。→びょういんのまえにいます。",
+      "type": "listening",
+      "question": "",
+      "questionKana": "",
+      "choices": [],
+      "answer": "",
+      "answerKana": "",
+      "referenceAnswers": [],
+      "referenceAnswerKana": [],
+      "relatedGrammar": [],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": true,
+      "hasAnswer": false
+    },
+    {
+      "id": "ex-ii-1-1",
+      "groupId": "ex-ii-1",
+      "groupTitle": "练习II 1",
+      "category": "choice",
+      "instruction": "看图，与内容一致的画○，不一致的画✕。",
+      "example": "あそこにビルがあります。（○）",
+      "exampleKana": "あそこにビルがあります。（○）",
+      "type": "choice",
+      "question": "箱の中に犬がいます。",
+      "questionKana": "はこのなかにいぬがいます。",
+      "choices": [
+        "○",
+        "✕"
+      ],
+      "answer": "",
+      "answerKana": "",
+      "referenceAnswers": [],
+      "referenceAnswerKana": [],
+      "relatedGrammar": [
+        "g1",
+        "g3",
+        "g5"
+      ],
+      "relatedSentences": [],
+      "explanation": ""
+    },
+    {
+      "id": "ex-ii-1-2",
+      "groupId": "ex-ii-1",
+      "groupTitle": "练习II 1",
+      "category": "choice",
+      "instruction": "看图，与内容一致的画○，不一致的画✕。",
+      "example": "あそこにビルがあります。（○）",
+      "exampleKana": "あそこにビルがあります。（○）",
+      "type": "choice",
+      "question": "いすの上に猫がいます。",
+      "questionKana": "いすのうえにねこがいます。",
+      "choices": [
+        "○",
+        "✕"
+      ],
+      "answer": "",
+      "answerKana": "",
+      "referenceAnswers": [],
+      "referenceAnswerKana": [],
+      "relatedGrammar": [
+        "g1",
+        "g3",
+        "g5"
+      ],
+      "relatedSentences": [],
+      "explanation": ""
+    },
+    {
+      "id": "ex-ii-1-3",
+      "groupId": "ex-ii-1",
+      "groupTitle": "练习II 1",
+      "category": "choice",
+      "instruction": "看图，与内容一致的画○，不一致的画✕。",
+      "example": "あそこにビルがあります。（○）",
+      "exampleKana": "あそこにビルがあります。（○）",
+      "type": "choice",
+      "question": "机の下にいすがあります。",
+      "questionKana": "つくえのしたにいすがあります。",
+      "choices": [
+        "○",
+        "✕"
+      ],
+      "answer": "",
+      "answerKana": "",
+      "referenceAnswers": [],
+      "referenceAnswerKana": [],
+      "relatedGrammar": [
+        "g1",
+        "g3",
+        "g5"
+      ],
+      "relatedSentences": [],
+      "explanation": ""
+    },
+    {
+      "id": "ex-ii-1-4",
+      "groupId": "ex-ii-1",
+      "groupTitle": "练习II 1",
+      "category": "choice",
+      "instruction": "看图，与内容一致的画○，不一致的画✕。",
+      "example": "あそこにビルがあります。（○）",
+      "exampleKana": "あそこにビルがあります。（○）",
+      "type": "choice",
+      "question": "木の下にだれもいません。",
+      "questionKana": "きのしたにだれもいません。",
+      "choices": [
+        "○",
+        "✕"
+      ],
+      "answer": "",
+      "answerKana": "",
+      "referenceAnswers": [],
+      "referenceAnswerKana": [],
+      "relatedGrammar": [
+        "g1",
+        "g3",
+        "g5"
+      ],
+      "relatedSentences": [],
+      "explanation": ""
+    },
+    {
+      "id": "ex-ii-1-5",
+      "groupId": "ex-ii-1",
+      "groupTitle": "练习II 1",
+      "category": "choice",
+      "instruction": "看图，与内容一致的画○，不一致的画✕。",
+      "example": "あそこにビルがあります。（○）",
+      "exampleKana": "あそこにビルがあります。（○）",
+      "type": "choice",
+      "question": "猫は箱の後ろにいます。",
+      "questionKana": "ねこははこのうしろにいます。",
+      "choices": [
+        "○",
+        "✕"
+      ],
+      "answer": "",
+      "answerKana": "",
+      "referenceAnswers": [],
+      "referenceAnswerKana": [],
+      "relatedGrammar": [
+        "g1",
+        "g3",
+        "g5"
+      ],
+      "relatedSentences": [],
+      "explanation": ""
+    },
+    {
+      "id": "ex-ii-2-1",
+      "groupId": "ex-ii-2",
+      "groupTitle": "练习II 2",
+      "category": "choice",
+      "instruction": "在正确答案上画○。",
+      "example": "机の上に猫が（あります・います）。",
+      "exampleKana": "つくえのうえにねこが（あります・います）。",
+      "type": "choice",
+      "question": "箱の中に（だれ・何）がありますか。",
+      "questionKana": "はこのなかに（だれ・なに）がありますか。",
+      "choices": [
+        "だれ",
+        "何"
+      ],
+      "answer": "何",
+      "answerKana": "なに",
+      "referenceAnswers": [
+        "何"
+      ],
+      "referenceAnswerKana": [
+        "なに"
+      ],
+      "relatedGrammar": [
+        "g1",
+        "g5"
+      ],
+      "relatedSentences": [],
+      "explanation": ""
+    },
+    {
+      "id": "ex-ii-2-2",
+      "groupId": "ex-ii-2",
+      "groupTitle": "练习II 2",
+      "category": "choice",
+      "instruction": "在正确答案上画○。",
+      "example": "机の上に猫が（あります・います）。",
+      "exampleKana": "つくえのうえにねこが（あります・います）。",
+      "type": "choice",
+      "question": "吉田さんの後ろにだれも（います・いません）。",
+      "questionKana": "よしださんのうしろにだれも（います・いません）。",
+      "choices": [
+        "います",
+        "いません"
+      ],
+      "answer": "いません",
+      "answerKana": "いません",
+      "referenceAnswers": [
+        "いません"
+      ],
+      "referenceAnswerKana": [
+        "いません"
+      ],
+      "relatedGrammar": [
+        "g1",
+        "g5"
+      ],
+      "relatedSentences": [],
+      "explanation": ""
+    },
+    {
+      "id": "ex-ii-2-3",
+      "groupId": "ex-ii-2",
+      "groupTitle": "练习II 2",
+      "category": "choice",
+      "instruction": "在正确答案上画○。",
+      "example": "机の上に猫が（あります・います）。",
+      "exampleKana": "つくえのうえにねこが（あります・います）。",
+      "type": "choice",
+      "question": "いすの下に（どこも・何も）ありません。",
+      "questionKana": "いすのしたに（どこも・なにも）ありません。",
+      "choices": [
+        "どこも",
+        "何も"
+      ],
+      "answer": "何も",
+      "answerKana": "なにも",
+      "referenceAnswers": [
+        "何も"
+      ],
+      "referenceAnswerKana": [
+        "なにも"
+      ],
+      "relatedGrammar": [
+        "g1",
+        "g5"
+      ],
+      "relatedSentences": [],
+      "explanation": ""
+    },
+    {
+      "id": "ex-ii-2-4",
+      "groupId": "ex-ii-2",
+      "groupTitle": "练习II 2",
+      "category": "choice",
+      "instruction": "在正确答案上画○。",
+      "example": "机の上に猫が（あります・います）。",
+      "exampleKana": "つくえのうえにねこが（あります・います）。",
+      "type": "choice",
+      "question": "机の上に辞書があります。雑誌（は・も）あります。",
+      "questionKana": "つくえのうえにじしょがあります。ざっし（は・も）あります。",
+      "choices": [
+        "は",
+        "も"
+      ],
+      "answer": "も",
+      "answerKana": "も",
+      "referenceAnswers": [
+        "も"
+      ],
+      "referenceAnswerKana": [
+        "も"
+      ],
+      "relatedGrammar": [
+        "g1",
+        "g5"
+      ],
+      "relatedSentences": [],
+      "explanation": ""
+    },
+    {
+      "id": "ex-ii-2-5",
+      "groupId": "ex-ii-2",
+      "groupTitle": "练习II 2",
+      "category": "choice",
+      "instruction": "在正确答案上画○。",
+      "example": "机の上に猫が（あります・います）。",
+      "exampleKana": "つくえのうえにねこが（あります・います）。",
+      "type": "choice",
+      "question": "ベッドの上に（子供・雑誌）があります。",
+      "questionKana": "ベッドのうえに（こども・ざっし）があります。",
+      "choices": [
+        "子供",
+        "雑誌"
+      ],
+      "answer": "雑誌",
+      "answerKana": "ざっし",
+      "referenceAnswers": [
+        "雑誌"
+      ],
+      "referenceAnswerKana": [
+        "ざっし"
+      ],
+      "relatedGrammar": [
+        "g1",
+        "g5"
+      ],
+      "relatedSentences": [],
+      "explanation": ""
+    },
+    {
+      "id": "ex-ii-3-1",
+      "groupId": "ex-ii-3",
+      "groupTitle": "练习II 3",
+      "category": "picture-answer",
+      "instruction": "看图回答问题。",
+      "example": "駅の前に何がありますか。→デパートがあります。",
+      "exampleKana": "えきのまえになにがありますか。→デパートがあります。",
+      "type": "short-answer",
+      "question": "",
+      "questionKana": "",
+      "choices": [],
+      "answer": "",
+      "answerKana": "",
+      "referenceAnswers": [],
+      "referenceAnswerKana": [],
+      "relatedGrammar": [],
+      "relatedSentences": [],
+      "explanation": ""
+    },
+    {
+      "id": "ex-ii-3-2",
+      "groupId": "ex-ii-3",
+      "groupTitle": "练习II 3",
+      "category": "picture-answer",
+      "instruction": "看图回答问题。",
+      "example": "駅の前に何がありますか。→デパートがあります。",
+      "exampleKana": "えきのまえになにがありますか。→デパートがあります。",
+      "type": "short-answer",
+      "question": "",
+      "questionKana": "",
+      "choices": [],
+      "answer": "",
+      "answerKana": "",
+      "referenceAnswers": [],
+      "referenceAnswerKana": [],
+      "relatedGrammar": [],
+      "relatedSentences": [],
+      "explanation": ""
+    },
+    {
+      "id": "ex-ii-3-3",
+      "groupId": "ex-ii-3",
+      "groupTitle": "练习II 3",
+      "category": "picture-answer",
+      "instruction": "看图回答问题。",
+      "example": "駅の前に何がありますか。→デパートがあります。",
+      "exampleKana": "えきのまえになにがありますか。→デパートがあります。",
+      "type": "short-answer",
+      "question": "",
+      "questionKana": "",
+      "choices": [],
+      "answer": "",
+      "answerKana": "",
+      "referenceAnswers": [],
+      "referenceAnswerKana": [],
+      "relatedGrammar": [],
+      "relatedSentences": [],
+      "explanation": ""
+    },
+    {
+      "id": "ex-ii-3-4",
+      "groupId": "ex-ii-3",
+      "groupTitle": "练习II 3",
+      "category": "picture-answer",
+      "instruction": "看图回答问题。",
+      "example": "駅の前に何がありますか。→デパートがあります。",
+      "exampleKana": "えきのまえになにがありますか。→デパートがあります。",
+      "type": "short-answer",
+      "question": "",
+      "questionKana": "",
+      "choices": [],
+      "answer": "",
+      "answerKana": "",
+      "referenceAnswers": [],
+      "referenceAnswerKana": [],
+      "relatedGrammar": [],
+      "relatedSentences": [],
+      "explanation": ""
+    },
+    {
+      "id": "ex-ii-3-5",
+      "groupId": "ex-ii-3",
+      "groupTitle": "练习II 3",
+      "category": "picture-answer",
+      "instruction": "看图回答问题。",
+      "example": "駅の前に何がありますか。→デパートがあります。",
+      "exampleKana": "えきのまえになにがありますか。→デパートがあります。",
+      "type": "short-answer",
+      "question": "",
+      "questionKana": "",
+      "choices": [],
+      "answer": "",
+      "answerKana": "",
+      "referenceAnswers": [],
+      "referenceAnswerKana": [],
+      "relatedGrammar": [],
+      "relatedSentences": [],
+      "explanation": ""
+    },
+    {
+      "id": "ex-ii-4-1",
+      "groupId": "ex-ii-4",
+      "groupTitle": "练习II 4",
+      "category": "translation",
+      "instruction": "将下面的句子译成日语。",
+      "example": "",
+      "exampleKana": "",
+      "type": "translation",
+      "question": "桌子上面有（一只）猫。",
+      "questionKana": "",
+      "choices": [],
+      "answer": "机の上に猫がいます。",
+      "answerKana": "つくえのうえにねこがいます。",
+      "referenceAnswers": [
+        "机の上に猫がいます。"
+      ],
+      "referenceAnswerKana": [
+        "つくえのうえにねこがいます。"
+      ],
+      "relatedGrammar": [
+        "g1",
+        "g3"
+      ],
+      "relatedSentences": [
+        "s2"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "ex-ii-4-2",
+      "groupId": "ex-ii-4",
+      "groupTitle": "练习II 4",
+      "category": "translation",
+      "instruction": "将下面的句子译成日语。",
+      "example": "",
+      "exampleKana": "",
+      "type": "translation",
+      "question": "小野女士的家在哪儿？",
+      "questionKana": "",
+      "choices": [],
+      "answer": "小野さんの家はどこにありますか。",
+      "answerKana": "おのさんのいえはどこにありますか。",
+      "referenceAnswers": [
+        "小野さんの家はどこにありますか。"
+      ],
+      "referenceAnswerKana": [
+        "おのさんのいえはどこにありますか。"
+      ],
+      "relatedGrammar": [
+        "g1"
+      ],
+      "relatedSentences": [
+        "s9"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "ex-ii-4-3",
+      "groupId": "ex-ii-4",
+      "groupTitle": "练习II 4",
+      "category": "translation",
+      "instruction": "将下面的句子译成日语。",
+      "example": "",
+      "exampleKana": "",
+      "type": "translation",
+      "question": "房间里没有人。",
+      "questionKana": "",
+      "choices": [],
+      "answer": "部屋にだれもいません。",
+      "answerKana": "へやにだれもいません。",
+      "referenceAnswers": [
+        "部屋にだれもいません。"
+      ],
+      "referenceAnswerKana": [
+        "へやにだれもいません。"
+      ],
+      "relatedGrammar": [
+        "g5"
+      ],
+      "relatedSentences": [
+        "s8"
+      ],
+      "explanation": ""
+    }
+  ]
+}

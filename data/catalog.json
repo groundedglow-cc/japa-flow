@@ -3,34 +3,70 @@
     {
       "id": 1,
       "title": "第1课",
-      "subtitle": "待初始化",
-      "status": "pending",
-      "description": "课程内容尚未采集，后续可继续按同一结构初始化。",
-      "runtimeReady": false
+      "subtitle": "李さんは中国人です。",
+      "status": "initialized",
+      "description": "课程数据和音频已完成：57 个单词，9 个语法，22 句课文，63 道练习。",
+      "runtimeReady": false,
+      "statusLabel": "已初始化",
+      "voiceId": "Japanese_IntellectualSenior",
+      "initializedAt": "2026-05-24T07:21:23.540Z",
+      "counts": {
+        "vocabulary": 57,
+        "grammar": 9,
+        "sentences": 22,
+        "exercises": 63
+      }
     },
     {
       "id": 2,
       "title": "第2课",
-      "subtitle": "待初始化",
-      "status": "pending",
-      "description": "课程内容尚未采集，后续可继续按同一结构初始化。",
-      "runtimeReady": false
+      "subtitle": "これは本です。",
+      "status": "initialized",
+      "description": "课程数据和音频已完成：55 个单词，11 个语法，24 句课文，56 道练习。",
+      "runtimeReady": false,
+      "statusLabel": "已初始化",
+      "voiceId": "Japanese_IntellectualSenior",
+      "initializedAt": "2026-05-24T07:32:52.230Z",
+      "counts": {
+        "vocabulary": 55,
+        "grammar": 11,
+        "sentences": 24,
+        "exercises": 56
+      }
     },
     {
       "id": 3,
       "title": "第3课",
-      "subtitle": "待初始化",
-      "status": "pending",
-      "description": "课程内容尚未采集，后续可继续按同一结构初始化。",
-      "runtimeReady": false
+      "subtitle": "ここはデパートです。",
+      "status": "initialized",
+      "description": "课程数据和音频已完成：47 个单词，11 个语法，25 句课文，64 道练习。",
+      "runtimeReady": false,
+      "statusLabel": "已初始化",
+      "voiceId": "Japanese_IntellectualSenior",
+      "initializedAt": "2026-05-24T06:19:46.663Z",
+      "counts": {
+        "vocabulary": 47,
+        "grammar": 11,
+        "sentences": 25,
+        "exercises": 64
+      }
     },
     {
       "id": 4,
       "title": "第4课",
-      "subtitle": "待初始化",
-      "status": "pending",
-      "description": "课程内容尚未采集，后续可继续按同一结构初始化。",
-      "runtimeReady": false
+      "subtitle": "部屋に机といすがあります。",
+      "status": "initialized",
+      "description": "课程数据和音频已完成：50 个单词，11 个语法，27 句课文，58 道练习。",
+      "runtimeReady": false,
+      "statusLabel": "已初始化",
+      "voiceId": "Japanese_IntellectualSenior",
+      "initializedAt": "2026-05-24T07:16:22.950Z",
+      "counts": {
+        "vocabulary": 50,
+        "grammar": 11,
+        "sentences": 27,
+        "exercises": 58
+      }
     },
     {
       "id": 5,
@@ -238,13 +274,13 @@
       "title": "第29课",
       "subtitle": "電気を消せ",
       "status": "initialized",
-      "description": "课程数据和音频已完成：67 个单词，9 个语法，24 句课文，52 道练习。",
+      "description": "课程数据和音频已完成：51 个单词，9 个语法，24 句课文，52 道练习。",
       "runtimeReady": false,
       "statusLabel": "已初始化",
       "voiceId": "Japanese_IntellectualSenior",
       "initializedAt": "2026-05-23T16:57:04.403Z",
       "counts": {
-        "vocabulary": 67,
+        "vocabulary": 51,
         "grammar": 9,
         "sentences": 24,
         "exercises": 52
@@ -403,5 +439,5 @@
       "runtimeReady": false
     }
   ],
-  "generatedAt": "2026-05-23T17:02:05.448Z"
+  "generatedAt": "2026-05-24T07:43:25.731Z"
 }
