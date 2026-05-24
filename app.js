@@ -1556,24 +1556,37 @@ const externalWordDistractors = [
 let ossEnabled = false;
 let ossBaseUrl = "";
 
+function embeddedOssConfig() {
+  const config = window.JAPAFLOW_CONFIG || {};
+  return {
+    enabled: Boolean(config.OSS_ENABLED),
+    baseUrl: config.OSS_BASE_URL || ""
+  };
+}
+
+function applyOssConfig(config) {
+  ossEnabled = Boolean(config.enabled);
+  ossBaseUrl = config.baseUrl || "";
+}
+
 async function fetchFrontendConfig() {
+  const embedded = embeddedOssConfig();
   if (IS_NATIVE_APP) {
-    const config = window.JAPAFLOW_CONFIG || {};
-    ossEnabled = Boolean(config.OSS_ENABLED);
-    ossBaseUrl = config.OSS_BASE_URL || "";
+    applyOssConfig(embedded);
     return;
   }
   try {
     const response = await fetch("/api/frontend-config");
     const data = await response.json();
     if (!response.ok || data.error) throw new Error(data.error || "Failed to fetch frontend config");
-    ossEnabled = data.ossEnabled;
-    ossBaseUrl = data.ossBaseUrl;
+    const apiConfig = {
+      enabled: Boolean(data.ossEnabled),
+      baseUrl: data.ossBaseUrl || ""
+    };
+    applyOssConfig(embedded.enabled && embedded.baseUrl ? embedded : apiConfig);
   } catch (e) {
     console.error("fetchFrontendConfig failed:", e.message);
-    const config = window.JAPAFLOW_CONFIG || {};
-    ossEnabled = Boolean(config.OSS_ENABLED);
-    ossBaseUrl = config.OSS_BASE_URL || "";
+    applyOssConfig(embedded);
   }
 }
 

@@ -30,6 +30,7 @@ import { isOSSEnabled, getOSSConfig, ossUrl } from "./oss-utils.mjs";
 
 const root = process.cwd();
 const out = join(root, "app-dist");
+const buildVersion = process.env.BUILD_VERSION || new Date().toISOString().replace(/[:.]/g, "-");
 
 const studentFiles = ["index.html", "app.js", "styles.css"];
 const studentDataIncludes = ["catalog.json", "lessons"];   // skip lesson-init, lesson-drafts (admin only)
@@ -55,7 +56,9 @@ async function patchIndexHtml() {
   // 在 app.js 之前注入 JAPAFLOW_CONFIG 加载脚本（Azure 密钥）。
   // 注入两段：local（实际密钥，gitignored）+ example（fallback，避免 404）。
   const inject = `    <script src="/japaflow-config.local.js"></script>\n    <script src="/japaflow-config.example.js"></script>\n`;
-  const patched = src.replace(/(\s+)<script type="module" src="\/app\.js[^"]*"><\/script>/, `\n${inject}$1<script type="module" src="/app.js"></script>`);
+  const patched = src
+    .replace(/(\s+)<script type="module" src="\/app\.js[^"]*"><\/script>/, `\n${inject}$1<script type="module" src="/app.js?v=${buildVersion}"></script>`)
+    .replace(/<link rel="stylesheet" href="\/styles\.css[^"]*" \/>/, `<link rel="stylesheet" href="/styles.css?v=${buildVersion}" />`);
   await writeFile(join(out, "index.html"), patched);
 }
 
