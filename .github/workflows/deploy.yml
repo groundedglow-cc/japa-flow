@@ -35,6 +35,9 @@ jobs:
           context: .
           push: true
           tags: ${{ env.ECR_REGISTRY }}/${{ env.ECR_REPOSITORY }}:${{ env.IMAGE_TAG }}
+          build-args: |
+            OSS_ENABLED=true
+            OSS_BASE_URL=https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
@@ -52,7 +55,6 @@ jobs:
           script: |
             set -e
             cd /home/ubuntu/japaflow
-            mkdir -p ./audio
             export AWS_ACCESS_KEY_ID="${{ secrets.AWS_ACCESS_KEY_ID }}"
             export AWS_SECRET_ACCESS_KEY="${{ secrets.AWS_SECRET_ACCESS_KEY }}"
             export AWS_DEFAULT_REGION="${{ secrets.AWS_REGION }}"
