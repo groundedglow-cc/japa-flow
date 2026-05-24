@@ -7,3 +7,5 @@ services:
     restart: unless-stopped
     ports:
       - "8091:80"
+    volumes:
+      - ./audio:/usr/share/nginx/html/audio:ro
