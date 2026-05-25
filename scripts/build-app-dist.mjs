@@ -58,8 +58,22 @@ async function patchIndexHtml() {
   const inject = `    <script src="/japaflow-config.local.js"></script>\n    <script src="/japaflow-config.example.js"></script>\n`;
   const patched = src
     .replace(/(\s+)<script type="module" src="\/app\.js[^"]*"><\/script>/, `\n${inject}$1<script type="module" src="/app.js?v=${buildVersion}"></script>`)
-    .replace(/<link rel="stylesheet" href="\/styles\.css[^"]*" \/>/, `<link rel="stylesheet" href="/styles.css?v=${buildVersion}" />`);
+    .replace(/<link rel="stylesheet" href="\/styles\.css[^"]*" \/>/, `<link rel="stylesheet" href="/styles.css?v=${buildVersion}" />`)
+    // AI assistant: rewrite dev-time package paths to bundled vendor paths.
+    .replaceAll("/packages/ai-assistant/dist/", "/vendor/ai-assistant/");
   await writeFile(join(out, "index.html"), patched);
+}
+
+async function copyAIAssistant() {
+  const src = join(root, "packages", "ai-assistant", "dist");
+  const dst = join(out, "vendor", "ai-assistant");
+  if (!existsSync(src)) {
+    console.log("⚠ packages/ai-assistant/dist not found — run `npm -w @japaflow/ai-assistant build` first.");
+    return;
+  }
+  await mkdir(dst, { recursive: true });
+  await cp(src, dst, { recursive: true });
+  console.log("✓ Copied @japaflow/ai-assistant dist → app-dist/vendor/ai-assistant/");
 }
 
 async function copyConfigStubs() {
@@ -113,6 +127,7 @@ async function main() {
 
   await patchIndexHtml();
   await copyStudentData();
+  await copyAIAssistant();
 
   const audioFrom = join(root, audioDir);
   if (existsSync(audioFrom)) await cp(audioFrom, join(out, audioDir), { recursive: true });

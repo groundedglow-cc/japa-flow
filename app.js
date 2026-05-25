@@ -1444,7 +1444,6 @@ const standardExercises = [
 
 lesson.exercises = standardExercises;
 
-<<<<<<< HEAD
 const lessonCatalog = [
   {
     id: 27,
@@ -1475,49 +1474,6 @@ const lessonCatalog = [
     description: "课程内容尚未采集，后续可继续按同一结构初始化。"
   }
 ];
-=======
-const lessonCatalogMetadata = {
-  25: "これは明日会議で使う資料です",
-  26: "自転車に2人で乗るのは危ないです",
-  27: "子供の時、大きな地震がありました",
-  28: "馬さんはわたしに地図をくれました",
-  29: "電気を消せ",
-  30: "もう11時だから寝よう",
-  31: "このボタンを押すと，電源が入ります",
-  32: "今度の日曜日に遊園地へ行くつもりです",
-  33: "電車が急に止まりました",
-  34: "壁にカレンダーが掛けてあります",
-  35: "明日雨が降ったら，マラソン大会は中止です",
-  36: "遅くなって，すみません",
-  37: "優勝すれば，オリンピックに出場することができます",
-  38: "戴さんは英語が話せます",
-  39: "眼鏡をかけて本を読みます",
-  40: "これから友達と食事に行くところです",
-  41: "李さんは部長にほめられました",
-  42: "テレビをつけたまま，出かけてしまいました",
-  43: "陳さんは，息子をアメリカに留学させます",
-  44: "玄関のところにだれかいるようです",
-  45: "少子化が進んで，日本の人口はだんだん減っていくでしょう",
-  46: "これは柔らかくて，まるで本物の毛皮のようです",
-  47: "周先生は明日日本へ行かれます",
-  48: "お荷物は私がお持ちします"
-};
-
-const lessonCatalog = Array.from({ length: 48 }, (_, index) => {
-  const id = index + 1;
-  const runtimeReady = id === 27;
-  return {
-    id,
-    title: `第${id}课`,
-    subtitle: lessonCatalogMetadata[id] || "待初始化",
-    status: runtimeReady ? "ready" : "pending",
-    description: runtimeReady
-      ? "围绕第 27 课完成单词、语法、课文朗读、标准练习和结果复盘。"
-      : "课程内容尚未采集，后续可继续按同一结构初始化。",
-    runtimeReady
-  };
-});
->>>>>>> b8fffc9d094b22f1a13edcaa3890592cda33ec41
 
 let textStructure = [
   {
@@ -3707,7 +3663,7 @@ function vocab() {
     </div>
     <section class="focus-layout">
       <div>
-        <article class="panel word-focus">
+        <article class="panel word-focus" data-ai-selectable>
           ${testing ? vocabTestPanel(task) : `
             <div class="word-count">${Math.min(state.currentWord + 1, vocabWords.length)}/${vocabWords.length}</div>
             <div class="kana">${word.kana}</div>
@@ -3979,7 +3935,7 @@ function textPage() {
           <span>${textReviewUnlocked(section.id) ? "可针对弱句重读" : "读完当前课文后显示评分"}</span>
         </div>
       </div>
-      <div class="sentence-list">
+      <div class="sentence-list" data-ai-selectable>
         ${renderTextStructure(section)}
       </div>
     </section>
@@ -4145,7 +4101,7 @@ function grammarPage() {
         <div class="nav-divider" aria-hidden="true"></div>
         ${grammarNavGroup("表达及词语讲解", expressionItems)}
       </nav>
-      <article class="panel">
+      <article class="panel" data-ai-selectable>
         ${grammarDetail(grammar)}
       </article>
     </section>
@@ -4873,7 +4829,7 @@ function exercisesPage() {
             </div>
             ${submitted ? `<div class="group-score">本大题 ${correct} / ${scored.length || group.items.length} 正确</div>` : ""}
           </div>
-          <div class="exercise-group-list">
+          <div class="exercise-group-list" data-ai-selectable>
             ${exerciseGroupItems(group, submitted)}
           </div>
         </article>
@@ -5302,7 +5258,7 @@ function wrongBookPage() {
           <button class="secondary" data-nav="/lesson/${lesson.id}/result">结果页</button>
         </div>
       </div>
-      <article class="panel">
+      <article class="panel" data-ai-selectable>
         <div class="exercise-context">
           <span class="exercise-badge">${exercise.category}</span>
           <div class="meta-line"><span class="label">要求</span><span>${exercise.instruction}</span></div>
@@ -6853,6 +6809,29 @@ function render() {
       }
     }
   }
+  syncAIAssistant(current);
+}
+
+// 课内 AI 助手挂载点同步。
+// 助手实现在 @japaflow/ai-assistant 包内，主 app 只负责告诉它当前上下文。
+// 仅在以下学习页显示入口；首页、课程导航、音频/结果/初始化页不显示。
+const AI_ASSISTANT_PAGES = new Set(["text", "grammar", "exercises", "wrongbook", "vocab"]);
+
+function syncAIAssistant(currentPage) {
+  const el = document.querySelector("japa-ai-assistant");
+  if (!el) return;
+  const lessonId = lesson?.id;
+  const lessonTitle = lesson?.title || "";
+  el.setAttribute("context-key", lessonId ? `lesson:${lessonId}` : "default");
+  el.endpoints = { chat: "/api/ai/chat", explain: "/api/ai/explain", health: "/api/ai/health" };
+  el.getContext = () => ({
+    appVersion: "0.1.10",
+    lessonId,
+    lessonTitle,
+    page: currentPage,
+    tab: currentPage === "text" ? state.textCurrentTab : undefined,
+  });
+  el.enabled = (ctx) => AI_ASSISTANT_PAGES.has(ctx?.page);
 }
 
 function ensurePageFocus() {
