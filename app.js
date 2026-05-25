@@ -1444,6 +1444,7 @@ const standardExercises = [
 
 lesson.exercises = standardExercises;
 
+<<<<<<< HEAD
 const lessonCatalog = [
   {
     id: 27,
@@ -1474,6 +1475,49 @@ const lessonCatalog = [
     description: "课程内容尚未采集，后续可继续按同一结构初始化。"
   }
 ];
+=======
+const lessonCatalogMetadata = {
+  25: "これは明日会議で使う資料です",
+  26: "自転車に2人で乗るのは危ないです",
+  27: "子供の時、大きな地震がありました",
+  28: "馬さんはわたしに地図をくれました",
+  29: "電気を消せ",
+  30: "もう11時だから寝よう",
+  31: "このボタンを押すと，電源が入ります",
+  32: "今度の日曜日に遊園地へ行くつもりです",
+  33: "電車が急に止まりました",
+  34: "壁にカレンダーが掛けてあります",
+  35: "明日雨が降ったら，マラソン大会は中止です",
+  36: "遅くなって，すみません",
+  37: "優勝すれば，オリンピックに出場することができます",
+  38: "戴さんは英語が話せます",
+  39: "眼鏡をかけて本を読みます",
+  40: "これから友達と食事に行くところです",
+  41: "李さんは部長にほめられました",
+  42: "テレビをつけたまま，出かけてしまいました",
+  43: "陳さんは，息子をアメリカに留学させます",
+  44: "玄関のところにだれかいるようです",
+  45: "少子化が進んで，日本の人口はだんだん減っていくでしょう",
+  46: "これは柔らかくて，まるで本物の毛皮のようです",
+  47: "周先生は明日日本へ行かれます",
+  48: "お荷物は私がお持ちします"
+};
+
+const lessonCatalog = Array.from({ length: 48 }, (_, index) => {
+  const id = index + 1;
+  const runtimeReady = id === 27;
+  return {
+    id,
+    title: `第${id}课`,
+    subtitle: lessonCatalogMetadata[id] || "待初始化",
+    status: runtimeReady ? "ready" : "pending",
+    description: runtimeReady
+      ? "围绕第 27 课完成单词、语法、课文朗读、标准练习和结果复盘。"
+      : "课程内容尚未采集，后续可继续按同一结构初始化。",
+    runtimeReady
+  };
+});
+>>>>>>> b8fffc9d094b22f1a13edcaa3890592cda33ec41
 
 let textStructure = [
   {
@@ -1539,6 +1583,30 @@ const externalWordDistractors = [
   { id: "d-shibaraku", jp: "久しぶり", kana: "ひさしぶり", cn: "好久不见" },
   { id: "d-kizuku", jp: "気をつけます", kana: "きをつけます", cn: "小心，注意" }
 ];
+
+// ============ OSS (Alibaba Cloud Object Storage) CONFIGURATION ============
+// In web mode, fetched from the server. In native mode, read from window.JAPAFLOW_CONFIG.
+let ossEnabled = false;
+let ossBaseUrl = "";
+
+async function fetchFrontendConfig() {
+  if (IS_NATIVE_APP) {
+    const config = window.JAPAFLOW_CONFIG || {};
+    ossEnabled = Boolean(config.OSS_ENABLED);
+    ossBaseUrl = config.OSS_BASE_URL || "";
+    return;
+  }
+  try {
+    const response = await fetch("/api/frontend-config");
+    const data = await response.json();
+    if (!response.ok || data.error) throw new Error(data.error || "Failed to fetch frontend config");
+    ossEnabled = data.ossEnabled;
+    ossBaseUrl = data.ossBaseUrl;
+  } catch (e) {
+    console.error("fetchFrontendConfig failed:", e.message);
+    // Fall back to defaults (local audio)
+  }
+}
 
 const state = {
   wordProgress: initialWordProgress(),
@@ -1694,10 +1762,13 @@ async function evaluatePronunciationViaAzure(form) {
 let lastAutoSpokenSentence = null;
 let lastAutoSpokenWord = null;
 let pendingAutoSpeakWordId = "";
+let autoWordPlaybackToken = 0;
 let speechPrimed = false;
 let lastHoverSpeech = { text: "", at: 0 };
 let lastKeyAction = { key: "", at: 0 };
 let activeAudio = null;
+let audioPlaybackToken = 0;
+const silentPrerollUrls = new Map();
 let currentSpeechText = "";
 let currentSpeechOnEnded = null;
 let selectionLookupToken = 0;
@@ -1710,6 +1781,22 @@ let audioVersions = read(`lesson:${lesson.id}:audioVersions`, {});
 let runtimeLessonLoadingId = "";
 let runtimeLessonErrorId = "";
 let runtimeLessonError = "";
+
+function parseMarkdown(text) {
+  if (!text) return "";
+  const escaped = escapeHtml(text);
+  return escaped
+    .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
+    .replace(/\*(.+?)\*/g, "<em>$1</em>")
+    .replace(/`(.+?)`/g, "<code>$1</code>")
+    .replace(/^### (.+)$/gm, "<h4>$1</h4>")
+    .replace(/^## (.+)$/gm, "<h3>$1</h3>")
+    .replace(/^# (.+)$/gm, "<h2>$1</h2>")
+    .replace(/^---$/gm, "<hr>")
+    .replace(/^- (.+)$/gm, "<li>$1</li>")
+    .replace(/(<li>.*<\/li>)/s, "<ul>$1</ul>")
+    .replace(/\n/g, "<br>");
+}
 
 function read(key, fallback) {
   try {
@@ -1725,6 +1812,57 @@ function write(key, value) {
 
 function removeStored(key) {
   localStorage.removeItem(`japaflow:${key}`);
+}
+
+function exportLearningData() {
+  const entries = {};
+  for (let index = 0; index < localStorage.length; index += 1) {
+    const key = localStorage.key(index);
+    if (!key?.startsWith("japaflow:")) continue;
+    entries[key] = localStorage.getItem(key);
+  }
+  const payload = {
+    app: "JapaFlow",
+    type: "learning-progress",
+    version: 1,
+    exportedAt: new Date().toISOString(),
+    entries
+  };
+  const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = `japaflow-progress-${new Date().toISOString().slice(0, 10)}.json`;
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+  URL.revokeObjectURL(url);
+}
+
+async function importLearningData(file) {
+  if (!file) return;
+  const text = await file.text();
+  const payload = JSON.parse(text);
+  const entries = payload?.entries;
+  if (payload?.app !== "JapaFlow" || payload?.type !== "learning-progress" || !entries || typeof entries !== "object") {
+    throw new Error("这不是有效的 JapaFlow 学习数据文件。");
+  }
+  const count = Object.keys(entries).filter((key) => key.startsWith("japaflow:")).length;
+  if (!count) throw new Error("导入文件里没有可用的学习数据。");
+  const ok = window.confirm(`导入会覆盖本机已有学习数据，共 ${count} 项。确定继续吗？`);
+  if (!ok) return;
+  const existingKeys = [];
+  for (let index = 0; index < localStorage.length; index += 1) {
+    const key = localStorage.key(index);
+    if (key?.startsWith("japaflow:")) existingKeys.push(key);
+  }
+  existingKeys.forEach((key) => localStorage.removeItem(key));
+  Object.entries(entries).forEach(([key, value]) => {
+    if (!key.startsWith("japaflow:")) return;
+    localStorage.setItem(key, String(value));
+  });
+  window.alert("学习数据已导入，页面将刷新。");
+  location.reload();
 }
 
 function normalizeRuntimeLesson(data) {
@@ -1750,6 +1888,18 @@ function restoreBundledLesson() {
   reloadLessonScopedState();
 }
 
+function lessonAudioVoiceId() {
+  return lesson.audioVoiceId || lesson.voiceId || defaultVoiceId;
+}
+
+function lessonCurrentVoiceId() {
+  const preferred = lessonAudioVoiceId();
+  const stored = read(`lesson:${lesson.id}:currentVoiceId`, "");
+  if (!stored) return preferred;
+  if (preferred !== defaultVoiceId && stored === defaultVoiceId) return preferred;
+  return stored;
+}
+
 function reloadLessonScopedState() {
   stopCurrentAudio();
   state.wordProgress = initialWordProgress();
@@ -1761,7 +1911,7 @@ function reloadLessonScopedState() {
   state.wrongPractice = { current: 0, answer: "", submitted: false, result: null };
   state.interactionProgress = initialInteractionProgress();
   state.grammarPractice = initialGrammarPractice();
-  state.currentVoiceId = read(`lesson:${lesson.id}:currentVoiceId`, defaultVoiceId);
+  state.currentVoiceId = lessonCurrentVoiceId();
   state.audioStatus = null;
   state.audioStatusVoiceId = "";
   state.audioBusy = "";
@@ -2066,9 +2216,22 @@ function textSectionById(tabId) {
   return textStructure.find((section) => section.id === tabId) || textStructure[0];
 }
 
+function textSectionGroups(section) {
+  if (!section) return [];
+  if (Array.isArray(section.groups)) return section.groups;
+  if (Array.isArray(section.sentenceIds)) {
+    return [{
+      title: section.title || "课文",
+      kind: section.kind || "statement",
+      ids: section.sentenceIds
+    }];
+  }
+  return [];
+}
+
 function textSentencesForTab(tabId) {
   const section = textSectionById(tabId);
-  return section.groups.flatMap((group) => group.ids.map((id) => sentenceById(id)).filter(Boolean));
+  return textSectionGroups(section).flatMap((group) => (group.ids || []).map((id) => sentenceById(id)).filter(Boolean));
 }
 
 function textSentenceIdsForTab(tabId) {
@@ -2103,7 +2266,7 @@ function currentTextSentence() {
 }
 
 function textTabIdForSentence(sentenceId) {
-  return textStructure.find((section) => section.groups.some((group) => group.ids.includes(sentenceId)))?.id || "basic";
+  return textStructure.find((section) => textSectionGroups(section).some((group) => (group.ids || []).includes(sentenceId)))?.id || "basic";
 }
 
 function setTextTab(tabId, sentenceIndex = 0) {
@@ -2152,38 +2315,6 @@ function grammarById(id) {
   return lesson.grammar.find((grammar) => grammar.id === id);
 }
 
-const grammarClozeTargets = {
-  g1: ["子供の時", "映画を見る時", "学生の時", "入る時", "小さい時", "休みの時", "朝や夕方の涼しい時"],
-  g2: ["見ながら", "しながら", "踊りながら", "遊びながら"],
-  g3: ["でしょう？"],
-  g4: ["しています", "していました", "している", "集まっている"],
-  g5: ["仕事で"],
-  g6: ["と会っていた"],
-  g7: ["アルバイトをしながら"],
-  g8: ["学校に通っている", "学校に通っています"],
-  g9: ["大勢の人", "大勢の"],
-  g10: ["お年寄り"],
-  g11: ["そう言えば"],
-  g12: ["へえ"],
-  g13: ["有料", "入園料"]
-};
-
-function grammarExampleTarget(grammar, sentenceText) {
-  const candidates = grammarClozeTargets[grammar.id] || [];
-  return candidates.find((candidate) => sentenceText.includes(candidate)) || "";
-}
-
-function grammarExampleCloze(grammar, sentenceText) {
-  const target = grammarExampleTarget(grammar, sentenceText);
-  if (!target) {
-    return { target: "", cloze: sentenceText.replace(/[^\s、。？]+/, "＿＿＿＿") };
-  }
-  return {
-    target,
-    cloze: sentenceText.replace(target, "＿＿＿＿")
-  };
-}
-
 function sanitizeAudioPath(path) {
   return path ? `${path}?v=${audioVersions[path] || 0}` : "";
 }
@@ -2218,15 +2349,25 @@ function speak(text, onEnded) {
 
 function audioUrl(type, id) {
   const lid = routeRuntimeLessonId() || String(lesson.id);
+  let relative;
   if (state.currentVoiceId && (state.currentVoiceId !== defaultVoiceId || lid !== String(bundledLessonRuntime.lesson.id))) {
-    return `/audio/lesson${lid}/voices/${state.currentVoiceId}/${type}s/${id}.mp3`;
+    relative = `/audio/lesson${lid}/voices/${state.currentVoiceId}/${type}s/${id}.mp3`;
+  } else {
+    relative = `/audio/lesson${lid}/${type}s/${id}.mp3`;
   }
-  return `/audio/lesson${lid}/${type}s/${id}.mp3`;
+  if (ossEnabled && ossBaseUrl) return `${ossBaseUrl}${relative}`;
+  return relative;
 }
 
 function managedAudioUrl(voiceId, type, id) {
-  if (voiceId === defaultVoiceId && String(lesson.id) === String(bundledLessonRuntime.lesson.id)) return `/audio/lesson${lesson.id}/${type}s/${id}.mp3`;
-  return `/audio/lesson${lesson.id}/voices/${voiceId}/${type}s/${id}.mp3`;
+  let relative;
+  if (voiceId === defaultVoiceId && String(lesson.id) === String(bundledLessonRuntime.lesson.id)) {
+    relative = `/audio/lesson${lesson.id}/${type}s/${id}.mp3`;
+  } else {
+    relative = `/audio/lesson${lesson.id}/voices/${voiceId}/${type}s/${id}.mp3`;
+  }
+  if (ossEnabled && ossBaseUrl) return `${ossBaseUrl}${relative}`;
+  return relative;
 }
 
 function extraExampleAudioUrl(grammarId, index) {
@@ -2234,7 +2375,7 @@ function extraExampleAudioUrl(grammarId, index) {
 }
 
 function isIncorrectGrammarExample(example) {
-  const text = String(example?.text || "").trim();
+  const text = String(lessonTextValue(example)).trim();
   return Boolean(example?.isIncorrect || example?.incorrect || example?.correct === false || /^[×xX✕]/.test(text));
 }
 
@@ -2242,56 +2383,152 @@ function cleanGrammarExampleText(text) {
   return String(text || "").trim().replace(/^[×xX✕]\s*/, "");
 }
 
+function lessonTextValue(value) {
+  if (!value) return "";
+  if (typeof value === "string") return value;
+  return value.text || value.jp || value.kana || "";
+}
+
 function normalizedGrammarExtraExamples(grammar) {
   return (grammar.extraExamples || [])
     .map((example, index) => ({
       ...example,
       sourceIndex: index,
-      text: cleanGrammarExampleText(example.text),
+      text: cleanGrammarExampleText(lessonTextValue(example)),
+      translation: example.translation || example.cn || "",
       isIncorrect: isIncorrectGrammarExample(example)
     }))
     .filter((example) => example.text);
 }
 
-function playAudio(text, audio, onEnded) {
+function playAudio(text, audio, onEnded, options = {}) {
   stopCurrentAudio();
   if ("speechSynthesis" in window) speechSynthesis.cancel();
   currentSpeechText = "";
   currentSpeechOnEnded = null;
   if (audio) {
-    activeAudio = new Audio(sanitizeAudioPath(audio));
-    activeAudio.preload = "auto";
-    activeAudio.playbackRate = state.playbackRate;
-    activeAudio.currentTime = 0;
+    const token = ++audioPlaybackToken;
+    const audioEl = new Audio(sanitizeAudioPath(audio));
+    activeAudio = audioEl;
+    audioEl.preload = "auto";
+    audioEl.playbackRate = state.playbackRate;
+    audioEl.currentTime = 0;
     const start = () => {
-      if (!activeAudio) return;
-      activeAudio.playbackRate = state.playbackRate;
-      activeAudio.currentTime = 0;
-      activeAudio.play().catch(() => {
-        activeAudio = null;
-        speak(text);
-      });
+      if (activeAudio !== audioEl || token !== audioPlaybackToken) return;
+      const playNow = () => {
+        if (activeAudio !== audioEl || token !== audioPlaybackToken) return;
+        audioEl.playbackRate = state.playbackRate;
+        audioEl.currentTime = 0;
+        audioEl.play().catch(() => {
+          if (activeAudio === audioEl) activeAudio = null;
+          speak(text, onEnded);
+        });
+      };
+      if (options.startDelayMs) {
+        window.setTimeout(playNow, options.startDelayMs);
+        return;
+      }
+      playNow();
     };
-    if (activeAudio.readyState >= 2) {
+    const fallbackToSpeech = () => {
+      if (activeAudio !== audioEl || token !== audioPlaybackToken) return;
+      if (activeAudio === audioEl) activeAudio = null;
+      speak(text, onEnded);
+    };
+    if (audioEl.readyState >= 2) {
       start();
     } else {
-      activeAudio.addEventListener("canplaythrough", start, { once: true });
-      activeAudio.load();
+      audioEl.addEventListener("canplay", start, { once: true });
+      audioEl.load();
     }
-    activeAudio.addEventListener("ended", () => {
+    audioEl.addEventListener("ended", () => {
+      if (activeAudio !== audioEl || token !== audioPlaybackToken) return;
       activeAudio = null;
       if (onEnded) onEnded();
     }, { once: true });
-    activeAudio.addEventListener("error", () => {
-      activeAudio = null;
-      speak(text, onEnded);
-    }, { once: true });
+    audioEl.addEventListener("error", fallbackToSpeech, { once: true });
     return;
   }
   speak(text, onEnded);
 }
 
+function silentPrerollUrl(durationMs = 650) {
+  const key = Math.max(100, Math.floor(durationMs));
+  if (silentPrerollUrls.has(key)) return silentPrerollUrls.get(key);
+  const sampleRate = 8000;
+  const samples = Math.ceil(sampleRate * key / 1000);
+  const bytesPerSample = 2;
+  const dataSize = samples * bytesPerSample;
+  const buffer = new ArrayBuffer(44 + dataSize);
+  const view = new DataView(buffer);
+  const writeString = (offset, value) => {
+    for (let index = 0; index < value.length; index += 1) {
+      view.setUint8(offset + index, value.charCodeAt(index));
+    }
+  };
+  writeString(0, "RIFF");
+  view.setUint32(4, 36 + dataSize, true);
+  writeString(8, "WAVE");
+  writeString(12, "fmt ");
+  view.setUint32(16, 16, true);
+  view.setUint16(20, 1, true);
+  view.setUint16(22, 1, true);
+  view.setUint32(24, sampleRate, true);
+  view.setUint32(28, sampleRate * bytesPerSample, true);
+  view.setUint16(32, bytesPerSample, true);
+  view.setUint16(34, 16, true);
+  writeString(36, "data");
+  view.setUint32(40, dataSize, true);
+  const url = URL.createObjectURL(new Blob([buffer], { type: "audio/wav" }));
+  silentPrerollUrls.set(key, url);
+  return url;
+}
+
+function playAudioAfterSilentPreroll(text, audio, onEnded, prerollMs = 650) {
+  stopCurrentAudio();
+  if ("speechSynthesis" in window) speechSynthesis.cancel();
+  currentSpeechText = "";
+  currentSpeechOnEnded = null;
+  const token = ++audioPlaybackToken;
+  const silentAudio = new Audio(silentPrerollUrl(prerollMs));
+  activeAudio = silentAudio;
+  silentAudio.preload = "auto";
+  const continueToWord = () => {
+    if (activeAudio !== silentAudio || token !== audioPlaybackToken) return;
+    activeAudio = null;
+    playAudio(text, audio, onEnded);
+  };
+  silentAudio.addEventListener("ended", continueToWord, { once: true });
+  silentAudio.addEventListener("error", continueToWord, { once: true });
+  silentAudio.play().catch(() => {
+    if (activeAudio === silentAudio) activeAudio = null;
+    playAudio(text, audio, onEnded);
+  });
+}
+
+function scheduleAutoWordAudio(word, delayMs = 650) {
+  const token = ++autoWordPlaybackToken;
+  const wordId = word?.id || "";
+  const text = word?.jp || "";
+  if (!wordId || !text) return;
+  const audio = audioUrl("word", wordId);
+  window.requestAnimationFrame(() => {
+    window.requestAnimationFrame(() => {
+      window.setTimeout(() => {
+        if (token !== autoWordPlaybackToken) return;
+        if (route().page !== "vocab") return;
+        if (state.vocabPhase !== "pronunciation" && state.vocabPhase !== "test") return;
+        if (state.vocabPhase === "pronunciation" && activeVocabulary()[state.currentWord]?.id !== wordId) return;
+        if (state.recordingWordId || state.recordingPreparingWordId || state.recordingStoppingWordId) return;
+        playAudioAfterSilentPreroll(text, audio, null, 700);
+      }, delayMs);
+    });
+  });
+}
+
 function stopCurrentAudio() {
+  audioPlaybackToken += 1;
+  autoWordPlaybackToken += 1;
   if (!activeAudio) return;
   activeAudio.pause();
   activeAudio.currentTime = 0;
@@ -2379,6 +2616,7 @@ const exerciseRubyEntries = [
   ["展覧会", "てんらんかい"],
   ["新しい企画", "あたらしいきかく"],
   ["食事の準備", "しょくじのじゅんび"],
+  ["食事", "しょくじ"],
   ["1か月会社", "いっかげつかいしゃ"],
   ["海外旅行", "かいがいりょこう"],
   ["携帯電話", "けいたいでんわ"],
@@ -2511,6 +2749,7 @@ const exerciseRubyEntries = [
   ["散歩", "さんぽ"],
   ["お茶", "おちゃ"],
   ["音楽", "おんがく"],
+  ["中国", "ちゅうごく"],
   ["笑", "わら"],
   ["道具", "どうぐ"],
   ["食堂", "しょくどう"],
@@ -2557,7 +2796,12 @@ const exerciseRubyEntries = [
 
 function renderExerciseText(value, options = {}) {
   const source = String(value || "");
-  let html = options.kana ? rubyTextFromKana(source, options.kana) || rubyExerciseText(source) : rubyExerciseText(source);
+  const allowStaticFallback = options.allowStaticFallback !== false;
+  let html = options.kana
+    ? rubyTextFromKana(source, options.kana) || (allowStaticFallback ? rubyExerciseText(source) : escapeHtml(source))
+    : allowStaticFallback
+      ? rubyExerciseText(source)
+      : escapeHtml(source);
   html = html.replace(/__([\s\S]+?)__/g, `<span class="example-underline">$1</span>`);
   if (options.exampleBreaks) {
     html = html
@@ -2571,6 +2815,31 @@ function renderExerciseText(value, options = {}) {
 
 function renderJapaneseText(value, options = {}) {
   return renderExerciseText(value, options);
+}
+
+function exerciseQuestionHtml(exercise) {
+  return renderExerciseText(exercise?.question || "", { kana: exercise?.questionKana, allowStaticFallback: false });
+}
+
+function exerciseExampleHtml(exercise, example = exercise?.example || "") {
+  return renderExerciseText(example, { kana: exercise?.exampleKana, exampleBreaks: true, allowStaticFallback: false });
+}
+
+function exerciseAnswerHtml(exercise, value = exercise?.answer || "") {
+  return renderExerciseText(value, { kana: exercise?.answerKana, allowStaticFallback: false });
+}
+
+function exerciseReferenceAnswerHtml(exercise, value, index) {
+  const kana = Array.isArray(exercise?.referenceAnswerKana) ? exercise.referenceAnswerKana[index] : "";
+  return renderExerciseText(value, { kana: kana || (value === exercise?.answer ? exercise?.answerKana : ""), allowStaticFallback: false });
+}
+
+function exerciseCorrectAnswerHtml(exercise, fallback = "暂无标准答案") {
+  const references = Array.isArray(exercise?.referenceAnswers) ? exercise.referenceAnswers.filter(Boolean) : [];
+  if (references.length) {
+    return references.map((value, index) => exerciseReferenceAnswerHtml(exercise, value, index)).join(" / ");
+  }
+  return exercise?.answer ? exerciseAnswerHtml(exercise) : fallback;
 }
 
 function rubyTextFromKana(source, kana) {
@@ -2968,7 +3237,7 @@ function layout(content) {
   const current = currentRoute.page;
   const runtimeLessonId = routeRuntimeLessonId();
   const inLesson = Boolean(runtimeLessonId);
-  const showLessonSubnav = inLesson && current !== "init";
+  const showLessonSubnav = inLesson && ["vocab", "grammar", "text", "exercises", "wrongbook", "result"].includes(current);
   return `
     <div class="shell">
       <header class="topbar">
@@ -2980,10 +3249,20 @@ function layout(content) {
           ${navLink("/", "首页", current === "home")}
           ${inLesson ? navLink(`/lesson/${runtimeLessonId}`, "课程", current === "lesson") : ""}
         </nav>
-        <div class="playback-control" aria-label="播放速度">
-          ${[1, 0.6, 0.8, 1.2, 1.5].map((rate) => `
-            <button class="playback-rate ${state.playbackRate === rate ? "active" : ""}" data-playback-rate="${rate}" type="button">${rate.toFixed(1)}x</button>
-          `).join("")}
+        <div class="topbar-actions">
+          <div class="playback-control" aria-label="播放速度">
+            ${[1, 0.6, 0.8, 1.2, 1.5].map((rate) => `
+              <button class="playback-rate ${state.playbackRate === rate ? "active" : ""}" data-playback-rate="${rate}" type="button">${rate.toFixed(1)}x</button>
+            `).join("")}
+          </div>
+          <div class="manage-menu progress-menu">
+            <button class="manage-trigger progress-trigger" type="button" aria-label="学习数据菜单">...</button>
+            <div class="manage-dropdown progress-dropdown">
+              <button type="button" data-export-progress>导出</button>
+              <button type="button" data-import-progress-trigger>导入</button>
+            </div>
+          </div>
+          <input class="hidden" type="file" accept="application/json,.json" data-import-progress-file />
         </div>
       </header>
       ${showLessonSubnav ? lessonSubnav(runtimeLessonId, current) : ""}
@@ -3013,6 +3292,11 @@ function lessonSubnav(lessonId, current) {
 
 function home() {
   const catalog = courseCatalogItems();
+  const pageSize = 12;
+  const pageCount = Math.max(1, Math.ceil(catalog.length / pageSize));
+  const currentPage = currentHomePage(pageCount);
+  const start = (currentPage - 1) * pageSize;
+  const pageItems = catalog.slice(start, start + pageSize);
   return layout(`
     <section class="course-home">
       <div class="page-head">
@@ -3021,13 +3305,42 @@ function home() {
           <h1>选择一课开始学习</h1>
           <p class="lead">首页只负责选课和总览。进入具体课次后，再完成单词、语法、课文、练习和结果复盘。</p>
         </div>
+        ${homePagination(currentPage, pageCount)}
       </div>
       <div class="course-grid">
-        ${catalog.map((item) => courseCard(item)).join("")}
+        ${pageItems.map((item) => courseCard(item)).join("")}
       </div>
       ${state.lessonCatalogMessage ? `<p class="form-error">${escapeHtml(state.lessonCatalogMessage)}</p>` : ""}
     </section>
   `);
+}
+
+function currentHomePage(pageCount) {
+  const value = Number(new URLSearchParams(location.search).get("page"));
+  if (!Number.isFinite(value) || value < 1) return 1;
+  return clamp(Math.floor(value), 1, pageCount);
+}
+
+function homePagePath(page) {
+  const params = new URLSearchParams(location.search);
+  params.set("page", String(page));
+  const query = params.toString();
+  return query ? `/?${query}` : "/";
+}
+
+function homePagination(currentPage, pageCount) {
+  const pages = Array.from({ length: pageCount }, (_, index) => index + 1);
+  return `
+    <nav class="home-pagination" aria-label="课程分页">
+      <button class="secondary compact-action" type="button" ${currentPage <= 1 ? "disabled" : `data-nav="${homePagePath(currentPage - 1)}"`}>上一页</button>
+      <div class="page-number-row">
+        ${pages.map((page) => `
+          <button class="page-number ${page === currentPage ? "active" : ""}" type="button" ${page === currentPage ? "aria-current=\"page\"" : `data-nav="${homePagePath(page)}"`}>${page}</button>
+        `).join("")}
+      </div>
+      <button class="secondary compact-action" type="button" ${currentPage >= pageCount ? "disabled" : `data-nav="${homePagePath(currentPage + 1)}"`}>下一页</button>
+    </nav>
+  `;
 }
 
 function runtimeLoadingPage(lessonId) {
@@ -3061,10 +3374,6 @@ function courseCatalogItems() {
         ...(state.lessonCatalogStatus.find((entry) => Number(entry.id) === Number(item.id)) || {})
       }))
     : lessonCatalog;
-  // 学员模式只展示可学习的课程（已绑定运行时 / 已初始化），过滤掉待初始化的占位卡片。
-  if (!ADMIN_MODE) {
-    return base.filter((item) => (item.status === "ready" && item.runtimeReady !== false) || item.status === "initialized");
-  }
   return base;
 }
 
@@ -3072,7 +3381,7 @@ function courseCard(item) {
   const runtimeReady = item.status === "ready" && item.runtimeReady !== false;
   const initialized = item.status === "initialized";
   const invalid = item.status === "invalid";
-  const cardNav = runtimeReady || initialized ? "" : `data-nav="/lesson/${item.id}/init"`;
+  const cardNav = runtimeReady || initialized || !ADMIN_MODE ? "" : `data-nav="/lesson/${item.id}/init"`;
   const summary = runtimeReady ? lessonProgressSummary() : null;
   const status = runtimeReady
     ? lessonStudyStatus(summary)
@@ -3148,7 +3457,7 @@ function lessonDashboard() {
       </div>
       <div class="module-grid">
         ${moduleCard("单词", "先完成全词表发音与打乱测试。", summary.vocab, `/lesson/${lesson.id}/vocab`)}
-        ${moduleCard("语法", "围绕核心例句完成填空和跟读。", summary.grammar, `/lesson/${lesson.id}/grammar`)}
+        ${moduleCard("语法", "围绕核心例句完成中译日和跟读。", summary.grammar, `/lesson/${lesson.id}/grammar`)}
         ${moduleCard("课文", "按基本课文和应用课文连续朗读，再复盘弱句。", summary.text, `/lesson/${lesson.id}/text`)}
         ${moduleCard("练习", "使用标准练习做最终验收。", summary.exercises, `/lesson/${lesson.id}/exercises`)}
         ${moduleCard("结果", `当前弱项 ${summary.weak.total} 个。`, { completed: summary.weak.resolved, total: summary.weak.total }, `/lesson/${lesson.id}/result`)}
@@ -3433,6 +3742,7 @@ function vocabTestPanel(task) {
   }
   const word = wordById(task.wordId);
   const options = testOptions(word, task.type);
+  const optionLabels = ["A", "B", "C", "D"];
   const label = task.type === "audioToWord" ? "听音选日文" : "日文选中文";
   return `
     <div class="recall-box">
@@ -3448,16 +3758,22 @@ function vocabTestPanel(task) {
         </div>
       ` : ""}
       <div class="choices compact">
-        ${options.map((item) => {
+        ${options.map((item, index) => {
           const selected = state.vocabReveal?.selectedWordId === item.id;
           const correctAnswer = state.vocabReveal && item.id === word.id;
           const revealed = Boolean(state.vocabReveal);
           const classes = ["choice"];
           if (revealed && correctAnswer) classes.push("correct");
           if (revealed && selected && !correctAnswer) classes.push("wrong");
-          return `<button class="${classes.join(" ")}" data-word-quiz="${task.type}:${item.id}" ${revealed ? "disabled" : ""}>${task.type === "audioToWord" ? item.jp : item.cn}</button>`;
+          return `
+            <button class="${classes.join(" ")}" data-word-quiz="${task.type}:${item.id}" ${revealed ? "disabled" : ""}>
+              <span class="choice-key">${optionLabels[index]}</span>
+              <span>${task.type === "audioToWord" ? item.jp : item.cn}</span>
+            </button>
+          `;
         }).join("")}
       </div>
+      <p class="hint compact-hint">也可以按键盘 A / B / C / D 选择对应选项。</p>
       ${state.recallResult ? `<p class="hint">${state.recallResult}</p>` : ""}
     </div>
   `;
@@ -3475,6 +3791,21 @@ function testOptions(word, type) {
     .slice(0, 3)
     .map(({ item }) => item);
   return [word, ...candidates].sort((a, b) => stableOptionOrder(a.id) - stableOptionOrder(b.id));
+}
+
+function chooseVocabTestOptionByKey(key) {
+  if (state.vocabPhase !== "test" || state.vocabReveal) return false;
+  const letter = String(key || "").toUpperCase();
+  const index = ["A", "B", "C", "D"].indexOf(letter);
+  if (index < 0) return false;
+  const task = currentVocabTestTask();
+  if (!task) return false;
+  const word = wordById(task.wordId);
+  if (!word) return false;
+  const option = testOptions(word, task.type)[index];
+  if (!option) return false;
+  handleWordQuiz(task.type, option.id);
+  return true;
 }
 
 function wordSimilarity(base, candidate) {
@@ -3506,6 +3837,7 @@ function setCurrentWord(index, shouldSpeak = false) {
     startVocabTest();
     return;
   }
+  stopCurrentAudio();
   state.currentWord = nextIndex;
   state.vocabPhase = "pronunciation";
   state.recallResult = "";
@@ -3599,10 +3931,10 @@ function textGroupProgress(ids) {
 
 function renderTextStructure(section) {
   if (!section) return "";
-  return section.groups.map((group) => `
+  return textSectionGroups(section).map((group) => `
     <section class="text-section">
       <div class="text-group-title">
-        <span>${group.title}</span>
+        <span>${escapeHtml(group.title)}${group.note ? `<small>${escapeHtml(group.note)}</small>` : ""}</span>
         <span class="text-group-progress">${textGroupProgress(group.ids)}</span>
       </div>
       <div class="${group.kind === "statements" ? "statement-group" : "dialogue-group"}">
@@ -3677,7 +4009,7 @@ function sentencePracticeBlock(item, tabId, practice, current) {
 
 function sentencePosition(sentenceId) {
   for (const section of textStructure) {
-    for (const group of section.groups) {
+    for (const group of textSectionGroups(section)) {
       if (group.ids.includes(sentenceId)) return `${section.title} · ${group.title}`;
     }
   }
@@ -3825,13 +4157,8 @@ function grammarPracticeMastered(practice) {
   return Boolean(practice.correct && practice.pronunciationPassed);
 }
 
-function grammarExampleTargetTone(sentence) {
-  return sentence.translation || sentence.kana || "请补全上面的关键语法点。";
-}
-
-function renderGrammarCloze(grammar, sentence) {
-  const { target, cloze } = grammarExampleCloze(grammar, sentence.text);
-  return { target, cloze: target ? cloze : sentence.text };
+function grammarExamplePromptText(sentence) {
+  return sentence.translation || sentence.cn || "请将中文翻译成日语。";
 }
 
 function grammarDetail(grammar) {
@@ -3891,7 +4218,7 @@ function grammarDetail(grammar) {
             <div class="related-exercise-row">
               <span class="related-exercise-no">${index + 1}</span>
               <span class="exercise-badge">${exercise.category}</span>
-              <span class="related-exercise-title">${escapeHtml(exercise.groupTitle)} · ${renderJapaneseText(exercise.question)}</span>
+              <span class="related-exercise-title">${escapeHtml(exercise.groupTitle)} · ${exerciseQuestionHtml(exercise)}</span>
               <button class="secondary compact-action" data-exercise-index="${index}">去练习</button>
             </div>
           `).join("") : "<span class='muted'>暂无相关练习。</span>"}
@@ -3904,22 +4231,21 @@ function grammarDetail(grammar) {
 function grammarExamplePracticeCard(grammar, item, index) {
   const sentence = item.sentence;
   const practice = grammarPracticeState(grammar.id, item.id);
-  const { target, cloze } = renderGrammarCloze(grammar, sentence);
-  const clozeText = target ? cloze : sentence.text;
   const ready = practice.submitted;
   const mastered = grammarPracticeMastered(practice);
   const judgementReady = ready && practice.pronunciationAttempts > 0;
   const statusClass = mastered ? "passed" : judgementReady ? "failed" : "pending";
-  const targetText = target || sentence.text;
+  const targetText = sentence.text;
   const locationText = item.kind === "extra" ? "补充例句" : sentencePosition(sentence.id);
   const collapsed = Boolean(practice.collapsed);
+  const promptText = grammarExamplePromptText(sentence);
   return `
     <article class="grammar-practice-card ${statusClass} ${collapsed ? "collapsed" : ""}">
       <div class="grammar-practice-head">
         <div class="grammar-practice-head-main">
           <span class="grammar-practice-no">${index + 1}</span>
           <div>
-            <strong>${grammarExampleTargetTone(sentence)}</strong>
+            <strong>${promptText}</strong>
             <small>${locationText}</small>
           </div>
         </div>
@@ -3931,20 +4257,20 @@ function grammarExamplePracticeCard(grammar, item, index) {
       </div>
       ${ready ? `
         <div class="grammar-answer-inline ${practice.correct ? "passed" : "failed"}">
-          <div class="diff-line">填空结果：${practice.correct ? "正确" : "错误"}；标准答案：${renderJapaneseText(targetText, { kana: sentence.kana })}</div>
+          <div class="diff-line">翻译结果：${practice.correct ? "正确" : "错误"}；标准答案：${renderJapaneseText(targetText, { kana: sentence.kana })}</div>
         </div>
       ` : ""}
       <div class="grammar-practice-body ${collapsed ? "collapsed" : ""}">
-        <div class="grammar-practice-cloze">${renderJapaneseText(clozeText, { kana: target ? "" : sentence.kana })}</div>
+        <div class="grammar-practice-cloze grammar-prompt-cn">${escapeHtml(promptText)}</div>
         <div class="grammar-practice-form">
-          <input class="answer-input" data-grammar-answer="${grammarPracticeKey(grammar.id, item.id)}" value="${escapeHtml(practice.answer || "")}" placeholder="补全空缺部分" />
+          <input class="answer-input" data-grammar-answer="${grammarPracticeKey(grammar.id, item.id)}" value="${escapeHtml(practice.answer || "")}" placeholder="翻译中文为日语" />
           <button class="primary" data-grammar-check="${grammarPracticeKey(grammar.id, item.id)}">检查</button>
         </div>
         ${grammarPronunciationPanel(grammar, item)}
       ${judgementReady ? `
         <div class="grammar-practice-result ${mastered ? "passed" : "failed"}">
           <strong>${mastered ? "已会" : "需复习"}</strong>
-          <span>${mastered ? "填空和跟读都已通过。" : practice.correct ? "填空已对，继续完成跟读。" : "先补全关键语法点，再进行跟读。"} </span>
+          <span>${mastered ? "翻译和跟读都已通过。" : practice.correct ? "翻译已对，继续完成跟读。" : "先把中文翻成日语，再进行跟读。"} </span>
         </div>
       ` : ""}
       </div>
@@ -4031,7 +4357,7 @@ function handleGrammarPracticeCheck(key) {
   const item = grammarPracticeItemByKey(grammar, exampleId);
   if (!item) return;
   const practice = grammarPracticeState(grammarId, exampleId);
-  const target = grammarPracticeTargetText(grammar, item);
+  const target = item.sentence?.text || "";
   const correct = normalizeForDiff(practice.answer || "") === normalizeForDiff(target || "");
   updateGrammarPractice(grammarId, exampleId, {
     submitted: true,
@@ -4077,12 +4403,6 @@ function grammarPracticeItemByKey(grammar, exampleId) {
     if (sentence) return { kind: "core", id: core, sentence };
   }
   return null;
-}
-
-function grammarPracticeTargetText(grammar, item) {
-  if (!item?.sentence?.text) return "";
-  const { target } = grammarExampleCloze(grammar, item.sentence.text);
-  return target || item.sentence.text;
 }
 
 function audioManagePage() {
@@ -4152,6 +4472,7 @@ const initBuckets = [
   { id: "text", label: "课文", hint: "基本课文、应用课文、对话和翻译。" },
   { id: "grammar", label: "语法", hint: "语法解释、接续、用法、教材例句和补充例句。" },
   { id: "vocabulary", label: "单词", hint: "单词表、假名、中文释义。" },
+  { id: "word", label: "单词页", hint: "单词专页或补充词汇页。" },
   { id: "exercises", label: "练习", hint: "练习题、例题、选项、答案和说明，题目不能丢。" }
 ];
 
@@ -4186,9 +4507,11 @@ function initImportPreview() {
 function initStepState(status) {
   const parseConfirmed = Boolean(status?.state?.parseConfirmed);
   const audioConfirmed = Boolean(status?.state?.audioConfirmed);
+  const lessonSaved = Boolean(status?.lessonSaved);
+  const audioComplete = Boolean(status?.audio?.total) && !status?.audio?.missing;
   return {
-    parse: audioConfirmed ? "done" : parseConfirmed ? "done" : status?.draft ? "review" : "active",
-    audio: audioConfirmed ? "done" : parseConfirmed ? "active" : "locked"
+    parse: audioConfirmed || parseConfirmed || lessonSaved ? "done" : status?.draft ? "review" : "active",
+    audio: audioConfirmed ? "done" : parseConfirmed || lessonSaved || audioComplete ? "active" : "locked"
   };
 }
 
@@ -4205,6 +4528,7 @@ function initPage() {
   const item = initCatalogItem();
   const status = state.initStatus;
   const draft = status?.draft;
+  const inferredImages = initBuckets.some((bucket) => (status?.images?.[bucket.id] || []).some((image) => image.source === "by-lesson"));
   const codexTask = status?.codexTask || status?.state?.codexTaskPath ? {
     taskPath: status?.codexTask?.taskPath || status?.state?.codexTaskPath,
     taskUrl: status?.codexTask?.taskUrl || `/data/lesson-init/lesson${item.id}-codex-task.md`,
@@ -4213,22 +4537,25 @@ function initPage() {
   const summary = initDraftSummary(draft);
   const steps = initStepState(status);
   const audio = status?.audio || { items: [], generated: 0, missing: 0, total: 0 };
+  const lessonSaved = Boolean(status?.lessonSaved);
+  const hasConfirmedOrSavedLesson = Boolean(status?.state?.parseConfirmed || lessonSaved);
+  const canConfirmAudio = Boolean((hasConfirmedOrSavedLesson || audio.total) && audio.total && !audio.missing && !state.initBusy);
   const audioHint = initAudioHint(status, audio);
   const draftText = draft ? escapeHtml(JSON.stringify(draft, null, 2)) : "";
   return layout(`
     <section class="init-page">
-      <div class="page-head">
+      <div class="page-head init-page-head">
         <div>
           <p class="eyebrow">${item.title} · 课程初始化</p>
           <h1>${item.subtitle}</h1>
-          <p class="lead">先上传四类教材图片并解析为课程数据，确认无误后再生成所有标准音频。</p>
+          <p class="lead">${inferredImages ? "系统已从 course-assets/by-lesson 自动匹配教材图片。直接生成 Codex 解析任务，确认无误后再生成标准音频。" : "先上传教材图片并解析为课程数据，确认无误后再生成所有标准音频。"}</p>
         </div>
         <div class="button-row">
           <button class="secondary" data-nav="/">返回首页</button>
         </div>
       </div>
       ${state.initMessage ? `<p class="hint">${escapeHtml(state.initMessage)}</p>` : ""}
-      ${state.initBusy ? `<div class="locked-panel">${escapeHtml(state.initBusy)}</div>` : ""}
+      ${state.initBusy ? `<div class="locked-panel init-busy-panel ${isInitAudioBusy() ? "loading" : ""}">${isInitAudioBusy() ? "<span class=\"loading-spinner\" aria-hidden=\"true\"></span>" : ""}<span>${escapeHtml(state.initBusy)}</span></div>` : ""}
       <div class="init-steps">
         <article class="panel init-step ${steps.parse}">
           <div class="init-step-head">
@@ -4265,7 +4592,7 @@ function initPage() {
             <div class="button-row">
               <button class="primary" data-init-confirm-parse ${state.initBusy ? "disabled" : ""}>确认解析结果</button>
             </div>
-          ` : `<p class="muted">上传图片后生成 Codex 解析任务。确认前请重点检查练习题、语法例句和课文句子是否完整。</p>`}
+          ` : `<p class="muted">${inferredImages ? "已自动匹配教材图片。点击“生成 Codex 解析任务”即可得到可执行命令；确认前请重点检查练习题、语法例句和课文句子是否完整。" : "上传图片后生成 Codex 解析任务。确认前请重点检查练习题、语法例句和课文句子是否完整。"}</p>`}
         </article>
 
         <article class="panel init-step ${steps.audio}">
@@ -4275,8 +4602,8 @@ function initPage() {
               <h2>2. 音频生成</h2>
             </div>
             <div class="button-row">
-              <button class="primary" data-init-generate-audio ${!status?.state?.parseConfirmed || state.initBusy || !audio.missing ? "disabled" : ""}>生成缺失 ${audio.missing || 0}</button>
-              <button class="secondary" data-init-confirm-audio ${!status?.state?.parseConfirmed || state.initBusy || audio.missing ? "disabled" : ""}>确认音频</button>
+              <button class="primary" data-init-generate-audio ${!hasConfirmedOrSavedLesson || state.initBusy || !audio.missing ? "disabled" : ""}>生成缺失 ${audio.missing || 0}</button>
+              <button class="secondary" data-init-confirm-audio ${canConfirmAudio ? "" : "disabled"}>确认音频</button>
             </div>
           </div>
           ${audioHint ? `<p class="hint">${escapeHtml(audioHint)}</p>` : ""}
@@ -4295,11 +4622,17 @@ function initPage() {
 }
 
 function initAudioHint(status, audio) {
-  if (!status?.draft) return "音频生成会在导入或解析出 JSON 草稿后计算待生成项目。";
-  if (!status?.state?.parseConfirmed) return "已经有 JSON 草稿，但还没有确认解析结果。请先审核草稿并点击“确认解析结果”，确认后才能生成音频。";
+  const lessonSaved = Boolean(status?.lessonSaved);
+  const hasConfirmedOrSavedLesson = Boolean(status?.state?.parseConfirmed || lessonSaved);
+  if (!status?.draft && !lessonSaved) return "音频生成会在导入或解析出 JSON 草稿后计算待生成项目。";
+  if (!hasConfirmedOrSavedLesson) return "已经有 JSON 草稿，但还没有确认解析结果。请先审核草稿并点击“确认解析结果”，确认后才能生成音频。";
   if (!audio.total) return "已确认课程数据，但没有可生成的日语音频项目。请检查 JSON 中的 vocabulary、sentences、grammar.extraExamples、exercises.answer/referenceAnswers。";
   if (!audio.missing) return "音频已完整，可以确认音频。";
   return "";
+}
+
+function isInitAudioBusy() {
+  return /^正在(?:并行发起|生成音频)/.test(state.initBusy || "");
 }
 
 function initJsonImportBox() {
@@ -4334,16 +4667,19 @@ function initImportPreviewLine(preview) {
 
 function initUploadBox(bucket, images) {
   const inputId = `init-upload-${bucket.id}`;
+  const inferred = images.some((image) => image.source === "by-lesson");
   return `
-    <div class="init-upload-box">
+    <div class="init-upload-box ${inferred ? "inferred" : ""}">
       <div>
-        <h3>${bucket.label}</h3>
+        <h3>${bucket.label}${inferred ? "<small>自动匹配</small>" : ""}</h3>
         <p class="muted">${bucket.hint}</p>
       </div>
-      <button class="secondary init-upload-button" type="button" data-init-upload-trigger="${bucket.id}" ${state.initBusy ? "disabled" : ""}>选择文件</button>
-      <input id="${inputId}" class="init-upload-input" type="file" accept="image/*" multiple data-init-upload="${bucket.id}" ${state.initBusy ? "disabled" : ""} />
+      ${inferred ? "" : `
+        <button class="secondary init-upload-button" type="button" data-init-upload-trigger="${bucket.id}" ${state.initBusy ? "disabled" : ""}>选择文件</button>
+        <input id="${inputId}" class="init-upload-input" type="file" accept="image/*" multiple data-init-upload="${bucket.id}" ${state.initBusy ? "disabled" : ""} />
+      `}
       <div class="init-image-list">
-        ${images.length ? images.map((image) => `<a href="${image.url}" target="_blank">${escapeHtml(image.name)}</a>`).join("") : "<span class='muted'>尚未上传</span>"}
+        ${images.length ? images.map((image) => `<a href="${image.url}" target="_blank">${image.index ? `<span>#${image.index}</span>` : ""}${escapeHtml(image.name)}</a>`).join("") : "<span class='muted'>尚未上传</span>"}
       </div>
     </div>
   `;
@@ -4466,6 +4802,10 @@ function exercisesPage() {
               <button class="primary" data-submit-exercise-group ${submitted ? "disabled" : ""}>提交本大题</button>
               <button class="secondary" data-next-exercise-group>${state.currentExerciseGroup === groups.length - 1 ? "进入结果页" : "下一大题"}</button>
             </div>
+            <div class="exercise-notes-area">
+              <span class="exercise-action-label">笔记</span>
+              <div class="exercise-notes-textarea" data-exercise-group-note contenteditable="true" data-placeholder="记录学习笔记...">${parseMarkdown(read(`lesson:${lesson.id}:exerciseGroupNotes:${group.id}`, ""))}</div>
+            </div>
           </div>
         </aside>
       </div>
@@ -4508,7 +4848,7 @@ function exerciseGroupItem(exercise, index, submitted) {
     <article class="exercise-item ${submitted && result?.isCorrect ? "passed" : submitted && !result?.isCorrect ? "wrong" : ""}">
       <div class="exercise-item-head">
         <span class="related-exercise-no">${index + 1}</span>
-        <div class="question">${renderExerciseText(exercise.question)}</div>
+        <div class="question">${exerciseQuestionHtml(exercise)}</div>
         ${submitted && result ? `<span class="practice-status ${result.isCorrect ? "success" : "danger"}">${result.isSkipped ? "已记录" : result.isCorrect ? "正确" : "错误"}</span>` : ""}
       </div>
       ${exerciseAnswerGuidance(exercise) ? `<p class="answer-guidance">${exerciseAnswerGuidance(exercise)}</p>` : ""}
@@ -4535,27 +4875,27 @@ function exerciseGroupItems(group, submitted) {
   let previousKey = "";
   return group.items.map((exercise, index) => {
     const key = `${exercise.category || ""}:${exercise.example || ""}`;
-    const section = key !== previousKey ? exerciseExampleSection({ category: exercise.category, examples: [exercise.example] }) : "";
+    const section = key !== previousKey ? exerciseExampleSection({ exercise, category: exercise.category, examples: [exercise.example] }) : "";
     previousKey = key;
     return `${section}${exerciseGroupItem(exercise, index, submitted)}`;
   }).join("");
 }
 
-function exerciseExampleSection({ category, examples }) {
+function exerciseExampleSection({ exercise, category, examples }) {
   const validExamples = (examples || []).filter(Boolean);
   if (!validExamples.length) return "";
   return `
     <div class="exercise-example-section">
       <span>${category}</span>
       <div class="exercise-example-lines">
-        ${validExamples.map((example) => `<div class="exercise-example">${formatExerciseExample(example)}</div>`).join("")}
+        ${validExamples.map((example) => `<div class="exercise-example">${formatExerciseExample(example, exercise)}</div>`).join("")}
       </div>
     </div>
   `;
 }
 
-function formatExerciseExample(example) {
-  return renderExerciseText(example, { exampleBreaks: true });
+function formatExerciseExample(example, exercise = null) {
+  return exercise ? exerciseExampleHtml(exercise, example) : renderExerciseText(example, { exampleBreaks: true });
 }
 
 function answerControl(exercise, value = "", options = {}) {
@@ -4632,18 +4972,17 @@ function exerciseGroupFeedback(group) {
 }
 
 function exerciseFeedbackRow(exercise, result, index) {
-  const correctText = exercise.referenceAnswers?.join(" / ") || exercise.answer || "暂无标准答案";
   return `
     <div class="exercise-feedback-row ${result.isCorrect ? "passed" : "wrong"}">
       <div class="exercise-item-head">
         <span class="related-exercise-no">${index + 1}</span>
         <div>
           <strong>${result.isSkipped ? "已记录" : result.isCorrect ? "正确" : "错误"}</strong>
-          <p>${renderExerciseText(exercise.question)}</p>
+          <p>${exerciseQuestionHtml(exercise)}</p>
         </div>
       </div>
       ${meta("你的答案", result.userAnswer ? renderExerciseText(result.userAnswer) : "未作答")}
-      ${meta(exercise.type === "sentence_making" ? "参考答案" : "正确答案", renderExerciseText(correctText))}
+      ${meta(exercise.type === "sentence_making" ? "参考答案" : "正确答案", exerciseCorrectAnswerHtml(exercise))}
       ${!result.isCorrect ? meta("错误说明", exercise.explanation) : ""}
       <div class="meta-line">
         <span class="label">相关语法</span>
@@ -4667,7 +5006,7 @@ function feedbackView(exercise, result) {
     return `
       <article class="panel feedback">
         <h3>录音题暂不判分</h3>
-        ${meta("题目", renderExerciseText(exercise.question))}
+        ${meta("题目", exerciseQuestionHtml(exercise))}
         ${meta("说明", exercise.explanation)}
         <div class="button-row">
           <button class="primary" data-next-exercise>${state.currentExercise === lesson.exercises.length - 1 ? "进入结果页" : "下一题"}</button>
@@ -4675,7 +5014,6 @@ function feedbackView(exercise, result) {
       </article>
     `;
   }
-  const correctText = exercise.referenceAnswers?.join(" / ") || exercise.answer;
   const diff = answerDiff(result.userAnswer || "", exercise.answer);
   return `
     <article class="panel feedback ${result.isCorrect ? "passed" : "wrong"}">
@@ -4684,7 +5022,7 @@ function feedbackView(exercise, result) {
         <span>${result.isCorrect ? "答案与正确答案一致" : "答案与正确答案不一致"}</span>
       </div>
       ${meta("你的答案", result.userAnswer ? renderExerciseText(result.userAnswer) : "未作答")}
-      ${meta(exercise.type === "sentence_making" ? "参考答案" : "正确答案", renderExerciseText(correctText))}
+      ${meta(exercise.type === "sentence_making" ? "参考答案" : "正确答案", exerciseCorrectAnswerHtml(exercise, ""))}
       <div class="meta-line">
         <span class="label">差异对比</span>
         ${result.isCorrect ? "<span>答案与参考要求一致。</span>" : `
@@ -4825,9 +5163,9 @@ function wrongItem(item) {
   return `
     <div class="card panel">
       <p class="label">${exercise.groupTitle} · ${exercise.category} · ${wrongStatusText(item.status)}</p>
-      <h3>${renderExerciseText(exercise.question)}</h3>
+      <h3>${exerciseQuestionHtml(exercise)}</h3>
       ${meta("你的答案", item.userAnswer ? renderExerciseText(item.userAnswer) : "未作答")}
-      ${meta("正确答案 / 参考答案", renderExerciseText(exercise.referenceAnswers?.join(" / ") || exercise.answer))}
+      ${meta("正确答案 / 参考答案", exerciseCorrectAnswerHtml(exercise, ""))}
       ${meta("错题状态", `${wrongStatusText(item.status)} · 错误 ${item.wrongCount || 1} 次 · 连续正确 ${item.correctStreak || 0} 次`)}
       <div class="tags">${exercise.relatedGrammar.map((id) => grammarTag(id)).join("")}</div>
       <div class="button-row" style="margin-top:12px">
@@ -4883,11 +5221,11 @@ function wrongBookPage() {
         <div class="exercise-context">
           <span class="exercise-badge">${exercise.category}</span>
           <div class="meta-line"><span class="label">要求</span><span>${exercise.instruction}</span></div>
-          ${exercise.example ? `<div class="meta-line"><span class="label">例</span><span>${formatExerciseExample(exercise.example)}</span></div>` : ""}
+          ${exercise.example ? `<div class="meta-line"><span class="label">例</span><span>${formatExerciseExample(exercise.example, exercise)}</span></div>` : ""}
           <div class="group-score">错误 ${item.wrongCount || 1} 次 · 连续正确 ${item.correctStreak || 0} 次</div>
         </div>
         <p class="label">原题</p>
-        <div class="question">${renderExerciseText(exercise.question)}</div>
+        <div class="question">${exerciseQuestionHtml(exercise)}</div>
         ${answerControl(exercise, state.wrongPractice.answer, { id: exercise.id, mode: "wrong", disabled: state.wrongPractice.submitted })}
         <div class="button-row" style="margin-top:16px">
           <button class="primary" data-submit-wrong-practice ${state.wrongPractice.submitted ? "disabled" : ""}>提交错题</button>
@@ -5126,7 +5464,7 @@ function revealAndAdvanceTest(word, selectedWordId, correct, mode) {
   state.vocabReveal = { wordId: word.id, selectedWordId, correct };
   state.recallResult = correct ? "正确。" : "不正确。系统已记录该弱项，稍后会进入复习。";
   render();
-  const delayMs = 1700;
+  const delayMs = 1200;
   const audioMustEnd = mode === "wordToMeaning";
   let audioEnded = !audioMustEnd;
   const startedAt = Date.now();
@@ -6192,30 +6530,46 @@ async function confirmInitParse() {
 async function generateInitAudio() {
   const lessonId = initLessonId();
   if (!lessonId) return;
-  const batchSize = 3;
+  if (!state.initStatus?.audio?.items?.length) await loadInitStatus(true);
+  const targets = (state.initStatus?.audio?.items || []).filter((item) => !item.exists);
+  if (!targets.length) {
+    state.initMessage = "音频已完整，可以确认音频。";
+    render();
+    return;
+  }
   let generatedTotal = 0;
   let failedTotal = 0;
-  let lastMissing = state.initStatus?.audio?.missing || 0;
-  state.initBusy = `正在生成音频：已生成 0 个，剩余 ${lastMissing} 个。`;
+  let completedTotal = 0;
+  state.initBusy = `正在并行发起 ${targets.length} 个音频生成请求...`;
   state.initMessage = "";
   render();
   try {
-    while (true) {
-      const data = await postAudioApi("/api/init/audio/generate", { lessonId, voiceId: state.currentVoiceId, scope: "all", limit: batchSize });
-      generatedTotal += data.generated || 0;
-      failedTotal += data.failed || 0;
-      if (data.audio) {
-        state.initStatus = { ...(state.initStatus || {}), audio: data.audio };
-        lastMissing = data.audio.missing || 0;
+    const requests = targets.map(async (item) => {
+      try {
+        const data = await postAudioApi("/api/init/audio/generate", {
+          lessonId,
+          voiceId: state.currentVoiceId,
+          scope: "one",
+          id: `${item.type}:${item.id}`
+        });
+        const itemUpdate = data.items?.[0];
+        if (itemUpdate?.error) failedTotal += 1;
+        if (itemUpdate?.generated || itemUpdate?.exists) generatedTotal += 1;
+        updateInitAudioItemStatus(itemUpdate);
+      } catch (error) {
+        failedTotal += 1;
+        updateInitAudioItemStatus({ ...item, error: String(error.message || error), exists: false, generated: false });
+      } finally {
+        completedTotal += 1;
+        const remaining = targets.length - completedTotal;
+        state.initBusy = `正在生成音频：已完成 ${completedTotal} / ${targets.length}，成功 ${generatedTotal} 个，失败 ${failedTotal} 个，剩余 ${remaining} 个。`;
+        render();
       }
-      state.initBusy = `正在生成音频：本次已生成 ${generatedTotal} 个，剩余 ${lastMissing} 个。`;
-      render();
-      if (failedTotal || !data.attempted || !lastMissing) break;
-      await waitClient(120);
-    }
+    });
+    await Promise.all(requests);
     state.initBusy = "";
     state.initMessage = failedTotal
-      ? `音频生成已暂停：成功 ${generatedTotal} 个，失败 ${failedTotal} 个。请检查服务端环境变量或失败项后重试。`
+      ? `音频生成完成：成功 ${generatedTotal} 个，失败 ${failedTotal} 个。可稍后再次点击继续补齐。`
       : `音频生成完成：生成 ${generatedTotal} 个。`;
     await loadInitStatus(true);
   } catch (error) {
@@ -6223,6 +6577,25 @@ async function generateInitAudio() {
     state.initMessage = String(error.message || error);
     render();
   }
+}
+
+function updateInitAudioItemStatus(itemUpdate) {
+  if (!state.initStatus?.audio?.items || !itemUpdate) return;
+  const items = state.initStatus.audio.items.map((item) => {
+    if (item.type !== itemUpdate.type || item.id !== itemUpdate.id) return item;
+    return { ...item, ...itemUpdate };
+  });
+  const generated = items.filter((item) => item.exists).length;
+  state.initStatus = {
+    ...(state.initStatus || {}),
+    audio: {
+      ...(state.initStatus.audio || {}),
+      items,
+      generated,
+      missing: Math.max(0, items.length - generated),
+      total: items.length
+    }
+  };
 }
 
 async function confirmInitAudio() {
@@ -6237,7 +6610,7 @@ async function confirmInitAudio() {
     state.initBusy = "";
     state.initMessage = "该课初始化已完成。";
     await loadCourseCatalog(true);
-    render();
+    navigate("/");
   } catch (error) {
     state.initBusy = "";
     state.initMessage = String(error.message || error);
@@ -6357,7 +6730,19 @@ function render() {
     bind();
     return;
   }
-  app.innerHTML = (views[current] || home)();
+  try {
+    app.innerHTML = (views[current] || home)();
+  } catch (error) {
+    console.error(error);
+    app.innerHTML = layout(`
+      <section class="panel">
+        <p class="eyebrow">页面渲染失败</p>
+        <h2>当前模块暂时无法显示</h2>
+        <p class="lead">${escapeHtml(String(error.message || error))}</p>
+        <button class="secondary" data-nav="/lesson/${route().lessonId || lesson.id}">返回课程</button>
+      </section>
+    `);
+  }
   ensurePageFocus();
   bind();
   if (current === "home") loadCourseCatalog();
@@ -6369,13 +6754,7 @@ function render() {
       lastAutoSpokenWord = word.id;
       const shouldDelay = pendingAutoSpeakWordId === word.id;
       pendingAutoSpeakWordId = "";
-      window.setTimeout(() => {
-        if (route().page !== "vocab") return;
-        if (state.vocabPhase !== "pronunciation") return;
-        if (activeVocabulary()[state.currentWord]?.id !== word.id) return;
-        if (state.recordingWordId || state.recordingPreparingWordId || state.recordingStoppingWordId) return;
-        playAudio(word.jp, audioUrl("word", word.id));
-      }, shouldDelay ? 260 : 100);
+      scheduleAutoWordAudio(word, shouldDelay ? 650 : 450);
     }
   }
   if (current === "vocab" && state.vocabPhase === "test" && !state.modal) {
@@ -6385,7 +6764,7 @@ function render() {
       const key = `test:${task.id}`;
       if (word && lastAutoSpokenWord !== key) {
         lastAutoSpokenWord = key;
-        window.setTimeout(() => playAudio(word.jp, audioUrl("word", word.id)), 80);
+        scheduleAutoWordAudio(word, 450);
       }
     }
   }
@@ -6415,13 +6794,22 @@ function bind() {
   app.querySelectorAll("[data-playback-rate]").forEach((button) => button.addEventListener("click", () => {
     setPlaybackRate(button.dataset.playbackRate);
   }));
+  app.querySelector("[data-export-progress]")?.addEventListener("click", exportLearningData);
+  app.querySelector("[data-import-progress-trigger]")?.addEventListener("click", () => {
+    app.querySelector("[data-import-progress-file]")?.click();
+  });
+  app.querySelector("[data-import-progress-file]")?.addEventListener("change", async (event) => {
+    const file = event.target.files?.[0];
+    event.target.value = "";
+    if (!file) return;
+    try {
+      await importLearningData(file);
+    } catch (error) {
+      window.alert(String(error.message || error));
+    }
+  });
   app.querySelectorAll("[data-speak]").forEach((button) => {
     button.addEventListener("click", () => playAudio(button.dataset.speak, button.dataset.audio));
-    button.addEventListener("pointerenter", () => speakFromHover(button.dataset.speak, button.dataset.audio));
-    button.addEventListener("pointermove", () => speakFromHover(button.dataset.speak, button.dataset.audio));
-    button.addEventListener("mouseenter", () => speakFromHover(button.dataset.speak, button.dataset.audio));
-    button.addEventListener("mouseover", () => speakFromHover(button.dataset.speak, button.dataset.audio));
-    button.addEventListener("focus", () => speakFromHover(button.dataset.speak, button.dataset.audio));
   });
   app.querySelectorAll(".voice-main[data-voice-id]").forEach((button) => button.addEventListener("click", () => {
     state.currentVoiceId = button.dataset.voiceId;
@@ -6676,6 +7064,18 @@ function bind() {
   app.querySelectorAll("[data-submit-exercise-group]").forEach((button) => button.addEventListener("click", commitExerciseGroup));
   app.querySelectorAll("[data-prev-exercise-group]").forEach((button) => button.addEventListener("click", () => moveExerciseGroup(-1)));
   app.querySelectorAll("[data-next-exercise-group]").forEach((button) => button.addEventListener("click", () => moveExerciseGroup(1)));
+  app.querySelectorAll("[data-exercise-group-note]").forEach((el) => {
+    el.addEventListener("input", (e) => {
+      e.target.style.height = "auto";
+      e.target.style.height = e.target.scrollHeight + "px";
+      const group = currentExerciseGroup();
+      const noteKey = `lesson:${lesson.id}:exerciseGroupNotes:${group.id}`;
+      write(noteKey, e.target.innerText);
+    });
+    // auto-grow on page load
+    el.style.height = "auto";
+    el.style.height = el.scrollHeight + "px";
+  });
   app.querySelector("[data-submit-wrong-practice]")?.addEventListener("click", commitWrongPractice);
   app.querySelector("[data-next-wrong-practice]")?.addEventListener("click", nextWrongPractice);
   app.querySelector("[data-next-exercise]")?.addEventListener("click", () => {
@@ -6700,8 +7100,6 @@ function bind() {
 window.addEventListener("popstate", render);
 document.addEventListener("keydown", handleKeyboard, true);
 document.addEventListener("keyup", handleKeyboard, true);
-document.addEventListener("pointerover", handleSpeakHover, true);
-document.addEventListener("pointermove", handleSpeakHover, true);
 document.addEventListener("selectionchange", () => window.setTimeout(handleSelectionLookup, 0));
 document.addEventListener("pointerdown", (event) => {
   if (!event.target.closest?.("#selection-bubble")) hideSelectionBubble();
@@ -6716,6 +7114,22 @@ document.addEventListener("pointercancel", () => {
   releaseGrammarRecording(state.grammarRecordingId || state.grammarRecordingPreparingId || recordingSession?.key);
   releaseTextRecording(state.textRecordingId || state.textRecordingPreparingId || recordingSession?.sentenceId);
 }, true);
+document.addEventListener("copy", (e) => {
+  const selection = window.getSelection();
+  if (!selection || selection.isCollapsed) return;
+  const range = selection.getRangeAt(0);
+  const fragment = range.cloneContents();
+  const temp = document.createElement("div");
+  temp.appendChild(fragment);
+  // Remove ruby rt elements before copying
+  temp.querySelectorAll("rt").forEach((rt) => rt.remove());
+  const plainText = temp.innerText || temp.textContent || "";
+  if (plainText) {
+    e.clipboardData?.setData("text/plain", plainText);
+    e.preventDefault();
+  }
+});
+
 document.addEventListener("click", (event) => {
   const button = event.target.closest?.("[data-selection-speak]");
   if (!button) return;
@@ -6725,7 +7139,7 @@ window.addEventListener("pointerdown", primeSpeech, { once: true });
 if ("speechSynthesis" in window) {
   speechSynthesis.addEventListener?.("voiceschanged", primeSpeech);
 }
-render();
+fetchFrontendConfig().then(render);
 
 function handleKeyboard(event) {
   if (event.metaKey || event.ctrlKey || event.altKey) return;
@@ -6737,6 +7151,12 @@ function handleKeyboard(event) {
   const now = Date.now();
   const actionKey = `${current}:${key || event.code}:${event.type}`;
   if (event.type === "keyup" && lastKeyAction.key === `${current}:${key || event.code}:keydown` && now - lastKeyAction.at < 180) return;
+
+  if (event.type === "keydown" && current === "vocab" && chooseVocabTestOptionByKey(key)) {
+    event.preventDefault();
+    lastKeyAction = { key: actionKey, at: now };
+    return;
+  }
 
   if (current === "vocab" && (key === "ArrowLeft" || event.code === "ArrowLeft" || key === "ArrowRight" || event.code === "ArrowRight")) {
     event.preventDefault();

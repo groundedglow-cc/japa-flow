@@ -1,0 +1,2807 @@
+{
+  "id": 3,
+  "title": "第3课",
+  "subtitle": "ここはデパートです。",
+  "audioVoiceId": "",
+  "vocabulary": [
+    {
+      "id": "w1",
+      "jp": "デパート",
+      "kana": "デパート",
+      "cn": "百货商店"
+    },
+    {
+      "id": "w2",
+      "jp": "食堂",
+      "kana": "しょくどう",
+      "cn": "食堂"
+    },
+    {
+      "id": "w3",
+      "jp": "郵便局",
+      "kana": "ゆうびんきょく",
+      "cn": "邮局"
+    },
+    {
+      "id": "w4",
+      "jp": "銀行",
+      "kana": "ぎんこう",
+      "cn": "银行"
+    },
+    {
+      "id": "w5",
+      "jp": "図書館",
+      "kana": "としょかん",
+      "cn": "图书馆"
+    },
+    {
+      "id": "w6",
+      "jp": "マンション",
+      "kana": "マンション",
+      "cn": "（高级）公寓"
+    },
+    {
+      "id": "w7",
+      "jp": "ホテル",
+      "kana": "ホテル",
+      "cn": "宾馆"
+    },
+    {
+      "id": "w8",
+      "jp": "コンビニ",
+      "kana": "コンビニ",
+      "cn": "便利店"
+    },
+    {
+      "id": "w9",
+      "jp": "喫茶店",
+      "kana": "きっさてん",
+      "cn": "咖啡馆"
+    },
+    {
+      "id": "w10",
+      "jp": "病院",
+      "kana": "びょういん",
+      "cn": "医院"
+    },
+    {
+      "id": "w11",
+      "jp": "本屋",
+      "kana": "ほんや",
+      "cn": "书店"
+    },
+    {
+      "id": "w12",
+      "jp": "レストラン",
+      "kana": "レストラン",
+      "cn": "餐馆、西餐馆"
+    },
+    {
+      "id": "w13",
+      "jp": "ビル",
+      "kana": "ビル",
+      "cn": "大楼、大厦"
+    },
+    {
+      "id": "w14",
+      "jp": "建物",
+      "kana": "たてもの",
+      "cn": "大楼、建筑物"
+    },
+    {
+      "id": "w15",
+      "jp": "売り場",
+      "kana": "うりば",
+      "cn": "柜台、出售处"
+    },
+    {
+      "id": "w16",
+      "jp": "トイレ",
+      "kana": "トイレ",
+      "cn": "厕所、盥洗室"
+    },
+    {
+      "id": "w17",
+      "jp": "入り口",
+      "kana": "いりぐち",
+      "cn": "入口"
+    },
+    {
+      "id": "w18",
+      "jp": "事務所",
+      "kana": "じむしょ",
+      "cn": "事务所、办事处"
+    },
+    {
+      "id": "w19",
+      "jp": "受付",
+      "kana": "うけつけ",
+      "cn": "接待处"
+    },
+    {
+      "id": "w20",
+      "jp": "バーゲン会場",
+      "kana": "バーゲンかいじょう",
+      "cn": "降价处理大卖场"
+    },
+    {
+      "id": "w21",
+      "jp": "エスカレーター",
+      "kana": "エスカレーター",
+      "cn": "自动扶梯"
+    },
+    {
+      "id": "w22",
+      "jp": "服",
+      "kana": "ふく",
+      "cn": "衣服"
+    },
+    {
+      "id": "w23",
+      "jp": "コート",
+      "kana": "コート",
+      "cn": "风衣、大衣"
+    },
+    {
+      "id": "w24",
+      "jp": "デジカメ",
+      "kana": "デジカメ",
+      "cn": "数码相机"
+    },
+    {
+      "id": "w25",
+      "jp": "国",
+      "kana": "くに",
+      "cn": "国、国家"
+    },
+    {
+      "id": "w26",
+      "jp": "地図",
+      "kana": "ちず",
+      "cn": "地图"
+    },
+    {
+      "id": "w27",
+      "jp": "隣",
+      "kana": "となり",
+      "cn": "旁边"
+    },
+    {
+      "id": "w28",
+      "jp": "周辺",
+      "kana": "しゅうへん",
+      "cn": "附近、周边"
+    },
+    {
+      "id": "w29",
+      "jp": "今日",
+      "kana": "きょう",
+      "cn": "今天"
+    },
+    {
+      "id": "w30",
+      "jp": "水曜日",
+      "kana": "すいようび",
+      "cn": "星期三"
+    },
+    {
+      "id": "w31",
+      "jp": "木曜日",
+      "kana": "もくようび",
+      "cn": "星期四"
+    },
+    {
+      "id": "w32",
+      "jp": "ここ",
+      "kana": "ここ",
+      "cn": "这里、这儿"
+    },
+    {
+      "id": "w33",
+      "jp": "そこ",
+      "kana": "そこ",
+      "cn": "那里、那儿"
+    },
+    {
+      "id": "w34",
+      "jp": "あそこ",
+      "kana": "あそこ",
+      "cn": "那里、那儿"
+    },
+    {
+      "id": "w35",
+      "jp": "こちら",
+      "kana": "こちら",
+      "cn": "这儿、这边"
+    },
+    {
+      "id": "w36",
+      "jp": "そちら",
+      "kana": "そちら",
+      "cn": "那儿、那边"
+    },
+    {
+      "id": "w37",
+      "jp": "あちら",
+      "kana": "あちら",
+      "cn": "那儿、那边"
+    },
+    {
+      "id": "w38",
+      "jp": "どこ",
+      "kana": "どこ",
+      "cn": "哪里、哪儿"
+    },
+    {
+      "id": "w39",
+      "jp": "どちら",
+      "kana": "どちら",
+      "cn": "哪儿、哪边"
+    },
+    {
+      "id": "w40",
+      "jp": "あのう",
+      "kana": "あのう",
+      "cn": "请问、对不起"
+    },
+    {
+      "id": "w41",
+      "jp": "上海",
+      "kana": "シャンハイ",
+      "cn": "上海"
+    },
+    {
+      "id": "w42",
+      "jp": "東京",
+      "kana": "とうきょう",
+      "cn": "东京"
+    },
+    {
+      "id": "w43",
+      "jp": "いくら",
+      "kana": "いくら",
+      "cn": "多少钱"
+    },
+    {
+      "id": "w44",
+      "jp": "お〜",
+      "kana": "お〜",
+      "cn": "前缀（敬语）"
+    },
+    {
+      "id": "w45",
+      "jp": "〜階",
+      "kana": "〜かい／〜がい",
+      "cn": "～层"
+    },
+    {
+      "id": "w46",
+      "jp": "〜円",
+      "kana": "〜えん",
+      "cn": "～日元"
+    },
+    {
+      "id": "w47",
+      "jp": "〜曜日",
+      "kana": "〜ようび",
+      "cn": "～星期"
+    }
+  ],
+  "sentences": [
+    {
+      "id": "s1",
+      "order": 1,
+      "text": "ここはデパートです。",
+      "kana": "ここはデパートです。",
+      "translation": "这里是百货商店。",
+      "words": [
+        "w1",
+        "w32"
+      ],
+      "grammar": [
+        "g1"
+      ]
+    },
+    {
+      "id": "s2",
+      "order": 2,
+      "text": "食堂はデパートの7階です。",
+      "kana": "しょくどうはデパートのななかいです。",
+      "translation": "食堂在百货商店的7层。",
+      "words": [
+        "w1",
+        "w2",
+        "w45"
+      ],
+      "grammar": [
+        "g2"
+      ]
+    },
+    {
+      "id": "s3",
+      "order": 3,
+      "text": "あそこもJC企画のビルです。",
+      "kana": "あそこもジェーシーきかくのビルです。",
+      "translation": "那里也是JC策划公司的大楼。",
+      "words": [
+        "w13",
+        "w34"
+      ],
+      "grammar": [
+        "g4"
+      ]
+    },
+    {
+      "id": "s4",
+      "order": 4,
+      "text": "かばん売り場は1階ですか、5階ですか。",
+      "kana": "かばんうりばはいっかいですか、ごかいですか。",
+      "translation": "包的柜台在1层还是5层？",
+      "words": [
+        "w15",
+        "w45"
+      ],
+      "grammar": [
+        "g5"
+      ]
+    },
+    {
+      "id": "s5",
+      "order": 5,
+      "speaker": "甲",
+      "text": "トイレはどこですか。",
+      "kana": "トイレはどこですか。",
+      "translation": "厕所在哪里？",
+      "words": [
+        "w16",
+        "w38"
+      ],
+      "grammar": [
+        "g3"
+      ]
+    },
+    {
+      "id": "s6",
+      "order": 6,
+      "speaker": "乙",
+      "text": "あちらです。",
+      "kana": "あちらです。",
+      "translation": "在那边。",
+      "words": [
+        "w37"
+      ],
+      "grammar": []
+    },
+    {
+      "id": "s7",
+      "order": 7,
+      "speaker": "甲",
+      "text": "ここは郵便局ですか、銀行ですか。",
+      "kana": "ここはゆうびんきょくですか、ぎんこうですか。",
+      "translation": "这里是邮局还是银行？",
+      "words": [
+        "w3",
+        "w4",
+        "w32"
+      ],
+      "grammar": [
+        "g5"
+      ]
+    },
+    {
+      "id": "s8",
+      "order": 8,
+      "speaker": "乙",
+      "text": "銀行です。",
+      "kana": "ぎんこうです。",
+      "translation": "是银行。",
+      "words": [
+        "w4"
+      ],
+      "grammar": []
+    },
+    {
+      "id": "s9",
+      "order": 9,
+      "speaker": "甲",
+      "text": "これはいくらですか。",
+      "kana": "これはいくらですか。",
+      "translation": "这个多少钱？",
+      "words": [
+        "w43"
+      ],
+      "grammar": [
+        "g6"
+      ]
+    },
+    {
+      "id": "s10",
+      "order": 10,
+      "speaker": "乙",
+      "text": "それは5,800円です。",
+      "kana": "それはごせんはっぴゃくえんです。",
+      "translation": "那个是5,800日元。",
+      "words": [
+        "w46"
+      ],
+      "grammar": [
+        "g6"
+      ]
+    },
+    {
+      "id": "s11",
+      "order": 11,
+      "speaker": "甲",
+      "text": "あれは？",
+      "kana": "あれは？",
+      "translation": "那个呢？",
+      "words": [],
+      "grammar": [
+        "g8"
+      ]
+    },
+    {
+      "id": "s12",
+      "order": 12,
+      "speaker": "乙",
+      "text": "あれも5,800円です。",
+      "kana": "あれもごせんはっぴゃくえんです。",
+      "translation": "那个也是5,800日元。",
+      "words": [
+        "w46"
+      ],
+      "grammar": [
+        "g4",
+        "g6"
+      ]
+    },
+    {
+      "id": "s13",
+      "order": 13,
+      "speaker": "小野",
+      "text": "ここはコンビニです。隣は喫茶店です。",
+      "kana": "ここはコンビニです。となりはきっさてんです。",
+      "translation": "这里是便利店。旁边是咖啡馆。",
+      "words": [
+        "w8",
+        "w9",
+        "w27",
+        "w32"
+      ],
+      "grammar": [
+        "g1"
+      ]
+    },
+    {
+      "id": "s14",
+      "order": 14,
+      "speaker": "李",
+      "text": "あの建物はホテルですか、マンションですか。",
+      "kana": "あのたてものはホテルですか、マンションですか。",
+      "translation": "那栋大楼是宾馆还是公寓？",
+      "words": [
+        "w6",
+        "w7",
+        "w14"
+      ],
+      "grammar": [
+        "g5"
+      ]
+    },
+    {
+      "id": "s15",
+      "order": 15,
+      "speaker": "小野",
+      "text": "あそこはマンションです。",
+      "kana": "あそこはマンションです。",
+      "translation": "那里是公寓。",
+      "words": [
+        "w6",
+        "w34"
+      ],
+      "grammar": [
+        "g1"
+      ]
+    },
+    {
+      "id": "s16",
+      "order": 16,
+      "speaker": "李",
+      "text": "あの建物は何ですか。",
+      "kana": "あのたてものはなんですか。",
+      "translation": "那栋大楼是什么？",
+      "words": [
+        "w14"
+      ],
+      "grammar": []
+    },
+    {
+      "id": "s17",
+      "order": 17,
+      "speaker": "小野",
+      "text": "あそこもマンションです。",
+      "kana": "あそこもマンションです。",
+      "translation": "那里也是公寓。",
+      "words": [
+        "w6",
+        "w34"
+      ],
+      "grammar": [
+        "g4"
+      ]
+    },
+    {
+      "id": "s18",
+      "order": 18,
+      "speaker": "李",
+      "text": "マンションの隣は？",
+      "kana": "マンションのとなりは？",
+      "translation": "公寓的旁边呢？",
+      "words": [
+        "w6",
+        "w27"
+      ],
+      "grammar": [
+        "g8"
+      ]
+    },
+    {
+      "id": "s19",
+      "order": 19,
+      "speaker": "小野",
+      "text": "マンションの隣は病院です。",
+      "kana": "マンションのとなりはびょういんです。",
+      "translation": "公寓的旁边是医院。",
+      "words": [
+        "w6",
+        "w10",
+        "w27"
+      ],
+      "grammar": [
+        "g2"
+      ]
+    },
+    {
+      "id": "s20",
+      "order": 20,
+      "speaker": "李",
+      "text": "本屋はどこですか。",
+      "kana": "ほんやはどこですか。",
+      "translation": "书店在哪里？",
+      "words": [
+        "w11",
+        "w38"
+      ],
+      "grammar": [
+        "g3"
+      ]
+    },
+    {
+      "id": "s21",
+      "order": 21,
+      "speaker": "小野",
+      "text": "そこです。そのビルの2階です。",
+      "kana": "そこです。そのビルのかいです。",
+      "translation": "在那里。那栋大楼的2层。",
+      "words": [
+        "w13",
+        "w33",
+        "w45"
+      ],
+      "grammar": [
+        "g2"
+      ]
+    },
+    {
+      "id": "s22",
+      "order": 22,
+      "speaker": "李",
+      "text": "あのう、東京の地図はどこですか。",
+      "kana": "あのう、とうきょうのちずはどこですか。",
+      "translation": "请问，东京的地图在哪里？",
+      "words": [
+        "w26",
+        "w38",
+        "w40",
+        "w42"
+      ],
+      "grammar": [
+        "g3",
+        "g10"
+      ]
+    },
+    {
+      "id": "s23",
+      "order": 23,
+      "speaker": "店員",
+      "text": "地図ですか。そちらです。",
+      "kana": "ちずですか。そちらです。",
+      "translation": "地图吗？在那边。",
+      "words": [
+        "w26",
+        "w36"
+      ],
+      "grammar": [
+        "g11"
+      ]
+    },
+    {
+      "id": "s24",
+      "order": 24,
+      "speaker": "李",
+      "text": "いくらですか。",
+      "kana": "いくらですか。",
+      "translation": "多少钱？",
+      "words": [
+        "w43"
+      ],
+      "grammar": [
+        "g6"
+      ]
+    },
+    {
+      "id": "s25",
+      "order": 25,
+      "speaker": "店員",
+      "text": "500円です。",
+      "kana": "ごひゃくえんです。",
+      "translation": "500日元。",
+      "words": [
+        "w46"
+      ],
+      "grammar": [
+        "g6"
+      ]
+    }
+  ],
+  "textStructure": [
+    {
+      "id": "basic",
+      "title": "基本课文",
+      "groups": [
+        {
+          "title": "基本句",
+          "kind": "statements",
+          "ids": [
+            "s1",
+            "s2",
+            "s3",
+            "s4"
+          ]
+        },
+        {
+          "title": "对话 A",
+          "kind": "dialogue",
+          "ids": [
+            "s5",
+            "s6"
+          ]
+        },
+        {
+          "title": "对话 B",
+          "kind": "dialogue",
+          "ids": [
+            "s7",
+            "s8"
+          ]
+        },
+        {
+          "title": "对话 C",
+          "kind": "dialogue",
+          "ids": [
+            "s9",
+            "s10",
+            "s11",
+            "s12"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "application",
+      "title": "应用课文 · ホテルの周辺",
+      "groups": [
+        {
+          "title": "参观宾馆周边",
+          "kind": "dialogue",
+          "note": "小李请小野带自己熟悉宾馆周围的环境。宾馆附近有各种店铺，非常方便。",
+          "ids": [
+            "s13",
+            "s14",
+            "s15",
+            "s16",
+            "s17",
+            "s18",
+            "s19"
+          ]
+        },
+        {
+          "title": "找书店",
+          "kind": "dialogue",
+          "note": "走了一会儿",
+          "ids": [
+            "s20",
+            "s21"
+          ]
+        },
+        {
+          "title": "在书店",
+          "kind": "dialogue",
+          "note": "在书店的收款台前",
+          "ids": [
+            "s22",
+            "s23",
+            "s24",
+            "s25"
+          ]
+        }
+      ]
+    }
+  ],
+  "grammar": [
+    {
+      "id": "g1",
+      "pattern": "ここ／そこ／あそこは名です",
+      "meaning": "指示场所的代词。",
+      "structure": "ここ／そこ／あそこ + は + 名 + です",
+      "usage": "指示场所，用“ここ”“そこ”“あそこ”。所表示的位置关系与“これ”“それ”“あれ”相同。“ここ”指距说话人较近的场所，“そこ”指距听话人较近的场所，“あそこ”指距双方都较远的场所。",
+      "examples": [
+        "s1",
+        "s13",
+        "s15"
+      ],
+      "extraExamples": [
+        {
+          "jp": "ここはデパートです。",
+          "kana": "ここはデパートです。",
+          "cn": "这里是百货商店。"
+        },
+        {
+          "jp": "そこは図書館です。",
+          "kana": "そこはとしょかんです。",
+          "cn": "那里是图书馆。"
+        },
+        {
+          "jp": "あそこは入り口です。",
+          "kana": "あそこはいりぐちです。",
+          "cn": "那里是入口。"
+        }
+      ]
+    },
+    {
+      "id": "g2",
+      "pattern": "名は名[場所]です",
+      "meaning": "表示“名词”存在于“名词[场所]”。",
+      "structure": "名 + は + 名[場所] + です",
+      "usage": "表示某物或某人存在于某个场所。“トイレはここです”是将“トイレ”作为话题来叙述，意思“厕所在这儿”。而“ここはトイレです”是将“ここ”作为话题来叙述，意思“这里是厕所”。",
+      "examples": [
+        "s2",
+        "s19",
+        "s21"
+      ],
+      "extraExamples": [
+        {
+          "jp": "食堂はデパートの7階です。",
+          "kana": "しょくどうはデパートのななかいです。",
+          "cn": "食堂在百货商店的7层。"
+        },
+        {
+          "jp": "トイレはここです。",
+          "kana": "トイレはここです。",
+          "cn": "厕所在这儿。"
+        },
+        {
+          "jp": "小野さんは事務所です。",
+          "kana": "おのさんはじむしょです。",
+          "cn": "小野女士在事务所。"
+        }
+      ]
+    },
+    {
+      "id": "g3",
+      "pattern": "名はどこですか",
+      "meaning": "用于询问存在的场所。",
+      "structure": "名 + は + どこですか",
+      "usage": "用“どこ”询问存在的场所。礼貌说法用“どちら”代替“どこ”。",
+      "examples": [
+        "s5",
+        "s20",
+        "s22"
+      ],
+      "extraExamples": [
+        {
+          "jp": "トイレはどこですか。",
+          "kana": "トイレはどこですか。",
+          "cn": "厕所在哪儿？"
+        },
+        {
+          "jp": "ーあちらです。",
+          "kana": "ーあちらです。",
+          "cn": "在那边。"
+        },
+        {
+          "jp": "あなたのかばんはどこですか。",
+          "kana": "あなたのかばんはどこですか。",
+          "cn": "你的包在哪儿？"
+        },
+        {
+          "jp": "ーわたしのかばんはここです。",
+          "kana": "ーわたしのかばんはここです。",
+          "cn": "我的包在这儿。"
+        }
+      ]
+    },
+    {
+      "id": "g4",
+      "pattern": "名も名です",
+      "meaning": "助词“も”基本相当于汉语的“也”。",
+      "structure": "名 + も + 名 + です",
+      "usage": "用“も”代替“は”，表示“也”的意思。前面的主语和后面的主语属于同一类别或具有相同性质。",
+      "examples": [
+        "s3",
+        "s12",
+        "s17"
+      ],
+      "extraExamples": [
+        {
+          "jp": "ここはJC企画のビルです。",
+          "kana": "ここはジェーシーきかくのビルです。",
+          "cn": "这里是JC策划公司的大楼。"
+        },
+        {
+          "jp": "あそこもJC企画のビルです。",
+          "kana": "あそこもジェーシーきかくのビルです。",
+          "cn": "那里也是JC策划公司的大楼。"
+        },
+        {
+          "jp": "李さんは中国人です。",
+          "kana": "りさんはちゅうごくじんです。",
+          "cn": "小李是中国人。"
+        },
+        {
+          "jp": "張さんも中国人です。",
+          "kana": "ちょうさんもちゅうごくじんです。",
+          "cn": "小张也是中国人。"
+        },
+        {
+          "jp": "あなたも中国人ですか。",
+          "kana": "あなたもちゅうごくじんですか。",
+          "cn": "你也是中国人吗？"
+        }
+      ]
+    },
+    {
+      "id": "g5",
+      "pattern": "名は名ですか、名ですか",
+      "meaning": "答案有多种可能，而询问其中的一种时，可以重复使用“～ですか”。",
+      "structure": "名 + は + 名 + ですか、名 + ですか",
+      "usage": "因为问的是哪一种，不能用“はい”或“いいえ”来回答。",
+      "examples": [
+        "s4",
+        "s7",
+        "s14"
+      ],
+      "extraExamples": [
+        {
+          "jp": "かばん売り場は1階ですか、2階ですか。",
+          "kana": "かばんうりばはいっかいですか、にかいですか。",
+          "cn": "包的柜台在1层还是2层？"
+        },
+        {
+          "jp": "今日は水曜日ですか、木曜日ですか。",
+          "kana": "きょうはすいようびですか、もくようびですか。",
+          "cn": "今天是星期三还是星期四？"
+        },
+        {
+          "jp": "林さんは韓国人ですか、日本人ですか、中国人ですか。",
+          "kana": "はやしさんはかんこくじんですか、にほんじんですか、ちゅうごくじんですか。",
+          "cn": "林先生是韩国人？日本人？还是中国人？"
+        },
+        {
+          "jp": "ー日本人です。",
+          "kana": "ーにほんじんです。",
+          "cn": "是日本人。"
+        }
+      ]
+    },
+    {
+      "id": "g6",
+      "pattern": "名はいくらですか",
+      "meaning": "询问价钱，用“いくら”。",
+      "structure": "名 + は + いくらですか",
+      "usage": "“いくら”是询问价钱的疑问词。回答时在金额后加“円”。",
+      "examples": [
+        "s9",
+        "s10",
+        "s12",
+        "s24",
+        "s25"
+      ],
+      "extraExamples": [
+        {
+          "jp": "これはいくらですか。",
+          "kana": "これはいくらですか。",
+          "cn": "这个多少钱？"
+        },
+        {
+          "jp": "その服はいくらですか。",
+          "kana": "そのふくはいくらですか。",
+          "cn": "那件衣服多少钱？"
+        },
+        {
+          "jp": "その車はいくらですか。",
+          "kana": "そのくるまはいくらですか。",
+          "cn": "那辆车多少钱？"
+        },
+        {
+          "jp": "ー1,980,000円です。",
+          "kana": "ーひゃくきゅうじゅうはちまんえんです。",
+          "cn": "198万日元。"
+        }
+      ]
+    },
+    {
+      "id": "g7",
+      "pattern": "〜階",
+      "meaning": "计数楼层时使用“〜階”。",
+      "structure": "数词 + 階（かい／がい）",
+      "usage": "“1階”的“階”是量词。日语的量词和前面的数词搭配使用时，有时会有多种发音的情况。“1階”读作“いっかい”，“3階”读作“さんがい”。具体参见附表“数词、量词搭配使用表”。",
+      "examples": [
+        "s2",
+        "s4"
+      ],
+      "extraExamples": []
+    },
+    {
+      "id": "g8",
+      "pattern": "省略②[谓语的省略]",
+      "meaning": "在会话中进一步询问时，一般省略已说过的谓语部分。",
+      "structure": "主题 + は？（升调）",
+      "usage": "在会话中，进一步询问时可省略已说过的谓语部分。如先问“これはいくらですか”，接着问“あれは？”，后半部分“いくらですか”被省略，“あれは？”须读升调。此处的“あれは？”不能简单理解为“那个是？”。",
+      "examples": [
+        "s11",
+        "s18"
+      ],
+      "extraExamples": [
+        {
+          "jp": "あれは？",
+          "kana": "あれは？",
+          "cn": "那个呢？",
+          "note": "省略了“いくらですか”"
+        },
+        {
+          "jp": "マンションの隣は？",
+          "kana": "マンションのとなりは？",
+          "cn": "公寓的旁边呢？",
+          "note": "省略了“何ですか”或“何がありますか”"
+        }
+      ]
+    },
+    {
+      "id": "g9",
+      "pattern": "礼貌语言③ 〜ちら",
+      "meaning": "“こちら／そちら／あちら／どちら”是“ここ／そこ／あそこ／どこ”的礼貌说法。",
+      "structure": "こちら／そちら／あちら／どちら",
+      "usage": "“こちら／そちら／あちら／どちら”原本是表示方向的词语，作为礼貌说法代替“ここ／そこ／あそこ／どこ”使用。“お国はどちらですか”表示询问对方的国家。“会社はどちらですか”既可询问公司所在地，也可询问所属公司的名称。",
+      "examples": [
+        "s6"
+      ],
+      "extraExamples": [
+        {
+          "jp": "受付はどこですか。",
+          "kana": "うけつけはどこですか。",
+          "cn": "接待处在哪儿？",
+          "note": "一般说法"
+        },
+        {
+          "jp": "ーあそこです。",
+          "kana": "ーあそこです。",
+          "cn": "在那边。"
+        },
+        {
+          "jp": "受付はどちらですか。",
+          "kana": "うけつけはどちらですか。",
+          "cn": "接待处在哪儿？",
+          "note": "礼貌说法"
+        },
+        {
+          "jp": "ーあちらです。",
+          "kana": "ーあちらです。",
+          "cn": "在那边。"
+        }
+      ]
+    },
+    {
+      "id": "g10",
+      "pattern": "あのう",
+      "meaning": "用于向对方搭话或欲引起对方注意。",
+      "structure": "あのう + 询问内容",
+      "usage": "“あのう”用于向对方搭话或欲引起对方注意。另外，在说到难以启齿的事情、开始一个新话题以及向别人提出请求时，也可用“あのう”。",
+      "examples": [
+        "s22"
+      ],
+      "extraExamples": [
+        {
+          "jp": "あのう、課長…。",
+          "kana": "あのう、かちょう…。",
+          "cn": "对不起，科长…。",
+          "note": "部下（甲）向正在工作的科长（乙）搭话"
+        },
+        {
+          "jp": "何ですか。",
+          "kana": "なんですか。",
+          "cn": "什么事？"
+        },
+        {
+          "jp": "あのう、東京の地図はどこですか。",
+          "kana": "あのう、とうきょうのちずはどこですか。",
+          "cn": "请问，东京的地图在哪里？"
+        }
+      ]
+    },
+    {
+      "id": "g11",
+      "pattern": "〜ですか[确认]",
+      "meaning": "用于进一步确认对方所说的信息，句尾升调。",
+      "structure": "对方说的内容 + ですか（升调）",
+      "usage": "在对方所说的内容后加“ですか”，重复一遍，可表示理解了对方所说的内容。表示确认时句尾用升调。",
+      "examples": [
+        "s23"
+      ],
+      "extraExamples": [
+        {
+          "jp": "地図ですか。そちらです。",
+          "kana": "ちずですか。そちらです。",
+          "cn": "地图吗？在那边。",
+          "note": "确认对方询问的内容后回答"
+        },
+        {
+          "jp": "それはパソコンです。",
+          "kana": "それはパソコンです。",
+          "cn": "那是个人电脑。"
+        },
+        {
+          "jp": "ーパソコンですか。",
+          "kana": "ーパソコンですか。",
+          "cn": "是个人电脑啊。",
+          "note": "表示理解，句尾降调"
+        }
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "ex-i-1-1",
+      "groupId": "ex-i-1",
+      "groupTitle": "练习I 1",
+      "category": "picture-answer",
+      "instruction": "看图，仿照例句替换画线部分进行练习。",
+      "example": "ここは事務所です。",
+      "exampleKana": "ここはじむしょです。",
+      "type": "transform",
+      "question": "受付",
+      "questionKana": "うけつけ",
+      "choices": [],
+      "answer": "ここは受付です。",
+      "answerKana": "ここはうけつけです。",
+      "referenceAnswers": [
+        "ここは受付です。"
+      ],
+      "referenceAnswerKana": [
+        "ここはうけつけです。"
+      ],
+      "relatedGrammar": [
+        "g1"
+      ],
+      "relatedSentences": [
+        "s1"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "ex-i-1-2",
+      "groupId": "ex-i-1",
+      "groupTitle": "练习I 1",
+      "category": "picture-answer",
+      "instruction": "看图，仿照例句替换画线部分进行练习。",
+      "example": "ここは事務所です。",
+      "exampleKana": "ここはじむしょです。",
+      "type": "transform",
+      "question": "カメラ売り場",
+      "questionKana": "カメラうりば",
+      "choices": [],
+      "answer": "ここはカメラ売り場です。",
+      "answerKana": "ここはカメラうりばです。",
+      "referenceAnswers": [
+        "ここはカメラ売り場です。"
+      ],
+      "referenceAnswerKana": [
+        "ここはカメラうりばです。"
+      ],
+      "relatedGrammar": [
+        "g1"
+      ],
+      "relatedSentences": [
+        "s1"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "ex-i-1-3",
+      "groupId": "ex-i-1",
+      "groupTitle": "练习I 1",
+      "category": "picture-answer",
+      "instruction": "看图，仿照例句替换画线部分进行练习。",
+      "example": "ここは事務所です。",
+      "exampleKana": "ここはじむしょです。",
+      "type": "transform",
+      "question": "トイレ",
+      "questionKana": "トイレ",
+      "choices": [],
+      "answer": "ここはトイレです。",
+      "answerKana": "ここはトイレです。",
+      "referenceAnswers": [
+        "ここはトイレです。"
+      ],
+      "referenceAnswerKana": [
+        "ここはトイレです。"
+      ],
+      "relatedGrammar": [
+        "g1"
+      ],
+      "relatedSentences": [
+        "s1"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "ex-i-1-4",
+      "groupId": "ex-i-1",
+      "groupTitle": "练习I 1",
+      "category": "picture-answer",
+      "instruction": "看图，仿照例句替换画线部分进行练习。",
+      "example": "レストラン／5階 → レストランは5階です。",
+      "exampleKana": "レストラン／ごかい → レストランはごかいです。",
+      "type": "transform",
+      "question": "コンビニ／1階",
+      "questionKana": "コンビニ／いっかい",
+      "choices": [],
+      "answer": "コンビニは1階です。",
+      "answerKana": "コンビニはいっかいです。",
+      "referenceAnswers": [
+        "コンビニは1階です。"
+      ],
+      "referenceAnswerKana": [
+        "コンビニはいっかいです。"
+      ],
+      "relatedGrammar": [
+        "g2"
+      ],
+      "relatedSentences": [
+        "s2"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "ex-i-1-5",
+      "groupId": "ex-i-1",
+      "groupTitle": "练习I 1",
+      "category": "picture-answer",
+      "instruction": "看图，仿照例句替换画线部分进行练习。",
+      "example": "レストラン／5階 → レストランは5階です。",
+      "exampleKana": "レストラン／ごかい → レストランはごかいです。",
+      "type": "transform",
+      "question": "本屋／8階",
+      "questionKana": "ほんや／はちかい",
+      "choices": [],
+      "answer": "本屋は8階です。",
+      "answerKana": "ほんやははちかいです。",
+      "referenceAnswers": [
+        "本屋は8階です。"
+      ],
+      "referenceAnswerKana": [
+        "ほんやははちかいです。"
+      ],
+      "relatedGrammar": [
+        "g2"
+      ],
+      "relatedSentences": [
+        "s2"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "ex-i-1-6",
+      "groupId": "ex-i-1",
+      "groupTitle": "练习I 1",
+      "category": "picture-answer",
+      "instruction": "看图，仿照例句替换画线部分进行练习。",
+      "example": "レストラン／5階 → レストランは5階です。",
+      "exampleKana": "レストラン／ごかい → レストランはごかいです。",
+      "type": "transform",
+      "question": "レストラン／3階",
+      "questionKana": "レストラン／さんがい",
+      "choices": [],
+      "answer": "レストランは3階です。",
+      "answerKana": "レストランはさんがいです。",
+      "referenceAnswers": [
+        "レストランは3階です。"
+      ],
+      "referenceAnswerKana": [
+        "レストランはさんがいです。"
+      ],
+      "relatedGrammar": [
+        "g2"
+      ],
+      "relatedSentences": [
+        "s2"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "ex-i-1-7",
+      "groupId": "ex-i-1",
+      "groupTitle": "练习I 1",
+      "category": "picture-answer",
+      "instruction": "看图，仿照例句替换画线部分进行练习。",
+      "example": "レストラン／5階 → レストランは5階です。",
+      "exampleKana": "レストラン／ごかい → レストランはごかいです。",
+      "type": "transform",
+      "question": "事務所／3階",
+      "questionKana": "じむしょ／さんがい",
+      "choices": [],
+      "answer": "事務所は3階です。",
+      "answerKana": "じむしょはさんがいです。",
+      "referenceAnswers": [
+        "事務所は3階です。"
+      ],
+      "referenceAnswerKana": [
+        "じむしょはさんがいです。"
+      ],
+      "relatedGrammar": [
+        "g2"
+      ],
+      "relatedSentences": [
+        "s2"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "ex-i-2-1",
+      "groupId": "ex-i-2",
+      "groupTitle": "练习I 2",
+      "category": "replacement",
+      "instruction": "仿照例句替换画线部分进行练习。",
+      "example": "トイレ → 甲：トイレはどこですか。乙：あそこです。",
+      "exampleKana": "トイレ → 甲：トイレはどこですか。乙：あそこです。",
+      "type": "transform",
+      "question": "図書館",
+      "questionKana": "としょかん",
+      "choices": [],
+      "answer": "甲：図書館はどこですか。乙：あそこです。",
+      "answerKana": "甲：としょかんはどこですか。乙：あそこです。",
+      "referenceAnswers": [
+        "甲：図書館はどこですか。乙：あそこです。"
+      ],
+      "referenceAnswerKana": [
+        "甲：としょかんはどこですか。乙：あそこです。"
+      ],
+      "relatedGrammar": [
+        "g3"
+      ],
+      "relatedSentences": [
+        "s5",
+        "s6"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "ex-i-2-2",
+      "groupId": "ex-i-2",
+      "groupTitle": "练习I 2",
+      "category": "replacement",
+      "instruction": "仿照例句替换画线部分进行练习。",
+      "example": "トイレ → 甲：トイレはどこですか。乙：あそこです。",
+      "exampleKana": "トイレ → 甲：トイレはどこですか。乙：あそこです。",
+      "type": "transform",
+      "question": "食堂",
+      "questionKana": "しょくどう",
+      "choices": [],
+      "answer": "甲：食堂はどこですか。乙：あそこです。",
+      "answerKana": "甲：しょくどうはどこですか。乙：あそこです。",
+      "referenceAnswers": [
+        "甲：食堂はどこですか。乙：あそこです。"
+      ],
+      "referenceAnswerKana": [
+        "甲：しょくどうはどこですか。乙：あそこです。"
+      ],
+      "relatedGrammar": [
+        "g3"
+      ],
+      "relatedSentences": [
+        "s5",
+        "s6"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "ex-i-2-3",
+      "groupId": "ex-i-2",
+      "groupTitle": "练习I 2",
+      "category": "replacement",
+      "instruction": "仿照例句替换画线部分进行练习。",
+      "example": "トイレ → 甲：トイレはどこですか。乙：あそこです。",
+      "exampleKana": "トイレ → 甲：トイレはどこですか。乙：あそこです。",
+      "type": "transform",
+      "question": "受付",
+      "questionKana": "うけつけ",
+      "choices": [],
+      "answer": "甲：受付はどこですか。乙：あそこです。",
+      "answerKana": "甲：うけつけはどこですか。乙：あそこです。",
+      "referenceAnswers": [
+        "甲：受付はどこですか。乙：あそこです。"
+      ],
+      "referenceAnswerKana": [
+        "甲：うけつけはどこですか。乙：あそこです。"
+      ],
+      "relatedGrammar": [
+        "g3"
+      ],
+      "relatedSentences": [
+        "s5",
+        "s6"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "ex-i-2-4",
+      "groupId": "ex-i-2",
+      "groupTitle": "练习I 2",
+      "category": "replacement",
+      "instruction": "仿照例句替换画线部分进行练习。",
+      "example": "トイレ → 甲：トイレはどこですか。乙：あそこです。",
+      "exampleKana": "トイレ → 甲：トイレはどこですか。乙：あそこです。",
+      "type": "transform",
+      "question": "靴売り場",
+      "questionKana": "くつうりば",
+      "choices": [],
+      "answer": "甲：靴売り場はどこですか。乙：あそこです。",
+      "answerKana": "甲：くつうりばはどこですか。乙：あそこです。",
+      "referenceAnswers": [
+        "甲：靴売り場はどこですか。乙：あそこです。"
+      ],
+      "referenceAnswerKana": [
+        "甲：くつうりばはどこですか。乙：あそこです。"
+      ],
+      "relatedGrammar": [
+        "g3"
+      ],
+      "relatedSentences": [
+        "s5",
+        "s6"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "ex-i-2-5",
+      "groupId": "ex-i-2",
+      "groupTitle": "练习I 2",
+      "category": "replacement",
+      "instruction": "仿照例句替换画线部分进行练习。",
+      "example": "トイレ → 甲：トイレはどこですか。乙：あそこです。",
+      "exampleKana": "トイレ → 甲：トイレはどこですか。乙：あそこです。",
+      "type": "transform",
+      "question": "事務所",
+      "questionKana": "じむしょ",
+      "choices": [],
+      "answer": "甲：事務所はどこですか。乙：あそこです。",
+      "answerKana": "甲：じむしょはどこですか。乙：あそこです。",
+      "referenceAnswers": [
+        "甲：事務所はどこですか。乙：あそこです。"
+      ],
+      "referenceAnswerKana": [
+        "甲：じむしょはどこですか。乙：あそこです。"
+      ],
+      "relatedGrammar": [
+        "g3"
+      ],
+      "relatedSentences": [
+        "s5",
+        "s6"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "ex-i-2-6",
+      "groupId": "ex-i-2",
+      "groupTitle": "练习I 2",
+      "category": "replacement",
+      "instruction": "仿照例句替换画线部分进行练习。",
+      "example": "銀行／あのビルの1階 → 銀行はあのビルの1階です。",
+      "exampleKana": "ぎんこう／あのビルのいっかい → ぎんこうはあのビルのいっかいです。",
+      "type": "transform",
+      "question": "コンビニ／1階",
+      "questionKana": "コンビニ／いっかい",
+      "choices": [],
+      "answer": "コンビニは1階です。",
+      "answerKana": "コンビニはいっかいです。",
+      "referenceAnswers": [
+        "コンビニは1階です。"
+      ],
+      "referenceAnswerKana": [
+        "コンビニはいっかいです。"
+      ],
+      "relatedGrammar": [
+        "g2"
+      ],
+      "relatedSentences": [
+        "s2"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "ex-i-2-7",
+      "groupId": "ex-i-2",
+      "groupTitle": "练习I 2",
+      "category": "replacement",
+      "instruction": "仿照例句替换画线部分进行练习。",
+      "example": "銀行／あのビルの1階 → 銀行はあのビルの1階です。",
+      "exampleKana": "ぎんこう／あのビルのいっかい → ぎんこうはあのビルのいっかいです。",
+      "type": "transform",
+      "question": "本屋／8階",
+      "questionKana": "ほんや／はちかい",
+      "choices": [],
+      "answer": "本屋は8階です。",
+      "answerKana": "ほんやははちかいです。",
+      "referenceAnswers": [
+        "本屋は8階です。"
+      ],
+      "referenceAnswerKana": [
+        "ほんやははちかいです。"
+      ],
+      "relatedGrammar": [
+        "g2"
+      ],
+      "relatedSentences": [
+        "s2"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "ex-i-2-8",
+      "groupId": "ex-i-2",
+      "groupTitle": "练习I 2",
+      "category": "replacement",
+      "instruction": "仿照例句替换画线部分进行练习。",
+      "example": "銀行／あのビルの1階 → 銀行はあのビルの1階です。",
+      "exampleKana": "ぎんこう／あのビルのいっかい → ぎんこうはあのビルのいっかいです。",
+      "type": "transform",
+      "question": "レストラン／3階",
+      "questionKana": "レストラン／さんがい",
+      "choices": [],
+      "answer": "レストランは3階です。",
+      "answerKana": "レストランはさんがいです。",
+      "referenceAnswers": [
+        "レストランは3階です。"
+      ],
+      "referenceAnswerKana": [
+        "レストランはさんがいです。"
+      ],
+      "relatedGrammar": [
+        "g2"
+      ],
+      "relatedSentences": [
+        "s2"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "ex-i-2-9",
+      "groupId": "ex-i-2",
+      "groupTitle": "练习I 2",
+      "category": "replacement",
+      "instruction": "仿照例句替换画线部分进行练习。",
+      "example": "銀行／あのビルの1階 → 銀行はあのビルの1階です。",
+      "exampleKana": "ぎんこう／あのビルのいっかい → ぎんこうはあのビルのいっかいです。",
+      "type": "transform",
+      "question": "事務所／3階",
+      "questionKana": "じむしょ／さんがい",
+      "choices": [],
+      "answer": "事務所は3階です。",
+      "answerKana": "じむしょはさんがいです。",
+      "referenceAnswers": [
+        "事務所は3階です。"
+      ],
+      "referenceAnswerKana": [
+        "じむしょはさんがいです。"
+      ],
+      "relatedGrammar": [
+        "g2"
+      ],
+      "relatedSentences": [
+        "s2"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "ex-i-2-10",
+      "groupId": "ex-i-2",
+      "groupTitle": "练习I 2",
+      "category": "replacement",
+      "instruction": "仿照例句替换画线部分进行练习。",
+      "example": "銀行／あのビルの1階 → 銀行はあのビルの1階です。",
+      "exampleKana": "ぎんこう／あのビルのいっかい → ぎんこうはあのビルのいっかいです。",
+      "type": "transform",
+      "question": "かばん売り場／1階",
+      "questionKana": "かばんうりば／いっかい",
+      "choices": [],
+      "answer": "かばん売り場は1階です。",
+      "answerKana": "かばんうりばはいっかいです。",
+      "referenceAnswers": [
+        "かばん売り場は1階です。"
+      ],
+      "referenceAnswerKana": [
+        "かばんうりばはいっかいです。"
+      ],
+      "relatedGrammar": [
+        "g2"
+      ],
+      "relatedSentences": [
+        "s2"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "ex-i-3-1",
+      "groupId": "ex-i-3",
+      "groupTitle": "练习I 3",
+      "category": "replacement",
+      "instruction": "仿照例句替换画线部分进行练习。",
+      "example": "李さんは中国人です。（張さん） → 張さんも中国人です。",
+      "exampleKana": "りさんはちゅうごくじんです。（ちょうさん） → ちょうさんもちゅうごくじんです。",
+      "type": "transform",
+      "question": "小野さんはJC企画の社員です。（李さん）",
+      "questionKana": "おのさんはジェーシーきかくのしゃいんです。（りさん）",
+      "choices": [],
+      "answer": "李さんもJC企画の社員です。",
+      "answerKana": "りさんもジェーシーきかくのしゃいんです。",
+      "referenceAnswers": [
+        "李さんもJC企画の社員です。"
+      ],
+      "referenceAnswerKana": [
+        "りさんもジェーシーきかくのしゃいんです。"
+      ],
+      "relatedGrammar": [
+        "g4"
+      ],
+      "relatedSentences": [
+        "s3"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "ex-i-3-2",
+      "groupId": "ex-i-3",
+      "groupTitle": "练习I 3",
+      "category": "replacement",
+      "instruction": "仿照例句替换画线部分进行练习。",
+      "example": "李さんは中国人です。（張さん） → 張さんも中国人です。",
+      "exampleKana": "りさんはちゅうごくじんです。（ちょうさん） → ちょうさんもちゅうごくじんです。",
+      "type": "transform",
+      "question": "ここはわたしのレストランです。（そこ）",
+      "questionKana": "ここはわたしのレストランです。（そこ）",
+      "choices": [],
+      "answer": "そこもわたしのレストランです。",
+      "answerKana": "そこもわたしのレストランです。",
+      "referenceAnswers": [
+        "そこもわたしのレストランです。"
+      ],
+      "referenceAnswerKana": [
+        "そこもわたしのレストランです。"
+      ],
+      "relatedGrammar": [
+        "g4"
+      ],
+      "relatedSentences": [
+        "s3"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "ex-i-3-3",
+      "groupId": "ex-i-3",
+      "groupTitle": "练习I 3",
+      "category": "replacement",
+      "instruction": "仿照例句替换画线部分进行练习。",
+      "example": "李さんは中国人です。（張さん） → 張さんも中国人です。",
+      "exampleKana": "りさんはちゅうごくじんです。（ちょうさん） → ちょうさんもちゅうごくじんです。",
+      "type": "transform",
+      "question": "このビルは病院です。（あのビル）",
+      "questionKana": "このビルはびょういんです。（あのビル）",
+      "choices": [],
+      "answer": "あのビルも病院です。",
+      "answerKana": "あのビルもびょういんです。",
+      "referenceAnswers": [
+        "あのビルも病院です。"
+      ],
+      "referenceAnswerKana": [
+        "あのビルもびょういんです。"
+      ],
+      "relatedGrammar": [
+        "g4"
+      ],
+      "relatedSentences": [
+        "s3"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "ex-i-3-4",
+      "groupId": "ex-i-3",
+      "groupTitle": "练习I 3",
+      "category": "replacement",
+      "instruction": "仿照例句替换画线部分进行练习。",
+      "example": "李さんは中国人です。（張さん） → 張さんも中国人です。",
+      "exampleKana": "りさんはちゅうごくじんです。（ちょうさん） → ちょうさんもちゅうごくじんです。",
+      "type": "transform",
+      "question": "時計売り場はデパートの5階です。（かばん売り場）",
+      "questionKana": "とけいうりばはデパートのごかいです。（かばんうりば）",
+      "choices": [],
+      "answer": "かばん売り場もデパートの5階です。",
+      "answerKana": "かばんうりばもデパートのごかいです。",
+      "referenceAnswers": [
+        "かばん売り場もデパートの5階です。"
+      ],
+      "referenceAnswerKana": [
+        "かばんうりばもデパートのごかいです。"
+      ],
+      "relatedGrammar": [
+        "g4"
+      ],
+      "relatedSentences": [
+        "s3"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "ex-i-4-1",
+      "groupId": "ex-i-4",
+      "groupTitle": "练习I 4",
+      "category": "replacement",
+      "instruction": "仿照例句替换画线部分进行练习。",
+      "example": "中国人／韓国人 → 甲：あの人は中国人ですか、韓国人ですか。乙：中国人です。",
+      "exampleKana": "ちゅうごくじん／かんこくじん → 甲：あのひとはちゅうごくじんですか、かんこくじんですか。乙：ちゅうごくじんです。",
+      "type": "transform",
+      "question": "会社員／学生",
+      "questionKana": "かいしゃいん／がくせい",
+      "choices": [],
+      "answer": "甲：あの人は会社員ですか、学生ですか。乙：会社員です。",
+      "answerKana": "甲：あのひとはかいしゃいんですか、がくせいですか。乙：かいしゃいんです。",
+      "referenceAnswers": [
+        "甲：あの人は会社員ですか、学生ですか。乙：会社員です。"
+      ],
+      "referenceAnswerKana": [
+        "甲：あのひとはかいしゃいんですか、がくせいですか。乙：かいしゃいんです。"
+      ],
+      "relatedGrammar": [
+        "g5"
+      ],
+      "relatedSentences": [
+        "s7",
+        "s8"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "ex-i-4-2",
+      "groupId": "ex-i-4",
+      "groupTitle": "练习I 4",
+      "category": "replacement",
+      "instruction": "仿照例句替换画线部分进行练习。",
+      "example": "中国人／韓国人 → 甲：あの人は中国人ですか、韓国人ですか。乙：中国人です。",
+      "exampleKana": "ちゅうごくじん／かんこくじん → 甲：あのひとはちゅうごくじんですか、かんこくじんですか。乙：ちゅうごくじんです。",
+      "type": "transform",
+      "question": "フランス人／アメリカ人",
+      "questionKana": "フランスじん／アメリカじん",
+      "choices": [],
+      "answer": "甲：あの人はフランス人ですか、アメリカ人ですか。乙：フランス人です。",
+      "answerKana": "甲：あのひとはフランスじんですか、アメリカじんですか。乙：フランスじんです。",
+      "referenceAnswers": [
+        "甲：あの人はフランス人ですか、アメリカ人ですか。乙：フランス人です。"
+      ],
+      "referenceAnswerKana": [
+        "甲：あのひとはフランスじんですか、アメリカじんですか。乙：フランスじんです。"
+      ],
+      "relatedGrammar": [
+        "g5"
+      ],
+      "relatedSentences": [
+        "s7",
+        "s8"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "ex-i-4-3",
+      "groupId": "ex-i-4",
+      "groupTitle": "练习I 4",
+      "category": "replacement",
+      "instruction": "仿照例句替换画线部分进行练习。",
+      "example": "郵便局／銀行 → 甲：あそこは郵便局ですか、銀行ですか。乙：郵便局です。",
+      "exampleKana": "ゆうびんきょく／ぎんこう → 甲：あそこはゆうびんきょくですか、ぎんこうですか。乙：ゆうびんきょくです。",
+      "type": "transform",
+      "question": "デパート／ホテル",
+      "questionKana": "デパート／ホテル",
+      "choices": [],
+      "answer": "甲：あそこはデパートですか、ホテルですか。乙：デパートです。",
+      "answerKana": "甲：あそこはデパートですか、ホテルですか。乙：デパートです。",
+      "referenceAnswers": [
+        "甲：あそこはデパートですか、ホテルですか。乙：デパートです。"
+      ],
+      "referenceAnswerKana": [
+        "甲：あそこはデパートですか、ホテルですか。乙：デパートです。"
+      ],
+      "relatedGrammar": [
+        "g5"
+      ],
+      "relatedSentences": [
+        "s7",
+        "s8"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "ex-i-4-4",
+      "groupId": "ex-i-4",
+      "groupTitle": "练习I 4",
+      "category": "replacement",
+      "instruction": "仿照例句替换画线部分进行练习。",
+      "example": "郵便局／銀行 → 甲：あそこは郵便局ですか、銀行ですか。乙：郵便局です。",
+      "exampleKana": "ゆうびんきょく／ぎんこう → 甲：あそこはゆうびんきょくですか、ぎんこうですか。乙：ゆうびんきょくです。",
+      "type": "transform",
+      "question": "本屋／コンビニ",
+      "questionKana": "ほんや／コンビニ",
+      "choices": [],
+      "answer": "甲：あそこは本屋ですか、コンビニですか。乙：本屋です。",
+      "answerKana": "甲：あそこはほんやですか、コンビニですか。乙：ほんやです。",
+      "referenceAnswers": [
+        "甲：あそこは本屋ですか、コンビニですか。乙：本屋です。"
+      ],
+      "referenceAnswerKana": [
+        "甲：あそこはほんやですか、コンビニですか。乙：ほんやです。"
+      ],
+      "relatedGrammar": [
+        "g5"
+      ],
+      "relatedSentences": [
+        "s7",
+        "s8"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "ex-i-5-1",
+      "groupId": "ex-i-5",
+      "groupTitle": "练习I 5",
+      "category": "listening-dialogue",
+      "instruction": "听录音，仿照例句替换画线部分进行会话。",
+      "example": "トイレ／食堂 → 甲：すみません。トイレはどこですか。乙：トイレですか。トイレはあちらです。甲：食堂は？乙：食堂は5階です。",
+      "exampleKana": "トイレ／しょくどう → 甲：すみません。トイレはどこですか。乙：トイレですか。トイレはあちらです。甲：しょくどうは？乙：しょくどうはごかいです。",
+      "type": "listening",
+      "question": "受付／かばん売り場",
+      "questionKana": "うけつけ／かばんうりば",
+      "choices": [],
+      "answer": "甲：すみません。受付はどこですか。乙：受付ですか。受付はあちらです。甲：かばん売り場は？乙：かばん売り場は5階です。",
+      "answerKana": "甲：すみません。うけつけはどこですか。乙：うけつけですか。うけつけはあちらです。甲：かばんうりばは？乙：かばんうりばはごかいです。",
+      "referenceAnswers": [
+        "甲：すみません。受付はどこですか。乙：受付ですか。受付はあちらです。甲：かばん売り場は？乙：かばん売り場は5階です。"
+      ],
+      "referenceAnswerKana": [
+        "甲：すみません。うけつけはどこですか。乙：うけつけですか。うけつけはあちらです。甲：かばんうりばは？乙：かばんうりばはごかいです。"
+      ],
+      "relatedGrammar": [
+        "g3",
+        "g8",
+        "g9",
+        "g11"
+      ],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": true
+    },
+    {
+      "id": "ex-i-5-2",
+      "groupId": "ex-i-5",
+      "groupTitle": "练习I 5",
+      "category": "listening-dialogue",
+      "instruction": "听录音，仿照例句替换画线部分进行会话。",
+      "example": "トイレ／食堂 → 甲：すみません。トイレはどこですか。乙：トイレですか。トイレはあちらです。甲：食堂は？乙：食堂は5階です。",
+      "exampleKana": "トイレ／しょくどう → 甲：すみません。トイレはどこですか。乙：トイレですか。トイレはあちらです。甲：しょくどうは？乙：しょくどうはごかいです。",
+      "type": "listening",
+      "question": "エスカレーター／バーゲン会場",
+      "questionKana": "エスカレーター／バーゲンかいじょう",
+      "choices": [],
+      "answer": "甲：すみません。エスカレーターはどこですか。乙：エスカレーターですか。エスカレーターはあちらです。甲：バーゲン会場は？乙：バーゲン会場は5階です。",
+      "answerKana": "甲：すみません。エスカレーターはどこですか。乙：エスカレーターですか。エスカレーターはあちらです。甲：バーゲンかいじょうは？乙：バーゲンかいじょうはごかいです。",
+      "referenceAnswers": [
+        "甲：すみません。エスカレーターはどこですか。乙：エスカレーターですか。エスカレーターはあちらです。甲：バーゲン会場は？乙：バーゲン会場は5階です。"
+      ],
+      "referenceAnswerKana": [
+        "甲：すみません。エスカレーターはどこですか。乙：エスカレーターですか。エスカレーターはあちらです。甲：バーゲンかいじょうは？乙：バーゲンかいじょうはごかいです。"
+      ],
+      "relatedGrammar": [
+        "g3",
+        "g8",
+        "g9",
+        "g11"
+      ],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": true
+    },
+    {
+      "id": "ex-i-5-3",
+      "groupId": "ex-i-5",
+      "groupTitle": "练习I 5",
+      "category": "listening-dialogue",
+      "instruction": "听录音，仿照例句替换画线部分进行会话。",
+      "example": "トイレ／食堂 → 甲：すみません。トイレはどこですか。乙：トイレですか。トイレはあちらです。甲：食堂は？乙：食堂は5階です。",
+      "exampleKana": "トイレ／しょくどう → 甲：すみません。トイレはどこですか。乙：トイレですか。トイレはあちらです。甲：しょくどうは？乙：しょくどうはごかいです。",
+      "type": "listening",
+      "question": "電話／カメラ売り場",
+      "questionKana": "でんわ／カメラうりば",
+      "choices": [],
+      "answer": "甲：すみません。電話はどこですか。乙：電話ですか。電話はあちらです。甲：カメラ売り場は？乙：カメラ売り場は5階です。",
+      "answerKana": "甲：すみません。でんわはどこですか。乙：でんわですか。でんわはあちらです。甲：カメラうりばは？乙：カメラうりばはごかいです。",
+      "referenceAnswers": [
+        "甲：すみません。電話はどこですか。乙：電話ですか。電話はあちらです。甲：カメラ売り場は？乙：カメラ売り場は5階です。"
+      ],
+      "referenceAnswerKana": [
+        "甲：すみません。でんわはどこですか。乙：でんわですか。でんわはあちらです。甲：カメラうりばは？乙：カメラうりばはごかいです。"
+      ],
+      "relatedGrammar": [
+        "g3",
+        "g8",
+        "g9",
+        "g11"
+      ],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": true
+    },
+    {
+      "id": "ex-i-6-1",
+      "groupId": "ex-i-6",
+      "groupTitle": "练习I 6",
+      "category": "picture-answer",
+      "instruction": "看图，照例句替换画线部分进行会话。",
+      "example": "甲：これはいくらですか。乙：それは8,900円です。甲：あれは？乙：どれですか。甲：あのかばんです。乙：あれも8,900円です。",
+      "exampleKana": "甲：これはいくらですか。乙：それははっせんきゅうひゃくえんです。甲：あれは？乙：どれですか。甲：あのかばんです。乙：あれもはっせんきゅうひゃくえんです。",
+      "type": "transform",
+      "question": "パソコン／114,000円",
+      "questionKana": "パソコン／じゅういちまんよんせんえん",
+      "choices": [],
+      "answer": "甲：これはいくらですか。乙：それは114,000円円です。甲：あれは？乙：どれですか。甲：あのパソコンです。乙：あれも114,000円円です。",
+      "answerKana": "甲：これはいくらですか。乙：それはじゅういちまんよんせんえんえんです。甲：あれは？乙：どれですか。甲：あのパソコンです。乙：あれもじゅういちまんよんせんえんえんです。",
+      "referenceAnswers": [
+        "甲：これはいくらですか。乙：それは114,000円円です。甲：あれは？乙：どれですか。甲：あのパソコンです。乙：あれも114,000円円です。"
+      ],
+      "referenceAnswerKana": [
+        "甲：これはいくらですか。乙：それはじゅういちまんよんせんえんえんです。甲：あれは？乙：どれですか。甲：あのパソコンです。乙：あれもじゅういちまんよんせんえんえんです。"
+      ],
+      "relatedGrammar": [
+        "g6",
+        "g8"
+      ],
+      "relatedSentences": [
+        "s9",
+        "s10",
+        "s11",
+        "s12"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "ex-i-6-2",
+      "groupId": "ex-i-6",
+      "groupTitle": "练习I 6",
+      "category": "picture-answer",
+      "instruction": "看图，照例句替换画线部分进行会话。",
+      "example": "甲：これはいくらですか。乙：それは8,900円です。甲：あれは？乙：どれですか。甲：あのかばんです。乙：あれも8,900円です。",
+      "exampleKana": "甲：これはいくらですか。乙：それははっせんきゅうひゃくえんです。甲：あれは？乙：どれですか。甲：あのかばんです。乙：あれもはっせんきゅうひゃくえんです。",
+      "type": "transform",
+      "question": "コート／39,800円",
+      "questionKana": "コート／さんまんきゅうせんはっぴゃくえん",
+      "choices": [],
+      "answer": "甲：これはいくらですか。乙：それは39,800円円です。甲：あれは？乙：どれですか。甲：あのコートです。乙：あれも39,800円円です。",
+      "answerKana": "甲：これはいくらですか。乙：それはさんまんきゅうせんはっぴゃくえんえんです。甲：あれは？乙：どれですか。甲：あのコートです。乙：あれもさんまんきゅうせんはっぴゃくえんえんです。",
+      "referenceAnswers": [
+        "甲：これはいくらですか。乙：それは39,800円円です。甲：あれは？乙：どれですか。甲：あのコートです。乙：あれも39,800円円です。"
+      ],
+      "referenceAnswerKana": [
+        "甲：これはいくらですか。乙：それはさんまんきゅうせんはっぴゃくえんえんです。甲：あれは？乙：どれですか。甲：あのコートです。乙：あれもさんまんきゅうせんはっぴゃくえんえんです。"
+      ],
+      "relatedGrammar": [
+        "g6",
+        "g8"
+      ],
+      "relatedSentences": [
+        "s9",
+        "s10",
+        "s11",
+        "s12"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "ex-i-6-3",
+      "groupId": "ex-i-6",
+      "groupTitle": "练习I 6",
+      "category": "picture-answer",
+      "instruction": "看图，照例句替换画线部分进行会话。",
+      "example": "甲：これはいくらですか。乙：それは8,900円です。甲：あれは？乙：どれですか。甲：あのかばんです。乙：あれも8,900円です。",
+      "exampleKana": "甲：これはいくらですか。乙：それははっせんきゅうひゃくえんです。甲：あれは？乙：どれですか。甲：あのかばんです。乙：あれもはっせんきゅうひゃくえんです。",
+      "type": "transform",
+      "question": "靴／16,000円",
+      "questionKana": "くつ／いちまんろくせんえん",
+      "choices": [],
+      "answer": "甲：これはいくらですか。乙：それは16,000円円です。甲：あれは？乙：どれですか。甲：あの靴です。乙：あれも16,000円円です。",
+      "answerKana": "甲：これはいくらですか。乙：それはいちまんろくせんえんえんです。甲：あれは？乙：どれですか。甲：あのくつです。乙：あれもいちまんろくせんえんえんです。",
+      "referenceAnswers": [
+        "甲：これはいくらですか。乙：それは16,000円円です。甲：あれは？乙：どれですか。甲：あの靴です。乙：あれも16,000円円です。"
+      ],
+      "referenceAnswerKana": [
+        "甲：これはいくらですか。乙：それはいちまんろくせんえんえんです。甲：あれは？乙：どれですか。甲：あのくつです。乙：あれもいちまんろくせんえんえんです。"
+      ],
+      "relatedGrammar": [
+        "g6",
+        "g8"
+      ],
+      "relatedSentences": [
+        "s9",
+        "s10",
+        "s11",
+        "s12"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "ex-i-6-4",
+      "groupId": "ex-i-6",
+      "groupTitle": "练习I 6",
+      "category": "picture-answer",
+      "instruction": "看图，照例句替换画线部分进行会话。",
+      "example": "甲：これはいくらですか。乙：それは8,900円です。甲：あれは？乙：どれですか。甲：あのかばんです。乙：あれも8,900円です。",
+      "exampleKana": "甲：これはいくらですか。乙：それははっせんきゅうひゃくえんです。甲：あれは？乙：どれですか。甲：あのかばんです。乙：あれもはっせんきゅうひゃくえんです。",
+      "type": "transform",
+      "question": "かさ／2,500円",
+      "questionKana": "かさ／にせんごひゃくえん",
+      "choices": [],
+      "answer": "甲：これはいくらですか。乙：それは2,500円円です。甲：あれは？乙：どれですか。甲：あのかさです。乙：あれも2,500円円です。",
+      "answerKana": "甲：これはいくらですか。乙：それはにせんごひゃくえんえんです。甲：あれは？乙：どれですか。甲：あのかさです。乙：あれもにせんごひゃくえんえんです。",
+      "referenceAnswers": [
+        "甲：これはいくらですか。乙：それは2,500円円です。甲：あれは？乙：どれですか。甲：あのかさです。乙：あれも2,500円円です。"
+      ],
+      "referenceAnswerKana": [
+        "甲：これはいくらですか。乙：それはにせんごひゃくえんえんです。甲：あれは？乙：どれですか。甲：あのかさです。乙：あれもにせんごひゃくえんえんです。"
+      ],
+      "relatedGrammar": [
+        "g6",
+        "g8"
+      ],
+      "relatedSentences": [
+        "s9",
+        "s10",
+        "s11",
+        "s12"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "ex-i-6-5",
+      "groupId": "ex-i-6",
+      "groupTitle": "练习I 6",
+      "category": "picture-answer",
+      "instruction": "看图，照例句替换画线部分进行会话。",
+      "example": "甲：これはいくらですか。乙：それは8,900円です。甲：あれは？乙：どれですか。甲：あのかばんです。乙：あれも8,900円です。",
+      "exampleKana": "甲：これはいくらですか。乙：それははっせんきゅうひゃくえんです。甲：あれは？乙：どれですか。甲：あのかばんです。乙：あれもはっせんきゅうひゃくえんです。",
+      "type": "transform",
+      "question": "車／2,340,000円",
+      "questionKana": "くるま／にひゃくさんじゅうよんまんえん",
+      "choices": [],
+      "answer": "甲：これはいくらですか。乙：それは2,340,000円円です。甲：あれは？乙：どれですか。甲：あの車です。乙：あれも2,340,000円円です。",
+      "answerKana": "甲：これはいくらですか。乙：それはにひゃくさんじゅうよんまんえんえんです。甲：あれは？乙：どれですか。甲：あのくるまです。乙：あれもにひゃくさんじゅうよんまんえんえんです。",
+      "referenceAnswers": [
+        "甲：これはいくらですか。乙：それは2,340,000円円です。甲：あれは？乙：どれですか。甲：あの車です。乙：あれも2,340,000円円です。"
+      ],
+      "referenceAnswerKana": [
+        "甲：これはいくらですか。乙：それはにひゃくさんじゅうよんまんえんえんです。甲：あれは？乙：どれですか。甲：あのくるまです。乙：あれもにひゃくさんじゅうよんまんえんえんです。"
+      ],
+      "relatedGrammar": [
+        "g6",
+        "g8"
+      ],
+      "relatedSentences": [
+        "s9",
+        "s10",
+        "s11",
+        "s12"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "ex-i-7-1",
+      "groupId": "ex-i-7",
+      "groupTitle": "练习I 7",
+      "category": "listening-dialogue",
+      "instruction": "听录音，反复练习。",
+      "example": "",
+      "exampleKana": "",
+      "type": "listening",
+      "question": "490",
+      "questionKana": "よんひゃくきゅうじゅう",
+      "choices": [],
+      "answer": "よんひゃくきゅうじゅう",
+      "answerKana": "よんひゃくきゅうじゅう",
+      "referenceAnswers": [
+        "よんひゃくきゅうじゅう"
+      ],
+      "referenceAnswerKana": [
+        "よんひゃくきゅうじゅう"
+      ],
+      "relatedGrammar": [],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": true
+    },
+    {
+      "id": "ex-i-7-2",
+      "groupId": "ex-i-7",
+      "groupTitle": "练习I 7",
+      "category": "listening-dialogue",
+      "instruction": "听录音，反复练习。",
+      "example": "",
+      "exampleKana": "",
+      "type": "listening",
+      "question": "111",
+      "questionKana": "ひゃくじゅういち",
+      "choices": [],
+      "answer": "ひゃくじゅういち",
+      "answerKana": "ひゃくじゅういち",
+      "referenceAnswers": [
+        "ひゃくじゅういち"
+      ],
+      "referenceAnswerKana": [
+        "ひゃくじゅういち"
+      ],
+      "relatedGrammar": [],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": true
+    },
+    {
+      "id": "ex-i-7-3",
+      "groupId": "ex-i-7",
+      "groupTitle": "练习I 7",
+      "category": "listening-dialogue",
+      "instruction": "听录音，反复练习。",
+      "example": "",
+      "exampleKana": "",
+      "type": "listening",
+      "question": "610",
+      "questionKana": "ろっぴゃくじゅう",
+      "choices": [],
+      "answer": "ろっぴゃくじゅう",
+      "answerKana": "ろっぴゃくじゅう",
+      "referenceAnswers": [
+        "ろっぴゃくじゅう"
+      ],
+      "referenceAnswerKana": [
+        "ろっぴゃくじゅう"
+      ],
+      "relatedGrammar": [],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": true
+    },
+    {
+      "id": "ex-i-7-4",
+      "groupId": "ex-i-7",
+      "groupTitle": "练习I 7",
+      "category": "listening-dialogue",
+      "instruction": "听录音，反复练习。",
+      "example": "",
+      "exampleKana": "",
+      "type": "listening",
+      "question": "20,300",
+      "questionKana": "にまんさんびゃく",
+      "choices": [],
+      "answer": "にまんさんびゃく",
+      "answerKana": "にまんさんびゃく",
+      "referenceAnswers": [
+        "にまんさんびゃく"
+      ],
+      "referenceAnswerKana": [
+        "にまんさんびゃく"
+      ],
+      "relatedGrammar": [],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": true
+    },
+    {
+      "id": "ex-i-7-5",
+      "groupId": "ex-i-7",
+      "groupTitle": "练习I 7",
+      "category": "listening-dialogue",
+      "instruction": "听录音，反复练习。",
+      "example": "",
+      "exampleKana": "",
+      "type": "listening",
+      "question": "1,400",
+      "questionKana": "せんよんひゃく",
+      "choices": [],
+      "answer": "せんよんひゃく",
+      "answerKana": "せんよんひゃく",
+      "referenceAnswers": [
+        "せんよんひゃく"
+      ],
+      "referenceAnswerKana": [
+        "せんよんひゃく"
+      ],
+      "relatedGrammar": [],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": true
+    },
+    {
+      "id": "ex-i-7-6",
+      "groupId": "ex-i-7",
+      "groupTitle": "练习I 7",
+      "category": "listening-dialogue",
+      "instruction": "听录音，反复练习。",
+      "example": "",
+      "exampleKana": "",
+      "type": "listening",
+      "question": "9,030",
+      "questionKana": "きゅうせんさんじゅう",
+      "choices": [],
+      "answer": "きゅうせんさんじゅう",
+      "answerKana": "きゅうせんさんじゅう",
+      "referenceAnswers": [
+        "きゅうせんさんじゅう"
+      ],
+      "referenceAnswerKana": [
+        "きゅうせんさんじゅう"
+      ],
+      "relatedGrammar": [],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": true
+    },
+    {
+      "id": "ex-i-7-7",
+      "groupId": "ex-i-7",
+      "groupTitle": "练习I 7",
+      "category": "listening-dialogue",
+      "instruction": "听录音，反复练习。",
+      "example": "",
+      "exampleKana": "",
+      "type": "listening",
+      "question": "380",
+      "questionKana": "さんびゃくはちじゅう",
+      "choices": [],
+      "answer": "さんびゃくはちじゅう",
+      "answerKana": "さんびゃくはちじゅう",
+      "referenceAnswers": [
+        "さんびゃくはちじゅう"
+      ],
+      "referenceAnswerKana": [
+        "さんびゃくはちじゅう"
+      ],
+      "relatedGrammar": [],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": true
+    },
+    {
+      "id": "ex-i-7-8",
+      "groupId": "ex-i-7",
+      "groupTitle": "练习I 7",
+      "category": "listening-dialogue",
+      "instruction": "听录音，反复练习。",
+      "example": "",
+      "exampleKana": "",
+      "type": "listening",
+      "question": "15,700",
+      "questionKana": "いちまんごせんななひゃく",
+      "choices": [],
+      "answer": "いちまんごせんななひゃく",
+      "answerKana": "いちまんごせんななひゃく",
+      "referenceAnswers": [
+        "いちまんごせんななひゃく"
+      ],
+      "referenceAnswerKana": [
+        "いちまんごせんななひゃく"
+      ],
+      "relatedGrammar": [],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": true
+    },
+    {
+      "id": "ex-ii-1-1",
+      "groupId": "ex-ii-1",
+      "groupTitle": "练习II 1",
+      "category": "choice",
+      "instruction": "从｛｝中选择适当的词语填入（）。",
+      "example": "（ここ）は銀行ですか。→ はい、そうです。",
+      "exampleKana": "（ここ）はぎんこうですか。→ はい、そうです。",
+      "type": "choice",
+      "question": "あれは（　　）ですか。→ 病院です。",
+      "questionKana": "あれは（　　）ですか。→ びょういんです。",
+      "choices": [
+        "病院",
+        "どこ",
+        "どれ"
+      ],
+      "answer": "病院",
+      "answerKana": "びょういん",
+      "referenceAnswers": [
+        "病院"
+      ],
+      "referenceAnswerKana": [
+        "びょういん"
+      ],
+      "relatedGrammar": [
+        "g3"
+      ],
+      "relatedSentences": [],
+      "explanation": "选择词语：｛だれ／どれ／どの／どこ／ここ｝"
+    },
+    {
+      "id": "ex-ii-1-2",
+      "groupId": "ex-ii-1",
+      "groupTitle": "练习II 1",
+      "category": "choice",
+      "instruction": "从｛｝中选择适当的词语填入（）。",
+      "example": "（ここ）は銀行ですか。→ はい、そうです。",
+      "exampleKana": "（ここ）はぎんこうですか。→ はい、そうです。",
+      "type": "choice",
+      "question": "受付は（　　）ですか。→ あそこです。",
+      "questionKana": "うけつけは（　　）ですか。→ あそこです。",
+      "choices": [
+        "どこ",
+        "どちら",
+        "だれ"
+      ],
+      "answer": "どこ",
+      "answerKana": "どこ",
+      "referenceAnswers": [
+        "どこ"
+      ],
+      "referenceAnswerKana": [
+        "どこ"
+      ],
+      "relatedGrammar": [
+        "g3"
+      ],
+      "relatedSentences": [],
+      "explanation": "选择词语：｛だれ／どれ／どの／どこ／ここ｝"
+    },
+    {
+      "id": "ex-ii-1-3",
+      "groupId": "ex-ii-1",
+      "groupTitle": "练习II 1",
+      "category": "choice",
+      "instruction": "从｛｝中选择适当的词语填入（）。",
+      "example": "（ここ）は銀行ですか。→ はい、そうです。",
+      "exampleKana": "（ここ）はぎんこうですか。→ はい、そうです。",
+      "type": "choice",
+      "question": "李さんのかばんは（　　）ですか。→ これです。",
+      "questionKana": "りさんのかばんは（　　）ですか。→ これです。",
+      "choices": [
+        "どれ",
+        "どの",
+        "どこ"
+      ],
+      "answer": "どれ",
+      "answerKana": "どれ",
+      "referenceAnswers": [
+        "どれ"
+      ],
+      "referenceAnswerKana": [
+        "どれ"
+      ],
+      "relatedGrammar": [
+        "g3"
+      ],
+      "relatedSentences": [],
+      "explanation": "选择词语：｛だれ／どれ／どの／どこ／ここ｝"
+    },
+    {
+      "id": "ex-ii-1-4",
+      "groupId": "ex-ii-1",
+      "groupTitle": "练习II 1",
+      "category": "choice",
+      "instruction": "从｛｝中选择适当的词语填入（）。",
+      "example": "（ここ）は銀行ですか。→ はい、そうです。",
+      "exampleKana": "（ここ）はぎんこうですか。→ はい、そうです。",
+      "type": "choice",
+      "question": "その辞書は（　　）のですか。→ わたしのです。",
+      "questionKana": "そのじしょは（　　）のですか。→ わたしのです。",
+      "choices": [
+        "だれ",
+        "どれ",
+        "どの"
+      ],
+      "answer": "だれ",
+      "answerKana": "だれ",
+      "referenceAnswers": [
+        "だれ"
+      ],
+      "referenceAnswerKana": [
+        "だれ"
+      ],
+      "relatedGrammar": [
+        "g3"
+      ],
+      "relatedSentences": [],
+      "explanation": "选择词语：｛だれ／どれ／どの／どこ／ここ｝"
+    },
+    {
+      "id": "ex-ii-1-5",
+      "groupId": "ex-ii-1",
+      "groupTitle": "练习II 1",
+      "category": "choice",
+      "instruction": "从｛｝中选择适当的词语填入（）。",
+      "example": "（ここ）は銀行ですか。→ はい、そうです。",
+      "exampleKana": "（ここ）はぎんこうですか。→ はい、そうです。",
+      "type": "choice",
+      "question": "ジョンソンさんは（　　）人ですか。→ あの人です。",
+      "questionKana": "ジョンソンさんは（　　）ひとですか。→ あのひとです。",
+      "choices": [
+        "どの",
+        "どこ",
+        "ここ"
+      ],
+      "answer": "どの",
+      "answerKana": "どの",
+      "referenceAnswers": [
+        "どの"
+      ],
+      "referenceAnswerKana": [
+        "どの"
+      ],
+      "relatedGrammar": [
+        "g3"
+      ],
+      "relatedSentences": [],
+      "explanation": "选择词语：｛だれ／どれ／どの／どこ／ここ｝"
+    },
+    {
+      "id": "ex-ii-2-1",
+      "groupId": "ex-ii-2",
+      "groupTitle": "练习II 2",
+      "category": "choice",
+      "instruction": "在（）中填入一个平假名。",
+      "example": "ここ（は）デパートです。",
+      "exampleKana": "ここ（は）デパートです。",
+      "type": "short-answer",
+      "question": "ここは郵便局です（　　）、銀行ですか。",
+      "questionKana": "ここはゆうびんきょくです（　　）、ぎんこうですか。",
+      "choices": [],
+      "answer": "か",
+      "answerKana": "か",
+      "referenceAnswers": [
+        "か"
+      ],
+      "referenceAnswerKana": [
+        "か"
+      ],
+      "relatedGrammar": [],
+      "relatedSentences": [],
+      "explanation": ""
+    },
+    {
+      "id": "ex-ii-2-2",
+      "groupId": "ex-ii-2",
+      "groupTitle": "练习II 2",
+      "category": "choice",
+      "instruction": "在（）中填入一个平假名。",
+      "example": "ここ（は）デパートです。",
+      "exampleKana": "ここ（は）デパートです。",
+      "type": "short-answer",
+      "question": "ここはホテルです。そこ（　　）ホテルです。",
+      "questionKana": "ここはホテルです。そこ（　　）ホテルです。",
+      "choices": [],
+      "answer": "も",
+      "answerKana": "も",
+      "referenceAnswers": [
+        "も"
+      ],
+      "referenceAnswerKana": [
+        "も"
+      ],
+      "relatedGrammar": [],
+      "relatedSentences": [],
+      "explanation": ""
+    },
+    {
+      "id": "ex-ii-2-3",
+      "groupId": "ex-ii-2",
+      "groupTitle": "练习II 2",
+      "category": "choice",
+      "instruction": "在（）中填入一个平假名。",
+      "example": "ここ（は）デパートです。",
+      "exampleKana": "ここ（は）デパートです。",
+      "type": "short-answer",
+      "question": "このカメラ（　　）いくらですか。",
+      "questionKana": "このカメラ（　　）いくらですか。",
+      "choices": [],
+      "answer": "は",
+      "answerKana": "は",
+      "referenceAnswers": [
+        "は"
+      ],
+      "referenceAnswerKana": [
+        "は"
+      ],
+      "relatedGrammar": [],
+      "relatedSentences": [],
+      "explanation": ""
+    },
+    {
+      "id": "ex-ii-2-4",
+      "groupId": "ex-ii-2",
+      "groupTitle": "练习II 2",
+      "category": "choice",
+      "instruction": "在（）中填入一个平假名。",
+      "example": "ここ（は）デパートです。",
+      "exampleKana": "ここ（は）デパートです。",
+      "type": "short-answer",
+      "question": "レストランはデパート（　　）8階です。",
+      "questionKana": "レストランはデパート（　　）はちかいです。",
+      "choices": [],
+      "answer": "の",
+      "answerKana": "の",
+      "referenceAnswers": [
+        "の"
+      ],
+      "referenceAnswerKana": [
+        "の"
+      ],
+      "relatedGrammar": [],
+      "relatedSentences": [],
+      "explanation": ""
+    },
+    {
+      "id": "ex-ii-2-5",
+      "groupId": "ex-ii-2",
+      "groupTitle": "练习II 2",
+      "category": "choice",
+      "instruction": "在（）中填入一个平假名。",
+      "example": "ここ（は）デパートです。",
+      "exampleKana": "ここ（は）デパートです。",
+      "type": "short-answer",
+      "question": "日中商事（　　）こちらですか。",
+      "questionKana": "にっちゅうしょうじ（　　）こちらですか。",
+      "choices": [],
+      "answer": "は",
+      "answerKana": "は",
+      "referenceAnswers": [
+        "は"
+      ],
+      "referenceAnswerKana": [
+        "は"
+      ],
+      "relatedGrammar": [],
+      "relatedSentences": [],
+      "explanation": ""
+    },
+    {
+      "id": "ex-ii-3-1",
+      "groupId": "ex-ii-3",
+      "groupTitle": "练习II 3",
+      "category": "listening-dialogue",
+      "instruction": "看图听录音，回答问题。",
+      "example": "90円です。どれですか。／いくらですか。",
+      "exampleKana": "きゅうじゅうえんです。どれですか。／いくらですか。",
+      "type": "listening",
+      "question": "",
+      "questionKana": "",
+      "choices": [],
+      "answer": "",
+      "answerKana": "",
+      "referenceAnswers": [],
+      "referenceAnswerKana": [],
+      "relatedGrammar": [],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": true,
+      "hasAnswer": false
+    },
+    {
+      "id": "ex-ii-3-2",
+      "groupId": "ex-ii-3",
+      "groupTitle": "练习II 3",
+      "category": "listening-dialogue",
+      "instruction": "看图听录音，回答问题。",
+      "example": "90円です。どれですか。／いくらですか。",
+      "exampleKana": "きゅうじゅうえんです。どれですか。／いくらですか。",
+      "type": "listening",
+      "question": "",
+      "questionKana": "",
+      "choices": [],
+      "answer": "",
+      "answerKana": "",
+      "referenceAnswers": [],
+      "referenceAnswerKana": [],
+      "relatedGrammar": [],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": true,
+      "hasAnswer": false
+    },
+    {
+      "id": "ex-ii-3-3",
+      "groupId": "ex-ii-3",
+      "groupTitle": "练习II 3",
+      "category": "listening-dialogue",
+      "instruction": "看图听录音，回答问题。",
+      "example": "90円です。どれですか。／いくらですか。",
+      "exampleKana": "きゅうじゅうえんです。どれですか。／いくらですか。",
+      "type": "listening",
+      "question": "",
+      "questionKana": "",
+      "choices": [],
+      "answer": "",
+      "answerKana": "",
+      "referenceAnswers": [],
+      "referenceAnswerKana": [],
+      "relatedGrammar": [],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": true,
+      "hasAnswer": false
+    },
+    {
+      "id": "ex-ii-3-4",
+      "groupId": "ex-ii-3",
+      "groupTitle": "练习II 3",
+      "category": "listening-dialogue",
+      "instruction": "看图听录音，回答问题。",
+      "example": "90円です。どれですか。／いくらですか。",
+      "exampleKana": "きゅうじゅうえんです。どれですか。／いくらですか。",
+      "type": "listening",
+      "question": "",
+      "questionKana": "",
+      "choices": [],
+      "answer": "",
+      "answerKana": "",
+      "referenceAnswers": [],
+      "referenceAnswerKana": [],
+      "relatedGrammar": [],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": true,
+      "hasAnswer": false
+    },
+    {
+      "id": "ex-ii-3-5",
+      "groupId": "ex-ii-3",
+      "groupTitle": "练习II 3",
+      "category": "listening-dialogue",
+      "instruction": "看图听录音，回答问题。",
+      "example": "90円です。どれですか。／いくらですか。",
+      "exampleKana": "きゅうじゅうえんです。どれですか。／いくらですか。",
+      "type": "listening",
+      "question": "",
+      "questionKana": "",
+      "choices": [],
+      "answer": "",
+      "answerKana": "",
+      "referenceAnswers": [],
+      "referenceAnswerKana": [],
+      "relatedGrammar": [],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": true,
+      "hasAnswer": false
+    },
+    {
+      "id": "ex-ii-3-6",
+      "groupId": "ex-ii-3",
+      "groupTitle": "练习II 3",
+      "category": "listening-dialogue",
+      "instruction": "看图听录音，回答问题。",
+      "example": "①+②→200円です。",
+      "exampleKana": "①+②→にひゃくえんです。",
+      "type": "listening",
+      "question": "",
+      "questionKana": "",
+      "choices": [],
+      "answer": "",
+      "answerKana": "",
+      "referenceAnswers": [],
+      "referenceAnswerKana": [],
+      "relatedGrammar": [],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": true,
+      "hasAnswer": false
+    },
+    {
+      "id": "ex-ii-3-7",
+      "groupId": "ex-ii-3",
+      "groupTitle": "练习II 3",
+      "category": "listening-dialogue",
+      "instruction": "看图听录音，回答问题。",
+      "example": "①+②→200円です。",
+      "exampleKana": "①+②→にひゃくえんです。",
+      "type": "listening",
+      "question": "",
+      "questionKana": "",
+      "choices": [],
+      "answer": "",
+      "answerKana": "",
+      "referenceAnswers": [],
+      "referenceAnswerKana": [],
+      "relatedGrammar": [],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": true,
+      "hasAnswer": false
+    },
+    {
+      "id": "ex-ii-3-8",
+      "groupId": "ex-ii-3",
+      "groupTitle": "练习II 3",
+      "category": "listening-dialogue",
+      "instruction": "看图听录音，回答问题。",
+      "example": "①+②→200円です。",
+      "exampleKana": "①+②→にひゃくえんです。",
+      "type": "listening",
+      "question": "",
+      "questionKana": "",
+      "choices": [],
+      "answer": "",
+      "answerKana": "",
+      "referenceAnswers": [],
+      "referenceAnswerKana": [],
+      "relatedGrammar": [],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": true,
+      "hasAnswer": false
+    },
+    {
+      "id": "ex-ii-3-9",
+      "groupId": "ex-ii-3",
+      "groupTitle": "练习II 3",
+      "category": "listening-dialogue",
+      "instruction": "看图听录音，回答问题。",
+      "example": "①+②→200円です。",
+      "exampleKana": "①+②→にひゃくえんです。",
+      "type": "listening",
+      "question": "",
+      "questionKana": "",
+      "choices": [],
+      "answer": "",
+      "answerKana": "",
+      "referenceAnswers": [],
+      "referenceAnswerKana": [],
+      "relatedGrammar": [],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": true,
+      "hasAnswer": false
+    },
+    {
+      "id": "ex-ii-3-10",
+      "groupId": "ex-ii-3",
+      "groupTitle": "练习II 3",
+      "category": "listening-dialogue",
+      "instruction": "看图听录音，回答问题。",
+      "example": "①+②→200円です。",
+      "exampleKana": "①+②→にひゃくえんです。",
+      "type": "listening",
+      "question": "",
+      "questionKana": "",
+      "choices": [],
+      "answer": "",
+      "answerKana": "",
+      "referenceAnswers": [],
+      "referenceAnswerKana": [],
+      "relatedGrammar": [],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": true,
+      "hasAnswer": false
+    },
+    {
+      "id": "ex-ii-4-1",
+      "groupId": "ex-ii-4",
+      "groupTitle": "练习II 4",
+      "category": "translation",
+      "instruction": "将下面的句子译成日语。",
+      "example": "",
+      "exampleKana": "",
+      "type": "translation",
+      "question": "厕所在哪儿？",
+      "questionKana": "",
+      "choices": [],
+      "answer": "トイレはどこですか。",
+      "answerKana": "トイレはどこですか。",
+      "referenceAnswers": [
+        "トイレはどこですか。"
+      ],
+      "referenceAnswerKana": [
+        "トイレはどこですか。"
+      ],
+      "relatedGrammar": [
+        "g3"
+      ],
+      "relatedSentences": [
+        "s5"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "ex-ii-4-2",
+      "groupId": "ex-ii-4",
+      "groupTitle": "练习II 4",
+      "category": "translation",
+      "instruction": "将下面的句子译成日语。",
+      "example": "",
+      "exampleKana": "",
+      "type": "translation",
+      "question": "这里是邮局还是银行？",
+      "questionKana": "",
+      "choices": [],
+      "answer": "ここは郵便局ですか、銀行ですか。",
+      "answerKana": "ここはゆうびんきょくですか、ぎんこうですか。",
+      "referenceAnswers": [
+        "ここは郵便局ですか、銀行ですか。"
+      ],
+      "referenceAnswerKana": [
+        "ここはゆうびんきょくですか、ぎんこうですか。"
+      ],
+      "relatedGrammar": [
+        "g5"
+      ],
+      "relatedSentences": [
+        "s7"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "ex-ii-4-3",
+      "groupId": "ex-ii-4",
+      "groupTitle": "练习II 4",
+      "category": "translation",
+      "instruction": "将下面的句子译成日语。",
+      "example": "",
+      "exampleKana": "",
+      "type": "translation",
+      "question": "这个多少钱？",
+      "questionKana": "",
+      "choices": [],
+      "answer": "これはいくらですか。",
+      "answerKana": "これはいくらですか。",
+      "referenceAnswers": [
+        "これはいくらですか。"
+      ],
+      "referenceAnswerKana": [
+        "これはいくらですか。"
+      ],
+      "relatedGrammar": [
+        "g6"
+      ],
+      "relatedSentences": [
+        "s9"
+      ],
+      "explanation": ""
+    }
+  ]
+}

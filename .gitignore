@@ -8,6 +8,9 @@
 # Debug recordings (local-only, do not track)
 debug-recordings/
 
+# Audio files — stored on Alibaba Cloud OSS, local copy as cache only
+audio/
+
 # Node
 node_modules/
 .npm-cache/

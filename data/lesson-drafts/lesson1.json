@@ -1,0 +1,2762 @@
+{
+  "id": 1,
+  "title": "第1课",
+  "subtitle": "李さんは中国人です。",
+  "audioVoiceId": "",
+  "vocabulary": [
+    {
+      "id": "w1",
+      "jp": "中国人",
+      "kana": "ちゅうごくじん",
+      "cn": "中国人"
+    },
+    {
+      "id": "w2",
+      "jp": "日本人",
+      "kana": "にほんじん",
+      "cn": "日本人"
+    },
+    {
+      "id": "w3",
+      "jp": "韓国人",
+      "kana": "かんこくじん",
+      "cn": "韩国人"
+    },
+    {
+      "id": "w4",
+      "jp": "アメリカ人",
+      "kana": "アメリカじん",
+      "cn": "美国人"
+    },
+    {
+      "id": "w5",
+      "jp": "フランス人",
+      "kana": "フランスじん",
+      "cn": "法国人"
+    },
+    {
+      "id": "w6",
+      "jp": "学生",
+      "kana": "がくせい",
+      "cn": "（大）学生"
+    },
+    {
+      "id": "w7",
+      "jp": "先生",
+      "kana": "せんせい",
+      "cn": "老师"
+    },
+    {
+      "id": "w8",
+      "jp": "留学生",
+      "kana": "りゅうがくせい",
+      "cn": "留学生"
+    },
+    {
+      "id": "w9",
+      "jp": "教授",
+      "kana": "きょうじゅ",
+      "cn": "教授"
+    },
+    {
+      "id": "w10",
+      "jp": "社員",
+      "kana": "しゃいん",
+      "cn": "职员"
+    },
+    {
+      "id": "w11",
+      "jp": "会社員",
+      "kana": "かいしゃいん",
+      "cn": "公司职员"
+    },
+    {
+      "id": "w12",
+      "jp": "店員",
+      "kana": "てんいん",
+      "cn": "店员"
+    },
+    {
+      "id": "w13",
+      "jp": "研修生",
+      "kana": "けんしゅうせい",
+      "cn": "进修生"
+    },
+    {
+      "id": "w14",
+      "jp": "企業",
+      "kana": "きぎょう",
+      "cn": "企业"
+    },
+    {
+      "id": "w15",
+      "jp": "大学",
+      "kana": "だいがく",
+      "cn": "大学"
+    },
+    {
+      "id": "w16",
+      "jp": "父",
+      "kana": "ちち",
+      "cn": "（我）父亲"
+    },
+    {
+      "id": "w17",
+      "jp": "課長",
+      "kana": "かちょう",
+      "cn": "科长"
+    },
+    {
+      "id": "w18",
+      "jp": "社長",
+      "kana": "しゃちょう",
+      "cn": "总经理，社长"
+    },
+    {
+      "id": "w19",
+      "jp": "出迎え",
+      "kana": "でむかえ",
+      "cn": "迎接"
+    },
+    {
+      "id": "w20",
+      "jp": "あの人",
+      "kana": "あのひと",
+      "cn": "那个人"
+    },
+    {
+      "id": "w21",
+      "jp": "わたし",
+      "kana": "わたし",
+      "cn": "我"
+    },
+    {
+      "id": "w22",
+      "jp": "あなた",
+      "kana": "あなた",
+      "cn": "你"
+    },
+    {
+      "id": "w23",
+      "jp": "どうも",
+      "kana": "どうも",
+      "cn": "非常，很"
+    },
+    {
+      "id": "w24",
+      "jp": "はい",
+      "kana": "はい",
+      "cn": "哎，是（应答）；是的"
+    },
+    {
+      "id": "w25",
+      "jp": "いいえ",
+      "kana": "いいえ",
+      "cn": "不，不是"
+    },
+    {
+      "id": "w26",
+      "jp": "あっ",
+      "kana": "あっ",
+      "cn": "哎，哎呀"
+    },
+    {
+      "id": "w27",
+      "jp": "李",
+      "kana": "り",
+      "cn": "李"
+    },
+    {
+      "id": "w28",
+      "jp": "王",
+      "kana": "おう",
+      "cn": "王"
+    },
+    {
+      "id": "w29",
+      "jp": "張",
+      "kana": "ちょう",
+      "cn": "张"
+    },
+    {
+      "id": "w30",
+      "jp": "森",
+      "kana": "もり",
+      "cn": "森"
+    },
+    {
+      "id": "w31",
+      "jp": "林",
+      "kana": "はやし",
+      "cn": "林"
+    },
+    {
+      "id": "w32",
+      "jp": "小野",
+      "kana": "おの",
+      "cn": "小野"
+    },
+    {
+      "id": "w33",
+      "jp": "吉田",
+      "kana": "よしだ",
+      "cn": "吉田"
+    },
+    {
+      "id": "w34",
+      "jp": "田中",
+      "kana": "たなか",
+      "cn": "田中"
+    },
+    {
+      "id": "w35",
+      "jp": "中村",
+      "kana": "なかむら",
+      "cn": "中村"
+    },
+    {
+      "id": "w36",
+      "jp": "太郎",
+      "kana": "たろう",
+      "cn": "太郎"
+    },
+    {
+      "id": "w37",
+      "jp": "キム",
+      "kana": "キム",
+      "cn": "金"
+    },
+    {
+      "id": "w38",
+      "jp": "デュポン",
+      "kana": "デュポン",
+      "cn": "迪蓬"
+    },
+    {
+      "id": "w39",
+      "jp": "スミス",
+      "kana": "スミス",
+      "cn": "史密斯"
+    },
+    {
+      "id": "w40",
+      "jp": "ジョンソン",
+      "kana": "ジョンソン",
+      "cn": "约翰逊"
+    },
+    {
+      "id": "w41",
+      "jp": "中国",
+      "kana": "ちゅうごく",
+      "cn": "中国"
+    },
+    {
+      "id": "w42",
+      "jp": "東京大学",
+      "kana": "とうきょうだいがく",
+      "cn": "东京大学"
+    },
+    {
+      "id": "w43",
+      "jp": "北京大学",
+      "kana": "ペキンだいがく",
+      "cn": "北京大学"
+    },
+    {
+      "id": "w44",
+      "jp": "JC企画",
+      "kana": "ジェーシーきかく",
+      "cn": "JC策划公司"
+    },
+    {
+      "id": "w45",
+      "jp": "北京旅行社",
+      "kana": "ペキンりょこうしゃ",
+      "cn": "北京旅行社"
+    },
+    {
+      "id": "w46",
+      "jp": "日中商事",
+      "kana": "にっちゅうしょうじ",
+      "cn": "日中商社"
+    },
+    {
+      "id": "w47",
+      "jp": "こんにちは",
+      "kana": "こんにちは",
+      "cn": "你好"
+    },
+    {
+      "id": "w48",
+      "jp": "すみません",
+      "kana": "すみません",
+      "cn": "对不起；请问"
+    },
+    {
+      "id": "w49",
+      "jp": "どうぞ",
+      "kana": "どうぞ",
+      "cn": "请"
+    },
+    {
+      "id": "w50",
+      "jp": "よろしくお願いします",
+      "kana": "よろしくおねがいします",
+      "cn": "请多关照"
+    },
+    {
+      "id": "w51",
+      "jp": "はじめまして",
+      "kana": "はじめまして",
+      "cn": "初次见面"
+    },
+    {
+      "id": "w52",
+      "jp": "こちらこそ",
+      "kana": "こちらこそ",
+      "cn": "我才要（请您～）"
+    },
+    {
+      "id": "w53",
+      "jp": "そうです",
+      "kana": "そうです",
+      "cn": "是（这样）"
+    },
+    {
+      "id": "w54",
+      "jp": "ちがいます",
+      "kana": "ちがいます",
+      "cn": "不是"
+    },
+    {
+      "id": "w55",
+      "jp": "分かりません",
+      "kana": "わかりません",
+      "cn": "不知道"
+    },
+    {
+      "id": "w56",
+      "jp": "どうもすみません",
+      "kana": "どうもすみません",
+      "cn": "实在对不起"
+    },
+    {
+      "id": "w57",
+      "jp": "〜さん／〜ちゃん／〜君",
+      "kana": "〜さん／〜ちゃん／〜くん",
+      "cn": "～先生／小姐／小～"
+    }
+  ],
+  "sentences": [
+    {
+      "id": "s1",
+      "order": 1,
+      "text": "李さんは中国人です。",
+      "kana": "りさんはちゅうごくじんです。",
+      "translation": "小李是中国人。",
+      "words": [
+        "w1",
+        "w27"
+      ],
+      "grammar": [
+        "g1"
+      ]
+    },
+    {
+      "id": "s2",
+      "order": 2,
+      "text": "森さんは学生ではありません。",
+      "kana": "もりさんはがくせいではありません。",
+      "translation": "森先生不是学生。",
+      "words": [
+        "w6",
+        "w30"
+      ],
+      "grammar": [
+        "g2"
+      ]
+    },
+    {
+      "id": "s3",
+      "order": 3,
+      "text": "林さんは日本人ですか。",
+      "kana": "はやしさんはにほんじんですか。",
+      "translation": "林先生是日本人吗？",
+      "words": [
+        "w2",
+        "w31"
+      ],
+      "grammar": [
+        "g3"
+      ]
+    },
+    {
+      "id": "s4",
+      "order": 4,
+      "text": "李さんはJC企画の社員です。",
+      "kana": "りさんはジェーシーきかくのしゃいんです。",
+      "translation": "小李是JC策划公司的职员。",
+      "words": [
+        "w10",
+        "w27",
+        "w44"
+      ],
+      "grammar": [
+        "g4"
+      ]
+    },
+    {
+      "id": "s5",
+      "order": 5,
+      "speaker": "甲",
+      "text": "わたしは李です。小野さんですか。",
+      "kana": "わたしはりです。おのさんですか。",
+      "translation": "我姓李。您是小野女士吗？",
+      "words": [
+        "w21",
+        "w27",
+        "w32"
+      ],
+      "grammar": [
+        "g1",
+        "g3"
+      ]
+    },
+    {
+      "id": "s6",
+      "order": 6,
+      "speaker": "乙",
+      "text": "はい、そうです。小野です。",
+      "kana": "はい、そうです。おのです。",
+      "translation": "是的，我是小野。",
+      "words": [
+        "w24",
+        "w32",
+        "w53"
+      ],
+      "grammar": []
+    },
+    {
+      "id": "s7",
+      "order": 7,
+      "speaker": "甲",
+      "text": "森さんは学生ですか。",
+      "kana": "もりさんはがくせいですか。",
+      "translation": "森先生是学生吗？",
+      "words": [
+        "w6",
+        "w30"
+      ],
+      "grammar": [
+        "g3"
+      ]
+    },
+    {
+      "id": "s8",
+      "order": 8,
+      "speaker": "乙",
+      "text": "いいえ、学生ではありません。会社員です。",
+      "kana": "いいえ、がくせいではありません。かいしゃいんです。",
+      "translation": "不，不是学生。是公司职员。",
+      "words": [
+        "w6",
+        "w11",
+        "w25"
+      ],
+      "grammar": [
+        "g2"
+      ]
+    },
+    {
+      "id": "s9",
+      "order": 9,
+      "speaker": "甲",
+      "text": "吉田さんですか。",
+      "kana": "よしださんですか。",
+      "translation": "您是吉田先生吗？",
+      "words": [
+        "w33"
+      ],
+      "grammar": [
+        "g3"
+      ]
+    },
+    {
+      "id": "s10",
+      "order": 10,
+      "speaker": "乙",
+      "text": "いいえ、ちがいます。森です。",
+      "kana": "いいえ、ちがいます。もりです。",
+      "translation": "不，不是。我是森。",
+      "words": [
+        "w25",
+        "w30",
+        "w54"
+      ],
+      "grammar": []
+    },
+    {
+      "id": "s11",
+      "order": 11,
+      "speaker": "甲",
+      "text": "李さんはJC企画の社員ですか。",
+      "kana": "りさんはジェーシーきかくのしゃいんですか。",
+      "translation": "小李是JC策划公司的职员吗？",
+      "words": [
+        "w10",
+        "w27",
+        "w44"
+      ],
+      "grammar": [
+        "g3",
+        "g4"
+      ]
+    },
+    {
+      "id": "s12",
+      "order": 12,
+      "speaker": "乙",
+      "text": "はい、そうです。",
+      "kana": "はい、そうです。",
+      "translation": "是的，是。",
+      "words": [
+        "w24",
+        "w53"
+      ],
+      "grammar": []
+    },
+    {
+      "id": "s13",
+      "order": 13,
+      "speaker": "李",
+      "text": "JC企画の小野さんですか。",
+      "kana": "ジェーシーきかくのおのさんですか。",
+      "translation": "您是JC策划公司的小野女士吗？",
+      "words": [
+        "w32",
+        "w44"
+      ],
+      "grammar": [
+        "g3",
+        "g4"
+      ]
+    },
+    {
+      "id": "s14",
+      "order": 14,
+      "speaker": "小野",
+      "text": "はい、小野です。李秀麗さんですか。",
+      "kana": "はい、おのです。りしゅうれいさんですか。",
+      "translation": "是的，我是小野。您是李秀丽女士吗？",
+      "words": [
+        "w24",
+        "w27",
+        "w32"
+      ],
+      "grammar": [
+        "g3"
+      ]
+    },
+    {
+      "id": "s15",
+      "order": 15,
+      "speaker": "李",
+      "text": "はい、李秀麗です。はじめまして。どうぞよろしくお願いします。",
+      "kana": "はい、りしゅうれいです。はじめまして。どうぞよろしくおねがいします。",
+      "translation": "是的，我是李秀丽。初次见面，请多关照。",
+      "words": [
+        "w24",
+        "w27",
+        "w49",
+        "w50",
+        "w51"
+      ],
+      "grammar": [
+        "g8"
+      ]
+    },
+    {
+      "id": "s16",
+      "order": 16,
+      "speaker": "小野",
+      "text": "はじめまして、小野緑です。",
+      "kana": "はじめまして、おのみどりです。",
+      "translation": "初次见面，我是小野绿。",
+      "words": [
+        "w32",
+        "w51"
+      ],
+      "grammar": [
+        "g8"
+      ]
+    },
+    {
+      "id": "s17",
+      "order": 17,
+      "speaker": "森",
+      "text": "李さん、こんにちは。",
+      "kana": "りさん、こんにちは。",
+      "translation": "李女士，你好。",
+      "words": [
+        "w27",
+        "w47"
+      ],
+      "grammar": []
+    },
+    {
+      "id": "s18",
+      "order": 18,
+      "speaker": "李",
+      "text": "吉田さんですか。",
+      "kana": "よしださんですか。",
+      "translation": "您是吉田先生吗？",
+      "words": [
+        "w33"
+      ],
+      "grammar": [
+        "g3"
+      ]
+    },
+    {
+      "id": "s19",
+      "order": 19,
+      "speaker": "森",
+      "text": "いいえ、わたしは吉田じゃありません。森です。",
+      "kana": "いいえ、わたしはよしだじゃありません。もりです。",
+      "translation": "不，我不是吉田。我是森。",
+      "words": [
+        "w21",
+        "w25",
+        "w30",
+        "w33"
+      ],
+      "grammar": [
+        "g2"
+      ]
+    },
+    {
+      "id": "s20",
+      "order": 20,
+      "speaker": "李",
+      "text": "あっ、森さんですか。どうもすみません。",
+      "kana": "あっ、もりさんですか。どうもすみません。",
+      "translation": "啊，是森先生啊。实在对不起。",
+      "words": [
+        "w23",
+        "w26",
+        "w30",
+        "w56"
+      ],
+      "grammar": [
+        "g7"
+      ]
+    },
+    {
+      "id": "s21",
+      "order": 21,
+      "speaker": "森",
+      "text": "いいえ。どうぞよろしく。",
+      "kana": "いいえ。どうぞよろしく。",
+      "translation": "没关系。请多关照。",
+      "words": [
+        "w25",
+        "w49"
+      ],
+      "grammar": []
+    },
+    {
+      "id": "s22",
+      "order": 22,
+      "speaker": "李",
+      "text": "李秀麗です。こちらこそ、よろしくお願いします。",
+      "kana": "りしゅうれいです。こちらこそ、よろしくおねがいします。",
+      "translation": "我是李秀丽。我才要请您多多关照。",
+      "words": [
+        "w27",
+        "w50",
+        "w52"
+      ],
+      "grammar": [
+        "g8"
+      ]
+    }
+  ],
+  "textStructure": [
+    {
+      "id": "basic",
+      "title": "基本课文",
+      "groups": [
+        {
+          "title": "基本句",
+          "kind": "statements",
+          "ids": [
+            "s1",
+            "s2",
+            "s3",
+            "s4"
+          ]
+        },
+        {
+          "title": "对话 A",
+          "kind": "dialogue",
+          "ids": [
+            "s5",
+            "s6"
+          ]
+        },
+        {
+          "title": "对话 B",
+          "kind": "dialogue",
+          "ids": [
+            "s7",
+            "s8"
+          ]
+        },
+        {
+          "title": "对话 C",
+          "kind": "dialogue",
+          "ids": [
+            "s9",
+            "s10"
+          ]
+        },
+        {
+          "title": "对话 D",
+          "kind": "dialogue",
+          "ids": [
+            "s11",
+            "s12"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "application",
+      "title": "应用课文 · 出迎え",
+      "groups": [
+        {
+          "title": "机场迎接",
+          "kind": "dialogue",
+          "note": "飞机准点到达成田机场。小野绿和同事森健太郎在候机大厅等着小李。",
+          "ids": [
+            "s13",
+            "s14",
+            "s15",
+            "s16"
+          ]
+        },
+        {
+          "title": "与森相识",
+          "kind": "dialogue",
+          "note": "森在一旁插话",
+          "ids": [
+            "s17",
+            "s18",
+            "s19",
+            "s20",
+            "s21",
+            "s22"
+          ]
+        }
+      ]
+    }
+  ],
+  "grammar": [
+    {
+      "id": "g1",
+      "pattern": "名は名です",
+      "meaning": "相当于汉语的“～是～”。",
+      "structure": "名 + は + 名 + です",
+      "usage": "“～は”是主语部分，“～です”是谓语部分。助词“は”用于提示主题。",
+      "examples": [
+        "s1",
+        "s5"
+      ],
+      "extraExamples": [
+        {
+          "jp": "李さんは中国人です。",
+          "kana": "りさんはちゅうごくじんです。",
+          "cn": "小李是中国人。"
+        },
+        {
+          "jp": "わたしは日本人です。",
+          "kana": "わたしはにほんじんです。",
+          "cn": "我是日本人。"
+        },
+        {
+          "jp": "わたしは王です。",
+          "kana": "わたしはおうです。",
+          "cn": "我姓王。"
+        }
+      ]
+    },
+    {
+      "id": "g2",
+      "pattern": "名は名ではありません",
+      "meaning": "相当于汉语的“～不是～”。",
+      "structure": "名 + は + 名 + ではありません／じゃありません",
+      "usage": "“ではありません”的“では”在口语中有时会发成“じゃ”。",
+      "examples": [
+        "s2",
+        "s8",
+        "s19"
+      ],
+      "extraExamples": [
+        {
+          "jp": "森さんは学生ではありません。",
+          "kana": "もりさんはがくせいではありません。",
+          "cn": "森先生不是学生。"
+        },
+        {
+          "jp": "わたしは日本人ではありません。",
+          "kana": "わたしはにほんじんではありません。",
+          "cn": "我不是日本人。"
+        },
+        {
+          "jp": "わたしは田中じゃありません。",
+          "kana": "わたしはたなかじゃありません。",
+          "cn": "我不是田中。"
+        }
+      ]
+    },
+    {
+      "id": "g3",
+      "pattern": "名は名ですか",
+      "meaning": "相当于汉语的“～是～吗？”。",
+      "structure": "名 + は + 名 + ですか",
+      "usage": "助词“か”接在句尾表示疑问。日语的疑问句在句尾不使用“？”。回答时用“はい”或“いいえ”。也可以回答“はい、そうです”或“いいえ、ちがいます”。不确定时用“分かりません”。",
+      "examples": [
+        "s3",
+        "s5",
+        "s7",
+        "s9",
+        "s11",
+        "s14",
+        "s18"
+      ],
+      "extraExamples": [
+        {
+          "jp": "あなたは小野さんですか。",
+          "kana": "あなたはおのさんですか。",
+          "cn": "您是小野女士吗？"
+        },
+        {
+          "jp": "ーはい、小野です。",
+          "kana": "ーはい、おのです。",
+          "cn": "是的，我是小野。"
+        },
+        {
+          "jp": "キムさんは中国人ですか。",
+          "kana": "キムさんはちゅうごくじんですか。",
+          "cn": "金女士是中国人吗？"
+        },
+        {
+          "jp": "ーいいえ、中国人ではありません。",
+          "kana": "ーいいえ、ちゅうごくじんではありません。",
+          "cn": "不，不是中国人。"
+        },
+        {
+          "jp": "森さんは学生ですか。",
+          "kana": "もりさんはがくせいですか。",
+          "cn": "森先生是学生吗？"
+        },
+        {
+          "jp": "ーはい、そうです。",
+          "kana": "ーはい、そうです。",
+          "cn": "是，是学生。"
+        },
+        {
+          "jp": "ーいいえ、ちがいます。",
+          "kana": "ーいいえ、ちがいます。",
+          "cn": "不，不是。"
+        }
+      ]
+    },
+    {
+      "id": "g4",
+      "pattern": "名の名",
+      "meaning": "表示前面名词是后面名词从属的机构、国家或属性。",
+      "structure": "名 + の + 名",
+      "usage": "助词“の”连接名词和名词，表示前面的名词是后面名词从属的机构、国家或属性。在日语中，不论名词之间是什么关系，一般加“の”。如汉语说“我父亲”，而日语中不说“×わたし父”，须说“わたしの父”。",
+      "examples": [
+        "s4",
+        "s11",
+        "s13"
+      ],
+      "extraExamples": [
+        {
+          "jp": "李さんはJC企画の社員です。",
+          "kana": "りさんはジェーシーきかくのしゃいんです。",
+          "cn": "小李是JC策划公司的职员。"
+        },
+        {
+          "jp": "北京旅行社は中国の企業です。",
+          "kana": "ペキンりょこうしゃはちゅうごくのきぎょうです。",
+          "cn": "北京旅行社是中国的企业。"
+        },
+        {
+          "jp": "デュポンさんは大学の先生です。",
+          "kana": "デュポンさんはだいがくのせんせいです。",
+          "cn": "迪蓬先生是大学老师。"
+        }
+      ]
+    },
+    {
+      "id": "g5",
+      "pattern": "人称",
+      "meaning": "日语的人称代词。",
+      "structure": "わたし（第一人称）／あなた（第二人称）／あの人（第三人称）",
+      "usage": "日语的人称代词，一般来说第一人称是“わたし”、第二人称是“あなた”、第三人称是“あの人”。要注意，在不知道对方的姓名而又必须招呼的时候，才会使用第二人称“あなた”，因为用“あなた”来称呼对方，有时会显得不礼貌。称呼别人时，不分男女，都在其姓后面加“さん”。“さん”只用于他人的姓名后，不用于自己的姓名后。一般不用“あなた”而用“姓＋さん”来代替“あなた”。称呼小孩的时候，一般在名字后加“ちゃん”。对与自己年龄相当，或比自己年轻的男性，有时用“君”称呼。",
+      "examples": [],
+      "extraExamples": [
+        {
+          "jp": "わたしは李です。",
+          "kana": "わたしはりです。",
+          "cn": "我姓李。"
+        },
+        {
+          "jp": "あの人は森さんですか。",
+          "kana": "あのひとはもりさんですか。",
+          "cn": "那个人是森先生吗？"
+        },
+        {
+          "jp": "（あなたは）小野さんですか。",
+          "kana": "（あなたは）おのさんですか。",
+          "cn": "您是小野女士吗？"
+        },
+        {
+          "jp": "ーはい、小野です。",
+          "kana": "ーはい、おのです。",
+          "cn": "是的，我是小野。"
+        },
+        {
+          "jp": "太郎ちゃん、こんにちは。",
+          "kana": "たろうちゃん、こんにちは。",
+          "cn": "太郎，你好。"
+        },
+        {
+          "jp": "森君はJC企画の社員です。",
+          "kana": "もりくんはジェーシーきかくのしゃいんです。",
+          "cn": "森君是JC策划公司的职员。"
+        }
+      ]
+    },
+    {
+      "id": "g6",
+      "pattern": "省略（第一、第二人称主语的省略）",
+      "meaning": "在日语中，一般省略通过场景或上下文可以明白的部分。",
+      "structure": "（わたしは／あなたは） + 谓语",
+      "usage": "在会话中，多省略第一、第二人称的主语。不省略，有时候听起来会不自然，或给人以不礼貌的印象。另外，省略的成分与汉语不尽相同，须注意。",
+      "examples": [],
+      "extraExamples": [
+        {
+          "jp": "（あなたは）吉田さんですか。",
+          "kana": "（あなたは）よしださんですか。",
+          "cn": "您是吉田先生吗？"
+        },
+        {
+          "jp": "ーいいえ、（わたしは）吉田じゃありません。（わたしは）森です。",
+          "kana": "ーいいえ、（わたしは）よしだじゃありません。（わたしは）もりです。",
+          "cn": "不，我不是吉田。我是森。"
+        },
+        {
+          "jp": "小野さんは会社員ですか。",
+          "kana": "おのさんはかいしゃいんですか。",
+          "cn": "小野女士是公司职员吗？"
+        },
+        {
+          "jp": "ーはい、JC企画の社員です。",
+          "kana": "ーはい、ジェーシーきかくのしゃいんです。",
+          "cn": "是的，我是JC策划公司的职员。"
+        }
+      ]
+    },
+    {
+      "id": "g7",
+      "pattern": "あっ",
+      "meaning": "吃惊或者有所感触时发出的声音。",
+      "structure": "あっ + 感叹内容",
+      "usage": "“あっ”是吃惊或者有所感触时发出的声音。人在紧急情况下一般情不自禁地发出“あっ”，自言自语。",
+      "examples": [
+        "s20"
+      ],
+      "extraExamples": [
+        {
+          "jp": "あっ！森さん！",
+          "kana": "あっ！もりさん！",
+          "cn": "哎，森先生！",
+          "note": "在人群中发现了森"
+        },
+        {
+          "jp": "あっ、すみません。",
+          "kana": "あっ、すみません。",
+          "cn": "啊，对不起。",
+          "note": "在与人擦肩而过时不小心相撞"
+        }
+      ]
+    },
+    {
+      "id": "g8",
+      "pattern": "どうぞよろしくお願いします",
+      "meaning": "寒暄语，相当于汉语的“请多关照”。",
+      "structure": "どうぞ + よろしく + お願いします",
+      "usage": "自我介绍时，在说完自己的姓名或公司名称后，接着说“どうぞよろしくお願いします”。有时也用省略的说法“どうぞよろしく”或“よろしくお願いします”，但“どうぞよろしくお願いします”是较礼貌的说法。将“お願いします”变成“お願いいたします”，显得更加礼貌。对方回答时一般先说“こちらこそ”。",
+      "examples": [
+        "s15",
+        "s16",
+        "s22"
+      ],
+      "extraExamples": [
+        {
+          "jp": "はじめまして、李です。どうぞよろしくお願いします。",
+          "kana": "はじめまして、りです。どうぞよろしくおねがいします。",
+          "cn": "初次见面，我姓李。请多关照。"
+        },
+        {
+          "jp": "ーこちらこそ、どうぞよろしくお願いします。",
+          "kana": "ーこちらこそ、どうぞよろしくおねがいします。",
+          "cn": "我才要请您多多关照。"
+        },
+        {
+          "jp": "はじめまして、李です。どうぞよろしくお願いいたします。",
+          "kana": "はじめまして、りです。どうぞよろしくおねがいいたします。",
+          "cn": "初次见面，我姓李。请多关照。"
+        },
+        {
+          "jp": "ーこちらこそ、どうぞよろしくお願いします。",
+          "kana": "ーこちらこそ、どうぞよろしくおねがいします。",
+          "cn": "我才要请您多多关照。"
+        }
+      ]
+    },
+    {
+      "id": "g9",
+      "pattern": "“会社員”和“社員”",
+      "meaning": "“会社員”和“社員”的区别。",
+      "structure": "会社員（职业）／社員（所属）",
+      "usage": "“会社員”表示一种职业，意思是“公司职员”“在公司工作的人”。而“社員”具体表示属于某一个公司的人，一般在所属的公司或机构明确的句子中使用，如“JC企画の社員です”。",
+      "examples": [
+        "s4",
+        "s8"
+      ],
+      "extraExamples": [
+        {
+          "jp": "小野さんは会社員ですか。",
+          "kana": "おのさんはかいしゃいんですか。",
+          "cn": "小野女士是公司职员吗？"
+        },
+        {
+          "jp": "ーはい、JC企画の社員です。",
+          "kana": "ーはい、ジェーシーきかくのしゃいんです。",
+          "cn": "是的，是JC策划公司的职员。"
+        }
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "ex-i-1-1",
+      "groupId": "ex-i-1",
+      "groupTitle": "练习I 1",
+      "category": "replacement",
+      "instruction": "仿照例句替换画线部分进行练习。",
+      "example": "わたし／社員 → わたしは社員です。",
+      "exampleKana": "わたし／しゃいん → わたしはしゃいんです。",
+      "type": "transform",
+      "question": "李さん／中国人",
+      "questionKana": "りさん／ちゅうごくじん",
+      "choices": [],
+      "answer": "李さんは中国人です。",
+      "answerKana": "りさんはちゅうごくじんです。",
+      "referenceAnswers": [
+        "李さんは中国人です。"
+      ],
+      "referenceAnswerKana": [
+        "りさんはちゅうごくじんです。"
+      ],
+      "relatedGrammar": [
+        "g1"
+      ],
+      "relatedSentences": [
+        "s1"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "ex-i-1-2",
+      "groupId": "ex-i-1",
+      "groupTitle": "练习I 1",
+      "category": "replacement",
+      "instruction": "仿照例句替换画线部分进行练习。",
+      "example": "わたし／社員 → わたしは社員です。",
+      "exampleKana": "わたし／しゃいん → わたしはしゃいんです。",
+      "type": "transform",
+      "question": "キムさん／韓国人",
+      "questionKana": "キムさん／かんこくじん",
+      "choices": [],
+      "answer": "キムさんは韓国人です。",
+      "answerKana": "キムさんはかんこくじんです。",
+      "referenceAnswers": [
+        "キムさんは韓国人です。"
+      ],
+      "referenceAnswerKana": [
+        "キムさんはかんこくじんです。"
+      ],
+      "relatedGrammar": [
+        "g1"
+      ],
+      "relatedSentences": [
+        "s1"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "ex-i-1-3",
+      "groupId": "ex-i-1",
+      "groupTitle": "练习I 1",
+      "category": "replacement",
+      "instruction": "仿照例句替换画线部分进行练习。",
+      "example": "わたし／社員 → わたしは社員です。",
+      "exampleKana": "わたし／しゃいん → わたしはしゃいんです。",
+      "type": "transform",
+      "question": "林さん／会社員",
+      "questionKana": "はやしさん／かいしゃいん",
+      "choices": [],
+      "answer": "林さんは会社員です。",
+      "answerKana": "はやしさんはかいしゃいんです。",
+      "referenceAnswers": [
+        "林さんは会社員です。"
+      ],
+      "referenceAnswerKana": [
+        "はやしさんはかいしゃいんです。"
+      ],
+      "relatedGrammar": [
+        "g1"
+      ],
+      "relatedSentences": [],
+      "explanation": ""
+    },
+    {
+      "id": "ex-i-1-4",
+      "groupId": "ex-i-1",
+      "groupTitle": "练习I 1",
+      "category": "replacement",
+      "instruction": "仿照例句替换画线部分进行练习。",
+      "example": "わたし／社員 → わたしは社員です。",
+      "exampleKana": "わたし／しゃいん → わたしはしゃいんです。",
+      "type": "transform",
+      "question": "林さん／学生",
+      "questionKana": "はやしさん／がくせい",
+      "choices": [],
+      "answer": "林さんは学生です。",
+      "answerKana": "はやしさんはがくせいです。",
+      "referenceAnswers": [
+        "林さんは学生です。"
+      ],
+      "referenceAnswerKana": [
+        "はやしさんはがくせいです。"
+      ],
+      "relatedGrammar": [
+        "g1"
+      ],
+      "relatedSentences": [],
+      "explanation": ""
+    },
+    {
+      "id": "ex-i-1-5",
+      "groupId": "ex-i-1",
+      "groupTitle": "练习I 1",
+      "category": "replacement",
+      "instruction": "仿照例句替换画线部分进行练习。",
+      "example": "わたし／社員 → わたしは社員です。",
+      "exampleKana": "わたし／しゃいん → わたしはしゃいんです。",
+      "type": "transform",
+      "question": "スミスさん／アメリカ人",
+      "questionKana": "スミスさん／アメリカじん",
+      "choices": [],
+      "answer": "スミスさんはアメリカ人です。",
+      "answerKana": "スミスさんはアメリカじんです。",
+      "referenceAnswers": [
+        "スミスさんはアメリカ人です。"
+      ],
+      "referenceAnswerKana": [
+        "スミスさんはアメリカじんです。"
+      ],
+      "relatedGrammar": [
+        "g1"
+      ],
+      "relatedSentences": [
+        "s1"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "ex-i-1-6",
+      "groupId": "ex-i-1",
+      "groupTitle": "练习I 1",
+      "category": "replacement",
+      "instruction": "仿照例句替换画线部分进行练习。",
+      "example": "李さん／社員 → 李さんは社員ではありません。",
+      "exampleKana": "りさん／しゃいん → りさんはしゃいんではありません。",
+      "type": "transform",
+      "question": "小野さん／中国人",
+      "questionKana": "おのさん／ちゅうごくじん",
+      "choices": [],
+      "answer": "小野さんは中国人ではありません。",
+      "answerKana": "おのさんはちゅうごくじんではありません。",
+      "referenceAnswers": [
+        "小野さんは中国人ではありません。"
+      ],
+      "referenceAnswerKana": [
+        "おのさんはちゅうごくじんではありません。"
+      ],
+      "relatedGrammar": [
+        "g2"
+      ],
+      "relatedSentences": [
+        "s2"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "ex-i-1-7",
+      "groupId": "ex-i-1",
+      "groupTitle": "练习I 1",
+      "category": "replacement",
+      "instruction": "仿照例句替换画线部分进行练习。",
+      "example": "李さん／社員 → 李さんは社員ではありません。",
+      "exampleKana": "りさん／しゃいん → りさんはしゃいんではありません。",
+      "type": "transform",
+      "question": "森さん／課長",
+      "questionKana": "もりさん／かちょう",
+      "choices": [],
+      "answer": "森さんは課長ではありません。",
+      "answerKana": "もりさんはかちょうではありません。",
+      "referenceAnswers": [
+        "森さんは課長ではありません。"
+      ],
+      "referenceAnswerKana": [
+        "もりさんはかちょうではありません。"
+      ],
+      "relatedGrammar": [
+        "g2"
+      ],
+      "relatedSentences": [
+        "s2"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "ex-i-1-8",
+      "groupId": "ex-i-1",
+      "groupTitle": "练习I 1",
+      "category": "replacement",
+      "instruction": "仿照例句替换画线部分进行练习。",
+      "example": "李さん／社員 → 李さんは社員ではありません。",
+      "exampleKana": "りさん／しゃいん → りさんはしゃいんではありません。",
+      "type": "transform",
+      "question": "わたし／社長",
+      "questionKana": "わたし／しゃちょう",
+      "choices": [],
+      "answer": "わたしは社長ではありません。",
+      "answerKana": "わたしはしゃちょうではありません。",
+      "referenceAnswers": [
+        "わたしは社長ではありません。"
+      ],
+      "referenceAnswerKana": [
+        "わたしはしゃちょうではありません。"
+      ],
+      "relatedGrammar": [
+        "g2"
+      ],
+      "relatedSentences": [
+        "s2"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "ex-i-1-9",
+      "groupId": "ex-i-1",
+      "groupTitle": "练习I 1",
+      "category": "replacement",
+      "instruction": "仿照例句替换画线部分进行练习。",
+      "example": "李さん／社員 → 李さんは社員ではありません。",
+      "exampleKana": "りさん／しゃいん → りさんはしゃいんではありません。",
+      "type": "transform",
+      "question": "李さん／留学生",
+      "questionKana": "りさん／りゅうがくせい",
+      "choices": [],
+      "answer": "李さんは留学生ではありません。",
+      "answerKana": "りさんはりゅうがくせいではありません。",
+      "referenceAnswers": [
+        "李さんは留学生ではありません。"
+      ],
+      "referenceAnswerKana": [
+        "りさんはりゅうがくせいではありません。"
+      ],
+      "relatedGrammar": [
+        "g2"
+      ],
+      "relatedSentences": [
+        "s2"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "ex-i-1-10",
+      "groupId": "ex-i-1",
+      "groupTitle": "练习I 1",
+      "category": "replacement",
+      "instruction": "仿照例句替换画线部分进行练习。",
+      "example": "李さん／社員 → 李さんは社員ではありません。",
+      "exampleKana": "りさん／しゃいん → りさんはしゃいんではありません。",
+      "type": "transform",
+      "question": "スミスさん／フランス人",
+      "questionKana": "スミスさん／フランスじん",
+      "choices": [],
+      "answer": "スミスさんはフランス人ではありません。",
+      "answerKana": "スミスさんはフランスじんではありません。",
+      "referenceAnswers": [
+        "スミスさんはフランス人ではありません。"
+      ],
+      "referenceAnswerKana": [
+        "スミスさんはフランスじんではありません。"
+      ],
+      "relatedGrammar": [
+        "g2"
+      ],
+      "relatedSentences": [
+        "s2"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "ex-i-2-1",
+      "groupId": "ex-i-2",
+      "groupTitle": "练习I 2",
+      "category": "listening-dialogue",
+      "instruction": "听录音，照例句说。",
+      "example": "わたしは李です。",
+      "exampleKana": "わたしはりです。",
+      "type": "listening",
+      "question": "",
+      "questionKana": "",
+      "choices": [],
+      "answer": "",
+      "answerKana": "",
+      "referenceAnswers": [],
+      "referenceAnswerKana": [],
+      "relatedGrammar": [],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": true,
+      "hasAnswer": false
+    },
+    {
+      "id": "ex-i-2-2",
+      "groupId": "ex-i-2",
+      "groupTitle": "练习I 2",
+      "category": "listening-dialogue",
+      "instruction": "听录音，照例句说。",
+      "example": "わたしは李です。",
+      "exampleKana": "わたしはりです。",
+      "type": "listening",
+      "question": "",
+      "questionKana": "",
+      "choices": [],
+      "answer": "",
+      "answerKana": "",
+      "referenceAnswers": [],
+      "referenceAnswerKana": [],
+      "relatedGrammar": [],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": true,
+      "hasAnswer": false
+    },
+    {
+      "id": "ex-i-2-3",
+      "groupId": "ex-i-2",
+      "groupTitle": "练习I 2",
+      "category": "listening-dialogue",
+      "instruction": "听录音，照例句说。",
+      "example": "わたしは李です。",
+      "exampleKana": "わたしはりです。",
+      "type": "listening",
+      "question": "",
+      "questionKana": "",
+      "choices": [],
+      "answer": "",
+      "answerKana": "",
+      "referenceAnswers": [],
+      "referenceAnswerKana": [],
+      "relatedGrammar": [],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": true,
+      "hasAnswer": false
+    },
+    {
+      "id": "ex-i-2-4",
+      "groupId": "ex-i-2",
+      "groupTitle": "练习I 2",
+      "category": "listening-dialogue",
+      "instruction": "听录音，照例句说。",
+      "example": "わたしは李です。",
+      "exampleKana": "わたしはりです。",
+      "type": "listening",
+      "question": "",
+      "questionKana": "",
+      "choices": [],
+      "answer": "",
+      "answerKana": "",
+      "referenceAnswers": [],
+      "referenceAnswerKana": [],
+      "relatedGrammar": [],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": true,
+      "hasAnswer": false
+    },
+    {
+      "id": "ex-i-2-5",
+      "groupId": "ex-i-2",
+      "groupTitle": "练习I 2",
+      "category": "listening-dialogue",
+      "instruction": "听录音，照例句说。",
+      "example": "わたしは李です。",
+      "exampleKana": "わたしはりです。",
+      "type": "listening",
+      "question": "",
+      "questionKana": "",
+      "choices": [],
+      "answer": "",
+      "answerKana": "",
+      "referenceAnswers": [],
+      "referenceAnswerKana": [],
+      "relatedGrammar": [],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": true,
+      "hasAnswer": false
+    },
+    {
+      "id": "ex-i-3-1",
+      "groupId": "ex-i-3",
+      "groupTitle": "练习I 3",
+      "category": "replacement",
+      "instruction": "照例句替换画线部分进行会话。",
+      "example": "李 → 甲：李さんですか。乙1：はい、李です。乙2：いいえ、李ではありません。",
+      "exampleKana": "り → 甲：りさんですか。乙1：はい、りです。乙2：いいえ、りではありません。",
+      "type": "transform",
+      "question": "森",
+      "questionKana": "もり",
+      "choices": [],
+      "answer": "甲：森さんですか。乙1：はい、森です。乙2：いいえ、森ではありません。",
+      "answerKana": "甲：もりさんですか。乙1：はい、もりです。乙2：いいえ、もりではありません。",
+      "referenceAnswers": [
+        "甲：森さんですか。乙1：はい、森です。乙2：いいえ、森ではありません。"
+      ],
+      "referenceAnswerKana": [
+        "甲：もりさんですか。乙1：はい、もりです。乙2：いいえ、もりではありません。"
+      ],
+      "relatedGrammar": [
+        "g3"
+      ],
+      "relatedSentences": [
+        "s9",
+        "s10"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "ex-i-3-2",
+      "groupId": "ex-i-3",
+      "groupTitle": "练习I 3",
+      "category": "replacement",
+      "instruction": "照例句替换画线部分进行会话。",
+      "example": "李 → 甲：李さんですか。乙1：はい、李です。乙2：いいえ、李ではありません。",
+      "exampleKana": "り → 甲：りさんですか。乙1：はい、りです。乙2：いいえ、りではありません。",
+      "type": "transform",
+      "question": "小野",
+      "questionKana": "おの",
+      "choices": [],
+      "answer": "甲：小野さんですか。乙1：はい、小野です。乙2：いいえ、小野ではありません。",
+      "answerKana": "甲：おのさんですか。乙1：はい、おのです。乙2：いいえ、おのではありません。",
+      "referenceAnswers": [
+        "甲：小野さんですか。乙1：はい、小野です。乙2：いいえ、小野ではありません。"
+      ],
+      "referenceAnswerKana": [
+        "甲：おのさんですか。乙1：はい、おのです。乙2：いいえ、おのではありません。"
+      ],
+      "relatedGrammar": [
+        "g3"
+      ],
+      "relatedSentences": [
+        "s9",
+        "s10"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "ex-i-3-3",
+      "groupId": "ex-i-3",
+      "groupTitle": "练习I 3",
+      "category": "replacement",
+      "instruction": "照例句替换画线部分进行会话。",
+      "example": "李 → 甲：李さんですか。乙1：はい、李です。乙2：いいえ、李ではありません。",
+      "exampleKana": "り → 甲：りさんですか。乙1：はい、りです。乙2：いいえ、りではありません。",
+      "type": "transform",
+      "question": "デュポン",
+      "questionKana": "デュポン",
+      "choices": [],
+      "answer": "甲：デュポンさんですか。乙1：はい、デュポンです。乙2：いいえ、デュポンではありません。",
+      "answerKana": "甲：デュポンさんですか。乙1：はい、デュポンです。乙2：いいえ、デュポンではありません。",
+      "referenceAnswers": [
+        "甲：デュポンさんですか。乙1：はい、デュポンです。乙2：いいえ、デュポンではありません。"
+      ],
+      "referenceAnswerKana": [
+        "甲：デュポンさんですか。乙1：はい、デュポンです。乙2：いいえ、デュポンではありません。"
+      ],
+      "relatedGrammar": [
+        "g3"
+      ],
+      "relatedSentences": [
+        "s9",
+        "s10"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "ex-i-3-4",
+      "groupId": "ex-i-3",
+      "groupTitle": "练习I 3",
+      "category": "replacement",
+      "instruction": "照例句替换画线部分进行会话。",
+      "example": "李 → 甲：李さんですか。乙1：はい、李です。乙2：いいえ、李ではありません。",
+      "exampleKana": "り → 甲：りさんですか。乙1：はい、りです。乙2：いいえ、りではありません。",
+      "type": "transform",
+      "question": "ジョンソン",
+      "questionKana": "ジョンソン",
+      "choices": [],
+      "answer": "甲：ジョンソンさんですか。乙1：はい、ジョンソンです。乙2：いいえ、ジョンソンではありません。",
+      "answerKana": "甲：ジョンソンさんですか。乙1：はい、ジョンソンです。乙2：いいえ、ジョンソンではありません。",
+      "referenceAnswers": [
+        "甲：ジョンソンさんですか。乙1：はい、ジョンソンです。乙2：いいえ、ジョンソンではありません。"
+      ],
+      "referenceAnswerKana": [
+        "甲：ジョンソンさんですか。乙1：はい、ジョンソンです。乙2：いいえ、ジョンソンではありません。"
+      ],
+      "relatedGrammar": [
+        "g3"
+      ],
+      "relatedSentences": [
+        "s9",
+        "s10"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "ex-i-3-5",
+      "groupId": "ex-i-3",
+      "groupTitle": "练习I 3",
+      "category": "replacement",
+      "instruction": "照例句替换画线部分进行会话。",
+      "example": "会社員 → 甲：林さんは会社員ですか。乙1：はい、会社員です。乙2：いいえ、会社員ではありません。",
+      "exampleKana": "かいしゃいん → 甲：はやしさんはかいしゃいんですか。乙1：はい、かいしゃいんです。乙2：いいえ、かいしゃいんではありません。",
+      "type": "transform",
+      "question": "中国人",
+      "questionKana": "ちゅうごくじん",
+      "choices": [],
+      "answer": "甲：林さんは中国人ですか。乙1：はい、中国人です。乙2：いいえ、中国人ではありません。",
+      "answerKana": "甲：はやしさんはちゅうごくじんですか。乙1：はい、ちゅうごくじんです。乙2：いいえ、ちゅうごくじんではありません。",
+      "referenceAnswers": [
+        "甲：林さんは中国人ですか。乙1：はい、中国人です。乙2：いいえ、中国人ではありません。"
+      ],
+      "referenceAnswerKana": [
+        "甲：はやしさんはちゅうごくじんですか。乙1：はい、ちゅうごくじんです。乙2：いいえ、ちゅうごくじんではありません。"
+      ],
+      "relatedGrammar": [
+        "g3",
+        "g4"
+      ],
+      "relatedSentences": [
+        "s3",
+        "s4",
+        "s11"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "ex-i-3-6",
+      "groupId": "ex-i-3",
+      "groupTitle": "练习I 3",
+      "category": "replacement",
+      "instruction": "照例句替换画线部分进行会话。",
+      "example": "会社員 → 甲：林さんは会社員ですか。乙1：はい、会社員です。乙2：いいえ、会社員ではありません。",
+      "exampleKana": "かいしゃいん → 甲：はやしさんはかいしゃいんですか。乙1：はい、かいしゃいんです。乙2：いいえ、かいしゃいんではありません。",
+      "type": "transform",
+      "question": "韓国人",
+      "questionKana": "かんこくじん",
+      "choices": [],
+      "answer": "甲：林さんは韓国人ですか。乙1：はい、韓国人です。乙2：いいえ、韓国人ではありません。",
+      "answerKana": "甲：はやしさんはかんこくじんですか。乙1：はい、かんこくじんです。乙2：いいえ、かんこくじんではありません。",
+      "referenceAnswers": [
+        "甲：林さんは韓国人ですか。乙1：はい、韓国人です。乙2：いいえ、韓国人ではありません。"
+      ],
+      "referenceAnswerKana": [
+        "甲：はやしさんはかんこくじんですか。乙1：はい、かんこくじんです。乙2：いいえ、かんこくじんではありません。"
+      ],
+      "relatedGrammar": [
+        "g3",
+        "g4"
+      ],
+      "relatedSentences": [
+        "s3",
+        "s4",
+        "s11"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "ex-i-3-7",
+      "groupId": "ex-i-3",
+      "groupTitle": "练习I 3",
+      "category": "replacement",
+      "instruction": "照例句替换画线部分进行会话。",
+      "example": "会社員 → 甲：林さんは会社員ですか。乙1：はい、会社員です。乙2：いいえ、会社員ではありません。",
+      "exampleKana": "かいしゃいん → 甲：はやしさんはかいしゃいんですか。乙1：はい、かいしゃいんです。乙2：いいえ、かいしゃいんではありません。",
+      "type": "transform",
+      "question": "留学生",
+      "questionKana": "りゅうがくせい",
+      "choices": [],
+      "answer": "甲：林さんは留学生ですか。乙1：はい、留学生です。乙2：いいえ、留学生ではありません。",
+      "answerKana": "甲：はやしさんはりゅうがくせいですか。乙1：はい、りゅうがくせいです。乙2：いいえ、りゅうがくせいではありません。",
+      "referenceAnswers": [
+        "甲：林さんは留学生ですか。乙1：はい、留学生です。乙2：いいえ、留学生ではありません。"
+      ],
+      "referenceAnswerKana": [
+        "甲：はやしさんはりゅうがくせいですか。乙1：はい、りゅうがくせいです。乙2：いいえ、りゅうがくせいではありません。"
+      ],
+      "relatedGrammar": [
+        "g3",
+        "g4"
+      ],
+      "relatedSentences": [
+        "s3",
+        "s4",
+        "s11"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "ex-i-3-8",
+      "groupId": "ex-i-3",
+      "groupTitle": "练习I 3",
+      "category": "replacement",
+      "instruction": "照例句替换画线部分进行会话。",
+      "example": "会社員 → 甲：林さんは会社員ですか。乙1：はい、会社員です。乙2：いいえ、会社員ではありません。",
+      "exampleKana": "かいしゃいん → 甲：はやしさんはかいしゃいんですか。乙1：はい、かいしゃいんです。乙2：いいえ、かいしゃいんではありません。",
+      "type": "transform",
+      "question": "JC企画の社員",
+      "questionKana": "ジェーシーきかくのしゃいん",
+      "choices": [],
+      "answer": "甲：林さんはJC企画の社員ですか。乙1：はい、JC企画の社員です。乙2：いいえ、JC企画の社員ではありません。",
+      "answerKana": "甲：はやしさんはジェーシーきかくのしゃいんですか。乙1：はい、ジェーシーきかくのしゃいんです。乙2：いいえ、ジェーシーきかくのしゃいんではありません。",
+      "referenceAnswers": [
+        "甲：林さんはJC企画の社員ですか。乙1：はい、JC企画の社員です。乙2：いいえ、JC企画の社員ではありません。"
+      ],
+      "referenceAnswerKana": [
+        "甲：はやしさんはジェーシーきかくのしゃいんですか。乙1：はい、ジェーシーきかくのしゃいんです。乙2：いいえ、ジェーシーきかくのしゃいんではありません。"
+      ],
+      "relatedGrammar": [
+        "g3",
+        "g4"
+      ],
+      "relatedSentences": [
+        "s3",
+        "s4",
+        "s11"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "ex-i-4-1",
+      "groupId": "ex-i-4",
+      "groupTitle": "练习I 4",
+      "category": "picture-answer",
+      "instruction": "看图，照例句替换画线部分进行会话。",
+      "example": "李／会社員 → 甲：李さんは会社員ですか。乙：はい、そうです。",
+      "exampleKana": "り／かいしゃいん → 甲：りさんはかいしゃいんですか。乙：はい、そうです。",
+      "type": "transform",
+      "question": "スミス／日本人",
+      "questionKana": "スミス／にほんじん",
+      "choices": [],
+      "answer": "甲：スミスさんは日本人ですか。乙：はい、そうです。",
+      "answerKana": "甲：スミスさんはにほんじんですか。乙：はい、そうです。",
+      "referenceAnswers": [
+        "甲：スミスさんは日本人ですか。乙：はい、そうです。"
+      ],
+      "referenceAnswerKana": [
+        "甲：スミスさんはにほんじんですか。乙：はい、そうです。"
+      ],
+      "relatedGrammar": [
+        "g3"
+      ],
+      "relatedSentences": [],
+      "explanation": ""
+    },
+    {
+      "id": "ex-i-4-2",
+      "groupId": "ex-i-4",
+      "groupTitle": "练习I 4",
+      "category": "picture-answer",
+      "instruction": "看图，照例句替换画线部分进行会话。",
+      "example": "李／会社員 → 甲：李さんは会社員ですか。乙：はい、そうです。",
+      "exampleKana": "り／かいしゃいん → 甲：りさんはかいしゃいんですか。乙：はい、そうです。",
+      "type": "transform",
+      "question": "ジョンソン／JC企画の社員",
+      "questionKana": "ジョンソン／ジェーシーきかくのしゃいん",
+      "choices": [],
+      "answer": "甲：ジョンソンさんはJC企画の社員ですか。乙：はい、そうです。",
+      "answerKana": "甲：ジョンソンさんはジェーシーきかくのしゃいんですか。乙：はい、そうです。",
+      "referenceAnswers": [
+        "甲：ジョンソンさんはJC企画の社員ですか。乙：はい、そうです。"
+      ],
+      "referenceAnswerKana": [
+        "甲：ジョンソンさんはジェーシーきかくのしゃいんですか。乙：はい、そうです。"
+      ],
+      "relatedGrammar": [
+        "g3"
+      ],
+      "relatedSentences": [],
+      "explanation": ""
+    },
+    {
+      "id": "ex-i-4-3",
+      "groupId": "ex-i-4",
+      "groupTitle": "练习I 4",
+      "category": "picture-answer",
+      "instruction": "看图，照例句替换画线部分进行会话。",
+      "example": "李／会社員 → 甲：李さんは会社員ですか。乙：はい、そうです。",
+      "exampleKana": "り／かいしゃいん → 甲：りさんはかいしゃいんですか。乙：はい、そうです。",
+      "type": "transform",
+      "question": "デュポン／フランス人",
+      "questionKana": "デュポン／フランスじん",
+      "choices": [],
+      "answer": "甲：デュポンさんはフランス人ですか。乙：はい、そうです。",
+      "answerKana": "甲：デュポンさんはフランスじんですか。乙：はい、そうです。",
+      "referenceAnswers": [
+        "甲：デュポンさんはフランス人ですか。乙：はい、そうです。"
+      ],
+      "referenceAnswerKana": [
+        "甲：デュポンさんはフランスじんですか。乙：はい、そうです。"
+      ],
+      "relatedGrammar": [
+        "g3"
+      ],
+      "relatedSentences": [],
+      "explanation": ""
+    },
+    {
+      "id": "ex-i-4-4",
+      "groupId": "ex-i-4",
+      "groupTitle": "练习I 4",
+      "category": "picture-answer",
+      "instruction": "看图，照例句替换画线部分进行会话。",
+      "example": "李／会社員 → 甲：李さんは会社員ですか。乙：はい、そうです。",
+      "exampleKana": "り／かいしゃいん → 甲：りさんはかいしゃいんですか。乙：はい、そうです。",
+      "type": "transform",
+      "question": "キム／中国人",
+      "questionKana": "キム／ちゅうごくじん",
+      "choices": [],
+      "answer": "甲：キムさんは中国人ですか。乙：はい、そうです。",
+      "answerKana": "甲：キムさんはちゅうごくじんですか。乙：はい、そうです。",
+      "referenceAnswers": [
+        "甲：キムさんは中国人ですか。乙：はい、そうです。"
+      ],
+      "referenceAnswerKana": [
+        "甲：キムさんはちゅうごくじんですか。乙：はい、そうです。"
+      ],
+      "relatedGrammar": [
+        "g3"
+      ],
+      "relatedSentences": [],
+      "explanation": ""
+    },
+    {
+      "id": "ex-i-5-1",
+      "groupId": "ex-i-5",
+      "groupTitle": "练习I 5",
+      "category": "picture-answer",
+      "instruction": "看第4题的图，仿照例句回答问题。",
+      "example": "李さんは中国人ですか。→ はい、そうです。／李さんは学生ですか。→ いいえ、ちがいます。",
+      "exampleKana": "りさんはちゅうごくじんですか。→ はい、そうです。／りさんはがくせいですか。→ いいえ、ちがいます。",
+      "type": "short-answer",
+      "question": "スミスさんはアメリカ人ですか。",
+      "questionKana": "スミスさんはアメリカじんですか。",
+      "choices": [],
+      "answer": "はい、そうです。",
+      "answerKana": "はい、そうです。",
+      "referenceAnswers": [
+        "はい、そうです。"
+      ],
+      "referenceAnswerKana": [
+        "はい、そうです。"
+      ],
+      "relatedGrammar": [
+        "g3"
+      ],
+      "relatedSentences": [],
+      "explanation": ""
+    },
+    {
+      "id": "ex-i-5-2",
+      "groupId": "ex-i-5",
+      "groupTitle": "练习I 5",
+      "category": "picture-answer",
+      "instruction": "看第4题的图，仿照例句回答问题。",
+      "example": "李さんは中国人ですか。→ はい、そうです。／李さんは学生ですか。→ いいえ、ちがいます。",
+      "exampleKana": "りさんはちゅうごくじんですか。→ はい、そうです。／りさんはがくせいですか。→ いいえ、ちがいます。",
+      "type": "short-answer",
+      "question": "ジョンソンさんは学生ですか。",
+      "questionKana": "ジョンソンさんはがくせいですか。",
+      "choices": [],
+      "answer": "いいえ、ちがいます。",
+      "answerKana": "いいえ、ちがいます。",
+      "referenceAnswers": [
+        "いいえ、ちがいます。"
+      ],
+      "referenceAnswerKana": [
+        "いいえ、ちがいます。"
+      ],
+      "relatedGrammar": [
+        "g3"
+      ],
+      "relatedSentences": [],
+      "explanation": ""
+    },
+    {
+      "id": "ex-i-5-3",
+      "groupId": "ex-i-5",
+      "groupTitle": "练习I 5",
+      "category": "picture-answer",
+      "instruction": "看第4题的图，仿照例句回答问题。",
+      "example": "李さんは中国人ですか。→ はい、そうです。／李さんは学生ですか。→ いいえ、ちがいます。",
+      "exampleKana": "りさんはちゅうごくじんですか。→ はい、そうです。／りさんはがくせいですか。→ いいえ、ちがいます。",
+      "type": "short-answer",
+      "question": "デュポンさんはフランス人ですか。",
+      "questionKana": "デュポンさんはフランスじんですか。",
+      "choices": [],
+      "answer": "はい、そうです。",
+      "answerKana": "はい、そうです。",
+      "referenceAnswers": [
+        "はい、そうです。"
+      ],
+      "referenceAnswerKana": [
+        "はい、そうです。"
+      ],
+      "relatedGrammar": [
+        "g3"
+      ],
+      "relatedSentences": [],
+      "explanation": ""
+    },
+    {
+      "id": "ex-i-5-4",
+      "groupId": "ex-i-5",
+      "groupTitle": "练习I 5",
+      "category": "picture-answer",
+      "instruction": "看第4题的图，仿照例句回答问题。",
+      "example": "李さんは中国人ですか。→ はい、そうです。／李さんは学生ですか。→ いいえ、ちがいます。",
+      "exampleKana": "りさんはちゅうごくじんですか。→ はい、そうです。／りさんはがくせいですか。→ いいえ、ちがいます。",
+      "type": "short-answer",
+      "question": "キムさんは韓国人ですか。",
+      "questionKana": "キムさんはかんこくじんですか。",
+      "choices": [],
+      "answer": "はい、そうです。",
+      "answerKana": "はい、そうです。",
+      "referenceAnswers": [
+        "はい、そうです。"
+      ],
+      "referenceAnswerKana": [
+        "はい、そうです。"
+      ],
+      "relatedGrammar": [
+        "g3"
+      ],
+      "relatedSentences": [],
+      "explanation": ""
+    },
+    {
+      "id": "ex-i-5-5",
+      "groupId": "ex-i-5",
+      "groupTitle": "练习I 5",
+      "category": "picture-answer",
+      "instruction": "看第4题的图，仿照例句回答问题。",
+      "example": "李さんは中国人ですか。→ はい、そうです。／李さんは学生ですか。→ いいえ、ちがいます。",
+      "exampleKana": "りさんはちゅうごくじんですか。→ はい、そうです。／りさんはがくせいですか。→ いいえ、ちがいます。",
+      "type": "short-answer",
+      "question": "デュポンさんは日本人ですか。",
+      "questionKana": "デュポンさんはにほんじんですか。",
+      "choices": [],
+      "answer": "いいえ、ちがいます。",
+      "answerKana": "いいえ、ちがいます。",
+      "referenceAnswers": [
+        "いいえ、ちがいます。"
+      ],
+      "referenceAnswerKana": [
+        "いいえ、ちがいます。"
+      ],
+      "relatedGrammar": [
+        "g3"
+      ],
+      "relatedSentences": [],
+      "explanation": ""
+    },
+    {
+      "id": "ex-i-6-1",
+      "groupId": "ex-i-6",
+      "groupTitle": "练习I 6",
+      "category": "replacement",
+      "instruction": "照例句替换画线部分进行会话。",
+      "example": "李／JC企画の社員 → 甲：李さんはJC企画の社員ですか。乙：はい、そうです。",
+      "exampleKana": "り／ジェーシーきかくのしゃいん → 甲：りさんはジェーシーきかくのしゃいんですか。乙：はい、そうです。",
+      "type": "transform",
+      "question": "キム／JC企画の研修生",
+      "questionKana": "キム／ジェーシーきかくのけんしゅうせい",
+      "choices": [],
+      "answer": "甲：キムさんはJC企画の研修生ですか。乙：はい、そうです。",
+      "answerKana": "甲：キムさんはジェーシーきかくのけんしゅうせいですか。乙：はい、そうです。",
+      "referenceAnswers": [
+        "甲：キムさんはJC企画の研修生ですか。乙：はい、そうです。"
+      ],
+      "referenceAnswerKana": [
+        "甲：キムさんはジェーシーきかくのけんしゅうせいですか。乙：はい、そうです。"
+      ],
+      "relatedGrammar": [
+        "g3",
+        "g4"
+      ],
+      "relatedSentences": [
+        "s11",
+        "s12"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "ex-i-6-2",
+      "groupId": "ex-i-6",
+      "groupTitle": "练习I 6",
+      "category": "replacement",
+      "instruction": "照例句替换画线部分进行会话。",
+      "example": "李／JC企画の社員 → 甲：李さんはJC企画の社員ですか。乙：はい、そうです。",
+      "exampleKana": "り／ジェーシーきかくのしゃいん → 甲：りさんはジェーシーきかくのしゃいんですか。乙：はい、そうです。",
+      "type": "transform",
+      "question": "ジョンソン／東京大学の学生",
+      "questionKana": "ジョンソン／とうきょうだいがくのがくせい",
+      "choices": [],
+      "answer": "甲：ジョンソンさんは東京大学の学生ですか。乙：はい、そうです。",
+      "answerKana": "甲：ジョンソンさんはとうきょうだいがくのがくせいですか。乙：はい、そうです。",
+      "referenceAnswers": [
+        "甲：ジョンソンさんは東京大学の学生ですか。乙：はい、そうです。"
+      ],
+      "referenceAnswerKana": [
+        "甲：ジョンソンさんはとうきょうだいがくのがくせいですか。乙：はい、そうです。"
+      ],
+      "relatedGrammar": [
+        "g3",
+        "g4"
+      ],
+      "relatedSentences": [
+        "s11",
+        "s12"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "ex-i-6-3",
+      "groupId": "ex-i-6",
+      "groupTitle": "练习I 6",
+      "category": "replacement",
+      "instruction": "照例句替换画线部分进行会话。",
+      "example": "李／JC企画の社員 → 甲：李さんはJC企画の社員ですか。乙：はい、そうです。",
+      "exampleKana": "り／ジェーシーきかくのしゃいん → 甲：りさんはジェーシーきかくのしゃいんですか。乙：はい、そうです。",
+      "type": "transform",
+      "question": "デュポン／北京大学の教授",
+      "questionKana": "デュポン／ペキンだいがくのきょうじゅ",
+      "choices": [],
+      "answer": "甲：デュポンさんは北京大学の教授ですか。乙：はい、そうです。",
+      "answerKana": "甲：デュポンさんはペキンだいがくのきょうじゅですか。乙：はい、そうです。",
+      "referenceAnswers": [
+        "甲：デュポンさんは北京大学の教授ですか。乙：はい、そうです。"
+      ],
+      "referenceAnswerKana": [
+        "甲：デュポンさんはペキンだいがくのきょうじゅですか。乙：はい、そうです。"
+      ],
+      "relatedGrammar": [
+        "g3",
+        "g4"
+      ],
+      "relatedSentences": [
+        "s11",
+        "s12"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "ex-i-6-4",
+      "groupId": "ex-i-6",
+      "groupTitle": "练习I 6",
+      "category": "replacement",
+      "instruction": "照例句替换画线部分进行会话。",
+      "example": "李／JC企画の社員 → 甲：李さんはJC企画の社員ですか。乙：はい、そうです。",
+      "exampleKana": "り／ジェーシーきかくのしゃいん → 甲：りさんはジェーシーきかくのしゃいんですか。乙：はい、そうです。",
+      "type": "transform",
+      "question": "中村／JC企画の社長",
+      "questionKana": "なかむら／ジェーシーきかくのしゃちょう",
+      "choices": [],
+      "answer": "甲：中村さんはJC企画の社長ですか。乙：はい、そうです。",
+      "answerKana": "甲：なかむらさんはジェーシーきかくのしゃちょうですか。乙：はい、そうです。",
+      "referenceAnswers": [
+        "甲：中村さんはJC企画の社長ですか。乙：はい、そうです。"
+      ],
+      "referenceAnswerKana": [
+        "甲：なかむらさんはジェーシーきかくのしゃちょうですか。乙：はい、そうです。"
+      ],
+      "relatedGrammar": [
+        "g3",
+        "g4"
+      ],
+      "relatedSentences": [
+        "s11",
+        "s12"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "ex-i-6-5",
+      "groupId": "ex-i-6",
+      "groupTitle": "练习I 6",
+      "category": "replacement",
+      "instruction": "照例句替换画线部分进行会话。",
+      "example": "森／学生 → 甲：森さんは学生ですか。乙：いいえ、ちがいます。",
+      "exampleKana": "もり／がくせい → 甲：もりさんはがくせいですか。乙：いいえ、ちがいます。",
+      "type": "transform",
+      "question": "ジョンソン／フランス人",
+      "questionKana": "ジョンソン／フランスじん",
+      "choices": [],
+      "answer": "甲：ジョンソンさんはフランス人ですか。乙：いいえ、ちがいます。",
+      "answerKana": "甲：ジョンソンさんはフランスじんですか。乙：いいえ、ちがいます。",
+      "referenceAnswers": [
+        "甲：ジョンソンさんはフランス人ですか。乙：いいえ、ちがいます。"
+      ],
+      "referenceAnswerKana": [
+        "甲：ジョンソンさんはフランスじんですか。乙：いいえ、ちがいます。"
+      ],
+      "relatedGrammar": [
+        "g3",
+        "g4"
+      ],
+      "relatedSentences": [],
+      "explanation": ""
+    },
+    {
+      "id": "ex-i-6-6",
+      "groupId": "ex-i-6",
+      "groupTitle": "练习I 6",
+      "category": "replacement",
+      "instruction": "照例句替换画线部分进行会话。",
+      "example": "森／学生 → 甲：森さんは学生ですか。乙：いいえ、ちがいます。",
+      "exampleKana": "もり／がくせい → 甲：もりさんはがくせいですか。乙：いいえ、ちがいます。",
+      "type": "transform",
+      "question": "林／北京大学の学生",
+      "questionKana": "はやし／ペキンだいがくのがくせい",
+      "choices": [],
+      "answer": "甲：林さんは北京大学の学生ですか。乙：いいえ、ちがいます。",
+      "answerKana": "甲：はやしさんはペキンだいがくのがくせいですか。乙：いいえ、ちがいます。",
+      "referenceAnswers": [
+        "甲：林さんは北京大学の学生ですか。乙：いいえ、ちがいます。"
+      ],
+      "referenceAnswerKana": [
+        "甲：はやしさんはペキンだいがくのがくせいですか。乙：いいえ、ちがいます。"
+      ],
+      "relatedGrammar": [
+        "g3",
+        "g4"
+      ],
+      "relatedSentences": [],
+      "explanation": ""
+    },
+    {
+      "id": "ex-i-6-7",
+      "groupId": "ex-i-6",
+      "groupTitle": "练习I 6",
+      "category": "replacement",
+      "instruction": "照例句替换画线部分进行会话。",
+      "example": "森／学生 → 甲：森さんは学生ですか。乙：いいえ、ちがいます。",
+      "exampleKana": "もり／がくせい → 甲：もりさんはがくせいですか。乙：いいえ、ちがいます。",
+      "type": "transform",
+      "question": "森／JC企画の課長",
+      "questionKana": "もり／ジェーシーきかくのかちょう",
+      "choices": [],
+      "answer": "甲：森さんはJC企画の課長ですか。乙：いいえ、ちがいます。",
+      "answerKana": "甲：もりさんはジェーシーきかくのかちょうですか。乙：いいえ、ちがいます。",
+      "referenceAnswers": [
+        "甲：森さんはJC企画の課長ですか。乙：いいえ、ちがいます。"
+      ],
+      "referenceAnswerKana": [
+        "甲：もりさんはジェーシーきかくのかちょうですか。乙：いいえ、ちがいます。"
+      ],
+      "relatedGrammar": [
+        "g3",
+        "g4"
+      ],
+      "relatedSentences": [],
+      "explanation": ""
+    },
+    {
+      "id": "ex-i-6-8",
+      "groupId": "ex-i-6",
+      "groupTitle": "练习I 6",
+      "category": "replacement",
+      "instruction": "照例句替换画线部分进行会话。",
+      "example": "森／学生 → 甲：森さんは学生ですか。乙：いいえ、ちがいます。",
+      "exampleKana": "もり／がくせい → 甲：もりさんはがくせいですか。乙：いいえ、ちがいます。",
+      "type": "transform",
+      "question": "吉田／日中商事の社長",
+      "questionKana": "よしだ／にっちゅうしょうじのしゃちょう",
+      "choices": [],
+      "answer": "甲：吉田さんは日中商事の社長ですか。乙：いいえ、ちがいます。",
+      "answerKana": "甲：よしださんはにっちゅうしょうじのしゃちょうですか。乙：いいえ、ちがいます。",
+      "referenceAnswers": [
+        "甲：吉田さんは日中商事の社長ですか。乙：いいえ、ちがいます。"
+      ],
+      "referenceAnswerKana": [
+        "甲：よしださんはにっちゅうしょうじのしゃちょうですか。乙：いいえ、ちがいます。"
+      ],
+      "relatedGrammar": [
+        "g3",
+        "g4"
+      ],
+      "relatedSentences": [],
+      "explanation": ""
+    },
+    {
+      "id": "ex-i-7-1",
+      "groupId": "ex-i-7",
+      "groupTitle": "练习I 7",
+      "category": "listening-dialogue",
+      "instruction": "听录音，照例句替换画线部分进行练习。",
+      "example": "李／森健太郎 → 甲：李さんですか。乙：はい、李です。どうぞよろしく。甲：こんにちは、森健太郎です。よろしくお願いします。",
+      "exampleKana": "り／もりけんたろう → 甲：りさんですか。乙：はい、りです。どうぞよろしく。甲：こんにちは、もりけんたろうです。よろしくおねがいします。",
+      "type": "listening",
+      "question": "張／小野緑",
+      "questionKana": "ちょう／おのみどり",
+      "choices": [],
+      "answer": "甲：張さんですか。乙：はい、張です。どうぞよろしく。甲：こんにちは、小野緑です。よろしくお願いします。",
+      "answerKana": "甲：ちょうさんですか。乙：はい、ちょうです。どうぞよろしく。甲：こんにちは、おのみどりです。よろしくおねがいします。",
+      "referenceAnswers": [
+        "甲：張さんですか。乙：はい、張です。どうぞよろしく。甲：こんにちは、小野緑です。よろしくお願いします。"
+      ],
+      "referenceAnswerKana": [
+        "甲：ちょうさんですか。乙：はい、ちょうです。どうぞよろしく。甲：こんにちは、おのみどりです。よろしくおねがいします。"
+      ],
+      "relatedGrammar": [
+        "g3",
+        "g8"
+      ],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": true
+    },
+    {
+      "id": "ex-i-7-2",
+      "groupId": "ex-i-7",
+      "groupTitle": "练习I 7",
+      "category": "listening-dialogue",
+      "instruction": "听录音，照例句替换画线部分进行练习。",
+      "example": "李／森健太郎 → 甲：李さんですか。乙：はい、李です。どうぞよろしく。甲：こんにちは、森健太郎です。よろしくお願いします。",
+      "exampleKana": "り／もりけんたろう → 甲：りさんですか。乙：はい、りです。どうぞよろしく。甲：こんにちは、もりけんたろうです。よろしくおねがいします。",
+      "type": "listening",
+      "question": "スミス／李秀麗",
+      "questionKana": "スミス／りしゅうれい",
+      "choices": [],
+      "answer": "甲：スミスさんですか。乙：はい、スミスです。どうぞよろしく。甲：こんにちは、李秀麗です。よろしくお願いします。",
+      "answerKana": "甲：スミスさんですか。乙：はい、スミスです。どうぞよろしく。甲：こんにちは、りしゅうれいです。よろしくおねがいします。",
+      "referenceAnswers": [
+        "甲：スミスさんですか。乙：はい、スミスです。どうぞよろしく。甲：こんにちは、李秀麗です。よろしくお願いします。"
+      ],
+      "referenceAnswerKana": [
+        "甲：スミスさんですか。乙：はい、スミスです。どうぞよろしく。甲：こんにちは、りしゅうれいです。よろしくおねがいします。"
+      ],
+      "relatedGrammar": [
+        "g3",
+        "g8"
+      ],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": true
+    },
+    {
+      "id": "ex-ii-1-1",
+      "groupId": "ex-ii-1",
+      "groupTitle": "练习II 1",
+      "category": "choice",
+      "instruction": "在（）中填入适当的词语。",
+      "example": "あなたは（日本人）ですか。→ はい、日本人です。",
+      "exampleKana": "あなたは（にほんじん）ですか。→ はい、にほんじんです。",
+      "type": "short-answer",
+      "question": "李さんは（　　）ですか。→ はい、会社員です。",
+      "questionKana": "りさんは（　　）ですか。→ はい、かいしゃいんです。",
+      "choices": [],
+      "answer": "会社員",
+      "answerKana": "かいしゃいん",
+      "referenceAnswers": [
+        "会社員"
+      ],
+      "referenceAnswerKana": [
+        "かいしゃいん"
+      ],
+      "relatedGrammar": [
+        "g3"
+      ],
+      "relatedSentences": [],
+      "explanation": ""
+    },
+    {
+      "id": "ex-ii-1-2",
+      "groupId": "ex-ii-1",
+      "groupTitle": "练习II 1",
+      "category": "choice",
+      "instruction": "在（）中填入适当的词语。",
+      "example": "あなたは（日本人）ですか。→ はい、日本人です。",
+      "exampleKana": "あなたは（にほんじん）ですか。→ はい、にほんじんです。",
+      "type": "short-answer",
+      "question": "あなたは（　　）ですか。→ いいえ、小野ではありません。",
+      "questionKana": "あなたは（　　）ですか。→ いいえ、おのではありません。",
+      "choices": [],
+      "answer": "小野さん",
+      "answerKana": "おのさん",
+      "referenceAnswers": [
+        "小野さん"
+      ],
+      "referenceAnswerKana": [
+        "おのさん"
+      ],
+      "relatedGrammar": [
+        "g3"
+      ],
+      "relatedSentences": [],
+      "explanation": ""
+    },
+    {
+      "id": "ex-ii-1-3",
+      "groupId": "ex-ii-1",
+      "groupTitle": "练习II 1",
+      "category": "choice",
+      "instruction": "在（）中填入适当的词语。",
+      "example": "あなたは（日本人）ですか。→ はい、日本人です。",
+      "exampleKana": "あなたは（にほんじん）ですか。→ はい、にほんじんです。",
+      "type": "short-answer",
+      "question": "森さんは（　　）の社員ですか。→ はい、JC企画の社員です。",
+      "questionKana": "もりさんは（　　）のしゃいんですか。→ はい、ジェーシーきかくのしゃいんです。",
+      "choices": [],
+      "answer": "JC企画",
+      "answerKana": "ジェーシーきかく",
+      "referenceAnswers": [
+        "JC企画"
+      ],
+      "referenceAnswerKana": [
+        "ジェーシーきかく"
+      ],
+      "relatedGrammar": [
+        "g3"
+      ],
+      "relatedSentences": [],
+      "explanation": ""
+    },
+    {
+      "id": "ex-ii-1-4",
+      "groupId": "ex-ii-1",
+      "groupTitle": "练习II 1",
+      "category": "choice",
+      "instruction": "在（）中填入适当的词语。",
+      "example": "あなたは（日本人）ですか。→ はい、日本人です。",
+      "exampleKana": "あなたは（にほんじん）ですか。→ はい、にほんじんです。",
+      "type": "short-answer",
+      "question": "キムさんは学生ですか。→ （　　）、学生ではありません。",
+      "questionKana": "キムさんはがくせいですか。→ （　　）、がくせいではありません。",
+      "choices": [],
+      "answer": "いいえ",
+      "answerKana": "いいえ",
+      "referenceAnswers": [
+        "いいえ"
+      ],
+      "referenceAnswerKana": [
+        "いいえ"
+      ],
+      "relatedGrammar": [
+        "g3"
+      ],
+      "relatedSentences": [],
+      "explanation": ""
+    },
+    {
+      "id": "ex-ii-1-5",
+      "groupId": "ex-ii-1",
+      "groupTitle": "练习II 1",
+      "category": "choice",
+      "instruction": "在（）中填入适当的词语。",
+      "example": "あなたは（日本人）ですか。→ はい、日本人です。",
+      "exampleKana": "あなたは（にほんじん）ですか。→ はい、にほんじんです。",
+      "type": "short-answer",
+      "question": "スミスさんはアメリカ人ですか。→ はい、（　　）です。",
+      "questionKana": "スミスさんはアメリカじんですか。→ はい、（　　）です。",
+      "choices": [],
+      "answer": "そう",
+      "answerKana": "そう",
+      "referenceAnswers": [
+        "そう"
+      ],
+      "referenceAnswerKana": [
+        "そう"
+      ],
+      "relatedGrammar": [
+        "g3"
+      ],
+      "relatedSentences": [],
+      "explanation": ""
+    },
+    {
+      "id": "ex-ii-2-1",
+      "groupId": "ex-ii-2",
+      "groupTitle": "练习II 2",
+      "category": "choice",
+      "instruction": "在正确答案上画○。",
+      "example": "李さんは中国人ですか。→ （はい・いいえ）、そうです。",
+      "exampleKana": "りさんはちゅうごくじんですか。→ （はい・いいえ）、そうです。",
+      "type": "choice",
+      "question": "キムさんは韓国人ですか。→ （はい・いいえ）、中国人ではありません。",
+      "questionKana": "キムさんはかんこくじんですか。→ （はい・いいえ）、ちゅうごくじんではありません。",
+      "choices": [
+        "はい",
+        "いいえ"
+      ],
+      "answer": "いいえ",
+      "answerKana": "いいえ",
+      "referenceAnswers": [
+        "いいえ"
+      ],
+      "referenceAnswerKana": [
+        "いいえ"
+      ],
+      "relatedGrammar": [
+        "g3"
+      ],
+      "relatedSentences": [],
+      "explanation": ""
+    },
+    {
+      "id": "ex-ii-2-2",
+      "groupId": "ex-ii-2",
+      "groupTitle": "练习II 2",
+      "category": "choice",
+      "instruction": "在正确答案上画○。",
+      "example": "李さんは中国人ですか。→ （はい・いいえ）、そうです。",
+      "exampleKana": "りさんはちゅうごくじんですか。→ （はい・いいえ）、そうです。",
+      "type": "choice",
+      "question": "あなたは研修生ですか。→ いいえ、研修生（です・ではありません）。",
+      "questionKana": "あなたはけんしゅうせいですか。→ いいえ、けんしゅうせい（です・ではありません）。",
+      "choices": [
+        "です",
+        "ではありません"
+      ],
+      "answer": "ではありません",
+      "answerKana": "ではありません",
+      "referenceAnswers": [
+        "ではありません"
+      ],
+      "referenceAnswerKana": [
+        "ではありません"
+      ],
+      "relatedGrammar": [
+        "g3"
+      ],
+      "relatedSentences": [],
+      "explanation": ""
+    },
+    {
+      "id": "ex-ii-2-3",
+      "groupId": "ex-ii-2",
+      "groupTitle": "练习II 2",
+      "category": "choice",
+      "instruction": "在正确答案上画○。",
+      "example": "李さんは中国人ですか。→ （はい・いいえ）、そうです。",
+      "exampleKana": "りさんはちゅうごくじんですか。→ （はい・いいえ）、そうです。",
+      "type": "choice",
+      "question": "あなたは小野さんですか。→ はい、（小野・小野さん）です。",
+      "questionKana": "あなたはおのさんですか。→ はい、（おの・おのさん）です。",
+      "choices": [
+        "小野",
+        "小野さん"
+      ],
+      "answer": "小野",
+      "answerKana": "おの",
+      "referenceAnswers": [
+        "小野"
+      ],
+      "referenceAnswerKana": [
+        "おの"
+      ],
+      "relatedGrammar": [
+        "g3"
+      ],
+      "relatedSentences": [],
+      "explanation": ""
+    },
+    {
+      "id": "ex-ii-2-4",
+      "groupId": "ex-ii-2",
+      "groupTitle": "练习II 2",
+      "category": "choice",
+      "instruction": "在正确答案上画○。",
+      "example": "李さんは中国人ですか。→ （はい・いいえ）、そうです。",
+      "exampleKana": "りさんはちゅうごくじんですか。→ （はい・いいえ）、そうです。",
+      "type": "choice",
+      "question": "張さんは（会社員・学生）ですか。→ いいえ、会社員ではありません。学生です。",
+      "questionKana": "ちょうさんは（かいしゃいん・がくせい）ですか。→ いいえ、かいしゃいんではありません。がくせいです。",
+      "choices": [
+        "会社員",
+        "学生"
+      ],
+      "answer": "会社員",
+      "answerKana": "かいしゃいん",
+      "referenceAnswers": [
+        "会社員"
+      ],
+      "referenceAnswerKana": [
+        "かいしゃいん"
+      ],
+      "relatedGrammar": [
+        "g3"
+      ],
+      "relatedSentences": [],
+      "explanation": ""
+    },
+    {
+      "id": "ex-ii-2-5",
+      "groupId": "ex-ii-2",
+      "groupTitle": "练习II 2",
+      "category": "choice",
+      "instruction": "在正确答案上画○。",
+      "example": "李さんは中国人ですか。→ （はい・いいえ）、そうです。",
+      "exampleKana": "りさんはちゅうごくじんですか。→ （はい・いいえ）、そうです。",
+      "type": "choice",
+      "question": "デュポンさんはアメリカ人ですか。→ （はい・いいえ）、ちがいます。",
+      "questionKana": "デュポンさんはアメリカじんですか。→ （はい・いいえ）、ちがいます。",
+      "choices": [
+        "はい",
+        "いいえ"
+      ],
+      "answer": "いいえ",
+      "answerKana": "いいえ",
+      "referenceAnswers": [
+        "いいえ"
+      ],
+      "referenceAnswerKana": [
+        "いいえ"
+      ],
+      "relatedGrammar": [
+        "g3"
+      ],
+      "relatedSentences": [],
+      "explanation": ""
+    },
+    {
+      "id": "ex-ii-3-1",
+      "groupId": "ex-ii-3",
+      "groupTitle": "练习II 3",
+      "category": "listening-dialogue",
+      "instruction": "听录音，根据自己的情况回答问题。",
+      "example": "あなたは中国人ですか。→ はい、中国人です。／いいえ、中国人ではありません。",
+      "exampleKana": "あなたはちゅうごくじんですか。→ はい、ちゅうごくじんです。／いいえ、ちゅうごくじんではありません。",
+      "type": "listening",
+      "question": "",
+      "questionKana": "",
+      "choices": [],
+      "answer": "",
+      "answerKana": "",
+      "referenceAnswers": [],
+      "referenceAnswerKana": [],
+      "relatedGrammar": [],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": true,
+      "hasAnswer": false
+    },
+    {
+      "id": "ex-ii-3-2",
+      "groupId": "ex-ii-3",
+      "groupTitle": "练习II 3",
+      "category": "listening-dialogue",
+      "instruction": "听录音，根据自己的情况回答问题。",
+      "example": "あなたは中国人ですか。→ はい、中国人です。／いいえ、中国人ではありません。",
+      "exampleKana": "あなたはちゅうごくじんですか。→ はい、ちゅうごくじんです。／いいえ、ちゅうごくじんではありません。",
+      "type": "listening",
+      "question": "",
+      "questionKana": "",
+      "choices": [],
+      "answer": "",
+      "answerKana": "",
+      "referenceAnswers": [],
+      "referenceAnswerKana": [],
+      "relatedGrammar": [],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": true,
+      "hasAnswer": false
+    },
+    {
+      "id": "ex-ii-3-3",
+      "groupId": "ex-ii-3",
+      "groupTitle": "练习II 3",
+      "category": "listening-dialogue",
+      "instruction": "听录音，根据自己的情况回答问题。",
+      "example": "あなたは中国人ですか。→ はい、中国人です。／いいえ、中国人ではありません。",
+      "exampleKana": "あなたはちゅうごくじんですか。→ はい、ちゅうごくじんです。／いいえ、ちゅうごくじんではありません。",
+      "type": "listening",
+      "question": "",
+      "questionKana": "",
+      "choices": [],
+      "answer": "",
+      "answerKana": "",
+      "referenceAnswers": [],
+      "referenceAnswerKana": [],
+      "relatedGrammar": [],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": true,
+      "hasAnswer": false
+    },
+    {
+      "id": "ex-ii-3-4",
+      "groupId": "ex-ii-3",
+      "groupTitle": "练习II 3",
+      "category": "listening-dialogue",
+      "instruction": "听录音，根据自己的情况回答问题。",
+      "example": "あなたは中国人ですか。→ はい、中国人です。／いいえ、中国人ではありません。",
+      "exampleKana": "あなたはちゅうごくじんですか。→ はい、ちゅうごくじんです。／いいえ、ちゅうごくじんではありません。",
+      "type": "listening",
+      "question": "",
+      "questionKana": "",
+      "choices": [],
+      "answer": "",
+      "answerKana": "",
+      "referenceAnswers": [],
+      "referenceAnswerKana": [],
+      "relatedGrammar": [],
+      "relatedSentences": [],
+      "explanation": "",
+      "audioRequired": true,
+      "hasAnswer": false
+    },
+    {
+      "id": "ex-ii-4-1",
+      "groupId": "ex-ii-4",
+      "groupTitle": "练习II 4",
+      "category": "choice",
+      "instruction": "用｛｝中的词语造句。",
+      "example": "｛森さん／です／は／日本人｝ → 森さんは日本人です。",
+      "exampleKana": "｛もりさん／です／は／にほんじん｝ → もりさんはにほんじんです。",
+      "type": "transform",
+      "question": "｛小野さん／社長／ありません／では／は｝",
+      "questionKana": "｛おのさん／しゃちょう／ありません／では／は｝",
+      "choices": [],
+      "answer": "小野さんは社長ではありません。",
+      "answerKana": "おのさんはしゃちょうではありません。",
+      "referenceAnswers": [
+        "小野さんは社長ではありません。"
+      ],
+      "referenceAnswerKana": [
+        "おのさんはしゃちょうではありません。"
+      ],
+      "relatedGrammar": [
+        "g2"
+      ],
+      "relatedSentences": [
+        "s2"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "ex-ii-4-2",
+      "groupId": "ex-ii-4",
+      "groupTitle": "练习II 4",
+      "category": "choice",
+      "instruction": "用｛｝中的词语造句。",
+      "example": "｛森さん／です／は／日本人｝ → 森さんは日本人です。",
+      "exampleKana": "｛もりさん／です／は／にほんじん｝ → もりさんはにほんじんです。",
+      "type": "transform",
+      "question": "｛デュポンさん／東京大学／教授／の／は／です｝",
+      "questionKana": "｛デュポンさん／とうきょうだいがく／きょうじゅ／の／は／です｝",
+      "choices": [],
+      "answer": "デュポンさんは東京大学の教授です。",
+      "answerKana": "デュポンさんはとうきょうだいがくのきょうじゅです。",
+      "referenceAnswers": [
+        "デュポンさんは東京大学の教授です。"
+      ],
+      "referenceAnswerKana": [
+        "デュポンさんはとうきょうだいがくのきょうじゅです。"
+      ],
+      "relatedGrammar": [
+        "g1",
+        "g4"
+      ],
+      "relatedSentences": [
+        "s4"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "ex-ii-4-3",
+      "groupId": "ex-ii-4",
+      "groupTitle": "练习II 4",
+      "category": "choice",
+      "instruction": "用｛｝中的词语造句。",
+      "example": "｛森さん／です／は／日本人｝ → 森さんは日本人です。",
+      "exampleKana": "｛もりさん／です／は／にほんじん｝ → もりさんはにほんじんです。",
+      "type": "transform",
+      "question": "｛林さん／JC企画／社員／ありません／は／では／の｝",
+      "questionKana": "｛はやしさん／ジェーシーきかく／しゃいん／ありません／は／では／の｝",
+      "choices": [],
+      "answer": "林さんはJC企画の社員ではありません。",
+      "answerKana": "はやしさんはジェーシーきかくのしゃいんではありません。",
+      "referenceAnswers": [
+        "林さんはJC企画の社員ではありません。"
+      ],
+      "referenceAnswerKana": [
+        "はやしさんはジェーシーきかくのしゃいんではありません。"
+      ],
+      "relatedGrammar": [
+        "g2",
+        "g4"
+      ],
+      "relatedSentences": [],
+      "explanation": ""
+    },
+    {
+      "id": "ex-ii-4-4",
+      "groupId": "ex-ii-4",
+      "groupTitle": "练习II 4",
+      "category": "choice",
+      "instruction": "用｛｝中的词语造句。",
+      "example": "｛森さん／です／は／日本人｝ → 森さんは日本人です。",
+      "exampleKana": "｛もりさん／です／は／にほんじん｝ → もりさんはにほんじんです。",
+      "type": "transform",
+      "question": "｛スミスさん／JC企画／の／は／か／社員／です｝ → ｛いいえ／では／の／JC／ありません／社員｝",
+      "questionKana": "｛スミスさん／ジェーシーきかく／の／は／か／しゃいん／です｝ → ｛いいえ／では／の／ジェーシー／ありません／しゃいん｝",
+      "choices": [],
+      "answer": "甲：スミスさんはJC企画の社員ですか。乙：いいえ、JC企画の社員ではありません。",
+      "answerKana": "甲：スミスさんはジェーシーきかくのしゃいんですか。乙：いいえ、ジェーシーきかくのしゃいんではありません。",
+      "referenceAnswers": [
+        "甲：スミスさんはJC企画の社員ですか。乙：いいえ、JC企画の社員ではありません。"
+      ],
+      "referenceAnswerKana": [
+        "甲：スミスさんはジェーシーきかくのしゃいんですか。乙：いいえ、ジェーシーきかくのしゃいんではありません。"
+      ],
+      "relatedGrammar": [
+        "g2",
+        "g3",
+        "g4"
+      ],
+      "relatedSentences": [],
+      "explanation": ""
+    },
+    {
+      "id": "ex-ii-5-1",
+      "groupId": "ex-ii-5",
+      "groupTitle": "练习II 5",
+      "category": "translation",
+      "instruction": "将下面的句子译成日语。",
+      "example": "",
+      "exampleKana": "",
+      "type": "translation",
+      "question": "小李是中国人。",
+      "questionKana": "",
+      "choices": [],
+      "answer": "李さんは中国人です。",
+      "answerKana": "りさんはちゅうごくじんです。",
+      "referenceAnswers": [
+        "李さんは中国人です。"
+      ],
+      "referenceAnswerKana": [
+        "りさんはちゅうごくじんです。"
+      ],
+      "relatedGrammar": [
+        "g1"
+      ],
+      "relatedSentences": [
+        "s1"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "ex-ii-5-2",
+      "groupId": "ex-ii-5",
+      "groupTitle": "练习II 5",
+      "category": "translation",
+      "instruction": "将下面的句子译成日语。",
+      "example": "",
+      "exampleKana": "",
+      "type": "translation",
+      "question": "森先生不是学生。",
+      "questionKana": "",
+      "choices": [],
+      "answer": "森さんは学生ではありません。",
+      "answerKana": "もりさんはがくせいではありません。",
+      "referenceAnswers": [
+        "森さんは学生ではありません。"
+      ],
+      "referenceAnswerKana": [
+        "もりさんはがくせいではありません。"
+      ],
+      "relatedGrammar": [
+        "g2"
+      ],
+      "relatedSentences": [
+        "s2"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "ex-ii-5-3",
+      "groupId": "ex-ii-5",
+      "groupTitle": "练习II 5",
+      "category": "translation",
+      "instruction": "将下面的句子译成日语。",
+      "example": "",
+      "exampleKana": "",
+      "type": "translation",
+      "question": "小李是JC策划公司的职员。",
+      "questionKana": "",
+      "choices": [],
+      "answer": "李さんはJC企画の社員です。",
+      "answerKana": "りさんはジェーシーきかくのしゃいんです。",
+      "referenceAnswers": [
+        "李さんはJC企画の社員です。"
+      ],
+      "referenceAnswerKana": [
+        "りさんはジェーシーきかくのしゃいんです。"
+      ],
+      "relatedGrammar": [
+        "g1",
+        "g4"
+      ],
+      "relatedSentences": [
+        "s4"
+      ],
+      "explanation": ""
+    }
+  ]
+}

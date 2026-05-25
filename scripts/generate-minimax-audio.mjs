@@ -1,7 +1,28 @@
 import { mkdir, readFile, writeFile } from "node:fs/promises";
-import { existsSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import vm from "node:vm";
+import { isOSSEnabled, uploadToOSS } from "./oss-utils.mjs";
+
+// Load .env for this standalone script
+(() => {
+  const envPath = join(process.cwd(), ".env");
+  if (!existsSync(envPath)) return;
+  const lines = readFileSync(envPath, "utf8").split(/\r?\n/);
+  for (const raw of lines) {
+    const line = raw.trim();
+    if (!line || line.startsWith("#")) continue;
+    const eq = line.indexOf("=");
+    if (eq <= 0) continue;
+    const key = line.slice(0, eq).trim();
+    if (process.env[key] !== undefined) continue;
+    let value = line.slice(eq + 1).trim();
+    if ((value.startsWith('"') && value.endsWith('"')) || (value.startsWith("'") && value.endsWith("'"))) {
+      value = value.slice(1, -1);
+    }
+    process.env[key] = value;
+  }
+})();
 
 const apiKey = process.env.MINIMAX_API_KEY;
 const lessonId = Number(process.env.LESSON_ID || 27);
@@ -70,6 +91,10 @@ for (const job of limit > 0 ? jobs.slice(0, limit) : jobs) {
   await mkdir(dirname(job.path), { recursive: true });
   const audio = await synthesizeWithRetry(job.text);
   await writeFile(job.path, audio);
+  if (isOSSEnabled()) {
+    try { await uploadToOSS(job.path, audio); }
+    catch (e) { console.error(`OSS upload failed: ${job.path}`, e.message); }
+  }
   generated += 1;
   console.log(`ok ${job.type}:${job.id} ${job.path}`);
   await wait(delayMs);

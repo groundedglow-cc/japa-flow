@@ -24,6 +24,8 @@ import vm from "node:vm";
   }
 })();
 
+import { isOSSEnabled, getOSSConfig, ossUrl, uploadToOSS } from "./scripts/oss-utils.mjs";
+
 const root = process.cwd();
 const port = Number(process.env.PORT || 5173);
 const lessonId = 27;
@@ -63,6 +65,7 @@ const types = {
   ".wav": "audio/wav"
 };
 
+<<<<<<< HEAD
 const initBuckets = ["text", "grammar", "vocabulary", "exercises"];
 const lessonCatalog = [
   {
@@ -98,6 +101,57 @@ const lessonCatalog = [
     runtimeReady: false
   }
 ];
+=======
+const initBuckets = ["text", "grammar", "vocabulary", "word", "exercises"];
+const inferredLessonImageIndexes = {
+  text: [0, 4, 5],
+  grammar: [1, 2],
+  vocabulary: [3, 4],
+  word: [9],
+  exercises: [6, 7, 8]
+};
+const lessonCatalogMetadata = {
+  25: "これは明日会議で使う資料です",
+  26: "自転車に2人で乗るのは危ないです",
+  27: "子供の時、大きな地震がありました",
+  28: "馬さんはわたしに地図をくれました",
+  29: "電気を消せ",
+  30: "もう11時だから寝よう",
+  31: "このボタンを押すと，電源が入ります",
+  32: "今度の日曜日に遊園地へ行くつもりです",
+  33: "電車が急に止まりました",
+  34: "壁にカレンダーが掛けてあります",
+  35: "明日雨が降ったら，マラソン大会は中止です",
+  36: "遅くなって，すみません",
+  37: "優勝すれば，オリンピックに出場することができます",
+  38: "戴さんは英語が話せます",
+  39: "眼鏡をかけて本を読みます",
+  40: "これから友達と食事に行くところです",
+  41: "李さんは部長にほめられました",
+  42: "テレビをつけたまま，出かけてしまいました",
+  43: "陳さんは，息子をアメリカに留学させます",
+  44: "玄関のところにだれかいるようです",
+  45: "少子化が進んで，日本の人口はだんだん減っていくでしょう",
+  46: "これは柔らかくて，まるで本物の毛皮のようです",
+  47: "周先生は明日日本へ行かれます",
+  48: "お荷物は私がお持ちします"
+};
+
+const lessonCatalog = Array.from({ length: 48 }, (_, index) => {
+  const id = index + 1;
+  const runtimeReady = id === 27;
+  return {
+    id,
+    title: `第${id}课`,
+    subtitle: lessonCatalogMetadata[id] || "待初始化",
+    status: runtimeReady ? "ready" : "pending",
+    description: runtimeReady
+      ? "围绕第 27 课完成单词、语法、课文朗读、标准练习和结果复盘。"
+      : "课程内容尚未采集，后续可继续按同一结构初始化。",
+    runtimeReady
+  };
+});
+>>>>>>> b8fffc9d094b22f1a13edcaa3890592cda33ec41
 
 function headers(type) {
   return {
@@ -156,13 +210,25 @@ function initCodexCommonRulesPath() {
   return join(root, "data", "lesson-init", "codex-parse-common.md");
 }
 
+function initCodexTaskTemplatePath() {
+  return join(root, "data", "lesson-init", "codex-course-parse-task-template.md");
+}
+
 function imageBucketDir(lessonId, bucket) {
   if (!initBuckets.includes(bucket)) throw new Error("Invalid image bucket.");
   return join(root, "course-assets", `lesson${lessonId}`, bucket);
 }
 
+function byLessonDir(lessonId) {
+  return join(root, "course-assets", "by-lesson", `lesson${lessonId}`);
+}
+
 function isInitImageFile(name) {
   return [".png", ".jpg", ".jpeg", ".webp"].includes(extname(name).toLowerCase());
+}
+
+function naturalFileCompare(a, b) {
+  return a.localeCompare(b, undefined, { numeric: true, sensitivity: "base" });
 }
 
 async function readJsonFile(filePath, fallback = null) {
@@ -185,6 +251,12 @@ function lessonCounts(lessonData) {
     sentences: lessonData?.sentences?.length || 0,
     exercises: lessonData?.exercises?.length || 0
   };
+}
+
+function lessonSubtitleForCatalog(lessonData, fallback) {
+  const subtitle = String(lessonData?.subtitle || "").trim();
+  if (subtitle && subtitle !== "待确认" && subtitle !== "待初始化") return subtitle;
+  return lessonData?.sentences?.[0]?.text || fallback;
 }
 
 function lessonContentSignature(lessonData) {
@@ -220,11 +292,12 @@ async function initializedLessonCatalog() {
     if (duplicateOf) {
       return {
         ...item,
-        subtitle: lessonData.subtitle || item.subtitle,
+        subtitle: lessonSubtitleForCatalog(lessonData, item.subtitle),
         status: "invalid",
         statusLabel: "数据待校验",
         description: `课程数据与第${duplicateOf}课完全重复，统计数量暂不作为真实课程数据展示。请重新核对原始截图并生成本课 JSON。`,
         runtimeReady: false,
+        voiceId: initState.voiceId || defaultVoiceId,
         initializedAt: initState.completedAt || initState.parseConfirmedAt || "",
         validationIssues: [`core-data-duplicates-lesson-${duplicateOf}`]
       };
@@ -232,15 +305,22 @@ async function initializedLessonCatalog() {
     const counts = lessonCounts(lessonData);
     return {
       ...item,
-      subtitle: lessonData.subtitle || item.subtitle,
+      subtitle: lessonSubtitleForCatalog(lessonData, item.subtitle),
       status: "initialized",
       statusLabel: "已初始化",
       description: `课程数据和音频已完成：${counts.vocabulary} 个单词，${counts.grammar} 个语法，${counts.sentences} 句课文，${counts.exercises} 道练习。`,
       runtimeReady: false,
+      voiceId: initState.voiceId || defaultVoiceId,
       initializedAt: initState.completedAt || initState.parseConfirmedAt || "",
       counts
     };
   });
+}
+
+async function syncStudentCatalog() {
+  const lessons = await initializedLessonCatalog();
+  await writeJsonFile(join(root, "data", "catalog.json"), { lessons, generatedAt: new Date().toISOString() });
+  return lessons;
 }
 
 function firstFile(value) {
@@ -312,7 +392,7 @@ async function readMultipart(req) {
 
 async function loadLesson() {
   const appJs = await readFile(join(root, "app.js"), "utf8");
-  const match = appJs.match(/const lesson = ([\s\S]*?\n};)/);
+  const match = appJs.match(/(?:const|let) lesson = ([\s\S]*?\n};)/);
   if (!match) throw new Error("Could not find lesson object in app.js");
   return vm.runInNewContext(`(${match[1].replace(/;$/, "")})`);
 }
@@ -322,7 +402,9 @@ function voicePath(voiceId, type, id) {
 }
 
 function voiceUrl(voiceId, type, id) {
-  return `/audio/lesson${lessonId}/voices/${voiceId}/${type}s/${id}.mp3`;
+  const relative = `audio/lesson${lessonId}/voices/${voiceId}/${type}s/${id}.mp3`;
+  if (isOSSEnabled()) return ossUrl(relative);
+  return `/${relative}`;
 }
 
 function legacyPath(type, id) {
@@ -330,7 +412,9 @@ function legacyPath(type, id) {
 }
 
 function legacyUrl(type, id) {
-  return `/audio/lesson${lessonId}/${type}s/${id}.mp3`;
+  const relative = `audio/lesson${lessonId}/${type}s/${id}.mp3`;
+  if (isOSSEnabled()) return ossUrl(relative);
+  return `/${relative}`;
 }
 
 function audioStatus(voiceId, type, id) {
@@ -379,7 +463,9 @@ function audioPathForLesson(lessonIdValue, voiceId, type, id) {
 }
 
 function audioUrlForLesson(lessonIdValue, voiceId, type, id) {
-  return `/audio/lesson${lessonIdValue}/voices/${voiceId}/${type}s/${id}.mp3`;
+  const relative = `audio/lesson${lessonIdValue}/voices/${voiceId}/${type}s/${id}.mp3`;
+  if (isOSSEnabled()) return ossUrl(relative);
+  return `/${relative}`;
 }
 
 function addUniqueJob(jobs, seen, job) {
@@ -444,7 +530,19 @@ function lessonDraftAudioJobs(lesson) {
 
 async function initImageManifest(lessonIdValue) {
   const result = {};
+  const inferredImages = await byLessonImages(lessonIdValue);
   for (const bucket of initBuckets) {
+    if (inferredImages.length >= 10) {
+      result[bucket] = (inferredLessonImageIndexes[bucket] || [])
+        .map((index) => inferredImages[index])
+        .filter(Boolean)
+        .map((image) => ({
+          ...image,
+          bucket,
+          source: "by-lesson"
+        }));
+      continue;
+    }
     const dir = imageBucketDir(lessonIdValue, bucket);
     let entries = [];
     try {
@@ -456,11 +554,53 @@ async function initImageManifest(lessonIdValue) {
       .filter((entry) => entry.isFile() && isInitImageFile(entry.name))
       .map((entry) => ({
         name: entry.name,
-        url: `/course-assets/lesson${lessonIdValue}/${bucket}/${entry.name}`
+        url: `/course-assets/lesson${lessonIdValue}/${bucket}/${entry.name}`,
+        bucket,
+        source: "bucket"
       }))
-      .sort((a, b) => a.name.localeCompare(b.name));
+      .sort((a, b) => naturalFileCompare(a.name, b.name));
   }
   return result;
+}
+
+async function byLessonImages(lessonIdValue) {
+  let entries = [];
+  try {
+    entries = await readdir(byLessonDir(lessonIdValue), { withFileTypes: true });
+  } catch {
+    return [];
+  }
+  return entries
+    .filter((entry) => entry.isFile() && isInitImageFile(entry.name))
+    .map((entry) => ({
+      name: entry.name,
+      url: `/course-assets/by-lesson/lesson${lessonIdValue}/${entry.name}`,
+      index: 0
+    }))
+    .sort((a, b) => naturalFileCompare(a.name, b.name))
+    .map((image, index) => ({ ...image, index: index + 1 }));
+}
+
+function initImageAbsolutePath(image) {
+  return join(root, image.url.replace(/^\//, ""));
+}
+
+function uniqueInitImagePaths(manifest) {
+  return [...new Set(initBuckets.flatMap((bucket) => (manifest[bucket] || []).map(initImageAbsolutePath)))];
+}
+
+function codexBucketList(lessonIdValue, manifest) {
+  return initBuckets.map((bucket) => {
+    const images = manifest[bucket] || [];
+    if (images.length) {
+      const paths = images.map((image) => {
+        const indexLabel = image.index ? `#${image.index} ` : "";
+        return `\`${initImageAbsolutePath(image)}\`${indexLabel ? ` (${indexLabel}${image.name})` : ""}`;
+      }).join(", ");
+      return `- \`${bucket}\`: ${paths}`;
+    }
+    return `- \`${bucket}\`: no inferred image found; fallback directory \`${imageBucketDir(lessonIdValue, bucket)}\``;
+  }).join("\n");
 }
 
 function validateLessonDraft(draft, expectedLessonId) {
@@ -468,61 +608,232 @@ function validateLessonDraft(draft, expectedLessonId) {
   draft.id = safeLessonId(draft.id || expectedLessonId);
   if (draft.id !== expectedLessonId) throw new Error(`Draft lesson id ${draft.id} does not match lesson ${expectedLessonId}.`);
   draft.title = draft.title || `第${expectedLessonId}课`;
-  draft.subtitle = draft.subtitle || "待确认";
   for (const key of ["vocabulary", "sentences", "grammar", "exercises"]) {
     if (!Array.isArray(draft[key])) throw new Error(`Draft missing ${key} array.`);
   }
   if (!Array.isArray(draft.textStructure)) draft.textStructure = [];
+  draft.subtitle = draft.subtitle || draft.sentences?.[0]?.text || "待确认";
+  backfillExerciseKana(draft);
   return draft;
+}
+
+const exerciseKanaSupplementEntries = [
+  ["地図", "ちず"],
+  ["切符", "きっぷ"],
+  ["買い方", "かいかた"],
+  ["紹介", "しょうかい"],
+  ["薬", "くすり"],
+  ["友達", "ともだち"],
+  ["お土産", "おみやげ"],
+  ["有名", "ゆうめい"],
+  ["野菜", "やさい"],
+  ["新鮮", "しんせん"],
+  ["旅行", "りょこう"],
+  ["仕事", "しごと"],
+  ["大使館", "たいしかん"],
+  ["電話番号", "でんわばんごう"],
+  ["番号", "ばんごう"],
+  ["住所", "じゅうしょ"],
+  ["発音", "はつおん"],
+  ["直", "なお"],
+  ["調べ", "しらべ"],
+  ["交換", "こうかん"],
+  ["動", "うご"],
+  ["部品", "ぶひん"],
+  ["自転車", "じてんしゃ"],
+  ["英語", "えいご"],
+  ["フランス語", "フランスご"],
+  ["韓国語", "かんこくご"],
+  ["上手", "じょうず"],
+  ["時間", "じかん"],
+  ["朝", "あさ"],
+  ["会社", "かいしゃ"],
+  ["横浜", "よこはま"],
+  ["誕生日", "たんじょうび"],
+  ["大丈夫", "だいじょうぶ"],
+  ["案内", "あんない"],
+  ["訳", "やく"],
+  ["引っ越し", "ひっこし"],
+  ["手伝", "てつだ"],
+  ["貸", "か"],
+  ["見せ", "みせ"],
+  ["持", "も"],
+  ["来", "き"],
+  ["でき", "でき"],
+  ["分か", "わか"],
+  ["教え", "おしえ"],
+  ["届", "とど"],
+  ["送", "おく"],
+  ["書", "か"],
+  ["読", "よ"],
+  ["会", "あ"],
+  ["行", "い"],
+  ["買", "か"],
+  ["使", "つか"],
+  ["作", "つく"],
+  ["帰", "かえ"],
+  ["部長", "ぶちょう"],
+  ["荷物", "にもつ"],
+  ["手紙", "てがみ"],
+  ["中国語", "ちゅうごくご"],
+  ["日本語", "にほんご"],
+  ["東京", "とうきょう"],
+  ["本", "ほん"],
+  ["王さん", "おうさん"],
+  ["小野さん", "おのさん"],
+  ["中田先生", "なかだせんせい"],
+  ["娘さん", "むすめさん"],
+  ["空港", "くうこう"],
+  ["鉛筆", "えんぴつ"],
+  ["辞書", "じしょ"],
+  ["枚", "まい"],
+  ["天ぷら", "てんぷら"],
+  ["作り方", "つくりかた"],
+  ["車", "くるま"],
+  ["店", "みせ"],
+  ["料理", "りょうり"],
+  ["お茶", "おちゃ"],
+  ["森さん", "もりさん"],
+  ["林さん", "はやしさん"]
+];
+
+function backfillExerciseKana(draft) {
+  const dictionary = buildExerciseKanaDictionary(draft);
+  for (const exercise of draft.exercises || []) {
+    if (exercise.question && !exercise.questionKana) {
+      const kana = deriveExerciseKana(exercise.question, dictionary);
+      if (kana) exercise.questionKana = kana;
+    }
+    if (exercise.example && !exercise.exampleKana) {
+      const kana = deriveExerciseKana(exercise.example, dictionary);
+      if (kana) exercise.exampleKana = kana;
+    }
+    if (exercise.answer && !exercise.answerKana) {
+      const kana = deriveExerciseKana(exercise.answer, dictionary);
+      if (kana) exercise.answerKana = kana;
+    }
+    if (Array.isArray(exercise.referenceAnswers)) {
+      const kanaList = Array.isArray(exercise.referenceAnswerKana) ? [...exercise.referenceAnswerKana] : [];
+      let changed = false;
+      for (let index = 0; index < exercise.referenceAnswers.length; index += 1) {
+        if (kanaList[index]) continue;
+        const kana = deriveExerciseKana(exercise.referenceAnswers[index], dictionary);
+        if (kana) {
+          kanaList[index] = kana;
+          changed = true;
+        }
+      }
+      if (changed || (!exercise.referenceAnswerKana && kanaList.some(Boolean))) {
+        exercise.referenceAnswerKana = kanaList;
+      }
+    }
+  }
+}
+
+function buildExerciseKanaDictionary(draft) {
+  const map = new Map();
+  const add = (surface, reading) => {
+    const text = String(surface || "").trim();
+    const kana = String(reading || "").trim();
+    if (!text || !kana) return;
+    const current = map.get(text);
+    if (!current || current.length < kana.length) map.set(text, kana);
+  };
+
+  for (const [surface, reading] of exerciseKanaSupplementEntries) add(surface, reading);
+  for (const word of draft.vocabulary || []) add(word.jp, word.kana);
+  for (const sentence of draft.sentences || []) {
+    add(sentence.text, sentence.kana);
+    for (const [surface, reading] of extractRubyPairs(sentence.text, sentence.kana)) add(surface, reading);
+  }
+  for (const exercise of draft.exercises || []) {
+    if (exercise.question && exercise.questionKana) add(exercise.question, exercise.questionKana);
+    if (exercise.example && exercise.exampleKana) add(exercise.example, exercise.exampleKana);
+    if (exercise.answer && exercise.answerKana) add(exercise.answer, exercise.answerKana);
+    for (let index = 0; index < (exercise.referenceAnswers || []).length; index += 1) {
+      const reading = Array.isArray(exercise.referenceAnswerKana) ? exercise.referenceAnswerKana[index] : "";
+      if (reading) add(exercise.referenceAnswers[index], reading);
+    }
+  }
+  return [...map.entries()].sort((a, b) => b[0].length - a[0].length);
+}
+
+function deriveExerciseKana(text, entries) {
+  const source = String(text || "");
+  if (!source) return "";
+  let result = "";
+  for (let index = 0; index < source.length;) {
+    const char = source[index];
+    if (/\s/.test(char) || isExercisePunctuation(char)) {
+      result += char;
+      index += 1;
+      continue;
+    }
+    let matched = null;
+    for (const [surface, reading] of entries) {
+      if (source.startsWith(surface, index)) {
+        matched = [surface, reading];
+        break;
+      }
+    }
+    if (matched) {
+      result += matched[1];
+      index += matched[0].length;
+      continue;
+    }
+    if (/[\u3040-\u30ffA-Za-z0-9０-９]/u.test(char)) {
+      result += char;
+      index += 1;
+      continue;
+    }
+    if (/[\u3400-\u9fff]/u.test(char)) return "";
+    result += char;
+    index += 1;
+  }
+  return result;
+}
+
+function isExercisePunctuation(char) {
+  return /[。、，．,.！？!?「」『』（）()［］\[\]【】・:：;；／\/—\-]/u.test(char || "");
+}
+
+function extractRubyPairs(text, reading) {
+  const result = [];
+  const surface = String(text || "");
+  const kana = String(reading || "");
+  if (!surface || !kana) return result;
+  const patterns = [
+    ["地図", "ちず"],
+    ["仕事", "しごと"],
+    ["大使館", "たいしかん"]
+  ];
+  for (const [needle, ruby] of patterns) {
+    if (surface.includes(needle) && kana.includes(ruby)) result.push([needle, ruby]);
+  }
+  return result;
 }
 
 async function codexParseTask(lessonIdValue) {
   const manifest = await initImageManifest(lessonIdValue);
-  const imagePaths = [];
-  for (const bucket of initBuckets) {
-    for (const image of manifest[bucket]) {
-      imagePaths.push(join(root, image.url.replace(/^\//, "")));
-    }
-  }
+  const imagePaths = uniqueInitImagePaths(manifest);
   if (!imagePaths.length) throw new Error("No uploaded images found for this lesson.");
   const taskPath = initCodexTaskPath(lessonIdValue);
   const draftPath = initDraftPath(lessonIdValue);
   await mkdir(dirname(taskPath), { recursive: true });
   await mkdir(dirname(draftPath), { recursive: true });
   const imageArgs = imagePaths.map((filePath) => `--image ${JSON.stringify(filePath)}`).join(" ");
-  const command = `codex exec -C ${JSON.stringify(root)} -s workspace-write -a never ${imageArgs} "Read ${taskPath} and write the requested JSON draft."`;
+  const promptText = `Read ${taskPath} and write the requested JSON draft.`;
+  const command = `printf '%s' ${JSON.stringify(promptText)} | codex exec -C ${JSON.stringify(root)} -s workspace-write ${imageArgs} -`;
   const commonRulesPath = initCodexCommonRulesPath();
-  const lessonAssetRoot = join(root, "course-assets", `lesson${lessonIdValue}`);
-  const prompt = [
-    `# Codex Course Parse Task - Lesson ${lessonIdValue}`,
-    "",
-    "You are extracting a Japanese textbook lesson from local images into strict JapaFlow lesson JSON.",
-    "",
-    "Read and obey the shared extraction rules first:",
-    "",
-    `- \`${commonRulesPath}\``,
-    "",
-    "## Output",
-    "",
-    "Write the final JSON to:",
-    "",
-    `- \`${draftPath}\``,
-    "",
-    "Do not edit `app.js`. Do not overwrite existing lesson 27 data.",
-    "",
-    "## Lesson Context",
-    "",
-    `- Lesson id: \`${lessonIdValue}\``,
-    `- Lesson asset root: \`${lessonAssetRoot}\``,
-    "",
-    "Read all image files under these directories in filename sort order. Ignore image names except for ordering.",
-    "",
-    ...initBuckets.map((bucket) => `- \`${bucket}\`: \`${imageBucketDir(lessonIdValue, bucket)}\``),
-    "",
-    "If a category directory is empty or missing, skip that category and use empty arrays where the source images do not show values.",
-    "",
-    "Before writing, perform the validation checklist from the shared rules, especially the exercise `number -> question -> answer` checklist and furigana-based disambiguation."
-  ].join("\n");
+  const usesInferredImages = initBuckets.some((bucket) => (manifest[bucket] || []).some((image) => image.source === "by-lesson"));
+  const lessonAssetRoot = usesInferredImages ? byLessonDir(lessonIdValue) : join(root, "course-assets", `lesson${lessonIdValue}`);
+  const template = await readFile(initCodexTaskTemplatePath(), "utf8");
+  const prompt = template
+    .replaceAll("{{LESSON_ID}}", String(lessonIdValue))
+    .replaceAll("{{COMMON_RULES_PATH}}", commonRulesPath)
+    .replaceAll("{{DRAFT_PATH}}", draftPath)
+    .replaceAll("{{LESSON_ASSET_ROOT}}", lessonAssetRoot)
+    .replaceAll("{{BUCKET_LIST}}", codexBucketList(lessonIdValue, manifest));
   await writeFile(taskPath, prompt);
   return {
     taskPath,
@@ -551,7 +862,13 @@ async function generateInitAudioJob(lessonIdValue, voiceId, job) {
   const filePath = audioPathForLesson(lessonIdValue, voiceId, job.type, job.id);
   if (existsSync(filePath)) return { ...job, exists: true, generated: false, url: audioUrlForLesson(lessonIdValue, voiceId, job.type, job.id) };
   await mkdir(dirname(filePath), { recursive: true });
-  await writeFile(filePath, await synthesizeWithRetry(job.text, voiceId));
+  const buffer = await synthesizeWithRetry(job.text, voiceId);
+  await writeFile(filePath, buffer);
+  if (isOSSEnabled()) {
+    const ossKey = `audio/lesson${lessonIdValue}/voices/${voiceId}/${job.type}s/${job.id}.mp3`;
+    try { await uploadToOSS(ossKey, buffer); }
+    catch (e) { console.error(`OSS upload failed: ${ossKey}`, e.message); }
+  }
   return { ...job, exists: true, generated: true, url: audioUrlForLesson(lessonIdValue, voiceId, job.type, job.id) };
 }
 
@@ -601,7 +918,13 @@ async function generateAudio(voiceId, type, id, text) {
   if (status.exists) return { ...status, generated: false };
   const filePath = voicePath(voiceId, type, id);
   await mkdir(dirname(filePath), { recursive: true });
-  await writeFile(filePath, await synthesizeWithRetry(text, voiceId));
+  const buffer = await synthesizeWithRetry(text, voiceId);
+  await writeFile(filePath, buffer);
+  if (isOSSEnabled()) {
+    const ossKey = `audio/lesson${lessonId}/voices/${voiceId}/${type}s/${id}.mp3`;
+    try { await uploadToOSS(ossKey, buffer); }
+    catch (e) { console.error(`OSS upload failed: ${ossKey}`, e.message); }
+  }
   return { exists: true, url: voiceUrl(voiceId, type, id), source: "voice", generated: true };
 }
 
@@ -673,8 +996,8 @@ async function handleApi(req, res, url) {
     // 课程初始化与音频生成相关接口，仅管理端使用。Phase 5 起从学员端剥离。
     if (url.pathname === "/api/init/status") {
       const requestedLessonId = safeLessonId(url.searchParams.get("lessonId"));
-      const voiceId = url.searchParams.get("voiceId") || defaultVoiceId;
       const state = await readJsonFile(initStatePath(requestedLessonId), {});
+      const voiceId = state.voiceId || url.searchParams.get("voiceId") || defaultVoiceId;
       const draft = await readJsonFile(initDraftPath(requestedLessonId), null);
       const lessonData = await readJsonFile(initLessonPath(requestedLessonId), null);
       const lessonForAudio = lessonData || draft;
@@ -776,10 +1099,15 @@ async function handleApi(req, res, url) {
     if (url.pathname === "/api/init/audio/generate" && req.method === "POST") {
       const { lessonId: bodyLessonId, voiceId = defaultVoiceId, id = "", scope = "all", limit = 0 } = await readJson(req);
       const requestedLessonId = safeLessonId(bodyLessonId);
+      const initState = await readJsonFile(initStatePath(requestedLessonId), {});
+      const targetVoiceId = initState.voiceId || voiceId || defaultVoiceId;
+      if (initState.voiceId !== targetVoiceId) {
+        await writeJsonFile(initStatePath(requestedLessonId), { ...initState, voiceId: targetVoiceId, updatedAt: new Date().toISOString() });
+      }
       const lessonData = await readJsonFile(initLessonPath(requestedLessonId), null);
       if (!lessonData) throw new Error("Please confirm parsed course data before generating audio.");
       const jobs = lessonDraftAudioJobs(lessonData);
-      const missingJobs = jobs.filter((job) => !existsSync(audioPathForLesson(requestedLessonId, voiceId, job.type, job.id)));
+      const missingJobs = jobs.filter((job) => !existsSync(audioPathForLesson(requestedLessonId, targetVoiceId, job.type, job.id)));
       const batchLimit = Math.max(0, Math.min(Number(limit) || 0, 20));
       const targets = scope === "one" && id
         ? jobs.filter((job) => `${job.type}:${job.id}` === id || job.id === id)
@@ -787,18 +1115,18 @@ async function handleApi(req, res, url) {
       const items = [];
       for (const [index, job] of targets.entries()) {
         try {
-          items.push(await generateInitAudioJob(requestedLessonId, voiceId, job));
+          items.push(await generateInitAudioJob(requestedLessonId, targetVoiceId, job));
         } catch (error) {
-          items.push({ ...job, exists: false, generated: false, error: String(error.message || error), url: audioUrlForLesson(requestedLessonId, voiceId, job.type, job.id) });
+          items.push({ ...job, exists: false, generated: false, error: String(error.message || error), url: audioUrlForLesson(requestedLessonId, targetVoiceId, job.type, job.id) });
         }
         if (index < targets.length - 1) await wait(generationDelayMs);
       }
-      const status = initAudioStatus(lessonData, voiceId);
+      const status = initAudioStatus(lessonData, targetVoiceId);
       const generated = items.filter((item) => item.generated).length;
       const failed = items.filter((item) => item.error).length;
       sendJson(res, 200, {
         lessonId: requestedLessonId,
-        voiceId,
+        voiceId: targetVoiceId,
         generated,
         failed,
         skipped: targets.length - generated - failed,
@@ -818,20 +1146,30 @@ async function handleApi(req, res, url) {
     if (url.pathname === "/api/init/confirm-audio" && req.method === "POST") {
       const { lessonId: bodyLessonId, voiceId = defaultVoiceId } = await readJson(req);
       const requestedLessonId = safeLessonId(bodyLessonId);
+      const initState = await readJsonFile(initStatePath(requestedLessonId), {});
+      const targetVoiceId = initState.voiceId || voiceId || defaultVoiceId;
       const lessonData = await readJsonFile(initLessonPath(requestedLessonId), null);
       if (!lessonData) throw new Error("Please confirm parsed course data before confirming audio.");
-      const audioItems = initAudioStatus(lessonData, voiceId);
+      const audioItems = initAudioStatus(lessonData, targetVoiceId);
       const missing = audioItems.filter((item) => !item.exists);
       if (missing.length) throw new Error(`Audio is not complete. Missing ${missing.length} item(s).`);
       const state = {
-        ...(await readJsonFile(initStatePath(requestedLessonId), {})),
+        ...initState,
         parseConfirmed: true,
         audioConfirmed: true,
         completedAt: new Date().toISOString(),
-        voiceId
+        voiceId: targetVoiceId
       };
+      await writeJsonFile(initLessonPath(requestedLessonId), { ...lessonData, audioVoiceId: targetVoiceId });
       await writeJsonFile(initStatePath(requestedLessonId), state);
-      sendJson(res, 200, { lessonId: requestedLessonId, voiceId, state, audio: { items: audioItems, generated: audioItems.length, missing: 0, total: audioItems.length } });
+      const catalog = await syncStudentCatalog();
+      sendJson(res, 200, {
+        lessonId: requestedLessonId,
+        voiceId: targetVoiceId,
+        state,
+        audio: { items: audioItems, generated: audioItems.length, missing: 0, total: audioItems.length },
+        catalog
+      });
       return true;
     }
     if (url.pathname === "/api/audio/voices") {
@@ -896,6 +1234,13 @@ async function handleApi(req, res, url) {
       return true;
     }
     // ============ STUDENT RUNTIME APIs (continued) ============
+    if (url.pathname === "/api/frontend-config" && req.method === "GET") {
+      sendJson(res, 200, {
+        ossEnabled: isOSSEnabled(),
+        ossBaseUrl: isOSSEnabled() ? getOSSConfig().baseUrl : ""
+      });
+      return true;
+    }
     if (url.pathname === "/api/pronunciation/evaluate" && req.method === "POST") {
       const { fields, files } = await readMultipart(req);
       const referenceText = fields.referenceText || "";

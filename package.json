@@ -7,12 +7,16 @@
     "dev": "node server.mjs",
     "export:catalog": "node scripts/export-catalog.mjs",
     "build:app": "node scripts/export-catalog.mjs && node scripts/build-app-dist.mjs",
+    "init:task": "node scripts/create-codex-parse-task.mjs",
+    "diff:lesson": "node scripts/diff-lesson-init.mjs",
+    "backfill:exercise-kana": "node scripts/backfill-exercise-kana.mjs",
     "sync:ios": "npm run build:app && npx cap sync ios",
     "open:ios": "npx cap open ios"
   },
   "dependencies": {
     "@capacitor/cli": "^8.3.4",
     "@capacitor/core": "^8.3.4",
-    "@capacitor/ios": "^8.3.4"
+    "@capacitor/ios": "^8.3.4",
+    "ali-oss": "^6.21.0"
   }
 }
