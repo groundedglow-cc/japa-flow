@@ -1444,6 +1444,38 @@ const standardExercises = [
 
 lesson.exercises = standardExercises;
 
+<<<<<<< HEAD
+const lessonCatalog = [
+  {
+    id: 27,
+    title: "第27课",
+    subtitle: "子供の時、大きな地震がありました",
+    status: "ready",
+    description: "围绕第 27 课完成单词、语法、课文朗读、标准练习和结果复盘。"
+  },
+  {
+    id: 28,
+    title: "第28课",
+    subtitle: "待初始化",
+    status: "pending",
+    description: "课程内容尚未采集，后续可继续按同一结构初始化。"
+  },
+  {
+    id: 29,
+    title: "第29课",
+    subtitle: "待初始化",
+    status: "pending",
+    description: "课程内容尚未采集，后续可继续按同一结构初始化。"
+  },
+  {
+    id: 30,
+    title: "第30课",
+    subtitle: "待初始化",
+    status: "pending",
+    description: "课程内容尚未采集，后续可继续按同一结构初始化。"
+  }
+];
+=======
 const lessonCatalogMetadata = {
   25: "これは明日会議で使う資料です",
   26: "自転車に2人で乗るのは危ないです",
@@ -1485,6 +1517,7 @@ const lessonCatalog = Array.from({ length: 48 }, (_, index) => {
     runtimeReady
   };
 });
+>>>>>>> b8fffc9d094b22f1a13edcaa3890592cda33ec41
 
 let textStructure = [
   {
