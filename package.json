@@ -3,10 +3,14 @@
   "version": "0.1.1",
   "private": true,
   "type": "module",
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
     "dev": "node server.mjs",
     "export:catalog": "node scripts/export-catalog.mjs",
-    "build:app": "node scripts/export-catalog.mjs && node scripts/build-app-dist.mjs",
+    "build:ai-assistant": "npm -w @japaflow/ai-assistant run build",
+    "build:app": "npm run build:ai-assistant && node scripts/export-catalog.mjs && node scripts/build-app-dist.mjs",
     "init:task": "node scripts/create-codex-parse-task.mjs",
     "diff:lesson": "node scripts/diff-lesson-init.mjs",
     "backfill:exercise-kana": "node scripts/backfill-exercise-kana.mjs",
@@ -14,9 +18,11 @@
     "open:ios": "npx cap open ios"
   },
   "dependencies": {
+    "@ai-sdk/deepseek": "^0.2.0",
     "@capacitor/cli": "^8.3.4",
     "@capacitor/core": "^8.3.4",
     "@capacitor/ios": "^8.3.4",
+    "ai": "^4.3.0",
     "ali-oss": "^6.21.0"
   }
 }
