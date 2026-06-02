@@ -137,6 +137,25 @@ button {
   color: var(--accent);
 }
 
+.favorite-star {
+  display: inline-grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: white;
+  color: var(--muted);
+  font-size: 21px;
+  line-height: 1;
+}
+
+.favorite-star.active {
+  border-color: #e3bd66;
+  background: #fff6df;
+  color: var(--gold);
+}
+
 .lesson-subnav {
   position: sticky;
   top: 64px;
@@ -537,6 +556,51 @@ h3 {
   font-size: 18px;
 }
 
+.course-time-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.course-time-item {
+  display: grid;
+  gap: 2px;
+  padding: 8px;
+  border-radius: 8px;
+  background: #f3f7f5;
+}
+
+.course-time-item span {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 760;
+}
+
+.course-time-item strong {
+  font-size: 13px;
+  font-weight: 840;
+}
+
+.module-time,
+.study-time-badge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  padding: 0 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fbfdfc;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 820;
+  white-space: nowrap;
+}
+
+.module-time {
+  justify-self: start;
+  margin: -4px 0 0;
+}
+
 .course-placeholder {
   padding: 12px;
   border-radius: 8px;
@@ -593,6 +657,127 @@ h3 {
   border-radius: 8px;
   background: white;
   box-shadow: var(--shadow);
+}
+
+.favorites-page {
+  display: grid;
+  gap: 20px;
+}
+
+.favorite-tabs {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: white;
+}
+
+.favorite-empty {
+  display: grid;
+  gap: 8px;
+}
+
+.favorite-group {
+  display: grid;
+  gap: 12px;
+}
+
+.favorite-group h2 {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 0;
+  font-size: 22px;
+}
+
+.favorite-group h2 span {
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 760;
+}
+
+.favorite-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.favorite-card {
+  display: grid;
+  gap: 12px;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: white;
+  box-shadow: var(--shadow);
+}
+
+.favorite-card-main {
+  display: grid;
+  gap: 5px;
+}
+
+.favorite-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.favorite-kind {
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: #e8f2ee;
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 820;
+}
+
+.favorite-card strong {
+  font-size: 24px;
+  line-height: 1.25;
+}
+
+.favorite-kana {
+  color: var(--accent-2);
+  font-weight: 760;
+}
+
+.favorite-card p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+.favorite-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.word-step-row {
+  justify-content: center;
+}
+
+.toggle-control {
+  min-height: 42px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: white;
+  color: var(--muted);
+  font-weight: 760;
+  white-space: nowrap;
+}
+
+.toggle-control input {
+  accent-color: var(--accent);
 }
 
 .progress-row {
@@ -740,6 +925,18 @@ h3 {
   color: #245d8f;
   font-weight: 820;
   font-variant-numeric: tabular-nums;
+}
+
+.word-favorite-star {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+}
+
+.test-favorite-star {
+  justify-self: end;
+  margin-top: -4px;
+  margin-bottom: -6px;
 }
 
 .jp-large {
@@ -3174,6 +3371,7 @@ textarea.answer-input {
   .audio-layout,
   .init-upload-grid,
   .split,
+  .favorite-list,
   .result-grid {
     grid-template-columns: 1fr;
   }
@@ -3190,6 +3388,37 @@ textarea.answer-input {
 
   .course-progress-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .course-time-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .jp-large {
+    max-width: 100%;
+    font-size: clamp(34px, 14vw, 58px);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: clip;
+  }
+
+  .pronunciation-box .button-row,
+  .word-step-row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    width: 100%;
+  }
+
+  .pronunciation-box .button-row .ghost {
+    grid-column: 1 / -1;
+  }
+
+  .pronunciation-box .secondary,
+  .pronunciation-box .hold-record-button,
+  .word-step-row > button {
+    width: 100%;
+    min-width: 0;
+    padding-inline: 8px;
   }
 
   .overall-progress-head {

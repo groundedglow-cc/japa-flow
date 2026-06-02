@@ -76,12 +76,79 @@ function lessonSubtitleForCatalog(lessonData, fallback) {
   return lessonData?.sentences?.[0]?.text || fallback;
 }
 
+function wordAudioText(word) {
+  return word?.kana || word?.jp || "";
+}
+
+function addUniqueJob(jobs, seen, job) {
+  const key = `${job.type}:${job.id}:${job.text}`;
+  if (!job.text || seen.has(key)) return;
+  seen.add(key);
+  jobs.push(job);
+}
+
+function lessonTextValue(value) {
+  const text = typeof value === "string" ? value : value?.text || value?.jp || "";
+  return String(text || "").trim().replace(/^[×xX✕]\s*/, "");
+}
+
+function isIncorrectLessonExample(value) {
+  const text = typeof value === "string" ? value : value?.text || value?.jp || "";
+  return Boolean(value?.isIncorrect || value?.incorrect || value?.correct === false || /^[×xX✕]/.test(String(text || "").trim()));
+}
+
+function lessonDraftAudioJobs(lesson) {
+  const jobs = [];
+  const seen = new Set();
+  (lesson.vocabulary || []).forEach((word) => {
+    addUniqueJob(jobs, seen, { id: word.id, type: "word", text: wordAudioText(word) });
+  });
+  (lesson.sentences || []).forEach((sentence) => {
+    addUniqueJob(jobs, seen, { id: sentence.id, type: "sentence", text: sentence.text });
+  });
+  (lesson.grammar || []).forEach((grammar) => {
+    (grammar.extraExamples || []).forEach((example, index) => {
+      if (isIncorrectLessonExample(example)) return;
+      addUniqueJob(jobs, seen, {
+        id: `${grammar.id}-extra-${index + 1}`,
+        type: "sentence",
+        text: lessonTextValue(example)
+      });
+    });
+  });
+  (lesson.exercises || []).forEach((exercise) => {
+    [
+      ["answer", exercise.answer],
+      ...((exercise.referenceAnswers || []).map((value, index) => [`reference-${index + 1}`, value]))
+    ].forEach(([part, text]) => {
+      addUniqueJob(jobs, seen, {
+        id: `${exercise.id}-${part}`,
+        type: "exercise",
+        text
+      });
+    });
+  });
+  return jobs;
+}
+
+function audioPathForLesson(lessonId, voiceId, type, id) {
+  return join(root, "audio", `lesson${lessonId}`, "voices", voiceId, `${type}s`, `${id}.mp3`);
+}
+
+function lessonInitComplete(lessonData, initState, lessonId) {
+  if (!lessonData) return false;
+  if (initState.parseConfirmed && initState.audioConfirmed) return true;
+  const voiceId = initState.voiceId || "Japanese_IntellectualSenior";
+  const jobs = lessonDraftAudioJobs(lessonData);
+  return Boolean(jobs.length) && jobs.every((job) => existsSync(audioPathForLesson(lessonId, voiceId, job.type, job.id)));
+}
+
 async function buildCatalog() {
   return Promise.all(lessonCatalog.map(async (item) => {
     if (item.runtimeReady) return item;
     const lessonData = await readJsonFile(initLessonPath(item.id), null);
     const initState = await readJsonFile(initStatePath(item.id), {});
-    const initialized = Boolean(lessonData && initState.parseConfirmed && initState.audioConfirmed);
+    const initialized = lessonInitComplete(lessonData, initState, item.id);
     if (!initialized) return item;
     return {
       ...item,

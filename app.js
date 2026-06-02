@@ -1444,36 +1444,47 @@ const standardExercises = [
 
 lesson.exercises = standardExercises;
 
-const lessonCatalog = [
-  {
-    id: 27,
-    title: "第27课",
-    subtitle: "子供の時、大きな地震がありました",
-    status: "ready",
-    description: "围绕第 27 课完成单词、语法、课文朗读、标准练习和结果复盘。"
-  },
-  {
-    id: 28,
-    title: "第28课",
-    subtitle: "待初始化",
-    status: "pending",
-    description: "课程内容尚未采集，后续可继续按同一结构初始化。"
-  },
-  {
-    id: 29,
-    title: "第29课",
-    subtitle: "待初始化",
-    status: "pending",
-    description: "课程内容尚未采集，后续可继续按同一结构初始化。"
-  },
-  {
-    id: 30,
-    title: "第30课",
-    subtitle: "待初始化",
-    status: "pending",
-    description: "课程内容尚未采集，后续可继续按同一结构初始化。"
-  }
-];
+const lessonCatalogMetadata = {
+  25: "これは明日会議で使う資料です",
+  26: "自転車に2人で乗るのは危ないです",
+  27: "子供の時、大きな地震がありました",
+  28: "馬さんはわたしに地図をくれました",
+  29: "電気を消せ",
+  30: "もう11時だから寝よう",
+  31: "このボタンを押すと，電源が入ります",
+  32: "今度の日曜日に遊園地へ行くつもりです",
+  33: "電車が急に止まりました",
+  34: "壁にカレンダーが掛けてあります",
+  35: "明日雨が降ったら，マラソン大会は中止です",
+  36: "遅くなって，すみません",
+  37: "優勝すれば，オリンピックに出場することができます",
+  38: "戴さんは英語が話せます",
+  39: "眼鏡をかけて本を読みます",
+  40: "これから友達と食事に行くところです",
+  41: "李さんは部長にほめられました",
+  42: "テレビをつけたまま，出かけてしまいました",
+  43: "陳さんは，息子をアメリカに留学させます",
+  44: "玄関のところにだれかいるようです",
+  45: "少子化が進んで，日本の人口はだんだん減っていくでしょう",
+  46: "これは柔らかくて，まるで本物の毛皮のようです",
+  47: "周先生は明日日本へ行かれます",
+  48: "お荷物は私がお持ちします"
+};
+
+const lessonCatalog = Array.from({ length: 48 }, (_, index) => {
+  const id = index + 1;
+  const runtimeReady = id === 27;
+  return {
+    id,
+    title: `第${id}课`,
+    subtitle: lessonCatalogMetadata[id] || "待初始化",
+    status: runtimeReady ? "ready" : "pending",
+    description: runtimeReady
+      ? "围绕第 27 课完成单词、语法、课文朗读、标准练习和结果复盘。"
+      : "课程内容尚未采集，后续可继续按同一结构初始化。",
+    runtimeReady
+  };
+});
 
 let textStructure = [
   {
@@ -1610,6 +1621,7 @@ const state = {
   currentExercise: 0,
   currentExerciseGroup: read(`lesson:${lesson.id}:currentExerciseGroup`, 0),
   vocabPhase: "pronunciation",
+  vocabFocusOnly: read(`lesson:${lesson.id}:vocabFocusOnly`, false),
   vocabTestQueue: read(`lesson:${lesson.id}:vocabTestQueue`, []),
   currentVocabTest: read(`lesson:${lesson.id}:currentVocabTest`, 0),
   recallResult: "",
@@ -1630,6 +1642,12 @@ const state = {
   textRecordingId: "",
   textRecordingStoppingId: "",
   textRecordingError: "",
+  favoriteRecordingPreparingKey: "",
+  favoriteRecordingKey: "",
+  favoriteRecordingStoppingKey: "",
+  favoriteRecordingErrorKey: "",
+  favoriteRecordingError: "",
+  favoriteRecordingResults: {},
   sentencePractice: initialSentencePractice(),
   playbackRate: Number(read(`lesson:${lesson.id}:playbackRate`, 1)) || 1,
   answer: "",
@@ -1752,6 +1770,10 @@ let audioVersions = read(`lesson:${lesson.id}:audioVersions`, {});
 let runtimeLessonLoadingId = "";
 let runtimeLessonErrorId = "";
 let runtimeLessonError = "";
+const studyModules = ["vocab", "grammar", "text", "exercises", "wrongbook", "favorites"];
+const studyTimeIdleMs = 60000;
+let studySession = null;
+let studyIdleTimer = null;
 
 function parseMarkdown(text) {
   if (!text) return "";
@@ -1783,6 +1805,115 @@ function write(key, value) {
 
 function removeStored(key) {
   localStorage.removeItem(`japaflow:${key}`);
+}
+
+function studyTimeStorageKey(lessonIdValue) {
+  return `lesson:${lessonIdValue}:studyTime`;
+}
+
+function emptyStudyTime() {
+  return Object.fromEntries(studyModules.map((module) => [module, { totalMs: 0, lastStartedAt: "", lastActiveAt: "" }]));
+}
+
+function normalizeStudyTime(value) {
+  const fallback = emptyStudyTime();
+  const source = value && typeof value === "object" ? value : {};
+  return Object.fromEntries(studyModules.map((module) => {
+    const item = source[module] || {};
+    return [module, {
+      totalMs: Math.max(0, Number(item.totalMs || 0)),
+      lastStartedAt: item.lastStartedAt || "",
+      lastActiveAt: item.lastActiveAt || ""
+    }];
+  }));
+}
+
+function readStudyTime(lessonIdValue) {
+  return normalizeStudyTime(read(studyTimeStorageKey(lessonIdValue), emptyStudyTime()));
+}
+
+function writeStudyTime(lessonIdValue, value) {
+  write(studyTimeStorageKey(lessonIdValue), normalizeStudyTime(value));
+}
+
+function currentStudyContext() {
+  const currentRoute = route();
+  if (!currentRoute.lessonId || !studyModules.includes(currentRoute.page)) return null;
+  return { lessonId: String(currentRoute.lessonId), module: currentRoute.page };
+}
+
+function sameStudyContext(a, b) {
+  return Boolean(a && b && a.lessonId === b.lessonId && a.module === b.module);
+}
+
+function activeStudyElapsed(lessonIdValue, module) {
+  if (!studySession || studySession.lessonId !== String(lessonIdValue) || studySession.module !== module) return 0;
+  return Math.max(0, Date.now() - studySession.startedAt);
+}
+
+function studyTimeMs(lessonIdValue, module) {
+  const stored = readStudyTime(lessonIdValue)[module]?.totalMs || 0;
+  return stored + activeStudyElapsed(lessonIdValue, module);
+}
+
+function studyTimeMinutes(lessonIdValue, module) {
+  return Math.round(studyTimeMs(lessonIdValue, module) / 60000);
+}
+
+function studyTimeBadge(module, lessonIdValue = lesson.id) {
+  return `<div class="study-time-badge" aria-label="练习时长 ${studyTimeMinutes(lessonIdValue, module)} 分钟">练习时长 ${studyTimeMinutes(lessonIdValue, module)} 分钟</div>`;
+}
+
+function studyModuleLabel(module) {
+  return { vocab: "单词", grammar: "语法", text: "课文", exercises: "练习", wrongbook: "错题", favorites: "收藏" }[module] || module;
+}
+
+function settleStudyTimer(reason = "settle") {
+  if (!studySession) return;
+  const now = Date.now();
+  const endAt = now - studySession.lastActiveAt > studyTimeIdleMs ? studySession.lastActiveAt : now;
+  const elapsed = Math.max(0, endAt - studySession.startedAt);
+  const data = readStudyTime(studySession.lessonId);
+  data[studySession.module] = {
+    ...(data[studySession.module] || { totalMs: 0 }),
+    totalMs: Math.max(0, Number(data[studySession.module]?.totalMs || 0)) + elapsed,
+    lastStartedAt: new Date(studySession.startedAt).toISOString(),
+    lastActiveAt: new Date(studySession.lastActiveAt).toISOString()
+  };
+  writeStudyTime(studySession.lessonId, data);
+  studySession = null;
+  if (studyIdleTimer) window.clearTimeout(studyIdleTimer);
+  studyIdleTimer = null;
+}
+
+function scheduleStudyIdleCheck() {
+  if (studyIdleTimer) window.clearTimeout(studyIdleTimer);
+  if (!studySession) return;
+  studyIdleTimer = window.setTimeout(() => {
+    if (!studySession) return;
+    if (Date.now() - studySession.lastActiveAt >= studyTimeIdleMs) settleStudyTimer("idle");
+    else scheduleStudyIdleCheck();
+  }, studyTimeIdleMs + 200);
+}
+
+function syncStudyTimerWithRoute() {
+  const context = currentStudyContext();
+  if (studySession && !sameStudyContext(studySession, context)) settleStudyTimer("route-change");
+}
+
+function trackStudyActivity(event) {
+  const context = currentStudyContext();
+  if (!context) return;
+  const target = event?.target;
+  if (target?.closest?.("[data-nav], [data-link], [data-export-progress], [data-import-progress-trigger], [data-import-progress-file], .playback-rate, .manage-menu")) return;
+  const now = Date.now();
+  if (!studySession || !sameStudyContext(studySession, context)) {
+    if (studySession) settleStudyTimer("activity-context-change");
+    studySession = { ...context, startedAt: now, lastActiveAt: now };
+  } else {
+    studySession.lastActiveAt = now;
+  }
+  scheduleStudyIdleCheck();
 }
 
 function exportLearningData() {
@@ -1893,6 +2024,7 @@ function reloadLessonScopedState() {
   state.currentExercise = 0;
   state.currentExerciseGroup = read(`lesson:${lesson.id}:currentExerciseGroup`, 0);
   state.vocabPhase = "pronunciation";
+  state.vocabFocusOnly = read(`lesson:${lesson.id}:vocabFocusOnly`, false);
   state.vocabTestQueue = read(`lesson:${lesson.id}:vocabTestQueue`, []);
   state.currentVocabTest = read(`lesson:${lesson.id}:currentVocabTest`, 0);
   state.recallResult = "";
@@ -1934,6 +2066,7 @@ function defaultWordLearning(wordId, legacy = "unseen") {
   return {
     mainStatus: legacy === "familiar" ? "mastered" : legacy === "unfamiliar" ? "review" : "new",
     diagnosticTags: [],
+    slashed: false,
     meaningToWordCorrect: false,
     audioToWordCorrect: false,
     wordToMeaningCorrect: false,
@@ -2154,6 +2287,7 @@ function navigate(path) {
 
 function route() {
   const pathname = decodeURIComponent(location.pathname).replace(/[\s\u3000/]+$/u, "");
+  if (pathname === "/favorites") return { page: "favorites" };
   const lessonMatch = pathname.match(/^\/lesson\/(\d+)$/);
   if (lessonMatch) return { lessonId: lessonMatch[1], page: "lesson" };
   const match = pathname.match(/^\/lesson\/(\d+)\/([^/]+)$/);
@@ -2177,6 +2311,32 @@ function currentVocabularyLimit() {
 
 function activeVocabulary() {
   return lesson.vocabulary.slice(0, currentVocabularyLimit());
+}
+
+function normalizeWordCompare(value) {
+  return String(value || "")
+    .trim()
+    .replace(/[，。！？、,.!?;；:：'"“”‘’()\[\]（）【】\s]/g, "")
+    .toLowerCase();
+}
+
+function wordHasMeaningfulCnChoice(word) {
+  const jp = normalizeWordCompare(word.jp);
+  const cn = normalizeWordCompare(word.cn);
+  return Boolean(jp && cn && jp !== cn);
+}
+
+function wordIsWeakOrFavorite(word) {
+  const learning = wordLearningState(word.id);
+  return isFavorite("word", word.id)
+    || learning.mainStatus === "review"
+    || Boolean(learning.diagnosticTags?.length);
+}
+
+function vocabStudyWords() {
+  const words = activeVocabulary();
+  if (!state.vocabFocusOnly) return words;
+  return words.filter(wordIsWeakOrFavorite);
 }
 
 function sentenceById(id) {
@@ -2270,6 +2430,102 @@ function textLessonComplete() {
 
 function wordById(id) {
   return lesson.vocabulary.find((word) => word.id === id);
+}
+
+function favoriteStorageKey(lessonIdValue) {
+  return `lesson:${lessonIdValue}:favorites`;
+}
+
+function emptyFavorites() {
+  return { words: {}, sentences: {} };
+}
+
+function normalizeFavorites(value) {
+  return {
+    words: value?.words && typeof value.words === "object" ? value.words : {},
+    sentences: value?.sentences && typeof value.sentences === "object" ? value.sentences : {}
+  };
+}
+
+function lessonFavorites(lessonIdValue = lesson.id) {
+  return normalizeFavorites(read(favoriteStorageKey(lessonIdValue), emptyFavorites()));
+}
+
+function writeLessonFavorites(lessonIdValue, favorites) {
+  write(favoriteStorageKey(lessonIdValue), normalizeFavorites(favorites));
+}
+
+function favoriteTypeKey(type) {
+  return type === "sentence" ? "sentences" : "words";
+}
+
+function isFavorite(type, id, lessonIdValue = lesson.id) {
+  return Boolean(lessonFavorites(lessonIdValue)[favoriteTypeKey(type)]?.[id]);
+}
+
+function wordFavoriteSnapshot(word) {
+  return {
+    id: word.id,
+    jp: word.jp,
+    kana: word.kana || "",
+    cn: word.cn || "",
+    audioType: "word",
+    audioId: word.id,
+    voiceId: lessonCurrentVoiceId(),
+    savedAt: new Date().toISOString()
+  };
+}
+
+function sentenceFavoriteSnapshot(sentence) {
+  return {
+    id: sentence.id,
+    text: sentence.text,
+    translation: sentence.translation || "",
+    audioType: "sentence",
+    audioId: sentence.id,
+    voiceId: lessonCurrentVoiceId(),
+    savedAt: new Date().toISOString()
+  };
+}
+
+function toggleFavorite(type, item, lessonIdValue = lesson.id) {
+  const favorites = lessonFavorites(lessonIdValue);
+  const key = favoriteTypeKey(type);
+  const id = item.id;
+  if (favorites[key][id]) {
+    delete favorites[key][id];
+  } else {
+    favorites[key][id] = type === "sentence" ? sentenceFavoriteSnapshot(item) : wordFavoriteSnapshot(item);
+  }
+  writeLessonFavorites(lessonIdValue, favorites);
+}
+
+function allFavoriteItems() {
+  const items = [];
+  for (let index = 0; index < localStorage.length; index += 1) {
+    const storageKey = localStorage.key(index);
+    const match = storageKey?.match(/^japaflow:lesson:(\d+):favorites$/);
+    if (!match) continue;
+    const lessonIdValue = match[1];
+    const favorites = lessonFavorites(lessonIdValue);
+    Object.values(favorites.words || {}).forEach((item) => {
+      items.push({ ...item, type: "word", lessonId: lessonIdValue });
+    });
+    Object.values(favorites.sentences || {}).forEach((item) => {
+      items.push({ ...item, type: "sentence", lessonId: lessonIdValue });
+    });
+  }
+  return items.sort((a, b) => Number(a.lessonId) - Number(b.lessonId) || String(b.savedAt || "").localeCompare(String(a.savedAt || "")));
+}
+
+function favoriteAudioUrl(item) {
+  const type = item.audioType || item.type;
+  const id = item.audioId || item.id;
+  const catalogItem = courseCatalogItems().find((entry) => String(entry.id) === String(item.lessonId));
+  const voiceId = item.voiceId || read(`lesson:${item.lessonId}:currentVoiceId`, "") || catalogItem?.voiceId || defaultVoiceId;
+  const relative = `/audio/lesson${item.lessonId}/voices/${voiceId}/${type}s/${id}.mp3`;
+  if (ossEnabled && ossBaseUrl) return `${ossBaseUrl}${relative}`;
+  return relative;
 }
 
 function wordByText(text) {
@@ -2489,7 +2745,7 @@ function scheduleAutoWordAudio(word, delayMs = 650) {
         if (token !== autoWordPlaybackToken) return;
         if (route().page !== "vocab") return;
         if (state.vocabPhase !== "pronunciation" && state.vocabPhase !== "test") return;
-        if (state.vocabPhase === "pronunciation" && activeVocabulary()[state.currentWord]?.id !== wordId) return;
+        if (state.vocabPhase === "pronunciation" && vocabStudyWords()[state.currentWord]?.id !== wordId) return;
         if (state.recordingWordId || state.recordingPreparingWordId || state.recordingStoppingWordId) return;
         playAudioAfterSilentPreroll(text, audio, null, 700);
       }, delayMs);
@@ -3101,6 +3357,7 @@ function wordDiagnostics(item) {
 }
 
 function wordMainStatus(item) {
+  if (item.slashed) return "mastered";
   const touched = item.attempts.pronunciation || item.attempts.audioToWord || item.attempts.wordToMeaning;
   if (!touched) return "new";
   const mastered = item.pronunciationPassed && item.audioToWordCorrect && item.wordToMeaningCorrect;
@@ -3110,6 +3367,11 @@ function wordMainStatus(item) {
 
 function wordMainStatusText(status) {
   return { new: "未学", learning: "学习中", review: "待复习", mastered: "已掌握" }[status] || "未学";
+}
+
+function wordStatusLabel(word) {
+  const learning = wordLearningState(word.id);
+  return learning.slashed ? "已斩" : wordMainStatusText(learning.mainStatus);
 }
 
 function wordTagBadges(tags) {
@@ -3208,7 +3470,7 @@ function layout(content) {
   const current = currentRoute.page;
   const runtimeLessonId = routeRuntimeLessonId();
   const inLesson = Boolean(runtimeLessonId);
-  const showLessonSubnav = inLesson && ["vocab", "grammar", "text", "exercises", "wrongbook", "result"].includes(current);
+  const showLessonSubnav = inLesson && ["vocab", "grammar", "text", "exercises", "wrongbook", "result", "favorites"].includes(current);
   return `
     <div class="shell">
       <header class="topbar">
@@ -3219,6 +3481,7 @@ function layout(content) {
         <nav class="nav">
           ${navLink("/", "首页", current === "home")}
           ${inLesson ? navLink(`/lesson/${runtimeLessonId}`, "课程", current === "lesson") : ""}
+          ${navLink(inLesson ? `/lesson/${runtimeLessonId}/favorites` : "/favorites", "收藏", current === "favorites")}
         </nav>
         <div class="topbar-actions">
           <div class="playback-control" aria-label="播放速度">
@@ -3255,6 +3518,7 @@ function lessonSubnav(lessonId, current) {
       ${navLink(`/lesson/${lessonId}/text`, "课文", current === "text")}
       ${navLink(`/lesson/${lessonId}/exercises`, "练习", current === "exercises")}
       ${navLink(`/lesson/${lessonId}/wrongbook`, "错题集", current === "wrongbook")}
+      ${navLink(`/lesson/${lessonId}/favorites`, "收藏", current === "favorites")}
       ${navLink(`/lesson/${lessonId}/result`, "结果", current === "result")}
       ${navLink(`/lesson/${lessonId}/audio`, "音频", current === "audio")}
     </nav>
@@ -3345,7 +3609,18 @@ function courseCatalogItems() {
         ...(state.lessonCatalogStatus.find((entry) => Number(entry.id) === Number(item.id)) || {})
       }))
     : lessonCatalog;
-  return base;
+  return [...base].sort(courseCatalogSort);
+}
+
+function courseCatalogSort(a, b) {
+  const priority = (item) => {
+    if (item.status === "ready" || item.status === "initialized") return 0;
+    if (item.status === "invalid") return 2;
+    return 3;
+  };
+  const byPriority = priority(a) - priority(b);
+  if (byPriority) return byPriority;
+  return Number(a.id) - Number(b.id);
 }
 
 function courseCard(item) {
@@ -3390,6 +3665,7 @@ function courseCard(item) {
           ${courseMetric("课文", summary.text.completed, summary.text.total)}
           ${courseMetric("练习", summary.exercises.completed, summary.exercises.total)}
         </div>
+        ${courseStudyTimeGrid(item.id)}
         <div class="button-row">
           <button class="primary" data-nav="/lesson/${item.id}">${summary.started ? "继续学习" : "开始学习"}</button>
           <button class="secondary" data-nav="/lesson/${item.id}/result">查看结果</button>
@@ -3401,6 +3677,7 @@ function courseCard(item) {
           ${courseMetric("课文", summary.text.completed, summary.text.total)}
           ${courseMetric("练习", summary.exercises.completed, summary.exercises.total)}
         </div>
+        ${courseStudyTimeGrid(item.id)}
         <div class="button-row">
           <button class="primary" data-nav="/lesson/${item.id}">开始学习</button>
           <button class="secondary" data-nav="/lesson/${item.id}/init">初始化结果</button>
@@ -3439,15 +3716,131 @@ function lessonDashboard() {
         ${progressRow("练习完成", summary.exercises.completed, summary.exercises.total)}
       </div>
       <div class="module-grid">
-        ${moduleCard("单词", "先完成全词表发音与打乱测试。", summary.vocab, `/lesson/${lesson.id}/vocab`)}
-        ${moduleCard("语法", "围绕核心例句完成中译日和跟读。", summary.grammar, `/lesson/${lesson.id}/grammar`)}
-        ${moduleCard("课文", "按基本课文和应用课文连续朗读，再复盘弱句。", summary.text, `/lesson/${lesson.id}/text`)}
-        ${moduleCard("练习", "使用标准练习做最终验收。", summary.exercises, `/lesson/${lesson.id}/exercises`)}
+        ${moduleCard("单词", "先完成全词表发音与打乱测试。", summary.vocab, `/lesson/${lesson.id}/vocab`, "vocab")}
+        ${moduleCard("语法", "围绕核心例句完成中译日和跟读。", summary.grammar, `/lesson/${lesson.id}/grammar`, "grammar")}
+        ${moduleCard("课文", "按基本课文和应用课文连续朗读，再复盘弱句。", summary.text, `/lesson/${lesson.id}/text`, "text")}
+        ${moduleCard("练习", "使用标准练习做最终验收。", summary.exercises, `/lesson/${lesson.id}/exercises`, "exercises")}
         ${moduleCard("结果", `当前弱项 ${summary.weak.total} 个。`, { completed: summary.weak.resolved, total: summary.weak.total }, `/lesson/${lesson.id}/result`)}
         ${moduleCard("音频", "管理全局默认声音和缺失音频。", summary.audio, `/lesson/${lesson.id}/audio`)}
       </div>
     </section>
   `);
+}
+
+function favoritesPage() {
+  const params = new URLSearchParams(location.search);
+  const activeTab = params.get("tab") === "sentences" ? "sentences" : "words";
+  const currentRoute = route();
+  const items = allFavoriteItems();
+  const filtered = items.filter((item) => activeTab === "sentences" ? item.type === "sentence" : item.type === "word");
+  const sorted = currentRoute.lessonId
+    ? [...filtered].sort((a, b) => (String(b.lessonId) === String(currentRoute.lessonId)) - (String(a.lessonId) === String(currentRoute.lessonId)) || Number(a.lessonId) - Number(b.lessonId))
+    : filtered;
+  return layout(`
+    <section class="favorites-page">
+      <div class="page-head">
+        <div>
+          <p class="eyebrow">JapaFlow · 收藏</p>
+          <h1>收藏夹</h1>
+          <p class="lead">按课程集中复习收藏的单词和句子，可以查看中文和日文，播放标准音，也可以长按录音做发音评测。</p>
+        </div>
+        <div class="favorite-tabs" role="tablist" aria-label="收藏类型">
+          ${currentRoute.lessonId ? studyTimeBadge("favorites", currentRoute.lessonId) : ""}
+          ${favoriteTab("words", "单词", activeTab)}
+          ${favoriteTab("sentences", "句子", activeTab)}
+        </div>
+      </div>
+      ${sorted.length ? favoriteItemGroups(sorted, activeTab) : `
+        <div class="panel favorite-empty">
+          <h2>暂无${activeTab === "sentences" ? "句子" : "单词"}收藏</h2>
+          <p class="muted">在学习页面点击星标后，收藏内容会出现在这里。</p>
+        </div>
+      `}
+    </section>
+  `);
+}
+
+function favoriteTab(tab, label, activeTab) {
+  const currentRoute = route();
+  const base = currentRoute.lessonId ? `/lesson/${currentRoute.lessonId}/favorites` : "/favorites";
+  return `<button class="text-lang ${activeTab === tab ? "active" : ""}" type="button" data-nav="${base}?tab=${tab}">${label}</button>`;
+}
+
+function favoriteItemGroups(items, activeTab) {
+  const groups = new Map();
+  items.forEach((item) => {
+    if (!groups.has(String(item.lessonId))) groups.set(String(item.lessonId), []);
+    groups.get(String(item.lessonId)).push(item);
+  });
+  return [...groups.entries()].map(([lessonIdValue, groupItems]) => `
+    <section class="favorite-group">
+      <h2>${favoriteLessonTitle(lessonIdValue)}<span>${groupItems.length} 个${activeTab === "sentences" ? "句子" : "单词"}</span></h2>
+      <div class="favorite-list">
+        ${groupItems.map((item) => favoriteItemCard(item)).join("")}
+      </div>
+    </section>
+  `).join("");
+}
+
+function favoriteLessonTitle(lessonIdValue) {
+  const catalogItem = courseCatalogItems().find((item) => String(item.id) === String(lessonIdValue));
+  return catalogItem ? `${catalogItem.title} · ${catalogItem.subtitle}` : `第${lessonIdValue}课`;
+}
+
+function favoriteItemCard(item) {
+  const isWord = item.type === "word";
+  const key = favoriteRecordKey(item);
+  const preparing = state.favoriteRecordingPreparingKey === key;
+  const recording = state.favoriteRecordingKey === key;
+  const stopping = state.favoriteRecordingStoppingKey === key;
+  const recordLabel = stopping ? "正在评价" : recording ? "正在说话" : preparing ? "准备中" : "长按录音";
+  const result = state.favoriteRecordingResults[key];
+  const error = state.favoriteRecordingErrorKey === key ? state.favoriteRecordingError : "";
+  const referenceText = isWord ? item.jp : item.text;
+  return `
+    <article class="favorite-card">
+      <div class="favorite-card-main">
+        <div class="favorite-card-head">
+          <span class="favorite-kind">${isWord ? "单词" : "句子"}</span>
+          <button class="favorite-star active" type="button" aria-label="取消收藏" title="取消收藏" data-remove-favorite="${item.type}:${item.lessonId}:${item.id}">★</button>
+        </div>
+        <strong>${escapeHtml(referenceText || "")}</strong>
+        ${isWord && item.kana ? `<span class="favorite-kana">${escapeHtml(item.kana)}</span>` : ""}
+        <p>${escapeHtml(isWord ? item.cn || "" : item.translation || "")}</p>
+      </div>
+      <div class="favorite-actions">
+        <button class="secondary" data-speak="${escapeHtml(referenceText || "")}" data-audio="${favoriteAudioUrl(item)}">听标准音</button>
+        <button
+          class="hold-record-button ${preparing ? "preparing" : ""} ${recording ? "recording" : ""} ${stopping ? "stopping" : ""}"
+          data-hold-record-favorite="${key}"
+          data-favorite-reference="${escapeHtml(referenceText || "")}"
+          data-favorite-kana="${escapeHtml(isWord ? item.kana || "" : "")}"
+          aria-label="${recordLabel}"
+          ${stopping ? "disabled" : ""}
+        >
+          <span class="record-icon"></span>
+          <span>${recordLabel}</span>
+        </button>
+      </div>
+      ${result ? favoriteRecordingResult(result) : ""}
+      ${error ? `<p class="hint danger-text">${escapeHtml(error)}</p>` : ""}
+    </article>
+  `;
+}
+
+function favoriteRecordKey(item) {
+  return `${item.type}:${item.lessonId}:${item.id}`;
+}
+
+function favoriteRecordingResult(result) {
+  return `
+    <div class="pronunciation-result ${result.passed ? "passed" : "failed"}">
+      <strong>${result.passed ? "发音通过" : "发音需复习"}</strong>
+      <span>总分 ${result.pronunciationScore || 0} · 准确 ${result.accuracyScore || 0} · 流畅 ${result.fluencyScore || 0} · 完整 ${result.completenessScore || 0}</span>
+      ${result.reasons?.length ? `<small>${result.reasons.map(escapeHtml).join(" / ")}</small>` : ""}
+      ${result.debugAudioUrl ? `<audio controls src="${result.debugAudioUrl}"></audio>` : ""}
+    </div>
+  `;
 }
 
 function pendingLessonPage(item) {
@@ -3467,6 +3860,25 @@ function pendingLessonPage(item) {
 function courseMetric(label, value, total) {
   const pct = total ? Math.round((value / total) * 100) : 0;
   return `<div class="course-metric"><span>${label}</span><strong>${value}/${total}</strong><small>${pct}%</small></div>`;
+}
+
+function courseStudyTimeGrid(lessonIdValue) {
+  const modules = [
+    ["vocab", "单词"],
+    ["grammar", "语法"],
+    ["text", "课文"],
+    ["exercises", "练习"]
+  ];
+  return `
+    <div class="course-time-grid" aria-label="本课模块练习时长">
+      ${modules.map(([module, label]) => `
+        <div class="course-time-item">
+          <span>${label}</span>
+          <strong>${studyTimeMinutes(lessonIdValue, module)} 分钟</strong>
+        </div>
+      `).join("")}
+    </div>
+  `;
 }
 
 function lessonPercent(summary) {
@@ -3527,7 +3939,7 @@ function catalogLessonProgressSummary(item) {
   };
 }
 
-function moduleCard(title, description, progress, path) {
+function moduleCard(title, description, progress, path, module = "") {
   return `
     <article class="module-card" data-nav="${path}">
       <div class="module-card-head">
@@ -3535,6 +3947,7 @@ function moduleCard(title, description, progress, path) {
         <strong>${progress.completed}/${progress.total}</strong>
       </div>
       <p class="muted">${description}</p>
+      ${module ? `<p class="module-time">${studyTimeMinutes(lesson.id, module)} 分钟</p>` : ""}
       ${progressRow("进度", progress.completed, progress.total)}
     </article>
   `;
@@ -3587,27 +4000,36 @@ function progressRow(label, value, total) {
   `;
 }
 
+function vocabFocusToggle() {
+  return `
+    <label class="toggle-control">
+      <input type="checkbox" data-vocab-focus-only ${state.vocabFocusOnly ? "checked" : ""} />
+      <span>只看收藏和弱项</span>
+    </label>
+  `;
+}
+
 function wordHasLearningRecord(wordId) {
   return wordLearningState(wordId).mainStatus !== "new";
 }
 
 function vocabReadyForTest() {
-  return activeVocabulary().every((word) => wordHasLearningRecord(word.id));
+  const words = vocabStudyWords();
+  return Boolean(words.length) && words.every((word) => wordHasLearningRecord(word.id));
 }
 
 function ensureVocabTestQueue() {
-  const words = activeVocabulary();
-  const expectedLength = words.length * 2;
+  const words = vocabStudyWords().filter((word) => !wordLearningState(word.id).slashed);
+  const expectedTasks = words.flatMap((word) => [
+    ...(wordHasMeaningfulCnChoice(word) ? [{ id: `${word.id}:wordToMeaning`, wordId: word.id, type: "wordToMeaning" }] : []),
+    { id: `${word.id}:audioToWord`, wordId: word.id, type: "audioToWord" }
+  ]).sort((a, b) => stableOptionOrder(`${a.id}:test`) - stableOptionOrder(`${b.id}:test`));
+  const expectedIds = expectedTasks.map((task) => task.id).join("|");
   const valid = Array.isArray(state.vocabTestQueue)
-    && state.vocabTestQueue.length === expectedLength
-    && state.vocabTestQueue.every((task) => task?.wordId && task?.type);
+    && state.vocabTestQueue.map((task) => task?.id).join("|") === expectedIds
+    && state.vocabTestQueue.every((task) => task?.wordId && task?.type && !wordLearningState(task.wordId).slashed);
   if (valid) return;
-  state.vocabTestQueue = words
-    .flatMap((word) => [
-      { id: `${word.id}:wordToMeaning`, wordId: word.id, type: "wordToMeaning" },
-      { id: `${word.id}:audioToWord`, wordId: word.id, type: "audioToWord" }
-    ])
-    .sort((a, b) => stableOptionOrder(`${a.id}:test`) - stableOptionOrder(`${b.id}:test`));
+  state.vocabTestQueue = expectedTasks;
   state.currentVocabTest = 0;
   write(`lesson:${lesson.id}:vocabTestQueue`, state.vocabTestQueue);
   write(`lesson:${lesson.id}:currentVocabTest`, state.currentVocabTest);
@@ -3615,6 +4037,10 @@ function ensureVocabTestQueue() {
 
 function currentVocabTestTask() {
   ensureVocabTestQueue();
+  if (state.currentVocabTest >= state.vocabTestQueue.length) {
+    state.currentVocabTest = Math.max(0, state.vocabTestQueue.length - 1);
+    write(`lesson:${lesson.id}:currentVocabTest`, state.currentVocabTest);
+  }
   return state.vocabTestQueue[state.currentVocabTest] || null;
 }
 
@@ -3639,10 +4065,29 @@ function vocab() {
     history.replaceState({}, "", lessonPath(`/lesson/${lesson.id}/vocab`));
     resetWordLearningData(false);
   }
-  const vocabWords = activeVocabulary();
+  const vocabWords = vocabStudyWords();
+  if (!vocabWords.length) {
+    return layout(`
+      <div class="page-head">
+        <div>
+          <p class="eyebrow">${lesson.title} · 单词预热</p>
+          <h2>没有符合条件的单词</h2>
+          <p>当前已开启“只看收藏和弱项”，但还没有收藏单词或弱项记录。</p>
+        </div>
+        <div class="button-row">
+          ${studyTimeBadge("vocab")}
+          ${vocabFocusToggle()}
+        </div>
+      </div>
+      <section class="panel favorite-empty">
+        <p class="muted">关闭筛选后可以继续查看全部单词。</p>
+      </section>
+    `);
+  }
   if (state.currentWord >= vocabWords.length) state.currentWord = 0;
   const word = vocabWords[state.currentWord] || vocabWords[0];
   const learning = wordLearningState(word.id);
+  const favorite = isFavorite("word", word.id);
   const finished = vocabWords.every((item) => wordLearningState(item.id).mainStatus === "mastered");
   const weakItems = vocabWords.filter((item) => wordLearningState(item.id).mainStatus === "review");
   const testing = state.vocabPhase === "test";
@@ -3657,6 +4102,8 @@ function vocab() {
         <p>${testing ? "测试阶段不会展示假名、释义或右侧词表，避免短期提示干扰结果。" : "所有单词先走一遍听音和发音评价，再进入系统测试。"}</p>
       </div>
       <div class="button-row">
+        ${studyTimeBadge("vocab")}
+        ${vocabFocusToggle()}
         ${!testing ? `<button class="primary" data-start-vocab-test ${readyForTest ? "" : "disabled"}>进入系统测试</button>` : ""}
         <button class="primary ${finished ? "emphasis" : ""}" data-nav="/lesson/${lesson.id}/grammar">进入语法</button>
       </div>
@@ -3665,16 +4112,21 @@ function vocab() {
       <div>
         <article class="panel word-focus">
           ${testing ? vocabTestPanel(task) : `
+            <button class="favorite-star word-favorite-star ${favorite ? "active" : ""}" type="button" aria-label="${favorite ? "取消收藏" : "收藏单词"}" title="${favorite ? "取消收藏" : "收藏单词"}" data-toggle-word-favorite="${word.id}">${favorite ? "★" : "☆"}</button>
             <div class="word-count">${Math.min(state.currentWord + 1, vocabWords.length)}/${vocabWords.length}</div>
             <div class="kana">${word.kana}</div>
             <div class="jp-large">${word.jp}</div>
             <div class="meaning">${word.cn}</div>
             <p class="hint"><span class="kbd">←</span><span class="kbd">→</span> 切换单词，切换后会播放标准音</p>
             <div class="word-diagnostic-line">
-              <strong>${wordMainStatusText(learning.mainStatus)}</strong>
+              <strong>${wordStatusLabel(word)}</strong>
               ${wordTagBadges(learning.diagnosticTags)}
             </div>
             ${pronunciationPanel(word)}
+            <div class="button-row word-step-row">
+              <button class="secondary" data-prev-pronunciation-word ${state.currentWord <= 0 ? "disabled" : ""}>上一个单词</button>
+              <button class="primary" data-next-pronunciation-word>${state.currentWord === vocabWords.length - 1 ? "完成预热" : "下一个单词"}</button>
+            </div>
           `}
         </article>
         ${testing ? "" : `<div class="rail">
@@ -3702,7 +4154,7 @@ function vocab() {
             ${vocabWords.map((item, index) => `
               <button class="status-item ${index === state.currentWord ? "current" : ""}" data-word-index="${index}">
                 <span>${item.jp} · ${item.cn}</span>
-                <strong class="status-${state.wordProgress[item.id]}">${wordMainStatusText(wordLearningState(item.id).mainStatus)}</strong>
+                <strong class="status-${state.wordProgress[item.id]}">${wordStatusLabel(item)}</strong>
               </button>
             `).join("")}
           </div>
@@ -3762,7 +4214,6 @@ function pronunciationResult(learning) {
           ${learning.debugAudioPath ? `<small>${learning.debugAudioPath}</small>` : ""}
         </div>
       ` : ""}
-      <button class="primary" data-next-pronunciation-word>${state.currentWord === activeVocabulary().length - 1 ? "完成预热" : "下一个单词"}</button>
     </div>
   `;
 }
@@ -3785,12 +4236,17 @@ function vocabTestPanel(task) {
   const options = testOptions(word, task.type);
   const optionLabels = ["A", "B", "C", "D"];
   const label = task.type === "audioToWord" ? "听音选日文" : "日文选中文";
+  const favorite = isFavorite("word", word.id);
   return `
     <div class="recall-box">
       <span class="label">${label}</span>
+      <button class="favorite-star test-favorite-star ${favorite ? "active" : ""}" type="button" aria-label="${favorite ? "取消收藏" : "收藏单词"}" title="${favorite ? "取消收藏" : "收藏单词"}" data-toggle-word-favorite="${word.id}">${favorite ? "★" : "☆"}</button>
       <div class="word-count">${state.currentVocabTest + 1}/${state.vocabTestQueue.length}</div>
       <h3>${task.type === "audioToWord" ? "听音频，选择对应日文" : word.jp}</h3>
-      ${task.type === "audioToWord" ? `<button class="secondary" data-speak="${word.jp}" data-audio="${audioUrl("word", word.id)}">播放题目音频</button>` : ""}
+      <div class="button-row">
+        ${task.type === "audioToWord" ? `<button class="secondary" data-speak="${word.jp}" data-audio="${audioUrl("word", word.id)}">播放题目音频</button>` : ""}
+        <button class="danger" data-slash-word="${word.id}" ${state.vocabReveal ? "disabled" : ""}>斩</button>
+      </div>
       ${state.vocabReveal && state.vocabReveal.wordId === word.id ? `
         <div class="vocab-reveal ${state.vocabReveal.correct ? "passed" : "failed"}">
           <strong>${word.jp}</strong>
@@ -3823,10 +4279,11 @@ function vocabTestPanel(task) {
 function testOptions(word, type) {
   const limited = currentVocabularyLimit() < lesson.vocabulary.length;
   const pool = limited
-    ? activeVocabulary().filter((item) => item.id !== word.id)
+    ? vocabStudyWords().filter((item) => item.id !== word.id)
     : [...externalWordDistractors, ...lesson.vocabulary.filter((item) => item.id !== word.id)];
   const candidates = pool
     .filter((item) => item.id !== word.id)
+    .filter((item) => type !== "wordToMeaning" || wordHasMeaningfulCnChoice(item))
     .map((item) => ({ item, score: wordSimilarity(word, item) }))
     .sort((a, b) => b.score - a.score)
     .slice(0, 3)
@@ -3872,7 +4329,7 @@ function statusText(status) {
 }
 
 function setCurrentWord(index, shouldSpeak = false) {
-  const vocabWords = activeVocabulary();
+  const vocabWords = route().page === "vocab" ? vocabStudyWords() : activeVocabulary();
   const nextIndex = clamp(index, 0, vocabWords.length - 1);
   if (index >= vocabWords.length) {
     startVocabTest();
@@ -3913,6 +4370,7 @@ function textPage() {
         <p class="hint">当前已通过 ${progress.completed}/${progress.total} 句，${complete ? "所有句子都已通过" : "未通过的句子会标红"}。</p>
       </div>
       <div class="text-head-actions">
+        ${studyTimeBadge("text")}
         <div class="text-tab-switch" role="tablist" aria-label="课文分类">
           ${textTabs().map((tab) => `
             <button class="text-tab ${state.textCurrentTab === tab.id ? "active" : ""}" data-text-tab="${tab.id}" type="button">${tab.title}<span>${textTabProgress(tab.id).completed}/${textTabProgress(tab.id).total}</span></button>
@@ -4093,7 +4551,10 @@ function grammarPage() {
         <h2>语法点与例句回忆</h2>
         <p class="hint"><span class="kbd">↑</span><span class="kbd">↓</span> 切换上一个 / 下一个语法。先挖空回忆，再揭晓对照。</p>
       </div>
-      <button class="primary" data-nav="/lesson/${lesson.id}/exercises">开始练习</button>
+      <div class="button-row">
+        ${studyTimeBadge("grammar")}
+        <button class="primary" data-nav="/lesson/${lesson.id}/exercises">开始练习</button>
+      </div>
     </div>
     <section class="split">
       <nav class="list-nav">
@@ -4814,6 +5275,7 @@ function exercisesPage() {
           <p>${group.category} · 大题 ${state.currentExerciseGroup + 1} / ${groups.length} · 小题 ${group.items.length} 道</p>
         </div>
         <div class="button-row">
+          ${studyTimeBadge("exercises")}
           <button class="secondary" data-nav="/lesson/${lesson.id}/wrongbook">错题集 ${activeWrongItems().length}</button>
           <button class="secondary" data-nav="/lesson/${lesson.id}/result">查看结果</button>
         </div>
@@ -5233,7 +5695,10 @@ function wrongBookPage() {
           <p class="eyebrow">${lesson.title} · 错题集</p>
           <h2>暂无需要复练的错题</h2>
         </div>
-        <button class="secondary" data-nav="/lesson/${lesson.id}/exercises">返回练习</button>
+        <div class="button-row">
+          ${studyTimeBadge("wrongbook")}
+          <button class="secondary" data-nav="/lesson/${lesson.id}/exercises">返回练习</button>
+        </div>
       </div>
       <article class="panel">
         <p class="muted">做错的标准练习会自动进入这里。连续正确两次后，错题会进入归档状态。</p>
@@ -5254,6 +5719,7 @@ function wrongBookPage() {
           <p>${wrongStatusText(item.status)} · ${activeItems.length ? `第 ${state.wrongPractice.current + 1} / ${activeItems.length} 题` : "本轮错题已清空"}</p>
         </div>
         <div class="button-row">
+          ${studyTimeBadge("wrongbook")}
           <button class="secondary" data-nav="/lesson/${lesson.id}/exercises">返回练习</button>
           <button class="secondary" data-nav="/lesson/${lesson.id}/result">结果页</button>
         </div>
@@ -5475,7 +5941,7 @@ function handleRecall(selectedWordId) {
 
 function handleWordQuiz(mode, selectedWordId) {
   const task = state.vocabPhase === "test" ? currentVocabTestTask() : null;
-  const word = task ? wordById(task.wordId) : activeVocabulary()[state.currentWord];
+  const word = task ? wordById(task.wordId) : vocabStudyWords()[state.currentWord];
   const learning = wordLearningState(word.id);
   const correct = selectedWordId === word.id;
   const attempts = { ...learning.attempts };
@@ -5498,6 +5964,33 @@ function handleWordQuiz(mode, selectedWordId) {
   }
   state.recallResult = "正确。进入下一个单词。";
   setCurrentWord(state.currentWord + 1, true);
+}
+
+function slashWord(wordId) {
+  const word = wordById(wordId);
+  if (!word) return;
+  const learning = wordLearningState(word.id);
+  updateWordLearning(word.id, {
+    slashed: true,
+    pronunciationPassed: true,
+    audioToWordCorrect: true,
+    wordToMeaningCorrect: true,
+    diagnosticTags: [],
+    pronunciationReasons: [],
+    attempts: {
+      ...learning.attempts,
+      pronunciation: Math.max(learning.attempts.pronunciation || 0, 1),
+      audioToWord: Math.max(learning.attempts.audioToWord || 0, 1),
+      wordToMeaning: Math.max(learning.attempts.wordToMeaning || 0, 1)
+    }
+  });
+  state.vocabTestQueue = state.vocabTestQueue.filter((task) => task.wordId !== word.id);
+  if (state.currentVocabTest >= state.vocabTestQueue.length) state.currentVocabTest = Math.max(0, state.vocabTestQueue.length - 1);
+  write(`lesson:${lesson.id}:vocabTestQueue`, state.vocabTestQueue);
+  write(`lesson:${lesson.id}:currentVocabTest`, state.currentVocabTest);
+  state.vocabReveal = null;
+  state.recallResult = `${word.jp} 已斩，本轮测试不再出现。`;
+  render();
 }
 
 function revealAndAdvanceTest(word, selectedWordId, correct, mode) {
@@ -5681,7 +6174,7 @@ async function stopWordRecording(wordId) {
         if (state.vocabPhase !== "pronunciation") return;
         if (state.recordingWordId || state.recordingPreparingWordId || state.recordingStoppingWordId) return;
         if (state.currentWord !== currentWordIndex) return;
-        if (activeVocabulary()[state.currentWord]?.id !== currentWordId) return;
+        if (vocabStudyWords()[state.currentWord]?.id !== currentWordId) return;
         setCurrentWord(state.currentWord + 1, true);
       }, 350);
     }
@@ -6136,6 +6629,190 @@ function endTextHold(sentenceId, event) {
     }
   }
   releaseTextRecording(sentenceId);
+}
+
+function releaseFavoriteRecording(key) {
+  if (!key || state.favoriteRecordingStoppingKey) return;
+  if (recordingSession?.kind !== "favorite" && !state.favoriteRecordingPreparingKey && !state.favoriteRecordingKey) return;
+  recordingReleaseRequested = true;
+  if (recordingSession?.kind === "favorite" && recordingSession?.key === key) {
+    stopFavoriteRecording(key);
+  }
+}
+
+async function startFavoriteRecording(key, referenceText, kana = "") {
+  if (!key || !referenceText || recordingSession || state.favoriteRecordingStoppingKey) return;
+  state.favoriteRecordingPreparingKey = key;
+  state.favoriteRecordingErrorKey = "";
+  state.favoriteRecordingError = "";
+  recordingPressWordId = "";
+  recordingReleaseRequested = false;
+  recordingPointerId = null;
+  render();
+  try {
+    stopCurrentAudio();
+    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+    const audioContext = new AudioContext({ sampleRate: 16000 });
+    const source = audioContext.createMediaStreamSource(stream);
+    const processor = audioContext.createScriptProcessor(4096, 1, 1);
+    const chunks = [];
+    processor.onaudioprocess = (event) => {
+      chunks.push(new Float32Array(event.inputBuffer.getChannelData(0)));
+    };
+    source.connect(processor);
+    processor.connect(audioContext.destination);
+    recordingSession = {
+      kind: "favorite",
+      key,
+      referenceText,
+      kana,
+      stream,
+      audioContext,
+      source,
+      processor,
+      chunks,
+      startedAt: Date.now(),
+      sampleRate: audioContext.sampleRate,
+      ready: false
+    };
+    await delay(250);
+    if (!recordingSession || recordingSession.key !== key) return;
+    if (recordingReleaseRequested) {
+      cleanupRecordingSession(recordingSession);
+      recordingSession = null;
+      recordingReleaseRequested = false;
+      recordingPointerId = null;
+      state.favoriteRecordingPreparingKey = "";
+      state.favoriteRecordingKey = "";
+      state.favoriteRecordingErrorKey = key;
+      state.favoriteRecordingError = "录音尚未准备好，请长按到按钮变为“正在说话”后再开口。";
+      render();
+      return;
+    }
+    recordingSession.ready = true;
+    state.favoriteRecordingPreparingKey = "";
+    state.favoriteRecordingKey = key;
+    state.favoriteRecordingStoppingKey = "";
+    render();
+  } catch (error) {
+    state.favoriteRecordingPreparingKey = "";
+    cleanupRecordingSession(recordingSession);
+    recordingSession = null;
+    recordingReleaseRequested = false;
+    recordingPointerId = null;
+    state.favoriteRecordingErrorKey = key;
+    state.favoriteRecordingError = `无法录音：${error.message || error}`;
+    render();
+  }
+}
+
+async function stopFavoriteRecording(key) {
+  if (!recordingSession || recordingSession.kind !== "favorite" || recordingSession.key !== key) return;
+  const session = recordingSession;
+  if (session.stopping) return;
+  if (!session.ready) {
+    cleanupRecordingSession(session);
+    recordingSession = null;
+    recordingReleaseRequested = false;
+    recordingPointerId = null;
+    state.favoriteRecordingPreparingKey = "";
+    state.favoriteRecordingKey = "";
+    state.favoriteRecordingStoppingKey = "";
+    state.favoriteRecordingErrorKey = key;
+    state.favoriteRecordingError = "录音尚未准备好，请长按到按钮变为“正在说话”后再开口。";
+    render();
+    return;
+  }
+  session.stopping = true;
+  state.favoriteRecordingPreparingKey = "";
+  state.favoriteRecordingStoppingKey = key;
+  state.favoriteRecordingErrorKey = key;
+  state.favoriteRecordingError = "";
+  render();
+  await delay(800);
+  if (recordingSession !== session) return;
+  recordingSession = null;
+  session.processor.disconnect();
+  session.source.disconnect();
+  session.stream.getTracks().forEach((track) => track.stop());
+  await session.audioContext.close();
+  state.favoriteRecordingKey = "";
+  state.favoriteRecordingStoppingKey = "";
+  state.favoriteRecordingError = "正在提交发音评价...";
+  render();
+  const stats = audioStats(session.chunks, session.sampleRate);
+  if (stats.duration < 0.25 || stats.peak < 0.01) {
+    state.favoriteRecordingError = `录音音量过低或时长太短：${stats.duration.toFixed(1)} 秒，峰值 ${stats.peak.toFixed(3)}。请靠近麦克风重试。`;
+    recordingReleaseRequested = false;
+    recordingPointerId = null;
+    render();
+    return;
+  }
+  const wav = encodeWav(session.chunks, session.sampleRate);
+  const form = new FormData();
+  form.append("wordId", `favorite:${key}`);
+  form.append("referenceText", session.referenceText);
+  form.append("kana", session.kana || "");
+  form.append("audio", new Blob([wav], { type: "audio/wav" }), `${key.replaceAll(":", "-")}.wav`);
+  try {
+    const data = await evaluatePronunciation(form);
+    state.favoriteRecordingResults = {
+      ...state.favoriteRecordingResults,
+      [key]: {
+        ...data,
+        reasons: [...(data.reasons || []), `录音 ${stats.duration.toFixed(1)} 秒，音量峰值 ${stats.peak.toFixed(2)}`]
+      }
+    };
+    state.favoriteRecordingError = "";
+    state.favoriteRecordingErrorKey = key;
+    recordingReleaseRequested = false;
+    recordingPointerId = null;
+    render();
+  } catch (error) {
+    state.favoriteRecordingResults = {
+      ...state.favoriteRecordingResults,
+      [key]: {
+        passed: false,
+        pronunciationScore: 0,
+        accuracyScore: 0,
+        fluencyScore: 0,
+        completenessScore: 0,
+        reasons: [String(error.message || error)]
+      }
+    };
+    state.favoriteRecordingErrorKey = key;
+    state.favoriteRecordingError = String(error.message || error);
+    recordingReleaseRequested = false;
+    recordingPointerId = null;
+    render();
+  }
+}
+
+function startFavoriteHold(button, key, event) {
+  if (!key || recordingSession || state.favoriteRecordingStoppingKey) return;
+  if (event?.pointerId != null) recordingPointerId = event.pointerId;
+  if (event?.currentTarget?.setPointerCapture && event?.pointerId != null) {
+    try {
+      event.currentTarget.setPointerCapture(event.pointerId);
+    } catch {
+      // Ignore capture failures; document/window listeners remain as fallback.
+    }
+  }
+  recordingReleaseRequested = false;
+  startFavoriteRecording(key, button.dataset.favoriteReference, button.dataset.favoriteKana || "");
+}
+
+function endFavoriteHold(key, event) {
+  if (!key) return;
+  if (recordingPointerId != null && event?.pointerId != null && event.pointerId !== recordingPointerId) return;
+  if (event?.currentTarget?.releasePointerCapture && event?.pointerId != null) {
+    try {
+      event.currentTarget.releasePointerCapture(event.pointerId);
+    } catch {
+      // Ignore capture release failures.
+    }
+  }
+  releaseFavoriteRecording(key);
 }
 
 function delay(ms) {
@@ -6755,13 +7432,14 @@ async function setDefaultVoice(voiceId) {
 
 function render() {
   const current = route().page;
+  syncStudyTimerWithRoute();
   // ADMIN_MODE 关闭时，访问管理路由（init/audio）直接重定向到课程主页或首页。
   if (!ADMIN_MODE && ADMIN_ROUTES.has(current)) {
     const currentRoute = route();
     history.replaceState({}, "", currentRoute.lessonId ? `/lesson/${currentRoute.lessonId}` : "/");
     return render();
   }
-  const views = { home, lesson: lessonDashboard, init: initPage, vocab, text: textPage, grammar: grammarPage, exercises: exercisesPage, wrongbook: wrongBookPage, audio: audioManagePage, result: resultPage };
+  const views = { home, lesson: lessonDashboard, init: initPage, vocab, text: textPage, grammar: grammarPage, exercises: exercisesPage, wrongbook: wrongBookPage, favorites: favoritesPage, audio: audioManagePage, result: resultPage };
   hideSelectionBubble();
   const runtimeLessonId = routeRuntimeLessonId();
   if (runtimeLessonId && String(lesson.id) !== runtimeLessonId) {
@@ -6786,11 +7464,11 @@ function render() {
   }
   ensurePageFocus();
   bind();
-  if (current === "home") loadCourseCatalog();
+  if (current === "home" || current === "favorites") loadCourseCatalog();
   if (current === "audio") loadAudioStatus();
   if (current === "init") loadInitStatus();
   if (current === "vocab" && state.vocabPhase === "pronunciation" && !state.modal) {
-    const word = activeVocabulary()[state.currentWord];
+    const word = vocabStudyWords()[state.currentWord];
     if (word && lastAutoSpokenWord !== word.id) {
       lastAutoSpokenWord = word.id;
       const shouldDelay = pendingAutoSpeakWordId === word.id;
@@ -6900,8 +7578,35 @@ function bind() {
   app.querySelectorAll("[data-word-index]").forEach((button) => button.addEventListener("click", () => {
     setCurrentWord(Number(button.dataset.wordIndex), true);
   }));
+  app.querySelector("[data-vocab-focus-only]")?.addEventListener("change", (event) => {
+    state.vocabFocusOnly = Boolean(event.target.checked);
+    write(`lesson:${lesson.id}:vocabFocusOnly`, state.vocabFocusOnly);
+    state.currentWord = 0;
+    state.currentVocabTest = 0;
+    state.vocabTestQueue = [];
+    write(`lesson:${lesson.id}:currentVocabTest`, state.currentVocabTest);
+    write(`lesson:${lesson.id}:vocabTestQueue`, state.vocabTestQueue);
+    lastAutoSpokenWord = null;
+    render();
+  });
+  app.querySelectorAll("[data-toggle-word-favorite]").forEach((button) => button.addEventListener("click", (event) => {
+    event.stopPropagation();
+    const word = wordById(button.dataset.toggleWordFavorite);
+    if (!word) return;
+    toggleFavorite("word", word);
+    render();
+  }));
+  app.querySelectorAll("[data-remove-favorite]").forEach((button) => button.addEventListener("click", (event) => {
+    event.stopPropagation();
+    const [type, lessonIdValue, ...rest] = button.dataset.removeFavorite.split(":");
+    const id = rest.join(":");
+    const favorites = lessonFavorites(lessonIdValue);
+    delete favorites[favoriteTypeKey(type)]?.[id];
+    writeLessonFavorites(lessonIdValue, favorites);
+    render();
+  }));
   app.querySelectorAll("[data-word-status]").forEach((button) => button.addEventListener("click", () => {
-    const word = activeVocabulary()[state.currentWord];
+    const word = vocabStudyWords()[state.currentWord];
     state.wordProgress[word.id] = button.dataset.wordStatus;
     write(`lesson:${lesson.id}:wordProgress`, state.wordProgress);
     setCurrentWord(state.currentWord + 1, true);
@@ -6915,6 +7620,9 @@ function bind() {
   app.querySelectorAll("[data-word-quiz]").forEach((button) => button.addEventListener("click", () => {
     const [mode, selectedWordId] = button.dataset.wordQuiz.split(":");
     handleWordQuiz(mode, selectedWordId);
+  }));
+  app.querySelectorAll("[data-slash-word]").forEach((button) => button.addEventListener("click", () => {
+    slashWord(button.dataset.slashWord);
   }));
   app.querySelectorAll("[data-hold-record-word]").forEach((button) => {
     button.addEventListener("pointerdown", (event) => {
@@ -6934,6 +7642,9 @@ function bind() {
   app.querySelector("[data-reset-word-learning]")?.addEventListener("click", resetWordLearningData);
   app.querySelectorAll("[data-next-pronunciation-word]").forEach((button) => button.addEventListener("click", () => {
     setCurrentWord(state.currentWord + 1, true);
+  }));
+  app.querySelectorAll("[data-prev-pronunciation-word]").forEach((button) => button.addEventListener("click", () => {
+    setCurrentWord(state.currentWord - 1, true);
   }));
   app.querySelector("[data-start-vocab-test]")?.addEventListener("click", startVocabTest);
   app.querySelector("[data-reset-vocab-test]")?.addEventListener("click", () => {
@@ -7042,6 +7753,21 @@ function bind() {
       endTextHold(button.dataset.holdRecordSentence, event);
     });
   });
+  app.querySelectorAll("[data-hold-record-favorite]").forEach((button) => {
+    button.addEventListener("pointerdown", (event) => {
+      event.preventDefault();
+      startFavoriteHold(button, button.dataset.holdRecordFavorite, event);
+    });
+    button.addEventListener("pointerup", (event) => {
+      endFavoriteHold(button.dataset.holdRecordFavorite, event);
+    });
+    button.addEventListener("pointercancel", (event) => {
+      endFavoriteHold(button.dataset.holdRecordFavorite, event);
+    });
+    button.addEventListener("lostpointercapture", (event) => {
+      endFavoriteHold(button.dataset.holdRecordFavorite, event);
+    });
+  });
   app.querySelectorAll("[data-exercise-index]").forEach((button) => button.addEventListener("click", () => {
     const exerciseIndex = Number(button.dataset.exerciseIndex);
     const exercise = lesson.exercises[exerciseIndex];
@@ -7141,6 +7867,15 @@ function bind() {
 window.addEventListener("popstate", render);
 document.addEventListener("keydown", handleKeyboard, true);
 document.addEventListener("keyup", handleKeyboard, true);
+["click", "input", "change", "pointerdown", "keydown"].forEach((eventName) => {
+  document.addEventListener(eventName, trackStudyActivity, true);
+});
+["beforeunload", "pagehide"].forEach((eventName) => {
+  window.addEventListener(eventName, () => settleStudyTimer(eventName));
+});
+document.addEventListener("visibilitychange", () => {
+  if (document.visibilityState === "hidden") settleStudyTimer("visibility-hidden");
+});
 document.addEventListener("selectionchange", () => window.setTimeout(handleSelectionLookup, 0));
 document.addEventListener("pointerdown", (event) => {
   if (!event.target.closest?.("#selection-bubble")) hideSelectionBubble();
@@ -7149,11 +7884,13 @@ document.addEventListener("pointerup", () => {
   releaseWordRecording(recordingPressWordId || recordingSession?.wordId || state.recordingPreparingWordId);
   releaseGrammarRecording(state.grammarRecordingId || state.grammarRecordingPreparingId || recordingSession?.key);
   releaseTextRecording(state.textRecordingId || state.textRecordingPreparingId || recordingSession?.sentenceId);
+  releaseFavoriteRecording(state.favoriteRecordingKey || state.favoriteRecordingPreparingKey || recordingSession?.key);
 }, true);
 document.addEventListener("pointercancel", () => {
   releaseWordRecording(recordingPressWordId || recordingSession?.wordId || state.recordingPreparingWordId);
   releaseGrammarRecording(state.grammarRecordingId || state.grammarRecordingPreparingId || recordingSession?.key);
   releaseTextRecording(state.textRecordingId || state.textRecordingPreparingId || recordingSession?.sentenceId);
+  releaseFavoriteRecording(state.favoriteRecordingKey || state.favoriteRecordingPreparingKey || recordingSession?.key);
 }, true);
 document.addEventListener("copy", (e) => {
   const selection = window.getSelection();
