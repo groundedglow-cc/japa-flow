@@ -1791,6 +1791,222 @@ function parseMarkdown(text) {
     .replace(/\n/g, "<br>");
 }
 
+// ============ API SYNC LAYER ============
+
+const API_BASE = "/api/japaflow";
+let authPromptShown = false;
+let suppressApiSync = false;
+const syncTimers = {};
+const SYNC_DEBOUNCE_MS = 2000;
+
+function getAuthToken() {
+  return localStorage.getItem("light_blog_token") || "";
+}
+
+function isLoggedIn() {
+  return Boolean(getAuthToken());
+}
+
+function getStoredUsername() {
+  try {
+    const raw = localStorage.getItem("light_blog_user");
+    if (!raw) return "";
+    return JSON.parse(raw).username || "";
+  } catch { return ""; }
+}
+
+function hasSkippedAuth() {
+  return sessionStorage.getItem("japaflow:skipAuth") === "1";
+}
+
+function shouldSync() {
+  return isLoggedIn() && !hasSkippedAuth();
+}
+
+async function apiRequest(method, path, body = null) {
+  const headers = { Authorization: `Bearer ${getAuthToken()}` };
+  if (body !== null) headers["Content-Type"] = "application/json";
+  try {
+    const res = await fetch(`${API_BASE}${path}`, {
+      method,
+      headers,
+      body: body !== null ? JSON.stringify(body) : undefined
+    });
+    if (res.status === 401) {
+      handleAuthExpired();
+      return null;
+    }
+    if (!res.ok) {
+      console.warn(`[API] ${method} ${path} → ${res.status}`);
+      return null;
+    }
+    const json = await res.json();
+    return json.code === 0 ? json.data : null;
+  } catch (err) {
+    console.warn(`[API] ${method} ${path} failed:`, err.message);
+    return null;
+  }
+}
+
+function handleAuthExpired() {
+  localStorage.removeItem("light_blog_token");
+  localStorage.removeItem("light_blog_user");
+  if (authPromptShown || hasSkippedAuth()) return;
+  authPromptShown = true;
+  state.modal = { type: "authPrompt" };
+  render();
+}
+
+function apiFetchAllProgress() {
+  return apiRequest("GET", "/progress/export");
+}
+
+function apiUploadAllProgress(lessons) {
+  return apiRequest("POST", "/progress/import", { lessons });
+}
+
+function apiSyncWordLearning(lessonId, wordId, data) {
+  return apiRequest("PUT", `/lessons/${lessonId}/words/${wordId}`, data);
+}
+
+function apiSyncResetWords(lessonId) {
+  return apiRequest("DELETE", `/lessons/${lessonId}/words`);
+}
+
+function apiSyncGrammarPractice(lessonId, grammarId, exampleIndex, data) {
+  return apiRequest("PUT", `/lessons/${lessonId}/grammar/${grammarId}/${exampleIndex}`, data);
+}
+
+function apiSyncSentencePractice(lessonId, sentenceId, data) {
+  return apiRequest("PUT", `/lessons/${lessonId}/sentences/${sentenceId}`, data);
+}
+
+function apiSyncExerciseResult(lessonId, exerciseId, data) {
+  return apiRequest("POST", `/lessons/${lessonId}/exercises/${exerciseId}`, data);
+}
+
+function apiSyncWrongBook(lessonId, itemType, itemId, data) {
+  return apiRequest("POST", `/lessons/${lessonId}/wrong-book`, { itemType, itemId, ...data });
+}
+
+function apiSyncResolveWrongItem(lessonId, itemType, itemId) {
+  return apiRequest("PUT", `/lessons/${lessonId}/wrong-book/${itemType}/${itemId}/resolve`);
+}
+
+function apiSyncInteractionProgress(lessonId, itemType, itemId, data) {
+  return apiRequest("PUT", `/lessons/${lessonId}/interaction-progress/${itemType}/${itemId}`, data);
+}
+
+function apiSyncStudyTime(lessonId, module, deltaMs, activeAt) {
+  return apiRequest("POST", `/lessons/${lessonId}/study-time/${module}`, { deltaMs, activeAt });
+}
+
+function apiSyncAddFavorite(lessonId, itemType, itemId, snapshot) {
+  return apiRequest("POST", `/lessons/${lessonId}/favorites`, { itemType, itemId, snapshot });
+}
+
+function apiSyncRemoveFavorite(lessonId, itemType, itemId) {
+  return apiRequest("DELETE", `/lessons/${lessonId}/favorites/${itemType}/${itemId}`);
+}
+
+function apiSyncPreference(lessonId, data) {
+  return apiRequest("PUT", `/lessons/${lessonId}/preferences`, data);
+}
+
+function scheduleApiSync(key, value) {
+  if (suppressApiSync) return;
+  if (!shouldSync()) return;
+  clearTimeout(syncTimers[key]);
+  syncTimers[key] = setTimeout(() => dispatchSync(key, value), SYNC_DEBOUNCE_MS);
+}
+
+function dispatchSync(key, value) {
+  const m = key.match(/^lesson:(\d+):(.+)$/);
+  if (!m) return;
+  const [, lessonId, dataKey] = m;
+
+  switch (dataKey) {
+    case "wordLearning":
+      Object.entries(value || {}).forEach(([wordId, data]) => {
+        apiSyncWordLearning(lessonId, wordId, data);
+      });
+      break;
+
+    case "grammarPractice":
+      Object.entries(value || {}).forEach(([compositeKey, data]) => {
+        const sepIdx = compositeKey.indexOf(":");
+        const grammarId = sepIdx > 0 ? compositeKey.slice(0, sepIdx) : compositeKey;
+        const exIdx = sepIdx > 0 ? compositeKey.slice(sepIdx + 1) : "0";
+        apiSyncGrammarPractice(lessonId, grammarId, exIdx, data);
+      });
+      break;
+
+    case "sentencePractice":
+      Object.entries(value || {}).forEach(([sentenceId, data]) => {
+        apiSyncSentencePractice(lessonId, sentenceId, data);
+      });
+      break;
+
+    case "exerciseResults":
+      (value || []).forEach((result) => {
+        apiSyncExerciseResult(lessonId, result.exerciseId, result);
+      });
+      break;
+
+    case "wrongBook":
+      Object.entries(value || {}).forEach(([exerciseId, data]) => {
+        if (data.status === "resolved") {
+          apiSyncResolveWrongItem(lessonId, "exercise", exerciseId);
+        } else {
+          apiSyncWrongBook(lessonId, "exercise", exerciseId, { wrongDetail: data });
+        }
+      });
+      break;
+
+    case "interactionProgress":
+      ["words", "sentences", "grammarExamples"].forEach((type) => {
+        const singularType = type === "grammarExamples" ? "grammarExample" : type.replace(/s$/, "");
+        Object.entries(value?.[type] || {}).forEach(([itemId, data]) => {
+          apiSyncInteractionProgress(lessonId, singularType, itemId, data);
+        });
+      });
+      break;
+
+    case "currentVoiceId":
+      apiSyncPreference(lessonId, { currentVoiceId: value });
+      break;
+    case "playbackRate":
+      apiSyncPreference(lessonId, { playbackRate: value });
+      break;
+    case "vocabFocusOnly":
+      apiSyncPreference(lessonId, { vocabFocusOnly: value });
+      break;
+    case "currentExerciseGroup":
+      apiSyncPreference(lessonId, { currentExerciseGroup: value });
+      break;
+    case "textCurrentTab":
+      apiSyncPreference(lessonId, { textCurrentTab: value });
+      break;
+
+    case "wordProgress":
+    case "exerciseGroupAnswers":
+    case "exerciseGroupSubmitted":
+    case "vocabTestQueue":
+    case "currentVocabTest":
+    case "textCurrentSentenceByTab":
+    case "textPromptLanguage":
+    case "audioVersions":
+    case "favorites":
+    case "studyTime":
+      break;
+
+    default:
+      break;
+  }
+}
+
+// ============ END API SYNC LAYER ============
+
 function read(key, fallback) {
   try {
     return JSON.parse(localStorage.getItem(`japaflow:${key}`)) || fallback;
@@ -1801,6 +2017,7 @@ function read(key, fallback) {
 
 function write(key, value) {
   localStorage.setItem(`japaflow:${key}`, JSON.stringify(value));
+  scheduleApiSync(key, value);
 }
 
 function removeStored(key) {
@@ -1881,6 +2098,9 @@ function settleStudyTimer(reason = "settle") {
     lastActiveAt: new Date(studySession.lastActiveAt).toISOString()
   };
   writeStudyTime(studySession.lessonId, data);
+  if (shouldSync()) {
+    apiSyncStudyTime(studySession.lessonId, studySession.module, elapsed, new Date(studySession.lastActiveAt).toISOString());
+  }
   studySession = null;
   if (studyIdleTimer) window.clearTimeout(studyIdleTimer);
   studyIdleTimer = null;
@@ -1916,41 +2136,78 @@ function trackStudyActivity(event) {
   scheduleStudyIdleCheck();
 }
 
-function exportLearningData() {
-  const entries = {};
-  for (let index = 0; index < localStorage.length; index += 1) {
-    const key = localStorage.key(index);
-    if (!key?.startsWith("japaflow:")) continue;
-    entries[key] = localStorage.getItem(key);
-  }
-  const payload = {
-    app: "JapaFlow",
-    type: "learning-progress",
-    version: 1,
-    exportedAt: new Date().toISOString(),
-    entries
-  };
+function downloadJsonBlob(payload, filename) {
   const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
   const url = URL.createObjectURL(blob);
   const link = document.createElement("a");
   link.href = url;
-  link.download = `japaflow-progress-${new Date().toISOString().slice(0, 10)}.json`;
+  link.download = filename;
   document.body.appendChild(link);
   link.click();
   link.remove();
   URL.revokeObjectURL(url);
 }
 
+async function exportLearningData() {
+  if (shouldSync()) {
+    const data = await apiFetchAllProgress();
+    if (!data) { window.alert("导出失败，请重试。"); return; }
+    downloadJsonBlob({
+      app: "JapaFlow", type: "learning-progress", version: 2,
+      exportedAt: new Date().toISOString(),
+      lessons: data.lessons
+    }, `japaflow-progress-${new Date().toISOString().slice(0, 10)}.json`);
+    return;
+  }
+  const entries = {};
+  for (let index = 0; index < localStorage.length; index += 1) {
+    const key = localStorage.key(index);
+    if (!key?.startsWith("japaflow:")) continue;
+    entries[key] = localStorage.getItem(key);
+  }
+  downloadJsonBlob({
+    app: "JapaFlow", type: "learning-progress", version: 1,
+    exportedAt: new Date().toISOString(), entries
+  }, `japaflow-progress-${new Date().toISOString().slice(0, 10)}.json`);
+}
+
 async function importLearningData(file) {
   if (!file) return;
   const text = await file.text();
   const payload = JSON.parse(text);
+
+  if (shouldSync() && payload?.version === 2 && payload?.lessons) {
+    const ok = window.confirm("确定导入学习数据吗？将覆盖云端已有数据。");
+    if (!ok) return;
+    const result = await apiUploadAllProgress(payload.lessons);
+    if (!result) { window.alert("导入失败，请重试。"); return; }
+    clearLocalLearningData();
+    await pullServerData();
+    window.alert("学习数据已导入，页面将刷新。");
+    location.reload();
+    return;
+  }
+
   const entries = payload?.entries;
   if (payload?.app !== "JapaFlow" || payload?.type !== "learning-progress" || !entries || typeof entries !== "object") {
     throw new Error("这不是有效的 JapaFlow 学习数据文件。");
   }
   const count = Object.keys(entries).filter((key) => key.startsWith("japaflow:")).length;
   if (!count) throw new Error("导入文件里没有可用的学习数据。");
+
+  if (shouldSync()) {
+    const ok = window.confirm(`确定导入学习数据吗？共 ${count} 项，将覆盖云端已有数据。`);
+    if (!ok) return;
+    const lessons = collectLocalProgressFromEntries(entries);
+    const result = await apiUploadAllProgress(lessons);
+    if (!result) { window.alert("导入失败，请重试。"); return; }
+    clearLocalLearningData();
+    await pullServerData();
+    window.alert("学习数据已导入，页面将刷新。");
+    location.reload();
+    return;
+  }
+
   const ok = window.confirm(`导入会覆盖本机已有学习数据，共 ${count} 项。确定继续吗？`);
   if (!ok) return;
   const existingKeys = [];
@@ -1966,6 +2223,132 @@ async function importLearningData(file) {
   window.alert("学习数据已导入，页面将刷新。");
   location.reload();
 }
+
+// ============ DATA MIGRATION HELPERS ============
+
+function hasLocalLearningData() {
+  for (let i = 0; i < localStorage.length; i++) {
+    const key = localStorage.key(i);
+    if (key && key.startsWith("japaflow:lesson:")) return true;
+  }
+  return false;
+}
+
+function clearLocalLearningData() {
+  const toRemove = [];
+  for (let i = 0; i < localStorage.length; i++) {
+    const key = localStorage.key(i);
+    if (key?.startsWith("japaflow:lesson:")) toRemove.push(key);
+  }
+  toRemove.forEach((key) => localStorage.removeItem(key));
+}
+
+function collectLocalProgressFromEntries(entries) {
+  const lessons = {};
+  Object.entries(entries).forEach(([key, value]) => {
+    const m = key.match(/^japaflow:lesson:(\d+):(.+)$/);
+    if (!m) return;
+    const [, lessonId, dataKey] = m;
+    if (!lessons[lessonId]) lessons[lessonId] = {};
+    try {
+      lessons[lessonId][dataKey] = typeof value === "string" ? JSON.parse(value) : value;
+    } catch { /* skip */ }
+  });
+  return lessons;
+}
+
+function collectLocalProgressForUpload() {
+  const entries = {};
+  for (let i = 0; i < localStorage.length; i++) {
+    const key = localStorage.key(i);
+    if (key?.startsWith("japaflow:")) entries[key] = localStorage.getItem(key);
+  }
+  return collectLocalProgressFromEntries(entries);
+}
+
+async function pullServerData() {
+  const data = await apiFetchAllProgress();
+  if (!data?.lessons) return;
+  suppressApiSync = true;
+  try {
+    Object.entries(data.lessons).forEach(([lessonId, ld]) => {
+      if (ld.wordLearning) write(`lesson:${lessonId}:wordLearning`, ld.wordLearning);
+      if (ld.grammarPractice) write(`lesson:${lessonId}:grammarPractice`, ld.grammarPractice);
+      if (ld.sentencePractice) write(`lesson:${lessonId}:sentencePractice`, ld.sentencePractice);
+      if (ld.exerciseResults) write(`lesson:${lessonId}:exerciseResults`, ld.exerciseResults);
+      if (ld.wrongBook) write(`lesson:${lessonId}:wrongBook`, ld.wrongBook);
+      if (ld.interactionProgress) write(`lesson:${lessonId}:interactionProgress`, ld.interactionProgress);
+      if (ld.studyTime) write(`lesson:${lessonId}:studyTime`, ld.studyTime);
+      if (ld.favorites) write(`lesson:${lessonId}:favorites`, ld.favorites);
+      if (ld.preferences) {
+        const p = ld.preferences;
+        if (p.currentVoiceId) write(`lesson:${lessonId}:currentVoiceId`, p.currentVoiceId);
+        if (p.playbackRate != null) write(`lesson:${lessonId}:playbackRate`, p.playbackRate);
+        if (p.vocabFocusOnly != null) write(`lesson:${lessonId}:vocabFocusOnly`, p.vocabFocusOnly);
+        if (p.currentExerciseGroup != null) write(`lesson:${lessonId}:currentExerciseGroup`, p.currentExerciseGroup);
+        if (p.textCurrentTab) write(`lesson:${lessonId}:textCurrentTab`, p.textCurrentTab);
+      }
+    });
+  } finally {
+    suppressApiSync = false;
+  }
+}
+
+function buildLocalDataSummary() {
+  const lessonsWithData = new Set();
+  for (let i = 0; i < localStorage.length; i++) {
+    const key = localStorage.key(i);
+    const m = key?.match(/^japaflow:lesson:(\d+):/);
+    if (m) lessonsWithData.add(Number(m[1]));
+  }
+  return Array.from(lessonsWithData).sort((a, b) => a - b).map((id) => {
+    const catalogItem = lessonCatalog.find((item) => item.id === id) || { id, title: `第${id}课`, counts: {} };
+    const summary = catalogLessonProgressSummary(catalogItem);
+    return { lessonId: id, title: catalogItem.title, subtitle: catalogItem.subtitle, summary };
+  });
+}
+
+async function checkLocalDataMigration() {
+  if (sessionStorage.getItem("japaflow:migrationHandled") === "1") return;
+  if (!isLoggedIn()) return;
+  if (!hasLocalLearningData()) {
+    await pullServerData();
+    return;
+  }
+  showMigrationPanel();
+}
+
+function showMigrationPanel() {
+  const localSummary = buildLocalDataSummary();
+  state.modal = { type: "migration", localSummary };
+  render();
+}
+
+async function handleMigration(action) {
+  if (action === "upload") {
+    const lessons = collectLocalProgressForUpload();
+    const result = await apiUploadAllProgress(lessons);
+    if (!result) {
+      window.alert("上传失败，请稍后重试。");
+      return;
+    }
+    clearLocalLearningData();
+    await pullServerData();
+    window.alert("数据已同步到云端。");
+  }
+  if (action === "discard") {
+    const ok = window.confirm("确定丢弃本地数据吗？此操作不可恢复。");
+    if (!ok) return;
+    clearLocalLearningData();
+    await pullServerData();
+  }
+  sessionStorage.setItem("japaflow:migrationHandled", "1");
+  state.modal = null;
+  reloadLessonScopedState();
+  render();
+}
+
+// ============ END DATA MIGRATION HELPERS ============
 
 function normalizeRuntimeLesson(data) {
   const nextLesson = JSON.parse(JSON.stringify(data || {}));
@@ -2120,6 +2503,7 @@ function resetWordLearningData(shouldRender = true) {
   state.grammarRecordingError = "";
   lastAutoSpokenWord = null;
   pendingAutoSpeakWordId = "";
+  if (shouldSync()) apiSyncResetWords(lesson.id);
   if (shouldRender) render();
 }
 
@@ -2492,12 +2876,20 @@ function toggleFavorite(type, item, lessonIdValue = lesson.id) {
   const favorites = lessonFavorites(lessonIdValue);
   const key = favoriteTypeKey(type);
   const id = item.id;
-  if (favorites[key][id]) {
+  const isRemoving = Boolean(favorites[key][id]);
+  if (isRemoving) {
     delete favorites[key][id];
   } else {
     favorites[key][id] = type === "sentence" ? sentenceFavoriteSnapshot(item) : wordFavoriteSnapshot(item);
   }
   writeLessonFavorites(lessonIdValue, favorites);
+  if (shouldSync()) {
+    if (isRemoving) {
+      apiSyncRemoveFavorite(lessonIdValue, type, id);
+    } else {
+      apiSyncAddFavorite(lessonIdValue, type, id, favorites[key][id]);
+    }
+  }
 }
 
 function allFavoriteItems() {
@@ -3497,6 +3889,11 @@ function layout(content) {
             </div>
           </div>
           <input class="hidden" type="file" accept="application/json,.json" data-import-progress-file />
+          ${isLoggedIn() ? `
+            <span class="topbar-user"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>${escapeHtml(getStoredUsername())}</span>
+          ` : `
+            <button class="topbar-login" type="button" data-header-login><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>登录</button>
+          `}
         </div>
       </header>
       ${showLessonSubnav ? lessonSubnav(runtimeLessonId, current) : ""}
@@ -5794,6 +6191,45 @@ function modal(data) {
       </div>
     `;
   }
+  if (data.type === "authPrompt") {
+    return `
+      <div class="dialog-backdrop">
+        <article class="panel dialog" data-dialog>
+          <h2>登录以同步学习数据</h2>
+          <p class="muted">登录后，你的学习进度可以在多个设备间同步。</p>
+          <div class="button-row">
+            <button class="primary" data-auth-action="login">前往登录</button>
+            <button class="secondary" data-auth-action="skip">暂不需要</button>
+          </div>
+        </article>
+      </div>
+    `;
+  }
+  if (data.type === "migration") {
+    const summaryItems = (data.localSummary || []).map((item) => {
+      const s = item.summary;
+      const parts = [];
+      if (s.vocab.total) parts.push(`单词 ${s.vocab.completed}/${s.vocab.total}`);
+      if (s.grammar.total) parts.push(`语法 ${s.grammar.completed}/${s.grammar.total}`);
+      if (s.text.total) parts.push(`课文 ${s.text.completed}/${s.text.total}`);
+      if (s.exercises.total) parts.push(`练习 ${s.exercises.completed}/${s.exercises.total}`);
+      return `<li>${escapeHtml(item.title)} — ${parts.join("，") || "有学习记录"}</li>`;
+    }).join("");
+    return `
+      <div class="dialog-backdrop">
+        <article class="panel dialog" data-dialog>
+          <h2>发现本地学习数据</h2>
+          <p class="muted">当前设备上有未同步的学习记录。是否将这些数据上传到云端？</p>
+          <div class="migration-summary"><ul>${summaryItems}</ul></div>
+          <div class="button-row migration-actions">
+            <button class="primary" data-migration="upload">上传到云端</button>
+            <button class="secondary" data-migration="discard">丢弃本地，使用云端</button>
+          </div>
+          <div class="button-row"><button class="ghost" data-migration="skip">稍后处理</button></div>
+        </article>
+      </div>
+    `;
+  }
   const grammar = grammarById(data.id);
   return `<div class="dialog-backdrop" data-close-modal><article class="panel dialog" data-dialog>${grammarDetail(grammar)}<button class="secondary" data-close-modal>关闭</button></article></div>`;
 }
@@ -7527,6 +7963,25 @@ function bind() {
       window.alert(String(error.message || error));
     }
   });
+  function triggerLogin() {
+    const mainUrl = window.location.hostname === "localhost" ? "http://localhost:3000" : "https://groundedglow.cc";
+    if (window.parent !== window) {
+      window.parent.postMessage({ type: "AUTH_EXPIRED" }, mainUrl);
+      return;
+    }
+    window.location.href = mainUrl + "/login?redirect=" + encodeURIComponent(window.location.href);
+  }
+  app.querySelector('[data-auth-action="login"]')?.addEventListener("click", triggerLogin);
+  app.querySelector("[data-header-login]")?.addEventListener("click", triggerLogin);
+  app.querySelector('[data-auth-action="skip"]')?.addEventListener("click", () => {
+    sessionStorage.setItem("japaflow:skipAuth", "1");
+    localStorage.setItem("japaflow:authPromptDismissed", "1");
+    state.modal = null;
+    render();
+  });
+  app.querySelectorAll("[data-migration]").forEach((button) => button.addEventListener("click", () => {
+    handleMigration(button.dataset.migration);
+  }));
   app.querySelectorAll("[data-speak]").forEach((button) => {
     button.addEventListener("click", () => playAudio(button.dataset.speak, button.dataset.audio));
   });
@@ -7865,6 +8320,21 @@ function bind() {
 }
 
 window.addEventListener("popstate", render);
+window.addEventListener("japaflow:auth-changed", (e) => {
+  if (e.detail?.loggedIn) {
+    sessionStorage.removeItem("japaflow:skipAuth");
+    state.modal = null;
+    checkLocalDataMigration().then(() => {
+      reloadLessonScopedState();
+      render();
+    });
+  } else {
+    if (!localStorage.getItem("japaflow:authPromptDismissed")) {
+      state.modal = { type: "authPrompt" };
+      render();
+    }
+  }
+});
 document.addEventListener("keydown", handleKeyboard, true);
 document.addEventListener("keyup", handleKeyboard, true);
 ["click", "input", "change", "pointerdown", "keydown"].forEach((eventName) => {
@@ -7917,7 +8387,18 @@ window.addEventListener("pointerdown", primeSpeech, { once: true });
 if ("speechSynthesis" in window) {
   speechSynthesis.addEventListener?.("voiceschanged", primeSpeech);
 }
-fetchFrontendConfig().then(render);
+fetchFrontendConfig().then(() => {
+  render();
+  if (isLoggedIn() && !hasSkippedAuth()) {
+    checkLocalDataMigration().then(() => {
+      reloadLessonScopedState();
+      render();
+    });
+  } else if (!isLoggedIn() && !localStorage.getItem("japaflow:authPromptDismissed") && window.parent === window) {
+    state.modal = { type: "authPrompt" };
+    render();
+  }
+});
 
 function handleKeyboard(event) {
   if (event.metaKey || event.ctrlKey || event.altKey) return;

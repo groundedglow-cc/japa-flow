@@ -1,4 +1,4 @@
-import { createServer } from "node:http";
+import { createServer, request as httpRequest } from "node:http";
 import { existsSync, readFileSync } from "node:fs";
 import { mkdir, readFile, readdir, writeFile } from "node:fs/promises";
 import { basename, dirname, extname, join, normalize } from "node:path";
@@ -28,6 +28,7 @@ import { isOSSEnabled, getOSSConfig, ossUrl, uploadToOSS } from "./scripts/oss-u
 
 const root = process.cwd();
 const port = Number(process.env.PORT || 5173);
+const japaflowApiPort = Number(process.env.JAPAFLOW_API_PORT || 8081);
 const lessonId = 27;
 const defaultVoiceId = "Japanese_IntellectualSenior";
 const sampleText = "子供の時、大きな地震がありました。";
@@ -107,6 +108,17 @@ const lessonCatalog = Array.from({ length: 48 }, (_, index) => {
     runtimeReady
   };
 });
+
+const ALLOWED_ORIGINS = ["http://localhost:3000", "https://groundedglow.cc"];
+
+function setCorsHeaders(req, res) {
+  const origin = req.headers.origin;
+  if (origin && ALLOWED_ORIGINS.includes(origin)) {
+    res.setHeader("Access-Control-Allow-Origin", origin);
+    res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+    res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+  }
+}
 
 function headers(type) {
   return {
@@ -1222,8 +1234,43 @@ async function handleApi(req, res, url) {
   return false;
 }
 
+function proxyToJavaApi(clientReq, clientRes, url) {
+  const proxyPath = url.pathname + (url.search || "");
+  const proxyReq = httpRequest(
+    {
+      hostname: "127.0.0.1",
+      port: japaflowApiPort,
+      path: proxyPath,
+      method: clientReq.method,
+      headers: { ...clientReq.headers, host: `127.0.0.1:${japaflowApiPort}` }
+    },
+    (proxyRes) => {
+      clientRes.writeHead(proxyRes.statusCode, proxyRes.headers);
+      proxyRes.pipe(clientRes);
+    }
+  );
+  proxyReq.on("error", (err) => {
+    console.warn(`[Proxy] ${clientReq.method} ${proxyPath} → Java API error:`, err.message);
+    if (!clientRes.headersSent) {
+      clientRes.writeHead(502, { "Content-Type": "application/json; charset=utf-8" });
+    }
+    clientRes.end(JSON.stringify({ code: 502, message: "Java API 不可用，请确认后端已启动在端口 " + japaflowApiPort }));
+  });
+  clientReq.pipe(proxyReq);
+}
+
 createServer(async (req, res) => {
+  setCorsHeaders(req, res);
+  if (req.method === "OPTIONS") {
+    res.writeHead(204);
+    res.end();
+    return;
+  }
   const url = new URL(req.url || "/", `http://${req.headers.host}`);
+  if (url.pathname.startsWith("/api/japaflow/")) {
+    proxyToJavaApi(req, res, url);
+    return;
+  }
   if (url.pathname.startsWith("/api/")) {
     if (await handleApi(req, res, url)) return;
     sendJson(res, 404, { error: `Unknown API route or method: ${req.method} ${url.pathname}` });

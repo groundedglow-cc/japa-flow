@@ -86,6 +86,36 @@ button {
   gap: 8px;
 }
 
+.topbar-user {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+.topbar-login {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: background 0.15s, color 0.15s;
+}
+
+.topbar-login:hover {
+  background: #e8f2ee;
+  color: var(--accent);
+}
+
 .playback-control {
   display: inline-flex;
   align-items: center;
@@ -3121,6 +3151,26 @@ textarea.answer-input {
 
 .dialog {
   width: min(560px, 100%);
+}
+
+.migration-summary {
+  max-height: 240px;
+  overflow-y: auto;
+  margin: 12px 0;
+  padding: 8px 0;
+  border-top: 1px solid rgba(127, 127, 127, 0.2);
+  border-bottom: 1px solid rgba(127, 127, 127, 0.2);
+}
+
+.migration-summary ul {
+  margin: 0;
+  padding: 0 0 0 20px;
+  font-size: 0.9em;
+  line-height: 1.8;
+}
+
+.migration-actions {
+  gap: 8px;
 }
 
 .hidden {
