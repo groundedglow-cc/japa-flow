@@ -6,6 +6,23 @@
   var TOKEN_KEY = 'light_blog_token';
   var USER_KEY = 'light_blog_user';
 
+  function getCookie(name) {
+    var match = document.cookie.match(new RegExp('(?:^|; )' + name + '=([^;]*)'));
+    return match ? decodeURIComponent(match[1]) : '';
+  }
+
+  // On standalone load (not iframe), sync cookie → localStorage
+  if (window.parent === window) {
+    var cookieToken = getCookie(TOKEN_KEY);
+    var cookieUser = getCookie(USER_KEY);
+    if (cookieToken && !localStorage.getItem(TOKEN_KEY)) {
+      localStorage.setItem(TOKEN_KEY, cookieToken);
+      if (cookieUser) {
+        localStorage.setItem(USER_KEY, cookieUser);
+      }
+    }
+  }
+
   // Receive auth from parent (iframe mode)
   window.addEventListener('message', function (e) {
     if (e.origin !== MAIN_APP_URL) return;
