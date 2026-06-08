@@ -1851,6 +1851,7 @@ async function apiRequest(method, path, body = null) {
 function handleAuthExpired() {
   localStorage.removeItem("light_blog_token");
   localStorage.removeItem("light_blog_user");
+  localStorage.removeItem("japaflow:serverSynced");
   if (authPromptShown || hasSkippedAuth()) return;
   authPromptShown = true;
   state.modal = { type: "authPrompt" };
@@ -1918,6 +1919,13 @@ function scheduleApiSync(key, value) {
   if (!shouldSync()) return;
   clearTimeout(syncTimers[key]);
   syncTimers[key] = setTimeout(() => dispatchSync(key, value), SYNC_DEBOUNCE_MS);
+}
+
+function flushPendingSyncs() {
+  Object.keys(syncTimers).forEach((key) => {
+    clearTimeout(syncTimers[key]);
+    delete syncTimers[key];
+  });
 }
 
 function dispatchSync(key, value) {
@@ -2241,6 +2249,7 @@ function clearLocalLearningData() {
     if (key?.startsWith("japaflow:lesson:")) toRemove.push(key);
   }
   toRemove.forEach((key) => localStorage.removeItem(key));
+  localStorage.removeItem("japaflow:serverSynced");
 }
 
 function collectLocalProgressFromEntries(entries) {
@@ -2269,11 +2278,20 @@ function collectLocalProgressForUpload() {
 async function pullServerData() {
   const data = await apiFetchAllProgress();
   if (!data?.lessons) return;
+  flushPendingSyncs();
+  clearLocalLearningData();
+  localStorage.setItem("japaflow:serverSynced", "1");
   suppressApiSync = true;
   try {
     Object.entries(data.lessons).forEach(([lessonId, ld]) => {
       if (ld.wordLearning) write(`lesson:${lessonId}:wordLearning`, ld.wordLearning);
-      if (ld.grammarPractice) write(`lesson:${lessonId}:grammarPractice`, ld.grammarPractice);
+      if (ld.grammarPractice) {
+        var converted = {};
+        Object.entries(ld.grammarPractice).forEach(function ([k, v]) {
+          converted[k.replace("_", ":")] = v;
+        });
+        write(`lesson:${lessonId}:grammarPractice`, converted);
+      }
       if (ld.sentencePractice) write(`lesson:${lessonId}:sentencePractice`, ld.sentencePractice);
       if (ld.exerciseResults) write(`lesson:${lessonId}:exerciseResults`, ld.exerciseResults.map(function (r) {
         return {
@@ -2320,13 +2338,14 @@ function buildLocalDataSummary() {
 }
 
 async function checkLocalDataMigration() {
-  if (sessionStorage.getItem("japaflow:migrationHandled") === "1") return;
   if (!isLoggedIn()) return;
-  if (!hasLocalLearningData()) {
-    await pullServerData();
+  if (hasLocalLearningData()
+      && !localStorage.getItem("japaflow:serverSynced")
+      && !sessionStorage.getItem("japaflow:migrationHandled")) {
+    showMigrationPanel();
     return;
   }
-  showMigrationPanel();
+  await pullServerData();
 }
 
 function showMigrationPanel() {
@@ -2343,14 +2362,12 @@ async function handleMigration(action) {
       window.alert("上传失败，请稍后重试。");
       return;
     }
-    clearLocalLearningData();
     await pullServerData();
     window.alert("数据已同步到云端。");
   }
   if (action === "discard") {
     const ok = window.confirm("确定丢弃本地数据吗？此操作不可恢复。");
     if (!ok) return;
-    clearLocalLearningData();
     await pullServerData();
   }
   sessionStorage.setItem("japaflow:migrationHandled", "1");
@@ -8352,7 +8369,10 @@ document.addEventListener("keyup", handleKeyboard, true);
   document.addEventListener(eventName, trackStudyActivity, true);
 });
 ["beforeunload", "pagehide"].forEach((eventName) => {
-  window.addEventListener(eventName, () => settleStudyTimer(eventName));
+  window.addEventListener(eventName, () => {
+    flushPendingSyncs();
+    settleStudyTimer(eventName);
+  });
 });
 document.addEventListener("visibilitychange", () => {
   if (document.visibilityState === "hidden") settleStudyTimer("visibility-hidden");
