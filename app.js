@@ -2229,7 +2229,7 @@ async function importLearningData(file) {
 function hasLocalLearningData() {
   for (let i = 0; i < localStorage.length; i++) {
     const key = localStorage.key(i);
-    if (key && key.startsWith("japaflow:lesson:")) return true;
+    if (key && key.startsWith("japaflow:lesson:") && !key.endsWith(":studyTime")) return true;
   }
   return false;
 }
