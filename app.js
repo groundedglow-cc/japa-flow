@@ -1841,7 +1841,7 @@ async function apiRequest(method, path, body = null) {
       return null;
     }
     const json = await res.json();
-    return json.code === 0 ? json.data : null;
+    return (json.code === 0 || json.code === 200) ? json.data : null;
   } catch (err) {
     console.warn(`[API] ${method} ${path} failed:`, err.message);
     return null;
