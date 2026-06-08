@@ -32,7 +32,7 @@ const root = process.cwd();
 const out = join(root, "app-dist");
 const buildVersion = process.env.BUILD_VERSION || new Date().toISOString().replace(/[:.]/g, "-");
 
-const studentFiles = ["index.html", "app.js", "styles.css"];
+const studentFiles = ["index.html", "app.js", "styles.css", "auth-bridge.js"];
 const studentDataIncludes = ["catalog.json", "lessons"];   // skip lesson-init, lesson-drafts (admin only)
 const audioDir = "audio";
 
