@@ -2275,7 +2275,18 @@ async function pullServerData() {
       if (ld.wordLearning) write(`lesson:${lessonId}:wordLearning`, ld.wordLearning);
       if (ld.grammarPractice) write(`lesson:${lessonId}:grammarPractice`, ld.grammarPractice);
       if (ld.sentencePractice) write(`lesson:${lessonId}:sentencePractice`, ld.sentencePractice);
-      if (ld.exerciseResults) write(`lesson:${lessonId}:exerciseResults`, ld.exerciseResults);
+      if (ld.exerciseResults) write(`lesson:${lessonId}:exerciseResults`, ld.exerciseResults.map(function (r) {
+        return {
+          exerciseId: r.exerciseId,
+          groupId: r.groupId || "",
+          userAnswer: r.answer || r.userAnswer || "",
+          isCorrect: r.correct != null ? r.correct : (r.isCorrect || false),
+          isSkipped: r.isSkipped || false,
+          relatedGrammar: r.relatedGrammar || [],
+          relatedSentences: r.relatedSentences || [],
+          createdAt: r.submittedAt || r.createdAt || ""
+        };
+      }));
       if (ld.wrongBook) write(`lesson:${lessonId}:wrongBook`, ld.wrongBook);
       if (ld.interactionProgress) write(`lesson:${lessonId}:interactionProgress`, ld.interactionProgress);
       if (ld.studyTime) write(`lesson:${lessonId}:studyTime`, ld.studyTime);
