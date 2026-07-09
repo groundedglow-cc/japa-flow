@@ -103,8 +103,12 @@ for (const job of limit > 0 ? jobs.slice(0, limit) : jobs) {
 console.log(`done generated=${generated} skipped=${skipped} total=${jobs.length}`);
 
 async function loadLesson() {
+  const dataPath = join("data", "lessons", `lesson${lessonId}.json`);
+  if (existsSync(dataPath)) {
+    return JSON.parse(await readFile(dataPath, "utf8"));
+  }
   const appJs = await readFile("app.js", "utf8");
-  const match = appJs.match(/const lesson = ([\s\S]*?\n};)/);
+  const match = appJs.match(/(?:const|let|var) lesson = ([\s\S]*?\n};)/);
   if (!match) throw new Error("Could not find lesson object in app.js");
   return vm.runInNewContext(`(${match[1].replace(/;$/, "")})`);
 }
@@ -134,7 +138,7 @@ async function synthesize(text) {
         voice_id: voiceId,
         speed: 0.9,
         vol: 1,
-        pitch: -1,
+        pitch: 0,
         emotion: "neutral"
       },
       audio_setting: {

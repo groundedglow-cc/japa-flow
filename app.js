@@ -1,3 +1,5 @@
+import { studyModules, initStudyTime, readStudyTime, writeStudyTime, studyTimeDisplay, studyTimeBadge, studyModuleLabel, settleStudyTimer, syncStudyTimerWithRoute, courseStudyTimeGrid } from "./study-time.js";
+
 let lesson = {
   id: 27,
   title: "第27课",
@@ -1770,10 +1772,6 @@ let audioVersions = {};
 let runtimeLessonLoadingId = "";
 let runtimeLessonErrorId = "";
 let runtimeLessonError = "";
-const studyModules = ["vocab", "grammar", "text", "exercises", "wrongbook", "favorites"];
-const studyTimeIdleMs = 60000;
-let studySession = null;
-let studyIdleTimer = null;
 
 function parseMarkdown(text) {
   if (!text) return "";
@@ -1891,6 +1889,8 @@ function apiSyncStudyTime(lessonId, module, deltaMs, activeAt) {
   return apiRequest("POST", `/lessons/${lessonId}/study-time/${module}`, { deltaMs, activeAt });
 }
 
+initStudyTime({ getRoute: route, getLesson: () => lesson, apiSyncStudyTime });
+
 function apiSyncAddFavorite(lessonId, itemType, itemId, snapshot) {
   return apiRequest("POST", `/lessons/${lessonId}/favorites`, { itemType, itemId, snapshot });
 }
@@ -1919,114 +1919,6 @@ function write(key, value) {
 
 function removeStored(key) {
   localStorage.removeItem(`japaflow:${key}`);
-}
-
-function emptyStudyTime() {
-  return Object.fromEntries(studyModules.map((module) => [module, { totalMs: 0, lastStartedAt: "", lastActiveAt: "" }]));
-}
-
-function normalizeStudyTime(value) {
-  const fallback = emptyStudyTime();
-  const source = value && typeof value === "object" ? value : {};
-  return Object.fromEntries(studyModules.map((module) => {
-    const item = source[module] || {};
-    return [module, {
-      totalMs: Math.max(0, Number(item.totalMs || 0)),
-      lastStartedAt: item.lastStartedAt || "",
-      lastActiveAt: item.lastActiveAt || ""
-    }];
-  }));
-}
-
-const studyTimeData = {};
-
-function readStudyTime(lessonIdValue) {
-  return normalizeStudyTime(studyTimeData[lessonIdValue] || emptyStudyTime());
-}
-
-function writeStudyTime(lessonIdValue, value) {
-  studyTimeData[lessonIdValue] = normalizeStudyTime(value);
-}
-
-function currentStudyContext() {
-  const currentRoute = route();
-  if (!currentRoute.lessonId || !studyModules.includes(currentRoute.page)) return null;
-  return { lessonId: String(currentRoute.lessonId), module: currentRoute.page };
-}
-
-function sameStudyContext(a, b) {
-  return Boolean(a && b && a.lessonId === b.lessonId && a.module === b.module);
-}
-
-function activeStudyElapsed(lessonIdValue, module) {
-  if (!studySession || studySession.lessonId !== String(lessonIdValue) || studySession.module !== module) return 0;
-  return Math.max(0, Date.now() - studySession.startedAt);
-}
-
-function studyTimeMs(lessonIdValue, module) {
-  const stored = readStudyTime(lessonIdValue)[module]?.totalMs || 0;
-  return stored + activeStudyElapsed(lessonIdValue, module);
-}
-
-function studyTimeMinutes(lessonIdValue, module) {
-  return Math.round(studyTimeMs(lessonIdValue, module) / 60000);
-}
-
-function studyTimeBadge(module, lessonIdValue = lesson.id) {
-  return `<div class="study-time-badge" aria-label="练习时长 ${studyTimeMinutes(lessonIdValue, module)} 分钟">练习时长 ${studyTimeMinutes(lessonIdValue, module)} 分钟</div>`;
-}
-
-function studyModuleLabel(module) {
-  return { vocab: "单词", grammar: "语法", text: "课文", exercises: "练习", wrongbook: "错题", favorites: "收藏" }[module] || module;
-}
-
-function settleStudyTimer(reason = "settle") {
-  if (!studySession) return;
-  const now = Date.now();
-  const endAt = now - studySession.lastActiveAt > studyTimeIdleMs ? studySession.lastActiveAt : now;
-  const elapsed = Math.max(0, endAt - studySession.startedAt);
-  const data = readStudyTime(studySession.lessonId);
-  data[studySession.module] = {
-    ...(data[studySession.module] || { totalMs: 0 }),
-    totalMs: Math.max(0, Number(data[studySession.module]?.totalMs || 0)) + elapsed,
-    lastStartedAt: new Date(studySession.startedAt).toISOString(),
-    lastActiveAt: new Date(studySession.lastActiveAt).toISOString()
-  };
-  writeStudyTime(studySession.lessonId, data);
-  apiSyncStudyTime(studySession.lessonId, studySession.module, elapsed, new Date(studySession.lastActiveAt).toISOString());
-  studySession = null;
-  if (studyIdleTimer) window.clearTimeout(studyIdleTimer);
-  studyIdleTimer = null;
-}
-
-function scheduleStudyIdleCheck() {
-  if (studyIdleTimer) window.clearTimeout(studyIdleTimer);
-  if (!studySession) return;
-  studyIdleTimer = window.setTimeout(() => {
-    if (!studySession) return;
-    if (Date.now() - studySession.lastActiveAt >= studyTimeIdleMs) settleStudyTimer("idle");
-    else scheduleStudyIdleCheck();
-  }, studyTimeIdleMs + 200);
-}
-
-function syncStudyTimerWithRoute() {
-  const context = currentStudyContext();
-  if (studySession && !sameStudyContext(studySession, context)) settleStudyTimer("route-change");
-}
-
-function trackStudyActivity(event) {
-  const context = currentStudyContext();
-  if (!context) return;
-  const target = event?.target;
-  if (target?.closest?.("[data-nav], [data-link], [data-export-progress], [data-import-progress-trigger], [data-import-progress-file], .playback-rate, .manage-menu")) return;
-  const now = Date.now();
-  if (!studySession || !sameStudyContext(studySession, context)) {
-    if (studySession) settleStudyTimer("activity-context-change");
-    studySession = { ...context, startedAt: now, lastActiveAt: now };
-  } else {
-    studySession.lastActiveAt = now;
-  }
-  scheduleStudyIdleCheck();
 }
 
 function downloadJsonBlob(payload, filename) {
@@ -2086,7 +1978,10 @@ async function loadServerProgress() {
   }
   if (ld.grammarPractice) {
     Object.entries(ld.grammarPractice).forEach(([k, v]) => {
-      const localKey = k.replace("_", ":");
+      const sepIndex = k.indexOf("_");
+      const grammarId = sepIndex >= 0 ? k.slice(0, sepIndex) : "";
+      const indexPart = sepIndex >= 0 ? k.slice(sepIndex + 1) : "";
+      const localKey = /^\d+$/.test(indexPart) ? `${grammarId}:extra-${indexPart}` : k.replace("_", ":");
       if (state.grammarPractice[localKey]) {
         state.grammarPractice[localKey] = { ...state.grammarPractice[localKey], ...v };
       }
@@ -2123,7 +2018,30 @@ async function loadServerProgress() {
     });
     state.exerciseGroupAnswers = answers;
   }
-  if (ld.wrongBook) state.wrongBook = ld.wrongBook;
+  if (ld.wrongBook) {
+    const entries = Array.isArray(ld.wrongBook) ? ld.wrongBook : Object.values(ld.wrongBook);
+    const map = {};
+    entries.forEach((entry) => {
+      if (!entry || typeof entry !== "object") return;
+      if (entry.itemType && entry.itemType !== "exercise") return;
+      const id = entry.exerciseId || entry.itemId;
+      if (!id) {
+        console.warn("[wrongBook] entry missing exerciseId/itemId, skipped:", entry);
+        return;
+      }
+      const detail = entry.wrongDetail || {};
+      map[id] = {
+        ...detail,
+        ...entry,
+        exerciseId: id,
+        status: entry.resolved ? "resolved" : (detail.status || entry.status || "active"),
+        firstWrongAt: detail.firstWrongAt || entry.createdAt || "",
+        lastWrongAt: detail.lastWrongAt || entry.createdAt || "",
+        lastPracticedAt: detail.lastPracticedAt || entry.resolvedAt || entry.createdAt || ""
+      };
+    });
+    state.wrongBook = map;
+  }
   if (ld.interactionProgress) {
     state.interactionProgress = {
       words: { ...state.interactionProgress.words, ...(ld.interactionProgress.words || {}) },
@@ -2139,6 +2057,9 @@ async function loadServerProgress() {
     if (p.currentExerciseGroup != null) state.currentExerciseGroup = p.currentExerciseGroup;
     if (p.textCurrentTab) state.textCurrentTab = p.textCurrentTab;
   }
+  Object.entries(data.lessons).forEach(([id, lessonData]) => {
+    if (lessonData.studyTime) writeStudyTime(id, lessonData.studyTime);
+  });
 }
 
 // ============ END SERVER DATA LOADING ============
@@ -2227,6 +2148,13 @@ async function reloadLessonScopedState() {
   lastAutoSpokenWord = null;
   pendingAutoSpeakWordId = "";
   await loadServerProgress();
+  const firstUnlearned = vocabStudyWords().findIndex((word) => wordLearningState(word.id).mainStatus !== "mastered");
+  if (firstUnlearned > 0) state.currentWord = firstUnlearned;
+  const firstIncompleteGrammar = lesson.grammar.findIndex((grammar) => {
+    const summary = grammarPracticeSummary(grammar);
+    return summary.completed < summary.total;
+  });
+  if (firstIncompleteGrammar > 0) state.currentGrammar = firstIncompleteGrammar;
 }
 
 function initialWordProgress() {
@@ -2362,7 +2290,8 @@ function initialGrammarPractice() {
 function writeGrammarPractice(grammarId, exampleId) {
   if (grammarId && exampleId) {
     const key = grammarPracticeKey(grammarId, exampleId);
-    apiSyncGrammarPractice(lesson.id, grammarId, exampleId, state.grammarPractice[key]);
+    const exampleIndex = exampleId.startsWith("extra-") ? exampleId.slice(6) : exampleId;
+    apiSyncGrammarPractice(lesson.id, grammarId, exampleIndex, state.grammarPractice[key]);
   }
 }
 
@@ -2971,6 +2900,73 @@ function escapeHtml(value) {
     .replaceAll("'", "&#039;");
 }
 
+let activeSpeechRecognition = null;
+
+function micButton(targetSelector) {
+  return `<button class="mic-btn" type="button" data-mic-target="${escapeHtml(targetSelector)}" aria-label="语音输入" title="语音输入">🎤</button>`;
+}
+
+async function startSpeechRecognition(button, targetInput) {
+  if (activeSpeechRecognition) {
+    activeSpeechRecognition.stop();
+    return;
+  }
+  if (!targetInput) return;
+  let stream;
+  let audioContext;
+  let source;
+  let processor;
+  const chunks = [];
+  try {
+    stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+    const AudioContextCtor = window.AudioContext || window.webkitAudioContext;
+    audioContext = new AudioContextCtor({ sampleRate: 16000 });
+    source = audioContext.createMediaStreamSource(stream);
+    processor = audioContext.createScriptProcessor(4096, 1, 1);
+    processor.onaudioprocess = (event) => {
+      chunks.push(new Float32Array(event.inputBuffer.getChannelData(0)));
+    };
+    source.connect(processor);
+    processor.connect(audioContext.destination);
+  } catch (error) {
+    console.error("[mic] getUserMedia failed:", error);
+    return;
+  }
+
+  button.classList.add("listening");
+  const stop = async () => {
+    if (!activeSpeechRecognition) return;
+    activeSpeechRecognition = null;
+    button.classList.remove("listening");
+    try { processor.disconnect(); source.disconnect(); } catch {}
+    try { stream.getTracks().forEach((track) => track.stop()); } catch {}
+    try { await audioContext.close(); } catch {}
+    if (!chunks.length) return;
+    button.classList.add("transcribing");
+    try {
+      const wav = encodeWav(chunks, 16000);
+      const formData = new FormData();
+      formData.append("audio", new Blob([wav], { type: "audio/wav" }), "speech.wav");
+      formData.append("language", "ja-JP");
+      const res = await fetch("/api/speech/transcribe", {
+        method: "POST",
+        headers: { Authorization: `Bearer ${getAuthToken()}` },
+        body: formData
+      });
+      const data = await res.json();
+      if (data.recognizedText) {
+        targetInput.value = data.recognizedText;
+        targetInput.dispatchEvent(new Event("input", { bubbles: true }));
+      }
+    } catch (error) {
+      console.error("[mic] transcribe failed:", error);
+    } finally {
+      button.classList.remove("transcribing");
+    }
+  };
+  activeSpeechRecognition = { stop };
+}
+
 const exerciseRubyEntries = [
   ["国際関係学", "こくさいかんけいがく"],
   ["日本の経済", "にほんのけいざい"],
@@ -3464,11 +3460,9 @@ function rubyExerciseText(source) {
 }
 
 function normalizeAnswer(value) {
-  return String(value || "")
-    .trim()
-    .replace(/\s+/g, "")
-    .replace(/[「」『』]/g, "")
-    .replace(/[。．.、，,!?！？]+$/g, "");
+  return String(value || "").trim()
+    .replace(/^[ー\-—]+/, "")
+    .replace(/[\s。、，．,.！？!?「」『』（）()［］\[\]【】・:：;；／\/—\-×""…☆★~～　]+/g, "");
 }
 
 function normalizeLookupText(value) {
@@ -4031,25 +4025,6 @@ function courseMetric(label, value, total) {
   return `<div class="course-metric"><span>${label}</span><strong>${value}/${total}</strong><small>${pct}%</small></div>`;
 }
 
-function courseStudyTimeGrid(lessonIdValue) {
-  const modules = [
-    ["vocab", "单词"],
-    ["grammar", "语法"],
-    ["text", "课文"],
-    ["exercises", "练习"]
-  ];
-  return `
-    <div class="course-time-grid" aria-label="本课模块练习时长">
-      ${modules.map(([module, label]) => `
-        <div class="course-time-item">
-          <span>${label}</span>
-          <strong>${studyTimeMinutes(lessonIdValue, module)} 分钟</strong>
-        </div>
-      `).join("")}
-    </div>
-  `;
-}
-
 function lessonPercent(summary) {
   const keys = ["vocab", "grammar", "text", "exercises"];
   const pcts = keys.map((k) => summary[k]?.total ? Math.round((summary[k].completed / summary[k].total) * 100) : 0);
@@ -4113,7 +4088,7 @@ function moduleCard(title, description, progress, path, module = "") {
         <strong>${progress.completed}/${progress.total}</strong>
       </div>
       <p class="muted">${description}</p>
-      ${module ? `<p class="module-time">${studyTimeMinutes(lesson.id, module)} 分钟</p>` : ""}
+      ${module ? `<p class="module-time" data-module="${module}" data-lesson-id="${lesson.id}">${studyTimeDisplay(lesson.id, module)}</p>` : ""}
       ${progressRow("进度", progress.completed, progress.total)}
     </article>
   `;
@@ -4932,6 +4907,7 @@ function grammarExamplePracticeCard(grammar, item, index) {
         <div class="grammar-practice-cloze grammar-prompt-cn">${escapeHtml(promptText)}</div>
         <div class="grammar-practice-form">
           <input class="answer-input" data-grammar-answer="${grammarPracticeKey(grammar.id, item.id)}" value="${escapeHtml(practice.answer || "")}" placeholder="翻译中文为日语" />
+          ${micButton(`[data-grammar-answer="${grammarPracticeKey(grammar.id, item.id)}"]`)}
           <button class="primary" data-grammar-check="${grammarPracticeKey(grammar.id, item.id)}">检查</button>
         </div>
         ${grammarPronunciationPanel(grammar, item)}
@@ -5013,9 +4989,10 @@ function grammarPronunciationResult(practice) {
 }
 
 function handleGrammarPracticeInput(key, value) {
+  const [grammarId, exampleId] = key.split(":");
   const current = state.grammarPractice[key] || defaultGrammarPractice();
   state.grammarPractice = { ...state.grammarPractice, [key]: { ...current, answer: value, revealed: false } };
-  writeGrammarPractice();
+  writeGrammarPractice(grammarId, exampleId);
 }
 
 function handleGrammarPracticeCheck(key) {
@@ -5414,7 +5391,8 @@ function exerciseProgressSummary(groups) {
 }
 
 function activeWrongItems(includeResolved = false) {
-  return Object.values(state.wrongBook)
+  return Object.entries(state.wrongBook)
+    .map(([key, item]) => ({ ...item, exerciseId: item.exerciseId || key }))
     .filter((item) => includeResolved || item.status !== "resolved")
     .sort((a, b) => {
       const statusOrder = { active: 0, reviewing: 1, resolved: 2 };
@@ -5521,7 +5499,7 @@ function exerciseGroupItem(exercise, index, submitted) {
         ${submitted && result ? `<span class="practice-status ${result.isCorrect ? "success" : "danger"}">${result.isSkipped ? "已记录" : result.isCorrect ? "正确" : "错误"}</span>` : ""}
       </div>
       ${exerciseAnswerGuidance(exercise) ? `<p class="answer-guidance">${exerciseAnswerGuidance(exercise)}</p>` : ""}
-      ${answerControl(exercise, answer, { id: exercise.id, mode: "group", disabled: submitted })}
+      ${answerControl(exercise, answer, { id: exercise.id, mode: "group" })}
     </article>
   `;
 }
@@ -5581,11 +5559,12 @@ function answerControl(exercise, value = "", options = {}) {
       </select>
     `;
   }
+  const mic = disabled ? "" : micButton(`[data-${mode}-answer][data-exercise-id="${options.id || exercise.id}"]`);
   if (exercise.type === "sentence_making") {
-    return `<textarea class="answer-input" data-${mode}-answer data-exercise-id="${options.id || exercise.id}" placeholder="输入你的造句" ${disabled}>${escapeHtml(value)}</textarea>`;
+    return `<div class="answer-with-mic"><textarea class="answer-input" data-${mode}-answer data-exercise-id="${options.id || exercise.id}" placeholder="输入你的造句" ${disabled}>${escapeHtml(value)}</textarea>${mic}</div>`;
   }
   const placeholder = exerciseRequiresFullSentence(exercise) ? "输入完整句子，包含句末标点" : "输入答案";
-  return `<input class="answer-input" data-${mode}-answer data-exercise-id="${options.id || exercise.id}" value="${escapeHtml(value)}" placeholder="${placeholder}" ${disabled} />`;
+  return `<div class="answer-with-mic"><input class="answer-input" data-${mode}-answer data-exercise-id="${options.id || exercise.id}" value="${escapeHtml(value)}" placeholder="${placeholder}" ${disabled} />${mic}</div>`;
 }
 
 function buildFeedback(exercise, answer) {
@@ -5759,7 +5738,9 @@ function answerDiff(userValue, correctValue) {
 }
 
 function normalizeForDiff(value) {
-  return String(value).trim().replace(/\s+/g, "");
+  return String(value).trim()
+    .replace(/^[ー\-—]+/, "")
+    .replace(/[\s。、，．,.！？!?「」『』（）()［］\[\]【】・:：;；／\/—\-×""…☆★~～　]+/g, "");
 }
 
 function resultPage() {
@@ -5829,6 +5810,7 @@ function resultPage() {
 
 function wrongItem(item) {
   const exercise = lesson.exercises.find((entry) => entry.id === item.exerciseId);
+  if (!exercise) return "";
   return `
     <div class="card panel">
       <p class="label">${exercise.groupTitle} · ${exercise.category} · ${wrongStatusText(item.status)}</p>
@@ -5873,8 +5855,25 @@ function wrongBookPage() {
     `);
   }
   state.wrongPractice.current = Math.min(Math.max(state.wrongPractice.current || 0, 0), activeItems.length - 1);
-  const item = submittedResult ? state.wrongBook[submittedResult.exerciseId] : activeItems[state.wrongPractice.current];
-  const exercise = lesson.exercises.find((entry) => entry.id === item.exerciseId);
+  let item;
+  if (submittedResult) {
+    const raw = state.wrongBook[submittedResult.exerciseId];
+    item = raw ? { ...raw, exerciseId: raw.exerciseId || submittedResult.exerciseId } : { exerciseId: submittedResult.exerciseId, status: "active" };
+  } else {
+    item = activeItems[state.wrongPractice.current];
+  }
+  const exercise = item ? lesson.exercises.find((entry) => entry.id === item.exerciseId) : null;
+  if (!exercise) {
+    return layout(`
+      <div class="page-head">
+        <div>
+          <p class="eyebrow">${lesson.title} · 错题集</p>
+          <h2>错题数据已过期</h2>
+        </div>
+        <button class="secondary" data-nav="/lesson/${lesson.id}/exercises">返回练习</button>
+      </div>
+    `);
+  }
   const result = submittedResult;
   return layout(`
     <section class="exercise-box">
@@ -6070,6 +6069,7 @@ function commitWrongPractice() {
   const item = activeWrongItems()[state.wrongPractice.current];
   if (!item) return;
   const exercise = lesson.exercises.find((entry) => entry.id === item.exerciseId);
+  if (!exercise) return;
   const result = buildFeedback(exercise, state.wrongPractice.answer);
   updateWrongBookFromResult(exercise, result);
   state.wrongPractice = { ...state.wrongPractice, submitted: true, result };
@@ -6573,6 +6573,20 @@ async function stopGrammarRecording(key) {
       pronunciationPeak: stats.peak,
       pronunciationAttempts: (grammarPracticeState(grammar.id, item.id).pronunciationAttempts || 0) + 1
     });
+    if (!grammarPracticeState(grammar.id, item.id).correct && data.recognizedText) {
+      const practice = grammarPracticeState(grammar.id, item.id);
+      const target = item.sentence?.text || "";
+      const correct = normalizeForDiff(data.recognizedText) === normalizeForDiff(target);
+      updateGrammarPractice(grammar.id, item.id, {
+        answer: data.recognizedText,
+        submitted: true,
+        correct,
+        attempts: (practice.attempts || 0) + 1,
+        revealed: true,
+        updatedAt: new Date().toISOString()
+      });
+      recordInteraction("grammarExample", key, correct ? "smooth" : "retry");
+    }
     state.grammarRecordingError = "";
     state.grammarRecordingErrorKey = key;
     recordingReleaseRequested = false;
@@ -7919,6 +7933,10 @@ function bind() {
   app.querySelectorAll("[data-grammar-check]").forEach((button) => button.addEventListener("click", () => {
     handleGrammarPracticeCheck(button.dataset.grammarCheck);
   }));
+  app.querySelectorAll("[data-mic-target]").forEach((button) => button.addEventListener("click", () => {
+    const target = app.querySelector(button.dataset.micTarget);
+    startSpeechRecognition(button, target);
+  }));
   app.querySelectorAll("[data-grammar-reset]").forEach((button) => button.addEventListener("click", () => {
     handleGrammarPracticeReset(button.dataset.grammarReset);
   }));
@@ -8079,9 +8097,6 @@ window.addEventListener("japaflow:auth-changed", async (e) => {
 });
 document.addEventListener("keydown", handleKeyboard, true);
 document.addEventListener("keyup", handleKeyboard, true);
-["click", "input", "change", "pointerdown", "keydown"].forEach((eventName) => {
-  document.addEventListener(eventName, trackStudyActivity, true);
-});
 ["beforeunload", "pagehide"].forEach((eventName) => {
   window.addEventListener(eventName, () => settleStudyTimer(eventName));
 });

@@ -861,7 +861,7 @@ async function synthesize(text, voiceId) {
       text,
       stream: false,
       language_boost: "Japanese",
-      voice_setting: { voice_id: voiceId, speed: 0.9, vol: 1, pitch: -1, emotion: "neutral" },
+      voice_setting: { voice_id: voiceId, speed: 0.9, vol: 1, pitch: 0, emotion: "neutral" },
       audio_setting: { sample_rate: 32000, bitrate: 128000, format: "mp3", channel: 1 },
       subtitle_enable: false
     })
@@ -913,6 +913,30 @@ function pronunciationReasons(scores) {
   if (scores.fluencyScore < 70) reasons.push("流畅度不足");
   if (scores.completenessScore < 80) reasons.push("发音不完整");
   return reasons;
+}
+
+async function transcribeSpeech({ audioBuffer, language = "ja-JP" }) {
+  const key = process.env.AZURE_SPEECH_KEY;
+  const region = normalizeAzureRegion(process.env.AZURE_SPEECH_REGION);
+  if (!key || !region) throw new Error("Missing AZURE_SPEECH_KEY or AZURE_SPEECH_REGION.");
+  const endpoint = `https://${region}.stt.speech.microsoft.com/speech/recognition/conversation/cognitiveservices/v1?language=${encodeURIComponent(language)}&format=detailed`;
+  const response = await fetch(endpoint, {
+    method: "POST",
+    headers: {
+      "Ocp-Apim-Subscription-Key": key,
+      "Content-Type": "audio/wav; codecs=audio/pcm; samplerate=16000",
+      "Accept": "application/json"
+    },
+    body: audioBuffer
+  });
+  const text = await response.text();
+  if (!response.ok) throw new Error(`Azure Speech HTTP ${response.status} (region=${region}): ${text}`);
+  const raw = JSON.parse(text);
+  const best = raw.NBest?.[0] || {};
+  return {
+    recognizedText: raw.DisplayText || best.Display || best.Lexical || "",
+    raw
+  };
 }
 
 async function evaluatePronunciation({ referenceText, audioBuffer }) {
@@ -1225,6 +1249,15 @@ async function handleApi(req, res, url) {
       const debugAudio = await savePronunciationDebugAudio({ lessonId, wordId: fields.wordId || "unknown", audioBuffer: audioFile.buffer });
       const result = await evaluatePronunciation({ referenceText, audioBuffer: audioFile.buffer });
       sendJson(res, 200, { wordId: fields.wordId || "", referenceText, ...debugAudio, ...result });
+      return true;
+    }
+    if (url.pathname === "/api/speech/transcribe" && req.method === "POST") {
+      const { fields, files } = await readMultipart(req);
+      const audioFile = firstFile(files.audio);
+      if (!audioFile?.buffer?.length) throw new Error("Missing audio file.");
+      const language = fields.language || "ja-JP";
+      const result = await transcribeSpeech({ audioBuffer: audioFile.buffer, language });
+      sendJson(res, 200, { recognizedText: result.recognizedText });
       return true;
     }
   } catch (error) {

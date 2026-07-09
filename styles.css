@@ -964,9 +964,17 @@ h3 {
 }
 
 .test-favorite-star {
-  justify-self: end;
-  margin-top: -4px;
-  margin-bottom: -6px;
+  position: absolute;
+  top: 12px;
+  right: 12px;
+}
+
+.word-slash-star {
+  position: absolute;
+  top: 12px;
+  right: 52px;
+  font-size: 14px;
+  font-weight: 600;
 }
 
 .jp-large {
@@ -1012,6 +1020,7 @@ h3 {
 .shadow-box,
 .recall-box,
 .locked-panel {
+  position: relative;
   width: min(560px, 100%);
   display: grid;
   gap: 12px;
@@ -2364,28 +2373,19 @@ button.tag {
 .grammar-practice-card {
   display: grid;
   gap: 6px;
-  padding: 10px;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: #fbfdfc;
+}
+
+.grammar-practice-card + .grammar-practice-card {
+  margin-top: 24px;
 }
 
 .grammar-practice-card.collapsed {
   gap: 4px;
 }
 
-.grammar-practice-card.pending {
-  border-color: #d7e0db;
-}
-
-.grammar-practice-card.passed {
-  border-color: #92c7ad;
-  background: #f0faf5;
-}
-
-.grammar-practice-card.failed {
-  border-color: #e1a092;
-  background: #fff3f0;
+.grammar-practice-head-main strong {
+  font-size: 17px;
+  font-weight: 700;
 }
 
 .grammar-practice-head {
@@ -2481,7 +2481,7 @@ button.tag {
 
 .grammar-practice-form {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-columns: minmax(0, 1fr) auto auto;
   gap: 5px;
   align-items: center;
 }
@@ -2873,6 +2873,54 @@ button.tag {
 textarea.answer-input {
   min-height: 130px;
   resize: vertical;
+}
+
+.mic-btn {
+  width: 36px;
+  height: 36px;
+  border: 1px solid #d0d5dd;
+  border-radius: 6px;
+  background: #fff;
+  cursor: pointer;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.mic-btn:hover {
+  background: #f3f4f6;
+  border-color: #98a2b3;
+}
+
+.mic-btn.listening {
+  background: #fee2e2;
+  border-color: #ef4444;
+  animation: mic-pulse 1s ease-in-out infinite;
+}
+
+.mic-btn.transcribing {
+  background: #fef3c7;
+  border-color: #f59e0b;
+  cursor: wait;
+}
+
+@keyframes mic-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+.answer-with-mic {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.answer-with-mic .answer-input {
+  flex: 1;
+  min-width: 0;
 }
 
 .feedback {
