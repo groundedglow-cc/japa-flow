@@ -982,6 +982,124 @@ async function evaluatePronunciation({ referenceText, audioBuffer }) {
   };
 }
 
+function extractJsonObject(text) {
+  const value = String(text || "").trim();
+  if (!value) return {};
+  try {
+    const parsed = JSON.parse(value);
+    if (typeof parsed === "string") return extractJsonObject(parsed);
+    return parsed;
+  } catch {}
+  const fenced = value.match(/```(?:json)?\s*([\s\S]*?)```/i);
+  if (fenced) {
+    try {
+      const parsed = JSON.parse(fenced[1].trim());
+      if (typeof parsed === "string") return extractJsonObject(parsed);
+      return parsed;
+    } catch {}
+  }
+  const start = value.indexOf("{");
+  const end = value.lastIndexOf("}");
+  if (start >= 0 && end > start) {
+    try {
+      const parsed = JSON.parse(value.slice(start, end + 1));
+      if (typeof parsed === "string") return extractJsonObject(parsed);
+      return parsed;
+    } catch {}
+  }
+  return {};
+}
+
+function normalizeFormattedPracticeText(value) {
+  const parsed = extractJsonObject(value);
+  if (typeof parsed.formattedText === "string") {
+    return compactPracticeText(parsed.formattedText, 3000);
+  }
+  return compactPracticeText(value, 3000);
+}
+
+function normalizeDialogueSpeakerText(value) {
+  return compactPracticeText(value, 3000)
+    .split("\n")
+    .map((line) => line.replace(/^([甲乙丙丁ABCD])[:：\s]*/, "$1："))
+    .join("\n");
+}
+
+function compactPracticeText(value, limit = 3000) {
+  return String(value || "")
+    .replace(/\r\n/g, "\n")
+    .replace(/\n{3,}/g, "\n\n")
+    .trim()
+    .slice(0, limit);
+}
+
+async function formatPracticeAnswer({ inputText, examples = "", itemPrompt = "", activityTitle = "", answerUnit = "" }) {
+  const key = process.env.DEEPSEEK_API_KEY;
+  if (!key) throw new Error("Missing DEEPSEEK_API_KEY.");
+  const baseUrl = (process.env.DEEPSEEK_BASE_URL || "https://api.deepseek.com").replace(/\/+$/, "");
+  const model = process.env.DEEPSEEK_MODEL || "deepseek-v4-flash";
+  const cleanInput = compactPracticeText(inputText, 2000);
+  if (!cleanInput) throw new Error("Missing inputText.");
+
+  const response = await fetch(`${baseUrl}/chat/completions`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${key}`
+    },
+    body: JSON.stringify({
+      model,
+      messages: [
+        {
+          role: "system",
+          content: [
+            "你是日语练习的用户答案格式化器。",
+            "你只处理用户自己的语音转写文本，不生成标准答案，不参考教材录音，不使用外部知识。",
+            "根据例句的说话人、行数、换行、标点风格，把用户文本整理成同样的作答格式。",
+            "例句中如果出现「甲トイレは...」「乙あそこです」这种 speaker 后缺少冒号的文本，也要理解为「甲：...」「乙：...」。",
+            "最终输出的每一行 speaker 后都必须使用全角冒号，例如「甲：」「乙：」，即使例句原文没有冒号也必须补上。",
+            "不要把题目提示词替换进用户文本；用户说了什么，就只整理用户说出的内容。",
+            "不要补充用户没有说出的内容；只允许修正常见 ASR 标点、空格、问号、句号和说话人换行。",
+            "如果例句是甲/乙对话，formattedText 必须是纯文本多行对话，例如：甲：...\\n乙：...，不能把 JSON 字符串放进 formattedText。",
+            "只返回一个 JSON object，不要 markdown，不要二次 JSON 编码。格式固定为 {\"formattedText\":\"甲：...\\n乙：...\",\"notes\":\"...\"}。"
+          ].join("\n")
+        },
+        {
+          role: "user",
+          content: [
+            `活动标题：${compactPracticeText(activityTitle, 120) || "未提供"}`,
+            `答案类型：${compactPracticeText(answerUnit, 60) || "未提供"}`,
+            `题目提示：${compactPracticeText(itemPrompt, 300) || "未提供"}`,
+            "",
+            "例句格式：",
+            compactPracticeText(examples, 1200) || "未提供",
+            "",
+            "用户语音转写文本：",
+            cleanInput
+          ].join("\n")
+        }
+      ],
+      temperature: 0,
+      max_tokens: 800,
+      stream: false
+    })
+  });
+  const bodyText = await response.text();
+  if (!response.ok) throw new Error(`DeepSeek HTTP ${response.status}: ${bodyText}`);
+  const raw = JSON.parse(bodyText);
+  const content = raw.choices?.[0]?.message?.content || "";
+  const parsed = extractJsonObject(content);
+  const normalizedText = normalizeFormattedPracticeText(parsed.formattedText || content);
+  const formattedText = answerUnit === "dialogue" ? normalizeDialogueSpeakerText(normalizedText) : normalizedText;
+  if (!formattedText) throw new Error("DeepSeek response did not include formattedText.");
+  return {
+    formattedText,
+    notes: compactPracticeText(parsed.notes || "", 600),
+    model,
+    provider: "deepseek"
+  };
+}
+
 async function handleApi(req, res, url) {
   try {
     // ============ STUDENT RUNTIME APIs ============
@@ -1258,6 +1376,12 @@ async function handleApi(req, res, url) {
       const language = fields.language || "ja-JP";
       const result = await transcribeSpeech({ audioBuffer: audioFile.buffer, language });
       sendJson(res, 200, { recognizedText: result.recognizedText });
+      return true;
+    }
+    if (url.pathname === "/api/practice/format-answer" && req.method === "POST") {
+      const body = await readJson(req);
+      const result = await formatPracticeAnswer(body);
+      sendJson(res, 200, result);
       return true;
     }
   } catch (error) {

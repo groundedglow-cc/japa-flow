@@ -1,0 +1,298 @@
+(() => {
+  const speechInputSelector = "input.practice-input, textarea.practice-input";
+  let activePracticeRecording = null;
+
+  function textOf(element) {
+    return String(element?.textContent || "").replace(/\s+/g, " ").trim();
+  }
+
+  function collectExampleText(activity) {
+    const blocks = Array.from(activity.querySelectorAll(".layout-blocks"));
+    return blocks
+      .map((block) => Array.from(block.querySelectorAll(".dialogue-line, .example-block"))
+        .map((line) => {
+          if (line.classList.contains("dialogue-line")) {
+            const label = textOf(line.querySelector("span"));
+            const body = textOf(line.querySelector("p"));
+            if (/^[甲乙丙丁ABCD]$/.test(label) && body) return `${label}：${body}`;
+            if (label && body) return `${label} ${body}`;
+          }
+          return textOf(line);
+        })
+        .filter(Boolean)
+        .join("\n"))
+      .filter(Boolean)
+      .join("\n\n");
+  }
+
+  function setStatus(status, message, tone = "") {
+    status.textContent = message;
+    status.dataset.tone = tone;
+  }
+
+  function normalizeFormattedText(value) {
+    const text = String(value || "").trim();
+    if (!text) return "";
+    try {
+      const parsed = JSON.parse(text);
+      if (typeof parsed?.formattedText === "string") return parsed.formattedText.trim();
+    } catch {}
+    return text;
+  }
+
+  function speakerIcon() {
+    return `
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path d="M4 10v4h4l5 4V6L8 10H4Z"></path>
+        <path d="M16 9.5a3.5 3.5 0 0 1 0 5"></path>
+        <path d="M18.5 7a7 7 0 0 1 0 10"></path>
+      </svg>
+    `;
+  }
+
+  function isDialogueField(field) {
+    if (!(field instanceof HTMLTextAreaElement)) return false;
+    const item = field.closest(".practice-item");
+    const activity = field.closest(".practice-activity");
+    const context = [
+      field.placeholder,
+      item?.classList.contains("dialogue") ? "dialogue" : "",
+      textOf(item?.querySelector(".item-prompt")),
+      collectExampleText(activity)
+    ].join("\n");
+    return /dialogue|会话|対話|甲|乙/.test(context);
+  }
+
+  function writeString(view, offset, string) {
+    for (let index = 0; index < string.length; index += 1) view.setUint8(offset + index, string.charCodeAt(index));
+  }
+
+  function encodeWav(chunks, sampleRate) {
+    const length = chunks.reduce((sum, chunk) => sum + chunk.length, 0);
+    const samples = new Float32Array(length);
+    let offset = 0;
+    chunks.forEach((chunk) => {
+      samples.set(chunk, offset);
+      offset += chunk.length;
+    });
+    const buffer = new ArrayBuffer(44 + samples.length * 2);
+    const view = new DataView(buffer);
+    writeString(view, 0, "RIFF");
+    view.setUint32(4, 36 + samples.length * 2, true);
+    writeString(view, 8, "WAVE");
+    writeString(view, 12, "fmt ");
+    view.setUint32(16, 16, true);
+    view.setUint16(20, 1, true);
+    view.setUint16(22, 1, true);
+    view.setUint32(24, sampleRate, true);
+    view.setUint32(28, sampleRate * 2, true);
+    view.setUint16(32, 2, true);
+    view.setUint16(34, 16, true);
+    writeString(view, 36, "data");
+    view.setUint32(40, samples.length * 2, true);
+    let position = 44;
+    for (const sample of samples) {
+      const clamped = Math.max(-1, Math.min(1, sample));
+      view.setInt16(position, clamped < 0 ? clamped * 0x8000 : clamped * 0x7fff, true);
+      position += 2;
+    }
+    return buffer;
+  }
+
+  function setButtonsDisabled(buttons, disabled) {
+    buttons.filter(Boolean).forEach((button) => {
+      button.disabled = disabled;
+    });
+  }
+
+  async function transcribeChunks(chunks, sampleRate) {
+    const wav = encodeWav(chunks, sampleRate);
+    const formData = new FormData();
+    formData.append("audio", new Blob([wav], { type: "audio/wav" }), "speech.wav");
+    formData.append("language", "ja-JP");
+    const response = await fetch("/api/speech/transcribe", {
+      method: "POST",
+      body: formData
+    });
+    const data = await response.json();
+    if (!response.ok) throw new Error(data.error || `HTTP ${response.status}`);
+    return String(data.recognizedText || "").trim();
+  }
+
+  async function formatDialogueAnswer(field, status) {
+    const activity = field.closest(".practice-activity");
+    const item = field.closest(".practice-item");
+    const inputText = field.value.trim();
+    if (!inputText) {
+      setStatus(status, "请先输入文本", "warn");
+      return;
+    }
+
+    setStatus(status, "格式化中...", "");
+    try {
+      const response = await fetch("/api/practice/format-answer", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          inputText,
+          examples: collectExampleText(activity),
+          itemPrompt: textOf(item?.querySelector(".item-prompt")),
+          activityTitle: textOf(activity?.querySelector("h2")),
+          answerUnit: "dialogue"
+        })
+      });
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.error || `HTTP ${response.status}`);
+      field.value = normalizeFormattedText(data.formattedText) || inputText;
+      field.dispatchEvent(new Event("input", { bubbles: true }));
+      setStatus(status, data.notes ? `已格式化：${data.notes}` : "已格式化", "ok");
+    } catch (error) {
+      console.error("[practice formatter] failed:", error);
+      setStatus(status, "格式化失败", "warn");
+    }
+  }
+
+  function setFieldLocked(field, locked) {
+    field.disabled = locked;
+    field.closest(".speech-input-wrap")?.classList.toggle("processing", locked);
+  }
+
+  async function startSpeechInput(field, status, recordButton) {
+    if (activePracticeRecording) {
+      if (activePracticeRecording.button === recordButton) await activePracticeRecording.stop();
+      else setStatus(status, "请先结束其他录音", "warn");
+      return;
+    }
+    if (!navigator.mediaDevices?.getUserMedia) {
+      setStatus(status, "当前浏览器不支持录音", "warn");
+      return;
+    }
+
+    const shouldFormat = isDialogueField(field);
+    let stream;
+    let audioContext;
+    let source;
+    let processor;
+    const chunks = [];
+    const sampleRate = 16000;
+    try {
+      stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      const AudioContextCtor = window.AudioContext || window.webkitAudioContext;
+      audioContext = new AudioContextCtor({ sampleRate });
+      source = audioContext.createMediaStreamSource(stream);
+      processor = audioContext.createScriptProcessor(4096, 1, 1);
+      processor.onaudioprocess = (event) => {
+        chunks.push(new Float32Array(event.inputBuffer.getChannelData(0)));
+      };
+      source.connect(processor);
+      processor.connect(audioContext.destination);
+    } catch (error) {
+      console.error("[practice recorder] getUserMedia failed:", error);
+      setStatus(status, "无法获取麦克风权限", "warn");
+      return;
+    }
+
+    recordButton.classList.add("recording");
+    recordButton.setAttribute("aria-label", "结束录音");
+    recordButton.title = "结束录音";
+    setFieldLocked(field, true);
+    setStatus(status, "录音中，再次点击结束", "");
+
+    const cleanup = async () => {
+      activePracticeRecording = null;
+      recordButton.classList.remove("recording");
+      recordButton.setAttribute("aria-label", "录音输入");
+      recordButton.title = shouldFormat ? "录音后自动转写并整理为对话格式" : "录音后自动转写到输入框";
+      try { processor.disconnect(); source.disconnect(); } catch {}
+      try { stream.getTracks().forEach((track) => track.stop()); } catch {}
+      try { await audioContext.close(); } catch {}
+    };
+
+    activePracticeRecording = {
+      button: recordButton,
+      cancel: cleanup,
+      stop: async () => {
+        if (!activePracticeRecording) return;
+        await cleanup();
+        if (!chunks.length) {
+          setFieldLocked(field, false);
+          setStatus(status, "没有录到声音", "warn");
+          return;
+        }
+        setButtonsDisabled([recordButton], true);
+        setStatus(status, "转写中...", "");
+        try {
+          const recognizedText = await transcribeChunks(chunks, sampleRate);
+          if (!recognizedText) {
+            setStatus(status, "未识别到文本", "warn");
+            return;
+          }
+          field.value = recognizedText;
+          field.dispatchEvent(new Event("input", { bubbles: true }));
+          if (shouldFormat) await formatDialogueAnswer(field, status);
+          else setStatus(status, "已转写", "ok");
+        } catch (error) {
+          console.error("[practice recorder] transcribe or format failed:", error);
+          setStatus(status, "录音处理失败", "warn");
+        } finally {
+          setFieldLocked(field, false);
+          setButtonsDisabled([recordButton], false);
+        }
+      }
+    };
+  }
+
+  function cancelActiveRecordingOnUnload() {
+    if (!activePracticeRecording) return;
+    try {
+      activePracticeRecording.cancel();
+    } catch {
+      activePracticeRecording = null;
+    }
+  }
+
+  function wrapField(field) {
+    if (field.dataset.speechInputAttached === "1") return null;
+    field.dataset.speechInputAttached = "1";
+
+    const wrapper = document.createElement("div");
+    wrapper.className = ["speech-input-wrap", field.classList.contains("short") ? "short" : "", field.classList.contains("medium") ? "medium" : "", field.classList.contains("long") ? "long" : ""]
+      .filter(Boolean)
+      .join(" ");
+    field.insertAdjacentElement("beforebegin", wrapper);
+    wrapper.append(field);
+    return wrapper;
+  }
+
+  function attachSpeechInput(field) {
+    const wrapper = wrapField(field);
+    if (!wrapper) return;
+
+    const status = document.createElement("span");
+    status.className = "speech-input-status";
+    status.setAttribute("aria-live", "polite");
+
+    const recordButton = document.createElement("button");
+    recordButton.type = "button";
+    recordButton.className = "speech-input-btn";
+    recordButton.innerHTML = speakerIcon();
+    recordButton.setAttribute("aria-label", "录音输入");
+    recordButton.title = isDialogueField(field) ? "录音后自动转写并整理为对话格式" : "录音后自动转写到输入框";
+
+    recordButton.addEventListener("click", () => startSpeechInput(field, status, recordButton));
+    wrapper.append(recordButton, status);
+  }
+
+  function initPracticeAnswerFormatter() {
+    document.querySelectorAll(speechInputSelector).forEach(attachSpeechInput);
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initPracticeAnswerFormatter);
+  } else {
+    initPracticeAnswerFormatter();
+  }
+
+  window.addEventListener("beforeunload", cancelActiveRecordingOnUnload);
+  window.initPracticeAnswerFormatter = initPracticeAnswerFormatter;
+})();
