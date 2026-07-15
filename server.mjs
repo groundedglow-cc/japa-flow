@@ -1010,19 +1010,202 @@ function extractJsonObject(text) {
   return {};
 }
 
-function normalizeFormattedPracticeText(value) {
-  const parsed = extractJsonObject(value);
-  if (typeof parsed.formattedText === "string") {
-    return compactPracticeText(parsed.formattedText, 3000);
+function decodeJsonishString(value) {
+  const raw = String(value || "");
+  if (!raw) return "";
+  for (const candidate of [raw, raw.replace(/\r/g, "\\r").replace(/\n/g, "\\n")]) {
+    try {
+      return JSON.parse(`"${candidate}"`);
+    } catch {}
   }
+  return raw
+    .replace(/\\r\\n/g, "\n")
+    .replace(/\\n/g, "\n")
+    .replace(/\\r/g, "\n")
+    .replace(/\\"/g, "\"")
+    .replace(/\\\\/g, "\\")
+    .trim();
+}
+
+function extractJsonishStringField(value, fieldName) {
+  const text = String(value || "").trim();
+  if (!text) return "";
+  const escapedName = fieldName.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const quotedPattern = new RegExp(`"${escapedName}"\\s*:\\s*"([\\s\\S]*?)"\\s*(?:,\\s*"[^"]+"\\s*:|\\s*})`);
+  const quoted = text.match(quotedPattern);
+  if (quoted) return decodeJsonishString(quoted[1]);
+  return "";
+}
+
+function extractFormattedPracticeText(value) {
+  if (value && typeof value === "object" && typeof value.formattedText === "string") {
+    return extractFormattedPracticeText(value.formattedText) || compactPracticeText(value.formattedText, 3000);
+  }
+  const text = String(value || "").trim();
+  if (!text) return "";
+  const parsed = extractJsonObject(text);
+  if (parsed && typeof parsed.formattedText === "string") {
+    return extractFormattedPracticeText(parsed.formattedText) || compactPracticeText(parsed.formattedText, 3000);
+  }
+  const looseFormattedText = extractJsonishStringField(text, "formattedText");
+  if (looseFormattedText) return compactPracticeText(looseFormattedText, 3000);
+  return "";
+}
+
+function extractNotesText(value) {
+  if (value && typeof value === "object" && typeof value.notes === "string") {
+    return compactPracticeText(value.notes, 600);
+  }
+  const parsed = extractJsonObject(value);
+  if (parsed && typeof parsed.notes === "string") return compactPracticeText(parsed.notes, 600);
+  return compactPracticeText(extractJsonishStringField(value, "notes"), 600);
+}
+
+function normalizeFormattedPracticeText(value) {
+  const formattedText = extractFormattedPracticeText(value);
+  if (formattedText) return formattedText;
   return compactPracticeText(value, 3000);
 }
 
 function normalizeDialogueSpeakerText(value) {
   return compactPracticeText(value, 3000)
     .split("\n")
-    .map((line) => line.replace(/^([甲乙丙丁ABCD])[:：\s]*/, "$1："))
+    .map((line) => line.replace(/^((?:乙[12１２]?)|[甲丙丁ABCD])[:：\s]*/, "$1："))
     .join("\n");
+}
+
+function normalizeJapanesePracticeSentence(value) {
+  let text = String(value || "")
+    .replace(/\s+/g, " ")
+    .trim();
+  if (!/[。？！]$/.test(text)) text += "。";
+  return text;
+}
+
+function sanitizeDialogueLabels(labels) {
+  return (Array.isArray(labels) ? labels : [])
+    .map((label) => String(label || "").trim().replace(/[：:]/g, ""))
+    .filter((label) => /^((?:乙[12１２]?)|[甲丙丁ABCD])$/.test(label))
+    .slice(0, 12);
+}
+
+function sanitizeDialogueSentenceCounts(counts, expectedLength) {
+  const values = (Array.isArray(counts) ? counts : [])
+    .map((count) => Number(count))
+    .filter((count) => Number.isInteger(count) && count > 0)
+    .slice(0, expectedLength);
+  return values.length === expectedLength ? values : [];
+}
+
+function dialogueLabelsFromExamples(examples) {
+  const text = String(examples || "");
+  const labels = Array.from(text.matchAll(/(?:^|\n|\s)((?:乙[12１２]?)|[甲丙丁ABCD])\s*[:：]/g), (match) => match[1]);
+  if (labels.length) return labels;
+  if (/乙[1１].*乙[2２]/s.test(text)) return ["甲", "乙1", "乙2"];
+  if (/甲.*乙/s.test(text)) return ["甲", "乙"];
+  return ["甲", "乙"];
+}
+
+function dialogueLabelsFromFormat({ formatHints, examples }) {
+  const hintedLabels = sanitizeDialogueLabels(formatHints?.speakerLabels);
+  return hintedLabels.length ? hintedLabels : dialogueLabelsFromExamples(examples);
+}
+
+function splitDialogueUtterances(inputText) {
+  const normalized = compactPracticeText(inputText, 2000)
+    .replace(/\r\n/g, "\n")
+    .replace(/[ \t]+/g, " ")
+    .replace(/\s*((?:乙[12１２]?)|[甲丙丁ABCD])\s*[:：]?\s*/g, "\n$1：")
+    .replace(/([。？！?])\s+/g, "$1\n")
+    .replace(/\n{2,}/g, "\n")
+    .trim();
+  if (!normalized) return [];
+  const speakerLines = normalized.split("\n").filter(Boolean);
+  if (speakerLines.some((line) => /^((?:乙[12１２]?)|[甲丙丁ABCD])[:：]/.test(line))) {
+    return speakerLines.map((line) => normalizeDialogueSpeakerText(line)).filter(Boolean);
+  }
+  return speakerLines
+    .flatMap((line) => line.split(/(?<=[。？！?])\s*/))
+    .map((line) => normalizeJapanesePracticeSentence(line))
+    .filter((line) => line && line !== "。");
+}
+
+function splitPracticeSentences(value) {
+  const text = String(value || "").replace(/\s+/g, " ").trim();
+  if (!text) return [];
+  const sentences = text.match(/[^。？！?!]+[。？！?!]?/g) || [text];
+  return sentences.map((sentence) => sentence.trim()).filter(Boolean);
+}
+
+function dialogueContentUnits(value) {
+  const normalized = compactPracticeText(value, 3000)
+    .replace(/\r\n/g, "\n")
+    .replace(/[ \t]+/g, " ")
+    .replace(/\s*((?:乙[12１２]?)|[甲丙丁ABCD])\s*[:：]\s*/g, "\n$1：")
+    .replace(/\n{2,}/g, "\n")
+    .trim();
+  if (!normalized) return [];
+  return normalized
+    .split("\n")
+    .filter(Boolean)
+    .flatMap((line) => {
+      const body = line.replace(/^((?:乙[12１２]?)|[甲丙丁ABCD])[:：]\s*/, "");
+      return splitPracticeSentences(body);
+    })
+    .filter(Boolean);
+}
+
+function groupDialogueUnitsByFormat(units, labels, sentenceCounts) {
+  if (!labels.length || !units.length) return [];
+  if (!sentenceCounts.length) {
+    return labels.map((label, index) => {
+      if (index === labels.length - 1) return { label, body: units.slice(index).join("") };
+      return { label, body: units[index] || "" };
+    });
+  }
+
+  let cursor = 0;
+  return labels.map((label, index) => {
+    const count = sentenceCounts[index] || 1;
+    const take = index === labels.length - 1
+      ? units.length - cursor
+      : Math.min(count, units.length - cursor);
+    const body = units.slice(cursor, cursor + take).join("");
+    cursor += take;
+    return { label, body };
+  });
+}
+
+function enforceDialogueTurnFormat(value, { examples = "", formatHints = {} } = {}) {
+  const labels = dialogueLabelsFromFormat({ formatHints, examples });
+  if (!labels.length) return normalizeDialogueSpeakerText(value);
+  const sentenceCounts = sanitizeDialogueSentenceCounts(formatHints?.speakerSentenceCounts, labels.length);
+
+  const units = dialogueContentUnits(value);
+  if (!units.length) return normalizeDialogueSpeakerText(value);
+
+  return groupDialogueUnitsByFormat(units, labels, sentenceCounts)
+    .map(({ label, body }) => body ? `${label}：${body}` : "")
+    .filter(Boolean)
+    .join("\n");
+}
+
+function localFormatPracticeAnswer({ inputText, examples = "", answerUnit = "", formatHints = {} }) {
+  const cleanInput = compactPracticeText(inputText, 2000);
+  if (!cleanInput) return "";
+  if (answerUnit !== "dialogue") return cleanInput;
+  const utterances = splitDialogueUtterances(cleanInput);
+  if (!utterances.length) return cleanInput;
+  let formattedText;
+  if (utterances.some((line) => /^((?:乙[12１２]?)|[甲丙丁ABCD])[:：]/.test(line))) {
+    formattedText = normalizeDialogueSpeakerText(utterances.join("\n"));
+    return enforceDialogueTurnFormat(formattedText, { examples, formatHints });
+  }
+  const labels = dialogueLabelsFromFormat({ formatHints, examples });
+  formattedText = utterances
+    .map((line, index) => `${labels[index] || labels[Math.min(index, labels.length - 1)]}：${normalizeJapanesePracticeSentence(line)}`)
+    .join("\n");
+  return enforceDialogueTurnFormat(formattedText, { examples, formatHints });
 }
 
 function compactPracticeText(value, limit = 3000) {
@@ -1033,13 +1216,36 @@ function compactPracticeText(value, limit = 3000) {
     .slice(0, limit);
 }
 
-async function formatPracticeAnswer({ inputText, examples = "", itemPrompt = "", activityTitle = "", answerUnit = "" }) {
+function practiceAnswerFingerprint(value) {
+  return String(value || "")
+    .replace(/((?:乙[12１２]?)|[甲丙丁ABCD])[:：]/g, "")
+    .replace(/[\s。．、，,.？！?!：:；;「」『』（）()\[\]【】{}｛｝"“”'‘’／/\\|・…—_-]/g, "")
+    .toLowerCase();
+}
+
+function hasSamePracticeAnswerContent(inputText, formattedText) {
+  const inputFingerprint = practiceAnswerFingerprint(inputText);
+  const formattedFingerprint = practiceAnswerFingerprint(formattedText);
+  return Boolean(inputFingerprint) && inputFingerprint === formattedFingerprint;
+}
+
+async function formatPracticeAnswer({ inputText, examples = "", formatHints = {}, answerUnit = "" }) {
   const key = process.env.DEEPSEEK_API_KEY;
-  if (!key) throw new Error("Missing DEEPSEEK_API_KEY.");
   const baseUrl = (process.env.DEEPSEEK_BASE_URL || "https://api.deepseek.com").replace(/\/+$/, "");
   const model = process.env.DEEPSEEK_MODEL || "deepseek-v4-flash";
   const cleanInput = compactPracticeText(inputText, 2000);
   if (!cleanInput) throw new Error("Missing inputText.");
+  const speakerLabels = dialogueLabelsFromFormat({ formatHints, examples });
+  const speakerSentenceCounts = sanitizeDialogueSentenceCounts(formatHints?.speakerSentenceCounts, speakerLabels.length);
+
+  const fallbackResult = (notes = "格式化服务未返回可用结果，已保留原始转写。") => ({
+    formattedText: localFormatPracticeAnswer({ inputText: cleanInput, examples, answerUnit, formatHints }) || cleanInput,
+    notes,
+    model,
+    provider: "local_fallback"
+  });
+
+  if (!key) return fallbackResult("未配置模型服务，已仅按本地规则整理格式。");
 
   const response = await fetch(`${baseUrl}/chat/completions`, {
     method: "POST",
@@ -1054,47 +1260,62 @@ async function formatPracticeAnswer({ inputText, examples = "", itemPrompt = "",
           role: "system",
           content: [
             "你是日语练习的用户答案格式化器。",
-            "你只处理用户自己的语音转写文本，不生成标准答案，不参考教材录音，不使用外部知识。",
-            "根据例句的说话人、行数、换行、标点风格，把用户文本整理成同样的作答格式。",
-            "例句中如果出现「甲トイレは...」「乙あそこです」这种 speaker 后缺少冒号的文本，也要理解为「甲：...」「乙：...」。",
+            "你的任务只是在用户原始输入上整理格式；禁止生成答案、补全答案、纠正词汇、替换词语、改写句意或使用外部知识。",
+            "你不会收到题目词汇或例句内容；只会收到抽象格式标签。不要猜测教材答案。",
+            "允许的操作只有：插入换行、添加或规范说话人标签、统一全角冒号、整理空格、补最基本的句末标点。",
+            "禁止把用户没有说出的词、姓名、职业、国籍、机构名加入 formattedText。",
+            "禁止把用户说错或 ASR 识别错的词改成你认为正确的词。",
+            "说话人标签顺序表示例句的真实对话轮次，重复标签不能去重。例如「甲 / 乙 / 甲」必须输出 3 行，而不是甲乙轮流拆成更多行。",
+            "如果提供了每轮句子数，必须按这个句子数组合用户输入；用户停顿造成的短句不能新增 speaker 轮次。",
             "最终输出的每一行 speaker 后都必须使用全角冒号，例如「甲：」「乙：」，即使例句原文没有冒号也必须补上。",
-            "不要把题目提示词替换进用户文本；用户说了什么，就只整理用户说出的内容。",
-            "不要补充用户没有说出的内容；只允许修正常见 ASR 标点、空格、问号、句号和说话人换行。",
-            "如果例句是甲/乙对话，formattedText 必须是纯文本多行对话，例如：甲：...\\n乙：...，不能把 JSON 字符串放进 formattedText。",
+            "formattedText 去掉说话人、空格和标点后，必须与用户原始输入去掉空格和标点后的内容完全一致。",
             "只返回一个 JSON object，不要 markdown，不要二次 JSON 编码。格式固定为 {\"formattedText\":\"甲：...\\n乙：...\",\"notes\":\"...\"}。"
           ].join("\n")
         },
         {
           role: "user",
           content: [
-            `活动标题：${compactPracticeText(activityTitle, 120) || "未提供"}`,
             `答案类型：${compactPracticeText(answerUnit, 60) || "未提供"}`,
-            `题目提示：${compactPracticeText(itemPrompt, 300) || "未提供"}`,
+            `说话人标签顺序：${speakerLabels.join(" / ")}`,
+            `每轮句子数：${speakerSentenceCounts.length ? speakerSentenceCounts.join(" / ") : "未提供"}`,
             "",
-            "例句格式：",
-            compactPracticeText(examples, 1200) || "未提供",
-            "",
-            "用户语音转写文本：",
+            "只整理下面这段用户输入，不要参考或生成其它内容：",
             cleanInput
           ].join("\n")
         }
       ],
       temperature: 0,
-      max_tokens: 800,
+      max_tokens: 220,
+      thinking: { type: "disabled" },
+      response_format: { type: "json_object" },
       stream: false
     })
   });
   const bodyText = await response.text();
-  if (!response.ok) throw new Error(`DeepSeek HTTP ${response.status}: ${bodyText}`);
-  const raw = JSON.parse(bodyText);
+  if (!response.ok) return fallbackResult(`格式化服务 HTTP ${response.status}，已保留原始转写。`);
+  let raw;
+  try {
+    raw = JSON.parse(bodyText);
+  } catch {
+    return fallbackResult("格式化服务返回非 JSON，已保留原始转写。");
+  }
   const content = raw.choices?.[0]?.message?.content || "";
   const parsed = extractJsonObject(content);
-  const normalizedText = normalizeFormattedPracticeText(parsed.formattedText || content);
-  const formattedText = answerUnit === "dialogue" ? normalizeDialogueSpeakerText(normalizedText) : normalizedText;
-  if (!formattedText) throw new Error("DeepSeek response did not include formattedText.");
+  const extractedText = extractFormattedPracticeText(parsed) || extractFormattedPracticeText(content);
+  const plainDialogueText = answerUnit === "dialogue" && /^((?:乙[12１２]?)|[甲丙丁ABCD])[:：]/m.test(content)
+    ? compactPracticeText(content, 3000)
+    : "";
+  const normalizedText = extractedText || plainDialogueText;
+  const formattedText = answerUnit === "dialogue"
+    ? enforceDialogueTurnFormat(normalizedText, { examples, formatHints })
+    : normalizedText;
+  if (!formattedText) return fallbackResult();
+  if (!hasSamePracticeAnswerContent(cleanInput, formattedText)) {
+    return fallbackResult("模型返回内容改变了用户输入，已改用本地格式整理。");
+  }
   return {
     formattedText,
-    notes: compactPracticeText(parsed.notes || "", 600),
+    notes: extractNotesText(parsed) || extractNotesText(content),
     model,
     provider: "deepseek"
   };

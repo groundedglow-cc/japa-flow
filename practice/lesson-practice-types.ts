@@ -22,6 +22,18 @@ export type AnswerSource = "prompt" | "audio" | "example_transform" | "personal"
 
 export type EvaluationMode = "exact" | "acceptable_answers" | "self_check" | "manual_review";
 
+export type ResponseScope =
+  | "word_only"
+  | "phrase_only"
+  | "sentence_only"
+  | "dialogue_only"
+  | "answer_only"
+  | "question_and_answer"
+  | "choice_only"
+  | "boolean_only"
+  | "free_response"
+  | "custom";
+
 export type RichText = {
   type: "text";
   text: string;
@@ -66,6 +78,8 @@ export type PracticeItem = {
   instruction?: string;
   answerSource?: AnswerSource;
   evaluationMode?: EvaluationMode;
+  responseScope?: ResponseScope;
+  responseScopeHint?: string;
   prompt: PromptPart[];
   promptKana?: string;
   inputSlots?: InputSlot[];
@@ -185,6 +199,8 @@ export type PracticeActivity = {
   instruction: string;
   interaction: PracticeInteraction;
   answerUnit: AnswerUnit;
+  responseScope?: ResponseScope;
+  responseScopeHint?: string;
   requiresAudio?: boolean;
   audio?: ActivityAudio;
   assets?: ImageAsset[];

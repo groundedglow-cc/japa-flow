@@ -36,9 +36,12 @@ const personalItem = (id: string, number: string, prompt: string, modelAnswers: 
   promptKana,
   instruction: "",
   answerSource: "personal",
-  evaluationMode: "self_check",
+  evaluationMode: "acceptable_answers",
   inputSlots: sentenceSlot("按实际情况作答"),
-  answer: { modelAnswers }
+  answer: {
+    modelAnswers,
+    note: "按句式校验。可填写与你实际情况一致的答案，只要句型完整即可判对。"
+  }
 });
 
 const blankItem = (

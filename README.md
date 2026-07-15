@@ -76,6 +76,17 @@ OSS_BASE_URL=https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com
 | `node scripts/export-catalog.mjs` | 重新生成课程目录 |
 | `node scripts/upload-audio-to-oss.mjs` | 上传本地音频到 OSS |
 
+## Change Log
+
+### 2026-07-15
+
+- 重新整理第 1、2 课 practice preview 数据，补充 response scope、例句展示、录音转写、图片裁切与薄 HTML/bundle 入口兼容。
+- 增加 practice preview 本地答题 session 保存与恢复，固定使用 `japaflow.practice.session.v1:lesson{N}`，保留已有用户答案并兼容旧记录读取。
+- 抽象错题详情组件，在错题卡片右上角新增 `?` popover，复用错误弹窗中的“你的答案 / 正确答案 / 差异对比”展示。
+- 增加全局答案词汇表记归一化，支持 `我 / 私 / わたし`、`鍵 / かぎ`、`誰 / だれ` 等等价写法，读取已有 localStorage 答案后会用最新规则重判。
+- 修复对话录音格式化：当 ASR 将一句回答拆成多段时，服务端会按例句 speaker 轮次数合并，避免多生成对话轮次。
+- 新增 `practice-normalization-prompt.md`，用于后续快速追加全局答案归一化词表。
+
 ## 部署
 
 推送 `main` 分支自动触发 GitHub Actions 部署流程：

@@ -12,7 +12,7 @@ const pages: LessonImageCropCatalog["pages"] = [
         kind: "table",
         imagePath: page(38),
         label: "练习 I · 1 看图替换",
-        crop: { unit: "percent", x: 8.5, y: 16.2, width: 87.8, height: 31.4, aspectRatio: 1.875 },
+        crop: { unit: "percent", x: 8.5, y: 16.2, width: 87.8, height: 31.4, aspectRatio: 1.8508 },
         meta: { pageNo: 38 }
       }
     ]
@@ -26,7 +26,7 @@ const pages: LessonImageCropCatalog["pages"] = [
         kind: "table",
         imagePath: page(39),
         label: "练习 I · 4 看图会话",
-        crop: { unit: "percent", x: 6.2, y: 8.1, width: 87.9, height: 42.3, aspectRatio: 1.395 },
+        crop: { unit: "percent", x: 6.2, y: 8.1, width: 87.9, height: 42.3, aspectRatio: 1.3769 },
         meta: { pageNo: 39 }
       }
     ]
@@ -40,7 +40,7 @@ const pages: LessonImageCropCatalog["pages"] = [
         kind: "table",
         imagePath: page(40),
         label: "练习 II · 4 看图听录音",
-        crop: { unit: "percent", x: 7.6, y: 60.7, width: 87.1, height: 16.2, aspectRatio: 3.61 },
+        crop: { unit: "percent", x: 7.6, y: 60.7, width: 87.1, height: 16.2, aspectRatio: 3.5587 },
         meta: { pageNo: 40 }
       }
     ]

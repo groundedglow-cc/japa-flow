@@ -3,26 +3,97 @@
   let activePracticeRecording = null;
 
   function textOf(element) {
-    return String(element?.textContent || "").replace(/\s+/g, " ").trim();
+    if (!element) return "";
+    const cloned = element.cloneNode(true);
+    cloned.querySelectorAll("rt").forEach((node) => node.remove());
+    return String(cloned.textContent || "").replace(/\s+/g, " ").trim();
   }
 
-  function collectExampleText(activity) {
-    const blocks = Array.from(activity.querySelectorAll(".layout-blocks"));
-    return blocks
-      .map((block) => Array.from(block.querySelectorAll(".dialogue-line, .example-block"))
-        .map((line) => {
-          if (line.classList.contains("dialogue-line")) {
-            const label = textOf(line.querySelector("span"));
-            const body = textOf(line.querySelector("p"));
-            if (/^[甲乙丙丁ABCD]$/.test(label) && body) return `${label}：${body}`;
-            if (label && body) return `${label} ${body}`;
-          }
-          return textOf(line);
-        })
-        .filter(Boolean)
-        .join("\n"))
+  function dialogueLineText(line) {
+    const label = textOf(line.querySelector("span"));
+    const body = textOf(line.querySelector("p"));
+    return label && body ? `${label}：${body}` : "";
+  }
+
+  function exampleBlockText(example) {
+    const lines = [];
+    const before = textOf(example.querySelector(".example-before"));
+    if (before) lines.push(before);
+
+    const dialogueLines = Array.from(example.querySelectorAll(".example-after .dialogue-line"))
+      .map(dialogueLineText)
+      .filter(Boolean);
+    if (dialogueLines.length) {
+      lines.push(...dialogueLines);
+    } else {
+      const after = textOf(example.querySelector(".example-after"));
+      if (after) lines.push(after);
+    }
+
+    return lines.join("\n").trim();
+  }
+
+  function collectExampleText(activity, item) {
+    const group = item?.closest(".practice-item-group");
+    const roots = group
+      ? Array.from(group.querySelectorAll(".group-head .example-block, .group-head .dialogue-block"))
+      : Array.from(activity.querySelectorAll(".layout-blocks > .example-block, .layout-blocks > .dialogue-block"));
+    const seen = new Set();
+    return roots
+      .map((root) => {
+        if (root.classList.contains("example-block")) return exampleBlockText(root);
+        if (root.classList.contains("dialogue-block")) {
+          return Array.from(root.querySelectorAll(".dialogue-line")).map(dialogueLineText).filter(Boolean).join("\n");
+        }
+        return "";
+      })
       .filter(Boolean)
+      .filter((value) => {
+        if (seen.has(value)) return false;
+        seen.add(value);
+        return true;
+      })
       .join("\n\n");
+  }
+
+  function countDialogueSentences(value) {
+    const sentences = String(value || "")
+      .replace(/\s+/g, " ")
+      .trim()
+      .match(/[^。？！?!]+[。？！?!]?/g);
+    return Math.max(1, (sentences || []).map((sentence) => sentence.trim()).filter(Boolean).length);
+  }
+
+  function collectDialogueFormatHints(activity, item) {
+    const labels = [];
+    const sentenceCounts = [];
+    const group = item?.closest(".practice-item-group");
+    const roots = group
+      ? Array.from(group.querySelectorAll(".group-head .example-block, .group-head .dialogue-block"))
+      : Array.from(activity.querySelectorAll(".layout-blocks > .example-block, .layout-blocks > .dialogue-block"));
+
+    roots.some((root) => {
+      const lines = Array.from(root.querySelectorAll(".example-after .dialogue-line, .dialogue-line"));
+      lines.forEach((line) => {
+        const label = textOf(line.querySelector("span"));
+        const body = textOf(line.querySelector("p"));
+        if (/^((?:乙[12１２]?)|[甲丙丁ABCD])$/.test(label) && body) {
+          labels.push(label);
+          sentenceCounts.push(countDialogueSentences(body));
+        }
+      });
+      return labels.length > 0;
+    });
+
+    if (labels.length) return { speakerLabels: labels, speakerSentenceCounts: sentenceCounts };
+
+    const exampleText = collectExampleText(activity, item);
+    for (const match of exampleText.matchAll(/(?:^|\n|\s)((?:乙[12１２]?)|[甲丙丁ABCD])\s*[:：]/g)) {
+      labels.push(match[1]);
+    }
+    if (labels.length) return { speakerLabels: labels };
+    if (/乙[1１].*乙[2２]/s.test(exampleText)) return { speakerLabels: ["甲", "乙1", "乙2"] };
+    return { speakerLabels: ["甲", "乙"] };
   }
 
   function setStatus(status, message, tone = "") {
@@ -31,13 +102,55 @@
   }
 
   function normalizeFormattedText(value) {
+    if (value && typeof value === "object" && typeof value.formattedText === "string") {
+      return normalizeFormattedText(value.formattedText);
+    }
     const text = String(value || "").trim();
     if (!text) return "";
     try {
       const parsed = JSON.parse(text);
-      if (typeof parsed?.formattedText === "string") return parsed.formattedText.trim();
+      if (typeof parsed === "string") return normalizeFormattedText(parsed);
+      if (typeof parsed?.formattedText === "string") return normalizeFormattedText(parsed.formattedText);
     } catch {}
+    const looseFormattedText = extractJsonishStringField(text, "formattedText");
+    if (looseFormattedText) return looseFormattedText.trim();
     return text;
+  }
+
+  function decodeJsonishString(value) {
+    const raw = String(value || "");
+    for (const candidate of [raw, raw.replace(/\r/g, "\\r").replace(/\n/g, "\\n")]) {
+      try {
+        return JSON.parse(`"${candidate}"`);
+      } catch {}
+    }
+    return raw
+      .replace(/\\r\\n/g, "\n")
+      .replace(/\\n/g, "\n")
+      .replace(/\\r/g, "\n")
+      .replace(/\\"/g, "\"")
+      .replace(/\\\\/g, "\\")
+      .trim();
+  }
+
+  function extractJsonishStringField(value, fieldName) {
+    const text = String(value || "").trim();
+    if (!text) return "";
+    const escapedName = fieldName.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    const quotedPattern = new RegExp(`"${escapedName}"\\s*:\\s*"([\\s\\S]*?)"\\s*(?:,\\s*"[^"]+"\\s*:|\\s*})`);
+    const quoted = text.match(quotedPattern);
+    return quoted ? decodeJsonishString(quoted[1]) : "";
+  }
+
+  function normalizeLocalDialogueText(value) {
+    return normalizeFormattedText(value)
+      .replace(/\r\n/g, "\n")
+      .replace(/[ \t]+/g, " ")
+      .replace(/\s*(甲|乙[12１２]?|丙|丁)\s*[:：]?\s*/g, "\n$1：")
+      .replace(/^\n+/, "")
+      .replace(/([。？！?])\s+(?=(?:甲|乙[12１２]?|丙|丁)：)/g, "$1\n")
+      .replace(/\n{2,}/g, "\n")
+      .trim();
   }
 
   function speakerIcon() {
@@ -58,7 +171,7 @@
       field.placeholder,
       item?.classList.contains("dialogue") ? "dialogue" : "",
       textOf(item?.querySelector(".item-prompt")),
-      collectExampleText(activity)
+      collectExampleText(activity, item)
     ].join("\n");
     return /dialogue|会话|対話|甲|乙/.test(context);
   }
@@ -135,20 +248,23 @@
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           inputText,
-          examples: collectExampleText(activity),
-          itemPrompt: textOf(item?.querySelector(".item-prompt")),
-          activityTitle: textOf(activity?.querySelector("h2")),
+          formatHints: collectDialogueFormatHints(activity, item),
           answerUnit: "dialogue"
         })
       });
       const data = await response.json();
       if (!response.ok) throw new Error(data.error || `HTTP ${response.status}`);
-      field.value = normalizeFormattedText(data.formattedText) || inputText;
+      const formattedText = normalizeFormattedText(data.formattedText || data) || inputText;
+      field.value = data.provider === "local_fallback"
+        ? formattedText
+        : normalizeLocalDialogueText(formattedText) || inputText;
       field.dispatchEvent(new Event("input", { bubbles: true }));
       setStatus(status, data.notes ? `已格式化：${data.notes}` : "已格式化", "ok");
     } catch (error) {
       console.error("[practice formatter] failed:", error);
-      setStatus(status, "格式化失败", "warn");
+      field.value = inputText;
+      field.dispatchEvent(new Event("input", { bubbles: true }));
+      setStatus(status, "已转写，格式化服务暂不可用", "warn");
     }
   }
 
