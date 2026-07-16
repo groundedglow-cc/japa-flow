@@ -1972,6 +1972,52 @@ button.tag {
   margin: 0 auto;
 }
 
+.practice-preview-host {
+  max-width: none;
+  width: min(100%, 1480px);
+}
+
+.practice-version-head {
+  max-width: 1060px;
+  margin: 0 auto 14px;
+}
+
+.practice-version-switch {
+  display: inline-grid;
+  grid-template-columns: repeat(2, minmax(58px, 1fr));
+  align-items: center;
+  padding: 3px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #f6f8f6;
+}
+
+.practice-version-switch button {
+  min-height: 32px;
+  padding: 6px 12px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 850;
+}
+
+.practice-version-switch button.active {
+  background: white;
+  color: var(--accent);
+  box-shadow: 0 1px 4px rgba(35, 49, 42, 0.12);
+}
+
+.practice-preview-frame {
+  display: block;
+  width: 100%;
+  min-height: calc(100vh - 178px);
+  border: 0;
+  border-radius: 8px;
+  background: white;
+}
+
 .question {
   font-size: 22px;
   line-height: 1.5;

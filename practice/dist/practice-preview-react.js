@@ -21730,8 +21730,101 @@ var import_react = __toESM(require_react(), 1);
 
 // practice/react/practiceSessionApi.js
 var STORAGE_PREFIX = "japaflow.practice.session.v1";
+var API_BASE = "/api/japaflow";
+var TOKEN_KEY = "light_blog_token";
+var USER_KEY = "light_blog_user";
+var AuthRequiredError = class extends Error {
+  constructor(message = "\u8BF7\u5148\u767B\u5F55\u540E\u7EE7\u7EED\u7EC3\u4E60\u3002") {
+    super(message);
+    this.name = "AuthRequiredError";
+  }
+};
 function storageKey(lessonId2) {
   return `${STORAGE_PREFIX}:${lessonId2}`;
+}
+function getAuthToken() {
+  if (typeof window === "undefined") return "";
+  syncAuthCookie();
+  return window.localStorage.getItem(TOKEN_KEY) || "";
+}
+function shouldUseBackend() {
+  return Boolean(getAuthToken());
+}
+function getCookie(name) {
+  if (typeof document === "undefined") return "";
+  const match = document.cookie.match(new RegExp(`(?:^|; )${name}=([^;]*)`));
+  return match ? decodeURIComponent(match[1]) : "";
+}
+function mainAppUrl() {
+  return typeof window !== "undefined" && window.location?.hostname === "localhost" ? "http://localhost:3000" : "https://groundedglow.cc";
+}
+function syncAuthCookie() {
+  if (typeof window === "undefined" || typeof document === "undefined") return;
+  if (window.parent !== window) return;
+  const cookieToken = getCookie(TOKEN_KEY);
+  if (!cookieToken || window.localStorage.getItem(TOKEN_KEY)) return;
+  window.localStorage.setItem(TOKEN_KEY, cookieToken);
+  const cookieUser = getCookie(USER_KEY);
+  if (cookieUser) window.localStorage.setItem(USER_KEY, cookieUser);
+}
+function loginUrl() {
+  const currentUrl = typeof window === "undefined" ? "" : window.location.href;
+  return `${mainAppUrl()}/login?redirect=${encodeURIComponent(currentUrl)}`;
+}
+function redirectToLogin() {
+  if (typeof window === "undefined") return;
+  window.location.href = loginUrl();
+}
+function handleAuthExpired() {
+  if (typeof window === "undefined") return;
+  if (typeof window.japaflowAuthExpired === "function") {
+    window.japaflowAuthExpired();
+    return;
+  }
+  window.localStorage.removeItem(TOKEN_KEY);
+  window.localStorage.removeItem(USER_KEY);
+  redirectToLogin();
+}
+async function apiRequest(method, path, body = null) {
+  if (!shouldUseBackend()) return null;
+  const headers = { Authorization: `Bearer ${getAuthToken()}` };
+  if (body !== null) headers["Content-Type"] = "application/json";
+  try {
+    const response = await fetch(`${API_BASE}${path}`, {
+      method,
+      headers,
+      body: body !== null ? JSON.stringify(body) : void 0
+    });
+    if (response.status === 401 || response.status === 403) {
+      handleAuthExpired();
+      throw new AuthRequiredError();
+    }
+    if (!response.ok) return null;
+    const json = await response.json();
+    return json.code === 0 || json.code === 200 ? json.data : null;
+  } catch (error) {
+    if (error?.name === "AuthRequiredError") throw error;
+    return null;
+  }
+}
+async function apiRequestOrThrow(method, path, body = null) {
+  if (!shouldUseBackend()) throw new AuthRequiredError();
+  const headers = { Authorization: `Bearer ${getAuthToken()}` };
+  if (body !== null) headers["Content-Type"] = "application/json";
+  const response = await fetch(`${API_BASE}${path}`, {
+    method,
+    headers,
+    body: body !== null ? JSON.stringify(body) : void 0
+  });
+  if (response.status === 401 || response.status === 403) {
+    handleAuthExpired();
+    throw new AuthRequiredError();
+  }
+  const json = await response.json().catch(() => ({}));
+  if (!response.ok || !(json.code === 0 || json.code === 200)) {
+    throw new Error(json.message || `\u8BF7\u6C42\u5931\u8D25 (${response.status})`);
+  }
+  return json.data;
 }
 function safeJsonParse(value, fallback) {
   if (!value) return fallback;
@@ -21749,6 +21842,22 @@ function readLessonRecord(lessonId2) {
 function writeLessonRecord(lessonId2, record) {
   if (typeof window === "undefined") return;
   window.localStorage.setItem(storageKey(lessonId2), JSON.stringify(record));
+}
+function deleteLessonRecord(lessonId2) {
+  if (typeof window === "undefined") return;
+  window.localStorage.removeItem(storageKey(lessonId2));
+}
+function removeLocalActivityRecord(lessonId2, activityId, practiceSetId = null) {
+  const record = readLessonRecord(lessonId2);
+  if (practiceSetId) record.practiceSetId = practiceSetId;
+  if (record.activities?.[activityId]) {
+    delete record.activities[activityId];
+  }
+  if (!Object.keys(record.activities || {}).length) {
+    deleteLessonRecord(lessonId2);
+    return;
+  }
+  writeLessonRecord(lessonId2, record);
 }
 function mergeLegacyLessonRecords(lessonId2, record) {
   const merged = {
@@ -21801,20 +21910,147 @@ function lessonNumber(lessonId2) {
   const match = String(lessonId2).match(/lesson(\d+)/i);
   return match ? Number(match[1]) : void 0;
 }
-var practiceSessionApi = {
-  async loadLessonSession(lessonId2) {
-    return readLessonRecord(lessonId2);
-  },
-  async saveActivitySubmission({ lessonId: lessonId2, activityId, payload }) {
-    const record = readLessonRecord(lessonId2);
-    record.activities || (record.activities = {});
-    record.activities[activityId] = {
-      ...record.activities[activityId] || {},
-      ...payload,
-      updatedAt: (/* @__PURE__ */ new Date()).toISOString()
+function numericLessonPath(lessonId2) {
+  return lessonNumber(lessonId2) || lessonId2;
+}
+function serializablePractice(practice) {
+  const { practiceSetId, practiceVersion, ...content } = practice || {};
+  return content;
+}
+function createClientAttemptId() {
+  if (typeof crypto !== "undefined" && crypto.randomUUID) return crypto.randomUUID();
+  return `${Date.now()}-${Math.random().toString(16).slice(2)}`;
+}
+function flattenActivityItems(activity) {
+  if (!activity) return [];
+  return activity.itemGroups?.length ? activity.itemGroups.flatMap((group) => group.items) : activity.items || [];
+}
+function backendSessionToRecord(lessonId2, backendSession) {
+  const session = backendSession?.session;
+  const record = {
+    lessonId: lessonId2,
+    practiceSetId: session?.practiceSetId,
+    currentActivityId: session?.currentActivityId || "",
+    activities: {}
+  };
+  for (const progress of backendSession?.activityProgress || []) {
+    if (!progress.activityId) continue;
+    record.activities[progress.activityId] = {
+      updatedAt: progress.latestSubmittedAt,
+      answers: progress.answers || {},
+      grading: {
+        submittedAt: progress.latestSubmittedAt,
+        summary: {
+          totalCount: progress.latestTotalItems || 0,
+          gradedCount: progress.latestTotalItems || 0,
+          correctCount: progress.latestCorrectItems || 0,
+          incorrectCount: Math.max(0, (progress.latestTotalItems || 0) - (progress.latestCorrectItems || 0)),
+          ungradedCount: 0,
+          submittedAt: progress.latestSubmittedAt
+        },
+        itemResults: progress.itemResults || {}
+      }
     };
-    writeLessonRecord(lessonId2, record);
-    return record.activities[activityId];
+  }
+  return record;
+}
+function buildAttemptPayload({ practiceSetId, activity, payload }) {
+  return {
+    practiceSetId,
+    clientAttemptId: createClientAttemptId(),
+    durationMs: null,
+    items: flattenActivityItems(activity).map((item2) => {
+      const result = payload.grading?.itemResults?.[item2.id] || {};
+      return {
+        itemId: item2.id,
+        itemNumber: item2.number,
+        interactionType: item2.interaction || activity.interaction,
+        answerUnit: item2.answerUnit || activity.answerUnit,
+        evaluationMode: item2.evaluationMode || activity.evaluationMode || "exact",
+        userAnswer: payload.answers?.[item2.id] || {},
+        correctAnswer: item2.answer || null,
+        isCorrect: result.status === "correct" ? true : result.status === "incorrect" ? false : null,
+        score: result.status === "correct" ? 1 : result.status === "incorrect" ? 0 : null,
+        errorTags: result.status === "incorrect" ? ["incorrect"] : []
+      };
+    })
+  };
+}
+var practiceSessionApi = {
+  isAuthenticated() {
+    return shouldUseBackend();
+  },
+  redirectToLogin,
+  async loadPublishedPractice(lessonId2, fallbackPractice2) {
+    if (!shouldUseBackend()) throw new AuthRequiredError();
+    const backendPracticeSet = await apiRequest("GET", `/lessons/${numericLessonPath(lessonId2)}/practice`);
+    if (!backendPracticeSet?.contentJson) {
+      return {
+        practice: fallbackPractice2,
+        practiceSetId: fallbackPractice2.practiceSetId || null,
+        source: "local"
+      };
+    }
+    return {
+      practice: {
+        ...backendPracticeSet.contentJson,
+        practiceSetId: backendPracticeSet.id,
+        practiceVersion: backendPracticeSet.version
+      },
+      practiceSetId: backendPracticeSet.id,
+      source: "backend"
+    };
+  },
+  async publishLocalPractice({ lessonId: lessonId2, practice }) {
+    if (!practice?.activities?.length) {
+      throw new Error("\u5F53\u524D\u8BFE\u7A0B\u6CA1\u6709\u53EF\u53D1\u5E03\u7684\u672C\u5730\u7EC3\u4E60\u6570\u636E\u3002");
+    }
+    const draft = await apiRequestOrThrow("POST", "/admin/practice/sets", {
+      lessonId: Number(numericLessonPath(lessonId2)),
+      schemaVersion: "v1",
+      title: practice.title,
+      contentJson: serializablePractice(practice),
+      sourcePromptName: "practise-generete-prompt-v3.md",
+      sourcePromptHash: ""
+    });
+    return apiRequestOrThrow("POST", `/admin/practice/sets/${draft.id}/publish`);
+  },
+  async loadLessonSession(lessonId2) {
+    if (!shouldUseBackend()) throw new AuthRequiredError();
+    const backendSession = await apiRequest("GET", `/lessons/${numericLessonPath(lessonId2)}/practice/session`);
+    if (!backendSession) return { lessonId: lessonId2, activities: {} };
+    return backendSessionToRecord(lessonId2, backendSession);
+  },
+  async updateLessonSession({ lessonId: lessonId2, practiceSetId, currentActivityId }) {
+    if (!practiceSetId) return null;
+    try {
+      return await apiRequest("PUT", `/lessons/${numericLessonPath(lessonId2)}/practice/session`, {
+        practiceSetId,
+        currentActivityId
+      });
+    } catch (error) {
+      if (error?.name === "AuthRequiredError") return null;
+      throw error;
+    }
+  },
+  async saveActivitySubmission({ lessonId: lessonId2, practiceSetId, activityId, activity, payload }) {
+    if (!shouldUseBackend()) {
+      throw new AuthRequiredError();
+    }
+    if (!practiceSetId || !activity) {
+      throw new Error("\u5F53\u524D\u7EC3\u4E60\u5C1A\u672A\u53D1\u5E03\u5230\u6570\u636E\u5E93\uFF0C\u65E0\u6CD5\u4FDD\u5B58\u63D0\u4EA4\u8BB0\u5F55\u3002\u8BF7\u5148\u901A\u8FC7\u7BA1\u7406\u5165\u53E3\u53D1\u5E03\u7EC3\u4E60\u3002");
+    }
+    await apiRequestOrThrow(
+      "POST",
+      `/lessons/${numericLessonPath(lessonId2)}/practice/activities/${encodeURIComponent(activityId)}/attempts`,
+      buildAttemptPayload({ practiceSetId, activity, payload })
+    );
+    removeLocalActivityRecord(lessonId2, activityId, practiceSetId);
+    return {
+      ...payload,
+      updatedAt: (/* @__PURE__ */ new Date()).toISOString(),
+      backendSynced: true
+    };
   }
 };
 
@@ -21897,25 +22133,35 @@ var answerLexicalVariantGroups = [
   ["\u3082\u308A\u3051\u3093\u305F\u308D\u3046", "\u68EE\u5065\u592A\u90CE"]
 ];
 var sortedAnswerLexicalVariantGroups = [...answerLexicalVariantGroups].map((group) => [...group].sort((a, b) => b.length - a.length)).sort((a, b) => b[0].length - a[0].length);
-function PracticePreview({ practice: practice2 }) {
+function PracticePreview({ practice, localPractice: localPractice2 = null }) {
   const search = typeof window === "undefined" ? "" : window.location.search;
   const admin = new URLSearchParams(search).get("admin") === "1";
-  const activities6 = practice2.activities;
-  const [session, setSession] = (0, import_react.useState)({ lessonId: practice2.lessonId, activities: {} });
+  const activities6 = practice.activities;
+  const practiceSetId = practice.practiceSetId || null;
+  const [session, setSession] = (0, import_react.useState)({ lessonId: practice.lessonId, activities: {} });
   const [isReady, setIsReady] = (0, import_react.useState)(false);
   const [currentActivityId, setCurrentActivityId] = (0, import_react.useState)(() => activityIdFromHash(window.location.hash, activities6[0]?.id));
   (0, import_react.useEffect)(() => {
     let mounted = true;
     setIsReady(false);
-    practiceSessionApi.loadLessonSession(practice2.lessonId).then((record) => {
+    practiceSessionApi.loadLessonSession(practice.lessonId).then((record) => {
       if (!mounted) return;
-      setSession(record?.lessonId === practice2.lessonId ? record : { lessonId: practice2.lessonId, activities: {} });
+      const nextSession = record?.lessonId === practice.lessonId ? record : { lessonId: practice.lessonId, activities: {} };
+      setSession(nextSession);
+      if (!window.location.hash && nextSession.currentActivityId) {
+        setCurrentActivityId(nextSession.currentActivityId);
+        window.location.hash = nextSession.currentActivityId;
+      }
+      setIsReady(true);
+    }).catch((error) => {
+      if (!mounted) return;
+      console.error("Failed to load practice session", error);
       setIsReady(true);
     });
     return () => {
       mounted = false;
     };
-  }, [practice2.lessonId]);
+  }, [practice.lessonId]);
   (0, import_react.useEffect)(() => {
     if (admin) document.body.dataset.admin = "1";
     else delete document.body.dataset.admin;
@@ -21947,16 +22193,23 @@ function PracticePreview({ practice: practice2 }) {
   const handleNavigate = (activityId) => {
     if (!activityId || typeof window === "undefined") return;
     window.location.hash = activityId;
+    practiceSessionApi.updateLessonSession({
+      lessonId: practice.lessonId,
+      practiceSetId,
+      currentActivityId: activityId
+    });
   };
-  const handleActivitySave = async (activityId, payload) => {
+  const handleActivitySave = async (activityId, payload, activity) => {
     const saved = await practiceSessionApi.saveActivitySubmission({
-      lessonId: practice2.lessonId,
+      lessonId: practice.lessonId,
+      practiceSetId,
       activityId,
+      activity,
       payload
     });
     setSession((prev) => ({
       ...prev,
-      lessonId: practice2.lessonId,
+      lessonId: practice.lessonId,
       activities: {
         ...prev.activities || {},
         [activityId]: saved
@@ -21967,7 +22220,7 @@ function PracticePreview({ practice: practice2 }) {
     /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("aside", { className: "practice-sidebar", children: [
       /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "practice-brand", children: [
         /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "\u7DF4" }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("strong", { children: practice2.title })
+        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("strong", { children: practice.title })
       ] }),
       /* @__PURE__ */ (0, import_jsx_runtime.jsx)("nav", { className: "activity-nav", "aria-label": "\u7EC3\u4E60\u6D3B\u52A8", children: activities6.map((activity) => {
         const record = normalizeActivityRecord(activity, session.activities?.[activity.id]);
@@ -22021,11 +22274,12 @@ function PracticePreview({ practice: practice2 }) {
       }) })
     ] }),
     /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", { className: "practice-content", children: [
+      admin ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(PracticePublishPanel, { lessonId: practice.lessonId, localPractice: localPractice2 }) : null,
       currentActivity ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
         PracticeActivity,
         {
           activity: currentActivity,
-          practice: practice2,
+          practice,
           admin,
           record: currentRecord,
           isReady,
@@ -22036,7 +22290,7 @@ function PracticePreview({ practice: practice2 }) {
         },
         `${currentActivity.id}:${currentRecord?.updatedAt || "fresh"}:${admin ? "admin" : "user"}`
       ) : null,
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("section", { className: "source-page-strip", "aria-label": "\u6559\u6750\u539F\u9875", children: practice2.sourcePages.map((sourcePage) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("a", { href: sourcePage.imagePath, target: "_blank", rel: "noreferrer", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("section", { className: "source-page-strip", "aria-label": "\u6559\u6750\u539F\u9875", children: practice.sourcePages.map((sourcePage) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("a", { href: sourcePage.imagePath, target: "_blank", rel: "noreferrer", children: [
         /* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", { src: sourcePage.imagePath, alt: `\u6559\u6750\u7B2C ${sourcePage.pageNo} \u9875` }),
         /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { children: [
           "p.",
@@ -22046,9 +22300,46 @@ function PracticePreview({ practice: practice2 }) {
     ] })
   ] });
 }
-function PracticeActivity({ activity, practice: practice2, admin, record, isReady, onSave, previousActivity, nextActivity, onNavigate }) {
+function PracticePublishPanel({ lessonId: lessonId2, localPractice: localPractice2 }) {
+  const [status, setStatus] = (0, import_react.useState)({ state: "idle", message: "" });
+  const lessonNo = String(lessonId2 || "").match(/\d+/)?.[0] || "";
+  const generateCommand = lessonNo ? `practise-generete-prompt-v3.md generate lesson ${lessonNo} data` : "practise-generete-prompt-v3.md generate lesson N data";
+  const canPublish = Boolean(localPractice2?.activities?.length);
+  const handlePublish = async () => {
+    if (!canPublish) return;
+    setStatus({ state: "pending", message: "\u53D1\u5E03\u4E2D..." });
+    try {
+      const published = await practiceSessionApi.publishLocalPractice({ lessonId: lessonId2, practice: localPractice2 });
+      setStatus({ state: "success", message: `\u5DF2\u53D1\u5E03 version ${published.version}` });
+    } catch (error) {
+      setStatus({ state: "error", message: String(error.message || error) });
+    }
+  };
+  return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", { className: "admin-publish-panel", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("strong", { children: "\u672C\u5730\u7EC3\u4E60\u6570\u636E" }),
+      canPublish ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", { children: [
+        localPractice2.title,
+        " \xB7 ",
+        localPractice2.activities.length,
+        " \u9898"
+      ] }) : /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", { children: [
+        "\u672A\u627E\u5230\u672C\u8BFE\u672C\u5730\u7EC3\u4E60\u6570\u636E\u3002\u8BF7\u5148\u751F\u6210 `practice/lesson",
+        lessonNo || "N",
+        "-practice-data.ts`\uFF0C\u4F8B\u5982\uFF1A`",
+        generateCommand,
+        "`\u3002"
+      ] })
+    ] }),
+    /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "admin-publish-actions", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { type: "button", className: "secondary-action", onClick: handlePublish, disabled: !canPublish || status.state === "pending", children: "\u53D1\u5E03\u5230\u6570\u636E\u5E93" }),
+      status.message ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: `admin-publish-status ${status.state}`, children: status.message }) : null
+    ] })
+  ] });
+}
+function PracticeActivity({ activity, practice, admin, record, isReady, onSave, previousActivity, nextActivity, onNavigate }) {
   const assetMap = (0, import_react.useMemo)(() => activityAssetMap(activity), [activity]);
-  const audioUrl2 = resolveActivityAudioUrl(practice2, activity);
+  const audioUrl2 = resolveActivityAudioUrl(practice, activity);
   const formRef = (0, import_react.useRef)(null);
   const summary = record?.grading?.summary || null;
   const [isAnswerSheetOpen, setIsAnswerSheetOpen] = (0, import_react.useState)(false);
@@ -22060,7 +22351,7 @@ function PracticeActivity({ activity, practice: practice2, admin, record, isRead
     await onSave(activity.id, {
       answers,
       grading
-    });
+    }, activity);
   };
   return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("article", { className: "practice-activity practice-activity-single", id: activity.id, children: [
     /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "activity-head", children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [
@@ -22221,7 +22512,7 @@ function ExampleBlockView({ example }) {
   ] });
 }
 function IncorrectAnswerModal({ activity, answers, grading, onClose }) {
-  const incorrectItems = flattenActivityItems(activity).map((item2) => ({ item: item2, result: grading?.[item2.id], answer: answers?.[item2.id] })).filter(({ result }) => result?.status === "incorrect");
+  const incorrectItems = flattenActivityItems2(activity).map((item2) => ({ item: item2, result: grading?.[item2.id], answer: answers?.[item2.id] })).filter(({ result }) => result?.status === "incorrect");
   return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "answer-sheet-modal-backdrop", role: "presentation", onClick: onClose, children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
     "section",
     {
@@ -22475,10 +22766,10 @@ function RubyText({ text: text7, kana }) {
 function shouldRenderWholePrompt(parts, kana) {
   return Boolean(kana) && parts.every((part) => part.type === "text" && !part.underline && !part.substitutionKey && !part.kana);
 }
-function resolveActivityAudioUrl(practice2, activity) {
+function resolveActivityAudioUrl(practice, activity) {
   if (activity.audio?.source === "external_url") return activity.audio.url;
   if (!activity.requiresAudio && activity.audio?.source !== "textbook_exercise") return void 0;
-  const lessonNo = lessonNumber2(practice2.lessonId);
+  const lessonNo = lessonNumber2(practice.lessonId);
   const exerciseNo = exerciseNumber(activity.section);
   if (!lessonNo || !exerciseNo) return void 0;
   const unitNo = Math.ceil(lessonNo / 4);
@@ -22513,7 +22804,7 @@ function slotFieldName(itemId, slotId) {
   return `${itemId}::${slotId}`;
 }
 function collectActivityAnswers(form, activity) {
-  const items = flattenActivityItems(activity);
+  const items = flattenActivityItems2(activity);
   const answers = {};
   items.forEach((item2) => {
     const itemAnswer = {};
@@ -22540,7 +22831,7 @@ function gradeActivity(activity, answers, submittedAt = (/* @__PURE__ */ new Dat
   let incorrectCount = 0;
   let ungradedCount = 0;
   let gradedCount = 0;
-  flattenActivityItems(activity).forEach((item2) => {
+  flattenActivityItems2(activity).forEach((item2) => {
     const result = gradeItem(item2, answers[item2.id] || {});
     itemResults[item2.id] = result;
     if (result.status === "correct") {
@@ -22556,7 +22847,7 @@ function gradeActivity(activity, answers, submittedAt = (/* @__PURE__ */ new Dat
   return {
     submittedAt,
     summary: {
-      totalCount: flattenActivityItems(activity).length,
+      totalCount: flattenActivityItems2(activity).length,
       gradedCount,
       correctCount,
       incorrectCount,
@@ -22656,14 +22947,14 @@ function patternFromPlaceholderAnswer(template) {
 function escapeRegExp(value) {
   return String(value).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
-function flattenActivityItems(activity) {
+function flattenActivityItems2(activity) {
   return activity.itemGroups?.length ? activity.itemGroups.flatMap((group) => group.items) : activity.items;
 }
 function normalizeActivityRecord(activity, record) {
   if (!activity || !record) return record || null;
   const source = record.answers || record.answerRecord || record.submissions || record.values || record;
   const answers = { ...record.answers || {} };
-  flattenActivityItems(activity).forEach((item2) => {
+  flattenActivityItems2(activity).forEach((item2) => {
     const normalized = normalizeStoredItemAnswer(item2, source);
     if (normalized) answers[item2.id] = normalized;
   });
@@ -22730,7 +23021,7 @@ function firstStringValue(values, asArray = false) {
   return asArray ? [] : "";
 }
 function activityProgressSummary(activity, record) {
-  const items = flattenActivityItems(activity);
+  const items = flattenActivityItems2(activity);
   const total = items.length;
   const completed = items.filter((item2) => isItemAnswered(item2, record?.answers?.[item2.id])).length;
   const incorrect = items.filter((item2) => record?.grading?.itemResults?.[item2.id]?.status === "incorrect").length;
@@ -26576,17 +26867,35 @@ var practices = {
 };
 function lessonIdFromPage() {
   const explicit = document.body.dataset.lessonId;
-  if (explicit && practices[explicit]) return explicit;
+  if (explicit) return explicit;
   const match = window.location.pathname.match(/lesson(\d+)-practice-preview/i);
   return match ? `lesson${match[1]}` : "lesson1";
 }
 var lessonId = lessonIdFromPage();
-var practice = practices[lessonId] || lesson1Practice;
+var localPractice = practices[lessonId] || null;
+var fallbackPractice = localPractice || {
+  lessonId,
+  title: `${lessonId} \u7EC3\u4E60`,
+  sourcePages: [],
+  activities: []
+};
 var root = document.getElementById("practice-root");
 if (!root) {
   throw new Error("Missing #practice-root.");
 }
-(0, import_client.createRoot)(root).render(/* @__PURE__ */ (0, import_jsx_runtime2.jsx)(PracticePreview, { practice }));
+root.textContent = "\u52A0\u8F7D\u7EC3\u4E60...";
+async function bootstrap() {
+  if (!practiceSessionApi.isAuthenticated()) {
+    root.textContent = "\u8BF7\u5148\u767B\u5F55\u540E\u7EE7\u7EED\u7EC3\u4E60\uFF0C\u6B63\u5728\u8DF3\u8F6C...";
+    practiceSessionApi.redirectToLogin();
+    return;
+  }
+  const { practice } = await practiceSessionApi.loadPublishedPractice(lessonId, fallbackPractice);
+  (0, import_client.createRoot)(root).render(/* @__PURE__ */ (0, import_jsx_runtime2.jsx)(PracticePreview, { practice, localPractice }));
+}
+bootstrap().catch((error) => {
+  root.textContent = error?.message || "\u7EC3\u4E60\u52A0\u8F7D\u5931\u8D25\uFF0C\u8BF7\u7A0D\u540E\u91CD\u8BD5\u3002";
+});
 /*! Bundled license information:
 
 react/cjs/react.development.js:

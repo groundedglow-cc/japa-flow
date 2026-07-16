@@ -83,10 +83,11 @@ const sortedAnswerLexicalVariantGroups = [...answerLexicalVariantGroups]
   .map((group) => [...group].sort((a, b) => b.length - a.length))
   .sort((a, b) => b[0].length - a[0].length);
 
-export function PracticePreview({ practice }) {
+export function PracticePreview({ practice, localPractice = null }) {
   const search = typeof window === "undefined" ? "" : window.location.search;
   const admin = new URLSearchParams(search).get("admin") === "1";
   const activities = practice.activities;
+  const practiceSetId = practice.practiceSetId || null;
   const [session, setSession] = useState({ lessonId: practice.lessonId, activities: {} });
   const [isReady, setIsReady] = useState(false);
   const [currentActivityId, setCurrentActivityId] = useState(() => activityIdFromHash(window.location.hash, activities[0]?.id));
@@ -94,11 +95,23 @@ export function PracticePreview({ practice }) {
   useEffect(() => {
     let mounted = true;
     setIsReady(false);
-    practiceSessionApi.loadLessonSession(practice.lessonId).then((record) => {
-      if (!mounted) return;
-      setSession(record?.lessonId === practice.lessonId ? record : { lessonId: practice.lessonId, activities: {} });
-      setIsReady(true);
-    });
+    practiceSessionApi
+      .loadLessonSession(practice.lessonId)
+      .then((record) => {
+        if (!mounted) return;
+        const nextSession = record?.lessonId === practice.lessonId ? record : { lessonId: practice.lessonId, activities: {} };
+        setSession(nextSession);
+        if (!window.location.hash && nextSession.currentActivityId) {
+          setCurrentActivityId(nextSession.currentActivityId);
+          window.location.hash = nextSession.currentActivityId;
+        }
+        setIsReady(true);
+      })
+      .catch((error) => {
+        if (!mounted) return;
+        console.error("Failed to load practice session", error);
+        setIsReady(true);
+      });
     return () => {
       mounted = false;
     };
@@ -140,12 +153,19 @@ export function PracticePreview({ practice }) {
   const handleNavigate = (activityId) => {
     if (!activityId || typeof window === "undefined") return;
     window.location.hash = activityId;
+    practiceSessionApi.updateLessonSession({
+      lessonId: practice.lessonId,
+      practiceSetId,
+      currentActivityId: activityId
+    });
   };
 
-  const handleActivitySave = async (activityId, payload) => {
+  const handleActivitySave = async (activityId, payload, activity) => {
     const saved = await practiceSessionApi.saveActivitySubmission({
       lessonId: practice.lessonId,
+      practiceSetId,
       activityId,
+      activity,
       payload
     });
     setSession((prev) => ({
@@ -202,6 +222,7 @@ export function PracticePreview({ practice }) {
       </aside>
 
       <section className="practice-content">
+        {admin ? <PracticePublishPanel lessonId={practice.lessonId} localPractice={localPractice} /> : null}
         {currentActivity ? (
           <PracticeActivity
             key={`${currentActivity.id}:${currentRecord?.updatedAt || "fresh"}:${admin ? "admin" : "user"}`}
@@ -230,6 +251,45 @@ export function PracticePreview({ practice }) {
   );
 }
 
+function PracticePublishPanel({ lessonId, localPractice }) {
+  const [status, setStatus] = useState({ state: "idle", message: "" });
+  const lessonNo = String(lessonId || "").match(/\d+/)?.[0] || "";
+  const generateCommand = lessonNo
+    ? `practise-generete-prompt-v3.md generate lesson ${lessonNo} data`
+    : "practise-generete-prompt-v3.md generate lesson N data";
+  const canPublish = Boolean(localPractice?.activities?.length);
+
+  const handlePublish = async () => {
+    if (!canPublish) return;
+    setStatus({ state: "pending", message: "发布中..." });
+    try {
+      const published = await practiceSessionApi.publishLocalPractice({ lessonId, practice: localPractice });
+      setStatus({ state: "success", message: `已发布 version ${published.version}` });
+    } catch (error) {
+      setStatus({ state: "error", message: String(error.message || error) });
+    }
+  };
+
+  return (
+    <section className="admin-publish-panel">
+      <div>
+        <strong>本地练习数据</strong>
+        {canPublish ? (
+          <p>{localPractice.title} · {localPractice.activities.length} 题</p>
+        ) : (
+          <p>未找到本课本地练习数据。请先生成 `practice/lesson{lessonNo || "N"}-practice-data.ts`，例如：`{generateCommand}`。</p>
+        )}
+      </div>
+      <div className="admin-publish-actions">
+        <button type="button" className="secondary-action" onClick={handlePublish} disabled={!canPublish || status.state === "pending"}>
+          发布到数据库
+        </button>
+        {status.message ? <span className={`admin-publish-status ${status.state}`}>{status.message}</span> : null}
+      </div>
+    </section>
+  );
+}
+
 function PracticeActivity({ activity, practice, admin, record, isReady, onSave, previousActivity, nextActivity, onNavigate }) {
   const assetMap = useMemo(() => activityAssetMap(activity), [activity]);
   const audioUrl = resolveActivityAudioUrl(practice, activity);
@@ -245,7 +305,7 @@ function PracticeActivity({ activity, practice, admin, record, isReady, onSave, 
     await onSave(activity.id, {
       answers,
       grading
-    });
+    }, activity);
   };
 
   return (

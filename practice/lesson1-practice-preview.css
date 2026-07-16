@@ -151,6 +151,50 @@ textarea {
   padding: 28px 32px 40px;
 }
 
+.admin-publish-panel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 16px;
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #f6faf8;
+}
+
+.admin-publish-panel strong {
+  display: block;
+  margin-bottom: 4px;
+}
+
+.admin-publish-panel p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.admin-publish-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.admin-publish-status {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.admin-publish-status.success {
+  color: var(--accent);
+}
+
+.admin-publish-status.error {
+  color: #b42318;
+}
+
 .activity-head p,
 figcaption {
   color: var(--muted);

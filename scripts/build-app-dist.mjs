@@ -35,6 +35,7 @@ const buildVersion = process.env.BUILD_VERSION || new Date().toISOString().repla
 const studentFiles = ["index.html", "app.js", "styles.css", "auth-bridge.js"];
 const studentDataIncludes = ["catalog.json", "lessons"];   // skip lesson-init, lesson-drafts (admin only)
 const audioDir = "audio";
+const practiceDir = "practice";
 
 async function exists(path) {
   try { await access(path); return true; } catch { return false; }
@@ -116,6 +117,9 @@ async function main() {
 
   const audioFrom = join(root, audioDir);
   if (existsSync(audioFrom)) await cp(audioFrom, join(out, audioDir), { recursive: true });
+
+  const practiceFrom = join(root, practiceDir);
+  if (existsSync(practiceFrom)) await cp(practiceFrom, join(out, practiceDir), { recursive: true });
 
   await copyConfigStubs();
 

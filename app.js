@@ -1772,6 +1772,9 @@ let audioVersions = {};
 let runtimeLessonLoadingId = "";
 let runtimeLessonErrorId = "";
 let runtimeLessonError = "";
+const EXERCISE_VERSION_KEY = "exerciseVersion";
+const EXERCISE_VERSION_NEW = "new";
+const EXERCISE_VERSION_OLD = "old";
 
 function parseMarkdown(text) {
   if (!text) return "";
@@ -5390,6 +5393,46 @@ function exerciseProgressSummary(groups) {
   return { total: groups.length, completed, passed, wrong, pending: groups.length - completed };
 }
 
+function exerciseVersionPreference() {
+  const value = read(EXERCISE_VERSION_KEY, EXERCISE_VERSION_NEW);
+  return value === EXERCISE_VERSION_OLD ? EXERCISE_VERSION_OLD : EXERCISE_VERSION_NEW;
+}
+
+function exerciseVersionSwitcher(activeVersion) {
+  return `
+    <div class="practice-version-switch" role="group" aria-label="练习版本">
+      <button class="${activeVersion === EXERCISE_VERSION_NEW ? "active" : ""}" type="button" data-exercise-version="${EXERCISE_VERSION_NEW}">新版</button>
+      <button class="${activeVersion === EXERCISE_VERSION_OLD ? "active" : ""}" type="button" data-exercise-version="${EXERCISE_VERSION_OLD}">旧版</button>
+    </div>
+  `;
+}
+
+function newPracticePreviewPage() {
+  const lessonId = Number(lesson.id) || lesson.id;
+  return layout(`
+    <section class="exercise-box practice-preview-host">
+      <div class="page-head practice-version-head">
+        <div>
+          <p class="eyebrow">${lesson.title} · 标准练习题</p>
+          <h2>练习</h2>
+          <p>使用新版练习体验，提交记录会保存到数据库。</p>
+        </div>
+        <div class="button-row">
+          ${studyTimeBadge("exercises")}
+          ${exerciseVersionSwitcher(EXERCISE_VERSION_NEW)}
+          <button class="secondary" data-nav="/lesson/${lesson.id}/wrongbook">错题集 ${activeWrongItems().length}</button>
+          <button class="secondary" data-nav="/lesson/${lesson.id}/result">查看结果</button>
+        </div>
+      </div>
+      <iframe
+        class="practice-preview-frame"
+        title="${escapeHtml(lesson.title)} 新版练习"
+        src="/practice/lesson${lessonId}-practice-preview.html"
+      ></iframe>
+    </section>
+  `);
+}
+
 function activeWrongItems(includeResolved = false) {
   return Object.entries(state.wrongBook)
     .map(([key, item]) => ({ ...item, exerciseId: item.exerciseId || key }))
@@ -5402,6 +5445,7 @@ function activeWrongItems(includeResolved = false) {
 }
 
 function exercisesPage() {
+  if (exerciseVersionPreference() === EXERCISE_VERSION_NEW) return newPracticePreviewPage();
   const groups = exerciseGroups();
   const group = currentExerciseGroup();
   const summary = exerciseProgressSummary(groups);
@@ -5420,6 +5464,7 @@ function exercisesPage() {
         </div>
         <div class="button-row">
           ${studyTimeBadge("exercises")}
+          ${exerciseVersionSwitcher(EXERCISE_VERSION_OLD)}
           <button class="secondary" data-nav="/lesson/${lesson.id}/wrongbook">错题集 ${activeWrongItems().length}</button>
           <button class="secondary" data-nav="/lesson/${lesson.id}/result">查看结果</button>
         </div>
@@ -7999,6 +8044,11 @@ function bind() {
   app.querySelectorAll("[data-exercise-group-index]").forEach((button) => button.addEventListener("click", () => {
     state.currentExerciseGroup = Number(button.dataset.exerciseGroupIndex);
     apiSyncPreference(lesson.id, { currentExerciseGroup: state.currentExerciseGroup });
+    render();
+  }));
+  app.querySelectorAll("[data-exercise-version]").forEach((button) => button.addEventListener("click", () => {
+    const version = button.dataset.exerciseVersion === EXERCISE_VERSION_OLD ? EXERCISE_VERSION_OLD : EXERCISE_VERSION_NEW;
+    write(EXERCISE_VERSION_KEY, version);
     render();
   }));
   app.querySelectorAll("[data-grammar-modal]").forEach((button) => button.addEventListener("click", () => {
