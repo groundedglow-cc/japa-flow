@@ -354,7 +354,9 @@ function PracticeActivity({ activity, practice, admin, record, isReady, onSave, 
 
 function ActivityResources({ activity, assetMap, audioUrl }) {
   const hasAudio = activity.requiresAudio || activity.audio;
-  const hasAssets = Boolean(activity.displayAssets?.length);
+  const groupAssetIds = new Set((activity.itemGroups || []).flatMap((group) => group.displayAssets || []));
+  const activityAssetIds = (activity.displayAssets || []).filter((assetId) => !groupAssetIds.has(assetId));
+  const hasAssets = Boolean(activityAssetIds.length);
   if (!hasAudio && !hasAssets) return null;
   const audioGuidance = hasAudio ? resolveAudioGuidance(activity) : "";
 
@@ -368,7 +370,7 @@ function ActivityResources({ activity, assetMap, audioUrl }) {
           {audioGuidance ? <p className="audio-guidance">{audioGuidance}</p> : null}
         </>
       ) : null}
-      {hasAssets ? <DisplayAssets assetIds={activity.displayAssets} assetMap={assetMap} /> : null}
+      {hasAssets ? <DisplayAssets assetIds={activityAssetIds} assetMap={assetMap} /> : null}
     </div>
   );
 }
@@ -376,26 +378,29 @@ function ActivityResources({ activity, assetMap, audioUrl }) {
 function PracticeItemGroupView({ group, assetMap, admin, answerRecord, gradingRecord, activityResponseScope, activityResponseScopeHint }) {
   return (
     <section className="practice-item-group" id={group.id}>
-      <div className="group-head">
-        <div>
-          {group.title ? <h3>{group.title}</h3> : null}
-          {group.instruction ? <p>{group.instruction}</p> : null}
+      {group.displayAssets?.length ? <DisplayAssets assetIds={group.displayAssets} assetMap={assetMap} /> : null}
+      <div className="example-practice-block">
+        <div className="group-head">
+          <div>
+            {group.title ? <h3>{group.title}</h3> : null}
+            {group.instruction ? <p>{group.instruction}</p> : null}
+          </div>
+          <ExampleBlockView example={group.example} />
         </div>
-        <ExampleBlockView example={group.example} />
-      </div>
-      <div className="practice-items">
-        {group.items.map((item) => (
-          <PracticeItemView
-            key={item.id}
-            item={item}
-            assetMap={assetMap}
-            admin={admin}
-            storedAnswer={answerRecord?.[item.id]}
-            gradingResult={gradingRecord?.[item.id]}
-            activityResponseScope={activityResponseScope}
-            activityResponseScopeHint={activityResponseScopeHint}
-          />
-        ))}
+        <div className="practice-items">
+          {group.items.map((item) => (
+            <PracticeItemView
+              key={item.id}
+              item={item}
+              assetMap={assetMap}
+              admin={admin}
+              storedAnswer={answerRecord?.[item.id]}
+              gradingResult={gradingRecord?.[item.id]}
+              activityResponseScope={activityResponseScope}
+              activityResponseScopeHint={activityResponseScopeHint}
+            />
+          ))}
+        </div>
       </div>
     </section>
   );
@@ -513,9 +518,7 @@ function IncorrectAnswerDetails({ item, answer, result, className = "incorrect-a
   return (
     <article className={className}>
       {showPrompt ? <h4>{item.number}. <Prompt parts={item.prompt} kana={item.promptKana} /></h4> : null}
-      <p><span>你的答案：</span>{formatAttemptSummary(item, answer)}</p>
-      <p><span>正确答案：</span>{formatExpectedAnswerSummary(item)}</p>
-      <AnswerDiff item={item} answer={answer} />
+      <AnswerComparison item={item} answer={answer} />
       {result?.status === "incorrect" && item.evaluationMode === "acceptable_answers" ? (
         <small>本题支持多个可接受答案，已在“正确答案”中合并展示。</small>
       ) : null}
@@ -523,32 +526,60 @@ function IncorrectAnswerDetails({ item, answer, result, className = "incorrect-a
   );
 }
 
-function AnswerDiff({ item, answer }) {
-  const diff = buildAnswerDiff(item, answer);
-  if (!diff) return null;
+function AnswerComparisonBlock({ tone, label, value }) {
   return (
-    <div className="answer-diff" aria-label="答案差异">
-      <div className="answer-diff-head">
-        <strong>差异对比</strong>
-        <span>已忽略空格和标点</span>
-      </div>
-      <div className="diff-line user">
-        <span className="diff-prefix">-</span>
-        <code>{renderDiffParts(diff.actualParts)}</code>
-      </div>
-      <div className="diff-line expected">
-        <span className="diff-prefix">+</span>
-        <code>{renderDiffParts(diff.expectedParts)}</code>
-      </div>
+    <div className={`answer-comparison-block ${tone}`}>
+      <span>{label}</span>
+      <code>{value}</code>
     </div>
   );
 }
 
-function renderDiffParts(parts) {
+function AnswerGitDiff({ lines }) {
+  if (!lines?.length) return null;
+  return (
+    <div className="git-answer-diff" role="table" aria-label="答案差异明细">
+      {lines.map((line, index) => (
+        <div className={`git-diff-row ${line.type}`} role="row" key={index}>
+          <span className="git-diff-prefix" aria-hidden="true">{line.type === "delete" ? "-" : line.type === "insert" ? "+" : " "}</span>
+          <code>{renderAnswerDiffParts(line.parts)}</code>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function renderAnswerDiffParts(parts = []) {
   return parts.map((part, index) => {
     if (part.type === "equal") return <React.Fragment key={index}>{part.text}</React.Fragment>;
-    return <mark key={index} data-diff={part.type}>{part.text}</mark>;
+    return <mark data-diff={part.type} key={index}>{part.text}</mark>;
   });
+}
+
+function AnswerComparison({ item, answer }) {
+  const comparison = buildAnswerComparison(item, answer);
+  if (!comparison) return null;
+  if (comparison.kind === "choice") {
+    return (
+      <div className="answer-diff answer-comparison" aria-label="答案对比">
+        <div className="answer-diff-head">
+          <strong>答案对比</strong>
+        </div>
+        <AnswerComparisonBlock tone="user" label="你的答案" value={comparison.actual || "未选择"} />
+        <AnswerComparisonBlock tone="expected" label="正确答案" value={comparison.expected || "暂无"} />
+      </div>
+    );
+  }
+
+  return (
+    <div className="answer-diff answer-comparison" aria-label="答案对比">
+      <div className="answer-diff-head">
+        <strong>差异对比</strong>
+        <span>- 你的答案 / + 正确答案，已忽略说话人、空格和标点</span>
+      </div>
+      <AnswerGitDiff lines={comparison.diffLines} />
+    </div>
+  );
 }
 
 function PracticeItemView({ item, admin, storedAnswer, gradingResult, activityResponseScope, activityResponseScopeHint }) {
@@ -622,16 +653,17 @@ function IncorrectReasonPopover({ item, answer, result }) {
 function Choices({ choices, item, admin, storedAnswer, gradingResult }) {
   const storedChoiceIds = resolveStoredChoiceIds(item, storedAnswer?.choiceIds || []);
   const currentChoiceIds = storedAnswer ? storedChoiceIds : (admin ? item.answer?.choiceIds || [] : []);
+  const currentChoiceIdSet = new Set(currentChoiceIds);
   const choiceResult = gradingResult?.fieldResults?.[CHOICE_RESULT_KEY] || gradingResult?.status;
   return (
     <div className="choice-row">
       {choices.map((choice) => (
-        <label key={choice.id} data-result={choiceResult || undefined}>
+        <label key={choice.id} data-result={currentChoiceIdSet.has(choice.id) ? choiceResult || undefined : undefined}>
           <input
             type="radio"
             name={item.id}
             value={choice.id}
-            defaultChecked={currentChoiceIds.includes(choice.id)}
+            defaultChecked={currentChoiceIdSet.has(choice.id)}
           />
           <span>{choice.label}</span>
         </label>
@@ -1208,16 +1240,22 @@ function formatExpectedAnswerSummary(item) {
   return Array.from(new Set(answers)).join(" / ") || "暂无";
 }
 
-function buildAnswerDiff(item, answer) {
+function buildAnswerComparison(item, answer) {
+  if (item.choices?.length) {
+    return {
+      kind: "choice",
+      actual: formatAttemptSummary(item, answer),
+      expected: formatExpectedAnswerSummary(item)
+    };
+  }
+
   if (!item.inputSlots?.length) return null;
   const actual = formatAttemptSummary(item, answer);
   const candidates = expectedAnswerCandidates(item);
-  if (!actual || actual === "未作答" || !candidates.length) return null;
+  if (!actual || !candidates.length) return null;
   const expected = closestExpectedAnswer(actual, candidates);
-  const actualNormalized = normalizeAnswerText(actual);
-  const expectedNormalized = normalizeAnswerText(expected);
-  if (!actualNormalized || !expectedNormalized || actualNormalized === expectedNormalized) return null;
-  return diffNormalizedText(actualNormalized, expectedNormalized);
+  const diffLines = gitLikeAnswerDiff(actual === "未作答" ? "" : actual, expected);
+  return { kind: "text", actual, expected, diffLines };
 }
 
 function expectedAnswerCandidates(item) {
@@ -1268,12 +1306,113 @@ function editDistance(left, right) {
   return previous[b.length] || 0;
 }
 
-function diffNormalizedText(actual, expected) {
+function comparableAnswerText(value) {
+  return String(value || "")
+    .normalize("NFKC")
+    .replace(/\r\n?/g, "\n")
+    .split("\n")
+    .map((line) => line.replace(/^\s*(?:乙[0-9０-９]+|[甲乙丙丁]|[A-DＡ-Ｄ])\s*[：:]\s*/u, ""))
+    .join("\n")
+    .replace(/[ \t\u3000]+/g, "")
+    .replace(/\p{P}/gu, "")
+    .replace(/\n{3,}/g, "\n\n")
+    .replace(/^\n+|\n+$/g, "");
+}
+
+function diffComparableAnswerText(actual, expected) {
+  const actualComparable = comparableAnswerText(actual);
+  const expectedComparable = comparableAnswerText(expected);
+  if (!actualComparable && !expectedComparable) return { actualParts: [], expectedParts: [] };
+  return diffText(actualComparable, expectedComparable);
+}
+
+function comparableAnswerLines(value) {
+  const comparable = comparableAnswerText(value);
+  return comparable ? comparable.split("\n") : [];
+}
+
+function gitLikeAnswerDiff(actual, expected) {
+  const actualLines = comparableAnswerLines(actual);
+  const expectedLines = comparableAnswerLines(expected);
+  const ops = diffLineOperations(actualLines, expectedLines);
+  const rows = [];
+  let index = 0;
+  while (index < ops.length) {
+    if (ops[index].type === "equal") {
+      rows.push({ type: "context", parts: [{ type: "equal", text: ops[index].text || " " }] });
+      index += 1;
+      continue;
+    }
+
+    const deletes = [];
+    const inserts = [];
+    while (index < ops.length && ops[index].type !== "equal") {
+      if (ops[index].type === "delete") deletes.push(ops[index].text);
+      if (ops[index].type === "insert") inserts.push(ops[index].text);
+      index += 1;
+    }
+
+    const length = Math.max(deletes.length, inserts.length);
+    for (let pairIndex = 0; pairIndex < length; pairIndex += 1) {
+      const deleted = deletes[pairIndex];
+      const inserted = inserts[pairIndex];
+      if (deleted != null && inserted != null) {
+        const { actualParts, expectedParts } = diffComparableAnswerText(deleted, inserted);
+        rows.push({ type: "delete", parts: actualParts.length ? actualParts : [{ type: "delete", text: deleted || " " }] });
+        rows.push({ type: "insert", parts: expectedParts.length ? expectedParts : [{ type: "insert", text: inserted || " " }] });
+      } else if (deleted != null) {
+        rows.push({ type: "delete", parts: [{ type: "delete", text: deleted || " " }] });
+      } else if (inserted != null) {
+        rows.push({ type: "insert", parts: [{ type: "insert", text: inserted || " " }] });
+      }
+    }
+  }
+  return rows;
+}
+
+function diffLineOperations(actualLines, expectedLines) {
+  const width = expectedLines.length + 1;
+  const table = new Uint16Array((actualLines.length + 1) * width);
+  for (let row = actualLines.length - 1; row >= 0; row -= 1) {
+    for (let col = expectedLines.length - 1; col >= 0; col -= 1) {
+      table[row * width + col] = actualLines[row] === expectedLines[col]
+        ? table[(row + 1) * width + col + 1] + 1
+        : Math.max(table[(row + 1) * width + col], table[row * width + col + 1]);
+    }
+  }
+
+  const ops = [];
+  let row = 0;
+  let col = 0;
+  while (row < actualLines.length && col < expectedLines.length) {
+    if (actualLines[row] === expectedLines[col]) {
+      ops.push({ type: "equal", text: actualLines[row] });
+      row += 1;
+      col += 1;
+    } else if (table[(row + 1) * width + col] >= table[row * width + col + 1]) {
+      ops.push({ type: "delete", text: actualLines[row] });
+      row += 1;
+    } else {
+      ops.push({ type: "insert", text: expectedLines[col] });
+      col += 1;
+    }
+  }
+  while (row < actualLines.length) {
+    ops.push({ type: "delete", text: actualLines[row] });
+    row += 1;
+  }
+  while (col < expectedLines.length) {
+    ops.push({ type: "insert", text: expectedLines[col] });
+    col += 1;
+  }
+  return ops;
+}
+
+function diffText(actual, expected) {
   const a = Array.from(actual);
   const b = Array.from(expected);
   const width = b.length + 1;
   const table = new Uint16Array((a.length + 1) * width);
-
   for (let row = a.length - 1; row >= 0; row -= 1) {
     for (let col = b.length - 1; col >= 0; col -= 1) {
       table[row * width + col] = a[row] === b[col]

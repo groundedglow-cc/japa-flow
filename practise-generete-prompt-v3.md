@@ -179,6 +179,7 @@ japaflow.practice.session.v1:lesson{N}
 13. 如果教材原图没有单独的副标题、说明句或补充说明，就不要自行新增 `instruction`，应设为空字符串或保持缺省语义，不允许为了“帮助理解”自行补一句说明。
 14. 不允许把原题「注意听日期中的日期，进行练习。」改写成类似「听日期并写句子」「注意听录音中的日期，填写完整句子。」这类二次加工文案。其它题目同理，必须逐题检查。
 15. 任何新增字段都必须服务于教材原图信息的结构化表达，不允许为了展示效果添加原书没有的解释性标题、副标题、总结句、教师口吻提示。
+16. `PracticeItemGroup.title` / `PracticeItemGroup.instruction` 也只允许承载教材原图真实存在的分组标题或说明。不要把它们用于解释例句句型、概括图片内容、标注“例 1：这里是……”或补充“使用「...」”这类模型解读；如果原图只有 `[例1]` / `[例2]` 和例句本身，group 的 `title` / `instruction` 必须省略。
 
 ### `responseScope` 取值规范
 
@@ -215,13 +216,14 @@ japaflow.practice.session.v1:lesson{N}
 6. 例句中的所有替换变量都要体现 `underline/substitutionKey`，不允许只标其中一个词。
 7. 自检时必须逐个大题回答：这个大题原书是否有例句？如果有，数据里在哪里表达？
 8. 不只要“数据里有例句”，静态 preview 中也必须真实展示例句。不得出现数据文件保留了 example，但 preview 只显示题目和输入框的情况。
-9. 大题内部的呈现顺序必须跟教材截图中的视觉顺序一致。若教材顺序是“图片 → 例 1 → 小题作答 → 图片 → 例 2 → 小题作答”，preview 也必须按这个顺序渲染。
-10. 一个大题内有多个例句时，必须始终按“例句 → 该例句对应的小题 → 下一条例句 → 下一组小题”的交错结构排布。
-11. 对同一大题中多个例句分别服务不同小题区段的情况，必须把图片、例句和对应 items 绑定为 visual section。即使 `PracticeActivity` 仍是一个大题，preview 也要分段显示，不能把例句集中或省略。
+9. 大题内部的呈现顺序必须跟教材截图中的视觉顺序一致。若教材顺序是“参考图片 → 例 1 → 小题作答 → 参考图片 → 例 2 → 小题作答”，preview 也必须按这个顺序渲染。
+10. 一个大题内有多个例句时，必须把每个例句与它对应的小题组成一个独立词块，但视觉布局必须上下排列：先显示该组参考图片，再显示该组例句，最后显示该组用户作答区。禁止把 `PracticeItemGroup.example` 和 `PracticeItemGroup.items` 做成左右两栏或桌面端并排布局。然后才进入下一个“参考图片 → 例句 → 作答区”词块；不要把多个参考图片集中展示，不要把多个例句集中展示，也不要把多个练习区集中展示。
+11. 对同一大题中多个例句分别服务不同小题区段的情况，必须把参考图片、例句和对应 items 绑定为同一个 visual section / 词块。即使 `PracticeActivity` 仍是一个大题，preview 也要按词块分段显示，不能把多个参考图片、多个例句或多个练习区分别集中展示。
+11.1 如果同一大题的图片素材分别归属不同例句或不同小题区段，必须使用 `PracticeItemGroup.displayAssets` 把 crop 绑定到对应 `PracticeItemGroup`，预览顺序必须严格是“该组参考图片 → 该组例句 → 该组用户作答区”。不要把这些分组图片集中放在 `PracticeActivity.displayAssets` 顶部统一展示。
 12. 例句的展示形式必须贴近原图排版。如果原图把例句拆成多行，例如第一行是「[例] 词汇/替换格式」，第二、三行是「甲：...」「乙：...」，preview 也必须拆成对应多行，并保留「甲」「乙」等说话人标签。
 13. 例句中的词汇提示、箭头转换、说话人、回答行是不同信息层级，渲染时要有视觉区隔。会话例句优先用 `dialogue-line` 结构表达，而不是普通段落。
 14. 不允许在例句前后追加解释性文案，例如“例1 使用……”“例1 根据……填写……”这类帮助性描述。用户应直接看到教材原图中的例句结构，而不是模型的转述。
-15. 如果原图例句是“示例词汇/替换词 → 示例句子”，就必须按这个结构保留；不要拆成“说明句 + 箭头例句”两层。
+15. 如果原图例句是“示例词汇/替换词 → 示例句子”，就必须按这个结构保留；不要拆成“说明句 + 箭头例句”两层，也不要额外增加 group 标题或 group instruction 来解释这个句型。
 16. 例句推出的标准答案必须保留例句句式中的必要成分，尤其不能丢主语、助词、时态或否定形式。若原例句表明答案应是完整句子，则答案必须是完整句子，不允许只保留替换词或半句。
 17. 对“根据两个词推断完整句子”的练习，如果例句中主语固定存在，例如「小野さんは……」，则对应小题答案也必须保留该主语，不能因为 prompt 只展示替换词就把主语从标准答案中删掉。
 18. 例句必须同时包含完整的参考信息和作答信息。参考信息是原图中用于推导例句答案的词汇、图片标签、表格行、人物卡信息、替换词组或题干输入；作答信息是根据这些参考信息写出的示范句子或示范对话。不得只保留作答信息。
@@ -250,23 +252,25 @@ python3 scripts/generate-lesson-image-crops.py course-assets/by-lesson/lesson{N}
 7. 如果自动裁切不准，可以人工调整 crop 坐标，但仍必须写入 `lesson{N}-image-crops.ts`。
 8. `PracticeActivity.assets` 必须引用 crop catalog 中的 `ImageAsset`。
 9. `PracticeActivity.displayAssets` 必须引用要展示的 crop id。
+9.1 当图片属于某个例句组、题组或 visual section 时，`PracticeActivity.assets` 仍要包含对应 crop，但展示位置必须通过 `PracticeItemGroup.displayAssets` 绑定到该组；`PracticeActivity.displayAssets` 只放整道大题共同依赖、应该在所有分组前统一展示的图片。若一题有两张图分别对应 `[例1]` 和 `[例2]`，必须拆到两个 `PracticeItemGroup.displayAssets`，不得把两张图一起放在 activity 顶部。
 10. 如果确实无法取得坐标，才允许 `displayAssets` 指向缺失 ID，让页面显示：`暂未正确配置好图片，请联系管理员。`
 11. 不允许用整页图“临时代替”裁切图。
-12. 自检时必须列出所有图片题：crop id、source page、crop 坐标、是否展示在 activity 层。
+12. 自检时必须列出所有图片题：crop id、source page、crop 坐标、展示层级是 activity 还是 itemGroup；如果是 itemGroup，列出对应 group id。
 13. crop 坐标必须用截图逐项目视校准，尤其检查 y/height 是否垂直偏移。自动脚本只提供初稿，不能把明显上移/下移、截断标题或截掉图片边框的结果直接提交。
 14. crop 必须覆盖教材中该题实际需要看的完整区域：题号、图框、标签、价格/楼层等关键信息都不能被裁掉；也不能向上下扩展到相邻大题。
 15. preview 中展示 crop 时必须使用 CSS crop-window 或等效裁切渲染，不得在活动内部用完整页图片替代 crop。
-16. 如果题目有词框、选项框、地图、表格等视觉辅助，也视为需要展示的素材：能用结构化 `word_bank` 表达就必须在 preview 展示；需要保持教材视觉区域时也要加入 crop catalog。
-17. `crop.aspectRatio` 必须按真实像素比例计算，不允许凭感觉填写，也不能简单使用百分比宽高相除。正确公式：
+16. preview 中展示教材 crop 时，宽度或高度当中更长的一边在容器允许时必须至少达到 400px；窄屏或窄容器下允许缩小到不溢出，但不能在桌面宽度下把教材图片压成难以辨认的小缩略图。
+17. 如果题目有词框、选项框、地图、表格等视觉辅助，也视为需要展示的素材：能用结构化 `word_bank` 表达就必须在 preview 展示；需要保持教材视觉区域时也要加入 crop catalog。
+18. `crop.aspectRatio` 必须按真实像素比例计算，不允许凭感觉填写，也不能简单使用百分比宽高相除。正确公式：
 
 ```text
 aspectRatio = (crop.widthPercent * sourceImagePixelWidth) / (crop.heightPercent * sourceImagePixelHeight)
 ```
 
-18. 如果 preview 中图片看起来被横向或纵向拉伸，优先检查 `aspectRatio` 是否与真实像素比例一致；其次检查 crop 框是否过窄、过宽、过高或过低。不能通过随意改 CSS 逃避 crop 数据错误。
-19. 人工调整 crop 时必须同时更新 `lesson{N}-image-crops.ts` 和 preview 使用的数据来源，避免 catalog 与 preview 不一致。
-20. 对地图、楼层图、表格、价格图这类有明显原始比例的图片，必须在最终自检中目视确认：文字没有变形，方格/楼层/商品图没有被压扁或拉宽。
-21. crop 的 x/y/width/height 与 aspectRatio 是一组数据：改变裁切框宽高后必须重新计算 aspectRatio。不得沿用旧 aspectRatio。
+19. 如果 preview 中图片看起来被横向或纵向拉伸，优先检查 `aspectRatio` 是否与真实像素比例一致；其次检查 crop 框是否过窄、过宽、过高或过低。不能通过随意改 CSS 逃避 crop 数据错误。
+20. 人工调整 crop 时必须同时更新 `lesson{N}-image-crops.ts` 和 preview 使用的数据来源，避免 catalog 与 preview 不一致。
+21. 对地图、楼层图、表格、价格图这类有明显原始比例的图片，必须在最终自检中目视确认：文字没有变形，方格/楼层/商品图没有被压扁或拉宽。
+22. crop 的 x/y/width/height 与 aspectRatio 是一组数据：改变裁切框宽高后必须重新计算 aspectRatio。不得沿用旧 aspectRatio。
 
 ## 强制规则 D：录音题必须先转写
 
@@ -287,16 +291,19 @@ node scripts/transcribe-textbook-audio.mjs lesson{N} practice_2 {order}
 1. 将转写结果写入 `activity.audio.transcript.text`。
 2. 按小题切分 `transcript.segments`。
 3. 根据 transcript、例句、题目提示、图片信息共同推断答案。
-4. 听写句子用 `answer.slotValues.answer`。
-5. 选择题用 `answer.choiceIds`。
-6. 判断题用 `answer.boolean`。
-7. 开放问答用 `modelAnswers + acceptableAlternatives + evaluationMode`。
-8. ASR 结果尾部漏识别时，不能简单断言“录音不完整”。必须结合音频时长、题目模式、例句、前后小题和 ASR 原文判断：如果录音模式完整且答案可由录音模式和例句确定，可以补全答案，但要在 `confidenceNote` 或 `answer.note` 中说明“ASR 漏字，答案按录音模式和例句补全”。
-9. 当前系统的语音输入能力是“一个录音按钮对应一个输入槽位，并转写为一个词、词组、句子或一段对话”，不要假设一个录音按钮可以自然拆分成多个独立空。
-10. 因此，如果一个小题需要用户分别填写两个或以上独立空位，就必须在数据结构中建模为多个 `inputSlots`，让每个槽位都能拥有自己的输入与录音入口；不要把多个空合并成一个单一录音输入。
-11. 只有当教材原图明确要求用户一次性说出/写出一个完整句子或完整对话时，才建模为单个 `sentence` 或 `dialogue` 输入槽位。
-12. 如果练习本质上是“听录音后分别填写两个词”或“两个独立空格”，应优先建模为两个 `word`/`phrase` 槽位，而不是一个大文本框。
-13. 录音题的数据建模必须与输入交互保持一致：用户看到几个独立空，就应对应几个可单独输入、单独录音的槽位，避免用户不知道一段录音该填到哪个空。
+4. 录音是让用户听的，不是转化为文本给用户看的。`transcript.text` 和 `transcript.segments` 只能作为内部答案依据；除非教材原图中明确印出了同一句文本，否则不得把录音转写内容放进 `PracticeItem.prompt`、`layout`、`itemGroups.example`、`instruction`、`responseScopeHint` 或任何 preview 会直接展示给用户的字段。
+5. 对“听录音后选择/回答”的小题，如果教材原图只给小题号或图片信息，正式小题的可见 `prompt` 必须写成泛化任务提示（例如“听录音，选择对应选项。”），不能写出录音里的价格、数字、问句、回答句或对话内容。
+6. 教材原图中印出的例句、替换词、图中标签、价格、编号、算式、选项仍应正常展示；这类内容不是录音泄露。
+7. 听写句子用 `answer.slotValues.answer`。
+8. 选择题用 `answer.choiceIds`。
+9. 判断题用 `answer.boolean`。
+10. 开放问答用 `modelAnswers + acceptableAlternatives + evaluationMode`。
+11. ASR 结果尾部漏识别时，不能简单断言“录音不完整”。必须结合音频时长、题目模式、例句、前后小题和 ASR 原文判断：如果录音模式完整且答案可由录音模式和例句确定，可以补全答案，但要在 `confidenceNote` 或 `answer.note` 中说明“ASR 漏字，答案按录音模式和例句补全”。
+12. 当前系统的语音输入能力是“一个录音按钮对应一个输入槽位，并转写为一个词、词组、句子或一段对话”，不要假设一个录音按钮可以自然拆分成多个独立空。
+13. 因此，如果一个小题需要用户分别填写两个或以上独立空位，就必须在数据结构中建模为多个 `inputSlots`，让每个槽位都能拥有自己的输入与录音入口；不要把多个空合并成一个单一录音输入。
+14. 只有当教材原图明确要求用户一次性说出/写出一个完整句子或完整对话时，才建模为单个 `sentence` 或 `dialogue` 输入槽位。
+15. 如果练习本质上是“听录音后分别填写两个词”或“两个独立空格”，应优先建模为两个 `word`/`phrase` 槽位，而不是一个大文本框。
+16. 录音题的数据建模必须与输入交互保持一致：用户看到几个独立空，就应对应几个可单独输入、单独录音的槽位，避免用户不知道一段录音该填到哪个空。
 
 ## 强制规则 E：Kana / Ruby 标准逻辑
 
@@ -335,7 +342,10 @@ node scripts/transcribe-textbook-audio.mjs lesson{N} practice_2 {order}
 
 ### PracticeItem.prompt
 
-如果 prompt 是日语学习文本，可以填写 `promptKana`：
+如果 prompt 是日语学习文本，必须填写 `promptKana`。尤其是替换词组、听力题词组、会话题词组、含汉字的人名/地点/职业/金额/楼层/数字，不得省略 `promptKana`：
+
+- `promptKana` 必须覆盖 prompt 中所有可见的日语学习文本，包括括号中的提示词、斜线分隔词、标点和题面后缀；不能只写主句读音而省略 `（横浜）`、`（いいえ）`、`／銀行の 隣` 这类提示信息。
+- 如果某段可见文本没有读音或不需要标音，应通过拆分 `PromptPart` / `RichText` 控制，而不是让整句 `kana` 与可见文本不对齐。
 
 ```ts
 {
@@ -414,17 +424,18 @@ inputSlots: [
 
 ### ExampleBlock
 
-例句是学习规则的核心展示内容，应补充 kana：
+例句是学习规则的核心展示内容，必须补充 kana：
 
 - `beforeKana` 对应 `before` 或 `beforeParts` 的读音。
 - `afterKana` 对应 `after` 的读音。
-- 如果例句是多行对话，优先给每个 `DialogueLine.kana` 补读音。
+- `beforeKana` / `afterKana` 必须覆盖例句中所有可见的日语学习文本，包括括号、斜线分隔词和标点；不要省略例句中的 `（食堂）`、`（はい）` 这类提示词。
+- 如果例句是多行对话，必须给每个 `DialogueLine.kana` 补读音；如果用 `ExampleBlock.after` 表达多行对话，则必须填写完整 `afterKana`。
 - `ExampleBlock` 只表达教材原图中的原始例句结构，不表达模型自己补充的解释性说明。
 - 如果例句结构里隐含固定主语、固定助词或固定句尾，后续答案推导必须保留这些固定成分。
 
 ### DialogueLine
 
-对话行可以填写 `kana`：
+对话行只要正文是日语学习文本，就必须填写 `kana`：
 
 ```ts
 {
@@ -471,7 +482,7 @@ answerKana?: string;
 
 1. 新数据中没有 `ruby:`。
 2. 中文 prompt、中文 instruction、中文 translation 没有 kana。
-3. 日语例句、日语对话、日语替换词汇尽量补充 kana。
+3. 日语例句、日语对话、日语替换词汇、听力题词组只要含汉字、数字、金额、楼层或专有读法，就必须补充 kana；纯假名/片假名可省略。
 4. Answer 数据结构不包含 kana。
 5. 答案校验逻辑不依赖 kana。
 
@@ -543,13 +554,13 @@ https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-
 8. 大题内部没有直接展示完整教材页。
 9. `admin=1` 填充字段数量与输入框数量一致。
 10. preview 的每个大题都按教材视觉顺序展示：图片/词框/例句/小题作答区的相对顺序不能颠倒。
-11. 多例句大题必须按“例句 → 对应小题 → 下一条例句 → 对应小题”的交错顺序展示，不得把多个例句集中展示在所有题目前。
+11. 多例句大题必须按“该组图片 → 该组例句 → 对应小题作答区 → 下一组图片/例句/作答区”的上下顺序展示；同一词块内的例句与练习禁止左右并排，不得把多个例句集中展示在所有题目前，也不得把多个练习区集中展示在所有例句后。
 12. preview 的例句行数、说话人标签和词汇提示应与原图排版一致，不得把多行例句压成一行。
 13. 所有 crop 都经过目视校准，报告中说明自动识别是否被人工调整。
 14. 选择题若使用圆圈编号选项，preview 中没有额外阿拉伯数字编号。
 15. 新数据中没有 `ruby:`。
 16. 中文 prompt、中文 instruction、中文 translation 没有 kana。
-17. 日语例句、日语对话、日语替换词汇尽量补充 kana。
+17. 日语例句、日语对话、日语替换词汇、听力题词组只要含汉字、数字、金额、楼层或专有读法，就必须补充 kana；纯假名/片假名可省略。
 18. Answer 不包含 kana 字段。
 19. `admin=1` 自动填充的是纯文本答案。
 20. `lesson{N}-practice-preview.html` 只是薄 HTML 壳，没有内联题目 UI。

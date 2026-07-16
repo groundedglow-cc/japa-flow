@@ -108,6 +108,7 @@ export type PracticeItemGroup = {
   id: string;
   title?: string;
   instruction?: string;
+  displayAssets?: string[];
   example: ExampleBlock;
   items: PracticeItem[];
 };

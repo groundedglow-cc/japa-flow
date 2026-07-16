@@ -2,6 +2,8 @@ import type { InputSlot, LessonPractice, PracticeActivity, PracticeItem, PromptP
 import { lesson5ImageCrops } from "./lesson5-image-crops";
 
 const page = (pageNo: number) => `../course-assets/by-lesson/lesson5/page${pageNo}.webp`;
+const audio = (exerciseNo: 1 | 2, order: number) =>
+  `https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson5/Exe${exerciseNo}_${order}.mp3`;
 const text = (value: string, options: Omit<RichText, "type" | "text"> = {}): RichText => ({ type: "text", text: value, ...options });
 const repl = (value: string, substitutionKey: string, options: Omit<RichText, "type" | "text" | "underline" | "substitutionKey"> = {}): RichText =>
   text(value, { ...options, underline: true, substitutionKey });
@@ -11,13 +13,21 @@ const crop = (id: string) => lesson5ImageCrops.assets.find((asset) => asset.id =
 const sentenceSlot = (placeholder = "输入完整回答"): InputSlot[] => [{ id: "answer", expectedUnit: "sentence", width: "long", placeholder }];
 const shortSlot = (id: string, placeholder = "输入 1 个假名"): InputSlot => ({ id, expectedUnit: "word", width: "short", placeholder });
 const mediumSlot = (id: string, placeholder: string): InputSlot => ({ id, expectedUnit: "phrase", width: "medium", placeholder });
+const answerOnlyHint = "只填写提问后的回答部分，不需要重写问题。";
 
 const answerItem = (
   id: string,
   number: string,
   prompt: string | PromptPart[],
   answer: string,
-  options: { promptKana?: string; placeholder?: string; note?: string; answerSource?: "example_transform" | "audio" | "personal" } = {}
+  options: {
+    promptKana?: string;
+    placeholder?: string;
+    note?: string;
+    answerSource?: "example_transform" | "audio" | "personal";
+    responseScope?: PracticeItem["responseScope"];
+    responseScopeHint?: string;
+  } = {}
 ): PracticeItem => ({
   id,
   number,
@@ -25,6 +35,8 @@ const answerItem = (
   promptKana: options.promptKana,
   instruction: "",
   answerSource: options.answerSource || "example_transform",
+  responseScope: options.responseScope,
+  responseScopeHint: options.responseScopeHint,
   inputSlots: sentenceSlot(options.placeholder || "输入完整回答"),
   answer: { slotValues: { answer }, note: options.note }
 });
@@ -37,6 +49,7 @@ const personalItem = (id: string, number: string, prompt: string, modelAnswers: 
   instruction: "",
   answerSource: "personal",
   evaluationMode: "acceptable_answers",
+  responseScope: "free_response",
   inputSlots: sentenceSlot("按实际情况作答"),
   answer: {
     modelAnswers,
@@ -58,6 +71,7 @@ const blankItem = (
   promptKana,
   instruction: "",
   answerSource: "prompt",
+  responseScope: "word_only",
   inputSlots: slotIds.map((slotId) => shortSlot(slotId)),
   answer: { slotValues: answers }
 });
@@ -69,6 +83,7 @@ const gridItem = (id: string, number: string, prompt: string, answer: Record<str
   promptKana,
   instruction: prompt,
   answerSource: "example_transform",
+  responseScope: "phrase_only",
   inputSlots: [
     mediumSlot("masu", "～ます"),
     mediumSlot("masen", "～ません"),
@@ -87,12 +102,13 @@ const activities: PracticeActivity[] = [
     instruction: "",
     interaction: "pattern_substitution",
     answerUnit: "sentence",
+    responseScope: "sentence_only",
     assets: [crop("l5-p1-a1-clock-set"), crop("l5-p1-a1-digital-set")],
-    displayAssets: ["l5-p1-a1-clock-set", "l5-p1-a1-digital-set"],
     layout: [],
     itemGroups: [
       {
         id: "l5-p1-a1-g1",
+        displayAssets: ["l5-p1-a1-clock-set"],
         example: {
           id: "l5-p1-a1-ex1",
           label: "[例1]",
@@ -110,6 +126,7 @@ const activities: PracticeActivity[] = [
       },
       {
         id: "l5-p1-a1-g2",
+        displayAssets: ["l5-p1-a1-digital-set"],
         example: {
           id: "l5-p1-a1-ex2",
           label: "[例2]",
@@ -135,9 +152,12 @@ const activities: PracticeActivity[] = [
     instruction: "",
     interaction: "fill_blank",
     answerUnit: "phrase",
+    responseScope: "phrase_only",
     requiresAudio: true,
     audio: {
       source: "textbook_exercise",
+      url: audio(1, 2),
+      label: "第5课 练习I-2",
       transcript: {
         text: "起きます。起きません。起きました。起きませんでした。寝ます。寝ません。寝ました。寝ませんでした。働きます。働きません。働きました。働きませんでした。休みます。休みません。休みました。休みませんでした。勉強します。勉強しません。勉強しました。勉強しませんでした。",
         source: "manual",
@@ -167,6 +187,7 @@ const activities: PracticeActivity[] = [
     instruction: "",
     interaction: "pattern_substitution",
     answerUnit: "sentence",
+    responseScope: "sentence_only",
     layout: [],
     itemGroups: [
       {
@@ -261,6 +282,8 @@ const activities: PracticeActivity[] = [
     instruction: "",
     interaction: "dialogue_practice",
     answerUnit: "sentence",
+    responseScope: "answer_only",
+    responseScopeHint: answerOnlyHint,
     layout: [],
     itemGroups: [
       {
@@ -308,6 +331,8 @@ const activities: PracticeActivity[] = [
     instruction: "",
     interaction: "dialogue_practice",
     answerUnit: "sentence",
+    responseScope: "answer_only",
+    responseScopeHint: answerOnlyHint,
     layout: [
       {
         type: "example",
@@ -336,9 +361,13 @@ const activities: PracticeActivity[] = [
     instruction: "",
     interaction: "listening_answer",
     answerUnit: "sentence",
+    responseScope: "answer_only",
+    responseScopeHint: answerOnlyHint,
     requiresAudio: true,
     audio: {
       source: "textbook_exercise",
+      url: audio(1, 6),
+      label: "第5课 练习I-6",
       transcript: {
         text: "今日、9時から5時まで働きますか。はい、今日、9時から5時まで働きます。毎朝7時に起きますか。はい、毎朝7時に起きます。昨日の夜10時に寝ましたか。いいえ、昨日の夜10時に寝ませんでした。毎週月曜日から土曜日まで働きますか。はい、毎週月曜日から土曜日まで働きます。今晩8時から勉強しますか。はい、今晩8時から勉強します。今朝5時に起きましたか。はい、今朝5時に起きました。",
         source: "manual",
@@ -380,6 +409,7 @@ const activities: PracticeActivity[] = [
     instruction: "",
     interaction: "fill_blank",
     answerUnit: "word",
+    responseScope: "word_only",
     layout: [],
     items: [
       blankItem("l5-p2-a1-q1", "1", [text("今 何時 "), blank("a1"), text(" です "), blank("a2"), text("。")], ["a1", "a2"], { a1: "×", a2: "か" }, "いま なんじ （  ） です （  ）。"),
@@ -397,9 +427,13 @@ const activities: PracticeActivity[] = [
     instruction: "",
     interaction: "listening_answer",
     answerUnit: "sentence",
+    responseScope: "answer_only",
+    responseScopeHint: answerOnlyHint,
     requiresAudio: true,
     audio: {
       source: "textbook_exercise",
+      url: audio(2, 2),
+      label: "第5课 练习II-2",
       transcript: {
         text: "出張はいつからですか。来週の水曜日からです。研修はいつまでですか。今週の月曜日までです。休みはいつから何曜日までですか。今週の水曜日から土曜日までです。旅行はいつからいつまでですか。来週の土曜日からさ来週の月曜日までです。パーティーはいつですか。さ来週の金曜日です。",
         source: "manual",
@@ -443,6 +477,7 @@ const activities: PracticeActivity[] = [
     instruction: "",
     interaction: "dialogue_practice",
     answerUnit: "free_text",
+    responseScope: "free_response",
     layout: [
       {
         type: "example",
@@ -470,6 +505,7 @@ const activities: PracticeActivity[] = [
     instruction: "",
     interaction: "translation",
     answerUnit: "sentence",
+    responseScope: "sentence_only",
     layout: [],
     items: [
       answerItem("l5-p2-a4-q1", "1", "森老师 7 点起床。", "森先生は 7時に 起きます。"),

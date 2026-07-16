@@ -238,6 +238,12 @@ figcaption {
   background: #fbfdfc;
 }
 
+.example-practice-block {
+  display: grid;
+  gap: 14px;
+  align-items: start;
+}
+
 .group-head {
   display: grid;
   grid-template-columns: 1fr;
@@ -398,17 +404,17 @@ rt {
 
 .related-asset-strip {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(170px, 240px));
+  grid-template-columns: repeat(auto-fit, minmax(min(400px, 100%), 1fr));
   gap: 10px;
-  padding-left: 46px;
+  padding-left: 0;
 }
 
 .related-asset-strip .image-asset {
-  max-width: 240px;
+  width: min(100%, 760px);
 }
 
 .activity-resource-panel .related-asset-strip {
-  grid-template-columns: minmax(260px, 760px);
+  grid-template-columns: minmax(min(400px, 100%), 760px);
   padding-left: 0;
 }
 
@@ -925,7 +931,7 @@ rt {
   position: absolute;
   top: 38px;
   right: 0;
-  width: min(420px, calc(100vw - 44px));
+  width: min(520px, calc(100vw - 44px));
   padding: 14px;
   border: 1px solid rgba(185, 67, 46, 0.22);
   border-radius: 12px;
@@ -1001,32 +1007,28 @@ rt {
   font-weight: 700;
 }
 
-.diff-line {
+.answer-comparison-block {
   display: grid;
-  grid-template-columns: 18px minmax(0, 1fr);
-  gap: 8px;
-  align-items: start;
-  min-height: 30px;
-  padding: 6px 8px;
+  gap: 6px;
+  padding: 8px 10px;
   border-radius: 6px;
   font-size: 13px;
 }
 
-.diff-line.user {
+.answer-comparison-block.user {
   background: #fff1ed;
 }
 
-.diff-line.expected {
+.answer-comparison-block.expected {
   background: #eef9f2;
 }
 
-.diff-prefix {
+.answer-comparison-block span {
   color: var(--muted);
   font-weight: 850;
-  text-align: center;
 }
 
-.diff-line code {
+.answer-comparison-block code {
   white-space: pre-wrap;
   overflow-wrap: anywhere;
   color: var(--ink);
@@ -1034,18 +1036,74 @@ rt {
   line-height: 1.65;
 }
 
-.diff-line mark {
+.git-answer-diff {
+  overflow: hidden;
+  border: 1px solid #d9e3df;
+  border-radius: 7px;
+  background: #fff;
+}
+
+.git-diff-row {
+  display: grid;
+  grid-template-columns: 22px minmax(0, 1fr);
+  min-height: 28px;
+  font-size: 13px;
+}
+
+.git-diff-row.context {
+  background: #ffffff;
+}
+
+.git-diff-row.delete {
+  background: #fff1ed;
+}
+
+.git-diff-row.insert {
+  background: #eef9f2;
+}
+
+.git-diff-prefix {
+  display: grid;
+  place-items: start center;
+  padding-top: 5px;
+  color: var(--muted);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-weight: 850;
+  user-select: none;
+}
+
+.git-diff-row.delete .git-diff-prefix {
+  color: #a84220;
+}
+
+.git-diff-row.insert .git-diff-prefix {
+  color: #237b3d;
+}
+
+.git-diff-row code {
+  padding: 5px 8px 5px 0;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  color: var(--ink);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  line-height: 1.65;
+}
+
+.git-diff-row mark {
   padding: 1px 2px;
   border-radius: 3px;
   color: inherit;
 }
 
-.diff-line mark[data-diff="delete"] {
+.git-diff-row mark[data-diff="delete"] {
   background: #f2b8a7;
+  text-decoration: line-through;
+  text-decoration-thickness: 2px;
 }
 
-.diff-line mark[data-diff="insert"] {
+.git-diff-row mark[data-diff="insert"] {
   background: #a8ddb8;
+  box-shadow: inset 0 -2px 0 #2f9e55;
 }
 
 .source-page-strip {

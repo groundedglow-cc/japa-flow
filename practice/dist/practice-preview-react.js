@@ -22141,7 +22141,9 @@ function PracticeActivity({ activity, practice: practice2, admin, record, isRead
 }
 function ActivityResources({ activity, assetMap, audioUrl: audioUrl2 }) {
   const hasAudio = activity.requiresAudio || activity.audio;
-  const hasAssets = Boolean(activity.displayAssets?.length);
+  const groupAssetIds = new Set((activity.itemGroups || []).flatMap((group) => group.displayAssets || []));
+  const activityAssetIds = (activity.displayAssets || []).filter((assetId) => !groupAssetIds.has(assetId));
+  const hasAssets = Boolean(activityAssetIds.length);
   if (!hasAudio && !hasAssets) return null;
   const audioGuidance = hasAudio ? resolveAudioGuidance(activity) : "";
   return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "activity-resource-panel", children: [
@@ -22149,31 +22151,34 @@ function ActivityResources({ activity, assetMap, audioUrl: audioUrl2 }) {
       /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: `audio-placeholder ${audioUrl2 ? "ready" : "pending"}`, children: audioUrl2 ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("audio", { controls: true, src: audioUrl2 }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "\u5F55\u97F3\u5F85\u8865\u5145" }) }),
       audioGuidance ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { className: "audio-guidance", children: audioGuidance }) : null
     ] }) : null,
-    hasAssets ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(DisplayAssets, { assetIds: activity.displayAssets, assetMap }) : null
+    hasAssets ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(DisplayAssets, { assetIds: activityAssetIds, assetMap }) : null
   ] });
 }
 function PracticeItemGroupView({ group, assetMap, admin, answerRecord, gradingRecord, activityResponseScope, activityResponseScopeHint }) {
   return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", { className: "practice-item-group", id: group.id, children: [
-    /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "group-head", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [
-        group.title ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", { children: group.title }) : null,
-        group.instruction ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { children: group.instruction }) : null
+    group.displayAssets?.length ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(DisplayAssets, { assetIds: group.displayAssets, assetMap }) : null,
+    /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "example-practice-block", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "group-head", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [
+          group.title ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", { children: group.title }) : null,
+          group.instruction ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { children: group.instruction }) : null
+        ] }),
+        /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ExampleBlockView, { example: group.example })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ExampleBlockView, { example: group.example })
-    ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "practice-items", children: group.items.map((item2) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
-      PracticeItemView,
-      {
-        item: item2,
-        assetMap,
-        admin,
-        storedAnswer: answerRecord?.[item2.id],
-        gradingResult: gradingRecord?.[item2.id],
-        activityResponseScope,
-        activityResponseScopeHint
-      },
-      item2.id
-    )) })
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "practice-items", children: group.items.map((item2) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+        PracticeItemView,
+        {
+          item: item2,
+          assetMap,
+          admin,
+          storedAnswer: answerRecord?.[item2.id],
+          gradingResult: gradingRecord?.[item2.id],
+          activityResponseScope,
+          activityResponseScopeHint
+        },
+        item2.id
+      )) })
+    ] })
   ] });
 }
 function LayoutBlockView({ block }) {
@@ -22186,7 +22191,7 @@ function LayoutBlockView({ block }) {
     ] }, index)) });
   }
   if (block.type === "image_grid") {
-    return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "asset-grid", style: { "--columns": block.columns || 2 }, children: block.assets.map((asset) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ImageAssetView, { asset }, asset.id)) });
+    return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "asset-grid", style: { "--columns": block.columns || 2 }, children: block.assets.map((asset2) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ImageAssetView, { asset: asset2 }, asset2.id)) });
   }
   if (block.type === "map") {
     return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "map-block", children: [
@@ -22254,41 +22259,46 @@ function IncorrectAnswerDetails({ item: item2, answer: answer3, result, classNam
       ". ",
       /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Prompt, { parts: item2.prompt, kana: item2.promptKana })
     ] }) : null,
-    /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "\u4F60\u7684\u7B54\u6848\uFF1A" }),
-      formatAttemptSummary(item2, answer3)
-    ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "\u6B63\u786E\u7B54\u6848\uFF1A" }),
-      formatExpectedAnswerSummary(item2)
-    ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime.jsx)(AnswerDiff, { item: item2, answer: answer3 }),
+    /* @__PURE__ */ (0, import_jsx_runtime.jsx)(AnswerComparison, { item: item2, answer: answer3 }),
     result?.status === "incorrect" && item2.evaluationMode === "acceptable_answers" ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("small", { children: "\u672C\u9898\u652F\u6301\u591A\u4E2A\u53EF\u63A5\u53D7\u7B54\u6848\uFF0C\u5DF2\u5728\u201C\u6B63\u786E\u7B54\u6848\u201D\u4E2D\u5408\u5E76\u5C55\u793A\u3002" }) : null
   ] });
 }
-function AnswerDiff({ item: item2, answer: answer3 }) {
-  const diff = buildAnswerDiff(item2, answer3);
-  if (!diff) return null;
-  return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "answer-diff", "aria-label": "\u7B54\u6848\u5DEE\u5F02", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "answer-diff-head", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("strong", { children: "\u5DEE\u5F02\u5BF9\u6BD4" }),
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "\u5DF2\u5FFD\u7565\u7A7A\u683C\u548C\u6807\u70B9" })
-    ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "diff-line user", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "diff-prefix", children: "-" }),
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("code", { children: renderDiffParts(diff.actualParts) })
-    ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "diff-line expected", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "diff-prefix", children: "+" }),
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("code", { children: renderDiffParts(diff.expectedParts) })
-    ] })
+function AnswerComparisonBlock({ tone, label, value }) {
+  return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: `answer-comparison-block ${tone}`, children: [
+    /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: label }),
+    /* @__PURE__ */ (0, import_jsx_runtime.jsx)("code", { children: value })
   ] });
 }
-function renderDiffParts(parts) {
+function AnswerGitDiff({ lines }) {
+  if (!lines?.length) return null;
+  return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "git-answer-diff", role: "table", "aria-label": "\u7B54\u6848\u5DEE\u5F02\u660E\u7EC6", children: lines.map((line2, index) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: `git-diff-row ${line2.type}`, role: "row", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "git-diff-prefix", "aria-hidden": "true", children: line2.type === "delete" ? "-" : line2.type === "insert" ? "+" : " " }),
+    /* @__PURE__ */ (0, import_jsx_runtime.jsx)("code", { children: renderAnswerDiffParts(line2.parts) })
+  ] }, index)) });
+}
+function renderAnswerDiffParts(parts = []) {
   return parts.map((part, index) => {
     if (part.type === "equal") return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(import_react.default.Fragment, { children: part.text }, index);
     return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("mark", { "data-diff": part.type, children: part.text }, index);
   });
+}
+function AnswerComparison({ item: item2, answer: answer3 }) {
+  const comparison = buildAnswerComparison(item2, answer3);
+  if (!comparison) return null;
+  if (comparison.kind === "choice") {
+    return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "answer-diff answer-comparison", "aria-label": "\u7B54\u6848\u5BF9\u6BD4", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "answer-diff-head", children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("strong", { children: "\u7B54\u6848\u5BF9\u6BD4" }) }),
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)(AnswerComparisonBlock, { tone: "user", label: "\u4F60\u7684\u7B54\u6848", value: comparison.actual || "\u672A\u9009\u62E9" }),
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)(AnswerComparisonBlock, { tone: "expected", label: "\u6B63\u786E\u7B54\u6848", value: comparison.expected || "\u6682\u65E0" })
+    ] });
+  }
+  return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "answer-diff answer-comparison", "aria-label": "\u7B54\u6848\u5BF9\u6BD4", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "answer-diff-head", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("strong", { children: "\u5DEE\u5F02\u5BF9\u6BD4" }),
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "- \u4F60\u7684\u7B54\u6848 / + \u6B63\u786E\u7B54\u6848\uFF0C\u5DF2\u5FFD\u7565\u8BF4\u8BDD\u4EBA\u3001\u7A7A\u683C\u548C\u6807\u70B9" })
+    ] }),
+    /* @__PURE__ */ (0, import_jsx_runtime.jsx)(AnswerGitDiff, { lines: comparison.diffLines })
+  ] });
 }
 function PracticeItemView({ item: item2, admin, storedAnswer, gradingResult, activityResponseScope, activityResponseScopeHint }) {
   const itemResponseScopeHint = resolveItemResponseScopeHint(item2, activityResponseScope, activityResponseScopeHint);
@@ -22352,15 +22362,16 @@ function IncorrectReasonPopover({ item: item2, answer: answer3, result }) {
 function Choices({ choices, item: item2, admin, storedAnswer, gradingResult }) {
   const storedChoiceIds = resolveStoredChoiceIds(item2, storedAnswer?.choiceIds || []);
   const currentChoiceIds = storedAnswer ? storedChoiceIds : admin ? item2.answer?.choiceIds || [] : [];
+  const currentChoiceIdSet = new Set(currentChoiceIds);
   const choiceResult = gradingResult?.fieldResults?.[CHOICE_RESULT_KEY] || gradingResult?.status;
-  return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "choice-row", children: choices.map((choice) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { "data-result": choiceResult || void 0, children: [
+  return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "choice-row", children: choices.map((choice) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { "data-result": currentChoiceIdSet.has(choice.id) ? choiceResult || void 0 : void 0, children: [
     /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
       "input",
       {
         type: "radio",
         name: item2.id,
         value: choice.id,
-        defaultChecked: currentChoiceIds.includes(choice.id)
+        defaultChecked: currentChoiceIdSet.has(choice.id)
       }
     ),
     /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: choice.label })
@@ -22400,34 +22411,34 @@ function InputSlotView({ item: item2, slot, admin, storedAnswer, gradingResult }
 }
 function DisplayAssets({ assetIds, assetMap }) {
   return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "related-asset-strip", children: assetIds.map((id) => {
-    const asset = assetMap.get(id);
-    return asset ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ImageAssetView, { asset }, id) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(MissingAssetNotice, { id }, id);
+    const asset2 = assetMap.get(id);
+    return asset2 ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ImageAssetView, { asset: asset2 }, id) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(MissingAssetNotice, { id }, id);
   }) });
 }
 function MissingAssetNotice({ id }) {
   return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "asset-config-warning", "data-missing-asset": id, children: "\u6682\u672A\u6B63\u786E\u914D\u7F6E\u597D\u56FE\u7247\uFF0C\u8BF7\u8054\u7CFB\u7BA1\u7406\u5458\u3002" });
 }
-function ImageAssetView({ asset }) {
-  if (asset.crop && asset.imagePath) {
-    const crop7 = asset.crop;
-    const posX = crop7.width >= 100 ? 0 : crop7.x / (100 - crop7.width) * 100;
-    const posY = crop7.height >= 100 ? 0 : crop7.y / (100 - crop7.height) * 100;
+function ImageAssetView({ asset: asset2 }) {
+  if (asset2.crop && asset2.imagePath) {
+    const crop6 = asset2.crop;
+    const posX = crop6.width >= 100 ? 0 : crop6.x / (100 - crop6.width) * 100;
+    const posY = crop6.height >= 100 ? 0 : crop6.y / (100 - crop6.height) * 100;
     const style = {
-      "--crop-ratio": crop7.aspectRatio || crop7.width / crop7.height,
-      "--crop-size-x": `${1e4 / crop7.width}%`,
-      "--crop-size-y": `${1e4 / crop7.height}%`,
+      "--crop-ratio": crop6.aspectRatio || crop6.width / crop6.height,
+      "--crop-size-x": `${1e4 / crop6.width}%`,
+      "--crop-size-y": `${1e4 / crop6.height}%`,
       "--crop-pos-x": `${posX}%`,
       "--crop-pos-y": `${posY}%`,
-      backgroundImage: `url('${asset.imagePath}')`
+      backgroundImage: `url('${asset2.imagePath}')`
     };
-    return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("figure", { className: `image-asset ${asset.kind} cropped`, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "crop-window", role: "img", "aria-label": asset.label || asset.id, style }),
-      asset.label ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("figcaption", { children: asset.label }) : null
+    return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("figure", { className: `image-asset ${asset2.kind} cropped`, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "crop-window", role: "img", "aria-label": asset2.label || asset2.id, style }),
+      asset2.label ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("figcaption", { children: asset2.label }) : null
     ] });
   }
-  return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("figure", { className: `image-asset ${asset.kind}`, children: [
-    asset.imagePath ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", { src: asset.imagePath, alt: asset.label || asset.id }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "empty-asset", children: "\u56FE\u7247\u5F85\u8865\u5145" }),
-    asset.label ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("figcaption", { children: asset.label }) : null
+  return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("figure", { className: `image-asset ${asset2.kind}`, children: [
+    asset2.imagePath ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", { src: asset2.imagePath, alt: asset2.label || asset2.id }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "empty-asset", children: "\u56FE\u7247\u5F85\u8865\u5145" }),
+    asset2.label ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("figcaption", { children: asset2.label }) : null
   ] });
 }
 function Prompt({ parts, kana }) {
@@ -22484,8 +22495,8 @@ function exerciseNumber(section) {
 }
 function activityAssetMap(activity) {
   const map = /* @__PURE__ */ new Map();
-  const add = (asset) => {
-    if (asset) map.set(asset.id, asset);
+  const add = (asset2) => {
+    if (asset2) map.set(asset2.id, asset2);
   };
   activity.assets?.forEach(add);
   activity.layout.forEach((block) => {
@@ -22825,16 +22836,21 @@ function formatExpectedAnswerSummary(item2) {
   });
   return Array.from(new Set(answers)).join(" / ") || "\u6682\u65E0";
 }
-function buildAnswerDiff(item2, answer3) {
+function buildAnswerComparison(item2, answer3) {
+  if (item2.choices?.length) {
+    return {
+      kind: "choice",
+      actual: formatAttemptSummary(item2, answer3),
+      expected: formatExpectedAnswerSummary(item2)
+    };
+  }
   if (!item2.inputSlots?.length) return null;
   const actual = formatAttemptSummary(item2, answer3);
   const candidates = expectedAnswerCandidates(item2);
-  if (!actual || actual === "\u672A\u4F5C\u7B54" || !candidates.length) return null;
+  if (!actual || !candidates.length) return null;
   const expected = closestExpectedAnswer(actual, candidates);
-  const actualNormalized = normalizeAnswerText(actual);
-  const expectedNormalized = normalizeAnswerText(expected);
-  if (!actualNormalized || !expectedNormalized || actualNormalized === expectedNormalized) return null;
-  return diffNormalizedText(actualNormalized, expectedNormalized);
+  const diffLines = gitLikeAnswerDiff(actual === "\u672A\u4F5C\u7B54" ? "" : actual, expected);
+  return { kind: "text", actual, expected, diffLines };
 }
 function expectedAnswerCandidates(item2) {
   const answers = [];
@@ -22877,7 +22893,90 @@ function editDistance(left, right) {
   }
   return previous[b.length] || 0;
 }
-function diffNormalizedText(actual, expected) {
+function comparableAnswerText(value) {
+  return String(value || "").normalize("NFKC").replace(/\r\n?/g, "\n").split("\n").map((line2) => line2.replace(/^\s*(?:乙[0-9０-９]+|[甲乙丙丁]|[A-DＡ-Ｄ])\s*[：:]\s*/u, "")).join("\n").replace(/[ \t\u3000]+/g, "").replace(/\p{P}/gu, "").replace(/\n{3,}/g, "\n\n").replace(/^\n+|\n+$/g, "");
+}
+function diffComparableAnswerText(actual, expected) {
+  const actualComparable = comparableAnswerText(actual);
+  const expectedComparable = comparableAnswerText(expected);
+  if (!actualComparable && !expectedComparable) return { actualParts: [], expectedParts: [] };
+  return diffText(actualComparable, expectedComparable);
+}
+function comparableAnswerLines(value) {
+  const comparable = comparableAnswerText(value);
+  return comparable ? comparable.split("\n") : [];
+}
+function gitLikeAnswerDiff(actual, expected) {
+  const actualLines = comparableAnswerLines(actual);
+  const expectedLines = comparableAnswerLines(expected);
+  const ops = diffLineOperations(actualLines, expectedLines);
+  const rows = [];
+  let index = 0;
+  while (index < ops.length) {
+    if (ops[index].type === "equal") {
+      rows.push({ type: "context", parts: [{ type: "equal", text: ops[index].text || " " }] });
+      index += 1;
+      continue;
+    }
+    const deletes = [];
+    const inserts = [];
+    while (index < ops.length && ops[index].type !== "equal") {
+      if (ops[index].type === "delete") deletes.push(ops[index].text);
+      if (ops[index].type === "insert") inserts.push(ops[index].text);
+      index += 1;
+    }
+    const length = Math.max(deletes.length, inserts.length);
+    for (let pairIndex = 0; pairIndex < length; pairIndex += 1) {
+      const deleted = deletes[pairIndex];
+      const inserted = inserts[pairIndex];
+      if (deleted != null && inserted != null) {
+        const { actualParts, expectedParts } = diffComparableAnswerText(deleted, inserted);
+        rows.push({ type: "delete", parts: actualParts.length ? actualParts : [{ type: "delete", text: deleted || " " }] });
+        rows.push({ type: "insert", parts: expectedParts.length ? expectedParts : [{ type: "insert", text: inserted || " " }] });
+      } else if (deleted != null) {
+        rows.push({ type: "delete", parts: [{ type: "delete", text: deleted || " " }] });
+      } else if (inserted != null) {
+        rows.push({ type: "insert", parts: [{ type: "insert", text: inserted || " " }] });
+      }
+    }
+  }
+  return rows;
+}
+function diffLineOperations(actualLines, expectedLines) {
+  const width = expectedLines.length + 1;
+  const table = new Uint16Array((actualLines.length + 1) * width);
+  for (let row2 = actualLines.length - 1; row2 >= 0; row2 -= 1) {
+    for (let col2 = expectedLines.length - 1; col2 >= 0; col2 -= 1) {
+      table[row2 * width + col2] = actualLines[row2] === expectedLines[col2] ? table[(row2 + 1) * width + col2 + 1] + 1 : Math.max(table[(row2 + 1) * width + col2], table[row2 * width + col2 + 1]);
+    }
+  }
+  const ops = [];
+  let row = 0;
+  let col = 0;
+  while (row < actualLines.length && col < expectedLines.length) {
+    if (actualLines[row] === expectedLines[col]) {
+      ops.push({ type: "equal", text: actualLines[row] });
+      row += 1;
+      col += 1;
+    } else if (table[(row + 1) * width + col] >= table[row * width + col + 1]) {
+      ops.push({ type: "delete", text: actualLines[row] });
+      row += 1;
+    } else {
+      ops.push({ type: "insert", text: expectedLines[col] });
+      col += 1;
+    }
+  }
+  while (row < actualLines.length) {
+    ops.push({ type: "delete", text: actualLines[row] });
+    row += 1;
+  }
+  while (col < expectedLines.length) {
+    ops.push({ type: "insert", text: expectedLines[col] });
+    col += 1;
+  }
+  return ops;
+}
+function diffText(actual, expected) {
   const a = Array.from(actual);
   const b = Array.from(expected);
   const width = b.length + 1;
@@ -23066,7 +23165,7 @@ var audio = (exerciseNo, order) => `https://japaflow-audio-bucket.oss-cn-shangha
 var text = (value, options = {}) => ({ type: "text", text: value, ...options });
 var repl = (value, substitutionKey, options = {}) => text(value, { ...options, underline: true, substitutionKey });
 var blank = (slotId) => ({ type: "blank", slotId });
-var crop = (id) => lesson1ImageCrops.assets.find((asset) => asset.id === id);
+var crop = (id) => lesson1ImageCrops.assets.find((asset2) => asset2.id === id);
 var orderPrompt = (entries) => entries.flatMap(([value, kana], index) => [
   text(value, kana ? { kana } : {}),
   ...index < entries.length - 1 ? [text("\uFF0F")] : []
@@ -23787,7 +23886,7 @@ var page4 = (pageNo) => `../course-assets/by-lesson/lesson2/page${pageNo}.webp`;
 var audio2 = (exerciseNo, order) => `https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit1/lesson2/Exe${exerciseNo}_${order}.mp3`;
 var text2 = (value, options = {}) => ({ type: "text", text: value, ...options });
 var repl2 = (value, substitutionKey, options = {}) => text2(value, { ...options, underline: true, substitutionKey });
-var crop2 = (id) => lesson2ImageCrops.assets.find((asset) => asset.id === id);
+var crop2 = (id) => lesson2ImageCrops.assets.find((asset2) => asset2.id === id);
 var sentenceSlot2 = (placeholder = "\u8F93\u5165 1 \u4E2A\u5B8C\u6574\u53E5\u5B50") => [
   { id: "answer", expectedUnit: "sentence", width: "long", placeholder }
 ];
@@ -24330,18 +24429,10 @@ var lesson3ImageCrops = {
 
 // practice/lesson3-practice-data.ts
 var page6 = (pageNo) => `../course-assets/by-lesson/lesson3/page${pageNo}.webp`;
+var audio3 = (exerciseNo, order) => `https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit1/lesson3/Exe${exerciseNo}_${order}.mp3`;
 var text3 = (value, options = {}) => ({ type: "text", text: value, ...options });
 var repl3 = (value, substitutionKey, options = {}) => text3(value, { ...options, underline: true, substitutionKey });
-var crop3 = (id) => lesson3ImageCrops.assets.find((asset) => asset.id === id);
-var sourceAsset = (pageNo, label) => ({
-  id: `l3-page${pageNo}-practice-source`,
-  kind: "source_crop",
-  imagePath: page6(pageNo),
-  label
-});
-var p48 = sourceAsset(48, "\u7EC3\u4E60 I \u7B2C 1-3 \u9898\u539F\u9875");
-var p49 = sourceAsset(49, "\u7EC3\u4E60 I \u7B2C 4-7 \u9898\u539F\u9875");
-var p50 = sourceAsset(50, "\u7EC3\u4E60 II \u539F\u9875");
+var crop3 = (id) => lesson3ImageCrops.assets.find((asset2) => asset2.id === id);
 var p1a1Place = crop3("l3-p1-a1-place-picture-practice");
 var p1a1Building = crop3("l3-p1-a1-building-picture-practice");
 var p1a6Price = crop3("l3-p1-a6-price-picture-practice");
@@ -24359,9 +24450,12 @@ var answer = (value, note) => value ? { slotValues: { answer: value }, note } : 
 var makeItem = (id, number, prompt, value, options = {}) => ({
   id,
   number,
-  instruction: options.instruction || "\u586B\u5199\u7B54\u6848\u3002",
+  instruction: options.instruction ?? "",
   answerSource: options.answerSource || "example_transform",
+  responseScope: options.responseScope,
+  responseScopeHint: options.responseScopeHint,
   prompt: typeof prompt === "string" ? [text3(prompt)] : prompt,
+  promptKana: options.promptKana,
   inputSlots: options.inputSlots || sentenceSlot3(),
   answer: answer(value, options.note),
   relatedAssets: options.relatedAssets,
@@ -24373,8 +24467,9 @@ var choiceItem3 = (id, number, prompt, choices, correct, options = {}) => {
   return {
     id,
     number,
-    instruction: options.instruction || "\u9009\u62E9\u6B63\u786E\u7B54\u6848\u3002",
+    instruction: options.instruction || "",
     answerSource: options.answerSource || "prompt",
+    responseScope: "choice_only",
     prompt: [text3(prompt)],
     choices: mapped,
     answer: { choiceIds: selected ? [selected.id] : [] },
@@ -24383,79 +24478,81 @@ var choiceItem3 = (id, number, prompt, choices, correct, options = {}) => {
   };
 };
 var dialogueItem2 = (id, number, prompt, value, options = {}) => makeItem(id, number, prompt, value, {
-  instruction: "\u4EFF\u7167\u4F8B\u53E5\uFF0C\u586B\u5199\u5B8C\u6574\u4F1A\u8BDD\u3002",
+  instruction: "",
+  promptKana: options.promptKana,
   answerSource: options.answerSource || "example_transform",
+  responseScope: "dialogue_only",
   inputSlots: dialogueSlot3("\u8F93\u5165\u5B8C\u6574\u4F1A\u8BDD", options.rows || 4),
   relatedAssets: options.relatedAssets,
   renderHint: "dialogue",
   note: options.note
 });
 var p1a1PlaceItems = [
-  ["1", "\u30AB\u30E1\u30E9\u58F2\u308A\u5834", "\u3053\u3053\u306F \u30AB\u30E1\u30E9\u58F2\u308A\u5834\u3067\u3059\u3002"],
-  ["2", "\u9774\u58F2\u308A\u5834", "\u3053\u3053\u306F \u9774\u58F2\u308A\u5834\u3067\u3059\u3002"],
-  ["3", "\u53D7\u4ED8", "\u3053\u3053\u306F \u53D7\u4ED8\u3067\u3059\u3002"],
-  ["4", "\u5098\u58F2\u308A\u5834", "\u3053\u3053\u306F \u5098\u58F2\u308A\u5834\u3067\u3059\u3002"],
-  ["5", "\u304B\u3070\u3093\u58F2\u308A\u5834", "\u3053\u3053\u306F \u304B\u3070\u3093\u58F2\u308A\u5834\u3067\u3059\u3002"]
+  ["1", "\u30AB\u30E1\u30E9\u58F2\u308A\u5834", "\u30AB\u30E1\u30E9\u3046\u308A\u3070", "\u3053\u3053\u306F \u30AB\u30E1\u30E9\u58F2\u308A\u5834\u3067\u3059\u3002"],
+  ["2", "\u9774\u58F2\u308A\u5834", "\u304F\u3064\u3046\u308A\u3070", "\u3053\u3053\u306F \u9774\u58F2\u308A\u5834\u3067\u3059\u3002"],
+  ["3", "\u53D7\u4ED8", "\u3046\u3051\u3064\u3051", "\u3053\u3053\u306F \u53D7\u4ED8\u3067\u3059\u3002"],
+  ["4", "\u5098\u58F2\u308A\u5834", "\u304B\u3055\u3046\u308A\u3070", "\u3053\u3053\u306F \u5098\u58F2\u308A\u5834\u3067\u3059\u3002"],
+  ["5", "\u304B\u3070\u3093\u58F2\u308A\u5834", "\u304B\u3070\u3093\u3046\u308A\u3070", "\u3053\u3053\u306F \u304B\u3070\u3093\u58F2\u308A\u5834\u3067\u3059\u3002"]
 ];
 var p1a1BuildingItems = [
-  ["6", "\u30B3\u30F3\u30D3\u30CB\uFF0F1\u968E", "\u30B3\u30F3\u30D3\u30CB\u306F \u3042\u306E \u30D3\u30EB\u306E 1\u968E\u3067\u3059\u3002"],
-  ["7", "\u672C\u5C4B\uFF0F8\u968E", "\u672C\u5C4B\u306F \u3042\u306E \u30D3\u30EB\u306E 8\u968E\u3067\u3059\u3002"],
-  ["8", "\u30EC\u30B9\u30C8\u30E9\u30F3\uFF0F9\u968E", "\u30EC\u30B9\u30C8\u30E9\u30F3\u306F \u3042\u306E \u30D3\u30EB\u306E 9\u968E\u3067\u3059\u3002"],
-  ["9", "\u4E8B\u52D9\u6240\uFF0F3\u968E", "\u4E8B\u52D9\u6240\u306F \u3042\u306E \u30D3\u30EB\u306E 3\u968E\u3067\u3059\u3002"]
+  ["6", "\u30B3\u30F3\u30D3\u30CB\uFF0F1\u968E", "\u30B3\u30F3\u30D3\u30CB\uFF0F\u3044\u3063\u304B\u3044", "\u30B3\u30F3\u30D3\u30CB\u306F \u3042\u306E \u30D3\u30EB\u306E 1\u968E\u3067\u3059\u3002"],
+  ["7", "\u672C\u5C4B\uFF0F8\u968E", "\u307B\u3093\u3084\uFF0F\u306F\u3061\u304B\u3044", "\u672C\u5C4B\u306F \u3042\u306E \u30D3\u30EB\u306E 8\u968E\u3067\u3059\u3002"],
+  ["8", "\u30EC\u30B9\u30C8\u30E9\u30F3\uFF0F9\u968E", "\u30EC\u30B9\u30C8\u30E9\u30F3\uFF0F\u304D\u3085\u3046\u304B\u3044", "\u30EC\u30B9\u30C8\u30E9\u30F3\u306F \u3042\u306E \u30D3\u30EB\u306E 9\u968E\u3067\u3059\u3002"],
+  ["9", "\u4E8B\u52D9\u6240\uFF0F3\u968E", "\u3058\u3080\u3057\u3087\uFF0F\u3055\u3093\u304B\u3044", "\u4E8B\u52D9\u6240\u306F \u3042\u306E \u30D3\u30EB\u306E 3\u968E\u3067\u3059\u3002"]
 ];
 var p1a2Items2 = [
-  ["1", "\u56F3\u66F8\u9928", "\u7532\uFF1A\u56F3\u66F8\u9928\u306F \u3069\u3053\u3067\u3059\u304B\u3002\n\u4E59\uFF1A\u3042\u305D\u3053\u3067\u3059\u3002"],
-  ["2", "\u98DF\u5802", "\u7532\uFF1A\u98DF\u5802\u306F \u3069\u3053\u3067\u3059\u304B\u3002\n\u4E59\uFF1A\u3042\u305D\u3053\u3067\u3059\u3002"],
-  ["3", "\u53D7\u4ED8", "\u7532\uFF1A\u53D7\u4ED8\u306F \u3069\u3053\u3067\u3059\u304B\u3002\n\u4E59\uFF1A\u3042\u305D\u3053\u3067\u3059\u3002"],
-  ["4", "\u4E8B\u52D9\u6240", "\u7532\uFF1A\u4E8B\u52D9\u6240\u306F \u3069\u3053\u3067\u3059\u304B\u3002\n\u4E59\uFF1A\u3042\u305D\u3053\u3067\u3059\u3002"]
+  ["1", "\u56F3\u66F8\u9928", "\u3068\u3057\u3087\u304B\u3093", "\u7532\uFF1A\u56F3\u66F8\u9928\u306F \u3069\u3053\u3067\u3059\u304B\u3002\n\u4E59\uFF1A\u3042\u305D\u3053\u3067\u3059\u3002"],
+  ["2", "\u98DF\u5802", "\u3057\u3087\u304F\u3069\u3046", "\u7532\uFF1A\u98DF\u5802\u306F \u3069\u3053\u3067\u3059\u304B\u3002\n\u4E59\uFF1A\u3042\u305D\u3053\u3067\u3059\u3002"],
+  ["3", "\u53D7\u4ED8", "\u3046\u3051\u3064\u3051", "\u7532\uFF1A\u53D7\u4ED8\u306F \u3069\u3053\u3067\u3059\u304B\u3002\n\u4E59\uFF1A\u3042\u305D\u3053\u3067\u3059\u3002"],
+  ["4", "\u4E8B\u52D9\u6240", "\u3058\u3080\u3057\u3087", "\u7532\uFF1A\u4E8B\u52D9\u6240\u306F \u3069\u3053\u3067\u3059\u304B\u3002\n\u4E59\uFF1A\u3042\u305D\u3053\u3067\u3059\u3002"]
 ];
 var p1a3Items = [
-  ["1", "\u5C0F\u91CE\u3055\u3093\u306F JC\u4F01\u753B\u306E \u793E\u54E1\u3067\u3059\u3002\uFF08\u674E\u3055\u3093\uFF09", "\u674E\u3055\u3093\u3082 JC\u4F01\u753B\u306E \u793E\u54E1\u3067\u3059\u3002"],
-  ["2", "\u3053\u3053\u306F \u308F\u305F\u3057\u306E \u30EC\u30B9\u30C8\u30E9\u30F3\u3067\u3059\u3002\uFF08\u305D\u3053\uFF09", "\u305D\u3053\u3082 \u308F\u305F\u3057\u306E \u30EC\u30B9\u30C8\u30E9\u30F3\u3067\u3059\u3002"],
-  ["3", "\u3053\u306E \u30D3\u30EB\u306F \u75C5\u9662\u3067\u3059\u3002\uFF08\u3042\u306E \u30D3\u30EB\uFF09", "\u3042\u306E \u30D3\u30EB\u3082 \u75C5\u9662\u3067\u3059\u3002"],
-  ["4", "\u6642\u8A08\u58F2\u308A\u5834\u306F \u30C7\u30D1\u30FC\u30C8\u306E 7\u968E\u3067\u3059\u3002\uFF08\u98DF\u5802\uFF09", "\u98DF\u5802\u3082 \u30C7\u30D1\u30FC\u30C8\u306E 7\u968E\u3067\u3059\u3002"]
+  ["1", "\u5C0F\u91CE\u3055\u3093\u306F JC\u4F01\u753B\u306E \u793E\u54E1\u3067\u3059\u3002\uFF08\u674E\u3055\u3093\uFF09", "\u304A\u306E\u3055\u3093\u306F \u30B8\u30A7\u30FC\u30B7\u30FC\u304D\u304B\u304F\u306E \u3057\u3083\u3044\u3093\u3067\u3059\u3002\uFF08\u308A\u3055\u3093\uFF09", "\u674E\u3055\u3093\u3082 JC\u4F01\u753B\u306E \u793E\u54E1\u3067\u3059\u3002"],
+  ["2", "\u3053\u3053\u306F \u308F\u305F\u3057\u306E \u30EC\u30B9\u30C8\u30E9\u30F3\u3067\u3059\u3002\uFF08\u305D\u3053\uFF09", "\u3053\u3053\u306F \u308F\u305F\u3057\u306E \u30EC\u30B9\u30C8\u30E9\u30F3\u3067\u3059\u3002\uFF08\u305D\u3053\uFF09", "\u305D\u3053\u3082 \u308F\u305F\u3057\u306E \u30EC\u30B9\u30C8\u30E9\u30F3\u3067\u3059\u3002"],
+  ["3", "\u3053\u306E \u30D3\u30EB\u306F \u75C5\u9662\u3067\u3059\u3002\uFF08\u3042\u306E \u30D3\u30EB\uFF09", "\u3053\u306E \u30D3\u30EB\u306F \u3073\u3087\u3046\u3044\u3093\u3067\u3059\u3002\uFF08\u3042\u306E \u30D3\u30EB\uFF09", "\u3042\u306E \u30D3\u30EB\u3082 \u75C5\u9662\u3067\u3059\u3002"],
+  ["4", "\u6642\u8A08\u58F2\u308A\u5834\u306F \u30C7\u30D1\u30FC\u30C8\u306E 7\u968E\u3067\u3059\u3002\uFF08\u98DF\u5802\uFF09", "\u3068\u3051\u3044\u3046\u308A\u3070\u306F \u30C7\u30D1\u30FC\u30C8\u306E \u306A\u306A\u304B\u3044\u3067\u3059\u3002\uFF08\u3057\u3087\u304F\u3069\u3046\uFF09", "\u98DF\u5802\u3082 \u30C7\u30D1\u30FC\u30C8\u306E 7\u968E\u3067\u3059\u3002"]
 ];
 var p1a4Group1 = [
-  ["1", "\u4F1A\u793E\u54E1\uFF0F\u5B66\u751F", "\u7532\uFF1A\u3042\u306E \u4EBA\u306F \u4F1A\u793E\u54E1\u3067\u3059\u304B\u3001\u5B66\u751F\u3067\u3059\u304B\u3002\n\u4E59\uFF1A\u4F1A\u793E\u54E1\u3067\u3059\u3002"],
-  ["2", "\u30D5\u30E9\u30F3\u30B9\u4EBA\uFF0F\u30A2\u30E1\u30EA\u30AB\u4EBA", "\u7532\uFF1A\u3042\u306E \u4EBA\u306F \u30D5\u30E9\u30F3\u30B9\u4EBA\u3067\u3059\u304B\u3001\u30A2\u30E1\u30EA\u30AB\u4EBA\u3067\u3059\u304B\u3002\n\u4E59\uFF1A\u30D5\u30E9\u30F3\u30B9\u4EBA\u3067\u3059\u3002"]
+  ["1", "\u4F1A\u793E\u54E1\uFF0F\u5B66\u751F", "\u304B\u3044\u3057\u3083\u3044\u3093\uFF0F\u304C\u304F\u305B\u3044", "\u7532\uFF1A\u3042\u306E \u4EBA\u306F \u4F1A\u793E\u54E1\u3067\u3059\u304B\u3001\u5B66\u751F\u3067\u3059\u304B\u3002\n\u4E59\uFF1A\u4F1A\u793E\u54E1\u3067\u3059\u3002"],
+  ["2", "\u30D5\u30E9\u30F3\u30B9\u4EBA\uFF0F\u30A2\u30E1\u30EA\u30AB\u4EBA", "\u30D5\u30E9\u30F3\u30B9\u3058\u3093\uFF0F\u30A2\u30E1\u30EA\u30AB\u3058\u3093", "\u7532\uFF1A\u3042\u306E \u4EBA\u306F \u30D5\u30E9\u30F3\u30B9\u4EBA\u3067\u3059\u304B\u3001\u30A2\u30E1\u30EA\u30AB\u4EBA\u3067\u3059\u304B\u3002\n\u4E59\uFF1A\u30D5\u30E9\u30F3\u30B9\u4EBA\u3067\u3059\u3002"]
 ];
 var p1a4Group2 = [
-  ["3", "\u30C7\u30D1\u30FC\u30C8\uFF0F\u30DB\u30C6\u30EB", "\u7532\uFF1A\u3042\u305D\u3053\u306F \u30C7\u30D1\u30FC\u30C8\u3067\u3059\u304B\u3001\u30DB\u30C6\u30EB\u3067\u3059\u304B\u3002\n\u4E59\uFF1A\u30C7\u30D1\u30FC\u30C8\u3067\u3059\u3002"],
-  ["4", "\u672C\u5C4B\uFF0F\u30B3\u30F3\u30D3\u30CB", "\u7532\uFF1A\u3042\u305D\u3053\u306F \u672C\u5C4B\u3067\u3059\u304B\u3001\u30B3\u30F3\u30D3\u30CB\u3067\u3059\u304B\u3002\n\u4E59\uFF1A\u672C\u5C4B\u3067\u3059\u3002"]
+  ["3", "\u30C7\u30D1\u30FC\u30C8\uFF0F\u30DB\u30C6\u30EB", "\u30C7\u30D1\u30FC\u30C8\uFF0F\u30DB\u30C6\u30EB", "\u7532\uFF1A\u3042\u305D\u3053\u306F \u30C7\u30D1\u30FC\u30C8\u3067\u3059\u304B\u3001\u30DB\u30C6\u30EB\u3067\u3059\u304B\u3002\n\u4E59\uFF1A\u30C7\u30D1\u30FC\u30C8\u3067\u3059\u3002"],
+  ["4", "\u672C\u5C4B\uFF0F\u30B3\u30F3\u30D3\u30CB", "\u307B\u3093\u3084\uFF0F\u30B3\u30F3\u30D3\u30CB", "\u7532\uFF1A\u3042\u305D\u3053\u306F \u672C\u5C4B\u3067\u3059\u304B\u3001\u30B3\u30F3\u30D3\u30CB\u3067\u3059\u304B\u3002\n\u4E59\uFF1A\u672C\u5C4B\u3067\u3059\u3002"]
 ];
 var p1a5Items = [
-  ["1", "\u53D7\u4ED8\uFF0F\u304B\u3070\u3093\u58F2\u308A\u5834", "\u7532\uFF1A\u3059\u307F\u307E\u305B\u3093\u3002\u53D7\u4ED8\u306F \u3069\u3053\u3067\u3059\u304B\u3002\n\u4E59\uFF1A\u53D7\u4ED8\u3067\u3059\u304B\u3002\u53D7\u4ED8\u306F \u3042\u3061\u3089\u3067\u3059\u3002\n\u7532\uFF1A\u304B\u3070\u3093\u58F2\u308A\u5834\u306F\uFF1F\n\u4E59\uFF1A\u304B\u3070\u3093\u58F2\u308A\u5834\u306F 5\u968E\u3067\u3059\u3002"],
-  ["2", "\u30A8\u30B9\u30AB\u30EC\u30FC\u30BF\u30FC\uFF0F\u30D0\u30FC\u30B2\u30F3\u4F1A\u5834", "\u7532\uFF1A\u3059\u307F\u307E\u305B\u3093\u3002\u30A8\u30B9\u30AB\u30EC\u30FC\u30BF\u30FC\u306F \u3069\u3053\u3067\u3059\u304B\u3002\n\u4E59\uFF1A\u30A8\u30B9\u30AB\u30EC\u30FC\u30BF\u30FC\u3067\u3059\u304B\u3002\u30A8\u30B9\u30AB\u30EC\u30FC\u30BF\u30FC\u306F \u3042\u3061\u3089\u3067\u3059\u3002\n\u7532\uFF1A\u30D0\u30FC\u30B2\u30F3\u4F1A\u5834\u306F\uFF1F\n\u4E59\uFF1A\u30D0\u30FC\u30B2\u30F3\u4F1A\u5834\u306F 5\u968E\u3067\u3059\u3002"],
-  ["3", "\u96FB\u8A71\uFF0F\u30AB\u30E1\u30E9\u58F2\u308A\u5834", "\u7532\uFF1A\u3059\u307F\u307E\u305B\u3093\u3002\u96FB\u8A71\u306F \u3069\u3053\u3067\u3059\u304B\u3002\n\u4E59\uFF1A\u96FB\u8A71\u3067\u3059\u304B\u3002\u96FB\u8A71\u306F \u3042\u3061\u3089\u3067\u3059\u3002\n\u7532\uFF1A\u30AB\u30E1\u30E9\u58F2\u308A\u5834\u306F\uFF1F\n\u4E59\uFF1A\u30AB\u30E1\u30E9\u58F2\u308A\u5834\u306F 5\u968E\u3067\u3059\u3002"]
+  ["1", "\u53D7\u4ED8\uFF0F\u304B\u3070\u3093\u58F2\u308A\u5834", "\u7532\uFF1A\u3059\u307F\u307E\u305B\u3093\u3002\u53D7\u4ED8\u306F \u3069\u3053\u3067\u3059\u304B\u3002\n\u4E59\uFF1A\u53D7\u4ED8\u3067\u3059\u304B\u3002\u53D7\u4ED8\u306F \u3042\u3061\u3089\u3067\u3059\u3002\n\u7532\uFF1A\u304B\u3070\u3093\u58F2\u308A\u5834\u306F\uFF1F\n\u4E59\uFF1A\u304B\u3070\u3093\u58F2\u308A\u5834\u306F 5\u968E\u3067\u3059\u3002", "\u3046\u3051\u3064\u3051\uFF0F\u304B\u3070\u3093\u3046\u308A\u3070"],
+  ["2", "\u30A8\u30B9\u30AB\u30EC\u30FC\u30BF\u30FC\uFF0F\u30D0\u30FC\u30B2\u30F3\u4F1A\u5834", "\u7532\uFF1A\u3059\u307F\u307E\u305B\u3093\u3002\u30A8\u30B9\u30AB\u30EC\u30FC\u30BF\u30FC\u306F \u3069\u3053\u3067\u3059\u304B\u3002\n\u4E59\uFF1A\u30A8\u30B9\u30AB\u30EC\u30FC\u30BF\u30FC\u3067\u3059\u304B\u3002\u30A8\u30B9\u30AB\u30EC\u30FC\u30BF\u30FC\u306F \u3042\u3061\u3089\u3067\u3059\u3002\n\u7532\uFF1A\u30D0\u30FC\u30B2\u30F3\u4F1A\u5834\u306F\uFF1F\n\u4E59\uFF1A\u30D0\u30FC\u30B2\u30F3\u4F1A\u5834\u306F 5\u968E\u3067\u3059\u3002", "\u30A8\u30B9\u30AB\u30EC\u30FC\u30BF\u30FC\uFF0F\u30D0\u30FC\u30B2\u30F3\u304B\u3044\u3058\u3087\u3046"],
+  ["3", "\u96FB\u8A71\uFF0F\u30AB\u30E1\u30E9\u58F2\u308A\u5834", "\u7532\uFF1A\u3059\u307F\u307E\u305B\u3093\u3002\u96FB\u8A71\u306F \u3069\u3053\u3067\u3059\u304B\u3002\n\u4E59\uFF1A\u96FB\u8A71\u3067\u3059\u304B\u3002\u96FB\u8A71\u306F \u3042\u3061\u3089\u3067\u3059\u3002\n\u7532\uFF1A\u30AB\u30E1\u30E9\u58F2\u308A\u5834\u306F\uFF1F\n\u4E59\uFF1A\u30AB\u30E1\u30E9\u58F2\u308A\u5834\u306F 5\u968E\u3067\u3059\u3002", "\u3067\u3093\u308F\uFF0F\u30AB\u30E1\u30E9\u3046\u308A\u3070"]
 ];
 var p1a6Items = [
-  ["1", "\u5098\uFF0F2,500\u5186", "\u7532\uFF1A\u3053\u308C\u306F \u3044\u304F\u3089\u3067\u3059\u304B\u3002\n\u4E59\uFF1A\u305D\u308C\u306F 2,500\u5186\u3067\u3059\u3002\n\u7532\uFF1A\u3042\u308C\u306F\uFF1F\n\u4E59\uFF1A\u3069\u308C\u3067\u3059\u304B\u3002\n\u7532\uFF1A\u3042\u306E \u5098\u3067\u3059\u3002\n\u4E59\uFF1A\u3042\u308C\u3082 2,500\u5186\u3067\u3059\u3002"],
-  ["2", "\u9774\uFF0F16,000\u5186", "\u7532\uFF1A\u3053\u308C\u306F \u3044\u304F\u3089\u3067\u3059\u304B\u3002\n\u4E59\uFF1A\u305D\u308C\u306F 16,000\u5186\u3067\u3059\u3002\n\u7532\uFF1A\u3042\u308C\u306F\uFF1F\n\u4E59\uFF1A\u3069\u308C\u3067\u3059\u304B\u3002\n\u7532\uFF1A\u3042\u306E \u9774\u3067\u3059\u3002\n\u4E59\uFF1A\u3042\u308C\u3082 16,000\u5186\u3067\u3059\u3002"],
-  ["3", "\u30D1\u30BD\u30B3\u30F3\uFF0F114,000\u5186", "\u7532\uFF1A\u3053\u308C\u306F \u3044\u304F\u3089\u3067\u3059\u304B\u3002\n\u4E59\uFF1A\u305D\u308C\u306F 114,000\u5186\u3067\u3059\u3002\n\u7532\uFF1A\u3042\u308C\u306F\uFF1F\n\u4E59\uFF1A\u3069\u308C\u3067\u3059\u304B\u3002\n\u7532\uFF1A\u3042\u306E \u30D1\u30BD\u30B3\u30F3\u3067\u3059\u3002\n\u4E59\uFF1A\u3042\u308C\u3082 114,000\u5186\u3067\u3059\u3002"],
-  ["4", "\u30B3\u30FC\u30C8\uFF0F39,800\u5186", "\u7532\uFF1A\u3053\u308C\u306F \u3044\u304F\u3089\u3067\u3059\u304B\u3002\n\u4E59\uFF1A\u305D\u308C\u306F 39,800\u5186\u3067\u3059\u3002\n\u7532\uFF1A\u3042\u308C\u306F\uFF1F\n\u4E59\uFF1A\u3069\u308C\u3067\u3059\u304B\u3002\n\u7532\uFF1A\u3042\u306E \u30B3\u30FC\u30C8\u3067\u3059\u3002\n\u4E59\uFF1A\u3042\u308C\u3082 39,800\u5186\u3067\u3059\u3002"],
-  ["5", "\u8ECA\uFF0F2,340,000\u5186", "\u7532\uFF1A\u3053\u308C\u306F \u3044\u304F\u3089\u3067\u3059\u304B\u3002\n\u4E59\uFF1A\u305D\u308C\u306F 2,340,000\u5186\u3067\u3059\u3002\n\u7532\uFF1A\u3042\u308C\u306F\uFF1F\n\u4E59\uFF1A\u3069\u308C\u3067\u3059\u304B\u3002\n\u7532\uFF1A\u3042\u306E \u8ECA\u3067\u3059\u3002\n\u4E59\uFF1A\u3042\u308C\u3082 2,340,000\u5186\u3067\u3059\u3002"]
+  ["1", "\u5098\uFF0F2,500\u5186", "\u304B\u3055\uFF0F\u306B\u305B\u3093\u3054\u3072\u3083\u304F\u3048\u3093", "\u7532\uFF1A\u3053\u308C\u306F \u3044\u304F\u3089\u3067\u3059\u304B\u3002\n\u4E59\uFF1A\u305D\u308C\u306F 2,500\u5186\u3067\u3059\u3002\n\u7532\uFF1A\u3042\u308C\u306F\uFF1F\n\u4E59\uFF1A\u3069\u308C\u3067\u3059\u304B\u3002\n\u7532\uFF1A\u3042\u306E \u5098\u3067\u3059\u3002\n\u4E59\uFF1A\u3042\u308C\u3082 2,500\u5186\u3067\u3059\u3002"],
+  ["2", "\u9774\uFF0F16,000\u5186", "\u304F\u3064\uFF0F\u3044\u3061\u307E\u3093\u308D\u304F\u305B\u3093\u3048\u3093", "\u7532\uFF1A\u3053\u308C\u306F \u3044\u304F\u3089\u3067\u3059\u304B\u3002\n\u4E59\uFF1A\u305D\u308C\u306F 16,000\u5186\u3067\u3059\u3002\n\u7532\uFF1A\u3042\u308C\u306F\uFF1F\n\u4E59\uFF1A\u3069\u308C\u3067\u3059\u304B\u3002\n\u7532\uFF1A\u3042\u306E \u9774\u3067\u3059\u3002\n\u4E59\uFF1A\u3042\u308C\u3082 16,000\u5186\u3067\u3059\u3002"],
+  ["3", "\u30D1\u30BD\u30B3\u30F3\uFF0F114,000\u5186", "\u30D1\u30BD\u30B3\u30F3\uFF0F\u3058\u3085\u3046\u3044\u3061\u307E\u3093\u3088\u3093\u305B\u3093\u3048\u3093", "\u7532\uFF1A\u3053\u308C\u306F \u3044\u304F\u3089\u3067\u3059\u304B\u3002\n\u4E59\uFF1A\u305D\u308C\u306F 114,000\u5186\u3067\u3059\u3002\n\u7532\uFF1A\u3042\u308C\u306F\uFF1F\n\u4E59\uFF1A\u3069\u308C\u3067\u3059\u304B\u3002\n\u7532\uFF1A\u3042\u306E \u30D1\u30BD\u30B3\u30F3\u3067\u3059\u3002\n\u4E59\uFF1A\u3042\u308C\u3082 114,000\u5186\u3067\u3059\u3002"],
+  ["4", "\u30B3\u30FC\u30C8\uFF0F39,800\u5186", "\u30B3\u30FC\u30C8\uFF0F\u3055\u3093\u307E\u3093\u304D\u3085\u3046\u305B\u3093\u306F\u3063\u3074\u3083\u304F\u3048\u3093", "\u7532\uFF1A\u3053\u308C\u306F \u3044\u304F\u3089\u3067\u3059\u304B\u3002\n\u4E59\uFF1A\u305D\u308C\u306F 39,800\u5186\u3067\u3059\u3002\n\u7532\uFF1A\u3042\u308C\u306F\uFF1F\n\u4E59\uFF1A\u3069\u308C\u3067\u3059\u304B\u3002\n\u7532\uFF1A\u3042\u306E \u30B3\u30FC\u30C8\u3067\u3059\u3002\n\u4E59\uFF1A\u3042\u308C\u3082 39,800\u5186\u3067\u3059\u3002"],
+  ["5", "\u8ECA\uFF0F2,340,000\u5186", "\u304F\u308B\u307E\uFF0F\u306B\u3072\u3083\u304F\u3055\u3093\u3058\u3085\u3046\u3088\u3093\u307E\u3093\u3048\u3093", "\u7532\uFF1A\u3053\u308C\u306F \u3044\u304F\u3089\u3067\u3059\u304B\u3002\n\u4E59\uFF1A\u305D\u308C\u306F 2,340,000\u5186\u3067\u3059\u3002\n\u7532\uFF1A\u3042\u308C\u306F\uFF1F\n\u4E59\uFF1A\u3069\u308C\u3067\u3059\u304B\u3002\n\u7532\uFF1A\u3042\u306E \u8ECA\u3067\u3059\u3002\n\u4E59\uFF1A\u3042\u308C\u3082 2,340,000\u5186\u3067\u3059\u3002"]
 ];
 var p1a7Numbers = ["490", "111", "610", "20,300", "1,400", "9,030", "380", "15,700"];
 var p2a1Items = [
-  ["1", "\u3042\u308C\u306F\uFF08\u3000\u3000\uFF09\u3067\u3059\u304B\u3002\u2014\u2014\u75C5\u9662\u3067\u3059\u3002", "\u4F55"],
-  ["2", "\u53D7\u4ED8\u306F\uFF08\u3000\u3000\uFF09\u3067\u3059\u304B\u3002\u2014\u2014\u3042\u305D\u3053\u3067\u3059\u3002", "\u3069\u3053"],
-  ["3", "\u68EE\u3055\u3093\u306E \u672C\u306F\uFF08\u3000\u3000\uFF09\u3067\u3059\u304B\u3002\u2014\u2014\u3053\u308C\u3067\u3059\u3002", "\u3069\u308C"],
-  ["4", "\u305D\u306E \u8F9E\u66F8\u306F\uFF08\u3000\u3000\uFF09\u306E\u3067\u3059\u304B\u3002\u2014\u2014\u308F\u305F\u3057\u306E\u3067\u3059\u3002", "\u3060\u308C"],
-  ["5", "\u30B8\u30E7\u30F3\u30BD\u30F3\u3055\u3093\u306F\uFF08\u3000\u3000\uFF09\u4EBA\u3067\u3059\u304B\u3002\u2014\u2014\u3042\u306E \u4EBA\u3067\u3059\u3002", "\u3069\u306E"]
+  ["1", "\u3042\u308C\u306F\uFF08\u3000\u3000\uFF09\u3067\u3059\u304B\u3002\u2014\u2014\u75C5\u9662\u3067\u3059\u3002", "\u3042\u308C\u306F\uFF08\u3000\u3000\uFF09\u3067\u3059\u304B\u3002\u2014\u2014\u3073\u3087\u3046\u3044\u3093\u3067\u3059\u3002", "\u4F55"],
+  ["2", "\u53D7\u4ED8\u306F\uFF08\u3000\u3000\uFF09\u3067\u3059\u304B\u3002\u2014\u2014\u3042\u305D\u3053\u3067\u3059\u3002", "\u3046\u3051\u3064\u3051\u306F\uFF08\u3000\u3000\uFF09\u3067\u3059\u304B\u3002\u2014\u2014\u3042\u305D\u3053\u3067\u3059\u3002", "\u3069\u3053"],
+  ["3", "\u68EE\u3055\u3093\u306E \u672C\u306F\uFF08\u3000\u3000\uFF09\u3067\u3059\u304B\u3002\u2014\u2014\u3053\u308C\u3067\u3059\u3002", "\u3082\u308A\u3055\u3093\u306E \u307B\u3093\u306F\uFF08\u3000\u3000\uFF09\u3067\u3059\u304B\u3002\u2014\u2014\u3053\u308C\u3067\u3059\u3002", "\u3069\u308C"],
+  ["4", "\u305D\u306E \u8F9E\u66F8\u306F\uFF08\u3000\u3000\uFF09\u306E\u3067\u3059\u304B\u3002\u2014\u2014\u308F\u305F\u3057\u306E\u3067\u3059\u3002", "\u305D\u306E \u3058\u3057\u3087\u306F\uFF08\u3000\u3000\uFF09\u306E\u3067\u3059\u304B\u3002\u2014\u2014\u308F\u305F\u3057\u306E\u3067\u3059\u3002", "\u3060\u308C"],
+  ["5", "\u30B8\u30E7\u30F3\u30BD\u30F3\u3055\u3093\u306F\uFF08\u3000\u3000\uFF09\u4EBA\u3067\u3059\u304B\u3002\u2014\u2014\u3042\u306E \u4EBA\u3067\u3059\u3002", "\u30B8\u30E7\u30F3\u30BD\u30F3\u3055\u3093\u306F\uFF08\u3000\u3000\uFF09\u3072\u3068\u3067\u3059\u304B\u3002\u2014\u2014\u3042\u306E \u3072\u3068\u3067\u3059\u3002", "\u3069\u306E"]
 ];
 var p2a2Items = [
-  ["1", "\u3053\u3053\u306F \u90F5\u4FBF\u5C40\u3067\u3059\uFF08\u3000\u3000\uFF09\u3001\u9280\u884C\u3067\u3059\u304B\u3002", "\u304B"],
-  ["2", "\u3053\u3053\u306F \u30DB\u30C6\u30EB\u3067\u3059\u3002\u305D\u3053\uFF08\u3000\u3000\uFF09\u30DB\u30C6\u30EB\u3067\u3059\u3002", "\u3082"],
-  ["3", "\u3053\u306E \u30AB\u30E1\u30E9\uFF08\u3000\u3000\uFF09\u3044\u304F\u3089\u3067\u3059\u304B\u3002", "\u306F"],
-  ["4", "\u30EC\u30B9\u30C8\u30E9\u30F3\u306F \u30C7\u30D1\u30FC\u30C8\uFF08\u3000\u3000\uFF098\u968E\u3067\u3059\u3002", "\u306E"],
-  ["5", "\u65E5\u4E2D\u5546\u4E8B\uFF08\u3000\u3000\uFF09\u3053\u3061\u3089\u3067\u3059\u304B\u3002", "\u306F"]
+  ["1", "\u3053\u3053\u306F \u90F5\u4FBF\u5C40\u3067\u3059\uFF08\u3000\u3000\uFF09\u3001\u9280\u884C\u3067\u3059\u304B\u3002", "\u3053\u3053\u306F \u3086\u3046\u3073\u3093\u304D\u3087\u304F\u3067\u3059\uFF08\u3000\u3000\uFF09\u3001\u304E\u3093\u3053\u3046\u3067\u3059\u304B\u3002", "\u304B"],
+  ["2", "\u3053\u3053\u306F \u30DB\u30C6\u30EB\u3067\u3059\u3002\u305D\u3053\uFF08\u3000\u3000\uFF09\u30DB\u30C6\u30EB\u3067\u3059\u3002", "\u3053\u3053\u306F \u30DB\u30C6\u30EB\u3067\u3059\u3002\u305D\u3053\uFF08\u3000\u3000\uFF09\u30DB\u30C6\u30EB\u3067\u3059\u3002", "\u3082"],
+  ["3", "\u3053\u306E \u30AB\u30E1\u30E9\uFF08\u3000\u3000\uFF09\u3044\u304F\u3089\u3067\u3059\u304B\u3002", "\u3053\u306E \u30AB\u30E1\u30E9\uFF08\u3000\u3000\uFF09\u3044\u304F\u3089\u3067\u3059\u304B\u3002", "\u306F"],
+  ["4", "\u30EC\u30B9\u30C8\u30E9\u30F3\u306F \u30C7\u30D1\u30FC\u30C8\uFF08\u3000\u3000\uFF098\u968E\u3067\u3059\u3002", "\u30EC\u30B9\u30C8\u30E9\u30F3\u306F \u30C7\u30D1\u30FC\u30C8\uFF08\u3000\u3000\uFF09\u306F\u3061\u304B\u3044\u3067\u3059\u3002", "\u306E"],
+  ["5", "\u65E5\u4E2D\u5546\u4E8B\uFF08\u3000\u3000\uFF09\u3053\u3061\u3089\u3067\u3059\u304B\u3002", "\u306B\u3063\u3061\u3085\u3046\u3057\u3087\u3046\u3058\uFF08\u3000\u3000\uFF09\u3053\u3061\u3089\u3067\u3059\u304B\u3002", "\u306F"]
 ];
 var p2a3ChoiceItems = [
-  ["1", "270\u5186\u3067\u3059\u3002\u3069\u308C\u3067\u3059\u304B\u3002", "\u2462"],
-  ["2", "100\u5186\u3067\u3059\u3002\u3069\u308C\u3067\u3059\u304B\u3002", "\u2464"],
-  ["3", "420\u5186\u3067\u3059\u3002\u3069\u308C\u3067\u3059\u304B\u3002", "\u2465"],
-  ["4", "110\u5186\u3067\u3059\u3002\u3069\u308C\u3067\u3059\u304B\u3002", "\u2461"],
-  ["5", "350\u5186\u3067\u3059\u3002\u3069\u308C\u3067\u3059\u304B\u3002", "\u2463"]
+  ["1", "\u542C\u5F55\u97F3\uFF0C\u9009\u62E9\u5BF9\u5E94\u7684\u90AE\u7968\u7F16\u53F7\u3002", "\u2462", "270\u5186\u3067\u3059\u3002\u3069\u308C\u3067\u3059\u304B\u3002"],
+  ["2", "\u542C\u5F55\u97F3\uFF0C\u9009\u62E9\u5BF9\u5E94\u7684\u90AE\u7968\u7F16\u53F7\u3002", "\u2464", "100\u5186\u3067\u3059\u3002\u3069\u308C\u3067\u3059\u304B\u3002"],
+  ["3", "\u542C\u5F55\u97F3\uFF0C\u9009\u62E9\u5BF9\u5E94\u7684\u90AE\u7968\u7F16\u53F7\u3002", "\u2465", "420\u5186\u3067\u3059\u3002\u3069\u308C\u3067\u3059\u304B\u3002"],
+  ["4", "\u542C\u5F55\u97F3\uFF0C\u9009\u62E9\u5BF9\u5E94\u7684\u90AE\u7968\u7F16\u53F7\u3002", "\u2461", "110\u5186\u3067\u3059\u3002\u3069\u308C\u3067\u3059\u304B\u3002"],
+  ["5", "\u542C\u5F55\u97F3\uFF0C\u9009\u62E9\u5BF9\u5E94\u7684\u90AE\u7968\u7F16\u53F7\u3002", "\u2463", "350\u5186\u3067\u3059\u3002\u3069\u308C\u3067\u3059\u304B\u3002"]
 ];
 var p2a3SumItems = [
   ["6", "\u2460\uFF0B\u2464", "190\u5186\u3067\u3059\u3002"],
@@ -24469,41 +24566,47 @@ var activities2 = [
     id: "l3-p1-a1",
     section: "practice_1",
     order: 1,
-    title: "\u770B\u56FE\u66FF\u6362\u573A\u6240\u548C\u697C\u5C42",
-    instruction: "\u770B\u56FE\uFF0C\u4EFF\u7167\u4F8B\u53E5\u66FF\u6362\u753B\u7EBF\u90E8\u5206\u8FDB\u884C\u7EC3\u4E60\u3002",
+    title: "\u770B\u56FE\uFF0C\u4EFF\u7167\u4F8B\u53E5\u66FF\u6362\u753B\u7EBF\u90E8\u5206\u8FDB\u884C\u7EC3\u4E60\u3002",
+    instruction: "",
     interaction: "pattern_substitution",
     answerUnit: "sentence",
-    assets: [p48, ...p1a1Place ? [p1a1Place] : [], ...p1a1Building ? [p1a1Building] : []],
-    displayAssets: ["l3-p1-a1-place-picture-practice", "l3-p1-a1-building-picture-practice"],
+    responseScope: "sentence_only",
+    assets: [...p1a1Place ? [p1a1Place] : [], ...p1a1Building ? [p1a1Building] : []],
     layout: [],
     itemGroups: [
       {
         id: "l3-p1-a1-g1",
-        title: "\u4F8B 1\uFF1A\u8FD9\u91CC\u662F\u2026\u2026",
-        instruction: "\u770B\u573A\u6240\u56FE\uFF0C\u4F7F\u7528\u300C\u3053\u3053\u306F A \u3067\u3059\u300D\u3002",
+        displayAssets: ["l3-p1-a1-place-picture-practice"],
         example: {
           id: "l3-p1-a1-ex1",
-          label: "\u4F8B 1",
-          beforeParts: [repl3("\u98DF\u5802", "place")],
-          after: [text3("\u3053\u3053\u306F "), repl3("\u98DF\u5802", "place"), text3("\u3067\u3059\u3002")]
+          label: "[\u4F8B1]",
+          beforeParts: [repl3("\u98DF\u5802", "place", { kana: "\u3057\u3087\u304F\u3069\u3046" })],
+          beforeKana: "\u3057\u3087\u304F\u3069\u3046",
+          after: [text3("\u3053\u3053\u306F "), repl3("\u98DF\u5802", "place", { kana: "\u3057\u3087\u304F\u3069\u3046" }), text3("\u3067\u3059\u3002")],
+          afterKana: "\u3053\u3053\u306F \u3057\u3087\u304F\u3069\u3046\u3067\u3059\u3002"
         },
-        items: p1a1PlaceItems.map(([number, prompt, value]) => makeItem(`l3-p1-a1-q${number}`, number, prompt, value, {
-          instruction: "\u6839\u636E\u56FE\u7247\u573A\u6240\uFF0C\u586B\u5199 1 \u4E2A\u5B8C\u6574\u53E5\u5B50\u3002",
+        items: p1a1PlaceItems.map(([number, prompt, promptKana, value]) => makeItem(`l3-p1-a1-q${number}`, number, prompt, value, {
+          instruction: "",
+          promptKana,
+          responseScope: "sentence_only",
           relatedAssets: ["l3-p1-a1-place-picture-practice"]
         }))
       },
       {
         id: "l3-p1-a1-g2",
-        title: "\u4F8B 2\uFF1A\u697C\u5C42\u4F4D\u7F6E",
-        instruction: "\u770B\u697C\u5C42\u56FE\uFF0C\u4F7F\u7528\u300CA \u306F \u3042\u306E \u30D3\u30EB\u306E N\u968E\u3067\u3059\u300D\u3002",
+        displayAssets: ["l3-p1-a1-building-picture-practice"],
         example: {
           id: "l3-p1-a1-ex2",
-          label: "\u4F8B 2",
-          beforeParts: [repl3("\u9280\u884C", "place"), text3("\uFF0F"), repl3("1\u968E", "floor")],
-          after: [repl3("\u9280\u884C", "place"), text3("\u306F \u3042\u306E \u30D3\u30EB\u306E "), repl3("1\u968E", "floor"), text3("\u3067\u3059\u3002")]
+          label: "[\u4F8B2]",
+          beforeParts: [repl3("\u9280\u884C", "place", { kana: "\u304E\u3093\u3053\u3046" }), text3("\uFF0F"), repl3("1\u968E", "floor", { kana: "\u3044\u3063\u304B\u3044" })],
+          beforeKana: "\u304E\u3093\u3053\u3046\uFF0F\u3044\u3063\u304B\u3044",
+          after: [repl3("\u9280\u884C", "place", { kana: "\u304E\u3093\u3053\u3046" }), text3("\u306F \u3042\u306E \u30D3\u30EB\u306E "), repl3("1\u968E", "floor", { kana: "\u3044\u3063\u304B\u3044" }), text3("\u3067\u3059\u3002")],
+          afterKana: "\u304E\u3093\u3053\u3046\u306F \u3042\u306E \u30D3\u30EB\u306E \u3044\u3063\u304B\u3044\u3067\u3059\u3002"
         },
-        items: p1a1BuildingItems.map(([number, prompt, value]) => makeItem(`l3-p1-a1-q${number}`, number, prompt, value, {
-          instruction: "\u6839\u636E\u697C\u5C42\u56FE\uFF0C\u586B\u5199 1 \u4E2A\u5B8C\u6574\u53E5\u5B50\u3002",
+        items: p1a1BuildingItems.map(([number, prompt, promptKana, value]) => makeItem(`l3-p1-a1-q${number}`, number, prompt, value, {
+          instruction: "",
+          promptKana,
+          responseScope: "sentence_only",
           relatedAssets: ["l3-p1-a1-building-picture-practice"]
         }))
       }
@@ -24514,73 +24617,79 @@ var activities2 = [
     id: "l3-p1-a2",
     section: "practice_1",
     order: 2,
-    title: "\u8BE2\u95EE\u5730\u70B9",
-    instruction: "\u4EFF\u7167\u4F8B\u53E5\u66FF\u6362\u753B\u7EBF\u90E8\u5206\u8FDB\u884C\u7EC3\u4E60\u3002",
+    title: "\u4EFF\u7167\u4F8B\u53E5\u66FF\u6362\u753B\u7EBF\u90E8\u5206\u8FDB\u884C\u7EC3\u4E60\u3002",
+    instruction: "",
     interaction: "dialogue_practice",
     answerUnit: "dialogue",
-    assets: [p48],
+    responseScope: "dialogue_only",
     layout: [{
       type: "dialogue",
       lines: [
-        { speaker: "\u7532", parts: [repl3("\u30C8\u30A4\u30EC", "place"), text3("\u306F \u3069\u3053\u3067\u3059\u304B\u3002")] },
-        { speaker: "\u4E59", parts: [text3("\u3042\u305D\u3053\u3067\u3059\u3002")] }
+        { speaker: "\u7532", parts: [repl3("\u30C8\u30A4\u30EC", "place"), text3("\u306F \u3069\u3053\u3067\u3059\u304B\u3002")], kana: "\u30C8\u30A4\u30EC\u306F \u3069\u3053\u3067\u3059\u304B\u3002" },
+        { speaker: "\u4E59", parts: [text3("\u3042\u305D\u3053\u3067\u3059\u3002")], kana: "\u3042\u305D\u3053\u3067\u3059\u3002" }
       ]
     }],
-    items: p1a2Items2.map(([number, prompt, value]) => dialogueItem2(`l3-p1-a2-q${number}`, number, prompt, value, { relatedAssets: [p48.id] }))
+    items: p1a2Items2.map(([number, prompt, promptKana, value]) => dialogueItem2(`l3-p1-a2-q${number}`, number, prompt, value, { promptKana }))
   },
   {
     id: "l3-p1-a3",
     section: "practice_1",
     order: 3,
-    title: "\u7528\u300C\u3082\u300D\u6539\u5199",
-    instruction: "\u4EFF\u7167\u4F8B\u53E5\u7528\u62EC\u53F7\u4E2D\u7684\u8BCD\u8BED\u7EC3\u4E60\u3002",
+    title: "\u4EFF\u7167\u4F8B\u53E5\u7528\uFF08\u3000\u3000\uFF09\u4E2D\u7684\u8BCD\u8BED\u7EC3\u4E60\u3002",
+    instruction: "",
     interaction: "pattern_substitution",
     answerUnit: "sentence",
-    assets: [p48],
+    responseScope: "sentence_only",
     layout: [{
       type: "example",
       content: {
-        label: "\u4F8B",
-        beforeParts: [text3("\u674E\u3055\u3093\u306F "), repl3("\u4E2D\u56FD\u4EBA", "predicate"), text3("\u3067\u3059\u3002\uFF08"), repl3("\u5F35\u3055\u3093", "subject"), text3("\uFF09")],
-        after: [repl3("\u5F35\u3055\u3093", "subject"), text3("\u3082 "), repl3("\u4E2D\u56FD\u4EBA", "predicate"), text3("\u3067\u3059\u3002")]
+        label: "[\u4F8B]",
+        beforeParts: [text3("\u674E\u3055\u3093\u306F ", { kana: "\u308A\u3055\u3093\u306F" }), repl3("\u4E2D\u56FD\u4EBA", "predicate", { kana: "\u3061\u3085\u3046\u3054\u304F\u3058\u3093" }), text3("\u3067\u3059\u3002\uFF08"), repl3("\u5F35\u3055\u3093", "subject", { kana: "\u3061\u3087\u3046\u3055\u3093" }), text3("\uFF09")],
+        beforeKana: "\u308A\u3055\u3093\u306F \u3061\u3085\u3046\u3054\u304F\u3058\u3093\u3067\u3059\u3002\uFF08\u3061\u3087\u3046\u3055\u3093\uFF09",
+        after: [repl3("\u5F35\u3055\u3093", "subject", { kana: "\u3061\u3087\u3046\u3055\u3093" }), text3("\u3082 "), repl3("\u4E2D\u56FD\u4EBA", "predicate", { kana: "\u3061\u3085\u3046\u3054\u304F\u3058\u3093" }), text3("\u3067\u3059\u3002")],
+        afterKana: "\u3061\u3087\u3046\u3055\u3093\u3082 \u3061\u3085\u3046\u3054\u304F\u3058\u3093\u3067\u3059\u3002"
       }
     }],
-    items: p1a3Items.map(([number, prompt, value]) => makeItem(`l3-p1-a3-q${number}`, number, prompt, value))
+    items: p1a3Items.map(([number, prompt, promptKana, value]) => makeItem(`l3-p1-a3-q${number}`, number, prompt, value, {
+      instruction: "",
+      promptKana,
+      responseScope: "sentence_only"
+    }))
   },
   {
     id: "l3-p1-a4",
     section: "practice_1",
     order: 4,
-    title: "\u4E8C\u9009\u4E00\u95EE\u7B54",
-    instruction: "\u4EFF\u7167\u4F8B\u53E5\u66FF\u6362\u753B\u7EBF\u90E8\u5206\u7EC3\u4E60\u3002",
+    title: "\u4EFF\u7167\u4F8B\u53E5\u66FF\u6362\u753B\u7EBF\u90E8\u5206\u8FDB\u884C\u7EC3\u4E60\u3002",
+    instruction: "",
     interaction: "dialogue_practice",
     answerUnit: "dialogue",
-    assets: [p49],
+    responseScope: "dialogue_only",
     layout: [],
     itemGroups: [
       {
         id: "l3-p1-a4-g1",
-        title: "\u4F8B 1\uFF1A\u8BE2\u95EE\u8EAB\u4EFD",
-        instruction: "\u4F7F\u7528\u300CA \u3067\u3059\u304B\u3001B \u3067\u3059\u304B\u300D\u8BE2\u95EE\u8EAB\u4EFD\u3002",
         example: {
           id: "l3-p1-a4-ex1",
-          label: "\u4F8B 1",
-          beforeParts: [repl3("\u4E2D\u56FD\u4EBA", "choiceA"), text3("\uFF0F"), repl3("\u97D3\u56FD\u4EBA", "choiceB")],
-          after: [text3("\u7532\uFF1A\u3042\u306E \u4EBA\u306F "), repl3("\u4E2D\u56FD\u4EBA", "choiceA"), text3("\u3067\u3059\u304B\u3001"), repl3("\u97D3\u56FD\u4EBA", "choiceB"), text3("\u3067\u3059\u304B\u3002\n\u4E59\uFF1A"), repl3("\u4E2D\u56FD\u4EBA", "choiceA"), text3("\u3067\u3059\u3002")]
+          label: "[\u4F8B1]",
+          beforeParts: [repl3("\u4E2D\u56FD\u4EBA", "choiceA", { kana: "\u3061\u3085\u3046\u3054\u304F\u3058\u3093" }), text3("\uFF0F"), repl3("\u97D3\u56FD\u4EBA", "choiceB", { kana: "\u304B\u3093\u3053\u304F\u3058\u3093" })],
+          beforeKana: "\u3061\u3085\u3046\u3054\u304F\u3058\u3093\uFF0F\u304B\u3093\u3053\u304F\u3058\u3093",
+          after: [text3("\u7532\uFF1A\u3042\u306E \u4EBA\u306F \u4E2D\u56FD\u4EBA\u3067\u3059\u304B\u3001\u97D3\u56FD\u4EBA\u3067\u3059\u304B\u3002\n\u4E59\uFF1A\u4E2D\u56FD\u4EBA\u3067\u3059\u3002")],
+          afterKana: "\u3053\u3046\uFF1A\u3042\u306E \u3072\u3068\u306F \u3061\u3085\u3046\u3054\u304F\u3058\u3093\u3067\u3059\u304B\u3001\u304B\u3093\u3053\u304F\u3058\u3093\u3067\u3059\u304B\u3002\n\u304A\u3064\uFF1A\u3061\u3085\u3046\u3054\u304F\u3058\u3093\u3067\u3059\u3002"
         },
-        items: p1a4Group1.map(([number, prompt, value]) => dialogueItem2(`l3-p1-a4-q${number}`, number, prompt, value))
+        items: p1a4Group1.map(([number, prompt, promptKana, value]) => dialogueItem2(`l3-p1-a4-q${number}`, number, prompt, value, { promptKana }))
       },
       {
         id: "l3-p1-a4-g2",
-        title: "\u4F8B 2\uFF1A\u8BE2\u95EE\u573A\u6240",
-        instruction: "\u4F7F\u7528\u300C\u3042\u305D\u3053\u306F A \u3067\u3059\u304B\u3001B \u3067\u3059\u304B\u300D\u3002",
         example: {
           id: "l3-p1-a4-ex2",
-          label: "\u4F8B 2",
-          beforeParts: [repl3("\u90F5\u4FBF\u5C40", "choiceA"), text3("\uFF0F"), repl3("\u9280\u884C", "choiceB")],
-          after: [text3("\u7532\uFF1A\u3042\u305D\u3053\u306F "), repl3("\u90F5\u4FBF\u5C40", "choiceA"), text3("\u3067\u3059\u304B\u3001"), repl3("\u9280\u884C", "choiceB"), text3("\u3067\u3059\u304B\u3002\n\u4E59\uFF1A"), repl3("\u90F5\u4FBF\u5C40", "choiceA"), text3("\u3067\u3059\u3002")]
+          label: "[\u4F8B2]",
+          beforeParts: [repl3("\u90F5\u4FBF\u5C40", "choiceA", { kana: "\u3086\u3046\u3073\u3093\u304D\u3087\u304F" }), text3("\uFF0F"), repl3("\u9280\u884C", "choiceB", { kana: "\u304E\u3093\u3053\u3046" })],
+          beforeKana: "\u3086\u3046\u3073\u3093\u304D\u3087\u304F\uFF0F\u304E\u3093\u3053\u3046",
+          after: [text3("\u7532\uFF1A\u3042\u305D\u3053\u306F \u90F5\u4FBF\u5C40\u3067\u3059\u304B\u3001\u9280\u884C\u3067\u3059\u304B\u3002\n\u4E59\uFF1A\u90F5\u4FBF\u5C40\u3067\u3059\u3002")],
+          afterKana: "\u3053\u3046\uFF1A\u3042\u305D\u3053\u306F \u3086\u3046\u3073\u3093\u304D\u3087\u304F\u3067\u3059\u304B\u3001\u304E\u3093\u3053\u3046\u3067\u3059\u304B\u3002\n\u304A\u3064\uFF1A\u3086\u3046\u3073\u3093\u304D\u3087\u304F\u3067\u3059\u3002"
         },
-        items: p1a4Group2.map(([number, prompt, value]) => dialogueItem2(`l3-p1-a4-q${number}`, number, prompt, value))
+        items: p1a4Group2.map(([number, prompt, promptKana, value]) => dialogueItem2(`l3-p1-a4-q${number}`, number, prompt, value, { promptKana }))
       }
     ],
     items: []
@@ -24589,13 +24698,16 @@ var activities2 = [
     id: "l3-p1-a5",
     section: "practice_1",
     order: 5,
-    title: "\u542C\u5F55\u97F3\u7EC3\u4E60\u4F1A\u8BDD",
-    instruction: "\u542C\u5F55\u97F3\uFF0C\u4EFF\u7167\u4F8B\u53E5\u66FF\u6362\u753B\u7EBF\u90E8\u5206\u7EC3\u4E60\u4F1A\u8BDD\u3002",
+    title: "\u542C\u5F55\u97F3\uFF0C\u4EFF\u7167\u4F8B\u53E5\u66FF\u6362\u753B\u7EBF\u90E8\u5206\u7EC3\u4E60\u4F1A\u8BDD\u3002",
+    instruction: "",
     interaction: "dialogue_practice",
     answerUnit: "dialogue",
+    responseScope: "dialogue_only",
     requiresAudio: true,
     audio: {
       source: "textbook_exercise",
+      url: audio3(1, 5),
+      label: "\u7EC3\u4E60 I \xB7 5 \u6559\u6750\u5F55\u97F3",
       transcript: {
         text: "\u30C8\u30A4\u30EC\u3002\u98DF\u5802\u3002\u3059\u307F\u307E\u305B\u3093\u3002\u30C8\u30A4\u30EC\u306F\u3069\u3053\u3067\u3059\u304B\u3002\u30C8\u30A4\u30EC\u3067\u3059\u304B\u3002\u30C8\u30A4\u30EC\u306F\u3042\u3061\u3089\u3067\u3059\u3002\u98DF\u5802\u306F\u3002\u98DF\u5802\u306F5\u968E\u3067\u3059\u3002\u53D7\u4ED8\u3002\u304B\u3070\u3093\u58F2\u308A\u5834\u3002\u3059\u307F\u307E\u305B\u3093\u3002\u53D7\u4ED8\u306F\u3069\u3053\u3067\u3059\u304B\u3002\u53D7\u4ED8\u3067\u3059\u304B\u3002\u53D7\u4ED8\u306F\u3042\u3061\u3089\u3067\u3059\u3002\u304B\u3070\u3093\u58F2\u308A\u5834\u306F\u3002\u304B\u3070\u3093\u58F2\u308A\u5834\u306F5\u968E\u3067\u3059\u3002\u30A8\u30B9\u30AB\u30EC\u30FC\u30BF\u30FC\u3002\u30D0\u30FC\u30B2\u30F3\u4F1A\u5834\u3002\u3059\u307F\u307E\u305B\u3093\u3002\u30A8\u30B9\u30AB\u30EC\u30FC\u30BF\u30FC\u306F\u3069\u3053\u3067\u3059\u304B\u3002\u30A8\u30B9\u30AB\u30EC\u30FC\u30BF\u30FC\u3067\u3059\u304B\u3002\u30A8\u30B9\u30AB\u30EC\u30FC\u30BF\u30FC\u306F\u3042\u3061\u3089\u3067\u3059\u3002\u30D0\u30FC\u30B2\u30F3\u4F1A\u5834\u306F\u3002\u30D0\u30FC\u30B2\u30F3\u4F1A\u5834\u306F5\u968E\u3067\u3059\u3002\u96FB\u8A71\u3002\u30AB\u30E1\u30E9\u58F2\u308A\u5834\u3002\u3059\u307F\u307E\u305B\u3093\u3002\u96FB\u8A71\u306F\u3069\u3053\u3067\u3059\u304B\u3002\u96FB\u8A71\u3067\u3059\u304B\u3002\u96FB\u8A71\u306F\u3042\u3061\u3089\u3067\u3059\u3002\u30AB\u30E1\u30E9\u58F2\u308A\u5834\u3002",
         source: "asr",
@@ -24608,18 +24720,18 @@ var activities2 = [
         ]
       }
     },
-    assets: [p49],
     layout: [{
       type: "dialogue",
       lines: [
-        { speaker: "\u7532", parts: [text3("\u3059\u307F\u307E\u305B\u3093\u3002"), repl3("\u30C8\u30A4\u30EC", "placeA"), text3("\u306F \u3069\u3053\u3067\u3059\u304B\u3002")] },
-        { speaker: "\u4E59", parts: [repl3("\u30C8\u30A4\u30EC", "placeA"), text3("\u3067\u3059\u304B\u3002"), repl3("\u30C8\u30A4\u30EC", "placeA"), text3("\u306F \u3042\u3061\u3089\u3067\u3059\u3002")] },
-        { speaker: "\u7532", parts: [repl3("\u98DF\u5802", "placeB"), text3("\u306F\uFF1F")] },
-        { speaker: "\u4E59", parts: [repl3("\u98DF\u5802", "placeB"), text3("\u306F 5\u968E\u3067\u3059\u3002")] }
+        { speaker: "\u7532", parts: [text3("\u3059\u307F\u307E\u305B\u3093\u3002"), repl3("\u30C8\u30A4\u30EC", "placeA"), text3("\u306F \u3069\u3053\u3067\u3059\u304B\u3002")], kana: "\u3059\u307F\u307E\u305B\u3093\u3002\u30C8\u30A4\u30EC\u306F \u3069\u3053\u3067\u3059\u304B\u3002" },
+        { speaker: "\u4E59", parts: [repl3("\u30C8\u30A4\u30EC", "placeA"), text3("\u3067\u3059\u304B\u3002"), repl3("\u30C8\u30A4\u30EC", "placeA"), text3("\u306F \u3042\u3061\u3089\u3067\u3059\u3002")], kana: "\u30C8\u30A4\u30EC\u3067\u3059\u304B\u3002\u30C8\u30A4\u30EC\u306F \u3042\u3061\u3089\u3067\u3059\u3002" },
+        { speaker: "\u7532", parts: [repl3("\u98DF\u5802", "placeB", { kana: "\u3057\u3087\u304F\u3069\u3046" }), text3("\u306F\uFF1F")], kana: "\u3057\u3087\u304F\u3069\u3046\u306F\uFF1F" },
+        { speaker: "\u4E59", parts: [repl3("\u98DF\u5802", "placeB", { kana: "\u3057\u3087\u304F\u3069\u3046" }), text3("\u306F 5\u968E\u3067\u3059\u3002")], kana: "\u3057\u3087\u304F\u3069\u3046\u306F \u3054\u304B\u3044\u3067\u3059\u3002" }
       ]
     }],
-    items: p1a5Items.map(([number, prompt, value]) => dialogueItem2(`l3-p1-a5-q${number}`, number, prompt, value, {
+    items: p1a5Items.map(([number, prompt, value, promptKana]) => dialogueItem2(`l3-p1-a5-q${number}`, number, prompt, value, {
       answerSource: "audio",
+      promptKana,
       rows: 5,
       note: number === "3" ? "ASR \u672B\u5C3E\u6F0F\u5B57\uFF1B\u7B54\u6848\u6309\u5F55\u97F3\u9898\u56FA\u5B9A\u6A21\u5F0F\u548C\u4F8B\u53E5\u8865\u5168\u3002" : void 0
     }))
@@ -24628,24 +24740,26 @@ var activities2 = [
     id: "l3-p1-a6",
     section: "practice_1",
     order: 6,
-    title: "\u770B\u56FE\u8BE2\u95EE\u4EF7\u683C",
-    instruction: "\u770B\u56FE\uFF0C\u4EFF\u7167\u4F8B\u53E5\u66FF\u6362\u753B\u7EBF\u90E8\u5206\u7EC3\u4E60\u4F1A\u8BDD\u3002",
+    title: "\u770B\u56FE\uFF0C\u4EFF\u7167\u4F8B\u53E5\u66FF\u6362\u753B\u7EBF\u90E8\u5206\u7EC3\u4E60\u4F1A\u8BDD\u3002",
+    instruction: "",
     interaction: "dialogue_practice",
     answerUnit: "dialogue",
-    assets: [p49, ...p1a6Price ? [p1a6Price] : []],
+    responseScope: "dialogue_only",
+    assets: [...p1a6Price ? [p1a6Price] : []],
     displayAssets: ["l3-p1-a6-price-picture-practice"],
     layout: [{
       type: "dialogue",
       lines: [
-        { speaker: "\u7532", parts: [text3("\u3053\u308C\u306F \u3044\u304F\u3089\u3067\u3059\u304B\u3002")] },
-        { speaker: "\u4E59", parts: [text3("\u305D\u308C\u306F "), repl3("8,900\u5186", "price"), text3("\u3067\u3059\u3002")] },
-        { speaker: "\u7532", parts: [text3("\u3042\u308C\u306F\uFF1F")] },
-        { speaker: "\u4E59", parts: [text3("\u3069\u308C\u3067\u3059\u304B\u3002")] },
-        { speaker: "\u7532", parts: [text3("\u3042\u306E "), repl3("\u304B\u3070\u3093", "object"), text3("\u3067\u3059\u3002")] },
-        { speaker: "\u4E59", parts: [text3("\u3042\u308C\u3082 "), repl3("8,900\u5186", "price"), text3("\u3067\u3059\u3002")] }
+        { speaker: "\u7532", parts: [text3("\u3053\u308C\u306F \u3044\u304F\u3089\u3067\u3059\u304B\u3002")], kana: "\u3053\u308C\u306F \u3044\u304F\u3089\u3067\u3059\u304B\u3002" },
+        { speaker: "\u4E59", parts: [text3("\u305D\u308C\u306F "), repl3("8,900\u5186", "price", { kana: "\u306F\u3063\u305B\u3093\u304D\u3085\u3046\u3072\u3083\u304F\u3048\u3093" }), text3("\u3067\u3059\u3002")], kana: "\u305D\u308C\u306F \u306F\u3063\u305B\u3093\u304D\u3085\u3046\u3072\u3083\u304F\u3048\u3093\u3067\u3059\u3002" },
+        { speaker: "\u7532", parts: [text3("\u3042\u308C\u306F\uFF1F")], kana: "\u3042\u308C\u306F\uFF1F" },
+        { speaker: "\u4E59", parts: [text3("\u3069\u308C\u3067\u3059\u304B\u3002")], kana: "\u3069\u308C\u3067\u3059\u304B\u3002" },
+        { speaker: "\u7532", parts: [text3("\u3042\u306E "), repl3("\u304B\u3070\u3093", "object"), text3("\u3067\u3059\u3002")], kana: "\u3042\u306E \u304B\u3070\u3093\u3067\u3059\u3002" },
+        { speaker: "\u4E59", parts: [text3("\u3042\u308C\u3082 "), repl3("8,900\u5186", "price", { kana: "\u306F\u3063\u305B\u3093\u304D\u3085\u3046\u3072\u3083\u304F\u3048\u3093" }), text3("\u3067\u3059\u3002")], kana: "\u3042\u308C\u3082 \u306F\u3063\u305B\u3093\u304D\u3085\u3046\u3072\u3083\u304F\u3048\u3093\u3067\u3059\u3002" }
       ]
     }],
-    items: p1a6Items.map(([number, prompt, value]) => dialogueItem2(`l3-p1-a6-q${number}`, number, prompt, value, {
+    items: p1a6Items.map(([number, prompt, promptKana, value]) => dialogueItem2(`l3-p1-a6-q${number}`, number, prompt, value, {
+      promptKana,
       relatedAssets: ["l3-p1-a6-price-picture-practice"],
       rows: 6
     }))
@@ -24654,13 +24768,16 @@ var activities2 = [
     id: "l3-p1-a7",
     section: "practice_1",
     order: 7,
-    title: "\u542C\u5F55\u97F3\u91CD\u590D\u6570\u5B57",
-    instruction: "\u542C\u5F55\u97F3\uFF0C\u53CD\u590D\u7EC3\u4E60\u3002",
+    title: "\u542C\u5F55\u97F3\uFF0C\u53CD\u590D\u7EC3\u4E60\u3002",
+    instruction: "",
     interaction: "listening_repeat",
     answerUnit: "phrase",
+    responseScope: "phrase_only",
     requiresAudio: true,
     audio: {
       source: "textbook_exercise",
+      url: audio3(1, 7),
+      label: "\u7EC3\u4E60 I \xB7 7 \u6559\u6750\u5F55\u97F3",
       transcript: {
         text: "490\u3002111\u3002610\u300220,300\u30021,400\u30029,030\u3002380\u300215,700\u3002",
         source: "asr",
@@ -24668,11 +24785,10 @@ var activities2 = [
         segments: p1a7Numbers.map((value, index) => ({ itemNumber: String(index + 1), text: value }))
       }
     },
-    assets: [p49],
     layout: [],
     items: p1a7Numbers.map((value, index) => makeItem(`l3-p1-a7-q${index + 1}`, String(index + 1), "\u542C\u5F55\u97F3\uFF0C\u5199\u51FA\u6570\u5B57\u3002", value, {
-      instruction: "\u586B\u5199\u542C\u5230\u7684\u6570\u5B57\u3002",
       answerSource: "audio",
+      responseScope: "phrase_only",
       inputSlots: [{ id: "answer", expectedUnit: "number", width: "medium", placeholder: "\u8F93\u5165\u6570\u5B57" }]
     }))
   },
@@ -24680,18 +24796,19 @@ var activities2 = [
     id: "l3-p2-a1",
     section: "practice_2",
     order: 1,
-    title: "\u9009\u62E9\u9002\u5F53\u8BCD\u8BED\u586B\u7A7A",
-    instruction: "\u4ECE\u8BCD\u6846\u4E2D\u9009\u62E9\u9002\u5F53\u7684\u8BCD\u8BED\u586B\u5165\u62EC\u53F7\u4E2D\u3002",
+    title: "\u4ECE\u25A1\u25A1\u25A1\u4E2D\u9009\u62E9\u9002\u5F53\u7684\u8BCD\u8BED\u586B\u5165\uFF08\u3000\u3000\uFF09\u4E2D\u3002",
+    instruction: "",
     interaction: "fill_blank",
     answerUnit: "word",
-    assets: [p50],
+    responseScope: "word_only",
     layout: [
-      { type: "example", content: { label: "\u4F8B", beforeParts: [text3("\uFF08\u3000\u3053\u3053\u3000\uFF09\u306F \u9280\u884C\u3067\u3059\u304B\u3002")], after: [text3("\u306F\u3044\u3001\u305D\u3046\u3067\u3059\u3002")] } },
-      { type: "word_bank", words: ["\u4F55", "\u3069\u308C", "\u3060\u308C", "\u3069\u306E", "\u3069\u3053", "\u305D\u3053"].map((word) => text3(word)) }
+      { type: "example", content: { label: "[\u4F8B]", beforeParts: [text3("\uFF08\u3000\u3053\u3053\u3000\uFF09\u306F \u9280\u884C\u3067\u3059\u304B\u3002", { kana: "\uFF08\u3000\u3053\u3053\u3000\uFF09\u306F \u304E\u3093\u3053\u3046\u3067\u3059\u304B\u3002" })], beforeKana: "\uFF08\u3000\u3053\u3053\u3000\uFF09\u306F \u304E\u3093\u3053\u3046\u3067\u3059\u304B\u3002", after: [text3("\u306F\u3044\u3001\u305D\u3046\u3067\u3059\u3002")], afterKana: "\u306F\u3044\u3001\u305D\u3046\u3067\u3059\u3002" } },
+      { type: "word_bank", words: ["\u4F55", "\u3069\u308C", "\u3060\u308C", "\u3069\u306E", "\u3069\u3053", "\u305D\u3053"].map((word) => text3(word, word === "\u4F55" ? { kana: "\u306A\u3093" } : {})) }
     ],
-    items: p2a1Items.map(([number, prompt, value]) => makeItem(`l3-p2-a1-q${number}`, number, prompt, value, {
-      instruction: "\u4ECE\u8BCD\u6846\u4E2D\u9009\u62E9 1 \u4E2A\u8BCD\u8BED\u3002",
+    items: p2a1Items.map(([number, prompt, promptKana, value]) => makeItem(`l3-p2-a1-q${number}`, number, prompt, value, {
+      promptKana,
       answerSource: "prompt",
+      responseScope: "word_only",
       inputSlots: phraseSlot("\u8F93\u5165\u8BCD\u6846\u4E2D\u7684\u8BCD")
     }))
   },
@@ -24699,18 +24816,19 @@ var activities2 = [
     id: "l3-p2-a2",
     section: "practice_2",
     order: 2,
-    title: "\u586B\u5165\u5E73\u5047\u540D",
-    instruction: "\u5728\u62EC\u53F7\u4E2D\u586B\u5165\u4E00\u4E2A\u5E73\u5047\u540D\u3002",
+    title: "\u5728\uFF08\u3000\u3000\uFF09\u4E2D\u586B\u5165\u4E00\u4E2A\u5E73\u5047\u540D\u3002",
+    instruction: "",
     interaction: "fill_blank",
     answerUnit: "word",
-    assets: [p50],
+    responseScope: "word_only",
     layout: [{
       type: "example",
-      content: { label: "\u4F8B", beforeParts: [text3("\u3053\u3053\uFF08\u3000\u306F\u3000\uFF09\u30C7\u30D1\u30FC\u30C8\u3067\u3059\u3002")], after: [text3("\u3053\u3053 \u306F \u30C7\u30D1\u30FC\u30C8\u3067\u3059\u3002")] }
+      content: { label: "[\u4F8B]", beforeParts: [text3("\u3053\u3053\uFF08\u3000\u306F\u3000\uFF09\u30C7\u30D1\u30FC\u30C8\u3067\u3059\u3002")], beforeKana: "\u3053\u3053\uFF08\u3000\u306F\u3000\uFF09\u30C7\u30D1\u30FC\u30C8\u3067\u3059\u3002", after: [text3("\u3053\u3053 \u306F \u30C7\u30D1\u30FC\u30C8\u3067\u3059\u3002")], afterKana: "\u3053\u3053 \u306F \u30C7\u30D1\u30FC\u30C8\u3067\u3059\u3002" }
     }],
-    items: p2a2Items.map(([number, prompt, value]) => makeItem(`l3-p2-a2-q${number}`, number, prompt, value, {
-      instruction: "\u586B\u5199 1 \u4E2A\u5E73\u5047\u540D\u3002",
+    items: p2a2Items.map(([number, prompt, promptKana, value]) => makeItem(`l3-p2-a2-q${number}`, number, prompt, value, {
+      promptKana,
       answerSource: "prompt",
+      responseScope: "word_only",
       inputSlots: phraseSlot("\u8F93\u5165 1 \u4E2A\u5047\u540D")
     }))
   },
@@ -24718,43 +24836,36 @@ var activities2 = [
     id: "l3-p2-a3",
     section: "practice_2",
     order: 3,
-    title: "\u770B\u56FE\u542C\u5F55\u97F3\u56DE\u7B54",
-    instruction: "\u8FB9\u770B\u56FE\u8FB9\u542C\u5F55\u97F3\uFF0C\u56DE\u7B54\u63D0\u95EE\u3002",
+    title: "\u8FB9\u770B\u56FE\u8FB9\u542C\u5F55\u97F3\uFF0C\u56DE\u7B54\u63D0\u95EE\u3002",
+    instruction: "",
     interaction: "listening_answer",
     answerUnit: "choice",
+    responseScope: "custom",
+    responseScopeHint: "\u7B2C 1-5 \u9898\u9009\u62E9\u90AE\u7968\u7F16\u53F7\uFF1B\u7B2C 6-10 \u9898\u586B\u5199\u5408\u8BA1\u91D1\u989D\u3002",
     requiresAudio: true,
     audio: {
       source: "textbook_exercise",
+      url: audio3(2, 3),
+      label: "\u7EC3\u4E60 II \xB7 3 \u6559\u6750\u5F55\u97F3",
       transcript: {
         text: "90\u5186\u3067\u3059\u3002\u3069\u308C\u3067\u3059\u304B\u3002270\u5186\u3067\u3059\u3002\u3069\u308C\u3067\u3059\u304B\u3002100\u5186\u3067\u3059\u3002\u3069\u308C\u3067\u3059\u304B\u3002420\u5186\u3067\u3059\u3002\u3069\u308C\u3067\u3059\u304B\u3002110\u5186\u3067\u3059\u3002\u3069\u308C\u3067\u3059\u304B\u3002350\u5186\u3067\u3059\u3002\u3069\u308C\u3067\u3059\u304B\u3002\u3044\u304F\u3089\u3067\u3059\u304B\u3002200\u5186\u3067\u3059\u3002",
         source: "asr",
         confidenceNote: "Azure ASR \u542B\u5E8F\u53F7\u566A\u58F0\uFF0C\u5DF2\u6839\u636E\u56FE\u7247\u4EF7\u683C\u548C\u6559\u6750\u4F8B\u9898\u5207\u5206\u3002",
         segments: [
           { itemNumber: "\u4F8B1", text: "90\u5186\u3067\u3059\u3002\u3069\u308C\u3067\u3059\u304B\u3002" },
-          ...p2a3ChoiceItems.map(([number, prompt]) => ({ itemNumber: number, text: prompt })),
+          ...p2a3ChoiceItems.map(([number, , , audioText]) => ({ itemNumber: number, text: audioText })),
           { itemNumber: "\u4F8B2", text: "\u3044\u304F\u3089\u3067\u3059\u304B\u3002200\u5186\u3067\u3059\u3002" },
           ...p2a3SumItems.map(([number, prompt, value]) => ({ itemNumber: number, text: `${prompt}\u3002${value}` }))
         ]
       }
     },
-    assets: [p50, ...p2a3Stamp ? [p2a3Stamp] : []],
+    assets: [...p2a3Stamp ? [p2a3Stamp] : []],
     displayAssets: ["l3-p2-a3-stamp-picture-practice"],
-    layout: [
-      {
-        type: "example",
-        content: { label: "\u4F8B 1", beforeParts: [text3("90\u5186\u3067\u3059\u3002\u3069\u308C\u3067\u3059\u304B\u3002")], after: [text3("\u2460")] }
-      },
-      {
-        type: "example",
-        content: { label: "\u4F8B 2", beforeParts: [text3("\u3044\u304F\u3089\u3067\u3059\u304B\u3002\u2460\uFF0B\u2461")], after: [text3("200\u5186\u3067\u3059\u3002")] }
-      }
-    ],
+    layout: [],
     itemGroups: [
       {
         id: "l3-p2-a3-g1",
-        title: "\u4F8B 1\uFF1A\u542C\u4EF7\u683C\u9009\u90AE\u7968",
-        instruction: "\u542C\u5F55\u97F3\u4EF7\u683C\uFF0C\u9009\u62E9\u5BF9\u5E94\u7684\u90AE\u7968\u7F16\u53F7\u3002",
-        example: { label: "\u4F8B 1", beforeParts: [text3("90\u5186\u3067\u3059\u3002\u3069\u308C\u3067\u3059\u304B\u3002")], after: [text3("\u2460")] },
+        example: { label: "[\u4F8B1]", beforeParts: [text3("90\u5186\u3067\u3059\u3002\u3069\u308C\u3067\u3059\u304B\u3002", { kana: "\u304D\u3085\u3046\u3058\u3085\u3046\u3048\u3093\u3067\u3059\u3002\u3069\u308C\u3067\u3059\u304B\u3002" })], beforeKana: "\u304D\u3085\u3046\u3058\u3085\u3046\u3048\u3093\u3067\u3059\u3002\u3069\u308C\u3067\u3059\u304B\u3002", after: [text3("\u2460")] },
         items: p2a3ChoiceItems.map(([number, prompt, correct]) => choiceItem3(`l3-p2-a3-q${number}`, number, prompt, ["\u2460", "\u2461", "\u2462", "\u2463", "\u2464", "\u2465"], correct, {
           answerSource: "audio",
           relatedAssets: ["l3-p2-a3-stamp-picture-practice"]
@@ -24762,12 +24873,10 @@ var activities2 = [
       },
       {
         id: "l3-p2-a3-g2",
-        title: "\u4F8B 2\uFF1A\u542C\u7EC4\u5408\u7B97\u4EF7\u683C",
-        instruction: "\u6839\u636E\u56FE\u7247\u4E2D\u7684\u4EF7\u683C\u8BA1\u7B97\u5408\u8BA1\u91D1\u989D\u3002",
-        example: { label: "\u4F8B 2", beforeParts: [text3("\u3044\u304F\u3089\u3067\u3059\u304B\u3002\u2460\uFF0B\u2461")], after: [text3("200\u5186\u3067\u3059\u3002")] },
+        example: { label: "[\u4F8B2]", beforeParts: [text3("\u3044\u304F\u3089\u3067\u3059\u304B\u3002\u2460\uFF0B\u2461")], beforeKana: "\u3044\u304F\u3089\u3067\u3059\u304B\u3002\u2460\uFF0B\u2461", after: [text3("200\u5186\u3067\u3059\u3002", { kana: "\u306B\u3072\u3083\u304F\u3048\u3093\u3067\u3059\u3002" })], afterKana: "\u306B\u3072\u3083\u304F\u3048\u3093\u3067\u3059\u3002" },
         items: p2a3SumItems.map(([number, prompt, value]) => makeItem(`l3-p2-a3-q${number}`, number, prompt, value, {
-          instruction: "\u586B\u5199\u5408\u8BA1\u91D1\u989D\u3002",
           answerSource: "audio",
+          responseScope: "phrase_only",
           relatedAssets: ["l3-p2-a3-stamp-picture-practice"],
           inputSlots: phraseSlot("\u8F93\u5165\u91D1\u989D")
         }))
@@ -24779,11 +24888,11 @@ var activities2 = [
     id: "l3-p2-a4",
     section: "practice_2",
     order: 4,
-    title: "\u4E2D\u8BD1\u65E5",
-    instruction: "\u5C06\u4E0B\u9762\u7684\u53E5\u5B50\u8BD1\u6210\u65E5\u8BED\u3002",
+    title: "\u5C06\u4E0B\u9762\u7684\u53E5\u5B50\u8BD1\u6210\u65E5\u8BED\u3002",
+    instruction: "",
     interaction: "translation",
     answerUnit: "sentence",
-    assets: [p50],
+    responseScope: "sentence_only",
     layout: [],
     items: [
       makeItem("l3-p2-a4-q1", "1", "\u5395\u6240\u5728\u54EA\u513F\uFF1F", "\u30C8\u30A4\u30EC\u306F \u3069\u3053\u3067\u3059\u304B\u3002", { answerSource: "prompt" }),
@@ -24889,130 +24998,137 @@ var audioUrl = (section, order) => {
 };
 var text4 = (value, options = {}) => ({ type: "text", text: value, ...options });
 var repl4 = (value, substitutionKey, options = {}) => text4(value, { ...options, underline: true, substitutionKey });
-var crop4 = (id) => lesson4ImageCrops.assets.find((asset) => asset.id === id);
-var sourceAsset2 = (pageNo, label) => ({
-  id: `l4-page${pageNo}-practice-source`,
-  kind: "source_crop",
-  imagePath: page8(pageNo),
-  label
-});
-var p58 = sourceAsset2(58, "\u7EC3\u4E60 I \u7B2C 1-3 \u9898\u539F\u9875");
-var p59 = sourceAsset2(59, "\u7EC3\u4E60 I \u7B2C 4-6 \u9898\u539F\u9875");
-var p60 = sourceAsset2(60, "\u7EC3\u4E60 II \u539F\u9875");
-var p1a3Object = crop4("l4-p1-a3-object-picture-practice");
-var p1a3Person = crop4("l4-p1-a3-person-picture-practice");
-var p1a5Room = crop4("l4-p1-a5-room-picture-practice");
-var p1a6Picture = crop4("l4-p1-a6-picture-practice");
-var p2a1Scene = crop4("l4-p2-a1-scene-picture-practice");
-var p2a3Map = crop4("l4-p2-a3-map-picture-practice");
+var asset = (id) => {
+  const found = lesson4ImageCrops.assets.find((entry) => entry.id === id);
+  if (!found) throw new Error(`Missing lesson4 image crop: ${id}`);
+  return found;
+};
+var p1a3Object = asset("l4-p1-a3-object-picture-practice");
+var p1a3Person = asset("l4-p1-a3-person-picture-practice");
+var p1a5Room = asset("l4-p1-a5-room-picture-practice");
+var p1a6Picture = asset("l4-p1-a6-picture-practice");
+var p2a1Scene = asset("l4-p2-a1-scene-picture-practice");
+var p2a3Map = asset("l4-p2-a3-map-picture-practice");
 var sentenceSlot4 = (placeholder = "\u8F93\u5165 1 \u4E2A\u5B8C\u6574\u53E5\u5B50") => [
   { id: "answer", expectedUnit: "sentence", width: "long", placeholder }
 ];
-var answer2 = (value, note) => value ? { slotValues: { answer: value }, note } : note ? { note } : void 0;
+var answerSlot = (placeholder = "\u53EA\u8F93\u5165\u56DE\u7B54\u90E8\u5206") => [
+  { id: "answer", expectedUnit: "sentence", width: "long", placeholder }
+];
+var answer2 = (value, note, acceptableAlternatives) => ({
+  slotValues: { answer: value },
+  acceptableAlternatives,
+  note
+});
 var item = (id, number, prompt, value, options = {}) => ({
   id,
   number,
-  instruction: options.instruction || "\u586B\u5199\u7B54\u6848\u3002",
+  instruction: options.instruction || "",
   answerSource: options.answerSource || "example_transform",
+  responseScope: options.responseScope,
+  responseScopeHint: options.responseScopeHint,
   prompt: typeof prompt === "string" ? [text4(prompt)] : prompt,
+  promptKana: options.promptKana,
   inputSlots: options.inputSlots || sentenceSlot4(),
-  answer: value ? { slotValues: { answer: value }, acceptableAlternatives: options.acceptableAlternatives, note: options.note } : answer2(value, options.note),
+  answer: answer2(value, options.note, options.acceptableAlternatives),
   relatedAssets: options.relatedAssets,
   renderHint: options.renderHint || "inline"
 });
-var choiceItem4 = (id, number, prompt, choices, correct, options = {}) => {
+var choiceItem4 = (id, number, prompt, choices, correct) => {
   const mapped = choices.map((label, index) => ({ id: `${id}-c${index + 1}`, label }));
   const selected = mapped.find((choice) => choice.label === correct);
   return {
     id,
     number,
-    instruction: options.instruction || "\u4ECE\u9009\u9879\u4E2D\u9009\u62E9\u6B63\u786E\u7B54\u6848\u3002",
-    answerSource: options.answerSource || "prompt",
+    instruction: "",
+    answerSource: "prompt",
+    responseScope: "choice_only",
     prompt: [text4(prompt)],
     choices: mapped,
     answer: { choiceIds: selected ? [selected.id] : [] },
-    relatedAssets: options.relatedAssets,
     renderHint: "inline"
   };
 };
-var trueFalseItem = (id, number, prompt, value, relatedAssets) => ({
+var trueFalseItem = (id, number, prompt, value, promptKana) => ({
   id,
   number,
-  instruction: "\u4E0E\u56FE\u4E00\u81F4\u9009 \u25CB\uFF0C\u4E0D\u4E00\u81F4\u9009 \xD7\u3002",
+  instruction: "",
   answerSource: "prompt",
+  responseScope: "boolean_only",
   prompt: [text4(prompt)],
+  promptKana,
   choices: [
     { id: `${id}-true`, label: "\u25CB" },
     { id: `${id}-false`, label: "\xD7" }
   ],
   answer: { boolean: value, choiceIds: [`${id}-${value ? "true" : "false"}`] },
-  relatedAssets,
+  relatedAssets: ["l4-p2-a1-scene-picture-practice"],
   renderHint: "inline"
 });
 var p1a1Group1 = [
-  ["1", "\u673A", "\u90E8\u5C4B\u306B \u673A\u304C \u3042\u308A\u307E\u3059\u3002"],
-  ["2", "\u6642\u8A08", "\u90E8\u5C4B\u306B \u6642\u8A08\u304C \u3042\u308A\u307E\u3059\u3002"],
-  ["3", "\u672C\u68DA", "\u90E8\u5C4B\u306B \u672C\u68DA\u304C \u3042\u308A\u307E\u3059\u3002"],
-  ["4", "\u30D1\u30BD\u30B3\u30F3", "\u90E8\u5C4B\u306B \u30D1\u30BD\u30B3\u30F3\u304C \u3042\u308A\u307E\u3059\u3002"],
-  ["5", "\u30D9\u30C3\u30C9", "\u90E8\u5C4B\u306B \u30D9\u30C3\u30C9\u304C \u3042\u308A\u307E\u3059\u3002"]
+  ["1", "\u673A", "\u3064\u304F\u3048", "\u90E8\u5C4B\u306B \u673A\u304C \u3042\u308A\u307E\u3059\u3002"],
+  ["2", "\u6642\u8A08", "\u3068\u3051\u3044", "\u90E8\u5C4B\u306B \u6642\u8A08\u304C \u3042\u308A\u307E\u3059\u3002"],
+  ["3", "\u672C\u68DA", "\u307B\u3093\u3060\u306A", "\u90E8\u5C4B\u306B \u672C\u68DA\u304C \u3042\u308A\u307E\u3059\u3002"],
+  ["4", "\u30D1\u30BD\u30B3\u30F3", "\u30D1\u30BD\u30B3\u30F3", "\u90E8\u5C4B\u306B \u30D1\u30BD\u30B3\u30F3\u304C \u3042\u308A\u307E\u3059\u3002"],
+  ["5", "\u30D9\u30C3\u30C9", "\u30D9\u30C3\u30C9", "\u90E8\u5C4B\u306B \u30D9\u30C3\u30C9\u304C \u3042\u308A\u307E\u3059\u3002"]
 ];
 var p1a1Group2 = [
-  ["6", "\u72AC", "\u3042\u305D\u3053\u306B \u72AC\u304C \u3044\u307E\u3059\u3002"],
-  ["7", "\u7537\u306E\u4EBA", "\u3042\u305D\u3053\u306B \u7537\u306E\u4EBA\u304C \u3044\u307E\u3059\u3002"],
-  ["8", "\u5973\u306E\u4EBA", "\u3042\u305D\u3053\u306B \u5973\u306E\u4EBA\u304C \u3044\u307E\u3059\u3002"],
-  ["9", "\u5B50\u4F9B", "\u3042\u305D\u3053\u306B \u5B50\u4F9B\u304C \u3044\u307E\u3059\u3002"],
-  ["10", "\u674E\u3055\u3093", "\u3042\u305D\u3053\u306B \u674E\u3055\u3093\u304C \u3044\u307E\u3059\u3002"]
+  ["6", "\u72AC", "\u3044\u306C", "\u3042\u305D\u3053\u306B \u72AC\u304C \u3044\u307E\u3059\u3002"],
+  ["7", "\u7537\u306E \u4EBA", "\u304A\u3068\u3053\u306E \u3072\u3068", "\u3042\u305D\u3053\u306B \u7537\u306E \u4EBA\u304C \u3044\u307E\u3059\u3002"],
+  ["8", "\u5973\u306E \u4EBA", "\u304A\u3093\u306A\u306E \u3072\u3068", "\u3042\u305D\u3053\u306B \u5973\u306E \u4EBA\u304C \u3044\u307E\u3059\u3002"],
+  ["9", "\u5B50\u4F9B", "\u3053\u3069\u3082", "\u3042\u305D\u3053\u306B \u5B50\u4F9B\u304C \u3044\u307E\u3059\u3002"],
+  ["10", "\u674E\u3055\u3093", "\u308A\u3055\u3093", "\u3042\u305D\u3053\u306B \u674E\u3055\u3093\u304C \u3044\u307E\u3059\u3002"]
 ];
 var p1a2Group1 = [
-  ["1", "\u8ECA\u306E \u524D", "\u8ECA\u306E \u524D\u306B \u4F55\u304C \u3042\u308A\u307E\u3059\u304B\u3002"],
-  ["2", "\u3044\u3059\u306E \u4E0A", "\u3044\u3059\u306E \u4E0A\u306B \u4F55\u304C \u3042\u308A\u307E\u3059\u304B\u3002"],
-  ["3", "\u7BB1\u306E \u4E2D", "\u7BB1\u306E \u4E2D\u306B \u4F55\u304C \u3042\u308A\u307E\u3059\u304B\u3002"],
-  ["4", "\u6728\u306E \u4E0B", "\u6728\u306E \u4E0B\u306B \u4F55\u304C \u3042\u308A\u307E\u3059\u304B\u3002"]
+  ["1", "\u8ECA\u306E \u524D", "\u304F\u308B\u307E\u306E \u307E\u3048", "\u8ECA\u306E \u524D\u306B \u4F55\u304C \u3042\u308A\u307E\u3059\u304B\u3002"],
+  ["2", "\u3044\u3059\u306E \u4E0A", "\u3044\u3059\u306E \u3046\u3048", "\u3044\u3059\u306E \u4E0A\u306B \u4F55\u304C \u3042\u308A\u307E\u3059\u304B\u3002"],
+  ["3", "\u7BB1\u306E \u4E2D", "\u306F\u3053\u306E \u306A\u304B", "\u7BB1\u306E \u4E2D\u306B \u4F55\u304C \u3042\u308A\u307E\u3059\u304B\u3002"],
+  ["4", "\u6728\u306E \u4E0B", "\u304D\u306E \u3057\u305F", "\u6728\u306E \u4E0B\u306B \u4F55\u304C \u3042\u308A\u307E\u3059\u304B\u3002"]
 ];
 var p1a2Group2 = [
-  ["5", "\u4F1A\u8B70\u5BA4", "\u4F1A\u8B70\u5BA4\u306B \u3060\u308C\u304C \u3044\u307E\u3059\u304B\u3002"],
-  ["6", "\u6797\u3055\u3093\u306E \u5F8C\u308D", "\u6797\u3055\u3093\u306E \u5F8C\u308D\u306B \u3060\u308C\u304C \u3044\u307E\u3059\u304B\u3002"],
-  ["7", "\u674E\u3055\u3093\u306E \u96A3", "\u674E\u3055\u3093\u306E \u96A3\u306B \u3060\u308C\u304C \u3044\u307E\u3059\u304B\u3002"],
-  ["8", "\u8ECA\u306E \u4E2D", "\u8ECA\u306E \u4E2D\u306B \u3060\u308C\u304C \u3044\u307E\u3059\u304B\u3002"]
+  ["5", "\u4F1A\u8B70\u5BA4", "\u304B\u3044\u304E\u3057\u3064", "\u4F1A\u8B70\u5BA4\u306B \u3060\u308C\u304C \u3044\u307E\u3059\u304B\u3002"],
+  ["6", "\u6797\u3055\u3093\u306E \u5F8C\u308D", "\u306F\u3084\u3057\u3055\u3093\u306E \u3046\u3057\u308D", "\u6797\u3055\u3093\u306E \u5F8C\u308D\u306B \u3060\u308C\u304C \u3044\u307E\u3059\u304B\u3002"],
+  ["7", "\u674E\u3055\u3093\u306E \u96A3", "\u308A\u3055\u3093\u306E \u3068\u306A\u308A", "\u674E\u3055\u3093\u306E \u96A3\u306B \u3060\u308C\u304C \u3044\u307E\u3059\u304B\u3002"],
+  ["8", "\u8ECA\u306E \u4E2D", "\u304F\u308B\u307E\u306E \u306A\u304B", "\u8ECA\u306E \u4E2D\u306B \u3060\u308C\u304C \u3044\u307E\u3059\u304B\u3002"]
 ];
 var p1a3ObjectItems = [
-  ["1", "\u30C6\u30EC\u30D3\u306E \u4E0A\u306B \u4F55\u304C \u3042\u308A\u307E\u3059\u304B\u3002", "\u30AB\u30E1\u30E9\u304C \u3042\u308A\u307E\u3059\u3002"],
-  ["2", "\u3044\u3059\u306E \u4E0B\u306B \u4F55\u304C \u3042\u308A\u307E\u3059\u304B\u3002", "\u30B5\u30C3\u30AB\u30FC\u30DC\u30FC\u30EB\u304C \u3042\u308A\u307E\u3059\u3002"],
-  ["3", "\u672C\u68DA\u306E \u4E0A\u306B \u4F55\u304C \u3042\u308A\u307E\u3059\u304B\u3002", "\u6642\u8A08\u304C \u3042\u308A\u307E\u3059\u3002"],
-  ["4", "\u7BB1\u306E \u4E2D\u306B \u4F55\u304C \u3042\u308A\u307E\u3059\u304B\u3002", "\u4F55\u3082 \u3042\u308A\u307E\u305B\u3093\u3002"]
+  ["1", "\u30C6\u30EC\u30D3\u306E \u4E0A\u306B \u4F55\u304C \u3042\u308A\u307E\u3059\u304B\u3002", "\u30C6\u30EC\u30D3\u306E \u3046\u3048\u306B \u306A\u306B\u304C \u3042\u308A\u307E\u3059\u304B\u3002", "\u30AB\u30E1\u30E9\u304C \u3042\u308A\u307E\u3059\u3002"],
+  ["2", "\u3044\u3059\u306E \u4E0B\u306B \u4F55\u304C \u3042\u308A\u307E\u3059\u304B\u3002", "\u3044\u3059\u306E \u3057\u305F\u306B \u306A\u306B\u304C \u3042\u308A\u307E\u3059\u304B\u3002", "\u30B5\u30C3\u30AB\u30FC\u30DC\u30FC\u30EB\u304C \u3042\u308A\u307E\u3059\u3002"],
+  ["3", "\u672C\u68DA\u306E \u4E0A\u306B \u4F55\u304C \u3042\u308A\u307E\u3059\u304B\u3002", "\u307B\u3093\u3060\u306A\u306E \u3046\u3048\u306B \u306A\u306B\u304C \u3042\u308A\u307E\u3059\u304B\u3002", "\u6642\u8A08\u304C \u3042\u308A\u307E\u3059\u3002"],
+  ["4", "\u7BB1\u306E \u4E2D\u306B \u4F55\u304C \u3042\u308A\u307E\u3059\u304B\u3002", "\u306F\u3053\u306E \u306A\u304B\u306B \u306A\u306B\u304C \u3042\u308A\u307E\u3059\u304B\u3002", "\u4F55\u3082 \u3042\u308A\u307E\u305B\u3093\u3002"]
 ];
 var p1a3PersonItems = [
-  ["5", "\u4F1A\u8B70\u5BA4\u306B \u3060\u308C\u304C \u3044\u307E\u3059\u304B\u3002", "\u68EE\u3055\u3093\u304C \u3044\u307E\u3059\u3002"],
-  ["6", "\u30D1\u30BD\u30B3\u30F3\u306E \u524D\u306B \u3060\u308C\u304C \u3044\u307E\u3059\u304B\u3002", "\u5C0F\u91CE\u3055\u3093\u304C \u3044\u307E\u3059\u3002"],
-  ["7", "\u5EAD\u306B \u3060\u308C\u304C \u3044\u307E\u3059\u304B\u3002", "\u30B9\u30DF\u30B9\u3055\u3093\u304C \u3044\u307E\u3059\u3002"],
-  ["8", "\u8ECA\u306E \u5F8C\u308D\u306B \u3060\u308C\u304C \u3044\u307E\u3059\u304B\u3002", "\u3060\u308C\u3082 \u3044\u307E\u305B\u3093\u3002"]
+  ["5", "\u4F1A\u8B70\u5BA4\u306B \u3060\u308C\u304C \u3044\u307E\u3059\u304B\u3002", "\u304B\u3044\u304E\u3057\u3064\u306B \u3060\u308C\u304C \u3044\u307E\u3059\u304B\u3002", "\u68EE\u3055\u3093\u304C \u3044\u307E\u3059\u3002"],
+  ["6", "\u30D1\u30BD\u30B3\u30F3\u306E \u524D\u306B \u3060\u308C\u304C \u3044\u307E\u3059\u304B\u3002", "\u30D1\u30BD\u30B3\u30F3\u306E \u307E\u3048\u306B \u3060\u308C\u304C \u3044\u307E\u3059\u304B\u3002", "\u5C0F\u91CE\u3055\u3093\u304C \u3044\u307E\u3059\u3002"],
+  ["7", "\u5EAD\u306B \u3060\u308C\u304C \u3044\u307E\u3059\u304B\u3002", "\u306B\u308F\u306B \u3060\u308C\u304C \u3044\u307E\u3059\u304B\u3002", "\u30B9\u30DF\u30B9\u3055\u3093\u304C \u3044\u307E\u3059\u3002"],
+  ["8", "\u8ECA\u306E \u5F8C\u308D\u306B \u3060\u308C\u304C \u3044\u307E\u3059\u304B\u3002", "\u304F\u308B\u307E\u306E \u3046\u3057\u308D\u306B \u3060\u308C\u304C \u3044\u307E\u3059\u304B\u3002", "\u3060\u308C\u3082 \u3044\u307E\u305B\u3093\u3002"]
 ];
 var p1a4Items2 = [
-  ["1", "\u751F\u5F92\u306F \u6559\u5BA4\u306B \u3044\u307E\u3059\u304B\u3002\uFF08\u306F\u3044\uFF09", "\u306F\u3044\u3001\u3044\u307E\u3059\u3002"],
-  ["2", "\u6797\u3055\u3093\u306E \u5BB6\u306F \u3069\u3053\u3067\u3059\u304B\u3002\uFF08\u6A2A\u6D5C\uFF09", "\u6A2A\u6D5C\u3067\u3059\u3002"],
-  ["3", "JC\u4F01\u753B\u306F \u3069\u3053\u306B \u3042\u308A\u307E\u3059\u304B\u3002\uFF08\u9280\u884C\u306E \u96A3\uFF09", "\u9280\u884C\u306E \u96A3\u306B \u3042\u308A\u307E\u3059\u3002"],
-  ["4", "\u68EE\u3055\u3093\u306F \u90E8\u5C4B\u306B \u3044\u307E\u3059\u304B\u3002\uFF08\u3044\u3044\u3048\uFF09", "\u3044\u3044\u3048\u3001\u3044\u307E\u305B\u3093\u3002"]
+  ["1", "\u751F\u5F92\u306F \u6559\u5BA4\u306B \u3044\u307E\u3059\u304B\u3002\uFF08\u306F\u3044\uFF09", "\u305B\u3044\u3068\u306F \u304D\u3087\u3046\u3057\u3064\u306B \u3044\u307E\u3059\u304B\u3002\uFF08\u306F\u3044\uFF09", "\u306F\u3044\u3001\u3044\u307E\u3059\u3002"],
+  ["2", "\u6797\u3055\u3093\u306E \u5BB6\u306F \u3069\u3053\u3067\u3059\u304B\u3002\uFF08\u6A2A\u6D5C\uFF09", "\u306F\u3084\u3057\u3055\u3093\u306E \u3044\u3048\u306F \u3069\u3053\u3067\u3059\u304B\u3002\uFF08\u3088\u3053\u306F\u307E\uFF09", "\u6A2A\u6D5C\u3067\u3059\u3002"],
+  ["3", "JC\u4F01\u753B\u306F \u3069\u3053\u306B \u3042\u308A\u307E\u3059\u304B\u3002\uFF08\u9280\u884C\u306E \u96A3\uFF09", "\u30B8\u30A7\u30FC\u30B7\u30FC\u304D\u304B\u304F\u306F \u3069\u3053\u306B \u3042\u308A\u307E\u3059\u304B\u3002\uFF08\u304E\u3093\u3053\u3046\u306E \u3068\u306A\u308A\uFF09", "\u9280\u884C\u306E \u96A3\u306B \u3042\u308A\u307E\u3059\u3002"],
+  ["4", "\u68EE\u3055\u3093\u306F \u90E8\u5C4B\u306B \u3044\u307E\u3059\u304B\u3002\uFF08\u3044\u3044\u3048\uFF09", "\u3082\u308A\u3055\u3093\u306F \u3078\u3084\u306B \u3044\u307E\u3059\u304B\u3002\uFF08\u3044\u3044\u3048\uFF09", "\u3044\u3044\u3048\u3001\u3044\u307E\u305B\u3093\u3002"]
 ];
 var p1a5Items2 = [
-  ["1", "\u542C\u5F55\u97F3\u95EE\u9898\u5E76\u56DE\u7B54\u3002", "\u306F\u3044\u3001\u3042\u308A\u307E\u3059\u3002"],
-  ["2", "\u542C\u5F55\u97F3\u95EE\u9898\u5E76\u56DE\u7B54\u3002", "\u3044\u3044\u3048\u3001\u3042\u308A\u307E\u305B\u3093\u3002"],
-  ["3", "\u542C\u5F55\u97F3\u95EE\u9898\u5E76\u56DE\u7B54\u3002", "\u3044\u3044\u3048\u3001\u3044\u307E\u305B\u3093\u3002"],
-  ["4", "\u542C\u5F55\u97F3\u95EE\u9898\u5E76\u56DE\u7B54\u3002", "\u673A\u306E \u4E0B\u3067\u3059\u3002"],
-  ["5", "\u542C\u5F55\u97F3\u95EE\u9898\u5E76\u56DE\u7B54\u3002", "\u3044\u3059\u306E \u4E0B\u3067\u3059\u3002"]
+  ["1", "\u90E8\u5C4B\u306B \u3044\u3059\u304C \u3042\u308A\u307E\u3059\u304B\u3002", "\u3078\u3084\u306B \u3044\u3059\u304C \u3042\u308A\u307E\u3059\u304B\u3002", "\u306F\u3044\u3001\u3042\u308A\u307E\u3059\u3002"],
+  ["2", "\u90E8\u5C4B\u306B \u96FB\u8A71\u304C \u3042\u308A\u307E\u3059\u304B\u3002", "\u3078\u3084\u306B \u3067\u3093\u308F\u304C \u3042\u308A\u307E\u3059\u304B\u3002", "\u3044\u3044\u3048\u3001\u3042\u308A\u307E\u305B\u3093\u3002"],
+  ["3", "\u3044\u3059\u306E \u4E0B\u306B \u732B\u304C \u3044\u307E\u3059\u304B\u3002", "\u3044\u3059\u306E \u3057\u305F\u306B \u306D\u3053\u304C \u3044\u307E\u3059\u304B\u3002", "\u3044\u3044\u3048\u3001\u3044\u307E\u305B\u3093\u3002"],
+  ["4", "\u304B\u3070\u3093\u306F \u673A\u306E \u4E0B\u3067\u3059\u304B\u3001\u3044\u3059\u306E \u4E0B\u3067\u3059\u304B\u3002", "\u304B\u3070\u3093\u306F \u3064\u304F\u3048\u306E \u3057\u305F\u3067\u3059\u304B\u3001\u3044\u3059\u306E \u3057\u305F\u3067\u3059\u304B\u3002", "\u673A\u306E \u4E0B\u3067\u3059\u3002"],
+  ["5", "\u30B5\u30C3\u30AB\u30FC\u30DC\u30FC\u30EB\u306F \u3044\u3059\u306E \u4E0A\u3067\u3059\u304B\u3001\u3044\u3059\u306E \u4E0B\u3067\u3059\u304B\u3002", "\u30B5\u30C3\u30AB\u30FC\u30DC\u30FC\u30EB\u306F \u3044\u3059\u306E \u3046\u3048\u3067\u3059\u304B\u3001\u3044\u3059\u306E \u3057\u305F\u3067\u3059\u304B\u3002", "\u3044\u3059\u306E \u4E0B\u3067\u3059\u3002"]
 ];
 var p1a6Items2 = [
-  ["1", "\u542C\u5F55\u97F3\u95EE\u9898\u5E76\u56DE\u7B54\u3002", "\u5C0F\u91CE\u3055\u3093\u304C \u3044\u307E\u3059\u3002"],
-  ["2", "\u542C\u5F55\u97F3\u95EE\u9898\u5E76\u56DE\u7B54\u3002", "\u304B\u3070\u3093\u306E \u4E2D\u306B \u3042\u308A\u307E\u3059\u3002"],
-  ["3", "\u542C\u5F55\u97F3\u95EE\u9898\u5E76\u56DE\u7B54\u3002", "\u65B0\u805E\u304C \u3042\u308A\u307E\u3059\u3002"],
-  ["4", "\u542C\u5F55\u97F3\u95EE\u9898\u5E76\u56DE\u7B54\u3002", "\u4F55\u3082 \u3042\u308A\u307E\u305B\u3093\u3002"],
-  ["5", "\u542C\u5F55\u97F3\u95EE\u9898\u5E76\u56DE\u7B54\u3002", "\u3060\u308C\u3082 \u3044\u307E\u305B\u3093\u3002"]
+  ["1", "\u3042\u305D\u3053\u306B \u3060\u308C\u304C \u3044\u307E\u3059\u304B\u3002", "\u3042\u305D\u3053\u306B \u3060\u308C\u304C \u3044\u307E\u3059\u304B\u3002", "\u5C0F\u91CE\u3055\u3093\u304C \u3044\u307E\u3059\u3002"],
+  ["2", "\u672C\u306F \u3069\u3053\u306B \u3042\u308A\u307E\u3059\u304B\u3002", "\u307B\u3093\u306F \u3069\u3053\u306B \u3042\u308A\u307E\u3059\u304B\u3002", "\u304B\u3070\u3093\u306E \u4E2D\u306B \u3042\u308A\u307E\u3059\u3002"],
+  ["3", "\u673A\u306E \u4E0A\u306B \u4F55\u304C \u3042\u308A\u307E\u3059\u304B\u3002", "\u3064\u304F\u3048\u306E \u3046\u3048\u306B \u306A\u306B\u304C \u3042\u308A\u307E\u3059\u304B\u3002", "\u65B0\u805E\u304C \u3042\u308A\u307E\u3059\u3002"],
+  ["4", "\u7BB1\u306E \u4E2D\u306B \u4F55\u304C \u3042\u308A\u307E\u3059\u304B\u3002", "\u306F\u3053\u306E \u306A\u304B\u306B \u306A\u306B\u304C \u3042\u308A\u307E\u3059\u304B\u3002", "\u4F55\u3082 \u3042\u308A\u307E\u305B\u3093\u3002"],
+  ["5", "\u56F3\u66F8\u5BA4\u306B \u3060\u308C\u304C \u3044\u307E\u3059\u304B\u3002", "\u3068\u3057\u3087\u3057\u3064\u306B \u3060\u308C\u304C \u3044\u307E\u3059\u304B\u3002", "\u3060\u308C\u3082 \u3044\u307E\u305B\u3093\u3002"]
 ];
 var p2a1Items2 = [
-  ["1", "\u8ECA\u306E \u4E2D\u306B \u72AC\u304C \u3044\u307E\u3059\u3002", true],
-  ["2", "\u3044\u3059\u306E \u4E0A\u306B \u732B\u304C \u3044\u307E\u3059\u3002", false],
-  ["3", "\u6728\u306E \u4E0B\u306B \u3044\u3059\u304C \u3042\u308A\u307E\u3059\u3002", true],
-  ["4", "\u6728\u306E \u4E0B\u306B \u3060\u308C\u3082 \u3044\u307E\u305B\u3093\u3002", true],
-  ["5", "\u7537\u306E \u4EBA\u306F \u8ECA\u306E \u5F8C\u308D\u306B \u3044\u307E\u3059\u3002", false]
+  ["1", "\u8ECA\u306E \u4E2D\u306B \u72AC\u304C \u3044\u307E\u3059\u3002", "\u304F\u308B\u307E\u306E \u306A\u304B\u306B \u3044\u306C\u304C \u3044\u307E\u3059\u3002", true],
+  ["2", "\u3044\u3059\u306E \u4E0A\u306B \u732B\u304C \u3044\u307E\u3059\u3002", "\u3044\u3059\u306E \u3046\u3048\u306B \u306D\u3053\u304C \u3044\u307E\u3059\u3002", false],
+  ["3", "\u6728\u306E \u4E0B\u306B \u3044\u3059\u304C \u3042\u308A\u307E\u3059\u3002", "\u304D\u306E \u3057\u305F\u306B \u3044\u3059\u304C \u3042\u308A\u307E\u3059\u3002", true],
+  ["4", "\u6728\u306E \u4E0B\u306B \u3060\u308C\u3082 \u3044\u307E\u305B\u3093\u3002", "\u304D\u306E \u3057\u305F\u306B \u3060\u308C\u3082 \u3044\u307E\u305B\u3093\u3002", true],
+  ["5", "\u7537\u306E \u4EBA\u306F \u8ECA\u306E \u5F8C\u308D\u306B \u3044\u307E\u3059\u3002", "\u304A\u3068\u3053\u306E \u3072\u3068\u306F \u304F\u308B\u307E\u306E \u3046\u3057\u308D\u306B \u3044\u307E\u3059\u3002", false]
 ];
 var p2a2Items2 = [
   ["1", "\u7BB1\u306E \u4E2D\u306B\uFF08\u3000\u3000\uFF09\u304C \u3042\u308A\u307E\u3059\u304B\u3002", ["\u3060\u308C", "\u4F55"], "\u4F55"],
@@ -25022,47 +25138,54 @@ var p2a2Items2 = [
   ["5", "\u30D9\u30C3\u30C9\u306E \u4E0A\u306B\uFF08\u3000\u3000\uFF09\u304C \u3042\u308A\u307E\u3059\u3002", ["\u5B50\u4F9B", "\u96D1\u8A8C"], "\u96D1\u8A8C"]
 ];
 var p2a3Items = [
-  ["1", "\u542C\u5F55\u97F3\u95EE\u9898\u5E76\u56DE\u7B54\u3002", "\u90F5\u4FBF\u5C40\u304C \u3042\u308A\u307E\u3059\u3002"],
-  ["2", "\u542C\u5F55\u97F3\u95EE\u9898\u5E76\u56DE\u7B54\u3002", "\u30AB\u30E1\u30E9\u58F2\u308A\u5834\u304C \u3042\u308A\u307E\u3059\u3002"],
-  ["3", "\u542C\u5F55\u97F3\u95EE\u9898\u5E76\u56DE\u7B54\u3002", "\u30C7\u30D1\u30FC\u30C8\u306E 1\u968E\u306B \u3042\u308A\u307E\u3059\u3002"],
-  ["4", "\u542C\u5F55\u97F3\u95EE\u9898\u5E76\u56DE\u7B54\u3002", "\u306F\u3044\u3001\u3042\u308A\u307E\u3059\u3002"],
-  ["5", "\u542C\u5F55\u97F3\u95EE\u9898\u5E76\u56DE\u7B54\u3002", "4\u968E\u3067\u3059\u3002"]
+  ["1", "\u30C7\u30D1\u30FC\u30C8\u306E \u96A3\u306B \u4F55\u304C \u3042\u308A\u307E\u3059\u304B\u3002", "\u30C7\u30D1\u30FC\u30C8\u306E \u3068\u306A\u308A\u306B \u306A\u306B\u304C \u3042\u308A\u307E\u3059\u304B\u3002", "\u90F5\u4FBF\u5C40\u304C \u3042\u308A\u307E\u3059\u3002"],
+  ["2", "\u30C7\u30D1\u30FC\u30C8\u306E 3\u968E\u306B \u4F55\u304C \u3042\u308A\u307E\u3059\u304B\u3002", "\u30C7\u30D1\u30FC\u30C8\u306E \u3055\u3093\u304B\u3044\u306B \u306A\u306B\u304C \u3042\u308A\u307E\u3059\u304B\u3002", "\u30AB\u30E1\u30E9\u58F2\u308A\u5834\u304C \u3042\u308A\u307E\u3059\u3002"],
+  ["3", "\u53D7\u4ED8\u306F \u3069\u3053\u306B \u3042\u308A\u307E\u3059\u304B\u3002", "\u3046\u3051\u3064\u3051\u306F \u3069\u3053\u306B \u3042\u308A\u307E\u3059\u304B\u3002", "\u30C7\u30D1\u30FC\u30C8\u306E 1\u968E\u306B \u3042\u308A\u307E\u3059\u3002"],
+  ["4", "\u98DF\u5802\u306F 5\u968E\u306B \u3042\u308A\u307E\u3059\u304B\u3002", "\u3057\u3087\u304F\u3069\u3046\u306F \u3054\u304B\u3044\u306B \u3042\u308A\u307E\u3059\u304B\u3002", "\u306F\u3044\u3001\u3042\u308A\u307E\u3059\u3002"],
+  ["5", "\u30D0\u30FC\u30B2\u30F3\u4F1A\u5834\u306F 3\u968E\u3067\u3059\u304B\u30014\u968E\u3067\u3059\u304B\u3002", "\u30D0\u30FC\u30B2\u30F3\u304B\u3044\u3058\u3087\u3046\u306F \u3055\u3093\u304B\u3044\u3067\u3059\u304B\u3001\u3088\u3093\u304B\u3044\u3067\u3059\u304B\u3002", "4\u968E\u3067\u3059\u3002"]
 ];
+var answerOnlyHint = "\u53EA\u586B\u5199\u63D0\u95EE\u540E\u7684\u56DE\u7B54\u90E8\u5206\uFF0C\u4E0D\u9700\u8981\u91CD\u5199\u95EE\u9898\u3002";
 var activities3 = [
   {
     id: "l4-p1-a1",
     section: "practice_1",
     order: 1,
-    title: "\u66FF\u6362\u5B58\u5728\u53E5",
-    instruction: "\u4EFF\u7167\u4F8B\u53E5\u66FF\u6362\u753B\u7EBF\u90E8\u5206\u8FDB\u884C\u7EC3\u4E60\u3002",
+    title: "\u4EFF\u7167\u4F8B\u53E5\u66FF\u6362\u753B\u7EBF\u90E8\u5206\u8FDB\u884C\u7EC3\u4E60\u3002",
+    instruction: "",
     interaction: "pattern_substitution",
     answerUnit: "sentence",
-    assets: [p58],
+    responseScope: "sentence_only",
     layout: [],
     itemGroups: [
       {
         id: "l4-p1-a1-g1",
-        title: "\u4F8B 1\uFF1A\u65E0\u751F\u547D\u7269\u4F53",
-        instruction: "\u4F7F\u7528\u300C\u90E8\u5C4B\u306B A \u304C \u3042\u308A\u307E\u3059\u300D\u3002",
         example: {
           id: "l4-p1-a1-ex1",
-          label: "\u4F8B 1",
-          beforeParts: [repl4("\u3044\u3059", "object")],
-          after: [text4("\u90E8\u5C4B\u306B "), repl4("\u3044\u3059", "object"), text4("\u304C \u3042\u308A\u307E\u3059\u3002")]
+          label: "[\u4F8B1]",
+          beforeParts: [repl4("\u3044\u3059", "object", { kana: "\u3044\u3059" })],
+          beforeKana: "\u3044\u3059",
+          after: [text4("\u90E8\u5C4B\u306B ", { kana: "\u3078\u3084\u306B" }), repl4("\u3044\u3059", "object", { kana: "\u3044\u3059" }), text4("\u304C \u3042\u308A\u307E\u3059\u3002")],
+          afterKana: "\u3078\u3084\u306B \u3044\u3059\u304C \u3042\u308A\u307E\u3059\u3002"
         },
-        items: p1a1Group1.map(([number, prompt, value]) => item(`l4-p1-a1-q${number}`, number, prompt, value))
+        items: p1a1Group1.map(([number, prompt, promptKana, value]) => item(`l4-p1-a1-q${number}`, number, prompt, value, {
+          promptKana,
+          inputSlots: sentenceSlot4("\u8F93\u5165\u5B8C\u6574\u53E5\u5B50")
+        }))
       },
       {
         id: "l4-p1-a1-g2",
-        title: "\u4F8B 2\uFF1A\u6709\u751F\u547D\u7684\u4EBA\u6216\u52A8\u7269",
-        instruction: "\u4F7F\u7528\u300C\u3042\u305D\u3053\u306B A \u304C \u3044\u307E\u3059\u300D\u3002",
         example: {
           id: "l4-p1-a1-ex2",
-          label: "\u4F8B 2",
-          beforeParts: [repl4("\u732B", "personOrAnimal")],
-          after: [text4("\u3042\u305D\u3053\u306B "), repl4("\u732B", "personOrAnimal"), text4("\u304C \u3044\u307E\u3059\u3002")]
+          label: "[\u4F8B2]",
+          beforeParts: [repl4("\u732B", "personOrAnimal", { kana: "\u306D\u3053" })],
+          beforeKana: "\u306D\u3053",
+          after: [text4("\u3042\u305D\u3053\u306B "), repl4("\u732B", "personOrAnimal", { kana: "\u306D\u3053" }), text4("\u304C \u3044\u307E\u3059\u3002")],
+          afterKana: "\u3042\u305D\u3053\u306B \u306D\u3053\u304C \u3044\u307E\u3059\u3002"
         },
-        items: p1a1Group2.map(([number, prompt, value]) => item(`l4-p1-a1-q${number}`, number, prompt, value))
+        items: p1a1Group2.map(([number, prompt, promptKana, value]) => item(`l4-p1-a1-q${number}`, number, prompt, value, {
+          promptKana,
+          inputSlots: sentenceSlot4("\u8F93\u5165\u5B8C\u6574\u53E5\u5B50")
+        }))
       }
     ],
     items: []
@@ -25071,36 +25194,42 @@ var activities3 = [
     id: "l4-p1-a2",
     section: "practice_1",
     order: 2,
-    title: "\u66FF\u6362\u4F4D\u7F6E\u95EE\u53E5",
-    instruction: "\u4EFF\u7167\u4F8B\u53E5\u66FF\u6362\u753B\u7EBF\u90E8\u5206\u8FDB\u884C\u7EC3\u4E60\u3002",
+    title: "\u4EFF\u7167\u4F8B\u53E5\u66FF\u6362\u753B\u7EBF\u90E8\u5206\u8FDB\u884C\u7EC3\u4E60\u3002",
+    instruction: "",
     interaction: "pattern_substitution",
     answerUnit: "sentence",
-    assets: [p58],
+    responseScope: "sentence_only",
     layout: [],
     itemGroups: [
       {
         id: "l4-p1-a2-g1",
-        title: "\u4F8B 1\uFF1A\u8BE2\u95EE\u7269\u54C1",
-        instruction: "\u4F7F\u7528\u300CA \u306B \u4F55\u304C \u3042\u308A\u307E\u3059\u304B\u300D\u3002",
         example: {
           id: "l4-p1-a2-ex1",
-          label: "\u4F8B 1",
-          beforeParts: [repl4("\u673A\u306E \u4E0A", "place")],
-          after: [repl4("\u673A\u306E \u4E0A", "place"), text4("\u306B \u4F55\u304C \u3042\u308A\u307E\u3059\u304B\u3002")]
+          label: "[\u4F8B1]",
+          beforeParts: [repl4("\u673A\u306E \u4E0A", "place", { kana: "\u3064\u304F\u3048\u306E \u3046\u3048" })],
+          beforeKana: "\u3064\u304F\u3048\u306E \u3046\u3048",
+          after: [repl4("\u673A\u306E \u4E0A", "place", { kana: "\u3064\u304F\u3048\u306E \u3046\u3048" }), text4("\u306B \u4F55\u304C \u3042\u308A\u307E\u3059\u304B\u3002", { kana: "\u306B \u306A\u306B\u304C \u3042\u308A\u307E\u3059\u304B\u3002" })],
+          afterKana: "\u3064\u304F\u3048\u306E \u3046\u3048\u306B \u306A\u306B\u304C \u3042\u308A\u307E\u3059\u304B\u3002"
         },
-        items: p1a2Group1.map(([number, prompt, value]) => item(`l4-p1-a2-q${number}`, number, prompt, value))
+        items: p1a2Group1.map(([number, prompt, promptKana, value]) => item(`l4-p1-a2-q${number}`, number, prompt, value, {
+          promptKana,
+          inputSlots: sentenceSlot4("\u8F93\u5165\u5B8C\u6574\u95EE\u53E5")
+        }))
       },
       {
         id: "l4-p1-a2-g2",
-        title: "\u4F8B 2\uFF1A\u8BE2\u95EE\u4EBA\u7269",
-        instruction: "\u4F7F\u7528\u300CA \u306B \u3060\u308C\u304C \u3044\u307E\u3059\u304B\u300D\u3002",
         example: {
           id: "l4-p1-a2-ex2",
-          label: "\u4F8B 2",
+          label: "[\u4F8B2]",
           beforeParts: [repl4("\u3042\u305D\u3053", "place")],
-          after: [repl4("\u3042\u305D\u3053", "place"), text4("\u306B \u3060\u308C\u304C \u3044\u307E\u3059\u304B\u3002")]
+          beforeKana: "\u3042\u305D\u3053",
+          after: [repl4("\u3042\u305D\u3053", "place"), text4("\u306B \u3060\u308C\u304C \u3044\u307E\u3059\u304B\u3002")],
+          afterKana: "\u3042\u305D\u3053\u306B \u3060\u308C\u304C \u3044\u307E\u3059\u304B\u3002"
         },
-        items: p1a2Group2.map(([number, prompt, value]) => item(`l4-p1-a2-q${number}`, number, prompt, value))
+        items: p1a2Group2.map(([number, prompt, promptKana, value]) => item(`l4-p1-a2-q${number}`, number, prompt, value, {
+          promptKana,
+          inputSlots: sentenceSlot4("\u8F93\u5165\u5B8C\u6574\u95EE\u53E5")
+        }))
       }
     ],
     items: []
@@ -25109,44 +25238,49 @@ var activities3 = [
     id: "l4-p1-a3",
     section: "practice_1",
     order: 3,
-    title: "\u770B\u56FE\u56DE\u7B54\u4F4D\u7F6E\u95EE\u9898",
-    instruction: "\u770B\u56FE\uFF0C\u4EFF\u7167\u4F8B\u53E5\u56DE\u7B54\u63D0\u95EE\u3002",
+    title: "\u770B\u56FE\uFF0C\u4EFF\u7167\u4F8B\u53E5\u56DE\u7B54\u63D0\u95EE\u3002",
+    instruction: "",
     interaction: "dialogue_practice",
     answerUnit: "sentence",
-    assets: [p58, ...p1a3Object ? [p1a3Object] : [], ...p1a3Person ? [p1a3Person] : []],
-    displayAssets: ["l4-p1-a3-object-picture-practice", "l4-p1-a3-person-picture-practice"],
+    responseScope: "answer_only",
+    responseScopeHint: answerOnlyHint,
+    assets: [p1a3Object, p1a3Person],
     layout: [],
     itemGroups: [
       {
         id: "l4-p1-a3-g1",
-        title: "\u4F8B 1\uFF1A\u56DE\u7B54\u6709\u4EC0\u4E48",
-        instruction: "\u6839\u636E\u56FE\u4E2D\u7684\u7269\u54C1\u56DE\u7B54\u3002",
+        displayAssets: ["l4-p1-a3-object-picture-practice"],
         example: {
           id: "l4-p1-a3-ex1",
-          label: "\u4F8B 1",
-          beforeParts: [text4("\u3044\u3059\u306E \u4E0A\u306B \u4F55\u304C \u3042\u308A\u307E\u3059\u304B\u3002")],
-          after: [repl4("\u672C", "object"), text4("\u304C \u3042\u308A\u307E\u3059\u3002")]
+          label: "[\u4F8B1]",
+          beforeParts: [text4("\u3044\u3059\u306E \u4E0A\u306B \u4F55\u304C \u3042\u308A\u307E\u3059\u304B\u3002", { kana: "\u3044\u3059\u306E \u3046\u3048\u306B \u306A\u306B\u304C \u3042\u308A\u307E\u3059\u304B\u3002" })],
+          beforeKana: "\u3044\u3059\u306E \u3046\u3048\u306B \u306A\u306B\u304C \u3042\u308A\u307E\u3059\u304B\u3002",
+          after: [text4("\u672C\u304C \u3042\u308A\u307E\u3059\u3002", { kana: "\u307B\u3093\u304C \u3042\u308A\u307E\u3059\u3002" })],
+          afterKana: "\u307B\u3093\u304C \u3042\u308A\u307E\u3059\u3002"
         },
-        items: p1a3ObjectItems.map(([number, prompt, value]) => item(`l4-p1-a3-q${number}`, number, prompt, value, {
-          instruction: "\u6839\u636E\u56FE\u7247\uFF0C\u586B\u5199\u56DE\u7B54\u53E5\u3002",
-          relatedAssets: ["l4-p1-a3-object-picture-practice"],
-          inputSlots: sentenceSlot4("\u8F93\u5165\u56DE\u7B54\u53E5")
+        items: p1a3ObjectItems.map(([number, prompt, promptKana, value]) => item(`l4-p1-a3-q${number}`, number, prompt, value, {
+          promptKana,
+          answerSource: "prompt",
+          inputSlots: answerSlot(),
+          relatedAssets: ["l4-p1-a3-object-picture-practice"]
         }))
       },
       {
         id: "l4-p1-a3-g2",
-        title: "\u4F8B 2\uFF1A\u56DE\u7B54\u6709\u8C01",
-        instruction: "\u6839\u636E\u56FE\u4E2D\u7684\u4EBA\u7269\u56DE\u7B54\u3002",
+        displayAssets: ["l4-p1-a3-person-picture-practice"],
         example: {
           id: "l4-p1-a3-ex2",
-          label: "\u4F8B 2",
-          beforeParts: [text4("\u56F3\u66F8\u5BA4\u306B \u3060\u308C\u304C \u3044\u307E\u3059\u304B\u3002")],
-          after: [repl4("\u674E\u3055\u3093", "person"), text4("\u304C \u3044\u307E\u3059\u3002")]
+          label: "[\u4F8B2]",
+          beforeParts: [text4("\u56F3\u66F8\u5BA4\u306B \u3060\u308C\u304C \u3044\u307E\u3059\u304B\u3002", { kana: "\u3068\u3057\u3087\u3057\u3064\u306B \u3060\u308C\u304C \u3044\u307E\u3059\u304B\u3002" })],
+          beforeKana: "\u3068\u3057\u3087\u3057\u3064\u306B \u3060\u308C\u304C \u3044\u307E\u3059\u304B\u3002",
+          after: [text4("\u674E\u3055\u3093\u304C \u3044\u307E\u3059\u3002", { kana: "\u308A\u3055\u3093\u304C \u3044\u307E\u3059\u3002" })],
+          afterKana: "\u308A\u3055\u3093\u304C \u3044\u307E\u3059\u3002"
         },
-        items: p1a3PersonItems.map(([number, prompt, value]) => item(`l4-p1-a3-q${number}`, number, prompt, value, {
-          instruction: "\u6839\u636E\u56FE\u7247\uFF0C\u586B\u5199\u56DE\u7B54\u53E5\u3002",
-          relatedAssets: ["l4-p1-a3-person-picture-practice"],
-          inputSlots: sentenceSlot4("\u8F93\u5165\u56DE\u7B54\u53E5")
+        items: p1a3PersonItems.map(([number, prompt, promptKana, value]) => item(`l4-p1-a3-q${number}`, number, prompt, value, {
+          promptKana,
+          answerSource: "prompt",
+          inputSlots: answerSlot(),
+          relatedAssets: ["l4-p1-a3-person-picture-practice"]
         }))
       }
     ],
@@ -25156,24 +25290,27 @@ var activities3 = [
     id: "l4-p1-a4",
     section: "practice_1",
     order: 4,
-    title: "\u7528\u62EC\u53F7\u8BCD\u56DE\u7B54",
-    instruction: "\u4EFF\u7167\u4F8B\u53E5\uFF0C\u7528\u62EC\u53F7\u4E2D\u7684\u8BCD\u8BED\u56DE\u7B54\u63D0\u95EE\u3002",
+    title: "\u4EFF\u7167\u4F8B\u53E5\uFF0C\u7528\uFF08\u3000\u3000\uFF09\u4E2D\u7684\u8BCD\u8BED\u56DE\u7B54\u63D0\u95EE\u3002",
+    instruction: "",
     interaction: "dialogue_practice",
     answerUnit: "sentence",
-    assets: [p59],
+    responseScope: "answer_only",
+    responseScopeHint: answerOnlyHint,
     layout: [{
       type: "example",
       content: {
         id: "l4-p1-a4-ex",
-        label: "\u4F8B",
-        beforeParts: [text4("\u68EE\u3055\u3093\u306F \u3069\u3053\u306B \u3044\u307E\u3059\u304B\u3002\uFF08"), repl4("\u98DF\u5802", "place"), text4("\uFF09")],
-        after: [repl4("\u98DF\u5802", "place"), text4("\u306B \u3044\u307E\u3059\u3002")]
+        label: "[\u4F8B]",
+        beforeParts: [text4("\u68EE\u3055\u3093\u306F \u3069\u3053\u306B \u3044\u307E\u3059\u304B\u3002\uFF08", { kana: "\u3082\u308A\u3055\u3093\u306F \u3069\u3053\u306B \u3044\u307E\u3059\u304B\u3002\uFF08" }), repl4("\u98DF\u5802", "place", { kana: "\u3057\u3087\u304F\u3069\u3046" }), text4("\uFF09")],
+        beforeKana: "\u3082\u308A\u3055\u3093\u306F \u3069\u3053\u306B \u3044\u307E\u3059\u304B\u3002\uFF08\u3057\u3087\u304F\u3069\u3046\uFF09",
+        after: [repl4("\u98DF\u5802", "place", { kana: "\u3057\u3087\u304F\u3069\u3046" }), text4("\u306B \u3044\u307E\u3059\u3002")],
+        afterKana: "\u3057\u3087\u304F\u3069\u3046\u306B \u3044\u307E\u3059\u3002"
       }
     }],
-    items: p1a4Items2.map(([number, prompt, value]) => item(`l4-p1-a4-q${number}`, number, prompt, value, {
-      instruction: "\u4F7F\u7528\u62EC\u53F7\u4E2D\u7684\u8BCD\u8BED\u586B\u5199\u56DE\u7B54\u53E5\u3002",
+    items: p1a4Items2.map(([number, prompt, promptKana, value]) => item(`l4-p1-a4-q${number}`, number, prompt, value, {
+      promptKana,
       answerSource: "prompt",
-      inputSlots: sentenceSlot4("\u8F93\u5165\u56DE\u7B54\u53E5"),
+      inputSlots: answerSlot(),
       acceptableAlternatives: number === "2" ? ["\u6A2A\u6D5C\u306B \u3042\u308A\u307E\u3059\u3002"] : void 0
     }))
   },
@@ -25181,10 +25318,12 @@ var activities3 = [
     id: "l4-p1-a5",
     section: "practice_1",
     order: 5,
-    title: "\u770B\u56FE\u542C\u5F55\u97F3\u56DE\u7B54",
-    instruction: "\u8FB9\u770B\u56FE\u8FB9\u542C\u5F55\u97F3\uFF0C\u4EFF\u7167\u4F8B\u53E5\u56DE\u7B54\u63D0\u95EE\u3002",
+    title: "\u8FB9\u770B\u56FE\u8FB9\u542C\u5F55\u97F3\uFF0C\u4EFF\u7167\u4F8B\u53E5\u56DE\u7B54\u63D0\u95EE\u3002",
+    instruction: "",
     interaction: "listening_answer",
     answerUnit: "sentence",
+    responseScope: "answer_only",
+    responseScopeHint: answerOnlyHint,
     requiresAudio: true,
     audio: {
       source: "textbook_exercise",
@@ -25193,7 +25332,7 @@ var activities3 = [
       transcript: {
         text: "\u673A\u306E\u4E0A\u306B\u6642\u8A08\u304C\u3042\u308A\u307E\u3059\u304B\u3002\u306F\u3044\u3001\u3042\u308A\u307E\u3059\u3002\u90E8\u5C4B\u306B\u3044\u3059\u304C\u3042\u308A\u307E\u3059\u304B\u3002\u306F\u3044\u3001\u3042\u308A\u307E\u3059\u3002\u90E8\u5C4B\u306B\u96FB\u8A71\u304C\u3042\u308A\u307E\u3059\u304B\u3002\u3044\u3044\u3048\u3001\u3042\u308A\u307E\u305B\u3093\u3002\u3044\u3059\u306E\u4E0B\u306B\u732B\u304C\u3044\u307E\u3059\u304B\u3002\u3044\u3044\u3048\u3001\u3044\u307E\u305B\u3093\u3002\u304B\u3070\u3093\u306F\u673A\u306E\u4E0B\u3067\u3059\u304B\u3001\u3044\u3059\u306E\u4E0B\u3067\u3059\u304B\u3002\u673A\u306E\u4E0B\u3067\u3059\u3002\u30B5\u30C3\u30AB\u30FC\u30DC\u30FC\u30EB\u306F\u3044\u3059\u306E\u4E0A\u3067\u3059\u304B\u3001\u3044\u3059\u306E\u4E0B\u3067\u3059\u304B\u3002\u3044\u3059\u306E\u4E0B\u3067\u3059\u3002",
         source: "asr",
-        confidenceNote: "Azure ASR \u5C06\u5E8F\u53F7\u8BEF\u8BC6\u522B\u4E3A D/\u3044\u3044/\u3042\u3042/\u4E09/\u304A\u304A\uFF1B\u5DF2\u6309\u6559\u6750 \u4F8B\u30011-5 \u7684\u56FA\u5B9A\u95EE\u7B54\u987A\u5E8F\u6E05\u7406\u5207\u5206\u3002",
+        confidenceNote: "ASR \u5C06\u5E8F\u53F7\u8BEF\u8BC6\u522B\u4E3A D/\u3044\u3044/\u3042\u3042/\u4E09/\u304A\u304A\uFF1B\u5DF2\u6309\u6559\u6750 [\u4F8B]\u30011-5 \u7684\u56FA\u5B9A\u95EE\u7B54\u987A\u5E8F\u6E05\u7406\u5207\u5206\u3002",
         segments: [
           { itemNumber: "\u4F8B", speaker: "\u7532/\u4E59", text: "\u673A\u306E\u4E0A\u306B\u6642\u8A08\u304C\u3042\u308A\u307E\u3059\u304B\u3002\u306F\u3044\u3001\u3042\u308A\u307E\u3059\u3002" },
           { itemNumber: "1", speaker: "\u7532/\u4E59", text: "\u90E8\u5C4B\u306B\u3044\u3059\u304C\u3042\u308A\u307E\u3059\u304B\u3002\u306F\u3044\u3001\u3042\u308A\u307E\u3059\u3002" },
@@ -25204,32 +25343,35 @@ var activities3 = [
         ]
       }
     },
-    assets: [p59, ...p1a5Room ? [p1a5Room] : []],
+    assets: [p1a5Room],
     displayAssets: ["l4-p1-a5-room-picture-practice"],
     layout: [{
       type: "example",
       content: {
         id: "l4-p1-a5-ex",
-        label: "\u4F8B",
-        beforeParts: [text4("\u673A\u306E \u4E0A\u306B \u6642\u8A08\u304C \u3042\u308A\u307E\u3059\u304B\u3002")],
-        after: [text4("\u306F\u3044\u3001\u3042\u308A\u307E\u3059\u3002")]
+        label: "[\u4F8B]",
+        beforeParts: [text4("\u673A\u306E \u4E0A\u306B \u6642\u8A08\u304C \u3042\u308A\u307E\u3059\u304B\u3002", { kana: "\u3064\u304F\u3048\u306E \u3046\u3048\u306B \u3068\u3051\u3044\u304C \u3042\u308A\u307E\u3059\u304B\u3002" })],
+        beforeKana: "\u3064\u304F\u3048\u306E \u3046\u3048\u306B \u3068\u3051\u3044\u304C \u3042\u308A\u307E\u3059\u304B\u3002",
+        after: [text4("\u306F\u3044\u3001\u3042\u308A\u307E\u3059\u3002")],
+        afterKana: "\u306F\u3044\u3001\u3042\u308A\u307E\u3059\u3002"
       }
     }],
-    items: p1a5Items2.map(([number, prompt, value]) => item(`l4-p1-a5-q${number}`, number, prompt, value, {
-      instruction: "\u542C\u5F55\u97F3\u95EE\u9898\uFF0C\u7ED3\u5408\u56FE\u7247\u586B\u5199\u56DE\u7B54\u53E5\u3002",
+    items: p1a5Items2.map(([number, , , value]) => item(`l4-p1-a5-q${number}`, number, "\u542C\u5F55\u97F3\u5E76\u56DE\u7B54\u3002", value, {
       answerSource: "audio",
-      relatedAssets: ["l4-p1-a5-room-picture-practice"],
-      inputSlots: sentenceSlot4("\u8F93\u5165\u56DE\u7B54\u53E5")
+      inputSlots: answerSlot(),
+      relatedAssets: ["l4-p1-a5-room-picture-practice"]
     }))
   },
   {
     id: "l4-p1-a6",
     section: "practice_1",
     order: 6,
-    title: "\u770B\u56FE\u542C\u5F55\u97F3\u56DE\u7B54",
-    instruction: "\u8FB9\u770B\u56FE\u8FB9\u542C\u5F55\u97F3\uFF0C\u4EFF\u7167\u4F8B\u53E5\u56DE\u7B54\u63D0\u95EE\u3002",
+    title: "\u8FB9\u770B\u56FE\u8FB9\u542C\u5F55\u97F3\uFF0C\u4EFF\u7167\u4F8B\u53E5\u56DE\u7B54\u63D0\u95EE\u3002",
+    instruction: "",
     interaction: "listening_answer",
     answerUnit: "sentence",
+    responseScope: "answer_only",
+    responseScopeHint: answerOnlyHint,
     requiresAudio: true,
     audio: {
       source: "textbook_exercise",
@@ -25238,7 +25380,7 @@ var activities3 = [
       transcript: {
         text: "\u68EE\u3055\u3093\u306F\u3069\u3053\u306B\u3044\u307E\u3059\u304B\u3002\u75C5\u9662\u306E\u524D\u306B\u3044\u307E\u3059\u3002\u3042\u305D\u3053\u306B\u3060\u308C\u304C\u3044\u307E\u3059\u304B\u3002\u5C0F\u91CE\u3055\u3093\u304C\u3044\u307E\u3059\u3002\u672C\u306F\u3069\u3053\u306B\u3042\u308A\u307E\u3059\u304B\u3002\u304B\u3070\u3093\u306E\u4E2D\u306B\u3042\u308A\u307E\u3059\u3002\u673A\u306E\u4E0A\u306B\u4F55\u304C\u3042\u308A\u307E\u3059\u304B\u3002\u65B0\u805E\u304C\u3042\u308A\u307E\u3059\u3002\u7BB1\u306E\u4E2D\u306B\u4F55\u304C\u3042\u308A\u307E\u3059\u304B\u3002\u4F55\u3082\u3042\u308A\u307E\u305B\u3093\u3002\u56F3\u66F8\u5BA4\u306B\u3060\u308C\u304C\u3044\u307E\u3059\u304B\u3002\u3060\u308C\u3082\u3044\u307E\u305B\u3093\u3002",
         source: "asr",
-        confidenceNote: "Azure ASR \u5C06\u5E8F\u53F7\u8BEF\u8BC6\u522B\u4E3A D/\u3044\u3044/R/\u4E09/\u6570/\u304A\u304A\uFF0C\u5E76\u628A\u300C\u7BB1\u300D\u8BEF\u4F5C\u300C\u6570\u7BB1\u300D\uFF1B\u5DF2\u7ED3\u5408\u56FE\u7247\u6807\u7B7E\u548C\u9898\u578B\u6E05\u7406\u3002",
+        confidenceNote: "ASR \u5C06\u5E8F\u53F7\u8BEF\u8BC6\u522B\u4E3A D/\u3044\u3044/\u3042\u3042/\u4E09/\u304A\u304A\uFF0C\u5E76\u628A\u300C\u7BB1\u300D\u8BEF\u4F5C\u300C\u6570\u7BB1\u300D\uFF1B\u5DF2\u7ED3\u5408\u56FE\u7247\u6807\u7B7E\u548C\u9898\u578B\u6E05\u7406\u3002",
         segments: [
           { itemNumber: "\u4F8B", speaker: "\u7532/\u4E59", text: "\u68EE\u3055\u3093\u306F\u3069\u3053\u306B\u3044\u307E\u3059\u304B\u3002\u75C5\u9662\u306E\u524D\u306B\u3044\u307E\u3059\u3002" },
           { itemNumber: "1", speaker: "\u7532/\u4E59", text: "\u3042\u305D\u3053\u306B\u3060\u308C\u304C\u3044\u307E\u3059\u304B\u3002\u5C0F\u91CE\u3055\u3093\u304C\u3044\u307E\u3059\u3002" },
@@ -25249,60 +25391,64 @@ var activities3 = [
         ]
       }
     },
-    assets: [p59, ...p1a6Picture ? [p1a6Picture] : []],
+    assets: [p1a6Picture],
     displayAssets: ["l4-p1-a6-picture-practice"],
     layout: [{
       type: "example",
       content: {
         id: "l4-p1-a6-ex",
-        label: "\u4F8B",
-        beforeParts: [text4("\u68EE\u3055\u3093\u306F \u3069\u3053\u306B \u3044\u307E\u3059\u304B\u3002")],
-        after: [text4("\u75C5\u9662\u306E \u524D\u306B \u3044\u307E\u3059\u3002")]
+        label: "[\u4F8B]",
+        beforeParts: [text4("\u68EE\u3055\u3093\u306F \u3069\u3053\u306B \u3044\u307E\u3059\u304B\u3002", { kana: "\u3082\u308A\u3055\u3093\u306F \u3069\u3053\u306B \u3044\u307E\u3059\u304B\u3002" })],
+        beforeKana: "\u3082\u308A\u3055\u3093\u306F \u3069\u3053\u306B \u3044\u307E\u3059\u304B\u3002",
+        after: [text4("\u75C5\u9662\u306E \u524D\u306B \u3044\u307E\u3059\u3002", { kana: "\u3073\u3087\u3046\u3044\u3093\u306E \u307E\u3048\u306B \u3044\u307E\u3059\u3002" })],
+        afterKana: "\u3073\u3087\u3046\u3044\u3093\u306E \u307E\u3048\u306B \u3044\u307E\u3059\u3002"
       }
     }],
-    items: p1a6Items2.map(([number, prompt, value]) => item(`l4-p1-a6-q${number}`, number, prompt, value, {
-      instruction: "\u542C\u5F55\u97F3\u95EE\u9898\uFF0C\u7ED3\u5408\u56FE\u7247\u586B\u5199\u56DE\u7B54\u53E5\u3002",
+    items: p1a6Items2.map(([number, , , value]) => item(`l4-p1-a6-q${number}`, number, "\u542C\u5F55\u97F3\u5E76\u56DE\u7B54\u3002", value, {
       answerSource: "audio",
-      relatedAssets: ["l4-p1-a6-picture-practice"],
-      inputSlots: sentenceSlot4("\u8F93\u5165\u56DE\u7B54\u53E5")
+      inputSlots: answerSlot(),
+      relatedAssets: ["l4-p1-a6-picture-practice"]
     }))
   },
   {
     id: "l4-p2-a1",
     section: "practice_2",
     order: 1,
-    title: "\u770B\u56FE\u5224\u65AD\u6B63\u8BEF",
-    instruction: "\u770B\u56FE\uFF0C\u4E0E\u56FE\u5185\u5BB9\u4E00\u81F4\u7684\u5728\u62EC\u53F7\u4E2D\u753B \u25CB\uFF0C\u4E0D\u4E00\u81F4\u7684\u753B \xD7\u3002",
+    title: "\u770B\u56FE\uFF0C\u4E0E\u56FE\u5185\u5BB9\u4E00\u81F4\u7684\u5728\uFF08\u3000\u3000\uFF09\u4E2D\u753B\u25CB\uFF0C\u4E0D\u4E00\u81F4\u7684\u753B\xD7\u3002",
+    instruction: "",
     interaction: "true_false",
     answerUnit: "boolean",
-    assets: [p60, ...p2a1Scene ? [p2a1Scene] : []],
+    responseScope: "boolean_only",
+    assets: [p2a1Scene],
     displayAssets: ["l4-p2-a1-scene-picture-practice"],
     layout: [{
       type: "example",
       content: {
         id: "l4-p2-a1-ex",
-        label: "\u4F8B",
-        beforeParts: [text4("\u3042\u305D\u3053\u306B \u30D3\u30EB\u304C \u3042\u308A\u307E\u3059\u3002")],
+        label: "[\u4F8B]",
+        beforeParts: [text4("\u3042\u305D\u3053\u306B \u30D3\u30EB\u304C \u3042\u308A\u307E\u3059\u3002", { kana: "\u3042\u305D\u3053\u306B \u30D3\u30EB\u304C \u3042\u308A\u307E\u3059\u3002" })],
+        beforeKana: "\u3042\u305D\u3053\u306B \u30D3\u30EB\u304C \u3042\u308A\u307E\u3059\u3002",
         after: [text4("\u25CB")]
       }
     }],
-    items: p2a1Items2.map(([number, prompt, value]) => trueFalseItem(`l4-p2-a1-q${number}`, number, prompt, value, ["l4-p2-a1-scene-picture-practice"]))
+    items: p2a1Items2.map(([number, prompt, promptKana, value]) => trueFalseItem(`l4-p2-a1-q${number}`, number, prompt, value, promptKana))
   },
   {
     id: "l4-p2-a2",
     section: "practice_2",
     order: 2,
-    title: "\u9009\u62E9\u6B63\u786E\u7B54\u6848",
-    instruction: "\u5728\u6B63\u786E\u7B54\u6848\u4E0A\u753B \u25CB\u3002",
+    title: "\u5728\u6B63\u786E\u7B54\u6848\u4E0A\u753B\u25CB\u3002",
+    instruction: "",
     interaction: "single_choice",
     answerUnit: "choice",
-    assets: [p60],
+    responseScope: "choice_only",
     layout: [{
       type: "example",
       content: {
         id: "l4-p2-a2-ex",
-        label: "\u4F8B",
-        beforeParts: [text4("\u673A\u306E \u4E0A\u306B \u65B0\u805E\u304C\uFF08\u3042\u308A\u307E\u3059\u30FB\u3044\u307E\u3059\uFF09\u3002")],
+        label: "[\u4F8B]",
+        beforeParts: [text4("\u673A\u306E \u4E0A\u306B \u65B0\u805E\u304C\uFF08\u3042\u308A\u307E\u3059\u30FB\u3044\u307E\u3059\uFF09\u3002", { kana: "\u3064\u304F\u3048\u306E \u3046\u3048\u306B \u3057\u3093\u3076\u3093\u304C \u3042\u308A\u307E\u3059 \u3044\u307E\u3059\u3002" })],
+        beforeKana: "\u3064\u304F\u3048\u306E \u3046\u3048\u306B \u3057\u3093\u3076\u3093\u304C \u3042\u308A\u307E\u3059 \u3044\u307E\u3059\u3002",
         after: [text4("\u3042\u308A\u307E\u3059")]
       }
     }],
@@ -25312,10 +25458,12 @@ var activities3 = [
     id: "l4-p2-a3",
     section: "practice_2",
     order: 3,
-    title: "\u770B\u56FE\u542C\u5F55\u97F3\u56DE\u7B54",
-    instruction: "\u8FB9\u770B\u56FE\u8FB9\u542C\u5F55\u97F3\uFF0C\u56DE\u7B54\u63D0\u95EE\u3002",
+    title: "\u8FB9\u770B\u56FE\u8FB9\u542C\u5F55\u97F3\uFF0C\u56DE\u7B54\u63D0\u95EE\u3002",
+    instruction: "",
     interaction: "listening_answer",
     answerUnit: "sentence",
+    responseScope: "answer_only",
+    responseScopeHint: answerOnlyHint,
     requiresAudio: true,
     audio: {
       source: "textbook_exercise",
@@ -25324,7 +25472,7 @@ var activities3 = [
       transcript: {
         text: "\u99C5\u306E\u524D\u306B\u4F55\u304C\u3042\u308A\u307E\u3059\u304B\u3002\u30C7\u30D1\u30FC\u30C8\u304C\u3042\u308A\u307E\u3059\u3002\u30C7\u30D1\u30FC\u30C8\u306E\u96A3\u306B\u4F55\u304C\u3042\u308A\u307E\u3059\u304B\u3002\u30C7\u30D1\u30FC\u30C8\u306E3\u968E\u306B\u4F55\u304C\u3042\u308A\u307E\u3059\u304B\u3002\u53D7\u4ED8\u306F\u3069\u3053\u306B\u3042\u308A\u307E\u3059\u304B\u3002\u98DF\u5802\u306F5\u968E\u306B\u3042\u308A\u307E\u3059\u304B\u3002\u30D0\u30FC\u30B2\u30F3\u4F1A\u5834\u306F3\u968E\u3067\u3059\u304B\u30014\u968E\u3067\u3059\u304B\u3002",
         source: "asr",
-        confidenceNote: "Azure ASR \u6F0F\u6389\u7B2C 1 \u5C0F\u9898\u56DE\u7B54\uFF0C\u5176\u4ED6\u5C0F\u9898\u53EA\u8BFB\u95EE\u9898\uFF1B\u7B54\u6848\u6309\u5F55\u97F3\u95EE\u9898\u4E0E\u5730\u56FE/\u697C\u5C42\u56FE\u5171\u540C\u786E\u5B9A\u3002",
+        confidenceNote: "ASR \u5C06\u5E8F\u53F7\u8BEF\u8BC6\u522B\u4E3A D/\u3044\u3044/R/\u4E09/\u6570/\u304A\u304A\uFF1B\u7B2C 1-5 \u5C0F\u9898\u5F55\u97F3\u53EA\u8BFB\u95EE\u9898\uFF0C\u7B54\u6848\u6309\u5730\u56FE\u548C\u697C\u5C42\u56FE\u786E\u5B9A\u3002",
         segments: [
           { itemNumber: "\u4F8B", speaker: "\u7532/\u4E59", text: "\u99C5\u306E\u524D\u306B\u4F55\u304C\u3042\u308A\u307E\u3059\u304B\u3002\u30C7\u30D1\u30FC\u30C8\u304C\u3042\u308A\u307E\u3059\u3002" },
           { itemNumber: "1", speaker: "\u7532", text: "\u30C7\u30D1\u30FC\u30C8\u306E\u96A3\u306B\u4F55\u304C\u3042\u308A\u307E\u3059\u304B\u3002" },
@@ -25335,33 +25483,34 @@ var activities3 = [
         ]
       }
     },
-    assets: [p60, ...p2a3Map ? [p2a3Map] : []],
+    assets: [p2a3Map],
     displayAssets: ["l4-p2-a3-map-picture-practice"],
     layout: [{
       type: "example",
       content: {
         id: "l4-p2-a3-ex",
-        label: "\u4F8B",
-        beforeParts: [text4("\u99C5\u306E \u524D\u306B \u4F55\u304C \u3042\u308A\u307E\u3059\u304B\u3002")],
-        after: [text4("\u30C7\u30D1\u30FC\u30C8\u304C \u3042\u308A\u307E\u3059\u3002")]
+        label: "[\u4F8B]",
+        beforeParts: [text4("\u99C5\u306E \u524D\u306B \u4F55\u304C \u3042\u308A\u307E\u3059\u304B\u3002", { kana: "\u3048\u304D\u306E \u307E\u3048\u306B \u306A\u306B\u304C \u3042\u308A\u307E\u3059\u304B\u3002" })],
+        beforeKana: "\u3048\u304D\u306E \u307E\u3048\u306B \u306A\u306B\u304C \u3042\u308A\u307E\u3059\u304B\u3002",
+        after: [text4("\u30C7\u30D1\u30FC\u30C8\u304C \u3042\u308A\u307E\u3059\u3002", { kana: "\u30C7\u30D1\u30FC\u30C8\u304C \u3042\u308A\u307E\u3059\u3002" })],
+        afterKana: "\u30C7\u30D1\u30FC\u30C8\u304C \u3042\u308A\u307E\u3059\u3002"
       }
     }],
-    items: p2a3Items.map(([number, prompt, value]) => item(`l4-p2-a3-q${number}`, number, prompt, value, {
-      instruction: "\u542C\u5F55\u97F3\u95EE\u9898\uFF0C\u7ED3\u5408\u5730\u56FE\u586B\u5199\u56DE\u7B54\u53E5\u3002",
+    items: p2a3Items.map(([number, , , value]) => item(`l4-p2-a3-q${number}`, number, "\u542C\u5F55\u97F3\u5E76\u56DE\u7B54\u3002", value, {
       answerSource: "audio",
-      relatedAssets: ["l4-p2-a3-map-picture-practice"],
-      inputSlots: sentenceSlot4("\u8F93\u5165\u56DE\u7B54\u53E5")
+      inputSlots: answerSlot(),
+      relatedAssets: ["l4-p2-a3-map-picture-practice"]
     }))
   },
   {
     id: "l4-p2-a4",
     section: "practice_2",
     order: 4,
-    title: "\u4E2D\u8BD1\u65E5",
-    instruction: "\u5C06\u4E0B\u9762\u7684\u53E5\u5B50\u8BD1\u6210\u65E5\u8BED\u3002",
+    title: "\u5C06\u4E0B\u9762\u7684\u53E5\u5B50\u8BD1\u6210\u65E5\u8BED\u3002",
+    instruction: "",
     interaction: "translation",
     answerUnit: "sentence",
-    assets: [p60],
+    responseScope: "sentence_only",
     layout: [],
     items: [
       item("l4-p2-a4-q1", "1", "\u684C\u5B50\u4E0A\u9762\u6709\uFF08\u4E00\u53EA\uFF09\u732B\u3002", "\u673A\u306E \u4E0A\u306B \u732B\u304C \u3044\u307E\u3059\u3002", { answerSource: "prompt" }),
@@ -25431,13 +25580,15 @@ lesson5ImageCrops.assets = lesson5ImageCrops.pages.flatMap((sourcePage) => sourc
 
 // practice/lesson5-practice-data.ts
 var page10 = (pageNo) => `../course-assets/by-lesson/lesson5/page${pageNo}.webp`;
+var audio4 = (exerciseNo, order) => `https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson5/Exe${exerciseNo}_${order}.mp3`;
 var text5 = (value, options = {}) => ({ type: "text", text: value, ...options });
 var repl5 = (value, substitutionKey, options = {}) => text5(value, { ...options, underline: true, substitutionKey });
 var blank2 = (slotId) => ({ type: "blank", slotId });
-var crop5 = (id) => lesson5ImageCrops.assets.find((asset) => asset.id === id);
+var crop4 = (id) => lesson5ImageCrops.assets.find((asset2) => asset2.id === id);
 var sentenceSlot5 = (placeholder = "\u8F93\u5165\u5B8C\u6574\u56DE\u7B54") => [{ id: "answer", expectedUnit: "sentence", width: "long", placeholder }];
 var shortSlot2 = (id, placeholder = "\u8F93\u5165 1 \u4E2A\u5047\u540D") => ({ id, expectedUnit: "word", width: "short", placeholder });
 var mediumSlot = (id, placeholder) => ({ id, expectedUnit: "phrase", width: "medium", placeholder });
+var answerOnlyHint2 = "\u53EA\u586B\u5199\u63D0\u95EE\u540E\u7684\u56DE\u7B54\u90E8\u5206\uFF0C\u4E0D\u9700\u8981\u91CD\u5199\u95EE\u9898\u3002";
 var answerItem3 = (id, number, prompt, answer3, options = {}) => ({
   id,
   number,
@@ -25445,6 +25596,8 @@ var answerItem3 = (id, number, prompt, answer3, options = {}) => ({
   promptKana: options.promptKana,
   instruction: "",
   answerSource: options.answerSource || "example_transform",
+  responseScope: options.responseScope,
+  responseScopeHint: options.responseScopeHint,
   inputSlots: sentenceSlot5(options.placeholder || "\u8F93\u5165\u5B8C\u6574\u56DE\u7B54"),
   answer: { slotValues: { answer: answer3 }, note: options.note }
 });
@@ -25456,6 +25609,7 @@ var personalItem = (id, number, prompt, modelAnswers, promptKana) => ({
   instruction: "",
   answerSource: "personal",
   evaluationMode: "acceptable_answers",
+  responseScope: "free_response",
   inputSlots: sentenceSlot5("\u6309\u5B9E\u9645\u60C5\u51B5\u4F5C\u7B54"),
   answer: {
     modelAnswers,
@@ -25469,6 +25623,7 @@ var blankItem2 = (id, number, prompt, slotIds, answers, promptKana) => ({
   promptKana,
   instruction: "",
   answerSource: "prompt",
+  responseScope: "word_only",
   inputSlots: slotIds.map((slotId) => shortSlot2(slotId)),
   answer: { slotValues: answers }
 });
@@ -25479,6 +25634,7 @@ var gridItem = (id, number, prompt, answer3, given, promptKana) => ({
   promptKana,
   instruction: prompt,
   answerSource: "example_transform",
+  responseScope: "phrase_only",
   inputSlots: [
     mediumSlot("masu", "\uFF5E\u307E\u3059"),
     mediumSlot("masen", "\uFF5E\u307E\u305B\u3093"),
@@ -25496,12 +25652,13 @@ var activities4 = [
     instruction: "",
     interaction: "pattern_substitution",
     answerUnit: "sentence",
-    assets: [crop5("l5-p1-a1-clock-set"), crop5("l5-p1-a1-digital-set")],
-    displayAssets: ["l5-p1-a1-clock-set", "l5-p1-a1-digital-set"],
+    responseScope: "sentence_only",
+    assets: [crop4("l5-p1-a1-clock-set"), crop4("l5-p1-a1-digital-set")],
     layout: [],
     itemGroups: [
       {
         id: "l5-p1-a1-g1",
+        displayAssets: ["l5-p1-a1-clock-set"],
         example: {
           id: "l5-p1-a1-ex1",
           label: "[\u4F8B1]",
@@ -25519,6 +25676,7 @@ var activities4 = [
       },
       {
         id: "l5-p1-a1-g2",
+        displayAssets: ["l5-p1-a1-digital-set"],
         example: {
           id: "l5-p1-a1-ex2",
           label: "[\u4F8B2]",
@@ -25544,9 +25702,12 @@ var activities4 = [
     instruction: "",
     interaction: "fill_blank",
     answerUnit: "phrase",
+    responseScope: "phrase_only",
     requiresAudio: true,
     audio: {
       source: "textbook_exercise",
+      url: audio4(1, 2),
+      label: "\u7B2C5\u8BFE \u7EC3\u4E60I-2",
       transcript: {
         text: "\u8D77\u304D\u307E\u3059\u3002\u8D77\u304D\u307E\u305B\u3093\u3002\u8D77\u304D\u307E\u3057\u305F\u3002\u8D77\u304D\u307E\u305B\u3093\u3067\u3057\u305F\u3002\u5BDD\u307E\u3059\u3002\u5BDD\u307E\u305B\u3093\u3002\u5BDD\u307E\u3057\u305F\u3002\u5BDD\u307E\u305B\u3093\u3067\u3057\u305F\u3002\u50CD\u304D\u307E\u3059\u3002\u50CD\u304D\u307E\u305B\u3093\u3002\u50CD\u304D\u307E\u3057\u305F\u3002\u50CD\u304D\u307E\u305B\u3093\u3067\u3057\u305F\u3002\u4F11\u307F\u307E\u3059\u3002\u4F11\u307F\u307E\u305B\u3093\u3002\u4F11\u307F\u307E\u3057\u305F\u3002\u4F11\u307F\u307E\u305B\u3093\u3067\u3057\u305F\u3002\u52C9\u5F37\u3057\u307E\u3059\u3002\u52C9\u5F37\u3057\u307E\u305B\u3093\u3002\u52C9\u5F37\u3057\u307E\u3057\u305F\u3002\u52C9\u5F37\u3057\u307E\u305B\u3093\u3067\u3057\u305F\u3002",
         source: "manual",
@@ -25576,6 +25737,7 @@ var activities4 = [
     instruction: "",
     interaction: "pattern_substitution",
     answerUnit: "sentence",
+    responseScope: "sentence_only",
     layout: [],
     itemGroups: [
       {
@@ -25670,6 +25832,8 @@ var activities4 = [
     instruction: "",
     interaction: "dialogue_practice",
     answerUnit: "sentence",
+    responseScope: "answer_only",
+    responseScopeHint: answerOnlyHint2,
     layout: [],
     itemGroups: [
       {
@@ -25717,6 +25881,8 @@ var activities4 = [
     instruction: "",
     interaction: "dialogue_practice",
     answerUnit: "sentence",
+    responseScope: "answer_only",
+    responseScopeHint: answerOnlyHint2,
     layout: [
       {
         type: "example",
@@ -25745,9 +25911,13 @@ var activities4 = [
     instruction: "",
     interaction: "listening_answer",
     answerUnit: "sentence",
+    responseScope: "answer_only",
+    responseScopeHint: answerOnlyHint2,
     requiresAudio: true,
     audio: {
       source: "textbook_exercise",
+      url: audio4(1, 6),
+      label: "\u7B2C5\u8BFE \u7EC3\u4E60I-6",
       transcript: {
         text: "\u4ECA\u65E5\u30019\u6642\u304B\u30895\u6642\u307E\u3067\u50CD\u304D\u307E\u3059\u304B\u3002\u306F\u3044\u3001\u4ECA\u65E5\u30019\u6642\u304B\u30895\u6642\u307E\u3067\u50CD\u304D\u307E\u3059\u3002\u6BCE\u671D7\u6642\u306B\u8D77\u304D\u307E\u3059\u304B\u3002\u306F\u3044\u3001\u6BCE\u671D7\u6642\u306B\u8D77\u304D\u307E\u3059\u3002\u6628\u65E5\u306E\u591C10\u6642\u306B\u5BDD\u307E\u3057\u305F\u304B\u3002\u3044\u3044\u3048\u3001\u6628\u65E5\u306E\u591C10\u6642\u306B\u5BDD\u307E\u305B\u3093\u3067\u3057\u305F\u3002\u6BCE\u9031\u6708\u66DC\u65E5\u304B\u3089\u571F\u66DC\u65E5\u307E\u3067\u50CD\u304D\u307E\u3059\u304B\u3002\u306F\u3044\u3001\u6BCE\u9031\u6708\u66DC\u65E5\u304B\u3089\u571F\u66DC\u65E5\u307E\u3067\u50CD\u304D\u307E\u3059\u3002\u4ECA\u66698\u6642\u304B\u3089\u52C9\u5F37\u3057\u307E\u3059\u304B\u3002\u306F\u3044\u3001\u4ECA\u66698\u6642\u304B\u3089\u52C9\u5F37\u3057\u307E\u3059\u3002\u4ECA\u671D5\u6642\u306B\u8D77\u304D\u307E\u3057\u305F\u304B\u3002\u306F\u3044\u3001\u4ECA\u671D5\u6642\u306B\u8D77\u304D\u307E\u3057\u305F\u3002",
         source: "manual",
@@ -25789,6 +25959,7 @@ var activities4 = [
     instruction: "",
     interaction: "fill_blank",
     answerUnit: "word",
+    responseScope: "word_only",
     layout: [],
     items: [
       blankItem2("l5-p2-a1-q1", "1", [text5("\u4ECA \u4F55\u6642 "), blank2("a1"), text5(" \u3067\u3059 "), blank2("a2"), text5("\u3002")], ["a1", "a2"], { a1: "\xD7", a2: "\u304B" }, "\u3044\u307E \u306A\u3093\u3058 \uFF08  \uFF09 \u3067\u3059 \uFF08  \uFF09\u3002"),
@@ -25806,9 +25977,13 @@ var activities4 = [
     instruction: "",
     interaction: "listening_answer",
     answerUnit: "sentence",
+    responseScope: "answer_only",
+    responseScopeHint: answerOnlyHint2,
     requiresAudio: true,
     audio: {
       source: "textbook_exercise",
+      url: audio4(2, 2),
+      label: "\u7B2C5\u8BFE \u7EC3\u4E60II-2",
       transcript: {
         text: "\u51FA\u5F35\u306F\u3044\u3064\u304B\u3089\u3067\u3059\u304B\u3002\u6765\u9031\u306E\u6C34\u66DC\u65E5\u304B\u3089\u3067\u3059\u3002\u7814\u4FEE\u306F\u3044\u3064\u307E\u3067\u3067\u3059\u304B\u3002\u4ECA\u9031\u306E\u6708\u66DC\u65E5\u307E\u3067\u3067\u3059\u3002\u4F11\u307F\u306F\u3044\u3064\u304B\u3089\u4F55\u66DC\u65E5\u307E\u3067\u3067\u3059\u304B\u3002\u4ECA\u9031\u306E\u6C34\u66DC\u65E5\u304B\u3089\u571F\u66DC\u65E5\u307E\u3067\u3067\u3059\u3002\u65C5\u884C\u306F\u3044\u3064\u304B\u3089\u3044\u3064\u307E\u3067\u3067\u3059\u304B\u3002\u6765\u9031\u306E\u571F\u66DC\u65E5\u304B\u3089\u3055\u6765\u9031\u306E\u6708\u66DC\u65E5\u307E\u3067\u3067\u3059\u3002\u30D1\u30FC\u30C6\u30A3\u30FC\u306F\u3044\u3064\u3067\u3059\u304B\u3002\u3055\u6765\u9031\u306E\u91D1\u66DC\u65E5\u3067\u3059\u3002",
         source: "manual",
@@ -25822,7 +25997,7 @@ var activities4 = [
         ]
       }
     },
-    assets: [crop5("l5-p2-a2-calendar")],
+    assets: [crop4("l5-p2-a2-calendar")],
     displayAssets: ["l5-p2-a2-calendar"],
     layout: [
       {
@@ -25852,6 +26027,7 @@ var activities4 = [
     instruction: "",
     interaction: "dialogue_practice",
     answerUnit: "free_text",
+    responseScope: "free_response",
     layout: [
       {
         type: "example",
@@ -25879,6 +26055,7 @@ var activities4 = [
     instruction: "",
     interaction: "translation",
     answerUnit: "sentence",
+    responseScope: "sentence_only",
     layout: [],
     items: [
       answerItem3("l5-p2-a4-q1", "1", "\u68EE\u8001\u5E08 7 \u70B9\u8D77\u5E8A\u3002", "\u68EE\u5148\u751F\u306F 7\u6642\u306B \u8D77\u304D\u307E\u3059\u3002"),
@@ -25940,19 +26117,22 @@ lesson6ImageCrops.assets = lesson6ImageCrops.pages.flatMap((sourcePage) => sourc
 
 // practice/lesson6-practice-data.ts
 var page12 = (pageNo) => `../course-assets/by-lesson/lesson6/page${pageNo}.webp`;
+var audio5 = (exerciseNo, order) => `https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/Exe${exerciseNo}_${order}.mp3`;
 var text6 = (value, options = {}) => ({ type: "text", text: value, ...options });
 var repl6 = (value, substitutionKey, options = {}) => text6(value, { ...options, underline: true, substitutionKey });
 var blank3 = (slotId) => ({ type: "blank", slotId });
-var crop6 = (id) => lesson6ImageCrops.assets.find((asset) => asset.id === id);
+var crop5 = (id) => lesson6ImageCrops.assets.find((asset2) => asset2.id === id);
 var sentenceSlots = (placeholder = "\u8F93\u5165\u5B8C\u6574\u56DE\u7B54") => [{ id: "answer", expectedUnit: "sentence", width: "long", placeholder }];
 var shortSlots = (slotIds) => slotIds.map((slotId) => ({ id: slotId, expectedUnit: "word", width: "short", placeholder: "\u8F93\u5165 1 \u4E2A\u5047\u540D" }));
-var answerItem4 = (id, number, prompt, answer3, promptKana, answerSource = "example_transform", note) => ({
+var answerOnlyHint3 = "\u53EA\u586B\u5199\u63D0\u95EE\u540E\u7684\u56DE\u7B54\u90E8\u5206\uFF0C\u4E0D\u9700\u8981\u91CD\u5199\u95EE\u9898\u3002";
+var answerItem4 = (id, number, prompt, answer3, promptKana, answerSource = "example_transform", note, responseScope) => ({
   id,
   number,
   prompt: [text6(prompt)],
   promptKana,
   instruction: "",
   answerSource,
+  responseScope,
   inputSlots: sentenceSlots(),
   answer: { slotValues: { answer: answer3 }, note }
 });
@@ -25963,6 +26143,7 @@ var dialogueItem3 = (id, number, prompt, answer3, promptKana) => ({
   promptKana,
   instruction: "",
   answerSource: "example_transform",
+  responseScope: "dialogue_only",
   inputSlots: [{ id: "answer", expectedUnit: "dialogue", width: "long", multiline: true, rows: 3, placeholder: "\u8F93\u5165\u5B8C\u6574\u5BF9\u8BDD" }],
   answer: { slotValues: { answer: answer3 } }
 });
@@ -25973,6 +26154,7 @@ var blankItem3 = (id, number, prompt, answers, promptKana) => ({
   promptKana,
   instruction: "",
   answerSource: "prompt",
+  responseScope: "word_only",
   inputSlots: shortSlots(Object.keys(answers)),
   answer: { slotValues: answers }
 });
@@ -25985,9 +26167,12 @@ var activities5 = [
     instruction: "",
     interaction: "listening_repeat",
     answerUnit: "sentence",
+    responseScope: "sentence_only",
     requiresAudio: true,
     audio: {
       source: "textbook_exercise",
+      url: audio5(1, 1),
+      label: "\u7B2C6\u8BFE \u7EC3\u4E60I-1",
       transcript: {
         text: "\u30AF\u30EA\u30B9\u30DE\u30B9\u306F12\u670825\u65E5\u3067\u3059\u3002\u308F\u305F\u3057\u306E\u8A95\u751F\u65E5\u306F9\u67081\u65E5\u3067\u3059\u3002\u300C\u3053\u3069\u3082\u306E\u65E5\u300D\u306F5\u67085\u65E5\u3067\u3059\u3002\u660E\u65E5\u306F11\u67083\u65E5\u3067\u3059\u3002",
         source: "manual",
@@ -26015,6 +26200,7 @@ var activities5 = [
     instruction: "",
     interaction: "pattern_substitution",
     answerUnit: "sentence",
+    responseScope: "sentence_only",
     layout: [],
     itemGroups: [
       {
@@ -26076,6 +26262,7 @@ var activities5 = [
     instruction: "",
     interaction: "dialogue_practice",
     answerUnit: "dialogue",
+    responseScope: "dialogue_only",
     layout: [],
     itemGroups: [
       {
@@ -26122,10 +26309,10 @@ var activities5 = [
           afterKana: "\u304A\u3046\u3055\u3093\u306F \u3058\u3085\u3046\u304C\u3064\u306B \u3061\u3085\u3046\u3054\u304F\u3078 \u304B\u3048\u308A\u307E\u3057\u305F\u3002"
         },
         items: [
-          answerItem4("l6-p1-a3-q8", "8", "\u5F35\uFF0F6\u6708\uFF0F\u4E2D\u56FD", "\u5F35\u3055\u3093\u306F 6\u6708\u306B \u4E2D\u56FD\u3078 \u5E30\u308A\u307E\u3057\u305F\u3002", "\u3061\u3087\u3046\uFF0F\u308D\u304F\u304C\u3064\uFF0F\u3061\u3085\u3046\u3054\u304F"),
-          answerItem4("l6-p1-a3-q9", "9", "\u30B9\u30DF\u30B9\uFF0F9\u6708\uFF0F\u30A2\u30E1\u30EA\u30AB", "\u30B9\u30DF\u30B9\u3055\u3093\u306F 9\u6708\u306B \u30A2\u30E1\u30EA\u30AB\u3078 \u5E30\u308A\u307E\u3057\u305F\u3002", "\u30B9\u30DF\u30B9\uFF0F\u304F\u304C\u3064\uFF0F\u30A2\u30E1\u30EA\u30AB"),
-          answerItem4("l6-p1-a3-q10", "10", "\u30AD\u30E0\uFF0F12\u6708\uFF0F\u97D3\u56FD", "\u30AD\u30E0\u3055\u3093\u306F 12\u6708\u306B \u97D3\u56FD\u3078 \u5E30\u308A\u307E\u3057\u305F\u3002", "\u30AD\u30E0\uFF0F\u3058\u3085\u3046\u306B\u304C\u3064\uFF0F\u304B\u3093\u3053\u304F"),
-          answerItem4("l6-p1-a3-q11", "11", "\u30C7\u30E5\u30DD\u30F3\uFF0F7\u6708\uFF0F\u30D5\u30E9\u30F3\u30B9", "\u30C7\u30E5\u30DD\u30F3\u3055\u3093\u306F 7\u6708\u306B \u30D5\u30E9\u30F3\u30B9\u3078 \u5E30\u308A\u307E\u3057\u305F\u3002", "\u30C7\u30E5\u30DD\u30F3\uFF0F\u3057\u3061\u304C\u3064\uFF0F\u30D5\u30E9\u30F3\u30B9")
+          answerItem4("l6-p1-a3-q8", "8", "\u5F35\uFF0F6\u6708\uFF0F\u4E2D\u56FD", "\u5F35\u3055\u3093\u306F 6\u6708\u306B \u4E2D\u56FD\u3078 \u5E30\u308A\u307E\u3057\u305F\u3002", "\u3061\u3087\u3046\uFF0F\u308D\u304F\u304C\u3064\uFF0F\u3061\u3085\u3046\u3054\u304F", "example_transform", void 0, "sentence_only"),
+          answerItem4("l6-p1-a3-q9", "9", "\u30B9\u30DF\u30B9\uFF0F9\u6708\uFF0F\u30A2\u30E1\u30EA\u30AB", "\u30B9\u30DF\u30B9\u3055\u3093\u306F 9\u6708\u306B \u30A2\u30E1\u30EA\u30AB\u3078 \u5E30\u308A\u307E\u3057\u305F\u3002", "\u30B9\u30DF\u30B9\uFF0F\u304F\u304C\u3064\uFF0F\u30A2\u30E1\u30EA\u30AB", "example_transform", void 0, "sentence_only"),
+          answerItem4("l6-p1-a3-q10", "10", "\u30AD\u30E0\uFF0F12\u6708\uFF0F\u97D3\u56FD", "\u30AD\u30E0\u3055\u3093\u306F 12\u6708\u306B \u97D3\u56FD\u3078 \u5E30\u308A\u307E\u3057\u305F\u3002", "\u30AD\u30E0\uFF0F\u3058\u3085\u3046\u306B\u304C\u3064\uFF0F\u304B\u3093\u3053\u304F", "example_transform", void 0, "sentence_only"),
+          answerItem4("l6-p1-a3-q11", "11", "\u30C7\u30E5\u30DD\u30F3\uFF0F7\u6708\uFF0F\u30D5\u30E9\u30F3\u30B9", "\u30C7\u30E5\u30DD\u30F3\u3055\u3093\u306F 7\u6708\u306B \u30D5\u30E9\u30F3\u30B9\u3078 \u5E30\u308A\u307E\u3057\u305F\u3002", "\u30C7\u30E5\u30DD\u30F3\uFF0F\u3057\u3061\u304C\u3064\uFF0F\u30D5\u30E9\u30F3\u30B9", "example_transform", void 0, "sentence_only")
         ]
       }
     ],
@@ -26139,6 +26326,7 @@ var activities5 = [
     instruction: "",
     interaction: "dialogue_practice",
     answerUnit: "dialogue",
+    responseScope: "dialogue_only",
     layout: [
       {
         type: "example",
@@ -26165,6 +26353,8 @@ var activities5 = [
     instruction: "",
     interaction: "dialogue_practice",
     answerUnit: "sentence",
+    responseScope: "answer_only",
+    responseScopeHint: answerOnlyHint3,
     layout: [
       {
         type: "example",
@@ -26193,9 +26383,13 @@ var activities5 = [
     instruction: "",
     interaction: "listening_answer",
     answerUnit: "sentence",
+    responseScope: "sentence_only",
+    responseScopeHint: "\u586B\u5199\u6700\u540E\u7EC4\u6210\u7684\u5B8C\u6574\u53E5\u5B50\uFF0C\u4E0D\u9700\u8981\u9010\u6761\u5199\u2460\u2461\u2462\u2463\u7684\u56DE\u7B54\u3002",
     requiresAudio: true,
     audio: {
       source: "textbook_exercise",
+      url: audio5(1, 6),
+      label: "\u7B2C6\u8BFE \u7EC3\u4E60I-6",
       transcript: {
         text: "\u674E\u3055\u3093\u306F\u3044\u3064\u884C\u304D\u307E\u3057\u305F\u304B\u3002\u5148\u6708\u3001\u884C\u304D\u307E\u3057\u305F\u3002\u3060\u308C\u3068\u884C\u304D\u307E\u3057\u305F\u304B\u3002\u4F50\u85E4\u3055\u3093\u3068\u884C\u304D\u307E\u3057\u305F\u3002\u4F55\u3067\u884C\u304D\u307E\u3057\u305F\u304B\u3002\u65B0\u5E79\u7DDA\u3067\u884C\u304D\u307E\u3057\u305F\u3002\u3069\u3053\u3078\u884C\u304D\u307E\u3057\u305F\u304B\u3002\u5927\u962A\u3078\u884C\u304D\u307E\u3057\u305F\u3002\u674E\u3055\u3093\u306F\u5148\u6708\u3001\u4F50\u85E4\u3055\u3093\u3068\u65B0\u5E79\u7DDA\u3067\u5927\u962A\u3078\u884C\u304D\u307E\u3057\u305F\u3002\u674E\u3055\u3093\u306F\u3044\u3064\u884C\u304D\u307E\u3057\u305F\u304B\u3002\u590F\u4F11\u307F\u306B\u884C\u304D\u307E\u3057\u305F\u3002\u3060\u308C\u3068\u884C\u304D\u307E\u3057\u305F\u304B\u3002\u53CB\u9054\u3068\u884C\u304D\u307E\u3057\u305F\u3002\u4F55\u3067\u884C\u304D\u307E\u3057\u305F\u304B\u3002\u8ECA\u3067\u884C\u304D\u307E\u3057\u305F\u3002\u3069\u3053\u3078\u884C\u304D\u307E\u3057\u305F\u304B\u3002\u7BB1\u6839\u3078\u884C\u304D\u307E\u3057\u305F\u3002\u30AD\u30E0\u3055\u3093\u306F\u3044\u3064\u6765\u307E\u3059\u304B\u3002\u6765\u6708\u6765\u307E\u3059\u3002\u4F55\u3067\u6765\u307E\u3059\u304B\u3002\u98DB\u884C\u6A5F\u3067\u6765\u307E\u3059\u3002\u3069\u3053\u3078\u6765\u307E\u3059\u304B\u3002\u65E5\u672C\u3078\u6765\u307E\u3059\u3002\u5409\u7530\u3055\u3093\u306F\u3044\u3064\u5E30\u308A\u307E\u3057\u305F\u304B\u3002\u6628\u65E5\u5E30\u308A\u307E\u3057\u305F\u3002\u4F55\u3067\u5E30\u308A\u307E\u3057\u305F\u304B\u3002\u30BF\u30AF\u30B7\u30FC\u3067\u5E30\u308A\u307E\u3057\u305F\u3002\u3069\u3053\u304B\u3089\u3069\u3053\u3078\u5E30\u308A\u307E\u3057\u305F\u304B\u3002\u4F1A\u793E\u304B\u3089\u5BB6\u3078\u5E30\u308A\u307E\u3057\u305F\u3002",
         source: "manual",
@@ -26207,7 +26401,7 @@ var activities5 = [
         ]
       }
     },
-    assets: [crop6("l6-p1-a6-trip-scenes")],
+    assets: [crop5("l6-p1-a6-trip-scenes")],
     displayAssets: ["l6-p1-a6-trip-scenes"],
     layout: [
       {
@@ -26235,6 +26429,7 @@ var activities5 = [
     instruction: "",
     interaction: "fill_blank",
     answerUnit: "word",
+    responseScope: "word_only",
     layout: [],
     items: [
       blankItem3("l6-p2-a1-q1", "1", [text6("\u6628\u65E5 \u53CB\u9054 "), blank3("a1"), text6(" \u56F3\u66F8\u9928 "), blank3("a2"), text6(" \u884C\u304D\u307E\u3057\u305F\u3002")], { a1: "\u3068", a2: "\u3078" }, "\u304D\u306E\u3046 \u3068\u3082\u3060\u3061 \uFF08  \uFF09 \u3068\u3057\u3087\u304B\u3093 \uFF08  \uFF09 \u3044\u304D\u307E\u3057\u305F\u3002"),
@@ -26251,7 +26446,9 @@ var activities5 = [
     instruction: "",
     interaction: "dialogue_practice",
     answerUnit: "sentence",
-    assets: [crop6("l6-p2-a2-bus-routes")],
+    responseScope: "answer_only",
+    responseScopeHint: answerOnlyHint3,
+    assets: [crop5("l6-p2-a2-bus-routes")],
     displayAssets: ["l6-p2-a2-bus-routes"],
     layout: [
       {
@@ -26280,6 +26477,7 @@ var activities5 = [
     instruction: "",
     interaction: "reading_cloze",
     answerUnit: "word",
+    responseScope: "word_only",
     layout: [
       {
         type: "word_bank",
@@ -26301,9 +26499,13 @@ var activities5 = [
     instruction: "",
     interaction: "listening_answer",
     answerUnit: "sentence",
+    responseScope: "answer_only",
+    responseScopeHint: answerOnlyHint3,
     requiresAudio: true,
     audio: {
       source: "textbook_exercise",
+      url: audio5(2, 4),
+      label: "\u7B2C6\u8BFE \u7EC3\u4E60II-4",
       transcript: {
         text: "8\u670815\u65E5\u304B\u308924\u65E5\u307E\u3067\u3001\u590F\u4F11\u307F\u3067\u3059\u3002\u5BB6\u65CF\u3068\u98DB\u884C\u6A5F\u3067\u5317\u4EAC\u3078\u884C\u304D\u307E\u3059\u3002\u5317\u4EAC\u304B\u3089\u96FB\u8ECA\u3067\u4E0A\u6D77\u3078\u884C\u304D\u307E\u3059\u300223\u65E5\u306B\u4E0A\u6D77\u304B\u3089\u65E5\u672C\u3078\u5E30\u308A\u307E\u3059\u3002\u590F\u4F11\u307F\u306B\u3069\u3053\u3078\u884C\u304D\u307E\u3059\u304B\u3002\u5317\u4EAC\u3078\u884C\u304D\u307E\u3059\u3002\u3060\u308C\u3068\u884C\u304D\u307E\u3059\u304B\u3002\u5BB6\u65CF\u3068\u884C\u304D\u307E\u3059\u3002\u5317\u4EAC\u307E\u3067\u4F55\u3067\u884C\u304D\u307E\u3059\u304B\u3002\u98DB\u884C\u6A5F\u3067\u884C\u304D\u307E\u3059\u3002\u5317\u4EAC\u304B\u3089\u96FB\u8ECA\u3067\u3069\u3053\u3078\u884C\u304D\u307E\u3059\u304B\u3002\u4E0A\u6D77\u3078\u884C\u304D\u307E\u3059\u3002\u3044\u3064\u65E5\u672C\u3078\u5E30\u308A\u307E\u3059\u304B\u300223\u65E5\u306B\u5E30\u308A\u307E\u3059\u3002",
         source: "manual",
@@ -26342,6 +26544,7 @@ var activities5 = [
     instruction: "",
     interaction: "translation",
     answerUnit: "sentence",
+    responseScope: "sentence_only",
     layout: [],
     items: [
       answerItem4("l6-p2-a5-q1", "1", "\u5C0F\u91CE\u5973\u58EB\u548C\u670B\u53CB\uFF08\u4E00\u5757\u513F\uFF09\u56DE\u53BB\u3002", "\u5C0F\u91CE\u3055\u3093\u306F \u53CB\u9054\u3068 \u3044\u3063\u3057\u3087\u306B \u5E30\u308A\u307E\u3059\u3002"),

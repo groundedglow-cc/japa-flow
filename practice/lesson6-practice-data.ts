@@ -2,6 +2,8 @@ import type { LessonPractice, PracticeActivity, PracticeItem, PromptPart, RichTe
 import { lesson6ImageCrops } from "./lesson6-image-crops";
 
 const page = (pageNo: number) => `../course-assets/by-lesson/lesson6/page${pageNo}.webp`;
+const audio = (exerciseNo: 1 | 2, order: number) =>
+  `https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/Exe${exerciseNo}_${order}.mp3`;
 const text = (value: string, options: Omit<RichText, "type" | "text"> = {}): RichText => ({ type: "text", text: value, ...options });
 const repl = (value: string, substitutionKey: string, options: Omit<RichText, "type" | "text" | "underline" | "substitutionKey"> = {}): RichText =>
   text(value, { ...options, underline: true, substitutionKey });
@@ -10,14 +12,25 @@ const crop = (id: string) => lesson6ImageCrops.assets.find((asset) => asset.id =
 
 const sentenceSlots = (placeholder = "输入完整回答") => [{ id: "answer", expectedUnit: "sentence" as const, width: "long" as const, placeholder }];
 const shortSlots = (slotIds: string[]) => slotIds.map((slotId) => ({ id: slotId, expectedUnit: "word" as const, width: "short" as const, placeholder: "输入 1 个假名" }));
+const answerOnlyHint = "只填写提问后的回答部分，不需要重写问题。";
 
-const answerItem = (id: string, number: string, prompt: string, answer: string, promptKana?: string, answerSource: "example_transform" | "audio" = "example_transform", note?: string): PracticeItem => ({
+const answerItem = (
+  id: string,
+  number: string,
+  prompt: string,
+  answer: string,
+  promptKana?: string,
+  answerSource: "example_transform" | "audio" = "example_transform",
+  note?: string,
+  responseScope?: PracticeItem["responseScope"]
+): PracticeItem => ({
   id,
   number,
   prompt: [text(prompt)],
   promptKana,
   instruction: "",
   answerSource,
+  responseScope,
   inputSlots: sentenceSlots(),
   answer: { slotValues: { answer }, note }
 });
@@ -29,6 +42,7 @@ const dialogueItem = (id: string, number: string, prompt: string, answer: string
   promptKana,
   instruction: "",
   answerSource: "example_transform",
+  responseScope: "dialogue_only",
   inputSlots: [{ id: "answer", expectedUnit: "dialogue", width: "long", multiline: true, rows: 3, placeholder: "输入完整对话" }],
   answer: { slotValues: { answer } }
 });
@@ -40,6 +54,7 @@ const blankItem = (id: string, number: string, prompt: PromptPart[], answers: Re
   promptKana,
   instruction: "",
   answerSource: "prompt",
+  responseScope: "word_only",
   inputSlots: shortSlots(Object.keys(answers)),
   answer: { slotValues: answers }
 });
@@ -53,9 +68,12 @@ const activities: PracticeActivity[] = [
     instruction: "",
     interaction: "listening_repeat",
     answerUnit: "sentence",
+    responseScope: "sentence_only",
     requiresAudio: true,
     audio: {
       source: "textbook_exercise",
+      url: audio(1, 1),
+      label: "第6课 练习I-1",
       transcript: {
         text: "クリスマスは12月25日です。わたしの誕生日は9月1日です。「こどもの日」は5月5日です。明日は11月3日です。",
         source: "manual",
@@ -83,6 +101,7 @@ const activities: PracticeActivity[] = [
     instruction: "",
     interaction: "pattern_substitution",
     answerUnit: "sentence",
+    responseScope: "sentence_only",
     layout: [],
     itemGroups: [
       {
@@ -144,6 +163,7 @@ const activities: PracticeActivity[] = [
     instruction: "",
     interaction: "dialogue_practice",
     answerUnit: "dialogue",
+    responseScope: "dialogue_only",
     layout: [],
     itemGroups: [
       {
@@ -190,10 +210,10 @@ const activities: PracticeActivity[] = [
           afterKana: "おうさんは じゅうがつに ちゅうごくへ かえりました。"
         },
         items: [
-          answerItem("l6-p1-a3-q8", "8", "張／6月／中国", "張さんは 6月に 中国へ 帰りました。", "ちょう／ろくがつ／ちゅうごく"),
-          answerItem("l6-p1-a3-q9", "9", "スミス／9月／アメリカ", "スミスさんは 9月に アメリカへ 帰りました。", "スミス／くがつ／アメリカ"),
-          answerItem("l6-p1-a3-q10", "10", "キム／12月／韓国", "キムさんは 12月に 韓国へ 帰りました。", "キム／じゅうにがつ／かんこく"),
-          answerItem("l6-p1-a3-q11", "11", "デュポン／7月／フランス", "デュポンさんは 7月に フランスへ 帰りました。", "デュポン／しちがつ／フランス")
+          answerItem("l6-p1-a3-q8", "8", "張／6月／中国", "張さんは 6月に 中国へ 帰りました。", "ちょう／ろくがつ／ちゅうごく", "example_transform", undefined, "sentence_only"),
+          answerItem("l6-p1-a3-q9", "9", "スミス／9月／アメリカ", "スミスさんは 9月に アメリカへ 帰りました。", "スミス／くがつ／アメリカ", "example_transform", undefined, "sentence_only"),
+          answerItem("l6-p1-a3-q10", "10", "キム／12月／韓国", "キムさんは 12月に 韓国へ 帰りました。", "キム／じゅうにがつ／かんこく", "example_transform", undefined, "sentence_only"),
+          answerItem("l6-p1-a3-q11", "11", "デュポン／7月／フランス", "デュポンさんは 7月に フランスへ 帰りました。", "デュポン／しちがつ／フランス", "example_transform", undefined, "sentence_only")
         ]
       }
     ],
@@ -207,6 +227,7 @@ const activities: PracticeActivity[] = [
     instruction: "",
     interaction: "dialogue_practice",
     answerUnit: "dialogue",
+    responseScope: "dialogue_only",
     layout: [
       {
         type: "example",
@@ -233,6 +254,8 @@ const activities: PracticeActivity[] = [
     instruction: "",
     interaction: "dialogue_practice",
     answerUnit: "sentence",
+    responseScope: "answer_only",
+    responseScopeHint: answerOnlyHint,
     layout: [
       {
         type: "example",
@@ -261,9 +284,13 @@ const activities: PracticeActivity[] = [
     instruction: "",
     interaction: "listening_answer",
     answerUnit: "sentence",
+    responseScope: "sentence_only",
+    responseScopeHint: "填写最后组成的完整句子，不需要逐条写①②③④的回答。",
     requiresAudio: true,
     audio: {
       source: "textbook_exercise",
+      url: audio(1, 6),
+      label: "第6课 练习I-6",
       transcript: {
         text: "李さんはいつ行きましたか。先月、行きました。だれと行きましたか。佐藤さんと行きました。何で行きましたか。新幹線で行きました。どこへ行きましたか。大阪へ行きました。李さんは先月、佐藤さんと新幹線で大阪へ行きました。李さんはいつ行きましたか。夏休みに行きました。だれと行きましたか。友達と行きました。何で行きましたか。車で行きました。どこへ行きましたか。箱根へ行きました。キムさんはいつ来ますか。来月来ます。何で来ますか。飛行機で来ます。どこへ来ますか。日本へ来ます。吉田さんはいつ帰りましたか。昨日帰りました。何で帰りましたか。タクシーで帰りました。どこからどこへ帰りましたか。会社から家へ帰りました。",
         source: "manual",
@@ -303,6 +330,7 @@ const activities: PracticeActivity[] = [
     instruction: "",
     interaction: "fill_blank",
     answerUnit: "word",
+    responseScope: "word_only",
     layout: [],
     items: [
       blankItem("l6-p2-a1-q1", "1", [text("昨日 友達 "), blank("a1"), text(" 図書館 "), blank("a2"), text(" 行きました。")], { a1: "と", a2: "へ" }, "きのう ともだち （  ） としょかん （  ） いきました。"),
@@ -319,6 +347,8 @@ const activities: PracticeActivity[] = [
     instruction: "",
     interaction: "dialogue_practice",
     answerUnit: "sentence",
+    responseScope: "answer_only",
+    responseScopeHint: answerOnlyHint,
     assets: [crop("l6-p2-a2-bus-routes")],
     displayAssets: ["l6-p2-a2-bus-routes"],
     layout: [
@@ -348,6 +378,7 @@ const activities: PracticeActivity[] = [
     instruction: "",
     interaction: "reading_cloze",
     answerUnit: "word",
+    responseScope: "word_only",
     layout: [
       {
         type: "word_bank",
@@ -369,9 +400,13 @@ const activities: PracticeActivity[] = [
     instruction: "",
     interaction: "listening_answer",
     answerUnit: "sentence",
+    responseScope: "answer_only",
+    responseScopeHint: answerOnlyHint,
     requiresAudio: true,
     audio: {
       source: "textbook_exercise",
+      url: audio(2, 4),
+      label: "第6课 练习II-4",
       transcript: {
         text: "8月15日から24日まで、夏休みです。家族と飛行機で北京へ行きます。北京から電車で上海へ行きます。23日に上海から日本へ帰ります。夏休みにどこへ行きますか。北京へ行きます。だれと行きますか。家族と行きます。北京まで何で行きますか。飛行機で行きます。北京から電車でどこへ行きますか。上海へ行きます。いつ日本へ帰りますか。23日に帰ります。",
         source: "manual",
@@ -410,6 +445,7 @@ const activities: PracticeActivity[] = [
     instruction: "",
     interaction: "translation",
     answerUnit: "sentence",
+    responseScope: "sentence_only",
     layout: [],
     items: [
       answerItem("l6-p2-a5-q1", "1", "小野女士和朋友（一块儿）回去。", "小野さんは 友達と いっしょに 帰ります。"),

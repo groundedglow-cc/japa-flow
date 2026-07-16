@@ -78,6 +78,14 @@ OSS_BASE_URL=https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com
 
 ## Change Log
 
+### 2026-07-16
+
+- 重整第 3、4、5、6 课 practice 数据，补充 `responseScope`、听力音频元信息、kana、教材原题标题和 answer-only / free-response 等作答范围。
+- 优化 practice preview 的多例句分组渲染，支持 `PracticeItemGroup.displayAssets`，让图片、例句和对应小题按教材视觉顺序绑定展示。
+- 调整错题答案对比展示，从字符级 diff 改为更直接的“你的答案 / 正确答案”对照，并修正选择题只高亮已选项的批改状态。
+- 强化对话录音格式化接口：从例句文本提取 speaker 轮次，按自然可朗读的一轮话合并 ASR 片段，并特别处理 `Aですか？Bですか？Aです。` 这类选择疑问句。
+- 更新 `practise-generete-prompt-v3.md` 的生成规范，明确禁止听力题泄露转写文本、禁止自造分组说明，并要求分组图片绑定到对应 item group。
+
 ### 2026-07-15
 
 - 重新整理第 1、2 课 practice preview 数据，补充 response scope、例句展示、录音转写、图片裁切与薄 HTML/bundle 入口兼容。

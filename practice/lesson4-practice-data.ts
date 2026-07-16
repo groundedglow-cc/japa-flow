@@ -1,4 +1,4 @@
-import type { AnswerSource, Choice, ImageAsset, InputSlot, LessonPractice, PracticeActivity, PracticeItem, PromptPart, RichText } from "./lesson-practice-types";
+import type { AnswerSource, Choice, InputSlot, LessonPractice, PracticeActivity, PracticeItem, PromptPart, RichText } from "./lesson-practice-types";
 import { lesson4ImageCrops } from "./lesson4-image-crops";
 
 const page = (pageNo: number) => `../course-assets/by-lesson/lesson4/page${pageNo}.webp`;
@@ -9,78 +9,62 @@ const audioUrl = (section: "practice_1" | "practice_2", order: number) => {
 const text = (value: string, options: Omit<RichText, "type" | "text"> = {}): RichText => ({ type: "text", text: value, ...options });
 const repl = (value: string, substitutionKey: string, options: Omit<RichText, "type" | "text" | "underline" | "substitutionKey"> = {}): RichText =>
   text(value, { ...options, underline: true, substitutionKey });
-const crop = (id: string) => lesson4ImageCrops.assets.find((asset) => asset.id === id);
+const asset = (id: string) => {
+  const found = lesson4ImageCrops.assets.find((entry) => entry.id === id);
+  if (!found) throw new Error(`Missing lesson4 image crop: ${id}`);
+  return found;
+};
 
-const sourceAsset = (pageNo: number, label: string): ImageAsset => ({
-  id: `l4-page${pageNo}-practice-source`,
-  kind: "source_crop",
-  imagePath: page(pageNo),
-  label
-});
-
-const p58 = sourceAsset(58, "练习 I 第 1-3 题原页");
-const p59 = sourceAsset(59, "练习 I 第 4-6 题原页");
-const p60 = sourceAsset(60, "练习 II 原页");
-const p1a3Object = crop("l4-p1-a3-object-picture-practice");
-const p1a3Person = crop("l4-p1-a3-person-picture-practice");
-const p1a5Room = crop("l4-p1-a5-room-picture-practice");
-const p1a6Picture = crop("l4-p1-a6-picture-practice");
-const p2a1Scene = crop("l4-p2-a1-scene-picture-practice");
-const p2a3Map = crop("l4-p2-a3-map-picture-practice");
+const p1a3Object = asset("l4-p1-a3-object-picture-practice");
+const p1a3Person = asset("l4-p1-a3-person-picture-practice");
+const p1a5Room = asset("l4-p1-a5-room-picture-practice");
+const p1a6Picture = asset("l4-p1-a6-picture-practice");
+const p2a1Scene = asset("l4-p2-a1-scene-picture-practice");
+const p2a3Map = asset("l4-p2-a3-map-picture-practice");
 
 const sentenceSlot = (placeholder = "输入 1 个完整句子"): InputSlot[] => [
   { id: "answer", expectedUnit: "sentence", width: "long", placeholder }
 ];
-const phraseSlot = (placeholder = "输入词语或短语"): InputSlot[] => [
-  { id: "answer", expectedUnit: "phrase", width: "medium", placeholder }
-];
-const dialogueSlot = (placeholder = "输入完整回答", rows = 3): InputSlot[] => [
-  { id: "answer", expectedUnit: "dialogue", width: "long", placeholder, multiline: true, rows }
+const answerSlot = (placeholder = "只输入回答部分"): InputSlot[] => [
+  { id: "answer", expectedUnit: "sentence", width: "long", placeholder }
 ];
 
-const answer = (value: string | undefined, note?: string) => value ? { slotValues: { answer: value }, note } : note ? { note } : undefined;
+const answer = (value: string, note?: string, acceptableAlternatives?: string[]) => ({
+  slotValues: { answer: value },
+  acceptableAlternatives,
+  note
+});
 
 const item = (
   id: string,
   number: string,
   prompt: string | PromptPart[],
-  value: string | undefined,
+  value: string,
   options: {
+    promptKana?: string;
     instruction?: string;
     answerSource?: AnswerSource;
     inputSlots?: InputSlot[];
     relatedAssets?: string[];
     renderHint?: PracticeItem["renderHint"];
+    responseScope?: PracticeItem["responseScope"];
+    responseScopeHint?: string;
     note?: string;
     acceptableAlternatives?: string[];
   } = {}
 ): PracticeItem => ({
   id,
   number,
-  instruction: options.instruction || "填写答案。",
+  instruction: options.instruction || "",
   answerSource: options.answerSource || "example_transform",
+  responseScope: options.responseScope,
+  responseScopeHint: options.responseScopeHint,
   prompt: typeof prompt === "string" ? [text(prompt)] : prompt,
+  promptKana: options.promptKana,
   inputSlots: options.inputSlots || sentenceSlot(),
-  answer: value
-    ? { slotValues: { answer: value }, acceptableAlternatives: options.acceptableAlternatives, note: options.note }
-    : answer(value, options.note),
+  answer: answer(value, options.note, options.acceptableAlternatives),
   relatedAssets: options.relatedAssets,
   renderHint: options.renderHint || "inline"
-});
-
-const dialogueItem = (
-  id: string,
-  number: string,
-  prompt: string,
-  value: string | undefined,
-  options: { answerSource?: AnswerSource; relatedAssets?: string[]; rows?: number; note?: string } = {}
-) => item(id, number, prompt, value, {
-  instruction: "仿照例句，填写完整回答。",
-  answerSource: options.answerSource || "example_transform",
-  inputSlots: dialogueSlot("输入完整回答", options.rows || 3),
-  relatedAssets: options.relatedAssets,
-  renderHint: "dialogue",
-  note: options.note
 });
 
 const choiceItem = (
@@ -88,103 +72,104 @@ const choiceItem = (
   number: string,
   prompt: string,
   choices: string[],
-  correct: string,
-  options: { answerSource?: AnswerSource; instruction?: string; relatedAssets?: string[] } = {}
+  correct: string
 ): PracticeItem => {
   const mapped: Choice[] = choices.map((label, index) => ({ id: `${id}-c${index + 1}`, label }));
   const selected = mapped.find((choice) => choice.label === correct);
   return {
     id,
     number,
-    instruction: options.instruction || "从选项中选择正确答案。",
-    answerSource: options.answerSource || "prompt",
+    instruction: "",
+    answerSource: "prompt",
+    responseScope: "choice_only",
     prompt: [text(prompt)],
     choices: mapped,
     answer: { choiceIds: selected ? [selected.id] : [] },
-    relatedAssets: options.relatedAssets,
     renderHint: "inline"
   };
 };
 
-const trueFalseItem = (id: string, number: string, prompt: string, value: boolean, relatedAssets: string[]): PracticeItem => ({
+const trueFalseItem = (id: string, number: string, prompt: string, value: boolean, promptKana: string): PracticeItem => ({
   id,
   number,
-  instruction: "与图一致选 ○，不一致选 ×。",
+  instruction: "",
   answerSource: "prompt",
+  responseScope: "boolean_only",
   prompt: [text(prompt)],
+  promptKana,
   choices: [
     { id: `${id}-true`, label: "○" },
     { id: `${id}-false`, label: "×" }
   ],
   answer: { boolean: value, choiceIds: [`${id}-${value ? "true" : "false"}`] },
-  relatedAssets,
+  relatedAssets: ["l4-p2-a1-scene-picture-practice"],
   renderHint: "inline"
 });
 
 const p1a1Group1 = [
-  ["1", "机", "部屋に 机が あります。"],
-  ["2", "時計", "部屋に 時計が あります。"],
-  ["3", "本棚", "部屋に 本棚が あります。"],
-  ["4", "パソコン", "部屋に パソコンが あります。"],
-  ["5", "ベッド", "部屋に ベッドが あります。"]
+  ["1", "机", "つくえ", "部屋に 机が あります。"],
+  ["2", "時計", "とけい", "部屋に 時計が あります。"],
+  ["3", "本棚", "ほんだな", "部屋に 本棚が あります。"],
+  ["4", "パソコン", "パソコン", "部屋に パソコンが あります。"],
+  ["5", "ベッド", "ベッド", "部屋に ベッドが あります。"]
 ];
 const p1a1Group2 = [
-  ["6", "犬", "あそこに 犬が います。"],
-  ["7", "男の人", "あそこに 男の人が います。"],
-  ["8", "女の人", "あそこに 女の人が います。"],
-  ["9", "子供", "あそこに 子供が います。"],
-  ["10", "李さん", "あそこに 李さんが います。"]
+  ["6", "犬", "いぬ", "あそこに 犬が います。"],
+  ["7", "男の 人", "おとこの ひと", "あそこに 男の 人が います。"],
+  ["8", "女の 人", "おんなの ひと", "あそこに 女の 人が います。"],
+  ["9", "子供", "こども", "あそこに 子供が います。"],
+  ["10", "李さん", "りさん", "あそこに 李さんが います。"]
 ];
 const p1a2Group1 = [
-  ["1", "車の 前", "車の 前に 何が ありますか。"],
-  ["2", "いすの 上", "いすの 上に 何が ありますか。"],
-  ["3", "箱の 中", "箱の 中に 何が ありますか。"],
-  ["4", "木の 下", "木の 下に 何が ありますか。"]
+  ["1", "車の 前", "くるまの まえ", "車の 前に 何が ありますか。"],
+  ["2", "いすの 上", "いすの うえ", "いすの 上に 何が ありますか。"],
+  ["3", "箱の 中", "はこの なか", "箱の 中に 何が ありますか。"],
+  ["4", "木の 下", "きの した", "木の 下に 何が ありますか。"]
 ];
 const p1a2Group2 = [
-  ["5", "会議室", "会議室に だれが いますか。"],
-  ["6", "林さんの 後ろ", "林さんの 後ろに だれが いますか。"],
-  ["7", "李さんの 隣", "李さんの 隣に だれが いますか。"],
-  ["8", "車の 中", "車の 中に だれが いますか。"]
+  ["5", "会議室", "かいぎしつ", "会議室に だれが いますか。"],
+  ["6", "林さんの 後ろ", "はやしさんの うしろ", "林さんの 後ろに だれが いますか。"],
+  ["7", "李さんの 隣", "りさんの となり", "李さんの 隣に だれが いますか。"],
+  ["8", "車の 中", "くるまの なか", "車の 中に だれが いますか。"]
 ];
 const p1a3ObjectItems = [
-  ["1", "テレビの 上に 何が ありますか。", "カメラが あります。"],
-  ["2", "いすの 下に 何が ありますか。", "サッカーボールが あります。"],
-  ["3", "本棚の 上に 何が ありますか。", "時計が あります。"],
-  ["4", "箱の 中に 何が ありますか。", "何も ありません。"]
+  ["1", "テレビの 上に 何が ありますか。", "テレビの うえに なにが ありますか。", "カメラが あります。"],
+  ["2", "いすの 下に 何が ありますか。", "いすの したに なにが ありますか。", "サッカーボールが あります。"],
+  ["3", "本棚の 上に 何が ありますか。", "ほんだなの うえに なにが ありますか。", "時計が あります。"],
+  ["4", "箱の 中に 何が ありますか。", "はこの なかに なにが ありますか。", "何も ありません。"]
 ];
 const p1a3PersonItems = [
-  ["5", "会議室に だれが いますか。", "森さんが います。"],
-  ["6", "パソコンの 前に だれが いますか。", "小野さんが います。"],
-  ["7", "庭に だれが いますか。", "スミスさんが います。"],
-  ["8", "車の 後ろに だれが いますか。", "だれも いません。"]
+  ["5", "会議室に だれが いますか。", "かいぎしつに だれが いますか。", "森さんが います。"],
+  ["6", "パソコンの 前に だれが いますか。", "パソコンの まえに だれが いますか。", "小野さんが います。"],
+  ["7", "庭に だれが いますか。", "にわに だれが いますか。", "スミスさんが います。"],
+  ["8", "車の 後ろに だれが いますか。", "くるまの うしろに だれが いますか。", "だれも いません。"]
 ];
 const p1a4Items = [
-  ["1", "生徒は 教室に いますか。（はい）", "はい、います。"],
-  ["2", "林さんの 家は どこですか。（横浜）", "横浜です。"],
-  ["3", "JC企画は どこに ありますか。（銀行の 隣）", "銀行の 隣に あります。"],
-  ["4", "森さんは 部屋に いますか。（いいえ）", "いいえ、いません。"]
+  ["1", "生徒は 教室に いますか。（はい）", "せいとは きょうしつに いますか。（はい）", "はい、います。"],
+  ["2", "林さんの 家は どこですか。（横浜）", "はやしさんの いえは どこですか。（よこはま）", "横浜です。"],
+  ["3", "JC企画は どこに ありますか。（銀行の 隣）", "ジェーシーきかくは どこに ありますか。（ぎんこうの となり）", "銀行の 隣に あります。"],
+  ["4", "森さんは 部屋に いますか。（いいえ）", "もりさんは へやに いますか。（いいえ）", "いいえ、いません。"]
 ];
 const p1a5Items = [
-  ["1", "听录音问题并回答。", "はい、あります。"],
-  ["2", "听录音问题并回答。", "いいえ、ありません。"],
-  ["3", "听录音问题并回答。", "いいえ、いません。"],
-  ["4", "听录音问题并回答。", "机の 下です。"],
-  ["5", "听录音问题并回答。", "いすの 下です。"]
+  ["1", "部屋に いすが ありますか。", "へやに いすが ありますか。", "はい、あります。"],
+  ["2", "部屋に 電話が ありますか。", "へやに でんわが ありますか。", "いいえ、ありません。"],
+  ["3", "いすの 下に 猫が いますか。", "いすの したに ねこが いますか。", "いいえ、いません。"],
+  ["4", "かばんは 机の 下ですか、いすの 下ですか。", "かばんは つくえの したですか、いすの したですか。", "机の 下です。"],
+  ["5", "サッカーボールは いすの 上ですか、いすの 下ですか。", "サッカーボールは いすの うえですか、いすの したですか。", "いすの 下です。"]
 ];
 const p1a6Items = [
-  ["1", "听录音问题并回答。", "小野さんが います。"],
-  ["2", "听录音问题并回答。", "かばんの 中に あります。"],
-  ["3", "听录音问题并回答。", "新聞が あります。"],
-  ["4", "听录音问题并回答。", "何も ありません。"],
-  ["5", "听录音问题并回答。", "だれも いません。"]
+  ["1", "あそこに だれが いますか。", "あそこに だれが いますか。", "小野さんが います。"],
+  ["2", "本は どこに ありますか。", "ほんは どこに ありますか。", "かばんの 中に あります。"],
+  ["3", "机の 上に 何が ありますか。", "つくえの うえに なにが ありますか。", "新聞が あります。"],
+  ["4", "箱の 中に 何が ありますか。", "はこの なかに なにが ありますか。", "何も ありません。"],
+  ["5", "図書室に だれが いますか。", "としょしつに だれが いますか。", "だれも いません。"]
 ];
 const p2a1Items = [
-  ["1", "車の 中に 犬が います。", true],
-  ["2", "いすの 上に 猫が います。", false],
-  ["3", "木の 下に いすが あります。", true],
-  ["4", "木の 下に だれも いません。", true],
-  ["5", "男の 人は 車の 後ろに います。", false]
+  ["1", "車の 中に 犬が います。", "くるまの なかに いぬが います。", true],
+  ["2", "いすの 上に 猫が います。", "いすの うえに ねこが います。", false],
+  ["3", "木の 下に いすが あります。", "きの したに いすが あります。", true],
+  ["4", "木の 下に だれも いません。", "きの したに だれも いません。", true],
+  ["5", "男の 人は 車の 後ろに います。", "おとこの ひとは くるまの うしろに います。", false]
 ] as const;
 const p2a2Items = [
   ["1", "箱の 中に（　　）が ありますか。", ["だれ", "何"], "何"],
@@ -194,48 +179,56 @@ const p2a2Items = [
   ["5", "ベッドの 上に（　　）が あります。", ["子供", "雑誌"], "雑誌"]
 ] as const;
 const p2a3Items = [
-  ["1", "听录音问题并回答。", "郵便局が あります。"],
-  ["2", "听录音问题并回答。", "カメラ売り場が あります。"],
-  ["3", "听录音问题并回答。", "デパートの 1階に あります。"],
-  ["4", "听录音问题并回答。", "はい、あります。"],
-  ["5", "听录音问题并回答。", "4階です。"]
+  ["1", "デパートの 隣に 何が ありますか。", "デパートの となりに なにが ありますか。", "郵便局が あります。"],
+  ["2", "デパートの 3階に 何が ありますか。", "デパートの さんかいに なにが ありますか。", "カメラ売り場が あります。"],
+  ["3", "受付は どこに ありますか。", "うけつけは どこに ありますか。", "デパートの 1階に あります。"],
+  ["4", "食堂は 5階に ありますか。", "しょくどうは ごかいに ありますか。", "はい、あります。"],
+  ["5", "バーゲン会場は 3階ですか、4階ですか。", "バーゲンかいじょうは さんかいですか、よんかいですか。", "4階です。"]
 ];
+
+const answerOnlyHint = "只填写提问后的回答部分，不需要重写问题。";
 
 const activities: PracticeActivity[] = [
   {
     id: "l4-p1-a1",
     section: "practice_1",
     order: 1,
-    title: "替换存在句",
-    instruction: "仿照例句替换画线部分进行练习。",
+    title: "仿照例句替换画线部分进行练习。",
+    instruction: "",
     interaction: "pattern_substitution",
     answerUnit: "sentence",
-    assets: [p58],
+    responseScope: "sentence_only",
     layout: [],
     itemGroups: [
       {
         id: "l4-p1-a1-g1",
-        title: "例 1：无生命物体",
-        instruction: "使用「部屋に A が あります」。",
         example: {
           id: "l4-p1-a1-ex1",
-          label: "例 1",
-          beforeParts: [repl("いす", "object")],
-          after: [text("部屋に "), repl("いす", "object"), text("が あります。")]
+          label: "[例1]",
+          beforeParts: [repl("いす", "object", { kana: "いす" })],
+          beforeKana: "いす",
+          after: [text("部屋に ", { kana: "へやに" }), repl("いす", "object", { kana: "いす" }), text("が あります。")],
+          afterKana: "へやに いすが あります。"
         },
-        items: p1a1Group1.map(([number, prompt, value]) => item(`l4-p1-a1-q${number}`, number, prompt, value))
+        items: p1a1Group1.map(([number, prompt, promptKana, value]) => item(`l4-p1-a1-q${number}`, number, prompt, value, {
+          promptKana,
+          inputSlots: sentenceSlot("输入完整句子")
+        }))
       },
       {
         id: "l4-p1-a1-g2",
-        title: "例 2：有生命的人或动物",
-        instruction: "使用「あそこに A が います」。",
         example: {
           id: "l4-p1-a1-ex2",
-          label: "例 2",
-          beforeParts: [repl("猫", "personOrAnimal")],
-          after: [text("あそこに "), repl("猫", "personOrAnimal"), text("が います。")]
+          label: "[例2]",
+          beforeParts: [repl("猫", "personOrAnimal", { kana: "ねこ" })],
+          beforeKana: "ねこ",
+          after: [text("あそこに "), repl("猫", "personOrAnimal", { kana: "ねこ" }), text("が います。")],
+          afterKana: "あそこに ねこが います。"
         },
-        items: p1a1Group2.map(([number, prompt, value]) => item(`l4-p1-a1-q${number}`, number, prompt, value))
+        items: p1a1Group2.map(([number, prompt, promptKana, value]) => item(`l4-p1-a1-q${number}`, number, prompt, value, {
+          promptKana,
+          inputSlots: sentenceSlot("输入完整句子")
+        }))
       }
     ],
     items: []
@@ -244,36 +237,42 @@ const activities: PracticeActivity[] = [
     id: "l4-p1-a2",
     section: "practice_1",
     order: 2,
-    title: "替换位置问句",
-    instruction: "仿照例句替换画线部分进行练习。",
+    title: "仿照例句替换画线部分进行练习。",
+    instruction: "",
     interaction: "pattern_substitution",
     answerUnit: "sentence",
-    assets: [p58],
+    responseScope: "sentence_only",
     layout: [],
     itemGroups: [
       {
         id: "l4-p1-a2-g1",
-        title: "例 1：询问物品",
-        instruction: "使用「A に 何が ありますか」。",
         example: {
           id: "l4-p1-a2-ex1",
-          label: "例 1",
-          beforeParts: [repl("机の 上", "place")],
-          after: [repl("机の 上", "place"), text("に 何が ありますか。")]
+          label: "[例1]",
+          beforeParts: [repl("机の 上", "place", { kana: "つくえの うえ" })],
+          beforeKana: "つくえの うえ",
+          after: [repl("机の 上", "place", { kana: "つくえの うえ" }), text("に 何が ありますか。", { kana: "に なにが ありますか。" })],
+          afterKana: "つくえの うえに なにが ありますか。"
         },
-        items: p1a2Group1.map(([number, prompt, value]) => item(`l4-p1-a2-q${number}`, number, prompt, value))
+        items: p1a2Group1.map(([number, prompt, promptKana, value]) => item(`l4-p1-a2-q${number}`, number, prompt, value, {
+          promptKana,
+          inputSlots: sentenceSlot("输入完整问句")
+        }))
       },
       {
         id: "l4-p1-a2-g2",
-        title: "例 2：询问人物",
-        instruction: "使用「A に だれが いますか」。",
         example: {
           id: "l4-p1-a2-ex2",
-          label: "例 2",
+          label: "[例2]",
           beforeParts: [repl("あそこ", "place")],
-          after: [repl("あそこ", "place"), text("に だれが いますか。")]
+          beforeKana: "あそこ",
+          after: [repl("あそこ", "place"), text("に だれが いますか。")],
+          afterKana: "あそこに だれが いますか。"
         },
-        items: p1a2Group2.map(([number, prompt, value]) => item(`l4-p1-a2-q${number}`, number, prompt, value))
+        items: p1a2Group2.map(([number, prompt, promptKana, value]) => item(`l4-p1-a2-q${number}`, number, prompt, value, {
+          promptKana,
+          inputSlots: sentenceSlot("输入完整问句")
+        }))
       }
     ],
     items: []
@@ -282,44 +281,49 @@ const activities: PracticeActivity[] = [
     id: "l4-p1-a3",
     section: "practice_1",
     order: 3,
-    title: "看图回答位置问题",
-    instruction: "看图，仿照例句回答提问。",
+    title: "看图，仿照例句回答提问。",
+    instruction: "",
     interaction: "dialogue_practice",
     answerUnit: "sentence",
-    assets: [p58, ...(p1a3Object ? [p1a3Object] : []), ...(p1a3Person ? [p1a3Person] : [])],
-    displayAssets: ["l4-p1-a3-object-picture-practice", "l4-p1-a3-person-picture-practice"],
+    responseScope: "answer_only",
+    responseScopeHint: answerOnlyHint,
+    assets: [p1a3Object, p1a3Person],
     layout: [],
     itemGroups: [
       {
         id: "l4-p1-a3-g1",
-        title: "例 1：回答有什么",
-        instruction: "根据图中的物品回答。",
+        displayAssets: ["l4-p1-a3-object-picture-practice"],
         example: {
           id: "l4-p1-a3-ex1",
-          label: "例 1",
-          beforeParts: [text("いすの 上に 何が ありますか。")],
-          after: [repl("本", "object"), text("が あります。")]
+          label: "[例1]",
+          beforeParts: [text("いすの 上に 何が ありますか。", { kana: "いすの うえに なにが ありますか。" })],
+          beforeKana: "いすの うえに なにが ありますか。",
+          after: [text("本が あります。", { kana: "ほんが あります。" })],
+          afterKana: "ほんが あります。"
         },
-        items: p1a3ObjectItems.map(([number, prompt, value]) => item(`l4-p1-a3-q${number}`, number, prompt, value, {
-          instruction: "根据图片，填写回答句。",
-          relatedAssets: ["l4-p1-a3-object-picture-practice"],
-          inputSlots: sentenceSlot("输入回答句")
+        items: p1a3ObjectItems.map(([number, prompt, promptKana, value]) => item(`l4-p1-a3-q${number}`, number, prompt, value, {
+          promptKana,
+          answerSource: "prompt",
+          inputSlots: answerSlot(),
+          relatedAssets: ["l4-p1-a3-object-picture-practice"]
         }))
       },
       {
         id: "l4-p1-a3-g2",
-        title: "例 2：回答有谁",
-        instruction: "根据图中的人物回答。",
+        displayAssets: ["l4-p1-a3-person-picture-practice"],
         example: {
           id: "l4-p1-a3-ex2",
-          label: "例 2",
-          beforeParts: [text("図書室に だれが いますか。")],
-          after: [repl("李さん", "person"), text("が います。")]
+          label: "[例2]",
+          beforeParts: [text("図書室に だれが いますか。", { kana: "としょしつに だれが いますか。" })],
+          beforeKana: "としょしつに だれが いますか。",
+          after: [text("李さんが います。", { kana: "りさんが います。" })],
+          afterKana: "りさんが います。"
         },
-        items: p1a3PersonItems.map(([number, prompt, value]) => item(`l4-p1-a3-q${number}`, number, prompt, value, {
-          instruction: "根据图片，填写回答句。",
-          relatedAssets: ["l4-p1-a3-person-picture-practice"],
-          inputSlots: sentenceSlot("输入回答句")
+        items: p1a3PersonItems.map(([number, prompt, promptKana, value]) => item(`l4-p1-a3-q${number}`, number, prompt, value, {
+          promptKana,
+          answerSource: "prompt",
+          inputSlots: answerSlot(),
+          relatedAssets: ["l4-p1-a3-person-picture-practice"]
         }))
       }
     ],
@@ -329,24 +333,27 @@ const activities: PracticeActivity[] = [
     id: "l4-p1-a4",
     section: "practice_1",
     order: 4,
-    title: "用括号词回答",
-    instruction: "仿照例句，用括号中的词语回答提问。",
+    title: "仿照例句，用（　　）中的词语回答提问。",
+    instruction: "",
     interaction: "dialogue_practice",
     answerUnit: "sentence",
-    assets: [p59],
+    responseScope: "answer_only",
+    responseScopeHint: answerOnlyHint,
     layout: [{
       type: "example",
       content: {
         id: "l4-p1-a4-ex",
-        label: "例",
-        beforeParts: [text("森さんは どこに いますか。（"), repl("食堂", "place"), text("）")],
-        after: [repl("食堂", "place"), text("に います。")]
+        label: "[例]",
+        beforeParts: [text("森さんは どこに いますか。（", { kana: "もりさんは どこに いますか。（" }), repl("食堂", "place", { kana: "しょくどう" }), text("）")],
+        beforeKana: "もりさんは どこに いますか。（しょくどう）",
+        after: [repl("食堂", "place", { kana: "しょくどう" }), text("に います。")],
+        afterKana: "しょくどうに います。"
       }
     }],
-    items: p1a4Items.map(([number, prompt, value]) => item(`l4-p1-a4-q${number}`, number, prompt, value, {
-      instruction: "使用括号中的词语填写回答句。",
+    items: p1a4Items.map(([number, prompt, promptKana, value]) => item(`l4-p1-a4-q${number}`, number, prompt, value, {
+      promptKana,
       answerSource: "prompt",
-      inputSlots: sentenceSlot("输入回答句"),
+      inputSlots: answerSlot(),
       acceptableAlternatives: number === "2" ? ["横浜に あります。"] : undefined
     }))
   },
@@ -354,10 +361,12 @@ const activities: PracticeActivity[] = [
     id: "l4-p1-a5",
     section: "practice_1",
     order: 5,
-    title: "看图听录音回答",
-    instruction: "边看图边听录音，仿照例句回答提问。",
+    title: "边看图边听录音，仿照例句回答提问。",
+    instruction: "",
     interaction: "listening_answer",
     answerUnit: "sentence",
+    responseScope: "answer_only",
+    responseScopeHint: answerOnlyHint,
     requiresAudio: true,
     audio: {
       source: "textbook_exercise",
@@ -366,7 +375,7 @@ const activities: PracticeActivity[] = [
       transcript: {
         text: "机の上に時計がありますか。はい、あります。部屋にいすがありますか。はい、あります。部屋に電話がありますか。いいえ、ありません。いすの下に猫がいますか。いいえ、いません。かばんは机の下ですか、いすの下ですか。机の下です。サッカーボールはいすの上ですか、いすの下ですか。いすの下です。",
         source: "asr",
-        confidenceNote: "Azure ASR 将序号误识别为 D/いい/ああ/三/おお；已按教材 例、1-5 的固定问答顺序清理切分。",
+        confidenceNote: "ASR 将序号误识别为 D/いい/ああ/三/おお；已按教材 [例]、1-5 的固定问答顺序清理切分。",
         segments: [
           { itemNumber: "例", speaker: "甲/乙", text: "机の上に時計がありますか。はい、あります。" },
           { itemNumber: "1", speaker: "甲/乙", text: "部屋にいすがありますか。はい、あります。" },
@@ -377,32 +386,35 @@ const activities: PracticeActivity[] = [
         ]
       }
     },
-    assets: [p59, ...(p1a5Room ? [p1a5Room] : [])],
+    assets: [p1a5Room],
     displayAssets: ["l4-p1-a5-room-picture-practice"],
     layout: [{
       type: "example",
       content: {
         id: "l4-p1-a5-ex",
-        label: "例",
-        beforeParts: [text("机の 上に 時計が ありますか。")],
-        after: [text("はい、あります。")]
+        label: "[例]",
+        beforeParts: [text("机の 上に 時計が ありますか。", { kana: "つくえの うえに とけいが ありますか。" })],
+        beforeKana: "つくえの うえに とけいが ありますか。",
+        after: [text("はい、あります。")],
+        afterKana: "はい、あります。"
       }
     }],
-    items: p1a5Items.map(([number, prompt, value]) => item(`l4-p1-a5-q${number}`, number, prompt, value, {
-      instruction: "听录音问题，结合图片填写回答句。",
+    items: p1a5Items.map(([number, , , value]) => item(`l4-p1-a5-q${number}`, number, "听录音并回答。", value, {
       answerSource: "audio",
-      relatedAssets: ["l4-p1-a5-room-picture-practice"],
-      inputSlots: sentenceSlot("输入回答句")
+      inputSlots: answerSlot(),
+      relatedAssets: ["l4-p1-a5-room-picture-practice"]
     }))
   },
   {
     id: "l4-p1-a6",
     section: "practice_1",
     order: 6,
-    title: "看图听录音回答",
-    instruction: "边看图边听录音，仿照例句回答提问。",
+    title: "边看图边听录音，仿照例句回答提问。",
+    instruction: "",
     interaction: "listening_answer",
     answerUnit: "sentence",
+    responseScope: "answer_only",
+    responseScopeHint: answerOnlyHint,
     requiresAudio: true,
     audio: {
       source: "textbook_exercise",
@@ -411,7 +423,7 @@ const activities: PracticeActivity[] = [
       transcript: {
         text: "森さんはどこにいますか。病院の前にいます。あそこにだれがいますか。小野さんがいます。本はどこにありますか。かばんの中にあります。机の上に何がありますか。新聞があります。箱の中に何がありますか。何もありません。図書室にだれがいますか。だれもいません。",
         source: "asr",
-        confidenceNote: "Azure ASR 将序号误识别为 D/いい/R/三/数/おお，并把「箱」误作「数箱」；已结合图片标签和题型清理。",
+        confidenceNote: "ASR 将序号误识别为 D/いい/ああ/三/おお，并把「箱」误作「数箱」；已结合图片标签和题型清理。",
         segments: [
           { itemNumber: "例", speaker: "甲/乙", text: "森さんはどこにいますか。病院の前にいます。" },
           { itemNumber: "1", speaker: "甲/乙", text: "あそこにだれがいますか。小野さんがいます。" },
@@ -422,60 +434,64 @@ const activities: PracticeActivity[] = [
         ]
       }
     },
-    assets: [p59, ...(p1a6Picture ? [p1a6Picture] : [])],
+    assets: [p1a6Picture],
     displayAssets: ["l4-p1-a6-picture-practice"],
     layout: [{
       type: "example",
       content: {
         id: "l4-p1-a6-ex",
-        label: "例",
-        beforeParts: [text("森さんは どこに いますか。")],
-        after: [text("病院の 前に います。")]
+        label: "[例]",
+        beforeParts: [text("森さんは どこに いますか。", { kana: "もりさんは どこに いますか。" })],
+        beforeKana: "もりさんは どこに いますか。",
+        after: [text("病院の 前に います。", { kana: "びょういんの まえに います。" })],
+        afterKana: "びょういんの まえに います。"
       }
     }],
-    items: p1a6Items.map(([number, prompt, value]) => item(`l4-p1-a6-q${number}`, number, prompt, value, {
-      instruction: "听录音问题，结合图片填写回答句。",
+    items: p1a6Items.map(([number, , , value]) => item(`l4-p1-a6-q${number}`, number, "听录音并回答。", value, {
       answerSource: "audio",
-      relatedAssets: ["l4-p1-a6-picture-practice"],
-      inputSlots: sentenceSlot("输入回答句")
+      inputSlots: answerSlot(),
+      relatedAssets: ["l4-p1-a6-picture-practice"]
     }))
   },
   {
     id: "l4-p2-a1",
     section: "practice_2",
     order: 1,
-    title: "看图判断正误",
-    instruction: "看图，与图内容一致的在括号中画 ○，不一致的画 ×。",
+    title: "看图，与图内容一致的在（　　）中画○，不一致的画×。",
+    instruction: "",
     interaction: "true_false",
     answerUnit: "boolean",
-    assets: [p60, ...(p2a1Scene ? [p2a1Scene] : [])],
+    responseScope: "boolean_only",
+    assets: [p2a1Scene],
     displayAssets: ["l4-p2-a1-scene-picture-practice"],
     layout: [{
       type: "example",
       content: {
         id: "l4-p2-a1-ex",
-        label: "例",
-        beforeParts: [text("あそこに ビルが あります。")],
+        label: "[例]",
+        beforeParts: [text("あそこに ビルが あります。", { kana: "あそこに ビルが あります。" })],
+        beforeKana: "あそこに ビルが あります。",
         after: [text("○")]
       }
     }],
-    items: p2a1Items.map(([number, prompt, value]) => trueFalseItem(`l4-p2-a1-q${number}`, number, prompt, value, ["l4-p2-a1-scene-picture-practice"]))
+    items: p2a1Items.map(([number, prompt, promptKana, value]) => trueFalseItem(`l4-p2-a1-q${number}`, number, prompt, value, promptKana))
   },
   {
     id: "l4-p2-a2",
     section: "practice_2",
     order: 2,
-    title: "选择正确答案",
-    instruction: "在正确答案上画 ○。",
+    title: "在正确答案上画○。",
+    instruction: "",
     interaction: "single_choice",
     answerUnit: "choice",
-    assets: [p60],
+    responseScope: "choice_only",
     layout: [{
       type: "example",
       content: {
         id: "l4-p2-a2-ex",
-        label: "例",
-        beforeParts: [text("机の 上に 新聞が（あります・います）。")],
+        label: "[例]",
+        beforeParts: [text("机の 上に 新聞が（あります・います）。", { kana: "つくえの うえに しんぶんが あります います。" })],
+        beforeKana: "つくえの うえに しんぶんが あります います。",
         after: [text("あります")]
       }
     }],
@@ -485,10 +501,12 @@ const activities: PracticeActivity[] = [
     id: "l4-p2-a3",
     section: "practice_2",
     order: 3,
-    title: "看图听录音回答",
-    instruction: "边看图边听录音，回答提问。",
+    title: "边看图边听录音，回答提问。",
+    instruction: "",
     interaction: "listening_answer",
     answerUnit: "sentence",
+    responseScope: "answer_only",
+    responseScopeHint: answerOnlyHint,
     requiresAudio: true,
     audio: {
       source: "textbook_exercise",
@@ -497,7 +515,7 @@ const activities: PracticeActivity[] = [
       transcript: {
         text: "駅の前に何がありますか。デパートがあります。デパートの隣に何がありますか。デパートの3階に何がありますか。受付はどこにありますか。食堂は5階にありますか。バーゲン会場は3階ですか、4階ですか。",
         source: "asr",
-        confidenceNote: "Azure ASR 漏掉第 1 小题回答，其他小题只读问题；答案按录音问题与地图/楼层图共同确定。",
+        confidenceNote: "ASR 将序号误识别为 D/いい/R/三/数/おお；第 1-5 小题录音只读问题，答案按地图和楼层图确定。",
         segments: [
           { itemNumber: "例", speaker: "甲/乙", text: "駅の前に何がありますか。デパートがあります。" },
           { itemNumber: "1", speaker: "甲", text: "デパートの隣に何がありますか。" },
@@ -508,33 +526,34 @@ const activities: PracticeActivity[] = [
         ]
       }
     },
-    assets: [p60, ...(p2a3Map ? [p2a3Map] : [])],
+    assets: [p2a3Map],
     displayAssets: ["l4-p2-a3-map-picture-practice"],
     layout: [{
       type: "example",
       content: {
         id: "l4-p2-a3-ex",
-        label: "例",
-        beforeParts: [text("駅の 前に 何が ありますか。")],
-        after: [text("デパートが あります。")]
+        label: "[例]",
+        beforeParts: [text("駅の 前に 何が ありますか。", { kana: "えきの まえに なにが ありますか。" })],
+        beforeKana: "えきの まえに なにが ありますか。",
+        after: [text("デパートが あります。", { kana: "デパートが あります。" })],
+        afterKana: "デパートが あります。"
       }
     }],
-    items: p2a3Items.map(([number, prompt, value]) => item(`l4-p2-a3-q${number}`, number, prompt, value, {
-      instruction: "听录音问题，结合地图填写回答句。",
+    items: p2a3Items.map(([number, , , value]) => item(`l4-p2-a3-q${number}`, number, "听录音并回答。", value, {
       answerSource: "audio",
-      relatedAssets: ["l4-p2-a3-map-picture-practice"],
-      inputSlots: sentenceSlot("输入回答句")
+      inputSlots: answerSlot(),
+      relatedAssets: ["l4-p2-a3-map-picture-practice"]
     }))
   },
   {
     id: "l4-p2-a4",
     section: "practice_2",
     order: 4,
-    title: "中译日",
-    instruction: "将下面的句子译成日语。",
+    title: "将下面的句子译成日语。",
+    instruction: "",
     interaction: "translation",
     answerUnit: "sentence",
-    assets: [p60],
+    responseScope: "sentence_only",
     layout: [],
     items: [
       item("l4-p2-a4-q1", "1", "桌子上面有（一只）猫。", "机の 上に 猫が います。", { answerSource: "prompt" }),

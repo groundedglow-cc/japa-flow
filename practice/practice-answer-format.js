@@ -64,6 +64,18 @@
     return Math.max(1, (sentences || []).map((sentence) => sentence.trim()).filter(Boolean).length);
   }
 
+  function dialogueTurnsFromText(value) {
+    const source = String(value || "").replace(/\s+/g, " ").trim();
+    if (!source) return [];
+    const matches = Array.from(source.matchAll(/((?:乙[12１２]?)|[甲丙丁ABCD])\s*[:：]/g));
+    return matches.map((match, index) => {
+      const bodyStart = (match.index || 0) + match[0].length;
+      const bodyEnd = matches[index + 1]?.index ?? source.length;
+      const body = source.slice(bodyStart, bodyEnd).trim();
+      return { label: match[1], body };
+    }).filter((turn) => turn.label && turn.body);
+  }
+
   function collectDialogueFormatHints(activity, item) {
     const labels = [];
     const sentenceCounts = [];
@@ -88,6 +100,14 @@
     if (labels.length) return { speakerLabels: labels, speakerSentenceCounts: sentenceCounts };
 
     const exampleText = collectExampleText(activity, item);
+    const textTurns = dialogueTurnsFromText(exampleText);
+    if (textTurns.length) {
+      return {
+        speakerLabels: textTurns.map((turn) => turn.label),
+        speakerSentenceCounts: textTurns.map((turn) => countDialogueSentences(turn.body))
+      };
+    }
+
     for (const match of exampleText.matchAll(/(?:^|\n|\s)((?:乙[12１２]?)|[甲丙丁ABCD])\s*[:：]/g)) {
       labels.push(match[1]);
     }

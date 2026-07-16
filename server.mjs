@@ -1157,6 +1157,16 @@ function dialogueContentUnits(value) {
 
 function groupDialogueUnitsByFormat(units, labels, sentenceCounts) {
   if (!labels.length || !units.length) return [];
+  if (labels.length === 2 && units.length > 2) {
+    const lastQuestionIndex = units.slice(0, -1).findLastIndex((unit) => /[？?]\s*$/.test(unit));
+    if (lastQuestionIndex >= 0 && !/[？?]\s*$/.test(units[units.length - 1])) {
+      return [
+        { label: labels[0], body: units.slice(0, lastQuestionIndex + 1).join("") },
+        { label: labels[1], body: units.slice(lastQuestionIndex + 1).join("") }
+      ].filter(({ body }) => body);
+    }
+  }
+
   if (!sentenceCounts.length) {
     return labels.map((label, index) => {
       if (index === labels.length - 1) return { label, body: units.slice(index).join("") };
@@ -1266,7 +1276,11 @@ async function formatPracticeAnswer({ inputText, examples = "", formatHints = {}
             "禁止把用户没有说出的词、姓名、职业、国籍、机构名加入 formattedText。",
             "禁止把用户说错或 ASR 识别错的词改成你认为正确的词。",
             "说话人标签顺序表示例句的真实对话轮次，重复标签不能去重。例如「甲 / 乙 / 甲」必须输出 3 行，而不是甲乙轮流拆成更多行。",
+            "最终输出行数必须与说话人标签顺序的数量完全一致。说话人标签顺序只有「甲 / 乙」时，只能输出 2 行，禁止因为停顿或短句新增第 3 行。",
             "如果提供了每轮句子数，必须按这个句子数组合用户输入；用户停顿造成的短句不能新增 speaker 轮次。",
+            "每一行必须是一轮自然、连贯、可朗读的话；不要机械地按问号、句号或 ASR 停顿切分 speaker。",
+            "日语选择疑问句可以包含多个问句片段，例如「Aですか？Bですか？」整体属于同一个提问 speaker；后面的「Aです。」才是回答 speaker。",
+            "如果只有「甲 / 乙」两轮，且输入形如「问题片段？问题片段？回答。」或「Aですか？Bですか？Aです。」，应输出为「甲：问题片段？问题片段？」「乙：回答。」。",
             "最终输出的每一行 speaker 后都必须使用全角冒号，例如「甲：」「乙：」，即使例句原文没有冒号也必须补上。",
             "formattedText 去掉说话人、空格和标点后，必须与用户原始输入去掉空格和标点后的内容完全一致。",
             "只返回一个 JSON object，不要 markdown，不要二次 JSON 编码。格式固定为 {\"formattedText\":\"甲：...\\n乙：...\",\"notes\":\"...\"}。"
