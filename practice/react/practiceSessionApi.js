@@ -11,7 +11,7 @@ class AuthRequiredError extends Error {
 }
 
 function storageKey(lessonId) {
-  return `${STORAGE_PREFIX}:${lessonId}`;
+  return `${STORAGE_PREFIX}:${currentStorageOwnerKey()}:${lessonId}`;
 }
 
 function getAuthToken() {
@@ -28,6 +28,22 @@ function getCookie(name) {
   if (typeof document === "undefined") return "";
   const match = document.cookie.match(new RegExp(`(?:^|; )${name}=([^;]*)`));
   return match ? decodeURIComponent(match[1]) : "";
+}
+
+function getStoredUser() {
+  if (typeof window === "undefined") return null;
+  return safeJsonParse(window.localStorage.getItem(USER_KEY), null);
+}
+
+function storageSafeSegment(value) {
+  return encodeURIComponent(String(value || "unknown")).replace(/%/g, "_");
+}
+
+function currentStorageOwnerKey() {
+  if (!shouldUseBackend()) return "guest";
+  const user = getStoredUser() || {};
+  const identity = user.id || user.userId || user.email || user.username || getAuthToken().slice(-16);
+  return `user:${storageSafeSegment(identity)}`;
 }
 
 function mainAppUrl() {
@@ -122,6 +138,7 @@ function safeJsonParse(value, fallback) {
 function readLessonRecord(lessonId) {
   if (typeof window === "undefined") return { lessonId, activities: {} };
   const record = safeJsonParse(window.localStorage.getItem(storageKey(lessonId)), { lessonId, activities: {} });
+  if (shouldUseBackend()) return record;
   return mergeLegacyLessonRecords(lessonId, record);
 }
 

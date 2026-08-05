@@ -151,6 +151,39 @@ textarea {
   padding: 28px 32px 40px;
 }
 
+.practice-blocked-panel {
+  display: grid;
+  gap: 10px;
+  padding: 28px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 16px 34px rgba(28, 43, 38, 0.08);
+}
+
+.practice-blocked-kicker {
+  margin: 0;
+  color: var(--warn);
+  font-size: 12px;
+  font-weight: 820;
+  letter-spacing: 0.06em;
+}
+
+.practice-blocked-panel h1 {
+  margin: 0;
+  color: var(--ink);
+  font-size: 24px;
+  line-height: 1.25;
+}
+
+.practice-blocked-panel p {
+  max-width: 680px;
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
 .admin-publish-panel {
   display: flex;
   align-items: center;
@@ -780,6 +813,25 @@ rt {
   color: var(--muted);
   font-size: 12px;
   line-height: 1.6;
+}
+
+.submit-status-message {
+  flex-basis: 100%;
+  margin: -4px 0 0;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.submit-status-message.success {
+  color: var(--accent);
+}
+
+.submit-status-message.error {
+  color: var(--warn);
+}
+
+.submit-status-message.pending {
+  color: var(--muted);
 }
 
 .primary-action,

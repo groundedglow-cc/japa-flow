@@ -13,6 +13,7 @@ const crop = (id: string) => lesson6ImageCrops.assets.find((asset) => asset.id =
 const sentenceSlots = (placeholder = "输入完整回答") => [{ id: "answer", expectedUnit: "sentence" as const, width: "long" as const, placeholder }];
 const shortSlots = (slotIds: string[]) => slotIds.map((slotId) => ({ id: slotId, expectedUnit: "word" as const, width: "short" as const, placeholder: "输入 1 个假名" }));
 const answerOnlyHint = "只填写提问后的回答部分，不需要重写问题。";
+const tripCompositionHint = "先填写①②③④的回答，再填写⇒后的完整句子。";
 
 const answerItem = (
   id: string,
@@ -57,6 +58,33 @@ const blankItem = (id: string, number: string, prompt: PromptPart[], answers: Re
   responseScope: "word_only",
   inputSlots: shortSlots(Object.keys(answers)),
   answer: { slotValues: answers }
+});
+
+const tripCompositionItem = (
+  id: string,
+  number: string,
+  prompt: string,
+  answers: Record<string, string>,
+  promptKana?: string,
+  note?: string
+): PracticeItem => ({
+  id,
+  number,
+  prompt: [text(prompt)],
+  promptKana,
+  instruction: "",
+  answerSource: "audio",
+  responseScope: "custom",
+  responseScopeHint: tripCompositionHint,
+  inputSlots: [
+    { id: "when", expectedUnit: "sentence", width: "medium", placeholder: "① いつ" },
+    ...(answers.who ? [{ id: "who", expectedUnit: "sentence" as const, width: "medium" as const, placeholder: "② だれと" }] : []),
+    ...(answers.how ? [{ id: "how", expectedUnit: "sentence" as const, width: "medium" as const, placeholder: answers.who ? "③ 何で" : "② 何で" }] : []),
+    ...(answers.where ? [{ id: "where", expectedUnit: "sentence" as const, width: "medium" as const, placeholder: answers.who ? "④ どこへ" : "③ どこへ" }] : []),
+    ...(answers.route ? [{ id: "route", expectedUnit: "sentence" as const, width: "medium" as const, placeholder: "③ どこからどこへ" }] : []),
+    { id: "answer", expectedUnit: "sentence", width: "long", placeholder: "⇒ 完整句子" }
+  ],
+  answer: { slotValues: answers, note }
 });
 
 const activities: PracticeActivity[] = [
@@ -284,8 +312,8 @@ const activities: PracticeActivity[] = [
     instruction: "",
     interaction: "listening_answer",
     answerUnit: "sentence",
-    responseScope: "sentence_only",
-    responseScopeHint: "填写最后组成的完整句子，不需要逐条写①②③④的回答。",
+    responseScope: "custom",
+    responseScopeHint: tripCompositionHint,
     requiresAudio: true,
     audio: {
       source: "textbook_exercise",
@@ -296,9 +324,9 @@ const activities: PracticeActivity[] = [
         source: "manual",
         confidenceNote: "ASR 稳定识别了例题和第 1 组，后两组按图中给定词组与同一问答模式补全。",
         segments: [
-          { itemNumber: "1", text: "夏休みに 行きました。友達と 行きました。車で 行きました。箱根へ 行きました。" },
-          { itemNumber: "2", text: "来月 来ます。飛行機で 来ます。日本へ 来ます。" },
-          { itemNumber: "3", text: "昨日 帰りました。タクシーで 帰りました。会社から 家へ 帰りました。" }
+          { itemNumber: "1", text: "李さんはいつ行きましたか。夏休みに行きました。だれと行きましたか。友達と行きました。何で行きましたか。車で行きました。どこへ行きましたか。箱根へ行きました。" },
+          { itemNumber: "2", text: "キムさんはいつ来ますか。来月来ます。何で来ますか。飛行機で来ます。どこへ来ますか。日本へ来ます。" },
+          { itemNumber: "3", text: "吉田さんはいつ帰りましたか。昨日帰りました。何で帰りましたか。タクシーで帰りました。どこからどこへ帰りましたか。会社から家へ帰りました。" }
         ]
       }
     },
@@ -317,9 +345,25 @@ const activities: PracticeActivity[] = [
       }
     ],
     items: [
-      answerItem("l6-p1-a6-q1", "1", "李／夏休み／友達／車／箱根／行きます", "李さんは 夏休みに 友達と 車で 箱根へ 行きました。", "り／なつやすみ／ともだち／くるま／はこね／いきます", "audio"),
-      answerItem("l6-p1-a6-q2", "2", "キム／来月／飛行機／日本／来ます", "キムさんは 来月 飛行機で 日本へ 来ます。", "キム／らいげつ／ひこうき／にほん／きます", "audio", "ASR 未完整识别该组，答案按图中词组和同一问答模式补全。"),
-      answerItem("l6-p1-a6-q3", "3", "吉田／昨日／タクシー／会社→家／帰ります", "吉田さんは 昨日 タクシーで 会社から 家へ 帰りました。", "よしだ／きのう／タクシー／かいしゃ→いえ／かえります", "audio", "ASR 未完整识别该组，答案按图中词组和同一问答模式补全。")
+      tripCompositionItem("l6-p1-a6-q1", "1", "李／夏休み／友達／車／箱根／行きます", {
+        when: "夏休みに 行きました。",
+        who: "友達と 行きました。",
+        how: "車で 行きました。",
+        where: "箱根へ 行きました。",
+        answer: "李さんは 夏休みに 友達と 車で 箱根へ 行きました。"
+      }, "り／なつやすみ／ともだち／くるま／はこね／いきます"),
+      tripCompositionItem("l6-p1-a6-q2", "2", "キム／来月／飛行機／日本／来ます", {
+        when: "来月 来ます。",
+        how: "飛行機で 来ます。",
+        where: "日本へ 来ます。",
+        answer: "キムさんは 来月 飛行機で 日本へ 来ます。"
+      }, "キム／らいげつ／ひこうき／にほん／きます", "ASR 未完整识别该组，答案按图中词组和同一问答模式补全。"),
+      tripCompositionItem("l6-p1-a6-q3", "3", "吉田／昨日／タクシー／会社→家／帰ります", {
+        when: "昨日 帰りました。",
+        how: "タクシーで 帰りました。",
+        route: "会社から 家へ 帰りました。",
+        answer: "吉田さんは 昨日 タクシーで 会社から 家へ 帰りました。"
+      }, "よしだ／きのう／タクシー／かいしゃ→いえ／かえります", "ASR 未完整识别该组，答案按图中词组和同一问答模式补全。")
     ]
   },
   {
@@ -431,10 +475,10 @@ const activities: PracticeActivity[] = [
       }
     ],
     items: [
-      answerItem("l6-p2-a4-q1", "1", "听录音并回答。", "家族と 行きます。", undefined, "audio"),
-      answerItem("l6-p2-a4-q2", "2", "听录音并回答。", "飛行機で 行きます。", undefined, "audio"),
-      answerItem("l6-p2-a4-q3", "3", "听录音并回答。", "上海へ 行きます。", undefined, "audio"),
-      answerItem("l6-p2-a4-q4", "4", "听录音并回答。", "23日に 帰ります。", undefined, "audio")
+      answerItem("l6-p2-a4-q1", "1", "だれと 行きますか。", "家族と 行きます。", "だれと いきますか。", "audio"),
+      answerItem("l6-p2-a4-q2", "2", "北京まで 何で 行きますか。", "飛行機で 行きます。", "ペキンまで なんで いきますか。", "audio"),
+      answerItem("l6-p2-a4-q3", "3", "北京から 電車で どこへ 行きますか。", "上海へ 行きます。", "ペキンから でんしゃで どこへ いきますか。", "audio"),
+      answerItem("l6-p2-a4-q4", "4", "いつ 日本へ 帰りますか。", "23日に 帰ります。", "いつ にほんへ かえりますか。", "audio")
     ]
   },
   {

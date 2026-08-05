@@ -1,5 +1,3 @@
-import { studyModules, initStudyTime, readStudyTime, writeStudyTime, studyTimeDisplay, studyTimeBadge, studyModuleLabel, settleStudyTimer, syncStudyTimerWithRoute, courseStudyTimeGrid } from "./study-time.js";
-
 let lesson = {
   id: 27,
   title: "第27课",
@@ -1610,6 +1608,10 @@ const state = {
   lessonCatalogStatus: null,
   lessonCatalogLoading: false,
   lessonCatalogMessage: "",
+  lessonProgressByLesson: {},
+  lessonPracticeProgressByLesson: {},
+  lessonProgressLoaded: false,
+  lessonProgressLoading: false,
   initStatus: null,
   initStatusLessonId: "",
   initStatusVoiceId: "",
@@ -1623,7 +1625,6 @@ const state = {
   currentExercise: 0,
   currentExerciseGroup: 0,
   vocabPhase: "pronunciation",
-  vocabFocusOnly: false,
   vocabTestQueue: [],
   currentVocabTest: 0,
   recallResult: "",
@@ -1632,14 +1633,18 @@ const state = {
   recordingWordId: "",
   recordingStoppingWordId: "",
   recordingError: "",
-  grammarRecordingPreparingId: "",
-  grammarRecordingId: "",
-  grammarRecordingStoppingId: "",
-  grammarRecordingErrorKey: "",
-  grammarRecordingError: "",
   textCurrentTab: "basic",
   textCurrentSentenceByTab: { basic: 0, application: 0 },
   textPromptLanguage: "zh",
+  textFlowActive: false,
+  textFlowPhase: "idle",
+  textReadingPlayingKey: "",
+  textReadingCurrentSentenceId: "",
+  textReadingCurrentIndex: -1,
+  textReadingPhase: "idle",
+  textReadingCompletedGroups: {},
+  textReadingEvaluating: {},
+  textReadingLastCompletedKey: "",
   textRecordingPreparingId: "",
   textRecordingId: "",
   textRecordingStoppingId: "",
@@ -1772,9 +1777,9 @@ let audioVersions = {};
 let runtimeLessonLoadingId = "";
 let runtimeLessonErrorId = "";
 let runtimeLessonError = "";
-const EXERCISE_VERSION_KEY = "exerciseVersion";
-const EXERCISE_VERSION_NEW = "new";
-const EXERCISE_VERSION_OLD = "old";
+const TEXT_VERSION_KEY = "textVersion";
+const TEXT_VERSION_NEW = "new";
+const TEXT_VERSION_OLD = "old";
 
 function parseMarkdown(text) {
   if (!text) return "";
@@ -1812,6 +1817,50 @@ function getStoredUsername() {
   } catch { return ""; }
 }
 
+function getStoredUser() {
+  try {
+    const raw = localStorage.getItem("light_blog_user");
+    return raw ? JSON.parse(raw) : null;
+  } catch {
+    return null;
+  }
+}
+
+function storageSafeSegment(value) {
+  return encodeURIComponent(String(value || "unknown")).replace(/%/g, "_");
+}
+
+function currentStorageOwnerKey() {
+  if (!isLoggedIn()) return "guest";
+  const user = getStoredUser() || {};
+  const identity = user.id || user.userId || user.email || user.username || getAuthToken().slice(-16);
+  return `user:${storageSafeSegment(identity)}`;
+}
+
+function scopedJapaFlowStorageKey(key) {
+  return `japaflow:${currentStorageOwnerKey()}:${key}`;
+}
+
+function escapeRegex(value) {
+  return String(value).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+function mainAppUrl() {
+  return window.location.hostname === "localhost" ? "http://localhost:3000" : "https://groundedglow.cc";
+}
+
+function loginUrl(redirectUrl = window.location.href) {
+  return `${mainAppUrl()}/login?redirect=${encodeURIComponent(redirectUrl)}`;
+}
+
+function redirectToLogin(redirectUrl = window.location.href) {
+  if (window.parent !== window) {
+    window.parent.postMessage({ type: "AUTH_EXPIRED", redirect: redirectUrl }, mainAppUrl());
+    return;
+  }
+  window.location.href = loginUrl(redirectUrl);
+}
+
 function shouldSync() {
   return isLoggedIn();
 }
@@ -1841,15 +1890,94 @@ async function apiRequest(method, path, body = null) {
   }
 }
 
-function handleAuthExpired() {
+function expireAuthCookie(name) {
+  const host = window.location.hostname;
+  const rootDomain = host && host !== "localhost" && host.includes(".")
+    ? `.${host.split(".").slice(-2).join(".")}`
+    : "";
+  const base = `${name}=; Max-Age=0; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/`;
+  document.cookie = base;
+  if (host && host !== "localhost") document.cookie = `${base}; domain=${host}`;
+  if (rootDomain && rootDomain !== `.${host}`) document.cookie = `${base}; domain=${rootDomain}`;
+}
+
+function clearAuthState() {
   localStorage.removeItem("light_blog_token");
   localStorage.removeItem("light_blog_user");
+  expireAuthCookie("light_blog_token");
+  expireAuthCookie("light_blog_user");
+  state.authUser = null;
+  state.authUserLoaded = false;
+  state.authUserLoading = false;
+  state.lessonProgressByLesson = {};
+  state.lessonPracticeProgressByLesson = {};
+  state.lessonProgressLoaded = false;
+}
+
+function handleAuthExpired() {
+  clearAuthState();
   state.modal = { type: "authPrompt" };
   render();
 }
 
+function logoutUser() {
+  const redirectUrl = window.location.href;
+  clearAuthState();
+  state.modal = null;
+  if (window.parent !== window) {
+    window.parent.postMessage({ type: "AUTH_LOGOUT", redirect: redirectUrl }, mainAppUrl());
+    redirectToLogin(redirectUrl);
+    return;
+  }
+  window.location.href = loginUrl(redirectUrl);
+}
+
 function apiFetchAllProgress() {
   return apiRequest("GET", "/progress/export");
+}
+
+function apiFetchProgressSummary(lessonIds = []) {
+  const query = lessonIds.length ? `?lessonIds=${encodeURIComponent(lessonIds.join(","))}` : "";
+  return apiRequest("GET", `/progress/summary${query}`);
+}
+
+function apiFetchPracticeSession(lessonId) {
+  return apiRequest("GET", `/lessons/${lessonId}/practice/session`);
+}
+
+async function loadPracticeProgressSummary(lessonIds = []) {
+  if (!shouldSync()) {
+    state.lessonPracticeProgressByLesson = {};
+    return;
+  }
+  const summary = await apiFetchProgressSummary(lessonIds);
+  if (!Array.isArray(summary)) return;
+  state.lessonPracticeProgressByLesson = {
+    ...state.lessonPracticeProgressByLesson,
+    ...Object.fromEntries(
+      summary
+        .filter((item) => item?.lessonId != null)
+        .map((item) => [String(item.lessonId), normalizePracticeProgress(item.exercises || {})])
+    )
+  };
+}
+
+async function loadLessonPracticeSessionProgress(lessonId) {
+  const numericLessonId = numericLessonIdValue(lessonId);
+  if (!shouldSync() || numericLessonId == null) return;
+  const session = await apiFetchPracticeSession(numericLessonId);
+  if (!session) return;
+  state.lessonPracticeProgressByLesson = {
+    ...state.lessonPracticeProgressByLesson,
+    [String(numericLessonId)]: normalizePracticeProgress(session)
+  };
+}
+
+function numericLessonIdValue(value) {
+  if (value == null || value === "") return null;
+  const match = String(value).match(/\d+/);
+  const number = Number(match ? match[0] : value);
+  return Number.isFinite(number) ? number : null;
 }
 
 function apiUploadAllProgress(lessons) {
@@ -1888,12 +2016,6 @@ function apiSyncInteractionProgress(lessonId, itemType, itemId, data) {
   return apiRequest("PUT", `/lessons/${lessonId}/interaction-progress/${itemType}/${itemId}`, data);
 }
 
-function apiSyncStudyTime(lessonId, module, deltaMs, activeAt) {
-  return apiRequest("POST", `/lessons/${lessonId}/study-time/${module}`, { deltaMs, activeAt });
-}
-
-initStudyTime({ getRoute: route, getLesson: () => lesson, apiSyncStudyTime });
-
 function apiSyncAddFavorite(lessonId, itemType, itemId, snapshot) {
   return apiRequest("POST", `/lessons/${lessonId}/favorites`, { itemType, itemId, snapshot });
 }
@@ -1910,18 +2032,216 @@ function apiSyncPreference(lessonId, data) {
 
 function read(key, fallback) {
   try {
-    return JSON.parse(localStorage.getItem(`japaflow:${key}`)) || fallback;
+    const scopedRaw = localStorage.getItem(scopedJapaFlowStorageKey(key));
+    if (scopedRaw !== null) return JSON.parse(scopedRaw) || fallback;
+    const legacyRaw = localStorage.getItem(legacyJapaFlowStorageKey(key));
+    if (legacyRaw !== null) {
+      const legacyValue = JSON.parse(legacyRaw) || fallback;
+      write(key, legacyValue);
+      return legacyValue;
+    }
+    return fallback;
   } catch {
     return fallback;
   }
 }
 
 function write(key, value) {
-  localStorage.setItem(`japaflow:${key}`, JSON.stringify(value));
+  localStorage.setItem(scopedJapaFlowStorageKey(key), JSON.stringify(value));
 }
 
 function removeStored(key) {
-  localStorage.removeItem(`japaflow:${key}`);
+  localStorage.removeItem(scopedJapaFlowStorageKey(key));
+}
+
+function legacyJapaFlowStorageKey(key) {
+  return `japaflow:${key}`;
+}
+
+function readLegacy(key, fallback) {
+  try {
+    const raw = localStorage.getItem(legacyJapaFlowStorageKey(key));
+    return raw !== null ? JSON.parse(raw) || fallback : fallback;
+  } catch {
+    return fallback;
+  }
+}
+
+function grammarPracticeStorageKey() {
+  return `lesson:${lesson.id}:grammarPractice`;
+}
+
+function readLocalGrammarPractice() {
+  return read(grammarPracticeStorageKey(), {});
+}
+
+function persistLocalGrammarPractice() {
+  write(grammarPracticeStorageKey(), state.grammarPractice);
+}
+
+function sentencePracticeStorageKey() {
+  return `lesson:${lesson.id}:sentencePractice`;
+}
+
+function readLocalSentencePractice() {
+  return read(sentencePracticeStorageKey(), {});
+}
+
+function persistLocalSentencePractice() {
+  write(sentencePracticeStorageKey(), state.sentencePractice);
+}
+
+function wordLearningStorageKey() {
+  return `lesson:${lesson.id}:wordLearning`;
+}
+
+function readLocalWordLearning() {
+  const key = wordLearningStorageKey();
+  const current = read(key, {});
+  const legacy = readLegacy(key, {});
+  if (!legacy || typeof legacy !== "object") return current;
+  const merged = { ...current };
+  let changed = false;
+  Object.entries(legacy).forEach(([wordId, value]) => {
+    const currentValue = merged[wordId];
+    const legacyHasRecord = wordLearningHasRecord(value);
+    const currentHasRecord = wordLearningHasRecord(currentValue);
+    const legacyIsNewer = legacyHasRecord && wordLearningRecordTime(value) > wordLearningRecordTime(currentValue);
+    if (!currentValue || (legacyHasRecord && !currentHasRecord) || legacyIsNewer) {
+      merged[wordId] = mergeWordLearningRecord(wordId, merged[wordId], value);
+      changed = true;
+    }
+  });
+  if (changed) write(key, merged);
+  return merged;
+}
+
+function persistLocalWordLearning() {
+  write(wordLearningStorageKey(), state.wordLearning);
+}
+
+function vocabPositionStorageKey() {
+  return `lesson:${lesson.id}:vocabPosition`;
+}
+
+function readLocalVocabPosition() {
+  return Number(read(vocabPositionStorageKey(), 0));
+}
+
+function persistLocalVocabPosition(index = state.currentWord) {
+  write(vocabPositionStorageKey(), Number(index) || 0);
+}
+
+function shouldPreferLocalSentencePractice(localValue, serverValue) {
+  if (!localValue?.pronunciationAttempts && !localValue?.debugAudioUrl) return false;
+  if (!serverValue?.pronunciationAttempts && !serverValue?.debugAudioUrl) return true;
+  const localTime = Date.parse(localValue.updatedAt || "");
+  const serverTime = Date.parse(serverValue.updatedAt || serverValue.createdAt || "");
+  return Number.isFinite(localTime) && Number.isFinite(serverTime) && localTime > serverTime;
+}
+
+function mergeSentencePracticeRecord(localValue, serverValue) {
+  if (shouldPreferLocalSentencePractice(localValue, serverValue)) {
+    return { ...serverValue, ...localValue };
+  }
+  return { ...localValue, ...serverValue };
+}
+
+function wordLearningHasRecord(value) {
+  if (!value) return false;
+  const attempts = wordLearningAttempts(value);
+  const attemptCount = Object.values(attempts).reduce((sum, count) => sum + (Number(count) || 0), 0);
+  return attemptCount > 0
+    || Boolean(value.debugAudioUrl)
+    || Boolean(value.lastPracticedAt)
+    || (value.mainStatus && value.mainStatus !== "new");
+}
+
+function wordLearningAttempts(value) {
+  const attempts = value?.attempts || {};
+  return {
+    meaningToWord: safeCount(attempts.meaningToWord ?? value?.attemptsMeaningToWord),
+    audioToWord: safeCount(attempts.audioToWord ?? value?.attemptsAudioToWord),
+    wordToMeaning: safeCount(attempts.wordToMeaning ?? value?.attemptsWordToMeaning),
+    pronunciation: safeCount(attempts.pronunciation ?? value?.attemptsPronunciation)
+  };
+}
+
+function wordLearningAttemptCount(value, type) {
+  return wordLearningAttempts(value)[type] || 0;
+}
+
+function safeCount(value) {
+  const number = Number(value);
+  return Number.isFinite(number) && number > 0 ? number : 0;
+}
+
+function wordLearningRecordTime(value) {
+  const time = Date.parse(value?.updatedAt || value?.lastPracticedAt || value?.createdAt || "");
+  return Number.isFinite(time) ? time : 0;
+}
+
+function shouldPreferLocalWordLearning(localValue, serverValue) {
+  if (!wordLearningHasRecord(localValue)) return false;
+  if (!wordLearningHasRecord(serverValue)) return true;
+  return wordLearningRecordTime(localValue) >= wordLearningRecordTime(serverValue);
+}
+
+function mergeWordLearningRecord(wordId, localValue, serverValue) {
+  const localRecord = normalizeWordLearningRecord(wordId, localValue);
+  const serverRecord = normalizeWordLearningRecord(wordId, serverValue);
+  const preferLocal = shouldPreferLocalWordLearning(localRecord, serverRecord);
+  const base = preferLocal ? { ...serverRecord, ...localRecord } : { ...localRecord, ...serverRecord };
+  const attempts = preferLocal
+    ? { ...wordLearningAttempts(serverRecord), ...wordLearningAttempts(localRecord) }
+    : { ...wordLearningAttempts(localRecord), ...wordLearningAttempts(serverRecord) };
+  const next = {
+    ...defaultWordLearning(wordId),
+    ...base,
+    attempts: { ...defaultWordLearning(wordId).attempts, ...attempts }
+  };
+  next.diagnosticTags = wordDiagnostics(next);
+  next.mainStatus = wordMainStatus(next);
+  return next;
+}
+
+function normalizeWordLearningRecord(wordId, value) {
+  if (!value || typeof value !== "object") return defaultWordLearning(wordId);
+  return {
+    ...value,
+    attempts: {
+      ...defaultWordLearning(wordId).attempts,
+      ...wordLearningAttempts(value)
+    }
+  };
+}
+
+function applyWordProgressFromLearning() {
+  state.wordProgress = Object.fromEntries(
+    Object.entries(state.wordLearning).map(([id, wl]) => [id, wl.mainStatus === "mastered" ? "familiar" : wl.mainStatus === "new" ? "unseen" : "unfamiliar"])
+  );
+}
+
+function serverGrammarPracticeKey(key) {
+  const sepIndex = key.indexOf("_");
+  const grammarId = sepIndex >= 0 ? key.slice(0, sepIndex) : "";
+  const indexPart = sepIndex >= 0 ? key.slice(sepIndex + 1) : "";
+  return /^\d+$/.test(indexPart) ? `${grammarId}:extra-${indexPart}` : key.replace("_", ":");
+}
+
+function shouldPreferLocalGrammarPractice(localValue, serverValue) {
+  if (!localValue?.answer) return false;
+  if (!serverValue?.answer) return true;
+  const localTime = Date.parse(localValue.updatedAt || "");
+  const serverTime = Date.parse(serverValue.updatedAt || serverValue.createdAt || "");
+  return Number.isFinite(localTime) && Number.isFinite(serverTime) && localTime > serverTime;
+}
+
+function mergeGrammarPracticeRecord(localValue, serverValue) {
+  if (shouldPreferLocalGrammarPractice(localValue, serverValue)) {
+    return { ...serverValue, ...localValue };
+  }
+  return { ...localValue, ...serverValue };
 }
 
 function downloadJsonBlob(payload, filename) {
@@ -1965,37 +2285,42 @@ async function importLearningData(file) {
 
 async function loadServerProgress() {
   const data = await apiFetchAllProgress();
-  if (!data?.lessons) return;
-  const ld = data.lessons[lesson.id];
-  if (!ld) return;
-  if (ld.wordLearning) {
-    Object.entries(ld.wordLearning).forEach(([wordId, saved]) => {
-      if (state.wordLearning[wordId]) {
-        state.wordLearning[wordId] = { ...state.wordLearning[wordId], ...saved,
-          attempts: { ...state.wordLearning[wordId].attempts, ...(saved.attempts || {}) } };
-      }
-    });
-    state.wordProgress = Object.fromEntries(
-      Object.entries(state.wordLearning).map(([id, wl]) => [id, wl.mainStatus === "mastered" ? "familiar" : wl.mainStatus === "new" ? "unseen" : "unfamiliar"])
-    );
-  }
+  if (data?.lessons) state.lessonProgressByLesson = data.lessons;
+  await loadPracticeProgressSummary([lesson.id]);
+  await loadLessonPracticeSessionProgress(lesson.id);
+  state.lessonProgressLoaded = true;
+  const ld = data?.lessons?.[lesson.id] || {};
+  const serverWordLearning = ld.wordLearning || {};
+  const pendingWordLearningSync = [];
+  Object.keys(state.wordLearning || {}).forEach((wordId) => {
+    const localValue = state.wordLearning[wordId];
+    const serverValue = serverWordLearning[wordId];
+    const preferLocal = shouldPreferLocalWordLearning(localValue, serverValue);
+    const merged = mergeWordLearningRecord(wordId, localValue, serverValue);
+    state.wordLearning[wordId] = merged;
+    if (preferLocal && wordLearningHasRecord(merged)) {
+      pendingWordLearningSync.push({ wordId, value: merged });
+    }
+  });
+  applyWordProgressFromLearning();
+  persistLocalWordLearning();
+  await syncWordLearningRecords(pendingWordLearningSync);
   if (ld.grammarPractice) {
     Object.entries(ld.grammarPractice).forEach(([k, v]) => {
-      const sepIndex = k.indexOf("_");
-      const grammarId = sepIndex >= 0 ? k.slice(0, sepIndex) : "";
-      const indexPart = sepIndex >= 0 ? k.slice(sepIndex + 1) : "";
-      const localKey = /^\d+$/.test(indexPart) ? `${grammarId}:extra-${indexPart}` : k.replace("_", ":");
+      const localKey = serverGrammarPracticeKey(k);
       if (state.grammarPractice[localKey]) {
-        state.grammarPractice[localKey] = { ...state.grammarPractice[localKey], ...v };
+        state.grammarPractice[localKey] = mergeGrammarPracticeRecord(state.grammarPractice[localKey], v);
       }
     });
+    persistLocalGrammarPractice();
   }
   if (ld.sentencePractice) {
     Object.entries(ld.sentencePractice).forEach(([id, v]) => {
       if (state.sentencePractice[id]) {
-        state.sentencePractice[id] = { ...state.sentencePractice[id], ...v };
+        state.sentencePractice[id] = mergeSentencePracticeRecord(state.sentencePractice[id], v);
       }
     });
+    persistLocalSentencePractice();
   }
   if (ld.exerciseResults) {
     state.exerciseResults = ld.exerciseResults.map(function (r) {
@@ -2056,13 +2381,9 @@ async function loadServerProgress() {
     const p = ld.preferences;
     if (p.currentVoiceId) state.currentVoiceId = p.currentVoiceId;
     if (p.playbackRate != null) state.playbackRate = p.playbackRate;
-    if (p.vocabFocusOnly != null) state.vocabFocusOnly = p.vocabFocusOnly;
     if (p.currentExerciseGroup != null) state.currentExerciseGroup = p.currentExerciseGroup;
     if (p.textCurrentTab) state.textCurrentTab = p.textCurrentTab;
   }
-  Object.entries(data.lessons).forEach(([id, lessonData]) => {
-    if (lessonData.studyTime) writeStudyTime(id, lessonData.studyTime);
-  });
 }
 
 // ============ END SERVER DATA LOADING ============
@@ -2102,6 +2423,12 @@ async function reloadLessonScopedState() {
   stopCurrentAudio();
   state.wordProgress = initialWordProgress();
   state.wordLearning = initialWordLearning();
+  Object.entries(readLocalWordLearning() || {}).forEach(([wordId, value]) => {
+    if (state.wordLearning[wordId]) {
+      state.wordLearning[wordId] = mergeWordLearningRecord(wordId, state.wordLearning[wordId], value);
+    }
+  });
+  applyWordProgressFromLearning();
   state.exerciseResults = [];
   state.exerciseGroupAnswers = {};
   state.exerciseGroupSubmitted = {};
@@ -2109,6 +2436,11 @@ async function reloadLessonScopedState() {
   state.wrongPractice = { current: 0, answer: "", submitted: false, result: null };
   state.interactionProgress = initialInteractionProgress();
   state.grammarPractice = initialGrammarPractice();
+  Object.entries(readLocalGrammarPractice() || {}).forEach(([key, value]) => {
+    if (state.grammarPractice[key]) {
+      state.grammarPractice[key] = { ...state.grammarPractice[key], ...value };
+    }
+  });
   state.currentVoiceId = defaultVoiceId;
   state.audioStatus = null;
   state.audioStatusVoiceId = "";
@@ -2120,7 +2452,6 @@ async function reloadLessonScopedState() {
   state.currentExercise = 0;
   state.currentExerciseGroup = 0;
   state.vocabPhase = "pronunciation";
-  state.vocabFocusOnly = false;
   state.vocabTestQueue = [];
   state.currentVocabTest = 0;
   state.recallResult = "";
@@ -2129,19 +2460,28 @@ async function reloadLessonScopedState() {
   state.recordingWordId = "";
   state.recordingStoppingWordId = "";
   state.recordingError = "";
-  state.grammarRecordingPreparingId = "";
-  state.grammarRecordingId = "";
-  state.grammarRecordingStoppingId = "";
-  state.grammarRecordingErrorKey = "";
-  state.grammarRecordingError = "";
   state.textCurrentTab = textStructure[0]?.id || "basic";
   state.textCurrentSentenceByTab = Object.fromEntries(textStructure.map((section) => [section.id, 0]));
   state.textPromptLanguage = "zh";
+  state.textFlowActive = false;
+  state.textFlowPhase = "idle";
+  state.textReadingPlayingKey = "";
+  state.textReadingCurrentSentenceId = "";
+  state.textReadingCurrentIndex = -1;
+  state.textReadingPhase = "idle";
+  state.textReadingCompletedGroups = {};
+  state.textReadingEvaluating = {};
+  state.textReadingLastCompletedKey = "";
   state.textRecordingPreparingId = "";
   state.textRecordingId = "";
   state.textRecordingStoppingId = "";
   state.textRecordingError = "";
   state.sentencePractice = initialSentencePractice();
+  Object.entries(readLocalSentencePractice() || {}).forEach(([id, value]) => {
+    if (state.sentencePractice[id]) {
+      state.sentencePractice[id] = { ...state.sentencePractice[id], ...value };
+    }
+  });
   state.playbackRate = 1;
   state.answer = "";
   state.submitted = false;
@@ -2151,8 +2491,13 @@ async function reloadLessonScopedState() {
   lastAutoSpokenWord = null;
   pendingAutoSpeakWordId = "";
   await loadServerProgress();
-  const firstUnlearned = vocabStudyWords().findIndex((word) => wordLearningState(word.id).mainStatus !== "mastered");
-  if (firstUnlearned > 0) state.currentWord = firstUnlearned;
+  const savedCurrentWord = readLocalVocabPosition();
+  if (Number.isFinite(savedCurrentWord) && savedCurrentWord >= 0 && savedCurrentWord < vocabStudyWords().length) {
+    state.currentWord = savedCurrentWord;
+  } else {
+    const firstUnlearned = vocabStudyWords().findIndex((word) => wordLearningState(word.id).mainStatus !== "mastered");
+    if (firstUnlearned > 0) state.currentWord = firstUnlearned;
+  }
   const firstIncompleteGrammar = lesson.grammar.findIndex((grammar) => {
     const summary = grammarPracticeSummary(grammar);
     return summary.completed < summary.total;
@@ -2189,9 +2534,21 @@ function initialWordLearning() {
 }
 
 function writeWordLearning(wordId) {
-  if (wordId) {
-    apiSyncWordLearning(lesson.id, wordId, state.wordLearning[wordId]);
+  persistLocalWordLearning();
+  if (wordId && shouldSync()) {
+    syncWordLearningRecords([{ wordId, value: state.wordLearning[wordId] }]);
   }
+}
+
+async function syncWordLearningRecords(records = []) {
+  if (!shouldSync() || !records.length) return;
+  const results = await Promise.allSettled(records.map(async ({ wordId, value }) => {
+    const data = await apiSyncWordLearning(lesson.id, wordId, normalizeWordLearningRecord(wordId, value));
+    if (!data) throw new Error(`sync ${wordId} failed`);
+    return data;
+  }));
+  const failed = results.filter((result) => result.status === "rejected").length;
+  if (failed) console.warn(`[wordLearning] ${failed}/${records.length} records failed to sync`);
 }
 
 function resetWordLearningData(shouldRender = true) {
@@ -2207,13 +2564,10 @@ function resetWordLearningData(shouldRender = true) {
   state.recordingWordId = "";
   state.recordingStoppingWordId = "";
   state.recordingError = "";
-  state.grammarRecordingPreparingId = "";
-  state.grammarRecordingId = "";
-  state.grammarRecordingStoppingId = "";
-  state.grammarRecordingErrorKey = "";
-  state.grammarRecordingError = "";
   lastAutoSpokenWord = null;
   pendingAutoSpeakWordId = "";
+  persistLocalWordLearning();
+  persistLocalVocabPosition(0);
   if (shouldSync()) apiSyncResetWords(lesson.id);
   if (shouldRender) render();
 }
@@ -2294,6 +2648,7 @@ function writeGrammarPractice(grammarId, exampleId) {
   if (grammarId && exampleId) {
     const key = grammarPracticeKey(grammarId, exampleId);
     const exampleIndex = exampleId.startsWith("extra-") ? exampleId.slice(6) : exampleId;
+    persistLocalGrammarPractice();
     apiSyncGrammarPractice(lesson.id, grammarId, exampleIndex, state.grammarPractice[key]);
   }
 }
@@ -2304,6 +2659,7 @@ function initialSentencePractice() {
 
 function writeSentencePractice(sentenceId) {
   if (sentenceId) {
+    persistLocalSentencePractice();
     apiSyncSentencePractice(lesson.id, sentenceId, state.sentencePractice[sentenceId]);
   }
 }
@@ -2354,11 +2710,21 @@ function resetGrammarPractice(grammarId, exampleId) {
 function resetTextLearningData() {
   stopCurrentAudio();
   state.sentencePractice = Object.fromEntries(lesson.sentences.map((sentence) => [sentence.id, defaultSentencePractice()]));
+  persistLocalSentencePractice();
   const progress = initialInteractionProgress();
   state.interactionProgress = { ...progress, sentences: {} };
   state.textCurrentTab = "basic";
   state.textCurrentSentenceByTab = { basic: 0, application: 0 };
   state.textPromptLanguage = "zh";
+  state.textFlowActive = false;
+  state.textFlowPhase = "idle";
+  state.textReadingPlayingKey = "";
+  state.textReadingCurrentSentenceId = "";
+  state.textReadingCurrentIndex = -1;
+  state.textReadingPhase = "idle";
+  state.textReadingCompletedGroups = {};
+  state.textReadingEvaluating = {};
+  state.textReadingLastCompletedKey = "";
   writeTextProgress();
   state.currentSentence = 0;
   state.textRecordingPreparingId = "";
@@ -2415,17 +2781,8 @@ function wordHasMeaningfulCnChoice(word) {
   return Boolean(jp && cn && jp !== cn);
 }
 
-function wordIsWeakOrFavorite(word) {
-  const learning = wordLearningState(word.id);
-  return isFavorite("word", word.id)
-    || learning.mainStatus === "review"
-    || Boolean(learning.diagnosticTags?.length);
-}
-
 function vocabStudyWords() {
-  const words = activeVocabulary();
-  if (!state.vocabFocusOnly) return words;
-  return words.filter(wordIsWeakOrFavorite);
+  return activeVocabulary();
 }
 
 function sentenceById(id) {
@@ -2465,6 +2822,13 @@ function textTabProgress(tabId) {
   return { completed, total };
 }
 
+function textTabFollowProgress(tabId) {
+  const sentences = textSentencesForTab(tabId);
+  const total = sentences.length;
+  const completed = sentences.filter((sentence) => sentencePracticeState(sentence.id).pronunciationAttempts > 0).length;
+  return { completed, total };
+}
+
 function textReviewUnlocked(tabId = state.textCurrentTab) {
   const sentences = textSentencesForTab(tabId);
   return sentences.length > 0 && sentences.every((sentence) => sentencePracticeState(sentence.id).pronunciationAttempts > 0);
@@ -2495,6 +2859,8 @@ function setTextTab(tabId, sentenceIndex = 0) {
   state.textCurrentTab = tabId;
   state.textCurrentSentenceByTab = { ...state.textCurrentSentenceByTab, [tabId]: nextIndex };
   state.currentSentence = nextIndex;
+  state.textFlowActive = false;
+  state.textFlowPhase = "idle";
   state.textRecordingError = "";
   state.textRecordingPreparingId = "";
   state.textRecordingId = "";
@@ -2511,6 +2877,65 @@ function setTextSentenceIndex(index) {
   state.textCurrentSentenceByTab = { ...state.textCurrentSentenceByTab, [tabId]: nextIndex };
   state.textRecordingError = "";
   writeTextProgress();
+}
+
+function playGuidedTextSentence(index = state.currentSentence) {
+  const sentences = textSentencesForTab(state.textCurrentTab);
+  const sentence = sentences[index];
+  if (!sentence) return;
+  state.textFlowActive = true;
+  state.textFlowPhase = "listening";
+  setTextSentenceIndex(index);
+  render();
+  playAudio(sentence.text, audioUrl("sentence", sentence.id), () => {
+    if (route().page !== "text") return;
+    const current = currentTextSentence();
+    if (!state.textFlowActive || current?.id !== sentence.id) return;
+    state.textFlowPhase = "recording";
+    startTextRecording(sentence.id);
+  });
+}
+
+function startTextFlow() {
+  stopCurrentAudio();
+  lastAutoSpokenSentence = null;
+  playGuidedTextSentence(0);
+  history.replaceState({}, "", lessonPath(`/lesson/${lesson.id}/text`));
+}
+
+function startGuidedTextRecording(sentenceId) {
+  if (!sentenceId || recordingSession || state.textRecordingStoppingId) return;
+  state.textFlowActive = true;
+  state.textFlowPhase = "recording";
+  startTextRecording(sentenceId);
+}
+
+function finishGuidedTextRecording(sentenceId) {
+  if (!sentenceId) return;
+  state.textFlowPhase = "evaluating";
+  releaseTextRecording(sentenceId);
+}
+
+function advanceGuidedTextFlow(completedSentenceId) {
+  if (!state.textFlowActive) return false;
+  const sentences = textSentencesForTab(state.textCurrentTab);
+  const completedIndex = sentences.findIndex((sentence) => sentence.id === completedSentenceId);
+  if (completedIndex < 0) return false;
+  if (completedIndex >= sentences.length - 1) {
+    state.textFlowPhase = "review";
+    state.textFlowActive = false;
+    setTextSentenceIndex(completedIndex);
+    render();
+    return true;
+  }
+  state.textFlowPhase = "listening";
+  render();
+  window.setTimeout(() => {
+    if (route().page !== "text") return;
+    if (state.textRecordingId || state.textRecordingPreparingId || state.textRecordingStoppingId) return;
+    playGuidedTextSentence(completedIndex + 1);
+  }, 350);
+  return true;
 }
 
 function textLessonComplete() {
@@ -2599,9 +3024,10 @@ function toggleFavorite(type, item, lessonIdValue = lesson.id) {
 
 function allFavoriteItems() {
   const items = [];
+  const favoriteKeyPattern = new RegExp(`^${escapeRegex(scopedJapaFlowStorageKey("lesson:"))}(\\d+):favorites$`);
   for (let index = 0; index < localStorage.length; index += 1) {
     const storageKey = localStorage.key(index);
-    const match = storageKey?.match(/^japaflow:lesson:(\d+):favorites$/);
+    const match = storageKey?.match(favoriteKeyPattern);
     if (!match) continue;
     const lessonIdValue = match[1];
     const favorites = lessonFavorites(lessonIdValue);
@@ -2808,7 +3234,7 @@ function silentPrerollUrl(durationMs = 650) {
   return url;
 }
 
-function playAudioAfterSilentPreroll(text, audio, onEnded, prerollMs = 650) {
+function playAudioAfterSilentPreroll(text, audio, onEnded, prerollMs = 120) {
   stopCurrentAudio();
   if ("speechSynthesis" in window) speechSynthesis.cancel();
   currentSpeechText = "";
@@ -2830,7 +3256,7 @@ function playAudioAfterSilentPreroll(text, audio, onEnded, prerollMs = 650) {
   });
 }
 
-function scheduleAutoWordAudio(word, delayMs = 650) {
+function scheduleAutoWordAudio(word, delayMs = 90) {
   const token = ++autoWordPlaybackToken;
   const wordId = word?.id || "";
   const text = word?.jp || "";
@@ -2844,7 +3270,7 @@ function scheduleAutoWordAudio(word, delayMs = 650) {
         if (state.vocabPhase !== "pronunciation" && state.vocabPhase !== "test") return;
         if (state.vocabPhase === "pronunciation" && vocabStudyWords()[state.currentWord]?.id !== wordId) return;
         if (state.recordingWordId || state.recordingPreparingWordId || state.recordingStoppingWordId) return;
-        playAudioAfterSilentPreroll(text, audio, null, 700);
+        playAudioAfterSilentPreroll(text, audio, null, 120);
       }, delayMs);
     });
   });
@@ -2906,7 +3332,55 @@ function escapeHtml(value) {
 let activeSpeechRecognition = null;
 
 function micButton(targetSelector) {
-  return `<button class="mic-btn" type="button" data-mic-target="${escapeHtml(targetSelector)}" aria-label="语音输入" title="语音输入">🎤</button>`;
+  return `
+    <button class="mic-btn" type="button" data-mic-target="${escapeHtml(targetSelector)}" aria-label="语音输入" title="语音输入">
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path d="M4 10v4h4l5 4V6L8 10H4Z"></path>
+        <path d="M16 9.5a3.5 3.5 0 0 1 0 5"></path>
+        <path d="M18.5 7a7 7 0 0 1 0 10"></path>
+      </svg>
+    </button>
+  `;
+}
+
+function normalizeFormattedAnswer(value) {
+  if (value && typeof value === "object" && typeof value.formattedText === "string") {
+    return normalizeFormattedAnswer(value.formattedText);
+  }
+  return String(value || "").trim();
+}
+
+function hasMultipleSpeakerMarkers(value) {
+  const labels = String(value || "").match(/(?:^|\n|\s)((?:乙[12１２]?)|[甲丙丁ABCD])\s*[:：]/g) || [];
+  return new Set(labels.map((label) => label.replace(/[:：]/g, "").trim())).size > 1;
+}
+
+async function formatRecognizedAnswer(targetInput, recognizedText) {
+  const inputText = String(recognizedText || "").trim();
+  if (!inputText) return "";
+  const answerUnit = targetInput.dataset.answerUnit || "";
+  const shouldFormat = answerUnit === "dialogue"
+    || targetInput.dataset.formatAnswer === "dialogue"
+    || hasMultipleSpeakerMarkers(inputText);
+  if (!shouldFormat) return inputText;
+
+  try {
+    const response = await fetch("/api/practice/format-answer", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        inputText,
+        answerUnit: "dialogue",
+        formatHints: {}
+      })
+    });
+    const data = await response.json();
+    if (!response.ok) throw new Error(data.error || `HTTP ${response.status}`);
+    return normalizeFormattedAnswer(data.formattedText || data) || inputText;
+  } catch (error) {
+    console.warn("[mic] format answer failed:", error);
+    return inputText;
+  }
 }
 
 async function startSpeechRecognition(button, targetInput) {
@@ -2958,7 +3432,7 @@ async function startSpeechRecognition(button, targetInput) {
       });
       const data = await res.json();
       if (data.recognizedText) {
-        targetInput.value = data.recognizedText;
+        targetInput.value = await formatRecognizedAnswer(targetInput, data.recognizedText);
         targetInput.dispatchEvent(new Event("input", { bubbles: true }));
       }
     } catch (error) {
@@ -3462,10 +3936,104 @@ function rubyExerciseText(source) {
   return html;
 }
 
+const answerLexicalVariantGroups = [
+  ["わたし", "私", "我"],
+  ["あなた", "貴方", "貴女"],
+  ["だれ", "誰"],
+  ["なん", "何", "なに"],
+  ["いいえ違います", "いいえちがいます"],
+  ["違います", "ちがいます"],
+  ["どなた", "何方"],
+  ["こちら", "此方"],
+  ["そちら", "其方"],
+  ["あちら", "彼方"],
+  ["にほんじん", "日本人"],
+  ["ちゅうごくじん", "中国人"],
+  ["かんこくじん", "韓国人"],
+  ["アメリカじん", "アメリカ人"],
+  ["フランスじん", "フランス人"],
+  ["にほんご", "日本語"],
+  ["ちゅうごくご", "中国語"],
+  ["かいしゃいん", "会社員"],
+  ["しゃいん", "社員"],
+  ["がくせい", "学生"],
+  ["りゅうがくせい", "留学生"],
+  ["けんしゅうせい", "研修生"],
+  ["かちょう", "課長"],
+  ["しゃちょう", "社長"],
+  ["きょうじゅ", "教授"],
+  ["かいしゃ", "会社"],
+  ["JCきかく", "JC企画", "ジェーシーきかく", "ジェーシー企画"],
+  ["きかく", "企画"],
+  ["だいがく", "大学"],
+  ["とうきょうだいがく", "東京大学"],
+  ["ペキンだいがく", "北京大学"],
+  ["にっちゅうしょうじ", "日中商事"],
+  ["ペキンりょこうしゃ", "北京旅行社"],
+  ["かばん", "鞄"],
+  ["いす", "椅子"],
+  ["つくえ", "机"],
+  ["しんぶん", "新聞"],
+  ["えんぴつ", "鉛筆"],
+  ["ざっし", "雑誌"],
+  ["じしょ", "辞書"],
+  ["でんわ", "電話"],
+  ["くるま", "車"],
+  ["かぎ", "鍵"],
+  ["かさ", "傘"],
+  ["くつ", "靴"],
+  ["とけい", "時計"],
+  ["てちょう", "手帳"],
+  ["ほん", "本"],
+  ["しゃしん", "写真"],
+  ["り", "李"],
+  ["もり", "森"],
+  ["はやし", "林"],
+  ["おの", "小野"],
+  ["たなか", "田中"],
+  ["ちょう", "張"],
+  ["おう", "王"],
+  ["よしだ", "吉田"],
+  ["なかむら", "中村"],
+  ["ながしま", "長島"],
+  ["おのみどり", "小野緑"],
+  ["りしゅうれい", "李秀麗"],
+  ["もりけんたろう", "森健太郎"]
+];
+const sortedAnswerLexicalVariantGroups = [...answerLexicalVariantGroups]
+  .map((group) => [...group].sort((a, b) => b.length - a.length))
+  .sort((a, b) => b[0].length - a[0].length);
+
+function normalizeAnswerLexicalVariants(value) {
+  let normalized = value;
+  sortedAnswerLexicalVariantGroups.forEach((group) => {
+    const canonical = group[0];
+    group.forEach((variant) => {
+      normalized = normalized.split(variant).join(canonical);
+    });
+  });
+  return normalized;
+}
+
+function normalizeAnswerText(value) {
+  if (Array.isArray(value)) return value.map((entry) => normalizeAnswerText(entry)).join("\n");
+  const normalized = String(value || "")
+    .normalize("NFKC")
+    .replace(/\u3000/g, " ")
+    .replace(/[A-Za-z]+/g, (textValue) => textValue.toUpperCase())
+    .replace(/て\s*は\s*ありません/g, "ではありません")
+    .replace(/て\s*は\s*ないです/g, "ではありません")
+    .replace(/じゃありません/g, "ではありません")
+    .replace(/じゃないです/g, "ではありません")
+    .replace(/\s+/g, "")
+    .replace(/\p{P}/gu, (mark) => mark === "〜" ? mark : "")
+    .replace(/^ー+/, "")
+    .trim();
+  return normalizeAnswerLexicalVariants(normalized);
+}
+
 function normalizeAnswer(value) {
-  return String(value || "").trim()
-    .replace(/^[ー\-—]+/, "")
-    .replace(/[\s。、，．,.！？!?「」『』（）()［］\[\]【】・:：;；／\/—\-×""…☆★~～　]+/g, "");
+  return normalizeAnswerText(value);
 }
 
 function normalizeLookupText(value) {
@@ -3631,7 +4199,10 @@ function layout(content) {
   const current = currentRoute.page;
   const runtimeLessonId = routeRuntimeLessonId();
   const inLesson = Boolean(runtimeLessonId);
-  const showLessonSubnav = inLesson && ["vocab", "grammar", "text", "exercises", "wrongbook", "result", "favorites"].includes(current);
+  const showLessonSubnav = inLesson && ["lesson", "vocab", "grammar", "text", "exercises"].includes(current);
+  const storedUser = getStoredUser() || {};
+  const storedUsername = storedUser.username || "已登录";
+  const storedEmail = storedUser.email || "";
   return `
     <div class="shell">
       <header class="topbar">
@@ -3639,27 +4210,21 @@ function layout(content) {
           <span class="brand-mark">日</span>
           <span>JapaFlow</span>
         </div>
-        <nav class="nav">
-          ${navLink("/", "首页", current === "home")}
-          ${inLesson ? navLink(`/lesson/${runtimeLessonId}`, "课程", current === "lesson") : ""}
-          ${navLink(inLesson ? `/lesson/${runtimeLessonId}/favorites` : "/favorites", "收藏", current === "favorites")}
-        </nav>
         <div class="topbar-actions">
-          <div class="playback-control" aria-label="播放速度">
-            ${[1, 0.6, 0.8, 1.2, 1.5].map((rate) => `
-              <button class="playback-rate ${state.playbackRate === rate ? "active" : ""}" data-playback-rate="${rate}" type="button">${rate.toFixed(1)}x</button>
-            `).join("")}
-          </div>
-          <div class="manage-menu progress-menu">
-            <button class="manage-trigger progress-trigger" type="button" aria-label="学习数据菜单">...</button>
-            <div class="manage-dropdown progress-dropdown">
-              <button type="button" data-export-progress>导出</button>
-              <button type="button" data-import-progress-trigger>导入</button>
-            </div>
-          </div>
-          <input class="hidden" type="file" accept="application/json,.json" data-import-progress-file />
           ${isLoggedIn() ? `
-            <span class="topbar-user"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>${escapeHtml(getStoredUsername())}</span>
+            <div class="manage-menu user-menu">
+              <button class="topbar-user user-trigger" type="button" aria-label="账号菜单">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                <span class="topbar-user-main">
+                  <span>${escapeHtml(storedUsername)}</span>
+                  ${storedEmail ? `<span class="topbar-user-email">${escapeHtml(storedEmail)}</span>` : ""}
+                </span>
+                <svg class="user-trigger-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+              </button>
+              <div class="manage-dropdown user-dropdown">
+                <button type="button" data-header-logout>退出</button>
+              </div>
+            </div>
           ` : `
             <button class="topbar-login" type="button" data-header-login><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>登录</button>
           `}
@@ -3676,17 +4241,25 @@ function navLink(path, text, active) {
   return `<a href="${path}" class="${active ? "active" : ""}" data-link>${text}</a>`;
 }
 
+function chineseLessonNumber(value) {
+  const num = Number(value);
+  if (!Number.isInteger(num) || num <= 0 || num > 99) return String(value);
+  const digits = ["零", "一", "二", "三", "四", "五", "六", "七", "八", "九"];
+  if (num <= 10) return num === 10 ? "十" : digits[num];
+  const tens = Math.floor(num / 10);
+  const ones = num % 10;
+  return `${tens === 1 ? "" : digits[tens]}十${ones ? digits[ones] : ""}`;
+}
+
 function lessonSubnav(lessonId, current) {
   return `
     <nav class="lesson-subnav" aria-label="课程模块导航">
+      ${navLink(`/lesson/${lessonId}`, `第${chineseLessonNumber(lessonId)}课`, current === "lesson")}
       ${navLink(`/lesson/${lessonId}/vocab`, "单词预热", current === "vocab")}
       ${navLink(`/lesson/${lessonId}/grammar`, "语法", current === "grammar")}
       ${navLink(`/lesson/${lessonId}/text`, "课文", current === "text")}
       ${navLink(`/lesson/${lessonId}/exercises`, "练习", current === "exercises")}
-      ${navLink(`/lesson/${lessonId}/wrongbook`, "错题集", current === "wrongbook")}
-      ${navLink(`/lesson/${lessonId}/favorites`, "收藏", current === "favorites")}
-      ${navLink(`/lesson/${lessonId}/result`, "结果", current === "result")}
-      ${navLink(`/lesson/${lessonId}/audio`, "音频", current === "audio")}
+      ${"" /* Temporarily hidden: wrongbook, favorites, result, audio. */}
     </nav>
   `;
 }
@@ -3703,8 +4276,7 @@ function home() {
       <div class="page-head">
         <div>
           <p class="eyebrow">JapaFlow · 课程列表</p>
-          <h1>选择一课开始学习</h1>
-          <p class="lead">首页只负责选课和总览。进入具体课次后，再完成单词、语法、课文、练习和结果复盘。</p>
+          <h1>标准日本语初级</h1>
         </div>
         ${homePagination(currentPage, pageCount)}
       </div>
@@ -3793,8 +4365,12 @@ function courseCard(item) {
   const runtimeReady = item.status === "ready" && item.runtimeReady !== false;
   const initialized = item.status === "initialized";
   const invalid = item.status === "invalid";
-  const cardNav = runtimeReady || initialized || !ADMIN_MODE ? "" : `data-nav="/lesson/${item.id}/init"`;
-  const summary = runtimeReady ? lessonProgressSummary() : initialized ? catalogLessonProgressSummary(item) : null;
+  const cardNav = runtimeReady || initialized
+    ? `data-nav="/lesson/${item.id}"`
+    : !ADMIN_MODE
+      ? ""
+      : `data-nav="/lesson/${item.id}/init"`;
+  const summary = runtimeReady || initialized ? catalogLessonProgressSummary(item) : null;
   const lessonPct = summary ? lessonPercent(summary) : 0;
   const status = runtimeReady
     ? lessonStudyStatus(summary)
@@ -3812,7 +4388,6 @@ function courseCard(item) {
         </div>
         <span class="course-status ${status.className}">${status.label}</span>
       </div>
-      <p class="muted">${item.description}</p>
       ${summary ? `
         <div class="course-mini-progress" aria-label="本课学习进度 ${lessonPct}%">
           <span class="course-mini-progress-bar" style="--value:${lessonPct}%"></span>
@@ -3831,10 +4406,8 @@ function courseCard(item) {
           ${courseMetric("课文", summary.text.completed, summary.text.total)}
           ${courseMetric("练习", summary.exercises.completed, summary.exercises.total)}
         </div>
-        ${courseStudyTimeGrid(item.id)}
         <div class="button-row">
-          <button class="primary" data-nav="/lesson/${item.id}">${summary.started ? "继续学习" : "开始学习"}</button>
-          <button class="secondary" data-nav="/lesson/${item.id}/result">查看结果</button>
+          <button class="primary" type="button" data-nav="/lesson/${item.id}">${summary.started ? "继续学习" : "开始学习"}</button>
         </div>
       ` : initialized ? `
         <div class="course-progress-grid">
@@ -3843,14 +4416,13 @@ function courseCard(item) {
           ${courseMetric("课文", summary.text.completed, summary.text.total)}
           ${courseMetric("练习", summary.exercises.completed, summary.exercises.total)}
         </div>
-        ${courseStudyTimeGrid(item.id)}
         <div class="button-row">
-          <button class="primary" data-nav="/lesson/${item.id}">开始学习</button>
-          <button class="secondary" data-nav="/lesson/${item.id}/init">初始化结果</button>
+          <button class="primary" type="button" data-nav="/lesson/${item.id}">开始学习</button>
+          <button class="secondary" type="button" data-nav="/lesson/${item.id}/init">初始化结果</button>
         </div>
       ` : `
         <div class="course-placeholder">${invalid ? "课程数据需要重新核对，暂不展示统计数量" : "课程数据尚未初始化"}</div>
-        <button class="primary" data-nav="/lesson/${item.id}/init">${invalid ? "查看并修正" : "初始化课程"}</button>
+        <button class="primary" type="button" data-nav="/lesson/${item.id}/init">${invalid ? "查看并修正" : "初始化课程"}</button>
       `}
     </article>
   `;
@@ -3872,22 +4444,13 @@ function lessonDashboard() {
         </div>
         <div class="button-row">
           <button class="primary" data-nav="${next.path}">${next.label}</button>
-          <button class="secondary" data-nav="/lesson/${lesson.id}/result">查看结果</button>
         </div>
       </div>
-      <div class="dashboard-summary">
-        ${progressRow("单词掌握", summary.vocab.completed, summary.vocab.total)}
-        ${progressRow("语法通过", summary.grammar.completed, summary.grammar.total)}
-        ${progressRow("课文朗读", summary.text.completed, summary.text.total)}
-        ${progressRow("练习完成", summary.exercises.completed, summary.exercises.total)}
-      </div>
       <div class="module-grid">
-        ${moduleCard("单词", "先完成全词表发音与打乱测试。", summary.vocab, `/lesson/${lesson.id}/vocab`, "vocab")}
+        ${moduleCard("单词", "先完成全词表跟读，再进行小测验。", summary.vocab, `/lesson/${lesson.id}/vocab`, "vocab")}
         ${moduleCard("语法", "围绕核心例句完成中译日和跟读。", summary.grammar, `/lesson/${lesson.id}/grammar`, "grammar")}
         ${moduleCard("课文", "按基本课文和应用课文连续朗读，再复盘弱句。", summary.text, `/lesson/${lesson.id}/text`, "text")}
         ${moduleCard("练习", "使用标准练习做最终验收。", summary.exercises, `/lesson/${lesson.id}/exercises`, "exercises")}
-        ${moduleCard("结果", `当前弱项 ${summary.weak.total} 个。`, { completed: summary.weak.resolved, total: summary.weak.total }, `/lesson/${lesson.id}/result`)}
-        ${moduleCard("音频", "管理全局默认声音和缺失音频。", summary.audio, `/lesson/${lesson.id}/audio`)}
       </div>
     </section>
   `);
@@ -3911,7 +4474,6 @@ function favoritesPage() {
           <p class="lead">按课程集中复习收藏的单词和句子，可以查看中文和日文，播放标准音，也可以长按录音做发音评测。</p>
         </div>
         <div class="favorite-tabs" role="tablist" aria-label="收藏类型">
-          ${currentRoute.lessonId ? studyTimeBadge("favorites", currentRoute.lessonId) : ""}
           ${favoriteTab("words", "单词", activeTab)}
           ${favoriteTab("sentences", "句子", activeTab)}
         </div>
@@ -3985,7 +4547,7 @@ function favoriteItemCard(item) {
           ${stopping ? "disabled" : ""}
         >
           <span class="record-icon"></span>
-          <span>${recordLabel}</span>
+          <span data-word-record-label>${recordLabel}</span>
         </button>
       </div>
       ${result ? favoriteRecordingResult(result) : ""}
@@ -4042,77 +4604,170 @@ function catalogLessonProgressSummary(item) {
   const lessonId = item.id;
   const counts = item.counts || {};
   const isCurrent = String(lessonId) === String(lesson.id);
-  const wordLearning = isCurrent ? state.wordLearning : {};
+  const progress = catalogLessonProgressData(lessonId);
+  const wordLearning = isCurrent ? state.wordLearning : progress.wordLearning;
   const wordProgress = isCurrent ? state.wordProgress : {};
-  const grammarPractice = isCurrent ? state.grammarPractice : {};
-  const sentencePractice = isCurrent ? state.sentencePractice : {};
-  const exerciseResults = isCurrent ? state.exerciseResults : [];
-  const interactionProgress = isCurrent ? state.interactionProgress : { words: {}, sentences: {}, grammarExamples: {} };
-  const vocabCompleted = Math.min(
+  const grammarPractice = isCurrent ? state.grammarPractice : progress.grammarPractice;
+  const sentencePractice = isCurrent ? state.sentencePractice : progress.sentencePractice;
+  const interactionProgress = isCurrent ? state.interactionProgress : progress.interactionProgress;
+  const vocabCompleted = Math.min(counts.vocabulary || 0, objectCount(wordLearning, (entry) => wordLearningAttemptCount(entry, "pronunciation") > 0));
+  const vocabTestCompleted = Math.min(
     counts.vocabulary || 0,
     Math.max(
-      objectCount(wordLearning, (entry) => entry?.mainStatus === "mastered"),
+      objectCount(wordLearning, (entry) => wordLearningAttemptCount(entry, "audioToWord") > 0 || entry?.audioToWordCorrect),
       objectCount(wordProgress, (entry) => entry === "familiar")
     )
   );
   const grammarCompleted = Math.min(
     counts.grammar || 0,
-    objectCount(grammarPractice, (entry) => Boolean(entry?.correct && entry?.pronunciationPassed))
+    objectCount(grammarPractice, (entry) => Boolean(entry?.correct))
   );
   const textCompleted = Math.min(
     counts.sentences || 0,
     objectCount(sentencePractice, (entry) => Boolean(entry?.pronunciationPassed))
   );
-  const exerciseCompleted = Math.min(
-    counts.exercises || 0,
-    Array.isArray(exerciseResults) ? new Set(exerciseResults.map((entry) => entry?.exerciseId).filter(Boolean)).size : 0
-  );
+  const exerciseTotal = lessonPracticeTotal(lessonId, counts.exercises || 0);
+  const exerciseCompleted = Math.min(exerciseTotal, lessonPracticeCompleted(lessonId));
   const weakTotal = [
     ...Object.values(interactionProgress.words || {}),
     ...Object.values(interactionProgress.sentences || {}),
     ...Object.values(interactionProgress.grammarExamples || {})
   ].filter((entry) => entry?.pronunciationState === "retry" || entry?.skipped).length;
   return {
-    vocab: { completed: vocabCompleted, total: counts.vocabulary || 0 },
+    vocab: {
+      completed: vocabCompleted,
+      total: counts.vocabulary || 0,
+      reading: { completed: vocabCompleted, total: counts.vocabulary || 0 },
+      test: { completed: vocabTestCompleted, total: counts.vocabulary || 0 }
+    },
     grammar: { completed: grammarCompleted, total: counts.grammar || 0 },
     text: { completed: textCompleted, total: counts.sentences || 0 },
-    exercises: { completed: exerciseCompleted, total: counts.exercises || 0 },
+    exercises: { completed: exerciseCompleted, total: exerciseTotal },
     weak: { resolved: 0, total: weakTotal },
     audio: { completed: 0, total: 0 },
     started: vocabCompleted > 0 || grammarCompleted > 0 || textCompleted > 0 || exerciseCompleted > 0
   };
 }
 
+function catalogLessonProgressData(lessonId) {
+  const key = String(lessonId);
+  const server = state.lessonProgressByLesson?.[lessonId] || state.lessonProgressByLesson?.[key] || {};
+  return {
+    wordLearning: { ...(server.wordLearning || {}), ...(read(`lesson:${key}:wordLearning`, {}) || {}) },
+    grammarPractice: { ...(server.grammarPractice || {}), ...(read(`lesson:${key}:grammarPractice`, {}) || {}) },
+    sentencePractice: { ...(server.sentencePractice || {}), ...(read(`lesson:${key}:sentencePractice`, {}) || {}) },
+    exerciseResults: Array.isArray(server.exerciseResults) ? server.exerciseResults : [],
+    interactionProgress: server.interactionProgress || { words: {}, sentences: {}, grammarExamples: {} }
+  };
+}
+
+function lessonPracticeProgress(lessonId) {
+  const key = String(lessonId);
+  return state.lessonPracticeProgressByLesson?.[lessonId] || state.lessonPracticeProgressByLesson?.[key] || {};
+}
+
+function normalizePracticeProgress(value = {}) {
+  const session = value?.session || value || {};
+  const activityProgress = Array.isArray(value?.activityProgress) ? value.activityProgress : [];
+  const completed = Math.max(firstFiniteNumber(
+    value.completed,
+    value.completedActivityCount,
+    session.completed,
+    session.completedActivityCount
+  ), activityProgress.length);
+  const total = firstPositiveNumber(
+    value.total,
+    value.totalActivityCount,
+    session.total,
+    session.totalActivityCount
+  );
+  return {
+    completed: Math.max(0, completed),
+    total: Math.max(0, total)
+  };
+}
+
+function firstFiniteNumber(...values) {
+  for (const value of values) {
+    const number = Number(value);
+    if (Number.isFinite(number)) return number;
+  }
+  return 0;
+}
+
+function firstPositiveNumber(...values) {
+  for (const value of values) {
+    const number = Number(value);
+    if (Number.isFinite(number) && number > 0) return number;
+  }
+  return 0;
+}
+
+function lessonPracticeCompleted(lessonId) {
+  return Number(lessonPracticeProgress(lessonId)?.completed) || 0;
+}
+
+function lessonPracticeTotal(lessonId, fallback = 0) {
+  const total = Number(lessonPracticeProgress(lessonId)?.total);
+  return Number.isFinite(total) && total > 0 ? total : fallback;
+}
+
 function moduleCard(title, description, progress, path, module = "") {
+  const rows = progress.rows || [{ label: "进度", completed: progress.completed, total: progress.total }];
   return `
     <article class="module-card" data-nav="${path}">
       <div class="module-card-head">
         <h3>${title}</h3>
-        <strong>${progress.completed}/${progress.total}</strong>
+        <strong>${progress.label || `${progress.completed}/${progress.total}`}</strong>
       </div>
       <p class="muted">${description}</p>
-      ${module ? `<p class="module-time" data-module="${module}" data-lesson-id="${lesson.id}">${studyTimeDisplay(lesson.id, module)}</p>` : ""}
-      ${progressRow("进度", progress.completed, progress.total)}
+      ${rows.map((row) => progressRow(row.label, row.completed, row.total)).join("")}
     </article>
   `;
 }
 
 function lessonProgressSummary() {
   const vocab = activeVocabulary();
-  const vocabCompleted = vocab.filter((word) => wordLearningState(word.id).mainStatus === "mastered").length;
+  const cached = catalogLessonProgressData(lesson.id);
+  const cachedWordLearning = cached.wordLearning || {};
+  const vocabReadingCompleted = Math.max(
+    vocab.filter((word) => wordHasPronunciationRecord(word.id)).length,
+    objectCount(cachedWordLearning, (entry) => wordLearningAttemptCount(entry, "pronunciation") > 0)
+  );
+  const vocabTestCompleted = Math.max(
+    vocab.filter((word) => wordTestCompleted(word)).length,
+    objectCount(cachedWordLearning, (entry) => wordLearningAttemptCount(entry, "audioToWord") > 0 || entry?.audioToWordCorrect)
+  );
   const grammarSummaries = lesson.grammar.map((item) => grammarPracticeSummary(item));
-  const grammarCompleted = grammarSummaries.filter((item) => item.total > 0 && item.completed === item.total).length;
-  const textCompleted = lesson.sentences.filter((sentence) => sentencePracticeState(sentence.id).pronunciationPassed).length;
-  const exerciseCompleted = state.exerciseResults.filter((item) => lesson.exercises.some((exercise) => exercise.id === item.exerciseId)).length;
+  const grammarCompleted = Math.max(
+    grammarSummaries.filter((item) => item.total > 0 && item.completed === item.total).length,
+    objectCount(cached.grammarPractice, (entry) => Boolean(entry?.correct))
+  );
+  const textCompleted = Math.max(
+    lesson.sentences.filter((sentence) => sentencePracticeState(sentence.id).pronunciationPassed).length,
+    objectCount(cached.sentencePractice, (entry) => Boolean(entry?.pronunciationPassed))
+  );
+  const exerciseTotal = lessonPracticeTotal(lesson.id, lesson.exercises.length);
+  const exerciseCompleted = Math.min(exerciseTotal, lessonPracticeCompleted(lesson.id));
   const weakTotal = activeWrongItems().length + weakInteractionItems().length;
   return {
-    vocab: { completed: vocabCompleted, total: vocab.length },
+    vocab: {
+      completed: vocabTestCompleted,
+      total: vocab.length,
+      label: `${vocabReadingCompleted}/${vocab.length}`,
+      reading: { completed: vocabReadingCompleted, total: vocab.length },
+      test: { completed: vocabTestCompleted, total: vocab.length },
+      rows: [
+        { label: "跟读", completed: vocabReadingCompleted, total: vocab.length },
+        { label: "测验", completed: vocabTestCompleted, total: vocab.length }
+      ]
+    },
     grammar: { completed: grammarCompleted, total: lesson.grammar.length },
     text: { completed: textCompleted, total: lesson.sentences.length },
-    exercises: { completed: exerciseCompleted, total: lesson.exercises.length },
+    exercises: { completed: exerciseCompleted, total: exerciseTotal },
     weak: { resolved: 0, total: weakTotal },
     audio: { completed: 0, total: 0 },
-    started: vocabCompleted > 0 || grammarCompleted > 0 || textCompleted > 0 || exerciseCompleted > 0
+    started: vocabReadingCompleted > 0 || vocabTestCompleted > 0 || grammarCompleted > 0 || textCompleted > 0 || exerciseCompleted > 0
   };
 }
 
@@ -4130,7 +4785,7 @@ function nextLessonStep(summary) {
   if (summary.grammar.completed < summary.grammar.total) return { label: "进入语法", path: `/lesson/${lesson.id}/grammar` };
   if (summary.text.completed < summary.text.total) return { label: "进入课文", path: `/lesson/${lesson.id}/text` };
   if (summary.exercises.completed < summary.exercises.total) return { label: "开始练习", path: `/lesson/${lesson.id}/exercises` };
-  return { label: "查看结果", path: `/lesson/${lesson.id}/result` };
+  return { label: "继续练习", path: `/lesson/${lesson.id}/exercises` };
 }
 
 function progressRow(label, value, total) {
@@ -4144,22 +4799,66 @@ function progressRow(label, value, total) {
   `;
 }
 
-function vocabFocusToggle() {
-  return `
-    <label class="toggle-control">
-      <input type="checkbox" data-vocab-focus-only ${state.vocabFocusOnly ? "checked" : ""} />
-      <span>只看收藏和弱项</span>
-    </label>
-  `;
+function wordHasPronunciationRecord(wordId) {
+  return wordLearningAttemptCount(wordLearningState(wordId), "pronunciation") > 0;
 }
 
-function wordHasLearningRecord(wordId) {
-  return wordLearningState(wordId).mainStatus !== "new";
+function wordTestCompleted(word) {
+  const learning = wordLearningState(word.id);
+  return Boolean(
+    wordLearningAttemptCount(learning, "audioToWord") > 0
+    && (!wordHasMeaningfulCnChoice(word) || wordLearningAttemptCount(learning, "wordToMeaning") > 0)
+  );
+}
+
+function vocabTestTaskCompleted(task) {
+  if (!task?.wordId || !task?.type) return false;
+  return wordLearningAttemptCount(wordLearningState(task.wordId), task.type) > 0;
+}
+
+function nextIncompleteVocabTestIndex(tasks = state.vocabTestQueue, startIndex = 0) {
+  const start = clamp(startIndex, 0, tasks.length);
+  for (let index = start; index < tasks.length; index += 1) {
+    if (!vocabTestTaskCompleted(tasks[index])) return index;
+  }
+  return tasks.length;
 }
 
 function vocabReadyForTest() {
   const words = vocabStudyWords();
-  return Boolean(words.length) && words.every((word) => wordHasLearningRecord(word.id));
+  return Boolean(words.length) && words.every((word) => wordHasPronunciationRecord(word.id));
+}
+
+function vocabStepNav({ testing, readyForTest, completed, total, busy }) {
+  return `
+    <div class="vocab-stepper" aria-label="单词预热步骤">
+      <button
+        class="vocab-step ${testing ? "" : "active"}"
+        type="button"
+        data-vocab-step="pronunciation"
+        ${busy ? "disabled" : ""}
+      >
+        <span class="vocab-step-index">1</span>
+        <span class="vocab-step-body">
+          <strong>跟读单词</strong>
+          <small>${completed}/${total}</small>
+        </span>
+      </button>
+      <span class="vocab-step-line"></span>
+      <button
+        class="vocab-step ${testing ? "active" : ""} ${readyForTest ? "" : "locked"}"
+        type="button"
+        data-vocab-step="test"
+        ${!readyForTest || busy ? "disabled" : ""}
+      >
+        <span class="vocab-step-index">2</span>
+        <span class="vocab-step-body">
+          <strong>小测验</strong>
+          <small>${readyForTest ? "已解锁" : "未解锁"}</small>
+        </span>
+      </button>
+    </div>
+  `;
 }
 
 function ensureVocabTestQueue() {
@@ -4174,23 +4873,25 @@ function ensureVocabTestQueue() {
     && state.vocabTestQueue.every((task) => task?.wordId && task?.type && !wordLearningState(task.wordId).slashed);
   if (valid) return;
   state.vocabTestQueue = expectedTasks;
-  state.currentVocabTest = 0;
+  state.currentVocabTest = nextIncompleteVocabTestIndex(expectedTasks, 0);
 
 
 }
 
 function currentVocabTestTask() {
   ensureVocabTestQueue();
-  if (state.currentVocabTest >= state.vocabTestQueue.length) {
-    state.currentVocabTest = Math.max(0, state.vocabTestQueue.length - 1);
-  
+  if (state.currentVocabTest < 0) state.currentVocabTest = 0;
+  if (state.currentVocabTest >= state.vocabTestQueue.length) return null;
+  if (!state.vocabReveal && vocabTestTaskCompleted(state.vocabTestQueue[state.currentVocabTest])) {
+    state.currentVocabTest = nextIncompleteVocabTestIndex(state.vocabTestQueue, state.currentVocabTest);
+    if (state.currentVocabTest >= state.vocabTestQueue.length) return null;
   }
   return state.vocabTestQueue[state.currentVocabTest] || null;
 }
 
 function startVocabTest() {
   if (!vocabReadyForTest()) {
-    state.recallResult = "所有单词都有学习记录后才能进入系统测试。";
+    state.recallResult = "请先完成所有单词跟读，再进入小测验。";
     render();
     return;
   }
@@ -4215,49 +4916,44 @@ function vocab() {
       <div class="page-head">
         <div>
           <p class="eyebrow">${lesson.title} · 单词预热</p>
-          <h2>没有符合条件的单词</h2>
-          <p>当前已开启“只看收藏和弱项”，但还没有收藏单词或弱项记录。</p>
-        </div>
-        <div class="button-row">
-          ${studyTimeBadge("vocab")}
-          ${vocabFocusToggle()}
+          <h2>没有单词数据</h2>
         </div>
       </div>
       <section class="panel favorite-empty">
-        <p class="muted">关闭筛选后可以继续查看全部单词。</p>
+        <p class="muted">当前课程暂时没有可学习的单词。</p>
       </section>
     `);
   }
   if (state.currentWord >= vocabWords.length) state.currentWord = 0;
   const word = vocabWords[state.currentWord] || vocabWords[0];
   const learning = wordLearningState(word.id);
-  const favorite = isFavorite("word", word.id);
   const finished = vocabWords.every((item) => wordLearningState(item.id).mainStatus === "mastered");
-  const weakItems = vocabWords.filter((item) => wordLearningState(item.id).mainStatus === "review");
   const testing = state.vocabPhase === "test";
   const readyForTest = vocabReadyForTest();
-  const wordsWithoutRecord = vocabWords.length - vocabWords.filter((item) => wordHasLearningRecord(item.id)).length;
   const task = testing ? currentVocabTestTask() : null;
+  const wordRecordingBusy = Boolean(state.recordingPreparingWordId || state.recordingWordId || state.recordingStoppingWordId);
+  const pronunciationCompleted = vocabWords.filter((item) => wordHasPronunciationRecord(item.id)).length;
   return layout(`
-    <div class="page-head">
+    <div class="page-head vocab-page-head">
       <div>
         <p class="eyebrow">${lesson.title} · 单词预热</p>
-        <h2>${testing ? "全词表打乱测试" : "先完成全量发音预热"}</h2>
-        <p>${testing ? "测试阶段不会展示假名、释义或右侧词表，避免短期提示干扰结果。" : "所有单词先走一遍听音和发音评价，再进入系统测试。"}</p>
+        ${vocabStepNav({
+          testing,
+          readyForTest,
+          completed: pronunciationCompleted,
+          total: vocabWords.length,
+          busy: wordRecordingBusy
+        })}
+        ${testing ? "<p>测试阶段不会展示假名、释义或右侧词表，避免短期提示干扰结果。</p>" : ""}
       </div>
       <div class="button-row">
-        ${studyTimeBadge("vocab")}
-        ${vocabFocusToggle()}
-        ${!testing ? `<button class="primary" data-start-vocab-test ${readyForTest ? "" : "disabled"}>进入系统测试</button>` : ""}
-        <button class="primary ${finished ? "emphasis" : ""}" data-nav="/lesson/${lesson.id}/grammar">进入语法</button>
+        <button class="primary ${finished ? "emphasis" : ""}" data-nav="/lesson/${lesson.id}/grammar" ${wordRecordingBusy ? "disabled" : ""}>进入语法</button>
       </div>
     </div>
     <section class="focus-layout">
       <div>
         <article class="panel word-focus">
           ${testing ? vocabTestPanel(task) : `
-            <button class="favorite-star word-favorite-star ${favorite ? "active" : ""}" type="button" aria-label="${favorite ? "取消收藏" : "收藏单词"}" title="${favorite ? "取消收藏" : "收藏单词"}" data-toggle-word-favorite="${word.id}">${favorite ? "★" : "☆"}</button>
-            <div class="word-count">${Math.min(state.currentWord + 1, vocabWords.length)}/${vocabWords.length}</div>
             <div class="kana">${word.kana}</div>
             <div class="jp-large">${word.jp}</div>
             <div class="meaning">${word.cn}</div>
@@ -4268,35 +4964,32 @@ function vocab() {
             </div>
             ${pronunciationPanel(word)}
             <div class="button-row word-step-row">
-              <button class="secondary" data-prev-pronunciation-word ${state.currentWord <= 0 ? "disabled" : ""}>上一个单词</button>
-              <button class="primary" data-next-pronunciation-word>${state.currentWord === vocabWords.length - 1 ? "完成预热" : "下一个单词"}</button>
+              <button class="secondary" data-prev-pronunciation-word ${state.currentWord <= 0 || wordRecordingBusy ? "disabled" : ""}>上一个</button>
+              <button class="primary" data-next-pronunciation-word ${wordRecordingBusy ? "disabled" : ""}>${state.currentWord === vocabWords.length - 1 ? "完成预热" : "下一个"}</button>
             </div>
           `}
         </article>
         ${testing ? "" : `<div class="rail">
           ${vocabWords.map((item, index) => `
-            <button class="${index === state.currentWord ? "current" : ""} ${wordLearningState(item.id).mainStatus === "mastered" ? "done" : ""}" data-word-index="${index}">
+            <button class="${index === state.currentWord ? "current" : ""} ${wordLearningState(item.id).mainStatus === "mastered" ? "done" : ""}" data-word-index="${index}" ${wordRecordingBusy ? "disabled" : ""}>
               ${item.jp}
             </button>
           `).join("")}
         </div>`}
       </div>
-      <aside class="panel">
+      <aside class="panel vocab-status-panel">
         ${testing ? `
           <h3>测试进度</h3>
           ${progressRow("打乱测试", Math.min(state.currentVocabTest + 1, state.vocabTestQueue.length), state.vocabTestQueue.length || vocabWords.length * 2)}
           <p class="hint">测试阶段不会展示词表，避免额外提示。</p>
         ` : `
-          <h3>单词状态</h3>
-          <div class="button-row">
-            <button class="secondary" data-regenerate-word="${word.id}">勘误：重生成当前词发音</button>
-            <button class="danger" data-reset-word-learning>重置单词学习数据</button>
+          <div class="vocab-status-head">
+            <h3>单词状态</h3>
+            <strong>${pronunciationCompleted}/${vocabWords.length}</strong>
           </div>
-          ${readyForTest ? "" : `<p class="hint">还有 ${wordsWithoutRecord} 个单词没有学习记录，全部记录后可进入系统测试。</p>`}
-          ${weakItems.length ? `<p class="hint">待复习 ${weakItems.length} 个。系统会保留进阶入口，但建议复习弱项。</p>` : ""}
           <div class="status-list">
             ${vocabWords.map((item, index) => `
-              <button class="status-item ${index === state.currentWord ? "current" : ""}" data-word-index="${index}">
+              <button class="status-item ${index === state.currentWord ? "current" : ""}" data-word-index="${index}" ${wordRecordingBusy ? "disabled" : ""}>
                 <span>${item.jp} · ${item.cn}</span>
                 <strong class="status-${state.wordProgress[item.id]}">${wordStatusLabel(item)}</strong>
               </button>
@@ -4313,30 +5006,30 @@ function pronunciationPanel(word) {
   const preparing = state.recordingPreparingWordId === word.id;
   const recording = state.recordingWordId === word.id;
   const stopping = state.recordingStoppingWordId === word.id;
-  const recordLabel = stopping ? "正在评价" : recording ? "正在说话" : preparing ? "准备中" : "长按录音";
+  const recordLabel = stopping ? "正在评价" : (recording || preparing) ? "结束录音" : "开始录音";
   const recordHint = stopping
     ? "正在收尾录音，马上提交评价..."
     : recording
-      ? "请继续按住按钮，说完后松手提交评价。"
+      ? "请跟读，说完后点击结束录音。"
       : preparing
-        ? "正在准备麦克风，等按钮变为正在说话后再开口。"
+        ? "正在启动麦克风，启动后会继续录音。"
         : "";
   return `
-    <div class="recall-box pronunciation-box">
+    <div class="pronunciation-box">
       <span class="label">发音评价</span>
-      <p class="hint">先听标准音，再长按录音按钮。按钮显示“正在说话”后再开口，松手自动停止并评价。</p>
+      <p class="hint">先听标准音，再点击开始录音跟读，说完后点击结束录音并评价。</p>
       <div class="button-row">
         <button class="secondary" data-speak="${word.jp}" data-audio="${audioUrl("word", word.id)}">听标准音</button>
         <button
+          type="button"
           class="hold-record-button ${preparing ? "preparing" : ""} ${recording ? "recording" : ""} ${stopping ? "stopping" : ""}"
-          data-hold-record-word="${word.id}"
+          data-word-record-toggle="${word.id}"
           aria-label="${recordLabel}"
           ${stopping ? "disabled" : ""}
         >
           <span class="record-icon"></span>
           <span>${recordLabel}</span>
         </button>
-        <button class="ghost" data-skip-pronunciation="${word.id}">稍后复习</button>
       </div>
       ${recordHint ? `<p class="hint">${recordHint}</p>` : ""}
       ${state.recordingError ? `<p class="hint danger-text">${state.recordingError}</p>` : ""}
@@ -4353,9 +5046,7 @@ function pronunciationResult(learning) {
       ${learning.pronunciationReasons?.length ? `<small>${learning.pronunciationReasons.join(" / ")}</small>` : ""}
       ${learning.debugAudioUrl ? `
         <div class="debug-recording">
-          <span>本次录音</span>
           <audio controls src="${learning.debugAudioUrl}"></audio>
-          ${learning.debugAudioPath ? `<small>${learning.debugAudioPath}</small>` : ""}
         </div>
       ` : ""}
     </div>
@@ -4380,11 +5071,9 @@ function vocabTestPanel(task) {
   const options = testOptions(word, task.type);
   const optionLabels = ["A", "B", "C", "D"];
   const label = task.type === "audioToWord" ? "听音选日文" : "日文选中文";
-  const favorite = isFavorite("word", word.id);
   return `
     <div class="recall-box">
       <span class="label">${label}</span>
-      <button class="favorite-star test-favorite-star ${favorite ? "active" : ""}" type="button" aria-label="${favorite ? "取消收藏" : "收藏单词"}" title="${favorite ? "取消收藏" : "收藏单词"}" data-toggle-word-favorite="${word.id}">${favorite ? "★" : "☆"}</button>
       <div class="word-count">${state.currentVocabTest + 1}/${state.vocabTestQueue.length}</div>
       <h3>${task.type === "audioToWord" ? "听音频，选择对应日文" : word.jp}</h3>
       <div class="button-row">
@@ -4473,6 +5162,7 @@ function statusText(status) {
 }
 
 function setCurrentWord(index, shouldSpeak = false) {
+  if (state.recordingPreparingWordId || state.recordingWordId || state.recordingStoppingWordId) return;
   const vocabWords = route().page === "vocab" ? vocabStudyWords() : activeVocabulary();
   const nextIndex = clamp(index, 0, vocabWords.length - 1);
   if (index >= vocabWords.length) {
@@ -4481,6 +5171,7 @@ function setCurrentWord(index, shouldSpeak = false) {
   }
   stopCurrentAudio();
   state.currentWord = nextIndex;
+  persistLocalVocabPosition(nextIndex);
   state.vocabPhase = "pronunciation";
   state.recallResult = "";
   state.recordingError = "";
@@ -4488,7 +5179,307 @@ function setCurrentWord(index, shouldSpeak = false) {
   render();
 }
 
+function textVersionPreference() {
+  const value = read(TEXT_VERSION_KEY, TEXT_VERSION_NEW);
+  return value === TEXT_VERSION_OLD ? TEXT_VERSION_OLD : TEXT_VERSION_NEW;
+}
+
+function textVersionSwitcher(activeVersion) {
+  return `
+    <div class="practice-version-switch" role="group" aria-label="课文版本">
+      <button class="${activeVersion === TEXT_VERSION_NEW ? "active" : ""}" type="button" data-text-version="${TEXT_VERSION_NEW}">新版</button>
+      <button class="${activeVersion === TEXT_VERSION_OLD ? "active" : ""}" type="button" data-text-version="${TEXT_VERSION_OLD}">旧版</button>
+    </div>
+  `;
+}
+
 function textPage() {
+  return textVersionPreference() === TEXT_VERSION_NEW ? newTextPage() : oldTextPage();
+}
+
+function textGroupPlaybackKey(sectionId, groupIndex) {
+  return `${sectionId}:${groupIndex}`;
+}
+
+function textGroupByPlaybackKey(key) {
+  const [sectionId, indexText] = String(key || "").split(":");
+  const section = textSectionById(sectionId);
+  const index = Number(indexText);
+  const group = textSectionGroups(section)[index];
+  return section && group ? { section, group, index } : null;
+}
+
+function playTextGroup(key, sentenceIndex = 0) {
+  const entry = textGroupByPlaybackKey(key);
+  if (!entry) return;
+  const sentences = (entry.group.ids || []).map((id) => sentenceById(id)).filter(Boolean);
+  const sentence = sentences[sentenceIndex];
+  if (!sentence) {
+    state.textReadingPlayingKey = "";
+    state.textReadingCurrentSentenceId = "";
+    state.textReadingCurrentIndex = -1;
+    state.textReadingPhase = "complete";
+    state.textReadingCompletedGroups = { ...state.textReadingCompletedGroups, [key]: true };
+    state.textReadingLastCompletedKey = key;
+    render();
+    return;
+  }
+  state.textReadingPlayingKey = key;
+  state.textReadingCurrentSentenceId = sentence.id;
+  state.textReadingCurrentIndex = sentenceIndex;
+  state.textReadingPhase = "audio";
+  state.textReadingCompletedGroups = { ...state.textReadingCompletedGroups, [key]: false };
+  state.textReadingLastCompletedKey = "";
+  render();
+  playAudio(sentence.text, audioUrl("sentence", sentence.id), () => {
+    if (route().page !== "text") return;
+    if (textVersionPreference() !== TEXT_VERSION_NEW) return;
+    if (state.textReadingPlayingKey !== key) return;
+    state.textReadingPhase = "recording";
+    render();
+    startTextRecording(sentence.id);
+  });
+}
+
+function toggleTextGroupPlayback(key) {
+  if (state.textReadingPlayingKey === key) {
+    cancelTextReadingPlayback();
+    return;
+  }
+  cancelTextReadingPlayback(false);
+  state.textReadingCompletedGroups = { ...state.textReadingCompletedGroups, [key]: false };
+  playTextGroup(key, 0);
+}
+
+function cancelTextReadingPlayback(shouldRender = true) {
+  stopCurrentAudio();
+  if (recordingSession?.kind === "sentence" && recordingSession?.readingKey) {
+    cleanupRecordingSession(recordingSession);
+    recordingSession = null;
+  }
+  recordingReleaseRequested = false;
+  recordingPointerId = null;
+  state.textRecordingPreparingId = "";
+  state.textRecordingId = "";
+  state.textRecordingStoppingId = "";
+  state.textRecordingError = "";
+  state.textReadingPlayingKey = "";
+  state.textReadingCurrentSentenceId = "";
+  state.textReadingCurrentIndex = -1;
+  state.textReadingPhase = "idle";
+  state.textReadingLastCompletedKey = "";
+  if (shouldRender) render();
+}
+
+function finishTextReadingSentence(sentenceId) {
+  if (!sentenceId || state.textReadingCurrentSentenceId !== sentenceId) return;
+  state.textReadingPhase = "evaluating";
+  state.textReadingEvaluating = { ...state.textReadingEvaluating, [sentenceId]: true };
+  render();
+  releaseTextRecording(sentenceId);
+}
+
+function advanceTextReadingFlow(sentenceId, key = state.textReadingPlayingKey) {
+  if (!key || state.textReadingPlayingKey !== key || state.textReadingCurrentSentenceId !== sentenceId) return false;
+  const entry = textGroupByPlaybackKey(key);
+  if (!entry) return false;
+  const sentences = (entry.group.ids || []).map((id) => sentenceById(id)).filter(Boolean);
+  const currentIndex = state.textReadingCurrentIndex >= 0
+    ? state.textReadingCurrentIndex
+    : sentences.findIndex((sentence) => sentence.id === sentenceId);
+  const nextIndex = currentIndex + 1;
+  if (nextIndex >= sentences.length) {
+    state.textReadingPlayingKey = "";
+    state.textReadingCurrentSentenceId = "";
+    state.textReadingCurrentIndex = -1;
+    state.textReadingPhase = "complete";
+    state.textReadingCompletedGroups = { ...state.textReadingCompletedGroups, [key]: true };
+    state.textReadingLastCompletedKey = key;
+    render();
+    return true;
+  }
+  window.setTimeout(() => {
+    if (route().page !== "text") return;
+    if (textVersionPreference() !== TEXT_VERSION_NEW) return;
+    playTextGroup(key, nextIndex);
+  }, 250);
+  return true;
+}
+
+async function evaluateTextReadingPronunciationAsync(sentence, form, stats) {
+  try {
+    const data = await evaluatePronunciation(form);
+    updateSentencePractice(sentence.id, {
+      submitted: true,
+      pronunciationPassed: data.passed,
+      pronunciationScore: data.pronunciationScore,
+      accuracyScore: data.accuracyScore,
+      fluencyScore: data.fluencyScore,
+      completenessScore: data.completenessScore,
+      pronunciationReasons: [...(data.reasons || []), `录音 ${stats.duration.toFixed(1)} 秒，音量峰值 ${stats.peak.toFixed(2)}`],
+      recognizedText: data.recognizedText || "",
+      debugAudioUrl: data.debugAudioUrl || "",
+      debugAudioPath: data.debugAudioPath || "",
+      pronunciationDuration: stats.duration,
+      pronunciationPeak: stats.peak,
+      pronunciationAttempts: sentencePracticeState(sentence.id).pronunciationAttempts + 1
+    });
+    recordInteraction("sentence", sentence.id, data.passed ? "smooth" : "retry");
+  } catch (error) {
+    updateSentencePractice(sentence.id, {
+      submitted: true,
+      pronunciationPassed: false,
+      pronunciationReasons: [String(error.message || error)],
+      debugAudioUrl: "",
+      debugAudioPath: "",
+      pronunciationDuration: stats.duration,
+      pronunciationPeak: stats.peak,
+      pronunciationAttempts: sentencePracticeState(sentence.id).pronunciationAttempts + 1
+    });
+    recordInteraction("sentence", sentence.id, "retry");
+  } finally {
+    state.textReadingEvaluating = { ...state.textReadingEvaluating, [sentence.id]: false };
+    if (route().page === "text") render();
+  }
+}
+
+function newTextPage() {
+  const requested = new URLSearchParams(location.search).get("sentenceId");
+  if (requested) {
+    const tabId = textTabIdForSentence(requested);
+    if (tabId) state.textCurrentTab = tabId;
+    history.replaceState({}, "", lessonPath(`/lesson/${lesson.id}/text`));
+  }
+  const section = textSectionById(state.textCurrentTab);
+  if (section?.id && state.textCurrentTab !== section.id) state.textCurrentTab = section.id;
+  return layout(`
+    <div class="page-head text-page-head">
+      <div>
+        <p class="eyebrow">${lesson.title} · 课文</p>
+        <h2>课文</h2>
+      </div>
+      <div class="text-head-actions">
+        ${textVersionSwitcher(TEXT_VERSION_NEW)}
+      </div>
+    </div>
+    <section class="text-reading-page">
+      <p class="text-reading-keyboard-hint">提示：按 Space 键可播放段落音频，跟读后再次按 Space 键结束当前句。</p>
+      <div class="text-tab-switch text-reading-tabs" role="tablist" aria-label="课文分类">
+        ${textTabs().map((tab) => {
+          const progress = textTabFollowProgress(tab.id);
+          return `
+            <button class="text-tab ${state.textCurrentTab === tab.id ? "active" : ""}" data-text-tab="${tab.id}" type="button">${escapeHtml(tab.title)}<span>${progress.completed}/${progress.total}</span></button>
+          `;
+        }).join("")}
+      </div>
+      <div class="text-reading-sections">
+        ${renderNewTextStructure(section)}
+      </div>
+    </section>
+  `);
+}
+
+function renderNewTextStructure(section) {
+  if (!section) return "";
+  return textSectionGroups(section).map((group, groupIndex) => {
+    const key = textGroupPlaybackKey(section.id, groupIndex);
+    const playing = state.textReadingPlayingKey === key;
+    return `
+    <section class="text-reading-section">
+      <div class="text-reading-section-head">
+        <h3>${escapeHtml(group.title)}</h3>
+        <button
+          class="text-reading-play ${playing ? "playing" : ""}"
+          type="button"
+          data-text-play-group="${escapeHtml(key)}"
+          aria-label="${playing ? "停止播放" : "播放"}"
+          title="${playing ? "停止播放" : "播放"}"
+        ></button>
+      </div>
+      <div class="${group.kind === "statements" ? "text-reading-statements" : "text-reading-dialogue"}">
+        ${(group.ids || []).map((id) => {
+          const sentence = sentenceById(id);
+          return sentence ? newTextSentenceItem(sentence, group.kind, key) : "";
+        }).join("")}
+      </div>
+    </section>
+  `;
+  }).join("");
+}
+
+function newTextSentenceItem(sentence, groupKind, groupKey) {
+  const japanese = renderJapaneseText(sentence.text, { kana: sentence.kana });
+  const active = state.textReadingCurrentSentenceId === sentence.id ? "active" : "";
+  const followControl = renderTextReadingFollowControl(sentence, groupKey);
+  if (groupKind === "statements") {
+    return `
+      <div class="text-reading-statement ${active}">
+        <span class="text-reading-order">${escapeHtml(sentence.order || "")}</span>
+        <div class="text-reading-content">
+          <p>${japanese}</p>
+          ${followControl}
+        </div>
+      </div>
+    `;
+  }
+  return `
+    <div class="text-reading-line ${sentence.speaker ? "" : "no-speaker"} ${active}">
+      ${sentence.speaker ? `<span class="speaker">${escapeHtml(sentence.speaker)}</span>` : ""}
+      <div class="text-reading-content">
+        <p>${japanese}</p>
+        ${followControl}
+      </div>
+    </div>
+  `;
+}
+
+function textReadingRating(practice) {
+  const score = Number(practice.pronunciationScore || 0);
+  if (practice.pronunciationPassed || score >= 82) return { label: "Good", className: "good" };
+  if (score >= 62) return { label: "Average", className: "average" };
+  return { label: "Poor", className: "poor" };
+}
+
+function renderTextReadingFollowControl(sentence, groupKey) {
+  const isCurrent = state.textReadingCurrentSentenceId === sentence.id && state.textReadingPlayingKey === groupKey;
+  if (state.textReadingEvaluating[sentence.id]) {
+    return `
+      <div class="text-reading-follow evaluating">
+        <span class="text-reading-evaluating-label">正在判别</span>
+      </div>
+    `;
+  }
+  if (isCurrent && state.textReadingPhase === "recording") {
+    return `
+      <div class="text-reading-follow recording">
+        <span class="text-reading-follow-message">请跟读，读完后点击右侧按钮</span>
+        <button class="text-reading-follow-icon recording" type="button" data-text-reading-finish="${sentence.id}" aria-label="完成跟读" title="完成跟读"></button>
+      </div>
+    `;
+  }
+  const practice = sentencePracticeState(sentence.id);
+  if (practice.pronunciationAttempts) {
+    const rating = textReadingRating(practice);
+    return `
+      <div class="text-reading-follow complete">
+        <span class="text-reading-rating ${rating.className}">${rating.label}</span>
+        ${practice.debugAudioUrl ? `
+          <button
+            class="text-reading-play text-reading-recording-play"
+            type="button"
+            data-speak=""
+            data-audio="${escapeHtml(practice.debugAudioUrl)}"
+            aria-label="播放用户录音"
+            title="播放用户录音"
+          ></button>
+        ` : ""}
+      </div>
+    `;
+  }
+  return "";
+}
+
+function oldTextPage() {
   if (!["zh", "ja"].includes(state.textPromptLanguage)) {
     state.textPromptLanguage = "zh";
     writeTextProgress();
@@ -4506,15 +5497,16 @@ function textPage() {
   const sentence = currentTextSentence() || sentences[0] || null;
   const complete = textLessonComplete();
   const progress = textTabProgress(section.id);
+  const attempted = textAttemptedCount(section.id);
   return layout(`
     <div class="page-head text-page-head">
       <div>
         <p class="eyebrow">${lesson.title} · 课文逐句学习</p>
-        <h2>先连续读完整段，再回头复盘弱句</h2>
-        <p class="hint">当前已通过 ${progress.completed}/${progress.total} 句，${complete ? "所有句子都已通过" : "未通过的句子会标红"}。</p>
+        <h2>听一句，跟读一句，读完整段后复盘</h2>
+        <p class="hint">当前已完成 ${attempted}/${progress.total} 句，已通过 ${progress.completed}/${progress.total} 句。</p>
       </div>
       <div class="text-head-actions">
-        ${studyTimeBadge("text")}
+        ${textVersionSwitcher(TEXT_VERSION_OLD)}
         <div class="text-tab-switch" role="tablist" aria-label="课文分类">
           ${textTabs().map((tab) => `
             <button class="text-tab ${state.textCurrentTab === tab.id ? "active" : ""}" data-text-tab="${tab.id}" type="button">${tab.title}<span>${textTabProgress(tab.id).completed}/${textTabProgress(tab.id).total}</span></button>
@@ -4537,11 +5529,78 @@ function textPage() {
           <span>${textReviewUnlocked(section.id) ? "可针对弱句重读" : "读完当前课文后显示评分"}</span>
         </div>
       </div>
+      ${renderTextGuidedPanel(section, sentence, sentences)}
       <div class="sentence-list">
         ${renderTextStructure(section)}
       </div>
     </section>
   `);
+}
+
+function textAttemptedCount(tabId = state.textCurrentTab) {
+  return textSentencesForTab(tabId).filter((sentence) => sentencePracticeState(sentence.id).pronunciationAttempts > 0).length;
+}
+
+function textFlowStatusLabel() {
+  if (state.textRecordingStoppingId || state.textFlowPhase === "evaluating") return "正在评价";
+  if (state.textRecordingPreparingId) return "正在准备麦克风";
+  if (state.textRecordingId) return "正在跟读";
+  return {
+    idle: "未开始",
+    listening: "正在播放标准音",
+    ready: "可以开始跟读",
+    recording: "正在跟读",
+    review: "复盘结果"
+  }[state.textFlowPhase] || "未开始";
+}
+
+function renderTextGuidedPanel(section, sentence, sentences) {
+  if (!sentence || !sentences.length) {
+    return `
+      <section class="text-guided-panel">
+        <div class="text-guided-main">
+          <span class="text-flow-status">暂无句子</span>
+          <p class="hint">当前课文分组没有可练习的句子。</p>
+        </div>
+      </section>
+    `;
+  }
+  const currentIndex = textActiveSentenceIndex(section.id);
+  const attempted = textAttemptedCount(section.id);
+  const reviewUnlocked = textReviewUnlocked(section.id);
+  const japanese = renderJapaneseText(sentence.text, { kana: sentence.kana });
+  const translation = escapeHtml(sentence.translation || "");
+  const primaryLine = state.textPromptLanguage === "ja" ? japanese : translation;
+  const secondaryLine = state.textPromptLanguage === "ja" ? translation : japanese;
+  const isCurrentRecording = state.textRecordingId === sentence.id;
+  const isCurrentPreparing = state.textRecordingPreparingId === sentence.id;
+  const isCurrentStopping = state.textRecordingStoppingId === sentence.id;
+  const finishDisabled = !isCurrentRecording || isCurrentStopping;
+  const canManualStart = state.textFlowActive && !isCurrentRecording && !isCurrentPreparing && !isCurrentStopping && !recordingSession;
+  return `
+    <section class="text-guided-panel ${state.textFlowActive ? "active" : ""}">
+      <div class="text-guided-main">
+        <div class="text-guided-meta">
+          <span class="text-flow-status">${textFlowStatusLabel()}</span>
+          <span>${currentIndex + 1}/${sentences.length}</span>
+          <span>已完成 ${attempted}/${sentences.length}</span>
+        </div>
+        <div class="text-guided-sentence">
+          <div class="${state.textPromptLanguage === "ja" ? "sentence-jp" : "sentence-translation primary"}">${primaryLine}</div>
+          <div class="${state.textPromptLanguage === "ja" ? "sentence-translation secondary" : "sentence-jp secondary"}">${secondaryLine}</div>
+        </div>
+        ${state.textRecordingError ? `<p class="hint danger-text">${escapeHtml(state.textRecordingError)}</p>` : ""}
+      </div>
+      <div class="text-flow-controls">
+        <button class="primary" data-start-text-flow type="button">${reviewUnlocked || attempted ? "重新开始" : "开始练习"}</button>
+        ${state.textFlowPhase === "listening" ? `<button class="secondary" type="button" disabled>播放中</button>` : ""}
+        ${(isCurrentRecording || isCurrentPreparing || isCurrentStopping || state.textFlowPhase === "evaluating") ? `
+          <button class="primary" data-finish-text-recording="${sentence.id}" type="button" ${finishDisabled ? "disabled" : ""}>完成</button>
+        ` : ""}
+        ${canManualStart ? `<button class="secondary" data-start-text-recording="${sentence.id}" type="button">开始跟读</button>` : ""}
+      </div>
+    </section>
+  `;
 }
 
 function sentencePronunciationResult(practice) {
@@ -4616,36 +5675,27 @@ function sentenceListItem(item, index, tabId) {
 
 function sentencePracticeBlock(item, tabId, practice, current) {
   const attempts = practice.pronunciationAttempts || 0;
-  const showScores = textReviewUnlocked(tabId);
-  const scoreBlock = showScores && attempts > 0 ? sentencePronunciationResult(practice) : "";
+  const showScores = attempts > 0 && (textReviewUnlocked(tabId) || state.textFlowPhase === "review");
+  const showActions = attempts > 0 || textReviewUnlocked(tabId);
+  const scoreBlock = showScores ? sentencePronunciationResult(practice) : "";
   const audioBlock = attempts > 0 ? `
     <div class="text-recording-row">
-      <div class="text-recording-label">${practice.pronunciationPassed ? "本次录音" : "你刚才的录音"}</div>
-      ${practice.debugAudioUrl ? `<audio controls src="${practice.debugAudioUrl}"></audio>` : ""}
+      <div class="text-recording-label">最近录音</div>
+      ${practice.debugAudioUrl ? `<audio controls src="${escapeHtml(practice.debugAudioUrl)}"></audio>` : `<span class="hint">暂无可播放录音</span>`}
     </div>
   ` : "";
-  const currentControls = current ? `
-    <div class="sentence-actions">
-      <button class="secondary" data-speak="${item.text}" data-audio="${audioUrl("sentence", item.id)}">听标准音</button>
-      <button
-        class="hold-record-button ${state.textRecordingPreparingId === item.id ? "preparing" : ""} ${state.textRecordingId === item.id ? "recording" : ""} ${state.textRecordingStoppingId === item.id ? "stopping" : ""}"
-        data-hold-record-sentence="${item.id}"
-        aria-label="长按跟读"
-        ${state.textRecordingStoppingId === item.id ? "disabled" : ""}
-      >
-        <span class="record-icon"></span>
-        <span>${state.textRecordingStoppingId === item.id ? "正在评价" : state.textRecordingId === item.id ? "正在说话" : state.textRecordingPreparingId === item.id ? "准备中" : "长按跟读"}</span>
-      </button>
+  const resultActions = showActions ? `
+    <div class="sentence-actions sentence-result-actions">
+      <button class="secondary" data-speak="${escapeHtml(item.text)}" data-audio="${audioUrl("sentence", item.id)}" type="button">听标准音</button>
+      <button class="secondary" data-start-text-retry="${item.id}" type="button" ${state.textRecordingStoppingId ? "disabled" : ""}>再说一次</button>
     </div>
-  ` : "";
+  ` : `<p class="sentence-result-empty">完成整段练习后可复盘这一句。</p>`;
   return `
     <div class="sentence-card-body">
-      ${currentControls}
-      ${current && state.textRecordingError ? `<p class="hint danger-text">${state.textRecordingError}</p>` : ""}
+      ${resultActions}
       ${audioBlock}
       ${scoreBlock}
       ${showScores && attempts > 0 && !practice.pronunciationPassed ? `<div class="text-weak-hint">此句未通过，点开后重读直到通过。</div>` : ""}
-      ${showScores && attempts > 0 ? "" : ""}
     </div>
   `;
 }
@@ -4696,7 +5746,6 @@ function grammarPage() {
         <p class="hint"><span class="kbd">↑</span><span class="kbd">↓</span> 切换上一个 / 下一个语法。先挖空回忆，再揭晓对照。</p>
       </div>
       <div class="button-row">
-        ${studyTimeBadge("grammar")}
         <button class="primary" data-nav="/lesson/${lesson.id}/exercises">开始练习</button>
       </div>
     </div>
@@ -4742,7 +5791,7 @@ function grammarNavProgress(grammar) {
   }
   const practices = items.map((item) => grammarPracticeState(grammar.id, item.id));
   const mastered = practices.filter((item) => grammarPracticeMastered(item)).length;
-  const started = practices.filter((item) => item.submitted || item.pronunciationAttempts > 0).length;
+  const started = practices.filter((item) => item.submitted).length;
   const statusClass = mastered === total
     ? "done"
     : started === 0
@@ -4794,13 +5843,11 @@ function grammarPracticeSummary(grammar) {
 
 function grammarExampleStatus(practice) {
   if (!practice.submitted) return "待练";
-  if (practice.pronunciationAttempts === 0) return practice.correct ? "待跟读" : "已检查";
-  if (practice.correct && practice.pronunciationPassed) return "已会";
-  return "需复习";
+  return practice.correct ? "已会" : "需复习";
 }
 
 function grammarPracticeMastered(practice) {
-  return Boolean(practice.correct && practice.pronunciationPassed);
+  return Boolean(practice.correct);
 }
 
 function grammarExamplePromptText(sentence) {
@@ -4879,122 +5926,65 @@ function grammarExamplePracticeCard(grammar, item, index) {
   const practice = grammarPracticeState(grammar.id, item.id);
   const ready = practice.submitted;
   const mastered = grammarPracticeMastered(practice);
-  const judgementReady = ready && practice.pronunciationAttempts > 0;
-  const statusClass = mastered ? "passed" : judgementReady ? "failed" : "pending";
+  const statusClass = mastered ? "passed" : ready ? "failed" : "pending";
   const targetText = sentence.text;
   const locationText = item.kind === "extra" ? "补充例句" : sentencePosition(sentence.id);
   const collapsed = Boolean(practice.collapsed);
   const promptText = grammarExamplePromptText(sentence);
+  const answerKey = grammarPracticeKey(grammar.id, item.id);
+  const hasAnswer = Boolean(String(practice.answer || "").trim());
   return `
     <article class="grammar-practice-card ${statusClass} ${collapsed ? "collapsed" : ""}">
       <div class="grammar-practice-head">
         <div class="grammar-practice-head-main">
           <span class="grammar-practice-no">${index + 1}</span>
           <div>
-            <strong>${promptText}</strong>
-            <small>${locationText}</small>
+            <strong>${escapeHtml(promptText)}</strong>
+            <small>${locationText} · 翻译成日语</small>
           </div>
         </div>
         <div class="grammar-practice-head-actions">
-          <span class="practice-status ${mastered ? "success" : ready && practice.pronunciationAttempts > 0 ? "danger" : ""}">${grammarExampleStatus(practice)}</span>
-          <button class="ghost grammar-toggle-button" data-grammar-toggle-collapse="${grammarPracticeKey(grammar.id, item.id)}">${collapsed ? "展开" : "收起"}</button>
-          <button class="ghost grammar-reset-button" data-grammar-reset="${grammarPracticeKey(grammar.id, item.id)}">重置</button>
+          <span class="practice-status ${mastered ? "success" : ready ? "danger" : ""}">${grammarExampleStatus(practice)}</span>
+          <button class="ghost grammar-toggle-button" data-grammar-toggle-collapse="${answerKey}">${collapsed ? "展开" : "收起"}</button>
+          <button class="ghost grammar-reset-button" data-grammar-reset="${answerKey}">重置</button>
         </div>
       </div>
       ${ready ? `
         <div class="grammar-answer-inline ${practice.correct ? "passed" : "failed"}">
-          <div class="diff-line">翻译结果：${practice.correct ? "正确" : "错误"}；标准答案：${renderJapaneseText(targetText, { kana: sentence.kana })}</div>
+          <div class="diff-line">标准答案：${renderJapaneseText(targetText, { kana: sentence.kana })}</div>
         </div>
       ` : ""}
       <div class="grammar-practice-body ${collapsed ? "collapsed" : ""}">
-        <div class="grammar-practice-cloze grammar-prompt-cn">${escapeHtml(promptText)}</div>
         <div class="grammar-practice-form">
-          <input class="answer-input" data-grammar-answer="${grammarPracticeKey(grammar.id, item.id)}" value="${escapeHtml(practice.answer || "")}" placeholder="翻译中文为日语" />
-          ${micButton(`[data-grammar-answer="${grammarPracticeKey(grammar.id, item.id)}"]`)}
-          <button class="primary" data-grammar-check="${grammarPracticeKey(grammar.id, item.id)}">检查</button>
+          <div class="answer-with-mic grammar-answer-control">
+            <input
+              class="answer-input"
+              data-grammar-answer="${answerKey}"
+              data-answer-unit="sentence"
+              value="${escapeHtml(practice.answer || "")}"
+              placeholder="输入日语，或点击麦克风说出答案"
+            />
+            ${micButton(`[data-grammar-answer="${answerKey}"]`)}
+            <button class="primary grammar-inline-check" data-grammar-check="${answerKey}" ${hasAnswer ? "" : "hidden"}>检查</button>
+          </div>
         </div>
-        ${grammarPronunciationPanel(grammar, item)}
-      ${judgementReady ? `
-        <div class="grammar-practice-result ${mastered ? "passed" : "failed"}">
-          <strong>${mastered ? "已会" : "需复习"}</strong>
-          <span>${mastered ? "翻译和跟读都已通过。" : practice.correct ? "翻译已对，继续完成跟读。" : "先把中文翻成日语，再进行跟读。"} </span>
-        </div>
-      ` : ""}
       </div>
     </article>
-  `;
-}
-
-function grammarPronunciationPanel(grammar, item) {
-  const sentence = item.sentence;
-  const key = grammarPracticeKey(grammar.id, item.id);
-  const practice = grammarPracticeState(grammar.id, item.id);
-  const preparing = state.grammarRecordingPreparingId === key;
-  const recording = state.grammarRecordingId === key;
-  const stopping = state.grammarRecordingStoppingId === key;
-  const recordLabel = stopping ? "正在评价" : recording ? "正在说话" : preparing ? "准备中" : "长按跟读";
-  const recordHint = stopping
-    ? "正在收尾录音，马上提交评价..."
-    : recording
-      ? "请继续按住按钮，说完后松手提交评价。"
-      : preparing
-        ? "正在准备麦克风，等按钮变为正在说话后再开口。"
-        : "先听标准音，再长按录音按钮。按钮变成“正在说话”后再开口，松手自动停止并评价。";
-  return `
-    <div class="recall-box pronunciation-box grammar-pronunciation-box">
-      <div class="grammar-pronunciation-head">
-        <span class="label">开口或跟读</span>
-      </div>
-      <div class="button-row">
-        <button class="secondary" data-speak="${sentence.text}" data-audio="${grammarPracticeAudioUrl(grammar, item)}">听标准音</button>
-        <button
-          class="hold-record-button ${preparing ? "preparing" : ""} ${recording ? "recording" : ""} ${stopping ? "stopping" : ""}"
-          data-hold-record-grammar="${key}"
-          aria-label="${recordLabel}"
-          ${stopping ? "disabled" : ""}
-        >
-          <span class="record-icon"></span>
-          <span>${recordLabel}</span>
-        </button>
-      </div>
-      ${(state.grammarRecordingError && state.grammarRecordingErrorKey === key) ? `<p class="hint danger-text">${state.grammarRecordingError}</p>` : ""}
-      ${practice.pronunciationAttempts ? grammarPronunciationResult(practice) : ""}
-    </div>
-  `;
-}
-
-function grammarPracticeAudioUrl(grammar, item) {
-  if (Number.isInteger(item.extraSourceIndex)) return extraExampleAudioUrl(grammar.id, item.extraSourceIndex);
-  return audioUrl("sentence", item.sentence.id);
-}
-
-function grammarPronunciationResult(practice) {
-  const recordingText = practice.pronunciationDuration
-    ? `录音 ${practice.pronunciationDuration.toFixed(1)} 秒，音量峰值 ${Number(practice.pronunciationPeak || 0).toFixed(2)}`
-    : "";
-  return `
-    <div class="pronunciation-result ${practice.pronunciationPassed ? "passed" : "failed"}">
-      <strong>${practice.pronunciationPassed ? "发音通过" : "发音需复习"}</strong>
-      <span>总分 ${practice.pronunciationScore || 0} · 准确 ${practice.accuracyScore || 0} · 流畅 ${practice.fluencyScore || 0} · 完整 ${practice.completenessScore || 0}${recordingText ? ` · ${recordingText}` : ""}</span>
-      ${practice.pronunciationReasons?.length ? `<small>${practice.pronunciationReasons.join(" / ")}</small>` : ""}
-      ${practice.debugAudioUrl ? `
-        <div class="debug-recording">
-          <audio controls src="${practice.debugAudioUrl}"></audio>
-        </div>
-      ` : ""}
-      ${practice.recognizedText ? `
-        <div class="diff-box">
-          <div><span class="diff-label">你说的是</span><p class="diff-line">${escapeHtml(practice.recognizedText)}</p></div>
-        </div>
-      ` : ""}
-    </div>
   `;
 }
 
 function handleGrammarPracticeInput(key, value) {
   const [grammarId, exampleId] = key.split(":");
   const current = state.grammarPractice[key] || defaultGrammarPractice();
-  state.grammarPractice = { ...state.grammarPractice, [key]: { ...current, answer: value, revealed: false } };
+  state.grammarPractice = {
+    ...state.grammarPractice,
+    [key]: {
+      ...current,
+      answer: value,
+      revealed: false,
+      updatedAt: new Date().toISOString()
+    }
+  };
   writeGrammarPractice(grammarId, exampleId);
 }
 
@@ -5006,7 +5996,7 @@ function handleGrammarPracticeCheck(key) {
   if (!item) return;
   const practice = grammarPracticeState(grammarId, exampleId);
   const target = item.sentence?.text || "";
-  const correct = normalizeForDiff(practice.answer || "") === normalizeForDiff(target || "");
+  const correct = normalizeAnswerText(practice.answer || "") === normalizeAnswerText(target || "");
   updateGrammarPractice(grammarId, exampleId, {
     submitted: true,
     correct,
@@ -5393,22 +6383,9 @@ function exerciseProgressSummary(groups) {
   return { total: groups.length, completed, passed, wrong, pending: groups.length - completed };
 }
 
-function exerciseVersionPreference() {
-  const value = read(EXERCISE_VERSION_KEY, EXERCISE_VERSION_NEW);
-  return value === EXERCISE_VERSION_OLD ? EXERCISE_VERSION_OLD : EXERCISE_VERSION_NEW;
-}
-
-function exerciseVersionSwitcher(activeVersion) {
-  return `
-    <div class="practice-version-switch" role="group" aria-label="练习版本">
-      <button class="${activeVersion === EXERCISE_VERSION_NEW ? "active" : ""}" type="button" data-exercise-version="${EXERCISE_VERSION_NEW}">新版</button>
-      <button class="${activeVersion === EXERCISE_VERSION_OLD ? "active" : ""}" type="button" data-exercise-version="${EXERCISE_VERSION_OLD}">旧版</button>
-    </div>
-  `;
-}
-
 function newPracticePreviewPage() {
   const lessonId = Number(lesson.id) || lesson.id;
+  const previewUrl = `/practice/lesson${lessonId}-practice-preview.html${ADMIN_MODE ? "?admin=1" : ""}`;
   return layout(`
     <section class="exercise-box practice-preview-host">
       <div class="page-head practice-version-head">
@@ -5417,17 +6394,11 @@ function newPracticePreviewPage() {
           <h2>练习</h2>
           <p>使用新版练习体验，提交记录会保存到数据库。</p>
         </div>
-        <div class="button-row">
-          ${studyTimeBadge("exercises")}
-          ${exerciseVersionSwitcher(EXERCISE_VERSION_NEW)}
-          <button class="secondary" data-nav="/lesson/${lesson.id}/wrongbook">错题集 ${activeWrongItems().length}</button>
-          <button class="secondary" data-nav="/lesson/${lesson.id}/result">查看结果</button>
-        </div>
       </div>
       <iframe
         class="practice-preview-frame"
         title="${escapeHtml(lesson.title)} 新版练习"
-        src="/practice/lesson${lessonId}-practice-preview.html"
+        src="${previewUrl}"
       ></iframe>
     </section>
   `);
@@ -5445,7 +6416,7 @@ function activeWrongItems(includeResolved = false) {
 }
 
 function exercisesPage() {
-  if (exerciseVersionPreference() === EXERCISE_VERSION_NEW) return newPracticePreviewPage();
+  return newPracticePreviewPage();
   const groups = exerciseGroups();
   const group = currentExerciseGroup();
   const summary = exerciseProgressSummary(groups);
@@ -5461,12 +6432,6 @@ function exercisesPage() {
           <p class="eyebrow">${lesson.title} · 标准练习题</p>
           <h2>${group.title}</h2>
           <p>${group.category} · 大题 ${state.currentExerciseGroup + 1} / ${groups.length} · 小题 ${group.items.length} 道</p>
-        </div>
-        <div class="button-row">
-          ${studyTimeBadge("exercises")}
-          ${exerciseVersionSwitcher(EXERCISE_VERSION_OLD)}
-          <button class="secondary" data-nav="/lesson/${lesson.id}/wrongbook">错题集 ${activeWrongItems().length}</button>
-          <button class="secondary" data-nav="/lesson/${lesson.id}/result">查看结果</button>
         </div>
       </div>
       ${exerciseProgressOverview(groups, summary)}
@@ -5889,7 +6854,6 @@ function wrongBookPage() {
           <h2>暂无需要复练的错题</h2>
         </div>
         <div class="button-row">
-          ${studyTimeBadge("wrongbook")}
           <button class="secondary" data-nav="/lesson/${lesson.id}/exercises">返回练习</button>
         </div>
       </div>
@@ -5929,7 +6893,6 @@ function wrongBookPage() {
           <p>${wrongStatusText(item.status)} · ${activeItems.length ? `第 ${state.wrongPractice.current + 1} / ${activeItems.length} 题` : "本轮错题已清空"}</p>
         </div>
         <div class="button-row">
-          ${studyTimeBadge("wrongbook")}
           <button class="secondary" data-nav="/lesson/${lesson.id}/exercises">返回练习</button>
           <button class="secondary" data-nav="/lesson/${lesson.id}/result">结果页</button>
         </div>
@@ -6222,7 +7185,10 @@ function slashWord(wordId) {
     }
   });
   state.vocabTestQueue = state.vocabTestQueue.filter((task) => task.wordId !== word.id);
-  if (state.currentVocabTest >= state.vocabTestQueue.length) state.currentVocabTest = Math.max(0, state.vocabTestQueue.length - 1);
+  state.currentVocabTest = nextIncompleteVocabTestIndex(
+    state.vocabTestQueue,
+    Math.min(state.currentVocabTest, state.vocabTestQueue.length)
+  );
 
 
   state.vocabReveal = null;
@@ -6266,7 +7232,7 @@ function revealAndAdvanceTest(word, selectedWordId, correct, mode) {
 }
 
 function advanceVocabTest() {
-  state.currentVocabTest += 1;
+  state.currentVocabTest = nextIncompleteVocabTestIndex(state.vocabTestQueue, state.currentVocabTest + 1);
 
   window.setTimeout(() => {
     state.recallResult = "";
@@ -6287,7 +7253,6 @@ async function startWordRecording(wordId) {
   recordingPointerId = null;
   state.recordingPreparingWordId = wordId;
   state.recordingError = "";
-  render();
   try {
     stopCurrentAudio();
     const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
@@ -6301,27 +7266,17 @@ async function startWordRecording(wordId) {
     };
     source.connect(processor);
     processor.connect(audioContext.destination);
-    recordingSession = { stream, audioContext, source, processor, chunks, wordId, startedAt, sampleRate: audioContext.sampleRate, ready: false };
-    await delay(250);
+    recordingSession = { stream, audioContext, source, processor, chunks, wordId, startedAt, sampleRate: audioContext.sampleRate, ready: true };
     if (!recordingSession || recordingSession.wordId !== wordId) return;
-    if (recordingReleaseRequested) {
-      cleanupRecordingSession(recordingSession);
-      recordingSession = null;
-      recordingPressWordId = "";
-      recordingReleaseRequested = false;
-      recordingPointerId = null;
-      state.recordingPreparingWordId = "";
-      state.recordingWordId = "";
-      state.recordingError = "录音尚未准备好，请长按到按钮变为“正在说话”后再开口。";
-      render();
-      return;
-    }
-    recordingSession.ready = true;
     state.recordingPreparingWordId = "";
     state.recordingWordId = wordId;
     state.recordingStoppingWordId = "";
     state.recordingError = "";
     render();
+    if (recordingReleaseRequested) {
+      stopWordRecording(wordId);
+      return;
+    }
   } catch (error) {
     state.recordingPreparingWordId = "";
     cleanupRecordingSession(recordingSession);
@@ -6347,7 +7302,7 @@ async function stopWordRecording(wordId) {
     state.recordingPreparingWordId = "";
     state.recordingWordId = "";
     state.recordingStoppingWordId = "";
-    state.recordingError = "录音尚未准备好，请长按到按钮变为“正在说话”后再开口。";
+    state.recordingError = "录音尚未启动，请稍后再点击结束录音。";
     render();
     return;
   }
@@ -6413,7 +7368,7 @@ async function stopWordRecording(wordId) {
         if (state.currentWord !== currentWordIndex) return;
         if (vocabStudyWords()[state.currentWord]?.id !== currentWordId) return;
         setCurrentWord(state.currentWord + 1, true);
-      }, 350);
+      }, 120);
     }
   } catch (error) {
     const previous = wordLearningState(word.id);
@@ -6440,249 +7395,42 @@ function releaseWordRecording(wordId) {
   }
 }
 
-function holdWordRecording(button, wordId, event) {
-  if (!wordId || recordingSession || state.recordingStoppingWordId) return;
-  if (event?.pointerId != null) recordingPointerId = event.pointerId;
-  if (event?.currentTarget?.setPointerCapture && event?.pointerId != null) {
-    try {
-      event.currentTarget.setPointerCapture(event.pointerId);
-    } catch {
-      // Ignore capture failures; document/window listeners remain as fallback.
-    }
+function toggleWordRecording(wordId) {
+  if (!wordId) return;
+  if (state.recordingStoppingWordId) return;
+  if (state.recordingWordId === wordId || state.recordingPreparingWordId === wordId || recordingSession?.wordId === wordId) {
+    releaseWordRecording(wordId);
+    return;
   }
+  if (recordingSession) return;
   startWordRecording(wordId);
 }
 
-function endWordRecording(wordId, event) {
+function updateWordRecordToggleVisual(button, mode) {
+  if (!button) return;
+  const label = button.querySelector("[data-word-record-label]");
+  button.classList.toggle("preparing", mode === "preparing");
+  button.classList.toggle("recording", mode === "recording");
+  button.classList.toggle("stopping", mode === "stopping");
+  if (mode === "stopping") {
+    if (label) label.textContent = "正在评价";
+    button.setAttribute("aria-label", "正在评价");
+    button.disabled = true;
+    return;
+  }
+  if (mode === "preparing" || mode === "recording") {
+    if (label) label.textContent = "结束录音";
+    button.setAttribute("aria-label", "结束录音");
+  }
+}
+
+function handleWordRecordToggle(button, event) {
+  const wordId = button?.dataset.wordRecordToggle;
   if (!wordId) return;
-  if (recordingPointerId != null && event?.pointerId != null && event.pointerId !== recordingPointerId) return;
-  if (event?.currentTarget?.releasePointerCapture && event?.pointerId != null) {
-    try {
-      event.currentTarget.releasePointerCapture(event.pointerId);
-    } catch {
-      // Ignore capture release failures.
-    }
-  }
-  releaseWordRecording(wordId);
-}
-
-function releaseGrammarRecording(key) {
-  if (!key || state.grammarRecordingStoppingId) return;
-  recordingReleaseRequested = true;
-  if (recordingSession?.kind === "grammar" && recordingSession?.key === key) {
-    stopGrammarRecording(key);
-  }
-}
-
-async function startGrammarRecording(key) {
-  if (!key || recordingSession || state.grammarRecordingStoppingId) return;
-  const [grammarId, exampleId] = key.split(":");
-  const grammar = grammarById(grammarId);
-  if (!grammar) return;
-  const item = grammarPracticeItemByKey(grammar, exampleId);
-  if (!item?.sentence?.text) return;
-  state.grammarRecordingPreparingId = key;
-  state.grammarRecordingError = "";
-  recordingPressWordId = "";
-  recordingReleaseRequested = false;
-  recordingPointerId = null;
-  render();
-  try {
-    stopCurrentAudio();
-    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-    const audioContext = new AudioContext({ sampleRate: 16000 });
-    const source = audioContext.createMediaStreamSource(stream);
-    const processor = audioContext.createScriptProcessor(4096, 1, 1);
-    const chunks = [];
-    processor.onaudioprocess = (event) => {
-      chunks.push(new Float32Array(event.inputBuffer.getChannelData(0)));
-    };
-    source.connect(processor);
-    processor.connect(audioContext.destination);
-    recordingSession = {
-      kind: "grammar",
-      key,
-      stream,
-      audioContext,
-      source,
-      processor,
-      chunks,
-      referenceText: item.sentence.text,
-      label: item.sentence.text,
-      startedAt: Date.now(),
-      sampleRate: audioContext.sampleRate,
-      ready: false
-    };
-    await delay(250);
-    if (!recordingSession || recordingSession.key !== key) return;
-    if (recordingReleaseRequested) {
-      cleanupRecordingSession(recordingSession);
-      recordingSession = null;
-      recordingReleaseRequested = false;
-      recordingPointerId = null;
-      state.grammarRecordingPreparingId = "";
-      state.grammarRecordingId = "";
-      state.grammarRecordingErrorKey = key;
-      state.grammarRecordingError = "录音尚未准备好，请长按到按钮变为“正在说话”后再开口。";
-      render();
-      return;
-    }
-    recordingSession.ready = true;
-    state.grammarRecordingPreparingId = "";
-    state.grammarRecordingId = key;
-    state.grammarRecordingStoppingId = "";
-    state.grammarRecordingError = "";
-    render();
-  } catch (error) {
-    state.grammarRecordingPreparingId = "";
-    cleanupRecordingSession(recordingSession);
-    recordingSession = null;
-    recordingReleaseRequested = false;
-    recordingPointerId = null;
-    state.grammarRecordingErrorKey = key;
-    state.grammarRecordingError = `无法录音：${error.message || error}`;
-    render();
-  }
-}
-
-async function stopGrammarRecording(key) {
-  if (!recordingSession || recordingSession.key !== key) return;
-  const session = recordingSession;
-  if (session.stopping) return;
-  if (!session.ready) {
-    cleanupRecordingSession(session);
-    recordingSession = null;
-    recordingReleaseRequested = false;
-    recordingPointerId = null;
-    state.grammarRecordingPreparingId = "";
-    state.grammarRecordingId = "";
-    state.grammarRecordingStoppingId = "";
-    state.grammarRecordingErrorKey = key;
-    state.grammarRecordingError = "录音尚未准备好，请长按到按钮变为“正在说话”后再开口。";
-    render();
-    return;
-  }
-  session.stopping = true;
-  state.grammarRecordingPreparingId = "";
-  state.grammarRecordingStoppingId = key;
-  state.grammarRecordingErrorKey = key;
-  state.grammarRecordingError = "";
-  render();
-  await delay(800);
-  if (recordingSession !== session) return;
-  recordingSession = null;
-  session.processor.disconnect();
-  session.source.disconnect();
-  session.stream.getTracks().forEach((track) => track.stop());
-  await session.audioContext.close();
-  state.grammarRecordingId = "";
-  state.grammarRecordingStoppingId = "";
-  state.grammarRecordingErrorKey = key;
-  state.grammarRecordingError = "正在提交发音评价...";
-  render();
-  const [grammarId, exampleId] = key.split(":");
-  const grammar = grammarById(grammarId);
-  const item = grammarPracticeItemByKey(grammar, exampleId);
-  if (!grammar || !item?.sentence?.text) {
-    state.grammarRecordingError = "未找到对应语法例句。";
-    render();
-    return;
-  }
-  const stats = audioStats(session.chunks, session.sampleRate);
-  if (stats.duration < 0.25 || stats.peak < 0.01) {
-    state.grammarRecordingError = `录音音量过低或时长太短：${stats.duration.toFixed(1)} 秒，峰值 ${stats.peak.toFixed(3)}。请靠近麦克风重试。`;
-    recordingReleaseRequested = false;
-    recordingPointerId = null;
-    render();
-    return;
-  }
-  const wav = encodeWav(session.chunks, session.sampleRate);
-  const form = new FormData();
-  form.append("wordId", `grammar:${grammar.id}:${item.id}`);
-  form.append("referenceText", item.sentence.text);
-  form.append("kana", item.sentence.kana || "");
-  form.append("audio", new Blob([wav], { type: "audio/wav" }), `${grammar.id}-${item.id}.wav`);
-  try {
-    const data = await evaluatePronunciation(form);
-    updateGrammarPractice(grammar.id, item.id, {
-      pronunciationPassed: data.passed,
-      pronunciationScore: data.pronunciationScore,
-      accuracyScore: data.accuracyScore,
-      fluencyScore: data.fluencyScore,
-      completenessScore: data.completenessScore,
-      pronunciationReasons: [...(data.reasons || []), `录音 ${stats.duration.toFixed(1)} 秒，音量峰值 ${stats.peak.toFixed(2)}`],
-      recognizedText: data.recognizedText || "",
-      debugAudioUrl: data.debugAudioUrl || "",
-      debugAudioPath: data.debugAudioPath || "",
-      pronunciationDuration: stats.duration,
-      pronunciationPeak: stats.peak,
-      pronunciationAttempts: (grammarPracticeState(grammar.id, item.id).pronunciationAttempts || 0) + 1
-    });
-    if (!grammarPracticeState(grammar.id, item.id).correct && data.recognizedText) {
-      const practice = grammarPracticeState(grammar.id, item.id);
-      const target = item.sentence?.text || "";
-      const correct = normalizeForDiff(data.recognizedText) === normalizeForDiff(target);
-      updateGrammarPractice(grammar.id, item.id, {
-        answer: data.recognizedText,
-        submitted: true,
-        correct,
-        attempts: (practice.attempts || 0) + 1,
-        revealed: true,
-        updatedAt: new Date().toISOString()
-      });
-      recordInteraction("grammarExample", key, correct ? "smooth" : "retry");
-    }
-    state.grammarRecordingError = "";
-    state.grammarRecordingErrorKey = key;
-    recordingReleaseRequested = false;
-    recordingPointerId = null;
-    render();
-  } catch (error) {
-    updateGrammarPractice(grammar.id, item.id, {
-      pronunciationPassed: false,
-      pronunciationReasons: [String(error.message || error)],
-      debugAudioUrl: "",
-      debugAudioPath: "",
-      pronunciationDuration: 0,
-      pronunciationPeak: 0,
-      pronunciationAttempts: (grammarPracticeState(grammar.id, item.id).pronunciationAttempts || 0) + 1
-    });
-    state.grammarRecordingErrorKey = key;
-    state.grammarRecordingError = String(error.message || error);
-    recordingReleaseRequested = false;
-    recordingPointerId = null;
-    render();
-  }
-}
-
-function startGrammarHold(button, key, event) {
-  if (!key || recordingSession || state.grammarRecordingStoppingId) return;
-  if (event?.pointerId != null) recordingPointerId = event.pointerId;
-  if (event?.currentTarget?.setPointerCapture && event?.pointerId != null) {
-    try {
-      event.currentTarget.setPointerCapture(event.pointerId);
-    } catch {
-      // Ignore capture failures; document/window listeners remain as fallback.
-    }
-  }
-  recordingReleaseRequested = false;
-  startGrammarRecording(key);
-}
-
-function endGrammarHold(key, event) {
-  if (!key) return;
-  if (recordingPointerId != null && event?.pointerId != null && event.pointerId !== recordingPointerId) return;
-  if (event?.currentTarget?.releasePointerCapture && event?.pointerId != null) {
-    try {
-      event.currentTarget.releasePointerCapture(event.pointerId);
-    } catch {
-      // Ignore capture release failures.
-    }
-  }
-  recordingReleaseRequested = true;
-  if (recordingSession?.kind === "grammar" && recordingSession?.key === key) {
-    stopGrammarRecording(key);
-  }
+  event?.preventDefault?.();
+  const ending = state.recordingWordId === wordId || state.recordingPreparingWordId === wordId || recordingSession?.wordId === wordId;
+  updateWordRecordToggleVisual(button, ending ? "stopping" : "preparing");
+  toggleWordRecording(wordId);
 }
 
 function releaseTextRecording(sentenceId) {
@@ -6726,18 +7474,33 @@ async function startTextRecording(sentenceId) {
       label: sentence.text,
       startedAt: Date.now(),
       sampleRate: audioContext.sampleRate,
+      readingKey: state.textReadingPlayingKey || "",
       ready: false
     };
     await delay(250);
     if (!recordingSession || recordingSession.sentenceId !== sentenceId) return;
     if (recordingReleaseRequested) {
+      const readingKey = recordingSession.readingKey || "";
       cleanupRecordingSession(recordingSession);
       recordingSession = null;
       recordingReleaseRequested = false;
       recordingPointerId = null;
       state.textRecordingPreparingId = "";
       state.textRecordingId = "";
-      state.textRecordingError = "录音尚未准备好，请长按到按钮变为“正在说话”后再开口。";
+      if (readingKey) {
+        updateSentencePractice(sentenceId, {
+          submitted: true,
+          pronunciationPassed: false,
+          pronunciationReasons: ["录音尚未准备好"],
+          pronunciationAttempts: sentencePracticeState(sentenceId).pronunciationAttempts + 1
+        });
+        recordInteraction("sentence", sentenceId, "retry");
+        state.textReadingEvaluating = { ...state.textReadingEvaluating, [sentenceId]: false };
+        state.textRecordingError = "";
+        if (!advanceTextReadingFlow(sentenceId, readingKey)) render();
+        return;
+      }
+      state.textRecordingError = "录音尚未准备好，请等按钮显示“正在跟读”后再开口。";
       render();
       return;
     }
@@ -6754,6 +7517,13 @@ async function startTextRecording(sentenceId) {
     recordingReleaseRequested = false;
     recordingPointerId = null;
     state.textRecordingError = `无法录音：${error.message || error}`;
+    if (state.textReadingPlayingKey && state.textReadingCurrentSentenceId === sentenceId) {
+      state.textReadingPlayingKey = "";
+      state.textReadingCurrentSentenceId = "";
+      state.textReadingCurrentIndex = -1;
+      state.textReadingPhase = "idle";
+    }
+    if (state.textFlowActive) state.textFlowPhase = "ready";
     render();
   }
 }
@@ -6763,6 +7533,7 @@ async function stopTextRecording(sentenceId) {
   const session = recordingSession;
   if (session.stopping) return;
   if (!session.ready) {
+    const readingKey = session.readingKey || "";
     cleanupRecordingSession(session);
     recordingSession = null;
     recordingReleaseRequested = false;
@@ -6770,7 +7541,20 @@ async function stopTextRecording(sentenceId) {
     state.textRecordingPreparingId = "";
     state.textRecordingId = "";
     state.textRecordingStoppingId = "";
-    state.textRecordingError = "录音尚未准备好，请长按到按钮变为“正在说话”后再开口。";
+    if (readingKey) {
+      updateSentencePractice(sentenceId, {
+        submitted: true,
+        pronunciationPassed: false,
+        pronunciationReasons: ["录音尚未准备好"],
+        pronunciationAttempts: sentencePracticeState(sentenceId).pronunciationAttempts + 1
+      });
+      recordInteraction("sentence", sentenceId, "retry");
+      state.textReadingEvaluating = { ...state.textReadingEvaluating, [sentenceId]: false };
+      state.textRecordingError = "";
+      if (!advanceTextReadingFlow(sentenceId, readingKey)) render();
+      return;
+    }
+    state.textRecordingError = "录音尚未准备好，请等按钮显示“正在跟读”后再开口。";
     render();
     return;
   }
@@ -6793,7 +7577,27 @@ async function stopTextRecording(sentenceId) {
   const sentence = sentenceById(sentenceId);
   const stats = audioStats(session.chunks, session.sampleRate);
   if (stats.duration < 0.25 || stats.peak < 0.01) {
+    updateSentencePractice(sentence.id, {
+      submitted: true,
+      pronunciationPassed: false,
+      pronunciationReasons: [`录音音量过低或时长太短：${stats.duration.toFixed(1)} 秒，峰值 ${stats.peak.toFixed(3)}`],
+      debugAudioUrl: "",
+      debugAudioPath: "",
+      pronunciationDuration: stats.duration,
+      pronunciationPeak: stats.peak,
+      pronunciationAttempts: sentencePracticeState(sentence.id).pronunciationAttempts + 1
+    });
+    recordInteraction("sentence", sentence.id, "retry");
+    if (session.readingKey) {
+      state.textRecordingError = "";
+      state.textReadingEvaluating = { ...state.textReadingEvaluating, [sentence.id]: false };
+      recordingReleaseRequested = false;
+      recordingPointerId = null;
+      if (!advanceTextReadingFlow(sentence.id, session.readingKey)) render();
+      return;
+    }
     state.textRecordingError = `录音音量过低或时长太短：${stats.duration.toFixed(1)} 秒，峰值 ${stats.peak.toFixed(3)}。请靠近麦克风重试。`;
+    if (state.textFlowActive) state.textFlowPhase = "ready";
     recordingReleaseRequested = false;
     recordingPointerId = null;
     render();
@@ -6805,6 +7609,14 @@ async function stopTextRecording(sentenceId) {
   form.append("referenceText", sentence.text);
   form.append("kana", sentence.kana || "");
   form.append("audio", new Blob([wav], { type: "audio/wav" }), `${sentence.id}.wav`);
+  if (session.readingKey) {
+    state.textRecordingError = "";
+    recordingReleaseRequested = false;
+    recordingPointerId = null;
+    evaluateTextReadingPronunciationAsync(sentence, form, stats);
+    if (!advanceTextReadingFlow(sentence.id, session.readingKey)) render();
+    return;
+  }
   try {
     const data = await evaluatePronunciation(form);
     updateSentencePractice(sentence.id, {
@@ -6826,21 +7638,31 @@ async function stopTextRecording(sentenceId) {
     state.textRecordingError = "";
     recordingReleaseRequested = false;
     recordingPointerId = null;
-    render();
-    window.setTimeout(() => {
-      if (route().page !== "text") return;
-      if (state.textRecordingId || state.textRecordingPreparingId || state.textRecordingStoppingId) return;
-      const tabSentences = textSentencesForTab(state.textCurrentTab);
-      if (state.currentSentence >= tabSentences.length - 1) return;
-      setTextSentenceIndex(state.currentSentence + 1);
-      history.replaceState({}, "", lessonPath(`/lesson/${lesson.id}/text`));
+    if (advanceTextReadingFlow(sentence.id, session.readingKey)) {
+      return;
+    }
+    if (session.readingKey) {
       render();
-    }, 350);
+      return;
+    }
+    if (!advanceGuidedTextFlow(sentence.id)) {
+      render();
+      window.setTimeout(() => {
+        if (route().page !== "text") return;
+        if (state.textRecordingId || state.textRecordingPreparingId || state.textRecordingStoppingId) return;
+        const tabSentences = textSentencesForTab(state.textCurrentTab);
+        if (state.currentSentence >= tabSentences.length - 1) return;
+        setTextSentenceIndex(state.currentSentence + 1);
+        history.replaceState({}, "", lessonPath(`/lesson/${lesson.id}/text`));
+        render();
+      }, 350);
+    }
   } catch (error) {
+    const message = String(error.message || error);
     updateSentencePractice(sentence.id, {
       submitted: true,
       pronunciationPassed: false,
-      pronunciationReasons: [String(error.message || error)],
+      pronunciationReasons: [message],
       debugAudioUrl: "",
       debugAudioPath: "",
       pronunciationDuration: 0,
@@ -6848,38 +7670,24 @@ async function stopTextRecording(sentenceId) {
       pronunciationAttempts: sentencePracticeState(sentence.id).pronunciationAttempts + 1
     });
     recordInteraction("sentence", sentence.id, "retry");
-    state.textRecordingError = String(error.message || error);
     recordingReleaseRequested = false;
     recordingPointerId = null;
-    render();
-  }
-}
-
-function startTextHold(button, sentenceId, event) {
-  if (!sentenceId || recordingSession || state.textRecordingStoppingId) return;
-  if (event?.pointerId != null) recordingPointerId = event.pointerId;
-  if (event?.currentTarget?.setPointerCapture && event?.pointerId != null) {
-    try {
-      event.currentTarget.setPointerCapture(event.pointerId);
-    } catch {
-      // Ignore capture failures; document/window listeners remain as fallback.
+    if (advanceTextReadingFlow(sentence.id, session.readingKey)) {
+      return;
+    }
+    if (session.readingKey) {
+      state.textRecordingError = "";
+      render();
+      return;
+    }
+    if (state.textFlowActive) {
+      state.textRecordingError = "";
+      if (!advanceGuidedTextFlow(sentence.id)) render();
+    } else {
+      state.textRecordingError = message;
+      render();
     }
   }
-  recordingReleaseRequested = false;
-  startTextRecording(sentenceId);
-}
-
-function endTextHold(sentenceId, event) {
-  if (!sentenceId) return;
-  if (recordingPointerId != null && event?.pointerId != null && event.pointerId !== recordingPointerId) return;
-  if (event?.currentTarget?.releasePointerCapture && event?.pointerId != null) {
-    try {
-      event.currentTarget.releasePointerCapture(event.pointerId);
-    } catch {
-      // Ignore capture release failures.
-    }
-  }
-  releaseTextRecording(sentenceId);
 }
 
 function releaseFavoriteRecording(key) {
@@ -7303,7 +8111,7 @@ async function loadAudioStatus(force = false) {
 
 async function loadCourseCatalog(force = false) {
   if (state.lessonCatalogLoading) return;
-  if (!force && state.lessonCatalogStatus) return;
+  if (!force && state.lessonCatalogStatus && (!shouldSync() || state.lessonProgressLoaded)) return;
   state.lessonCatalogLoading = true;
   try {
     // 学员端读静态 JSON（适用于纯静态部署 / App）；管理端读 API（看实时状态）。
@@ -7318,13 +8126,41 @@ async function loadCourseCatalog(force = false) {
       data = await response.json();
     }
     state.lessonCatalogStatus = data.lessons || [];
+    if (shouldSync() && (force || !state.lessonProgressLoaded)) {
+      await loadCatalogLearningProgress();
+    }
     state.lessonCatalogMessage = "";
   } catch (error) {
+    if (!state.lessonCatalogStatus) state.lessonCatalogStatus = [];
+    state.lessonProgressLoaded = true;
     state.lessonCatalogMessage = String(error.message || error);
   } finally {
     state.lessonCatalogLoading = false;
   }
   if (route().page === "home") render();
+}
+
+async function loadCatalogLearningProgress(force = false) {
+  if (!shouldSync()) {
+    state.lessonProgressByLesson = {};
+    state.lessonPracticeProgressByLesson = {};
+    state.lessonProgressLoaded = true;
+    return;
+  }
+  if (state.lessonProgressLoading) return;
+  if (!force && state.lessonProgressLoaded) return;
+  state.lessonProgressLoading = true;
+  try {
+    const data = await apiFetchAllProgress();
+    if (data?.lessons) {
+      state.lessonProgressByLesson = data.lessons;
+    }
+    const lessonIds = (state.lessonCatalogStatus || []).map((item) => item.id).filter((id) => id != null);
+    await loadPracticeProgressSummary(lessonIds);
+  } finally {
+    state.lessonProgressLoaded = true;
+    state.lessonProgressLoading = false;
+  }
 }
 
 function routeRuntimeLessonId() {
@@ -7683,7 +8519,6 @@ async function setDefaultVoice(voiceId) {
 
 function render() {
   const current = route().page;
-  syncStudyTimerWithRoute();
   // ADMIN_MODE 关闭时，访问管理路由（init/audio）直接重定向到课程主页或首页。
   if (!ADMIN_MODE && ADMIN_ROUTES.has(current)) {
     const currentRoute = route();
@@ -7715,6 +8550,8 @@ function render() {
   }
   ensurePageFocus();
   bind();
+  focusNewTextReadingControl();
+  scrollCurrentVocabStatusIntoView();
   if (current === "home" || current === "favorites") loadCourseCatalog();
   if (current === "audio") loadAudioStatus();
   if (current === "init") loadInitStatus();
@@ -7724,7 +8561,7 @@ function render() {
       lastAutoSpokenWord = word.id;
       const shouldDelay = pendingAutoSpeakWordId === word.id;
       pendingAutoSpeakWordId = "";
-      scheduleAutoWordAudio(word, shouldDelay ? 650 : 450);
+      scheduleAutoWordAudio(word, shouldDelay ? 120 : 90);
     }
   }
   if (current === "vocab" && state.vocabPhase === "test" && !state.modal) {
@@ -7734,7 +8571,7 @@ function render() {
       const key = `test:${task.id}`;
       if (word && lastAutoSpokenWord !== key) {
         lastAutoSpokenWord = key;
-        scheduleAutoWordAudio(word, 450);
+        scheduleAutoWordAudio(word, 120);
       }
     }
   }
@@ -7760,34 +8597,23 @@ function bind() {
       navigate(link.getAttribute("href"));
     });
   });
-  app.querySelectorAll("[data-nav]").forEach((button) => button.addEventListener("click", () => navigate(button.dataset.nav)));
-  app.querySelectorAll("[data-playback-rate]").forEach((button) => button.addEventListener("click", () => {
-    setPlaybackRate(button.dataset.playbackRate);
-  }));
-  app.querySelector("[data-export-progress]")?.addEventListener("click", exportLearningData);
-  app.querySelector("[data-import-progress-trigger]")?.addEventListener("click", () => {
-    app.querySelector("[data-import-progress-file]")?.click();
-  });
-  app.querySelector("[data-import-progress-file]")?.addEventListener("change", async (event) => {
-    const file = event.target.files?.[0];
-    event.target.value = "";
-    if (!file) return;
-    try {
-      await importLearningData(file);
-    } catch (error) {
-      window.alert(String(error.message || error));
-    }
-  });
+  if (!app.dataset.navDelegated) {
+    app.dataset.navDelegated = "true";
+    app.addEventListener("click", (event) => {
+      const target = event.target.closest?.("[data-nav]");
+      if (!target || !app.contains(target)) return;
+      event.preventDefault();
+      event.stopPropagation();
+      const path = target.getAttribute("data-nav");
+      if (path) navigate(path);
+    });
+  }
   function triggerLogin() {
-    const mainUrl = window.location.hostname === "localhost" ? "http://localhost:3000" : "https://groundedglow.cc";
-    if (window.parent !== window) {
-      window.parent.postMessage({ type: "AUTH_EXPIRED" }, mainUrl);
-      return;
-    }
-    window.location.href = mainUrl + "/login?redirect=" + encodeURIComponent(window.location.href);
+    redirectToLogin(window.location.href);
   }
   app.querySelector('[data-auth-action="login"]')?.addEventListener("click", triggerLogin);
   app.querySelector("[data-header-login]")?.addEventListener("click", triggerLogin);
+  app.querySelector("[data-header-logout]")?.addEventListener("click", logoutUser);
   app.querySelectorAll("[data-speak]").forEach((button) => {
     button.addEventListener("click", () => playAudio(button.dataset.speak, button.dataset.audio));
   });
@@ -7839,17 +8665,6 @@ function bind() {
   app.querySelectorAll("[data-word-index]").forEach((button) => button.addEventListener("click", () => {
     setCurrentWord(Number(button.dataset.wordIndex), true);
   }));
-  app.querySelector("[data-vocab-focus-only]")?.addEventListener("change", (event) => {
-    state.vocabFocusOnly = Boolean(event.target.checked);
-    apiSyncPreference(lesson.id, { vocabFocusOnly: state.vocabFocusOnly });
-    state.currentWord = 0;
-    state.currentVocabTest = 0;
-    state.vocabTestQueue = [];
-  
-  
-    lastAutoSpokenWord = null;
-    render();
-  });
   app.querySelectorAll("[data-toggle-word-favorite]").forEach((button) => button.addEventListener("click", (event) => {
     event.stopPropagation();
     const word = wordById(button.dataset.toggleWordFavorite);
@@ -7882,22 +8697,29 @@ function bind() {
     const [mode, selectedWordId] = button.dataset.wordQuiz.split(":");
     handleWordQuiz(mode, selectedWordId);
   }));
+  app.querySelectorAll("[data-vocab-step]").forEach((button) => button.addEventListener("click", () => {
+    if (button.dataset.vocabStep === "test") {
+      startVocabTest();
+      return;
+    }
+    stopCurrentAudio();
+    state.vocabPhase = "pronunciation";
+    state.recallResult = "";
+    state.vocabReveal = null;
+    if (vocabTestAdvanceTimer) window.clearTimeout(vocabTestAdvanceTimer);
+    vocabTestAdvanceTimer = null;
+    render();
+  }));
   app.querySelectorAll("[data-slash-word]").forEach((button) => button.addEventListener("click", () => {
     slashWord(button.dataset.slashWord);
   }));
-  app.querySelectorAll("[data-hold-record-word]").forEach((button) => {
+  app.querySelectorAll("[data-word-record-toggle]").forEach((button) => {
     button.addEventListener("pointerdown", (event) => {
-      event.preventDefault();
-      holdWordRecording(button, button.dataset.holdRecordWord, event);
+      handleWordRecordToggle(button, event);
     });
-    button.addEventListener("pointerup", (event) => {
-      endWordRecording(button.dataset.holdRecordWord, event);
-    });
-    button.addEventListener("pointercancel", (event) => {
-      endWordRecording(button.dataset.holdRecordWord, event);
-    });
-    button.addEventListener("lostpointercapture", (event) => {
-      endWordRecording(button.dataset.holdRecordWord, event);
+    button.addEventListener("keydown", (event) => {
+      if (event.key !== "Enter" && event.key !== " ") return;
+      handleWordRecordToggle(button, event);
     });
   });
   app.querySelector("[data-reset-word-learning]")?.addEventListener("click", resetWordLearningData);
@@ -7920,22 +8742,26 @@ function bind() {
     state.recallResult = "";
     render();
   }));
-  app.querySelectorAll("[data-skip-pronunciation]").forEach((button) => button.addEventListener("click", () => {
-    const previous = wordLearningState(button.dataset.skipPronunciation);
-    updateWordLearning(button.dataset.skipPronunciation, {
-      pronunciationPassed: false,
-      pronunciationReasons: ["稍后复习发音"],
-      attempts: { ...previous.attempts, pronunciation: (previous.attempts.pronunciation || 0) + 1 }
-    });
-    setCurrentWord(state.currentWord + 1, true);
-    state.recallResult = "";
-    render();
-  }));
   app.querySelectorAll("[data-regenerate-word]").forEach((button) => button.addEventListener("click", () => {
     handleRegenerateWordAudio(button.dataset.regenerateWord);
   }));
   app.querySelectorAll("[data-text-tab]").forEach((button) => button.addEventListener("click", () => {
+    cancelTextReadingPlayback(false);
     setTextTab(button.dataset.textTab, textActiveSentenceIndex(button.dataset.textTab));
+    render();
+  }));
+  app.querySelectorAll("[data-text-play-group]").forEach((button) => button.addEventListener("click", () => {
+    toggleTextGroupPlayback(button.dataset.textPlayGroup);
+  }));
+  app.querySelectorAll("[data-text-reading-finish]").forEach((button) => button.addEventListener("click", () => {
+    finishTextReadingSentence(button.dataset.textReadingFinish);
+  }));
+  app.querySelectorAll("[data-text-version]").forEach((button) => button.addEventListener("click", () => {
+    const version = button.dataset.textVersion === TEXT_VERSION_OLD ? TEXT_VERSION_OLD : TEXT_VERSION_NEW;
+    write(TEXT_VERSION_KEY, version);
+    cancelTextReadingPlayback(false);
+    state.textFlowActive = false;
+    state.textFlowPhase = "idle";
     render();
   }));
   app.querySelectorAll("[data-text-prompt-lang]").forEach((button) => button.addEventListener("click", () => {
@@ -7945,17 +8771,36 @@ function bind() {
   }));
   app.querySelectorAll("[data-sentence-index]").forEach((button) => button.addEventListener("click", (event) => {
     if (event.target.closest?.("button, audio")) return;
+    stopCurrentAudio();
+    state.textFlowActive = false;
+    state.textFlowPhase = "idle";
     setTextSentenceIndex(Number(button.dataset.sentenceIndex));
     history.replaceState({}, "", lessonPath(`/lesson/${lesson.id}/text`));
     render();
   }));
   app.querySelector("[data-start-text-flow]")?.addEventListener("click", () => {
-    stopCurrentAudio();
-    setTextSentenceIndex(0);
-    lastAutoSpokenSentence = null;
-    history.replaceState({}, "", lessonPath(`/lesson/${lesson.id}/text`));
-    render();
+    startTextFlow();
   });
+  app.querySelectorAll("[data-start-text-recording]").forEach((button) => button.addEventListener("click", () => {
+    startGuidedTextRecording(button.dataset.startTextRecording);
+  }));
+  app.querySelectorAll("[data-finish-text-recording]").forEach((button) => button.addEventListener("click", () => {
+    finishGuidedTextRecording(button.dataset.finishTextRecording);
+  }));
+  app.querySelectorAll("[data-start-text-retry]").forEach((button) => button.addEventListener("click", () => {
+    const sentenceId = button.dataset.startTextRetry;
+    const tabId = textTabIdForSentence(sentenceId);
+    const index = textSentencesForTab(tabId).findIndex((sentence) => sentence.id === sentenceId);
+    if (index < 0) return;
+    stopCurrentAudio();
+    if (tabId !== state.textCurrentTab) {
+      setTextTab(tabId, index);
+    } else {
+      setTextSentenceIndex(index);
+    }
+    history.replaceState({}, "", lessonPath(`/lesson/${lesson.id}/text`));
+    startGuidedTextRecording(sentenceId);
+  }));
   app.querySelector("[data-reset-text-learning]")?.addEventListener("click", resetTextLearningData);
   app.querySelector("[data-prev-sentence]")?.addEventListener("click", () => {
     setTextSentenceIndex(state.currentSentence - 1);
@@ -7973,7 +8818,10 @@ function bind() {
     render();
   }));
   app.querySelectorAll("[data-grammar-answer]").forEach((input) => input.addEventListener("input", (event) => {
-    handleGrammarPracticeInput(input.dataset.grammarAnswer, event.target.value);
+    const value = event.target.value;
+    const checkButton = event.target.closest(".grammar-answer-control")?.querySelector("[data-grammar-check]");
+    if (checkButton) checkButton.hidden = !String(value || "").trim();
+    handleGrammarPracticeInput(input.dataset.grammarAnswer, value);
   }));
   app.querySelectorAll("[data-grammar-check]").forEach((button) => button.addEventListener("click", () => {
     handleGrammarPracticeCheck(button.dataset.grammarCheck);
@@ -7988,36 +8836,6 @@ function bind() {
   app.querySelectorAll("[data-grammar-toggle-collapse]").forEach((button) => button.addEventListener("click", () => {
     toggleGrammarPracticeCollapse(button.dataset.grammarToggleCollapse);
   }));
-  app.querySelectorAll("[data-hold-record-grammar]").forEach((button) => {
-    button.addEventListener("pointerdown", (event) => {
-      event.preventDefault();
-      startGrammarHold(button, button.dataset.holdRecordGrammar, event);
-    });
-    button.addEventListener("pointerup", (event) => {
-      endGrammarHold(button.dataset.holdRecordGrammar, event);
-    });
-    button.addEventListener("pointercancel", (event) => {
-      endGrammarHold(button.dataset.holdRecordGrammar, event);
-    });
-    button.addEventListener("lostpointercapture", (event) => {
-      endGrammarHold(button.dataset.holdRecordGrammar, event);
-    });
-  });
-  app.querySelectorAll("[data-hold-record-sentence]").forEach((button) => {
-    button.addEventListener("pointerdown", (event) => {
-      event.preventDefault();
-      startTextHold(button, button.dataset.holdRecordSentence, event);
-    });
-    button.addEventListener("pointerup", (event) => {
-      endTextHold(button.dataset.holdRecordSentence, event);
-    });
-    button.addEventListener("pointercancel", (event) => {
-      endTextHold(button.dataset.holdRecordSentence, event);
-    });
-    button.addEventListener("lostpointercapture", (event) => {
-      endTextHold(button.dataset.holdRecordSentence, event);
-    });
-  });
   app.querySelectorAll("[data-hold-record-favorite]").forEach((button) => {
     button.addEventListener("pointerdown", (event) => {
       event.preventDefault();
@@ -8044,11 +8862,6 @@ function bind() {
   app.querySelectorAll("[data-exercise-group-index]").forEach((button) => button.addEventListener("click", () => {
     state.currentExerciseGroup = Number(button.dataset.exerciseGroupIndex);
     apiSyncPreference(lesson.id, { currentExerciseGroup: state.currentExerciseGroup });
-    render();
-  }));
-  app.querySelectorAll("[data-exercise-version]").forEach((button) => button.addEventListener("click", () => {
-    const version = button.dataset.exerciseVersion === EXERCISE_VERSION_OLD ? EXERCISE_VERSION_OLD : EXERCISE_VERSION_NEW;
-    write(EXERCISE_VERSION_KEY, version);
     render();
   }));
   app.querySelectorAll("[data-grammar-modal]").forEach((button) => button.addEventListener("click", () => {
@@ -8134,39 +8947,81 @@ function bind() {
   }));
 }
 
+function scrollCurrentVocabStatusIntoView() {
+  if (route().page !== "vocab" || state.vocabPhase !== "pronunciation" || state.modal) return;
+  const list = app.querySelector(".vocab-status-panel .status-list");
+  const current = list?.querySelector(".status-item.current");
+  if (!list || !current) return;
+  window.requestAnimationFrame(() => {
+    current.scrollIntoView({ block: "nearest", inline: "nearest" });
+  });
+}
+
+function focusNewTextReadingControl() {
+  if (route().page !== "text" || textVersionPreference() !== TEXT_VERSION_NEW || state.modal) return;
+  const active = document.activeElement;
+  let target = null;
+  if (state.textReadingPhase === "recording" && state.textReadingCurrentSentenceId) {
+    target = app.querySelector(`[data-text-reading-finish="${CSS.escape(state.textReadingCurrentSentenceId)}"]`);
+    if (active === target) return;
+  }
+  if (!target && !state.textReadingPlayingKey) {
+    if (state.textReadingLastCompletedKey) {
+      const buttons = [...app.querySelectorAll("[data-text-play-group]")];
+      const currentIndex = buttons.findIndex((button) => button.dataset.textPlayGroup === state.textReadingLastCompletedKey);
+      target = buttons[currentIndex + 1] || buttons[0] || null;
+    } else {
+      target = app.querySelector("[data-text-play-group]");
+    }
+    if (active === target) return;
+  }
+  target?.focus?.({ preventScroll: true });
+}
+
+async function handlePracticeProgressMessage(event) {
+  if (event.origin !== window.location.origin) return;
+  const message = event.data || {};
+  if (message.type !== "JAPAFLOW_PRACTICE_PROGRESS_CHANGED") return;
+  const lessonId = numericLessonIdValue(message.lessonId);
+  if (lessonId == null) return;
+  await loadLessonPracticeSessionProgress(lessonId);
+  const currentRoute = route();
+  if (currentRoute.page === "home" || (currentRoute.page === "lesson" && String(currentRoute.lessonId || "") === String(lessonId))) {
+    render();
+  }
+}
+
 window.addEventListener("popstate", render);
+window.addEventListener("message", handlePracticeProgressMessage);
 window.addEventListener("japaflow:auth-changed", async (e) => {
   if (e.detail?.loggedIn) {
+    state.authUser = null;
+    state.authUserLoaded = false;
+    state.lessonProgressByLesson = {};
+    state.lessonProgressLoaded = false;
     state.modal = null;
     await reloadLessonScopedState();
     render();
   } else {
+    state.authUser = null;
+    state.authUserLoaded = false;
+    state.authUserLoading = false;
+    state.lessonProgressByLesson = {};
+    state.lessonProgressLoaded = false;
     state.modal = { type: "authPrompt" };
     render();
   }
 });
 document.addEventListener("keydown", handleKeyboard, true);
 document.addEventListener("keyup", handleKeyboard, true);
-["beforeunload", "pagehide"].forEach((eventName) => {
-  window.addEventListener(eventName, () => settleStudyTimer(eventName));
-});
-document.addEventListener("visibilitychange", () => {
-  if (document.visibilityState === "hidden") settleStudyTimer("visibility-hidden");
-});
 document.addEventListener("selectionchange", () => window.setTimeout(handleSelectionLookup, 0));
 document.addEventListener("pointerdown", (event) => {
   if (!event.target.closest?.("#selection-bubble")) hideSelectionBubble();
 }, true);
 document.addEventListener("pointerup", () => {
-  releaseWordRecording(recordingPressWordId || recordingSession?.wordId || state.recordingPreparingWordId);
-  releaseGrammarRecording(state.grammarRecordingId || state.grammarRecordingPreparingId || recordingSession?.key);
-  releaseTextRecording(state.textRecordingId || state.textRecordingPreparingId || recordingSession?.sentenceId);
   releaseFavoriteRecording(state.favoriteRecordingKey || state.favoriteRecordingPreparingKey || recordingSession?.key);
 }, true);
 document.addEventListener("pointercancel", () => {
-  releaseWordRecording(recordingPressWordId || recordingSession?.wordId || state.recordingPreparingWordId);
-  releaseGrammarRecording(state.grammarRecordingId || state.grammarRecordingPreparingId || recordingSession?.key);
-  releaseTextRecording(state.textRecordingId || state.textRecordingPreparingId || recordingSession?.sentenceId);
   releaseFavoriteRecording(state.favoriteRecordingKey || state.favoriteRecordingPreparingKey || recordingSession?.key);
 }, true);
 document.addEventListener("copy", (e) => {

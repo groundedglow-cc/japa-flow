@@ -22,6 +22,8 @@ const answerLexicalVariantGroups = [
   ["あなた", "貴方", "貴女"],
   ["だれ", "誰"],
   ["なん", "何", "なに"],
+  ["いいえ違います", "いいえちがいます"],
+  ["違います", "ちがいます"],
   ["どなた", "何方"],
   ["こちら", "此方"],
   ["そちら", "其方"],
@@ -89,6 +91,7 @@ export function PracticePreview({ practice, localPractice = null }) {
   const activities = practice.activities;
   const practiceSetId = practice.practiceSetId || null;
   const [session, setSession] = useState({ lessonId: practice.lessonId, activities: {} });
+  const [sessionLoadKey, setSessionLoadKey] = useState(0);
   const [isReady, setIsReady] = useState(false);
   const [currentActivityId, setCurrentActivityId] = useState(() => activityIdFromHash(window.location.hash, activities[0]?.id));
 
@@ -101,6 +104,7 @@ export function PracticePreview({ practice, localPractice = null }) {
         if (!mounted) return;
         const nextSession = record?.lessonId === practice.lessonId ? record : { lessonId: practice.lessonId, activities: {} };
         setSession(nextSession);
+        setSessionLoadKey((value) => value + 1);
         if (!window.location.hash && nextSession.currentActivityId) {
           setCurrentActivityId(nextSession.currentActivityId);
           window.location.hash = nextSession.currentActivityId;
@@ -145,10 +149,11 @@ export function PracticePreview({ practice, localPractice = null }) {
   const previousActivity = currentIndex > 0 ? activities[currentIndex - 1] : null;
   const nextActivity = currentIndex < activities.length - 1 ? activities[currentIndex + 1] : null;
   const currentRecord = normalizeActivityRecord(currentActivity, session.activities?.[currentActivity?.id]);
+  const isPublished = Boolean(practiceSetId);
 
   useEffect(() => {
     window.initPracticeAnswerFormatter?.();
-  }, [currentActivity?.id, currentRecord?.updatedAt, admin]);
+  }, [currentActivity?.id, sessionLoadKey, admin]);
 
   const handleNavigate = (activityId) => {
     if (!activityId || typeof window === "undefined") return;
@@ -176,6 +181,7 @@ export function PracticePreview({ practice, localPractice = null }) {
         [activityId]: saved
       }
     }));
+    notifyPracticeProgressChanged({ lessonId: practice.lessonId, practiceSetId, activityId });
   };
 
   return (
@@ -223,9 +229,11 @@ export function PracticePreview({ practice, localPractice = null }) {
 
       <section className="practice-content">
         {admin ? <PracticePublishPanel lessonId={practice.lessonId} localPractice={localPractice} /> : null}
-        {currentActivity ? (
+        {!admin && !isPublished ? (
+          <UnpublishedPracticeNotice />
+        ) : currentActivity ? (
           <PracticeActivity
-            key={`${currentActivity.id}:${currentRecord?.updatedAt || "fresh"}:${admin ? "admin" : "user"}`}
+            key={`${currentActivity.id}:${sessionLoadKey}:${admin ? "admin" : "user"}`}
             activity={currentActivity}
             practice={practice}
             admin={admin}
@@ -248,6 +256,26 @@ export function PracticePreview({ practice, localPractice = null }) {
         </section>
       </section>
     </main>
+  );
+}
+
+function notifyPracticeProgressChanged(detail) {
+  if (typeof window === "undefined" || window.parent === window) return;
+  window.parent.postMessage({
+    type: "JAPAFLOW_PRACTICE_PROGRESS_CHANGED",
+    ...detail
+  }, window.location.origin);
+}
+
+function UnpublishedPracticeNotice() {
+  return (
+    <section className="practice-blocked-panel">
+      <p className="practice-blocked-kicker">练习暂不可用</p>
+      <h1>本课练习尚未发布到数据库</h1>
+      <p>
+        当前页面只有本地练习草稿，还没有可保存提交记录的数据库版本。请联系管理员发布本课练习数据后再开始练习。
+      </p>
+    </section>
   );
 }
 
@@ -296,16 +324,23 @@ function PracticeActivity({ activity, practice, admin, record, isReady, onSave, 
   const formRef = useRef(null);
   const summary = record?.grading?.summary || null;
   const [isAnswerSheetOpen, setIsAnswerSheetOpen] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState({ state: "idle", message: "" });
   const activityResponseScopeHint = resolveResponseScopeHint(activity.responseScope, activity.responseScopeHint);
 
   const handleSubmit = async () => {
     if (!formRef.current) return;
     const answers = collectActivityAnswers(formRef.current, activity);
     const grading = gradeActivity(activity, answers);
-    await onSave(activity.id, {
-      answers,
-      grading
-    }, activity);
+    setSubmitStatus({ state: "pending", message: "提交中..." });
+    try {
+      await onSave(activity.id, {
+        answers,
+        grading
+      }, activity);
+      setSubmitStatus({ state: "success", message: "已提交" });
+    } catch (error) {
+      setSubmitStatus({ state: "error", message: String(error.message || error) });
+    }
   };
 
   return (
@@ -386,6 +421,7 @@ function PracticeActivity({ activity, practice, admin, record, isReady, onSave, 
           {activity.requiresAudio || activity.audio ? (
             <p className="submit-audio-hint">提示：录音转写可能不准确，提交前请人工核对。</p>
           ) : null}
+          {submitStatus.message ? <p className={`submit-status-message ${submitStatus.state}`}>{submitStatus.message}</p> : null}
         </div>
         <div className="activity-nav-actions">
           {previousActivity ? (
@@ -1050,9 +1086,9 @@ function normalizeAnswerText(value) {
     .replace(/て\s*は\s*ないです/g, "ではありません")
     .replace(/じゃありません/g, "ではありません")
     .replace(/じゃないです/g, "ではありません")
-    .replace(/ちがいます/g, "違います")
     .replace(/\s+/g, "")
     .replace(/\p{P}/gu, (mark) => mark === "〜" ? mark : "")
+    .replace(/^ー+/, "")
     .trim();
   return normalizeAnswerLexicalVariants(normalized);
 }
@@ -1204,7 +1240,7 @@ function defaultFieldValue(item, slotId, storedAnswer, admin) {
   if (Array.isArray(stored)) return stored.join("\n");
   if (typeof stored === "string") return stored;
   const legacyStored = firstStoredSlotValue(storedAnswer?.slotValues);
-  if (legacyStored) return legacyStored;
+  if (legacyStored && (item.inputSlots?.length || 0) <= 1) return legacyStored;
   if (!admin) return "";
   const answer = item.answer?.slotValues?.[slotId];
   if (Array.isArray(answer)) return answer.join("\n");

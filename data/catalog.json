@@ -289,19 +289,10 @@
     {
       "id": 30,
       "title": "第30课",
-      "subtitle": "もう11時だから寝よう。",
-      "status": "initialized",
-      "description": "课程数据和音频已完成：35 个单词，11 个语法，26 句课文，51 道练习。",
-      "runtimeReady": false,
-      "statusLabel": "已初始化",
-      "voiceId": "Japanese_IntellectualSenior",
-      "initializedAt": "",
-      "counts": {
-        "vocabulary": 35,
-        "grammar": 11,
-        "sentences": 26,
-        "exercises": 51
-      }
+      "subtitle": "もう11時だから寝よう",
+      "status": "pending",
+      "description": "课程内容尚未采集，后续可继续按同一结构初始化。",
+      "runtimeReady": false
     },
     {
       "id": 31,
@@ -448,5 +439,5 @@
       "runtimeReady": false
     }
   ],
-  "generatedAt": "2026-06-02T00:58:01.386Z"
+  "generatedAt": "2026-07-18T03:16:01.036Z"
 }
