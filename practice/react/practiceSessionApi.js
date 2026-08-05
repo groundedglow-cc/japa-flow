@@ -298,6 +298,21 @@ function buildAttemptPayload({ practiceSetId, activity, payload }) {
   };
 }
 
+async function publishPracticeVersion({ lessonId, practice, sourcePromptName = "practice-answer-alternative-sync", sourcePromptHash = "" }) {
+  if (!practice?.activities?.length) {
+    throw new Error("当前课程没有可发布的练习数据。");
+  }
+  const draft = await apiRequestOrThrow("POST", "/admin/practice/sets", {
+    lessonId: Number(numericLessonPath(lessonId)),
+    schemaVersion: "v1",
+    title: practice.title,
+    contentJson: serializablePractice(practice),
+    sourcePromptName,
+    sourcePromptHash
+  });
+  return apiRequestOrThrow("POST", `/admin/practice/sets/${draft.id}/publish`);
+}
+
 export const practiceSessionApi = {
   isAuthenticated() {
     return shouldUseBackend();
@@ -327,18 +342,21 @@ export const practiceSessionApi = {
   },
 
   async publishLocalPractice({ lessonId, practice }) {
-    if (!practice?.activities?.length) {
-      throw new Error("当前课程没有可发布的本地练习数据。");
-    }
-    const draft = await apiRequestOrThrow("POST", "/admin/practice/sets", {
-      lessonId: Number(numericLessonPath(lessonId)),
-      schemaVersion: "v1",
-      title: practice.title,
-      contentJson: serializablePractice(practice),
+    return publishPracticeVersion({
+      lessonId,
+      practice,
       sourcePromptName: "practise-generete-prompt-v3.md",
       sourcePromptHash: ""
     });
-    return apiRequestOrThrow("POST", `/admin/practice/sets/${draft.id}/publish`);
+  },
+
+  async publishPracticeVersion({ lessonId, practice, sourcePromptName = "practice-answer-alternative-sync", sourcePromptHash = "" }) {
+    return publishPracticeVersion({
+      lessonId,
+      practice,
+      sourcePromptName,
+      sourcePromptHash
+    });
   },
 
   async loadLessonSession(lessonId) {

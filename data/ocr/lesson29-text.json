@@ -1,0 +1,80 @@
+{
+  "lessonId": "lesson29",
+  "sourceImages": [
+    { "section": "basic", "path": "course-assets/by-lesson/lesson29/page50.webp", "pageNo": 50 },
+    { "section": "application", "path": "course-assets/by-lesson/lesson29/page55.webp", "pageNo": 55 }
+  ],
+  "basicText": {
+    "title": "基本课文",
+    "basicSentences": [
+      { "id": "l29-basic-s001", "order": 1, "text": "電気を消せ。", "kana": "でんきを けせ。", "translationZh": "关灯。", "confidence": "high", "rawText": "1. 電気を消せ。" },
+      { "id": "l29-basic-s002", "order": 2, "text": "次の文章を読んで、質問に答えなさい。", "kana": "つぎの ぶんしょうを よんで、しつもんに こたえなさい。", "translationZh": "请阅读下面的文章，回答问题。", "confidence": "high", "rawText": "2. 次の文章を読んで、質問に答えなさい。" },
+      { "id": "l29-basic-s003", "order": 3, "text": "ここに車を止めるな。", "kana": "ここに くるまを とめるな。", "translationZh": "不要在这里停车。", "confidence": "high", "rawText": "3. ここに車を止めるな。" },
+      { "id": "l29-basic-s004", "order": 4, "text": "このマークは「タバコを吸うな」という意味です。", "kana": "この マークは「タバコを すうな」という いみです。", "translationZh": "这个标志的意思是“不要吸烟”。", "confidence": "high", "rawText": "4. このマークは「タバコを吸うな」という意味です。" }
+    ],
+    "dialogues": [
+      {
+        "id": "l29-basic-dialogue-001",
+        "label": "A",
+        "lines": [
+          { "id": "l29-basic-dialogue-001-line-001", "speaker": "甲", "text": "さっき部長は何と言いましたか。", "kana": "さっき ぶちょうは なんと いいましたか。", "translationZh": "刚才部长说了什么？", "confidence": "high", "rawText": "甲：さっき部長は何と言いましたか。" },
+          { "id": "l29-basic-dialogue-001-line-002", "speaker": "乙", "text": "「書類を早く提出しろ」と言いました。", "kana": "「しょるいを はやく ていしゅつしろ」と いいました。", "translationZh": "（他）说“快点提交文件”。", "confidence": "high", "rawText": "乙：「書類を早く提出しろ」と言いました。" }
+        ]
+      },
+      {
+        "id": "l29-basic-dialogue-002",
+        "label": "B",
+        "lines": [
+          { "id": "l29-basic-dialogue-002-line-001", "speaker": "甲", "text": "戴、早くお風呂に入りなさい。", "kana": "たい、はやく おふろに はいりなさい。", "translationZh": "小戴，快点去洗澡。", "confidence": "high", "rawText": "甲：戴、早くお風呂に入りなさい。" },
+          { "id": "l29-basic-dialogue-002-line-002", "speaker": "乙", "text": "今宿題しているんだ。お母さん先に入ってよ。", "kana": "いま しゅくだいしているんだ。おかあさん さきに はいってよ。", "translationZh": "我现在正在做作业。妈妈你先洗吧。", "confidence": "high", "rawText": "乙：今宿題しているんだ。お母さん先に入ってよ。" }
+        ]
+      },
+      {
+        "id": "l29-basic-dialogue-003",
+        "label": "C",
+        "lines": [
+          { "id": "l29-basic-dialogue-003-line-001", "speaker": "甲", "text": "すみません、これは何と読みますか。", "kana": "すみません、これは なんと よみますか。", "translationZh": "请问，这个怎么读？", "confidence": "high", "rawText": "甲：すみません、これは何と読みますか。" },
+          { "id": "l29-basic-dialogue-003-line-002", "speaker": "乙", "text": "「たちいりきんし（立入禁止）」と読みます。「ここに入るな」という意味ですよ。", "kana": "「たちいりきんし（たちいりきんし）」と よみます。「ここに はいるな」という いみですよ。", "translationZh": "读作“たちいりきんし（禁止入内）”。意思是“不准进入这里”。", "confidence": "high", "rawText": "乙：「たちいりきんし（立入禁止）」と読みます。「ここに入るな」という意味ですよ。" }
+        ]
+      },
+      {
+        "id": "l29-basic-dialogue-004",
+        "label": "D",
+        "lines": [
+          { "id": "l29-basic-dialogue-004-line-001", "speaker": "甲", "text": "この花の名前を知っていますか。", "kana": "この はなの なまえを しっていますか。", "translationZh": "你知道这朵花的名字吗？", "confidence": "high", "rawText": "甲：この花の名前を知っていますか。" },
+          { "id": "l29-basic-dialogue-004-line-002", "speaker": "乙", "text": "ええ、それはフジという花です。", "kana": "ええ、それは フジという はなです。", "translationZh": "知道，那是一种叫作紫藤的花。", "confidence": "high", "rawText": "乙：ええ、それはフジという花です。" }
+        ]
+      }
+    ]
+  },
+  "applicationText": {
+    "title": "カラオケ",
+    "blocks": [
+      { "id": "l29-app-block-001", "type": "narration", "text": "一天晚上，森和北京分公司的职员一起去唱卡拉OK。在融洽的气氛中，大家各自唱着自己喜欢的歌。继小马奔放的歌声之后，加藤经理要森也来一首……", "kana": null, "translationZh": "一天晚上，森和北京分公司的职员一起去唱卡拉OK。在融洽的气氛中，大家各自唱着自己喜欢的歌。继小马奔放的歌声之后，加藤经理要森也来一首……", "confidence": "high", "rawText": "一天晚上，森和北京分公司的职员一起去唱卡拉OK。在融洽的气氛中，大家各自唱着自己喜欢的歌。继小马奔放的歌声之后，加藤经理要森也来一首……" },
+      { "id": "l29-app-block-002", "type": "scene", "text": "（加藤经理对森说）", "kana": null, "translationZh": "（加藤经理对森说）", "confidence": "high", "rawText": "（加藤经理对森说）" },
+      { "id": "l29-app-block-003", "type": "dialogue", "lines": [
+        { "id": "l29-app-block-003-line-001", "speaker": "加藤", "text": "森君、次、歌いなさいよ！", "kana": "もりくん、つぎ、うたいなさいよ！", "translationZh": "森，接下来你唱吧！", "confidence": "high", "rawText": "加藤：森君、次、歌いなさいよ！" },
+        { "id": "l29-app-block-003-line-002", "speaker": "戴", "text": "そう、そう。森さん、歌いなさい！", "kana": "そう、そう。もりさん、うたいなさい！", "translationZh": "对，对。森先生，唱吧！", "confidence": "high", "rawText": "戴：そう、そう。森さん、歌いなさい！" }
+      ] },
+      { "id": "l29-app-block-004", "type": "scene", "text": "（森脸上显出意外的神色。小李紧跟着说）", "kana": null, "translationZh": "（森脸上显出意外的神色。小李紧跟着说）", "confidence": "high", "rawText": "（森脸上显出意外的神色。小李紧跟着说）" },
+      { "id": "l29-app-block-005", "type": "dialogue", "lines": [
+        { "id": "l29-app-block-005-line-001", "speaker": "李", "text": "戴さん、自分より年上の森さんに「歌いなさい」と言うのは失礼ですよ。", "kana": "たいさん、じぶんより としうえの もりさんに「うたいなさい」と いうのは しつれいですよ。", "translationZh": "小戴，对比自己年长的森先生说“唱吧”是不礼貌的。", "confidence": "high", "rawText": "李：戴さん、自分より年上の森さんに「歌いなさい」と言うのは失礼ですよ。" },
+        { "id": "l29-app-block-005-line-002", "speaker": "加藤", "text": "そうだね。この場合は「歌ってください」と言わないとね。", "kana": "そうだね。この ばあいは「うたってください」と いわないとね。", "translationZh": "是啊，这种场合得说“请唱”。", "confidence": "high", "rawText": "加藤：そうだね。この場合は「歌ってください」と言わないとね。" },
+        { "id": "l29-app-block-005-line-003", "speaker": "戴", "text": "はい、分かりました。森さん、すみませんでした。", "kana": "はい、わかりました。もりさん、すみませんでした。", "translationZh": "好的，我明白了。森先生，对不起。", "confidence": "high", "rawText": "戴：はい、分かりました。森さん、すみませんでした。" }
+      ] },
+      { "id": "l29-app-block-006", "type": "scene", "text": "（大家聊起“命令形”）", "kana": null, "translationZh": "（大家聊起“命令形”）", "confidence": "high", "rawText": "（大家聊起“命令形”）" },
+      { "id": "l29-app-block-007", "type": "dialogue", "lines": [
+        { "id": "l29-app-block-007-line-001", "speaker": "李", "text": "日本にいる時、日本人の男性が友達に、「来い」「遠慮するな」などと言っているのをよく聞きました。これは親しい人に使うんですね。", "kana": "にほんに いる とき、にほんじんの だんせいが ともだちに、「こい」「えんりょするな」などと いっているのを よく ききました。これは したしい ひとに つかうんですね。", "translationZh": "我在日本时，经常听见日本男性对朋友说“来吧”“别客气”等。这是对亲近的人使用的吧。", "confidence": "high", "rawText": "李：日本にいる時、日本人の男性が友達に、「来い」「遠慮するな」などと言っているのをよく聞きました。これは親しい人に使うんですね。" },
+        { "id": "l29-app-block-007-line-002", "speaker": "森", "text": "ええ。でも、女性はあまり使いません。「来てください」「遠慮しないでください」と言ったほうがいいですよ。", "kana": "ええ。でも、じょせいは あまり つかいません。「きてください」「えんりょしないでください」と いったほうが いいですよ。", "translationZh": "是的。不过女性不太使用。说“请来”“请不要客气”更好。", "confidence": "high", "rawText": "森：ええ。でも、女性はあまり使いません。「来てください」「遠慮しないでください」と言ったほうがいいですよ。" },
+        { "id": "l29-app-block-007-line-003", "speaker": "李", "text": "「ください」を取って、「来て」「遠慮しないで」などという言い方をしている女性もいました。", "kana": "「ください」を とって、「きて」「えんりょしないで」などと いう いいかたを している じょせいも いました。", "translationZh": "也有女性去掉“ください”，说“来吧”“别客气”之类的话。", "confidence": "high", "rawText": "李：「ください」を取って、「来て」「遠慮しないで」などという言い方をしている女性もいました。" },
+        { "id": "l29-app-block-007-line-004", "speaker": "戴", "text": "そうですか。中国語でも親しい相手には、“来，来！”“別客气！”と言って“请”を付けませんから、同じですね。", "kana": "そうですか。ちゅうごくごでも したしい あいてには、“来，来！”“別客气！”と いって“请”を つけませんから、おなじですね。", "translationZh": "是吗？汉语中对亲近的人也会说“来，来！”“别客气！”，不加“请”，是一样的。", "confidence": "high", "rawText": "戴：そうですか。中国語でも親しい相手には、“来，来！”“別客气！”と言って“请”を付けませんから、同じですね。" },
+        { "id": "l29-app-block-007-line-005", "speaker": "李", "text": "そうですね。それから、野球場で女の人が「頑張れ！」と言うのを聞きました。", "kana": "そうですね。それから、やきゅうじょうで おんなの ひとが「がんばれ！」と いうのを ききました。", "translationZh": "是啊。此外，我还听见在棒球场有女性说“加油！”。", "confidence": "high", "rawText": "李：そうですね。それから、野球場で女の人が「頑張れ！」と言うのを聞きました。" },
+        { "id": "l29-app-block-007-line-006", "speaker": "森", "text": "危険な時や丁寧に言う暇がない時は使ってもいいんです。", "kana": "きけんな ときや ていねいに いう ひまがない ときは つかっても いいんです。", "translationZh": "危险的时候，或是没有时间说得客气时，也可以使用。", "confidence": "high", "rawText": "森：危険な時や丁寧に言う暇がない時は使ってもいいんです。" }
+      ] }
+    ]
+  },
+  "warnings": [
+    "应用课文中的导言和场景说明以中文呈现，因此对应 block 的 text 与 translationZh 均保留中文原文，kana 为 null。",
+    "未输出 segments；已保留可可靠识别的整句 kana。"
+  ]
+}

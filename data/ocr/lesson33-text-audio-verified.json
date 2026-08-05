@@ -1,0 +1,634 @@
+{
+  "lessonId": "lesson33",
+  "sourceImages": [
+    {
+      "section": "basic",
+      "path": "course-assets/by-lesson/lesson33/page96.webp",
+      "pageNo": 96
+    },
+    {
+      "section": "application",
+      "path": "course-assets/by-lesson/lesson33/page101.webp",
+      "pageNo": 101
+    }
+  ],
+  "basicText": {
+    "title": "基本课文",
+    "basicSentences": [
+      {
+        "id": "l33-basic-s001",
+        "order": 1,
+        "text": "電車が急に止まりました。",
+        "translationZh": "电车突然停了。",
+        "confidence": "high",
+        "rawText": "1. 電車が急に止まりました。",
+        "audioSegment": {
+          "id": "l33-basic-s001",
+          "trackId": "lesson_basic",
+          "sourceUrl": "/data/ocr/audio-clips/lesson33/l33-basic-s001.mp3",
+          "start": 0,
+          "end": 1.54,
+          "duration": 1.54,
+          "method": "approved-asr-alignment",
+          "confidence": "approved",
+          "reviewedAt": "2026-08-05T10:13:22.034Z",
+          "sourceAudioSha256": "d77d4645a4f1bf9c3b0e0bb59a5d4b12ab02281d9bb40f7de6f4f29dc0e6076a"
+        }
+      },
+      {
+        "id": "l33-basic-s002",
+        "order": 2,
+        "text": "部屋の電気が消えています。",
+        "translationZh": "房间的灯灭着。",
+        "confidence": "high",
+        "rawText": "2. 部屋の電気が消えています。",
+        "audioSegment": {
+          "id": "l33-basic-s002",
+          "trackId": "lesson_basic",
+          "sourceUrl": "/data/ocr/audio-clips/lesson33/l33-basic-s002.mp3",
+          "start": 0,
+          "end": 1.78,
+          "duration": 1.78,
+          "method": "approved-asr-alignment",
+          "confidence": "approved",
+          "reviewedAt": "2026-08-05T10:13:22.034Z",
+          "sourceAudioSha256": "d77d4645a4f1bf9c3b0e0bb59a5d4b12ab02281d9bb40f7de6f4f29dc0e6076a"
+        }
+      },
+      {
+        "id": "l33-basic-s003",
+        "order": 3,
+        "text": "森さんはボーナスを全部使ってしまいました。",
+        "translationZh": "森先生把奖金全都花光了。",
+        "confidence": "high",
+        "rawText": "3. 森さんはボーナスを全部使ってしまいました。",
+        "audioSegment": {
+          "id": "l33-basic-s003",
+          "trackId": "lesson_basic",
+          "sourceUrl": "/data/ocr/audio-clips/lesson33/l33-basic-s003.mp3",
+          "start": 0,
+          "end": 3.18,
+          "duration": 3.18,
+          "method": "approved-asr-alignment",
+          "confidence": "approved",
+          "reviewedAt": "2026-08-05T10:13:22.034Z",
+          "sourceAudioSha256": "d77d4645a4f1bf9c3b0e0bb59a5d4b12ab02281d9bb40f7de6f4f29dc0e6076a"
+        }
+      },
+      {
+        "id": "l33-basic-s004",
+        "order": 4,
+        "text": "このケーキはとてもおいしそうです。",
+        "translationZh": "这个蛋糕看起来很好吃。",
+        "confidence": "high",
+        "rawText": "4. このケーキはとてもおいしそうです。",
+        "audioSegment": {
+          "id": "l33-basic-s004",
+          "trackId": "lesson_basic",
+          "sourceUrl": "/data/ocr/audio-clips/lesson33/l33-basic-s004.mp3",
+          "start": 0,
+          "end": 2.82,
+          "duration": 2.82,
+          "method": "approved-asr-alignment",
+          "confidence": "approved",
+          "reviewedAt": "2026-08-05T10:13:22.034Z",
+          "sourceAudioSha256": "d77d4645a4f1bf9c3b0e0bb59a5d4b12ab02281d9bb40f7de6f4f29dc0e6076a"
+        }
+      }
+    ],
+    "dialogues": [
+      {
+        "id": "l33-basic-dialogue-001",
+        "label": "A",
+        "lines": [
+          {
+            "id": "l33-basic-dialogue-001-line-001",
+            "speaker": "甲",
+            "text": "あなたが窓を開けたんですか。",
+            "translationZh": "是你打开窗户的吗？",
+            "confidence": "high",
+            "rawText": "甲：あなたが窓を開けたんですか。",
+            "audioSegment": {
+              "id": "l33-basic-dialogue-001-line-001",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson33/l33-basic-dialogue-001-line-001.mp3",
+              "start": 0,
+              "end": 1.94,
+              "duration": 1.94,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:13:22.034Z",
+              "sourceAudioSha256": "d77d4645a4f1bf9c3b0e0bb59a5d4b12ab02281d9bb40f7de6f4f29dc0e6076a"
+            }
+          },
+          {
+            "id": "l33-basic-dialogue-001-line-002",
+            "speaker": "乙",
+            "text": "いいえ、風で開いたんです。",
+            "translationZh": "不，是被风吹开的。",
+            "confidence": "high",
+            "rawText": "乙：いいえ、風で開いたんです。",
+            "audioSegment": {
+              "id": "l33-basic-dialogue-001-line-002",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson33/l33-basic-dialogue-001-line-002.mp3",
+              "start": 0,
+              "end": 2.34,
+              "duration": 2.34,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:13:22.034Z",
+              "sourceAudioSha256": "d77d4645a4f1bf9c3b0e0bb59a5d4b12ab02281d9bb40f7de6f4f29dc0e6076a"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l33-basic-dialogue-002",
+        "label": "B",
+        "lines": [
+          {
+            "id": "l33-basic-dialogue-002-line-001",
+            "speaker": "甲",
+            "text": "はさみはどこですか。",
+            "translationZh": "剪刀在哪儿？",
+            "confidence": "high",
+            "rawText": "甲：はさみはどこですか。",
+            "audioSegment": {
+              "id": "l33-basic-dialogue-002-line-001",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson33/l33-basic-dialogue-002-line-001.mp3",
+              "start": 0,
+              "end": 1.3,
+              "duration": 1.3,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:13:22.034Z",
+              "sourceAudioSha256": "d77d4645a4f1bf9c3b0e0bb59a5d4b12ab02281d9bb40f7de6f4f29dc0e6076a"
+            }
+          },
+          {
+            "id": "l33-basic-dialogue-002-line-002",
+            "speaker": "乙",
+            "text": "引き出しに入っていますよ。",
+            "translationZh": "在抽屉里。",
+            "confidence": "high",
+            "rawText": "乙：引き出しに入っていますよ。",
+            "audioSegment": {
+              "id": "l33-basic-dialogue-002-line-002",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson33/l33-basic-dialogue-002-line-002.mp3",
+              "start": 0,
+              "end": 1.94,
+              "duration": 1.94,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:13:22.034Z",
+              "sourceAudioSha256": "d77d4645a4f1bf9c3b0e0bb59a5d4b12ab02281d9bb40f7de6f4f29dc0e6076a"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l33-basic-dialogue-003",
+        "label": "C",
+        "lines": [
+          {
+            "id": "l33-basic-dialogue-003-line-001",
+            "speaker": "甲",
+            "text": "おじいさんにもらった腕時計が壊れてしまいました。",
+            "translationZh": "爷爷送给我的手表坏了。",
+            "confidence": "high",
+            "rawText": "甲：おじいさんにもらった腕時計が壊れてしまいました。",
+            "audioSegment": {
+              "id": "l33-basic-dialogue-003-line-001",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson33/l33-basic-dialogue-003-line-001.mp3",
+              "start": 0,
+              "end": 3.22,
+              "duration": 3.22,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:13:22.034Z",
+              "sourceAudioSha256": "d77d4645a4f1bf9c3b0e0bb59a5d4b12ab02281d9bb40f7de6f4f29dc0e6076a"
+            }
+          },
+          {
+            "id": "l33-basic-dialogue-003-line-002",
+            "speaker": "乙",
+            "text": "それは残念ですね。",
+            "translationZh": "那真可惜。",
+            "confidence": "high",
+            "rawText": "乙：それは残念ですね。",
+            "audioSegment": {
+              "id": "l33-basic-dialogue-003-line-002",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson33/l33-basic-dialogue-003-line-002.mp3",
+              "start": 0,
+              "end": 1.62,
+              "duration": 1.62,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:13:22.034Z",
+              "sourceAudioSha256": "d77d4645a4f1bf9c3b0e0bb59a5d4b12ab02281d9bb40f7de6f4f29dc0e6076a"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l33-basic-dialogue-004",
+        "label": "D",
+        "lines": [
+          {
+            "id": "l33-basic-dialogue-004-line-001",
+            "speaker": "甲",
+            "text": "雨が降りそうですね。",
+            "translationZh": "好像要下雨了。",
+            "confidence": "high",
+            "rawText": "甲：雨が降りそうですね。",
+            "audioSegment": {
+              "id": "l33-basic-dialogue-004-line-001",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson33/l33-basic-dialogue-004-line-001.mp3",
+              "start": 0,
+              "end": 1.3,
+              "duration": 1.3,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:13:22.034Z",
+              "sourceAudioSha256": "d77d4645a4f1bf9c3b0e0bb59a5d4b12ab02281d9bb40f7de6f4f29dc0e6076a"
+            }
+          },
+          {
+            "id": "l33-basic-dialogue-004-line-002",
+            "speaker": "乙",
+            "text": "じゃあ、明日の運動会は中止かもしれませんね。",
+            "translationZh": "那么，明天的运动会可能会取消。",
+            "confidence": "high",
+            "rawText": "乙：じゃあ、明日の運動会は中止かもしれませんね。",
+            "audioSegment": {
+              "id": "l33-basic-dialogue-004-line-002",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson33/l33-basic-dialogue-004-line-002.mp3",
+              "start": 0,
+              "end": 4.54,
+              "duration": 4.54,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:13:22.034Z",
+              "sourceAudioSha256": "d77d4645a4f1bf9c3b0e0bb59a5d4b12ab02281d9bb40f7de6f4f29dc0e6076a"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "applicationText": {
+    "title": "再会",
+    "blocks": [
+      {
+        "id": "l33-app-block-001",
+        "type": "narration",
+        "text": "五一期间放长假。小野今天从东京过来。森和小李到机场去迎接。森是从客户处直接赶过来的。因为气流的关系，小野提前到了30分钟左右。",
+        "translationZh": "五一期间放长假。小野今天从东京过来。森和小李到机场去迎接。森是从客户处直接赶过来的。因为气流的关系，小野提前到了30分钟左右。",
+        "confidence": "high",
+        "rawText": "五一期间放长假。小野今天从东京过来。森和小李到机场去迎接。森是从客户处直接赶过来的。因为气流的关系，小野提前到了30分钟左右。"
+      },
+      {
+        "id": "l33-app-block-002",
+        "type": "scene",
+        "text": "办理入境手续处排起了长队。小野一边排队等候，一边脚踢着。",
+        "translationZh": "办理入境手续处排起了长队。小野一边排队等候，一边踢着脚。",
+        "confidence": "high",
+        "rawText": "（办理入境手续处排起了长队。小野一边排队等候，一边脚踢着）"
+      },
+      {
+        "id": "l33-app-block-003",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l33-app-block-003-line-001",
+            "speaker": "小野",
+            "text": "ちょっと早く着いてしまったけど、森さんたちはもう来ているかしら。",
+            "translationZh": "我稍微早到了些，不知森他们已经来了吗？",
+            "confidence": "high",
+            "rawText": "小野：ちょっと早く着いてしまったけど、森さんたちはもう来ているかしら。",
+            "audioSegment": {
+              "id": "l33-app-block-003-line-001",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson33/l33-app-block-003-line-001.mp3",
+              "start": 0,
+              "end": 12.62,
+              "duration": 12.62,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:14:05.443Z",
+              "sourceAudioSha256": "ca1c6ed670b714f1c5271cfcc007dae086a28a8b7df8e6fbddf9ec989e7410a2"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l33-app-block-004",
+        "type": "scene",
+        "text": "看着长队。",
+        "translationZh": "看着长队。",
+        "confidence": "high",
+        "rawText": "（看着长队）"
+      },
+      {
+        "id": "l33-app-block-005",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l33-app-block-005-line-001",
+            "speaker": "小野",
+            "text": "それにしても、大勢並んでいるわね。",
+            "translationZh": "不过，排队的人真多啊。",
+            "confidence": "high",
+            "rawText": "小野：それにしても、大勢並んでいるわね。",
+            "audioSegment": {
+              "id": "l33-app-block-005-line-001",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson33/l33-app-block-005-line-001.mp3",
+              "start": 0,
+              "end": 2.58,
+              "duration": 2.58,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:14:05.443Z",
+              "sourceAudioSha256": "ca1c6ed670b714f1c5271cfcc007dae086a28a8b7df8e6fbddf9ec989e7410a2"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l33-app-block-006",
+        "type": "scene",
+        "text": "小野办完入境手续从海关出来，发现小李后挥手招呼。",
+        "translationZh": "小野办完入境手续从海关出来，发现小李后挥手招呼。",
+        "confidence": "high",
+        "rawText": "（小野办完入境手续从海关出来，发现小李后挥手招呼）"
+      },
+      {
+        "id": "l33-app-block-007",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l33-app-block-007-line-001",
+            "speaker": "小野",
+            "text": "李さん！",
+            "translationZh": "小李！",
+            "confidence": "high",
+            "rawText": "小野：李さん！",
+            "audioSegment": {
+              "id": "l33-app-block-007-line-001",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson33/l33-app-block-007-line-001.mp3",
+              "start": 0,
+              "end": 0.86,
+              "duration": 0.86,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:14:05.443Z",
+              "sourceAudioSha256": "ca1c6ed670b714f1c5271cfcc007dae086a28a8b7df8e6fbddf9ec989e7410a2"
+            }
+          },
+          {
+            "id": "l33-app-block-007-line-002",
+            "speaker": "李",
+            "text": "小野さん、お久しぶりです。",
+            "translationZh": "小野女士，好久不见。",
+            "confidence": "high",
+            "rawText": "李：（小李跑了过来）小野さん、お久しぶりです。",
+            "audioSegment": {
+              "id": "l33-app-block-007-line-002",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson33/l33-app-block-007-line-002.mp3",
+              "start": 0,
+              "end": 2.26,
+              "duration": 2.26,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:14:05.443Z",
+              "sourceAudioSha256": "ca1c6ed670b714f1c5271cfcc007dae086a28a8b7df8e6fbddf9ec989e7410a2"
+            }
+          },
+          {
+            "id": "l33-app-block-007-line-003",
+            "speaker": "小野",
+            "text": "本当にお久しぶり。お元気そうですね。",
+            "translationZh": "真是好久不见。你看起来很精神。",
+            "confidence": "high",
+            "rawText": "小野：本当にお久しぶり。お元気そうですね。",
+            "audioSegment": {
+              "id": "l33-app-block-007-line-003",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson33/l33-app-block-007-line-003.mp3",
+              "start": 0,
+              "end": 2.26,
+              "duration": 2.26,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:14:05.443Z",
+              "sourceAudioSha256": "ca1c6ed670b714f1c5271cfcc007dae086a28a8b7df8e6fbddf9ec989e7410a2"
+            }
+          },
+          {
+            "id": "l33-app-block-007-line-004",
+            "speaker": "李",
+            "text": "ええ、小野さんも。",
+            "translationZh": "是的，小野女士您也是。",
+            "confidence": "high",
+            "rawText": "李：ええ、小野さんも。",
+            "audioSegment": {
+              "id": "l33-app-block-007-line-004",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson33/l33-app-block-007-line-004.mp3",
+              "start": 0,
+              "end": 1.5,
+              "duration": 1.5,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:14:05.443Z",
+              "sourceAudioSha256": "ca1c6ed670b714f1c5271cfcc007dae086a28a8b7df8e6fbddf9ec989e7410a2"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l33-app-block-008",
+        "type": "scene",
+        "text": "过了一会儿，森跑了过来。",
+        "translationZh": "过了一会儿，森跑了过来。",
+        "confidence": "high",
+        "rawText": "（过了一会儿，森跑了过来）"
+      },
+      {
+        "id": "l33-app-block-009",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l33-app-block-009-line-001",
+            "speaker": "森",
+            "text": "すみません、小野さん。遅刻してしまいました。",
+            "translationZh": "对不起，小野女士。我迟到了。",
+            "confidence": "high",
+            "rawText": "森：すみません、小野さん。遅刻してしまいました。",
+            "audioSegment": {
+              "id": "l33-app-block-009-line-001",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson33/l33-app-block-009-line-001.mp3",
+              "start": 0,
+              "end": 3.06,
+              "duration": 3.06,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:14:05.443Z",
+              "sourceAudioSha256": "ca1c6ed670b714f1c5271cfcc007dae086a28a8b7df8e6fbddf9ec989e7410a2"
+            }
+          },
+          {
+            "id": "l33-app-block-009-line-002",
+            "speaker": "小野",
+            "text": "相変わらずですね、森さん。でも、お元気そうで、何よりです。",
+            "translationZh": "还是老样子啊，森先生。不过，您看起来很精神，比什么都好。",
+            "confidence": "high",
+            "rawText": "小野：相変わらずですね、森さん。でも、お元気そうで、何よりです。",
+            "audioSegment": {
+              "id": "l33-app-block-009-line-002",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson33/l33-app-block-009-line-002.mp3",
+              "start": 0,
+              "end": 5.06,
+              "duration": 5.06,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:14:05.443Z",
+              "sourceAudioSha256": "ca1c6ed670b714f1c5271cfcc007dae086a28a8b7df8e6fbddf9ec989e7410a2"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l33-app-block-010",
+        "type": "scene",
+        "text": "森看见小野的行李。",
+        "translationZh": "森看见小野的行李。",
+        "confidence": "high",
+        "rawText": "（森看见小野的行李）"
+      },
+      {
+        "id": "l33-app-block-011",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l33-app-block-011-line-001",
+            "speaker": "森",
+            "text": "小野さん、ずいぶん重そうなスーツケースですね。",
+            "translationZh": "小野女士，这个旅行箱看上去相当重啊。",
+            "confidence": "high",
+            "rawText": "森：小野さん、ずいぶん重そうなスーツケースですね。",
+            "audioSegment": {
+              "id": "l33-app-block-011-line-001",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson33/l33-app-block-011-line-001.mp3",
+              "start": 0,
+              "end": 3.34,
+              "duration": 3.34,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:14:05.443Z",
+              "sourceAudioSha256": "ca1c6ed670b714f1c5271cfcc007dae086a28a8b7df8e6fbddf9ec989e7410a2"
+            }
+          },
+          {
+            "id": "l33-app-block-011-line-002",
+            "speaker": "小野",
+            "text": "そうですか？ 服や小物が入っていますが、中はほとんど空ですよ。北京は初めてなので、お土産をたくさん買って、入れようと思っているんです。",
+            "translationZh": "是吗？里面放着衣服和小物件，不过基本上还是空的。因为我是第一次来北京，打算买很多特产放进去。",
+            "confidence": "high",
+            "rawText": "小野：そうですか？ 服や小物が入っていますが、中はほとんど空ですよ。北京は初めてなので、お土産をたくさん買って、入れようと思っているんです。",
+            "audioSegment": {
+              "id": "l33-app-block-011-line-002",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson33/l33-app-block-011-line-002.mp3",
+              "start": 0,
+              "end": 11.27,
+              "duration": 11.27,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:14:05.443Z",
+              "sourceAudioSha256": "ca1c6ed670b714f1c5271cfcc007dae086a28a8b7df8e6fbddf9ec989e7410a2"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l33-app-block-012",
+        "type": "scene",
+        "text": "在出租车车站，森准备把旅行箱放进后备箱。",
+        "translationZh": "在出租车车站，森准备把旅行箱放进后备箱。",
+        "confidence": "high",
+        "rawText": "（在出租车车站，森准备把旅行箱放进后备箱）"
+      },
+      {
+        "id": "l33-app-block-013",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l33-app-block-013-line-001",
+            "speaker": "森",
+            "text": "あれっ、トランクが開いていないな。",
+            "translationZh": "咦，后备箱没开着啊。",
+            "confidence": "high",
+            "rawText": "森：あれっ、トランクが開いていないな。",
+            "audioSegment": {
+              "id": "l33-app-block-013-line-001",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson33/l33-app-block-013-line-001.mp3",
+              "start": 0,
+              "end": 2.46,
+              "duration": 2.46,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:14:05.443Z",
+              "sourceAudioSha256": "ca1c6ed670b714f1c5271cfcc007dae086a28a8b7df8e6fbddf9ec989e7410a2"
+            }
+          },
+          {
+            "id": "l33-app-block-013-line-002",
+            "speaker": "李",
+            "text": "運転手さんに開けてもらいましょう。",
+            "translationZh": "让司机帮忙打开吧。",
+            "confidence": "high",
+            "rawText": "李：運転手さんに開けてもらいましょう。",
+            "audioSegment": {
+              "id": "l33-app-block-013-line-002",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson33/l33-app-block-013-line-002.mp3",
+              "start": 0,
+              "end": 1.98,
+              "duration": 1.98,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:14:05.443Z",
+              "sourceAudioSha256": "ca1c6ed670b714f1c5271cfcc007dae086a28a8b7df8e6fbddf9ec989e7410a2"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "warnings": [
+    "扫描页中的假名标注不适合可靠地逐句切分，未生成 kana 或 segments 字段。",
+    "应用课文的开场旁白和场景说明在教材中以中文排印，按原文保留在 text 字段中。"
+  ],
+  "audioAlignment": {
+    "schemaVersion": 1,
+    "method": "approved-asr-alignment",
+    "sourceAlignment": "data/ocr/lesson33-text-audio-alignment.json",
+    "publishedAt": "2026-08-05T10:14:09.602Z",
+    "approvedSegments": 24
+  }
+}

@@ -21990,6 +21990,20 @@ function buildAttemptPayload({ practiceSetId, activity, payload }) {
     })
   };
 }
+async function publishPracticeVersion({ lessonId: lessonId2, practice, sourcePromptName = "practice-answer-alternative-sync", sourcePromptHash = "" }) {
+  if (!practice?.activities?.length) {
+    throw new Error("\u5F53\u524D\u8BFE\u7A0B\u6CA1\u6709\u53EF\u53D1\u5E03\u7684\u7EC3\u4E60\u6570\u636E\u3002");
+  }
+  const draft = await apiRequestOrThrow("POST", "/admin/practice/sets", {
+    lessonId: Number(numericLessonPath(lessonId2)),
+    schemaVersion: "v1",
+    title: practice.title,
+    contentJson: serializablePractice(practice),
+    sourcePromptName,
+    sourcePromptHash
+  });
+  return apiRequestOrThrow("POST", `/admin/practice/sets/${draft.id}/publish`);
+}
 var practiceSessionApi = {
   isAuthenticated() {
     return shouldUseBackend();
@@ -22016,18 +22030,20 @@ var practiceSessionApi = {
     };
   },
   async publishLocalPractice({ lessonId: lessonId2, practice }) {
-    if (!practice?.activities?.length) {
-      throw new Error("\u5F53\u524D\u8BFE\u7A0B\u6CA1\u6709\u53EF\u53D1\u5E03\u7684\u672C\u5730\u7EC3\u4E60\u6570\u636E\u3002");
-    }
-    const draft = await apiRequestOrThrow("POST", "/admin/practice/sets", {
-      lessonId: Number(numericLessonPath(lessonId2)),
-      schemaVersion: "v1",
-      title: practice.title,
-      contentJson: serializablePractice(practice),
+    return publishPracticeVersion({
+      lessonId: lessonId2,
+      practice,
       sourcePromptName: "practise-generete-prompt-v3.md",
       sourcePromptHash: ""
     });
-    return apiRequestOrThrow("POST", `/admin/practice/sets/${draft.id}/publish`);
+  },
+  async publishPracticeVersion({ lessonId: lessonId2, practice, sourcePromptName = "practice-answer-alternative-sync", sourcePromptHash = "" }) {
+    return publishPracticeVersion({
+      lessonId: lessonId2,
+      practice,
+      sourcePromptName,
+      sourcePromptHash
+    });
   },
   async loadLessonSession(lessonId2) {
     if (!shouldUseBackend()) throw new AuthRequiredError();
@@ -22084,6 +22100,7 @@ var evaluationModeLabel = {
 };
 var textbookAudioBaseUrl = "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio";
 var CHOICE_RESULT_KEY = "__choice__";
+var ANSWER_ALTERNATIVE_CACHE_KEY = "japaflow.practice.acceptedAlternatives.v1";
 var answerLexicalVariantGroups = [
   ["\u308F\u305F\u3057", "\u79C1", "\u6211"],
   ["\u3042\u306A\u305F", "\u8CB4\u65B9", "\u8CB4\u5973"],
@@ -22157,6 +22174,7 @@ function PracticePreview({ practice, localPractice: localPractice2 = null }) {
   const [session, setSession] = (0, import_react.useState)({ lessonId: practice.lessonId, activities: {} });
   const [sessionLoadKey, setSessionLoadKey] = (0, import_react.useState)(0);
   const [isReady, setIsReady] = (0, import_react.useState)(false);
+  const [answerAlternatives, setAnswerAlternatives] = (0, import_react.useState)({});
   const [currentActivityId, setCurrentActivityId] = (0, import_react.useState)(() => activityIdFromHash(window.location.hash, activities18[0]?.id));
   (0, import_react.useEffect)(() => {
     let mounted = true;
@@ -22209,6 +22227,15 @@ function PracticePreview({ practice, localPractice: localPractice2 = null }) {
   (0, import_react.useEffect)(() => {
     window.initPracticeAnswerFormatter?.();
   }, [currentActivity?.id, sessionLoadKey, admin]);
+  (0, import_react.useEffect)(() => {
+    let mounted = true;
+    loadAcceptedAnswerAlternatives(practice.lessonId).then((alternatives) => {
+      if (mounted) setAnswerAlternatives(alternatives);
+    });
+    return () => {
+      mounted = false;
+    };
+  }, [practice.lessonId]);
   const handleNavigate = (activityId) => {
     if (!activityId || typeof window === "undefined") return;
     window.location.hash = activityId;
@@ -22294,7 +22321,15 @@ function PracticePreview({ practice, localPractice: localPractice2 = null }) {
       }) })
     ] }),
     /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", { className: "practice-content", children: [
-      admin ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(PracticePublishPanel, { lessonId: practice.lessonId, localPractice: localPractice2 }) : null,
+      admin ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(PracticePublishPanel, { lessonId: practice.lessonId, practice, localPractice: localPractice2 }) : null,
+      admin ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+        PracticeAlternativeSyncPanel,
+        {
+          lessonId: practice.lessonId,
+          practice,
+          answerAlternatives
+        }
+      ) : null,
       !admin && !isPublished ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(UnpublishedPracticeNotice, {}) : currentActivity ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
         PracticeActivity,
         {
@@ -22303,6 +22338,8 @@ function PracticePreview({ practice, localPractice: localPractice2 = null }) {
           admin,
           record: currentRecord,
           isReady,
+          answerAlternatives,
+          onAnswerAlternativesChange: setAnswerAlternatives,
           onSave: handleActivitySave,
           previousActivity,
           nextActivity,
@@ -22334,11 +22371,12 @@ function UnpublishedPracticeNotice() {
     /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { children: "\u5F53\u524D\u9875\u9762\u53EA\u6709\u672C\u5730\u7EC3\u4E60\u8349\u7A3F\uFF0C\u8FD8\u6CA1\u6709\u53EF\u4FDD\u5B58\u63D0\u4EA4\u8BB0\u5F55\u7684\u6570\u636E\u5E93\u7248\u672C\u3002\u8BF7\u8054\u7CFB\u7BA1\u7406\u5458\u53D1\u5E03\u672C\u8BFE\u7EC3\u4E60\u6570\u636E\u540E\u518D\u5F00\u59CB\u7EC3\u4E60\u3002" })
   ] });
 }
-function PracticePublishPanel({ lessonId: lessonId2, localPractice: localPractice2 }) {
+function PracticePublishPanel({ lessonId: lessonId2, practice, localPractice: localPractice2 }) {
   const [status, setStatus] = (0, import_react.useState)({ state: "idle", message: "" });
   const lessonNo = String(lessonId2 || "").match(/\d+/)?.[0] || "";
   const generateCommand = lessonNo ? `practise-generete-prompt-v3.md generate lesson ${lessonNo} data` : "practise-generete-prompt-v3.md generate lesson N data";
   const canPublish = Boolean(localPractice2?.activities?.length);
+  const databaseVersion = practice.practiceVersion || null;
   const handlePublish = async () => {
     if (!canPublish) return;
     setStatus({ state: "pending", message: "\u53D1\u5E03\u4E2D..." });
@@ -22356,7 +22394,8 @@ function PracticePublishPanel({ lessonId: lessonId2, localPractice: localPractic
         localPractice2.title,
         " \xB7 ",
         localPractice2.activities.length,
-        " \u9898"
+        " \u9898",
+        databaseVersion ? ` \xB7 \u5F53\u524D\u6570\u636E\u5E93 version ${databaseVersion}` : " \xB7 \u5F53\u524D\u672A\u52A0\u8F7D\u6570\u636E\u5E93\u7248\u672C"
       ] }) : /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", { children: [
         "\u672A\u627E\u5230\u672C\u8BFE\u672C\u5730\u7EC3\u4E60\u6570\u636E\u3002\u8BF7\u5148\u751F\u6210 `practice/lesson",
         lessonNo || "N",
@@ -22366,12 +22405,97 @@ function PracticePublishPanel({ lessonId: lessonId2, localPractice: localPractic
       ] })
     ] }),
     /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "admin-publish-actions", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { type: "button", className: "secondary-action", onClick: handlePublish, disabled: !canPublish || status.state === "pending", children: "\u53D1\u5E03\u5230\u6570\u636E\u5E93" }),
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { type: "button", className: "secondary-action", onClick: handlePublish, disabled: !canPublish || status.state === "pending", children: databaseVersion ? "\u91CD\u65B0\u53D1\u5E03\u4E3A\u65B0\u7248\u672C" : "\u53D1\u5E03\u5230\u6570\u636E\u5E93" }),
       status.message ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: `admin-publish-status ${status.state}`, children: status.message }) : null
     ] })
   ] });
 }
-function PracticeActivity({ activity, practice, admin, record, isReady, onSave, previousActivity, nextActivity, onNavigate }) {
+function PracticeAlternativeSyncPanel({ lessonId: lessonId2, practice, answerAlternatives }) {
+  const [status, setStatus] = (0, import_react.useState)({ state: "idle", message: "" });
+  const [syncedVersion, setSyncedVersion] = (0, import_react.useState)(null);
+  const [expanded, setExpanded] = (0, import_react.useState)(false);
+  const syncPlan = (0, import_react.useMemo)(
+    () => buildAcceptedAnswerAlternativeSyncPlan(practice, answerAlternatives),
+    [practice, answerAlternatives]
+  );
+  if (!syncPlan.answerCount && !syncedVersion) return null;
+  const handleSync = async () => {
+    if (!syncPlan.answerCount || status.state === "pending") return;
+    setStatus({ state: "pending", message: "\u540C\u6B65\u4E2D..." });
+    try {
+      const published = await practiceSessionApi.publishPracticeVersion({
+        lessonId: lessonId2,
+        practice: syncPlan.practice,
+        sourcePromptName: "practice-answer-alternative-sync",
+        sourcePromptHash: ""
+      });
+      setSyncedVersion(published.version);
+      setStatus({ state: "success", message: `\u5DF2\u540C\u6B65\u5230 version ${published.version}\uFF0C\u5237\u65B0\u540E\u52A0\u8F7D\u6570\u636E\u5E93\u7248\u672C\u3002` });
+    } catch (error) {
+      setStatus({ state: "error", message: String(error.message || error) });
+    }
+  };
+  return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", { className: "admin-publish-panel admin-alternative-sync-panel", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("strong", { children: "\u5019\u9009\u7B54\u6848\u540C\u6B65" }),
+      syncedVersion ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", { children: [
+        "\u5019\u9009\u7B54\u6848\u5DF2\u5199\u5165\u6570\u636E\u5E93 version ",
+        syncedVersion,
+        "\u3002"
+      ] }) : /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", { children: [
+        "\u6709 ",
+        syncPlan.itemCount,
+        " \u4E2A\u7EC3\u4E60\u9898\u5B58\u5728 ",
+        syncPlan.answerCount,
+        " \u4E2A\u5019\u9009\u7B54\u6848\uFF0C\u5EFA\u8BAE\u540C\u6B65\u5230\u6570\u636E\u5E93\u3002"
+      ] })
+    ] }),
+    /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "admin-publish-actions", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+        "button",
+        {
+          type: "button",
+          className: "secondary-action compact-action",
+          onClick: () => setExpanded((value) => !value),
+          disabled: !syncPlan.answerCount,
+          children: expanded ? "\u6536\u8D77\u660E\u7EC6" : "\u67E5\u770B\u660E\u7EC6"
+        }
+      ),
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+        "button",
+        {
+          type: "button",
+          className: "secondary-action",
+          onClick: handleSync,
+          disabled: !syncPlan.answerCount || status.state === "pending" || Boolean(syncedVersion),
+          children: "\u540C\u6B65\u5230\u6570\u636E\u5E93"
+        }
+      ),
+      status.message ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: `admin-publish-status ${status.state}`, children: status.message }) : null
+    ] }),
+    expanded && syncPlan.details.length ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "admin-alternative-details", children: syncPlan.details.map((detail) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("article", { className: "admin-alternative-detail", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "admin-alternative-detail-head", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("strong", { children: detail.activityTitle }),
+        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { children: [
+          detail.itemNumber ? `\u9898\u53F7 ${detail.itemNumber}` : detail.itemId,
+          detail.slotId !== "answer" ? ` \xB7 ${detail.slotId}` : ""
+        ] })
+      ] }),
+      detail.promptText ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { className: "admin-alternative-prompt", children: detail.promptText }) : null,
+      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "admin-answer-columns", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [
+          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("em", { children: "\u5F53\u524D\u6570\u636E\u5E93\u7B54\u6848" }),
+          detail.standardAnswers.map((answer3, index) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("code", { children: answer3 }, index))
+        ] }),
+        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [
+          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("em", { children: "\u5F85\u540C\u6B65\u5019\u9009\u7B54\u6848" }),
+          detail.candidateAnswers.map((answer3, index) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("code", { children: answer3 }, index))
+        ] })
+      ] })
+    ] }, `${detail.itemId}:${detail.slotId}`)) }) : null
+  ] });
+}
+function PracticeActivity({ activity, practice, admin, record, isReady, answerAlternatives, onAnswerAlternativesChange, onSave, previousActivity, nextActivity, onNavigate }) {
   const assetMap = (0, import_react.useMemo)(() => activityAssetMap(activity), [activity]);
   const audioUrl2 = resolveActivityAudioUrl(practice, activity);
   const formRef = (0, import_react.useRef)(null);
@@ -22382,14 +22506,30 @@ function PracticeActivity({ activity, practice, admin, record, isReady, onSave, 
   const handleSubmit = async () => {
     if (!formRef.current) return;
     const answers = collectActivityAnswers(formRef.current, activity);
-    const grading = gradeActivity(activity, answers);
-    setSubmitStatus({ state: "pending", message: "\u63D0\u4EA4\u4E2D..." });
+    let grading = gradeActivity(activity, answers, void 0, answerAlternatives);
+    const needsReview = hasIncorrectTextAnswers(activity, grading);
+    setSubmitStatus({ state: "pending", message: needsReview ? "\u6B63\u5728\u590D\u6838\u53EF\u80FD\u7684\u53EF\u63A5\u53D7\u7B54\u6848..." : "\u63D0\u4EA4\u4E2D..." });
     try {
+      const review = needsReview ? await reviewIncorrectTextAnswers({ practice, activity, answers, grading, answerAlternatives }) : { alternatives: answerAlternatives, acceptedCount: 0, reviewedCount: 0 };
+      if (review.acceptedCount > 0) {
+        onAnswerAlternativesChange(review.alternatives);
+        writeLocalAcceptedAnswerAlternatives(practice.lessonId, review.alternatives);
+        grading = {
+          ...gradeActivity(activity, answers, void 0, review.alternatives),
+          answerReview: {
+            reviewedCount: review.reviewedCount,
+            acceptedCount: review.acceptedCount
+          }
+        };
+      }
       await onSave(activity.id, {
         answers,
         grading
       }, activity);
-      setSubmitStatus({ state: "success", message: "\u5DF2\u63D0\u4EA4" });
+      setSubmitStatus({
+        state: "success",
+        message: review.acceptedCount > 0 ? `\u5DF2\u63D0\u4EA4\uFF0C\u91C7\u7EB3 ${review.acceptedCount} \u4E2A\u53EF\u63A5\u53D7\u7B54\u6848` : "\u5DF2\u63D0\u4EA4"
+      });
     } catch (error) {
       setSubmitStatus({ state: "error", message: String(error.message || error) });
     }
@@ -22542,6 +22682,17 @@ function LayoutBlockView({ block }) {
 }
 function ExampleBlockView({ example }) {
   if (!example) return null;
+  const pairedRows = pairedExampleRows(example);
+  if (pairedRows.length) {
+    return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "example-block paired-example", children: [
+      example.label ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "example-label", children: example.label }) : null,
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "example-pair-list", children: pairedRows.map((row, index) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { className: "example-pair-row", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "example-before", children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(RubyText, { text: row.before, kana: row.beforeKana }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "example-arrow", children: "\u2192" }),
+        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "example-after", children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(RubyText, { text: row.after, kana: row.afterKana }) })
+      ] }, index)) })
+    ] });
+  }
   const dialogueLines = exampleDialogueLines(example.after, example.afterKana);
   return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: `example-block ${dialogueLines ? "dialogue-example" : ""}`, children: [
     example.label ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "example-label", children: example.label }) : null,
@@ -22552,6 +22703,22 @@ function ExampleBlockView({ example }) {
       /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(RubyText, { text: line2.text, kana: line2.kana }) })
     ] }, index)) }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "example-after", children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Prompt, { parts: example.after, kana: example.afterKana }) })
   ] });
+}
+function pairedExampleRows(example) {
+  const before = splitExampleTextLines(example.before || promptPartsPlainText(example.beforeParts || []));
+  const after = splitExampleTextLines(promptPartsPlainText(example.after || []));
+  if (before.length < 2 || before.length !== after.length) return [];
+  const beforeKana = splitExampleTextLines(example.beforeKana || "");
+  const afterKana = splitExampleTextLines(example.afterKana || "");
+  return before.map((line2, index) => ({
+    before: line2,
+    beforeKana: beforeKana[index] || "",
+    after: after[index],
+    afterKana: afterKana[index] || ""
+  }));
+}
+function splitExampleTextLines(value) {
+  return String(value || "").split(/\r?\n/).map((line2) => line2.trim()).filter(Boolean);
 }
 function IncorrectAnswerModal({ activity, answers, grading, onClose }) {
   const incorrectItems = flattenActivityItems2(activity).map((item2) => ({ item: item2, result: grading?.[item2.id], answer: answers?.[item2.id] })).filter(({ result }) => result?.status === "incorrect");
@@ -22867,14 +23034,14 @@ function collectActivityAnswers(form, activity) {
   });
   return answers;
 }
-function gradeActivity(activity, answers, submittedAt = (/* @__PURE__ */ new Date()).toISOString()) {
+function gradeActivity(activity, answers, submittedAt = (/* @__PURE__ */ new Date()).toISOString(), answerAlternatives = {}) {
   const itemResults = {};
   let correctCount = 0;
   let incorrectCount = 0;
   let ungradedCount = 0;
   let gradedCount = 0;
   flattenActivityItems2(activity).forEach((item2) => {
-    const result = gradeItem(item2, answers[item2.id] || {});
+    const result = gradeItem(item2, answers[item2.id] || {}, answerAlternatives);
     itemResults[item2.id] = result;
     if (result.status === "correct") {
       correctCount += 1;
@@ -22899,7 +23066,7 @@ function gradeActivity(activity, answers, submittedAt = (/* @__PURE__ */ new Dat
     itemResults
   };
 }
-function gradeItem(item2, attempt) {
+function gradeItem(item2, attempt, answerAlternatives = {}) {
   if (item2.evaluationMode === "manual_review" || !item2.answer) {
     return { status: "ungraded", fieldResults: {} };
   }
@@ -22908,7 +23075,7 @@ function gradeItem(item2, attempt) {
   let hasIncorrect = false;
   if (item2.inputSlots?.length) {
     item2.inputSlots.forEach((slot) => {
-      const matcher = expectedTextMatcher(item2, slot.id);
+      const matcher = expectedTextMatcher(item2, slot.id, answerAlternatives);
       if (!matcher.exacts.length && !matcher.patterns.length) return;
       sawGradableField = true;
       const actual = normalizeAnswerText(attempt.slotValues?.[slot.id]);
@@ -22938,20 +23105,267 @@ function gradeItem(item2, attempt) {
     fieldResults
   };
 }
-function expectedTextMatcher(item2, slotId) {
-  const answers = [];
-  const slotValue = item2.answer?.slotValues?.[slotId];
-  if (typeof slotValue === "string" || Array.isArray(slotValue)) answers.push(normalizeAnswerText(slotValue));
-  if (slotId === "answer") {
-    (item2.answer?.modelAnswers || []).forEach((value) => answers.push(normalizeAnswerText(value)));
-    (item2.answer?.acceptableAlternatives || []).forEach((value) => answers.push(normalizeAnswerText(value)));
-  }
+function expectedTextMatcher(item2, slotId, answerAlternatives = {}) {
+  const answers = answerValuesForSlot(item2, slotId).map((value) => normalizeAnswerText(value));
+  (answerAlternatives?.[item2.id]?.[slotId] || []).forEach((value) => answers.push(normalizeAnswerText(value)));
   const unique = Array.from(new Set(answers.filter(Boolean)));
   return {
     exacts: unique.filter((value) => !value.includes("\u301C")),
     patterns: unique.filter((value) => value.includes("\u301C")).map(patternFromPlaceholderAnswer).filter(Boolean),
     speakerTaggedExpected: unique.some((value) => /(?:^|\n)[甲乙丙丁A-DＡ-Ｄ][：:]/.test(value))
   };
+}
+function hasIncorrectTextAnswers(activity, grading) {
+  return flattenActivityItems2(activity).some(
+    (item2) => item2.inputSlots?.some((slot) => grading?.itemResults?.[item2.id]?.fieldResults?.[slot.id] === "incorrect")
+  );
+}
+async function reviewIncorrectTextAnswers({ practice, activity, answers, grading, answerAlternatives }) {
+  let alternatives = answerAlternatives || {};
+  let acceptedCount = 0;
+  let reviewedCount = 0;
+  const items = flattenActivityItems2(activity);
+  for (const item2 of items) {
+    if (item2.evaluationMode === "manual_review" || item2.evaluationMode === "self_check") continue;
+    if (!item2.inputSlots?.length) continue;
+    for (const slot of item2.inputSlots) {
+      if (grading?.itemResults?.[item2.id]?.fieldResults?.[slot.id] !== "incorrect") continue;
+      const userAnswer = String(answers?.[item2.id]?.slotValues?.[slot.id] || "").trim();
+      if (!userAnswer) continue;
+      reviewedCount += 1;
+      const result = await requestAnswerReview({
+        lessonId: practice.lessonId,
+        activityId: activity.id,
+        activityTitle: activity.title,
+        activityInstruction: activity.instruction,
+        itemId: item2.id,
+        itemNumber: item2.number,
+        slotId: slot.id,
+        promptText: promptPartsPlainText(item2.prompt),
+        promptKana: item2.promptKana || "",
+        userAnswer,
+        expectedAnswers: expectedAnswerCandidates(item2),
+        answerUnit: slot.expectedUnit || activity.answerUnit,
+        responseScope: item2.responseScope || activity.responseScope || "",
+        responseScopeHint: item2.responseScopeHint || activity.responseScopeHint || "",
+        examples: exampleTextForItem(activity, item2.id)
+      });
+      if (!result?.accepted) continue;
+      alternatives = mergeAcceptedAnswerAlternative(alternatives, item2.id, slot.id, result.normalizedAnswer || userAnswer);
+      acceptedCount += 1;
+    }
+  }
+  return { alternatives, acceptedCount, reviewedCount };
+}
+async function requestAnswerReview(payload) {
+  try {
+    const response = await fetch("/api/practice/review-answer", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    });
+    const data = await response.json().catch(() => ({}));
+    if (!response.ok) return null;
+    return data;
+  } catch {
+    return null;
+  }
+}
+async function loadAcceptedAnswerAlternatives(lessonId2) {
+  const local = readLocalAcceptedAnswerAlternatives(lessonId2);
+  try {
+    const response = await fetch(`/api/practice/answer-alternatives?lessonId=${encodeURIComponent(lessonId2)}`, { cache: "no-store" });
+    const data = await response.json().catch(() => ({}));
+    if (!response.ok) return local;
+    const merged = mergeAnswerAlternativeIndexes(local, data.alternatives || {});
+    writeLocalAcceptedAnswerAlternatives(lessonId2, merged);
+    return merged;
+  } catch {
+    return local;
+  }
+}
+function readLocalAcceptedAnswerAlternatives(lessonId2) {
+  if (typeof window === "undefined") return {};
+  try {
+    const all = JSON.parse(window.localStorage.getItem(ANSWER_ALTERNATIVE_CACHE_KEY) || "{}");
+    return all?.[lessonId2] && typeof all[lessonId2] === "object" ? all[lessonId2] : {};
+  } catch {
+    return {};
+  }
+}
+function writeLocalAcceptedAnswerAlternatives(lessonId2, alternatives) {
+  if (typeof window === "undefined") return;
+  try {
+    const all = JSON.parse(window.localStorage.getItem(ANSWER_ALTERNATIVE_CACHE_KEY) || "{}");
+    all[lessonId2] = alternatives || {};
+    window.localStorage.setItem(ANSWER_ALTERNATIVE_CACHE_KEY, JSON.stringify(all));
+  } catch {
+  }
+}
+function mergeAnswerAlternativeIndexes(left = {}, right = {}) {
+  let merged = left || {};
+  Object.entries(right || {}).forEach(([itemId, slots]) => {
+    Object.entries(slots || {}).forEach(([slotId, values]) => {
+      (Array.isArray(values) ? values : []).forEach((value) => {
+        merged = mergeAcceptedAnswerAlternative(merged, itemId, slotId, value);
+      });
+    });
+  });
+  return merged;
+}
+function mergeAcceptedAnswerAlternative(alternatives = {}, itemId, slotId, answer3) {
+  const value = String(answer3 || "").trim();
+  if (!value) return alternatives;
+  const existing = alternatives?.[itemId]?.[slotId] || [];
+  const normalizedValue = normalizeAnswerText(value);
+  if (existing.some((entry) => normalizeAnswerText(entry) === normalizedValue)) return alternatives;
+  return {
+    ...alternatives,
+    [itemId]: {
+      ...alternatives[itemId] || {},
+      [slotId]: [...existing, value]
+    }
+  };
+}
+function buildAcceptedAnswerAlternativeSyncPlan(practice, alternatives = {}) {
+  let answerCount = 0;
+  const itemIds = /* @__PURE__ */ new Set();
+  const details = [];
+  const activities18 = (practice.activities || []).map((activity) => {
+    let activityChanged = false;
+    const mergeItem = (item2) => {
+      const result = mergePracticeItemAcceptedAlternatives(item2, alternatives?.[item2.id]);
+      if (result.answerCount > 0) {
+        activityChanged = true;
+        answerCount += result.answerCount;
+        itemIds.add(item2.id);
+        result.details.forEach((detail) => {
+          details.push({
+            ...detail,
+            activityTitle: activity.title || activity.id || "",
+            itemId: item2.id,
+            itemNumber: item2.number || "",
+            promptText: promptPartsPlainText(item2.prompt || [])
+          });
+        });
+      }
+      return result.item;
+    };
+    if (activity.itemGroups?.length) {
+      const itemGroups = activity.itemGroups.map((group) => {
+        let groupChanged = false;
+        const items = (group.items || []).map((item2) => {
+          const nextItem = mergeItem(item2);
+          if (nextItem !== item2) groupChanged = true;
+          return nextItem;
+        });
+        return groupChanged ? { ...group, items } : group;
+      });
+      return activityChanged ? { ...activity, itemGroups } : activity;
+    }
+    if (activity.items?.length) {
+      const items = activity.items.map(mergeItem);
+      return activityChanged ? { ...activity, items } : activity;
+    }
+    return activity;
+  });
+  return {
+    practice: answerCount > 0 ? { ...practice, activities: activities18 } : practice,
+    itemCount: itemIds.size,
+    answerCount,
+    details
+  };
+}
+function mergePracticeItemAcceptedAlternatives(item2, itemAlternatives) {
+  if (!itemAlternatives || !item2.answer || !item2.inputSlots?.length) {
+    return { item: item2, answerCount: 0, details: [] };
+  }
+  let nextAnswer = item2.answer;
+  let answerCount = 0;
+  const details = [];
+  item2.inputSlots.forEach((slot) => {
+    const incoming = Array.isArray(itemAlternatives[slot.id]) ? itemAlternatives[slot.id] : [];
+    const standardAnswers = answerValuesForSlot(item2, slot.id);
+    const newValues = uniqueNewAnswerValues(standardAnswers, incoming);
+    if (!newValues.length) return;
+    if (nextAnswer === item2.answer) nextAnswer = { ...item2.answer };
+    if (slot.id === "answer") {
+      nextAnswer.acceptableAlternatives = [
+        ...Array.isArray(nextAnswer.acceptableAlternatives) ? nextAnswer.acceptableAlternatives : [],
+        ...newValues
+      ];
+    } else {
+      const slotAlternatives = { ...nextAnswer.slotAlternatives || {} };
+      slotAlternatives[slot.id] = [
+        ...Array.isArray(slotAlternatives[slot.id]) ? slotAlternatives[slot.id] : [],
+        ...newValues
+      ];
+      nextAnswer.slotAlternatives = slotAlternatives;
+    }
+    answerCount += newValues.length;
+    details.push({
+      slotId: slot.id,
+      standardAnswers: standardAnswers.length ? standardAnswers : ["\u6682\u65E0"],
+      candidateAnswers: newValues
+    });
+  });
+  return answerCount > 0 ? { item: { ...item2, answer: nextAnswer }, answerCount, details } : { item: item2, answerCount: 0, details: [] };
+}
+function uniqueNewAnswerValues(existingValues, incomingValues) {
+  const normalizedExisting = new Set(existingValues.map((value) => normalizeAnswerText(value)).filter(Boolean));
+  const additions = [];
+  incomingValues.forEach((value) => {
+    const answer3 = String(value || "").trim();
+    const normalized = normalizeAnswerText(answer3);
+    if (!answer3 || !normalized || normalizedExisting.has(normalized)) return;
+    normalizedExisting.add(normalized);
+    additions.push(answer3);
+  });
+  return additions;
+}
+function answerValuesForSlot(item2, slotId) {
+  const values = [];
+  const slotValue = item2.answer?.slotValues?.[slotId];
+  if (Array.isArray(slotValue)) {
+    const joined = slotValue.map((entry) => String(entry || "").trim()).filter(Boolean).join("\n");
+    if (joined) values.push(joined);
+  } else {
+    appendAnswerValue(values, slotValue);
+  }
+  if (slotId === "answer") {
+    appendAnswerValue(values, item2.answer?.acceptableAlternatives);
+    appendAnswerValue(values, item2.answer?.modelAnswers);
+  }
+  appendAnswerValue(values, item2.answer?.slotAlternatives?.[slotId]);
+  return values;
+}
+function appendAnswerValue(values, value) {
+  if (Array.isArray(value)) {
+    value.forEach((entry) => appendAnswerValue(values, entry));
+    return;
+  }
+  const textValue = String(value || "").trim();
+  if (textValue) values.push(textValue);
+}
+function promptPartsPlainText(parts = []) {
+  return parts.map((part) => {
+    if (part.type === "text") return part.text || "";
+    if (part.type === "blank") return "____";
+    if (part.type === "choice_ref") return part.choiceIds?.join(" / ") || "";
+    if (part.type === "asset_ref") return part.assetId || "";
+    return "";
+  }).join("");
+}
+function exampleTextForItem(activity, itemId) {
+  const group = (activity.itemGroups || []).find((entry) => entry.items?.some((item2) => item2.id === itemId));
+  if (group?.example) return examplePlainText(group.example);
+  return (activity.layout || []).filter((block) => block.type === "example").map((block) => examplePlainText(block.content)).filter(Boolean).join("\n\n");
+}
+function examplePlainText(example) {
+  if (!example) return "";
+  const before = example.before || promptPartsPlainText(example.beforeParts || []);
+  const after = promptPartsPlainText(example.after || []);
+  return [before, after].filter(Boolean).join("\n\u2192\n");
 }
 function canAcceptSpeakerlessAnswer(item2, matcher) {
   if (matcher.speakerTaggedExpected) return false;
@@ -23000,7 +23414,7 @@ function normalizeActivityRecord(activity, record) {
     const normalized = normalizeStoredItemAnswer(item2, source);
     if (normalized) answers[item2.id] = normalized;
   });
-  const grading = record.grading ? gradeActivity(activity, answers, record.grading.submittedAt || record.grading.summary?.submittedAt || record.updatedAt) : record.grading;
+  const grading = record.grading?.itemResults ? record.grading : record.grading ? gradeActivity(activity, answers, record.grading.submittedAt || record.grading.summary?.submittedAt || record.updatedAt) : record.grading;
   return {
     ...record,
     answers,
@@ -23157,16 +23571,11 @@ function formatExpectedAnswerSummary(item2) {
   const answers = [];
   if (item2.inputSlots?.length) {
     item2.inputSlots.forEach((slot) => {
-      const slotValue = item2.answer?.slotValues?.[slot.id];
-      if (typeof slotValue === "string" && slotValue.trim()) answers.push(slotValue.trim());
+      answerValuesForSlot(item2, slot.id).forEach((value) => {
+        if (String(value || "").trim()) answers.push(String(value).trim());
+      });
     });
   }
-  (item2.answer?.acceptableAlternatives || []).forEach((value) => {
-    if (String(value || "").trim()) answers.push(String(value).trim());
-  });
-  (item2.answer?.modelAnswers || []).forEach((value) => {
-    if (String(value || "").trim()) answers.push(String(value).trim());
-  });
   return Array.from(new Set(answers)).join(" / ") || "\u6682\u65E0";
 }
 function buildAnswerComparison(item2, answer3) {
@@ -23189,21 +23598,11 @@ function expectedAnswerCandidates(item2) {
   const answers = [];
   if (item2.inputSlots?.length) {
     item2.inputSlots.forEach((slot) => {
-      const slotValue = item2.answer?.slotValues?.[slot.id];
-      if (Array.isArray(slotValue)) {
-        const value = slotValue.map((entry) => String(entry || "").trim()).filter(Boolean).join("\n");
-        if (value) answers.push(value);
-      } else if (typeof slotValue === "string" && slotValue.trim()) {
-        answers.push(slotValue.trim());
-      }
+      answerValuesForSlot(item2, slot.id).forEach((value) => {
+        if (String(value || "").trim()) answers.push(String(value).trim());
+      });
     });
   }
-  (item2.answer?.acceptableAlternatives || []).forEach((value) => {
-    if (String(value || "").trim()) answers.push(String(value).trim());
-  });
-  (item2.answer?.modelAnswers || []).forEach((value) => {
-    if (String(value || "").trim()) answers.push(String(value).trim());
-  });
   return Array.from(new Set(answers));
 }
 function closestExpectedAnswer(actual, candidates) {

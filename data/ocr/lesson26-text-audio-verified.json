@@ -1,0 +1,613 @@
+{
+  "lessonId": "lesson26",
+  "sourceImages": [
+    {
+      "section": "basic",
+      "path": "course-assets/by-lesson/lesson26/page14.webp",
+      "pageNo": 14
+    },
+    {
+      "section": "application",
+      "path": "course-assets/by-lesson/lesson26/page19.webp",
+      "pageNo": 19
+    }
+  ],
+  "basicText": {
+    "title": "基本课文",
+    "basicSentences": [
+      {
+        "id": "l26-basic-s001",
+        "order": 1,
+        "text": "自転車に 2人で 乗るのは 危ないです。",
+        "translationZh": "两人同骑一辆自行车很危险。",
+        "confidence": "high",
+        "rawText": "1. 自転車に 2人で 乗るのは 危ないです。",
+        "audioSegment": {
+          "id": "l26-basic-s001",
+          "trackId": "lesson_basic",
+          "sourceUrl": "/data/ocr/audio-clips/lesson26/l26-basic-s001.mp3",
+          "start": 0,
+          "end": 2.7,
+          "duration": 2.7,
+          "method": "approved-asr-alignment",
+          "confidence": "approved",
+          "reviewedAt": "2026-08-05T10:03:09.363Z",
+          "sourceAudioSha256": "881698b5053a913039aefad993c16a98e5af4a1a946ec1d11852b54cfcec0b5b"
+        }
+      },
+      {
+        "id": "l26-basic-s002",
+        "order": 2,
+        "text": "手紙を 出すのを 忘れました。",
+        "translationZh": "我忘了寄信。",
+        "confidence": "high",
+        "rawText": "2. 手紙を 出すのを 忘れました。",
+        "audioSegment": {
+          "id": "l26-basic-s002",
+          "trackId": "lesson_basic",
+          "sourceUrl": "/data/ocr/audio-clips/lesson26/l26-basic-s002.mp3",
+          "start": 0,
+          "end": 1.78,
+          "duration": 1.78,
+          "method": "approved-asr-alignment",
+          "confidence": "approved",
+          "reviewedAt": "2026-08-05T10:03:09.363Z",
+          "sourceAudioSha256": "881698b5053a913039aefad993c16a98e5af4a1a946ec1d11852b54cfcec0b5b"
+        }
+      },
+      {
+        "id": "l26-basic-s003",
+        "order": 3,
+        "text": "明日の 朝は 大雨に なるでしょう。",
+        "translationZh": "明天早晨大概会下大雨。",
+        "confidence": "high",
+        "rawText": "3. 明日の 朝は 大雨に なるでしょう。",
+        "audioSegment": {
+          "id": "l26-basic-s003",
+          "trackId": "lesson_basic",
+          "sourceUrl": "/data/ocr/audio-clips/lesson26/l26-basic-s003.mp3",
+          "start": 0,
+          "end": 2.74,
+          "duration": 2.74,
+          "method": "approved-asr-alignment",
+          "confidence": "approved",
+          "reviewedAt": "2026-08-05T10:03:09.363Z",
+          "sourceAudioSha256": "881698b5053a913039aefad993c16a98e5af4a1a946ec1d11852b54cfcec0b5b"
+        }
+      },
+      {
+        "id": "l26-basic-s004",
+        "order": 4,
+        "text": "森さんは 今日 会社を 休むかも しれません。",
+        "translationZh": "森先生今天可能不来公司上班。",
+        "confidence": "high",
+        "rawText": "4. 森さんは 今日 会社を 休むかも しれません。",
+        "audioSegment": {
+          "id": "l26-basic-s004",
+          "trackId": "lesson_basic",
+          "sourceUrl": "/data/ocr/audio-clips/lesson26/l26-basic-s004.mp3",
+          "start": 0,
+          "end": 3.38,
+          "duration": 3.38,
+          "method": "approved-asr-alignment",
+          "confidence": "approved",
+          "reviewedAt": "2026-08-05T10:03:09.363Z",
+          "sourceAudioSha256": "881698b5053a913039aefad993c16a98e5af4a1a946ec1d11852b54cfcec0b5b"
+        }
+      }
+    ],
+    "dialogues": [
+      {
+        "id": "l26-basic-dialogue-001",
+        "label": "A",
+        "lines": [
+          {
+            "id": "l26-basic-dialogue-001-line-001",
+            "speaker": "甲",
+            "text": "李さんは 絵を かくのが 好きですね。",
+            "translationZh": "小李喜欢画画吧。",
+            "confidence": "high",
+            "rawText": "甲：李さんは 絵を かくのが 好きですね。",
+            "audioSegment": {
+              "id": "l26-basic-dialogue-001-line-001",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson26/l26-basic-dialogue-001-line-001.mp3",
+              "start": 0,
+              "end": 2.54,
+              "duration": 2.54,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:03:09.363Z",
+              "sourceAudioSha256": "881698b5053a913039aefad993c16a98e5af4a1a946ec1d11852b54cfcec0b5b"
+            }
+          },
+          {
+            "id": "l26-basic-dialogue-001-line-002",
+            "speaker": "乙",
+            "text": "ええ、大好きです。でも、あまり 上手では ありませんよ。",
+            "translationZh": "是的，非常喜欢。不过画得不太好。",
+            "confidence": "high",
+            "rawText": "乙：ええ、大好きです。でも、あまり 上手では ありませんよ。",
+            "audioSegment": {
+              "id": "l26-basic-dialogue-001-line-002",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson26/l26-basic-dialogue-001-line-002.mp3",
+              "start": 0,
+              "end": 3.42,
+              "duration": 3.42,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:03:09.363Z",
+              "sourceAudioSha256": "881698b5053a913039aefad993c16a98e5af4a1a946ec1d11852b54cfcec0b5b"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l26-basic-dialogue-002",
+        "label": "B",
+        "lines": [
+          {
+            "id": "l26-basic-dialogue-002-line-001",
+            "speaker": "甲",
+            "text": "吉田さんが 転勤したのを 知って いますか。",
+            "translationZh": "你知道吉田先生调动工作了吗？",
+            "confidence": "high",
+            "rawText": "甲：吉田さんが 転勤したのを 知って いますか。",
+            "audioSegment": {
+              "id": "l26-basic-dialogue-002-line-001",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson26/l26-basic-dialogue-002-line-001.mp3",
+              "start": 0,
+              "end": 2.9,
+              "duration": 2.9,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:03:09.363Z",
+              "sourceAudioSha256": "881698b5053a913039aefad993c16a98e5af4a1a946ec1d11852b54cfcec0b5b"
+            }
+          },
+          {
+            "id": "l26-basic-dialogue-002-line-002",
+            "speaker": "乙",
+            "text": "えっ、本当ですか。知りませんでした。",
+            "translationZh": "啊，真的吗？我不知道。",
+            "confidence": "high",
+            "rawText": "乙：えっ、本当ですか。知りませんでした。",
+            "audioSegment": {
+              "id": "l26-basic-dialogue-002-line-002",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson26/l26-basic-dialogue-002-line-002.mp3",
+              "start": 0,
+              "end": 2.22,
+              "duration": 2.22,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:03:09.363Z",
+              "sourceAudioSha256": "881698b5053a913039aefad993c16a98e5af4a1a946ec1d11852b54cfcec0b5b"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l26-basic-dialogue-003",
+        "label": "C",
+        "lines": [
+          {
+            "id": "l26-basic-dialogue-003-line-001",
+            "speaker": "甲",
+            "text": "会議は 何時に 終わりますか。",
+            "translationZh": "会议几点结束？",
+            "confidence": "high",
+            "rawText": "甲：会議は 何時に 終わりますか。",
+            "audioSegment": {
+              "id": "l26-basic-dialogue-003-line-001",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson26/l26-basic-dialogue-003-line-001.mp3",
+              "start": 0,
+              "end": 2.18,
+              "duration": 2.18,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:03:09.363Z",
+              "sourceAudioSha256": "881698b5053a913039aefad993c16a98e5af4a1a946ec1d11852b54cfcec0b5b"
+            }
+          },
+          {
+            "id": "l26-basic-dialogue-003-line-002",
+            "speaker": "乙",
+            "text": "2時には 終わるでしょう。",
+            "translationZh": "大概两点结束。",
+            "confidence": "high",
+            "rawText": "乙：2時には 終わるでしょう。",
+            "audioSegment": {
+              "id": "l26-basic-dialogue-003-line-002",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson26/l26-basic-dialogue-003-line-002.mp3",
+              "start": 0,
+              "end": 1.66,
+              "duration": 1.66,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:03:09.363Z",
+              "sourceAudioSha256": "881698b5053a913039aefad993c16a98e5af4a1a946ec1d11852b54cfcec0b5b"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l26-basic-dialogue-004",
+        "label": "D",
+        "lines": [
+          {
+            "id": "l26-basic-dialogue-004-line-001",
+            "speaker": "甲",
+            "text": "馬さんは まだ 来ませんね。",
+            "translationZh": "马先生还没来啊。",
+            "confidence": "high",
+            "rawText": "甲：馬さんは まだ 来ませんね。",
+            "audioSegment": {
+              "id": "l26-basic-dialogue-004-line-001",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson26/l26-basic-dialogue-004-line-001.mp3",
+              "start": 0,
+              "end": 1.94,
+              "duration": 1.94,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:03:09.363Z",
+              "sourceAudioSha256": "881698b5053a913039aefad993c16a98e5af4a1a946ec1d11852b54cfcec0b5b"
+            }
+          },
+          {
+            "id": "l26-basic-dialogue-004-line-002",
+            "speaker": "乙",
+            "text": "もしかしたら、今日は 来ないかも しれませんよ。",
+            "translationZh": "他今天可能不来了。",
+            "confidence": "high",
+            "rawText": "乙：もしかしたら、今日は 来ないかも しれませんよ。",
+            "audioSegment": {
+              "id": "l26-basic-dialogue-004-line-002",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson26/l26-basic-dialogue-004-line-002.mp3",
+              "start": 0,
+              "end": 3.66,
+              "duration": 3.66,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:03:09.363Z",
+              "sourceAudioSha256": "881698b5053a913039aefad993c16a98e5af4a1a946ec1d11852b54cfcec0b5b"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "applicationText": {
+    "title": "握手とお辞儀",
+    "blocks": [
+      {
+        "id": "l26-app-block-001",
+        "type": "scene",
+        "text": "杨先生被介绍后，做自我介绍。",
+        "translationZh": "杨先生被介绍后，做自我介绍。",
+        "confidence": "high",
+        "rawText": "（杨先生被介绍后，做自我介绍）"
+      },
+      {
+        "id": "l26-app-block-002",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l26-app-block-002-line-001",
+            "speaker": "楊",
+            "text": "はじめまして、楊です。",
+            "translationZh": "初次见面，我姓杨。",
+            "confidence": "high",
+            "rawText": "楊：はじめまして、楊です。",
+            "audioSegment": {
+              "id": "l26-app-block-002-line-001",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson26/l26-app-block-002-line-001.mp3",
+              "start": 0,
+              "end": 1.9,
+              "duration": 1.9,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:03:55.376Z",
+              "sourceAudioSha256": "9a2290d1136830077fc065f1d9de4348d33006e4970c2b1477b641519713f117"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l26-app-block-003",
+        "type": "scene",
+        "text": "说着，伸出了手。",
+        "translationZh": "说着，伸出了手。",
+        "confidence": "high",
+        "rawText": "（说着，伸出了手）"
+      },
+      {
+        "id": "l26-app-block-004",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l26-app-block-004-line-001",
+            "speaker": "森",
+            "text": "はじめまして。森です。よろしく お願いします。",
+            "translationZh": "初次见面，我姓森。请多关照。",
+            "confidence": "high",
+            "rawText": "森：はじめまして。森です。よろしく お願いします。",
+            "audioSegment": {
+              "id": "l26-app-block-004-line-001",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson26/l26-app-block-004-line-001.mp3",
+              "start": 0,
+              "end": 3.18,
+              "duration": 3.18,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:03:55.376Z",
+              "sourceAudioSha256": "9a2290d1136830077fc065f1d9de4348d33006e4970c2b1477b641519713f117"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l26-app-block-005",
+        "type": "scene",
+        "text": "一边说，一边开始鞠躬，转而慌慌张张地伸出了手。",
+        "translationZh": "一边说，一边开始鞠躬，转而慌慌张张地伸出了手。",
+        "confidence": "high",
+        "rawText": "（一边说，一边开始鞠躬，转而慌慌张张地伸出了手）"
+      },
+      {
+        "id": "l26-app-block-006",
+        "type": "scene",
+        "text": "杨先生回去后。",
+        "translationZh": "杨先生回去后。",
+        "confidence": "high",
+        "rawText": "（杨先生回去后）"
+      },
+      {
+        "id": "l26-app-block-007",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l26-app-block-007-line-001",
+            "speaker": "陳",
+            "text": "日本には 握手の 習慣が ないんですね。",
+            "translationZh": "日本没有握手的习惯啊。",
+            "confidence": "high",
+            "rawText": "陳：日本には 握手の 習慣が ないんですね。",
+            "audioSegment": {
+              "id": "l26-app-block-007-line-001",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson26/l26-app-block-007-line-001.mp3",
+              "start": 0,
+              "end": 2.86,
+              "duration": 2.86,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:03:55.376Z",
+              "sourceAudioSha256": "9a2290d1136830077fc065f1d9de4348d33006e4970c2b1477b641519713f117"
+            }
+          },
+          {
+            "id": "l26-app-block-007-line-002",
+            "speaker": "森",
+            "text": "ええ、そうなんです。それで、つい 握手するのを 忘れます。",
+            "translationZh": "是的，就是这样。因此常常不知不觉就忘了握手。",
+            "confidence": "high",
+            "rawText": "森：ええ、そうなんです。それで、つい 握手するのを 忘れます。",
+            "audioSegment": {
+              "id": "l26-app-block-007-line-002",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson26/l26-app-block-007-line-002.mp3",
+              "start": 0,
+              "end": 3.9,
+              "duration": 3.9,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:03:55.376Z",
+              "sourceAudioSha256": "9a2290d1136830077fc065f1d9de4348d33006e4970c2b1477b641519713f117"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l26-app-block-008",
+        "type": "scene",
+        "text": "说起中日两国的寒暄习惯。",
+        "translationZh": "说起中日两国的寒暄习惯。",
+        "confidence": "high",
+        "rawText": "（说起中日两国的寒暄习惯）"
+      },
+      {
+        "id": "l26-app-block-009",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l26-app-block-009-line-001",
+            "speaker": "森",
+            "text": "中国では 握手するのが 普通なんですか。",
+            "translationZh": "在中国，握手是很普通的吗？",
+            "confidence": "high",
+            "rawText": "森：中国では 握手するのが 普通なんですか。",
+            "audioSegment": {
+              "id": "l26-app-block-009-line-001",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson26/l26-app-block-009-line-001.mp3",
+              "start": 0,
+              "end": 3.06,
+              "duration": 3.06,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:03:55.376Z",
+              "sourceAudioSha256": "9a2290d1136830077fc065f1d9de4348d33006e4970c2b1477b641519713f117"
+            }
+          },
+          {
+            "id": "l26-app-block-009-line-002",
+            "speaker": "陳",
+            "text": "ええ、そうですよ。日本には お辞儀の ほかの あいさつは ないんですか。",
+            "translationZh": "是的。在日本，除了鞠躬之外没有别的寒暄方式吗？",
+            "confidence": "high",
+            "rawText": "陳：ええ、そうですよ。日本には お辞儀の ほかの あいさつは ないんですか。",
+            "audioSegment": {
+              "id": "l26-app-block-009-line-002",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson26/l26-app-block-009-line-002.mp3",
+              "start": 0,
+              "end": 5.34,
+              "duration": 5.34,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:03:55.376Z",
+              "sourceAudioSha256": "9a2290d1136830077fc065f1d9de4348d33006e4970c2b1477b641519713f117"
+            }
+          },
+          {
+            "id": "l26-app-block-009-line-003",
+            "speaker": "森",
+            "text": "そうですね…。手を 挙げたり、握手したり する 人も いますが、ほとんど お辞儀ですね。",
+            "translationZh": "这个嘛……也有人会举手或握手，不过大部分还是鞠躬。",
+            "confidence": "high",
+            "rawText": "森：そうですね…。手を 挙げたり、握手したり する 人も いますが、ほとんど お辞儀ですね。",
+            "audioSegment": {
+              "id": "l26-app-block-009-line-003",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson26/l26-app-block-009-line-003.mp3",
+              "start": 0,
+              "end": 6.62,
+              "duration": 6.62,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:03:55.376Z",
+              "sourceAudioSha256": "9a2290d1136830077fc065f1d9de4348d33006e4970c2b1477b641519713f117"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l26-app-block-010",
+        "type": "scene",
+        "text": "听到他们谈话的小戴插话了。",
+        "translationZh": "听到他们谈话的小戴插话了。",
+        "confidence": "high",
+        "rawText": "（听到他们谈话的小戴插话了）"
+      },
+      {
+        "id": "l26-app-block-011",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l26-app-block-011-line-001",
+            "speaker": "戴",
+            "text": "陳さん、森さんの 午後の 予定は あいさつ回りですね。",
+            "translationZh": "小陈、森先生，你们下午的安排是去拜访客户吧。",
+            "confidence": "high",
+            "rawText": "戴：陳さん、森さんの 午後の 予定は あいさつ回りですね。",
+            "audioSegment": {
+              "id": "l26-app-block-011-line-001",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson26/l26-app-block-011-line-001.mp3",
+              "start": 0,
+              "end": 4.26,
+              "duration": 4.26,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:03:55.376Z",
+              "sourceAudioSha256": "9a2290d1136830077fc065f1d9de4348d33006e4970c2b1477b641519713f117"
+            }
+          },
+          {
+            "id": "l26-app-block-011-line-002",
+            "speaker": "陳",
+            "text": "ええ。今 1時半ですから、これから 4社ぐらい 回ることが できるでしょう。",
+            "translationZh": "是的。现在一点半，从现在起大概能拜访四家公司吧。",
+            "confidence": "high",
+            "rawText": "陳：ええ。今 1時半ですから、これから 4社ぐらい 回ることが できるでしょう。",
+            "audioSegment": {
+              "id": "l26-app-block-011-line-002",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson26/l26-app-block-011-line-002.mp3",
+              "start": 0,
+              "end": 5.62,
+              "duration": 5.62,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:03:55.376Z",
+              "sourceAudioSha256": "9a2290d1136830077fc065f1d9de4348d33006e4970c2b1477b641519713f117"
+            }
+          },
+          {
+            "id": "l26-app-block-011-line-003",
+            "speaker": "戴",
+            "text": "そうですね。5社 行くことが できるかも しれませんよ。",
+            "translationZh": "是啊。也许能去五家公司呢。",
+            "confidence": "high",
+            "rawText": "戴：そうですね。5社 行くことが できるかも しれませんよ。",
+            "audioSegment": {
+              "id": "l26-app-block-011-line-003",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson26/l26-app-block-011-line-003.mp3",
+              "start": 0,
+              "end": 4.42,
+              "duration": 4.42,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:03:55.376Z",
+              "sourceAudioSha256": "9a2290d1136830077fc065f1d9de4348d33006e4970c2b1477b641519713f117"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l26-app-block-012",
+        "type": "scene",
+        "text": "面向森。",
+        "translationZh": "面向森。",
+        "confidence": "high",
+        "rawText": "（面向森）"
+      },
+      {
+        "id": "l26-app-block-013",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l26-app-block-013-line-001",
+            "speaker": "戴",
+            "text": "森さん、次は 握手するのを 忘れないで くださいね。",
+            "translationZh": "森先生，下次请别忘了握手哦。",
+            "confidence": "high",
+            "rawText": "森さん、次は 握手するのを 忘れないで くださいね。",
+            "audioSegment": {
+              "id": "l26-app-block-013-line-001",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson26/l26-app-block-013-line-001.mp3",
+              "start": 0,
+              "end": 4.1,
+              "duration": 4.1,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:03:55.376Z",
+              "sourceAudioSha256": "9a2290d1136830077fc065f1d9de4348d33006e4970c2b1477b641519713f117"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "warnings": [
+    "扫描页中的假名标注不适合可靠地逐句切分，未生成 kana 或 segments/ruby 字段。"
+  ],
+  "audioAlignment": {
+    "schemaVersion": 1,
+    "method": "approved-asr-alignment",
+    "sourceAlignment": "data/ocr/lesson26-text-audio-alignment.json",
+    "publishedAt": "2026-08-05T10:03:59.338Z",
+    "approvedSegments": 23
+  }
+}

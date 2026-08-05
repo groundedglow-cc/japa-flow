@@ -1,0 +1,290 @@
+{
+  "lessonId": "lesson23",
+  "sourceImages": [
+    {
+      "section": "basic",
+      "path": "course-assets/by-lesson/lesson23/page272.webp",
+      "pageNo": 272
+    },
+    {
+      "section": "application",
+      "path": "course-assets/by-lesson/lesson23/page277.webp",
+      "pageNo": 277
+    }
+  ],
+  "basicText": {
+    "title": "基本课文",
+    "basicSentences": [
+      {
+        "id": "l23-basic-s001",
+        "order": 1,
+        "text": "小野さんは 休みの 日、散歩したり 買い物に 行ったり します。",
+        "translationZh": "小野休息日有时散步，有时去买东西。",
+        "confidence": "high",
+        "rawText": "1. 小野さんは 休みの 日、散歩したり 買い物に 行ったり します。"
+      },
+      {
+        "id": "l23-basic-s002",
+        "order": 2,
+        "text": "日本語の 先生は 中国人だったり 日本人だったりです。",
+        "translationZh": "日语老师有的是中国人，有的是日本人。",
+        "confidence": "high",
+        "rawText": "2. 日本語の 先生は 中国人だったり 日本人だったりです。"
+      },
+      {
+        "id": "l23-basic-s003",
+        "order": 3,
+        "text": "わたしは 今年の 夏、北京へ 行くか どうか 分かりません。",
+        "translationZh": "我今年夏天去不去北京还不知道。",
+        "confidence": "high",
+        "rawText": "3. わたしは 今年の 夏、北京へ 行くか どうか 分かりません。"
+      },
+      {
+        "id": "l23-basic-s004",
+        "order": 4,
+        "text": "かぎが どこに あるか 教えて ください。",
+        "translationZh": "请告诉我钥匙在哪里。",
+        "confidence": "high",
+        "rawText": "4. かぎが どこに あるか 教えて ください。"
+      }
+    ],
+    "dialogues": [
+      {
+        "id": "l23-basic-dialogue-001",
+        "label": "A",
+        "lines": [
+          {
+            "id": "l23-basic-dialogue-001-line-001",
+            "speaker": "甲",
+            "text": "週末に 何を しましたか。",
+            "translationZh": "周末做什么了？",
+            "confidence": "high",
+            "rawText": "甲：週末に 何を しましたか。"
+          },
+          {
+            "id": "l23-basic-dialogue-001-line-002",
+            "speaker": "乙",
+            "text": "スケートを したり、ボーリングを したり しました。",
+            "translationZh": "滑冰、打保龄球了。",
+            "confidence": "high",
+            "rawText": "乙：スケートを したり、ボーリングを したり しました。"
+          }
+        ]
+      },
+      {
+        "id": "l23-basic-dialogue-002",
+        "label": "B",
+        "lines": [
+          {
+            "id": "l23-basic-dialogue-002-line-001",
+            "speaker": "甲",
+            "text": "北京まで、飛行機の チケットは いくらぐらいですか。",
+            "translationZh": "到北京的飞机票大概多少钱？",
+            "confidence": "high",
+            "rawText": "甲：北京まで、飛行機の チケットは いくらぐらいですか。"
+          },
+          {
+            "id": "l23-basic-dialogue-002-line-002",
+            "speaker": "乙",
+            "text": "季節に よって 高かったり 安かったりです。",
+            "translationZh": "根据季节不同，有时贵有时便宜。",
+            "confidence": "high",
+            "rawText": "乙：季節に よって 高かったり 安かったりです。"
+          }
+        ]
+      },
+      {
+        "id": "l23-basic-dialogue-003",
+        "label": "C",
+        "lines": [
+          {
+            "id": "l23-basic-dialogue-003-line-001",
+            "speaker": "甲",
+            "text": "李さん、仕事は 忙しいですか。",
+            "translationZh": "小李，工作忙吗？",
+            "confidence": "high",
+            "rawText": "甲：李さん、仕事は 忙しいですか。"
+          },
+          {
+            "id": "l23-basic-dialogue-003-line-002",
+            "speaker": "乙",
+            "text": "ええ、日に よって 暇だったり 忙しかったりです。",
+            "translationZh": "嗯，因日子而异，有时闲有时忙。",
+            "confidence": "high",
+            "rawText": "乙：ええ、日に よって 暇だったり 忙しかったりです。"
+          }
+        ]
+      },
+      {
+        "id": "l23-basic-dialogue-004",
+        "label": "D",
+        "lines": [
+          {
+            "id": "l23-basic-dialogue-004-line-001",
+            "speaker": "甲",
+            "text": "森さんが 何時ごろ 来るか 知って いますか。",
+            "translationZh": "知道森先生几点左右来吗？",
+            "confidence": "high",
+            "rawText": "甲：森さんが 何時ごろ 来るか 知って いますか。"
+          },
+          {
+            "id": "l23-basic-dialogue-004-line-002",
+            "speaker": "乙",
+            "text": "いいえ。今日は 来るか どうか 分かりません。",
+            "translationZh": "不知道。今天来不来还不知道。",
+            "confidence": "high",
+            "rawText": "乙：いいえ。今日は 来るか どうか 分かりません。"
+          }
+        ]
+      }
+    ]
+  },
+  "applicationText": {
+    "title": "送別会",
+    "blocks": [
+      {
+        "id": "l23-app-block-001",
+        "type": "scene",
+        "text": "在百货商店，小野和森为小李挑选礼物。",
+        "translationZh": "在百货商店，小野和森为小李挑选礼物。",
+        "confidence": "high",
+        "rawText": "在百货商店，小野和森为小李挑选礼物。"
+      },
+      {
+        "id": "l23-app-block-002",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l23-app-block-002-line-001",
+            "speaker": "森",
+            "text": "小野さん、何を 買うか 決まりましたか。",
+            "translationZh": "小野，决定买什么了吗？",
+            "confidence": "high",
+            "rawText": "森：小野さん、何を 買うか 決まりましたか。"
+          },
+          {
+            "id": "l23-app-block-002-line-002",
+            "speaker": "小野",
+            "text": "浴衣は どうですか。",
+            "translationZh": "浴衣怎么样？",
+            "confidence": "high",
+            "rawText": "小野：浴衣は どうですか。"
+          },
+          {
+            "id": "l23-app-block-002-line-003",
+            "speaker": "森",
+            "text": "いいですね。でも、高く ないですか。",
+            "translationZh": "不错。不过不贵吗？",
+            "confidence": "high",
+            "rawText": "森：いいですね。でも、高く ないですか。"
+          },
+          {
+            "id": "l23-app-block-002-line-004",
+            "speaker": "小野",
+            "text": "高かったり 安かったり、いろいろ あります。あっ、そうだ。生地を 買って、わたしが 作りますよ。",
+            "translationZh": "有贵的也有便宜的，各种都有。啊，对了，买布料我来做吧。",
+            "confidence": "high",
+            "rawText": "小野：高かったり 安かったり、いろいろ あります。あっ、そうだ。生地を 買って、わたしが 作りますよ。"
+          }
+        ]
+      },
+      {
+        "id": "l23-app-block-003",
+        "type": "scene",
+        "text": "欢送会上，干杯之后。",
+        "translationZh": "欢送会上，干杯之后。",
+        "confidence": "high",
+        "rawText": "欢送会上，干杯之后。"
+      },
+      {
+        "id": "l23-app-block-004",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l23-app-block-004-line-001",
+            "speaker": "吉田",
+            "text": "日本の 生活は どうでしたか。",
+            "translationZh": "日本的生活怎么样？",
+            "confidence": "high",
+            "rawText": "吉田：日本の 生活は どうでしたか。"
+          },
+          {
+            "id": "l23-app-block-004-line-002",
+            "speaker": "李",
+            "text": "温泉に 入ったり 歌舞伎を 見たり して、とても 楽しかったです。",
+            "translationZh": "泡温泉、看歌舞伎，非常开心。",
+            "confidence": "high",
+            "rawText": "李：温泉に 入ったり 歌舞伎を 見たり して、とても 楽しかったです。"
+          },
+          {
+            "id": "l23-app-block-004-line-003",
+            "speaker": "吉田",
+            "text": "ご両親に いつ 帰るか 知らせましたか。",
+            "translationZh": "告诉父母什么时候回去了吗？",
+            "confidence": "high",
+            "rawText": "吉田：ご両親に いつ 帰るか 知らせましたか。"
+          },
+          {
+            "id": "l23-app-block-004-line-004",
+            "speaker": "李",
+            "text": "はい、昨日 母に メールで 知らせました。",
+            "translationZh": "是的，昨天给母亲发邮件告诉了。",
+            "confidence": "high",
+            "rawText": "李：はい、昨日 母に メールで 知らせました。"
+          },
+          {
+            "id": "l23-app-block-004-line-005",
+            "speaker": "森",
+            "text": "ご両親は メールが できますか。",
+            "translationZh": "你父母会发邮件吗？",
+            "confidence": "high",
+            "rawText": "森：ご両親は メールが できますか。"
+          },
+          {
+            "id": "l23-app-block-004-line-006",
+            "speaker": "李",
+            "text": "母は できますが、父は 電話か 手紙ですね。",
+            "translationZh": "母亲会，父亲还是电话或信。",
+            "confidence": "high",
+            "rawText": "李：母は できますが、父は 電話か 手紙ですね。"
+          },
+          {
+            "id": "l23-app-block-004-line-007",
+            "speaker": "小野",
+            "text": "北京へ 帰った 後、どうしますか。",
+            "translationZh": "回北京以后打算做什么？",
+            "confidence": "high",
+            "rawText": "小野：北京へ 帰った 後、どうしますか。"
+          },
+          {
+            "id": "l23-app-block-004-line-008",
+            "speaker": "李",
+            "text": "1週間ぐらい 休みたいですね。春節に 休みが なかったですから。",
+            "translationZh": "想休息一个星期左右。因为春节没有休息。",
+            "confidence": "high",
+            "rawText": "李：1週間ぐらい 休みたいですね。春節に 休みが なかったですから。"
+          },
+          {
+            "id": "l23-app-block-004-line-009",
+            "speaker": "小野",
+            "text": "休みに 何を しますか。旅行に 行きますか。",
+            "translationZh": "休息时做什么？去旅行吗？",
+            "confidence": "high",
+            "rawText": "小野：休みに 何を しますか。旅行に 行きますか。"
+          },
+          {
+            "id": "l23-app-block-004-line-010",
+            "speaker": "李",
+            "text": "旅行に 行くか どうか、分かりません。たぶん 友達に 会ったり、食事に 行ったり します。",
+            "translationZh": "去不去旅行还不知道。大概见朋友、去吃饭。",
+            "confidence": "high",
+            "rawText": "李：旅行に 行くか どうか、分かりません。たぶん 友達に 会ったり、食事に 行ったり します。"
+          }
+        ]
+      }
+    ]
+  },
+  "warnings": [
+    "segments/ruby 未批量生成；保留 text 与 translationZh，后续可单独补充 ruby 切片。"
+  ]
+}

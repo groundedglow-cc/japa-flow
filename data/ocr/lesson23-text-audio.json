@@ -1,0 +1,1120 @@
+{
+  "lessonId": "lesson23",
+  "sourceImages": [
+    {
+      "section": "basic",
+      "path": "course-assets/by-lesson/lesson23/page272.webp",
+      "pageNo": 272
+    },
+    {
+      "section": "application",
+      "path": "course-assets/by-lesson/lesson23/page277.webp",
+      "pageNo": 277
+    }
+  ],
+  "basicText": {
+    "title": "基本课文",
+    "basicSentences": [
+      {
+        "id": "l23-basic-s001",
+        "order": 1,
+        "text": "小野さんは 休みの 日、散歩したり 買い物に 行ったり します。",
+        "translationZh": "小野休息日有时散步，有时去买东西。",
+        "confidence": "high",
+        "rawText": "1. 小野さんは 休みの 日、散歩したり 買い物に 行ったり します。",
+        "audioSegment": {
+          "id": "l23-basic-s001",
+          "trackId": "lesson_basic",
+          "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit6/lesson23/lesson_basic.mp3",
+          "localAudioPath": "data/ocr/audio-cache/lesson23/lesson_basic.mp3",
+          "itemIndex": 1,
+          "text": "小野さんは 休みの 日、散歩したり 買い物に 行ったり します。",
+          "label": "小野さんは 休みの 日、散歩したり 買い物に 行ったり します。",
+          "start": 1.578,
+          "end": 6.323,
+          "duration": 4.745,
+          "speechUnitCount": 2,
+          "method": "ffmpeg-silencedetect-order",
+          "confidence": "needs-review"
+        }
+      },
+      {
+        "id": "l23-basic-s002",
+        "order": 2,
+        "text": "日本語の 先生は 中国人だったり 日本人だったりです。",
+        "translationZh": "日语老师有的是中国人，有的是日本人。",
+        "confidence": "high",
+        "rawText": "2. 日本語の 先生は 中国人だったり 日本人だったりです。",
+        "audioSegment": {
+          "id": "l23-basic-s002",
+          "trackId": "lesson_basic",
+          "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit6/lesson23/lesson_basic.mp3",
+          "localAudioPath": "data/ocr/audio-cache/lesson23/lesson_basic.mp3",
+          "itemIndex": 2,
+          "text": "日本語の 先生は 中国人だったり 日本人だったりです。",
+          "label": "日本語の 先生は 中国人だったり 日本人だったりです。",
+          "start": 8.324,
+          "end": 11.196,
+          "duration": 2.872,
+          "speechUnitCount": 2,
+          "method": "ffmpeg-silencedetect-order",
+          "confidence": "needs-review"
+        }
+      },
+      {
+        "id": "l23-basic-s003",
+        "order": 3,
+        "text": "わたしは 今年の 夏、北京へ 行くか どうか 分かりません。",
+        "translationZh": "我今年夏天去不去北京还不知道。",
+        "confidence": "high",
+        "rawText": "3. わたしは 今年の 夏、北京へ 行くか どうか 分かりません。",
+        "audioSegment": {
+          "id": "l23-basic-s003",
+          "trackId": "lesson_basic",
+          "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit6/lesson23/lesson_basic.mp3",
+          "localAudioPath": "data/ocr/audio-cache/lesson23/lesson_basic.mp3",
+          "itemIndex": 3,
+          "text": "わたしは 今年の 夏、北京へ 行くか どうか 分かりません。",
+          "label": "わたしは 今年の 夏、北京へ 行くか どうか 分かりません。",
+          "start": 13.382,
+          "end": 18.581,
+          "duration": 5.199,
+          "speechUnitCount": 2,
+          "method": "ffmpeg-silencedetect-order",
+          "confidence": "needs-review"
+        }
+      },
+      {
+        "id": "l23-basic-s004",
+        "order": 4,
+        "text": "かぎが どこに あるか 教えて ください。",
+        "translationZh": "请告诉我钥匙在哪里。",
+        "confidence": "high",
+        "rawText": "4. かぎが どこに あるか 教えて ください。",
+        "audioSegment": {
+          "id": "l23-basic-s004",
+          "trackId": "lesson_basic",
+          "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit6/lesson23/lesson_basic.mp3",
+          "localAudioPath": "data/ocr/audio-cache/lesson23/lesson_basic.mp3",
+          "itemIndex": 4,
+          "text": "かぎが どこに あるか 教えて ください。",
+          "label": "かぎが どこに あるか 教えて ください。",
+          "start": 20.482,
+          "end": 23.852,
+          "duration": 3.371,
+          "speechUnitCount": 2,
+          "method": "ffmpeg-silencedetect-order",
+          "confidence": "needs-review"
+        }
+      }
+    ],
+    "dialogues": [
+      {
+        "id": "l23-basic-dialogue-001",
+        "label": "A",
+        "lines": [
+          {
+            "id": "l23-basic-dialogue-001-line-001",
+            "speaker": "甲",
+            "text": "週末に 何を しましたか。",
+            "translationZh": "周末做什么了？",
+            "confidence": "high",
+            "rawText": "甲：週末に 何を しましたか。",
+            "audioSegment": {
+              "id": "l23-basic-dialogue-001-line-001",
+              "trackId": "lesson_basic",
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit6/lesson23/lesson_basic.mp3",
+              "localAudioPath": "data/ocr/audio-cache/lesson23/lesson_basic.mp3",
+              "itemIndex": 5,
+              "text": "週末に 何を しましたか。",
+              "label": "甲: 週末に 何を しましたか。",
+              "start": 25.445,
+              "end": 26.476,
+              "duration": 1.031,
+              "speechUnitCount": 1,
+              "method": "ffmpeg-silencedetect-order",
+              "confidence": "needs-review"
+            }
+          },
+          {
+            "id": "l23-basic-dialogue-001-line-002",
+            "speaker": "乙",
+            "text": "スケートを したり、ボーリングを したり しました。",
+            "translationZh": "滑冰、打保龄球了。",
+            "confidence": "high",
+            "rawText": "乙：スケートを したり、ボーリングを したり しました。",
+            "audioSegment": {
+              "id": "l23-basic-dialogue-001-line-002",
+              "trackId": "lesson_basic",
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit6/lesson23/lesson_basic.mp3",
+              "localAudioPath": "data/ocr/audio-cache/lesson23/lesson_basic.mp3",
+              "itemIndex": 6,
+              "text": "スケートを したり、ボーリングを したり しました。",
+              "label": "乙: スケートを したり、ボーリングを したり しました。",
+              "start": 27.144,
+              "end": 30.002,
+              "duration": 2.858,
+              "speechUnitCount": 2,
+              "method": "ffmpeg-silencedetect-order",
+              "confidence": "needs-review"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l23-basic-dialogue-002",
+        "label": "B",
+        "lines": [
+          {
+            "id": "l23-basic-dialogue-002-line-001",
+            "speaker": "甲",
+            "text": "北京まで、飛行機の チケットは いくらぐらいですか。",
+            "translationZh": "到北京的飞机票大概多少钱？",
+            "confidence": "high",
+            "rawText": "甲：北京まで、飛行機の チケットは いくらぐらいですか。",
+            "audioSegment": {
+              "id": "l23-basic-dialogue-002-line-001",
+              "trackId": "lesson_basic",
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit6/lesson23/lesson_basic.mp3",
+              "localAudioPath": "data/ocr/audio-cache/lesson23/lesson_basic.mp3",
+              "itemIndex": 7,
+              "text": "北京まで、飛行機の チケットは いくらぐらいですか。",
+              "label": "甲: 北京まで、飛行機の チケットは いくらぐらいですか。",
+              "start": 32.23,
+              "end": 35.612,
+              "duration": 3.382,
+              "speechUnitCount": 2,
+              "method": "ffmpeg-silencedetect-order",
+              "confidence": "needs-review"
+            }
+          },
+          {
+            "id": "l23-basic-dialogue-002-line-002",
+            "speaker": "乙",
+            "text": "季節に よって 高かったり 安かったりです。",
+            "translationZh": "根据季节不同，有时贵有时便宜。",
+            "confidence": "high",
+            "rawText": "乙：季節に よって 高かったり 安かったりです。",
+            "audioSegment": {
+              "id": "l23-basic-dialogue-002-line-002",
+              "trackId": "lesson_basic",
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit6/lesson23/lesson_basic.mp3",
+              "localAudioPath": "data/ocr/audio-cache/lesson23/lesson_basic.mp3",
+              "itemIndex": 8,
+              "text": "季節に よって 高かったり 安かったりです。",
+              "label": "乙: 季節に よって 高かったり 安かったりです。",
+              "start": 36.508,
+              "end": 39.862,
+              "duration": 3.354,
+              "speechUnitCount": 1,
+              "method": "ffmpeg-silencedetect-order",
+              "confidence": "needs-review"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l23-basic-dialogue-003",
+        "label": "C",
+        "lines": [
+          {
+            "id": "l23-basic-dialogue-003-line-001",
+            "speaker": "甲",
+            "text": "李さん、仕事は 忙しいですか。",
+            "translationZh": "小李，工作忙吗？",
+            "confidence": "high",
+            "rawText": "甲：李さん、仕事は 忙しいですか。",
+            "audioSegment": {
+              "id": "l23-basic-dialogue-003-line-001",
+              "trackId": "lesson_basic",
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit6/lesson23/lesson_basic.mp3",
+              "localAudioPath": "data/ocr/audio-cache/lesson23/lesson_basic.mp3",
+              "itemIndex": 9,
+              "text": "李さん、仕事は 忙しいですか。",
+              "label": "甲: 李さん、仕事は 忙しいですか。",
+              "start": 41.981,
+              "end": 44.327,
+              "duration": 2.346,
+              "speechUnitCount": 2,
+              "method": "ffmpeg-silencedetect-order",
+              "confidence": "needs-review"
+            }
+          },
+          {
+            "id": "l23-basic-dialogue-003-line-002",
+            "speaker": "乙",
+            "text": "ええ、日に よって 暇だったり 忙しかったりです。",
+            "translationZh": "嗯，因日子而异，有时闲有时忙。",
+            "confidence": "high",
+            "rawText": "乙：ええ、日に よって 暇だったり 忙しかったりです。",
+            "audioSegment": {
+              "id": "l23-basic-dialogue-003-line-002",
+              "trackId": "lesson_basic",
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit6/lesson23/lesson_basic.mp3",
+              "localAudioPath": "data/ocr/audio-cache/lesson23/lesson_basic.mp3",
+              "itemIndex": 10,
+              "text": "ええ、日に よって 暇だったり 忙しかったりです。",
+              "label": "乙: ええ、日に よって 暇だったり 忙しかったりです。",
+              "start": 45.017,
+              "end": 49.033,
+              "duration": 4.016,
+              "speechUnitCount": 2,
+              "method": "ffmpeg-silencedetect-order",
+              "confidence": "needs-review"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l23-basic-dialogue-004",
+        "label": "D",
+        "lines": [
+          {
+            "id": "l23-basic-dialogue-004-line-001",
+            "speaker": "甲",
+            "text": "森さんが 何時ごろ 来るか 知って いますか。",
+            "translationZh": "知道森先生几点左右来吗？",
+            "confidence": "high",
+            "rawText": "甲：森さんが 何時ごろ 来るか 知って いますか。",
+            "audioSegment": {
+              "id": "l23-basic-dialogue-004-line-001",
+              "trackId": "lesson_basic",
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit6/lesson23/lesson_basic.mp3",
+              "localAudioPath": "data/ocr/audio-cache/lesson23/lesson_basic.mp3",
+              "itemIndex": 11,
+              "text": "森さんが 何時ごろ 来るか 知って いますか。",
+              "label": "甲: 森さんが 何時ごろ 来るか 知って いますか。",
+              "start": 51.206,
+              "end": 54.098,
+              "duration": 2.892,
+              "speechUnitCount": 1,
+              "method": "ffmpeg-silencedetect-order",
+              "confidence": "needs-review"
+            }
+          },
+          {
+            "id": "l23-basic-dialogue-004-line-002",
+            "speaker": "乙",
+            "text": "いいえ。今日は 来るか どうか 分かりません。",
+            "translationZh": "不知道。今天来不来还不知道。",
+            "confidence": "high",
+            "rawText": "乙：いいえ。今日は 来るか どうか 分かりません。",
+            "audioSegment": {
+              "id": "l23-basic-dialogue-004-line-002",
+              "trackId": "lesson_basic",
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit6/lesson23/lesson_basic.mp3",
+              "localAudioPath": "data/ocr/audio-cache/lesson23/lesson_basic.mp3",
+              "itemIndex": 12,
+              "text": "いいえ。今日は 来るか どうか 分かりません。",
+              "label": "乙: いいえ。今日は 来るか どうか 分かりません。",
+              "start": 54.693,
+              "end": 57.787,
+              "duration": 3.094,
+              "speechUnitCount": 2,
+              "method": "ffmpeg-silencedetect-order",
+              "confidence": "needs-review"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "applicationText": {
+    "title": "送別会",
+    "blocks": [
+      {
+        "id": "l23-app-block-001",
+        "type": "scene",
+        "text": "在百货商店，小野和森为小李挑选礼物。",
+        "translationZh": "在百货商店，小野和森为小李挑选礼物。",
+        "confidence": "high",
+        "rawText": "在百货商店，小野和森为小李挑选礼物。"
+      },
+      {
+        "id": "l23-app-block-002",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l23-app-block-002-line-001",
+            "speaker": "森",
+            "text": "小野さん、何を 買うか 決まりましたか。",
+            "translationZh": "小野，决定买什么了吗？",
+            "confidence": "high",
+            "rawText": "森：小野さん、何を 買うか 決まりましたか。",
+            "audioSegment": {
+              "id": "l23-app-block-002-line-001",
+              "trackId": "lesson_apps",
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit6/lesson23/lesson_apps.mp3",
+              "localAudioPath": "data/ocr/audio-cache/lesson23/lesson_apps.mp3",
+              "itemIndex": 1,
+              "text": "小野さん、何を 買うか 決まりましたか。",
+              "label": "森: 小野さん、何を 買うか 決まりましたか。",
+              "start": 0.484,
+              "end": 4.633,
+              "duration": 4.15,
+              "speechUnitCount": 2,
+              "method": "ffmpeg-silencedetect-order",
+              "confidence": "needs-review"
+            }
+          },
+          {
+            "id": "l23-app-block-002-line-002",
+            "speaker": "小野",
+            "text": "浴衣は どうですか。",
+            "translationZh": "浴衣怎么样？",
+            "confidence": "high",
+            "rawText": "小野：浴衣は どうですか。",
+            "audioSegment": {
+              "id": "l23-app-block-002-line-002",
+              "trackId": "lesson_apps",
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit6/lesson23/lesson_apps.mp3",
+              "localAudioPath": "data/ocr/audio-cache/lesson23/lesson_apps.mp3",
+              "itemIndex": 2,
+              "text": "浴衣は どうですか。",
+              "label": "小野: 浴衣は どうですか。",
+              "start": 5.213,
+              "end": 7.34,
+              "duration": 2.127,
+              "speechUnitCount": 1,
+              "method": "ffmpeg-silencedetect-order",
+              "confidence": "needs-review"
+            }
+          },
+          {
+            "id": "l23-app-block-002-line-003",
+            "speaker": "森",
+            "text": "いいですね。でも、高く ないですか。",
+            "translationZh": "不错。不过不贵吗？",
+            "confidence": "high",
+            "rawText": "森：いいですね。でも、高く ないですか。",
+            "audioSegment": {
+              "id": "l23-app-block-002-line-003",
+              "trackId": "lesson_apps",
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit6/lesson23/lesson_apps.mp3",
+              "localAudioPath": "data/ocr/audio-cache/lesson23/lesson_apps.mp3",
+              "itemIndex": 3,
+              "text": "いいですね。でも、高く ないですか。",
+              "label": "森: いいですね。でも、高く ないですか。",
+              "start": 8.057,
+              "end": 14.677,
+              "duration": 6.619,
+              "speechUnitCount": 3,
+              "method": "ffmpeg-silencedetect-order",
+              "confidence": "needs-review"
+            }
+          },
+          {
+            "id": "l23-app-block-002-line-004",
+            "speaker": "小野",
+            "text": "高かったり 安かったり、いろいろ あります。あっ、そうだ。生地を 買って、わたしが 作りますよ。",
+            "translationZh": "有贵的也有便宜的，各种都有。啊，对了，买布料我来做吧。",
+            "confidence": "high",
+            "rawText": "小野：高かったり 安かったり、いろいろ あります。あっ、そうだ。生地を 買って、わたしが 作りますよ。",
+            "audioSegment": {
+              "id": "l23-app-block-002-line-004",
+              "trackId": "lesson_apps",
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit6/lesson23/lesson_apps.mp3",
+              "localAudioPath": "data/ocr/audio-cache/lesson23/lesson_apps.mp3",
+              "itemIndex": 4,
+              "text": "高かったり 安かったり、いろいろ あります。あっ、そうだ。生地を 買って、わたしが 作りますよ。",
+              "label": "小野: 高かったり 安かったり、いろいろ あります。あっ、そうだ。生地を 買って、わたしが 作りますよ。",
+              "start": 15.075,
+              "end": 39.456,
+              "duration": 24.381,
+              "speechUnitCount": 6,
+              "method": "ffmpeg-silencedetect-order",
+              "confidence": "needs-review"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l23-app-block-003",
+        "type": "scene",
+        "text": "欢送会上，干杯之后。",
+        "translationZh": "欢送会上，干杯之后。",
+        "confidence": "high",
+        "rawText": "欢送会上，干杯之后。"
+      },
+      {
+        "id": "l23-app-block-004",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l23-app-block-004-line-001",
+            "speaker": "吉田",
+            "text": "日本の 生活は どうでしたか。",
+            "translationZh": "日本的生活怎么样？",
+            "confidence": "high",
+            "rawText": "吉田：日本の 生活は どうでしたか。",
+            "audioSegment": {
+              "id": "l23-app-block-004-line-001",
+              "trackId": "lesson_apps",
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit6/lesson23/lesson_apps.mp3",
+              "localAudioPath": "data/ocr/audio-cache/lesson23/lesson_apps.mp3",
+              "itemIndex": 5,
+              "text": "日本の 生活は どうでしたか。",
+              "label": "吉田: 日本の 生活は どうでしたか。",
+              "start": 39.584,
+              "end": 39.922,
+              "duration": 0.338,
+              "speechUnitCount": 1,
+              "method": "ffmpeg-silencedetect-order",
+              "confidence": "needs-review"
+            }
+          },
+          {
+            "id": "l23-app-block-004-line-002",
+            "speaker": "李",
+            "text": "温泉に 入ったり 歌舞伎を 見たり して、とても 楽しかったです。",
+            "translationZh": "泡温泉、看歌舞伎，非常开心。",
+            "confidence": "high",
+            "rawText": "李：温泉に 入ったり 歌舞伎を 見たり して、とても 楽しかったです。",
+            "audioSegment": {
+              "id": "l23-app-block-004-line-002",
+              "trackId": "lesson_apps",
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit6/lesson23/lesson_apps.mp3",
+              "localAudioPath": "data/ocr/audio-cache/lesson23/lesson_apps.mp3",
+              "itemIndex": 6,
+              "text": "温泉に 入ったり 歌舞伎を 見たり して、とても 楽しかったです。",
+              "label": "李: 温泉に 入ったり 歌舞伎を 見たり して、とても 楽しかったです。",
+              "start": 40.117,
+              "end": 44.176,
+              "duration": 4.059,
+              "speechUnitCount": 2,
+              "method": "ffmpeg-silencedetect-order",
+              "confidence": "needs-review"
+            }
+          },
+          {
+            "id": "l23-app-block-004-line-003",
+            "speaker": "吉田",
+            "text": "ご両親に いつ 帰るか 知らせましたか。",
+            "translationZh": "告诉父母什么时候回去了吗？",
+            "confidence": "high",
+            "rawText": "吉田：ご両親に いつ 帰るか 知らせましたか。",
+            "audioSegment": {
+              "id": "l23-app-block-004-line-003",
+              "trackId": "lesson_apps",
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit6/lesson23/lesson_apps.mp3",
+              "localAudioPath": "data/ocr/audio-cache/lesson23/lesson_apps.mp3",
+              "itemIndex": 7,
+              "text": "ご両親に いつ 帰るか 知らせましたか。",
+              "label": "吉田: ご両親に いつ 帰るか 知らせましたか。",
+              "start": 45.26,
+              "end": 46.134,
+              "duration": 0.874,
+              "speechUnitCount": 1,
+              "method": "ffmpeg-silencedetect-order",
+              "confidence": "needs-review"
+            }
+          },
+          {
+            "id": "l23-app-block-004-line-004",
+            "speaker": "李",
+            "text": "はい、昨日 母に メールで 知らせました。",
+            "translationZh": "是的，昨天给母亲发邮件告诉了。",
+            "confidence": "high",
+            "rawText": "李：はい、昨日 母に メールで 知らせました。",
+            "audioSegment": {
+              "id": "l23-app-block-004-line-004",
+              "trackId": "lesson_apps",
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit6/lesson23/lesson_apps.mp3",
+              "localAudioPath": "data/ocr/audio-cache/lesson23/lesson_apps.mp3",
+              "itemIndex": 8,
+              "text": "はい、昨日 母に メールで 知らせました。",
+              "label": "李: はい、昨日 母に メールで 知らせました。",
+              "start": 46.345,
+              "end": 48.6,
+              "duration": 2.255,
+              "speechUnitCount": 2,
+              "method": "ffmpeg-silencedetect-order",
+              "confidence": "needs-review"
+            }
+          },
+          {
+            "id": "l23-app-block-004-line-005",
+            "speaker": "森",
+            "text": "ご両親は メールが できますか。",
+            "translationZh": "你父母会发邮件吗？",
+            "confidence": "high",
+            "rawText": "森：ご両親は メールが できますか。",
+            "audioSegment": {
+              "id": "l23-app-block-004-line-005",
+              "trackId": "lesson_apps",
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit6/lesson23/lesson_apps.mp3",
+              "localAudioPath": "data/ocr/audio-cache/lesson23/lesson_apps.mp3",
+              "itemIndex": 9,
+              "text": "ご両親は メールが できますか。",
+              "label": "森: ご両親は メールが できますか。",
+              "start": 49.232,
+              "end": 49.475,
+              "duration": 0.243,
+              "speechUnitCount": 1,
+              "method": "ffmpeg-silencedetect-order",
+              "confidence": "needs-review"
+            }
+          },
+          {
+            "id": "l23-app-block-004-line-006",
+            "speaker": "李",
+            "text": "母は できますが、父は 電話か 手紙ですね。",
+            "translationZh": "母亲会，父亲还是电话或信。",
+            "confidence": "high",
+            "rawText": "李：母は できますが、父は 電話か 手紙ですね。",
+            "audioSegment": {
+              "id": "l23-app-block-004-line-006",
+              "trackId": "lesson_apps",
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit6/lesson23/lesson_apps.mp3",
+              "localAudioPath": "data/ocr/audio-cache/lesson23/lesson_apps.mp3",
+              "itemIndex": 10,
+              "text": "母は できますが、父は 電話か 手紙ですね。",
+              "label": "李: 母は できますが、父は 電話か 手紙ですね。",
+              "start": 49.833,
+              "end": 55.223,
+              "duration": 5.39,
+              "speechUnitCount": 2,
+              "method": "ffmpeg-silencedetect-order",
+              "confidence": "needs-review"
+            }
+          },
+          {
+            "id": "l23-app-block-004-line-007",
+            "speaker": "小野",
+            "text": "北京へ 帰った 後、どうしますか。",
+            "translationZh": "回北京以后打算做什么？",
+            "confidence": "high",
+            "rawText": "小野：北京へ 帰った 後、どうしますか。",
+            "audioSegment": {
+              "id": "l23-app-block-004-line-007",
+              "trackId": "lesson_apps",
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit6/lesson23/lesson_apps.mp3",
+              "localAudioPath": "data/ocr/audio-cache/lesson23/lesson_apps.mp3",
+              "itemIndex": 11,
+              "text": "北京へ 帰った 後、どうしますか。",
+              "label": "小野: 北京へ 帰った 後、どうしますか。",
+              "start": 56.025,
+              "end": 59.57,
+              "duration": 3.545,
+              "speechUnitCount": 2,
+              "method": "ffmpeg-silencedetect-order",
+              "confidence": "needs-review"
+            }
+          },
+          {
+            "id": "l23-app-block-004-line-008",
+            "speaker": "李",
+            "text": "1週間ぐらい 休みたいですね。春節に 休みが なかったですから。",
+            "translationZh": "想休息一个星期左右。因为春节没有休息。",
+            "confidence": "high",
+            "rawText": "李：1週間ぐらい 休みたいですね。春節に 休みが なかったですから。",
+            "audioSegment": {
+              "id": "l23-app-block-004-line-008",
+              "trackId": "lesson_apps",
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit6/lesson23/lesson_apps.mp3",
+              "localAudioPath": "data/ocr/audio-cache/lesson23/lesson_apps.mp3",
+              "itemIndex": 12,
+              "text": "1週間ぐらい 休みたいですね。春節に 休みが なかったですから。",
+              "label": "李: 1週間ぐらい 休みたいですね。春節に 休みが なかったですから。",
+              "start": 60.76,
+              "end": 66.012,
+              "duration": 5.253,
+              "speechUnitCount": 2,
+              "method": "ffmpeg-silencedetect-order",
+              "confidence": "needs-review"
+            }
+          },
+          {
+            "id": "l23-app-block-004-line-009",
+            "speaker": "小野",
+            "text": "休みに 何を しますか。旅行に 行きますか。",
+            "translationZh": "休息时做什么？去旅行吗？",
+            "confidence": "high",
+            "rawText": "小野：休みに 何を しますか。旅行に 行きますか。",
+            "audioSegment": {
+              "id": "l23-app-block-004-line-009",
+              "trackId": "lesson_apps",
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit6/lesson23/lesson_apps.mp3",
+              "localAudioPath": "data/ocr/audio-cache/lesson23/lesson_apps.mp3",
+              "itemIndex": 13,
+              "text": "休みに 何を しますか。旅行に 行きますか。",
+              "label": "小野: 休みに 何を しますか。旅行に 行きますか。",
+              "start": 66.442,
+              "end": 70.852,
+              "duration": 4.41,
+              "speechUnitCount": 2,
+              "method": "ffmpeg-silencedetect-order",
+              "confidence": "needs-review"
+            }
+          },
+          {
+            "id": "l23-app-block-004-line-010",
+            "speaker": "李",
+            "text": "旅行に 行くか どうか、分かりません。たぶん 友達に 会ったり、食事に 行ったり します。",
+            "translationZh": "去不去旅行还不知道。大概见朋友、去吃饭。",
+            "confidence": "high",
+            "rawText": "李：旅行に 行くか どうか、分かりません。たぶん 友達に 会ったり、食事に 行ったり します。",
+            "audioSegment": {
+              "id": "l23-app-block-004-line-010",
+              "trackId": "lesson_apps",
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit6/lesson23/lesson_apps.mp3",
+              "localAudioPath": "data/ocr/audio-cache/lesson23/lesson_apps.mp3",
+              "itemIndex": 14,
+              "text": "旅行に 行くか どうか、分かりません。たぶん 友達に 会ったり、食事に 行ったり します。",
+              "label": "李: 旅行に 行くか どうか、分かりません。たぶん 友達に 会ったり、食事に 行ったり します。",
+              "start": 71.189,
+              "end": 79.201,
+              "duration": 8.012,
+              "speechUnitCount": 4,
+              "method": "ffmpeg-silencedetect-order",
+              "confidence": "needs-review"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "warnings": [
+    "segments/ruby 未批量生成；保留 text 与 translationZh，后续可单独补充 ruby 切片。"
+  ],
+  "audioAlignment": {
+    "generatedAt": "2026-08-05T06:59:08.043Z",
+    "method": "ffmpeg-silencedetect-order",
+    "tracks": {
+      "lesson_basic": {
+        "trackId": "lesson_basic",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit6/lesson23/lesson_basic.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson23/lesson_basic.mp3",
+        "outputPath": "data/ocr/lesson23-text-audio.json",
+        "duration": 58.56,
+        "expectedItems": 12,
+        "expectedSpeechUnits": 29,
+        "skippedSpeechUnits": 8,
+        "detectedSpeechIntervals": 30,
+        "mappedSegments": 12,
+        "selectedProfile": {
+          "noiseDb": -44,
+          "minSilence": 0.28
+        },
+        "warnings": [
+          "lesson_basic: detected 30 speech interval(s), mapped to 29 speech unit(s).",
+          "lesson_basic: interval adjustment = merged."
+        ],
+        "segments": [
+          {
+            "id": "l23-basic-s001",
+            "trackId": "lesson_basic",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit6/lesson23/lesson_basic.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson23/lesson_basic.mp3",
+            "itemIndex": 1,
+            "text": "小野さんは 休みの 日、散歩したり 買い物に 行ったり します。",
+            "label": "小野さんは 休みの 日、散歩したり 買い物に 行ったり します。",
+            "start": 1.578,
+            "end": 6.323,
+            "duration": 4.745,
+            "speechUnitCount": 2,
+            "method": "ffmpeg-silencedetect-order",
+            "confidence": "needs-review"
+          },
+          {
+            "id": "l23-basic-s002",
+            "trackId": "lesson_basic",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit6/lesson23/lesson_basic.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson23/lesson_basic.mp3",
+            "itemIndex": 2,
+            "text": "日本語の 先生は 中国人だったり 日本人だったりです。",
+            "label": "日本語の 先生は 中国人だったり 日本人だったりです。",
+            "start": 8.324,
+            "end": 11.196,
+            "duration": 2.872,
+            "speechUnitCount": 2,
+            "method": "ffmpeg-silencedetect-order",
+            "confidence": "needs-review"
+          },
+          {
+            "id": "l23-basic-s003",
+            "trackId": "lesson_basic",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit6/lesson23/lesson_basic.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson23/lesson_basic.mp3",
+            "itemIndex": 3,
+            "text": "わたしは 今年の 夏、北京へ 行くか どうか 分かりません。",
+            "label": "わたしは 今年の 夏、北京へ 行くか どうか 分かりません。",
+            "start": 13.382,
+            "end": 18.581,
+            "duration": 5.199,
+            "speechUnitCount": 2,
+            "method": "ffmpeg-silencedetect-order",
+            "confidence": "needs-review"
+          },
+          {
+            "id": "l23-basic-s004",
+            "trackId": "lesson_basic",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit6/lesson23/lesson_basic.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson23/lesson_basic.mp3",
+            "itemIndex": 4,
+            "text": "かぎが どこに あるか 教えて ください。",
+            "label": "かぎが どこに あるか 教えて ください。",
+            "start": 20.482,
+            "end": 23.852,
+            "duration": 3.371,
+            "speechUnitCount": 2,
+            "method": "ffmpeg-silencedetect-order",
+            "confidence": "needs-review"
+          },
+          {
+            "id": "l23-basic-dialogue-001-line-001",
+            "trackId": "lesson_basic",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit6/lesson23/lesson_basic.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson23/lesson_basic.mp3",
+            "itemIndex": 5,
+            "text": "週末に 何を しましたか。",
+            "label": "甲: 週末に 何を しましたか。",
+            "start": 25.445,
+            "end": 26.476,
+            "duration": 1.031,
+            "speechUnitCount": 1,
+            "method": "ffmpeg-silencedetect-order",
+            "confidence": "needs-review"
+          },
+          {
+            "id": "l23-basic-dialogue-001-line-002",
+            "trackId": "lesson_basic",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit6/lesson23/lesson_basic.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson23/lesson_basic.mp3",
+            "itemIndex": 6,
+            "text": "スケートを したり、ボーリングを したり しました。",
+            "label": "乙: スケートを したり、ボーリングを したり しました。",
+            "start": 27.144,
+            "end": 30.002,
+            "duration": 2.858,
+            "speechUnitCount": 2,
+            "method": "ffmpeg-silencedetect-order",
+            "confidence": "needs-review"
+          },
+          {
+            "id": "l23-basic-dialogue-002-line-001",
+            "trackId": "lesson_basic",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit6/lesson23/lesson_basic.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson23/lesson_basic.mp3",
+            "itemIndex": 7,
+            "text": "北京まで、飛行機の チケットは いくらぐらいですか。",
+            "label": "甲: 北京まで、飛行機の チケットは いくらぐらいですか。",
+            "start": 32.23,
+            "end": 35.612,
+            "duration": 3.382,
+            "speechUnitCount": 2,
+            "method": "ffmpeg-silencedetect-order",
+            "confidence": "needs-review"
+          },
+          {
+            "id": "l23-basic-dialogue-002-line-002",
+            "trackId": "lesson_basic",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit6/lesson23/lesson_basic.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson23/lesson_basic.mp3",
+            "itemIndex": 8,
+            "text": "季節に よって 高かったり 安かったりです。",
+            "label": "乙: 季節に よって 高かったり 安かったりです。",
+            "start": 36.508,
+            "end": 39.862,
+            "duration": 3.354,
+            "speechUnitCount": 1,
+            "method": "ffmpeg-silencedetect-order",
+            "confidence": "needs-review"
+          },
+          {
+            "id": "l23-basic-dialogue-003-line-001",
+            "trackId": "lesson_basic",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit6/lesson23/lesson_basic.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson23/lesson_basic.mp3",
+            "itemIndex": 9,
+            "text": "李さん、仕事は 忙しいですか。",
+            "label": "甲: 李さん、仕事は 忙しいですか。",
+            "start": 41.981,
+            "end": 44.327,
+            "duration": 2.346,
+            "speechUnitCount": 2,
+            "method": "ffmpeg-silencedetect-order",
+            "confidence": "needs-review"
+          },
+          {
+            "id": "l23-basic-dialogue-003-line-002",
+            "trackId": "lesson_basic",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit6/lesson23/lesson_basic.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson23/lesson_basic.mp3",
+            "itemIndex": 10,
+            "text": "ええ、日に よって 暇だったり 忙しかったりです。",
+            "label": "乙: ええ、日に よって 暇だったり 忙しかったりです。",
+            "start": 45.017,
+            "end": 49.033,
+            "duration": 4.016,
+            "speechUnitCount": 2,
+            "method": "ffmpeg-silencedetect-order",
+            "confidence": "needs-review"
+          },
+          {
+            "id": "l23-basic-dialogue-004-line-001",
+            "trackId": "lesson_basic",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit6/lesson23/lesson_basic.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson23/lesson_basic.mp3",
+            "itemIndex": 11,
+            "text": "森さんが 何時ごろ 来るか 知って いますか。",
+            "label": "甲: 森さんが 何時ごろ 来るか 知って いますか。",
+            "start": 51.206,
+            "end": 54.098,
+            "duration": 2.892,
+            "speechUnitCount": 1,
+            "method": "ffmpeg-silencedetect-order",
+            "confidence": "needs-review"
+          },
+          {
+            "id": "l23-basic-dialogue-004-line-002",
+            "trackId": "lesson_basic",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit6/lesson23/lesson_basic.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson23/lesson_basic.mp3",
+            "itemIndex": 12,
+            "text": "いいえ。今日は 来るか どうか 分かりません。",
+            "label": "乙: いいえ。今日は 来るか どうか 分かりません。",
+            "start": 54.693,
+            "end": 57.787,
+            "duration": 3.094,
+            "speechUnitCount": 2,
+            "method": "ffmpeg-silencedetect-order",
+            "confidence": "needs-review"
+          }
+        ]
+      },
+      "lesson_apps": {
+        "trackId": "lesson_apps",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit6/lesson23/lesson_apps.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson23/lesson_apps.mp3",
+        "outputPath": "data/ocr/lesson23-text-audio.json",
+        "duration": 79.77,
+        "expectedItems": 14,
+        "expectedSpeechUnits": 31,
+        "skippedSpeechUnits": 0,
+        "detectedSpeechIntervals": 36,
+        "mappedSegments": 14,
+        "selectedProfile": {
+          "noiseDb": -28,
+          "minSilence": 0.12
+        },
+        "warnings": [
+          "lesson_apps: detected 36 speech interval(s), mapped to 31 speech unit(s).",
+          "lesson_apps: interval adjustment = merged."
+        ],
+        "segments": [
+          {
+            "id": "l23-app-block-002-line-001",
+            "trackId": "lesson_apps",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit6/lesson23/lesson_apps.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson23/lesson_apps.mp3",
+            "itemIndex": 1,
+            "text": "小野さん、何を 買うか 決まりましたか。",
+            "label": "森: 小野さん、何を 買うか 決まりましたか。",
+            "start": 0.484,
+            "end": 4.633,
+            "duration": 4.15,
+            "speechUnitCount": 2,
+            "method": "ffmpeg-silencedetect-order",
+            "confidence": "needs-review"
+          },
+          {
+            "id": "l23-app-block-002-line-002",
+            "trackId": "lesson_apps",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit6/lesson23/lesson_apps.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson23/lesson_apps.mp3",
+            "itemIndex": 2,
+            "text": "浴衣は どうですか。",
+            "label": "小野: 浴衣は どうですか。",
+            "start": 5.213,
+            "end": 7.34,
+            "duration": 2.127,
+            "speechUnitCount": 1,
+            "method": "ffmpeg-silencedetect-order",
+            "confidence": "needs-review"
+          },
+          {
+            "id": "l23-app-block-002-line-003",
+            "trackId": "lesson_apps",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit6/lesson23/lesson_apps.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson23/lesson_apps.mp3",
+            "itemIndex": 3,
+            "text": "いいですね。でも、高く ないですか。",
+            "label": "森: いいですね。でも、高く ないですか。",
+            "start": 8.057,
+            "end": 14.677,
+            "duration": 6.619,
+            "speechUnitCount": 3,
+            "method": "ffmpeg-silencedetect-order",
+            "confidence": "needs-review"
+          },
+          {
+            "id": "l23-app-block-002-line-004",
+            "trackId": "lesson_apps",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit6/lesson23/lesson_apps.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson23/lesson_apps.mp3",
+            "itemIndex": 4,
+            "text": "高かったり 安かったり、いろいろ あります。あっ、そうだ。生地を 買って、わたしが 作りますよ。",
+            "label": "小野: 高かったり 安かったり、いろいろ あります。あっ、そうだ。生地を 買って、わたしが 作りますよ。",
+            "start": 15.075,
+            "end": 39.456,
+            "duration": 24.381,
+            "speechUnitCount": 6,
+            "method": "ffmpeg-silencedetect-order",
+            "confidence": "needs-review"
+          },
+          {
+            "id": "l23-app-block-004-line-001",
+            "trackId": "lesson_apps",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit6/lesson23/lesson_apps.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson23/lesson_apps.mp3",
+            "itemIndex": 5,
+            "text": "日本の 生活は どうでしたか。",
+            "label": "吉田: 日本の 生活は どうでしたか。",
+            "start": 39.584,
+            "end": 39.922,
+            "duration": 0.338,
+            "speechUnitCount": 1,
+            "method": "ffmpeg-silencedetect-order",
+            "confidence": "needs-review"
+          },
+          {
+            "id": "l23-app-block-004-line-002",
+            "trackId": "lesson_apps",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit6/lesson23/lesson_apps.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson23/lesson_apps.mp3",
+            "itemIndex": 6,
+            "text": "温泉に 入ったり 歌舞伎を 見たり して、とても 楽しかったです。",
+            "label": "李: 温泉に 入ったり 歌舞伎を 見たり して、とても 楽しかったです。",
+            "start": 40.117,
+            "end": 44.176,
+            "duration": 4.059,
+            "speechUnitCount": 2,
+            "method": "ffmpeg-silencedetect-order",
+            "confidence": "needs-review"
+          },
+          {
+            "id": "l23-app-block-004-line-003",
+            "trackId": "lesson_apps",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit6/lesson23/lesson_apps.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson23/lesson_apps.mp3",
+            "itemIndex": 7,
+            "text": "ご両親に いつ 帰るか 知らせましたか。",
+            "label": "吉田: ご両親に いつ 帰るか 知らせましたか。",
+            "start": 45.26,
+            "end": 46.134,
+            "duration": 0.874,
+            "speechUnitCount": 1,
+            "method": "ffmpeg-silencedetect-order",
+            "confidence": "needs-review"
+          },
+          {
+            "id": "l23-app-block-004-line-004",
+            "trackId": "lesson_apps",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit6/lesson23/lesson_apps.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson23/lesson_apps.mp3",
+            "itemIndex": 8,
+            "text": "はい、昨日 母に メールで 知らせました。",
+            "label": "李: はい、昨日 母に メールで 知らせました。",
+            "start": 46.345,
+            "end": 48.6,
+            "duration": 2.255,
+            "speechUnitCount": 2,
+            "method": "ffmpeg-silencedetect-order",
+            "confidence": "needs-review"
+          },
+          {
+            "id": "l23-app-block-004-line-005",
+            "trackId": "lesson_apps",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit6/lesson23/lesson_apps.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson23/lesson_apps.mp3",
+            "itemIndex": 9,
+            "text": "ご両親は メールが できますか。",
+            "label": "森: ご両親は メールが できますか。",
+            "start": 49.232,
+            "end": 49.475,
+            "duration": 0.243,
+            "speechUnitCount": 1,
+            "method": "ffmpeg-silencedetect-order",
+            "confidence": "needs-review"
+          },
+          {
+            "id": "l23-app-block-004-line-006",
+            "trackId": "lesson_apps",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit6/lesson23/lesson_apps.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson23/lesson_apps.mp3",
+            "itemIndex": 10,
+            "text": "母は できますが、父は 電話か 手紙ですね。",
+            "label": "李: 母は できますが、父は 電話か 手紙ですね。",
+            "start": 49.833,
+            "end": 55.223,
+            "duration": 5.39,
+            "speechUnitCount": 2,
+            "method": "ffmpeg-silencedetect-order",
+            "confidence": "needs-review"
+          },
+          {
+            "id": "l23-app-block-004-line-007",
+            "trackId": "lesson_apps",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit6/lesson23/lesson_apps.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson23/lesson_apps.mp3",
+            "itemIndex": 11,
+            "text": "北京へ 帰った 後、どうしますか。",
+            "label": "小野: 北京へ 帰った 後、どうしますか。",
+            "start": 56.025,
+            "end": 59.57,
+            "duration": 3.545,
+            "speechUnitCount": 2,
+            "method": "ffmpeg-silencedetect-order",
+            "confidence": "needs-review"
+          },
+          {
+            "id": "l23-app-block-004-line-008",
+            "trackId": "lesson_apps",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit6/lesson23/lesson_apps.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson23/lesson_apps.mp3",
+            "itemIndex": 12,
+            "text": "1週間ぐらい 休みたいですね。春節に 休みが なかったですから。",
+            "label": "李: 1週間ぐらい 休みたいですね。春節に 休みが なかったですから。",
+            "start": 60.76,
+            "end": 66.012,
+            "duration": 5.253,
+            "speechUnitCount": 2,
+            "method": "ffmpeg-silencedetect-order",
+            "confidence": "needs-review"
+          },
+          {
+            "id": "l23-app-block-004-line-009",
+            "trackId": "lesson_apps",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit6/lesson23/lesson_apps.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson23/lesson_apps.mp3",
+            "itemIndex": 13,
+            "text": "休みに 何を しますか。旅行に 行きますか。",
+            "label": "小野: 休みに 何を しますか。旅行に 行きますか。",
+            "start": 66.442,
+            "end": 70.852,
+            "duration": 4.41,
+            "speechUnitCount": 2,
+            "method": "ffmpeg-silencedetect-order",
+            "confidence": "needs-review"
+          },
+          {
+            "id": "l23-app-block-004-line-010",
+            "trackId": "lesson_apps",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit6/lesson23/lesson_apps.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson23/lesson_apps.mp3",
+            "itemIndex": 14,
+            "text": "旅行に 行くか どうか、分かりません。たぶん 友達に 会ったり、食事に 行ったり します。",
+            "label": "李: 旅行に 行くか どうか、分かりません。たぶん 友達に 会ったり、食事に 行ったり します。",
+            "start": 71.189,
+            "end": 79.201,
+            "duration": 8.012,
+            "speechUnitCount": 4,
+            "method": "ffmpeg-silencedetect-order",
+            "confidence": "needs-review"
+          }
+        ]
+      }
+    }
+  }
+}

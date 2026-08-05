@@ -1,0 +1,583 @@
+{
+  "lessonId": "lesson19",
+  "sourceImages": [
+    {
+      "section": "basic",
+      "path": "course-assets/by-lesson/lesson19/page226.webp",
+      "pageNo": 226
+    },
+    {
+      "section": "application",
+      "path": "course-assets/by-lesson/lesson19/page231.webp",
+      "pageNo": 231
+    }
+  ],
+  "basicText": {
+    "title": "基本课文",
+    "basicSentences": [
+      {
+        "id": "l19-basic-s001",
+        "order": 1,
+        "text": "部屋の かぎを 忘れないで ください。",
+        "translationZh": "请不要忘记房间钥匙。",
+        "confidence": "high",
+        "rawText": "1. 部屋の かぎを 忘れないで ください。",
+        "audioSegment": {
+          "id": "l19-basic-s001",
+          "trackId": "lesson_basic",
+          "sourceUrl": "/data/ocr/audio-clips/lesson19/l19-basic-s001.mp3",
+          "start": 0,
+          "end": 2.22,
+          "duration": 2.22,
+          "method": "approved-asr-alignment",
+          "confidence": "approved",
+          "reviewedAt": "2026-08-05T08:43:12.141Z",
+          "sourceAudioSha256": "7421fb66b2fbcac36e68fc0727cb03130255b4657075953b084e8e479c50a710"
+        }
+      },
+      {
+        "id": "l19-basic-s002",
+        "order": 2,
+        "text": "李さんは 今日 早く 帰らなければ なりません。",
+        "translationZh": "小李今天必须早点回去。",
+        "confidence": "high",
+        "rawText": "2. 李さんは 今日 早く 帰らなければ なりません。",
+        "audioSegment": {
+          "id": "l19-basic-s002",
+          "trackId": "lesson_basic",
+          "sourceUrl": "/data/ocr/audio-clips/lesson19/l19-basic-s002.mp3",
+          "start": 0,
+          "end": 3.14,
+          "duration": 3.14,
+          "method": "approved-asr-alignment",
+          "confidence": "approved",
+          "reviewedAt": "2026-08-05T08:43:12.141Z",
+          "sourceAudioSha256": "7421fb66b2fbcac36e68fc0727cb03130255b4657075953b084e8e479c50a710"
+        }
+      },
+      {
+        "id": "l19-basic-s003",
+        "order": 3,
+        "text": "明日は 残業しなくても いいですよ。",
+        "translationZh": "明天不加班也可以。",
+        "confidence": "high",
+        "rawText": "3. 明日は 残業しなくても いいですよ。",
+        "audioSegment": {
+          "id": "l19-basic-s003",
+          "trackId": "lesson_basic",
+          "sourceUrl": "/data/ocr/audio-clips/lesson19/l19-basic-s003.mp3",
+          "start": 0,
+          "end": 2.58,
+          "duration": 2.58,
+          "method": "approved-asr-alignment",
+          "confidence": "approved",
+          "reviewedAt": "2026-08-05T08:43:12.141Z",
+          "sourceAudioSha256": "7421fb66b2fbcac36e68fc0727cb03130255b4657075953b084e8e479c50a710"
+        }
+      },
+      {
+        "id": "l19-basic-s004",
+        "order": 4,
+        "text": "あの 人が 吉田課長ですよ。",
+        "translationZh": "那个人就是吉田科长。",
+        "confidence": "high",
+        "rawText": "4. あの 人が 吉田課長ですよ。",
+        "audioSegment": {
+          "id": "l19-basic-s004",
+          "trackId": "lesson_basic",
+          "sourceUrl": "/data/ocr/audio-clips/lesson19/l19-basic-s004.mp3",
+          "start": 0,
+          "end": 2.3,
+          "duration": 2.3,
+          "method": "approved-asr-alignment",
+          "confidence": "approved",
+          "reviewedAt": "2026-08-05T08:43:12.141Z",
+          "sourceAudioSha256": "7421fb66b2fbcac36e68fc0727cb03130255b4657075953b084e8e479c50a710"
+        }
+      }
+    ],
+    "dialogues": [
+      {
+        "id": "l19-basic-dialogue-001",
+        "label": "A",
+        "lines": [
+          {
+            "id": "l19-basic-dialogue-001-line-001",
+            "speaker": "甲",
+            "text": "その 品物に 触らないで ください。",
+            "translationZh": "请不要碰那个物品。",
+            "confidence": "high",
+            "rawText": "甲：その 品物に 触らないで ください。",
+            "audioSegment": {
+              "id": "l19-basic-dialogue-001-line-001",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson19/l19-basic-dialogue-001-line-001.mp3",
+              "start": 0,
+              "end": 2.5,
+              "duration": 2.5,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:43:12.141Z",
+              "sourceAudioSha256": "7421fb66b2fbcac36e68fc0727cb03130255b4657075953b084e8e479c50a710"
+            }
+          },
+          {
+            "id": "l19-basic-dialogue-001-line-002",
+            "speaker": "乙",
+            "text": "あっ、すみません。",
+            "translationZh": "啊，对不起。",
+            "confidence": "high",
+            "rawText": "乙：あっ、すみません。",
+            "audioSegment": {
+              "id": "l19-basic-dialogue-001-line-002",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson19/l19-basic-dialogue-001-line-002.mp3",
+              "start": 0,
+              "end": 1.54,
+              "duration": 1.54,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:43:12.141Z",
+              "sourceAudioSha256": "7421fb66b2fbcac36e68fc0727cb03130255b4657075953b084e8e479c50a710"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l19-basic-dialogue-002",
+        "label": "B",
+        "lines": [
+          {
+            "id": "l19-basic-dialogue-002-line-001",
+            "speaker": "甲",
+            "text": "李さん、いっしょに 食事に 行きませんか。",
+            "translationZh": "小李，一起去吃饭吗？",
+            "confidence": "high",
+            "rawText": "甲：李さん、いっしょに 食事に 行きませんか。",
+            "audioSegment": {
+              "id": "l19-basic-dialogue-002-line-001",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson19/l19-basic-dialogue-002-line-001.mp3",
+              "start": 0,
+              "end": 3.66,
+              "duration": 3.66,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:43:12.141Z",
+              "sourceAudioSha256": "7421fb66b2fbcac36e68fc0727cb03130255b4657075953b084e8e479c50a710"
+            }
+          },
+          {
+            "id": "l19-basic-dialogue-002-line-002",
+            "speaker": "乙",
+            "text": "すみません。今日は 早く 帰って、レポートを 書かなければ なりません。",
+            "translationZh": "不好意思。今天必须早点回去写报告。",
+            "confidence": "high",
+            "rawText": "乙：すみません。今日は 早く 帰って、レポートを 書かなければ なりません。",
+            "audioSegment": {
+              "id": "l19-basic-dialogue-002-line-002",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson19/l19-basic-dialogue-002-line-002.mp3",
+              "start": 0,
+              "end": 4.74,
+              "duration": 4.74,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:43:12.141Z",
+              "sourceAudioSha256": "7421fb66b2fbcac36e68fc0727cb03130255b4657075953b084e8e479c50a710"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l19-basic-dialogue-003",
+        "label": "C",
+        "lines": [
+          {
+            "id": "l19-basic-dialogue-003-line-001",
+            "speaker": "甲",
+            "text": "先生、もう 薬を 飲まなくても いいですか。",
+            "translationZh": "医生，已经可以不吃药了吗？",
+            "confidence": "high",
+            "rawText": "甲：先生、もう 薬を 飲まなくても いいですか。",
+            "audioSegment": {
+              "id": "l19-basic-dialogue-003-line-001",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson19/l19-basic-dialogue-003-line-001.mp3",
+              "start": 0,
+              "end": 3.46,
+              "duration": 3.46,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:43:12.141Z",
+              "sourceAudioSha256": "7421fb66b2fbcac36e68fc0727cb03130255b4657075953b084e8e479c50a710"
+            }
+          },
+          {
+            "id": "l19-basic-dialogue-003-line-002",
+            "speaker": "乙",
+            "text": "はい、いいですよ。",
+            "translationZh": "是的，可以了。",
+            "confidence": "high",
+            "rawText": "乙：はい、いいですよ。",
+            "audioSegment": {
+              "id": "l19-basic-dialogue-003-line-002",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson19/l19-basic-dialogue-003-line-002.mp3",
+              "start": 0,
+              "end": 1.22,
+              "duration": 1.22,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:43:12.141Z",
+              "sourceAudioSha256": "7421fb66b2fbcac36e68fc0727cb03130255b4657075953b084e8e479c50a710"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l19-basic-dialogue-004",
+        "label": "D",
+        "lines": [
+          {
+            "id": "l19-basic-dialogue-004-line-001",
+            "speaker": "甲",
+            "text": "吉田課長は いますか。",
+            "translationZh": "吉田科长在吗？",
+            "confidence": "high",
+            "rawText": "甲：吉田課長は いますか。",
+            "audioSegment": {
+              "id": "l19-basic-dialogue-004-line-001",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson19/l19-basic-dialogue-004-line-001.mp3",
+              "start": 0,
+              "end": 3.34,
+              "duration": 3.34,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:43:12.141Z",
+              "sourceAudioSha256": "7421fb66b2fbcac36e68fc0727cb03130255b4657075953b084e8e479c50a710"
+            }
+          },
+          {
+            "id": "l19-basic-dialogue-004-line-002",
+            "speaker": "乙",
+            "text": "わたしが 吉田ですが…。",
+            "translationZh": "我就是吉田……",
+            "confidence": "high",
+            "rawText": "乙：わたしが 吉田ですが…。",
+            "audioSegment": {
+              "id": "l19-basic-dialogue-004-line-002",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson19/l19-basic-dialogue-004-line-002.mp3",
+              "start": 0,
+              "end": 1.58,
+              "duration": 1.58,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:43:12.141Z",
+              "sourceAudioSha256": "7421fb66b2fbcac36e68fc0727cb03130255b4657075953b084e8e479c50a710"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "applicationText": {
+    "title": "スキー",
+    "blocks": [
+      {
+        "id": "l19-app-block-001",
+        "type": "scene",
+        "text": "在滑雪场，小李显得十分拘谨。",
+        "translationZh": "在滑雪场，小李显得十分拘谨。",
+        "confidence": "high",
+        "rawText": "在滑雪场，小李显得十分拘谨。"
+      },
+      {
+        "id": "l19-app-block-002",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l19-app-block-002-line-001",
+            "speaker": "李",
+            "text": "小野さん、初めてですから、ちょっと 怖いです。",
+            "translationZh": "小野，我是第一次滑雪，有点害怕。",
+            "confidence": "high",
+            "rawText": "李：小野さん、初めてですから、ちょっと 怖いです。",
+            "audioSegment": {
+              "id": "l19-app-block-002-line-001",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson19/l19-app-block-002-line-001.mp3",
+              "start": 0,
+              "end": 10.14,
+              "duration": 10.14,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:43:52.614Z",
+              "sourceAudioSha256": "8c251d442294180e6a1ae5f401958830a3262c49f4a0a137e5c661e377c2591b"
+            }
+          },
+          {
+            "id": "l19-app-block-002-line-002",
+            "speaker": "小野",
+            "text": "心配しなくても いいですよ。ここは 初心者コースですから。",
+            "translationZh": "不用担心。这里是初学者滑道。",
+            "confidence": "high",
+            "rawText": "小野：心配しなくても いいですよ。ここは 初心者コースですから。",
+            "audioSegment": {
+              "id": "l19-app-block-002-line-002",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson19/l19-app-block-002-line-002.mp3",
+              "start": 0,
+              "end": 4.1,
+              "duration": 4.1,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:43:52.614Z",
+              "sourceAudioSha256": "8c251d442294180e6a1ae5f401958830a3262c49f4a0a137e5c661e377c2591b"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l19-app-block-003",
+        "type": "scene",
+        "text": "小李在森、小野的后面担心吊胆地滑着。",
+        "translationZh": "小李在森、小野的后面担心吊胆地滑着。",
+        "confidence": "high",
+        "rawText": "小李在森、小野的后面担心吊胆地滑着。"
+      },
+      {
+        "id": "l19-app-block-004",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l19-app-block-004-line-001",
+            "speaker": "李",
+            "text": "森さん、小野さん、待って ください。先に 行かないで ください。",
+            "translationZh": "森先生、小野，请等一等。请不要先走。",
+            "confidence": "high",
+            "rawText": "李：森さん、小野さん、待って ください。先に 行かないで ください。",
+            "audioSegment": {
+              "id": "l19-app-block-004-line-001",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson19/l19-app-block-004-line-001.mp3",
+              "start": 0,
+              "end": 5.42,
+              "duration": 5.42,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:43:52.614Z",
+              "sourceAudioSha256": "8c251d442294180e6a1ae5f401958830a3262c49f4a0a137e5c661e377c2591b"
+            }
+          },
+          {
+            "id": "l19-app-block-004-line-002",
+            "speaker": "小野",
+            "text": "急がなくても いいですよ。わたしたちも ゆっくり 滑りますから。",
+            "translationZh": "不用着急。我们也慢慢滑。",
+            "confidence": "high",
+            "rawText": "小野：急がなくても いいですよ。わたしたちも ゆっくり 滑りますから。",
+            "audioSegment": {
+              "id": "l19-app-block-004-line-002",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson19/l19-app-block-004-line-002.mp3",
+              "start": 0,
+              "end": 4.26,
+              "duration": 4.26,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:43:52.614Z",
+              "sourceAudioSha256": "8c251d442294180e6a1ae5f401958830a3262c49f4a0a137e5c661e377c2591b"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l19-app-block-005",
+        "type": "scene",
+        "text": "滑了一会儿后，在休息处。",
+        "translationZh": "滑了一会儿后，在休息处。",
+        "confidence": "high",
+        "rawText": "滑了一会儿后，在休息处。"
+      },
+      {
+        "id": "l19-app-block-006",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l19-app-block-006-line-001",
+            "speaker": "森",
+            "text": "李さん、スキーは どうですか。",
+            "translationZh": "小李，滑雪怎么样？",
+            "confidence": "high",
+            "rawText": "森：李さん、スキーは どうですか。",
+            "audioSegment": {
+              "id": "l19-app-block-006-line-001",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson19/l19-app-block-006-line-001.mp3",
+              "start": 0,
+              "end": 1.1,
+              "duration": 1.1,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:43:52.614Z",
+              "sourceAudioSha256": "8c251d442294180e6a1ae5f401958830a3262c49f4a0a137e5c661e377c2591b"
+            }
+          },
+          {
+            "id": "l19-app-block-006-line-002",
+            "speaker": "李",
+            "text": "何度も 転びましたが、とても おもしろいです。",
+            "translationZh": "摔倒了好几次，不过很有意思。",
+            "confidence": "high",
+            "rawText": "李：何度も 転びましたが、とても おもしろいです。",
+            "audioSegment": {
+              "id": "l19-app-block-006-line-002",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson19/l19-app-block-006-line-002.mp3",
+              "start": 0,
+              "end": 3.22,
+              "duration": 3.22,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:43:52.614Z",
+              "sourceAudioSha256": "8c251d442294180e6a1ae5f401958830a3262c49f4a0a137e5c661e377c2591b"
+            }
+          },
+          {
+            "id": "l19-app-block-006-line-003",
+            "speaker": "森",
+            "text": "そうですか。だいぶ 上手に なりましたよ。",
+            "translationZh": "是吗？你已经熟练多了。",
+            "confidence": "high",
+            "rawText": "森：そうですか。だいぶ 上手に なりましたよ。",
+            "audioSegment": {
+              "id": "l19-app-block-006-line-003",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson19/l19-app-block-006-line-003.mp3",
+              "start": 0,
+              "end": 2.74,
+              "duration": 2.74,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:43:52.614Z",
+              "sourceAudioSha256": "8c251d442294180e6a1ae5f401958830a3262c49f4a0a137e5c661e377c2591b"
+            }
+          },
+          {
+            "id": "l19-app-block-006-line-004",
+            "speaker": "李",
+            "text": "本当ですか。でも、もっと 上手に なりたいです。",
+            "translationZh": "真的吗？不过我还想更熟练些。",
+            "confidence": "high",
+            "rawText": "李：本当ですか。でも、もっと 上手に なりたいです。",
+            "audioSegment": {
+              "id": "l19-app-block-006-line-004",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson19/l19-app-block-006-line-004.mp3",
+              "start": 0,
+              "end": 4.06,
+              "duration": 4.06,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:43:52.614Z",
+              "sourceAudioSha256": "8c251d442294180e6a1ae5f401958830a3262c49f4a0a137e5c661e377c2591b"
+            }
+          },
+          {
+            "id": "l19-app-block-006-line-005",
+            "speaker": "小野",
+            "text": "じゃあ、もっと 練習しなければ なりませんね。もう 一度 滑りますか。",
+            "translationZh": "那就必须多练习。再滑一次吗？",
+            "confidence": "high",
+            "rawText": "小野：じゃあ、もっと 練習しなければ なりませんね。もう 一度 滑りますか。",
+            "audioSegment": {
+              "id": "l19-app-block-006-line-005",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson19/l19-app-block-006-line-005.mp3",
+              "start": 0,
+              "end": 4.62,
+              "duration": 4.62,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:43:52.614Z",
+              "sourceAudioSha256": "8c251d442294180e6a1ae5f401958830a3262c49f4a0a137e5c661e377c2591b"
+            }
+          },
+          {
+            "id": "l19-app-block-006-line-006",
+            "speaker": "李",
+            "text": "はい。今度は 先に 滑っても いいですか。",
+            "translationZh": "好。这次我可以先滑吗？",
+            "confidence": "high",
+            "rawText": "李：はい。今度は 先に 滑っても いいですか。",
+            "audioSegment": {
+              "id": "l19-app-block-006-line-006",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson19/l19-app-block-006-line-006.mp3",
+              "start": 0,
+              "end": 3.54,
+              "duration": 3.54,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:43:52.614Z",
+              "sourceAudioSha256": "8c251d442294180e6a1ae5f401958830a3262c49f4a0a137e5c661e377c2591b"
+            }
+          },
+          {
+            "id": "l19-app-block-006-line-007",
+            "speaker": "小野",
+            "text": "いいですよ。でも、上級者の コースには 入らないで ください。",
+            "translationZh": "可以。不过请不要进高级滑道。",
+            "confidence": "high",
+            "rawText": "小野：いいですよ。でも、上級者の コースには 入らないで ください。",
+            "audioSegment": {
+              "id": "l19-app-block-006-line-007",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson19/l19-app-block-006-line-007.mp3",
+              "start": 0,
+              "end": 4.14,
+              "duration": 4.14,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:43:52.614Z",
+              "sourceAudioSha256": "8c251d442294180e6a1ae5f401958830a3262c49f4a0a137e5c661e377c2591b"
+            }
+          },
+          {
+            "id": "l19-app-block-006-line-008",
+            "speaker": "李",
+            "text": "大丈夫です。心配しないで ください。",
+            "translationZh": "没关系。请不要担心。",
+            "confidence": "high",
+            "rawText": "李：大丈夫です。心配しないで ください。",
+            "audioSegment": {
+              "id": "l19-app-block-006-line-008",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson19/l19-app-block-006-line-008.mp3",
+              "start": 0,
+              "end": 2.7,
+              "duration": 2.7,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:43:52.614Z",
+              "sourceAudioSha256": "8c251d442294180e6a1ae5f401958830a3262c49f4a0a137e5c661e377c2591b"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "warnings": [
+    "segments/ruby 未批量生成；保留 text 与 translationZh，后续可单独补充 ruby 切片。"
+  ],
+  "audioAlignment": {
+    "schemaVersion": 1,
+    "method": "approved-asr-alignment",
+    "sourceAlignment": "data/ocr/lesson19-text-audio-alignment.json",
+    "publishedAt": "2026-08-05T08:43:56.750Z",
+    "approvedSegments": 24
+  }
+}

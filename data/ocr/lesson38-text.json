@@ -1,0 +1,88 @@
+{
+  "lessonId": "lesson38",
+  "sourceImages": [
+    { "section": "basic", "path": "course-assets/by-lesson/lesson38/page152.webp", "pageNo": 152 },
+    { "section": "application", "path": "course-assets/by-lesson/lesson38/page157.webp", "pageNo": 157 }
+  ],
+  "basicText": {
+    "title": "基本课文",
+    "basicSentences": [
+      { "id": "l38-basic-s001", "order": 1, "text": "戴さんは英語が話せます。", "translationZh": "戴先生会说英语。", "confidence": "high", "rawText": "1. 戴さんは英語が話せます。" },
+      { "id": "l38-basic-s002", "order": 2, "text": "よく見えるように、大きく書きました。", "translationZh": "为了看得清楚，写得大一些。", "confidence": "high", "rawText": "2. よく見えるように、大きく書きました。" },
+      { "id": "l38-basic-s003", "order": 3, "text": "けがが治って、歩けるようになりました。", "translationZh": "伤好了，能走路了。", "confidence": "high", "rawText": "3. けがが治って、歩けるようになりました。" },
+      { "id": "l38-basic-s004", "order": 4, "text": "陳さんは毎日、英字新聞を読むようにしています。", "translationZh": "陈先生坚持每天读英文报纸。", "confidence": "high", "rawText": "4. 陳さんは毎日、英字新聞を読むようにしています。" }
+    ],
+    "dialogues": [
+      {
+        "id": "l38-basic-dialogue-001", "label": "A", "lines": [
+          { "id": "l38-basic-dialogue-001-line-001", "speaker": "甲", "text": "戴さんはお寿司が食べられますか。", "translationZh": "戴先生能吃寿司吗？", "confidence": "high", "rawText": "甲：戴さんはお寿司が食べられますか。" },
+          { "id": "l38-basic-dialogue-001-line-002", "speaker": "乙", "text": "ええ、大丈夫ですよ。わたしは何でも食べられます。", "translationZh": "嗯，没问题。我什么都能吃。", "confidence": "high", "rawText": "乙：ええ、大丈夫ですよ。わたしは何でも食べられます。" }
+        ]
+      },
+      {
+        "id": "l38-basic-dialogue-002", "label": "B", "lines": [
+          { "id": "l38-basic-dialogue-002-line-001", "speaker": "甲", "text": "李さん、２時ごろ会社を出ますよ。", "translationZh": "小李，大约两点钟要离开公司。", "confidence": "high", "rawText": "甲：李さん、２時ごろ会社を出ますよ。" },
+          { "id": "l38-basic-dialogue-002-line-002", "speaker": "乙", "text": "はい。いつでも出られるように、準備してあります。", "translationZh": "好的。已经准备好了，随时都可以出发。", "confidence": "high", "rawText": "乙：はい。いつでも出られるように、準備してあります。" }
+        ]
+      },
+      {
+        "id": "l38-basic-dialogue-003", "label": "C", "lines": [
+          { "id": "l38-basic-dialogue-003-line-001", "speaker": "甲", "text": "小野さん、着物を自分で着ることができますか。", "translationZh": "小野女士，你能自己穿和服吗？", "confidence": "high", "rawText": "甲：小野さん、着物を自分で着ることができますか。" },
+          { "id": "l38-basic-dialogue-003-line-002", "speaker": "乙", "text": "ええ、母に習って、着られるようになりました。", "translationZh": "嗯，跟母亲学了以后，已经会穿了。", "confidence": "high", "rawText": "乙：ええ、母に習って、着られるようになりました。" }
+        ]
+      },
+      {
+        "id": "l38-basic-dialogue-004", "label": "D", "lines": [
+          { "id": "l38-basic-dialogue-004-line-001", "speaker": "甲", "text": "健康のために何かしていますか。", "translationZh": "为了健康，你做些什么吗？", "confidence": "high", "rawText": "甲：健康のために何かしていますか。" },
+          { "id": "l38-basic-dialogue-004-line-002", "speaker": "乙", "text": "ええ、毎朝１時間散歩するようにしています。", "translationZh": "嗯，我坚持每天早晨散步一小时。", "confidence": "high", "rawText": "乙：ええ、毎朝１時間散歩するようにしています。" }
+        ]
+      }
+    ]
+  },
+  "applicationText": {
+    "title": "胡同",
+    "blocks": [
+      { "id": "l38-app-block-001", "type": "scene", "text": "走在胡同中", "translationZh": "走在胡同中。", "confidence": "high", "rawText": "（走在胡同中）" },
+      {
+        "id": "l38-app-block-002", "type": "dialogue", "lines": [
+          { "id": "l38-app-block-002-line-001", "speaker": "小野", "text": "この路地が「胡同」ですね。", "translationZh": "这条小巷就是“胡同”啊。", "confidence": "high", "rawText": "小野：この路地が「胡同」ですね。" },
+          { "id": "l38-app-block-002-line-002", "speaker": "李", "text": "ええ、この辺は北京の伝統的な町です。人が実際に生活している所ですから、写真は撮らないようにしてくださいね。", "translationZh": "是的，这一带是北京传统的街区。因为这里是人们实际生活的地方，请不要拍照。", "confidence": "high", "rawText": "李：ええ、この辺は北京の伝統的な町です。人が実際に生活している所ですから、写真は撮らないようにしてくださいね。" },
+          { "id": "l38-app-block-002-line-003", "speaker": "小野", "text": "分かりました。ところで、この道は通り抜けられますか。", "translationZh": "明白了。不过，这条路能走出去吗？", "confidence": "high", "rawText": "小野：分かりました。ところで、この道は通り抜けられますか。" },
+          { "id": "l38-app-block-002-line-004", "speaker": "李", "text": "大丈夫です。入り組んでいますが、通り抜けられますよ。", "translationZh": "没问题。虽然道路错综复杂，但能穿过去。", "confidence": "high", "rawText": "李：大丈夫です。入り組んでいますが、通り抜けられますよ。" }
+        ]
+      },
+      { "id": "l38-app-block-003", "type": "scene", "text": "边走边感受老北京的风情", "translationZh": "边走边感受老北京的风情。", "confidence": "high", "rawText": "（边走边感受老北京的风情）" },
+      {
+        "id": "l38-app-block-004", "type": "dialogue", "lines": [
+          { "id": "l38-app-block-004-line-001", "speaker": "小野", "text": "胡同は、古い北京が感じられて、楽しいですね。", "translationZh": "在胡同里能感受到老北京，真有意思啊。", "confidence": "high", "rawText": "小野：胡同は、古い北京が感じられて、楽しいですね。" },
+          { "id": "l38-app-block-004-line-002", "speaker": "李", "text": "ええ。だから、時間がある時や、外国人の友達が来た時は、胡同を歩くようにしているんですよ。", "translationZh": "是啊。所以有时间时，或者外国朋友来的时候，我都会到胡同里走走。", "confidence": "high", "rawText": "李：ええ。だから、時間がある時や、外国人の友達が来た時は、胡同を歩くようにしているんですよ。" }
+        ]
+      },
+      { "id": "l38-app-block-005", "type": "scene", "text": "小李看到了一家卖油条的店铺", "translationZh": "小李看到了一家卖油条的店铺。", "confidence": "high", "rawText": "（小李看到了一家卖油条的店铺）" },
+      {
+        "id": "l38-app-block-006", "type": "dialogue", "lines": [
+          { "id": "l38-app-block-006-line-001", "speaker": "李", "text": "小野さん、「油条」は食べられますか。", "translationZh": "小野女士，你能吃油条吗？", "confidence": "high", "rawText": "李：小野さん、「油条」は食べられますか。" },
+          { "id": "l38-app-block-006-line-002", "speaker": "小野", "text": "ええ、大好きです。", "translationZh": "嗯，我很喜欢。", "confidence": "high", "rawText": "小野：ええ、大好きです。" }
+        ]
+      },
+      { "id": "l38-app-block-007", "type": "scene", "text": "买了油条递给小野", "translationZh": "买了油条递给小野。", "confidence": "high", "rawText": "（买了油条递给小野）" },
+      {
+        "id": "l38-app-block-008", "type": "dialogue", "lines": [
+          { "id": "l38-app-block-008-line-001", "speaker": "李", "text": "熱いですから、火傷しないように気をつけてくださいね。", "translationZh": "很烫，请注意别烫着。", "confidence": "high", "rawText": "李：熱いですから、火傷しないように気をつけてくださいね。" }
+        ]
+      },
+      { "id": "l38-app-block-009", "type": "scene", "text": "过了一会儿", "translationZh": "过了一会儿。", "confidence": "high", "rawText": "（过了一会儿）" },
+      {
+        "id": "l38-app-block-010", "type": "dialogue", "lines": [
+          { "id": "l38-app-block-010-line-001", "speaker": "李", "text": "最近は、マンションやビルが建って、胡同がだいぶ減ってしまいました。", "translationZh": "最近公寓和高楼盖起来了，胡同已经减少了很多。", "confidence": "high", "rawText": "李：最近は、マンションやビルが建って、胡同がだいぶ減ってしまいました。" },
+          { "id": "l38-app-block-010-line-002", "speaker": "小野", "text": "なんだか残念ですね。", "translationZh": "总觉得很遗憾啊。", "confidence": "high", "rawText": "小野：なんだか残念ですね。" },
+          { "id": "l38-app-block-010-line-003", "speaker": "李", "text": "そうなんです。今では胡同が見られる場所は本当に少なくなりました。", "translationZh": "是啊。如今能看到胡同的地方真的很少了。", "confidence": "high", "rawText": "李：そうなんです。今では胡同が見られる場所は本当に少なくなりました。" }
+        ]
+      }
+    ]
+  },
+  "warnings": [
+    "扫描页中的假名标注不适合可靠地逐句切分，未生成 kana 或 segments 字段。",
+    "应用课文的场景说明在教材中以中文排印，按原文保留在 text 字段中。"
+  ]
+}

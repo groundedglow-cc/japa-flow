@@ -1,0 +1,578 @@
+{
+  "lessonId": "lesson40",
+  "sourceImages": [
+    {
+      "section": "basic",
+      "path": "course-assets/by-lesson/lesson40/page172.webp",
+      "pageNo": 172
+    },
+    {
+      "section": "application",
+      "path": "course-assets/by-lesson/lesson40/page177.webp",
+      "pageNo": 177
+    }
+  ],
+  "basicText": {
+    "title": "これから友達と食事に行くところです",
+    "basicSentences": [
+      {
+        "id": "l40-basic-s001",
+        "order": 1,
+        "text": "これから友達と食事に行くところです。",
+        "translationZh": "我正要和朋友去吃饭。",
+        "confidence": "high",
+        "rawText": "1. これから友達と食事に行くところです。",
+        "audioSegment": {
+          "id": "l40-basic-s001",
+          "trackId": "lesson_basic",
+          "sourceUrl": "/data/ocr/audio-clips/lesson40/l40-basic-s001.mp3",
+          "start": 0,
+          "end": 3.14,
+          "duration": 3.14,
+          "method": "approved-asr-alignment",
+          "confidence": "approved",
+          "reviewedAt": "2026-08-05T10:23:32.257Z",
+          "sourceAudioSha256": "e252972c642471375b2b879943703b81d4773e8a8bac97377cafbb28c9e36310"
+        }
+      },
+      {
+        "id": "l40-basic-s002",
+        "order": 2,
+        "text": "森さんは会議の資料をそろえているところです。",
+        "translationZh": "森先生正在备齐会议资料。",
+        "confidence": "high",
+        "rawText": "2. 森さんは会議の資料をそろえているところです。",
+        "audioSegment": {
+          "id": "l40-basic-s002",
+          "trackId": "lesson_basic",
+          "sourceUrl": "/data/ocr/audio-clips/lesson40/l40-basic-s002.mp3",
+          "start": 0,
+          "end": 4.02,
+          "duration": 4.02,
+          "method": "approved-asr-alignment",
+          "confidence": "approved",
+          "reviewedAt": "2026-08-05T10:23:32.257Z",
+          "sourceAudioSha256": "e252972c642471375b2b879943703b81d4773e8a8bac97377cafbb28c9e36310"
+        }
+      },
+      {
+        "id": "l40-basic-s003",
+        "order": 3,
+        "text": "馬さんは、今、空港に着いたところです。",
+        "translationZh": "马先生刚刚到达机场。",
+        "confidence": "high",
+        "rawText": "3. 馬さんは、今、空港に着いたところです。",
+        "audioSegment": {
+          "id": "l40-basic-s003",
+          "trackId": "lesson_basic",
+          "sourceUrl": "/data/ocr/audio-clips/lesson40/l40-basic-s003.mp3",
+          "start": 0,
+          "end": 3.02,
+          "duration": 3.02,
+          "method": "approved-asr-alignment",
+          "confidence": "approved",
+          "reviewedAt": "2026-08-05T10:23:32.257Z",
+          "sourceAudioSha256": "e252972c642471375b2b879943703b81d4773e8a8bac97377cafbb28c9e36310"
+        }
+      },
+      {
+        "id": "l40-basic-s004",
+        "order": 4,
+        "text": "このモノレールは去年開通したばかりです。",
+        "translationZh": "这条单轨铁路是去年刚开通的。",
+        "confidence": "high",
+        "rawText": "4. このモノレールは去年開通したばかりです。",
+        "audioSegment": {
+          "id": "l40-basic-s004",
+          "trackId": "lesson_basic",
+          "sourceUrl": "/data/ocr/audio-clips/lesson40/l40-basic-s004.mp3",
+          "start": 0,
+          "end": 3.5,
+          "duration": 3.5,
+          "method": "approved-asr-alignment",
+          "confidence": "approved",
+          "reviewedAt": "2026-08-05T10:23:32.257Z",
+          "sourceAudioSha256": "e252972c642471375b2b879943703b81d4773e8a8bac97377cafbb28c9e36310"
+        }
+      }
+    ],
+    "dialogues": [
+      {
+        "id": "l40-basic-dialogue-001",
+        "label": "A",
+        "lines": [
+          {
+            "id": "l40-basic-dialogue-001-line-001",
+            "speaker": "甲",
+            "text": "もしもし、森さん、今どこですか。",
+            "translationZh": "喂，森先生，您现在在哪里？",
+            "confidence": "high",
+            "rawText": "甲：もしもし、森さん、今どこですか。",
+            "audioSegment": {
+              "id": "l40-basic-dialogue-001-line-001",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson40/l40-basic-dialogue-001-line-001.mp3",
+              "start": 0,
+              "end": 3.82,
+              "duration": 3.82,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:23:32.257Z",
+              "sourceAudioSha256": "e252972c642471375b2b879943703b81d4773e8a8bac97377cafbb28c9e36310"
+            }
+          },
+          {
+            "id": "l40-basic-dialogue-001-line-002",
+            "speaker": "乙",
+            "text": "これから家を出るところです。",
+            "translationZh": "我正要出门。",
+            "confidence": "high",
+            "rawText": "乙：これから家を出るところです。",
+            "audioSegment": {
+              "id": "l40-basic-dialogue-001-line-002",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson40/l40-basic-dialogue-001-line-002.mp3",
+              "start": 0,
+              "end": 1.66,
+              "duration": 1.66,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:23:32.257Z",
+              "sourceAudioSha256": "e252972c642471375b2b879943703b81d4773e8a8bac97377cafbb28c9e36310"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l40-basic-dialogue-002",
+        "label": "B",
+        "lines": [
+          {
+            "id": "l40-basic-dialogue-002-line-001",
+            "speaker": "甲",
+            "text": "森さん、上海行きの最終便は何時か分かりましたか。",
+            "translationZh": "森先生，去上海的最晚航班是几点，您知道了吗？",
+            "confidence": "high",
+            "rawText": "甲：森さん、上海行きの最終便は何時か分かりましたか。",
+            "audioSegment": {
+              "id": "l40-basic-dialogue-002-line-001",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson40/l40-basic-dialogue-002-line-001.mp3",
+              "start": 0,
+              "end": 4.98,
+              "duration": 4.98,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:23:32.257Z",
+              "sourceAudioSha256": "e252972c642471375b2b879943703b81d4773e8a8bac97377cafbb28c9e36310"
+            }
+          },
+          {
+            "id": "l40-basic-dialogue-002-line-002",
+            "speaker": "乙",
+            "text": "今調べているところです。少し待ってください。",
+            "translationZh": "我正在查，请稍等一下。",
+            "confidence": "high",
+            "rawText": "乙：今調べているところです。少し待ってください。",
+            "audioSegment": {
+              "id": "l40-basic-dialogue-002-line-002",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson40/l40-basic-dialogue-002-line-002.mp3",
+              "start": 0,
+              "end": 3.9,
+              "duration": 3.9,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:23:32.257Z",
+              "sourceAudioSha256": "e252972c642471375b2b879943703b81d4773e8a8bac97377cafbb28c9e36310"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l40-basic-dialogue-003",
+        "label": "C",
+        "lines": [
+          {
+            "id": "l40-basic-dialogue-003-line-001",
+            "speaker": "甲",
+            "text": "来月、清水さんが結婚するのを知っていますか。",
+            "translationZh": "你知道清水先生下个月要结婚吗？",
+            "confidence": "high",
+            "rawText": "甲：来月、清水さんが結婚するのを知っていますか。",
+            "audioSegment": {
+              "id": "l40-basic-dialogue-003-line-001",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson40/l40-basic-dialogue-003-line-001.mp3",
+              "start": 0,
+              "end": 3.1,
+              "duration": 3.1,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:23:32.257Z",
+              "sourceAudioSha256": "e252972c642471375b2b879943703b81d4773e8a8bac97377cafbb28c9e36310"
+            }
+          },
+          {
+            "id": "l40-basic-dialogue-003-line-002",
+            "speaker": "乙",
+            "text": "ええ、たった今聞いたところです。",
+            "translationZh": "嗯，我刚刚听说。",
+            "confidence": "high",
+            "rawText": "乙：ええ、たった今聞いたところです。",
+            "audioSegment": {
+              "id": "l40-basic-dialogue-003-line-002",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson40/l40-basic-dialogue-003-line-002.mp3",
+              "start": 0,
+              "end": 2.1,
+              "duration": 2.1,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:23:32.257Z",
+              "sourceAudioSha256": "e252972c642471375b2b879943703b81d4773e8a8bac97377cafbb28c9e36310"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l40-basic-dialogue-004",
+        "label": "D",
+        "lines": [
+          {
+            "id": "l40-basic-dialogue-004-line-001",
+            "speaker": "甲",
+            "text": "李さん、この本はもう読み終わりましたか。",
+            "translationZh": "小李，这本书你已经读完了吗？",
+            "confidence": "high",
+            "rawText": "甲：李さん、この本はもう読み終わりましたか。",
+            "audioSegment": {
+              "id": "l40-basic-dialogue-004-line-001",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson40/l40-basic-dialogue-004-line-001.mp3",
+              "start": 0,
+              "end": 3.5,
+              "duration": 3.5,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:23:32.257Z",
+              "sourceAudioSha256": "e252972c642471375b2b879943703b81d4773e8a8bac97377cafbb28c9e36310"
+            }
+          },
+          {
+            "id": "l40-basic-dialogue-004-line-002",
+            "speaker": "乙",
+            "text": "いいえ、昨日読み始めたばかりです。",
+            "translationZh": "没有，昨天才刚开始读。",
+            "confidence": "high",
+            "rawText": "乙：いいえ、昨日読み始めたばかりです。",
+            "audioSegment": {
+              "id": "l40-basic-dialogue-004-line-002",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson40/l40-basic-dialogue-004-line-002.mp3",
+              "start": 0,
+              "end": 2.86,
+              "duration": 2.86,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:23:32.257Z",
+              "sourceAudioSha256": "e252972c642471375b2b879943703b81d4773e8a8bac97377cafbb28c9e36310"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "applicationText": {
+    "title": "京劇",
+    "blocks": [
+      {
+        "id": "l40-app-block-001",
+        "type": "scene",
+        "text": "小野和小李在剧场前等森",
+        "translationZh": "小野和小李在剧场前等森。",
+        "confidence": "high",
+        "rawText": "（小野和小李在剧场前等森）"
+      },
+      {
+        "id": "l40-app-block-002",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l40-app-block-002-line-001",
+            "speaker": "森",
+            "text": "すみません。お待たせして。",
+            "translationZh": "对不起，让你们久等了。",
+            "confidence": "high",
+            "rawText": "森：すみません。お待たせして。",
+            "audioSegment": {
+              "id": "l40-app-block-002-line-001",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson40/l40-app-block-002-line-001.mp3",
+              "start": 0,
+              "end": 1.62,
+              "duration": 1.62,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:24:21.804Z",
+              "sourceAudioSha256": "bb8f79f619bc6e694092c34fb236f99f0b22ead5e8ba9ecb62009634bd0dd47c"
+            }
+          },
+          {
+            "id": "l40-app-block-002-line-002",
+            "speaker": "小野",
+            "text": "いいえ、わたしたちもちょっと前に着いたところです。",
+            "translationZh": "没关系，我们也是刚到不久。",
+            "confidence": "high",
+            "rawText": "小野：いいえ、わたしたちもちょっと前に着いたところです。",
+            "audioSegment": {
+              "id": "l40-app-block-002-line-002",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson40/l40-app-block-002-line-002.mp3",
+              "start": 0,
+              "end": 3.66,
+              "duration": 3.66,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:24:21.804Z",
+              "sourceAudioSha256": "bb8f79f619bc6e694092c34fb236f99f0b22ead5e8ba9ecb62009634bd0dd47c"
+            }
+          },
+          {
+            "id": "l40-app-block-002-line-003",
+            "speaker": "森",
+            "text": "そうですか。よかった。チケットは？",
+            "translationZh": "是吗？太好了。票呢？",
+            "confidence": "high",
+            "rawText": "森：そうですか。よかった。チケットは？",
+            "audioSegment": {
+              "id": "l40-app-block-002-line-003",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson40/l40-app-block-002-line-003.mp3",
+              "start": 0,
+              "end": 3.18,
+              "duration": 3.18,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:24:21.804Z",
+              "sourceAudioSha256": "bb8f79f619bc6e694092c34fb236f99f0b22ead5e8ba9ecb62009634bd0dd47c"
+            }
+          },
+          {
+            "id": "l40-app-block-002-line-004",
+            "speaker": "李",
+            "text": "これから買うところです。",
+            "translationZh": "正要去买。",
+            "confidence": "high",
+            "rawText": "李：これから買うところです。",
+            "audioSegment": {
+              "id": "l40-app-block-002-line-004",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson40/l40-app-block-002-line-004.mp3",
+              "start": 0,
+              "end": 1.74,
+              "duration": 1.74,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:24:21.804Z",
+              "sourceAudioSha256": "bb8f79f619bc6e694092c34fb236f99f0b22ead5e8ba9ecb62009634bd0dd47c"
+            }
+          },
+          {
+            "id": "l40-app-block-002-line-005",
+            "speaker": "森",
+            "text": "じゃあ、ぼくが買ってきますよ。ここで待っていてください。",
+            "translationZh": "那我去买吧。请你们在这里等着。",
+            "confidence": "high",
+            "rawText": "森：じゃあ、ぼくが買ってきますよ。ここで待っていてください。",
+            "audioSegment": {
+              "id": "l40-app-block-002-line-005",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson40/l40-app-block-002-line-005.mp3",
+              "start": 0,
+              "end": 3.94,
+              "duration": 3.94,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:24:21.804Z",
+              "sourceAudioSha256": "bb8f79f619bc6e694092c34fb236f99f0b22ead5e8ba9ecb62009634bd0dd47c"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l40-app-block-003",
+        "type": "scene",
+        "text": "进入剧场就坐",
+        "translationZh": "进入剧场就坐。",
+        "confidence": "high",
+        "rawText": "（进入剧场就坐）"
+      },
+      {
+        "id": "l40-app-block-004",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l40-app-block-004-line-001",
+            "speaker": "小野",
+            "text": "この劇場、新しそうですね。",
+            "translationZh": "这个剧场看起来很新啊。",
+            "confidence": "high",
+            "rawText": "小野：この劇場、新しそうですね。",
+            "audioSegment": {
+              "id": "l40-app-block-004-line-001",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson40/l40-app-block-004-line-001.mp3",
+              "start": 0,
+              "end": 2.62,
+              "duration": 2.62,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:24:21.804Z",
+              "sourceAudioSha256": "bb8f79f619bc6e694092c34fb236f99f0b22ead5e8ba9ecb62009634bd0dd47c"
+            }
+          },
+          {
+            "id": "l40-app-block-004-line-002",
+            "speaker": "李",
+            "text": "ええ、去年改築したばかりです。それまでは、清の時代にできた建物を修理しながら使い続けていました。",
+            "translationZh": "是的，去年刚改建过。在那之前，一边修理清代建成的建筑，一边继续使用。",
+            "confidence": "high",
+            "rawText": "李：ええ、去年改築したばかりです。それまでは、清の時代にできた建物を修理しながら使い続けていました。",
+            "audioSegment": {
+              "id": "l40-app-block-004-line-002",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson40/l40-app-block-004-line-002.mp3",
+              "start": 0,
+              "end": 8.46,
+              "duration": 8.46,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:24:21.804Z",
+              "sourceAudioSha256": "bb8f79f619bc6e694092c34fb236f99f0b22ead5e8ba9ecb62009634bd0dd47c"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l40-app-block-005",
+        "type": "scene",
+        "text": "演出结束后响起掌声。森急急忙忙跑向卫生间",
+        "translationZh": "演出结束后响起掌声。森急急忙忙跑向卫生间。",
+        "confidence": "high",
+        "rawText": "（演出结束后响起掌声。森急急忙忙跑向卫生间）"
+      },
+      {
+        "id": "l40-app-block-006",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l40-app-block-006-line-001",
+            "speaker": "李",
+            "text": "小野さん、いかがでしたか。",
+            "translationZh": "小野女士，觉得怎么样？",
+            "confidence": "high",
+            "rawText": "李：小野さん、いかがでしたか。",
+            "audioSegment": {
+              "id": "l40-app-block-006-line-001",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson40/l40-app-block-006-line-001.mp3",
+              "start": 0,
+              "end": 26.55,
+              "duration": 26.55,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:24:21.804Z",
+              "sourceAudioSha256": "bb8f79f619bc6e694092c34fb236f99f0b22ead5e8ba9ecb62009634bd0dd47c"
+            }
+          },
+          {
+            "id": "l40-app-block-006-line-002",
+            "speaker": "小野",
+            "text": "すばらしかったです。見終わったばかりで、まだ耳の奥に音楽が残っています。",
+            "translationZh": "太精彩了。刚看完，音乐还在耳畔回响。",
+            "confidence": "high",
+            "rawText": "小野：すばらしかったです。見終わったばかりで、まだ耳の奥に音楽が残っています。",
+            "audioSegment": {
+              "id": "l40-app-block-006-line-002",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson40/l40-app-block-006-line-002.mp3",
+              "start": 0,
+              "end": 6.1,
+              "duration": 6.1,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:24:21.804Z",
+              "sourceAudioSha256": "bb8f79f619bc6e694092c34fb236f99f0b22ead5e8ba9ecb62009634bd0dd47c"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l40-app-block-007",
+        "type": "scene",
+        "text": "森从卫生间回来，发现小野不见了",
+        "translationZh": "森从卫生间回来，发现小野不见了。",
+        "confidence": "high",
+        "rawText": "（森从卫生间回来，发现小野不见了）"
+      },
+      {
+        "id": "l40-app-block-008",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l40-app-block-008-line-001",
+            "speaker": "森",
+            "text": "あれっ、小野さんは？",
+            "translationZh": "咦，小野女士呢？",
+            "confidence": "high",
+            "rawText": "森：あれっ、小野さんは？",
+            "audioSegment": {
+              "id": "l40-app-block-008-line-001",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson40/l40-app-block-008-line-001.mp3",
+              "start": 0,
+              "end": 1.82,
+              "duration": 1.82,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:24:21.804Z",
+              "sourceAudioSha256": "bb8f79f619bc6e694092c34fb236f99f0b22ead5e8ba9ecb62009634bd0dd47c"
+            }
+          },
+          {
+            "id": "l40-app-block-008-line-002",
+            "speaker": "李",
+            "text": "小野さんなら、あそこで。今、舞台の上で、役者さんといっしょに写真を撮っているところですよ。",
+            "translationZh": "小野女士的话，在那里。她现在正在舞台上和演员一起拍照呢。",
+            "confidence": "high",
+            "rawText": "李：（指舞台）小野さんなら、あそこで。今、舞台の上で、役者さんといっしょに写真を撮っているところですよ。",
+            "audioSegment": {
+              "id": "l40-app-block-008-line-002",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson40/l40-app-block-008-line-002.mp3",
+              "start": 0,
+              "end": 6.54,
+              "duration": 6.54,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:24:21.804Z",
+              "sourceAudioSha256": "bb8f79f619bc6e694092c34fb236f99f0b22ead5e8ba9ecb62009634bd0dd47c"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "warnings": [
+    "扫描页中的假名标注不适合可靠地逐句切分，未生成 kana 或 segments 字段。",
+    "应用课文的场景说明在教材中以中文排印，按原文保留在 text 字段中。"
+  ],
+  "audioAlignment": {
+    "schemaVersion": 1,
+    "method": "approved-asr-alignment",
+    "sourceAlignment": "data/ocr/lesson40-text-audio-alignment.json",
+    "publishedAt": "2026-08-05T10:24:25.873Z",
+    "approvedSegments": 23
+  }
+}

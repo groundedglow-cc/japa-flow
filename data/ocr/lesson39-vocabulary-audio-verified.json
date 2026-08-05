@@ -1,0 +1,5534 @@
+{
+  "lessonId": "lesson39",
+  "sourceImages": [
+    {
+      "path": "course-assets/by-lesson/lesson39/page171.webp",
+      "pageNo": 171
+    }
+  ],
+  "vocabulary": [
+    {
+      "id": "l39-v001",
+      "kana": "むら",
+      "writing": "村",
+      "meaningZh": [
+        "村子",
+        "村庄"
+      ],
+      "partOfSpeech": "名",
+      "rawText": "むら（村） [名] 村子，村庄",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l39-v001",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson39/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson39/lesson_words.mp3",
+        "itemIndex": 1,
+        "text": "むら",
+        "label": "村",
+        "start": 0.79,
+        "end": 1.57,
+        "duration": 0.78,
+        "speechUnitCount": 1,
+        "wordCount": 1,
+        "matchScore": 1,
+        "asrText": "村",
+        "wordIndexes": [
+          1
+        ],
+        "method": "azure-speech-word-alignment",
+        "confidence": "high",
+        "review": {
+          "status": "approved",
+          "reviewedAt": "2026-08-05T11:52:19.207Z",
+          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "matchScore": 1,
+          "asrText": "村"
+        }
+      }
+    },
+    {
+      "id": "l39-v002",
+      "kana": "いね",
+      "writing": "稲",
+      "meaningZh": [
+        "稻子"
+      ],
+      "partOfSpeech": "名",
+      "rawText": "いね（稲） [名] 稻子",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l39-v002",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson39/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson39/lesson_words.mp3",
+        "itemIndex": 2,
+        "text": "いね",
+        "label": "稲",
+        "start": 2.27,
+        "end": 2.97,
+        "duration": 0.7,
+        "speechUnitCount": 1,
+        "wordCount": 1,
+        "matchScore": 1,
+        "asrText": "稲",
+        "wordIndexes": [
+          2
+        ],
+        "method": "azure-speech-word-alignment",
+        "confidence": "high",
+        "review": {
+          "status": "approved",
+          "reviewedAt": "2026-08-05T11:52:19.207Z",
+          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "matchScore": 1,
+          "asrText": "稲"
+        }
+      }
+    },
+    {
+      "id": "l39-v003",
+      "kana": "きり",
+      "writing": "霧",
+      "meaningZh": [
+        "雾"
+      ],
+      "partOfSpeech": "名",
+      "rawText": "きり（霧） [名] 雾",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l39-v003",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson39/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson39/lesson_words.mp3",
+        "itemIndex": 3,
+        "text": "きり",
+        "label": "霧",
+        "start": 4.75,
+        "end": 5.13,
+        "duration": 0.38,
+        "speechUnitCount": 1,
+        "wordCount": 1,
+        "matchScore": 0,
+        "asrText": "モ",
+        "wordIndexes": [
+          5
+        ],
+        "method": "azure-speech-word-alignment",
+        "confidence": "needs-review",
+        "review": {
+          "status": "approved",
+          "reviewedAt": "2026-08-05T11:52:19.207Z",
+          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "matchScore": 0,
+          "asrText": "モ"
+        }
+      }
+    },
+    {
+      "id": "l39-v004",
+      "kana": "もん",
+      "writing": "門",
+      "meaningZh": [
+        "城门",
+        "门",
+        "大门"
+      ],
+      "partOfSpeech": "名",
+      "rawText": "もん（門） [名] 城门，门，大门",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l39-v004",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson39/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson39/lesson_words.mp3",
+        "itemIndex": 4,
+        "text": "もん",
+        "label": "門",
+        "start": 5.03,
+        "end": 5.53,
+        "duration": 0.5,
+        "speechUnitCount": 1,
+        "wordCount": 1,
+        "matchScore": 0,
+        "asrText": "ン",
+        "wordIndexes": [
+          6
+        ],
+        "method": "azure-speech-word-alignment",
+        "confidence": "needs-review",
+        "review": {
+          "status": "approved",
+          "reviewedAt": "2026-08-05T11:52:19.207Z",
+          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "matchScore": 0,
+          "asrText": "ン"
+        }
+      }
+    },
+    {
+      "id": "l39-v005",
+      "kana": "ぶたい",
+      "writing": "舞台",
+      "meaningZh": [
+        "舞台"
+      ],
+      "partOfSpeech": "名",
+      "rawText": "ぶたい（舞台） [名] 舞台",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l39-v005",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson39/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson39/lesson_words.mp3",
+        "itemIndex": 5,
+        "text": "ぶたい",
+        "label": "舞台",
+        "start": 5.91,
+        "end": 6.73,
+        "duration": 0.82,
+        "speechUnitCount": 2,
+        "wordCount": 2,
+        "matchScore": 1,
+        "asrText": "舞 台",
+        "wordIndexes": [
+          7,
+          8
+        ],
+        "method": "azure-speech-word-alignment",
+        "confidence": "high",
+        "review": {
+          "status": "approved",
+          "reviewedAt": "2026-08-05T11:52:19.207Z",
+          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "matchScore": 1,
+          "asrText": "舞 台"
+        }
+      }
+    },
+    {
+      "id": "l39-v006",
+      "kana": "やね",
+      "writing": "屋根",
+      "meaningZh": [
+        "屋顶",
+        "房顶"
+      ],
+      "partOfSpeech": "名",
+      "rawText": "やね（屋根） [名] 屋顶，房顶",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l39-v006",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson39/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson39/lesson_words.mp3",
+        "itemIndex": 6,
+        "text": "やね",
+        "label": "屋根",
+        "start": 7.43,
+        "end": 7.77,
+        "duration": 0.34,
+        "speechUnitCount": 1,
+        "wordCount": 1,
+        "matchScore": 0.5,
+        "asrText": "屋",
+        "wordIndexes": [
+          9
+        ],
+        "method": "azure-speech-word-alignment",
+        "confidence": "needs-review",
+        "review": {
+          "status": "approved",
+          "reviewedAt": "2026-08-05T11:52:19.207Z",
+          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "matchScore": 0.5,
+          "asrText": "屋"
+        }
+      }
+    },
+    {
+      "id": "l39-v007",
+      "kana": "るりがわら",
+      "writing": "瑠璃瓦",
+      "meaningZh": [
+        "琉璃瓦"
+      ],
+      "partOfSpeech": "名",
+      "rawText": "るりがわら（瑠璃瓦） [名] 琉璃瓦",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l39-v007",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson39/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson39/lesson_words.mp3",
+        "itemIndex": 7,
+        "text": "るりがわら",
+        "label": "瑠璃瓦",
+        "start": 8.67,
+        "end": 9.57,
+        "duration": 0.9,
+        "speechUnitCount": 3,
+        "wordCount": 3,
+        "matchScore": 1,
+        "asrText": "瑠 璃 瓦",
+        "wordIndexes": [
+          11,
+          12,
+          13
+        ],
+        "method": "azure-speech-word-alignment",
+        "confidence": "high",
+        "review": {
+          "status": "approved",
+          "reviewedAt": "2026-08-05T11:52:19.207Z",
+          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "matchScore": 1,
+          "asrText": "瑠 璃 瓦"
+        }
+      }
+    },
+    {
+      "id": "l39-v008",
+      "kana": "きいろ",
+      "writing": "黄色",
+      "meaningZh": [
+        "黄色",
+        "黄颜色"
+      ],
+      "partOfSpeech": "名",
+      "rawText": "きいろ（黄色） [名] 黄色，黄颜色",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l39-v008",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson39/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson39/lesson_words.mp3",
+        "itemIndex": 8,
+        "text": "きいろ",
+        "label": "黄色",
+        "start": 10.43,
+        "end": 11.53,
+        "duration": 1.1,
+        "speechUnitCount": 2,
+        "wordCount": 2,
+        "matchScore": 1,
+        "asrText": "黄 色",
+        "wordIndexes": [
+          14,
+          15
+        ],
+        "method": "azure-speech-word-alignment",
+        "confidence": "high",
+        "review": {
+          "status": "approved",
+          "reviewedAt": "2026-08-05T11:52:19.207Z",
+          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "matchScore": 1,
+          "asrText": "黄 色"
+        }
+      }
+    },
+    {
+      "id": "l39-v009",
+      "kana": "そら",
+      "writing": "空",
+      "meaningZh": [
+        "天空"
+      ],
+      "partOfSpeech": "名",
+      "rawText": "そら（空） [名] 天空",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l39-v009",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson39/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson39/lesson_words.mp3",
+        "itemIndex": 9,
+        "text": "そら",
+        "label": "空",
+        "start": 12.15,
+        "end": 12.57,
+        "duration": 0.42,
+        "speechUnitCount": 1,
+        "wordCount": 1,
+        "matchScore": 0,
+        "asrText": "ラ",
+        "wordIndexes": [
+          18
+        ],
+        "method": "azure-speech-word-alignment",
+        "confidence": "needs-review",
+        "review": {
+          "status": "approved",
+          "reviewedAt": "2026-08-05T11:52:19.207Z",
+          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "matchScore": 0,
+          "asrText": "ラ"
+        }
+      }
+    },
+    {
+      "id": "l39-v010",
+      "kana": "バック",
+      "writing": "バック",
+      "meaningZh": [
+        "背景"
+      ],
+      "partOfSpeech": "名",
+      "rawText": "バック [名] 背景",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l39-v010",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson39/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson39/lesson_words.mp3",
+        "itemIndex": 10,
+        "text": "バック",
+        "label": "バック",
+        "start": 13.35,
+        "end": 13.93,
+        "duration": 0.58,
+        "speechUnitCount": 2,
+        "wordCount": 2,
+        "matchScore": 0.667,
+        "asrText": "バ ッ",
+        "wordIndexes": [
+          19,
+          20
+        ],
+        "method": "azure-speech-word-alignment",
+        "confidence": "needs-review",
+        "review": {
+          "status": "approved",
+          "reviewedAt": "2026-08-05T11:52:19.207Z",
+          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "matchScore": 0.667,
+          "asrText": "バ ッ"
+        }
+      }
+    },
+    {
+      "id": "l39-v011",
+      "kana": "かしきり",
+      "writing": "貸し切り",
+      "meaningZh": [
+        "包租"
+      ],
+      "partOfSpeech": "名",
+      "rawText": "かしきり（貸し切り） [名] 包租",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l39-v011",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson39/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson39/lesson_words.mp3",
+        "itemIndex": 11,
+        "text": "かしきり",
+        "label": "貸し切り",
+        "start": 14.63,
+        "end": 15.81,
+        "duration": 1.18,
+        "speechUnitCount": 4,
+        "wordCount": 4,
+        "matchScore": 1,
+        "asrText": "貸 し 切 り",
+        "wordIndexes": [
+          22,
+          23,
+          24,
+          25
+        ],
+        "method": "azure-speech-word-alignment",
+        "confidence": "high",
+        "review": {
+          "status": "approved",
+          "reviewedAt": "2026-08-05T11:52:19.207Z",
+          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "matchScore": 1,
+          "asrText": "貸 し 切 り"
+        }
+      }
+    },
+    {
+      "id": "l39-v012",
+      "kana": "いっぱん",
+      "writing": "一般",
+      "meaningZh": [
+        "一般"
+      ],
+      "partOfSpeech": "名",
+      "rawText": "いっぱん（一般） [名] 一般",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l39-v012",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson39/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson39/lesson_words.mp3",
+        "itemIndex": 12,
+        "text": "いっぱん",
+        "label": "一般",
+        "start": 16.59,
+        "end": 17.81,
+        "duration": 1.22,
+        "speechUnitCount": 2,
+        "wordCount": 2,
+        "matchScore": 1,
+        "asrText": "一 般",
+        "wordIndexes": [
+          26,
+          27
+        ],
+        "method": "azure-speech-word-alignment",
+        "confidence": "high",
+        "review": {
+          "status": "approved",
+          "reviewedAt": "2026-08-05T11:52:19.207Z",
+          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "matchScore": 1,
+          "asrText": "一 般"
+        }
+      }
+    },
+    {
+      "id": "l39-v013",
+      "kana": "そぼ",
+      "writing": "祖母",
+      "meaningZh": [
+        "祖母",
+        "外婆"
+      ],
+      "partOfSpeech": "名",
+      "rawText": "そぼ（祖母） [名] 祖母，外婆",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l39-v013",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson39/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson39/lesson_words.mp3",
+        "itemIndex": 13,
+        "text": "そぼ",
+        "label": "祖母",
+        "start": 17.91,
+        "end": 18.81,
+        "duration": 0.9,
+        "speechUnitCount": 2,
+        "wordCount": 2,
+        "matchScore": 1,
+        "asrText": "祖 母",
+        "wordIndexes": [
+          28,
+          29
+        ],
+        "method": "azure-speech-word-alignment",
+        "confidence": "high",
+        "review": {
+          "status": "approved",
+          "reviewedAt": "2026-08-05T11:52:19.207Z",
+          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "matchScore": 1,
+          "asrText": "祖 母"
+        }
+      }
+    },
+    {
+      "id": "l39-v014",
+      "kana": "おんがくかい",
+      "writing": "音楽会",
+      "meaningZh": [
+        "音乐会"
+      ],
+      "partOfSpeech": "名",
+      "rawText": "おんがくかい（音楽会） [名] 音乐会",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l39-v014",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson39/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson39/lesson_words.mp3",
+        "itemIndex": 14,
+        "text": "おんがくかい",
+        "label": "音楽会",
+        "start": 19.95,
+        "end": 21.17,
+        "duration": 1.22,
+        "speechUnitCount": 3,
+        "wordCount": 3,
+        "matchScore": 1,
+        "asrText": "音 楽 会",
+        "wordIndexes": [
+          30,
+          31,
+          32
+        ],
+        "method": "azure-speech-word-alignment",
+        "confidence": "high",
+        "review": {
+          "status": "approved",
+          "reviewedAt": "2026-08-05T11:52:19.207Z",
+          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "matchScore": 1,
+          "asrText": "音 楽 会"
+        }
+      }
+    },
+    {
+      "id": "l39-v015",
+      "kana": "ジャズ",
+      "writing": "ジャズ",
+      "meaningZh": [
+        "爵士乐"
+      ],
+      "partOfSpeech": "名",
+      "rawText": "ジャズ [名] 爵士乐",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l39-v015",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson39/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson39/lesson_words.mp3",
+        "itemIndex": 15,
+        "text": "ジャズ",
+        "label": "ジャズ",
+        "start": 21.47,
+        "end": 22.29,
+        "duration": 0.82,
+        "speechUnitCount": 3,
+        "wordCount": 3,
+        "matchScore": 1,
+        "asrText": "ジ ャ ズ",
+        "wordIndexes": [
+          33,
+          34,
+          35
+        ],
+        "method": "azure-speech-word-alignment",
+        "confidence": "high",
+        "review": {
+          "status": "approved",
+          "reviewedAt": "2026-08-05T11:52:19.207Z",
+          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "matchScore": 1,
+          "asrText": "ジ ャ ズ"
+        }
+      }
+    },
+    {
+      "id": "l39-v016",
+      "kana": "やがいコンサート",
+      "writing": "野外コンサート",
+      "meaningZh": [
+        "露天音乐会"
+      ],
+      "partOfSpeech": "名",
+      "rawText": "やがいコンサート（野外〜） [名] 露天音乐会",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l39-v016",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson39/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson39/lesson_words.mp3",
+        "itemIndex": 16,
+        "text": "やがいコンサート",
+        "label": "野外コンサート",
+        "start": 23.67,
+        "end": 25.25,
+        "duration": 1.58,
+        "speechUnitCount": 7,
+        "wordCount": 7,
+        "matchScore": 1,
+        "asrText": "野 外 コ ン サ ー ト",
+        "wordIndexes": [
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42
+        ],
+        "method": "azure-speech-word-alignment",
+        "confidence": "high",
+        "review": {
+          "status": "approved",
+          "reviewedAt": "2026-08-05T11:52:19.207Z",
+          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "matchScore": 1,
+          "asrText": "野 外 コ ン サ ー ト"
+        }
+      }
+    },
+    {
+      "id": "l39-v017",
+      "kana": "えんだか",
+      "writing": "円高",
+      "meaningZh": [
+        "日元升值"
+      ],
+      "partOfSpeech": "名",
+      "rawText": "えんだか（円高） [名] 日元升值",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l39-v017",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson39/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson39/lesson_words.mp3",
+        "itemIndex": 17,
+        "text": "えんだか",
+        "label": "円高",
+        "start": 26.68,
+        "end": 27.14,
+        "duration": 0.46,
+        "speechUnitCount": 2,
+        "wordCount": 2,
+        "matchScore": 1,
+        "asrText": "円 高",
+        "wordIndexes": [
+          43,
+          44
+        ],
+        "method": "azure-speech-word-alignment",
+        "confidence": "high",
+        "review": {
+          "status": "approved",
+          "reviewedAt": "2026-08-05T11:52:19.207Z",
+          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "matchScore": 1,
+          "asrText": "円 高"
+        }
+      }
+    },
+    {
+      "id": "l39-v018",
+      "kana": "ゆしゅつ",
+      "writing": "輸出",
+      "meaningZh": [
+        "出口",
+        "输出"
+      ],
+      "partOfSpeech": "名",
+      "rawText": "ゆしゅつ（輸出） [名] 出口，输出",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l39-v018",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson39/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson39/lesson_words.mp3",
+        "itemIndex": 18,
+        "text": "ゆしゅつ",
+        "label": "輸出",
+        "start": 27.96,
+        "end": 29.06,
+        "duration": 1.1,
+        "speechUnitCount": 2,
+        "wordCount": 2,
+        "matchScore": 1,
+        "asrText": "輸 出",
+        "wordIndexes": [
+          45,
+          46
+        ],
+        "method": "azure-speech-word-alignment",
+        "confidence": "high",
+        "review": {
+          "status": "approved",
+          "reviewedAt": "2026-08-05T11:52:19.207Z",
+          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "matchScore": 1,
+          "asrText": "輸 出"
+        }
+      }
+    },
+    {
+      "id": "l39-v019",
+      "kana": "えいきょう",
+      "writing": "影響",
+      "meaningZh": [
+        "影响"
+      ],
+      "partOfSpeech": "名",
+      "rawText": "えいきょう（影響） [名] 影响",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l39-v019",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson39/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson39/lesson_words.mp3",
+        "itemIndex": 19,
+        "text": "えいきょう",
+        "label": "影響",
+        "start": 30.6,
+        "end": 30.78,
+        "duration": 0.18,
+        "speechUnitCount": 2,
+        "wordCount": 2,
+        "matchScore": 1,
+        "asrText": "影 響",
+        "wordIndexes": [
+          47,
+          48
+        ],
+        "method": "azure-speech-word-alignment",
+        "confidence": "high",
+        "review": {
+          "status": "approved",
+          "reviewedAt": "2026-08-05T11:52:19.207Z",
+          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "matchScore": 1,
+          "asrText": "影 響"
+        }
+      }
+    },
+    {
+      "id": "l39-v020",
+      "kana": "しげん",
+      "writing": "資源",
+      "meaningZh": [
+        "资源"
+      ],
+      "partOfSpeech": "名",
+      "rawText": "しげん（資源） [名] 资源",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l39-v020",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson39/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson39/lesson_words.mp3",
+        "itemIndex": 20,
+        "text": "しげん",
+        "label": "資源",
+        "start": 31.51,
+        "end": 32.33,
+        "duration": 0.82,
+        "speechUnitCount": 2,
+        "wordCount": 2,
+        "matchScore": 1,
+        "asrText": "資 源",
+        "wordIndexes": [
+          49,
+          50
+        ],
+        "method": "azure-speech-word-alignment",
+        "confidence": "high",
+        "review": {
+          "status": "approved",
+          "reviewedAt": "2026-08-05T11:52:19.207Z",
+          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "matchScore": 1,
+          "asrText": "資 源"
+        }
+      }
+    },
+    {
+      "id": "l39-v021",
+      "kana": "きおん",
+      "writing": "気温",
+      "meaningZh": [
+        "气温"
+      ],
+      "partOfSpeech": "名",
+      "rawText": "きおん（気温） [名] 气温",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l39-v021",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson39/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson39/lesson_words.mp3",
+        "itemIndex": 21,
+        "text": "きおん",
+        "label": "気温",
+        "start": 33.76,
+        "end": 33.94,
+        "duration": 0.18,
+        "speechUnitCount": 2,
+        "wordCount": 2,
+        "matchScore": 1,
+        "asrText": "気 温",
+        "wordIndexes": [
+          51,
+          52
+        ],
+        "method": "azure-speech-word-alignment",
+        "confidence": "high",
+        "review": {
+          "status": "approved",
+          "reviewedAt": "2026-08-05T11:52:19.207Z",
+          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "matchScore": 1,
+          "asrText": "気 温"
+        }
+      }
+    },
+    {
+      "id": "l39-v022",
+      "kana": "おき",
+      "writing": "沖",
+      "meaningZh": [
+        "海上",
+        "湖心"
+      ],
+      "partOfSpeech": "名",
+      "rawText": "おき（沖） [名] 海上，湖心",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l39-v022",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson39/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson39/lesson_words.mp3",
+        "itemIndex": 22,
+        "text": "おき",
+        "label": "沖",
+        "start": 34.43,
+        "end": 35.25,
+        "duration": 0.82,
+        "speechUnitCount": 1,
+        "wordCount": 1,
+        "matchScore": 1,
+        "asrText": "沖",
+        "wordIndexes": [
+          53
+        ],
+        "method": "azure-speech-word-alignment",
+        "confidence": "high",
+        "review": {
+          "status": "approved",
+          "reviewedAt": "2026-08-05T11:52:19.207Z",
+          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "matchScore": 1,
+          "asrText": "沖"
+        }
+      }
+    },
+    {
+      "id": "l39-v023",
+      "kana": "かいがい",
+      "writing": "海外",
+      "meaningZh": [
+        "海外"
+      ],
+      "partOfSpeech": "名",
+      "rawText": "かいがい（海外） [名] 海外",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l39-v023",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson39/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson39/lesson_words.mp3",
+        "itemIndex": 23,
+        "text": "かいがい",
+        "label": "海外",
+        "start": 35.87,
+        "end": 36.81,
+        "duration": 0.94,
+        "speechUnitCount": 2,
+        "wordCount": 2,
+        "matchScore": 1,
+        "asrText": "海 外",
+        "wordIndexes": [
+          54,
+          55
+        ],
+        "method": "azure-speech-word-alignment",
+        "confidence": "high",
+        "review": {
+          "status": "approved",
+          "reviewedAt": "2026-08-05T11:52:19.207Z",
+          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "matchScore": 1,
+          "asrText": "海 外"
+        }
+      }
+    },
+    {
+      "id": "l39-v024",
+      "kana": "クジラ",
+      "writing": "クジラ",
+      "meaningZh": [
+        "鲸"
+      ],
+      "partOfSpeech": "名",
+      "rawText": "クジラ [名] 鲸",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l39-v024",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson39/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson39/lesson_words.mp3",
+        "itemIndex": 24,
+        "text": "クジラ",
+        "label": "クジラ",
+        "start": 38.18,
+        "end": 39.08,
+        "duration": 0.9,
+        "speechUnitCount": 1,
+        "wordCount": 1,
+        "matchScore": 0,
+        "asrText": "鯨",
+        "wordIndexes": [
+          56
+        ],
+        "method": "azure-speech-word-alignment",
+        "confidence": "needs-review",
+        "review": {
+          "status": "approved",
+          "reviewedAt": "2026-08-05T11:52:19.207Z",
+          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "matchScore": 0,
+          "asrText": "鯨"
+        }
+      }
+    },
+    {
+      "id": "l39-v025",
+      "kana": "サメ",
+      "writing": "サメ",
+      "meaningZh": [
+        "鲨鱼"
+      ],
+      "partOfSpeech": "名",
+      "rawText": "サメ [名] 鲨鱼",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l39-v025",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson39/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson39/lesson_words.mp3",
+        "itemIndex": 25,
+        "text": "サメ",
+        "label": "サメ",
+        "start": 39.59,
+        "end": 40.41,
+        "duration": 0.82,
+        "speechUnitCount": 2,
+        "wordCount": 2,
+        "matchScore": 1,
+        "asrText": "サ メ",
+        "wordIndexes": [
+          57,
+          58
+        ],
+        "method": "azure-speech-word-alignment",
+        "confidence": "high",
+        "review": {
+          "status": "approved",
+          "reviewedAt": "2026-08-05T11:52:19.207Z",
+          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "matchScore": 1,
+          "asrText": "サ メ"
+        }
+      }
+    },
+    {
+      "id": "l39-v026",
+      "kana": "ユーフォー",
+      "writing": "UFO",
+      "meaningZh": [
+        "不明飞行物"
+      ],
+      "partOfSpeech": "名",
+      "rawText": "ユーフォー（UFO） [名] 不明飞行物",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l39-v026",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson39/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson39/lesson_words.mp3",
+        "itemIndex": 26,
+        "text": "ユーフォー",
+        "label": "UFO",
+        "start": 42.39,
+        "end": 42.81,
+        "duration": 0.42,
+        "speechUnitCount": 1,
+        "wordCount": 1,
+        "matchScore": 1,
+        "asrText": "ufo",
+        "wordIndexes": [
+          60
+        ],
+        "method": "azure-speech-word-alignment",
+        "confidence": "high",
+        "review": {
+          "status": "approved",
+          "reviewedAt": "2026-08-05T11:52:19.207Z",
+          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "matchScore": 1,
+          "asrText": "ufo"
+        }
+      }
+    },
+    {
+      "id": "l39-v027",
+      "kana": "むかし",
+      "writing": "昔",
+      "meaningZh": [
+        "以前"
+      ],
+      "partOfSpeech": "名",
+      "rawText": "むかし（昔） [名] 以前",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l39-v027",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson39/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson39/lesson_words.mp3",
+        "itemIndex": 27,
+        "text": "むかし",
+        "label": "昔",
+        "start": 43.39,
+        "end": 44.45,
+        "duration": 1.06,
+        "speechUnitCount": 1,
+        "wordCount": 1,
+        "matchScore": 1,
+        "asrText": "昔",
+        "wordIndexes": [
+          61
+        ],
+        "method": "azure-speech-word-alignment",
+        "confidence": "high",
+        "review": {
+          "status": "approved",
+          "reviewedAt": "2026-08-05T11:52:19.207Z",
+          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "matchScore": 1,
+          "asrText": "昔"
+        }
+      }
+    },
+    {
+      "id": "l39-v028",
+      "kana": "べつめい",
+      "writing": "別名",
+      "meaningZh": [
+        "别名"
+      ],
+      "partOfSpeech": "名",
+      "rawText": "べつめい（別名） [名] 别名",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l39-v028",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson39/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson39/lesson_words.mp3",
+        "itemIndex": 28,
+        "text": "べつめい",
+        "label": "別名",
+        "start": 45.63,
+        "end": 46.85,
+        "duration": 1.22,
+        "speechUnitCount": 2,
+        "wordCount": 2,
+        "matchScore": 1,
+        "asrText": "別 名",
+        "wordIndexes": [
+          62,
+          63
+        ],
+        "method": "azure-speech-word-alignment",
+        "confidence": "high",
+        "review": {
+          "status": "approved",
+          "reviewedAt": "2026-08-05T11:52:19.207Z",
+          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "matchScore": 1,
+          "asrText": "別 名"
+        }
+      }
+    },
+    {
+      "id": "l39-v029",
+      "kana": "ほう",
+      "writing": "方",
+      "meaningZh": [
+        "方",
+        "方面"
+      ],
+      "partOfSpeech": "名",
+      "rawText": "ほう（方） [名] 方，方面",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l39-v029",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson39/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson39/lesson_words.mp3",
+        "itemIndex": 29,
+        "text": "ほう",
+        "label": "方",
+        "start": 47.15,
+        "end": 47.89,
+        "duration": 0.74,
+        "speechUnitCount": 2,
+        "wordCount": 2,
+        "matchScore": 1,
+        "asrText": "ほ う",
+        "wordIndexes": [
+          64,
+          65
+        ],
+        "method": "azure-speech-word-alignment",
+        "confidence": "high",
+        "review": {
+          "status": "approved",
+          "reviewedAt": "2026-08-05T11:52:19.207Z",
+          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "matchScore": 1,
+          "asrText": "ほ う"
+        }
+      }
+    },
+    {
+      "id": "l39-v030",
+      "kana": "どうろこうじ",
+      "writing": "道路工事",
+      "meaningZh": [
+        "道路施工"
+      ],
+      "partOfSpeech": "名",
+      "rawText": "どうろこうじ（道路工事） [名] 道路施工",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l39-v030",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson39/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson39/lesson_words.mp3",
+        "itemIndex": 30,
+        "text": "どうろこうじ",
+        "label": "道路工事",
+        "start": 49.28,
+        "end": 51.54,
+        "duration": 2.26,
+        "speechUnitCount": 4,
+        "wordCount": 4,
+        "matchScore": 1,
+        "asrText": "道 路 工 事",
+        "wordIndexes": [
+          66,
+          67,
+          68,
+          69
+        ],
+        "method": "azure-speech-word-alignment",
+        "confidence": "high",
+        "review": {
+          "status": "approved",
+          "reviewedAt": "2026-08-05T11:52:19.207Z",
+          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "matchScore": 1,
+          "asrText": "道 路 工 事"
+        }
+      }
+    },
+    {
+      "id": "l39-v031",
+      "kana": "つうきんラッシュ",
+      "writing": "通勤ラッシュ",
+      "meaningZh": [
+        "上下班高峰"
+      ],
+      "partOfSpeech": "名",
+      "rawText": "つうきんラッシュ（通勤〜） [名] 上下班高峰",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l39-v031",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson39/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson39/lesson_words.mp3",
+        "itemIndex": 31,
+        "text": "つうきんラッシュ",
+        "label": "通勤ラッシュ",
+        "start": 51.44,
+        "end": 52.62,
+        "duration": 1.18,
+        "speechUnitCount": 6,
+        "wordCount": 6,
+        "matchScore": 1,
+        "asrText": "通 勤 ラ ッ シ ュ",
+        "wordIndexes": [
+          70,
+          71,
+          72,
+          73,
+          74,
+          75
+        ],
+        "method": "azure-speech-word-alignment",
+        "confidence": "high",
+        "review": {
+          "status": "approved",
+          "reviewedAt": "2026-08-05T11:52:19.207Z",
+          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "matchScore": 1,
+          "asrText": "通 勤 ラ ッ シ ュ"
+        }
+      }
+    },
+    {
+      "id": "l39-v032",
+      "kana": "つうこうきんし",
+      "writing": "通行禁止",
+      "meaningZh": [
+        "禁止通行"
+      ],
+      "partOfSpeech": "名",
+      "rawText": "つうこうきんし（通行禁止） [名] 禁止通行",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l39-v032",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson39/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson39/lesson_words.mp3",
+        "itemIndex": 32,
+        "text": "つうこうきんし",
+        "label": "通行禁止",
+        "start": 53.83,
+        "end": 55.21,
+        "duration": 1.38,
+        "speechUnitCount": 4,
+        "wordCount": 4,
+        "matchScore": 1,
+        "asrText": "通 行 禁 止",
+        "wordIndexes": [
+          76,
+          77,
+          78,
+          79
+        ],
+        "method": "azure-speech-word-alignment",
+        "confidence": "high",
+        "review": {
+          "status": "approved",
+          "reviewedAt": "2026-08-05T11:52:19.207Z",
+          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "matchScore": 1,
+          "asrText": "通 行 禁 止"
+        }
+      }
+    },
+    {
+      "id": "l39-v033",
+      "kana": "とおく",
+      "writing": "遠く",
+      "meaningZh": [
+        "远处",
+        "远方"
+      ],
+      "partOfSpeech": "名",
+      "rawText": "とおく（遠く） [名] 远处，远方",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l39-v033",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson39/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson39/lesson_words.mp3",
+        "itemIndex": 33,
+        "text": "とおく",
+        "label": "遠く",
+        "start": 56.88,
+        "end": 57.34,
+        "duration": 0.46,
+        "speechUnitCount": 2,
+        "wordCount": 2,
+        "matchScore": 1,
+        "asrText": "遠 く",
+        "wordIndexes": [
+          80,
+          81
+        ],
+        "method": "azure-speech-word-alignment",
+        "confidence": "high",
+        "review": {
+          "status": "approved",
+          "reviewedAt": "2026-08-05T11:52:19.207Z",
+          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "matchScore": 1,
+          "asrText": "遠 く"
+        }
+      }
+    },
+    {
+      "id": "l39-v034",
+      "kana": "みわたします",
+      "writing": "見渡します",
+      "meaningZh": [
+        "眺望",
+        "远眺"
+      ],
+      "partOfSpeech": "动1",
+      "rawText": "みわたします（見渡します） [动1] 眺望，远眺",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l39-v034",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson39/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson39/lesson_words.mp3",
+        "itemIndex": 34,
+        "text": "みわたします",
+        "label": "見渡します",
+        "start": 57.97,
+        "end": 59.71,
+        "duration": 1.74,
+        "speechUnitCount": 5,
+        "wordCount": 5,
+        "matchScore": 1,
+        "asrText": "見 渡 し ま す",
+        "wordIndexes": [
+          82,
+          83,
+          84,
+          85,
+          86
+        ],
+        "method": "azure-speech-word-alignment",
+        "confidence": "high",
+        "review": {
+          "status": "approved",
+          "reviewedAt": "2026-08-05T11:52:19.207Z",
+          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "matchScore": 1,
+          "asrText": "見 渡 し ま す"
+        }
+      }
+    },
+    {
+      "id": "l39-v035",
+      "kana": "つづきます",
+      "writing": "続きます",
+      "meaningZh": [
+        "继续",
+        "持续"
+      ],
+      "partOfSpeech": "动1",
+      "rawText": "つづきます（続きます） [动1] 继续，持续",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l39-v035",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson39/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson39/lesson_words.mp3",
+        "itemIndex": 35,
+        "text": "つづきます",
+        "label": "続きます",
+        "start": 59.97,
+        "end": 61.27,
+        "duration": 1.3,
+        "speechUnitCount": 4,
+        "wordCount": 4,
+        "matchScore": 1,
+        "asrText": "続 き ま す",
+        "wordIndexes": [
+          87,
+          88,
+          89,
+          90
+        ],
+        "method": "azure-speech-word-alignment",
+        "confidence": "high",
+        "review": {
+          "status": "approved",
+          "reviewedAt": "2026-08-05T11:52:19.207Z",
+          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "matchScore": 1,
+          "asrText": "続 き ま す"
+        }
+      }
+    },
+    {
+      "id": "l39-v036",
+      "kana": "なくなります",
+      "writing": "なくなります",
+      "meaningZh": [
+        "完",
+        "丢失"
+      ],
+      "partOfSpeech": "动1",
+      "rawText": "なくなります [动1] 完，丢失",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l39-v036",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson39/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson39/lesson_words.mp3",
+        "itemIndex": 36,
+        "text": "なくなります",
+        "label": "なくなります",
+        "start": 61.45,
+        "end": 62.95,
+        "duration": 1.5,
+        "speechUnitCount": 6,
+        "wordCount": 6,
+        "matchScore": 1,
+        "asrText": "な く な り ま す",
+        "wordIndexes": [
+          91,
+          92,
+          93,
+          94,
+          95,
+          96
+        ],
+        "method": "azure-speech-word-alignment",
+        "confidence": "high",
+        "review": {
+          "status": "approved",
+          "reviewedAt": "2026-08-05T11:52:19.207Z",
+          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "matchScore": 1,
+          "asrText": "な く な り ま す"
+        }
+      }
+    },
+    {
+      "id": "l39-v037",
+      "kana": "そだちます",
+      "writing": "育ちます",
+      "meaningZh": [
+        "生长",
+        "成长"
+      ],
+      "partOfSpeech": "动1",
+      "rawText": "そだちます（育ちます） [动1] 生长，成长",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l39-v037",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson39/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson39/lesson_words.mp3",
+        "itemIndex": 37,
+        "text": "そだちます",
+        "label": "育ちます",
+        "start": 63.09,
+        "end": 64.47,
+        "duration": 1.38,
+        "speechUnitCount": 4,
+        "wordCount": 4,
+        "matchScore": 1,
+        "asrText": "育 ち ま す",
+        "wordIndexes": [
+          97,
+          98,
+          99,
+          100
+        ],
+        "method": "azure-speech-word-alignment",
+        "confidence": "high",
+        "review": {
+          "status": "approved",
+          "reviewedAt": "2026-08-05T11:52:19.207Z",
+          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "matchScore": 1,
+          "asrText": "育 ち ま す"
+        }
+      }
+    },
+    {
+      "id": "l39-v038",
+      "kana": "ふえます",
+      "writing": "増えます",
+      "meaningZh": [
+        "增加",
+        "增多"
+      ],
+      "partOfSpeech": "动2",
+      "rawText": "ふえます（増えます） [动2] 增加，增多",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l39-v038",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson39/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson39/lesson_words.mp3",
+        "itemIndex": 38,
+        "text": "ふえます",
+        "label": "増えます",
+        "start": 65.85,
+        "end": 66.95,
+        "duration": 1.1,
+        "speechUnitCount": 4,
+        "wordCount": 4,
+        "matchScore": 1,
+        "asrText": "増 え ま す",
+        "wordIndexes": [
+          101,
+          102,
+          103,
+          104
+        ],
+        "method": "azure-speech-word-alignment",
+        "confidence": "high",
+        "review": {
+          "status": "approved",
+          "reviewedAt": "2026-08-05T11:52:19.207Z",
+          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "matchScore": 1,
+          "asrText": "増 え ま す"
+        }
+      }
+    },
+    {
+      "id": "l39-v039",
+      "kana": "つれます",
+      "writing": "連れます",
+      "meaningZh": [
+        "带",
+        "领"
+      ],
+      "partOfSpeech": "动2",
+      "rawText": "つれます（連れます） [动2] 带，领",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l39-v039",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson39/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson39/lesson_words.mp3",
+        "itemIndex": 39,
+        "text": "つれます",
+        "label": "連れます",
+        "start": 67.25,
+        "end": 68.35,
+        "duration": 1.1,
+        "speechUnitCount": 4,
+        "wordCount": 4,
+        "matchScore": 1,
+        "asrText": "つ れ ま す",
+        "wordIndexes": [
+          105,
+          106,
+          107,
+          108
+        ],
+        "method": "azure-speech-word-alignment",
+        "confidence": "high",
+        "review": {
+          "status": "approved",
+          "reviewedAt": "2026-08-05T11:52:19.207Z",
+          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "matchScore": 1,
+          "asrText": "つ れ ま す"
+        }
+      }
+    },
+    {
+      "id": "l39-v040",
+      "kana": "けっせきします",
+      "writing": "欠席します",
+      "meaningZh": [
+        "缺席"
+      ],
+      "partOfSpeech": "动3",
+      "rawText": "けっせきします（欠席〜） [动3] 缺席",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l39-v040",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson39/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson39/lesson_words.mp3",
+        "itemIndex": 40,
+        "text": "けっせきします",
+        "label": "欠席します",
+        "start": 69.11,
+        "end": 70.57,
+        "duration": 1.46,
+        "speechUnitCount": 5,
+        "wordCount": 5,
+        "matchScore": 1,
+        "asrText": "欠 席 し ま す",
+        "wordIndexes": [
+          109,
+          110,
+          111,
+          112,
+          113
+        ],
+        "method": "azure-speech-word-alignment",
+        "confidence": "high",
+        "review": {
+          "status": "approved",
+          "reviewedAt": "2026-08-05T11:52:19.207Z",
+          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "matchScore": 1,
+          "asrText": "欠 席 し ま す"
+        }
+      }
+    },
+    {
+      "id": "l39-v041",
+      "kana": "ゆにゅうします",
+      "writing": "輸入します",
+      "meaningZh": [
+        "进口",
+        "输入"
+      ],
+      "partOfSpeech": "动3",
+      "rawText": "ゆにゅうします（輸入〜） [动3] 进口，输入",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l39-v041",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson39/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson39/lesson_words.mp3",
+        "itemIndex": 41,
+        "text": "ゆにゅうします",
+        "label": "輸入します",
+        "start": 72,
+        "end": 72.54,
+        "duration": 0.54,
+        "speechUnitCount": 5,
+        "wordCount": 5,
+        "matchScore": 1,
+        "asrText": "輸 入 し ま す",
+        "wordIndexes": [
+          114,
+          115,
+          116,
+          117,
+          118
+        ],
+        "method": "azure-speech-word-alignment",
+        "confidence": "high",
+        "review": {
+          "status": "approved",
+          "reviewedAt": "2026-08-05T11:52:19.207Z",
+          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "matchScore": 1,
+          "asrText": "輸 入 し ま す"
+        }
+      }
+    },
+    {
+      "id": "l39-v042",
+      "kana": "せっかく",
+      "writing": "せっかく",
+      "meaningZh": [
+        "好不容易",
+        "特意"
+      ],
+      "partOfSpeech": "副",
+      "rawText": "せっかく [副] 好（不）容易，特意",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l39-v042",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson39/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson39/lesson_words.mp3",
+        "itemIndex": 42,
+        "text": "せっかく",
+        "label": "せっかく",
+        "start": 72.99,
+        "end": 74.21,
+        "duration": 1.22,
+        "speechUnitCount": 4,
+        "wordCount": 4,
+        "matchScore": 1,
+        "asrText": "せ っ か く",
+        "wordIndexes": [
+          119,
+          120,
+          121,
+          122
+        ],
+        "method": "azure-speech-word-alignment",
+        "confidence": "high",
+        "review": {
+          "status": "approved",
+          "reviewedAt": "2026-08-05T11:52:19.207Z",
+          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "matchScore": 1,
+          "asrText": "せ っ か く"
+        }
+      }
+    },
+    {
+      "id": "l39-v043",
+      "kana": "ぜったい",
+      "writing": "絶対",
+      "meaningZh": [
+        "绝对",
+        "一定"
+      ],
+      "partOfSpeech": "副",
+      "rawText": "ぜったい（絶対） [副] 绝对，一定",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l39-v043",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson39/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson39/lesson_words.mp3",
+        "itemIndex": 43,
+        "text": "ぜったい",
+        "label": "絶対",
+        "start": 74.71,
+        "end": 75.69,
+        "duration": 0.98,
+        "speechUnitCount": 2,
+        "wordCount": 2,
+        "matchScore": 1,
+        "asrText": "絶 対",
+        "wordIndexes": [
+          123,
+          124
+        ],
+        "method": "azure-speech-word-alignment",
+        "confidence": "high",
+        "review": {
+          "status": "approved",
+          "reviewedAt": "2026-08-05T11:52:19.207Z",
+          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "matchScore": 1,
+          "asrText": "絶 対"
+        }
+      }
+    },
+    {
+      "id": "l39-v044",
+      "kana": "そうそう",
+      "writing": "そうそう",
+      "meaningZh": [
+        "是的是的"
+      ],
+      "partOfSpeech": "叹",
+      "rawText": "そうそう [叹] 是的是的",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l39-v044",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson39/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson39/lesson_words.mp3",
+        "itemIndex": 44,
+        "text": "そうそう",
+        "label": "そうそう",
+        "start": 76.63,
+        "end": 77.77,
+        "duration": 1.14,
+        "speechUnitCount": 4,
+        "wordCount": 4,
+        "matchScore": 1,
+        "asrText": "そ う そ う",
+        "wordIndexes": [
+          125,
+          126,
+          127,
+          128
+        ],
+        "method": "azure-speech-word-alignment",
+        "confidence": "high",
+        "review": {
+          "status": "approved",
+          "reviewedAt": "2026-08-05T11:52:19.207Z",
+          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "matchScore": 1,
+          "asrText": "そ う そ う"
+        }
+      }
+    },
+    {
+      "id": "l39-v045",
+      "kana": "しきんじょう",
+      "writing": "紫禁城",
+      "meaningZh": [
+        "紫禁城"
+      ],
+      "partOfSpeech": "专",
+      "rawText": "しきんじょう（紫禁城） [专] 紫禁城",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l39-v045",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson39/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson39/lesson_words.mp3",
+        "itemIndex": 45,
+        "text": "しきんじょう",
+        "label": "紫禁城",
+        "start": 78.31,
+        "end": 79.29,
+        "duration": 0.98,
+        "speechUnitCount": 3,
+        "wordCount": 3,
+        "matchScore": 1,
+        "asrText": "紫 禁 城",
+        "wordIndexes": [
+          129,
+          130,
+          131
+        ],
+        "method": "azure-speech-word-alignment",
+        "confidence": "high",
+        "review": {
+          "status": "approved",
+          "reviewedAt": "2026-08-05T11:52:19.207Z",
+          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "matchScore": 1,
+          "asrText": "紫 禁 城"
+        }
+      }
+    },
+    {
+      "id": "l39-v046",
+      "kana": "〜リットル",
+      "writing": "〜リットル",
+      "meaningZh": [],
+      "partOfSpeech": null,
+      "rawText": "〜リットル",
+      "confidence": "low",
+      "audioSegment": {
+        "id": "l39-v046",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson39/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson39/lesson_words.mp3",
+        "itemIndex": 46,
+        "text": "〜リットル",
+        "label": "〜リットル",
+        "start": 81.69,
+        "end": 82.23,
+        "duration": 0.54,
+        "speechUnitCount": 1,
+        "wordCount": 1,
+        "matchScore": 0,
+        "asrText": "l",
+        "wordIndexes": [
+          132
+        ],
+        "method": "azure-speech-word-alignment",
+        "confidence": "needs-review",
+        "review": {
+          "status": "approved",
+          "reviewedAt": "2026-08-05T11:52:19.207Z",
+          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "matchScore": 0,
+          "asrText": "l"
+        }
+      }
+    }
+  ],
+  "warnings": [
+    "词汇表末尾的“〜リットル”未标注词性或中文释义，按原文保留。"
+  ],
+  "audioAlignment": {
+    "schemaVersion": 1,
+    "lessonId": "lesson39",
+    "generatedAt": "2026-08-05T11:51:36.635Z",
+    "method": "azure-speech-word-alignment",
+    "reviewStatus": "approved",
+    "tracks": [
+      {
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson39/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson39/lesson_words.mp3",
+        "outputPath": "data/ocr/lesson39-vocabulary-audio-verified.json",
+        "sourceAudioSha256": "d9a532ee11acbc8d56759346377658e70dd3e5ae07b4b5e5465eb84029f5d5e0",
+        "duration": 82.17,
+        "expectedItems": 46,
+        "detectedWordCount": 132,
+        "alignedItems": 46,
+        "warnings": [
+          "6 item(s) aligned with low ASR similarity.",
+          "Detected 132 word token(s) for 46 vocabulary item(s)."
+        ],
+        "transcription": {
+          "provider": "azure-speech-sdk-continuous-recognition",
+          "locale": "ja-JP",
+          "text": "村稲。 キリモン、舞台。 屋祢。 瑠璃瓦。 黄色。ソーラ。 バッグ、貸し切り。 一、般祖母。 音楽会、ジャズ。 野外コンサート。 円高。 輸出。 影響。 資源。 気温。 沖、海外。 鯨。 サメ。 UFO、 UFO。 昔。 別名、ほう。 道路工事、通勤ラッシュ。 通行禁止。 遠く。 見渡します。続きます。なくなります。育ちます。 増えます。つれます。 欠席します。 輸入します。 せっかく。絶対。 そうそう。 紫禁城。 L。",
+          "phrases": [
+            {
+              "text": "村稲。",
+              "offset": 8300000,
+              "duration": 20800000,
+              "confidence": 0.5091228,
+              "words": [
+                {
+                  "text": "村",
+                  "start": 8300000,
+                  "duration": 6800000,
+                  "confidence": 0.5091228
+                },
+                {
+                  "text": "稲",
+                  "start": 23100000,
+                  "duration": 6000000,
+                  "confidence": 0.5091228
+                }
+              ]
+            },
+            {
+              "text": "キリモン、舞台。",
+              "offset": 36700000,
+              "duration": 30000000,
+              "confidence": 0.46444213,
+              "words": [
+                {
+                  "text": "キ",
+                  "start": 36700000,
+                  "duration": 1600000,
+                  "confidence": 0.46444213
+                },
+                {
+                  "text": "リ",
+                  "start": 38300000,
+                  "duration": 4400000,
+                  "confidence": 0.46444213
+                },
+                {
+                  "text": "モ",
+                  "start": 47900000,
+                  "duration": 2800000,
+                  "confidence": 0.46444213
+                },
+                {
+                  "text": "ン",
+                  "start": 50700000,
+                  "duration": 4000000,
+                  "confidence": 0.46444213
+                },
+                {
+                  "text": "舞",
+                  "start": 59500000,
+                  "duration": 1600000,
+                  "confidence": 0.46444213
+                },
+                {
+                  "text": "台",
+                  "start": 61900000,
+                  "duration": 4800000,
+                  "confidence": 0.46444213
+                }
+              ]
+            },
+            {
+              "text": "屋祢。",
+              "offset": 74700000,
+              "duration": 5600000,
+              "confidence": 0.66643405,
+              "words": [
+                {
+                  "text": "屋",
+                  "start": 74700000,
+                  "duration": 2400000,
+                  "confidence": 0.66643405
+                },
+                {
+                  "text": "祢",
+                  "start": 77100000,
+                  "duration": 3200000,
+                  "confidence": 0.66643405
+                }
+              ]
+            },
+            {
+              "text": "瑠璃瓦。",
+              "offset": 87100000,
+              "duration": 8000000,
+              "confidence": 0.49178243,
+              "words": [
+                {
+                  "text": "瑠",
+                  "start": 87100000,
+                  "duration": 2400000,
+                  "confidence": 0.49178243
+                },
+                {
+                  "text": "璃",
+                  "start": 89500000,
+                  "duration": 1600000,
+                  "confidence": 0.49178243
+                },
+                {
+                  "text": "瓦",
+                  "start": 91100000,
+                  "duration": 4000000,
+                  "confidence": 0.49178243
+                }
+              ]
+            },
+            {
+              "text": "黄色。ソーラ。",
+              "offset": 104700000,
+              "duration": 20400000,
+              "confidence": 0.57742876,
+              "words": [
+                {
+                  "text": "黄",
+                  "start": 104700000,
+                  "duration": 5200000,
+                  "confidence": 0.57742876
+                },
+                {
+                  "text": "色",
+                  "start": 109900000,
+                  "duration": 4800000,
+                  "confidence": 0.57742876
+                },
+                {
+                  "text": "ソ",
+                  "start": 117900000,
+                  "duration": 2000000,
+                  "confidence": 0.57742876
+                },
+                {
+                  "text": "ー",
+                  "start": 119900000,
+                  "duration": 2000000,
+                  "confidence": 0.57742876
+                },
+                {
+                  "text": "ラ",
+                  "start": 121900000,
+                  "duration": 3200000,
+                  "confidence": 0.57742876
+                }
+              ]
+            },
+            {
+              "text": "バッグ、貸し切り。",
+              "offset": 133900000,
+              "duration": 23600000,
+              "confidence": 0.89286846,
+              "words": [
+                {
+                  "text": "バ",
+                  "start": 133900000,
+                  "duration": 2400000,
+                  "confidence": 0.89286846
+                },
+                {
+                  "text": "ッ",
+                  "start": 136300000,
+                  "duration": 2400000,
+                  "confidence": 0.89286846
+                },
+                {
+                  "text": "グ",
+                  "start": 138700000,
+                  "duration": 3600000,
+                  "confidence": 0.89286846
+                },
+                {
+                  "text": "貸",
+                  "start": 146700000,
+                  "duration": 2800000,
+                  "confidence": 0.89286846
+                },
+                {
+                  "text": "し",
+                  "start": 149500000,
+                  "duration": 2000000,
+                  "confidence": 0.89286846
+                },
+                {
+                  "text": "切",
+                  "start": 151500000,
+                  "duration": 1600000,
+                  "confidence": 0.89286846
+                },
+                {
+                  "text": "り",
+                  "start": 153100000,
+                  "duration": 4400000,
+                  "confidence": 0.89286846
+                }
+              ]
+            },
+            {
+              "text": "一、般祖母。",
+              "offset": 166300000,
+              "duration": 21200000,
+              "confidence": 0.8335651,
+              "words": [
+                {
+                  "text": "一",
+                  "start": 166300000,
+                  "duration": 3600000,
+                  "confidence": 0.8335651
+                },
+                {
+                  "text": "般",
+                  "start": 170700000,
+                  "duration": 6800000,
+                  "confidence": 0.8335651
+                },
+                {
+                  "text": "祖",
+                  "start": 179500000,
+                  "duration": 6400000,
+                  "confidence": 0.8335651
+                },
+                {
+                  "text": "母",
+                  "start": 185900000,
+                  "duration": 1600000,
+                  "confidence": 0.8335651
+                }
+              ]
+            },
+            {
+              "text": "音楽会、ジャズ。",
+              "offset": 199900000,
+              "duration": 22400000,
+              "confidence": 0.8654744,
+              "words": [
+                {
+                  "text": "音",
+                  "start": 199900000,
+                  "duration": 2000000,
+                  "confidence": 0.8654744
+                },
+                {
+                  "text": "楽",
+                  "start": 201900000,
+                  "duration": 4400000,
+                  "confidence": 0.8654744
+                },
+                {
+                  "text": "会",
+                  "start": 206300000,
+                  "duration": 4800000,
+                  "confidence": 0.8654744
+                },
+                {
+                  "text": "ジ",
+                  "start": 215100000,
+                  "duration": 2000000,
+                  "confidence": 0.8654744
+                },
+                {
+                  "text": "ャ",
+                  "start": 217100000,
+                  "duration": 1200000,
+                  "confidence": 0.8654744
+                },
+                {
+                  "text": "ズ",
+                  "start": 218300000,
+                  "duration": 4000000,
+                  "confidence": 0.8654744
+                }
+              ]
+            },
+            {
+              "text": "野外コンサート。",
+              "offset": 237100000,
+              "duration": 14800000,
+              "confidence": 0.9332117,
+              "words": [
+                {
+                  "text": "野",
+                  "start": 237100000,
+                  "duration": 800000,
+                  "confidence": 0.9332117
+                },
+                {
+                  "text": "外",
+                  "start": 237900000,
+                  "duration": 5200000,
+                  "confidence": 0.9332117
+                },
+                {
+                  "text": "コ",
+                  "start": 243100000,
+                  "duration": 2000000,
+                  "confidence": 0.9332117
+                },
+                {
+                  "text": "ン",
+                  "start": 245100000,
+                  "duration": 1200000,
+                  "confidence": 0.9332117
+                },
+                {
+                  "text": "サ",
+                  "start": 246300000,
+                  "duration": 2000000,
+                  "confidence": 0.9332117
+                },
+                {
+                  "text": "ー",
+                  "start": 248300000,
+                  "duration": 2000000,
+                  "confidence": 0.9332117
+                },
+                {
+                  "text": "ト",
+                  "start": 250300000,
+                  "duration": 1600000,
+                  "confidence": 0.9332117
+                }
+              ]
+            },
+            {
+              "text": "円高。",
+              "offset": 267200000,
+              "duration": 3600000,
+              "confidence": 0.92155004,
+              "words": [
+                {
+                  "text": "円",
+                  "start": 267200000,
+                  "duration": 1600000,
+                  "confidence": 0.92155004
+                },
+                {
+                  "text": "高",
+                  "start": 268800000,
+                  "duration": 2000000,
+                  "confidence": 0.92155004
+                }
+              ]
+            },
+            {
+              "text": "輸出。",
+              "offset": 280000000,
+              "duration": 10000000,
+              "confidence": 0.93669975,
+              "words": [
+                {
+                  "text": "輸",
+                  "start": 280000000,
+                  "duration": 9200000,
+                  "confidence": 0.93669975
+                },
+                {
+                  "text": "出",
+                  "start": 289200000,
+                  "duration": 800000,
+                  "confidence": 0.93669975
+                }
+              ]
+            },
+            {
+              "text": "影響。",
+              "offset": 306400000,
+              "duration": 800000,
+              "confidence": 0.9046674,
+              "words": [
+                {
+                  "text": "影",
+                  "start": 306400000,
+                  "duration": 400000,
+                  "confidence": 0.9046674
+                },
+                {
+                  "text": "響",
+                  "start": 306800000,
+                  "duration": 400000,
+                  "confidence": 0.9046674
+                }
+              ]
+            },
+            {
+              "text": "資源。",
+              "offset": 315500000,
+              "duration": 7200000,
+              "confidence": 0.94366515,
+              "words": [
+                {
+                  "text": "資",
+                  "start": 315500000,
+                  "duration": 1600000,
+                  "confidence": 0.94366515
+                },
+                {
+                  "text": "源",
+                  "start": 317500000,
+                  "duration": 5200000,
+                  "confidence": 0.94366515
+                }
+              ]
+            },
+            {
+              "text": "気温。",
+              "offset": 338000000,
+              "duration": 800000,
+              "confidence": 0.9150173,
+              "words": [
+                {
+                  "text": "気",
+                  "start": 338000000,
+                  "duration": 400000,
+                  "confidence": 0.9150173
+                },
+                {
+                  "text": "温",
+                  "start": 338400000,
+                  "duration": 400000,
+                  "confidence": 0.9150173
+                }
+              ]
+            },
+            {
+              "text": "沖、海外。",
+              "offset": 344700000,
+              "duration": 22800000,
+              "confidence": 0.8606637,
+              "words": [
+                {
+                  "text": "沖",
+                  "start": 344700000,
+                  "duration": 7200000,
+                  "confidence": 0.8606637
+                },
+                {
+                  "text": "海",
+                  "start": 359100000,
+                  "duration": 3600000,
+                  "confidence": 0.8606637
+                },
+                {
+                  "text": "外",
+                  "start": 362700000,
+                  "duration": 4800000,
+                  "confidence": 0.8606637
+                }
+              ]
+            },
+            {
+              "text": "鯨。",
+              "offset": 382200000,
+              "duration": 8000000,
+              "confidence": 0.63776857,
+              "words": [
+                {
+                  "text": "鯨",
+                  "start": 382200000,
+                  "duration": 8000000,
+                  "confidence": 0.63776857
+                }
+              ]
+            },
+            {
+              "text": "サメ。",
+              "offset": 396300000,
+              "duration": 7200000,
+              "confidence": 0.7270967,
+              "words": [
+                {
+                  "text": "サ",
+                  "start": 396300000,
+                  "duration": 2000000,
+                  "confidence": 0.7270967
+                },
+                {
+                  "text": "メ",
+                  "start": 398300000,
+                  "duration": 5200000,
+                  "confidence": 0.7270967
+                }
+              ]
+            },
+            {
+              "text": "UFO、 UFO。",
+              "offset": 416300000,
+              "duration": 11200000,
+              "confidence": 0.44043386,
+              "words": [
+                {
+                  "text": "ufo",
+                  "start": 416300000,
+                  "duration": 8000000,
+                  "confidence": 0.44043386
+                },
+                {
+                  "text": "ufo",
+                  "start": 424300000,
+                  "duration": 3200000,
+                  "confidence": 0.44043386
+                }
+              ]
+            },
+            {
+              "text": "昔。",
+              "offset": 434300000,
+              "duration": 9600000,
+              "confidence": 0.828744,
+              "words": [
+                {
+                  "text": "昔",
+                  "start": 434300000,
+                  "duration": 9600000,
+                  "confidence": 0.828744
+                }
+              ]
+            },
+            {
+              "text": "別名、ほう。",
+              "offset": 456700000,
+              "duration": 21600000,
+              "confidence": 0.7942976,
+              "words": [
+                {
+                  "text": "別",
+                  "start": 456700000,
+                  "duration": 4800000,
+                  "confidence": 0.7942976
+                },
+                {
+                  "text": "名",
+                  "start": 461500000,
+                  "duration": 6400000,
+                  "confidence": 0.7942976
+                },
+                {
+                  "text": "ほ",
+                  "start": 471900000,
+                  "duration": 5600000,
+                  "confidence": 0.7942976
+                },
+                {
+                  "text": "う",
+                  "start": 477500000,
+                  "duration": 800000,
+                  "confidence": 0.7942976
+                }
+              ]
+            },
+            {
+              "text": "道路工事、通勤ラッシュ。",
+              "offset": 493200000,
+              "duration": 32400000,
+              "confidence": 0.9128194,
+              "words": [
+                {
+                  "text": "道",
+                  "start": 493200000,
+                  "duration": 10400000,
+                  "confidence": 0.9128194
+                },
+                {
+                  "text": "路",
+                  "start": 503600000,
+                  "duration": 4400000,
+                  "confidence": 0.9128194
+                },
+                {
+                  "text": "工",
+                  "start": 512400000,
+                  "duration": 800000,
+                  "confidence": 0.9128194
+                },
+                {
+                  "text": "事",
+                  "start": 513200000,
+                  "duration": 1600000,
+                  "confidence": 0.9128194
+                },
+                {
+                  "text": "通",
+                  "start": 514800000,
+                  "duration": 1600000,
+                  "confidence": 0.9128194
+                },
+                {
+                  "text": "勤",
+                  "start": 516400000,
+                  "duration": 3200000,
+                  "confidence": 0.9128194
+                },
+                {
+                  "text": "ラ",
+                  "start": 519600000,
+                  "duration": 1600000,
+                  "confidence": 0.9128194
+                },
+                {
+                  "text": "ッ",
+                  "start": 521200000,
+                  "duration": 400000,
+                  "confidence": 0.9128194
+                },
+                {
+                  "text": "シ",
+                  "start": 521600000,
+                  "duration": 2400000,
+                  "confidence": 0.9128194
+                },
+                {
+                  "text": "ュ",
+                  "start": 524000000,
+                  "duration": 1600000,
+                  "confidence": 0.9128194
+                }
+              ]
+            },
+            {
+              "text": "通行禁止。",
+              "offset": 538700000,
+              "duration": 12800000,
+              "confidence": 0.9652755,
+              "words": [
+                {
+                  "text": "通",
+                  "start": 538700000,
+                  "duration": 2400000,
+                  "confidence": 0.9652755
+                },
+                {
+                  "text": "行",
+                  "start": 541100000,
+                  "duration": 4000000,
+                  "confidence": 0.9652755
+                },
+                {
+                  "text": "禁",
+                  "start": 545100000,
+                  "duration": 4800000,
+                  "confidence": 0.9652755
+                },
+                {
+                  "text": "止",
+                  "start": 549900000,
+                  "duration": 1600000,
+                  "confidence": 0.9652755
+                }
+              ]
+            },
+            {
+              "text": "遠く。",
+              "offset": 569200000,
+              "duration": 3600000,
+              "confidence": 0.8296398,
+              "words": [
+                {
+                  "text": "遠",
+                  "start": 569200000,
+                  "duration": 1600000,
+                  "confidence": 0.8296398
+                },
+                {
+                  "text": "く",
+                  "start": 570800000,
+                  "duration": 2000000,
+                  "confidence": 0.8296398
+                }
+              ]
+            },
+            {
+              "text": "見渡します。続きます。なくなります。育ちます。",
+              "offset": 580100000,
+              "duration": 64000000,
+              "confidence": 0.8921783,
+              "words": [
+                {
+                  "text": "見",
+                  "start": 580100000,
+                  "duration": 1200000,
+                  "confidence": 0.8921783
+                },
+                {
+                  "text": "渡",
+                  "start": 581300000,
+                  "duration": 800000,
+                  "confidence": 0.8921783
+                },
+                {
+                  "text": "し",
+                  "start": 582100000,
+                  "duration": 1600000,
+                  "confidence": 0.8921783
+                },
+                {
+                  "text": "ま",
+                  "start": 583700000,
+                  "duration": 8000000,
+                  "confidence": 0.8921783
+                },
+                {
+                  "text": "す",
+                  "start": 591700000,
+                  "duration": 4800000,
+                  "confidence": 0.8921783
+                },
+                {
+                  "text": "続",
+                  "start": 600100000,
+                  "duration": 4000000,
+                  "confidence": 0.8921783
+                },
+                {
+                  "text": "き",
+                  "start": 604100000,
+                  "duration": 2000000,
+                  "confidence": 0.8921783
+                },
+                {
+                  "text": "ま",
+                  "start": 606100000,
+                  "duration": 1600000,
+                  "confidence": 0.8921783
+                },
+                {
+                  "text": "す",
+                  "start": 607700000,
+                  "duration": 4400000,
+                  "confidence": 0.8921783
+                },
+                {
+                  "text": "な",
+                  "start": 614900000,
+                  "duration": 2800000,
+                  "confidence": 0.8921783
+                },
+                {
+                  "text": "く",
+                  "start": 617700000,
+                  "duration": 1600000,
+                  "confidence": 0.8921783
+                },
+                {
+                  "text": "な",
+                  "start": 619300000,
+                  "duration": 1600000,
+                  "confidence": 0.8921783
+                },
+                {
+                  "text": "り",
+                  "start": 620900000,
+                  "duration": 1600000,
+                  "confidence": 0.8921783
+                },
+                {
+                  "text": "ま",
+                  "start": 622500000,
+                  "duration": 2000000,
+                  "confidence": 0.8921783
+                },
+                {
+                  "text": "す",
+                  "start": 624500000,
+                  "duration": 4400000,
+                  "confidence": 0.8921783
+                },
+                {
+                  "text": "育",
+                  "start": 631300000,
+                  "duration": 2800000,
+                  "confidence": 0.8921783
+                },
+                {
+                  "text": "ち",
+                  "start": 635300000,
+                  "duration": 2400000,
+                  "confidence": 0.8921783
+                },
+                {
+                  "text": "ま",
+                  "start": 637700000,
+                  "duration": 2000000,
+                  "confidence": 0.8921783
+                },
+                {
+                  "text": "す",
+                  "start": 639700000,
+                  "duration": 4400000,
+                  "confidence": 0.8921783
+                }
+              ]
+            },
+            {
+              "text": "増えます。つれます。",
+              "offset": 658900000,
+              "duration": 24000000,
+              "confidence": 0.807414,
+              "words": [
+                {
+                  "text": "増",
+                  "start": 658900000,
+                  "duration": 800000,
+                  "confidence": 0.807414
+                },
+                {
+                  "text": "え",
+                  "start": 659700000,
+                  "duration": 2400000,
+                  "confidence": 0.807414
+                },
+                {
+                  "text": "ま",
+                  "start": 662100000,
+                  "duration": 2400000,
+                  "confidence": 0.807414
+                },
+                {
+                  "text": "す",
+                  "start": 664500000,
+                  "duration": 4400000,
+                  "confidence": 0.807414
+                },
+                {
+                  "text": "つ",
+                  "start": 672900000,
+                  "duration": 3200000,
+                  "confidence": 0.807414
+                },
+                {
+                  "text": "れ",
+                  "start": 676100000,
+                  "duration": 1600000,
+                  "confidence": 0.807414
+                },
+                {
+                  "text": "ま",
+                  "start": 677700000,
+                  "duration": 2000000,
+                  "confidence": 0.807414
+                },
+                {
+                  "text": "す",
+                  "start": 679700000,
+                  "duration": 3200000,
+                  "confidence": 0.807414
+                }
+              ]
+            },
+            {
+              "text": "欠席します。",
+              "offset": 691500000,
+              "duration": 13600000,
+              "confidence": 0.94643736,
+              "words": [
+                {
+                  "text": "欠",
+                  "start": 691500000,
+                  "duration": 2000000,
+                  "confidence": 0.94643736
+                },
+                {
+                  "text": "席",
+                  "start": 693500000,
+                  "duration": 5600000,
+                  "confidence": 0.94643736
+                },
+                {
+                  "text": "し",
+                  "start": 699100000,
+                  "duration": 1600000,
+                  "confidence": 0.94643736
+                },
+                {
+                  "text": "ま",
+                  "start": 700700000,
+                  "duration": 2000000,
+                  "confidence": 0.94643736
+                },
+                {
+                  "text": "す",
+                  "start": 702700000,
+                  "duration": 2400000,
+                  "confidence": 0.94643736
+                }
+              ]
+            },
+            {
+              "text": "輸入します。",
+              "offset": 720400000,
+              "duration": 4400000,
+              "confidence": 0.92508537,
+              "words": [
+                {
+                  "text": "輸",
+                  "start": 720400000,
+                  "duration": 800000,
+                  "confidence": 0.92508537
+                },
+                {
+                  "text": "入",
+                  "start": 721200000,
+                  "duration": 800000,
+                  "confidence": 0.92508537
+                },
+                {
+                  "text": "し",
+                  "start": 722000000,
+                  "duration": 800000,
+                  "confidence": 0.92508537
+                },
+                {
+                  "text": "ま",
+                  "start": 722800000,
+                  "duration": 800000,
+                  "confidence": 0.92508537
+                },
+                {
+                  "text": "す",
+                  "start": 723600000,
+                  "duration": 1200000,
+                  "confidence": 0.92508537
+                }
+              ]
+            },
+            {
+              "text": "せっかく。絶対。",
+              "offset": 730300000,
+              "duration": 26000000,
+              "confidence": 0.90374964,
+              "words": [
+                {
+                  "text": "せ",
+                  "start": 730300000,
+                  "duration": 2400000,
+                  "confidence": 0.90374964
+                },
+                {
+                  "text": "っ",
+                  "start": 732700000,
+                  "duration": 1600000,
+                  "confidence": 0.90374964
+                },
+                {
+                  "text": "か",
+                  "start": 734300000,
+                  "duration": 2400000,
+                  "confidence": 0.90374964
+                },
+                {
+                  "text": "く",
+                  "start": 736700000,
+                  "duration": 4800000,
+                  "confidence": 0.90374964
+                },
+                {
+                  "text": "絶",
+                  "start": 747500000,
+                  "duration": 1600000,
+                  "confidence": 0.90374964
+                },
+                {
+                  "text": "対",
+                  "start": 749100000,
+                  "duration": 7200000,
+                  "confidence": 0.90374964
+                }
+              ]
+            },
+            {
+              "text": "そうそう。",
+              "offset": 766700000,
+              "duration": 10400000,
+              "confidence": 0.97333133,
+              "words": [
+                {
+                  "text": "そ",
+                  "start": 766700000,
+                  "duration": 3600000,
+                  "confidence": 0.97333133
+                },
+                {
+                  "text": "う",
+                  "start": 770300000,
+                  "duration": 800000,
+                  "confidence": 0.97333133
+                },
+                {
+                  "text": "そ",
+                  "start": 771100000,
+                  "duration": 5200000,
+                  "confidence": 0.97333133
+                },
+                {
+                  "text": "う",
+                  "start": 776300000,
+                  "duration": 800000,
+                  "confidence": 0.97333133
+                }
+              ]
+            },
+            {
+              "text": "紫禁城。",
+              "offset": 783500000,
+              "duration": 8800000,
+              "confidence": 0.41254193,
+              "words": [
+                {
+                  "text": "紫",
+                  "start": 783500000,
+                  "duration": 3600000,
+                  "confidence": 0.41254193
+                },
+                {
+                  "text": "禁",
+                  "start": 787100000,
+                  "duration": 2800000,
+                  "confidence": 0.41254193
+                },
+                {
+                  "text": "城",
+                  "start": 789900000,
+                  "duration": 2400000,
+                  "confidence": 0.41254193
+                }
+              ]
+            },
+            {
+              "text": "L。",
+              "offset": 817300000,
+              "duration": 4400000,
+              "confidence": 0.27901223,
+              "words": [
+                {
+                  "text": "l",
+                  "start": 817300000,
+                  "duration": 4400000,
+                  "confidence": 0.27901223
+                }
+              ]
+            }
+          ],
+          "words": [
+            {
+              "index": 1,
+              "text": "村",
+              "start": 0.83,
+              "end": 1.51,
+              "confidence": 0.5091228,
+              "phraseIndex": 0,
+              "wordIndex": 0
+            },
+            {
+              "index": 2,
+              "text": "稲",
+              "start": 2.31,
+              "end": 2.91,
+              "confidence": 0.5091228,
+              "phraseIndex": 0,
+              "wordIndex": 1
+            },
+            {
+              "index": 3,
+              "text": "キ",
+              "start": 3.67,
+              "end": 3.83,
+              "confidence": 0.46444213,
+              "phraseIndex": 1,
+              "wordIndex": 0
+            },
+            {
+              "index": 4,
+              "text": "リ",
+              "start": 3.83,
+              "end": 4.27,
+              "confidence": 0.46444213,
+              "phraseIndex": 1,
+              "wordIndex": 1
+            },
+            {
+              "index": 5,
+              "text": "モ",
+              "start": 4.79,
+              "end": 5.07,
+              "confidence": 0.46444213,
+              "phraseIndex": 1,
+              "wordIndex": 2
+            },
+            {
+              "index": 6,
+              "text": "ン",
+              "start": 5.07,
+              "end": 5.47,
+              "confidence": 0.46444213,
+              "phraseIndex": 1,
+              "wordIndex": 3
+            },
+            {
+              "index": 7,
+              "text": "舞",
+              "start": 5.95,
+              "end": 6.11,
+              "confidence": 0.46444213,
+              "phraseIndex": 1,
+              "wordIndex": 4
+            },
+            {
+              "index": 8,
+              "text": "台",
+              "start": 6.19,
+              "end": 6.67,
+              "confidence": 0.46444213,
+              "phraseIndex": 1,
+              "wordIndex": 5
+            },
+            {
+              "index": 9,
+              "text": "屋",
+              "start": 7.47,
+              "end": 7.71,
+              "confidence": 0.66643405,
+              "phraseIndex": 2,
+              "wordIndex": 0
+            },
+            {
+              "index": 10,
+              "text": "祢",
+              "start": 7.71,
+              "end": 8.03,
+              "confidence": 0.66643405,
+              "phraseIndex": 2,
+              "wordIndex": 1
+            },
+            {
+              "index": 11,
+              "text": "瑠",
+              "start": 8.71,
+              "end": 8.95,
+              "confidence": 0.49178243,
+              "phraseIndex": 3,
+              "wordIndex": 0
+            },
+            {
+              "index": 12,
+              "text": "璃",
+              "start": 8.95,
+              "end": 9.11,
+              "confidence": 0.49178243,
+              "phraseIndex": 3,
+              "wordIndex": 1
+            },
+            {
+              "index": 13,
+              "text": "瓦",
+              "start": 9.11,
+              "end": 9.51,
+              "confidence": 0.49178243,
+              "phraseIndex": 3,
+              "wordIndex": 2
+            },
+            {
+              "index": 14,
+              "text": "黄",
+              "start": 10.47,
+              "end": 10.99,
+              "confidence": 0.57742876,
+              "phraseIndex": 4,
+              "wordIndex": 0
+            },
+            {
+              "index": 15,
+              "text": "色",
+              "start": 10.99,
+              "end": 11.47,
+              "confidence": 0.57742876,
+              "phraseIndex": 4,
+              "wordIndex": 1
+            },
+            {
+              "index": 16,
+              "text": "ソ",
+              "start": 11.79,
+              "end": 11.99,
+              "confidence": 0.57742876,
+              "phraseIndex": 4,
+              "wordIndex": 2
+            },
+            {
+              "index": 17,
+              "text": "ー",
+              "start": 11.99,
+              "end": 12.19,
+              "confidence": 0.57742876,
+              "phraseIndex": 4,
+              "wordIndex": 3
+            },
+            {
+              "index": 18,
+              "text": "ラ",
+              "start": 12.19,
+              "end": 12.51,
+              "confidence": 0.57742876,
+              "phraseIndex": 4,
+              "wordIndex": 4
+            },
+            {
+              "index": 19,
+              "text": "バ",
+              "start": 13.39,
+              "end": 13.63,
+              "confidence": 0.89286846,
+              "phraseIndex": 5,
+              "wordIndex": 0
+            },
+            {
+              "index": 20,
+              "text": "ッ",
+              "start": 13.63,
+              "end": 13.87,
+              "confidence": 0.89286846,
+              "phraseIndex": 5,
+              "wordIndex": 1
+            },
+            {
+              "index": 21,
+              "text": "グ",
+              "start": 13.87,
+              "end": 14.23,
+              "confidence": 0.89286846,
+              "phraseIndex": 5,
+              "wordIndex": 2
+            },
+            {
+              "index": 22,
+              "text": "貸",
+              "start": 14.67,
+              "end": 14.95,
+              "confidence": 0.89286846,
+              "phraseIndex": 5,
+              "wordIndex": 3
+            },
+            {
+              "index": 23,
+              "text": "し",
+              "start": 14.95,
+              "end": 15.15,
+              "confidence": 0.89286846,
+              "phraseIndex": 5,
+              "wordIndex": 4
+            },
+            {
+              "index": 24,
+              "text": "切",
+              "start": 15.15,
+              "end": 15.31,
+              "confidence": 0.89286846,
+              "phraseIndex": 5,
+              "wordIndex": 5
+            },
+            {
+              "index": 25,
+              "text": "り",
+              "start": 15.31,
+              "end": 15.75,
+              "confidence": 0.89286846,
+              "phraseIndex": 5,
+              "wordIndex": 6
+            },
+            {
+              "index": 26,
+              "text": "一",
+              "start": 16.63,
+              "end": 16.99,
+              "confidence": 0.8335651,
+              "phraseIndex": 6,
+              "wordIndex": 0
+            },
+            {
+              "index": 27,
+              "text": "般",
+              "start": 17.07,
+              "end": 17.75,
+              "confidence": 0.8335651,
+              "phraseIndex": 6,
+              "wordIndex": 1
+            },
+            {
+              "index": 28,
+              "text": "祖",
+              "start": 17.95,
+              "end": 18.59,
+              "confidence": 0.8335651,
+              "phraseIndex": 6,
+              "wordIndex": 2
+            },
+            {
+              "index": 29,
+              "text": "母",
+              "start": 18.59,
+              "end": 18.75,
+              "confidence": 0.8335651,
+              "phraseIndex": 6,
+              "wordIndex": 3
+            },
+            {
+              "index": 30,
+              "text": "音",
+              "start": 19.99,
+              "end": 20.19,
+              "confidence": 0.8654744,
+              "phraseIndex": 7,
+              "wordIndex": 0
+            },
+            {
+              "index": 31,
+              "text": "楽",
+              "start": 20.19,
+              "end": 20.63,
+              "confidence": 0.8654744,
+              "phraseIndex": 7,
+              "wordIndex": 1
+            },
+            {
+              "index": 32,
+              "text": "会",
+              "start": 20.63,
+              "end": 21.11,
+              "confidence": 0.8654744,
+              "phraseIndex": 7,
+              "wordIndex": 2
+            },
+            {
+              "index": 33,
+              "text": "ジ",
+              "start": 21.51,
+              "end": 21.71,
+              "confidence": 0.8654744,
+              "phraseIndex": 7,
+              "wordIndex": 3
+            },
+            {
+              "index": 34,
+              "text": "ャ",
+              "start": 21.71,
+              "end": 21.83,
+              "confidence": 0.8654744,
+              "phraseIndex": 7,
+              "wordIndex": 4
+            },
+            {
+              "index": 35,
+              "text": "ズ",
+              "start": 21.83,
+              "end": 22.23,
+              "confidence": 0.8654744,
+              "phraseIndex": 7,
+              "wordIndex": 5
+            },
+            {
+              "index": 36,
+              "text": "野",
+              "start": 23.71,
+              "end": 23.79,
+              "confidence": 0.9332117,
+              "phraseIndex": 8,
+              "wordIndex": 0
+            },
+            {
+              "index": 37,
+              "text": "外",
+              "start": 23.79,
+              "end": 24.31,
+              "confidence": 0.9332117,
+              "phraseIndex": 8,
+              "wordIndex": 1
+            },
+            {
+              "index": 38,
+              "text": "コ",
+              "start": 24.31,
+              "end": 24.51,
+              "confidence": 0.9332117,
+              "phraseIndex": 8,
+              "wordIndex": 2
+            },
+            {
+              "index": 39,
+              "text": "ン",
+              "start": 24.51,
+              "end": 24.63,
+              "confidence": 0.9332117,
+              "phraseIndex": 8,
+              "wordIndex": 3
+            },
+            {
+              "index": 40,
+              "text": "サ",
+              "start": 24.63,
+              "end": 24.83,
+              "confidence": 0.9332117,
+              "phraseIndex": 8,
+              "wordIndex": 4
+            },
+            {
+              "index": 41,
+              "text": "ー",
+              "start": 24.83,
+              "end": 25.03,
+              "confidence": 0.9332117,
+              "phraseIndex": 8,
+              "wordIndex": 5
+            },
+            {
+              "index": 42,
+              "text": "ト",
+              "start": 25.03,
+              "end": 25.19,
+              "confidence": 0.9332117,
+              "phraseIndex": 8,
+              "wordIndex": 6
+            },
+            {
+              "index": 43,
+              "text": "円",
+              "start": 26.72,
+              "end": 26.88,
+              "confidence": 0.92155004,
+              "phraseIndex": 9,
+              "wordIndex": 0
+            },
+            {
+              "index": 44,
+              "text": "高",
+              "start": 26.88,
+              "end": 27.08,
+              "confidence": 0.92155004,
+              "phraseIndex": 9,
+              "wordIndex": 1
+            },
+            {
+              "index": 45,
+              "text": "輸",
+              "start": 28,
+              "end": 28.92,
+              "confidence": 0.93669975,
+              "phraseIndex": 10,
+              "wordIndex": 0
+            },
+            {
+              "index": 46,
+              "text": "出",
+              "start": 28.92,
+              "end": 29,
+              "confidence": 0.93669975,
+              "phraseIndex": 10,
+              "wordIndex": 1
+            },
+            {
+              "index": 47,
+              "text": "影",
+              "start": 30.64,
+              "end": 30.68,
+              "confidence": 0.9046674,
+              "phraseIndex": 11,
+              "wordIndex": 0
+            },
+            {
+              "index": 48,
+              "text": "響",
+              "start": 30.68,
+              "end": 30.72,
+              "confidence": 0.9046674,
+              "phraseIndex": 11,
+              "wordIndex": 1
+            },
+            {
+              "index": 49,
+              "text": "資",
+              "start": 31.55,
+              "end": 31.71,
+              "confidence": 0.94366515,
+              "phraseIndex": 12,
+              "wordIndex": 0
+            },
+            {
+              "index": 50,
+              "text": "源",
+              "start": 31.75,
+              "end": 32.27,
+              "confidence": 0.94366515,
+              "phraseIndex": 12,
+              "wordIndex": 1
+            },
+            {
+              "index": 51,
+              "text": "気",
+              "start": 33.8,
+              "end": 33.84,
+              "confidence": 0.9150173,
+              "phraseIndex": 13,
+              "wordIndex": 0
+            },
+            {
+              "index": 52,
+              "text": "温",
+              "start": 33.84,
+              "end": 33.88,
+              "confidence": 0.9150173,
+              "phraseIndex": 13,
+              "wordIndex": 1
+            },
+            {
+              "index": 53,
+              "text": "沖",
+              "start": 34.47,
+              "end": 35.19,
+              "confidence": 0.8606637,
+              "phraseIndex": 14,
+              "wordIndex": 0
+            },
+            {
+              "index": 54,
+              "text": "海",
+              "start": 35.91,
+              "end": 36.27,
+              "confidence": 0.8606637,
+              "phraseIndex": 14,
+              "wordIndex": 1
+            },
+            {
+              "index": 55,
+              "text": "外",
+              "start": 36.27,
+              "end": 36.75,
+              "confidence": 0.8606637,
+              "phraseIndex": 14,
+              "wordIndex": 2
+            },
+            {
+              "index": 56,
+              "text": "鯨",
+              "start": 38.22,
+              "end": 39.02,
+              "confidence": 0.63776857,
+              "phraseIndex": 15,
+              "wordIndex": 0
+            },
+            {
+              "index": 57,
+              "text": "サ",
+              "start": 39.63,
+              "end": 39.83,
+              "confidence": 0.7270967,
+              "phraseIndex": 16,
+              "wordIndex": 0
+            },
+            {
+              "index": 58,
+              "text": "メ",
+              "start": 39.83,
+              "end": 40.35,
+              "confidence": 0.7270967,
+              "phraseIndex": 16,
+              "wordIndex": 1
+            },
+            {
+              "index": 59,
+              "text": "ufo",
+              "start": 41.63,
+              "end": 42.43,
+              "confidence": 0.44043386,
+              "phraseIndex": 17,
+              "wordIndex": 0
+            },
+            {
+              "index": 60,
+              "text": "ufo",
+              "start": 42.43,
+              "end": 42.75,
+              "confidence": 0.44043386,
+              "phraseIndex": 17,
+              "wordIndex": 1
+            },
+            {
+              "index": 61,
+              "text": "昔",
+              "start": 43.43,
+              "end": 44.39,
+              "confidence": 0.828744,
+              "phraseIndex": 18,
+              "wordIndex": 0
+            },
+            {
+              "index": 62,
+              "text": "別",
+              "start": 45.67,
+              "end": 46.15,
+              "confidence": 0.7942976,
+              "phraseIndex": 19,
+              "wordIndex": 0
+            },
+            {
+              "index": 63,
+              "text": "名",
+              "start": 46.15,
+              "end": 46.79,
+              "confidence": 0.7942976,
+              "phraseIndex": 19,
+              "wordIndex": 1
+            },
+            {
+              "index": 64,
+              "text": "ほ",
+              "start": 47.19,
+              "end": 47.75,
+              "confidence": 0.7942976,
+              "phraseIndex": 19,
+              "wordIndex": 2
+            },
+            {
+              "index": 65,
+              "text": "う",
+              "start": 47.75,
+              "end": 47.83,
+              "confidence": 0.7942976,
+              "phraseIndex": 19,
+              "wordIndex": 3
+            },
+            {
+              "index": 66,
+              "text": "道",
+              "start": 49.32,
+              "end": 50.36,
+              "confidence": 0.9128194,
+              "phraseIndex": 20,
+              "wordIndex": 0
+            },
+            {
+              "index": 67,
+              "text": "路",
+              "start": 50.36,
+              "end": 50.8,
+              "confidence": 0.9128194,
+              "phraseIndex": 20,
+              "wordIndex": 1
+            },
+            {
+              "index": 68,
+              "text": "工",
+              "start": 51.24,
+              "end": 51.32,
+              "confidence": 0.9128194,
+              "phraseIndex": 20,
+              "wordIndex": 2
+            },
+            {
+              "index": 69,
+              "text": "事",
+              "start": 51.32,
+              "end": 51.48,
+              "confidence": 0.9128194,
+              "phraseIndex": 20,
+              "wordIndex": 3
+            },
+            {
+              "index": 70,
+              "text": "通",
+              "start": 51.48,
+              "end": 51.64,
+              "confidence": 0.9128194,
+              "phraseIndex": 20,
+              "wordIndex": 4
+            },
+            {
+              "index": 71,
+              "text": "勤",
+              "start": 51.64,
+              "end": 51.96,
+              "confidence": 0.9128194,
+              "phraseIndex": 20,
+              "wordIndex": 5
+            },
+            {
+              "index": 72,
+              "text": "ラ",
+              "start": 51.96,
+              "end": 52.12,
+              "confidence": 0.9128194,
+              "phraseIndex": 20,
+              "wordIndex": 6
+            },
+            {
+              "index": 73,
+              "text": "ッ",
+              "start": 52.12,
+              "end": 52.16,
+              "confidence": 0.9128194,
+              "phraseIndex": 20,
+              "wordIndex": 7
+            },
+            {
+              "index": 74,
+              "text": "シ",
+              "start": 52.16,
+              "end": 52.4,
+              "confidence": 0.9128194,
+              "phraseIndex": 20,
+              "wordIndex": 8
+            },
+            {
+              "index": 75,
+              "text": "ュ",
+              "start": 52.4,
+              "end": 52.56,
+              "confidence": 0.9128194,
+              "phraseIndex": 20,
+              "wordIndex": 9
+            },
+            {
+              "index": 76,
+              "text": "通",
+              "start": 53.87,
+              "end": 54.11,
+              "confidence": 0.9652755,
+              "phraseIndex": 21,
+              "wordIndex": 0
+            },
+            {
+              "index": 77,
+              "text": "行",
+              "start": 54.11,
+              "end": 54.51,
+              "confidence": 0.9652755,
+              "phraseIndex": 21,
+              "wordIndex": 1
+            },
+            {
+              "index": 78,
+              "text": "禁",
+              "start": 54.51,
+              "end": 54.99,
+              "confidence": 0.9652755,
+              "phraseIndex": 21,
+              "wordIndex": 2
+            },
+            {
+              "index": 79,
+              "text": "止",
+              "start": 54.99,
+              "end": 55.15,
+              "confidence": 0.9652755,
+              "phraseIndex": 21,
+              "wordIndex": 3
+            },
+            {
+              "index": 80,
+              "text": "遠",
+              "start": 56.92,
+              "end": 57.08,
+              "confidence": 0.8296398,
+              "phraseIndex": 22,
+              "wordIndex": 0
+            },
+            {
+              "index": 81,
+              "text": "く",
+              "start": 57.08,
+              "end": 57.28,
+              "confidence": 0.8296398,
+              "phraseIndex": 22,
+              "wordIndex": 1
+            },
+            {
+              "index": 82,
+              "text": "見",
+              "start": 58.01,
+              "end": 58.13,
+              "confidence": 0.8921783,
+              "phraseIndex": 23,
+              "wordIndex": 0
+            },
+            {
+              "index": 83,
+              "text": "渡",
+              "start": 58.13,
+              "end": 58.21,
+              "confidence": 0.8921783,
+              "phraseIndex": 23,
+              "wordIndex": 1
+            },
+            {
+              "index": 84,
+              "text": "し",
+              "start": 58.21,
+              "end": 58.37,
+              "confidence": 0.8921783,
+              "phraseIndex": 23,
+              "wordIndex": 2
+            },
+            {
+              "index": 85,
+              "text": "ま",
+              "start": 58.37,
+              "end": 59.17,
+              "confidence": 0.8921783,
+              "phraseIndex": 23,
+              "wordIndex": 3
+            },
+            {
+              "index": 86,
+              "text": "す",
+              "start": 59.17,
+              "end": 59.65,
+              "confidence": 0.8921783,
+              "phraseIndex": 23,
+              "wordIndex": 4
+            },
+            {
+              "index": 87,
+              "text": "続",
+              "start": 60.01,
+              "end": 60.41,
+              "confidence": 0.8921783,
+              "phraseIndex": 23,
+              "wordIndex": 5
+            },
+            {
+              "index": 88,
+              "text": "き",
+              "start": 60.41,
+              "end": 60.61,
+              "confidence": 0.8921783,
+              "phraseIndex": 23,
+              "wordIndex": 6
+            },
+            {
+              "index": 89,
+              "text": "ま",
+              "start": 60.61,
+              "end": 60.77,
+              "confidence": 0.8921783,
+              "phraseIndex": 23,
+              "wordIndex": 7
+            },
+            {
+              "index": 90,
+              "text": "す",
+              "start": 60.77,
+              "end": 61.21,
+              "confidence": 0.8921783,
+              "phraseIndex": 23,
+              "wordIndex": 8
+            },
+            {
+              "index": 91,
+              "text": "な",
+              "start": 61.49,
+              "end": 61.77,
+              "confidence": 0.8921783,
+              "phraseIndex": 23,
+              "wordIndex": 9
+            },
+            {
+              "index": 92,
+              "text": "く",
+              "start": 61.77,
+              "end": 61.93,
+              "confidence": 0.8921783,
+              "phraseIndex": 23,
+              "wordIndex": 10
+            },
+            {
+              "index": 93,
+              "text": "な",
+              "start": 61.93,
+              "end": 62.09,
+              "confidence": 0.8921783,
+              "phraseIndex": 23,
+              "wordIndex": 11
+            },
+            {
+              "index": 94,
+              "text": "り",
+              "start": 62.09,
+              "end": 62.25,
+              "confidence": 0.8921783,
+              "phraseIndex": 23,
+              "wordIndex": 12
+            },
+            {
+              "index": 95,
+              "text": "ま",
+              "start": 62.25,
+              "end": 62.45,
+              "confidence": 0.8921783,
+              "phraseIndex": 23,
+              "wordIndex": 13
+            },
+            {
+              "index": 96,
+              "text": "す",
+              "start": 62.45,
+              "end": 62.89,
+              "confidence": 0.8921783,
+              "phraseIndex": 23,
+              "wordIndex": 14
+            },
+            {
+              "index": 97,
+              "text": "育",
+              "start": 63.13,
+              "end": 63.41,
+              "confidence": 0.8921783,
+              "phraseIndex": 23,
+              "wordIndex": 15
+            },
+            {
+              "index": 98,
+              "text": "ち",
+              "start": 63.53,
+              "end": 63.77,
+              "confidence": 0.8921783,
+              "phraseIndex": 23,
+              "wordIndex": 16
+            },
+            {
+              "index": 99,
+              "text": "ま",
+              "start": 63.77,
+              "end": 63.97,
+              "confidence": 0.8921783,
+              "phraseIndex": 23,
+              "wordIndex": 17
+            },
+            {
+              "index": 100,
+              "text": "す",
+              "start": 63.97,
+              "end": 64.41,
+              "confidence": 0.8921783,
+              "phraseIndex": 23,
+              "wordIndex": 18
+            },
+            {
+              "index": 101,
+              "text": "増",
+              "start": 65.89,
+              "end": 65.97,
+              "confidence": 0.807414,
+              "phraseIndex": 24,
+              "wordIndex": 0
+            },
+            {
+              "index": 102,
+              "text": "え",
+              "start": 65.97,
+              "end": 66.21,
+              "confidence": 0.807414,
+              "phraseIndex": 24,
+              "wordIndex": 1
+            },
+            {
+              "index": 103,
+              "text": "ま",
+              "start": 66.21,
+              "end": 66.45,
+              "confidence": 0.807414,
+              "phraseIndex": 24,
+              "wordIndex": 2
+            },
+            {
+              "index": 104,
+              "text": "す",
+              "start": 66.45,
+              "end": 66.89,
+              "confidence": 0.807414,
+              "phraseIndex": 24,
+              "wordIndex": 3
+            },
+            {
+              "index": 105,
+              "text": "つ",
+              "start": 67.29,
+              "end": 67.61,
+              "confidence": 0.807414,
+              "phraseIndex": 24,
+              "wordIndex": 4
+            },
+            {
+              "index": 106,
+              "text": "れ",
+              "start": 67.61,
+              "end": 67.77,
+              "confidence": 0.807414,
+              "phraseIndex": 24,
+              "wordIndex": 5
+            },
+            {
+              "index": 107,
+              "text": "ま",
+              "start": 67.77,
+              "end": 67.97,
+              "confidence": 0.807414,
+              "phraseIndex": 24,
+              "wordIndex": 6
+            },
+            {
+              "index": 108,
+              "text": "す",
+              "start": 67.97,
+              "end": 68.29,
+              "confidence": 0.807414,
+              "phraseIndex": 24,
+              "wordIndex": 7
+            },
+            {
+              "index": 109,
+              "text": "欠",
+              "start": 69.15,
+              "end": 69.35,
+              "confidence": 0.94643736,
+              "phraseIndex": 25,
+              "wordIndex": 0
+            },
+            {
+              "index": 110,
+              "text": "席",
+              "start": 69.35,
+              "end": 69.91,
+              "confidence": 0.94643736,
+              "phraseIndex": 25,
+              "wordIndex": 1
+            },
+            {
+              "index": 111,
+              "text": "し",
+              "start": 69.91,
+              "end": 70.07,
+              "confidence": 0.94643736,
+              "phraseIndex": 25,
+              "wordIndex": 2
+            },
+            {
+              "index": 112,
+              "text": "ま",
+              "start": 70.07,
+              "end": 70.27,
+              "confidence": 0.94643736,
+              "phraseIndex": 25,
+              "wordIndex": 3
+            },
+            {
+              "index": 113,
+              "text": "す",
+              "start": 70.27,
+              "end": 70.51,
+              "confidence": 0.94643736,
+              "phraseIndex": 25,
+              "wordIndex": 4
+            },
+            {
+              "index": 114,
+              "text": "輸",
+              "start": 72.04,
+              "end": 72.12,
+              "confidence": 0.92508537,
+              "phraseIndex": 26,
+              "wordIndex": 0
+            },
+            {
+              "index": 115,
+              "text": "入",
+              "start": 72.12,
+              "end": 72.2,
+              "confidence": 0.92508537,
+              "phraseIndex": 26,
+              "wordIndex": 1
+            },
+            {
+              "index": 116,
+              "text": "し",
+              "start": 72.2,
+              "end": 72.28,
+              "confidence": 0.92508537,
+              "phraseIndex": 26,
+              "wordIndex": 2
+            },
+            {
+              "index": 117,
+              "text": "ま",
+              "start": 72.28,
+              "end": 72.36,
+              "confidence": 0.92508537,
+              "phraseIndex": 26,
+              "wordIndex": 3
+            },
+            {
+              "index": 118,
+              "text": "す",
+              "start": 72.36,
+              "end": 72.48,
+              "confidence": 0.92508537,
+              "phraseIndex": 26,
+              "wordIndex": 4
+            },
+            {
+              "index": 119,
+              "text": "せ",
+              "start": 73.03,
+              "end": 73.27,
+              "confidence": 0.90374964,
+              "phraseIndex": 27,
+              "wordIndex": 0
+            },
+            {
+              "index": 120,
+              "text": "っ",
+              "start": 73.27,
+              "end": 73.43,
+              "confidence": 0.90374964,
+              "phraseIndex": 27,
+              "wordIndex": 1
+            },
+            {
+              "index": 121,
+              "text": "か",
+              "start": 73.43,
+              "end": 73.67,
+              "confidence": 0.90374964,
+              "phraseIndex": 27,
+              "wordIndex": 2
+            },
+            {
+              "index": 122,
+              "text": "く",
+              "start": 73.67,
+              "end": 74.15,
+              "confidence": 0.90374964,
+              "phraseIndex": 27,
+              "wordIndex": 3
+            },
+            {
+              "index": 123,
+              "text": "絶",
+              "start": 74.75,
+              "end": 74.91,
+              "confidence": 0.90374964,
+              "phraseIndex": 27,
+              "wordIndex": 4
+            },
+            {
+              "index": 124,
+              "text": "対",
+              "start": 74.91,
+              "end": 75.63,
+              "confidence": 0.90374964,
+              "phraseIndex": 27,
+              "wordIndex": 5
+            },
+            {
+              "index": 125,
+              "text": "そ",
+              "start": 76.67,
+              "end": 77.03,
+              "confidence": 0.97333133,
+              "phraseIndex": 28,
+              "wordIndex": 0
+            },
+            {
+              "index": 126,
+              "text": "う",
+              "start": 77.03,
+              "end": 77.11,
+              "confidence": 0.97333133,
+              "phraseIndex": 28,
+              "wordIndex": 1
+            },
+            {
+              "index": 127,
+              "text": "そ",
+              "start": 77.11,
+              "end": 77.63,
+              "confidence": 0.97333133,
+              "phraseIndex": 28,
+              "wordIndex": 2
+            },
+            {
+              "index": 128,
+              "text": "う",
+              "start": 77.63,
+              "end": 77.71,
+              "confidence": 0.97333133,
+              "phraseIndex": 28,
+              "wordIndex": 3
+            },
+            {
+              "index": 129,
+              "text": "紫",
+              "start": 78.35,
+              "end": 78.71,
+              "confidence": 0.41254193,
+              "phraseIndex": 29,
+              "wordIndex": 0
+            },
+            {
+              "index": 130,
+              "text": "禁",
+              "start": 78.71,
+              "end": 78.99,
+              "confidence": 0.41254193,
+              "phraseIndex": 29,
+              "wordIndex": 1
+            },
+            {
+              "index": 131,
+              "text": "城",
+              "start": 78.99,
+              "end": 79.23,
+              "confidence": 0.41254193,
+              "phraseIndex": 29,
+              "wordIndex": 2
+            },
+            {
+              "index": 132,
+              "text": "l",
+              "start": 81.73,
+              "end": 82.17,
+              "confidence": 0.27901223,
+              "phraseIndex": 30,
+              "wordIndex": 0
+            }
+          ]
+        },
+        "segments": [
+          {
+            "id": "l39-v001",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson39/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson39/lesson_words.mp3",
+            "itemIndex": 1,
+            "text": "むら",
+            "label": "村",
+            "start": 0.79,
+            "end": 1.57,
+            "duration": 0.78,
+            "speechUnitCount": 1,
+            "wordCount": 1,
+            "matchScore": 1,
+            "asrText": "村",
+            "wordIndexes": [
+              1
+            ],
+            "method": "azure-speech-word-alignment",
+            "confidence": "high",
+            "review": {
+              "status": "approved",
+              "reviewedAt": "2026-08-05T11:52:19.207Z",
+              "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+              "matchScore": 1,
+              "asrText": "村"
+            }
+          },
+          {
+            "id": "l39-v002",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson39/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson39/lesson_words.mp3",
+            "itemIndex": 2,
+            "text": "いね",
+            "label": "稲",
+            "start": 2.27,
+            "end": 2.97,
+            "duration": 0.7,
+            "speechUnitCount": 1,
+            "wordCount": 1,
+            "matchScore": 1,
+            "asrText": "稲",
+            "wordIndexes": [
+              2
+            ],
+            "method": "azure-speech-word-alignment",
+            "confidence": "high",
+            "review": {
+              "status": "approved",
+              "reviewedAt": "2026-08-05T11:52:19.207Z",
+              "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+              "matchScore": 1,
+              "asrText": "稲"
+            }
+          },
+          {
+            "id": "l39-v003",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson39/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson39/lesson_words.mp3",
+            "itemIndex": 3,
+            "text": "きり",
+            "label": "霧",
+            "start": 4.75,
+            "end": 5.13,
+            "duration": 0.38,
+            "speechUnitCount": 1,
+            "wordCount": 1,
+            "matchScore": 0,
+            "asrText": "モ",
+            "wordIndexes": [
+              5
+            ],
+            "method": "azure-speech-word-alignment",
+            "confidence": "needs-review",
+            "review": {
+              "status": "approved",
+              "reviewedAt": "2026-08-05T11:52:19.207Z",
+              "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+              "matchScore": 0,
+              "asrText": "モ"
+            }
+          },
+          {
+            "id": "l39-v004",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson39/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson39/lesson_words.mp3",
+            "itemIndex": 4,
+            "text": "もん",
+            "label": "門",
+            "start": 5.03,
+            "end": 5.53,
+            "duration": 0.5,
+            "speechUnitCount": 1,
+            "wordCount": 1,
+            "matchScore": 0,
+            "asrText": "ン",
+            "wordIndexes": [
+              6
+            ],
+            "method": "azure-speech-word-alignment",
+            "confidence": "needs-review",
+            "review": {
+              "status": "approved",
+              "reviewedAt": "2026-08-05T11:52:19.207Z",
+              "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+              "matchScore": 0,
+              "asrText": "ン"
+            }
+          },
+          {
+            "id": "l39-v005",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson39/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson39/lesson_words.mp3",
+            "itemIndex": 5,
+            "text": "ぶたい",
+            "label": "舞台",
+            "start": 5.91,
+            "end": 6.73,
+            "duration": 0.82,
+            "speechUnitCount": 2,
+            "wordCount": 2,
+            "matchScore": 1,
+            "asrText": "舞 台",
+            "wordIndexes": [
+              7,
+              8
+            ],
+            "method": "azure-speech-word-alignment",
+            "confidence": "high",
+            "review": {
+              "status": "approved",
+              "reviewedAt": "2026-08-05T11:52:19.207Z",
+              "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+              "matchScore": 1,
+              "asrText": "舞 台"
+            }
+          },
+          {
+            "id": "l39-v006",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson39/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson39/lesson_words.mp3",
+            "itemIndex": 6,
+            "text": "やね",
+            "label": "屋根",
+            "start": 7.43,
+            "end": 7.77,
+            "duration": 0.34,
+            "speechUnitCount": 1,
+            "wordCount": 1,
+            "matchScore": 0.5,
+            "asrText": "屋",
+            "wordIndexes": [
+              9
+            ],
+            "method": "azure-speech-word-alignment",
+            "confidence": "needs-review",
+            "review": {
+              "status": "approved",
+              "reviewedAt": "2026-08-05T11:52:19.207Z",
+              "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+              "matchScore": 0.5,
+              "asrText": "屋"
+            }
+          },
+          {
+            "id": "l39-v007",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson39/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson39/lesson_words.mp3",
+            "itemIndex": 7,
+            "text": "るりがわら",
+            "label": "瑠璃瓦",
+            "start": 8.67,
+            "end": 9.57,
+            "duration": 0.9,
+            "speechUnitCount": 3,
+            "wordCount": 3,
+            "matchScore": 1,
+            "asrText": "瑠 璃 瓦",
+            "wordIndexes": [
+              11,
+              12,
+              13
+            ],
+            "method": "azure-speech-word-alignment",
+            "confidence": "high",
+            "review": {
+              "status": "approved",
+              "reviewedAt": "2026-08-05T11:52:19.207Z",
+              "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+              "matchScore": 1,
+              "asrText": "瑠 璃 瓦"
+            }
+          },
+          {
+            "id": "l39-v008",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson39/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson39/lesson_words.mp3",
+            "itemIndex": 8,
+            "text": "きいろ",
+            "label": "黄色",
+            "start": 10.43,
+            "end": 11.53,
+            "duration": 1.1,
+            "speechUnitCount": 2,
+            "wordCount": 2,
+            "matchScore": 1,
+            "asrText": "黄 色",
+            "wordIndexes": [
+              14,
+              15
+            ],
+            "method": "azure-speech-word-alignment",
+            "confidence": "high",
+            "review": {
+              "status": "approved",
+              "reviewedAt": "2026-08-05T11:52:19.207Z",
+              "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+              "matchScore": 1,
+              "asrText": "黄 色"
+            }
+          },
+          {
+            "id": "l39-v009",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson39/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson39/lesson_words.mp3",
+            "itemIndex": 9,
+            "text": "そら",
+            "label": "空",
+            "start": 12.15,
+            "end": 12.57,
+            "duration": 0.42,
+            "speechUnitCount": 1,
+            "wordCount": 1,
+            "matchScore": 0,
+            "asrText": "ラ",
+            "wordIndexes": [
+              18
+            ],
+            "method": "azure-speech-word-alignment",
+            "confidence": "needs-review",
+            "review": {
+              "status": "approved",
+              "reviewedAt": "2026-08-05T11:52:19.207Z",
+              "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+              "matchScore": 0,
+              "asrText": "ラ"
+            }
+          },
+          {
+            "id": "l39-v010",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson39/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson39/lesson_words.mp3",
+            "itemIndex": 10,
+            "text": "バック",
+            "label": "バック",
+            "start": 13.35,
+            "end": 13.93,
+            "duration": 0.58,
+            "speechUnitCount": 2,
+            "wordCount": 2,
+            "matchScore": 0.667,
+            "asrText": "バ ッ",
+            "wordIndexes": [
+              19,
+              20
+            ],
+            "method": "azure-speech-word-alignment",
+            "confidence": "needs-review",
+            "review": {
+              "status": "approved",
+              "reviewedAt": "2026-08-05T11:52:19.207Z",
+              "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+              "matchScore": 0.667,
+              "asrText": "バ ッ"
+            }
+          },
+          {
+            "id": "l39-v011",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson39/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson39/lesson_words.mp3",
+            "itemIndex": 11,
+            "text": "かしきり",
+            "label": "貸し切り",
+            "start": 14.63,
+            "end": 15.81,
+            "duration": 1.18,
+            "speechUnitCount": 4,
+            "wordCount": 4,
+            "matchScore": 1,
+            "asrText": "貸 し 切 り",
+            "wordIndexes": [
+              22,
+              23,
+              24,
+              25
+            ],
+            "method": "azure-speech-word-alignment",
+            "confidence": "high",
+            "review": {
+              "status": "approved",
+              "reviewedAt": "2026-08-05T11:52:19.207Z",
+              "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+              "matchScore": 1,
+              "asrText": "貸 し 切 り"
+            }
+          },
+          {
+            "id": "l39-v012",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson39/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson39/lesson_words.mp3",
+            "itemIndex": 12,
+            "text": "いっぱん",
+            "label": "一般",
+            "start": 16.59,
+            "end": 17.81,
+            "duration": 1.22,
+            "speechUnitCount": 2,
+            "wordCount": 2,
+            "matchScore": 1,
+            "asrText": "一 般",
+            "wordIndexes": [
+              26,
+              27
+            ],
+            "method": "azure-speech-word-alignment",
+            "confidence": "high",
+            "review": {
+              "status": "approved",
+              "reviewedAt": "2026-08-05T11:52:19.207Z",
+              "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+              "matchScore": 1,
+              "asrText": "一 般"
+            }
+          },
+          {
+            "id": "l39-v013",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson39/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson39/lesson_words.mp3",
+            "itemIndex": 13,
+            "text": "そぼ",
+            "label": "祖母",
+            "start": 17.91,
+            "end": 18.81,
+            "duration": 0.9,
+            "speechUnitCount": 2,
+            "wordCount": 2,
+            "matchScore": 1,
+            "asrText": "祖 母",
+            "wordIndexes": [
+              28,
+              29
+            ],
+            "method": "azure-speech-word-alignment",
+            "confidence": "high",
+            "review": {
+              "status": "approved",
+              "reviewedAt": "2026-08-05T11:52:19.207Z",
+              "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+              "matchScore": 1,
+              "asrText": "祖 母"
+            }
+          },
+          {
+            "id": "l39-v014",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson39/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson39/lesson_words.mp3",
+            "itemIndex": 14,
+            "text": "おんがくかい",
+            "label": "音楽会",
+            "start": 19.95,
+            "end": 21.17,
+            "duration": 1.22,
+            "speechUnitCount": 3,
+            "wordCount": 3,
+            "matchScore": 1,
+            "asrText": "音 楽 会",
+            "wordIndexes": [
+              30,
+              31,
+              32
+            ],
+            "method": "azure-speech-word-alignment",
+            "confidence": "high",
+            "review": {
+              "status": "approved",
+              "reviewedAt": "2026-08-05T11:52:19.207Z",
+              "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+              "matchScore": 1,
+              "asrText": "音 楽 会"
+            }
+          },
+          {
+            "id": "l39-v015",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson39/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson39/lesson_words.mp3",
+            "itemIndex": 15,
+            "text": "ジャズ",
+            "label": "ジャズ",
+            "start": 21.47,
+            "end": 22.29,
+            "duration": 0.82,
+            "speechUnitCount": 3,
+            "wordCount": 3,
+            "matchScore": 1,
+            "asrText": "ジ ャ ズ",
+            "wordIndexes": [
+              33,
+              34,
+              35
+            ],
+            "method": "azure-speech-word-alignment",
+            "confidence": "high",
+            "review": {
+              "status": "approved",
+              "reviewedAt": "2026-08-05T11:52:19.207Z",
+              "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+              "matchScore": 1,
+              "asrText": "ジ ャ ズ"
+            }
+          },
+          {
+            "id": "l39-v016",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson39/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson39/lesson_words.mp3",
+            "itemIndex": 16,
+            "text": "やがいコンサート",
+            "label": "野外コンサート",
+            "start": 23.67,
+            "end": 25.25,
+            "duration": 1.58,
+            "speechUnitCount": 7,
+            "wordCount": 7,
+            "matchScore": 1,
+            "asrText": "野 外 コ ン サ ー ト",
+            "wordIndexes": [
+              36,
+              37,
+              38,
+              39,
+              40,
+              41,
+              42
+            ],
+            "method": "azure-speech-word-alignment",
+            "confidence": "high",
+            "review": {
+              "status": "approved",
+              "reviewedAt": "2026-08-05T11:52:19.207Z",
+              "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+              "matchScore": 1,
+              "asrText": "野 外 コ ン サ ー ト"
+            }
+          },
+          {
+            "id": "l39-v017",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson39/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson39/lesson_words.mp3",
+            "itemIndex": 17,
+            "text": "えんだか",
+            "label": "円高",
+            "start": 26.68,
+            "end": 27.14,
+            "duration": 0.46,
+            "speechUnitCount": 2,
+            "wordCount": 2,
+            "matchScore": 1,
+            "asrText": "円 高",
+            "wordIndexes": [
+              43,
+              44
+            ],
+            "method": "azure-speech-word-alignment",
+            "confidence": "high",
+            "review": {
+              "status": "approved",
+              "reviewedAt": "2026-08-05T11:52:19.207Z",
+              "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+              "matchScore": 1,
+              "asrText": "円 高"
+            }
+          },
+          {
+            "id": "l39-v018",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson39/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson39/lesson_words.mp3",
+            "itemIndex": 18,
+            "text": "ゆしゅつ",
+            "label": "輸出",
+            "start": 27.96,
+            "end": 29.06,
+            "duration": 1.1,
+            "speechUnitCount": 2,
+            "wordCount": 2,
+            "matchScore": 1,
+            "asrText": "輸 出",
+            "wordIndexes": [
+              45,
+              46
+            ],
+            "method": "azure-speech-word-alignment",
+            "confidence": "high",
+            "review": {
+              "status": "approved",
+              "reviewedAt": "2026-08-05T11:52:19.207Z",
+              "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+              "matchScore": 1,
+              "asrText": "輸 出"
+            }
+          },
+          {
+            "id": "l39-v019",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson39/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson39/lesson_words.mp3",
+            "itemIndex": 19,
+            "text": "えいきょう",
+            "label": "影響",
+            "start": 30.6,
+            "end": 30.78,
+            "duration": 0.18,
+            "speechUnitCount": 2,
+            "wordCount": 2,
+            "matchScore": 1,
+            "asrText": "影 響",
+            "wordIndexes": [
+              47,
+              48
+            ],
+            "method": "azure-speech-word-alignment",
+            "confidence": "high",
+            "review": {
+              "status": "approved",
+              "reviewedAt": "2026-08-05T11:52:19.207Z",
+              "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+              "matchScore": 1,
+              "asrText": "影 響"
+            }
+          },
+          {
+            "id": "l39-v020",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson39/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson39/lesson_words.mp3",
+            "itemIndex": 20,
+            "text": "しげん",
+            "label": "資源",
+            "start": 31.51,
+            "end": 32.33,
+            "duration": 0.82,
+            "speechUnitCount": 2,
+            "wordCount": 2,
+            "matchScore": 1,
+            "asrText": "資 源",
+            "wordIndexes": [
+              49,
+              50
+            ],
+            "method": "azure-speech-word-alignment",
+            "confidence": "high",
+            "review": {
+              "status": "approved",
+              "reviewedAt": "2026-08-05T11:52:19.207Z",
+              "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+              "matchScore": 1,
+              "asrText": "資 源"
+            }
+          },
+          {
+            "id": "l39-v021",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson39/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson39/lesson_words.mp3",
+            "itemIndex": 21,
+            "text": "きおん",
+            "label": "気温",
+            "start": 33.76,
+            "end": 33.94,
+            "duration": 0.18,
+            "speechUnitCount": 2,
+            "wordCount": 2,
+            "matchScore": 1,
+            "asrText": "気 温",
+            "wordIndexes": [
+              51,
+              52
+            ],
+            "method": "azure-speech-word-alignment",
+            "confidence": "high",
+            "review": {
+              "status": "approved",
+              "reviewedAt": "2026-08-05T11:52:19.207Z",
+              "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+              "matchScore": 1,
+              "asrText": "気 温"
+            }
+          },
+          {
+            "id": "l39-v022",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson39/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson39/lesson_words.mp3",
+            "itemIndex": 22,
+            "text": "おき",
+            "label": "沖",
+            "start": 34.43,
+            "end": 35.25,
+            "duration": 0.82,
+            "speechUnitCount": 1,
+            "wordCount": 1,
+            "matchScore": 1,
+            "asrText": "沖",
+            "wordIndexes": [
+              53
+            ],
+            "method": "azure-speech-word-alignment",
+            "confidence": "high",
+            "review": {
+              "status": "approved",
+              "reviewedAt": "2026-08-05T11:52:19.207Z",
+              "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+              "matchScore": 1,
+              "asrText": "沖"
+            }
+          },
+          {
+            "id": "l39-v023",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson39/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson39/lesson_words.mp3",
+            "itemIndex": 23,
+            "text": "かいがい",
+            "label": "海外",
+            "start": 35.87,
+            "end": 36.81,
+            "duration": 0.94,
+            "speechUnitCount": 2,
+            "wordCount": 2,
+            "matchScore": 1,
+            "asrText": "海 外",
+            "wordIndexes": [
+              54,
+              55
+            ],
+            "method": "azure-speech-word-alignment",
+            "confidence": "high",
+            "review": {
+              "status": "approved",
+              "reviewedAt": "2026-08-05T11:52:19.207Z",
+              "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+              "matchScore": 1,
+              "asrText": "海 外"
+            }
+          },
+          {
+            "id": "l39-v024",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson39/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson39/lesson_words.mp3",
+            "itemIndex": 24,
+            "text": "クジラ",
+            "label": "クジラ",
+            "start": 38.18,
+            "end": 39.08,
+            "duration": 0.9,
+            "speechUnitCount": 1,
+            "wordCount": 1,
+            "matchScore": 0,
+            "asrText": "鯨",
+            "wordIndexes": [
+              56
+            ],
+            "method": "azure-speech-word-alignment",
+            "confidence": "needs-review",
+            "review": {
+              "status": "approved",
+              "reviewedAt": "2026-08-05T11:52:19.207Z",
+              "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+              "matchScore": 0,
+              "asrText": "鯨"
+            }
+          },
+          {
+            "id": "l39-v025",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson39/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson39/lesson_words.mp3",
+            "itemIndex": 25,
+            "text": "サメ",
+            "label": "サメ",
+            "start": 39.59,
+            "end": 40.41,
+            "duration": 0.82,
+            "speechUnitCount": 2,
+            "wordCount": 2,
+            "matchScore": 1,
+            "asrText": "サ メ",
+            "wordIndexes": [
+              57,
+              58
+            ],
+            "method": "azure-speech-word-alignment",
+            "confidence": "high",
+            "review": {
+              "status": "approved",
+              "reviewedAt": "2026-08-05T11:52:19.207Z",
+              "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+              "matchScore": 1,
+              "asrText": "サ メ"
+            }
+          },
+          {
+            "id": "l39-v026",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson39/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson39/lesson_words.mp3",
+            "itemIndex": 26,
+            "text": "ユーフォー",
+            "label": "UFO",
+            "start": 42.39,
+            "end": 42.81,
+            "duration": 0.42,
+            "speechUnitCount": 1,
+            "wordCount": 1,
+            "matchScore": 1,
+            "asrText": "ufo",
+            "wordIndexes": [
+              60
+            ],
+            "method": "azure-speech-word-alignment",
+            "confidence": "high",
+            "review": {
+              "status": "approved",
+              "reviewedAt": "2026-08-05T11:52:19.207Z",
+              "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+              "matchScore": 1,
+              "asrText": "ufo"
+            }
+          },
+          {
+            "id": "l39-v027",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson39/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson39/lesson_words.mp3",
+            "itemIndex": 27,
+            "text": "むかし",
+            "label": "昔",
+            "start": 43.39,
+            "end": 44.45,
+            "duration": 1.06,
+            "speechUnitCount": 1,
+            "wordCount": 1,
+            "matchScore": 1,
+            "asrText": "昔",
+            "wordIndexes": [
+              61
+            ],
+            "method": "azure-speech-word-alignment",
+            "confidence": "high",
+            "review": {
+              "status": "approved",
+              "reviewedAt": "2026-08-05T11:52:19.207Z",
+              "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+              "matchScore": 1,
+              "asrText": "昔"
+            }
+          },
+          {
+            "id": "l39-v028",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson39/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson39/lesson_words.mp3",
+            "itemIndex": 28,
+            "text": "べつめい",
+            "label": "別名",
+            "start": 45.63,
+            "end": 46.85,
+            "duration": 1.22,
+            "speechUnitCount": 2,
+            "wordCount": 2,
+            "matchScore": 1,
+            "asrText": "別 名",
+            "wordIndexes": [
+              62,
+              63
+            ],
+            "method": "azure-speech-word-alignment",
+            "confidence": "high",
+            "review": {
+              "status": "approved",
+              "reviewedAt": "2026-08-05T11:52:19.207Z",
+              "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+              "matchScore": 1,
+              "asrText": "別 名"
+            }
+          },
+          {
+            "id": "l39-v029",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson39/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson39/lesson_words.mp3",
+            "itemIndex": 29,
+            "text": "ほう",
+            "label": "方",
+            "start": 47.15,
+            "end": 47.89,
+            "duration": 0.74,
+            "speechUnitCount": 2,
+            "wordCount": 2,
+            "matchScore": 1,
+            "asrText": "ほ う",
+            "wordIndexes": [
+              64,
+              65
+            ],
+            "method": "azure-speech-word-alignment",
+            "confidence": "high",
+            "review": {
+              "status": "approved",
+              "reviewedAt": "2026-08-05T11:52:19.207Z",
+              "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+              "matchScore": 1,
+              "asrText": "ほ う"
+            }
+          },
+          {
+            "id": "l39-v030",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson39/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson39/lesson_words.mp3",
+            "itemIndex": 30,
+            "text": "どうろこうじ",
+            "label": "道路工事",
+            "start": 49.28,
+            "end": 51.54,
+            "duration": 2.26,
+            "speechUnitCount": 4,
+            "wordCount": 4,
+            "matchScore": 1,
+            "asrText": "道 路 工 事",
+            "wordIndexes": [
+              66,
+              67,
+              68,
+              69
+            ],
+            "method": "azure-speech-word-alignment",
+            "confidence": "high",
+            "review": {
+              "status": "approved",
+              "reviewedAt": "2026-08-05T11:52:19.207Z",
+              "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+              "matchScore": 1,
+              "asrText": "道 路 工 事"
+            }
+          },
+          {
+            "id": "l39-v031",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson39/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson39/lesson_words.mp3",
+            "itemIndex": 31,
+            "text": "つうきんラッシュ",
+            "label": "通勤ラッシュ",
+            "start": 51.44,
+            "end": 52.62,
+            "duration": 1.18,
+            "speechUnitCount": 6,
+            "wordCount": 6,
+            "matchScore": 1,
+            "asrText": "通 勤 ラ ッ シ ュ",
+            "wordIndexes": [
+              70,
+              71,
+              72,
+              73,
+              74,
+              75
+            ],
+            "method": "azure-speech-word-alignment",
+            "confidence": "high",
+            "review": {
+              "status": "approved",
+              "reviewedAt": "2026-08-05T11:52:19.207Z",
+              "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+              "matchScore": 1,
+              "asrText": "通 勤 ラ ッ シ ュ"
+            }
+          },
+          {
+            "id": "l39-v032",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson39/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson39/lesson_words.mp3",
+            "itemIndex": 32,
+            "text": "つうこうきんし",
+            "label": "通行禁止",
+            "start": 53.83,
+            "end": 55.21,
+            "duration": 1.38,
+            "speechUnitCount": 4,
+            "wordCount": 4,
+            "matchScore": 1,
+            "asrText": "通 行 禁 止",
+            "wordIndexes": [
+              76,
+              77,
+              78,
+              79
+            ],
+            "method": "azure-speech-word-alignment",
+            "confidence": "high",
+            "review": {
+              "status": "approved",
+              "reviewedAt": "2026-08-05T11:52:19.207Z",
+              "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+              "matchScore": 1,
+              "asrText": "通 行 禁 止"
+            }
+          },
+          {
+            "id": "l39-v033",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson39/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson39/lesson_words.mp3",
+            "itemIndex": 33,
+            "text": "とおく",
+            "label": "遠く",
+            "start": 56.88,
+            "end": 57.34,
+            "duration": 0.46,
+            "speechUnitCount": 2,
+            "wordCount": 2,
+            "matchScore": 1,
+            "asrText": "遠 く",
+            "wordIndexes": [
+              80,
+              81
+            ],
+            "method": "azure-speech-word-alignment",
+            "confidence": "high",
+            "review": {
+              "status": "approved",
+              "reviewedAt": "2026-08-05T11:52:19.207Z",
+              "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+              "matchScore": 1,
+              "asrText": "遠 く"
+            }
+          },
+          {
+            "id": "l39-v034",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson39/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson39/lesson_words.mp3",
+            "itemIndex": 34,
+            "text": "みわたします",
+            "label": "見渡します",
+            "start": 57.97,
+            "end": 59.71,
+            "duration": 1.74,
+            "speechUnitCount": 5,
+            "wordCount": 5,
+            "matchScore": 1,
+            "asrText": "見 渡 し ま す",
+            "wordIndexes": [
+              82,
+              83,
+              84,
+              85,
+              86
+            ],
+            "method": "azure-speech-word-alignment",
+            "confidence": "high",
+            "review": {
+              "status": "approved",
+              "reviewedAt": "2026-08-05T11:52:19.207Z",
+              "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+              "matchScore": 1,
+              "asrText": "見 渡 し ま す"
+            }
+          },
+          {
+            "id": "l39-v035",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson39/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson39/lesson_words.mp3",
+            "itemIndex": 35,
+            "text": "つづきます",
+            "label": "続きます",
+            "start": 59.97,
+            "end": 61.27,
+            "duration": 1.3,
+            "speechUnitCount": 4,
+            "wordCount": 4,
+            "matchScore": 1,
+            "asrText": "続 き ま す",
+            "wordIndexes": [
+              87,
+              88,
+              89,
+              90
+            ],
+            "method": "azure-speech-word-alignment",
+            "confidence": "high",
+            "review": {
+              "status": "approved",
+              "reviewedAt": "2026-08-05T11:52:19.207Z",
+              "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+              "matchScore": 1,
+              "asrText": "続 き ま す"
+            }
+          },
+          {
+            "id": "l39-v036",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson39/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson39/lesson_words.mp3",
+            "itemIndex": 36,
+            "text": "なくなります",
+            "label": "なくなります",
+            "start": 61.45,
+            "end": 62.95,
+            "duration": 1.5,
+            "speechUnitCount": 6,
+            "wordCount": 6,
+            "matchScore": 1,
+            "asrText": "な く な り ま す",
+            "wordIndexes": [
+              91,
+              92,
+              93,
+              94,
+              95,
+              96
+            ],
+            "method": "azure-speech-word-alignment",
+            "confidence": "high",
+            "review": {
+              "status": "approved",
+              "reviewedAt": "2026-08-05T11:52:19.207Z",
+              "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+              "matchScore": 1,
+              "asrText": "な く な り ま す"
+            }
+          },
+          {
+            "id": "l39-v037",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson39/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson39/lesson_words.mp3",
+            "itemIndex": 37,
+            "text": "そだちます",
+            "label": "育ちます",
+            "start": 63.09,
+            "end": 64.47,
+            "duration": 1.38,
+            "speechUnitCount": 4,
+            "wordCount": 4,
+            "matchScore": 1,
+            "asrText": "育 ち ま す",
+            "wordIndexes": [
+              97,
+              98,
+              99,
+              100
+            ],
+            "method": "azure-speech-word-alignment",
+            "confidence": "high",
+            "review": {
+              "status": "approved",
+              "reviewedAt": "2026-08-05T11:52:19.207Z",
+              "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+              "matchScore": 1,
+              "asrText": "育 ち ま す"
+            }
+          },
+          {
+            "id": "l39-v038",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson39/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson39/lesson_words.mp3",
+            "itemIndex": 38,
+            "text": "ふえます",
+            "label": "増えます",
+            "start": 65.85,
+            "end": 66.95,
+            "duration": 1.1,
+            "speechUnitCount": 4,
+            "wordCount": 4,
+            "matchScore": 1,
+            "asrText": "増 え ま す",
+            "wordIndexes": [
+              101,
+              102,
+              103,
+              104
+            ],
+            "method": "azure-speech-word-alignment",
+            "confidence": "high",
+            "review": {
+              "status": "approved",
+              "reviewedAt": "2026-08-05T11:52:19.207Z",
+              "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+              "matchScore": 1,
+              "asrText": "増 え ま す"
+            }
+          },
+          {
+            "id": "l39-v039",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson39/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson39/lesson_words.mp3",
+            "itemIndex": 39,
+            "text": "つれます",
+            "label": "連れます",
+            "start": 67.25,
+            "end": 68.35,
+            "duration": 1.1,
+            "speechUnitCount": 4,
+            "wordCount": 4,
+            "matchScore": 1,
+            "asrText": "つ れ ま す",
+            "wordIndexes": [
+              105,
+              106,
+              107,
+              108
+            ],
+            "method": "azure-speech-word-alignment",
+            "confidence": "high",
+            "review": {
+              "status": "approved",
+              "reviewedAt": "2026-08-05T11:52:19.207Z",
+              "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+              "matchScore": 1,
+              "asrText": "つ れ ま す"
+            }
+          },
+          {
+            "id": "l39-v040",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson39/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson39/lesson_words.mp3",
+            "itemIndex": 40,
+            "text": "けっせきします",
+            "label": "欠席します",
+            "start": 69.11,
+            "end": 70.57,
+            "duration": 1.46,
+            "speechUnitCount": 5,
+            "wordCount": 5,
+            "matchScore": 1,
+            "asrText": "欠 席 し ま す",
+            "wordIndexes": [
+              109,
+              110,
+              111,
+              112,
+              113
+            ],
+            "method": "azure-speech-word-alignment",
+            "confidence": "high",
+            "review": {
+              "status": "approved",
+              "reviewedAt": "2026-08-05T11:52:19.207Z",
+              "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+              "matchScore": 1,
+              "asrText": "欠 席 し ま す"
+            }
+          },
+          {
+            "id": "l39-v041",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson39/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson39/lesson_words.mp3",
+            "itemIndex": 41,
+            "text": "ゆにゅうします",
+            "label": "輸入します",
+            "start": 72,
+            "end": 72.54,
+            "duration": 0.54,
+            "speechUnitCount": 5,
+            "wordCount": 5,
+            "matchScore": 1,
+            "asrText": "輸 入 し ま す",
+            "wordIndexes": [
+              114,
+              115,
+              116,
+              117,
+              118
+            ],
+            "method": "azure-speech-word-alignment",
+            "confidence": "high",
+            "review": {
+              "status": "approved",
+              "reviewedAt": "2026-08-05T11:52:19.207Z",
+              "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+              "matchScore": 1,
+              "asrText": "輸 入 し ま す"
+            }
+          },
+          {
+            "id": "l39-v042",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson39/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson39/lesson_words.mp3",
+            "itemIndex": 42,
+            "text": "せっかく",
+            "label": "せっかく",
+            "start": 72.99,
+            "end": 74.21,
+            "duration": 1.22,
+            "speechUnitCount": 4,
+            "wordCount": 4,
+            "matchScore": 1,
+            "asrText": "せ っ か く",
+            "wordIndexes": [
+              119,
+              120,
+              121,
+              122
+            ],
+            "method": "azure-speech-word-alignment",
+            "confidence": "high",
+            "review": {
+              "status": "approved",
+              "reviewedAt": "2026-08-05T11:52:19.207Z",
+              "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+              "matchScore": 1,
+              "asrText": "せ っ か く"
+            }
+          },
+          {
+            "id": "l39-v043",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson39/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson39/lesson_words.mp3",
+            "itemIndex": 43,
+            "text": "ぜったい",
+            "label": "絶対",
+            "start": 74.71,
+            "end": 75.69,
+            "duration": 0.98,
+            "speechUnitCount": 2,
+            "wordCount": 2,
+            "matchScore": 1,
+            "asrText": "絶 対",
+            "wordIndexes": [
+              123,
+              124
+            ],
+            "method": "azure-speech-word-alignment",
+            "confidence": "high",
+            "review": {
+              "status": "approved",
+              "reviewedAt": "2026-08-05T11:52:19.207Z",
+              "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+              "matchScore": 1,
+              "asrText": "絶 対"
+            }
+          },
+          {
+            "id": "l39-v044",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson39/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson39/lesson_words.mp3",
+            "itemIndex": 44,
+            "text": "そうそう",
+            "label": "そうそう",
+            "start": 76.63,
+            "end": 77.77,
+            "duration": 1.14,
+            "speechUnitCount": 4,
+            "wordCount": 4,
+            "matchScore": 1,
+            "asrText": "そ う そ う",
+            "wordIndexes": [
+              125,
+              126,
+              127,
+              128
+            ],
+            "method": "azure-speech-word-alignment",
+            "confidence": "high",
+            "review": {
+              "status": "approved",
+              "reviewedAt": "2026-08-05T11:52:19.207Z",
+              "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+              "matchScore": 1,
+              "asrText": "そ う そ う"
+            }
+          },
+          {
+            "id": "l39-v045",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson39/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson39/lesson_words.mp3",
+            "itemIndex": 45,
+            "text": "しきんじょう",
+            "label": "紫禁城",
+            "start": 78.31,
+            "end": 79.29,
+            "duration": 0.98,
+            "speechUnitCount": 3,
+            "wordCount": 3,
+            "matchScore": 1,
+            "asrText": "紫 禁 城",
+            "wordIndexes": [
+              129,
+              130,
+              131
+            ],
+            "method": "azure-speech-word-alignment",
+            "confidence": "high",
+            "review": {
+              "status": "approved",
+              "reviewedAt": "2026-08-05T11:52:19.207Z",
+              "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+              "matchScore": 1,
+              "asrText": "紫 禁 城"
+            }
+          },
+          {
+            "id": "l39-v046",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson39/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson39/lesson_words.mp3",
+            "itemIndex": 46,
+            "text": "〜リットル",
+            "label": "〜リットル",
+            "start": 81.69,
+            "end": 82.23,
+            "duration": 0.54,
+            "speechUnitCount": 1,
+            "wordCount": 1,
+            "matchScore": 0,
+            "asrText": "l",
+            "wordIndexes": [
+              132
+            ],
+            "method": "azure-speech-word-alignment",
+            "confidence": "needs-review",
+            "review": {
+              "status": "approved",
+              "reviewedAt": "2026-08-05T11:52:19.207Z",
+              "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+              "matchScore": 0,
+              "asrText": "l"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

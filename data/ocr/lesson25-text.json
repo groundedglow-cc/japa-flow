@@ -1,0 +1,340 @@
+{
+  "lessonId": "lesson25",
+  "sourceImages": [
+    {
+      "section": "basic",
+      "path": "course-assets/by-lesson/lesson25/page4.webp",
+      "pageNo": 4
+    },
+    {
+      "section": "application",
+      "path": "course-assets/by-lesson/lesson25/page9.webp",
+      "pageNo": 9
+    }
+  ],
+  "basicText": {
+    "title": "基本课文",
+    "basicSentences": [
+      {
+        "id": "l25-basic-s001",
+        "order": 1,
+        "text": "これは 明日 会議で 使う 資料です。",
+        "translationZh": "这是明天开会要用的资料。",
+        "confidence": "high",
+        "rawText": "1. これは明日会議で使う資料です。"
+      },
+      {
+        "id": "l25-basic-s002",
+        "order": 2,
+        "text": "わたしが 明日 乗る 飛行機は 中国航空です。",
+        "translationZh": "我明天乘坐的飞机是中国航空的。",
+        "confidence": "high",
+        "rawText": "2. わたしが明日乗る飛行機は中国航空です。"
+      },
+      {
+        "id": "l25-basic-s003",
+        "order": 3,
+        "text": "中国で 買った CDを 友達に 貸しました。",
+        "translationZh": "我把在中国买的CD借给了朋友。",
+        "confidence": "high",
+        "rawText": "3. 中国で買ったCDを友達に貸しました。"
+      },
+      {
+        "id": "l25-basic-s004",
+        "order": 4,
+        "text": "操作が 簡単な パソコンが 欲しいです。",
+        "translationZh": "我想要一台操作简单的电脑。",
+        "confidence": "high",
+        "rawText": "4. 操作が簡単なパソコンが欲しいです。"
+      }
+    ],
+    "dialogues": [
+      {
+        "id": "l25-basic-dialogue-001",
+        "label": "A",
+        "lines": [
+          {
+            "id": "l25-basic-dialogue-001-line-001",
+            "speaker": "甲",
+            "text": "李さん、この 人は だれですか。",
+            "translationZh": "小李，这个人是谁？",
+            "confidence": "high",
+            "rawText": "甲：李さん、この人はだれですか。"
+          },
+          {
+            "id": "l25-basic-dialogue-001-line-002",
+            "speaker": "乙",
+            "text": "その 人は 中国で とても 人気が ある 女優です。",
+            "translationZh": "那个人是在中国非常有人气的女演员。",
+            "confidence": "high",
+            "rawText": "乙：その人は中国でとても人気がある女優です。"
+          }
+        ]
+      },
+      {
+        "id": "l25-basic-dialogue-002",
+        "label": "B",
+        "lines": [
+          {
+            "id": "l25-basic-dialogue-002-line-001",
+            "speaker": "甲",
+            "text": "あの 窓の ところに いる 人は だれですか。",
+            "translationZh": "在那扇窗户旁边的人是谁？",
+            "confidence": "high",
+            "rawText": "甲：あの窓のところにいる人はだれですか。"
+          },
+          {
+            "id": "l25-basic-dialogue-002-line-002",
+            "speaker": "乙",
+            "text": "あれは 受付の 戴さんですよ。",
+            "translationZh": "那位是前台接待的戴女士。",
+            "confidence": "high",
+            "rawText": "乙：あれは受付の戴さんですよ。"
+          }
+        ]
+      },
+      {
+        "id": "l25-basic-dialogue-003",
+        "label": "C",
+        "lines": [
+          {
+            "id": "l25-basic-dialogue-003-line-001",
+            "speaker": "甲",
+            "text": "何を して いるんですか。",
+            "translationZh": "你在做什么？",
+            "confidence": "high",
+            "rawText": "甲：何をしているんですか。"
+          },
+          {
+            "id": "l25-basic-dialogue-003-line-002",
+            "speaker": "乙",
+            "text": "昨日 李さんに もらった 本を 読んで います。",
+            "translationZh": "我正在读昨天从小李那里得到的书。",
+            "confidence": "high",
+            "rawText": "乙：昨日李さんにもらった本を読んでいます。"
+          }
+        ]
+      },
+      {
+        "id": "l25-basic-dialogue-004",
+        "label": "D",
+        "lines": [
+          {
+            "id": "l25-basic-dialogue-004-line-001",
+            "speaker": "甲",
+            "text": "この 会社で 歌が いちばん 上手な 人は だれですか。",
+            "translationZh": "这家公司里唱歌最好的人是谁？",
+            "confidence": "high",
+            "rawText": "甲：この会社で歌がいちばん上手な人はだれですか。"
+          },
+          {
+            "id": "l25-basic-dialogue-004-line-002",
+            "speaker": "乙",
+            "text": "森さんだと 思います。",
+            "translationZh": "我想是森先生。",
+            "confidence": "high",
+            "rawText": "乙：森さんだと思います。"
+          }
+        ]
+      }
+    ]
+  },
+  "applicationText": {
+    "title": "北京市街へ",
+    "blocks": [
+      {
+        "id": "l25-app-block-001",
+        "type": "narration",
+        "text": "森健太郎到北京的那天，小李和北京分公司的职员马国祥去机场迎接。寒暄后，由小马开车，三人去了市内宾馆。",
+        "translationZh": "森健太郎到北京的那天，小李和北京分公司的职员马国祥去机场迎接。寒暄后，由小马开车，三人去了市内宾馆。",
+        "confidence": "high",
+        "rawText": "森健太郎到北京的那天，小李和北京分公司的职员马国祥去机场迎接。寒暄后，由小马开车，三人去了市内宾馆。"
+      },
+      {
+        "id": "l25-app-block-002",
+        "type": "scene",
+        "text": "上了车。",
+        "translationZh": "上了车。",
+        "confidence": "high",
+        "rawText": "（上了车）"
+      },
+      {
+        "id": "l25-app-block-003",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l25-app-block-003-line-001",
+            "speaker": "森",
+            "text": "今日 泊まる ホテルは 天安飯店でしたね。",
+            "translationZh": "今天要住的酒店是天安饭店，对吧？",
+            "confidence": "high",
+            "rawText": "森：今日泊まるホテルは天安飯店でしたね。"
+          },
+          {
+            "id": "l25-app-block-003-line-002",
+            "speaker": "李",
+            "text": "ええ。1か月ぐらい ホテルに 泊まって ください。ゆっくり 住む 所を 探しましょう。",
+            "translationZh": "是的。请先在酒店住一个月左右。慢慢找住处吧。",
+            "confidence": "high",
+            "rawText": "李：ええ。1か月ぐらいホテルに泊まってください。ゆっくり住む所を探しましょう。"
+          }
+        ]
+      },
+      {
+        "id": "l25-app-block-004",
+        "type": "scene",
+        "text": "上了高速公路。",
+        "translationZh": "上了高速公路。",
+        "confidence": "high",
+        "rawText": "（上了高速公路）"
+      },
+      {
+        "id": "l25-app-block-005",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l25-app-block-005-line-001",
+            "speaker": "森",
+            "text": "ずいぶん まっすぐな 道路ですね。",
+            "translationZh": "这条路真直啊。",
+            "confidence": "high",
+            "rawText": "森：ずいぶんまっすぐな道路ですね。"
+          },
+          {
+            "id": "l25-app-block-005-line-002",
+            "speaker": "馬",
+            "text": "これは 空港と 北京市街を 結ぶ 高速道路で、市街まで だいたい 30分ぐらいです。",
+            "translationZh": "这是连接机场和北京市区的高速公路，到市区大约30分钟。",
+            "confidence": "high",
+            "rawText": "馬：これは空港と北京市街を結ぶ高速道路で、市街までだいたい30分ぐらいです。"
+          }
+        ]
+      },
+      {
+        "id": "l25-app-block-006",
+        "type": "scene",
+        "text": "车内响起日语歌曲。",
+        "translationZh": "车内响起日语歌曲。",
+        "confidence": "high",
+        "rawText": "（车内响起日语歌曲）"
+      },
+      {
+        "id": "l25-app-block-007",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l25-app-block-007-line-001",
+            "speaker": "森",
+            "text": "あっ、これ、日本の 歌ですね。",
+            "translationZh": "啊，这是日本歌曲吧。",
+            "confidence": "high",
+            "rawText": "森：あっ、これ、日本の歌ですね。"
+          },
+          {
+            "id": "l25-app-block-007-line-002",
+            "speaker": "馬",
+            "text": "はい、そうです。日本人の 友達に もらった CDです。",
+            "translationZh": "是的。这是从一位日本朋友那里得到的CD。",
+            "confidence": "high",
+            "rawText": "馬：はい、そうです。日本人の友達にもらったCDです。"
+          },
+          {
+            "id": "l25-app-block-007-line-003",
+            "speaker": "森",
+            "text": "日本の 歌が 好きなんですか。",
+            "translationZh": "你喜欢日本歌曲吗？",
+            "confidence": "high",
+            "rawText": "森：日本の歌が好きなんですか。"
+          },
+          {
+            "id": "l25-app-block-007-line-004",
+            "speaker": "馬",
+            "text": "ええ、大好きです。中国には 日本の 歌が 好きな 人が たくさん いますよ。",
+            "translationZh": "嗯，非常喜欢。中国有很多喜欢日本歌曲的人。",
+            "confidence": "high",
+            "rawText": "馬：ええ、大好きです。中国には日本の歌が好きな人がたくさんいますよ。"
+          }
+        ]
+      },
+      {
+        "id": "l25-app-block-008",
+        "type": "scene",
+        "text": "高速公路两侧的几座大楼映入眼帘。森指着右侧前方的大楼问道……",
+        "translationZh": "高速公路两侧的几座大楼映入眼帘。森指着右侧前方的大楼问道……",
+        "confidence": "high",
+        "rawText": "（高速公路两侧的几座大楼映入眼帘。森指着右侧前方的大楼问道……）"
+      },
+      {
+        "id": "l25-app-block-009",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l25-app-block-009-line-001",
+            "speaker": "森",
+            "text": "あそこに ある 大きな 白い 建物は 何ですか。",
+            "translationZh": "那边那座又大又白的建筑物是什么？",
+            "confidence": "high",
+            "rawText": "森：あそこにある大きな白い建物は何ですか。"
+          },
+          {
+            "id": "l25-app-block-009-line-002",
+            "speaker": "李",
+            "text": "あれは 最近 できた 建物ですね。馬さん、知って いますか。",
+            "translationZh": "那是最近建成的建筑吧。小马，你知道吗？",
+            "confidence": "high",
+            "rawText": "李：あれは最近できた建物ですね。馬さん、知っていますか。"
+          },
+          {
+            "id": "l25-app-block-009-line-003",
+            "speaker": "馬",
+            "text": "ああ、あれは 自動車の 部品工場ですよ。",
+            "translationZh": "啊，那是一家汽车零件厂。",
+            "confidence": "high",
+            "rawText": "馬：ああ、あれは自動車の部品工場ですよ。"
+          }
+        ]
+      },
+      {
+        "id": "l25-app-block-010",
+        "type": "scene",
+        "text": "接近北京市区，进入三环路后开始堵车了。",
+        "translationZh": "接近北京市区，进入三环路后开始堵车了。",
+        "confidence": "high",
+        "rawText": "（接近北京市区，进入三环路后开始堵车了）"
+      },
+      {
+        "id": "l25-app-block-011",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l25-app-block-011-line-001",
+            "speaker": "森",
+            "text": "だいぶ 車が 多く なりましたね。",
+            "translationZh": "车多起来了啊。",
+            "confidence": "high",
+            "rawText": "森：だいぶ車が多くなりましたね。"
+          },
+          {
+            "id": "l25-app-block-011-line-002",
+            "speaker": "馬",
+            "text": "ええ。今 走って いる 道路は 三環路ですが、この あたりは よく 渋滞します。",
+            "translationZh": "是的。现在走的路是三环路，这一带经常堵车。",
+            "confidence": "high",
+            "rawText": "馬：ええ。今走っている道路は三環路ですが、このあたりはよく渋滞します。"
+          },
+          {
+            "id": "l25-app-block-011-line-003",
+            "speaker": "李",
+            "text": "三環路は 北京で いちばん 交通量が 多い 道路ですからね。",
+            "translationZh": "因为三环路是北京交通流量最大的道路。",
+            "confidence": "high",
+            "rawText": "李：三環路は北京でいちばん交通量が多い道路ですからね。"
+          }
+        ]
+      }
+    ]
+  },
+  "warnings": [
+    "segments/ruby 未批量生成；保留 text 与 translationZh，后续可单独补充 ruby 切片。"
+  ]
+}

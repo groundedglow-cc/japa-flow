@@ -1,0 +1,1874 @@
+{
+  "lessonId": 6,
+  "target": "vocabulary",
+  "generatedAt": "2026-08-05T08:45:12.303Z",
+  "outputs": {
+    "vocabulary": "data/ocr/lesson6-vocabulary-audio.json"
+  },
+  "summaries": [
+    {
+      "trackId": "lesson_words",
+      "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_words.mp3",
+      "duration": 82.52,
+      "expectedItems": 44,
+      "expectedSpeechUnits": 44,
+      "skippedSpeechUnits": 0,
+      "detectedSpeechIntervals": 44,
+      "mappedSegments": 44,
+      "selectedProfile": {
+        "noiseDb": -36,
+        "minSilence": 0.2
+      },
+      "warnings": []
+    }
+  ],
+  "vocabularyData": {
+    "lessonId": "lesson6",
+    "sourceImages": [
+      {
+        "path": "course-assets/by-lesson/lesson6/page87.webp",
+        "pageNo": 87
+      }
+    ],
+    "vocabulary": [
+      {
+        "id": "l6-v001",
+        "kana": "らいげつ",
+        "writing": "来月",
+        "meaningZh": [
+          "下个月"
+        ],
+        "partOfSpeech": "名",
+        "rawText": "らいげつ（来月）[名] 下个月",
+        "confidence": "high",
+        "audioSegment": {
+          "id": "l6-v001",
+          "trackId": "lesson_words",
+          "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_words.mp3",
+          "localAudioPath": "data/ocr/audio-cache/lesson6/lesson_words.mp3",
+          "itemIndex": 1,
+          "text": "らいげつ",
+          "label": "来月",
+          "start": 0.749,
+          "end": 1.588,
+          "duration": 0.839,
+          "speechUnitCount": 1,
+          "method": "ffmpeg-silencedetect-order",
+          "confidence": "high"
+        }
+      },
+      {
+        "id": "l6-v002",
+        "kana": "せんげつ",
+        "writing": "先月",
+        "meaningZh": [
+          "上个月"
+        ],
+        "partOfSpeech": "名",
+        "rawText": "せんげつ（先月）[名] 上个月",
+        "confidence": "high",
+        "audioSegment": {
+          "id": "l6-v002",
+          "trackId": "lesson_words",
+          "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_words.mp3",
+          "localAudioPath": "data/ocr/audio-cache/lesson6/lesson_words.mp3",
+          "itemIndex": 2,
+          "text": "せんげつ",
+          "label": "先月",
+          "start": 2.691,
+          "end": 3.601,
+          "duration": 0.91,
+          "speechUnitCount": 1,
+          "method": "ffmpeg-silencedetect-order",
+          "confidence": "high"
+        }
+      },
+      {
+        "id": "l6-v003",
+        "kana": "よなか",
+        "writing": "夜中",
+        "meaningZh": [
+          "午夜",
+          "半夜"
+        ],
+        "partOfSpeech": "名",
+        "rawText": "よなか（夜中）[名] 午夜，半夜",
+        "confidence": "high",
+        "audioSegment": {
+          "id": "l6-v003",
+          "trackId": "lesson_words",
+          "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_words.mp3",
+          "localAudioPath": "data/ocr/audio-cache/lesson6/lesson_words.mp3",
+          "itemIndex": 3,
+          "text": "よなか",
+          "label": "夜中",
+          "start": 4.432,
+          "end": 5.187,
+          "duration": 0.755,
+          "speechUnitCount": 1,
+          "method": "ffmpeg-silencedetect-order",
+          "confidence": "high"
+        }
+      },
+      {
+        "id": "l6-v004",
+        "kana": "ゆうべ",
+        "writing": "ゆうべ",
+        "meaningZh": [
+          "昨天晚上"
+        ],
+        "partOfSpeech": "名",
+        "rawText": "ゆうべ [名] 昨天晚上",
+        "confidence": "high",
+        "audioSegment": {
+          "id": "l6-v004",
+          "trackId": "lesson_words",
+          "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_words.mp3",
+          "localAudioPath": "data/ocr/audio-cache/lesson6/lesson_words.mp3",
+          "itemIndex": 4,
+          "text": "ゆうべ",
+          "label": "ゆうべ",
+          "start": 6.141,
+          "end": 6.916,
+          "duration": 0.775,
+          "speechUnitCount": 1,
+          "method": "ffmpeg-silencedetect-order",
+          "confidence": "high"
+        }
+      },
+      {
+        "id": "l6-v005",
+        "kana": "コンサート",
+        "writing": "コンサート",
+        "meaningZh": [
+          "音乐会"
+        ],
+        "partOfSpeech": "名",
+        "rawText": "コンサート [名] 音乐会",
+        "confidence": "high",
+        "audioSegment": {
+          "id": "l6-v005",
+          "trackId": "lesson_words",
+          "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_words.mp3",
+          "localAudioPath": "data/ocr/audio-cache/lesson6/lesson_words.mp3",
+          "itemIndex": 5,
+          "text": "コンサート",
+          "label": "コンサート",
+          "start": 7.975,
+          "end": 8.914,
+          "duration": 0.939,
+          "speechUnitCount": 1,
+          "method": "ffmpeg-silencedetect-order",
+          "confidence": "high"
+        }
+      },
+      {
+        "id": "l6-v006",
+        "kana": "クリスマス",
+        "writing": "クリスマス",
+        "meaningZh": [
+          "圣诞节"
+        ],
+        "partOfSpeech": "名",
+        "rawText": "クリスマス [名] 圣诞节",
+        "confidence": "high",
+        "audioSegment": {
+          "id": "l6-v006",
+          "trackId": "lesson_words",
+          "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_words.mp3",
+          "localAudioPath": "data/ocr/audio-cache/lesson6/lesson_words.mp3",
+          "itemIndex": 6,
+          "text": "クリスマス",
+          "label": "クリスマス",
+          "start": 9.951,
+          "end": 10.927,
+          "duration": 0.976,
+          "speechUnitCount": 1,
+          "method": "ffmpeg-silencedetect-order",
+          "confidence": "high"
+        }
+      },
+      {
+        "id": "l6-v007",
+        "kana": "たんじょうび",
+        "writing": "誕生日",
+        "meaningZh": [
+          "生日"
+        ],
+        "partOfSpeech": "名",
+        "rawText": "たんじょうび（誕生日）[名] 生日",
+        "confidence": "high",
+        "audioSegment": {
+          "id": "l6-v007",
+          "trackId": "lesson_words",
+          "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_words.mp3",
+          "localAudioPath": "data/ocr/audio-cache/lesson6/lesson_words.mp3",
+          "itemIndex": 7,
+          "text": "たんじょうび",
+          "label": "誕生日",
+          "start": 11.691,
+          "end": 12.679,
+          "duration": 0.988,
+          "speechUnitCount": 1,
+          "method": "ffmpeg-silencedetect-order",
+          "confidence": "high"
+        }
+      },
+      {
+        "id": "l6-v008",
+        "kana": "こどものひ",
+        "writing": "こどもの日",
+        "meaningZh": [
+          "儿童节"
+        ],
+        "partOfSpeech": "名",
+        "rawText": "こどものひ（こどもの日）[名] 儿童节",
+        "confidence": "high",
+        "audioSegment": {
+          "id": "l6-v008",
+          "trackId": "lesson_words",
+          "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_words.mp3",
+          "localAudioPath": "data/ocr/audio-cache/lesson6/lesson_words.mp3",
+          "itemIndex": 8,
+          "text": "こどものひ",
+          "label": "こどもの日",
+          "start": 13.769,
+          "end": 14.799,
+          "duration": 1.031,
+          "speechUnitCount": 1,
+          "method": "ffmpeg-silencedetect-order",
+          "confidence": "high"
+        }
+      },
+      {
+        "id": "l6-v009",
+        "kana": "なつやすみ",
+        "writing": "夏休み",
+        "meaningZh": [
+          "暑假"
+        ],
+        "partOfSpeech": "名",
+        "rawText": "なつやすみ（夏休み）[名] 暑假",
+        "confidence": "high",
+        "audioSegment": {
+          "id": "l6-v009",
+          "trackId": "lesson_words",
+          "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_words.mp3",
+          "localAudioPath": "data/ocr/audio-cache/lesson6/lesson_words.mp3",
+          "itemIndex": 9,
+          "text": "なつやすみ",
+          "label": "夏休み",
+          "start": 15.742,
+          "end": 16.784,
+          "duration": 1.042,
+          "speechUnitCount": 1,
+          "method": "ffmpeg-silencedetect-order",
+          "confidence": "high"
+        }
+      },
+      {
+        "id": "l6-v010",
+        "kana": "こうつうきかん",
+        "writing": "交通機関",
+        "meaningZh": [
+          "交通工具"
+        ],
+        "partOfSpeech": "名",
+        "rawText": "こうつうきかん（交通機関）[名] 交通工具",
+        "confidence": "high",
+        "audioSegment": {
+          "id": "l6-v010",
+          "trackId": "lesson_words",
+          "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_words.mp3",
+          "localAudioPath": "data/ocr/audio-cache/lesson6/lesson_words.mp3",
+          "itemIndex": 10,
+          "text": "こうつうきかん",
+          "label": "交通機関",
+          "start": 18.001,
+          "end": 19.191,
+          "duration": 1.19,
+          "speechUnitCount": 1,
+          "method": "ffmpeg-silencedetect-order",
+          "confidence": "high"
+        }
+      },
+      {
+        "id": "l6-v011",
+        "kana": "しんかんせん",
+        "writing": "新幹線",
+        "meaningZh": [
+          "新干线"
+        ],
+        "partOfSpeech": "名",
+        "rawText": "しんかんせん（新幹線）[名] 新干线",
+        "confidence": "high",
+        "audioSegment": {
+          "id": "l6-v011",
+          "trackId": "lesson_words",
+          "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_words.mp3",
+          "localAudioPath": "data/ocr/audio-cache/lesson6/lesson_words.mp3",
+          "itemIndex": 11,
+          "text": "しんかんせん",
+          "label": "新幹線",
+          "start": 19.979,
+          "end": 21.046,
+          "duration": 1.067,
+          "speechUnitCount": 1,
+          "method": "ffmpeg-silencedetect-order",
+          "confidence": "high"
+        }
+      },
+      {
+        "id": "l6-v012",
+        "kana": "ひこうき",
+        "writing": "飛行機",
+        "meaningZh": [
+          "飞机"
+        ],
+        "partOfSpeech": "名",
+        "rawText": "ひこうき（飛行機）[名] 飞机",
+        "confidence": "high",
+        "audioSegment": {
+          "id": "l6-v012",
+          "trackId": "lesson_words",
+          "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_words.mp3",
+          "localAudioPath": "data/ocr/audio-cache/lesson6/lesson_words.mp3",
+          "itemIndex": 12,
+          "text": "ひこうき",
+          "label": "飛行機",
+          "start": 22.053,
+          "end": 22.955,
+          "duration": 0.902,
+          "speechUnitCount": 1,
+          "method": "ffmpeg-silencedetect-order",
+          "confidence": "high"
+        }
+      },
+      {
+        "id": "l6-v013",
+        "kana": "フェリー",
+        "writing": "フェリー",
+        "meaningZh": [
+          "渡轮"
+        ],
+        "partOfSpeech": "名",
+        "rawText": "フェリー [名] 渡轮",
+        "confidence": "high",
+        "audioSegment": {
+          "id": "l6-v013",
+          "trackId": "lesson_words",
+          "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_words.mp3",
+          "localAudioPath": "data/ocr/audio-cache/lesson6/lesson_words.mp3",
+          "itemIndex": 13,
+          "text": "フェリー",
+          "label": "フェリー",
+          "start": 24.112,
+          "end": 24.751,
+          "duration": 0.639,
+          "speechUnitCount": 1,
+          "method": "ffmpeg-silencedetect-order",
+          "confidence": "high"
+        }
+      },
+      {
+        "id": "l6-v014",
+        "kana": "でんしゃ",
+        "writing": "電車",
+        "meaningZh": [
+          "电车"
+        ],
+        "partOfSpeech": "名",
+        "rawText": "でんしゃ（電車）[名] 电车",
+        "confidence": "high",
+        "audioSegment": {
+          "id": "l6-v014",
+          "trackId": "lesson_words",
+          "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_words.mp3",
+          "localAudioPath": "data/ocr/audio-cache/lesson6/lesson_words.mp3",
+          "itemIndex": 14,
+          "text": "でんしゃ",
+          "label": "電車",
+          "start": 25.433,
+          "end": 26.168,
+          "duration": 0.735,
+          "speechUnitCount": 1,
+          "method": "ffmpeg-silencedetect-order",
+          "confidence": "high"
+        }
+      },
+      {
+        "id": "l6-v015",
+        "kana": "バス",
+        "writing": "バス",
+        "meaningZh": [
+          "公共汽车"
+        ],
+        "partOfSpeech": "名",
+        "rawText": "バス [名] 公共汽车",
+        "confidence": "high",
+        "audioSegment": {
+          "id": "l6-v015",
+          "trackId": "lesson_words",
+          "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_words.mp3",
+          "localAudioPath": "data/ocr/audio-cache/lesson6/lesson_words.mp3",
+          "itemIndex": 15,
+          "text": "バス",
+          "label": "バス",
+          "start": 26.997,
+          "end": 27.493,
+          "duration": 0.495,
+          "speechUnitCount": 1,
+          "method": "ffmpeg-silencedetect-order",
+          "confidence": "high"
+        }
+      },
+      {
+        "id": "l6-v016",
+        "kana": "タクシー",
+        "writing": "タクシー",
+        "meaningZh": [
+          "出租车"
+        ],
+        "partOfSpeech": "名",
+        "rawText": "タクシー [名] 出租车",
+        "confidence": "high",
+        "audioSegment": {
+          "id": "l6-v016",
+          "trackId": "lesson_words",
+          "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_words.mp3",
+          "localAudioPath": "data/ocr/audio-cache/lesson6/lesson_words.mp3",
+          "itemIndex": 16,
+          "text": "タクシー",
+          "label": "タクシー",
+          "start": 28.36,
+          "end": 29.196,
+          "duration": 0.836,
+          "speechUnitCount": 1,
+          "method": "ffmpeg-silencedetect-order",
+          "confidence": "high"
+        }
+      },
+      {
+        "id": "l6-v017",
+        "kana": "びじゅつかん",
+        "writing": "美術館",
+        "meaningZh": [
+          "美术馆"
+        ],
+        "partOfSpeech": "名",
+        "rawText": "びじゅつかん（美術館）[名] 美术馆",
+        "confidence": "high",
+        "audioSegment": {
+          "id": "l6-v017",
+          "trackId": "lesson_words",
+          "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_words.mp3",
+          "localAudioPath": "data/ocr/audio-cache/lesson6/lesson_words.mp3",
+          "itemIndex": 17,
+          "text": "びじゅつかん",
+          "label": "美術館",
+          "start": 29.878,
+          "end": 30.784,
+          "duration": 0.906,
+          "speechUnitCount": 1,
+          "method": "ffmpeg-silencedetect-order",
+          "confidence": "high"
+        }
+      },
+      {
+        "id": "l6-v018",
+        "kana": "アパート",
+        "writing": "アパート",
+        "meaningZh": [
+          "公寓"
+        ],
+        "partOfSpeech": "名",
+        "rawText": "アパート [名] 公寓",
+        "confidence": "high",
+        "audioSegment": {
+          "id": "l6-v018",
+          "trackId": "lesson_words",
+          "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_words.mp3",
+          "localAudioPath": "data/ocr/audio-cache/lesson6/lesson_words.mp3",
+          "itemIndex": 18,
+          "text": "アパート",
+          "label": "アパート",
+          "start": 32.022,
+          "end": 32.842,
+          "duration": 0.819,
+          "speechUnitCount": 1,
+          "method": "ffmpeg-silencedetect-order",
+          "confidence": "high"
+        }
+      },
+      {
+        "id": "l6-v019",
+        "kana": "うち",
+        "writing": "うち",
+        "meaningZh": [
+          "家"
+        ],
+        "partOfSpeech": "名",
+        "rawText": "うち [名] 家",
+        "confidence": "high",
+        "audioSegment": {
+          "id": "l6-v019",
+          "trackId": "lesson_words",
+          "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_words.mp3",
+          "localAudioPath": "data/ocr/audio-cache/lesson6/lesson_words.mp3",
+          "itemIndex": 19,
+          "text": "うち",
+          "label": "うち",
+          "start": 33.605,
+          "end": 34.212,
+          "duration": 0.607,
+          "speechUnitCount": 1,
+          "method": "ffmpeg-silencedetect-order",
+          "confidence": "high"
+        }
+      },
+      {
+        "id": "l6-v020",
+        "kana": "プール",
+        "writing": "プール",
+        "meaningZh": [
+          "游泳池"
+        ],
+        "partOfSpeech": "名",
+        "rawText": "プール [名] 游泳池",
+        "confidence": "high",
+        "audioSegment": {
+          "id": "l6-v020",
+          "trackId": "lesson_words",
+          "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_words.mp3",
+          "localAudioPath": "data/ocr/audio-cache/lesson6/lesson_words.mp3",
+          "itemIndex": 20,
+          "text": "プール",
+          "label": "プール",
+          "start": 35.103,
+          "end": 35.746,
+          "duration": 0.643,
+          "speechUnitCount": 1,
+          "method": "ffmpeg-silencedetect-order",
+          "confidence": "high"
+        }
+      },
+      {
+        "id": "l6-v021",
+        "kana": "ともだち",
+        "writing": "友達",
+        "meaningZh": [
+          "朋友"
+        ],
+        "partOfSpeech": "名",
+        "rawText": "ともだち（友達）[名] 朋友",
+        "confidence": "high",
+        "audioSegment": {
+          "id": "l6-v021",
+          "trackId": "lesson_words",
+          "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_words.mp3",
+          "localAudioPath": "data/ocr/audio-cache/lesson6/lesson_words.mp3",
+          "itemIndex": 21,
+          "text": "ともだち",
+          "label": "友達",
+          "start": 36.498,
+          "end": 37.339,
+          "duration": 0.841,
+          "speechUnitCount": 1,
+          "method": "ffmpeg-silencedetect-order",
+          "confidence": "high"
+        }
+      },
+      {
+        "id": "l6-v022",
+        "kana": "おとうと",
+        "writing": "弟",
+        "meaningZh": [
+          "弟弟"
+        ],
+        "partOfSpeech": "名",
+        "rawText": "おとうと（弟）[名] 弟弟",
+        "confidence": "high",
+        "audioSegment": {
+          "id": "l6-v022",
+          "trackId": "lesson_words",
+          "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_words.mp3",
+          "localAudioPath": "data/ocr/audio-cache/lesson6/lesson_words.mp3",
+          "itemIndex": 22,
+          "text": "おとうと",
+          "label": "弟",
+          "start": 38.308,
+          "end": 39.149,
+          "duration": 0.841,
+          "speechUnitCount": 1,
+          "method": "ffmpeg-silencedetect-order",
+          "confidence": "high"
+        }
+      },
+      {
+        "id": "l6-v023",
+        "kana": "いきます",
+        "writing": "行きます",
+        "meaningZh": [
+          "去"
+        ],
+        "partOfSpeech": "动1",
+        "rawText": "いきます（行きます）[动1] 去",
+        "confidence": "high",
+        "audioSegment": {
+          "id": "l6-v023",
+          "trackId": "lesson_words",
+          "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_words.mp3",
+          "localAudioPath": "data/ocr/audio-cache/lesson6/lesson_words.mp3",
+          "itemIndex": 23,
+          "text": "いきます",
+          "label": "行きます",
+          "start": 39.956,
+          "end": 40.803,
+          "duration": 0.847,
+          "speechUnitCount": 1,
+          "method": "ffmpeg-silencedetect-order",
+          "confidence": "high"
+        }
+      },
+      {
+        "id": "l6-v024",
+        "kana": "かえります",
+        "writing": "帰ります",
+        "meaningZh": [
+          "回来",
+          "回去"
+        ],
+        "partOfSpeech": "动1",
+        "rawText": "かえります（帰ります）[动1] 回来，回去",
+        "confidence": "high",
+        "audioSegment": {
+          "id": "l6-v024",
+          "trackId": "lesson_words",
+          "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_words.mp3",
+          "localAudioPath": "data/ocr/audio-cache/lesson6/lesson_words.mp3",
+          "itemIndex": 24,
+          "text": "かえります",
+          "label": "帰ります",
+          "start": 42.046,
+          "end": 42.966,
+          "duration": 0.919,
+          "speechUnitCount": 1,
+          "method": "ffmpeg-silencedetect-order",
+          "confidence": "high"
+        }
+      },
+      {
+        "id": "l6-v025",
+        "kana": "きます",
+        "writing": "来ます",
+        "meaningZh": [
+          "来"
+        ],
+        "partOfSpeech": "动3",
+        "rawText": "きます（来ます）[动3] 来",
+        "confidence": "high",
+        "audioSegment": {
+          "id": "l6-v025",
+          "trackId": "lesson_words",
+          "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_words.mp3",
+          "localAudioPath": "data/ocr/audio-cache/lesson6/lesson_words.mp3",
+          "itemIndex": 25,
+          "text": "きます",
+          "label": "来ます",
+          "start": 43.941,
+          "end": 44.633,
+          "duration": 0.692,
+          "speechUnitCount": 1,
+          "method": "ffmpeg-silencedetect-order",
+          "confidence": "high"
+        }
+      },
+      {
+        "id": "l6-v026",
+        "kana": "たしか",
+        "writing": "たしか",
+        "meaningZh": [
+          "好像是",
+          "大概",
+          "的确"
+        ],
+        "partOfSpeech": "副",
+        "rawText": "たしか [副] 好像是，大概；的确",
+        "confidence": "high",
+        "audioSegment": {
+          "id": "l6-v026",
+          "trackId": "lesson_words",
+          "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_words.mp3",
+          "localAudioPath": "data/ocr/audio-cache/lesson6/lesson_words.mp3",
+          "itemIndex": 26,
+          "text": "たしか",
+          "label": "たしか",
+          "start": 45.861,
+          "end": 46.48,
+          "duration": 0.619,
+          "speechUnitCount": 1,
+          "method": "ffmpeg-silencedetect-order",
+          "confidence": "high"
+        }
+      },
+      {
+        "id": "l6-v027",
+        "kana": "まっすぐ",
+        "writing": "まっすぐ",
+        "meaningZh": [
+          "径直",
+          "笔直"
+        ],
+        "partOfSpeech": "副",
+        "rawText": "まっすぐ [副] 径直，笔直",
+        "confidence": "high",
+        "audioSegment": {
+          "id": "l6-v027",
+          "trackId": "lesson_words",
+          "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_words.mp3",
+          "localAudioPath": "data/ocr/audio-cache/lesson6/lesson_words.mp3",
+          "itemIndex": 27,
+          "text": "まっすぐ",
+          "label": "まっすぐ",
+          "start": 47.392,
+          "end": 48.307,
+          "duration": 0.915,
+          "speechUnitCount": 1,
+          "method": "ffmpeg-silencedetect-order",
+          "confidence": "high"
+        }
+      },
+      {
+        "id": "l6-v028",
+        "kana": "いっしょに",
+        "writing": "いっしょに",
+        "meaningZh": [
+          "一起"
+        ],
+        "partOfSpeech": "副",
+        "rawText": "いっしょに [副] 一起",
+        "confidence": "high",
+        "audioSegment": {
+          "id": "l6-v028",
+          "trackId": "lesson_words",
+          "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_words.mp3",
+          "localAudioPath": "data/ocr/audio-cache/lesson6/lesson_words.mp3",
+          "itemIndex": 28,
+          "text": "いっしょに",
+          "label": "いっしょに",
+          "start": 49.305,
+          "end": 50.162,
+          "duration": 0.857,
+          "speechUnitCount": 1,
+          "method": "ffmpeg-silencedetect-order",
+          "confidence": "high"
+        }
+      },
+      {
+        "id": "l6-v029",
+        "kana": "さとう",
+        "writing": "佐藤",
+        "meaningZh": [
+          "佐藤"
+        ],
+        "partOfSpeech": "专",
+        "rawText": "さとう（佐藤）[专] 佐藤",
+        "confidence": "high",
+        "audioSegment": {
+          "id": "l6-v029",
+          "trackId": "lesson_words",
+          "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_words.mp3",
+          "localAudioPath": "data/ocr/audio-cache/lesson6/lesson_words.mp3",
+          "itemIndex": 29,
+          "text": "さとう",
+          "label": "佐藤",
+          "start": 51.127,
+          "end": 51.792,
+          "duration": 0.665,
+          "speechUnitCount": 1,
+          "method": "ffmpeg-silencedetect-order",
+          "confidence": "high"
+        }
+      },
+      {
+        "id": "l6-v030",
+        "kana": "ペキン",
+        "writing": "北京",
+        "meaningZh": [
+          "北京"
+        ],
+        "partOfSpeech": "专",
+        "rawText": "ペキン（北京）[专] 北京",
+        "confidence": "high",
+        "audioSegment": {
+          "id": "l6-v030",
+          "trackId": "lesson_words",
+          "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_words.mp3",
+          "localAudioPath": "data/ocr/audio-cache/lesson6/lesson_words.mp3",
+          "itemIndex": 30,
+          "text": "ペキン",
+          "label": "北京",
+          "start": 52.877,
+          "end": 53.489,
+          "duration": 0.612,
+          "speechUnitCount": 1,
+          "method": "ffmpeg-silencedetect-order",
+          "confidence": "high"
+        }
+      },
+      {
+        "id": "l6-v031",
+        "kana": "アメリカ",
+        "writing": "アメリカ",
+        "meaningZh": [
+          "美国"
+        ],
+        "partOfSpeech": "专",
+        "rawText": "アメリカ [专] 美国",
+        "confidence": "high",
+        "audioSegment": {
+          "id": "l6-v031",
+          "trackId": "lesson_words",
+          "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_words.mp3",
+          "localAudioPath": "data/ocr/audio-cache/lesson6/lesson_words.mp3",
+          "itemIndex": 31,
+          "text": "アメリカ",
+          "label": "アメリカ",
+          "start": 54.349,
+          "end": 55.16,
+          "duration": 0.81,
+          "speechUnitCount": 1,
+          "method": "ffmpeg-silencedetect-order",
+          "confidence": "high"
+        }
+      },
+      {
+        "id": "l6-v032",
+        "kana": "かんこく",
+        "writing": "韓国",
+        "meaningZh": [
+          "韩国"
+        ],
+        "partOfSpeech": "专",
+        "rawText": "かんこく（韓国）[专] 韩国",
+        "confidence": "high",
+        "audioSegment": {
+          "id": "l6-v032",
+          "trackId": "lesson_words",
+          "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_words.mp3",
+          "localAudioPath": "data/ocr/audio-cache/lesson6/lesson_words.mp3",
+          "itemIndex": 32,
+          "text": "かんこく",
+          "label": "韓国",
+          "start": 56.026,
+          "end": 56.917,
+          "duration": 0.891,
+          "speechUnitCount": 1,
+          "method": "ffmpeg-silencedetect-order",
+          "confidence": "high"
+        }
+      },
+      {
+        "id": "l6-v033",
+        "kana": "フランス",
+        "writing": "フランス",
+        "meaningZh": [
+          "法国"
+        ],
+        "partOfSpeech": "专",
+        "rawText": "フランス [专] 法国",
+        "confidence": "high",
+        "audioSegment": {
+          "id": "l6-v033",
+          "trackId": "lesson_words",
+          "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_words.mp3",
+          "localAudioPath": "data/ocr/audio-cache/lesson6/lesson_words.mp3",
+          "itemIndex": 33,
+          "text": "フランス",
+          "label": "フランス",
+          "start": 57.597,
+          "end": 58.514,
+          "duration": 0.917,
+          "speechUnitCount": 1,
+          "method": "ffmpeg-silencedetect-order",
+          "confidence": "high"
+        }
+      },
+      {
+        "id": "l6-v034",
+        "kana": "ひろしま",
+        "writing": "広島",
+        "meaningZh": [
+          "广岛"
+        ],
+        "partOfSpeech": "专",
+        "rawText": "ひろしま（広島）[专] 广岛",
+        "confidence": "high",
+        "audioSegment": {
+          "id": "l6-v034",
+          "trackId": "lesson_words",
+          "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_words.mp3",
+          "localAudioPath": "data/ocr/audio-cache/lesson6/lesson_words.mp3",
+          "itemIndex": 34,
+          "text": "ひろしま",
+          "label": "広島",
+          "start": 59.293,
+          "end": 60.136,
+          "duration": 0.842,
+          "speechUnitCount": 1,
+          "method": "ffmpeg-silencedetect-order",
+          "confidence": "high"
+        }
+      },
+      {
+        "id": "l6-v035",
+        "kana": "きょうと",
+        "writing": "京都",
+        "meaningZh": [
+          "京都"
+        ],
+        "partOfSpeech": "专",
+        "rawText": "きょうと（京都）[专] 京都",
+        "confidence": "high",
+        "audioSegment": {
+          "id": "l6-v035",
+          "trackId": "lesson_words",
+          "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_words.mp3",
+          "localAudioPath": "data/ocr/audio-cache/lesson6/lesson_words.mp3",
+          "itemIndex": 35,
+          "text": "きょうと",
+          "label": "京都",
+          "start": 60.921,
+          "end": 61.595,
+          "duration": 0.674,
+          "speechUnitCount": 1,
+          "method": "ffmpeg-silencedetect-order",
+          "confidence": "high"
+        }
+      },
+      {
+        "id": "l6-v036",
+        "kana": "ほっかいどう",
+        "writing": "北海道",
+        "meaningZh": [
+          "北海道"
+        ],
+        "partOfSpeech": "专",
+        "rawText": "ほっかいどう（北海道）[专] 北海道",
+        "confidence": "high",
+        "audioSegment": {
+          "id": "l6-v036",
+          "trackId": "lesson_words",
+          "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_words.mp3",
+          "localAudioPath": "data/ocr/audio-cache/lesson6/lesson_words.mp3",
+          "itemIndex": 36,
+          "text": "ほっかいどう",
+          "label": "北海道",
+          "start": 62.705,
+          "end": 63.821,
+          "duration": 1.117,
+          "speechUnitCount": 1,
+          "method": "ffmpeg-silencedetect-order",
+          "confidence": "high"
+        }
+      },
+      {
+        "id": "l6-v037",
+        "kana": "はこね",
+        "writing": "箱根",
+        "meaningZh": [
+          "箱根"
+        ],
+        "partOfSpeech": "专",
+        "rawText": "はこね（箱根）[专] 箱根",
+        "confidence": "high",
+        "audioSegment": {
+          "id": "l6-v037",
+          "trackId": "lesson_words",
+          "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_words.mp3",
+          "localAudioPath": "data/ocr/audio-cache/lesson6/lesson_words.mp3",
+          "itemIndex": 37,
+          "text": "はこね",
+          "label": "箱根",
+          "start": 64.392,
+          "end": 65.097,
+          "duration": 0.706,
+          "speechUnitCount": 1,
+          "method": "ffmpeg-silencedetect-order",
+          "confidence": "high"
+        }
+      },
+      {
+        "id": "l6-v038",
+        "kana": "ぎんざ",
+        "writing": "銀座",
+        "meaningZh": [
+          "银座"
+        ],
+        "partOfSpeech": "专",
+        "rawText": "ぎんざ（銀座）[专] 银座",
+        "confidence": "high",
+        "audioSegment": {
+          "id": "l6-v038",
+          "trackId": "lesson_words",
+          "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_words.mp3",
+          "localAudioPath": "data/ocr/audio-cache/lesson6/lesson_words.mp3",
+          "itemIndex": 38,
+          "text": "ぎんざ",
+          "label": "銀座",
+          "start": 66.094,
+          "end": 66.859,
+          "duration": 0.765,
+          "speechUnitCount": 1,
+          "method": "ffmpeg-silencedetect-order",
+          "confidence": "high"
+        }
+      },
+      {
+        "id": "l6-v039",
+        "kana": "しぶや",
+        "writing": "渋谷",
+        "meaningZh": [
+          "涩谷"
+        ],
+        "partOfSpeech": "专",
+        "rawText": "しぶや（渋谷）[专] 涩谷",
+        "confidence": "high",
+        "audioSegment": {
+          "id": "l6-v039",
+          "trackId": "lesson_words",
+          "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_words.mp3",
+          "localAudioPath": "data/ocr/audio-cache/lesson6/lesson_words.mp3",
+          "itemIndex": 39,
+          "text": "しぶや",
+          "label": "渋谷",
+          "start": 67.628,
+          "end": 68.401,
+          "duration": 0.773,
+          "speechUnitCount": 1,
+          "method": "ffmpeg-silencedetect-order",
+          "confidence": "high"
+        }
+      },
+      {
+        "id": "l6-v040",
+        "kana": "しんじゅく",
+        "writing": "新宿",
+        "meaningZh": [
+          "新宿"
+        ],
+        "partOfSpeech": "专",
+        "rawText": "しんじゅく（新宿）[专] 新宿",
+        "confidence": "high",
+        "audioSegment": {
+          "id": "l6-v040",
+          "trackId": "lesson_words",
+          "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_words.mp3",
+          "localAudioPath": "data/ocr/audio-cache/lesson6/lesson_words.mp3",
+          "itemIndex": 40,
+          "text": "しんじゅく",
+          "label": "新宿",
+          "start": 69.258,
+          "end": 70.265,
+          "duration": 1.007,
+          "speechUnitCount": 1,
+          "method": "ffmpeg-silencedetect-order",
+          "confidence": "high"
+        }
+      },
+      {
+        "id": "l6-v041",
+        "kana": "おつかれさまでした",
+        "writing": "お疲れ様でした",
+        "meaningZh": [
+          "够累的"
+        ],
+        "partOfSpeech": null,
+        "rawText": "おつかれさまでした（お疲れ様でした） 够累的",
+        "confidence": "high",
+        "audioSegment": {
+          "id": "l6-v041",
+          "trackId": "lesson_words",
+          "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_words.mp3",
+          "localAudioPath": "data/ocr/audio-cache/lesson6/lesson_words.mp3",
+          "itemIndex": 41,
+          "text": "おつかれさまでした",
+          "label": "お疲れ様でした",
+          "start": 71.456,
+          "end": 72.777,
+          "duration": 1.321,
+          "speechUnitCount": 1,
+          "method": "ffmpeg-silencedetect-order",
+          "confidence": "high"
+        }
+      },
+      {
+        "id": "l6-v042",
+        "kana": "おさきにしつれいします",
+        "writing": "お先に失礼します",
+        "meaningZh": [
+          "我先走了",
+          "我先告辞了"
+        ],
+        "partOfSpeech": null,
+        "rawText": "おさきにしつれいします（お先に失礼します） 我先走了，我先告辞了",
+        "confidence": "high",
+        "audioSegment": {
+          "id": "l6-v042",
+          "trackId": "lesson_words",
+          "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_words.mp3",
+          "localAudioPath": "data/ocr/audio-cache/lesson6/lesson_words.mp3",
+          "itemIndex": 42,
+          "text": "おさきにしつれいします",
+          "label": "お先に失礼します",
+          "start": 74.4,
+          "end": 76.229,
+          "duration": 1.829,
+          "speechUnitCount": 1,
+          "method": "ffmpeg-silencedetect-order",
+          "confidence": "high"
+        }
+      },
+      {
+        "id": "l6-v043",
+        "kana": "あるいて",
+        "writing": "歩いて",
+        "meaningZh": [
+          "步行"
+        ],
+        "partOfSpeech": null,
+        "rawText": "あるいて（歩いて） 步行",
+        "confidence": "high",
+        "audioSegment": {
+          "id": "l6-v043",
+          "trackId": "lesson_words",
+          "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_words.mp3",
+          "localAudioPath": "data/ocr/audio-cache/lesson6/lesson_words.mp3",
+          "itemIndex": 43,
+          "text": "あるいて",
+          "label": "歩いて",
+          "start": 77.452,
+          "end": 78.202,
+          "duration": 0.75,
+          "speechUnitCount": 1,
+          "method": "ffmpeg-silencedetect-order",
+          "confidence": "high"
+        }
+      },
+      {
+        "id": "l6-v044",
+        "kana": "たいへんですね",
+        "writing": "大変ですね",
+        "meaningZh": [
+          "真不容易",
+          "够受的",
+          "不得了"
+        ],
+        "partOfSpeech": null,
+        "rawText": "たいへんですね（大変ですね） 真不容易，够受的，不得了",
+        "confidence": "high",
+        "audioSegment": {
+          "id": "l6-v044",
+          "trackId": "lesson_words",
+          "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_words.mp3",
+          "localAudioPath": "data/ocr/audio-cache/lesson6/lesson_words.mp3",
+          "itemIndex": 44,
+          "text": "たいへんですね",
+          "label": "大変ですね",
+          "start": 79.71,
+          "end": 80.843,
+          "duration": 1.133,
+          "speechUnitCount": 1,
+          "method": "ffmpeg-silencedetect-order",
+          "confidence": "high"
+        }
+      }
+    ],
+    "warnings": [],
+    "audioAlignment": {
+      "generatedAt": "2026-08-05T08:45:12.303Z",
+      "method": "ffmpeg-silencedetect-order",
+      "tracks": {
+        "lesson_words": {
+          "trackId": "lesson_words",
+          "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_words.mp3",
+          "localAudioPath": "data/ocr/audio-cache/lesson6/lesson_words.mp3",
+          "outputPath": "data/ocr/lesson6-vocabulary-audio.json",
+          "duration": 82.52,
+          "expectedItems": 44,
+          "expectedSpeechUnits": 44,
+          "skippedSpeechUnits": 0,
+          "detectedSpeechIntervals": 44,
+          "mappedSegments": 44,
+          "selectedProfile": {
+            "noiseDb": -36,
+            "minSilence": 0.2
+          },
+          "warnings": [],
+          "segments": [
+            {
+              "id": "l6-v001",
+              "trackId": "lesson_words",
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_words.mp3",
+              "localAudioPath": "data/ocr/audio-cache/lesson6/lesson_words.mp3",
+              "itemIndex": 1,
+              "text": "らいげつ",
+              "label": "来月",
+              "start": 0.749,
+              "end": 1.588,
+              "duration": 0.839,
+              "speechUnitCount": 1,
+              "method": "ffmpeg-silencedetect-order",
+              "confidence": "high"
+            },
+            {
+              "id": "l6-v002",
+              "trackId": "lesson_words",
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_words.mp3",
+              "localAudioPath": "data/ocr/audio-cache/lesson6/lesson_words.mp3",
+              "itemIndex": 2,
+              "text": "せんげつ",
+              "label": "先月",
+              "start": 2.691,
+              "end": 3.601,
+              "duration": 0.91,
+              "speechUnitCount": 1,
+              "method": "ffmpeg-silencedetect-order",
+              "confidence": "high"
+            },
+            {
+              "id": "l6-v003",
+              "trackId": "lesson_words",
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_words.mp3",
+              "localAudioPath": "data/ocr/audio-cache/lesson6/lesson_words.mp3",
+              "itemIndex": 3,
+              "text": "よなか",
+              "label": "夜中",
+              "start": 4.432,
+              "end": 5.187,
+              "duration": 0.755,
+              "speechUnitCount": 1,
+              "method": "ffmpeg-silencedetect-order",
+              "confidence": "high"
+            },
+            {
+              "id": "l6-v004",
+              "trackId": "lesson_words",
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_words.mp3",
+              "localAudioPath": "data/ocr/audio-cache/lesson6/lesson_words.mp3",
+              "itemIndex": 4,
+              "text": "ゆうべ",
+              "label": "ゆうべ",
+              "start": 6.141,
+              "end": 6.916,
+              "duration": 0.775,
+              "speechUnitCount": 1,
+              "method": "ffmpeg-silencedetect-order",
+              "confidence": "high"
+            },
+            {
+              "id": "l6-v005",
+              "trackId": "lesson_words",
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_words.mp3",
+              "localAudioPath": "data/ocr/audio-cache/lesson6/lesson_words.mp3",
+              "itemIndex": 5,
+              "text": "コンサート",
+              "label": "コンサート",
+              "start": 7.975,
+              "end": 8.914,
+              "duration": 0.939,
+              "speechUnitCount": 1,
+              "method": "ffmpeg-silencedetect-order",
+              "confidence": "high"
+            },
+            {
+              "id": "l6-v006",
+              "trackId": "lesson_words",
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_words.mp3",
+              "localAudioPath": "data/ocr/audio-cache/lesson6/lesson_words.mp3",
+              "itemIndex": 6,
+              "text": "クリスマス",
+              "label": "クリスマス",
+              "start": 9.951,
+              "end": 10.927,
+              "duration": 0.976,
+              "speechUnitCount": 1,
+              "method": "ffmpeg-silencedetect-order",
+              "confidence": "high"
+            },
+            {
+              "id": "l6-v007",
+              "trackId": "lesson_words",
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_words.mp3",
+              "localAudioPath": "data/ocr/audio-cache/lesson6/lesson_words.mp3",
+              "itemIndex": 7,
+              "text": "たんじょうび",
+              "label": "誕生日",
+              "start": 11.691,
+              "end": 12.679,
+              "duration": 0.988,
+              "speechUnitCount": 1,
+              "method": "ffmpeg-silencedetect-order",
+              "confidence": "high"
+            },
+            {
+              "id": "l6-v008",
+              "trackId": "lesson_words",
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_words.mp3",
+              "localAudioPath": "data/ocr/audio-cache/lesson6/lesson_words.mp3",
+              "itemIndex": 8,
+              "text": "こどものひ",
+              "label": "こどもの日",
+              "start": 13.769,
+              "end": 14.799,
+              "duration": 1.031,
+              "speechUnitCount": 1,
+              "method": "ffmpeg-silencedetect-order",
+              "confidence": "high"
+            },
+            {
+              "id": "l6-v009",
+              "trackId": "lesson_words",
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_words.mp3",
+              "localAudioPath": "data/ocr/audio-cache/lesson6/lesson_words.mp3",
+              "itemIndex": 9,
+              "text": "なつやすみ",
+              "label": "夏休み",
+              "start": 15.742,
+              "end": 16.784,
+              "duration": 1.042,
+              "speechUnitCount": 1,
+              "method": "ffmpeg-silencedetect-order",
+              "confidence": "high"
+            },
+            {
+              "id": "l6-v010",
+              "trackId": "lesson_words",
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_words.mp3",
+              "localAudioPath": "data/ocr/audio-cache/lesson6/lesson_words.mp3",
+              "itemIndex": 10,
+              "text": "こうつうきかん",
+              "label": "交通機関",
+              "start": 18.001,
+              "end": 19.191,
+              "duration": 1.19,
+              "speechUnitCount": 1,
+              "method": "ffmpeg-silencedetect-order",
+              "confidence": "high"
+            },
+            {
+              "id": "l6-v011",
+              "trackId": "lesson_words",
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_words.mp3",
+              "localAudioPath": "data/ocr/audio-cache/lesson6/lesson_words.mp3",
+              "itemIndex": 11,
+              "text": "しんかんせん",
+              "label": "新幹線",
+              "start": 19.979,
+              "end": 21.046,
+              "duration": 1.067,
+              "speechUnitCount": 1,
+              "method": "ffmpeg-silencedetect-order",
+              "confidence": "high"
+            },
+            {
+              "id": "l6-v012",
+              "trackId": "lesson_words",
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_words.mp3",
+              "localAudioPath": "data/ocr/audio-cache/lesson6/lesson_words.mp3",
+              "itemIndex": 12,
+              "text": "ひこうき",
+              "label": "飛行機",
+              "start": 22.053,
+              "end": 22.955,
+              "duration": 0.902,
+              "speechUnitCount": 1,
+              "method": "ffmpeg-silencedetect-order",
+              "confidence": "high"
+            },
+            {
+              "id": "l6-v013",
+              "trackId": "lesson_words",
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_words.mp3",
+              "localAudioPath": "data/ocr/audio-cache/lesson6/lesson_words.mp3",
+              "itemIndex": 13,
+              "text": "フェリー",
+              "label": "フェリー",
+              "start": 24.112,
+              "end": 24.751,
+              "duration": 0.639,
+              "speechUnitCount": 1,
+              "method": "ffmpeg-silencedetect-order",
+              "confidence": "high"
+            },
+            {
+              "id": "l6-v014",
+              "trackId": "lesson_words",
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_words.mp3",
+              "localAudioPath": "data/ocr/audio-cache/lesson6/lesson_words.mp3",
+              "itemIndex": 14,
+              "text": "でんしゃ",
+              "label": "電車",
+              "start": 25.433,
+              "end": 26.168,
+              "duration": 0.735,
+              "speechUnitCount": 1,
+              "method": "ffmpeg-silencedetect-order",
+              "confidence": "high"
+            },
+            {
+              "id": "l6-v015",
+              "trackId": "lesson_words",
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_words.mp3",
+              "localAudioPath": "data/ocr/audio-cache/lesson6/lesson_words.mp3",
+              "itemIndex": 15,
+              "text": "バス",
+              "label": "バス",
+              "start": 26.997,
+              "end": 27.493,
+              "duration": 0.495,
+              "speechUnitCount": 1,
+              "method": "ffmpeg-silencedetect-order",
+              "confidence": "high"
+            },
+            {
+              "id": "l6-v016",
+              "trackId": "lesson_words",
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_words.mp3",
+              "localAudioPath": "data/ocr/audio-cache/lesson6/lesson_words.mp3",
+              "itemIndex": 16,
+              "text": "タクシー",
+              "label": "タクシー",
+              "start": 28.36,
+              "end": 29.196,
+              "duration": 0.836,
+              "speechUnitCount": 1,
+              "method": "ffmpeg-silencedetect-order",
+              "confidence": "high"
+            },
+            {
+              "id": "l6-v017",
+              "trackId": "lesson_words",
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_words.mp3",
+              "localAudioPath": "data/ocr/audio-cache/lesson6/lesson_words.mp3",
+              "itemIndex": 17,
+              "text": "びじゅつかん",
+              "label": "美術館",
+              "start": 29.878,
+              "end": 30.784,
+              "duration": 0.906,
+              "speechUnitCount": 1,
+              "method": "ffmpeg-silencedetect-order",
+              "confidence": "high"
+            },
+            {
+              "id": "l6-v018",
+              "trackId": "lesson_words",
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_words.mp3",
+              "localAudioPath": "data/ocr/audio-cache/lesson6/lesson_words.mp3",
+              "itemIndex": 18,
+              "text": "アパート",
+              "label": "アパート",
+              "start": 32.022,
+              "end": 32.842,
+              "duration": 0.819,
+              "speechUnitCount": 1,
+              "method": "ffmpeg-silencedetect-order",
+              "confidence": "high"
+            },
+            {
+              "id": "l6-v019",
+              "trackId": "lesson_words",
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_words.mp3",
+              "localAudioPath": "data/ocr/audio-cache/lesson6/lesson_words.mp3",
+              "itemIndex": 19,
+              "text": "うち",
+              "label": "うち",
+              "start": 33.605,
+              "end": 34.212,
+              "duration": 0.607,
+              "speechUnitCount": 1,
+              "method": "ffmpeg-silencedetect-order",
+              "confidence": "high"
+            },
+            {
+              "id": "l6-v020",
+              "trackId": "lesson_words",
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_words.mp3",
+              "localAudioPath": "data/ocr/audio-cache/lesson6/lesson_words.mp3",
+              "itemIndex": 20,
+              "text": "プール",
+              "label": "プール",
+              "start": 35.103,
+              "end": 35.746,
+              "duration": 0.643,
+              "speechUnitCount": 1,
+              "method": "ffmpeg-silencedetect-order",
+              "confidence": "high"
+            },
+            {
+              "id": "l6-v021",
+              "trackId": "lesson_words",
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_words.mp3",
+              "localAudioPath": "data/ocr/audio-cache/lesson6/lesson_words.mp3",
+              "itemIndex": 21,
+              "text": "ともだち",
+              "label": "友達",
+              "start": 36.498,
+              "end": 37.339,
+              "duration": 0.841,
+              "speechUnitCount": 1,
+              "method": "ffmpeg-silencedetect-order",
+              "confidence": "high"
+            },
+            {
+              "id": "l6-v022",
+              "trackId": "lesson_words",
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_words.mp3",
+              "localAudioPath": "data/ocr/audio-cache/lesson6/lesson_words.mp3",
+              "itemIndex": 22,
+              "text": "おとうと",
+              "label": "弟",
+              "start": 38.308,
+              "end": 39.149,
+              "duration": 0.841,
+              "speechUnitCount": 1,
+              "method": "ffmpeg-silencedetect-order",
+              "confidence": "high"
+            },
+            {
+              "id": "l6-v023",
+              "trackId": "lesson_words",
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_words.mp3",
+              "localAudioPath": "data/ocr/audio-cache/lesson6/lesson_words.mp3",
+              "itemIndex": 23,
+              "text": "いきます",
+              "label": "行きます",
+              "start": 39.956,
+              "end": 40.803,
+              "duration": 0.847,
+              "speechUnitCount": 1,
+              "method": "ffmpeg-silencedetect-order",
+              "confidence": "high"
+            },
+            {
+              "id": "l6-v024",
+              "trackId": "lesson_words",
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_words.mp3",
+              "localAudioPath": "data/ocr/audio-cache/lesson6/lesson_words.mp3",
+              "itemIndex": 24,
+              "text": "かえります",
+              "label": "帰ります",
+              "start": 42.046,
+              "end": 42.966,
+              "duration": 0.919,
+              "speechUnitCount": 1,
+              "method": "ffmpeg-silencedetect-order",
+              "confidence": "high"
+            },
+            {
+              "id": "l6-v025",
+              "trackId": "lesson_words",
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_words.mp3",
+              "localAudioPath": "data/ocr/audio-cache/lesson6/lesson_words.mp3",
+              "itemIndex": 25,
+              "text": "きます",
+              "label": "来ます",
+              "start": 43.941,
+              "end": 44.633,
+              "duration": 0.692,
+              "speechUnitCount": 1,
+              "method": "ffmpeg-silencedetect-order",
+              "confidence": "high"
+            },
+            {
+              "id": "l6-v026",
+              "trackId": "lesson_words",
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_words.mp3",
+              "localAudioPath": "data/ocr/audio-cache/lesson6/lesson_words.mp3",
+              "itemIndex": 26,
+              "text": "たしか",
+              "label": "たしか",
+              "start": 45.861,
+              "end": 46.48,
+              "duration": 0.619,
+              "speechUnitCount": 1,
+              "method": "ffmpeg-silencedetect-order",
+              "confidence": "high"
+            },
+            {
+              "id": "l6-v027",
+              "trackId": "lesson_words",
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_words.mp3",
+              "localAudioPath": "data/ocr/audio-cache/lesson6/lesson_words.mp3",
+              "itemIndex": 27,
+              "text": "まっすぐ",
+              "label": "まっすぐ",
+              "start": 47.392,
+              "end": 48.307,
+              "duration": 0.915,
+              "speechUnitCount": 1,
+              "method": "ffmpeg-silencedetect-order",
+              "confidence": "high"
+            },
+            {
+              "id": "l6-v028",
+              "trackId": "lesson_words",
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_words.mp3",
+              "localAudioPath": "data/ocr/audio-cache/lesson6/lesson_words.mp3",
+              "itemIndex": 28,
+              "text": "いっしょに",
+              "label": "いっしょに",
+              "start": 49.305,
+              "end": 50.162,
+              "duration": 0.857,
+              "speechUnitCount": 1,
+              "method": "ffmpeg-silencedetect-order",
+              "confidence": "high"
+            },
+            {
+              "id": "l6-v029",
+              "trackId": "lesson_words",
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_words.mp3",
+              "localAudioPath": "data/ocr/audio-cache/lesson6/lesson_words.mp3",
+              "itemIndex": 29,
+              "text": "さとう",
+              "label": "佐藤",
+              "start": 51.127,
+              "end": 51.792,
+              "duration": 0.665,
+              "speechUnitCount": 1,
+              "method": "ffmpeg-silencedetect-order",
+              "confidence": "high"
+            },
+            {
+              "id": "l6-v030",
+              "trackId": "lesson_words",
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_words.mp3",
+              "localAudioPath": "data/ocr/audio-cache/lesson6/lesson_words.mp3",
+              "itemIndex": 30,
+              "text": "ペキン",
+              "label": "北京",
+              "start": 52.877,
+              "end": 53.489,
+              "duration": 0.612,
+              "speechUnitCount": 1,
+              "method": "ffmpeg-silencedetect-order",
+              "confidence": "high"
+            },
+            {
+              "id": "l6-v031",
+              "trackId": "lesson_words",
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_words.mp3",
+              "localAudioPath": "data/ocr/audio-cache/lesson6/lesson_words.mp3",
+              "itemIndex": 31,
+              "text": "アメリカ",
+              "label": "アメリカ",
+              "start": 54.349,
+              "end": 55.16,
+              "duration": 0.81,
+              "speechUnitCount": 1,
+              "method": "ffmpeg-silencedetect-order",
+              "confidence": "high"
+            },
+            {
+              "id": "l6-v032",
+              "trackId": "lesson_words",
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_words.mp3",
+              "localAudioPath": "data/ocr/audio-cache/lesson6/lesson_words.mp3",
+              "itemIndex": 32,
+              "text": "かんこく",
+              "label": "韓国",
+              "start": 56.026,
+              "end": 56.917,
+              "duration": 0.891,
+              "speechUnitCount": 1,
+              "method": "ffmpeg-silencedetect-order",
+              "confidence": "high"
+            },
+            {
+              "id": "l6-v033",
+              "trackId": "lesson_words",
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_words.mp3",
+              "localAudioPath": "data/ocr/audio-cache/lesson6/lesson_words.mp3",
+              "itemIndex": 33,
+              "text": "フランス",
+              "label": "フランス",
+              "start": 57.597,
+              "end": 58.514,
+              "duration": 0.917,
+              "speechUnitCount": 1,
+              "method": "ffmpeg-silencedetect-order",
+              "confidence": "high"
+            },
+            {
+              "id": "l6-v034",
+              "trackId": "lesson_words",
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_words.mp3",
+              "localAudioPath": "data/ocr/audio-cache/lesson6/lesson_words.mp3",
+              "itemIndex": 34,
+              "text": "ひろしま",
+              "label": "広島",
+              "start": 59.293,
+              "end": 60.136,
+              "duration": 0.842,
+              "speechUnitCount": 1,
+              "method": "ffmpeg-silencedetect-order",
+              "confidence": "high"
+            },
+            {
+              "id": "l6-v035",
+              "trackId": "lesson_words",
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_words.mp3",
+              "localAudioPath": "data/ocr/audio-cache/lesson6/lesson_words.mp3",
+              "itemIndex": 35,
+              "text": "きょうと",
+              "label": "京都",
+              "start": 60.921,
+              "end": 61.595,
+              "duration": 0.674,
+              "speechUnitCount": 1,
+              "method": "ffmpeg-silencedetect-order",
+              "confidence": "high"
+            },
+            {
+              "id": "l6-v036",
+              "trackId": "lesson_words",
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_words.mp3",
+              "localAudioPath": "data/ocr/audio-cache/lesson6/lesson_words.mp3",
+              "itemIndex": 36,
+              "text": "ほっかいどう",
+              "label": "北海道",
+              "start": 62.705,
+              "end": 63.821,
+              "duration": 1.117,
+              "speechUnitCount": 1,
+              "method": "ffmpeg-silencedetect-order",
+              "confidence": "high"
+            },
+            {
+              "id": "l6-v037",
+              "trackId": "lesson_words",
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_words.mp3",
+              "localAudioPath": "data/ocr/audio-cache/lesson6/lesson_words.mp3",
+              "itemIndex": 37,
+              "text": "はこね",
+              "label": "箱根",
+              "start": 64.392,
+              "end": 65.097,
+              "duration": 0.706,
+              "speechUnitCount": 1,
+              "method": "ffmpeg-silencedetect-order",
+              "confidence": "high"
+            },
+            {
+              "id": "l6-v038",
+              "trackId": "lesson_words",
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_words.mp3",
+              "localAudioPath": "data/ocr/audio-cache/lesson6/lesson_words.mp3",
+              "itemIndex": 38,
+              "text": "ぎんざ",
+              "label": "銀座",
+              "start": 66.094,
+              "end": 66.859,
+              "duration": 0.765,
+              "speechUnitCount": 1,
+              "method": "ffmpeg-silencedetect-order",
+              "confidence": "high"
+            },
+            {
+              "id": "l6-v039",
+              "trackId": "lesson_words",
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_words.mp3",
+              "localAudioPath": "data/ocr/audio-cache/lesson6/lesson_words.mp3",
+              "itemIndex": 39,
+              "text": "しぶや",
+              "label": "渋谷",
+              "start": 67.628,
+              "end": 68.401,
+              "duration": 0.773,
+              "speechUnitCount": 1,
+              "method": "ffmpeg-silencedetect-order",
+              "confidence": "high"
+            },
+            {
+              "id": "l6-v040",
+              "trackId": "lesson_words",
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_words.mp3",
+              "localAudioPath": "data/ocr/audio-cache/lesson6/lesson_words.mp3",
+              "itemIndex": 40,
+              "text": "しんじゅく",
+              "label": "新宿",
+              "start": 69.258,
+              "end": 70.265,
+              "duration": 1.007,
+              "speechUnitCount": 1,
+              "method": "ffmpeg-silencedetect-order",
+              "confidence": "high"
+            },
+            {
+              "id": "l6-v041",
+              "trackId": "lesson_words",
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_words.mp3",
+              "localAudioPath": "data/ocr/audio-cache/lesson6/lesson_words.mp3",
+              "itemIndex": 41,
+              "text": "おつかれさまでした",
+              "label": "お疲れ様でした",
+              "start": 71.456,
+              "end": 72.777,
+              "duration": 1.321,
+              "speechUnitCount": 1,
+              "method": "ffmpeg-silencedetect-order",
+              "confidence": "high"
+            },
+            {
+              "id": "l6-v042",
+              "trackId": "lesson_words",
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_words.mp3",
+              "localAudioPath": "data/ocr/audio-cache/lesson6/lesson_words.mp3",
+              "itemIndex": 42,
+              "text": "おさきにしつれいします",
+              "label": "お先に失礼します",
+              "start": 74.4,
+              "end": 76.229,
+              "duration": 1.829,
+              "speechUnitCount": 1,
+              "method": "ffmpeg-silencedetect-order",
+              "confidence": "high"
+            },
+            {
+              "id": "l6-v043",
+              "trackId": "lesson_words",
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_words.mp3",
+              "localAudioPath": "data/ocr/audio-cache/lesson6/lesson_words.mp3",
+              "itemIndex": 43,
+              "text": "あるいて",
+              "label": "歩いて",
+              "start": 77.452,
+              "end": 78.202,
+              "duration": 0.75,
+              "speechUnitCount": 1,
+              "method": "ffmpeg-silencedetect-order",
+              "confidence": "high"
+            },
+            {
+              "id": "l6-v044",
+              "trackId": "lesson_words",
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_words.mp3",
+              "localAudioPath": "data/ocr/audio-cache/lesson6/lesson_words.mp3",
+              "itemIndex": 44,
+              "text": "たいへんですね",
+              "label": "大変ですね",
+              "start": 79.71,
+              "end": 80.843,
+              "duration": 1.133,
+              "speechUnitCount": 1,
+              "method": "ffmpeg-silencedetect-order",
+              "confidence": "high"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

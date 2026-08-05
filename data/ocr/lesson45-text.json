@@ -1,0 +1,310 @@
+{
+  "lessonId": "lesson45",
+  "sourceImages": [
+    {
+      "section": "basic",
+      "path": "course-assets/by-lesson/lesson45/page234.webp",
+      "pageNo": 234
+    },
+    {
+      "section": "application",
+      "path": "course-assets/by-lesson/lesson45/page239.webp",
+      "pageNo": 239
+    }
+  ],
+  "basicText": {
+    "title": "基本课文",
+    "basicSentences": [
+      {
+        "id": "l45-basic-s001",
+        "order": 1,
+        "text": "少子化が進んで、日本の人口はだんだん減っていくでしょう。",
+        "translationZh": "随着少子化的发展，日本的人口大概会逐渐减少吧。",
+        "confidence": "high",
+        "rawText": "1. 少子化が進んで、日本の人口はだんだん減っていくでしょう。"
+      },
+      {
+        "id": "l45-basic-s002",
+        "order": 2,
+        "text": "ずっと本を読んでいたので、目が疲れてきました。",
+        "translationZh": "因为一直在看书，眼睛都疲劳了。",
+        "confidence": "high",
+        "rawText": "2. ずっと本を読んでいたので、目が疲れてきました。"
+      },
+      {
+        "id": "l45-basic-s003",
+        "order": 3,
+        "text": "おいしいし、手軽だし、わたしは冷凍食品をよく食べます。",
+        "translationZh": "因为好吃，而且方便，我经常吃冷冻食品。",
+        "confidence": "high",
+        "rawText": "3. おいしいし、手軽だし、わたしは冷凍食品をよく食べます。"
+      },
+      {
+        "id": "l45-basic-s004",
+        "order": 4,
+        "text": "この本は読めば読むほどおもしろいです。",
+        "translationZh": "这本书越读越有意思。",
+        "confidence": "high",
+        "rawText": "4. この本は読めば読むほどおもしろいです。"
+      }
+    ],
+    "dialogues": [
+      {
+        "id": "l45-basic-dialogue-001",
+        "label": "A",
+        "lines": [
+          {
+            "id": "l45-basic-dialogue-001-line-001",
+            "speaker": "甲",
+            "text": "最近、中国へ旅行に行く日本人が増えてきましたね。",
+            "translationZh": "最近，去中国旅行的日本人增加了呢。",
+            "confidence": "high",
+            "rawText": "甲：最近、中国へ旅行に行く日本人が増えてきましたね。"
+          },
+          {
+            "id": "l45-basic-dialogue-001-line-002",
+            "speaker": "乙",
+            "text": "ええ、ホテルや交通の便がよくなりましたからね。",
+            "translationZh": "是啊，因为酒店和交通都方便了嘛。",
+            "confidence": "high",
+            "rawText": "乙：ええ、ホテルや交通の便がよくなりましたからね。"
+          }
+        ]
+      },
+      {
+        "id": "l45-basic-dialogue-002",
+        "label": "B",
+        "lines": [
+          {
+            "id": "l45-basic-dialogue-002-line-001",
+            "speaker": "甲",
+            "text": "お母さん、雨が降ってきたよ。",
+            "translationZh": "妈妈，下雨了。",
+            "confidence": "high",
+            "rawText": "甲：お母さん、雨が降ってきたよ。"
+          },
+          {
+            "id": "l45-basic-dialogue-002-line-002",
+            "speaker": "乙",
+            "text": "あら、大変。誠、洗濯物入れてよ。",
+            "translationZh": "哎呀，不好了。诚，快把洗好的衣服收进来。",
+            "confidence": "high",
+            "rawText": "乙：あら、大変。誠、洗濯物入れてよ。"
+          }
+        ]
+      },
+      {
+        "id": "l45-basic-dialogue-003",
+        "label": "C",
+        "lines": [
+          {
+            "id": "l45-basic-dialogue-003-line-001",
+            "speaker": "甲",
+            "text": "休みだし、天気もいいし、どこかに出かけませんか。",
+            "translationZh": "正好放假，天气也好，要不要去什么地方走走？",
+            "confidence": "high",
+            "rawText": "甲：休みだし、天気もいいし、どこかに出かけませんか。"
+          },
+          {
+            "id": "l45-basic-dialogue-003-line-002",
+            "speaker": "乙",
+            "text": "いいですね。わたしはハイキングに行きたいです。",
+            "translationZh": "好啊。我想去徒步旅行。",
+            "confidence": "high",
+            "rawText": "乙：いいですね。わたしはハイキングに行きたいです。"
+          }
+        ]
+      },
+      {
+        "id": "l45-basic-dialogue-004",
+        "label": "D",
+        "lines": [
+          {
+            "id": "l45-basic-dialogue-004-line-001",
+            "speaker": "甲",
+            "text": "商品は安ければ安いほど売れるんでしょう？",
+            "translationZh": "商品越便宜就越好卖吧？",
+            "confidence": "high",
+            "rawText": "甲：商品は安ければ安いほど売れるんでしょう？"
+          },
+          {
+            "id": "l45-basic-dialogue-004-line-002",
+            "speaker": "乙",
+            "text": "いいえ。品質が悪いと、安くても売れません。",
+            "translationZh": "不是。质量不好的话，便宜也卖不出去。",
+            "confidence": "high",
+            "rawText": "乙：いいえ。品質が悪いと、安くても売れません。"
+          }
+        ]
+      }
+    ]
+  },
+  "applicationText": {
+    "title": "上海",
+    "blocks": [
+      {
+        "id": "l45-app-block-001",
+        "type": "narration",
+        "text": "JC策划公司计划在上海成立事务所。被内定为事务所所长的老陈带着森到上海寻找事务所的所在地。森第一次到上海。他们的日程是三天两夜。",
+        "translationZh": "JC策划公司计划在上海成立事务所。被内定为事务所所长的老陈带着森到上海寻找事务所的所在地。森第一次到上海。他们的日程是三天两夜。",
+        "confidence": "high",
+        "rawText": "JC策划公司计划在上海成立事务所。被内定为事务所所长的老陈带着森到上海寻找事务所的所在地。森第一次到上海。他们的日程是三天两夜。"
+      },
+      {
+        "id": "l45-app-block-002",
+        "type": "scene",
+        "text": "（夜晚，他们在机场通往市内的高速公路上）",
+        "translationZh": "（夜晚，他们在机场通往市内的高速公路上）",
+        "confidence": "high",
+        "rawText": "（夜晚，他们在机场通往市内的高速公路上）"
+      },
+      {
+        "id": "l45-app-block-003",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l45-app-block-003-line-001",
+            "speaker": "陈",
+            "text": "森さん、見えてきましたよ。（指着前方）あそこが上海の中心地です。",
+            "translationZh": "森先生，已经看到了。（指着前方）那边就是上海的中心地带。",
+            "confidence": "high",
+            "rawText": "陈：森さん、見えてきましたよ。（指着前方）あそこが上海の中心地です。"
+          },
+          {
+            "id": "l45-app-block-003-line-002",
+            "speaker": "森",
+            "text": "ライトアップされていますね。うーん、見れば見るほどきれいだなあ。",
+            "translationZh": "灯光照明着呢。嗯，越看越漂亮啊。",
+            "confidence": "high",
+            "rawText": "森：ライトアップされていますね。うーん、見れば見るほどきれいだなあ。"
+          },
+          {
+            "id": "l45-app-block-003-line-003",
+            "speaker": "陈",
+            "text": "以前住んでいたことがあるんですが、とても住みやすい所ですよ。",
+            "translationZh": "我以前住过这里，是个非常宜居的地方。",
+            "confidence": "high",
+            "rawText": "陈：以前住んでいたことがあるんですが、とても住みやすい所ですよ。"
+          },
+          {
+            "id": "l45-app-block-003-line-004",
+            "speaker": "森",
+            "text": "陳さん、上海に住んでいたんですか。",
+            "translationZh": "陈先生，您以前住在上海吗。",
+            "confidence": "high",
+            "rawText": "森：陳さん、上海に住んでいたんですか。"
+          },
+          {
+            "id": "l45-app-block-003-line-005",
+            "speaker": "陈",
+            "text": "ええ。本当にいい所です。住めば住むほど、上海のよさが分かりますよ。",
+            "translationZh": "是啊。真的是个好地方。住得越久，就越能了解上海的好。",
+            "confidence": "high",
+            "rawText": "陈：ええ。本当にいい所です。住めば住むほど、上海のよさが分かりますよ。"
+          }
+        ]
+      },
+      {
+        "id": "l45-app-block-004",
+        "type": "scene",
+        "text": "（在宾馆办完入住手续后，来到街上）",
+        "translationZh": "（在宾馆办完入住手续后，来到街上）",
+        "confidence": "high",
+        "rawText": "（在宾馆办完入住手续后，来到街上）"
+      },
+      {
+        "id": "l45-app-block-005",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l45-app-block-005-line-001",
+            "speaker": "森",
+            "text": "にぎやかだし、高いビルが多いし、なんか東京に似ていますね。",
+            "translationZh": "很热闹，高楼也很多，总觉得有点像东京呢。",
+            "confidence": "high",
+            "rawText": "森：にぎやかだし、高いビルが多いし、なんか東京に似ていますね。"
+          },
+          {
+            "id": "l45-app-block-005-line-002",
+            "speaker": "陈",
+            "text": "上海は急速に近代化が進んで、町並みが大きく変わってきましたからね。",
+            "translationZh": "上海正在迅速现代化，街景也发生了很大变化嘛。",
+            "confidence": "high",
+            "rawText": "陈：上海は急速に近代化が進んで、町並みが大きく変わってきましたからね。"
+          },
+          {
+            "id": "l45-app-block-005-line-003",
+            "speaker": "森",
+            "text": "そう言えば、何年か前にリニアモーターカーが開通したんですよね。",
+            "translationZh": "这么说起来，好像几年前磁悬浮列车就开通了吧。",
+            "confidence": "high",
+            "rawText": "森：そう言えば、何年か前にリニアモーターカーが開通したんですよね。"
+          },
+          {
+            "id": "l45-app-block-005-line-004",
+            "speaker": "陈",
+            "text": "ええ。空港から市内までのアクセスがよくなりましたから、人も増えてきたし、これからもっと変わっていくと思いますよ。",
+            "translationZh": "是啊。因为从机场到市内的交通更方便了，人也多起来了，我觉得今后还会有更多变化。",
+            "confidence": "high",
+            "rawText": "陈：ええ。空港から市内までのアクセスがよくなりましたから、人も増えてきたし、これからもっと変わっていくと思いますよ。"
+          }
+        ]
+      },
+      {
+        "id": "l45-app-block-006",
+        "type": "scene",
+        "text": "（忽然下起雨来了）",
+        "translationZh": "（忽然下起雨来了）",
+        "confidence": "high",
+        "rawText": "（忽然下起雨来了）"
+      },
+      {
+        "id": "l45-app-block-007",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l45-app-block-007-line-001",
+            "speaker": "陈",
+            "text": "あら、雨が降ってきましたね。",
+            "translationZh": "哎呀，下雨了呢。",
+            "confidence": "high",
+            "rawText": "陈：あら、雨が降ってきましたね。"
+          },
+          {
+            "id": "l45-app-block-007-line-002",
+            "speaker": "森",
+            "text": "ひどくなりそうですね。ちょっと雨宿りしましょうか。",
+            "translationZh": "好像会越下越大呢。要不先避一下雨吧。",
+            "confidence": "high",
+            "rawText": "森：ひどくなりそうですね。ちょっと雨宿りしましょうか。"
+          },
+          {
+            "id": "l45-app-block-007-line-003",
+            "speaker": "陈",
+            "text": "ええ。じゃあ、この喫茶店に入りましょう。人も少ないし、店もきれいだし。",
+            "translationZh": "好啊。那我们进这家咖啡店吧。人也不多，店里也很干净。",
+            "confidence": "high",
+            "rawText": "陈：ええ。じゃあ、この喫茶店に入りましょう。人も少ないし、店もきれいだし。"
+          },
+          {
+            "id": "l45-app-block-007-line-004",
+            "speaker": "森",
+            "text": "そうですね。ところで、おなかがすいてきたんですが…。",
+            "translationZh": "是啊。不过，我有点饿了……",
+            "confidence": "high",
+            "rawText": "森：そうですね。ところで、おなかがすいてきたんですが…。"
+          },
+          {
+            "id": "l45-app-block-007-line-005",
+            "speaker": "陈",
+            "text": "そうですか。じゃあ、何か軽く食べていきましょう。",
+            "translationZh": "是吗。那我们去吃点轻食吧。",
+            "confidence": "high",
+            "rawText": "陈：そうですか。じゃあ、何か軽く食べていきましょう。"
+          }
+        ]
+      }
+    ]
+  },
+  "warnings": []
+}

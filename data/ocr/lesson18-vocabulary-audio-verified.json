@@ -1,0 +1,4939 @@
+{
+  "lessonId": "lesson18",
+  "sourceImages": [
+    {
+      "path": "course-assets/by-lesson/lesson18/page225.webp",
+      "pageNo": 225
+    }
+  ],
+  "vocabulary": [
+    {
+      "id": "l18-v001",
+      "kana": "おと",
+      "writing": "音",
+      "meaningZh": [
+        "声音",
+        "响声"
+      ],
+      "partOfSpeech": "名",
+      "rawText": "おと（音）[名] 声音，响声",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l18-v001",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+        "itemIndex": 1,
+        "text": "おと",
+        "label": "音",
+        "start": 1.18,
+        "end": 1.44,
+        "duration": 0.26,
+        "speechUnitCount": 1,
+        "wordCount": 1,
+        "matchScore": 1,
+        "asrText": "音",
+        "wordIndexes": [
+          1
+        ],
+        "method": "azure-speech-word-alignment",
+        "confidence": "high",
+        "review": {
+          "status": "approved",
+          "reviewedAt": "2026-08-05T11:39:21.516Z",
+          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "matchScore": 1,
+          "asrText": "音"
+        }
+      }
+    },
+    {
+      "id": "l18-v002",
+      "kana": "こえ",
+      "writing": "声",
+      "meaningZh": [
+        "声音"
+      ],
+      "partOfSpeech": "名",
+      "rawText": "こえ（声）[名] 声音",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l18-v002",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+        "itemIndex": 2,
+        "text": "こえ",
+        "label": "声",
+        "start": 2.51,
+        "end": 3.21,
+        "duration": 0.7,
+        "speechUnitCount": 1,
+        "wordCount": 1,
+        "matchScore": 1,
+        "asrText": "声",
+        "wordIndexes": [
+          2
+        ],
+        "method": "azure-speech-word-alignment",
+        "confidence": "high",
+        "review": {
+          "status": "approved",
+          "reviewedAt": "2026-08-05T11:39:21.516Z",
+          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "matchScore": 1,
+          "asrText": "声"
+        }
+      }
+    },
+    {
+      "id": "l18-v003",
+      "kana": "くうき",
+      "writing": "空気",
+      "meaningZh": [
+        "空气"
+      ],
+      "partOfSpeech": "名",
+      "rawText": "くうき（空気）[名] 空气",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l18-v003",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+        "itemIndex": 3,
+        "text": "くうき",
+        "label": "空気",
+        "start": 3.91,
+        "end": 4.77,
+        "duration": 0.86,
+        "speechUnitCount": 2,
+        "wordCount": 2,
+        "matchScore": 1,
+        "asrText": "空 気",
+        "wordIndexes": [
+          3,
+          4
+        ],
+        "method": "azure-speech-word-alignment",
+        "confidence": "high",
+        "review": {
+          "status": "approved",
+          "reviewedAt": "2026-08-05T11:39:21.516Z",
+          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "matchScore": 1,
+          "asrText": "空 気"
+        }
+      }
+    },
+    {
+      "id": "l18-v004",
+      "kana": "むすこ",
+      "writing": "息子",
+      "meaningZh": [
+        "儿子"
+      ],
+      "partOfSpeech": "名",
+      "rawText": "むすこ（息子）[名] 儿子",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l18-v004",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+        "itemIndex": 4,
+        "text": "むすこ",
+        "label": "息子",
+        "start": 5.43,
+        "end": 6.25,
+        "duration": 0.82,
+        "speechUnitCount": 2,
+        "wordCount": 2,
+        "matchScore": 1,
+        "asrText": "息 子",
+        "wordIndexes": [
+          5,
+          6
+        ],
+        "method": "azure-speech-word-alignment",
+        "confidence": "high",
+        "review": {
+          "status": "approved",
+          "reviewedAt": "2026-08-05T11:39:21.516Z",
+          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "matchScore": 1,
+          "asrText": "息 子"
+        }
+      }
+    },
+    {
+      "id": "l18-v005",
+      "kana": "いしゃ",
+      "writing": "医者",
+      "meaningZh": [
+        "医生"
+      ],
+      "partOfSpeech": "名",
+      "rawText": "いしゃ（医者）[名] 医生",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l18-v005",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+        "itemIndex": 5,
+        "text": "いしゃ",
+        "label": "医者",
+        "start": 7.03,
+        "end": 7.73,
+        "duration": 0.7,
+        "speechUnitCount": 2,
+        "wordCount": 2,
+        "matchScore": 1,
+        "asrText": "医 者",
+        "wordIndexes": [
+          7,
+          8
+        ],
+        "method": "azure-speech-word-alignment",
+        "confidence": "high",
+        "review": {
+          "status": "approved",
+          "reviewedAt": "2026-08-05T11:39:21.516Z",
+          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "matchScore": 1,
+          "asrText": "医 者"
+        }
+      }
+    },
+    {
+      "id": "l18-v006",
+      "kana": "おじょうさん",
+      "writing": "お嬢さん",
+      "meaningZh": [
+        "令爱"
+      ],
+      "partOfSpeech": "名",
+      "rawText": "おじょうさん（お嬢さん）[名] 令爱",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l18-v006",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+        "itemIndex": 6,
+        "text": "おじょうさん",
+        "label": "お嬢さん",
+        "start": 8.79,
+        "end": 10.01,
+        "duration": 1.22,
+        "speechUnitCount": 4,
+        "wordCount": 4,
+        "matchScore": 1,
+        "asrText": "お 嬢 さ ん",
+        "wordIndexes": [
+          9,
+          10,
+          11,
+          12
+        ],
+        "method": "azure-speech-word-alignment",
+        "confidence": "high",
+        "review": {
+          "status": "approved",
+          "reviewedAt": "2026-08-05T11:39:21.516Z",
+          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "matchScore": 1,
+          "asrText": "お 嬢 さ ん"
+        }
+      }
+    },
+    {
+      "id": "l18-v007",
+      "kana": "しゃかいじん",
+      "writing": "社会人",
+      "meaningZh": [
+        "社会的一员",
+        "成人"
+      ],
+      "partOfSpeech": "名",
+      "rawText": "しゃかいじん（社会人）[名] 社会的一员，成人",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l18-v007",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+        "itemIndex": 7,
+        "text": "しゃかいじん",
+        "label": "社会人",
+        "start": 10.51,
+        "end": 11.45,
+        "duration": 0.94,
+        "speechUnitCount": 3,
+        "wordCount": 3,
+        "matchScore": 1,
+        "asrText": "社 会 人",
+        "wordIndexes": [
+          13,
+          14,
+          15
+        ],
+        "method": "azure-speech-word-alignment",
+        "confidence": "high",
+        "review": {
+          "status": "approved",
+          "reviewedAt": "2026-08-05T11:39:21.516Z",
+          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "matchScore": 1,
+          "asrText": "社 会 人"
+        }
+      }
+    },
+    {
+      "id": "l18-v008",
+      "kana": "りょこうガイド",
+      "writing": "旅行ガイド",
+      "meaningZh": [
+        "旅行导游"
+      ],
+      "partOfSpeech": "名",
+      "rawText": "りょこうガイド（旅行〜）[名] 旅行导游",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l18-v008",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+        "itemIndex": 8,
+        "text": "りょこうガイド",
+        "label": "旅行ガイド",
+        "start": 12.79,
+        "end": 14.17,
+        "duration": 1.38,
+        "speechUnitCount": 5,
+        "wordCount": 5,
+        "matchScore": 1,
+        "asrText": "旅 行 ガ イ ド",
+        "wordIndexes": [
+          16,
+          17,
+          18,
+          19,
+          20
+        ],
+        "method": "azure-speech-word-alignment",
+        "confidence": "high",
+        "review": {
+          "status": "approved",
+          "reviewedAt": "2026-08-05T11:39:21.516Z",
+          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "matchScore": 1,
+          "asrText": "旅 行 ガ イ ド"
+        }
+      }
+    },
+    {
+      "id": "l18-v009",
+      "kana": "がくしゃ",
+      "writing": "学者",
+      "meaningZh": [
+        "学者"
+      ],
+      "partOfSpeech": "名",
+      "rawText": "がくしゃ（学者）[名] 学者",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l18-v009",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+        "itemIndex": 9,
+        "text": "がくしゃ",
+        "label": "学者",
+        "start": 14.79,
+        "end": 15.73,
+        "duration": 0.94,
+        "speechUnitCount": 2,
+        "wordCount": 2,
+        "matchScore": 1,
+        "asrText": "学 者",
+        "wordIndexes": [
+          21,
+          22
+        ],
+        "method": "azure-speech-word-alignment",
+        "confidence": "high",
+        "review": {
+          "status": "approved",
+          "reviewedAt": "2026-08-05T11:39:21.516Z",
+          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "matchScore": 1,
+          "asrText": "学 者"
+        }
+      }
+    },
+    {
+      "id": "l18-v010",
+      "kana": "パイロット",
+      "writing": "パイロット",
+      "meaningZh": [
+        "飞行员"
+      ],
+      "partOfSpeech": "名",
+      "rawText": "パイロット [名] 飞行员",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l18-v010",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+        "itemIndex": 10,
+        "text": "パイロット",
+        "label": "パイロット",
+        "start": 16.71,
+        "end": 17.61,
+        "duration": 0.9,
+        "speechUnitCount": 5,
+        "wordCount": 5,
+        "matchScore": 1,
+        "asrText": "パ イ ロ ッ ト",
+        "wordIndexes": [
+          23,
+          24,
+          25,
+          26,
+          27
+        ],
+        "method": "azure-speech-word-alignment",
+        "confidence": "high",
+        "review": {
+          "status": "approved",
+          "reviewedAt": "2026-08-05T11:39:21.516Z",
+          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "matchScore": 1,
+          "asrText": "パ イ ロ ッ ト"
+        }
+      }
+    },
+    {
+      "id": "l18-v011",
+      "kana": "デザイナー",
+      "writing": "デザイナー",
+      "meaningZh": [
+        "设计者",
+        "设计家"
+      ],
+      "partOfSpeech": "名",
+      "rawText": "デザイナー [名] 设计者，设计家",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l18-v011",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+        "itemIndex": 11,
+        "text": "デザイナー",
+        "label": "デザイナー",
+        "start": 18.51,
+        "end": 19.49,
+        "duration": 0.98,
+        "speechUnitCount": 5,
+        "wordCount": 5,
+        "matchScore": 1,
+        "asrText": "デ ザ イ ナ ー",
+        "wordIndexes": [
+          28,
+          29,
+          30,
+          31,
+          32
+        ],
+        "method": "azure-speech-word-alignment",
+        "confidence": "high",
+        "review": {
+          "status": "approved",
+          "reviewedAt": "2026-08-05T11:39:21.516Z",
+          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "matchScore": 1,
+          "asrText": "デ ザ イ ナ ー"
+        }
+      }
+    },
+    {
+      "id": "l18-v012",
+      "kana": "タイムサービス",
+      "writing": "タイムサービス",
+      "meaningZh": [
+        "时段廉价销售"
+      ],
+      "partOfSpeech": "名",
+      "rawText": "タイムサービス [名] 时段廉价销售",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l18-v012",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+        "itemIndex": 12,
+        "text": "タイムサービス",
+        "label": "タイムサービス",
+        "start": 20.71,
+        "end": 22.13,
+        "duration": 1.42,
+        "speechUnitCount": 7,
+        "wordCount": 7,
+        "matchScore": 1,
+        "asrText": "タ イ ム サ ー ビ ス",
+        "wordIndexes": [
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39
+        ],
+        "method": "azure-speech-word-alignment",
+        "confidence": "high",
+        "review": {
+          "status": "approved",
+          "reviewedAt": "2026-08-05T11:39:21.516Z",
+          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "matchScore": 1,
+          "asrText": "タ イ ム サ ー ビ ス"
+        }
+      }
+    },
+    {
+      "id": "l18-v013",
+      "kana": "しんしゅんセール",
+      "writing": "新春セール",
+      "meaningZh": [
+        "新年大甩卖"
+      ],
+      "partOfSpeech": "名",
+      "rawText": "しんしゅんセール（新春〜）[名] 新年大甩卖",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l18-v013",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+        "itemIndex": 13,
+        "text": "しんしゅんセール",
+        "label": "新春セール",
+        "start": 23.56,
+        "end": 24.3,
+        "duration": 0.74,
+        "speechUnitCount": 5,
+        "wordCount": 5,
+        "matchScore": 1,
+        "asrText": "新 春 セ ー ル",
+        "wordIndexes": [
+          40,
+          41,
+          42,
+          43,
+          44
+        ],
+        "method": "azure-speech-word-alignment",
+        "confidence": "high",
+        "review": {
+          "status": "approved",
+          "reviewedAt": "2026-08-05T11:39:21.516Z",
+          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "matchScore": 1,
+          "asrText": "新 春 セ ー ル"
+        }
+      }
+    },
+    {
+      "id": "l18-v014",
+      "kana": "さんわりびき",
+      "writing": "3割引",
+      "meaningZh": [
+        "七折"
+      ],
+      "partOfSpeech": "名",
+      "rawText": "さんわりびき（3割引）[名] 七折",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l18-v014",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+        "itemIndex": 14,
+        "text": "さんわりびき",
+        "label": "3割引",
+        "start": 25.87,
+        "end": 26.41,
+        "duration": 0.54,
+        "speechUnitCount": 2,
+        "wordCount": 2,
+        "matchScore": 0.667,
+        "asrText": "割 引",
+        "wordIndexes": [
+          46,
+          47
+        ],
+        "method": "azure-speech-word-alignment",
+        "confidence": "needs-review",
+        "review": {
+          "status": "approved",
+          "reviewedAt": "2026-08-05T11:39:21.516Z",
+          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "matchScore": 0.667,
+          "asrText": "割 引"
+        }
+      }
+    },
+    {
+      "id": "l18-v015",
+      "kana": "ていか",
+      "writing": "定価",
+      "meaningZh": [
+        "定价"
+      ],
+      "partOfSpeech": "名",
+      "rawText": "ていか（定価）[名] 定价",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l18-v015",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+        "itemIndex": 15,
+        "text": "ていか",
+        "label": "定価",
+        "start": 27.55,
+        "end": 28.21,
+        "duration": 0.66,
+        "speechUnitCount": 1,
+        "wordCount": 1,
+        "matchScore": 0,
+        "asrText": "低",
+        "wordIndexes": [
+          49
+        ],
+        "method": "azure-speech-word-alignment",
+        "confidence": "needs-review",
+        "review": {
+          "status": "approved",
+          "reviewedAt": "2026-08-05T11:39:21.516Z",
+          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "matchScore": 0,
+          "asrText": "低"
+        }
+      }
+    },
+    {
+      "id": "l18-v016",
+      "kana": "はんがく",
+      "writing": "半額",
+      "meaningZh": [
+        "半价"
+      ],
+      "partOfSpeech": "名",
+      "rawText": "はんがく（半額）[名] 半价",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l18-v016",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+        "itemIndex": 16,
+        "text": "はんがく",
+        "label": "半額",
+        "start": 29.43,
+        "end": 30.49,
+        "duration": 1.06,
+        "speechUnitCount": 2,
+        "wordCount": 2,
+        "matchScore": 1,
+        "asrText": "半 額",
+        "wordIndexes": [
+          51,
+          52
+        ],
+        "method": "azure-speech-word-alignment",
+        "confidence": "high",
+        "review": {
+          "status": "approved",
+          "reviewedAt": "2026-08-05T11:39:21.516Z",
+          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "matchScore": 1,
+          "asrText": "半 額"
+        }
+      }
+    },
+    {
+      "id": "l18-v017",
+      "kana": "ねだん",
+      "writing": "値段",
+      "meaningZh": [
+        "价格"
+      ],
+      "partOfSpeech": "名",
+      "rawText": "ねだん（値段）[名] 价格",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l18-v017",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+        "itemIndex": 17,
+        "text": "ねだん",
+        "label": "値段",
+        "start": 32.24,
+        "end": 32.54,
+        "duration": 0.3,
+        "speechUnitCount": 2,
+        "wordCount": 2,
+        "matchScore": 1,
+        "asrText": "値 段",
+        "wordIndexes": [
+          53,
+          54
+        ],
+        "method": "azure-speech-word-alignment",
+        "confidence": "high",
+        "review": {
+          "status": "approved",
+          "reviewedAt": "2026-08-05T11:39:21.516Z",
+          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "matchScore": 1,
+          "asrText": "値 段"
+        }
+      }
+    },
+    {
+      "id": "l18-v018",
+      "kana": "シャツ",
+      "writing": "シャツ",
+      "meaningZh": [
+        "衬衫"
+      ],
+      "partOfSpeech": "名",
+      "rawText": "シャツ [名] 衬衫",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l18-v018",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+        "itemIndex": 18,
+        "text": "シャツ",
+        "label": "シャツ",
+        "start": 32.44,
+        "end": 33.06,
+        "duration": 0.62,
+        "speechUnitCount": 3,
+        "wordCount": 3,
+        "matchScore": 1,
+        "asrText": "シ ャ ツ",
+        "wordIndexes": [
+          55,
+          56,
+          57
+        ],
+        "method": "azure-speech-word-alignment",
+        "confidence": "high",
+        "review": {
+          "status": "approved",
+          "reviewedAt": "2026-08-05T11:39:21.516Z",
+          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "matchScore": 1,
+          "asrText": "シ ャ ツ"
+        }
+      }
+    },
+    {
+      "id": "l18-v019",
+      "kana": "スカート",
+      "writing": "スカート",
+      "meaningZh": [
+        "裙子"
+      ],
+      "partOfSpeech": "名",
+      "rawText": "スカート [名] 裙子",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l18-v019",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+        "itemIndex": 19,
+        "text": "スカート",
+        "label": "スカート",
+        "start": 33.4,
+        "end": 34.5,
+        "duration": 1.1,
+        "speechUnitCount": 4,
+        "wordCount": 4,
+        "matchScore": 1,
+        "asrText": "ス カ ー ト",
+        "wordIndexes": [
+          58,
+          59,
+          60,
+          61
+        ],
+        "method": "azure-speech-word-alignment",
+        "confidence": "high",
+        "review": {
+          "status": "approved",
+          "reviewedAt": "2026-08-05T11:39:21.516Z",
+          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "matchScore": 1,
+          "asrText": "ス カ ー ト"
+        }
+      }
+    },
+    {
+      "id": "l18-v020",
+      "kana": "いろ",
+      "writing": "色",
+      "meaningZh": [
+        "颜色"
+      ],
+      "partOfSpeech": "名",
+      "rawText": "いろ（色）[名] 颜色",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l18-v020",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+        "itemIndex": 20,
+        "text": "いろ",
+        "label": "色",
+        "start": 35.31,
+        "end": 35.93,
+        "duration": 0.62,
+        "speechUnitCount": 1,
+        "wordCount": 1,
+        "matchScore": 1,
+        "asrText": "色",
+        "wordIndexes": [
+          62
+        ],
+        "method": "azure-speech-word-alignment",
+        "confidence": "high",
+        "review": {
+          "status": "approved",
+          "reviewedAt": "2026-08-05T11:39:21.516Z",
+          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "matchScore": 1,
+          "asrText": "色"
+        }
+      }
+    },
+    {
+      "id": "l18-v021",
+      "kana": "あか",
+      "writing": "赤",
+      "meaningZh": [
+        "红色"
+      ],
+      "partOfSpeech": "名",
+      "rawText": "あか（赤）[名] 红色",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l18-v021",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+        "itemIndex": 21,
+        "text": "あか",
+        "label": "赤",
+        "start": 36.47,
+        "end": 37.17,
+        "duration": 0.7,
+        "speechUnitCount": 1,
+        "wordCount": 1,
+        "matchScore": 1,
+        "asrText": "赤",
+        "wordIndexes": [
+          63
+        ],
+        "method": "azure-speech-word-alignment",
+        "confidence": "high",
+        "review": {
+          "status": "approved",
+          "reviewedAt": "2026-08-05T11:39:21.516Z",
+          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "matchScore": 1,
+          "asrText": "赤"
+        }
+      }
+    },
+    {
+      "id": "l18-v022",
+      "kana": "あお",
+      "writing": "青",
+      "meaningZh": [
+        "蓝色"
+      ],
+      "partOfSpeech": "名",
+      "rawText": "あお（青）[名] 蓝色",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l18-v022",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+        "itemIndex": 22,
+        "text": "あお",
+        "label": "青",
+        "start": 37.83,
+        "end": 38.57,
+        "duration": 0.74,
+        "speechUnitCount": 1,
+        "wordCount": 1,
+        "matchScore": 1,
+        "asrText": "青",
+        "wordIndexes": [
+          64
+        ],
+        "method": "azure-speech-word-alignment",
+        "confidence": "high",
+        "review": {
+          "status": "approved",
+          "reviewedAt": "2026-08-05T11:39:21.516Z",
+          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "matchScore": 1,
+          "asrText": "青"
+        }
+      }
+    },
+    {
+      "id": "l18-v023",
+      "kana": "おしょうがつ",
+      "writing": "お正月",
+      "meaningZh": [
+        "过年",
+        "新年"
+      ],
+      "partOfSpeech": "名",
+      "rawText": "おしょうがつ（お正月）[名] 过年，新年",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l18-v023",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+        "itemIndex": 23,
+        "text": "おしょうがつ",
+        "label": "お正月",
+        "start": 38.99,
+        "end": 40.41,
+        "duration": 1.42,
+        "speechUnitCount": 3,
+        "wordCount": 3,
+        "matchScore": 1,
+        "asrText": "お 正 月",
+        "wordIndexes": [
+          65,
+          66,
+          67
+        ],
+        "method": "azure-speech-word-alignment",
+        "confidence": "high",
+        "review": {
+          "status": "approved",
+          "reviewedAt": "2026-08-05T11:39:21.516Z",
+          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "matchScore": 1,
+          "asrText": "お 正 月"
+        }
+      }
+    },
+    {
+      "id": "l18-v024",
+      "kana": "じかん",
+      "writing": "時間",
+      "meaningZh": [
+        "时间"
+      ],
+      "partOfSpeech": "名",
+      "rawText": "じかん（時間）[名] 时间",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l18-v024",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+        "itemIndex": 24,
+        "text": "じかん",
+        "label": "時間",
+        "start": 41.03,
+        "end": 42.01,
+        "duration": 0.98,
+        "speechUnitCount": 2,
+        "wordCount": 2,
+        "matchScore": 1,
+        "asrText": "時 間",
+        "wordIndexes": [
+          68,
+          69
+        ],
+        "method": "azure-speech-word-alignment",
+        "confidence": "high",
+        "review": {
+          "status": "approved",
+          "reviewedAt": "2026-08-05T11:39:21.516Z",
+          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "matchScore": 1,
+          "asrText": "時 間"
+        }
+      }
+    },
+    {
+      "id": "l18-v025",
+      "kana": "しょうらい",
+      "writing": "将来",
+      "meaningZh": [
+        "将来"
+      ],
+      "partOfSpeech": "名",
+      "rawText": "しょうらい（将来）[名] 将来",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l18-v025",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+        "itemIndex": 25,
+        "text": "しょうらい",
+        "label": "将来",
+        "start": 42.79,
+        "end": 43.77,
+        "duration": 0.98,
+        "speechUnitCount": 2,
+        "wordCount": 2,
+        "matchScore": 1,
+        "asrText": "将 来",
+        "wordIndexes": [
+          70,
+          71
+        ],
+        "method": "azure-speech-word-alignment",
+        "confidence": "high",
+        "review": {
+          "status": "approved",
+          "reviewedAt": "2026-08-05T11:39:21.516Z",
+          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "matchScore": 1,
+          "asrText": "将 来"
+        }
+      }
+    },
+    {
+      "id": "l18-v026",
+      "kana": "じゅんび",
+      "writing": "準備",
+      "meaningZh": [
+        "准备"
+      ],
+      "partOfSpeech": "名",
+      "rawText": "じゅんび（準備）[名] 准备",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l18-v026",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+        "itemIndex": 26,
+        "text": "じゅんび",
+        "label": "準備",
+        "start": 44.51,
+        "end": 45.49,
+        "duration": 0.98,
+        "speechUnitCount": 2,
+        "wordCount": 2,
+        "matchScore": 1,
+        "asrText": "準 備",
+        "wordIndexes": [
+          72,
+          73
+        ],
+        "method": "azure-speech-word-alignment",
+        "confidence": "high",
+        "review": {
+          "status": "approved",
+          "reviewedAt": "2026-08-05T11:39:21.516Z",
+          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "matchScore": 1,
+          "asrText": "準 備"
+        }
+      }
+    },
+    {
+      "id": "l18-v027",
+      "kana": "びょうき",
+      "writing": "病気",
+      "meaningZh": [
+        "疾病"
+      ],
+      "partOfSpeech": "名",
+      "rawText": "びょうき（病気）[名] 疾病",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l18-v027",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+        "itemIndex": 27,
+        "text": "びょうき",
+        "label": "病気",
+        "start": 45.99,
+        "end": 46.61,
+        "duration": 0.62,
+        "speechUnitCount": 2,
+        "wordCount": 2,
+        "matchScore": 1,
+        "asrText": "病 気",
+        "wordIndexes": [
+          74,
+          75
+        ],
+        "method": "azure-speech-word-alignment",
+        "confidence": "high",
+        "review": {
+          "status": "approved",
+          "reviewedAt": "2026-08-05T11:39:21.516Z",
+          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "matchScore": 1,
+          "asrText": "病 気"
+        }
+      }
+    },
+    {
+      "id": "l18-v028",
+      "kana": "なります",
+      "writing": "なります",
+      "meaningZh": [
+        "变",
+        "当",
+        "变成",
+        "成为"
+      ],
+      "partOfSpeech": "动1",
+      "rawText": "なります [动1] 变，当，变成，成为",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l18-v028",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+        "itemIndex": 28,
+        "text": "なります",
+        "label": "なります",
+        "start": 47.51,
+        "end": 48.61,
+        "duration": 1.1,
+        "speechUnitCount": 4,
+        "wordCount": 4,
+        "matchScore": 1,
+        "asrText": "な り ま す",
+        "wordIndexes": [
+          76,
+          77,
+          78,
+          79
+        ],
+        "method": "azure-speech-word-alignment",
+        "confidence": "high",
+        "review": {
+          "status": "approved",
+          "reviewedAt": "2026-08-05T11:39:21.516Z",
+          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "matchScore": 1,
+          "asrText": "な り ま す"
+        }
+      }
+    },
+    {
+      "id": "l18-v029",
+      "kana": "あきます",
+      "writing": "開きます",
+      "meaningZh": [
+        "开"
+      ],
+      "partOfSpeech": "动1",
+      "rawText": "あきます（開きます）[动1] 开",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l18-v029",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+        "itemIndex": 29,
+        "text": "あきます",
+        "label": "開きます",
+        "start": 50.4,
+        "end": 50.66,
+        "duration": 0.26,
+        "speechUnitCount": 2,
+        "wordCount": 2,
+        "matchScore": 0.5,
+        "asrText": "ま す",
+        "wordIndexes": [
+          81,
+          82
+        ],
+        "method": "azure-speech-word-alignment",
+        "confidence": "needs-review",
+        "review": {
+          "status": "approved",
+          "reviewedAt": "2026-08-05T11:39:21.516Z",
+          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "matchScore": 0.5,
+          "asrText": "ま す"
+        }
+      }
+    },
+    {
+      "id": "l18-v030",
+      "kana": "にあいます",
+      "writing": "似合います",
+      "meaningZh": [
+        "适合",
+        "相称"
+      ],
+      "partOfSpeech": "动1",
+      "rawText": "にあいます（似合います）[动1] 适合，相称",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l18-v030",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+        "itemIndex": 30,
+        "text": "にあいます",
+        "label": "似合います",
+        "start": 50.56,
+        "end": 51.66,
+        "duration": 1.1,
+        "speechUnitCount": 5,
+        "wordCount": 5,
+        "matchScore": 1,
+        "asrText": "似 合 い ま す",
+        "wordIndexes": [
+          83,
+          84,
+          85,
+          86,
+          87
+        ],
+        "method": "azure-speech-word-alignment",
+        "confidence": "high",
+        "review": {
+          "status": "approved",
+          "reviewedAt": "2026-08-05T11:39:21.516Z",
+          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "matchScore": 1,
+          "asrText": "似 合 い ま す"
+        }
+      }
+    },
+    {
+      "id": "l18-v031",
+      "kana": "うるさい",
+      "writing": "うるさい",
+      "meaningZh": [
+        "闹",
+        "使人心烦"
+      ],
+      "partOfSpeech": "形1",
+      "rawText": "うるさい [形1] 闹，使人心烦",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l18-v031",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+        "itemIndex": 31,
+        "text": "うるさい",
+        "label": "うるさい",
+        "start": 51.92,
+        "end": 52.86,
+        "duration": 0.94,
+        "speechUnitCount": 4,
+        "wordCount": 4,
+        "matchScore": 1,
+        "asrText": "う る さ い",
+        "wordIndexes": [
+          88,
+          89,
+          90,
+          91
+        ],
+        "method": "azure-speech-word-alignment",
+        "confidence": "high",
+        "review": {
+          "status": "approved",
+          "reviewedAt": "2026-08-05T11:39:21.516Z",
+          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "matchScore": 1,
+          "asrText": "う る さ い"
+        }
+      }
+    },
+    {
+      "id": "l18-v032",
+      "kana": "シンプル",
+      "writing": "シンプル",
+      "meaningZh": [
+        "单纯",
+        "简洁"
+      ],
+      "partOfSpeech": "形2",
+      "rawText": "シンプル [形2] 单纯，简洁",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l18-v032",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+        "itemIndex": 32,
+        "text": "シンプル",
+        "label": "シンプル",
+        "start": 53.83,
+        "end": 54.85,
+        "duration": 1.02,
+        "speechUnitCount": 4,
+        "wordCount": 4,
+        "matchScore": 1,
+        "asrText": "シ ン プ ル",
+        "wordIndexes": [
+          92,
+          93,
+          94,
+          95
+        ],
+        "method": "azure-speech-word-alignment",
+        "confidence": "high",
+        "review": {
+          "status": "approved",
+          "reviewedAt": "2026-08-05T11:39:21.516Z",
+          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "matchScore": 1,
+          "asrText": "シ ン プ ル"
+        }
+      }
+    },
+    {
+      "id": "l18-v033",
+      "kana": "まもなく",
+      "writing": "間もなく",
+      "meaningZh": [
+        "马上",
+        "一会儿",
+        "不久"
+      ],
+      "partOfSpeech": "副",
+      "rawText": "まもなく（間もなく）[副] 马上，一会儿，不久",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l18-v033",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+        "itemIndex": 33,
+        "text": "まもなく",
+        "label": "間もなく",
+        "start": 55.51,
+        "end": 56.61,
+        "duration": 1.1,
+        "speechUnitCount": 4,
+        "wordCount": 4,
+        "matchScore": 1,
+        "asrText": "ま も な く",
+        "wordIndexes": [
+          96,
+          97,
+          98,
+          99
+        ],
+        "method": "azure-speech-word-alignment",
+        "confidence": "high",
+        "review": {
+          "status": "approved",
+          "reviewedAt": "2026-08-05T11:39:21.516Z",
+          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "matchScore": 1,
+          "asrText": "ま も な く"
+        }
+      }
+    },
+    {
+      "id": "l18-v034",
+      "kana": "もうすぐ",
+      "writing": "もうすぐ",
+      "meaningZh": [
+        "马上"
+      ],
+      "partOfSpeech": "副",
+      "rawText": "もうすぐ [副] 马上",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l18-v034",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+        "itemIndex": 34,
+        "text": "もうすぐ",
+        "label": "もうすぐ",
+        "start": 57.15,
+        "end": 58.33,
+        "duration": 1.18,
+        "speechUnitCount": 4,
+        "wordCount": 4,
+        "matchScore": 1,
+        "asrText": "も う す ぐ",
+        "wordIndexes": [
+          100,
+          101,
+          102,
+          103
+        ],
+        "method": "azure-speech-word-alignment",
+        "confidence": "high",
+        "review": {
+          "status": "approved",
+          "reviewedAt": "2026-08-05T11:39:21.516Z",
+          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "matchScore": 1,
+          "asrText": "も う す ぐ"
+        }
+      }
+    },
+    {
+      "id": "l18-v035",
+      "kana": "さらに／もっと",
+      "writing": "さらに／もっと",
+      "meaningZh": [
+        "更加",
+        "更"
+      ],
+      "partOfSpeech": "副",
+      "rawText": "さらに／もっと [副] 更加，更",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l18-v035",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+        "itemIndex": 35,
+        "text": "さらに／もっと",
+        "label": "さらに／もっと",
+        "start": 58.87,
+        "end": 61.33,
+        "duration": 2.46,
+        "speechUnitCount": 6,
+        "wordCount": 6,
+        "matchScore": 1,
+        "asrText": "さ ら に も っ と",
+        "wordIndexes": [
+          104,
+          105,
+          106,
+          107,
+          108,
+          109
+        ],
+        "method": "azure-speech-word-alignment",
+        "confidence": "high",
+        "review": {
+          "status": "approved",
+          "reviewedAt": "2026-08-05T11:39:21.516Z",
+          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "matchScore": 1,
+          "asrText": "さ ら に も っ と"
+        }
+      }
+    },
+    {
+      "id": "l18-v036",
+      "kana": "さあ",
+      "writing": "さあ",
+      "meaningZh": [
+        "啊",
+        "喂"
+      ],
+      "partOfSpeech": "叹",
+      "rawText": "さあ [叹] 啊，喂",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l18-v036",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+        "itemIndex": 36,
+        "text": "さあ",
+        "label": "さあ",
+        "start": 62.47,
+        "end": 63.53,
+        "duration": 1.06,
+        "speechUnitCount": 2,
+        "wordCount": 2,
+        "matchScore": 1,
+        "asrText": "さ あ",
+        "wordIndexes": [
+          110,
+          111
+        ],
+        "method": "azure-speech-word-alignment",
+        "confidence": "high",
+        "review": {
+          "status": "approved",
+          "reviewedAt": "2026-08-05T11:39:21.516Z",
+          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "matchScore": 1,
+          "asrText": "さ あ"
+        }
+      }
+    },
+    {
+      "id": "l18-v037",
+      "kana": "できるだけ",
+      "writing": "できるだけ",
+      "meaningZh": [
+        "尽量",
+        "尽可能"
+      ],
+      "partOfSpeech": null,
+      "rawText": "できるだけ 尽量，尽可能",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l18-v037",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+        "itemIndex": 37,
+        "text": "できるだけ",
+        "label": "できるだけ",
+        "start": 64.55,
+        "end": 65.49,
+        "duration": 0.94,
+        "speechUnitCount": 5,
+        "wordCount": 5,
+        "matchScore": 1,
+        "asrText": "で き る だ け",
+        "wordIndexes": [
+          112,
+          113,
+          114,
+          115,
+          116
+        ],
+        "method": "azure-speech-word-alignment",
+        "confidence": "high",
+        "review": {
+          "status": "approved",
+          "reviewedAt": "2026-08-05T11:39:21.516Z",
+          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "matchScore": 1,
+          "asrText": "で き る だ け"
+        }
+      }
+    },
+    {
+      "id": "l18-v038",
+      "kana": "まとめて",
+      "writing": "まとめて",
+      "meaningZh": [
+        "一下子",
+        "一起",
+        "汇总",
+        "汇集"
+      ],
+      "partOfSpeech": null,
+      "rawText": "まとめて 一下子，一起，汇总，汇集",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l18-v038",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+        "itemIndex": 38,
+        "text": "まとめて",
+        "label": "まとめて",
+        "start": 66.79,
+        "end": 67.93,
+        "duration": 1.14,
+        "speechUnitCount": 4,
+        "wordCount": 4,
+        "matchScore": 1,
+        "asrText": "ま と め て",
+        "wordIndexes": [
+          117,
+          118,
+          119,
+          120
+        ],
+        "method": "azure-speech-word-alignment",
+        "confidence": "high",
+        "review": {
+          "status": "approved",
+          "reviewedAt": "2026-08-05T11:39:21.516Z",
+          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "matchScore": 1,
+          "asrText": "ま と め て"
+        }
+      }
+    },
+    {
+      "id": "l18-v039",
+      "kana": "いまから",
+      "writing": "今から",
+      "meaningZh": [
+        "从现在起"
+      ],
+      "partOfSpeech": null,
+      "rawText": "いまから（今から）从现在起",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l18-v039",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+        "itemIndex": 39,
+        "text": "いまから",
+        "label": "今から",
+        "start": 68.59,
+        "end": 69.53,
+        "duration": 0.94,
+        "speechUnitCount": 3,
+        "wordCount": 3,
+        "matchScore": 1,
+        "asrText": "今 か ら",
+        "wordIndexes": [
+          121,
+          122,
+          123
+        ],
+        "method": "azure-speech-word-alignment",
+        "confidence": "high",
+        "review": {
+          "status": "approved",
+          "reviewedAt": "2026-08-05T11:39:21.516Z",
+          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "matchScore": 1,
+          "asrText": "今 か ら"
+        }
+      }
+    }
+  ],
+  "warnings": [],
+  "audioAlignment": {
+    "schemaVersion": 1,
+    "lessonId": "lesson18",
+    "generatedAt": "2026-08-05T11:38:47.621Z",
+    "method": "azure-speech-word-alignment",
+    "reviewStatus": "approved",
+    "tracks": [
+      {
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+        "outputPath": "data/ocr/lesson18-vocabulary-audio-verified.json",
+        "sourceAudioSha256": "94032304ac8537834eb96642afaf0089aaca08eca381f34023920220cd9fb5dc",
+        "duration": 69.47,
+        "expectedItems": 39,
+        "detectedWordCount": 123,
+        "alignedItems": 39,
+        "warnings": [
+          "2 item(s) aligned with low ASR similarity.",
+          "Detected 123 word token(s) for 39 vocabulary item(s)."
+        ],
+        "transcription": {
+          "provider": "azure-speech-sdk-continuous-recognition",
+          "locale": "ja-JP",
+          "text": "音。 声、空気？ 息子。 医者、お嬢さん。 社会人。 旅行ガイド。 学者。 パイロット。 デザイナー。 タイムサービス。 新春セール。 3割引き。 低下。 半額。 値段、シャツ、スカート。 色、赤。 青、お正月。 時間。 将来。 準備。 病気。 なります。 秋ます、似合います。うるさい。 シンプル。 ま。もなく。 もうすぐ。 さらに。 もっと。 さあ。 できるだけ。 まとめて。 今から。",
+          "phrases": [
+            {
+              "text": "音。",
+              "offset": 12200000,
+              "duration": 1600000,
+              "confidence": 0.87524575,
+              "words": [
+                {
+                  "text": "音",
+                  "start": 12200000,
+                  "duration": 1600000,
+                  "confidence": 0.87524575
+                }
+              ]
+            },
+            {
+              "text": "声、空気？",
+              "offset": 25500000,
+              "duration": 21600000,
+              "confidence": 0.69544375,
+              "words": [
+                {
+                  "text": "声",
+                  "start": 25500000,
+                  "duration": 6000000,
+                  "confidence": 0.69544375
+                },
+                {
+                  "text": "空",
+                  "start": 39500000,
+                  "duration": 6800000,
+                  "confidence": 0.69544375
+                },
+                {
+                  "text": "気",
+                  "start": 46300000,
+                  "duration": 800000,
+                  "confidence": 0.69544375
+                }
+              ]
+            },
+            {
+              "text": "息子。",
+              "offset": 54700000,
+              "duration": 7200000,
+              "confidence": 0.8759247,
+              "words": [
+                {
+                  "text": "息",
+                  "start": 54700000,
+                  "duration": 4400000,
+                  "confidence": 0.8759247
+                },
+                {
+                  "text": "子",
+                  "start": 59100000,
+                  "duration": 2800000,
+                  "confidence": 0.8759247
+                }
+              ]
+            },
+            {
+              "text": "医者、お嬢さん。",
+              "offset": 70700000,
+              "duration": 28800000,
+              "confidence": 0.76030344,
+              "words": [
+                {
+                  "text": "医",
+                  "start": 70700000,
+                  "duration": 2000000,
+                  "confidence": 0.76030344
+                },
+                {
+                  "text": "者",
+                  "start": 72700000,
+                  "duration": 4000000,
+                  "confidence": 0.76030344
+                },
+                {
+                  "text": "お",
+                  "start": 88300000,
+                  "duration": 2400000,
+                  "confidence": 0.76030344
+                },
+                {
+                  "text": "嬢",
+                  "start": 90700000,
+                  "duration": 3200000,
+                  "confidence": 0.76030344
+                },
+                {
+                  "text": "さ",
+                  "start": 93900000,
+                  "duration": 2800000,
+                  "confidence": 0.76030344
+                },
+                {
+                  "text": "ん",
+                  "start": 96700000,
+                  "duration": 2800000,
+                  "confidence": 0.76030344
+                }
+              ]
+            },
+            {
+              "text": "社会人。",
+              "offset": 105500000,
+              "duration": 8400000,
+              "confidence": 0.943977,
+              "words": [
+                {
+                  "text": "社",
+                  "start": 105500000,
+                  "duration": 2800000,
+                  "confidence": 0.943977
+                },
+                {
+                  "text": "会",
+                  "start": 108300000,
+                  "duration": 3600000,
+                  "confidence": 0.943977
+                },
+                {
+                  "text": "人",
+                  "start": 111900000,
+                  "duration": 2000000,
+                  "confidence": 0.943977
+                }
+              ]
+            },
+            {
+              "text": "旅行ガイド。",
+              "offset": 128300000,
+              "duration": 12800000,
+              "confidence": 0.956864,
+              "words": [
+                {
+                  "text": "旅",
+                  "start": 128300000,
+                  "duration": 1600000,
+                  "confidence": 0.956864
+                },
+                {
+                  "text": "行",
+                  "start": 129900000,
+                  "duration": 4400000,
+                  "confidence": 0.956864
+                },
+                {
+                  "text": "ガ",
+                  "start": 134300000,
+                  "duration": 2400000,
+                  "confidence": 0.956864
+                },
+                {
+                  "text": "イ",
+                  "start": 136700000,
+                  "duration": 2000000,
+                  "confidence": 0.956864
+                },
+                {
+                  "text": "ド",
+                  "start": 138700000,
+                  "duration": 2400000,
+                  "confidence": 0.956864
+                }
+              ]
+            },
+            {
+              "text": "学者。",
+              "offset": 148300000,
+              "duration": 8400000,
+              "confidence": 0.9036658,
+              "words": [
+                {
+                  "text": "学",
+                  "start": 148300000,
+                  "duration": 4000000,
+                  "confidence": 0.9036658
+                },
+                {
+                  "text": "者",
+                  "start": 152300000,
+                  "duration": 4400000,
+                  "confidence": 0.9036658
+                }
+              ]
+            },
+            {
+              "text": "パイロット。",
+              "offset": 167500000,
+              "duration": 8000000,
+              "confidence": 0.9489949,
+              "words": [
+                {
+                  "text": "パ",
+                  "start": 167500000,
+                  "duration": 1200000,
+                  "confidence": 0.9489949
+                },
+                {
+                  "text": "イ",
+                  "start": 168700000,
+                  "duration": 1600000,
+                  "confidence": 0.9489949
+                },
+                {
+                  "text": "ロ",
+                  "start": 170300000,
+                  "duration": 2000000,
+                  "confidence": 0.9489949
+                },
+                {
+                  "text": "ッ",
+                  "start": 172300000,
+                  "duration": 800000,
+                  "confidence": 0.9489949
+                },
+                {
+                  "text": "ト",
+                  "start": 173100000,
+                  "duration": 2400000,
+                  "confidence": 0.9489949
+                }
+              ]
+            },
+            {
+              "text": "デザイナー。",
+              "offset": 185500000,
+              "duration": 8800000,
+              "confidence": 0.93644744,
+              "words": [
+                {
+                  "text": "デ",
+                  "start": 185500000,
+                  "duration": 2400000,
+                  "confidence": 0.93644744
+                },
+                {
+                  "text": "ザ",
+                  "start": 187900000,
+                  "duration": 2000000,
+                  "confidence": 0.93644744
+                },
+                {
+                  "text": "イ",
+                  "start": 189900000,
+                  "duration": 1600000,
+                  "confidence": 0.93644744
+                },
+                {
+                  "text": "ナ",
+                  "start": 191500000,
+                  "duration": 800000,
+                  "confidence": 0.93644744
+                },
+                {
+                  "text": "ー",
+                  "start": 192300000,
+                  "duration": 2000000,
+                  "confidence": 0.93644744
+                }
+              ]
+            },
+            {
+              "text": "タイムサービス。",
+              "offset": 207500000,
+              "duration": 13200000,
+              "confidence": 0.94922084,
+              "words": [
+                {
+                  "text": "タ",
+                  "start": 207500000,
+                  "duration": 2400000,
+                  "confidence": 0.94922084
+                },
+                {
+                  "text": "イ",
+                  "start": 209900000,
+                  "duration": 1200000,
+                  "confidence": 0.94922084
+                },
+                {
+                  "text": "ム",
+                  "start": 211100000,
+                  "duration": 2000000,
+                  "confidence": 0.94922084
+                },
+                {
+                  "text": "サ",
+                  "start": 213100000,
+                  "duration": 1200000,
+                  "confidence": 0.94922084
+                },
+                {
+                  "text": "ー",
+                  "start": 214300000,
+                  "duration": 2000000,
+                  "confidence": 0.94922084
+                },
+                {
+                  "text": "ビ",
+                  "start": 216300000,
+                  "duration": 1600000,
+                  "confidence": 0.94922084
+                },
+                {
+                  "text": "ス",
+                  "start": 217900000,
+                  "duration": 2800000,
+                  "confidence": 0.94922084
+                }
+              ]
+            },
+            {
+              "text": "新春セール。",
+              "offset": 236000000,
+              "duration": 6400000,
+              "confidence": 0.8772943,
+              "words": [
+                {
+                  "text": "新",
+                  "start": 236000000,
+                  "duration": 1200000,
+                  "confidence": 0.8772943
+                },
+                {
+                  "text": "春",
+                  "start": 237200000,
+                  "duration": 1200000,
+                  "confidence": 0.8772943
+                },
+                {
+                  "text": "セ",
+                  "start": 238400000,
+                  "duration": 1200000,
+                  "confidence": 0.8772943
+                },
+                {
+                  "text": "ー",
+                  "start": 239600000,
+                  "duration": 1200000,
+                  "confidence": 0.8772943
+                },
+                {
+                  "text": "ル",
+                  "start": 240800000,
+                  "duration": 1600000,
+                  "confidence": 0.8772943
+                }
+              ]
+            },
+            {
+              "text": "3割引き。",
+              "offset": 253900000,
+              "duration": 12400000,
+              "confidence": 0.90817934,
+              "words": [
+                {
+                  "text": "三",
+                  "start": 253900000,
+                  "duration": 5200000,
+                  "confidence": 0.90817934
+                },
+                {
+                  "text": "割",
+                  "start": 259100000,
+                  "duration": 1200000,
+                  "confidence": 0.90817934
+                },
+                {
+                  "text": "引",
+                  "start": 260300000,
+                  "duration": 3200000,
+                  "confidence": 0.90817934
+                },
+                {
+                  "text": "き",
+                  "start": 263500000,
+                  "duration": 2800000,
+                  "confidence": 0.90817934
+                }
+              ]
+            },
+            {
+              "text": "低下。",
+              "offset": 275900000,
+              "duration": 6400000,
+              "confidence": 0.72658575,
+              "words": [
+                {
+                  "text": "低",
+                  "start": 275900000,
+                  "duration": 5600000,
+                  "confidence": 0.72658575
+                },
+                {
+                  "text": "下",
+                  "start": 281500000,
+                  "duration": 800000,
+                  "confidence": 0.72658575
+                }
+              ]
+            },
+            {
+              "text": "半額。",
+              "offset": 294700000,
+              "duration": 9600000,
+              "confidence": 0.8460972,
+              "words": [
+                {
+                  "text": "半",
+                  "start": 294700000,
+                  "duration": 3600000,
+                  "confidence": 0.8460972
+                },
+                {
+                  "text": "額",
+                  "start": 298300000,
+                  "duration": 6000000,
+                  "confidence": 0.8460972
+                }
+              ]
+            },
+            {
+              "text": "値段、シャツ、スカート。",
+              "offset": 322800000,
+              "duration": 21600000,
+              "confidence": 0.89162314,
+              "words": [
+                {
+                  "text": "値",
+                  "start": 322800000,
+                  "duration": 800000,
+                  "confidence": 0.89162314
+                },
+                {
+                  "text": "段",
+                  "start": 323600000,
+                  "duration": 1200000,
+                  "confidence": 0.89162314
+                },
+                {
+                  "text": "シ",
+                  "start": 324800000,
+                  "duration": 800000,
+                  "confidence": 0.89162314
+                },
+                {
+                  "text": "ャ",
+                  "start": 325600000,
+                  "duration": 800000,
+                  "confidence": 0.89162314
+                },
+                {
+                  "text": "ツ",
+                  "start": 326400000,
+                  "duration": 3600000,
+                  "confidence": 0.89162314
+                },
+                {
+                  "text": "ス",
+                  "start": 334400000,
+                  "duration": 2400000,
+                  "confidence": 0.89162314
+                },
+                {
+                  "text": "カ",
+                  "start": 336800000,
+                  "duration": 2000000,
+                  "confidence": 0.89162314
+                },
+                {
+                  "text": "ー",
+                  "start": 338800000,
+                  "duration": 2000000,
+                  "confidence": 0.89162314
+                },
+                {
+                  "text": "ト",
+                  "start": 340800000,
+                  "duration": 3600000,
+                  "confidence": 0.89162314
+                }
+              ]
+            },
+            {
+              "text": "色、赤。",
+              "offset": 353500000,
+              "duration": 17600000,
+              "confidence": 0.6064069,
+              "words": [
+                {
+                  "text": "色",
+                  "start": 353500000,
+                  "duration": 5200000,
+                  "confidence": 0.6064069
+                },
+                {
+                  "text": "赤",
+                  "start": 365100000,
+                  "duration": 6000000,
+                  "confidence": 0.6064069
+                }
+              ]
+            },
+            {
+              "text": "青、お正月。",
+              "offset": 378700000,
+              "duration": 24800000,
+              "confidence": 0.74584717,
+              "words": [
+                {
+                  "text": "青",
+                  "start": 378700000,
+                  "duration": 6400000,
+                  "confidence": 0.74584717
+                },
+                {
+                  "text": "お",
+                  "start": 390300000,
+                  "duration": 2800000,
+                  "confidence": 0.74584717
+                },
+                {
+                  "text": "正",
+                  "start": 393100000,
+                  "duration": 2400000,
+                  "confidence": 0.74584717
+                },
+                {
+                  "text": "月",
+                  "start": 395500000,
+                  "duration": 8000000,
+                  "confidence": 0.74584717
+                }
+              ]
+            },
+            {
+              "text": "時間。",
+              "offset": 410700000,
+              "duration": 8800000,
+              "confidence": 0.42974246,
+              "words": [
+                {
+                  "text": "時",
+                  "start": 410700000,
+                  "duration": 3200000,
+                  "confidence": 0.42974246
+                },
+                {
+                  "text": "間",
+                  "start": 413900000,
+                  "duration": 5600000,
+                  "confidence": 0.42974246
+                }
+              ]
+            },
+            {
+              "text": "将来。",
+              "offset": 428300000,
+              "duration": 8800000,
+              "confidence": 0.9471463,
+              "words": [
+                {
+                  "text": "将",
+                  "start": 428300000,
+                  "duration": 6400000,
+                  "confidence": 0.9471463
+                },
+                {
+                  "text": "来",
+                  "start": 434700000,
+                  "duration": 2400000,
+                  "confidence": 0.9471463
+                }
+              ]
+            },
+            {
+              "text": "準備。",
+              "offset": 445500000,
+              "duration": 8800000,
+              "confidence": 0.95264864,
+              "words": [
+                {
+                  "text": "準",
+                  "start": 445500000,
+                  "duration": 2400000,
+                  "confidence": 0.95264864
+                },
+                {
+                  "text": "備",
+                  "start": 447900000,
+                  "duration": 6400000,
+                  "confidence": 0.95264864
+                }
+              ]
+            },
+            {
+              "text": "病気。",
+              "offset": 460300000,
+              "duration": 5200000,
+              "confidence": 0.9189945,
+              "words": [
+                {
+                  "text": "病",
+                  "start": 460300000,
+                  "duration": 4000000,
+                  "confidence": 0.9189945
+                },
+                {
+                  "text": "気",
+                  "start": 464300000,
+                  "duration": 1200000,
+                  "confidence": 0.9189945
+                }
+              ]
+            },
+            {
+              "text": "なります。",
+              "offset": 475500000,
+              "duration": 10000000,
+              "confidence": 0.9044169,
+              "words": [
+                {
+                  "text": "な",
+                  "start": 475500000,
+                  "duration": 2800000,
+                  "confidence": 0.9044169
+                },
+                {
+                  "text": "り",
+                  "start": 478300000,
+                  "duration": 2000000,
+                  "confidence": 0.9044169
+                },
+                {
+                  "text": "ま",
+                  "start": 480300000,
+                  "duration": 1600000,
+                  "confidence": 0.9044169
+                },
+                {
+                  "text": "す",
+                  "start": 481900000,
+                  "duration": 3600000,
+                  "confidence": 0.9044169
+                }
+              ]
+            },
+            {
+              "text": "秋ます、似合います。うるさい。",
+              "offset": 503600000,
+              "duration": 24400000,
+              "confidence": 0.74571085,
+              "words": [
+                {
+                  "text": "秋",
+                  "start": 503600000,
+                  "duration": 800000,
+                  "confidence": 0.74571085
+                },
+                {
+                  "text": "ま",
+                  "start": 504400000,
+                  "duration": 800000,
+                  "confidence": 0.74571085
+                },
+                {
+                  "text": "す",
+                  "start": 505200000,
+                  "duration": 800000,
+                  "confidence": 0.74571085
+                },
+                {
+                  "text": "似",
+                  "start": 506000000,
+                  "duration": 800000,
+                  "confidence": 0.74571085
+                },
+                {
+                  "text": "合",
+                  "start": 506800000,
+                  "duration": 1200000,
+                  "confidence": 0.74571085
+                },
+                {
+                  "text": "い",
+                  "start": 508000000,
+                  "duration": 1600000,
+                  "confidence": 0.74571085
+                },
+                {
+                  "text": "ま",
+                  "start": 509600000,
+                  "duration": 2000000,
+                  "confidence": 0.74571085
+                },
+                {
+                  "text": "す",
+                  "start": 511600000,
+                  "duration": 4400000,
+                  "confidence": 0.74571085
+                },
+                {
+                  "text": "う",
+                  "start": 519600000,
+                  "duration": 2000000,
+                  "confidence": 0.74571085
+                },
+                {
+                  "text": "る",
+                  "start": 521600000,
+                  "duration": 1600000,
+                  "confidence": 0.74571085
+                },
+                {
+                  "text": "さ",
+                  "start": 523200000,
+                  "duration": 2400000,
+                  "confidence": 0.74571085
+                },
+                {
+                  "text": "い",
+                  "start": 525600000,
+                  "duration": 2400000,
+                  "confidence": 0.74571085
+                }
+              ]
+            },
+            {
+              "text": "シンプル。",
+              "offset": 538700000,
+              "duration": 9200000,
+              "confidence": 0.76665294,
+              "words": [
+                {
+                  "text": "シ",
+                  "start": 538700000,
+                  "duration": 3200000,
+                  "confidence": 0.76665294
+                },
+                {
+                  "text": "ン",
+                  "start": 541900000,
+                  "duration": 1600000,
+                  "confidence": 0.76665294
+                },
+                {
+                  "text": "プ",
+                  "start": 543500000,
+                  "duration": 2400000,
+                  "confidence": 0.76665294
+                },
+                {
+                  "text": "ル",
+                  "start": 545900000,
+                  "duration": 2000000,
+                  "confidence": 0.76665294
+                }
+              ]
+            },
+            {
+              "text": "ま。もなく。",
+              "offset": 555500000,
+              "duration": 10000000,
+              "confidence": 0.8366273,
+              "words": [
+                {
+                  "text": "ま",
+                  "start": 555500000,
+                  "duration": 2400000,
+                  "confidence": 0.8366273
+                },
+                {
+                  "text": "も",
+                  "start": 557900000,
+                  "duration": 1600000,
+                  "confidence": 0.8366273
+                },
+                {
+                  "text": "な",
+                  "start": 559500000,
+                  "duration": 2000000,
+                  "confidence": 0.8366273
+                },
+                {
+                  "text": "く",
+                  "start": 561500000,
+                  "duration": 4000000,
+                  "confidence": 0.8366273
+                }
+              ]
+            },
+            {
+              "text": "もうすぐ。",
+              "offset": 571900000,
+              "duration": 10800000,
+              "confidence": 0.9537587,
+              "words": [
+                {
+                  "text": "も",
+                  "start": 571900000,
+                  "duration": 3600000,
+                  "confidence": 0.9537587
+                },
+                {
+                  "text": "う",
+                  "start": 575500000,
+                  "duration": 800000,
+                  "confidence": 0.9537587
+                },
+                {
+                  "text": "す",
+                  "start": 576300000,
+                  "duration": 2800000,
+                  "confidence": 0.9537587
+                },
+                {
+                  "text": "ぐ",
+                  "start": 579100000,
+                  "duration": 3600000,
+                  "confidence": 0.9537587
+                }
+              ]
+            },
+            {
+              "text": "さらに。",
+              "offset": 589100000,
+              "duration": 8400000,
+              "confidence": 0.8633019,
+              "words": [
+                {
+                  "text": "さ",
+                  "start": 589100000,
+                  "duration": 2800000,
+                  "confidence": 0.8633019
+                },
+                {
+                  "text": "ら",
+                  "start": 591900000,
+                  "duration": 1600000,
+                  "confidence": 0.8633019
+                },
+                {
+                  "text": "に",
+                  "start": 593500000,
+                  "duration": 4000000,
+                  "confidence": 0.8633019
+                }
+              ]
+            },
+            {
+              "text": "もっと。",
+              "offset": 604300000,
+              "duration": 8400000,
+              "confidence": 0.87904966,
+              "words": [
+                {
+                  "text": "も",
+                  "start": 604300000,
+                  "duration": 3200000,
+                  "confidence": 0.87904966
+                },
+                {
+                  "text": "っ",
+                  "start": 607500000,
+                  "duration": 1600000,
+                  "confidence": 0.87904966
+                },
+                {
+                  "text": "と",
+                  "start": 609100000,
+                  "duration": 3600000,
+                  "confidence": 0.87904966
+                }
+              ]
+            },
+            {
+              "text": "さあ。",
+              "offset": 625100000,
+              "duration": 9600000,
+              "confidence": 0.79106206,
+              "words": [
+                {
+                  "text": "さ",
+                  "start": 625100000,
+                  "duration": 6000000,
+                  "confidence": 0.79106206
+                },
+                {
+                  "text": "あ",
+                  "start": 631100000,
+                  "duration": 3600000,
+                  "confidence": 0.79106206
+                }
+              ]
+            },
+            {
+              "text": "できるだけ。",
+              "offset": 645900000,
+              "duration": 8400000,
+              "confidence": 0.9588611,
+              "words": [
+                {
+                  "text": "で",
+                  "start": 645900000,
+                  "duration": 2000000,
+                  "confidence": 0.9588611
+                },
+                {
+                  "text": "き",
+                  "start": 647900000,
+                  "duration": 1600000,
+                  "confidence": 0.9588611
+                },
+                {
+                  "text": "る",
+                  "start": 649500000,
+                  "duration": 1600000,
+                  "confidence": 0.9588611
+                },
+                {
+                  "text": "だ",
+                  "start": 651100000,
+                  "duration": 1200000,
+                  "confidence": 0.9588611
+                },
+                {
+                  "text": "け",
+                  "start": 652300000,
+                  "duration": 2000000,
+                  "confidence": 0.9588611
+                }
+              ]
+            },
+            {
+              "text": "まとめて。",
+              "offset": 668300000,
+              "duration": 10400000,
+              "confidence": 0.85320145,
+              "words": [
+                {
+                  "text": "ま",
+                  "start": 668300000,
+                  "duration": 2800000,
+                  "confidence": 0.85320145
+                },
+                {
+                  "text": "と",
+                  "start": 671100000,
+                  "duration": 1600000,
+                  "confidence": 0.85320145
+                },
+                {
+                  "text": "め",
+                  "start": 672700000,
+                  "duration": 2000000,
+                  "confidence": 0.85320145
+                },
+                {
+                  "text": "て",
+                  "start": 674700000,
+                  "duration": 4000000,
+                  "confidence": 0.85320145
+                }
+              ]
+            },
+            {
+              "text": "今から。",
+              "offset": 686300000,
+              "duration": 8400000,
+              "confidence": 0.8920684,
+              "words": [
+                {
+                  "text": "今",
+                  "start": 686300000,
+                  "duration": 2000000,
+                  "confidence": 0.8920684
+                },
+                {
+                  "text": "か",
+                  "start": 688300000,
+                  "duration": 3200000,
+                  "confidence": 0.8920684
+                },
+                {
+                  "text": "ら",
+                  "start": 691500000,
+                  "duration": 3200000,
+                  "confidence": 0.8920684
+                }
+              ]
+            }
+          ],
+          "words": [
+            {
+              "index": 1,
+              "text": "音",
+              "start": 1.22,
+              "end": 1.38,
+              "confidence": 0.87524575,
+              "phraseIndex": 0,
+              "wordIndex": 0
+            },
+            {
+              "index": 2,
+              "text": "声",
+              "start": 2.55,
+              "end": 3.15,
+              "confidence": 0.69544375,
+              "phraseIndex": 1,
+              "wordIndex": 0
+            },
+            {
+              "index": 3,
+              "text": "空",
+              "start": 3.95,
+              "end": 4.63,
+              "confidence": 0.69544375,
+              "phraseIndex": 1,
+              "wordIndex": 1
+            },
+            {
+              "index": 4,
+              "text": "気",
+              "start": 4.63,
+              "end": 4.71,
+              "confidence": 0.69544375,
+              "phraseIndex": 1,
+              "wordIndex": 2
+            },
+            {
+              "index": 5,
+              "text": "息",
+              "start": 5.47,
+              "end": 5.91,
+              "confidence": 0.8759247,
+              "phraseIndex": 2,
+              "wordIndex": 0
+            },
+            {
+              "index": 6,
+              "text": "子",
+              "start": 5.91,
+              "end": 6.19,
+              "confidence": 0.8759247,
+              "phraseIndex": 2,
+              "wordIndex": 1
+            },
+            {
+              "index": 7,
+              "text": "医",
+              "start": 7.07,
+              "end": 7.27,
+              "confidence": 0.76030344,
+              "phraseIndex": 3,
+              "wordIndex": 0
+            },
+            {
+              "index": 8,
+              "text": "者",
+              "start": 7.27,
+              "end": 7.67,
+              "confidence": 0.76030344,
+              "phraseIndex": 3,
+              "wordIndex": 1
+            },
+            {
+              "index": 9,
+              "text": "お",
+              "start": 8.83,
+              "end": 9.07,
+              "confidence": 0.76030344,
+              "phraseIndex": 3,
+              "wordIndex": 2
+            },
+            {
+              "index": 10,
+              "text": "嬢",
+              "start": 9.07,
+              "end": 9.39,
+              "confidence": 0.76030344,
+              "phraseIndex": 3,
+              "wordIndex": 3
+            },
+            {
+              "index": 11,
+              "text": "さ",
+              "start": 9.39,
+              "end": 9.67,
+              "confidence": 0.76030344,
+              "phraseIndex": 3,
+              "wordIndex": 4
+            },
+            {
+              "index": 12,
+              "text": "ん",
+              "start": 9.67,
+              "end": 9.95,
+              "confidence": 0.76030344,
+              "phraseIndex": 3,
+              "wordIndex": 5
+            },
+            {
+              "index": 13,
+              "text": "社",
+              "start": 10.55,
+              "end": 10.83,
+              "confidence": 0.943977,
+              "phraseIndex": 4,
+              "wordIndex": 0
+            },
+            {
+              "index": 14,
+              "text": "会",
+              "start": 10.83,
+              "end": 11.19,
+              "confidence": 0.943977,
+              "phraseIndex": 4,
+              "wordIndex": 1
+            },
+            {
+              "index": 15,
+              "text": "人",
+              "start": 11.19,
+              "end": 11.39,
+              "confidence": 0.943977,
+              "phraseIndex": 4,
+              "wordIndex": 2
+            },
+            {
+              "index": 16,
+              "text": "旅",
+              "start": 12.83,
+              "end": 12.99,
+              "confidence": 0.956864,
+              "phraseIndex": 5,
+              "wordIndex": 0
+            },
+            {
+              "index": 17,
+              "text": "行",
+              "start": 12.99,
+              "end": 13.43,
+              "confidence": 0.956864,
+              "phraseIndex": 5,
+              "wordIndex": 1
+            },
+            {
+              "index": 18,
+              "text": "ガ",
+              "start": 13.43,
+              "end": 13.67,
+              "confidence": 0.956864,
+              "phraseIndex": 5,
+              "wordIndex": 2
+            },
+            {
+              "index": 19,
+              "text": "イ",
+              "start": 13.67,
+              "end": 13.87,
+              "confidence": 0.956864,
+              "phraseIndex": 5,
+              "wordIndex": 3
+            },
+            {
+              "index": 20,
+              "text": "ド",
+              "start": 13.87,
+              "end": 14.11,
+              "confidence": 0.956864,
+              "phraseIndex": 5,
+              "wordIndex": 4
+            },
+            {
+              "index": 21,
+              "text": "学",
+              "start": 14.83,
+              "end": 15.23,
+              "confidence": 0.9036658,
+              "phraseIndex": 6,
+              "wordIndex": 0
+            },
+            {
+              "index": 22,
+              "text": "者",
+              "start": 15.23,
+              "end": 15.67,
+              "confidence": 0.9036658,
+              "phraseIndex": 6,
+              "wordIndex": 1
+            },
+            {
+              "index": 23,
+              "text": "パ",
+              "start": 16.75,
+              "end": 16.87,
+              "confidence": 0.9489949,
+              "phraseIndex": 7,
+              "wordIndex": 0
+            },
+            {
+              "index": 24,
+              "text": "イ",
+              "start": 16.87,
+              "end": 17.03,
+              "confidence": 0.9489949,
+              "phraseIndex": 7,
+              "wordIndex": 1
+            },
+            {
+              "index": 25,
+              "text": "ロ",
+              "start": 17.03,
+              "end": 17.23,
+              "confidence": 0.9489949,
+              "phraseIndex": 7,
+              "wordIndex": 2
+            },
+            {
+              "index": 26,
+              "text": "ッ",
+              "start": 17.23,
+              "end": 17.31,
+              "confidence": 0.9489949,
+              "phraseIndex": 7,
+              "wordIndex": 3
+            },
+            {
+              "index": 27,
+              "text": "ト",
+              "start": 17.31,
+              "end": 17.55,
+              "confidence": 0.9489949,
+              "phraseIndex": 7,
+              "wordIndex": 4
+            },
+            {
+              "index": 28,
+              "text": "デ",
+              "start": 18.55,
+              "end": 18.79,
+              "confidence": 0.93644744,
+              "phraseIndex": 8,
+              "wordIndex": 0
+            },
+            {
+              "index": 29,
+              "text": "ザ",
+              "start": 18.79,
+              "end": 18.99,
+              "confidence": 0.93644744,
+              "phraseIndex": 8,
+              "wordIndex": 1
+            },
+            {
+              "index": 30,
+              "text": "イ",
+              "start": 18.99,
+              "end": 19.15,
+              "confidence": 0.93644744,
+              "phraseIndex": 8,
+              "wordIndex": 2
+            },
+            {
+              "index": 31,
+              "text": "ナ",
+              "start": 19.15,
+              "end": 19.23,
+              "confidence": 0.93644744,
+              "phraseIndex": 8,
+              "wordIndex": 3
+            },
+            {
+              "index": 32,
+              "text": "ー",
+              "start": 19.23,
+              "end": 19.43,
+              "confidence": 0.93644744,
+              "phraseIndex": 8,
+              "wordIndex": 4
+            },
+            {
+              "index": 33,
+              "text": "タ",
+              "start": 20.75,
+              "end": 20.99,
+              "confidence": 0.94922084,
+              "phraseIndex": 9,
+              "wordIndex": 0
+            },
+            {
+              "index": 34,
+              "text": "イ",
+              "start": 20.99,
+              "end": 21.11,
+              "confidence": 0.94922084,
+              "phraseIndex": 9,
+              "wordIndex": 1
+            },
+            {
+              "index": 35,
+              "text": "ム",
+              "start": 21.11,
+              "end": 21.31,
+              "confidence": 0.94922084,
+              "phraseIndex": 9,
+              "wordIndex": 2
+            },
+            {
+              "index": 36,
+              "text": "サ",
+              "start": 21.31,
+              "end": 21.43,
+              "confidence": 0.94922084,
+              "phraseIndex": 9,
+              "wordIndex": 3
+            },
+            {
+              "index": 37,
+              "text": "ー",
+              "start": 21.43,
+              "end": 21.63,
+              "confidence": 0.94922084,
+              "phraseIndex": 9,
+              "wordIndex": 4
+            },
+            {
+              "index": 38,
+              "text": "ビ",
+              "start": 21.63,
+              "end": 21.79,
+              "confidence": 0.94922084,
+              "phraseIndex": 9,
+              "wordIndex": 5
+            },
+            {
+              "index": 39,
+              "text": "ス",
+              "start": 21.79,
+              "end": 22.07,
+              "confidence": 0.94922084,
+              "phraseIndex": 9,
+              "wordIndex": 6
+            },
+            {
+              "index": 40,
+              "text": "新",
+              "start": 23.6,
+              "end": 23.72,
+              "confidence": 0.8772943,
+              "phraseIndex": 10,
+              "wordIndex": 0
+            },
+            {
+              "index": 41,
+              "text": "春",
+              "start": 23.72,
+              "end": 23.84,
+              "confidence": 0.8772943,
+              "phraseIndex": 10,
+              "wordIndex": 1
+            },
+            {
+              "index": 42,
+              "text": "セ",
+              "start": 23.84,
+              "end": 23.96,
+              "confidence": 0.8772943,
+              "phraseIndex": 10,
+              "wordIndex": 2
+            },
+            {
+              "index": 43,
+              "text": "ー",
+              "start": 23.96,
+              "end": 24.08,
+              "confidence": 0.8772943,
+              "phraseIndex": 10,
+              "wordIndex": 3
+            },
+            {
+              "index": 44,
+              "text": "ル",
+              "start": 24.08,
+              "end": 24.24,
+              "confidence": 0.8772943,
+              "phraseIndex": 10,
+              "wordIndex": 4
+            },
+            {
+              "index": 45,
+              "text": "三",
+              "start": 25.39,
+              "end": 25.91,
+              "confidence": 0.90817934,
+              "phraseIndex": 11,
+              "wordIndex": 0
+            },
+            {
+              "index": 46,
+              "text": "割",
+              "start": 25.91,
+              "end": 26.03,
+              "confidence": 0.90817934,
+              "phraseIndex": 11,
+              "wordIndex": 1
+            },
+            {
+              "index": 47,
+              "text": "引",
+              "start": 26.03,
+              "end": 26.35,
+              "confidence": 0.90817934,
+              "phraseIndex": 11,
+              "wordIndex": 2
+            },
+            {
+              "index": 48,
+              "text": "き",
+              "start": 26.35,
+              "end": 26.63,
+              "confidence": 0.90817934,
+              "phraseIndex": 11,
+              "wordIndex": 3
+            },
+            {
+              "index": 49,
+              "text": "低",
+              "start": 27.59,
+              "end": 28.15,
+              "confidence": 0.72658575,
+              "phraseIndex": 12,
+              "wordIndex": 0
+            },
+            {
+              "index": 50,
+              "text": "下",
+              "start": 28.15,
+              "end": 28.23,
+              "confidence": 0.72658575,
+              "phraseIndex": 12,
+              "wordIndex": 1
+            },
+            {
+              "index": 51,
+              "text": "半",
+              "start": 29.47,
+              "end": 29.83,
+              "confidence": 0.8460972,
+              "phraseIndex": 13,
+              "wordIndex": 0
+            },
+            {
+              "index": 52,
+              "text": "額",
+              "start": 29.83,
+              "end": 30.43,
+              "confidence": 0.8460972,
+              "phraseIndex": 13,
+              "wordIndex": 1
+            },
+            {
+              "index": 53,
+              "text": "値",
+              "start": 32.28,
+              "end": 32.36,
+              "confidence": 0.89162314,
+              "phraseIndex": 14,
+              "wordIndex": 0
+            },
+            {
+              "index": 54,
+              "text": "段",
+              "start": 32.36,
+              "end": 32.48,
+              "confidence": 0.89162314,
+              "phraseIndex": 14,
+              "wordIndex": 1
+            },
+            {
+              "index": 55,
+              "text": "シ",
+              "start": 32.48,
+              "end": 32.56,
+              "confidence": 0.89162314,
+              "phraseIndex": 14,
+              "wordIndex": 2
+            },
+            {
+              "index": 56,
+              "text": "ャ",
+              "start": 32.56,
+              "end": 32.64,
+              "confidence": 0.89162314,
+              "phraseIndex": 14,
+              "wordIndex": 3
+            },
+            {
+              "index": 57,
+              "text": "ツ",
+              "start": 32.64,
+              "end": 33,
+              "confidence": 0.89162314,
+              "phraseIndex": 14,
+              "wordIndex": 4
+            },
+            {
+              "index": 58,
+              "text": "ス",
+              "start": 33.44,
+              "end": 33.68,
+              "confidence": 0.89162314,
+              "phraseIndex": 14,
+              "wordIndex": 5
+            },
+            {
+              "index": 59,
+              "text": "カ",
+              "start": 33.68,
+              "end": 33.88,
+              "confidence": 0.89162314,
+              "phraseIndex": 14,
+              "wordIndex": 6
+            },
+            {
+              "index": 60,
+              "text": "ー",
+              "start": 33.88,
+              "end": 34.08,
+              "confidence": 0.89162314,
+              "phraseIndex": 14,
+              "wordIndex": 7
+            },
+            {
+              "index": 61,
+              "text": "ト",
+              "start": 34.08,
+              "end": 34.44,
+              "confidence": 0.89162314,
+              "phraseIndex": 14,
+              "wordIndex": 8
+            },
+            {
+              "index": 62,
+              "text": "色",
+              "start": 35.35,
+              "end": 35.87,
+              "confidence": 0.6064069,
+              "phraseIndex": 15,
+              "wordIndex": 0
+            },
+            {
+              "index": 63,
+              "text": "赤",
+              "start": 36.51,
+              "end": 37.11,
+              "confidence": 0.6064069,
+              "phraseIndex": 15,
+              "wordIndex": 1
+            },
+            {
+              "index": 64,
+              "text": "青",
+              "start": 37.87,
+              "end": 38.51,
+              "confidence": 0.74584717,
+              "phraseIndex": 16,
+              "wordIndex": 0
+            },
+            {
+              "index": 65,
+              "text": "お",
+              "start": 39.03,
+              "end": 39.31,
+              "confidence": 0.74584717,
+              "phraseIndex": 16,
+              "wordIndex": 1
+            },
+            {
+              "index": 66,
+              "text": "正",
+              "start": 39.31,
+              "end": 39.55,
+              "confidence": 0.74584717,
+              "phraseIndex": 16,
+              "wordIndex": 2
+            },
+            {
+              "index": 67,
+              "text": "月",
+              "start": 39.55,
+              "end": 40.35,
+              "confidence": 0.74584717,
+              "phraseIndex": 16,
+              "wordIndex": 3
+            },
+            {
+              "index": 68,
+              "text": "時",
+              "start": 41.07,
+              "end": 41.39,
+              "confidence": 0.42974246,
+              "phraseIndex": 17,
+              "wordIndex": 0
+            },
+            {
+              "index": 69,
+              "text": "間",
+              "start": 41.39,
+              "end": 41.95,
+              "confidence": 0.42974246,
+              "phraseIndex": 17,
+              "wordIndex": 1
+            },
+            {
+              "index": 70,
+              "text": "将",
+              "start": 42.83,
+              "end": 43.47,
+              "confidence": 0.9471463,
+              "phraseIndex": 18,
+              "wordIndex": 0
+            },
+            {
+              "index": 71,
+              "text": "来",
+              "start": 43.47,
+              "end": 43.71,
+              "confidence": 0.9471463,
+              "phraseIndex": 18,
+              "wordIndex": 1
+            },
+            {
+              "index": 72,
+              "text": "準",
+              "start": 44.55,
+              "end": 44.79,
+              "confidence": 0.95264864,
+              "phraseIndex": 19,
+              "wordIndex": 0
+            },
+            {
+              "index": 73,
+              "text": "備",
+              "start": 44.79,
+              "end": 45.43,
+              "confidence": 0.95264864,
+              "phraseIndex": 19,
+              "wordIndex": 1
+            },
+            {
+              "index": 74,
+              "text": "病",
+              "start": 46.03,
+              "end": 46.43,
+              "confidence": 0.9189945,
+              "phraseIndex": 20,
+              "wordIndex": 0
+            },
+            {
+              "index": 75,
+              "text": "気",
+              "start": 46.43,
+              "end": 46.55,
+              "confidence": 0.9189945,
+              "phraseIndex": 20,
+              "wordIndex": 1
+            },
+            {
+              "index": 76,
+              "text": "な",
+              "start": 47.55,
+              "end": 47.83,
+              "confidence": 0.9044169,
+              "phraseIndex": 21,
+              "wordIndex": 0
+            },
+            {
+              "index": 77,
+              "text": "り",
+              "start": 47.83,
+              "end": 48.03,
+              "confidence": 0.9044169,
+              "phraseIndex": 21,
+              "wordIndex": 1
+            },
+            {
+              "index": 78,
+              "text": "ま",
+              "start": 48.03,
+              "end": 48.19,
+              "confidence": 0.9044169,
+              "phraseIndex": 21,
+              "wordIndex": 2
+            },
+            {
+              "index": 79,
+              "text": "す",
+              "start": 48.19,
+              "end": 48.55,
+              "confidence": 0.9044169,
+              "phraseIndex": 21,
+              "wordIndex": 3
+            },
+            {
+              "index": 80,
+              "text": "秋",
+              "start": 50.36,
+              "end": 50.44,
+              "confidence": 0.74571085,
+              "phraseIndex": 22,
+              "wordIndex": 0
+            },
+            {
+              "index": 81,
+              "text": "ま",
+              "start": 50.44,
+              "end": 50.52,
+              "confidence": 0.74571085,
+              "phraseIndex": 22,
+              "wordIndex": 1
+            },
+            {
+              "index": 82,
+              "text": "す",
+              "start": 50.52,
+              "end": 50.6,
+              "confidence": 0.74571085,
+              "phraseIndex": 22,
+              "wordIndex": 2
+            },
+            {
+              "index": 83,
+              "text": "似",
+              "start": 50.6,
+              "end": 50.68,
+              "confidence": 0.74571085,
+              "phraseIndex": 22,
+              "wordIndex": 3
+            },
+            {
+              "index": 84,
+              "text": "合",
+              "start": 50.68,
+              "end": 50.8,
+              "confidence": 0.74571085,
+              "phraseIndex": 22,
+              "wordIndex": 4
+            },
+            {
+              "index": 85,
+              "text": "い",
+              "start": 50.8,
+              "end": 50.96,
+              "confidence": 0.74571085,
+              "phraseIndex": 22,
+              "wordIndex": 5
+            },
+            {
+              "index": 86,
+              "text": "ま",
+              "start": 50.96,
+              "end": 51.16,
+              "confidence": 0.74571085,
+              "phraseIndex": 22,
+              "wordIndex": 6
+            },
+            {
+              "index": 87,
+              "text": "す",
+              "start": 51.16,
+              "end": 51.6,
+              "confidence": 0.74571085,
+              "phraseIndex": 22,
+              "wordIndex": 7
+            },
+            {
+              "index": 88,
+              "text": "う",
+              "start": 51.96,
+              "end": 52.16,
+              "confidence": 0.74571085,
+              "phraseIndex": 22,
+              "wordIndex": 8
+            },
+            {
+              "index": 89,
+              "text": "る",
+              "start": 52.16,
+              "end": 52.32,
+              "confidence": 0.74571085,
+              "phraseIndex": 22,
+              "wordIndex": 9
+            },
+            {
+              "index": 90,
+              "text": "さ",
+              "start": 52.32,
+              "end": 52.56,
+              "confidence": 0.74571085,
+              "phraseIndex": 22,
+              "wordIndex": 10
+            },
+            {
+              "index": 91,
+              "text": "い",
+              "start": 52.56,
+              "end": 52.8,
+              "confidence": 0.74571085,
+              "phraseIndex": 22,
+              "wordIndex": 11
+            },
+            {
+              "index": 92,
+              "text": "シ",
+              "start": 53.87,
+              "end": 54.19,
+              "confidence": 0.76665294,
+              "phraseIndex": 23,
+              "wordIndex": 0
+            },
+            {
+              "index": 93,
+              "text": "ン",
+              "start": 54.19,
+              "end": 54.35,
+              "confidence": 0.76665294,
+              "phraseIndex": 23,
+              "wordIndex": 1
+            },
+            {
+              "index": 94,
+              "text": "プ",
+              "start": 54.35,
+              "end": 54.59,
+              "confidence": 0.76665294,
+              "phraseIndex": 23,
+              "wordIndex": 2
+            },
+            {
+              "index": 95,
+              "text": "ル",
+              "start": 54.59,
+              "end": 54.79,
+              "confidence": 0.76665294,
+              "phraseIndex": 23,
+              "wordIndex": 3
+            },
+            {
+              "index": 96,
+              "text": "ま",
+              "start": 55.55,
+              "end": 55.79,
+              "confidence": 0.8366273,
+              "phraseIndex": 24,
+              "wordIndex": 0
+            },
+            {
+              "index": 97,
+              "text": "も",
+              "start": 55.79,
+              "end": 55.95,
+              "confidence": 0.8366273,
+              "phraseIndex": 24,
+              "wordIndex": 1
+            },
+            {
+              "index": 98,
+              "text": "な",
+              "start": 55.95,
+              "end": 56.15,
+              "confidence": 0.8366273,
+              "phraseIndex": 24,
+              "wordIndex": 2
+            },
+            {
+              "index": 99,
+              "text": "く",
+              "start": 56.15,
+              "end": 56.55,
+              "confidence": 0.8366273,
+              "phraseIndex": 24,
+              "wordIndex": 3
+            },
+            {
+              "index": 100,
+              "text": "も",
+              "start": 57.19,
+              "end": 57.55,
+              "confidence": 0.9537587,
+              "phraseIndex": 25,
+              "wordIndex": 0
+            },
+            {
+              "index": 101,
+              "text": "う",
+              "start": 57.55,
+              "end": 57.63,
+              "confidence": 0.9537587,
+              "phraseIndex": 25,
+              "wordIndex": 1
+            },
+            {
+              "index": 102,
+              "text": "す",
+              "start": 57.63,
+              "end": 57.91,
+              "confidence": 0.9537587,
+              "phraseIndex": 25,
+              "wordIndex": 2
+            },
+            {
+              "index": 103,
+              "text": "ぐ",
+              "start": 57.91,
+              "end": 58.27,
+              "confidence": 0.9537587,
+              "phraseIndex": 25,
+              "wordIndex": 3
+            },
+            {
+              "index": 104,
+              "text": "さ",
+              "start": 58.91,
+              "end": 59.19,
+              "confidence": 0.8633019,
+              "phraseIndex": 26,
+              "wordIndex": 0
+            },
+            {
+              "index": 105,
+              "text": "ら",
+              "start": 59.19,
+              "end": 59.35,
+              "confidence": 0.8633019,
+              "phraseIndex": 26,
+              "wordIndex": 1
+            },
+            {
+              "index": 106,
+              "text": "に",
+              "start": 59.35,
+              "end": 59.75,
+              "confidence": 0.8633019,
+              "phraseIndex": 26,
+              "wordIndex": 2
+            },
+            {
+              "index": 107,
+              "text": "も",
+              "start": 60.43,
+              "end": 60.75,
+              "confidence": 0.87904966,
+              "phraseIndex": 27,
+              "wordIndex": 0
+            },
+            {
+              "index": 108,
+              "text": "っ",
+              "start": 60.75,
+              "end": 60.91,
+              "confidence": 0.87904966,
+              "phraseIndex": 27,
+              "wordIndex": 1
+            },
+            {
+              "index": 109,
+              "text": "と",
+              "start": 60.91,
+              "end": 61.27,
+              "confidence": 0.87904966,
+              "phraseIndex": 27,
+              "wordIndex": 2
+            },
+            {
+              "index": 110,
+              "text": "さ",
+              "start": 62.51,
+              "end": 63.11,
+              "confidence": 0.79106206,
+              "phraseIndex": 28,
+              "wordIndex": 0
+            },
+            {
+              "index": 111,
+              "text": "あ",
+              "start": 63.11,
+              "end": 63.47,
+              "confidence": 0.79106206,
+              "phraseIndex": 28,
+              "wordIndex": 1
+            },
+            {
+              "index": 112,
+              "text": "で",
+              "start": 64.59,
+              "end": 64.79,
+              "confidence": 0.9588611,
+              "phraseIndex": 29,
+              "wordIndex": 0
+            },
+            {
+              "index": 113,
+              "text": "き",
+              "start": 64.79,
+              "end": 64.95,
+              "confidence": 0.9588611,
+              "phraseIndex": 29,
+              "wordIndex": 1
+            },
+            {
+              "index": 114,
+              "text": "る",
+              "start": 64.95,
+              "end": 65.11,
+              "confidence": 0.9588611,
+              "phraseIndex": 29,
+              "wordIndex": 2
+            },
+            {
+              "index": 115,
+              "text": "だ",
+              "start": 65.11,
+              "end": 65.23,
+              "confidence": 0.9588611,
+              "phraseIndex": 29,
+              "wordIndex": 3
+            },
+            {
+              "index": 116,
+              "text": "け",
+              "start": 65.23,
+              "end": 65.43,
+              "confidence": 0.9588611,
+              "phraseIndex": 29,
+              "wordIndex": 4
+            },
+            {
+              "index": 117,
+              "text": "ま",
+              "start": 66.83,
+              "end": 67.11,
+              "confidence": 0.85320145,
+              "phraseIndex": 30,
+              "wordIndex": 0
+            },
+            {
+              "index": 118,
+              "text": "と",
+              "start": 67.11,
+              "end": 67.27,
+              "confidence": 0.85320145,
+              "phraseIndex": 30,
+              "wordIndex": 1
+            },
+            {
+              "index": 119,
+              "text": "め",
+              "start": 67.27,
+              "end": 67.47,
+              "confidence": 0.85320145,
+              "phraseIndex": 30,
+              "wordIndex": 2
+            },
+            {
+              "index": 120,
+              "text": "て",
+              "start": 67.47,
+              "end": 67.87,
+              "confidence": 0.85320145,
+              "phraseIndex": 30,
+              "wordIndex": 3
+            },
+            {
+              "index": 121,
+              "text": "今",
+              "start": 68.63,
+              "end": 68.83,
+              "confidence": 0.8920684,
+              "phraseIndex": 31,
+              "wordIndex": 0
+            },
+            {
+              "index": 122,
+              "text": "か",
+              "start": 68.83,
+              "end": 69.15,
+              "confidence": 0.8920684,
+              "phraseIndex": 31,
+              "wordIndex": 1
+            },
+            {
+              "index": 123,
+              "text": "ら",
+              "start": 69.15,
+              "end": 69.47,
+              "confidence": 0.8920684,
+              "phraseIndex": 31,
+              "wordIndex": 2
+            }
+          ]
+        },
+        "segments": [
+          {
+            "id": "l18-v001",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+            "itemIndex": 1,
+            "text": "おと",
+            "label": "音",
+            "start": 1.18,
+            "end": 1.44,
+            "duration": 0.26,
+            "speechUnitCount": 1,
+            "wordCount": 1,
+            "matchScore": 1,
+            "asrText": "音",
+            "wordIndexes": [
+              1
+            ],
+            "method": "azure-speech-word-alignment",
+            "confidence": "high",
+            "review": {
+              "status": "approved",
+              "reviewedAt": "2026-08-05T11:39:21.516Z",
+              "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+              "matchScore": 1,
+              "asrText": "音"
+            }
+          },
+          {
+            "id": "l18-v002",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+            "itemIndex": 2,
+            "text": "こえ",
+            "label": "声",
+            "start": 2.51,
+            "end": 3.21,
+            "duration": 0.7,
+            "speechUnitCount": 1,
+            "wordCount": 1,
+            "matchScore": 1,
+            "asrText": "声",
+            "wordIndexes": [
+              2
+            ],
+            "method": "azure-speech-word-alignment",
+            "confidence": "high",
+            "review": {
+              "status": "approved",
+              "reviewedAt": "2026-08-05T11:39:21.516Z",
+              "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+              "matchScore": 1,
+              "asrText": "声"
+            }
+          },
+          {
+            "id": "l18-v003",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+            "itemIndex": 3,
+            "text": "くうき",
+            "label": "空気",
+            "start": 3.91,
+            "end": 4.77,
+            "duration": 0.86,
+            "speechUnitCount": 2,
+            "wordCount": 2,
+            "matchScore": 1,
+            "asrText": "空 気",
+            "wordIndexes": [
+              3,
+              4
+            ],
+            "method": "azure-speech-word-alignment",
+            "confidence": "high",
+            "review": {
+              "status": "approved",
+              "reviewedAt": "2026-08-05T11:39:21.516Z",
+              "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+              "matchScore": 1,
+              "asrText": "空 気"
+            }
+          },
+          {
+            "id": "l18-v004",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+            "itemIndex": 4,
+            "text": "むすこ",
+            "label": "息子",
+            "start": 5.43,
+            "end": 6.25,
+            "duration": 0.82,
+            "speechUnitCount": 2,
+            "wordCount": 2,
+            "matchScore": 1,
+            "asrText": "息 子",
+            "wordIndexes": [
+              5,
+              6
+            ],
+            "method": "azure-speech-word-alignment",
+            "confidence": "high",
+            "review": {
+              "status": "approved",
+              "reviewedAt": "2026-08-05T11:39:21.516Z",
+              "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+              "matchScore": 1,
+              "asrText": "息 子"
+            }
+          },
+          {
+            "id": "l18-v005",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+            "itemIndex": 5,
+            "text": "いしゃ",
+            "label": "医者",
+            "start": 7.03,
+            "end": 7.73,
+            "duration": 0.7,
+            "speechUnitCount": 2,
+            "wordCount": 2,
+            "matchScore": 1,
+            "asrText": "医 者",
+            "wordIndexes": [
+              7,
+              8
+            ],
+            "method": "azure-speech-word-alignment",
+            "confidence": "high",
+            "review": {
+              "status": "approved",
+              "reviewedAt": "2026-08-05T11:39:21.516Z",
+              "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+              "matchScore": 1,
+              "asrText": "医 者"
+            }
+          },
+          {
+            "id": "l18-v006",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+            "itemIndex": 6,
+            "text": "おじょうさん",
+            "label": "お嬢さん",
+            "start": 8.79,
+            "end": 10.01,
+            "duration": 1.22,
+            "speechUnitCount": 4,
+            "wordCount": 4,
+            "matchScore": 1,
+            "asrText": "お 嬢 さ ん",
+            "wordIndexes": [
+              9,
+              10,
+              11,
+              12
+            ],
+            "method": "azure-speech-word-alignment",
+            "confidence": "high",
+            "review": {
+              "status": "approved",
+              "reviewedAt": "2026-08-05T11:39:21.516Z",
+              "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+              "matchScore": 1,
+              "asrText": "お 嬢 さ ん"
+            }
+          },
+          {
+            "id": "l18-v007",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+            "itemIndex": 7,
+            "text": "しゃかいじん",
+            "label": "社会人",
+            "start": 10.51,
+            "end": 11.45,
+            "duration": 0.94,
+            "speechUnitCount": 3,
+            "wordCount": 3,
+            "matchScore": 1,
+            "asrText": "社 会 人",
+            "wordIndexes": [
+              13,
+              14,
+              15
+            ],
+            "method": "azure-speech-word-alignment",
+            "confidence": "high",
+            "review": {
+              "status": "approved",
+              "reviewedAt": "2026-08-05T11:39:21.516Z",
+              "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+              "matchScore": 1,
+              "asrText": "社 会 人"
+            }
+          },
+          {
+            "id": "l18-v008",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+            "itemIndex": 8,
+            "text": "りょこうガイド",
+            "label": "旅行ガイド",
+            "start": 12.79,
+            "end": 14.17,
+            "duration": 1.38,
+            "speechUnitCount": 5,
+            "wordCount": 5,
+            "matchScore": 1,
+            "asrText": "旅 行 ガ イ ド",
+            "wordIndexes": [
+              16,
+              17,
+              18,
+              19,
+              20
+            ],
+            "method": "azure-speech-word-alignment",
+            "confidence": "high",
+            "review": {
+              "status": "approved",
+              "reviewedAt": "2026-08-05T11:39:21.516Z",
+              "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+              "matchScore": 1,
+              "asrText": "旅 行 ガ イ ド"
+            }
+          },
+          {
+            "id": "l18-v009",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+            "itemIndex": 9,
+            "text": "がくしゃ",
+            "label": "学者",
+            "start": 14.79,
+            "end": 15.73,
+            "duration": 0.94,
+            "speechUnitCount": 2,
+            "wordCount": 2,
+            "matchScore": 1,
+            "asrText": "学 者",
+            "wordIndexes": [
+              21,
+              22
+            ],
+            "method": "azure-speech-word-alignment",
+            "confidence": "high",
+            "review": {
+              "status": "approved",
+              "reviewedAt": "2026-08-05T11:39:21.516Z",
+              "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+              "matchScore": 1,
+              "asrText": "学 者"
+            }
+          },
+          {
+            "id": "l18-v010",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+            "itemIndex": 10,
+            "text": "パイロット",
+            "label": "パイロット",
+            "start": 16.71,
+            "end": 17.61,
+            "duration": 0.9,
+            "speechUnitCount": 5,
+            "wordCount": 5,
+            "matchScore": 1,
+            "asrText": "パ イ ロ ッ ト",
+            "wordIndexes": [
+              23,
+              24,
+              25,
+              26,
+              27
+            ],
+            "method": "azure-speech-word-alignment",
+            "confidence": "high",
+            "review": {
+              "status": "approved",
+              "reviewedAt": "2026-08-05T11:39:21.516Z",
+              "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+              "matchScore": 1,
+              "asrText": "パ イ ロ ッ ト"
+            }
+          },
+          {
+            "id": "l18-v011",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+            "itemIndex": 11,
+            "text": "デザイナー",
+            "label": "デザイナー",
+            "start": 18.51,
+            "end": 19.49,
+            "duration": 0.98,
+            "speechUnitCount": 5,
+            "wordCount": 5,
+            "matchScore": 1,
+            "asrText": "デ ザ イ ナ ー",
+            "wordIndexes": [
+              28,
+              29,
+              30,
+              31,
+              32
+            ],
+            "method": "azure-speech-word-alignment",
+            "confidence": "high",
+            "review": {
+              "status": "approved",
+              "reviewedAt": "2026-08-05T11:39:21.516Z",
+              "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+              "matchScore": 1,
+              "asrText": "デ ザ イ ナ ー"
+            }
+          },
+          {
+            "id": "l18-v012",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+            "itemIndex": 12,
+            "text": "タイムサービス",
+            "label": "タイムサービス",
+            "start": 20.71,
+            "end": 22.13,
+            "duration": 1.42,
+            "speechUnitCount": 7,
+            "wordCount": 7,
+            "matchScore": 1,
+            "asrText": "タ イ ム サ ー ビ ス",
+            "wordIndexes": [
+              33,
+              34,
+              35,
+              36,
+              37,
+              38,
+              39
+            ],
+            "method": "azure-speech-word-alignment",
+            "confidence": "high",
+            "review": {
+              "status": "approved",
+              "reviewedAt": "2026-08-05T11:39:21.516Z",
+              "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+              "matchScore": 1,
+              "asrText": "タ イ ム サ ー ビ ス"
+            }
+          },
+          {
+            "id": "l18-v013",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+            "itemIndex": 13,
+            "text": "しんしゅんセール",
+            "label": "新春セール",
+            "start": 23.56,
+            "end": 24.3,
+            "duration": 0.74,
+            "speechUnitCount": 5,
+            "wordCount": 5,
+            "matchScore": 1,
+            "asrText": "新 春 セ ー ル",
+            "wordIndexes": [
+              40,
+              41,
+              42,
+              43,
+              44
+            ],
+            "method": "azure-speech-word-alignment",
+            "confidence": "high",
+            "review": {
+              "status": "approved",
+              "reviewedAt": "2026-08-05T11:39:21.516Z",
+              "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+              "matchScore": 1,
+              "asrText": "新 春 セ ー ル"
+            }
+          },
+          {
+            "id": "l18-v014",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+            "itemIndex": 14,
+            "text": "さんわりびき",
+            "label": "3割引",
+            "start": 25.87,
+            "end": 26.41,
+            "duration": 0.54,
+            "speechUnitCount": 2,
+            "wordCount": 2,
+            "matchScore": 0.667,
+            "asrText": "割 引",
+            "wordIndexes": [
+              46,
+              47
+            ],
+            "method": "azure-speech-word-alignment",
+            "confidence": "needs-review",
+            "review": {
+              "status": "approved",
+              "reviewedAt": "2026-08-05T11:39:21.516Z",
+              "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+              "matchScore": 0.667,
+              "asrText": "割 引"
+            }
+          },
+          {
+            "id": "l18-v015",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+            "itemIndex": 15,
+            "text": "ていか",
+            "label": "定価",
+            "start": 27.55,
+            "end": 28.21,
+            "duration": 0.66,
+            "speechUnitCount": 1,
+            "wordCount": 1,
+            "matchScore": 0,
+            "asrText": "低",
+            "wordIndexes": [
+              49
+            ],
+            "method": "azure-speech-word-alignment",
+            "confidence": "needs-review",
+            "review": {
+              "status": "approved",
+              "reviewedAt": "2026-08-05T11:39:21.516Z",
+              "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+              "matchScore": 0,
+              "asrText": "低"
+            }
+          },
+          {
+            "id": "l18-v016",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+            "itemIndex": 16,
+            "text": "はんがく",
+            "label": "半額",
+            "start": 29.43,
+            "end": 30.49,
+            "duration": 1.06,
+            "speechUnitCount": 2,
+            "wordCount": 2,
+            "matchScore": 1,
+            "asrText": "半 額",
+            "wordIndexes": [
+              51,
+              52
+            ],
+            "method": "azure-speech-word-alignment",
+            "confidence": "high",
+            "review": {
+              "status": "approved",
+              "reviewedAt": "2026-08-05T11:39:21.516Z",
+              "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+              "matchScore": 1,
+              "asrText": "半 額"
+            }
+          },
+          {
+            "id": "l18-v017",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+            "itemIndex": 17,
+            "text": "ねだん",
+            "label": "値段",
+            "start": 32.24,
+            "end": 32.54,
+            "duration": 0.3,
+            "speechUnitCount": 2,
+            "wordCount": 2,
+            "matchScore": 1,
+            "asrText": "値 段",
+            "wordIndexes": [
+              53,
+              54
+            ],
+            "method": "azure-speech-word-alignment",
+            "confidence": "high",
+            "review": {
+              "status": "approved",
+              "reviewedAt": "2026-08-05T11:39:21.516Z",
+              "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+              "matchScore": 1,
+              "asrText": "値 段"
+            }
+          },
+          {
+            "id": "l18-v018",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+            "itemIndex": 18,
+            "text": "シャツ",
+            "label": "シャツ",
+            "start": 32.44,
+            "end": 33.06,
+            "duration": 0.62,
+            "speechUnitCount": 3,
+            "wordCount": 3,
+            "matchScore": 1,
+            "asrText": "シ ャ ツ",
+            "wordIndexes": [
+              55,
+              56,
+              57
+            ],
+            "method": "azure-speech-word-alignment",
+            "confidence": "high",
+            "review": {
+              "status": "approved",
+              "reviewedAt": "2026-08-05T11:39:21.516Z",
+              "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+              "matchScore": 1,
+              "asrText": "シ ャ ツ"
+            }
+          },
+          {
+            "id": "l18-v019",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+            "itemIndex": 19,
+            "text": "スカート",
+            "label": "スカート",
+            "start": 33.4,
+            "end": 34.5,
+            "duration": 1.1,
+            "speechUnitCount": 4,
+            "wordCount": 4,
+            "matchScore": 1,
+            "asrText": "ス カ ー ト",
+            "wordIndexes": [
+              58,
+              59,
+              60,
+              61
+            ],
+            "method": "azure-speech-word-alignment",
+            "confidence": "high",
+            "review": {
+              "status": "approved",
+              "reviewedAt": "2026-08-05T11:39:21.516Z",
+              "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+              "matchScore": 1,
+              "asrText": "ス カ ー ト"
+            }
+          },
+          {
+            "id": "l18-v020",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+            "itemIndex": 20,
+            "text": "いろ",
+            "label": "色",
+            "start": 35.31,
+            "end": 35.93,
+            "duration": 0.62,
+            "speechUnitCount": 1,
+            "wordCount": 1,
+            "matchScore": 1,
+            "asrText": "色",
+            "wordIndexes": [
+              62
+            ],
+            "method": "azure-speech-word-alignment",
+            "confidence": "high",
+            "review": {
+              "status": "approved",
+              "reviewedAt": "2026-08-05T11:39:21.516Z",
+              "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+              "matchScore": 1,
+              "asrText": "色"
+            }
+          },
+          {
+            "id": "l18-v021",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+            "itemIndex": 21,
+            "text": "あか",
+            "label": "赤",
+            "start": 36.47,
+            "end": 37.17,
+            "duration": 0.7,
+            "speechUnitCount": 1,
+            "wordCount": 1,
+            "matchScore": 1,
+            "asrText": "赤",
+            "wordIndexes": [
+              63
+            ],
+            "method": "azure-speech-word-alignment",
+            "confidence": "high",
+            "review": {
+              "status": "approved",
+              "reviewedAt": "2026-08-05T11:39:21.516Z",
+              "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+              "matchScore": 1,
+              "asrText": "赤"
+            }
+          },
+          {
+            "id": "l18-v022",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+            "itemIndex": 22,
+            "text": "あお",
+            "label": "青",
+            "start": 37.83,
+            "end": 38.57,
+            "duration": 0.74,
+            "speechUnitCount": 1,
+            "wordCount": 1,
+            "matchScore": 1,
+            "asrText": "青",
+            "wordIndexes": [
+              64
+            ],
+            "method": "azure-speech-word-alignment",
+            "confidence": "high",
+            "review": {
+              "status": "approved",
+              "reviewedAt": "2026-08-05T11:39:21.516Z",
+              "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+              "matchScore": 1,
+              "asrText": "青"
+            }
+          },
+          {
+            "id": "l18-v023",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+            "itemIndex": 23,
+            "text": "おしょうがつ",
+            "label": "お正月",
+            "start": 38.99,
+            "end": 40.41,
+            "duration": 1.42,
+            "speechUnitCount": 3,
+            "wordCount": 3,
+            "matchScore": 1,
+            "asrText": "お 正 月",
+            "wordIndexes": [
+              65,
+              66,
+              67
+            ],
+            "method": "azure-speech-word-alignment",
+            "confidence": "high",
+            "review": {
+              "status": "approved",
+              "reviewedAt": "2026-08-05T11:39:21.516Z",
+              "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+              "matchScore": 1,
+              "asrText": "お 正 月"
+            }
+          },
+          {
+            "id": "l18-v024",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+            "itemIndex": 24,
+            "text": "じかん",
+            "label": "時間",
+            "start": 41.03,
+            "end": 42.01,
+            "duration": 0.98,
+            "speechUnitCount": 2,
+            "wordCount": 2,
+            "matchScore": 1,
+            "asrText": "時 間",
+            "wordIndexes": [
+              68,
+              69
+            ],
+            "method": "azure-speech-word-alignment",
+            "confidence": "high",
+            "review": {
+              "status": "approved",
+              "reviewedAt": "2026-08-05T11:39:21.516Z",
+              "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+              "matchScore": 1,
+              "asrText": "時 間"
+            }
+          },
+          {
+            "id": "l18-v025",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+            "itemIndex": 25,
+            "text": "しょうらい",
+            "label": "将来",
+            "start": 42.79,
+            "end": 43.77,
+            "duration": 0.98,
+            "speechUnitCount": 2,
+            "wordCount": 2,
+            "matchScore": 1,
+            "asrText": "将 来",
+            "wordIndexes": [
+              70,
+              71
+            ],
+            "method": "azure-speech-word-alignment",
+            "confidence": "high",
+            "review": {
+              "status": "approved",
+              "reviewedAt": "2026-08-05T11:39:21.516Z",
+              "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+              "matchScore": 1,
+              "asrText": "将 来"
+            }
+          },
+          {
+            "id": "l18-v026",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+            "itemIndex": 26,
+            "text": "じゅんび",
+            "label": "準備",
+            "start": 44.51,
+            "end": 45.49,
+            "duration": 0.98,
+            "speechUnitCount": 2,
+            "wordCount": 2,
+            "matchScore": 1,
+            "asrText": "準 備",
+            "wordIndexes": [
+              72,
+              73
+            ],
+            "method": "azure-speech-word-alignment",
+            "confidence": "high",
+            "review": {
+              "status": "approved",
+              "reviewedAt": "2026-08-05T11:39:21.516Z",
+              "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+              "matchScore": 1,
+              "asrText": "準 備"
+            }
+          },
+          {
+            "id": "l18-v027",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+            "itemIndex": 27,
+            "text": "びょうき",
+            "label": "病気",
+            "start": 45.99,
+            "end": 46.61,
+            "duration": 0.62,
+            "speechUnitCount": 2,
+            "wordCount": 2,
+            "matchScore": 1,
+            "asrText": "病 気",
+            "wordIndexes": [
+              74,
+              75
+            ],
+            "method": "azure-speech-word-alignment",
+            "confidence": "high",
+            "review": {
+              "status": "approved",
+              "reviewedAt": "2026-08-05T11:39:21.516Z",
+              "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+              "matchScore": 1,
+              "asrText": "病 気"
+            }
+          },
+          {
+            "id": "l18-v028",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+            "itemIndex": 28,
+            "text": "なります",
+            "label": "なります",
+            "start": 47.51,
+            "end": 48.61,
+            "duration": 1.1,
+            "speechUnitCount": 4,
+            "wordCount": 4,
+            "matchScore": 1,
+            "asrText": "な り ま す",
+            "wordIndexes": [
+              76,
+              77,
+              78,
+              79
+            ],
+            "method": "azure-speech-word-alignment",
+            "confidence": "high",
+            "review": {
+              "status": "approved",
+              "reviewedAt": "2026-08-05T11:39:21.516Z",
+              "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+              "matchScore": 1,
+              "asrText": "な り ま す"
+            }
+          },
+          {
+            "id": "l18-v029",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+            "itemIndex": 29,
+            "text": "あきます",
+            "label": "開きます",
+            "start": 50.4,
+            "end": 50.66,
+            "duration": 0.26,
+            "speechUnitCount": 2,
+            "wordCount": 2,
+            "matchScore": 0.5,
+            "asrText": "ま す",
+            "wordIndexes": [
+              81,
+              82
+            ],
+            "method": "azure-speech-word-alignment",
+            "confidence": "needs-review",
+            "review": {
+              "status": "approved",
+              "reviewedAt": "2026-08-05T11:39:21.516Z",
+              "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+              "matchScore": 0.5,
+              "asrText": "ま す"
+            }
+          },
+          {
+            "id": "l18-v030",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+            "itemIndex": 30,
+            "text": "にあいます",
+            "label": "似合います",
+            "start": 50.56,
+            "end": 51.66,
+            "duration": 1.1,
+            "speechUnitCount": 5,
+            "wordCount": 5,
+            "matchScore": 1,
+            "asrText": "似 合 い ま す",
+            "wordIndexes": [
+              83,
+              84,
+              85,
+              86,
+              87
+            ],
+            "method": "azure-speech-word-alignment",
+            "confidence": "high",
+            "review": {
+              "status": "approved",
+              "reviewedAt": "2026-08-05T11:39:21.516Z",
+              "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+              "matchScore": 1,
+              "asrText": "似 合 い ま す"
+            }
+          },
+          {
+            "id": "l18-v031",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+            "itemIndex": 31,
+            "text": "うるさい",
+            "label": "うるさい",
+            "start": 51.92,
+            "end": 52.86,
+            "duration": 0.94,
+            "speechUnitCount": 4,
+            "wordCount": 4,
+            "matchScore": 1,
+            "asrText": "う る さ い",
+            "wordIndexes": [
+              88,
+              89,
+              90,
+              91
+            ],
+            "method": "azure-speech-word-alignment",
+            "confidence": "high",
+            "review": {
+              "status": "approved",
+              "reviewedAt": "2026-08-05T11:39:21.516Z",
+              "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+              "matchScore": 1,
+              "asrText": "う る さ い"
+            }
+          },
+          {
+            "id": "l18-v032",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+            "itemIndex": 32,
+            "text": "シンプル",
+            "label": "シンプル",
+            "start": 53.83,
+            "end": 54.85,
+            "duration": 1.02,
+            "speechUnitCount": 4,
+            "wordCount": 4,
+            "matchScore": 1,
+            "asrText": "シ ン プ ル",
+            "wordIndexes": [
+              92,
+              93,
+              94,
+              95
+            ],
+            "method": "azure-speech-word-alignment",
+            "confidence": "high",
+            "review": {
+              "status": "approved",
+              "reviewedAt": "2026-08-05T11:39:21.516Z",
+              "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+              "matchScore": 1,
+              "asrText": "シ ン プ ル"
+            }
+          },
+          {
+            "id": "l18-v033",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+            "itemIndex": 33,
+            "text": "まもなく",
+            "label": "間もなく",
+            "start": 55.51,
+            "end": 56.61,
+            "duration": 1.1,
+            "speechUnitCount": 4,
+            "wordCount": 4,
+            "matchScore": 1,
+            "asrText": "ま も な く",
+            "wordIndexes": [
+              96,
+              97,
+              98,
+              99
+            ],
+            "method": "azure-speech-word-alignment",
+            "confidence": "high",
+            "review": {
+              "status": "approved",
+              "reviewedAt": "2026-08-05T11:39:21.516Z",
+              "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+              "matchScore": 1,
+              "asrText": "ま も な く"
+            }
+          },
+          {
+            "id": "l18-v034",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+            "itemIndex": 34,
+            "text": "もうすぐ",
+            "label": "もうすぐ",
+            "start": 57.15,
+            "end": 58.33,
+            "duration": 1.18,
+            "speechUnitCount": 4,
+            "wordCount": 4,
+            "matchScore": 1,
+            "asrText": "も う す ぐ",
+            "wordIndexes": [
+              100,
+              101,
+              102,
+              103
+            ],
+            "method": "azure-speech-word-alignment",
+            "confidence": "high",
+            "review": {
+              "status": "approved",
+              "reviewedAt": "2026-08-05T11:39:21.516Z",
+              "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+              "matchScore": 1,
+              "asrText": "も う す ぐ"
+            }
+          },
+          {
+            "id": "l18-v035",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+            "itemIndex": 35,
+            "text": "さらに／もっと",
+            "label": "さらに／もっと",
+            "start": 58.87,
+            "end": 61.33,
+            "duration": 2.46,
+            "speechUnitCount": 6,
+            "wordCount": 6,
+            "matchScore": 1,
+            "asrText": "さ ら に も っ と",
+            "wordIndexes": [
+              104,
+              105,
+              106,
+              107,
+              108,
+              109
+            ],
+            "method": "azure-speech-word-alignment",
+            "confidence": "high",
+            "review": {
+              "status": "approved",
+              "reviewedAt": "2026-08-05T11:39:21.516Z",
+              "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+              "matchScore": 1,
+              "asrText": "さ ら に も っ と"
+            }
+          },
+          {
+            "id": "l18-v036",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+            "itemIndex": 36,
+            "text": "さあ",
+            "label": "さあ",
+            "start": 62.47,
+            "end": 63.53,
+            "duration": 1.06,
+            "speechUnitCount": 2,
+            "wordCount": 2,
+            "matchScore": 1,
+            "asrText": "さ あ",
+            "wordIndexes": [
+              110,
+              111
+            ],
+            "method": "azure-speech-word-alignment",
+            "confidence": "high",
+            "review": {
+              "status": "approved",
+              "reviewedAt": "2026-08-05T11:39:21.516Z",
+              "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+              "matchScore": 1,
+              "asrText": "さ あ"
+            }
+          },
+          {
+            "id": "l18-v037",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+            "itemIndex": 37,
+            "text": "できるだけ",
+            "label": "できるだけ",
+            "start": 64.55,
+            "end": 65.49,
+            "duration": 0.94,
+            "speechUnitCount": 5,
+            "wordCount": 5,
+            "matchScore": 1,
+            "asrText": "で き る だ け",
+            "wordIndexes": [
+              112,
+              113,
+              114,
+              115,
+              116
+            ],
+            "method": "azure-speech-word-alignment",
+            "confidence": "high",
+            "review": {
+              "status": "approved",
+              "reviewedAt": "2026-08-05T11:39:21.516Z",
+              "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+              "matchScore": 1,
+              "asrText": "で き る だ け"
+            }
+          },
+          {
+            "id": "l18-v038",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+            "itemIndex": 38,
+            "text": "まとめて",
+            "label": "まとめて",
+            "start": 66.79,
+            "end": 67.93,
+            "duration": 1.14,
+            "speechUnitCount": 4,
+            "wordCount": 4,
+            "matchScore": 1,
+            "asrText": "ま と め て",
+            "wordIndexes": [
+              117,
+              118,
+              119,
+              120
+            ],
+            "method": "azure-speech-word-alignment",
+            "confidence": "high",
+            "review": {
+              "status": "approved",
+              "reviewedAt": "2026-08-05T11:39:21.516Z",
+              "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+              "matchScore": 1,
+              "asrText": "ま と め て"
+            }
+          },
+          {
+            "id": "l18-v039",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+            "itemIndex": 39,
+            "text": "いまから",
+            "label": "今から",
+            "start": 68.59,
+            "end": 69.53,
+            "duration": 0.94,
+            "speechUnitCount": 3,
+            "wordCount": 3,
+            "matchScore": 1,
+            "asrText": "今 か ら",
+            "wordIndexes": [
+              121,
+              122,
+              123
+            ],
+            "method": "azure-speech-word-alignment",
+            "confidence": "high",
+            "review": {
+              "status": "approved",
+              "reviewedAt": "2026-08-05T11:39:21.516Z",
+              "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+              "matchScore": 1,
+              "asrText": "今 か ら"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

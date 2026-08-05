@@ -1,4 +1,5 @@
 import { createServer, request as httpRequest } from "node:http";
+import { spawn } from "node:child_process";
 import { existsSync, readFileSync } from "node:fs";
 import { mkdir, readFile, readdir, writeFile } from "node:fs/promises";
 import { basename, dirname, extname, join, normalize } from "node:path";
@@ -1335,12 +1336,464 @@ async function formatPracticeAnswer({ inputText, examples = "", formatHints = {}
   };
 }
 
+function practiceAnswerAlternativesPath() {
+  return join(root, "data", "practice-answer-alternatives.json");
+}
+
+function normalizedPracticeLessonId(value) {
+  const match = String(value || "").match(/\d+/);
+  return match ? `lesson${Number(match[0])}` : String(value || "lesson").trim();
+}
+
+function normalizePracticeReviewText(value) {
+  return String(value || "")
+    .normalize("NFKC")
+    .replace(/\u3000/g, " ")
+    .replace(/[A-Za-z]+/g, (textValue) => textValue.toUpperCase())
+    .replace(/て\s*は\s*ありません/g, "ではありません")
+    .replace(/て\s*は\s*ないです/g, "ではありません")
+    .replace(/じゃありません/g, "ではありません")
+    .replace(/じゃないです/g, "ではありません")
+    .replace(/\s+/g, "")
+    .replace(/\p{P}/gu, "")
+    .replace(/^ー+/, "")
+    .trim();
+}
+
+async function readPracticeAnswerAlternatives() {
+  return await readJsonFile(practiceAnswerAlternativesPath(), {});
+}
+
+async function writePracticeAnswerAlternatives(cache) {
+  await writeJsonFile(practiceAnswerAlternativesPath(), cache || {});
+}
+
+function practiceAnswerAlternativesForLesson(cache, lessonIdValue) {
+  const lessonIdKey = normalizedPracticeLessonId(lessonIdValue);
+  const lessonCache = cache?.[lessonIdKey] || {};
+  return Object.fromEntries(
+    Object.entries(lessonCache).map(([itemId, slots]) => [
+      itemId,
+      Object.fromEntries(
+        Object.entries(slots || {}).map(([slotId, entries]) => [
+          slotId,
+          (Array.isArray(entries) ? entries : [])
+            .map((entry) => typeof entry === "string" ? entry : entry?.answer)
+            .filter(Boolean)
+        ])
+      )
+    ])
+  );
+}
+
+function cachedPracticeAnswerAlternative(cache, { lessonIdValue, itemId, slotId, userAnswer }) {
+  const lessonIdKey = normalizedPracticeLessonId(lessonIdValue);
+  const normalized = normalizePracticeReviewText(userAnswer);
+  if (!normalized) return null;
+  const entries = cache?.[lessonIdKey]?.[itemId]?.[slotId] || [];
+  return entries.find((entry) => normalizePracticeReviewText(typeof entry === "string" ? entry : entry?.answer) === normalized) || null;
+}
+
+async function addPracticeAnswerAlternative(cache, payload, review) {
+  const lessonIdKey = normalizedPracticeLessonId(payload.lessonId);
+  const itemId = safeFileSegment(payload.itemId || "item");
+  const slotId = safeFileSegment(payload.slotId || "answer");
+  const answer = compactPracticeText(review.normalizedAnswer || payload.userAnswer, 1000);
+  const normalizedAnswer = normalizePracticeReviewText(answer);
+  if (!answer || !normalizedAnswer) return cache;
+
+  const lessonCache = cache[lessonIdKey] || {};
+  const itemCache = lessonCache[itemId] || {};
+  const entries = Array.isArray(itemCache[slotId]) ? itemCache[slotId] : [];
+  if (entries.some((entry) => normalizePracticeReviewText(typeof entry === "string" ? entry : entry?.answer) === normalizedAnswer)) return cache;
+
+  return {
+    ...cache,
+    [lessonIdKey]: {
+      ...lessonCache,
+      [itemId]: {
+        ...itemCache,
+        [slotId]: [
+          ...entries,
+          {
+            answer,
+            normalizedAnswer,
+            expectedAnswers: Array.isArray(payload.expectedAnswers) ? payload.expectedAnswers.slice(0, 8) : [],
+            reason: compactPracticeText(review.reason || "", 500),
+            provider: review.provider || "deepseek",
+            model: review.model || "",
+            modelNormalizedAnswer: compactPracticeText(review.modelNormalizedAnswer || "", 1000),
+            addedAt: new Date().toISOString()
+          }
+        ]
+      }
+    }
+  };
+}
+
+async function reviewPracticeAnswer(payload) {
+  const userAnswer = compactPracticeText(payload.userAnswer, 1000);
+  const expectedAnswers = Array.isArray(payload.expectedAnswers)
+    ? payload.expectedAnswers.map((value) => compactPracticeText(value, 1000)).filter(Boolean)
+    : [];
+  if (!userAnswer || !expectedAnswers.length) {
+    return { accepted: false, reason: "缺少用户答案或参考答案。", provider: "local_fallback" };
+  }
+
+  let cache = await readPracticeAnswerAlternatives();
+  const cached = cachedPracticeAnswerAlternative(cache, {
+    lessonIdValue: payload.lessonId,
+    itemId: payload.itemId,
+    slotId: payload.slotId || "answer",
+    userAnswer
+  });
+  if (cached) {
+    return {
+      accepted: true,
+      normalizedAnswer: typeof cached === "string" ? cached : cached.answer,
+      reason: typeof cached === "string" ? "已命中已采纳备选答案。" : cached.reason || "已命中已采纳备选答案。",
+      provider: "cache",
+      cacheHit: true
+    };
+  }
+
+  const key = process.env.DEEPSEEK_API_KEY;
+  const baseUrl = (process.env.DEEPSEEK_BASE_URL || "https://api.deepseek.com").replace(/\/+$/, "");
+  const model = process.env.DEEPSEEK_MODEL || "deepseek-v4-flash";
+  if (!key) return { accepted: false, reason: "未配置模型服务。", provider: "local_fallback" };
+
+  const response = await fetch(`${baseUrl}/chat/completions`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${key}`
+    },
+    body: JSON.stringify({
+      model,
+      messages: [
+        {
+          role: "system",
+          content: [
+            "你是标准日本语练习的答案复核器。",
+            "任务：判断用户的日语答案是否可以作为该题的正确答案被采纳。",
+            "可以采纳：意思与题目要求一致、语法功能一致，只是写法、汉字/假名、礼貌程度或自然表达不同。",
+            "不能采纳：时态、肯否、主客体、助词、数量、专有名词、题目要求的语法变换或回答范围不一致。",
+            "不要把参考答案当作唯一表达，但必须严格遵守题目、例句和回答范围。",
+            "normalizedAnswer 只能是用户答案的轻微清洗版本，不能替换成参考答案。",
+            "只返回 JSON object：{\"accepted\":true|false,\"normalizedAnswer\":\"...\",\"reason\":\"...\"}。"
+          ].join("\n")
+        },
+        {
+          role: "user",
+          content: [
+            `课程：${compactPracticeText(payload.lessonId, 40)}`,
+            `活动：${compactPracticeText(payload.activityTitle || payload.activityId, 120)}`,
+            `活动说明：${compactPracticeText(payload.activityInstruction, 400)}`,
+            `题号：${compactPracticeText(payload.itemNumber, 30)}`,
+            `题目：${compactPracticeText(payload.promptText, 600)}`,
+            `题目假名：${compactPracticeText(payload.promptKana, 600)}`,
+            `回答单位：${compactPracticeText(payload.answerUnit, 80)}`,
+            `回答范围：${compactPracticeText(payload.responseScope, 80)} ${compactPracticeText(payload.responseScopeHint, 200)}`,
+            `例句：${compactPracticeText(payload.examples, 1200)}`,
+            "",
+            "参考答案：",
+            expectedAnswers.map((answer, index) => `${index + 1}. ${answer}`).join("\n"),
+            "",
+            "用户答案：",
+            userAnswer
+          ].join("\n")
+        }
+      ],
+      temperature: 0,
+      max_tokens: 260,
+      thinking: { type: "disabled" },
+      response_format: { type: "json_object" },
+      stream: false
+    })
+  });
+
+  const bodyText = await response.text();
+  if (!response.ok) {
+    return { accepted: false, reason: `模型服务 HTTP ${response.status}。`, provider: "deepseek", model };
+  }
+
+  let raw;
+  try {
+    raw = JSON.parse(bodyText);
+  } catch {
+    return { accepted: false, reason: "模型服务返回非 JSON。", provider: "deepseek", model };
+  }
+  const content = raw.choices?.[0]?.message?.content || "";
+  const parsed = extractJsonObject(content) || {};
+  const accepted = parsed.accepted === true || String(parsed.accepted || "").toLowerCase() === "true";
+  const result = {
+    accepted,
+    normalizedAnswer: accepted ? userAnswer : "",
+    modelNormalizedAnswer: accepted ? compactPracticeText(parsed.normalizedAnswer || "", 1000) : "",
+    reason: compactPracticeText(parsed.reason || "", 500),
+    provider: "deepseek",
+    model
+  };
+
+  if (accepted) {
+    cache = await addPracticeAnswerAlternative(cache, payload, result);
+    await writePracticeAnswerAlternatives(cache);
+  }
+
+  return result;
+}
+
+function normalizeOcrSampleType(value) {
+  const type = String(value || "").trim();
+  if (!["vocabulary", "text"].includes(type)) throw new Error("Invalid OCR sample type.");
+  return type;
+}
+
+async function listOcrSampleLessons(type) {
+  const sampleType = normalizeOcrSampleType(type);
+  const dir = join(root, "data", "ocr");
+  let entries = [];
+  try {
+    entries = await readdir(dir, { withFileTypes: true });
+  } catch {
+    return [];
+  }
+
+  const lessons = new Map();
+  for (const entry of entries) {
+    if (!entry.isFile()) continue;
+    const match = entry.name.match(/^lesson(\d+)-(vocabulary|text)(-audio(?:-verified)?)?\.json$/);
+    if (!match || match[2] !== sampleType) continue;
+    const lessonNo = Number(match[1]);
+    const current = lessons.get(lessonNo) || { lessonNo };
+    if (match[3] === "-audio-verified") current.verifiedAudioFile = entry.name;
+    else if (match[3]) current.audioFile = entry.name;
+    else current.baseFile = entry.name;
+    lessons.set(lessonNo, current);
+  }
+
+  const result = [];
+  for (const lesson of [...lessons.values()].sort((a, b) => a.lessonNo - b.lessonNo)) {
+    const fileName = lesson.verifiedAudioFile || lesson.audioFile || lesson.baseFile;
+    if (!fileName) continue;
+    const filePath = join(dir, fileName);
+    const data = await readJsonFile(filePath, null);
+    if (!data) continue;
+    result.push({
+      lessonNo: lesson.lessonNo,
+      lessonId: `lesson${lesson.lessonNo}`,
+      label: `第${lesson.lessonNo}课`,
+      type: sampleType,
+      url: `/data/ocr/${fileName}`,
+      path: `data/ocr/${fileName}`,
+      hasAudio: Boolean(lesson.verifiedAudioFile || lesson.audioFile),
+      counts: ocrSampleCounts(sampleType, data)
+    });
+  }
+  return result;
+}
+
+function ocrSampleCounts(type, data) {
+  if (type === "vocabulary") {
+    const words = data?.vocabulary || [];
+    return {
+      vocabulary: words.length,
+      audioSegments: words.filter((word) => word.audioSegment).length
+    };
+  }
+  const basicSentences = data?.basicText?.basicSentences || [];
+  const basicDialogueLines = (data?.basicText?.dialogues || []).reduce((sum, dialogue) => sum + (dialogue.lines || []).length, 0);
+  const applicationDialogueLines = (data?.applicationText?.blocks || []).reduce((sum, block) => sum + (block.lines || []).length, 0);
+  const audioSegments = [
+    ...basicSentences,
+    ...(data?.basicText?.dialogues || []).flatMap((dialogue) => dialogue.lines || []),
+    ...(data?.applicationText?.blocks || []).flatMap((block) => block.lines || [])
+  ].filter((item) => item.audioSegment).length;
+  return {
+    basicSentences: basicSentences.length,
+    basicDialogueLines,
+    applicationDialogueLines,
+    audioSegments
+  };
+}
+
+function runOcrAudioAlignment({ lessonId: requestedLessonId, target = "all", force = false }) {
+  return new Promise((resolve, reject) => {
+    const scriptArgs = [
+      join(root, target === "vocabulary" ? "scripts/align-ocr-vocabulary-audio.mjs" : "scripts/generate-ocr-audio-segments.mjs"),
+      "--lesson", String(requestedLessonId),
+      "--target", target
+    ];
+    if (force) scriptArgs.push("--force");
+    if (target === "vocabulary") scriptArgs.push("--auto-approve");
+
+    const child = spawn(process.execPath, scriptArgs, {
+      cwd: root,
+      env: process.env,
+      stdio: ["ignore", "pipe", "pipe"]
+    });
+    let stdout = "";
+    let stderr = "";
+    const timeout = setTimeout(() => {
+      child.kill("SIGTERM");
+      reject(new Error("OCR audio alignment timed out."));
+    }, 120000);
+
+    child.stdout.on("data", (chunk) => {
+      stdout += chunk.toString("utf8");
+    });
+    child.stderr.on("data", (chunk) => {
+      stderr += chunk.toString("utf8");
+    });
+    child.on("error", (error) => {
+      clearTimeout(timeout);
+      reject(error);
+    });
+    child.on("close", (code) => {
+      clearTimeout(timeout);
+      if (code !== 0) {
+        reject(new Error(stderr || stdout || `OCR audio alignment exited with code ${code}.`));
+        return;
+      }
+      try {
+        resolve(JSON.parse(stdout));
+      } catch (error) {
+        reject(new Error(`OCR audio alignment returned invalid JSON: ${error.message}`));
+      }
+    });
+  });
+}
+
+function ocrTextAudioAlignmentPath(lessonId) {
+  return join(root, "data", "ocr", `lesson${lessonId}-text-audio-alignment.json`);
+}
+
+function runOcrTextAudioAlignment(lessonId) {
+  return runNodeScript(join(root, "scripts", "align-ocr-text-audio.mjs"), ["--lesson", String(lessonId)], "OCR text audio alignment", 300000);
+}
+
+function runOcrTextAudioPublish(lessonId) {
+  return runNodeScript(join(root, "scripts", "publish-ocr-text-audio-alignment.mjs"), [String(lessonId)], "OCR text audio publish", 180000);
+}
+
+function runNodeScript(scriptPath, scriptArgs, label, timeoutMs) {
+  return new Promise((resolve, reject) => {
+    const child = spawn(process.execPath, [scriptPath, ...scriptArgs], { cwd: root, env: process.env, stdio: ["ignore", "pipe", "pipe"] });
+    let stdout = "";
+    let stderr = "";
+    const timeout = setTimeout(() => {
+      child.kill("SIGTERM");
+      reject(new Error(`${label} timed out.`));
+    }, timeoutMs);
+    child.stdout.on("data", (chunk) => { stdout += chunk.toString("utf8"); });
+    child.stderr.on("data", (chunk) => { stderr += chunk.toString("utf8"); });
+    child.on("error", (error) => {
+      clearTimeout(timeout);
+      reject(error);
+    });
+    child.on("close", (code) => {
+      clearTimeout(timeout);
+      if (code !== 0) {
+        const details = stderr || stdout || "";
+        const message = details.match(/Error:\s*([^\r\n]+)/)?.[1] || details.trim() || `${label} exited with code ${code}.`;
+        reject(new Error(message));
+        return;
+      }
+      try {
+        resolve(JSON.parse(stdout));
+      } catch (error) {
+        reject(new Error(`${label} returned invalid JSON: ${error.message}`));
+      }
+    });
+  });
+}
+
+function updateOcrTextAudioReviews(alignment, changes) {
+  if (!Array.isArray(changes)) throw new Error("Review changes must be an array.");
+  const byId = new Map(changes.map((change) => [String(change.id || ""), change]));
+  const allowedStatuses = new Set(["pending", "approved", "needs-adjustment"]);
+  for (const track of alignment.tracks || []) {
+    for (const item of track.items || []) {
+      const change = byId.get(item.id);
+      if (!change) continue;
+      const status = String(change.status || "pending");
+      const start = Number(change.start);
+      const end = Number(change.end);
+      if (!allowedStatuses.has(status)) throw new Error(`Invalid review status for ${item.id}.`);
+      if (!Number.isFinite(start) || !Number.isFinite(end) || start < 0 || end <= start) throw new Error(`Invalid review range for ${item.id}.`);
+      item.review = {
+        status,
+        start: Math.round(start * 1000) / 1000,
+        end: Math.round(end * 1000) / 1000,
+        note: String(change.note || "").slice(0, 1000),
+        reviewedAt: status === "approved" ? new Date().toISOString() : item.review?.reviewedAt || null
+      };
+    }
+  }
+  const reviews = (alignment.tracks || []).flatMap((track) => track.items || []).map((item) => item.review?.status || "pending");
+  alignment.reviewStatus = reviews.length && reviews.every((status) => status === "approved")
+    ? "approved"
+    : reviews.some((status) => status !== "pending") ? "in-review" : "pending";
+  alignment.updatedAt = new Date().toISOString();
+  return alignment;
+}
+
 async function handleApi(req, res, url) {
   try {
     // ============ STUDENT RUNTIME APIs ============
     // 学员端运行时依赖的接口。Phase 3 起 lesson-catalog 改为静态 JSON。
     if (url.pathname === "/api/lesson-catalog") {
       sendJson(res, 200, { lessons: await initializedLessonCatalog() });
+      return true;
+    }
+
+    // ============ LOCAL OCR TOOLING APIs ============
+    // Used by tools/* import preview pages. This intentionally writes only under data/ocr.
+    if (url.pathname === "/api/ocr/sample-lessons" && req.method === "GET") {
+      sendJson(res, 200, { lessons: await listOcrSampleLessons(url.searchParams.get("type")) });
+      return true;
+    }
+    if (url.pathname === "/api/ocr/audio-align" && req.method === "POST") {
+      const body = await readJson(req);
+      const requestedLessonId = safeLessonId(body.lessonId || 1);
+      const target = String(body.target || "all");
+      if (!["all", "vocabulary", "text"].includes(target)) throw new Error("Invalid OCR audio target.");
+      const result = await runOcrAudioAlignment({
+        lessonId: requestedLessonId,
+        target,
+        force: Boolean(body.force)
+      });
+      sendJson(res, 200, result);
+      return true;
+    }
+    if (url.pathname === "/api/ocr/text-audio-alignment" && req.method === "GET") {
+      const requestedLessonId = safeLessonId(url.searchParams.get("lessonId") || 1);
+      const alignment = await readJsonFile(ocrTextAudioAlignmentPath(requestedLessonId), null);
+      if (!alignment) throw new Error(`No text audio alignment exists for lesson ${requestedLessonId}. Generate candidates first.`);
+      sendJson(res, 200, alignment);
+      return true;
+    }
+    if (url.pathname === "/api/ocr/text-audio-alignment/generate" && req.method === "POST") {
+      const body = await readJson(req);
+      const requestedLessonId = safeLessonId(body.lessonId || 1);
+      const result = await runOcrTextAudioAlignment(requestedLessonId);
+      sendJson(res, 200, result);
+      return true;
+    }
+    if (url.pathname === "/api/ocr/text-audio-alignment" && req.method === "PUT") {
+      const body = await readJson(req);
+      const requestedLessonId = safeLessonId(body.lessonId || 1);
+      const alignment = await readJsonFile(ocrTextAudioAlignmentPath(requestedLessonId), null);
+      if (!alignment) throw new Error(`No text audio alignment exists for lesson ${requestedLessonId}. Generate candidates first.`);
+      await writeJsonFile(ocrTextAudioAlignmentPath(requestedLessonId), updateOcrTextAudioReviews(alignment, body.changes));
+      sendJson(res, 200, alignment);
+      return true;
+    }
+    if (url.pathname === "/api/ocr/text-audio-alignment/publish" && req.method === "POST") {
+      const body = await readJson(req);
+      const requestedLessonId = safeLessonId(body.lessonId || 1);
+      const result = await runOcrTextAudioPublish(requestedLessonId);
+      sendJson(res, 200, result);
       return true;
     }
 
@@ -1616,6 +2069,18 @@ async function handleApi(req, res, url) {
     if (url.pathname === "/api/practice/format-answer" && req.method === "POST") {
       const body = await readJson(req);
       const result = await formatPracticeAnswer(body);
+      sendJson(res, 200, result);
+      return true;
+    }
+    if (url.pathname === "/api/practice/answer-alternatives" && req.method === "GET") {
+      const lessonIdValue = url.searchParams.get("lessonId") || "";
+      const cache = await readPracticeAnswerAlternatives();
+      sendJson(res, 200, { alternatives: practiceAnswerAlternativesForLesson(cache, lessonIdValue) });
+      return true;
+    }
+    if (url.pathname === "/api/practice/review-answer" && req.method === "POST") {
+      const body = await readJson(req);
+      const result = await reviewPracticeAnswer(body);
       sendJson(res, 200, result);
       return true;
     }

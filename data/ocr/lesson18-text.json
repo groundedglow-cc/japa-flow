@@ -1,0 +1,749 @@
+{
+  "lessonId": "lesson18",
+  "sourceImages": [
+    {
+      "section": "basic",
+      "path": "course-assets/by-lesson/lesson18/page216.webp",
+      "pageNo": 216
+    },
+    {
+      "section": "application",
+      "path": "course-assets/by-lesson/lesson18/page221.webp",
+      "pageNo": 221
+    }
+  ],
+  "basicText": {
+    "title": "基本课文",
+    "basicSentences": [
+      {
+        "id": "l18-basic-s001",
+        "order": 1,
+        "text": "携帯電話は とても 小さく なりました。",
+        "kana": "けいたいでんわは とても ちいさく なりました。",
+        "translationZh": "手机变得很小了。",
+        "confidence": "high",
+        "rawText": "1. 携帯電話は とても 小さく なりました。",
+        "segments": [
+          {
+            "text": "携帯電話",
+            "ruby": "けいたいでんわ"
+          },
+          {
+            "text": "は とても "
+          },
+          {
+            "text": "小",
+            "ruby": "ちい"
+          },
+          {
+            "text": "さく なりました。"
+          }
+        ]
+      },
+      {
+        "id": "l18-basic-s002",
+        "order": 2,
+        "text": "テレビの 音を 大きく します。",
+        "kana": "テレビの おとを おおきく します。",
+        "translationZh": "把电视的声音调大。",
+        "confidence": "high",
+        "rawText": "2. テレビの 音を 大きく します。",
+        "segments": [
+          {
+            "text": "テレビの "
+          },
+          {
+            "text": "音",
+            "ruby": "おと"
+          },
+          {
+            "text": "を "
+          },
+          {
+            "text": "大",
+            "ruby": "おお"
+          },
+          {
+            "text": "きく します。"
+          }
+        ]
+      },
+      {
+        "id": "l18-basic-s003",
+        "order": 3,
+        "text": "息子は 医者に なりました。",
+        "kana": "むすこは いしゃに なりました。",
+        "translationZh": "儿子当医生了。",
+        "confidence": "high",
+        "rawText": "3. 息子は 医者に なりました。",
+        "segments": [
+          {
+            "text": "息子",
+            "ruby": "むすこ"
+          },
+          {
+            "text": "は "
+          },
+          {
+            "text": "医者",
+            "ruby": "いしゃ"
+          },
+          {
+            "text": "に なりました。"
+          }
+        ]
+      },
+      {
+        "id": "l18-basic-s004",
+        "order": 4,
+        "text": "部屋を きれいに して ください。",
+        "kana": "へやを きれいに して ください。",
+        "translationZh": "请把房间打扫干净。",
+        "confidence": "high",
+        "rawText": "4. 部屋を きれいに して ください。",
+        "segments": [
+          {
+            "text": "部屋",
+            "ruby": "へや"
+          },
+          {
+            "text": "を きれいに して ください。"
+          }
+        ]
+      }
+    ],
+    "dialogues": [
+      {
+        "id": "l18-basic-dialogue-001",
+        "label": "A",
+        "lines": [
+          {
+            "id": "l18-basic-dialogue-001-line-001",
+            "speaker": "甲",
+            "text": "風邪は どうですか。",
+            "kana": "かぜは どうですか。",
+            "translationZh": "感冒怎么样了？",
+            "confidence": "high",
+            "rawText": "甲：風邪は どうですか。",
+            "segments": [
+              {
+                "text": "風邪",
+                "ruby": "かぜ"
+              },
+              {
+                "text": "は どうですか。"
+              }
+            ]
+          },
+          {
+            "id": "l18-basic-dialogue-001-line-002",
+            "speaker": "乙",
+            "text": "ゆうべ 薬を 飲みましたが、まだ よく なりません。",
+            "kana": "ゆうべ くすりを のみましたが、まだ よく なりません。",
+            "translationZh": "昨晚吃了药，但还没好。",
+            "confidence": "high",
+            "rawText": "乙：ゆうべ 薬を 飲みましたが、まだ よく なりません。",
+            "segments": [
+              {
+                "text": "ゆうべ "
+              },
+              {
+                "text": "薬",
+                "ruby": "くすり"
+              },
+              {
+                "text": "を "
+              },
+              {
+                "text": "飲",
+                "ruby": "の"
+              },
+              {
+                "text": "みましたが、まだ よく なりません。"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "l18-basic-dialogue-002",
+        "label": "B",
+        "lines": [
+          {
+            "id": "l18-basic-dialogue-002-line-001",
+            "speaker": "甲",
+            "text": "旅行の 荷物は 軽い ほうが いいですよ。",
+            "kana": "りょこうの にもつは かるい ほうが いいですよ。",
+            "translationZh": "旅行的行李还是轻点儿好。",
+            "confidence": "high",
+            "rawText": "甲：旅行の 荷物は 軽い ほうが いいですよ。",
+            "segments": [
+              {
+                "text": "旅行",
+                "ruby": "りょこう"
+              },
+              {
+                "text": "の "
+              },
+              {
+                "text": "荷物",
+                "ruby": "にもつ"
+              },
+              {
+                "text": "は "
+              },
+              {
+                "text": "軽",
+                "ruby": "かる"
+              },
+              {
+                "text": "い ほうが いいですよ。"
+              }
+            ]
+          },
+          {
+            "id": "l18-basic-dialogue-002-line-002",
+            "speaker": "乙",
+            "text": "はい。できるだけ 軽く します。",
+            "kana": "はい。できるだけ かるく します。",
+            "translationZh": "好的。我尽量弄轻。",
+            "confidence": "high",
+            "rawText": "乙：はい。できるだけ 軽く します。",
+            "segments": [
+              {
+                "text": "はい。できるだけ "
+              },
+              {
+                "text": "軽",
+                "ruby": "かる"
+              },
+              {
+                "text": "く します。"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "l18-basic-dialogue-003",
+        "label": "C",
+        "lines": [
+          {
+            "id": "l18-basic-dialogue-003-line-001",
+            "speaker": "甲",
+            "text": "お嬢さんは おいくつですか。",
+            "kana": "おじょうさんは おいくつですか。",
+            "translationZh": "您女儿多大了？",
+            "confidence": "high",
+            "rawText": "甲：お嬢さんは おいくつですか。",
+            "segments": [
+              {
+                "text": "お"
+              },
+              {
+                "text": "嬢",
+                "ruby": "じょう"
+              },
+              {
+                "text": "さんは おいくつですか。"
+              }
+            ]
+          },
+          {
+            "id": "l18-basic-dialogue-003-line-002",
+            "speaker": "乙",
+            "text": "今年 7歳に なりました。",
+            "kana": "ことし ななさいに なりました。",
+            "translationZh": "今年7岁了。",
+            "confidence": "high",
+            "rawText": "乙：今年 7歳に なりました。",
+            "segments": [
+              {
+                "text": "今年",
+                "ruby": "ことし"
+              },
+              {
+                "text": " 7"
+              },
+              {
+                "text": "歳",
+                "ruby": "さい"
+              },
+              {
+                "text": "に なりました。"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "l18-basic-dialogue-004",
+        "label": "D",
+        "lines": [
+          {
+            "id": "l18-basic-dialogue-004-line-001",
+            "speaker": "甲",
+            "text": "あのう、ちょっと うるさいですよ。",
+            "kana": "あのう、ちょっと うるさいですよ。",
+            "translationZh": "那个，有点儿吵。",
+            "confidence": "high",
+            "rawText": "甲：あのう、ちょっと うるさいですよ。",
+            "segments": [
+              {
+                "text": "あのう、ちょっと うるさいですよ。"
+              }
+            ]
+          },
+          {
+            "id": "l18-basic-dialogue-004-line-002",
+            "speaker": "乙",
+            "text": "あっ、すみません。静かに します。",
+            "kana": "あっ、すみません。しずかに します。",
+            "translationZh": "啊，对不起。我会安静点儿。",
+            "confidence": "high",
+            "rawText": "乙：あっ、すみません。静かに します。",
+            "segments": [
+              {
+                "text": "あっ、すみません。"
+              },
+              {
+                "text": "静",
+                "ruby": "しず"
+              },
+              {
+                "text": "かに します。"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "applicationText": {
+    "title": "新春セール",
+    "blocks": [
+      {
+        "id": "l18-app-block-001",
+        "type": "narration",
+        "text": "百货商店正在举办新年大甩卖活动。小野带小李去百货商店。",
+        "kana": null,
+        "translationZh": "百货商店正在举办新年大甩卖活动。小野带小李去百货商店。",
+        "confidence": "high",
+        "rawText": "百货商店正在举办新年大甩卖活动。小野带小李去百货商店。"
+      },
+      {
+        "id": "l18-app-block-002",
+        "type": "scene",
+        "text": "（去百货商店的路上）",
+        "kana": null,
+        "translationZh": "去百货商店的路上。",
+        "confidence": "high",
+        "rawText": "（去百货商店的路上）"
+      },
+      {
+        "id": "l18-app-block-003",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l18-app-block-003-line-001",
+            "speaker": "李",
+            "text": "小野さん、今日は たくさん 買いますか。",
+            "kana": "おのさん、きょうは たくさん かいますか。",
+            "translationZh": "小野女士，今天买很多东西吗？",
+            "confidence": "high",
+            "rawText": "李：小野さん、今日は たくさん 買いますか。",
+            "segments": [
+              {
+                "text": "小野",
+                "ruby": "おの"
+              },
+              {
+                "text": "さん、"
+              },
+              {
+                "text": "今日",
+                "ruby": "きょう"
+              },
+              {
+                "text": "は たくさん "
+              },
+              {
+                "text": "買",
+                "ruby": "か"
+              },
+              {
+                "text": "いますか。"
+              }
+            ]
+          },
+          {
+            "id": "l18-app-block-003-line-002",
+            "speaker": "小野",
+            "text": "ええ。お正月は 洋服が 安く なりますから、まとめて 買います。",
+            "kana": "ええ。おしょうがつは ようふくが やすく なりますから、まとめて かいます。",
+            "translationZh": "是的。新年期间西服会变便宜，所以一起买。",
+            "confidence": "high",
+            "rawText": "小野：ええ。お正月は 洋服が 安く なりますから、まとめて 買います。",
+            "segments": [
+              {
+                "text": "ええ。お"
+              },
+              {
+                "text": "正月",
+                "ruby": "しょうがつ"
+              },
+              {
+                "text": "は "
+              },
+              {
+                "text": "洋服",
+                "ruby": "ようふく"
+              },
+              {
+                "text": "が "
+              },
+              {
+                "text": "安",
+                "ruby": "やす"
+              },
+              {
+                "text": "く なりますから、まとめて "
+              },
+              {
+                "text": "買",
+                "ruby": "か"
+              },
+              {
+                "text": "います。"
+              }
+            ]
+          },
+          {
+            "id": "l18-app-block-003-line-003",
+            "speaker": "李",
+            "text": "どのぐらい 安く なりますか。",
+            "kana": "どのぐらい やすく なりますか。",
+            "translationZh": "能便宜多少？",
+            "confidence": "high",
+            "rawText": "李：どのぐらい 安く なりますか。",
+            "segments": [
+              {
+                "text": "どのぐらい "
+              },
+              {
+                "text": "安",
+                "ruby": "やす"
+              },
+              {
+                "text": "く なりますか。"
+              }
+            ]
+          },
+          {
+            "id": "l18-app-block-003-line-004",
+            "speaker": "小野",
+            "text": "だいたい 定価の 3割引か 半額に なります。",
+            "kana": "だいたい ていかの さんわりびきか はんがくに なります。",
+            "translationZh": "大概会变成定价的七折或者半价。",
+            "confidence": "high",
+            "rawText": "小野：だいたい 定価の 3割引か 半額に なります。",
+            "segments": [
+              {
+                "text": "だいたい "
+              },
+              {
+                "text": "定価",
+                "ruby": "ていか"
+              },
+              {
+                "text": "の "
+              },
+              {
+                "text": "3割引",
+                "ruby": "さんわりびき"
+              },
+              {
+                "text": "か "
+              },
+              {
+                "text": "半額",
+                "ruby": "はんがく"
+              },
+              {
+                "text": "に なります。"
+              }
+            ]
+          },
+          {
+            "id": "l18-app-block-003-line-005",
+            "speaker": "李",
+            "text": "半額ですか？わたしも 新しい 洋服が 欲しく なりました。",
+            "kana": "はんがくですか。わたしも あたらしい ようふくが ほしく なりました。",
+            "translationZh": "半价吗？我也想要新衣服了。",
+            "confidence": "high",
+            "rawText": "李：半額ですか？わたしも 新しい 洋服が 欲しく なりました。",
+            "segments": [
+              {
+                "text": "半額",
+                "ruby": "はんがく"
+              },
+              {
+                "text": "ですか？わたしも "
+              },
+              {
+                "text": "新",
+                "ruby": "あたら"
+              },
+              {
+                "text": "しい "
+              },
+              {
+                "text": "洋服",
+                "ruby": "ようふく"
+              },
+              {
+                "text": "が "
+              },
+              {
+                "text": "欲",
+                "ruby": "ほ"
+              },
+              {
+                "text": "しく なりました。"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "l18-app-block-004",
+        "type": "scene",
+        "text": "（百货商店里挤满了年轻的女性。服装柜台前，小李犹豫不决）",
+        "kana": null,
+        "translationZh": "百货商店里挤满了年轻的女性。服装柜台前，小李犹豫不决。",
+        "confidence": "high",
+        "rawText": "（百货商店里挤满了年轻的女性。服装柜台前，小李犹豫不决）"
+      },
+      {
+        "id": "l18-app-block-005",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l18-app-block-005-line-001",
+            "speaker": "李",
+            "text": "赤と 青と、どちらが いいですか。",
+            "kana": "あかと あおと、どちらが いいですか。",
+            "translationZh": "红色和蓝色，哪个更好？",
+            "confidence": "high",
+            "rawText": "李：赤と 青と、どちらが いいですか。",
+            "segments": [
+              {
+                "text": "赤",
+                "ruby": "あか"
+              },
+              {
+                "text": "と "
+              },
+              {
+                "text": "青",
+                "ruby": "あお"
+              },
+              {
+                "text": "と、どちらが いいですか。"
+              }
+            ]
+          },
+          {
+            "id": "l18-app-block-005-line-002",
+            "speaker": "小野",
+            "text": "赤い ほうが いいですね。よく 似合いますよ。",
+            "kana": "あかい ほうが いいですね。よく にあいますよ。",
+            "translationZh": "红色的更好。很适合你。",
+            "confidence": "high",
+            "rawText": "小野：赤い ほうが いいですね。よく 似合いますよ。",
+            "segments": [
+              {
+                "text": "赤",
+                "ruby": "あか"
+              },
+              {
+                "text": "い ほうが いいですね。よく "
+              },
+              {
+                "text": "似合",
+                "ruby": "にあ"
+              },
+              {
+                "text": "いますよ。"
+              }
+            ]
+          },
+          {
+            "id": "l18-app-block-005-line-003",
+            "speaker": "李",
+            "text": "そうですか。じゃあ、これに します。",
+            "kana": "そうですか。じゃあ、これに します。",
+            "translationZh": "是吗？那么，就选这个吧。",
+            "confidence": "high",
+            "rawText": "李：そうですか。（拿起一件红毛衣）じゃあ、これに します。",
+            "segments": [
+              {
+                "text": "そうですか。じゃあ、これに します。"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "l18-app-block-006",
+        "type": "scene",
+        "text": "（傍晚，店员用手提麦克风招徕顾客）",
+        "kana": null,
+        "translationZh": "傍晚，店员用手提麦克风招徕顾客。",
+        "confidence": "high",
+        "rawText": "（傍晚，店员用手提麦克风招徕顾客）"
+      },
+      {
+        "id": "l18-app-block-007",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l18-app-block-007-line-001",
+            "speaker": "店員",
+            "text": "間もなく タイムサービスの 時間です。さらに お安く しますよ。",
+            "kana": "まもなく タイムサービスの じかんです。さらに おやすく しますよ。",
+            "translationZh": "马上就是限时特卖时间了。会更加便宜。",
+            "confidence": "high",
+            "rawText": "店員：間もなく タイムサービスの 時間です。さらに お安く しますよ。",
+            "segments": [
+              {
+                "text": "間",
+                "ruby": "ま"
+              },
+              {
+                "text": "もなく タイムサービスの "
+              },
+              {
+                "text": "時間",
+                "ruby": "じかん"
+              },
+              {
+                "text": "です。さらに お"
+              },
+              {
+                "text": "安",
+                "ruby": "やす"
+              },
+              {
+                "text": "く しますよ。"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "l18-app-block-008",
+        "type": "scene",
+        "text": "（人群立刻出现骚动）",
+        "kana": null,
+        "translationZh": "人群立刻出现骚动。",
+        "confidence": "high",
+        "rawText": "（人群立刻出现骚动）"
+      },
+      {
+        "id": "l18-app-block-009",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l18-app-block-009-line-001",
+            "speaker": "小野",
+            "text": "もう すぐ 6時に なりますから、タイムサービスが 始まります。",
+            "kana": "もう すぐ ろくじに なりますから、タイムサービスが はじまります。",
+            "translationZh": "马上就到6点了，限时特卖要开始了。",
+            "confidence": "high",
+            "rawText": "小野：もう すぐ 6時に なりますから、タイムサービスが 始まります。",
+            "segments": [
+              {
+                "text": "もう すぐ 6"
+              },
+              {
+                "text": "時",
+                "ruby": "じ"
+              },
+              {
+                "text": "に なりますから、タイムサービスが "
+              },
+              {
+                "text": "始",
+                "ruby": "はじ"
+              },
+              {
+                "text": "まります。"
+              }
+            ]
+          },
+          {
+            "id": "l18-app-block-009-line-002",
+            "speaker": "李",
+            "text": "タイムサービス？",
+            "kana": "タイムサービス。",
+            "translationZh": "限时特卖？",
+            "confidence": "high",
+            "rawText": "李：タイムサービス？",
+            "segments": [
+              {
+                "text": "タイムサービス？"
+              }
+            ]
+          },
+          {
+            "id": "l18-app-block-009-line-003",
+            "speaker": "小野",
+            "text": "ええ、今から 7時まで もっと 安く なります。さあ、行きましょう。",
+            "kana": "ええ、いまから しちじまで もっと やすく なります。さあ、いきましょう。",
+            "translationZh": "是的，从现在到7点会更便宜。走吧。",
+            "confidence": "high",
+            "rawText": "小野：ええ、今から 7時まで もっと 安く なります。さあ、行きましょう。",
+            "segments": [
+              {
+                "text": "ええ、"
+              },
+              {
+                "text": "今",
+                "ruby": "いま"
+              },
+              {
+                "text": "から 7"
+              },
+              {
+                "text": "時",
+                "ruby": "じ"
+              },
+              {
+                "text": "まで もっと "
+              },
+              {
+                "text": "安",
+                "ruby": "やす"
+              },
+              {
+                "text": "く なります。さあ、"
+              },
+              {
+                "text": "行",
+                "ruby": "い"
+              },
+              {
+                "text": "きましょう。"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "warnings": [
+    "应用课文中的旁白和场景说明在教材页中以中文呈现，因此对应 block 的 text 与 translationZh 均保留中文原文，kana 为 null。",
+    "本文件包含从教材图片中识别的 segments/ruby。请以 sourceImages 对照校验；无法可靠确认的假名不要写入 ruby。"
+  ]
+}

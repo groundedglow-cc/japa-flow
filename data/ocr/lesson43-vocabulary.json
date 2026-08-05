@@ -1,0 +1,590 @@
+{
+  "lessonId": "lesson43",
+  "sourceImages": [
+    {
+      "path": "course-assets/by-lesson/lesson43/page217.webp",
+      "pageNo": 217
+    }
+  ],
+  "vocabulary": [
+    {
+      "id": "l43-v001",
+      "kana": "おてつだい",
+      "writing": "お手伝い",
+      "meaningZh": ["帮忙", "帮助"],
+      "partOfSpeech": "名",
+      "rawText": "おてつだい（お手伝い） [名] 帮忙，帮助",
+      "confidence": "high"
+    },
+    {
+      "id": "l43-v002",
+      "kana": "のりかえ",
+      "writing": "乗り換え",
+      "meaningZh": ["换车", "换乘"],
+      "partOfSpeech": "名",
+      "rawText": "のりかえ（乗り換え） [名] 换车，换乘",
+      "confidence": "high"
+    },
+    {
+      "id": "l43-v003",
+      "kana": "かんがえ",
+      "writing": "考え",
+      "meaningZh": ["想法", "思想"],
+      "partOfSpeech": "名",
+      "rawText": "かんがえ（考え） [名] 想法，思想",
+      "confidence": "high"
+    },
+    {
+      "id": "l43-v004",
+      "kana": "じょせいむけ",
+      "writing": "女性向け",
+      "meaningZh": ["女性专用", "专为女性"],
+      "partOfSpeech": "名",
+      "rawText": "じょせいむけ（女性向け） [名] 女性专用，专为女性",
+      "confidence": "high"
+    },
+    {
+      "id": "l43-v005",
+      "kana": "もうしで",
+      "writing": "申し出",
+      "meaningZh": ["申请", "提议"],
+      "partOfSpeech": "名",
+      "rawText": "もうしで（申し出） [名] 申请，提议",
+      "confidence": "high"
+    },
+    {
+      "id": "l43-v006",
+      "kana": "かんじ",
+      "writing": "感じ",
+      "meaningZh": ["感觉"],
+      "partOfSpeech": "名",
+      "rawText": "かんじ（感じ） [名] 感觉",
+      "confidence": "high"
+    },
+    {
+      "id": "l43-v007",
+      "kana": "おおく",
+      "writing": "多く",
+      "meaningZh": ["多", "多数"],
+      "partOfSpeech": "名",
+      "rawText": "おおく（多く） [名] 多，多数",
+      "confidence": "high"
+    },
+    {
+      "id": "l43-v008",
+      "kana": "ぶか",
+      "writing": "部下",
+      "meaningZh": ["部下"],
+      "partOfSpeech": "名",
+      "rawText": "ぶか（部下） [名] 部下",
+      "confidence": "high"
+    },
+    {
+      "id": "l43-v009",
+      "kana": "かんとく",
+      "writing": "監督",
+      "meaningZh": ["教练", "领队"],
+      "partOfSpeech": "名",
+      "rawText": "かんとく（監督） [名] 教练，领队",
+      "confidence": "high"
+    },
+    {
+      "id": "l43-v010",
+      "kana": "せんしゅ",
+      "writing": "選手",
+      "meaningZh": ["运动员", "选手"],
+      "partOfSpeech": "名",
+      "rawText": "せんしゅ（選手） [名] 运动员，选手",
+      "confidence": "high"
+    },
+    {
+      "id": "l43-v011",
+      "kana": "しょうひしゃ",
+      "writing": "消費者",
+      "meaningZh": ["消费者"],
+      "partOfSpeech": "名",
+      "rawText": "しょうひしゃ（消費者） [名] 消费者",
+      "confidence": "high"
+    },
+    {
+      "id": "l43-v012",
+      "kana": "あんないやく",
+      "writing": "案内役",
+      "meaningZh": ["向导", "导游"],
+      "partOfSpeech": "名",
+      "rawText": "あんないやく（案内役） [名] 向导，导游",
+      "confidence": "high"
+    },
+    {
+      "id": "l43-v013",
+      "kana": "おや",
+      "writing": "親",
+      "meaningZh": ["双亲", "父母"],
+      "partOfSpeech": "名",
+      "rawText": "おや（親） [名] 双亲，父母",
+      "confidence": "high"
+    },
+    {
+      "id": "l43-v014",
+      "kana": "プレゼンテーション／プレゼン",
+      "writing": "プレゼンテーション／プレゼン",
+      "meaningZh": ["策划方案说明(会)"],
+      "partOfSpeech": "名",
+      "rawText": "プレゼンテーション／プレゼン [名] 策划方案说明(会)",
+      "confidence": "high"
+    },
+    {
+      "id": "l43-v015",
+      "kana": "アルファベット",
+      "writing": "アルファベット",
+      "meaningZh": ["英语字母", "拉丁字母"],
+      "partOfSpeech": "名",
+      "rawText": "アルファベット [名] 英语字母，拉丁字母",
+      "confidence": "high"
+    },
+    {
+      "id": "l43-v016",
+      "kana": "イメージ",
+      "writing": "イメージ",
+      "meaningZh": ["形象", "印象"],
+      "partOfSpeech": "名",
+      "rawText": "イメージ [名] 形象，印象",
+      "confidence": "high"
+    },
+    {
+      "id": "l43-v017",
+      "kana": "インパクト",
+      "writing": "インパクト",
+      "meaningZh": ["冲击力", "力量感"],
+      "partOfSpeech": "名",
+      "rawText": "インパクト [名] 冲击力，力量感",
+      "confidence": "high"
+    },
+    {
+      "id": "l43-v018",
+      "kana": "ガラス",
+      "writing": "ガラス",
+      "meaningZh": ["玻璃", "玻璃杯"],
+      "partOfSpeech": "名",
+      "rawText": "ガラス [名] 玻璃，玻璃杯",
+      "confidence": "high"
+    },
+    {
+      "id": "l43-v019",
+      "kana": "きぶん",
+      "writing": "気分",
+      "meaningZh": ["（身体）舒适（与否）", "情绪"],
+      "partOfSpeech": "名",
+      "rawText": "きぶん（気分） [名] （身体）舒适（与否）；情绪",
+      "confidence": "high"
+    },
+    {
+      "id": "l43-v020",
+      "kana": "しんきんかん",
+      "writing": "親近感",
+      "meaningZh": ["亲切感"],
+      "partOfSpeech": "名",
+      "rawText": "しんきんかん（親近感） [名] 亲切感",
+      "confidence": "high"
+    },
+    {
+      "id": "l43-v021",
+      "kana": "ひんしつ",
+      "writing": "品質",
+      "meaningZh": ["质量", "品质"],
+      "partOfSpeech": "名",
+      "rawText": "ひんしつ（品質） [名] 质量，品质",
+      "confidence": "high"
+    },
+    {
+      "id": "l43-v022",
+      "kana": "ぶっか",
+      "writing": "物価",
+      "meaningZh": ["物价"],
+      "partOfSpeech": "名",
+      "rawText": "ぶっか（物価） [名] 物价",
+      "confidence": "high"
+    },
+    {
+      "id": "l43-v023",
+      "kana": "めんぜいてん",
+      "writing": "免税店",
+      "meaningZh": ["免税店"],
+      "partOfSpeech": "名",
+      "rawText": "めんぜいてん（免税店） [名] 免税店",
+      "confidence": "high"
+    },
+    {
+      "id": "l43-v024",
+      "kana": "せつめいしょ",
+      "writing": "説明書",
+      "meaningZh": ["说明书"],
+      "partOfSpeech": "名",
+      "rawText": "せつめいしょ（説明書） [名] 说明书",
+      "confidence": "high"
+    },
+    {
+      "id": "l43-v025",
+      "kana": "じゅく",
+      "writing": "塾",
+      "meaningZh": ["私塾", "补习学校"],
+      "partOfSpeech": "名",
+      "rawText": "じゅく（塾） [名] 私塾，补习学校",
+      "confidence": "high"
+    },
+    {
+      "id": "l43-v026",
+      "kana": "れいぶん",
+      "writing": "例文",
+      "meaningZh": ["例句"],
+      "partOfSpeech": "名",
+      "rawText": "れいぶん（例文） [名] 例句",
+      "confidence": "high"
+    },
+    {
+      "id": "l43-v027",
+      "kana": "かいじょう",
+      "writing": "会場",
+      "meaningZh": ["会场"],
+      "partOfSpeech": "名",
+      "rawText": "かいじょう（会場） [名] 会场",
+      "confidence": "high"
+    },
+    {
+      "id": "l43-v028",
+      "kana": "せつび",
+      "writing": "設備",
+      "meaningZh": ["设备"],
+      "partOfSpeech": "名",
+      "rawText": "せつび（設備） [名] 设备",
+      "confidence": "high"
+    },
+    {
+      "id": "l43-v029",
+      "kana": "せんたくもの",
+      "writing": "洗濯物",
+      "meaningZh": ["洗的衣服"],
+      "partOfSpeech": "名",
+      "rawText": "せんたくもの（洗濯物） [名] 洗的衣服",
+      "confidence": "high"
+    },
+    {
+      "id": "l43-v030",
+      "kana": "もの",
+      "writing": "もの",
+      "meaningZh": ["东西", "事物"],
+      "partOfSpeech": "名",
+      "rawText": "もの [名] 东西，事物",
+      "confidence": "high"
+    },
+    {
+      "id": "l43-v031",
+      "kana": "じ",
+      "writing": "字",
+      "meaningZh": ["字"],
+      "partOfSpeech": "名",
+      "rawText": "じ（字） [名] 字",
+      "confidence": "high"
+    },
+    {
+      "id": "l43-v032",
+      "kana": "つま",
+      "writing": "妻",
+      "meaningZh": ["妻子"],
+      "partOfSpeech": "名",
+      "rawText": "つま（妻） [名] 妻子",
+      "confidence": "high"
+    },
+    {
+      "id": "l43-v033",
+      "kana": "われわれ",
+      "writing": "我々",
+      "meaningZh": ["我们"],
+      "partOfSpeech": "代",
+      "rawText": "われわれ（我々） [代] 我们",
+      "confidence": "high"
+    },
+    {
+      "id": "l43-v034",
+      "kana": "ひっぱります",
+      "writing": "引っ張ります",
+      "meaningZh": ["拉", "拽"],
+      "partOfSpeech": "动1",
+      "rawText": "ひっぱります（引っ張ります） [动1] 拉，拽",
+      "confidence": "high"
+    },
+    {
+      "id": "l43-v035",
+      "kana": "うかびます",
+      "writing": "浮かびます",
+      "meaningZh": ["想起", "浮", "浮现"],
+      "partOfSpeech": "动1",
+      "rawText": "うかびます（浮かびます） [动1] 想起，浮，浮现",
+      "confidence": "high"
+    },
+    {
+      "id": "l43-v036",
+      "kana": "ととのいます",
+      "writing": "整います",
+      "meaningZh": ["齐备", "完备"],
+      "partOfSpeech": "动1",
+      "rawText": "ととのいます（整います） [动1] 齐备，完备",
+      "confidence": "high"
+    },
+    {
+      "id": "l43-v037",
+      "kana": "かわきます",
+      "writing": "乾きます",
+      "meaningZh": ["干", "干燥"],
+      "partOfSpeech": "动1",
+      "rawText": "かわきます（乾きます） [动1] 干，干燥",
+      "confidence": "high"
+    },
+    {
+      "id": "l43-v038",
+      "kana": "くらします",
+      "writing": "暮らします",
+      "meaningZh": ["生活"],
+      "partOfSpeech": "动1",
+      "rawText": "くらします（暮らします） [动1] 生活",
+      "confidence": "high"
+    },
+    {
+      "id": "l43-v039",
+      "kana": "さけます",
+      "writing": "避けます",
+      "meaningZh": ["回避", "避免"],
+      "partOfSpeech": "动2",
+      "rawText": "さけます（避けます） [动2] 回避，避免",
+      "confidence": "high"
+    },
+    {
+      "id": "l43-v040",
+      "kana": "うれます",
+      "writing": "売れます",
+      "meaningZh": ["好卖", "畅销"],
+      "partOfSpeech": "动2",
+      "rawText": "うれます（売れます） [动2] 好卖，畅销",
+      "confidence": "high"
+    },
+    {
+      "id": "l43-v041",
+      "kana": "うけます",
+      "writing": "受けます",
+      "meaningZh": ["感受", "受到"],
+      "partOfSpeech": "动2",
+      "rawText": "うけます（受けます） [动2] 感受，受到",
+      "confidence": "high"
+    },
+    {
+      "id": "l43-v042",
+      "kana": "あたためます",
+      "writing": "温めます",
+      "meaningZh": ["热", "温"],
+      "partOfSpeech": "动2",
+      "rawText": "あたためます（温めます） [动2] 热，温",
+      "confidence": "high"
+    },
+    {
+      "id": "l43-v043",
+      "kana": "りかいします",
+      "writing": "理解します",
+      "meaningZh": ["理解"],
+      "partOfSpeech": "动3",
+      "rawText": "りかいします（理解〜） [动3] 理解",
+      "confidence": "high"
+    },
+    {
+      "id": "l43-v044",
+      "kana": "ていあんします",
+      "writing": "提案します",
+      "meaningZh": ["建议", "提案"],
+      "partOfSpeech": "动3",
+      "rawText": "ていあんします（提案〜） [动3] 建议，提案",
+      "confidence": "high"
+    },
+    {
+      "id": "l43-v045",
+      "kana": "しさくします",
+      "writing": "試作します",
+      "meaningZh": ["试作", "试制"],
+      "partOfSpeech": "动3",
+      "rawText": "しさくします（試作〜） [动3] 试作，试制",
+      "confidence": "high"
+    },
+    {
+      "id": "l43-v046",
+      "kana": "けいけんします",
+      "writing": "経験します",
+      "meaningZh": ["经验", "经历"],
+      "partOfSpeech": "动3",
+      "rawText": "けいけんします（経験〜） [动3] 经验，经历",
+      "confidence": "high"
+    },
+    {
+      "id": "l43-v047",
+      "kana": "あんきします",
+      "writing": "暗記します",
+      "meaningZh": ["熟记", "背诵"],
+      "partOfSpeech": "动3",
+      "rawText": "あんきします（暗記〜） [动3] 熟记，背诵",
+      "confidence": "high"
+    },
+    {
+      "id": "l43-v048",
+      "kana": "そうたいします",
+      "writing": "早退します",
+      "meaningZh": ["早退"],
+      "partOfSpeech": "动3",
+      "rawText": "そうたいします（早退〜） [动3] 早退",
+      "confidence": "high"
+    },
+    {
+      "id": "l43-v049",
+      "kana": "きゅうしょくします",
+      "writing": "休職します",
+      "meaningZh": ["（暂时）停职"],
+      "partOfSpeech": "动3",
+      "rawText": "きゅうしょくします（休職〜） [动3] （暂时）停职",
+      "confidence": "high"
+    },
+    {
+      "id": "l43-v050",
+      "kana": "ちからづよい",
+      "writing": "力強い",
+      "meaningZh": ["强有力", "心里踏实"],
+      "partOfSpeech": "形1",
+      "rawText": "ちからづよい（力強い） [形1] 强有力；心里踏实",
+      "confidence": "high"
+    },
+    {
+      "id": "l43-v051",
+      "kana": "やわらかい",
+      "writing": "柔らかい",
+      "meaningZh": ["柔软"],
+      "partOfSpeech": "形1",
+      "rawText": "やわらかい（柔らかい） [形1] 柔软",
+      "confidence": "high"
+    },
+    {
+      "id": "l43-v052",
+      "kana": "かたい",
+      "writing": "硬い",
+      "meaningZh": ["硬"],
+      "partOfSpeech": "形1",
+      "rawText": "かたい（硬い） [形1] 硬",
+      "confidence": "high"
+    },
+    {
+      "id": "l43-v053",
+      "kana": "あつい",
+      "writing": "厚い",
+      "meaningZh": ["厚"],
+      "partOfSpeech": "形1",
+      "rawText": "あつい（厚い） [形1] 厚",
+      "confidence": "high"
+    },
+    {
+      "id": "l43-v054",
+      "kana": "じゅうよう",
+      "writing": "重要",
+      "meaningZh": ["重要"],
+      "partOfSpeech": "形2",
+      "rawText": "じゅうよう（重要） [形2] 重要",
+      "confidence": "high"
+    },
+    {
+      "id": "l43-v055",
+      "kana": "たんじゅん",
+      "writing": "単純",
+      "meaningZh": ["单纯"],
+      "partOfSpeech": "形2",
+      "rawText": "たんじゅん（単純） [形2] 单纯",
+      "confidence": "high"
+    },
+    {
+      "id": "l43-v056",
+      "kana": "りそうてき",
+      "writing": "理想的",
+      "meaningZh": ["理想"],
+      "partOfSpeech": "形2",
+      "rawText": "りそうてき（理想的） [形2] 理想",
+      "confidence": "high"
+    },
+    {
+      "id": "l43-v057",
+      "kana": "ぐたいてき",
+      "writing": "具体的",
+      "meaningZh": ["具体"],
+      "partOfSpeech": "形2",
+      "rawText": "ぐたいてき（具体的） [形2] 具体",
+      "confidence": "high"
+    },
+    {
+      "id": "l43-v058",
+      "kana": "ざんしん",
+      "writing": "斬新",
+      "meaningZh": ["新颖", "革新"],
+      "partOfSpeech": "形2",
+      "rawText": "ざんしん（斬新） [形2] 新颖，革新",
+      "confidence": "high"
+    },
+    {
+      "id": "l43-v059",
+      "kana": "ぐっと",
+      "writing": "ぐっと",
+      "meaningZh": ["更加", "用力"],
+      "partOfSpeech": "副",
+      "rawText": "ぐっと [副] 更加；用力",
+      "confidence": "high"
+    },
+    {
+      "id": "l43-v060",
+      "kana": "たとえば",
+      "writing": "例えば",
+      "meaningZh": ["比如", "例如"],
+      "partOfSpeech": "副",
+      "rawText": "たとえば（例えば） [副] 比如，例如",
+      "confidence": "high"
+    },
+    {
+      "id": "l43-v061",
+      "kana": "しかも",
+      "writing": "しかも",
+      "meaningZh": ["而且"],
+      "partOfSpeech": "连",
+      "rawText": "しかも [连] 而且",
+      "confidence": "high"
+    },
+    {
+      "id": "l43-v062",
+      "kana": "そこで",
+      "writing": "そこで",
+      "meaningZh": ["因此", "于是", "所以", "那么"],
+      "partOfSpeech": "连",
+      "rawText": "そこで [连] 因此，于是，所以；那么",
+      "confidence": "high"
+    },
+    {
+      "id": "l43-v063",
+      "kana": "いうまでもなく",
+      "writing": "言うまでもなく",
+      "meaningZh": ["不言而喻"],
+      "partOfSpeech": null,
+      "rawText": "いうまでもなく（言うまでもなく） 不言而喻",
+      "confidence": "high"
+    },
+    {
+      "id": "l43-v064",
+      "kana": "〜なんか",
+      "writing": "〜なんか",
+      "meaningZh": [],
+      "partOfSpeech": null,
+      "rawText": "〜なんか",
+      "confidence": "low"
+    }
+  ],
+  "warnings": [
+    "词汇页底部的“〜なんか”在扫描图中未显示对应释义，已按原样保留并将 meaningZh 置为空数组。"
+  ]
+}

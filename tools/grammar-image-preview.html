@@ -1,0 +1,462 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>语法图片预览</title>
+    <script>
+      if (new URLSearchParams(location.search).get("embedded") === "1") {
+        document.documentElement.classList.add("embedded");
+      }
+    </script>
+    <style>
+      :root {
+        --bg: #f5f7f6;
+        --panel: #ffffff;
+        --ink: #18231e;
+        --muted: #65736c;
+        --line: #d9e2dd;
+        --accent: #18875a;
+        --accent-soft: #e8f5ee;
+        --shadow: 0 18px 48px rgba(24, 35, 30, 0.08);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+
+      button {
+        border: 0;
+        font: inherit;
+        cursor: pointer;
+      }
+
+      .shell {
+        width: min(100% - 40px, 1280px);
+        margin: 0 auto;
+        padding: 28px 0 42px;
+      }
+
+      .page-head {
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        gap: 20px;
+        margin-bottom: 18px;
+      }
+
+      .eyebrow {
+        margin: 0 0 5px;
+        color: var(--accent);
+        font-size: 13px;
+        font-weight: 820;
+        letter-spacing: 0;
+      }
+
+      h1,
+      h2 {
+        margin: 0;
+        letter-spacing: 0;
+      }
+
+      h1 {
+        font-size: 30px;
+        line-height: 1.18;
+      }
+
+      h2 {
+        font-size: 23px;
+        line-height: 1.24;
+      }
+
+      .summary {
+        display: inline-flex;
+        align-items: center;
+        min-height: 34px;
+        padding: 0 12px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--panel);
+        color: var(--muted);
+        font-size: 13px;
+        font-weight: 780;
+      }
+
+      .layout {
+        display: grid;
+        grid-template-columns: 310px minmax(0, 1fr);
+        gap: 22px;
+        align-items: start;
+      }
+
+      .lesson-panel,
+      .viewer {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--panel);
+        box-shadow: var(--shadow);
+      }
+
+      .lesson-panel {
+        position: sticky;
+        top: 18px;
+        max-height: calc(100vh - 36px);
+        overflow: auto;
+        padding: 14px;
+      }
+
+      .lesson-panel-head,
+      .viewer-head,
+      .image-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+      }
+
+      .lesson-panel-head {
+        margin-bottom: 12px;
+      }
+
+      .lesson-panel-head strong,
+      .viewer-head strong {
+        font-size: 15px;
+      }
+
+      .lesson-panel-head span,
+      .viewer-count,
+      .image-head span {
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 780;
+      }
+
+      .lesson-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+      }
+
+      .lesson-entry {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        min-height: 52px;
+        padding: 8px;
+        border: 1px solid #dce6e1;
+        border-radius: 8px;
+        background: #fbfdfc;
+        color: var(--ink);
+        text-align: left;
+      }
+
+      .lesson-entry:hover {
+        border-color: #b9cfc4;
+        background: #f4faf7;
+      }
+
+      .lesson-entry.active {
+        border-color: var(--accent);
+        background: var(--accent-soft);
+      }
+
+      .lesson-no {
+        display: grid;
+        place-items: center;
+        width: 28px;
+        height: 28px;
+        flex: 0 0 auto;
+        border-radius: 8px;
+        background: #eef3f0;
+        color: var(--muted);
+        font-size: 13px;
+        font-weight: 850;
+      }
+
+      .lesson-entry.active .lesson-no {
+        background: var(--accent);
+        color: #fff;
+      }
+
+      .lesson-meta {
+        display: grid;
+        gap: 2px;
+        min-width: 0;
+      }
+
+      .lesson-meta span,
+      .lesson-meta small {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .lesson-meta span {
+        font-size: 13px;
+        font-weight: 820;
+      }
+
+      .lesson-meta small {
+        color: var(--muted);
+        font-size: 11px;
+        font-weight: 720;
+      }
+
+      .viewer {
+        display: grid;
+        gap: 18px;
+        min-width: 0;
+        padding: 22px;
+      }
+
+      .viewer-head h2 {
+        margin-top: 4px;
+      }
+
+      .image-stack {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      .image-frame {
+        width: 100%;
+        margin: 0;
+        overflow: hidden;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: #fff;
+      }
+
+      .image-head {
+        padding: 10px 12px;
+        border-bottom: 1px solid var(--line);
+        background: #f8faf9;
+      }
+
+      .image-head strong {
+        font-size: 13px;
+      }
+
+      .image-frame img {
+        display: block;
+        width: 100%;
+        height: auto;
+        background: #eef2f0;
+      }
+
+      .image-error {
+        display: none;
+        padding: 18px;
+        color: #a13d27;
+        font-size: 13px;
+        font-weight: 760;
+      }
+
+      .image-frame.missing .image-error {
+        display: block;
+      }
+
+      .image-frame.missing img {
+        display: none;
+      }
+
+      html.embedded .shell {
+        width: 100%;
+        padding: 0;
+      }
+
+      html.embedded .page-head,
+      html.embedded .lesson-panel {
+        display: none;
+      }
+
+      html.embedded .layout {
+        display: block;
+      }
+
+      html.embedded .viewer {
+        border: 0;
+        border-radius: 0;
+        box-shadow: none;
+      }
+
+      html.embedded .image-frame {
+        width: 100%;
+      }
+
+      @media (max-width: 920px) {
+        .shell {
+          width: min(100% - 28px, 720px);
+          padding-top: 18px;
+        }
+
+        .page-head,
+        .layout {
+          grid-template-columns: 1fr;
+        }
+
+        .page-head {
+          display: grid;
+        }
+
+        .lesson-panel {
+          position: static;
+          max-height: none;
+        }
+
+        .lesson-grid {
+          grid-template-columns: repeat(4, minmax(0, 1fr));
+        }
+
+        .image-stack {
+          grid-template-columns: 1fr;
+        }
+
+        .lesson-entry {
+          min-height: 46px;
+        }
+
+        .lesson-meta span {
+          font-size: 12px;
+        }
+      }
+
+      @media (max-width: 560px) {
+        .lesson-grid {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+
+        .image-stack {
+          grid-template-columns: 1fr;
+        }
+
+        .viewer {
+          padding: 14px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="shell">
+      <header class="page-head">
+        <div>
+          <p class="eyebrow">JapaFlow · 语法素材</p>
+          <h1>语法图片预览</h1>
+        </div>
+        <div class="summary" id="summary">48 课</div>
+      </header>
+
+      <section class="layout">
+        <aside class="lesson-panel" aria-label="课程列表">
+          <div class="lesson-panel-head">
+            <strong>Lesson</strong>
+            <span>第 2-6 张</span>
+          </div>
+          <div class="lesson-grid" id="lessonGrid"></div>
+        </aside>
+
+        <article class="viewer" id="viewer"></article>
+      </section>
+    </main>
+
+    <script>
+      const firstPages = [
+        22, 32, 42, 52, 68, 78, 88, 98, 114, 124, 134, 144,
+        160, 170, 180, 190, 206, 216, 226, 236, 252, 262, 272, 282,
+        4, 14, 24, 34, 50, 60, 70, 80, 96, 106, 116, 126,
+        142, 152, 162, 172, 188, 198, 208, 218, 234, 244, 254, 264
+      ];
+
+      const lessons = firstPages.map((firstPage, index) => {
+        const lessonNo = index + 1;
+        return {
+          lessonNo,
+          pages: Array.from({ length: 5 }, (_, offset) => firstPage + offset + 1)
+        };
+      });
+
+      const lessonGrid = document.querySelector("#lessonGrid");
+      const viewer = document.querySelector("#viewer");
+      const summary = document.querySelector("#summary");
+
+      function selectedLessonNo() {
+        const params = new URLSearchParams(location.search);
+        const raw = params.get("lesson") || params.get("lessonId") || params.get("lessonNo") || "";
+        const queryMatch = String(raw).match(/\d+/);
+        if (queryMatch) {
+          const lessonNo = Number(queryMatch[0]);
+          if (Number.isFinite(lessonNo)) return Math.max(1, Math.min(48, Math.floor(lessonNo)));
+        }
+        const match = location.hash.match(/lesson=(\d+)/);
+        const lessonNo = Number(match ? match[1] : 1);
+        if (!Number.isFinite(lessonNo)) return 1;
+        return Math.max(1, Math.min(48, Math.floor(lessonNo)));
+      }
+
+      function imagePath(lessonNo, pageNo) {
+        return `../course-assets/by-lesson/lesson${lessonNo}/page${pageNo}.webp`;
+      }
+
+      function renderLessons(activeLessonNo) {
+        lessonGrid.innerHTML = lessons.map((lesson) => `
+          <button class="lesson-entry ${lesson.lessonNo === activeLessonNo ? "active" : ""}" type="button" data-lesson="${lesson.lessonNo}">
+            <span class="lesson-no">${lesson.lessonNo}</span>
+            <span class="lesson-meta">
+              <span>第${lesson.lessonNo}课</span>
+              <small>${lesson.pages[0]}-${lesson.pages[lesson.pages.length - 1]}</small>
+            </span>
+          </button>
+        `).join("");
+      }
+
+      function renderViewer(activeLessonNo) {
+        const lesson = lessons[activeLessonNo - 1];
+        summary.textContent = `第 ${activeLessonNo} 课 · ${lesson.pages.length} 张`;
+        viewer.innerHTML = `
+          <div class="viewer-head">
+            <div>
+              <p class="eyebrow">第${activeLessonNo}课</p>
+              <h2>语法图片</h2>
+            </div>
+            <span class="viewer-count">${lesson.pages.length} 张</span>
+          </div>
+          <div class="image-stack">
+            ${lesson.pages.map((pageNo, index) => `
+              <figure class="image-frame">
+                <div class="image-head">
+                  <strong>Page ${pageNo}</strong>
+                  <span>第 ${index + 2} 张</span>
+                </div>
+                <img src="${imagePath(activeLessonNo, pageNo)}" alt="第${activeLessonNo}课 Page ${pageNo}" loading="lazy" onerror="this.closest('.image-frame').classList.add('missing')" />
+                <div class="image-error">图片不存在：lesson${activeLessonNo}/page${pageNo}.webp</div>
+              </figure>
+            `).join("")}
+          </div>
+        `;
+      }
+
+      function render() {
+        const activeLessonNo = selectedLessonNo();
+        renderLessons(activeLessonNo);
+        renderViewer(activeLessonNo);
+      }
+
+      lessonGrid.addEventListener("click", (event) => {
+        const button = event.target.closest("[data-lesson]");
+        if (!button) return;
+        location.hash = `lesson=${button.dataset.lesson}`;
+      });
+
+      window.addEventListener("hashchange", render);
+      render();
+    </script>
+  </body>
+</html>

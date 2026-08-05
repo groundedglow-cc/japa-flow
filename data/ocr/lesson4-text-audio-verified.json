@@ -1,0 +1,683 @@
+{
+  "lessonId": "lesson4",
+  "sourceImages": [
+    {
+      "section": "basic",
+      "path": "course-assets/by-lesson/lesson4/page52.webp",
+      "pageNo": 52
+    },
+    {
+      "section": "application",
+      "path": "course-assets/by-lesson/lesson4/page57.webp",
+      "pageNo": 57
+    }
+  ],
+  "basicText": {
+    "title": "基本课文",
+    "basicSentences": [
+      {
+        "id": "l4-basic-s001",
+        "order": 1,
+        "text": "部屋に 机と いすが あります。",
+        "kana": "へやに つくえと いすが あります。",
+        "translationZh": "房间里有桌子和椅子。",
+        "confidence": "high",
+        "rawText": "1. 部屋に 机と いすが あります。",
+        "audioSegment": {
+          "id": "l4-basic-s001",
+          "trackId": "lesson_basic",
+          "sourceUrl": "/data/ocr/audio-clips/lesson4/l4-basic-s001.mp3",
+          "start": 0,
+          "end": 2.58,
+          "duration": 2.58,
+          "method": "approved-asr-alignment",
+          "confidence": "approved",
+          "reviewedAt": "2026-08-05T08:17:47.758Z",
+          "sourceAudioSha256": "3bf11a4aa10a8f463b3c151af6fbea9df82ed8699081738e79dc819a1bed6fc7"
+        }
+      },
+      {
+        "id": "l4-basic-s002",
+        "order": 2,
+        "text": "机の 上に 猫が います。",
+        "kana": "つくえの うえに ねこが います。",
+        "translationZh": "桌子上有一只猫。",
+        "confidence": "high",
+        "rawText": "2. 机の 上に 猫が います。",
+        "audioSegment": {
+          "id": "l4-basic-s002",
+          "trackId": "lesson_basic",
+          "sourceUrl": "/data/ocr/audio-clips/lesson4/l4-basic-s002.mp3",
+          "start": 0,
+          "end": 2.46,
+          "duration": 2.46,
+          "method": "approved-asr-alignment",
+          "confidence": "approved",
+          "reviewedAt": "2026-08-05T08:17:47.758Z",
+          "sourceAudioSha256": "3bf11a4aa10a8f463b3c151af6fbea9df82ed8699081738e79dc819a1bed6fc7"
+        }
+      },
+      {
+        "id": "l4-basic-s003",
+        "order": 3,
+        "text": "売店は 駅の 外に あります。",
+        "kana": "ばいてんは えきの そとに あります。",
+        "translationZh": "小卖部在车站外面。",
+        "confidence": "high",
+        "rawText": "3. 売店は 駅の 外に あります。",
+        "audioSegment": {
+          "id": "l4-basic-s003",
+          "trackId": "lesson_basic",
+          "sourceUrl": "/data/ocr/audio-clips/lesson4/l4-basic-s003.mp3",
+          "start": 0,
+          "end": 2.78,
+          "duration": 2.78,
+          "method": "approved-asr-alignment",
+          "confidence": "approved",
+          "reviewedAt": "2026-08-05T08:17:47.758Z",
+          "sourceAudioSha256": "3bf11a4aa10a8f463b3c151af6fbea9df82ed8699081738e79dc819a1bed6fc7"
+        }
+      },
+      {
+        "id": "l4-basic-s004",
+        "order": 4,
+        "text": "吉田さんは 庭に います。",
+        "kana": "よしださんは にわに います。",
+        "translationZh": "吉田先生在院子里。",
+        "confidence": "high",
+        "rawText": "4. 吉田さんは 庭に います。",
+        "audioSegment": {
+          "id": "l4-basic-s004",
+          "trackId": "lesson_basic",
+          "sourceUrl": "/data/ocr/audio-clips/lesson4/l4-basic-s004.mp3",
+          "start": 0,
+          "end": 3.06,
+          "duration": 3.06,
+          "method": "approved-asr-alignment",
+          "confidence": "approved",
+          "reviewedAt": "2026-08-05T08:17:47.758Z",
+          "sourceAudioSha256": "3bf11a4aa10a8f463b3c151af6fbea9df82ed8699081738e79dc819a1bed6fc7"
+        }
+      }
+    ],
+    "dialogues": [
+      {
+        "id": "l4-basic-dialogue-001",
+        "label": "A",
+        "lines": [
+          {
+            "id": "l4-basic-dialogue-001-line-001",
+            "speaker": "甲",
+            "text": "その 箱の 中に 何が ありますか。",
+            "kana": "その はこの なかに なにが ありますか。",
+            "translationZh": "那个盒子里有什么？",
+            "confidence": "high",
+            "rawText": "甲：その 箱の 中に 何が ありますか。",
+            "audioSegment": {
+              "id": "l4-basic-dialogue-001-line-001",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson4/l4-basic-dialogue-001-line-001.mp3",
+              "start": 0,
+              "end": 2.94,
+              "duration": 2.94,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:17:47.758Z",
+              "sourceAudioSha256": "3bf11a4aa10a8f463b3c151af6fbea9df82ed8699081738e79dc819a1bed6fc7"
+            }
+          },
+          {
+            "id": "l4-basic-dialogue-001-line-002",
+            "speaker": "乙",
+            "text": "時計と 眼鏡が あります。",
+            "kana": "とけいと めがねが あります。",
+            "translationZh": "有表和眼镜。",
+            "confidence": "high",
+            "rawText": "乙：時計と 眼鏡が あります。",
+            "audioSegment": {
+              "id": "l4-basic-dialogue-001-line-002",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson4/l4-basic-dialogue-001-line-002.mp3",
+              "start": 0,
+              "end": 1.9,
+              "duration": 1.9,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:17:47.758Z",
+              "sourceAudioSha256": "3bf11a4aa10a8f463b3c151af6fbea9df82ed8699081738e79dc819a1bed6fc7"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l4-basic-dialogue-002",
+        "label": "B",
+        "lines": [
+          {
+            "id": "l4-basic-dialogue-002-line-001",
+            "speaker": "甲",
+            "text": "部屋に だれが いますか。",
+            "kana": "へやに だれが いますか。",
+            "translationZh": "房间里有谁？",
+            "confidence": "high",
+            "rawText": "甲：部屋に だれが いますか。",
+            "audioSegment": {
+              "id": "l4-basic-dialogue-002-line-001",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson4/l4-basic-dialogue-002-line-001.mp3",
+              "start": 0,
+              "end": 2.14,
+              "duration": 2.14,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:17:47.758Z",
+              "sourceAudioSha256": "3bf11a4aa10a8f463b3c151af6fbea9df82ed8699081738e79dc819a1bed6fc7"
+            }
+          },
+          {
+            "id": "l4-basic-dialogue-002-line-002",
+            "speaker": "乙",
+            "text": "だれも いません。",
+            "kana": "だれも いません。",
+            "translationZh": "谁也没有。",
+            "confidence": "high",
+            "rawText": "乙：だれも いません。",
+            "audioSegment": {
+              "id": "l4-basic-dialogue-002-line-002",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson4/l4-basic-dialogue-002-line-002.mp3",
+              "start": 0,
+              "end": 1.38,
+              "duration": 1.38,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:17:47.758Z",
+              "sourceAudioSha256": "3bf11a4aa10a8f463b3c151af6fbea9df82ed8699081738e79dc819a1bed6fc7"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l4-basic-dialogue-003",
+        "label": "C",
+        "lines": [
+          {
+            "id": "l4-basic-dialogue-003-line-001",
+            "speaker": "甲",
+            "text": "小野さんの 家は どこに ありますか。",
+            "kana": "おのさんの いえは どこに ありますか。",
+            "translationZh": "小野女士的家在哪里？",
+            "confidence": "high",
+            "rawText": "甲：小野さんの 家は どこに ありますか。",
+            "audioSegment": {
+              "id": "l4-basic-dialogue-003-line-001",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson4/l4-basic-dialogue-003-line-001.mp3",
+              "start": 0,
+              "end": 2.5,
+              "duration": 2.5,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:17:47.758Z",
+              "sourceAudioSha256": "3bf11a4aa10a8f463b3c151af6fbea9df82ed8699081738e79dc819a1bed6fc7"
+            }
+          },
+          {
+            "id": "l4-basic-dialogue-003-line-002",
+            "speaker": "乙",
+            "text": "横浜に あります。",
+            "kana": "よこはまに あります。",
+            "translationZh": "在横滨。",
+            "confidence": "high",
+            "rawText": "乙：横浜に あります。",
+            "audioSegment": {
+              "id": "l4-basic-dialogue-003-line-002",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson4/l4-basic-dialogue-003-line-002.mp3",
+              "start": 0,
+              "end": 1.5,
+              "duration": 1.5,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:17:47.758Z",
+              "sourceAudioSha256": "3bf11a4aa10a8f463b3c151af6fbea9df82ed8699081738e79dc819a1bed6fc7"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l4-basic-dialogue-004",
+        "label": "D",
+        "lines": [
+          {
+            "id": "l4-basic-dialogue-004-line-001",
+            "speaker": "甲",
+            "text": "あそこに 犬が いますね。",
+            "kana": "あそこに いぬが いますね。",
+            "translationZh": "那儿有一只狗啊。",
+            "confidence": "high",
+            "rawText": "甲：あそこに 犬が いますね。",
+            "audioSegment": {
+              "id": "l4-basic-dialogue-004-line-001",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson4/l4-basic-dialogue-004-line-001.mp3",
+              "start": 0,
+              "end": 2.26,
+              "duration": 2.26,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:17:47.758Z",
+              "sourceAudioSha256": "3bf11a4aa10a8f463b3c151af6fbea9df82ed8699081738e79dc819a1bed6fc7"
+            }
+          },
+          {
+            "id": "l4-basic-dialogue-004-line-002",
+            "speaker": "乙",
+            "text": "ええ、わたしの 犬です。",
+            "kana": "ええ、わたしの いぬです。",
+            "translationZh": "是的，是我的狗。",
+            "confidence": "high",
+            "rawText": "乙：ええ、わたしの 犬です。",
+            "audioSegment": {
+              "id": "l4-basic-dialogue-004-line-002",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson4/l4-basic-dialogue-004-line-002.mp3",
+              "start": 0,
+              "end": 2.26,
+              "duration": 2.26,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:17:47.758Z",
+              "sourceAudioSha256": "3bf11a4aa10a8f463b3c151af6fbea9df82ed8699081738e79dc819a1bed6fc7"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "applicationText": {
+    "title": "会社の 場所",
+    "blocks": [
+      {
+        "id": "l4-app-block-001",
+        "type": "narration",
+        "text": "今天是星期天。从明天开始小李将要到公司总部上班。小野来到小李住的宾馆向她说明公司的地理位置。",
+        "kana": null,
+        "translationZh": "今天是星期天。从明天开始小李将要到公司总部上班。小野来到小李住的宾馆向她说明公司的地理位置。",
+        "confidence": "high",
+        "rawText": "今天是星期天。从明天开始小李将要到公司总部上班。小野来到小李住的宾馆向她说明公司的地理位置。"
+      },
+      {
+        "id": "l4-app-block-002",
+        "type": "scene",
+        "text": "（小李一边打开地图册一边问）",
+        "kana": null,
+        "translationZh": "小李一边打开地图册一边问。",
+        "confidence": "high",
+        "rawText": "（小李一边打开地图册一边问）"
+      },
+      {
+        "id": "l4-app-block-003",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l4-app-block-003-line-001",
+            "speaker": "李",
+            "text": "小野さん、会社は どこに ありますか。",
+            "kana": "おのさん、かいしゃは どこに ありますか。",
+            "translationZh": "小野女士，公司在哪里？",
+            "confidence": "high",
+            "rawText": "李：小野さん、会社は どこに ありますか。",
+            "audioSegment": {
+              "id": "l4-app-block-003-line-001",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson4/l4-app-block-003-line-001.mp3",
+              "start": 0,
+              "end": 2.82,
+              "duration": 2.82,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:18:25.004Z",
+              "sourceAudioSha256": "2a6a71cd917d61e8517a418b115f53749208945de00dfd909c6c4afbaad85ce9"
+            }
+          },
+          {
+            "id": "l4-app-block-003-line-002",
+            "speaker": "小野",
+            "text": "ええと、ここです。",
+            "kana": "ええと、ここです。",
+            "translationZh": "嗯，在这里。",
+            "confidence": "high",
+            "rawText": "小野：（翻了一下地图册）ええと、ここです。",
+            "audioSegment": {
+              "id": "l4-app-block-003-line-002",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson4/l4-app-block-003-line-002.mp3",
+              "start": 0,
+              "end": 2.66,
+              "duration": 2.66,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:18:25.004Z",
+              "sourceAudioSha256": "2a6a71cd917d61e8517a418b115f53749208945de00dfd909c6c4afbaad85ce9"
+            }
+          },
+          {
+            "id": "l4-app-block-003-line-003",
+            "speaker": "李",
+            "text": "近くに 駅が ありますか。",
+            "kana": "ちかくに えきが ありますか。",
+            "translationZh": "附近有车站吗？",
+            "confidence": "high",
+            "rawText": "李：近くに 駅が ありますか。",
+            "audioSegment": {
+              "id": "l4-app-block-003-line-003",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson4/l4-app-block-003-line-003.mp3",
+              "start": 0,
+              "end": 1.9,
+              "duration": 1.9,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:18:25.004Z",
+              "sourceAudioSha256": "2a6a71cd917d61e8517a418b115f53749208945de00dfd909c6c4afbaad85ce9"
+            }
+          },
+          {
+            "id": "l4-app-block-003-line-004",
+            "speaker": "小野",
+            "text": "ええ。JRと 地下鉄の 駅が あります。",
+            "kana": "ええ。ジェーアールと ちかてつの えきが あります。",
+            "translationZh": "有。有JR和地铁的车站。",
+            "confidence": "high",
+            "rawText": "小野：ええ。JRと 地下鉄の 駅が あります。",
+            "audioSegment": {
+              "id": "l4-app-block-003-line-004",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson4/l4-app-block-003-line-004.mp3",
+              "start": 0,
+              "end": 2.58,
+              "duration": 2.58,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:18:25.004Z",
+              "sourceAudioSha256": "2a6a71cd917d61e8517a418b115f53749208945de00dfd909c6c4afbaad85ce9"
+            }
+          },
+          {
+            "id": "l4-app-block-003-line-005",
+            "speaker": "小野",
+            "text": "JRの 駅は ここです。",
+            "kana": "ジェーアールの えきは ここです。",
+            "translationZh": "JR车站在这里。",
+            "confidence": "high",
+            "rawText": "小野：（指着地图册）JRの 駅は ここです。",
+            "audioSegment": {
+              "id": "l4-app-block-003-line-005",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson4/l4-app-block-003-line-005.mp3",
+              "start": 0,
+              "end": 2.14,
+              "duration": 2.14,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:18:25.004Z",
+              "sourceAudioSha256": "2a6a71cd917d61e8517a418b115f53749208945de00dfd909c6c4afbaad85ce9"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l4-app-block-004",
+        "type": "scene",
+        "text": "（小李指着地图册）",
+        "kana": null,
+        "translationZh": "小李指着地图册。",
+        "confidence": "high",
+        "rawText": "（小李指着地图册）"
+      },
+      {
+        "id": "l4-app-block-005",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l4-app-block-005-line-001",
+            "speaker": "李",
+            "text": "地下鉄の 駅は ここですね。",
+            "kana": "ちかてつの えきは ここですね。",
+            "translationZh": "地铁站在这里吧。",
+            "confidence": "high",
+            "rawText": "李：地下鉄の 駅は ここですね。",
+            "audioSegment": {
+              "id": "l4-app-block-005-line-001",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson4/l4-app-block-005-line-001.mp3",
+              "start": 0,
+              "end": 2.3,
+              "duration": 2.3,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:18:25.004Z",
+              "sourceAudioSha256": "2a6a71cd917d61e8517a418b115f53749208945de00dfd909c6c4afbaad85ce9"
+            }
+          },
+          {
+            "id": "l4-app-block-005-line-002",
+            "speaker": "小野",
+            "text": "ええ、そうです。JRの 駅の 隣に 地下鉄の 駅が あります。",
+            "kana": "ええ、そうです。ジェーアールの えきの となりに ちかてつの えきが あります。",
+            "translationZh": "是的。地铁站在JR车站的旁边。",
+            "confidence": "high",
+            "rawText": "小野：ええ、そうです。JRの 駅の 隣に 地下鉄の 駅が あります。",
+            "audioSegment": {
+              "id": "l4-app-block-005-line-002",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson4/l4-app-block-005-line-002.mp3",
+              "start": 0,
+              "end": 5.46,
+              "duration": 5.46,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:18:25.004Z",
+              "sourceAudioSha256": "2a6a71cd917d61e8517a418b115f53749208945de00dfd909c6c4afbaad85ce9"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l4-app-block-006",
+        "type": "scene",
+        "text": "（小李询问小野的家庭情况）",
+        "kana": null,
+        "translationZh": "小李询问小野的家庭情况。",
+        "confidence": "high",
+        "rawText": "（小李询问小野的家庭情况）"
+      },
+      {
+        "id": "l4-app-block-007",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l4-app-block-007-line-001",
+            "speaker": "李",
+            "text": "小野さんの 家は どちらですか。",
+            "kana": "おのさんの いえは どちらですか。",
+            "translationZh": "小野女士的家在哪里？",
+            "confidence": "high",
+            "rawText": "李：小野さんの 家は どちらですか。",
+            "audioSegment": {
+              "id": "l4-app-block-007-line-001",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson4/l4-app-block-007-line-001.mp3",
+              "start": 0,
+              "end": 2.26,
+              "duration": 2.26,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:18:25.004Z",
+              "sourceAudioSha256": "2a6a71cd917d61e8517a418b115f53749208945de00dfd909c6c4afbaad85ce9"
+            }
+          },
+          {
+            "id": "l4-app-block-007-line-002",
+            "speaker": "小野",
+            "text": "わたしの 家は 横浜です。",
+            "kana": "わたしの いえは よこはまです。",
+            "translationZh": "我家在横滨。",
+            "confidence": "high",
+            "rawText": "小野：わたしの 家は 横浜です。",
+            "audioSegment": {
+              "id": "l4-app-block-007-line-002",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson4/l4-app-block-007-line-002.mp3",
+              "start": 0,
+              "end": 2.22,
+              "duration": 2.22,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:18:25.004Z",
+              "sourceAudioSha256": "2a6a71cd917d61e8517a418b115f53749208945de00dfd909c6c4afbaad85ce9"
+            }
+          },
+          {
+            "id": "l4-app-block-007-line-003",
+            "speaker": "李",
+            "text": "ご家族も 横浜ですか。",
+            "kana": "ごかぞくも よこはまですか。",
+            "translationZh": "您的家人也在横滨吗？",
+            "confidence": "high",
+            "rawText": "李：ご家族も 横浜ですか。",
+            "audioSegment": {
+              "id": "l4-app-block-007-line-003",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson4/l4-app-block-007-line-003.mp3",
+              "start": 0,
+              "end": 1.86,
+              "duration": 1.86,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:18:25.004Z",
+              "sourceAudioSha256": "2a6a71cd917d61e8517a418b115f53749208945de00dfd909c6c4afbaad85ce9"
+            }
+          },
+          {
+            "id": "l4-app-block-007-line-004",
+            "speaker": "小野",
+            "text": "いいえ、わたしは 一人暮らしです。",
+            "kana": "いいえ、わたしは ひとりぐらしです。",
+            "translationZh": "不，我是一个人生活。",
+            "confidence": "high",
+            "rawText": "小野：いいえ、わたしは 一人暮らしです。",
+            "audioSegment": {
+              "id": "l4-app-block-007-line-004",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson4/l4-app-block-007-line-004.mp3",
+              "start": 0,
+              "end": 2.02,
+              "duration": 2.02,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:18:25.004Z",
+              "sourceAudioSha256": "2a6a71cd917d61e8517a418b115f53749208945de00dfd909c6c4afbaad85ce9"
+            }
+          },
+          {
+            "id": "l4-app-block-007-line-005",
+            "speaker": "李",
+            "text": "ご両親は どちらですか。",
+            "kana": "ごりょうしんは どちらですか。",
+            "translationZh": "您父母在哪里？",
+            "confidence": "high",
+            "rawText": "李：ご両親は どちらですか。",
+            "audioSegment": {
+              "id": "l4-app-block-007-line-005",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson4/l4-app-block-007-line-005.mp3",
+              "start": 0,
+              "end": 2.14,
+              "duration": 2.14,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:18:25.004Z",
+              "sourceAudioSha256": "2a6a71cd917d61e8517a418b115f53749208945de00dfd909c6c4afbaad85ce9"
+            }
+          },
+          {
+            "id": "l4-app-block-007-line-006",
+            "speaker": "小野",
+            "text": "両親は 名古屋に います。",
+            "kana": "りょうしんは なごやに います。",
+            "translationZh": "我父母在名古屋。",
+            "confidence": "high",
+            "rawText": "小野：両親は 名古屋に います。",
+            "audioSegment": {
+              "id": "l4-app-block-007-line-006",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson4/l4-app-block-007-line-006.mp3",
+              "start": 0,
+              "end": 1.62,
+              "duration": 1.62,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:18:25.004Z",
+              "sourceAudioSha256": "2a6a71cd917d61e8517a418b115f53749208945de00dfd909c6c4afbaad85ce9"
+            }
+          },
+          {
+            "id": "l4-app-block-007-line-007",
+            "speaker": "李",
+            "text": "ご兄弟は？",
+            "kana": "ごきょうだいは？",
+            "translationZh": "您的兄弟姐妹呢？",
+            "confidence": "high",
+            "rawText": "李：ご兄弟は？",
+            "audioSegment": {
+              "id": "l4-app-block-007-line-007",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson4/l4-app-block-007-line-007.mp3",
+              "start": 0,
+              "end": 1.14,
+              "duration": 1.14,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:18:25.004Z",
+              "sourceAudioSha256": "2a6a71cd917d61e8517a418b115f53749208945de00dfd909c6c4afbaad85ce9"
+            }
+          },
+          {
+            "id": "l4-app-block-007-line-008",
+            "speaker": "小野",
+            "text": "大阪に 妹が います。",
+            "kana": "おおさかに いもうとが います。",
+            "translationZh": "我妹妹在大阪。",
+            "confidence": "high",
+            "rawText": "小野：大阪に 妹が います。",
+            "audioSegment": {
+              "id": "l4-app-block-007-line-008",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson4/l4-app-block-007-line-008.mp3",
+              "start": 0,
+              "end": 2.18,
+              "duration": 2.18,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:18:25.004Z",
+              "sourceAudioSha256": "2a6a71cd917d61e8517a418b115f53749208945de00dfd909c6c4afbaad85ce9"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "warnings": [
+    "课文页中的旁白和场景说明以中文呈现，因此对应 block 的 text 与 translationZh 均保留中文原文，kana 为 null。",
+    "未输出 segments；已保留可可靠识别的整句 kana。"
+  ],
+  "audioAlignment": {
+    "schemaVersion": 1,
+    "method": "approved-asr-alignment",
+    "sourceAlignment": "data/ocr/lesson4-text-audio-alignment.json",
+    "publishedAt": "2026-08-05T08:18:28.904Z",
+    "approvedSegments": 27
+  }
+}

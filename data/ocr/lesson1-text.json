@@ -1,0 +1,100 @@
+{
+  "lessonId": "lesson1",
+  "sourceImages": [
+    {
+      "section": "basic",
+      "path": "course-assets/by-lesson/lesson1/page22.webp",
+      "pageNo": 22
+    },
+    {
+      "section": "application",
+      "path": "course-assets/by-lesson/lesson1/page27.webp",
+      "pageNo": 27
+    }
+  ],
+  "basicText": {
+    "title": "基本课文",
+    "basicSentences": [
+      { "id": "l1-basic-s001", "order": 1, "text": "李さんは 中国人です。", "kana": "りさんは ちゅうごくじんです。", "translationZh": "小李是中国人。", "confidence": "high", "rawText": "1. 李さんは 中国人です。" },
+      { "id": "l1-basic-s002", "order": 2, "text": "森さんは 学生では ありません。", "kana": "もりさんは がくせいでは ありません。", "translationZh": "森先生不是学生。", "confidence": "high", "rawText": "2. 森さんは 学生では ありません。" },
+      { "id": "l1-basic-s003", "order": 3, "text": "林さんは 日本人ですか。", "kana": "はやしさんは にほんじんですか。", "translationZh": "林先生是日本人吗？", "confidence": "high", "rawText": "3. 林さんは 日本人ですか。" },
+      { "id": "l1-basic-s004", "order": 4, "text": "李さんは JC企画の 社員です。", "kana": "りさんは ジェーシーきかくの しゃいんです。", "translationZh": "小李是JC策划公司的职员。", "confidence": "high", "rawText": "4. 李さんは JC企画の 社員です。" }
+    ],
+    "dialogues": [
+      {
+        "id": "l1-basic-dialogue-001",
+        "label": "A",
+        "lines": [
+          { "id": "l1-basic-dialogue-001-line-001", "speaker": "甲", "text": "わたしは 李です。小野さんですか。", "kana": "わたしは りです。おのさんですか。", "translationZh": "我姓李。您是小野女士吗？", "confidence": "high", "rawText": "甲：わたしは 李です。小野さんですか。" },
+          { "id": "l1-basic-dialogue-001-line-002", "speaker": "乙", "text": "はい、そうです。小野です。", "kana": "はい、そうです。おのです。", "translationZh": "是的，我是小野。", "confidence": "high", "rawText": "乙：はい、そうです。小野です。" }
+        ]
+      },
+      {
+        "id": "l1-basic-dialogue-002",
+        "label": "B",
+        "lines": [
+          { "id": "l1-basic-dialogue-002-line-001", "speaker": "甲", "text": "森さんは 学生ですか。", "kana": "もりさんは がくせいですか。", "translationZh": "森先生是学生吗？", "confidence": "high", "rawText": "甲：森さんは 学生ですか。" },
+          { "id": "l1-basic-dialogue-002-line-002", "speaker": "乙", "text": "いいえ、学生では ありません。会社員です。", "kana": "いいえ、がくせいでは ありません。かいしゃいんです。", "translationZh": "不，不是学生。是公司职员。", "confidence": "high", "rawText": "乙：いいえ、学生では ありません。会社員です。" }
+        ]
+      },
+      {
+        "id": "l1-basic-dialogue-003",
+        "label": "C",
+        "lines": [
+          { "id": "l1-basic-dialogue-003-line-001", "speaker": "甲", "text": "吉田さんですか。", "kana": "よしださんですか。", "translationZh": "您是吉田先生吗？", "confidence": "high", "rawText": "甲：吉田さんですか。" },
+          { "id": "l1-basic-dialogue-003-line-002", "speaker": "乙", "text": "いいえ、ちがいます。森です。", "kana": "いいえ、ちがいます。もりです。", "translationZh": "不，不是。我是森。", "confidence": "high", "rawText": "乙：いいえ、ちがいます。森です。" }
+        ]
+      },
+      {
+        "id": "l1-basic-dialogue-004",
+        "label": "D",
+        "lines": [
+          { "id": "l1-basic-dialogue-004-line-001", "speaker": "甲", "text": "李さんは JC企画の 社員ですか。", "kana": "りさんは ジェーシーきかくの しゃいんですか。", "translationZh": "小李是JC策划公司的职员吗？", "confidence": "high", "rawText": "甲：李さんは JC企画の 社員ですか。" },
+          { "id": "l1-basic-dialogue-004-line-002", "speaker": "乙", "text": "はい、そうです。", "kana": "はい、そうです。", "translationZh": "是的，是。", "confidence": "high", "rawText": "乙：はい、そうです。" }
+        ]
+      }
+    ]
+  },
+  "applicationText": {
+    "title": "出迎え",
+    "blocks": [
+      {
+        "id": "l1-app-block-001",
+        "type": "narration",
+        "text": "飞机准点到达成田机场。小野绿和同事森健太郎在候机大厅等着小李。小李办完入境手续，到大厅后，看到写着“李秀麗様”字样的牌子。",
+        "kana": null,
+        "translationZh": "飞机准点到达成田机场。小野绿和同事森健太郎在候机大厅等着小李。小李办完入境手续，到大厅后，看到写着“李秀麗様”字样的牌子。",
+        "confidence": "high",
+        "rawText": "飞机准点到达成田机场。小野绿和同事森健太郎在候机大厅等着小李。小李办完入境手续，到大厅后，看到写着“李秀麗様”字样的牌子。"
+      },
+      { "id": "l1-app-block-002", "type": "scene", "text": "（小李朝牌子的方向走去）", "kana": null, "translationZh": "小李朝牌子的方向走去。", "confidence": "high", "rawText": "（小李朝牌子的方向走去）" },
+      {
+        "id": "l1-app-block-003",
+        "type": "dialogue",
+        "lines": [
+          { "id": "l1-app-block-003-line-001", "speaker": "李", "text": "JC企画の 小野さんですか。", "kana": "ジェーシーきかくの おのさんですか。", "translationZh": "您是JC策划公司的小野女士吗？", "confidence": "high", "rawText": "李：JC企画の 小野さんですか。" },
+          { "id": "l1-app-block-003-line-002", "speaker": "小野", "text": "はい、小野です。李秀麗さんですか。", "kana": "はい、おのです。りしゅうれいさんですか。", "translationZh": "是的，我是小野。您是李秀丽女士吗？", "confidence": "high", "rawText": "小野：はい、小野です。李秀麗さんですか。" },
+          { "id": "l1-app-block-003-line-003", "speaker": "李", "text": "はい、李秀麗です。はじめまして。", "kana": "はい、りしゅうれいです。はじめまして。", "translationZh": "是的，我是李秀丽。初次见面。", "confidence": "high", "rawText": "李：はい、李秀麗です。はじめまして。" },
+          { "id": "l1-app-block-003-line-004", "speaker": "李", "text": "どうぞ よろしく お願いします。", "kana": "どうぞ よろしく おねがいします。", "translationZh": "请多关照。", "confidence": "high", "rawText": "どうぞ よろしく お願いします。" },
+          { "id": "l1-app-block-003-line-005", "speaker": "小野", "text": "はじめまして、小野緑です。", "kana": "はじめまして、おのみどりです。", "translationZh": "初次见面，我是小野绿。", "confidence": "high", "rawText": "小野：はじめまして、小野緑です。" }
+        ]
+      },
+      { "id": "l1-app-block-004", "type": "scene", "text": "（森在一旁插话）", "kana": null, "translationZh": "森在一旁插话。", "confidence": "high", "rawText": "（森在一旁插话）" },
+      {
+        "id": "l1-app-block-005",
+        "type": "dialogue",
+        "lines": [
+          { "id": "l1-app-block-005-line-001", "speaker": "森", "text": "李さん、こんにちは。", "kana": "りさん、こんにちは。", "translationZh": "李女士，你好。", "confidence": "high", "rawText": "森：李さん、こんにちは。" },
+          { "id": "l1-app-block-005-line-002", "speaker": "李", "text": "吉田さんですか。", "kana": "よしださんですか。", "translationZh": "您是吉田先生吗？", "confidence": "high", "rawText": "李：吉田さんですか。" },
+          { "id": "l1-app-block-005-line-003", "speaker": "森", "text": "いいえ、わたしは 吉田じゃ ありません。森です。", "kana": "いいえ、わたしは よしだじゃ ありません。もりです。", "translationZh": "不，我不是吉田。我是森。", "confidence": "high", "rawText": "森：いいえ、わたしは 吉田じゃ ありません。森です。" },
+          { "id": "l1-app-block-005-line-004", "speaker": "李", "text": "あっ、森さんですか。どうも すみません。", "kana": "あっ、もりさんですか。どうも すみません。", "translationZh": "啊，是森先生啊。实在对不起。", "confidence": "high", "rawText": "李：あっ、森さんですか。どうも すみません。" },
+          { "id": "l1-app-block-005-line-005", "speaker": "森", "text": "いいえ。どうぞ よろしく。", "kana": "いいえ。どうぞ よろしく。", "translationZh": "没关系。请多关照。", "confidence": "high", "rawText": "森：いいえ。どうぞ よろしく。" },
+          { "id": "l1-app-block-005-line-006", "speaker": "李", "text": "李秀麗です。こちらこそ、よろしく お願いします。", "kana": "りしゅうれいです。こちらこそ、よろしく おねがいします。", "translationZh": "我是李秀丽。我才要请您多多关照。", "confidence": "high", "rawText": "李：李秀麗です。こちらこそ、よろしく お願いします。" }
+        ]
+      }
+    ]
+  },
+  "warnings": [
+    "应用课文中的旁白和场景说明在教材页中以中文呈现，因此对应 block 的 text 与 translationZh 均保留中文原文，kana 为 null。"
+  ]
+}

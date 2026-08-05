@@ -1,0 +1,106 @@
+{
+  "lessonId": "lesson10",
+  "sourceImages": [
+    {
+      "section": "basic",
+      "path": "course-assets/by-lesson/lesson10/page124.webp",
+      "pageNo": 124
+    },
+    {
+      "section": "application",
+      "path": "course-assets/by-lesson/lesson10/page129.webp",
+      "pageNo": 129
+    }
+  ],
+  "basicText": {
+    "title": "基本课文",
+    "basicSentences": [
+      { "id": "l10-basic-s001", "order": 1, "text": "京都の 紅葉は 有名です。", "kana": "きょうとの もみじは ゆうめいです。", "translationZh": "京都的红叶很有名。", "confidence": "high", "rawText": "1. 京都の 紅葉は 有名です。" },
+      { "id": "l10-basic-s002", "order": 2, "text": "この 通りは にぎやかでは ありません。", "kana": "この とおりは にぎやかでは ありません。", "translationZh": "这条街不热闹。", "confidence": "high", "rawText": "2. この 通りは にぎやかでは ありません。" },
+      { "id": "l10-basic-s003", "order": 3, "text": "奈良は 静かな 町です。", "kana": "ならは しずかな まちです。", "translationZh": "奈良是个安静的城市。", "confidence": "high", "rawText": "3. 奈良は 静かな 町です。" },
+      { "id": "l10-basic-s004", "order": 4, "text": "昨日は 日曜日でした。", "kana": "きのうは にちようびでした。", "translationZh": "昨天是星期日。", "confidence": "high", "rawText": "4. 昨日は 日曜日でした。" }
+    ],
+    "dialogues": [
+      {
+        "id": "l10-basic-dialogue-001",
+        "label": "A",
+        "lines": [
+          { "id": "l10-basic-dialogue-001-line-001", "speaker": "甲", "text": "どんな お土産を 買いましたか。", "kana": "どんな おみやげを かいましたか。", "translationZh": "买了什么样的礼物？", "confidence": "high", "rawText": "甲：どんな お土産を 買いましたか。" },
+          { "id": "l10-basic-dialogue-001-line-002", "speaker": "乙", "text": "きれいな 人形を 買いました。", "kana": "きれいな にんぎょうを かいました。", "translationZh": "买了一个漂亮的人偶。", "confidence": "high", "rawText": "乙：きれいな 人形を 買いました。" }
+        ]
+      },
+      {
+        "id": "l10-basic-dialogue-002",
+        "label": "B",
+        "lines": [
+          { "id": "l10-basic-dialogue-002-line-001", "speaker": "甲", "text": "京都は どうでしたか。", "kana": "きょうとは どうでしたか。", "translationZh": "京都怎么样？", "confidence": "high", "rawText": "甲：京都は どうでしたか。" },
+          { "id": "l10-basic-dialogue-002-line-002", "speaker": "乙", "text": "とても きれいでした。", "kana": "とても きれいでした。", "translationZh": "非常漂亮。", "confidence": "high", "rawText": "乙：とても きれいでした。" },
+          { "id": "l10-basic-dialogue-002-line-003", "speaker": "乙", "text": "でも、静かでは ありませんでした。", "kana": "でも、しずかでは ありませんでした。", "translationZh": "但是不安静。", "confidence": "high", "rawText": "乙：でも、静かでは ありませんでした。" }
+        ]
+      },
+      {
+        "id": "l10-basic-dialogue-003",
+        "label": "C",
+        "lines": [
+          { "id": "l10-basic-dialogue-003-line-001", "speaker": "甲", "text": "横浜は どんな 町ですか。", "kana": "よこはまは どんな まちですか。", "translationZh": "横滨是个什么样的城市？", "confidence": "high", "rawText": "甲：横浜は どんな 町ですか。" },
+          { "id": "l10-basic-dialogue-003-line-002", "speaker": "乙", "text": "大きい 町です。そして、にぎやかな 町です。", "kana": "おおきい まちです。そして、にぎやかな まちです。", "translationZh": "是个大城市，而且是个热闹的城市。", "confidence": "high", "rawText": "乙：大きい 町です。そして、にぎやかな 町です。" }
+        ]
+      },
+      {
+        "id": "l10-basic-dialogue-004",
+        "label": "D",
+        "lines": [
+          { "id": "l10-basic-dialogue-004-line-001", "speaker": "甲", "text": "東京の 天気は どうでしたか。", "kana": "とうきょうの てんきは どうでしたか。", "translationZh": "东京的天气怎么样？", "confidence": "high", "rawText": "甲：東京の 天気は どうでしたか。" },
+          { "id": "l10-basic-dialogue-004-line-002", "speaker": "乙", "text": "昨日は 晴れでした。でも、おとといは 雨でした。", "kana": "きのうは はれでした。でも、おとといは あめでした。", "translationZh": "昨天是晴天，但是前天是雨天。", "confidence": "high", "rawText": "乙：昨日は 晴れでした。でも、おとといは 雨でした。" }
+        ]
+      }
+    ]
+  },
+  "applicationText": {
+    "title": "美術館",
+    "blocks": [
+      { "id": "l10-app-block-001", "type": "narration", "text": "清晨，小李和小野及摄影师长岛一起去附近的美术馆采访。", "kana": null, "translationZh": "清晨，小李和小野及摄影师长岛一起去附近的美术馆采访。", "confidence": "high", "rawText": "清晨，小李和小野及摄影师长岛一起去附近的美术馆采访。" },
+      { "id": "l10-app-block-002", "type": "scene", "text": "（在车上）", "kana": null, "translationZh": "在车上。", "confidence": "high", "rawText": "（在车上）" },
+      {
+        "id": "l10-app-block-003",
+        "type": "dialogue",
+        "lines": [
+          { "id": "l10-app-block-003-line-001", "speaker": "長島", "text": "昨日 京都へ 行きました。", "kana": "きのう きょうとへ いきました。", "translationZh": "昨天去了京都。", "confidence": "high", "rawText": "長島：昨日 京都へ 行きました。" },
+          { "id": "l10-app-block-003-line-002", "speaker": "小野", "text": "京都ですか。京都の 紅葉は どうでしたか。", "kana": "きょうとですか。きょうとの もみじは どうでしたか。", "translationZh": "京都吗？京都的红叶怎么样？", "confidence": "high", "rawText": "小野：京都ですか。京都の 紅葉は どうでしたか。" },
+          { "id": "l10-app-block-003-line-003", "speaker": "長島", "text": "とても きれいでした。", "kana": "とても きれいでした。", "translationZh": "非常漂亮。", "confidence": "high", "rawText": "長島：とても きれいでした。" },
+          { "id": "l10-app-block-003-line-004", "speaker": "長島", "text": "でも、町は あまり 静かじゃ ありませんでした。", "kana": "でも、まちは あまり しずかじゃ ありませんでした。", "translationZh": "但是，城里不怎么安静。", "confidence": "high", "rawText": "長島：でも、町は あまり 静かじゃ ありませんでした。" },
+          { "id": "l10-app-block-003-line-005", "speaker": "李", "text": "えっ？", "kana": "えっ？", "translationZh": "咦？", "confidence": "high", "rawText": "李：えっ？" },
+          { "id": "l10-app-block-003-line-006", "speaker": "長島", "text": "今 ちょうど 修学旅行の シーズンです。", "kana": "いま ちょうど しゅうがくりょこうの シーズンです。", "translationZh": "现在正好是修学旅行的季节。", "confidence": "high", "rawText": "長島：今 ちょうど 修学旅行の シーズンです。" },
+          { "id": "l10-app-block-003-line-007", "speaker": "長島", "text": "とても にぎやかでした。", "kana": "とても にぎやかでした。", "translationZh": "非常热闹。", "confidence": "high", "rawText": "長島：とても にぎやかでした。" }
+        ]
+      },
+      { "id": "l10-app-block-004", "type": "scene", "text": "（在通往美术馆的街上）", "kana": null, "translationZh": "在通往美术馆的街上。", "confidence": "high", "rawText": "（在通往美术馆的街上）" },
+      {
+        "id": "l10-app-block-005",
+        "type": "dialogue",
+        "lines": [
+          { "id": "l10-app-block-005-line-001", "speaker": "李", "text": "この 通りは 静かですね。", "kana": "この とおりは しずかですね。", "translationZh": "这条街很安静啊。", "confidence": "high", "rawText": "李：この 通りは 静かですね。" },
+          { "id": "l10-app-block-005-line-002", "speaker": "長島", "text": "ああ、今日は 平日ですね。", "kana": "ああ、きょうは へいじつですね。", "translationZh": "啊，今天是工作日啊。", "confidence": "high", "rawText": "長島：ああ、今日は 平日ですね。" },
+          { "id": "l10-app-block-005-line-003", "speaker": "長島", "text": "でも、休みの 日は 観光客が 多いです。とても にぎやかですよ。", "kana": "でも、やすみの ひは かんこうきゃくが おおいです。とても にぎやかですよ。", "translationZh": "但是，休息日游客很多，非常热闹。", "confidence": "high", "rawText": "長島：でも、休みの 日は 観光客が 多いです。とても にぎやかですよ。" },
+          { "id": "l10-app-block-005-line-004", "speaker": "李", "text": "そうですか。", "kana": "そうですか。", "translationZh": "是吗？", "confidence": "high", "rawText": "李：そうですか。" }
+        ]
+      },
+      { "id": "l10-app-block-006", "type": "scene", "text": "（来到美术馆。因为时间太早，还没有游客）", "kana": null, "translationZh": "来到美术馆。因为时间太早，还没有游客。", "confidence": "high", "rawText": "（来到美术馆。因为时间太早，还没有游客）" },
+      {
+        "id": "l10-app-block-007",
+        "type": "dialogue",
+        "lines": [
+          { "id": "l10-app-block-007-line-001", "speaker": "李", "text": "あれえ、だれも いませんね。", "kana": "あれえ、だれも いませんね。", "translationZh": "哎呀，一个人也没有啊。", "confidence": "high", "rawText": "李：あれえ、だれも いませんね。" },
+          { "id": "l10-app-block-007-line-002", "speaker": "小野", "text": "そうですね。", "kana": "そうですね。", "translationZh": "是啊。", "confidence": "high", "rawText": "小野：そうですね。" },
+          { "id": "l10-app-block-007-line-003", "speaker": "李", "text": "ところで、この 美術館には どんな 作品が ありますか。", "kana": "ところで、この びじゅつかんには どんな さくひんが ありますか。", "translationZh": "话说，这座美术馆里有什么样的作品？", "confidence": "high", "rawText": "李：ところで、この 美術館には どんな 作品が ありますか。" },
+          { "id": "l10-app-block-007-line-004", "speaker": "小野", "text": "世界中の 有名な 作家の 彫刻です。", "kana": "せかいじゅうの ゆうめいな さっかの ちょうこくです。", "translationZh": "是世界各地著名作家的雕刻作品。", "confidence": "high", "rawText": "小野：世界中の 有名な 作家の 彫刻です。" },
+          { "id": "l10-app-block-007-line-005", "speaker": "長島", "text": "美術館の 庭にも いろいろ おもしろいのが ありますよ。", "kana": "びじゅつかんの にわにも いろいろ おもしろいのが ありますよ。", "translationZh": "美术馆的庭院里也有各种有趣的东西。", "confidence": "high", "rawText": "長島：美術館の 庭にも いろいろ おもしろいのが ありますよ。" }
+        ]
+      }
+    ]
+  },
+  "warnings": [
+    "应用课文中的旁白和场景说明在教材页中以中文呈现，因此对应 block 的 text 与 translationZh 均保留中文原文，kana 为 null。",
+    "未输出 segments；已保留可可靠识别的整句 kana。"
+  ]
+}

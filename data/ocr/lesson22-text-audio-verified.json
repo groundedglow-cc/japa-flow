@@ -1,0 +1,669 @@
+{
+  "lessonId": "lesson22",
+  "sourceImages": [
+    {
+      "section": "basic",
+      "path": "course-assets/by-lesson/lesson22/page262.webp",
+      "pageNo": 262
+    },
+    {
+      "section": "application",
+      "path": "course-assets/by-lesson/lesson22/page267.webp",
+      "pageNo": 267
+    }
+  ],
+  "basicText": {
+    "title": "基本课文",
+    "basicSentences": [
+      {
+        "id": "l22-basic-s001",
+        "order": 1,
+        "text": "森さんは 毎晩 テレビを 見る。",
+        "translationZh": "森先生每天晚上看电视。",
+        "confidence": "high",
+        "rawText": "1. 森さんは 毎晩 テレビを 見る。",
+        "audioSegment": {
+          "id": "l22-basic-s001",
+          "trackId": "lesson_basic",
+          "sourceUrl": "/data/ocr/audio-clips/lesson22/l22-basic-s001.mp3",
+          "start": 0,
+          "end": 2.94,
+          "duration": 2.94,
+          "method": "approved-asr-alignment",
+          "confidence": "approved",
+          "reviewedAt": "2026-08-05T08:46:56.720Z",
+          "sourceAudioSha256": "578ed57897a4c0420baa17a4c0ff97ba7fc70852c02ebc1b0eb8758188769db6"
+        }
+      },
+      {
+        "id": "l22-basic-s002",
+        "order": 2,
+        "text": "昨日は とても 忙しかった。",
+        "translationZh": "昨天很忙。",
+        "confidence": "high",
+        "rawText": "2. 昨日は とても 忙しかった。",
+        "audioSegment": {
+          "id": "l22-basic-s002",
+          "trackId": "lesson_basic",
+          "sourceUrl": "/data/ocr/audio-clips/lesson22/l22-basic-s002.mp3",
+          "start": 0,
+          "end": 2.26,
+          "duration": 2.26,
+          "method": "approved-asr-alignment",
+          "confidence": "approved",
+          "reviewedAt": "2026-08-05T08:46:56.720Z",
+          "sourceAudioSha256": "578ed57897a4c0420baa17a4c0ff97ba7fc70852c02ebc1b0eb8758188769db6"
+        }
+      },
+      {
+        "id": "l22-basic-s003",
+        "order": 3,
+        "text": "コンピュータは 簡単では ない。",
+        "translationZh": "电脑并不简单。",
+        "confidence": "high",
+        "rawText": "3. コンピュータは 簡単では ない。",
+        "audioSegment": {
+          "id": "l22-basic-s003",
+          "trackId": "lesson_basic",
+          "sourceUrl": "/data/ocr/audio-clips/lesson22/l22-basic-s003.mp3",
+          "start": 0,
+          "end": 2.5,
+          "duration": 2.5,
+          "method": "approved-asr-alignment",
+          "confidence": "approved",
+          "reviewedAt": "2026-08-05T08:46:56.720Z",
+          "sourceAudioSha256": "578ed57897a4c0420baa17a4c0ff97ba7fc70852c02ebc1b0eb8758188769db6"
+        }
+      },
+      {
+        "id": "l22-basic-s004",
+        "order": 4,
+        "text": "今日は 曇りだ。",
+        "translationZh": "今天是阴天。",
+        "confidence": "high",
+        "rawText": "4. 今日は 曇りだ。",
+        "audioSegment": {
+          "id": "l22-basic-s004",
+          "trackId": "lesson_basic",
+          "sourceUrl": "/data/ocr/audio-clips/lesson22/l22-basic-s004.mp3",
+          "start": 0,
+          "end": 1.42,
+          "duration": 1.42,
+          "method": "approved-asr-alignment",
+          "confidence": "approved",
+          "reviewedAt": "2026-08-05T08:46:56.720Z",
+          "sourceAudioSha256": "578ed57897a4c0420baa17a4c0ff97ba7fc70852c02ebc1b0eb8758188769db6"
+        }
+      }
+    ],
+    "dialogues": [
+      {
+        "id": "l22-basic-dialogue-001",
+        "label": "A",
+        "lines": [
+          {
+            "id": "l22-basic-dialogue-001-line-001",
+            "speaker": "甲",
+            "text": "明日 ボーリングに 行かない？",
+            "translationZh": "明天去打保龄球吗？",
+            "confidence": "high",
+            "rawText": "甲：明日 ボーリングに 行かない？",
+            "audioSegment": {
+              "id": "l22-basic-dialogue-001-line-001",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson22/l22-basic-dialogue-001-line-001.mp3",
+              "start": 0,
+              "end": 2.06,
+              "duration": 2.06,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:46:56.720Z",
+              "sourceAudioSha256": "578ed57897a4c0420baa17a4c0ff97ba7fc70852c02ebc1b0eb8758188769db6"
+            }
+          },
+          {
+            "id": "l22-basic-dialogue-001-line-002",
+            "speaker": "乙",
+            "text": "ごめん。明日は 仕事が あるから…。",
+            "translationZh": "抱歉。明天有工作……",
+            "confidence": "high",
+            "rawText": "乙：ごめん。明日は 仕事が あるから…。",
+            "audioSegment": {
+              "id": "l22-basic-dialogue-001-line-002",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson22/l22-basic-dialogue-001-line-002.mp3",
+              "start": 0,
+              "end": 2.5,
+              "duration": 2.5,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:46:56.720Z",
+              "sourceAudioSha256": "578ed57897a4c0420baa17a4c0ff97ba7fc70852c02ebc1b0eb8758188769db6"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l22-basic-dialogue-002",
+        "label": "B",
+        "lines": [
+          {
+            "id": "l22-basic-dialogue-002-line-001",
+            "speaker": "甲",
+            "text": "昨日の 試験、どうだった？",
+            "translationZh": "昨天的考试怎么样？",
+            "confidence": "high",
+            "rawText": "甲：昨日の 試験、どうだった？",
+            "audioSegment": {
+              "id": "l22-basic-dialogue-002-line-001",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson22/l22-basic-dialogue-002-line-001.mp3",
+              "start": 0,
+              "end": 2.06,
+              "duration": 2.06,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:46:56.720Z",
+              "sourceAudioSha256": "578ed57897a4c0420baa17a4c0ff97ba7fc70852c02ebc1b0eb8758188769db6"
+            }
+          },
+          {
+            "id": "l22-basic-dialogue-002-line-002",
+            "speaker": "乙",
+            "text": "ちょっと 難しかったけど、まあまあ できたよ。",
+            "translationZh": "有点难，不过还算做出来了。",
+            "confidence": "high",
+            "rawText": "乙：ちょっと 難しかったけど、まあまあ できたよ。",
+            "audioSegment": {
+              "id": "l22-basic-dialogue-002-line-002",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson22/l22-basic-dialogue-002-line-002.mp3",
+              "start": 0,
+              "end": 3.38,
+              "duration": 3.38,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:46:56.720Z",
+              "sourceAudioSha256": "578ed57897a4c0420baa17a4c0ff97ba7fc70852c02ebc1b0eb8758188769db6"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l22-basic-dialogue-003",
+        "label": "C",
+        "lines": [
+          {
+            "id": "l22-basic-dialogue-003-line-001",
+            "speaker": "甲",
+            "text": "この ネクタイ、派手？",
+            "translationZh": "这条领带花哨吗？",
+            "confidence": "high",
+            "rawText": "甲：この ネクタイ、派手？",
+            "audioSegment": {
+              "id": "l22-basic-dialogue-003-line-001",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson22/l22-basic-dialogue-003-line-001.mp3",
+              "start": 0,
+              "end": 1.58,
+              "duration": 1.58,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:46:56.720Z",
+              "sourceAudioSha256": "578ed57897a4c0420baa17a4c0ff97ba7fc70852c02ebc1b0eb8758188769db6"
+            }
+          },
+          {
+            "id": "l22-basic-dialogue-003-line-002",
+            "speaker": "乙",
+            "text": "ううん、全然 派手じゃないわ。",
+            "translationZh": "不，一点也不花哨。",
+            "confidence": "high",
+            "rawText": "乙：ううん、全然 派手じゃないわ。",
+            "audioSegment": {
+              "id": "l22-basic-dialogue-003-line-002",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson22/l22-basic-dialogue-003-line-002.mp3",
+              "start": 0,
+              "end": 2.62,
+              "duration": 2.62,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:46:56.720Z",
+              "sourceAudioSha256": "578ed57897a4c0420baa17a4c0ff97ba7fc70852c02ebc1b0eb8758188769db6"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l22-basic-dialogue-004",
+        "label": "D",
+        "lines": [
+          {
+            "id": "l22-basic-dialogue-004-line-001",
+            "speaker": "甲",
+            "text": "森さんの 電話番号、知ってる？",
+            "translationZh": "知道森先生的电话号码吗？",
+            "confidence": "high",
+            "rawText": "甲：森さんの 電話番号、知ってる？",
+            "audioSegment": {
+              "id": "l22-basic-dialogue-004-line-001",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson22/l22-basic-dialogue-004-line-001.mp3",
+              "start": 0,
+              "end": 2.22,
+              "duration": 2.22,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:46:56.720Z",
+              "sourceAudioSha256": "578ed57897a4c0420baa17a4c0ff97ba7fc70852c02ebc1b0eb8758188769db6"
+            }
+          },
+          {
+            "id": "l22-basic-dialogue-004-line-002",
+            "speaker": "乙",
+            "text": "うん、知ってる。3493-3945だよ。",
+            "translationZh": "嗯，知道，是3493-3945。",
+            "confidence": "high",
+            "rawText": "乙：うん、知ってる。3493-3945だよ。",
+            "audioSegment": {
+              "id": "l22-basic-dialogue-004-line-002",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson22/l22-basic-dialogue-004-line-002.mp3",
+              "start": 0,
+              "end": 4.74,
+              "duration": 4.74,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:46:56.720Z",
+              "sourceAudioSha256": "578ed57897a4c0420baa17a4c0ff97ba7fc70852c02ebc1b0eb8758188769db6"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "applicationText": {
+    "title": "友達",
+    "blocks": [
+      {
+        "id": "l22-app-block-001",
+        "type": "scene",
+        "text": "手机响了。",
+        "translationZh": "手机响了。",
+        "confidence": "high",
+        "rawText": "手机响了。"
+      },
+      {
+        "id": "l22-app-block-002",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l22-app-block-002-line-001",
+            "speaker": "小野",
+            "text": "もしもし、小野です。",
+            "translationZh": "喂，我是小野。",
+            "confidence": "high",
+            "rawText": "小野：もしもし、小野です。",
+            "audioSegment": {
+              "id": "l22-app-block-002-line-001",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson22/l22-app-block-002-line-001.mp3",
+              "start": 0,
+              "end": 1.58,
+              "duration": 1.58,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:47:34.343Z",
+              "sourceAudioSha256": "e9f6a661d70ec83fa057deb3bd128fd68fa6bf43dd8c3f8e99e211a507795c58"
+            }
+          },
+          {
+            "id": "l22-app-block-002-line-002",
+            "speaker": "清水",
+            "text": "小野さん？清水だけど。",
+            "translationZh": "小野？我是清水。",
+            "confidence": "high",
+            "rawText": "清水：小野さん？清水だけど。",
+            "audioSegment": {
+              "id": "l22-app-block-002-line-002",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson22/l22-app-block-002-line-002.mp3",
+              "start": 0,
+              "end": 1.94,
+              "duration": 1.94,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:47:34.343Z",
+              "sourceAudioSha256": "e9f6a661d70ec83fa057deb3bd128fd68fa6bf43dd8c3f8e99e211a507795c58"
+            }
+          },
+          {
+            "id": "l22-app-block-002-line-003",
+            "speaker": "小野",
+            "text": "ああ、清水君、どうしたの？",
+            "translationZh": "啊，清水，怎么了？",
+            "confidence": "high",
+            "rawText": "小野：ああ、清水君、どうしたの？",
+            "audioSegment": {
+              "id": "l22-app-block-002-line-003",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson22/l22-app-block-002-line-003.mp3",
+              "start": 0,
+              "end": 2.78,
+              "duration": 2.78,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:47:34.343Z",
+              "sourceAudioSha256": "e9f6a661d70ec83fa057deb3bd128fd68fa6bf43dd8c3f8e99e211a507795c58"
+            }
+          },
+          {
+            "id": "l22-app-block-002-line-004",
+            "speaker": "清水",
+            "text": "最近 太田から 連絡 あった？",
+            "translationZh": "最近太田联系过你吗？",
+            "confidence": "high",
+            "rawText": "清水：最近 太田から 連絡 あった？",
+            "audioSegment": {
+              "id": "l22-app-block-002-line-004",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson22/l22-app-block-002-line-004.mp3",
+              "start": 0,
+              "end": 2.22,
+              "duration": 2.22,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:47:34.343Z",
+              "sourceAudioSha256": "e9f6a661d70ec83fa057deb3bd128fd68fa6bf43dd8c3f8e99e211a507795c58"
+            }
+          },
+          {
+            "id": "l22-app-block-002-line-005",
+            "speaker": "小野",
+            "text": "太田君から？ううん、ないわよ。どうして？",
+            "translationZh": "太田？没有啊。怎么了？",
+            "confidence": "high",
+            "rawText": "小野：太田君から？ううん、ないわよ。どうして？",
+            "audioSegment": {
+              "id": "l22-app-block-002-line-005",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson22/l22-app-block-002-line-005.mp3",
+              "start": 0,
+              "end": 4.38,
+              "duration": 4.38,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:47:34.343Z",
+              "sourceAudioSha256": "e9f6a661d70ec83fa057deb3bd128fd68fa6bf43dd8c3f8e99e211a507795c58"
+            }
+          },
+          {
+            "id": "l22-app-block-002-line-006",
+            "speaker": "清水",
+            "text": "太田、今度 中国へ 転勤だって。",
+            "translationZh": "太田这次要调到中国工作。",
+            "confidence": "high",
+            "rawText": "清水：太田、今度 中国へ 転勤だって。",
+            "audioSegment": {
+              "id": "l22-app-block-002-line-006",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson22/l22-app-block-002-line-006.mp3",
+              "start": 0,
+              "end": 2.7,
+              "duration": 2.7,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:47:34.343Z",
+              "sourceAudioSha256": "e9f6a661d70ec83fa057deb3bd128fd68fa6bf43dd8c3f8e99e211a507795c58"
+            }
+          },
+          {
+            "id": "l22-app-block-002-line-007",
+            "speaker": "小野",
+            "text": "本当に？いつ 行くの？",
+            "translationZh": "真的吗？什么时候去？",
+            "confidence": "high",
+            "rawText": "小野：本当に？いつ 行くの？",
+            "audioSegment": {
+              "id": "l22-app-block-002-line-007",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson22/l22-app-block-002-line-007.mp3",
+              "start": 0,
+              "end": 2.3,
+              "duration": 2.3,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:47:34.343Z",
+              "sourceAudioSha256": "e9f6a661d70ec83fa057deb3bd128fd68fa6bf43dd8c3f8e99e211a507795c58"
+            }
+          },
+          {
+            "id": "l22-app-block-002-line-008",
+            "speaker": "清水",
+            "text": "たしか 来月だよ。",
+            "translationZh": "好像是下个月。",
+            "confidence": "high",
+            "rawText": "清水：たしか 来月だよ。",
+            "audioSegment": {
+              "id": "l22-app-block-002-line-008",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson22/l22-app-block-002-line-008.mp3",
+              "start": 0,
+              "end": 1.46,
+              "duration": 1.46,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:47:34.343Z",
+              "sourceAudioSha256": "e9f6a661d70ec83fa057deb3bd128fd68fa6bf43dd8c3f8e99e211a507795c58"
+            }
+          },
+          {
+            "id": "l22-app-block-002-line-009",
+            "speaker": "小野",
+            "text": "急ね。中国の どこ？期間は どのぐらい？",
+            "translationZh": "真突然。中国哪里？多长时间？",
+            "confidence": "high",
+            "rawText": "小野：急ね。中国の どこ？期間は どのぐらい？",
+            "audioSegment": {
+              "id": "l22-app-block-002-line-009",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson22/l22-app-block-002-line-009.mp3",
+              "start": 0,
+              "end": 4.46,
+              "duration": 4.46,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:47:34.343Z",
+              "sourceAudioSha256": "e9f6a661d70ec83fa057deb3bd128fd68fa6bf43dd8c3f8e99e211a507795c58"
+            }
+          },
+          {
+            "id": "l22-app-block-002-line-010",
+            "speaker": "清水",
+            "text": "北京だって。期間は 4年か 5年かな。",
+            "translationZh": "听说是北京。时间大概四五年吧。",
+            "confidence": "high",
+            "rawText": "清水：北京だって。期間は 4年か 5年かな。",
+            "audioSegment": {
+              "id": "l22-app-block-002-line-010",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson22/l22-app-block-002-line-010.mp3",
+              "start": 0,
+              "end": 3.5,
+              "duration": 3.5,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:47:34.343Z",
+              "sourceAudioSha256": "e9f6a661d70ec83fa057deb3bd128fd68fa6bf43dd8c3f8e99e211a507795c58"
+            }
+          },
+          {
+            "id": "l22-app-block-002-line-011",
+            "speaker": "小野",
+            "text": "ずいぶん 長いわね。太田君 1人で 行くの？",
+            "translationZh": "很长啊。太田一个人去吗？",
+            "confidence": "high",
+            "rawText": "小野：ずいぶん 長いわね。太田君 1人で 行くの？",
+            "audioSegment": {
+              "id": "l22-app-block-002-line-011",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson22/l22-app-block-002-line-011.mp3",
+              "start": 0,
+              "end": 2.7,
+              "duration": 2.7,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:47:34.343Z",
+              "sourceAudioSha256": "e9f6a661d70ec83fa057deb3bd128fd68fa6bf43dd8c3f8e99e211a507795c58"
+            }
+          },
+          {
+            "id": "l22-app-block-002-line-012",
+            "speaker": "清水",
+            "text": "いや、奥さんも いっしょだよ。来週 送別会を するけど、都合は どうかな？",
+            "translationZh": "不，他夫人也一起去。下周办欢送会，你方便吗？",
+            "confidence": "high",
+            "rawText": "清水：いや、奥さんも いっしょだよ。来週 送別会を するけど、都合は どうかな？",
+            "audioSegment": {
+              "id": "l22-app-block-002-line-012",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson22/l22-app-block-002-line-012.mp3",
+              "start": 0,
+              "end": 5.18,
+              "duration": 5.18,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:47:34.343Z",
+              "sourceAudioSha256": "e9f6a661d70ec83fa057deb3bd128fd68fa6bf43dd8c3f8e99e211a507795c58"
+            }
+          },
+          {
+            "id": "l22-app-block-002-line-013",
+            "speaker": "小野",
+            "text": "ええと、火曜日は 予定が あるけど、それ以外は 大丈夫よ。",
+            "translationZh": "嗯，星期二有安排，其他时间没问题。",
+            "confidence": "high",
+            "rawText": "小野：ええと、火曜日は 予定が あるけど、それ以外は 大丈夫よ。",
+            "audioSegment": {
+              "id": "l22-app-block-002-line-013",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson22/l22-app-block-002-line-013.mp3",
+              "start": 0,
+              "end": 5.1,
+              "duration": 5.1,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:47:34.343Z",
+              "sourceAudioSha256": "e9f6a661d70ec83fa057deb3bd128fd68fa6bf43dd8c3f8e99e211a507795c58"
+            }
+          },
+          {
+            "id": "l22-app-block-002-line-014",
+            "speaker": "清水",
+            "text": "分かった。じゃあ、また 連絡するよ。",
+            "translationZh": "知道了。那我再联系你。",
+            "confidence": "high",
+            "rawText": "清水：分かった。じゃあ、また 連絡するよ。",
+            "audioSegment": {
+              "id": "l22-app-block-002-line-014",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson22/l22-app-block-002-line-014.mp3",
+              "start": 0,
+              "end": 2.66,
+              "duration": 2.66,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:47:34.343Z",
+              "sourceAudioSha256": "e9f6a661d70ec83fa057deb3bd128fd68fa6bf43dd8c3f8e99e211a507795c58"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l22-app-block-003",
+        "type": "scene",
+        "text": "通话结束。",
+        "translationZh": "通话结束。",
+        "confidence": "high",
+        "rawText": "通话结束。"
+      },
+      {
+        "id": "l22-app-block-004",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l22-app-block-004-line-001",
+            "speaker": "李",
+            "text": "お友達からですか、小野さん？",
+            "translationZh": "是朋友打来的吗，小野？",
+            "confidence": "high",
+            "rawText": "李：お友達からですか、小野さん？",
+            "audioSegment": {
+              "id": "l22-app-block-004-line-001",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson22/l22-app-block-004-line-001.mp3",
+              "start": 0,
+              "end": 2.06,
+              "duration": 2.06,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:47:34.343Z",
+              "sourceAudioSha256": "e9f6a661d70ec83fa057deb3bd128fd68fa6bf43dd8c3f8e99e211a507795c58"
+            }
+          },
+          {
+            "id": "l22-app-block-004-line-002",
+            "speaker": "小野",
+            "text": "あっ、分かりました？",
+            "translationZh": "啊，你看出来了？",
+            "confidence": "high",
+            "rawText": "小野：あっ、分かりました？",
+            "audioSegment": {
+              "id": "l22-app-block-004-line-002",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson22/l22-app-block-004-line-002.mp3",
+              "start": 0,
+              "end": 1.62,
+              "duration": 1.62,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:47:34.343Z",
+              "sourceAudioSha256": "e9f6a661d70ec83fa057deb3bd128fd68fa6bf43dd8c3f8e99e211a507795c58"
+            }
+          },
+          {
+            "id": "l22-app-block-004-line-003",
+            "speaker": "李",
+            "text": "ええ。いつもの 話し方じゃ ありませんでしたから。",
+            "translationZh": "嗯，因为不是你平时的说话方式。",
+            "confidence": "high",
+            "rawText": "李：ええ。いつもの 話し方じゃ ありませんでしたから。",
+            "audioSegment": {
+              "id": "l22-app-block-004-line-003",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson22/l22-app-block-004-line-003.mp3",
+              "start": 0,
+              "end": 3.26,
+              "duration": 3.26,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:47:34.343Z",
+              "sourceAudioSha256": "e9f6a661d70ec83fa057deb3bd128fd68fa6bf43dd8c3f8e99e211a507795c58"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "warnings": [
+    "segments/ruby 未批量生成；保留 text 与 translationZh，后续可单独补充 ruby 切片。"
+  ],
+  "audioAlignment": {
+    "schemaVersion": 1,
+    "method": "approved-asr-alignment",
+    "sourceAlignment": "data/ocr/lesson22-text-audio-alignment.json",
+    "publishedAt": "2026-08-05T08:47:38.642Z",
+    "approvedSegments": 29
+  }
+}

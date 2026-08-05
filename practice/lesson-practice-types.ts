@@ -59,6 +59,7 @@ export type Answer = {
   choiceIds?: string[];
   boolean?: boolean;
   acceptableAlternatives?: string[];
+  slotAlternatives?: Record<string, string[]>;
   note?: string;
 };
 

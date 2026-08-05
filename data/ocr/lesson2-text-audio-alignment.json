@@ -1,0 +1,2570 @@
+{
+  "schemaVersion": 1,
+  "lessonId": "lesson2",
+  "generatedAt": "2026-08-05T08:15:29.290Z",
+  "method": "azure-speech-sdk-global-monotonic-alignment",
+  "reviewStatus": "approved",
+  "tracks": [
+    {
+      "id": "lesson_basic",
+      "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit1/lesson2/lesson_basic.mp3",
+      "localAudioPath": "data/ocr/audio-cache/lesson2/lesson_basic.mp3",
+      "sourceAudioSha256": "780f1dd3937e9bdbdd64bbf28d3dd1ce109c9d0bd425786a2e57cdfa1a12d49e",
+      "transcription": {
+        "provider": "azure-speech-sdk-continuous-recognition",
+        "locale": "ja-JP",
+        "text": "いい。これは本です。 それは何ですか？三。 あれは誰の傘ですか？ 数。このカメラはスミスさんのです。 ええ。これはテレビですか？ いいえ、それはテレビではありません。パソコンです。 B。それは何ですか？ これは日本語の本です。 C森さんのかばんはどれですか？ あの、かばんです。 Dそのノートは誰のですか？私のです。",
+        "phrases": [
+          {
+            "index": 0,
+            "text": "いい。これは本です。",
+            "start": 0.27,
+            "end": 2.87,
+            "confidence": 0.7773748,
+            "words": [
+              {
+                "text": "い",
+                "start": 0.27,
+                "end": 0.55
+              },
+              {
+                "text": "い",
+                "start": 0.55,
+                "end": 0.79
+              },
+              {
+                "text": "こ",
+                "start": 1.31,
+                "end": 1.51
+              },
+              {
+                "text": "れ",
+                "start": 1.51,
+                "end": 1.71
+              },
+              {
+                "text": "は",
+                "start": 1.71,
+                "end": 2.07
+              },
+              {
+                "text": "本",
+                "start": 2.15,
+                "end": 2.47
+              },
+              {
+                "text": "で",
+                "start": 2.47,
+                "end": 2.63
+              },
+              {
+                "text": "す",
+                "start": 2.63,
+                "end": 2.87
+              }
+            ]
+          },
+          {
+            "index": 1,
+            "text": "それは何ですか？三。",
+            "start": 5.07,
+            "end": 7.95,
+            "confidence": 0.9065868,
+            "words": [
+              {
+                "text": "そ",
+                "start": 5.07,
+                "end": 5.35
+              },
+              {
+                "text": "れ",
+                "start": 5.35,
+                "end": 5.51
+              },
+              {
+                "text": "は",
+                "start": 5.51,
+                "end": 5.87
+              },
+              {
+                "text": "何",
+                "start": 5.95,
+                "end": 6.23
+              },
+              {
+                "text": "で",
+                "start": 6.23,
+                "end": 6.43
+              },
+              {
+                "text": "す",
+                "start": 6.43,
+                "end": 6.55
+              },
+              {
+                "text": "か",
+                "start": 6.55,
+                "end": 6.87
+              },
+              {
+                "text": "三",
+                "start": 7.27,
+                "end": 7.95
+              }
+            ]
+          },
+          {
+            "index": 2,
+            "text": "あれは誰の傘ですか？",
+            "start": 8.91,
+            "end": 11.27,
+            "confidence": 0.94703543,
+            "words": [
+              {
+                "text": "あ",
+                "start": 8.91,
+                "end": 9.15
+              },
+              {
+                "text": "れ",
+                "start": 9.15,
+                "end": 9.35
+              },
+              {
+                "text": "は",
+                "start": 9.35,
+                "end": 9.71
+              },
+              {
+                "text": "誰",
+                "start": 9.75,
+                "end": 10.15
+              },
+              {
+                "text": "の",
+                "start": 10.15,
+                "end": 10.31
+              },
+              {
+                "text": "傘",
+                "start": 10.31,
+                "end": 10.59
+              },
+              {
+                "text": "で",
+                "start": 10.59,
+                "end": 10.75
+              },
+              {
+                "text": "す",
+                "start": 10.75,
+                "end": 10.87
+              },
+              {
+                "text": "か",
+                "start": 10.87,
+                "end": 11.27
+              }
+            ]
+          },
+          {
+            "index": 3,
+            "text": "数。このカメラはスミスさんのです。",
+            "start": 12.42,
+            "end": 16.5,
+            "confidence": 0.90487236,
+            "words": [
+              {
+                "text": "数",
+                "start": 12.42,
+                "end": 13.02
+              },
+              {
+                "text": "こ",
+                "start": 13.86,
+                "end": 14.1
+              },
+              {
+                "text": "の",
+                "start": 14.1,
+                "end": 14.26
+              },
+              {
+                "text": "カ",
+                "start": 14.26,
+                "end": 14.38
+              },
+              {
+                "text": "メ",
+                "start": 14.38,
+                "end": 14.54
+              },
+              {
+                "text": "ラ",
+                "start": 14.54,
+                "end": 14.7
+              },
+              {
+                "text": "は",
+                "start": 14.7,
+                "end": 15.14
+              },
+              {
+                "text": "ス",
+                "start": 15.18,
+                "end": 15.46
+              },
+              {
+                "text": "ミ",
+                "start": 15.46,
+                "end": 15.62
+              },
+              {
+                "text": "ス",
+                "start": 15.62,
+                "end": 15.74
+              },
+              {
+                "text": "さ",
+                "start": 15.74,
+                "end": 15.9
+              },
+              {
+                "text": "ん",
+                "start": 15.9,
+                "end": 15.98
+              },
+              {
+                "text": "の",
+                "start": 15.98,
+                "end": 16.1
+              },
+              {
+                "text": "で",
+                "start": 16.1,
+                "end": 16.22
+              },
+              {
+                "text": "す",
+                "start": 16.22,
+                "end": 16.5
+              }
+            ]
+          },
+          {
+            "index": 4,
+            "text": "ええ。これはテレビですか？",
+            "start": 18.51,
+            "end": 21.27,
+            "confidence": 0.8960508,
+            "words": [
+              {
+                "text": "え",
+                "start": 18.51,
+                "end": 18.79
+              },
+              {
+                "text": "え",
+                "start": 18.79,
+                "end": 19.07
+              },
+              {
+                "text": "こ",
+                "start": 19.51,
+                "end": 19.75
+              },
+              {
+                "text": "れ",
+                "start": 19.75,
+                "end": 19.91
+              },
+              {
+                "text": "は",
+                "start": 19.91,
+                "end": 20.19
+              },
+              {
+                "text": "テ",
+                "start": 20.19,
+                "end": 20.35
+              },
+              {
+                "text": "レ",
+                "start": 20.35,
+                "end": 20.47
+              },
+              {
+                "text": "ビ",
+                "start": 20.47,
+                "end": 20.63
+              },
+              {
+                "text": "で",
+                "start": 20.63,
+                "end": 20.79
+              },
+              {
+                "text": "す",
+                "start": 20.79,
+                "end": 20.91
+              },
+              {
+                "text": "か",
+                "start": 20.91,
+                "end": 21.27
+              }
+            ]
+          },
+          {
+            "index": 5,
+            "text": "いいえ、それはテレビではありません。パソコンです。",
+            "start": 21.91,
+            "end": 26.23,
+            "confidence": 0.91897756,
+            "words": [
+              {
+                "text": "い",
+                "start": 21.91,
+                "end": 22.15
+              },
+              {
+                "text": "い",
+                "start": 22.15,
+                "end": 22.23
+              },
+              {
+                "text": "え",
+                "start": 22.23,
+                "end": 22.63
+              },
+              {
+                "text": "そ",
+                "start": 22.67,
+                "end": 22.95
+              },
+              {
+                "text": "れ",
+                "start": 22.95,
+                "end": 23.15
+              },
+              {
+                "text": "は",
+                "start": 23.15,
+                "end": 23.47
+              },
+              {
+                "text": "テ",
+                "start": 23.47,
+                "end": 23.59
+              },
+              {
+                "text": "レ",
+                "start": 23.59,
+                "end": 23.75
+              },
+              {
+                "text": "ビ",
+                "start": 23.75,
+                "end": 23.87
+              },
+              {
+                "text": "で",
+                "start": 23.87,
+                "end": 24.03
+              },
+              {
+                "text": "は",
+                "start": 24.03,
+                "end": 24.15
+              },
+              {
+                "text": "あ",
+                "start": 24.15,
+                "end": 24.27
+              },
+              {
+                "text": "り",
+                "start": 24.27,
+                "end": 24.39
+              },
+              {
+                "text": "ま",
+                "start": 24.39,
+                "end": 24.51
+              },
+              {
+                "text": "せ",
+                "start": 24.51,
+                "end": 24.75
+              },
+              {
+                "text": "ん",
+                "start": 24.75,
+                "end": 24.99
+              },
+              {
+                "text": "パ",
+                "start": 25.39,
+                "end": 25.59
+              },
+              {
+                "text": "ソ",
+                "start": 25.59,
+                "end": 25.75
+              },
+              {
+                "text": "コ",
+                "start": 25.75,
+                "end": 25.91
+              },
+              {
+                "text": "ン",
+                "start": 25.91,
+                "end": 25.99
+              },
+              {
+                "text": "で",
+                "start": 25.99,
+                "end": 26.15
+              },
+              {
+                "text": "す",
+                "start": 26.15,
+                "end": 26.23
+              }
+            ]
+          },
+          {
+            "index": 6,
+            "text": "B。それは何ですか？",
+            "start": 27.8,
+            "end": 29.28,
+            "confidence": 0.897874,
+            "words": [
+              {
+                "text": "b",
+                "start": 27.8,
+                "end": 27.88
+              },
+              {
+                "text": "そ",
+                "start": 27.88,
+                "end": 27.96
+              },
+              {
+                "text": "れ",
+                "start": 27.96,
+                "end": 28.08
+              },
+              {
+                "text": "は",
+                "start": 28.08,
+                "end": 28.36
+              },
+              {
+                "text": "何",
+                "start": 28.36,
+                "end": 28.6
+              },
+              {
+                "text": "で",
+                "start": 28.6,
+                "end": 28.8
+              },
+              {
+                "text": "す",
+                "start": 28.8,
+                "end": 28.88
+              },
+              {
+                "text": "か",
+                "start": 28.88,
+                "end": 29.28
+              }
+            ]
+          },
+          {
+            "index": 7,
+            "text": "これは日本語の本です。",
+            "start": 30.23,
+            "end": 32.43,
+            "confidence": 0.96711266,
+            "words": [
+              {
+                "text": "こ",
+                "start": 30.23,
+                "end": 30.43
+              },
+              {
+                "text": "れ",
+                "start": 30.43,
+                "end": 30.59
+              },
+              {
+                "text": "は",
+                "start": 30.59,
+                "end": 30.95
+              },
+              {
+                "text": "日",
+                "start": 31.07,
+                "end": 31.27
+              },
+              {
+                "text": "本",
+                "start": 31.27,
+                "end": 31.47
+              },
+              {
+                "text": "語",
+                "start": 31.47,
+                "end": 31.63
+              },
+              {
+                "text": "の",
+                "start": 31.63,
+                "end": 31.71
+              },
+              {
+                "text": "本",
+                "start": 31.71,
+                "end": 31.95
+              },
+              {
+                "text": "で",
+                "start": 31.95,
+                "end": 32.07
+              },
+              {
+                "text": "す",
+                "start": 32.07,
+                "end": 32.43
+              }
+            ]
+          },
+          {
+            "index": 8,
+            "text": "C森さんのかばんはどれですか？",
+            "start": 33.03,
+            "end": 36.39,
+            "confidence": 0.70004785,
+            "words": [
+              {
+                "text": "c",
+                "start": 33.03,
+                "end": 33.71
+              },
+              {
+                "text": "森",
+                "start": 34.07,
+                "end": 34.43
+              },
+              {
+                "text": "さ",
+                "start": 34.43,
+                "end": 34.59
+              },
+              {
+                "text": "ん",
+                "start": 34.59,
+                "end": 34.67
+              },
+              {
+                "text": "の",
+                "start": 34.67,
+                "end": 34.83
+              },
+              {
+                "text": "か",
+                "start": 34.83,
+                "end": 34.99
+              },
+              {
+                "text": "ば",
+                "start": 34.99,
+                "end": 35.15
+              },
+              {
+                "text": "ん",
+                "start": 35.15,
+                "end": 35.27
+              },
+              {
+                "text": "は",
+                "start": 35.27,
+                "end": 35.51
+              },
+              {
+                "text": "ど",
+                "start": 35.51,
+                "end": 35.63
+              },
+              {
+                "text": "れ",
+                "start": 35.63,
+                "end": 35.75
+              },
+              {
+                "text": "で",
+                "start": 35.75,
+                "end": 35.91
+              },
+              {
+                "text": "す",
+                "start": 35.91,
+                "end": 35.99
+              },
+              {
+                "text": "か",
+                "start": 35.99,
+                "end": 36.39
+              }
+            ]
+          },
+          {
+            "index": 9,
+            "text": "あの、かばんです。",
+            "start": 37.07,
+            "end": 38.23,
+            "confidence": 0.80162823,
+            "words": [
+              {
+                "text": "あ",
+                "start": 37.07,
+                "end": 37.31
+              },
+              {
+                "text": "の",
+                "start": 37.31,
+                "end": 37.47
+              },
+              {
+                "text": "か",
+                "start": 37.47,
+                "end": 37.63
+              },
+              {
+                "text": "ば",
+                "start": 37.63,
+                "end": 37.75
+              },
+              {
+                "text": "ん",
+                "start": 37.75,
+                "end": 37.87
+              },
+              {
+                "text": "で",
+                "start": 37.87,
+                "end": 37.99
+              },
+              {
+                "text": "す",
+                "start": 37.99,
+                "end": 38.23
+              }
+            ]
+          },
+          {
+            "index": 10,
+            "text": "Dそのノートは誰のですか？私のです。",
+            "start": 38.99,
+            "end": 43.47,
+            "confidence": 0.8690614,
+            "words": [
+              {
+                "text": "d",
+                "start": 38.99,
+                "end": 39.59
+              },
+              {
+                "text": "そ",
+                "start": 39.91,
+                "end": 40.19
+              },
+              {
+                "text": "の",
+                "start": 40.19,
+                "end": 40.35
+              },
+              {
+                "text": "ノ",
+                "start": 40.35,
+                "end": 40.55
+              },
+              {
+                "text": "ー",
+                "start": 40.55,
+                "end": 40.79
+              },
+              {
+                "text": "ト",
+                "start": 40.79,
+                "end": 40.87
+              },
+              {
+                "text": "は",
+                "start": 40.87,
+                "end": 41.03
+              },
+              {
+                "text": "誰",
+                "start": 41.03,
+                "end": 41.31
+              },
+              {
+                "text": "の",
+                "start": 41.31,
+                "end": 41.43
+              },
+              {
+                "text": "で",
+                "start": 41.43,
+                "end": 41.59
+              },
+              {
+                "text": "す",
+                "start": 41.59,
+                "end": 41.67
+              },
+              {
+                "text": "か",
+                "start": 41.67,
+                "end": 42.75
+              },
+              {
+                "text": "私",
+                "start": 42.75,
+                "end": 42.91
+              },
+              {
+                "text": "の",
+                "start": 42.91,
+                "end": 43.03
+              },
+              {
+                "text": "で",
+                "start": 43.03,
+                "end": 43.19
+              },
+              {
+                "text": "す",
+                "start": 43.19,
+                "end": 43.47
+              }
+            ]
+          }
+        ]
+      },
+      "items": [
+        {
+          "id": "l2-basic-s001",
+          "trackId": "lesson_basic",
+          "speaker": "",
+          "text": "これは 本です。",
+          "kana": "これは ほんです。",
+          "translationZh": "这是书。",
+          "candidate": {
+            "start": 1.25,
+            "end": 2.95,
+            "asrText": "こ れ は 本 で す",
+            "phraseIndexes": [
+              0
+            ],
+            "matchScore": 1,
+            "confidence": 0.777,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 1.25,
+            "end": 2.95,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:15:52.090Z"
+          }
+        },
+        {
+          "id": "l2-basic-s002",
+          "trackId": "lesson_basic",
+          "speaker": "",
+          "text": "それは 何ですか。",
+          "kana": "それは なんですか。",
+          "translationZh": "那是什么？",
+          "candidate": {
+            "start": 5.01,
+            "end": 6.95,
+            "asrText": "そ れ は 何 で す か",
+            "phraseIndexes": [
+              1
+            ],
+            "matchScore": 1,
+            "confidence": 0.907,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 5.01,
+            "end": 6.95,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:15:52.090Z"
+          }
+        },
+        {
+          "id": "l2-basic-s003",
+          "trackId": "lesson_basic",
+          "speaker": "",
+          "text": "あれは だれの 傘ですか。",
+          "kana": "あれは だれの かさですか。",
+          "translationZh": "那是谁的伞？",
+          "candidate": {
+            "start": 8.85,
+            "end": 11.35,
+            "asrText": "あ れ は 誰 の 傘 で す か",
+            "phraseIndexes": [
+              2
+            ],
+            "matchScore": 0.8,
+            "confidence": 0.947,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 8.85,
+            "end": 11.35,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:15:52.090Z"
+          }
+        },
+        {
+          "id": "l2-basic-s004",
+          "trackId": "lesson_basic",
+          "speaker": "",
+          "text": "この カメラは スミスさんのです。",
+          "kana": "この カメラは スミスさんのです。",
+          "translationZh": "这个照相机是史密斯先生的。",
+          "candidate": {
+            "start": 13.8,
+            "end": 16.58,
+            "asrText": "こ の カ メ ラ は ス ミ ス さ ん の で す",
+            "phraseIndexes": [
+              3
+            ],
+            "matchScore": 1,
+            "confidence": 0.905,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 13.8,
+            "end": 16.58,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:15:52.090Z"
+          }
+        },
+        {
+          "id": "l2-basic-dialogue-001-line-001",
+          "trackId": "lesson_basic",
+          "speaker": "甲",
+          "text": "これは テレビですか。",
+          "kana": "これは テレビですか。",
+          "translationZh": "这是电视机吗？",
+          "candidate": {
+            "start": 19.45,
+            "end": 21.35,
+            "asrText": "こ れ は テ レ ビ で す か",
+            "phraseIndexes": [
+              4
+            ],
+            "matchScore": 1,
+            "confidence": 0.896,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 19.45,
+            "end": 21.35,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:15:52.090Z"
+          }
+        },
+        {
+          "id": "l2-basic-dialogue-001-line-002",
+          "trackId": "lesson_basic",
+          "speaker": "乙",
+          "text": "いいえ、それは テレビでは ありません。パソコンです。",
+          "kana": "いいえ、それは テレビでは ありません。パソコンです。",
+          "translationZh": "不，那不是电视机。是个人电脑。",
+          "candidate": {
+            "start": 21.85,
+            "end": 26.31,
+            "asrText": "い い え そ れ は テ レ ビ で は あ り ま せ ん パ ソ コ ン で す",
+            "phraseIndexes": [
+              5
+            ],
+            "matchScore": 1,
+            "confidence": 0.919,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 21.85,
+            "end": 26.31,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:15:52.090Z"
+          }
+        },
+        {
+          "id": "l2-basic-dialogue-002-line-001",
+          "trackId": "lesson_basic",
+          "speaker": "甲",
+          "text": "それは 何ですか。",
+          "kana": "それは なんですか。",
+          "translationZh": "那是什么？",
+          "candidate": {
+            "start": 27.82,
+            "end": 29.36,
+            "asrText": "そ れ は 何 で す か",
+            "phraseIndexes": [
+              6
+            ],
+            "matchScore": 1,
+            "confidence": 0.898,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 27.82,
+            "end": 29.36,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:15:52.090Z"
+          }
+        },
+        {
+          "id": "l2-basic-dialogue-002-line-002",
+          "trackId": "lesson_basic",
+          "speaker": "乙",
+          "text": "これは 日本語の 本です。",
+          "kana": "これは にほんごの ほんです。",
+          "translationZh": "这是日语书。",
+          "candidate": {
+            "start": 30.17,
+            "end": 32.51,
+            "asrText": "こ れ は 日 本 語 の 本 で す",
+            "phraseIndexes": [
+              7
+            ],
+            "matchScore": 1,
+            "confidence": 0.967,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 30.17,
+            "end": 32.51,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:15:52.090Z"
+          }
+        },
+        {
+          "id": "l2-basic-dialogue-003-line-001",
+          "trackId": "lesson_basic",
+          "speaker": "甲",
+          "text": "森さんの かばんは どれですか。",
+          "kana": "もりさんの かばんは どれですか。",
+          "translationZh": "森先生的包是哪一个？",
+          "candidate": {
+            "start": 34.01,
+            "end": 36.47,
+            "asrText": "森 さ ん の か ば ん は ど れ で す か",
+            "phraseIndexes": [
+              8
+            ],
+            "matchScore": 1,
+            "confidence": 0.7,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 34.01,
+            "end": 36.47,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:15:52.090Z"
+          }
+        },
+        {
+          "id": "l2-basic-dialogue-003-line-002",
+          "trackId": "lesson_basic",
+          "speaker": "乙",
+          "text": "あの かばんです。",
+          "kana": "あの かばんです。",
+          "translationZh": "是那个包。",
+          "candidate": {
+            "start": 37.01,
+            "end": 38.31,
+            "asrText": "あ の か ば ん で す",
+            "phraseIndexes": [
+              9
+            ],
+            "matchScore": 1,
+            "confidence": 0.802,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 37.01,
+            "end": 38.31,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:15:52.090Z"
+          }
+        },
+        {
+          "id": "l2-basic-dialogue-004-line-001",
+          "trackId": "lesson_basic",
+          "speaker": "甲",
+          "text": "その ノートは だれのですか。",
+          "kana": "その ノートは だれのですか。",
+          "translationZh": "那个笔记本是谁的？",
+          "candidate": {
+            "start": 39.85,
+            "end": 42.83,
+            "asrText": "そ の ノ ー ト は 誰 の で す か",
+            "phraseIndexes": [
+              10
+            ],
+            "matchScore": 0.833,
+            "confidence": 0.869,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 39.85,
+            "end": 42.83,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:15:52.090Z"
+          }
+        },
+        {
+          "id": "l2-basic-dialogue-004-line-002",
+          "trackId": "lesson_basic",
+          "speaker": "乙",
+          "text": "わたしのです。",
+          "kana": "わたしのです。",
+          "translationZh": "是我的。",
+          "candidate": {
+            "start": 42.69,
+            "end": 43.55,
+            "asrText": "私 の で す",
+            "phraseIndexes": [
+              10
+            ],
+            "matchScore": 0.5,
+            "confidence": 0.869,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 42.69,
+            "end": 43.55,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:15:52.090Z"
+          }
+        }
+      ]
+    },
+    {
+      "id": "lesson_apps",
+      "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit1/lesson2/lesson_apps.mp3",
+      "localAudioPath": "data/ocr/audio-cache/lesson2/lesson_apps.mp3",
+      "sourceAudioSha256": "dd1cd75132289b4458be0a68664eed872b5987e14db289d05c9480db0b742502",
+      "transcription": {
+        "provider": "azure-speech-sdk-continuous-recognition",
+        "locale": "ja-JP",
+        "text": "家族の写真。 処理チーフは新材スープでもピンクは注意が必要。セパンダコミュニティ。 シャイエディングランカモンシャオリエ、アリフォルチャー。 シャリーソンヴァーリー出版しそん、ティッシュペンディング。 リさん、それは何ですか？ これですか？家族の写真です。 この方はどなたですか？私の母です。 お母さんはおいくつですか？52歳です。 小野さん、これどうぞ。 え、なんですか？お土産です。 わあ、シルクのハンカチですか？ええ、スワトウのハンカチです。中国の名産品です。 どうも、ありがとうございます。",
+        "phrases": [
+          {
+            "index": 0,
+            "text": "家族の写真。",
+            "start": 0.39,
+            "end": 1.63,
+            "confidence": 0.94071317,
+            "words": [
+              {
+                "text": "家",
+                "start": 0.39,
+                "end": 0.67
+              },
+              {
+                "text": "族",
+                "start": 0.67,
+                "end": 0.99
+              },
+              {
+                "text": "の",
+                "start": 0.99,
+                "end": 1.15
+              },
+              {
+                "text": "写",
+                "start": 1.15,
+                "end": 1.39
+              },
+              {
+                "text": "真",
+                "start": 1.47,
+                "end": 1.63
+              }
+            ]
+          },
+          {
+            "index": 1,
+            "text": "処理チーフは新材スープでもピンクは注意が必要。セパンダコミュニティ。",
+            "start": 2.51,
+            "end": 7.43,
+            "confidence": 0.6546155,
+            "words": [
+              {
+                "text": "処",
+                "start": 2.51,
+                "end": 2.59
+              },
+              {
+                "text": "理",
+                "start": 2.59,
+                "end": 2.83
+              },
+              {
+                "text": "チ",
+                "start": 2.83,
+                "end": 2.91
+              },
+              {
+                "text": "ー",
+                "start": 2.91,
+                "end": 3.11
+              },
+              {
+                "text": "フ",
+                "start": 3.11,
+                "end": 3.19
+              },
+              {
+                "text": "は",
+                "start": 3.19,
+                "end": 3.43
+              },
+              {
+                "text": "新",
+                "start": 3.43,
+                "end": 3.71
+              },
+              {
+                "text": "材",
+                "start": 3.71,
+                "end": 3.87
+              },
+              {
+                "text": "ス",
+                "start": 3.87,
+                "end": 3.99
+              },
+              {
+                "text": "ー",
+                "start": 3.99,
+                "end": 4.19
+              },
+              {
+                "text": "プ",
+                "start": 4.19,
+                "end": 4.27
+              },
+              {
+                "text": "で",
+                "start": 4.27,
+                "end": 4.39
+              },
+              {
+                "text": "も",
+                "start": 4.39,
+                "end": 4.55
+              },
+              {
+                "text": "ピ",
+                "start": 4.55,
+                "end": 4.67
+              },
+              {
+                "text": "ン",
+                "start": 4.67,
+                "end": 4.75
+              },
+              {
+                "text": "ク",
+                "start": 4.75,
+                "end": 4.87
+              },
+              {
+                "text": "は",
+                "start": 4.87,
+                "end": 4.95
+              },
+              {
+                "text": "注",
+                "start": 4.95,
+                "end": 5.03
+              },
+              {
+                "text": "意",
+                "start": 5.03,
+                "end": 5.19
+              },
+              {
+                "text": "が",
+                "start": 5.19,
+                "end": 5.27
+              },
+              {
+                "text": "必",
+                "start": 5.27,
+                "end": 5.87
+              },
+              {
+                "text": "要",
+                "start": 5.99,
+                "end": 6.43
+              },
+              {
+                "text": "セ",
+                "start": 6.43,
+                "end": 6.63
+              },
+              {
+                "text": "パ",
+                "start": 6.63,
+                "end": 6.71
+              },
+              {
+                "text": "ン",
+                "start": 6.71,
+                "end": 6.79
+              },
+              {
+                "text": "ダ",
+                "start": 6.79,
+                "end": 6.91
+              },
+              {
+                "text": "コ",
+                "start": 6.91,
+                "end": 7.03
+              },
+              {
+                "text": "ミ",
+                "start": 7.03,
+                "end": 7.11
+              },
+              {
+                "text": "ュ",
+                "start": 7.11,
+                "end": 7.19
+              },
+              {
+                "text": "ニ",
+                "start": 7.19,
+                "end": 7.27
+              },
+              {
+                "text": "テ",
+                "start": 7.27,
+                "end": 7.35
+              },
+              {
+                "text": "ィ",
+                "start": 7.35,
+                "end": 7.43
+              }
+            ]
+          },
+          {
+            "index": 2,
+            "text": "シャイエディングランカモンシャオリエ、アリフォルチャー。",
+            "start": 9,
+            "end": 12.04,
+            "confidence": 0.55797017,
+            "words": [
+              {
+                "text": "シ",
+                "start": 9,
+                "end": 9.08
+              },
+              {
+                "text": "ャ",
+                "start": 9.08,
+                "end": 9.16
+              },
+              {
+                "text": "イ",
+                "start": 9.16,
+                "end": 9.24
+              },
+              {
+                "text": "エ",
+                "start": 9.24,
+                "end": 9.32
+              },
+              {
+                "text": "デ",
+                "start": 9.32,
+                "end": 9.4
+              },
+              {
+                "text": "ィ",
+                "start": 9.4,
+                "end": 9.48
+              },
+              {
+                "text": "ン",
+                "start": 9.48,
+                "end": 9.52
+              },
+              {
+                "text": "グ",
+                "start": 9.52,
+                "end": 9.6
+              },
+              {
+                "text": "ラ",
+                "start": 9.6,
+                "end": 9.76
+              },
+              {
+                "text": "ン",
+                "start": 9.76,
+                "end": 9.8
+              },
+              {
+                "text": "カ",
+                "start": 9.8,
+                "end": 9.92
+              },
+              {
+                "text": "モ",
+                "start": 9.92,
+                "end": 10
+              },
+              {
+                "text": "ン",
+                "start": 10,
+                "end": 10.04
+              },
+              {
+                "text": "シ",
+                "start": 10.04,
+                "end": 10.28
+              },
+              {
+                "text": "ャ",
+                "start": 10.56,
+                "end": 10.76
+              },
+              {
+                "text": "オ",
+                "start": 10.76,
+                "end": 10.84
+              },
+              {
+                "text": "リ",
+                "start": 10.84,
+                "end": 10.92
+              },
+              {
+                "text": "エ",
+                "start": 10.92,
+                "end": 11.04
+              },
+              {
+                "text": "ア",
+                "start": 11.04,
+                "end": 11.2
+              },
+              {
+                "text": "リ",
+                "start": 11.2,
+                "end": 11.32
+              },
+              {
+                "text": "フ",
+                "start": 11.32,
+                "end": 11.4
+              },
+              {
+                "text": "ォ",
+                "start": 11.4,
+                "end": 11.48
+              },
+              {
+                "text": "ル",
+                "start": 11.48,
+                "end": 11.56
+              },
+              {
+                "text": "チ",
+                "start": 11.56,
+                "end": 11.64
+              },
+              {
+                "text": "ャ",
+                "start": 11.64,
+                "end": 11.84
+              },
+              {
+                "text": "ー",
+                "start": 11.84,
+                "end": 12.04
+              }
+            ]
+          },
+          {
+            "index": 3,
+            "text": "シャリーソンヴァーリー出版しそん、ティッシュペンディング。",
+            "start": 12.91,
+            "end": 16.47,
+            "confidence": 0.6175927,
+            "words": [
+              {
+                "text": "シ",
+                "start": 12.91,
+                "end": 13.15
+              },
+              {
+                "text": "ャ",
+                "start": 13.15,
+                "end": 13.23
+              },
+              {
+                "text": "リ",
+                "start": 13.23,
+                "end": 13.31
+              },
+              {
+                "text": "ー",
+                "start": 13.31,
+                "end": 13.51
+              },
+              {
+                "text": "ソ",
+                "start": 13.51,
+                "end": 13.59
+              },
+              {
+                "text": "ン",
+                "start": 13.59,
+                "end": 13.63
+              },
+              {
+                "text": "ヴ",
+                "start": 13.63,
+                "end": 13.71
+              },
+              {
+                "text": "ァ",
+                "start": 13.71,
+                "end": 13.79
+              },
+              {
+                "text": "ー",
+                "start": 13.79,
+                "end": 13.99
+              },
+              {
+                "text": "リ",
+                "start": 13.99,
+                "end": 14.07
+              },
+              {
+                "text": "ー",
+                "start": 14.07,
+                "end": 14.27
+              },
+              {
+                "text": "出",
+                "start": 14.27,
+                "end": 14.35
+              },
+              {
+                "text": "版",
+                "start": 14.35,
+                "end": 14.51
+              },
+              {
+                "text": "し",
+                "start": 14.51,
+                "end": 14.99
+              },
+              {
+                "text": "そ",
+                "start": 15.07,
+                "end": 15.31
+              },
+              {
+                "text": "ん",
+                "start": 15.31,
+                "end": 15.35
+              },
+              {
+                "text": "テ",
+                "start": 15.35,
+                "end": 15.43
+              },
+              {
+                "text": "ィ",
+                "start": 15.43,
+                "end": 15.55
+              },
+              {
+                "text": "ッ",
+                "start": 15.55,
+                "end": 15.59
+              },
+              {
+                "text": "シ",
+                "start": 15.59,
+                "end": 15.67
+              },
+              {
+                "text": "ュ",
+                "start": 15.67,
+                "end": 15.75
+              },
+              {
+                "text": "ペ",
+                "start": 15.75,
+                "end": 15.83
+              },
+              {
+                "text": "ン",
+                "start": 15.83,
+                "end": 15.87
+              },
+              {
+                "text": "デ",
+                "start": 15.87,
+                "end": 15.95
+              },
+              {
+                "text": "ィ",
+                "start": 15.95,
+                "end": 16.35
+              },
+              {
+                "text": "ン",
+                "start": 16.35,
+                "end": 16.39
+              },
+              {
+                "text": "グ",
+                "start": 16.39,
+                "end": 16.47
+              }
+            ]
+          },
+          {
+            "index": 4,
+            "text": "リさん、それは何ですか？",
+            "start": 18.19,
+            "end": 20.43,
+            "confidence": 0.83165336,
+            "words": [
+              {
+                "text": "リ",
+                "start": 18.19,
+                "end": 18.43
+              },
+              {
+                "text": "さ",
+                "start": 18.43,
+                "end": 18.63
+              },
+              {
+                "text": "ん",
+                "start": 18.63,
+                "end": 18.91
+              },
+              {
+                "text": "そ",
+                "start": 18.99,
+                "end": 19.19
+              },
+              {
+                "text": "れ",
+                "start": 19.19,
+                "end": 19.39
+              },
+              {
+                "text": "は",
+                "start": 19.39,
+                "end": 19.67
+              },
+              {
+                "text": "何",
+                "start": 19.67,
+                "end": 19.87
+              },
+              {
+                "text": "で",
+                "start": 19.87,
+                "end": 20.07
+              },
+              {
+                "text": "す",
+                "start": 20.07,
+                "end": 20.19
+              },
+              {
+                "text": "か",
+                "start": 20.19,
+                "end": 20.43
+              }
+            ]
+          },
+          {
+            "index": 5,
+            "text": "これですか？家族の写真です。",
+            "start": 21.35,
+            "end": 24.07,
+            "confidence": 0.9205784,
+            "words": [
+              {
+                "text": "こ",
+                "start": 21.35,
+                "end": 21.47
+              },
+              {
+                "text": "れ",
+                "start": 21.47,
+                "end": 21.59
+              },
+              {
+                "text": "で",
+                "start": 21.59,
+                "end": 21.71
+              },
+              {
+                "text": "す",
+                "start": 21.71,
+                "end": 21.87
+              },
+              {
+                "text": "か",
+                "start": 21.87,
+                "end": 22.19
+              },
+              {
+                "text": "家",
+                "start": 22.67,
+                "end": 22.91
+              },
+              {
+                "text": "族",
+                "start": 22.91,
+                "end": 23.15
+              },
+              {
+                "text": "の",
+                "start": 23.15,
+                "end": 23.27
+              },
+              {
+                "text": "写",
+                "start": 23.27,
+                "end": 23.51
+              },
+              {
+                "text": "真",
+                "start": 23.59,
+                "end": 23.67
+              },
+              {
+                "text": "で",
+                "start": 23.67,
+                "end": 23.87
+              },
+              {
+                "text": "す",
+                "start": 23.87,
+                "end": 24.07
+              }
+            ]
+          },
+          {
+            "index": 6,
+            "text": "この方はどなたですか？私の母です。",
+            "start": 24.91,
+            "end": 28.79,
+            "confidence": 0.92567277,
+            "words": [
+              {
+                "text": "こ",
+                "start": 24.91,
+                "end": 25.11
+              },
+              {
+                "text": "の",
+                "start": 25.11,
+                "end": 25.27
+              },
+              {
+                "text": "方",
+                "start": 25.27,
+                "end": 25.55
+              },
+              {
+                "text": "は",
+                "start": 25.55,
+                "end": 25.87
+              },
+              {
+                "text": "ど",
+                "start": 25.91,
+                "end": 26.11
+              },
+              {
+                "text": "な",
+                "start": 26.11,
+                "end": 26.23
+              },
+              {
+                "text": "た",
+                "start": 26.23,
+                "end": 26.35
+              },
+              {
+                "text": "で",
+                "start": 26.35,
+                "end": 26.47
+              },
+              {
+                "text": "す",
+                "start": 26.47,
+                "end": 26.59
+              },
+              {
+                "text": "か",
+                "start": 26.59,
+                "end": 26.95
+              },
+              {
+                "text": "私",
+                "start": 27.71,
+                "end": 27.91
+              },
+              {
+                "text": "の",
+                "start": 27.91,
+                "end": 28.07
+              },
+              {
+                "text": "母",
+                "start": 28.07,
+                "end": 28.43
+              },
+              {
+                "text": "で",
+                "start": 28.43,
+                "end": 28.59
+              },
+              {
+                "text": "す",
+                "start": 28.59,
+                "end": 28.79
+              }
+            ]
+          },
+          {
+            "index": 7,
+            "text": "お母さんはおいくつですか？52歳です。",
+            "start": 29.55,
+            "end": 33.55,
+            "confidence": 0.918316,
+            "words": [
+              {
+                "text": "お",
+                "start": 29.55,
+                "end": 29.75
+              },
+              {
+                "text": "母",
+                "start": 29.75,
+                "end": 29.99
+              },
+              {
+                "text": "さ",
+                "start": 29.99,
+                "end": 30.15
+              },
+              {
+                "text": "ん",
+                "start": 30.15,
+                "end": 30.35
+              },
+              {
+                "text": "は",
+                "start": 30.35,
+                "end": 30.59
+              },
+              {
+                "text": "お",
+                "start": 30.59,
+                "end": 30.83
+              },
+              {
+                "text": "い",
+                "start": 30.83,
+                "end": 30.91
+              },
+              {
+                "text": "く",
+                "start": 30.91,
+                "end": 31.03
+              },
+              {
+                "text": "つ",
+                "start": 31.03,
+                "end": 31.15
+              },
+              {
+                "text": "で",
+                "start": 31.15,
+                "end": 31.31
+              },
+              {
+                "text": "す",
+                "start": 31.31,
+                "end": 31.43
+              },
+              {
+                "text": "か",
+                "start": 31.43,
+                "end": 31.79
+              },
+              {
+                "text": "五",
+                "start": 32.31,
+                "end": 32.55
+              },
+              {
+                "text": "十",
+                "start": 32.55,
+                "end": 32.79
+              },
+              {
+                "text": "二",
+                "start": 32.79,
+                "end": 33.03
+              },
+              {
+                "text": "歳",
+                "start": 33.03,
+                "end": 33.31
+              },
+              {
+                "text": "で",
+                "start": 33.31,
+                "end": 33.47
+              },
+              {
+                "text": "す",
+                "start": 33.47,
+                "end": 33.55
+              }
+            ]
+          },
+          {
+            "index": 8,
+            "text": "小野さん、これどうぞ。",
+            "start": 38.36,
+            "end": 40.4,
+            "confidence": 0.9220187,
+            "words": [
+              {
+                "text": "小",
+                "start": 38.36,
+                "end": 38.56
+              },
+              {
+                "text": "野",
+                "start": 38.56,
+                "end": 38.72
+              },
+              {
+                "text": "さ",
+                "start": 38.72,
+                "end": 38.88
+              },
+              {
+                "text": "ん",
+                "start": 38.88,
+                "end": 39.16
+              },
+              {
+                "text": "こ",
+                "start": 39.36,
+                "end": 39.56
+              },
+              {
+                "text": "れ",
+                "start": 39.56,
+                "end": 39.84
+              },
+              {
+                "text": "ど",
+                "start": 39.84,
+                "end": 40.04
+              },
+              {
+                "text": "う",
+                "start": 40.04,
+                "end": 40.12
+              },
+              {
+                "text": "ぞ",
+                "start": 40.12,
+                "end": 40.4
+              }
+            ]
+          },
+          {
+            "index": 9,
+            "text": "え、なんですか？お土産です。",
+            "start": 41.96,
+            "end": 43.68,
+            "confidence": 0.6884255,
+            "words": [
+              {
+                "text": "え",
+                "start": 41.96,
+                "end": 42.04
+              },
+              {
+                "text": "な",
+                "start": 42.04,
+                "end": 42.2
+              },
+              {
+                "text": "ん",
+                "start": 42.2,
+                "end": 42.24
+              },
+              {
+                "text": "で",
+                "start": 42.68,
+                "end": 42.76
+              },
+              {
+                "text": "す",
+                "start": 42.76,
+                "end": 42.84
+              },
+              {
+                "text": "か",
+                "start": 42.84,
+                "end": 42.92
+              },
+              {
+                "text": "お",
+                "start": 42.92,
+                "end": 43
+              },
+              {
+                "text": "土",
+                "start": 43,
+                "end": 43.08
+              },
+              {
+                "text": "産",
+                "start": 43.08,
+                "end": 43.2
+              },
+              {
+                "text": "で",
+                "start": 43.2,
+                "end": 43.48
+              },
+              {
+                "text": "す",
+                "start": 43.48,
+                "end": 43.68
+              }
+            ]
+          },
+          {
+            "index": 10,
+            "text": "わあ、シルクのハンカチですか？ええ、スワトウのハンカチです。中国の名産品です。",
+            "start": 47.77,
+            "end": 55.09,
+            "confidence": 0.8997314,
+            "words": [
+              {
+                "text": "わ",
+                "start": 47.77,
+                "end": 48.37
+              },
+              {
+                "text": "あ",
+                "start": 48.37,
+                "end": 48.45
+              },
+              {
+                "text": "シ",
+                "start": 48.57,
+                "end": 48.85
+              },
+              {
+                "text": "ル",
+                "start": 48.85,
+                "end": 48.93
+              },
+              {
+                "text": "ク",
+                "start": 48.93,
+                "end": 49.05
+              },
+              {
+                "text": "の",
+                "start": 49.05,
+                "end": 49.21
+              },
+              {
+                "text": "ハ",
+                "start": 49.21,
+                "end": 49.37
+              },
+              {
+                "text": "ン",
+                "start": 49.37,
+                "end": 49.45
+              },
+              {
+                "text": "カ",
+                "start": 49.45,
+                "end": 49.57
+              },
+              {
+                "text": "チ",
+                "start": 49.57,
+                "end": 49.69
+              },
+              {
+                "text": "で",
+                "start": 49.69,
+                "end": 49.81
+              },
+              {
+                "text": "す",
+                "start": 49.81,
+                "end": 49.93
+              },
+              {
+                "text": "か",
+                "start": 49.93,
+                "end": 50.29
+              },
+              {
+                "text": "え",
+                "start": 50.73,
+                "end": 50.93
+              },
+              {
+                "text": "え",
+                "start": 50.93,
+                "end": 51.25
+              },
+              {
+                "text": "ス",
+                "start": 51.33,
+                "end": 51.61
+              },
+              {
+                "text": "ワ",
+                "start": 51.61,
+                "end": 51.73
+              },
+              {
+                "text": "ト",
+                "start": 51.73,
+                "end": 51.85
+              },
+              {
+                "text": "ウ",
+                "start": 51.85,
+                "end": 51.93
+              },
+              {
+                "text": "の",
+                "start": 51.93,
+                "end": 52.05
+              },
+              {
+                "text": "ハ",
+                "start": 52.05,
+                "end": 52.25
+              },
+              {
+                "text": "ン",
+                "start": 52.25,
+                "end": 52.29
+              },
+              {
+                "text": "カ",
+                "start": 52.29,
+                "end": 52.45
+              },
+              {
+                "text": "チ",
+                "start": 52.45,
+                "end": 52.57
+              },
+              {
+                "text": "で",
+                "start": 52.57,
+                "end": 52.69
+              },
+              {
+                "text": "す",
+                "start": 52.69,
+                "end": 52.97
+              },
+              {
+                "text": "中",
+                "start": 53.41,
+                "end": 53.73
+              },
+              {
+                "text": "国",
+                "start": 53.73,
+                "end": 53.97
+              },
+              {
+                "text": "の",
+                "start": 53.97,
+                "end": 54.13
+              },
+              {
+                "text": "名",
+                "start": 54.13,
+                "end": 54.37
+              },
+              {
+                "text": "産",
+                "start": 54.37,
+                "end": 54.57
+              },
+              {
+                "text": "品",
+                "start": 54.57,
+                "end": 54.85
+              },
+              {
+                "text": "で",
+                "start": 54.85,
+                "end": 55.01
+              },
+              {
+                "text": "す",
+                "start": 55.01,
+                "end": 55.09
+              }
+            ]
+          },
+          {
+            "index": 11,
+            "text": "どうも、ありがとうございます。",
+            "start": 55.91,
+            "end": 57.55,
+            "confidence": 0.9196781,
+            "words": [
+              {
+                "text": "ど",
+                "start": 55.91,
+                "end": 56.11
+              },
+              {
+                "text": "う",
+                "start": 56.11,
+                "end": 56.19
+              },
+              {
+                "text": "も",
+                "start": 56.19,
+                "end": 56.39
+              },
+              {
+                "text": "あ",
+                "start": 56.39,
+                "end": 56.47
+              },
+              {
+                "text": "り",
+                "start": 56.47,
+                "end": 56.59
+              },
+              {
+                "text": "が",
+                "start": 56.59,
+                "end": 56.71
+              },
+              {
+                "text": "と",
+                "start": 56.71,
+                "end": 56.83
+              },
+              {
+                "text": "う",
+                "start": 56.83,
+                "end": 56.91
+              },
+              {
+                "text": "ご",
+                "start": 56.91,
+                "end": 57.03
+              },
+              {
+                "text": "ざ",
+                "start": 57.03,
+                "end": 57.15
+              },
+              {
+                "text": "い",
+                "start": 57.15,
+                "end": 57.27
+              },
+              {
+                "text": "ま",
+                "start": 57.27,
+                "end": 57.47
+              },
+              {
+                "text": "す",
+                "start": 57.47,
+                "end": 57.55
+              }
+            ]
+          }
+        ]
+      },
+      "items": [
+        {
+          "id": "l2-app-block-003-line-001",
+          "trackId": "lesson_apps",
+          "speaker": "小野",
+          "text": "李さん、それは 何ですか。",
+          "kana": "りさん、それは なんですか。",
+          "translationZh": "小李，那是什么？",
+          "candidate": {
+            "start": 18.13,
+            "end": 20.51,
+            "asrText": "リ さ ん そ れ は 何 で す か",
+            "phraseIndexes": [
+              4
+            ],
+            "matchScore": 0.9,
+            "confidence": 0.832,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 18.13,
+            "end": 20.51,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:16:24.170Z"
+          }
+        },
+        {
+          "id": "l2-app-block-003-line-002",
+          "trackId": "lesson_apps",
+          "speaker": "李",
+          "text": "これですか。家族の 写真です。",
+          "kana": "これですか。かぞくの しゃしんです。",
+          "translationZh": "这个吗？是家人的照片。",
+          "candidate": {
+            "start": 21.29,
+            "end": 24.15,
+            "asrText": "こ れ で す か 家 族 の 写 真 で す",
+            "phraseIndexes": [
+              5
+            ],
+            "matchScore": 1,
+            "confidence": 0.921,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 21.29,
+            "end": 24.15,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:16:24.170Z"
+          }
+        },
+        {
+          "id": "l2-app-block-003-line-003",
+          "trackId": "lesson_apps",
+          "speaker": "小野",
+          "text": "この 方は どなたですか。",
+          "kana": "この かたは どなたですか。",
+          "translationZh": "这位是谁？",
+          "candidate": {
+            "start": 24.85,
+            "end": 27.03,
+            "asrText": "こ の 方 は ど な た で す か",
+            "phraseIndexes": [
+              6
+            ],
+            "matchScore": 1,
+            "confidence": 0.926,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 24.85,
+            "end": 27.03,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:16:24.170Z"
+          }
+        },
+        {
+          "id": "l2-app-block-003-line-004",
+          "trackId": "lesson_apps",
+          "speaker": "李",
+          "text": "わたしの 母です。",
+          "kana": "わたしの ははです。",
+          "translationZh": "是我母亲。",
+          "candidate": {
+            "start": 27.65,
+            "end": 28.87,
+            "asrText": "私 の 母 で す",
+            "phraseIndexes": [
+              6
+            ],
+            "matchScore": 0.571,
+            "confidence": 0.926,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 27.65,
+            "end": 28.87,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:16:24.170Z"
+          }
+        },
+        {
+          "id": "l2-app-block-003-line-005",
+          "trackId": "lesson_apps",
+          "speaker": "小野",
+          "text": "お母さんは おいくつですか。",
+          "kana": "おかあさんは おいくつですか。",
+          "translationZh": "您母亲多大年纪？",
+          "candidate": {
+            "start": 29.49,
+            "end": 31.87,
+            "asrText": "お 母 さ ん は お い く つ で す か",
+            "phraseIndexes": [
+              7
+            ],
+            "matchScore": 1,
+            "confidence": 0.918,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 29.49,
+            "end": 31.87,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:16:24.170Z"
+          }
+        },
+        {
+          "id": "l2-app-block-003-line-006",
+          "trackId": "lesson_apps",
+          "speaker": "李",
+          "text": "52 歳です。",
+          "kana": "ごじゅうに さいです。",
+          "translationZh": "52岁。",
+          "candidate": {
+            "start": 32.49,
+            "end": 33.63,
+            "asrText": "十 二 歳 で す",
+            "phraseIndexes": [
+              7
+            ],
+            "matchScore": 0.6,
+            "confidence": 0.918,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 32.49,
+            "end": 33.63,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:16:24.170Z"
+          }
+        },
+        {
+          "id": "l2-app-block-005-line-001",
+          "trackId": "lesson_apps",
+          "speaker": "李",
+          "text": "小野さん、これ、どうぞ。",
+          "kana": "おのさん、これ、どうぞ。",
+          "translationZh": "小野女士，这个，请收下。",
+          "candidate": {
+            "start": 38.3,
+            "end": 40.48,
+            "asrText": "小 野 さ ん こ れ ど う ぞ",
+            "phraseIndexes": [
+              8
+            ],
+            "matchScore": 1,
+            "confidence": 0.922,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 38.3,
+            "end": 40.48,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:16:24.170Z"
+          }
+        },
+        {
+          "id": "l2-app-block-005-line-002",
+          "trackId": "lesson_apps",
+          "speaker": "小野",
+          "text": "えっ、何ですか。",
+          "kana": "えっ、なんですか。",
+          "translationZh": "啊，是什么？",
+          "candidate": {
+            "start": 41.9,
+            "end": 43,
+            "asrText": "え な ん で す か",
+            "phraseIndexes": [
+              9
+            ],
+            "matchScore": 0.857,
+            "confidence": 0.688,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 41.9,
+            "end": 43,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:16:24.170Z"
+          }
+        },
+        {
+          "id": "l2-app-block-005-line-003",
+          "trackId": "lesson_apps",
+          "speaker": "李",
+          "text": "お土産です。",
+          "kana": "おみやげです。",
+          "translationZh": "是礼物。",
+          "candidate": {
+            "start": 42.86,
+            "end": 43.76,
+            "asrText": "お 土 産 で す",
+            "phraseIndexes": [
+              9
+            ],
+            "matchScore": 1,
+            "confidence": 0.688,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 42.86,
+            "end": 43.76,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:16:24.170Z"
+          }
+        },
+        {
+          "id": "l2-app-block-007-line-001",
+          "trackId": "lesson_apps",
+          "speaker": "小野",
+          "text": "わあ、シルクの ハンカチですか。",
+          "kana": "わあ、シルクの ハンカチですか。",
+          "translationZh": "哇，是丝绸手绢吗？",
+          "candidate": {
+            "start": 47.71,
+            "end": 50.37,
+            "asrText": "わ あ シ ル ク の ハ ン カ チ で す か",
+            "phraseIndexes": [
+              10
+            ],
+            "matchScore": 1,
+            "confidence": 0.9,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 47.71,
+            "end": 50.37,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:16:24.170Z"
+          }
+        },
+        {
+          "id": "l2-app-block-007-line-002",
+          "trackId": "lesson_apps",
+          "speaker": "李",
+          "text": "ええ。スワトウの ハンカチです。中国の 名産品です。",
+          "kana": "ええ。スワトウの ハンカチです。ちゅうごくの めいさんひんです。",
+          "translationZh": "嗯，是汕头的手绢。是中国的名产。",
+          "candidate": {
+            "start": 50.67,
+            "end": 55.17,
+            "asrText": "え え ス ワ ト ウ の ハ ン カ チ で す 中 国 の 名 産 品 で す",
+            "phraseIndexes": [
+              10
+            ],
+            "matchScore": 1,
+            "confidence": 0.9,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 50.67,
+            "end": 55.17,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:16:24.170Z"
+          }
+        },
+        {
+          "id": "l2-app-block-007-line-003",
+          "trackId": "lesson_apps",
+          "speaker": "小野",
+          "text": "どうも ありがとう ございます。",
+          "kana": "どうも ありがとう ございます。",
+          "translationZh": "非常感谢。",
+          "candidate": {
+            "start": 55.85,
+            "end": 57.63,
+            "asrText": "ど う も あ り が と う ご ざ い ま す",
+            "phraseIndexes": [
+              11
+            ],
+            "matchScore": 1,
+            "confidence": 0.92,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 55.85,
+            "end": 57.63,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:16:24.170Z"
+          }
+        }
+      ]
+    }
+  ]
+}

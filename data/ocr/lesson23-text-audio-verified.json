@@ -1,0 +1,609 @@
+{
+  "lessonId": "lesson23",
+  "sourceImages": [
+    {
+      "section": "basic",
+      "path": "course-assets/by-lesson/lesson23/page272.webp",
+      "pageNo": 272
+    },
+    {
+      "section": "application",
+      "path": "course-assets/by-lesson/lesson23/page277.webp",
+      "pageNo": 277
+    }
+  ],
+  "basicText": {
+    "title": "基本课文",
+    "basicSentences": [
+      {
+        "id": "l23-basic-s001",
+        "order": 1,
+        "text": "小野さんは 休みの 日、散歩したり 買い物に 行ったり します。",
+        "translationZh": "小野休息日有时散步，有时去买东西。",
+        "confidence": "high",
+        "rawText": "1. 小野さんは 休みの 日、散歩したり 買い物に 行ったり します。",
+        "audioSegment": {
+          "id": "l23-basic-s001",
+          "trackId": "lesson_basic",
+          "sourceUrl": "/data/ocr/audio-clips/lesson23/l23-basic-s001.mp3",
+          "start": 0,
+          "end": 4.86,
+          "duration": 4.86,
+          "method": "approved-asr-alignment",
+          "confidence": "approved",
+          "reviewedAt": "2026-08-05T08:48:09.654Z",
+          "sourceAudioSha256": "ff0f91f23d88d62f4ac6dbd2301e18327a6a38b74136c0364f07837f94582c8a"
+        }
+      },
+      {
+        "id": "l23-basic-s002",
+        "order": 2,
+        "text": "日本語の 先生は 中国人だったり 日本人だったりです。",
+        "translationZh": "日语老师有的是中国人，有的是日本人。",
+        "confidence": "high",
+        "rawText": "2. 日本語の 先生は 中国人だったり 日本人だったりです。",
+        "audioSegment": {
+          "id": "l23-basic-s002",
+          "trackId": "lesson_basic",
+          "sourceUrl": "/data/ocr/audio-clips/lesson23/l23-basic-s002.mp3",
+          "start": 0,
+          "end": 4.42,
+          "duration": 4.42,
+          "method": "approved-asr-alignment",
+          "confidence": "approved",
+          "reviewedAt": "2026-08-05T08:48:09.654Z",
+          "sourceAudioSha256": "ff0f91f23d88d62f4ac6dbd2301e18327a6a38b74136c0364f07837f94582c8a"
+        }
+      },
+      {
+        "id": "l23-basic-s003",
+        "order": 3,
+        "text": "わたしは 今年の 夏、北京へ 行くか どうか 分かりません。",
+        "translationZh": "我今年夏天去不去北京还不知道。",
+        "confidence": "high",
+        "rawText": "3. わたしは 今年の 夏、北京へ 行くか どうか 分かりません。",
+        "audioSegment": {
+          "id": "l23-basic-s003",
+          "trackId": "lesson_basic",
+          "sourceUrl": "/data/ocr/audio-clips/lesson23/l23-basic-s003.mp3",
+          "start": 0,
+          "end": 5.06,
+          "duration": 5.06,
+          "method": "approved-asr-alignment",
+          "confidence": "approved",
+          "reviewedAt": "2026-08-05T08:48:09.654Z",
+          "sourceAudioSha256": "ff0f91f23d88d62f4ac6dbd2301e18327a6a38b74136c0364f07837f94582c8a"
+        }
+      },
+      {
+        "id": "l23-basic-s004",
+        "order": 4,
+        "text": "かぎが どこに あるか 教えて ください。",
+        "translationZh": "请告诉我钥匙在哪里。",
+        "confidence": "high",
+        "rawText": "4. かぎが どこに あるか 教えて ください。",
+        "audioSegment": {
+          "id": "l23-basic-s004",
+          "trackId": "lesson_basic",
+          "sourceUrl": "/data/ocr/audio-clips/lesson23/l23-basic-s004.mp3",
+          "start": 0,
+          "end": 3.34,
+          "duration": 3.34,
+          "method": "approved-asr-alignment",
+          "confidence": "approved",
+          "reviewedAt": "2026-08-05T08:48:09.654Z",
+          "sourceAudioSha256": "ff0f91f23d88d62f4ac6dbd2301e18327a6a38b74136c0364f07837f94582c8a"
+        }
+      }
+    ],
+    "dialogues": [
+      {
+        "id": "l23-basic-dialogue-001",
+        "label": "A",
+        "lines": [
+          {
+            "id": "l23-basic-dialogue-001-line-001",
+            "speaker": "甲",
+            "text": "週末に 何を しましたか。",
+            "translationZh": "周末做什么了？",
+            "confidence": "high",
+            "rawText": "甲：週末に 何を しましたか。",
+            "audioSegment": {
+              "id": "l23-basic-dialogue-001-line-001",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson23/l23-basic-dialogue-001-line-001.mp3",
+              "start": 0,
+              "end": 2.22,
+              "duration": 2.22,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:48:09.654Z",
+              "sourceAudioSha256": "ff0f91f23d88d62f4ac6dbd2301e18327a6a38b74136c0364f07837f94582c8a"
+            }
+          },
+          {
+            "id": "l23-basic-dialogue-001-line-002",
+            "speaker": "乙",
+            "text": "スケートを したり、ボーリングを したり しました。",
+            "translationZh": "滑冰、打保龄球了。",
+            "confidence": "high",
+            "rawText": "乙：スケートを したり、ボーリングを したり しました。",
+            "audioSegment": {
+              "id": "l23-basic-dialogue-001-line-002",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson23/l23-basic-dialogue-001-line-002.mp3",
+              "start": 0,
+              "end": 2.86,
+              "duration": 2.86,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:48:09.654Z",
+              "sourceAudioSha256": "ff0f91f23d88d62f4ac6dbd2301e18327a6a38b74136c0364f07837f94582c8a"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l23-basic-dialogue-002",
+        "label": "B",
+        "lines": [
+          {
+            "id": "l23-basic-dialogue-002-line-001",
+            "speaker": "甲",
+            "text": "北京まで、飛行機の チケットは いくらぐらいですか。",
+            "translationZh": "到北京的飞机票大概多少钱？",
+            "confidence": "high",
+            "rawText": "甲：北京まで、飛行機の チケットは いくらぐらいですか。",
+            "audioSegment": {
+              "id": "l23-basic-dialogue-002-line-001",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson23/l23-basic-dialogue-002-line-001.mp3",
+              "start": 0,
+              "end": 3.34,
+              "duration": 3.34,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:48:09.654Z",
+              "sourceAudioSha256": "ff0f91f23d88d62f4ac6dbd2301e18327a6a38b74136c0364f07837f94582c8a"
+            }
+          },
+          {
+            "id": "l23-basic-dialogue-002-line-002",
+            "speaker": "乙",
+            "text": "季節に よって 高かったり 安かったりです。",
+            "translationZh": "根据季节不同，有时贵有时便宜。",
+            "confidence": "high",
+            "rawText": "乙：季節に よって 高かったり 安かったりです。",
+            "audioSegment": {
+              "id": "l23-basic-dialogue-002-line-002",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson23/l23-basic-dialogue-002-line-002.mp3",
+              "start": 0,
+              "end": 3.46,
+              "duration": 3.46,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:48:09.654Z",
+              "sourceAudioSha256": "ff0f91f23d88d62f4ac6dbd2301e18327a6a38b74136c0364f07837f94582c8a"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l23-basic-dialogue-003",
+        "label": "C",
+        "lines": [
+          {
+            "id": "l23-basic-dialogue-003-line-001",
+            "speaker": "甲",
+            "text": "李さん、仕事は 忙しいですか。",
+            "translationZh": "小李，工作忙吗？",
+            "confidence": "high",
+            "rawText": "甲：李さん、仕事は 忙しいですか。",
+            "audioSegment": {
+              "id": "l23-basic-dialogue-003-line-001",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson23/l23-basic-dialogue-003-line-001.mp3",
+              "start": 0,
+              "end": 2.42,
+              "duration": 2.42,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:48:09.654Z",
+              "sourceAudioSha256": "ff0f91f23d88d62f4ac6dbd2301e18327a6a38b74136c0364f07837f94582c8a"
+            }
+          },
+          {
+            "id": "l23-basic-dialogue-003-line-002",
+            "speaker": "乙",
+            "text": "ええ、日に よって 暇だったり 忙しかったりです。",
+            "translationZh": "嗯，因日子而异，有时闲有时忙。",
+            "confidence": "high",
+            "rawText": "乙：ええ、日に よって 暇だったり 忙しかったりです。",
+            "audioSegment": {
+              "id": "l23-basic-dialogue-003-line-002",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson23/l23-basic-dialogue-003-line-002.mp3",
+              "start": 0,
+              "end": 4.1,
+              "duration": 4.1,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:48:09.654Z",
+              "sourceAudioSha256": "ff0f91f23d88d62f4ac6dbd2301e18327a6a38b74136c0364f07837f94582c8a"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l23-basic-dialogue-004",
+        "label": "D",
+        "lines": [
+          {
+            "id": "l23-basic-dialogue-004-line-001",
+            "speaker": "甲",
+            "text": "森さんが 何時ごろ 来るか 知って いますか。",
+            "translationZh": "知道森先生几点左右来吗？",
+            "confidence": "high",
+            "rawText": "甲：森さんが 何時ごろ 来るか 知って いますか。",
+            "audioSegment": {
+              "id": "l23-basic-dialogue-004-line-001",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson23/l23-basic-dialogue-004-line-001.mp3",
+              "start": 0,
+              "end": 3.14,
+              "duration": 3.14,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:48:09.654Z",
+              "sourceAudioSha256": "ff0f91f23d88d62f4ac6dbd2301e18327a6a38b74136c0364f07837f94582c8a"
+            }
+          },
+          {
+            "id": "l23-basic-dialogue-004-line-002",
+            "speaker": "乙",
+            "text": "いいえ。今日は 来るか どうか 分かりません。",
+            "translationZh": "不知道。今天来不来还不知道。",
+            "confidence": "high",
+            "rawText": "乙：いいえ。今日は 来るか どうか 分かりません。",
+            "audioSegment": {
+              "id": "l23-basic-dialogue-004-line-002",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson23/l23-basic-dialogue-004-line-002.mp3",
+              "start": 0,
+              "end": 2.14,
+              "duration": 2.14,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:48:09.654Z",
+              "sourceAudioSha256": "ff0f91f23d88d62f4ac6dbd2301e18327a6a38b74136c0364f07837f94582c8a"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "applicationText": {
+    "title": "送別会",
+    "blocks": [
+      {
+        "id": "l23-app-block-001",
+        "type": "scene",
+        "text": "在百货商店，小野和森为小李挑选礼物。",
+        "translationZh": "在百货商店，小野和森为小李挑选礼物。",
+        "confidence": "high",
+        "rawText": "在百货商店，小野和森为小李挑选礼物。"
+      },
+      {
+        "id": "l23-app-block-002",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l23-app-block-002-line-001",
+            "speaker": "森",
+            "text": "小野さん、何を 買うか 決まりましたか。",
+            "translationZh": "小野，决定买什么了吗？",
+            "confidence": "high",
+            "rawText": "森：小野さん、何を 買うか 決まりましたか。",
+            "audioSegment": {
+              "id": "l23-app-block-002-line-001",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson23/l23-app-block-002-line-001.mp3",
+              "start": 0,
+              "end": 8.86,
+              "duration": 8.86,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:48:53.066Z",
+              "sourceAudioSha256": "66aa43f7567d4afa1f437ea1d68ede04bf3e08f090ccaf32136d093a9d2c12ae"
+            }
+          },
+          {
+            "id": "l23-app-block-002-line-002",
+            "speaker": "小野",
+            "text": "浴衣は どうですか。",
+            "translationZh": "浴衣怎么样？",
+            "confidence": "high",
+            "rawText": "小野：浴衣は どうですか。",
+            "audioSegment": {
+              "id": "l23-app-block-002-line-002",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson23/l23-app-block-002-line-002.mp3",
+              "start": 0,
+              "end": 1.66,
+              "duration": 1.66,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:48:53.066Z",
+              "sourceAudioSha256": "66aa43f7567d4afa1f437ea1d68ede04bf3e08f090ccaf32136d093a9d2c12ae"
+            }
+          },
+          {
+            "id": "l23-app-block-002-line-003",
+            "speaker": "森",
+            "text": "いいですね。でも、高く ないですか。",
+            "translationZh": "不错。不过不贵吗？",
+            "confidence": "high",
+            "rawText": "森：いいですね。でも、高く ないですか。",
+            "audioSegment": {
+              "id": "l23-app-block-002-line-003",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson23/l23-app-block-002-line-003.mp3",
+              "start": 0,
+              "end": 3.06,
+              "duration": 3.06,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:48:53.066Z",
+              "sourceAudioSha256": "66aa43f7567d4afa1f437ea1d68ede04bf3e08f090ccaf32136d093a9d2c12ae"
+            }
+          },
+          {
+            "id": "l23-app-block-002-line-004",
+            "speaker": "小野",
+            "text": "高かったり 安かったり、いろいろ あります。あっ、そうだ。生地を 買って、わたしが 作りますよ。",
+            "translationZh": "有贵的也有便宜的，各种都有。啊，对了，买布料我来做吧。",
+            "confidence": "high",
+            "rawText": "小野：高かったり 安かったり、いろいろ あります。あっ、そうだ。生地を 買って、わたしが 作りますよ。",
+            "audioSegment": {
+              "id": "l23-app-block-002-line-004",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson23/l23-app-block-002-line-004.mp3",
+              "start": 0,
+              "end": 6.49,
+              "duration": 6.49,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:48:53.066Z",
+              "sourceAudioSha256": "66aa43f7567d4afa1f437ea1d68ede04bf3e08f090ccaf32136d093a9d2c12ae"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l23-app-block-003",
+        "type": "scene",
+        "text": "欢送会上，干杯之后。",
+        "translationZh": "欢送会上，干杯之后。",
+        "confidence": "high",
+        "rawText": "欢送会上，干杯之后。"
+      },
+      {
+        "id": "l23-app-block-004",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l23-app-block-004-line-001",
+            "speaker": "吉田",
+            "text": "日本の 生活は どうでしたか。",
+            "translationZh": "日本的生活怎么样？",
+            "confidence": "high",
+            "rawText": "吉田：日本の 生活は どうでしたか。",
+            "audioSegment": {
+              "id": "l23-app-block-004-line-001",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson23/l23-app-block-004-line-001.mp3",
+              "start": 0,
+              "end": 1.9,
+              "duration": 1.9,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:48:53.066Z",
+              "sourceAudioSha256": "66aa43f7567d4afa1f437ea1d68ede04bf3e08f090ccaf32136d093a9d2c12ae"
+            }
+          },
+          {
+            "id": "l23-app-block-004-line-002",
+            "speaker": "李",
+            "text": "温泉に 入ったり 歌舞伎を 見たり して、とても 楽しかったです。",
+            "translationZh": "泡温泉、看歌舞伎，非常开心。",
+            "confidence": "high",
+            "rawText": "李：温泉に 入ったり 歌舞伎を 見たり して、とても 楽しかったです。",
+            "audioSegment": {
+              "id": "l23-app-block-004-line-002",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson23/l23-app-block-004-line-002.mp3",
+              "start": 0,
+              "end": 3.42,
+              "duration": 3.42,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:48:53.066Z",
+              "sourceAudioSha256": "66aa43f7567d4afa1f437ea1d68ede04bf3e08f090ccaf32136d093a9d2c12ae"
+            }
+          },
+          {
+            "id": "l23-app-block-004-line-003",
+            "speaker": "吉田",
+            "text": "ご両親に いつ 帰るか 知らせましたか。",
+            "translationZh": "告诉父母什么时候回去了吗？",
+            "confidence": "high",
+            "rawText": "吉田：ご両親に いつ 帰るか 知らせましたか。",
+            "audioSegment": {
+              "id": "l23-app-block-004-line-003",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson23/l23-app-block-004-line-003.mp3",
+              "start": 0,
+              "end": 3.5,
+              "duration": 3.5,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:48:53.066Z",
+              "sourceAudioSha256": "66aa43f7567d4afa1f437ea1d68ede04bf3e08f090ccaf32136d093a9d2c12ae"
+            }
+          },
+          {
+            "id": "l23-app-block-004-line-004",
+            "speaker": "李",
+            "text": "はい、昨日 母に メールで 知らせました。",
+            "translationZh": "是的，昨天给母亲发邮件告诉了。",
+            "confidence": "high",
+            "rawText": "李：はい、昨日 母に メールで 知らせました。",
+            "audioSegment": {
+              "id": "l23-app-block-004-line-004",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson23/l23-app-block-004-line-004.mp3",
+              "start": 0,
+              "end": 3.14,
+              "duration": 3.14,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:48:53.066Z",
+              "sourceAudioSha256": "66aa43f7567d4afa1f437ea1d68ede04bf3e08f090ccaf32136d093a9d2c12ae"
+            }
+          },
+          {
+            "id": "l23-app-block-004-line-005",
+            "speaker": "森",
+            "text": "ご両親は メールが できますか。",
+            "translationZh": "你父母会发邮件吗？",
+            "confidence": "high",
+            "rawText": "森：ご両親は メールが できますか。",
+            "audioSegment": {
+              "id": "l23-app-block-004-line-005",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson23/l23-app-block-004-line-005.mp3",
+              "start": 0,
+              "end": 2.18,
+              "duration": 2.18,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:48:53.066Z",
+              "sourceAudioSha256": "66aa43f7567d4afa1f437ea1d68ede04bf3e08f090ccaf32136d093a9d2c12ae"
+            }
+          },
+          {
+            "id": "l23-app-block-004-line-006",
+            "speaker": "李",
+            "text": "母は できますが、父は 電話か 手紙ですね。",
+            "translationZh": "母亲会，父亲还是电话或信。",
+            "confidence": "high",
+            "rawText": "李：母は できますが、父は 電話か 手紙ですね。",
+            "audioSegment": {
+              "id": "l23-app-block-004-line-006",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson23/l23-app-block-004-line-006.mp3",
+              "start": 0,
+              "end": 3.54,
+              "duration": 3.54,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:48:53.066Z",
+              "sourceAudioSha256": "66aa43f7567d4afa1f437ea1d68ede04bf3e08f090ccaf32136d093a9d2c12ae"
+            }
+          },
+          {
+            "id": "l23-app-block-004-line-007",
+            "speaker": "小野",
+            "text": "北京へ 帰った 後、どうしますか。",
+            "translationZh": "回北京以后打算做什么？",
+            "confidence": "high",
+            "rawText": "小野：北京へ 帰った 後、どうしますか。",
+            "audioSegment": {
+              "id": "l23-app-block-004-line-007",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson23/l23-app-block-004-line-007.mp3",
+              "start": 0,
+              "end": 2.18,
+              "duration": 2.18,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:48:53.066Z",
+              "sourceAudioSha256": "66aa43f7567d4afa1f437ea1d68ede04bf3e08f090ccaf32136d093a9d2c12ae"
+            }
+          },
+          {
+            "id": "l23-app-block-004-line-008",
+            "speaker": "李",
+            "text": "1週間ぐらい 休みたいですね。春節に 休みが なかったですから。",
+            "translationZh": "想休息一个星期左右。因为春节没有休息。",
+            "confidence": "high",
+            "rawText": "李：1週間ぐらい 休みたいですね。春節に 休みが なかったですから。",
+            "audioSegment": {
+              "id": "l23-app-block-004-line-008",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson23/l23-app-block-004-line-008.mp3",
+              "start": 0,
+              "end": 5.14,
+              "duration": 5.14,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:48:53.066Z",
+              "sourceAudioSha256": "66aa43f7567d4afa1f437ea1d68ede04bf3e08f090ccaf32136d093a9d2c12ae"
+            }
+          },
+          {
+            "id": "l23-app-block-004-line-009",
+            "speaker": "小野",
+            "text": "休みに 何を しますか。旅行に 行きますか。",
+            "translationZh": "休息时做什么？去旅行吗？",
+            "confidence": "high",
+            "rawText": "小野：休みに 何を しますか。旅行に 行きますか。",
+            "audioSegment": {
+              "id": "l23-app-block-004-line-009",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson23/l23-app-block-004-line-009.mp3",
+              "start": 0,
+              "end": 3.38,
+              "duration": 3.38,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:48:53.066Z",
+              "sourceAudioSha256": "66aa43f7567d4afa1f437ea1d68ede04bf3e08f090ccaf32136d093a9d2c12ae"
+            }
+          },
+          {
+            "id": "l23-app-block-004-line-010",
+            "speaker": "李",
+            "text": "旅行に 行くか どうか、分かりません。たぶん 友達に 会ったり、食事に 行ったり します。",
+            "translationZh": "去不去旅行还不知道。大概见朋友、去吃饭。",
+            "confidence": "high",
+            "rawText": "李：旅行に 行くか どうか、分かりません。たぶん 友達に 会ったり、食事に 行ったり します。",
+            "audioSegment": {
+              "id": "l23-app-block-004-line-010",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson23/l23-app-block-004-line-010.mp3",
+              "start": 0,
+              "end": 6.67,
+              "duration": 6.67,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:48:53.066Z",
+              "sourceAudioSha256": "66aa43f7567d4afa1f437ea1d68ede04bf3e08f090ccaf32136d093a9d2c12ae"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "warnings": [
+    "segments/ruby 未批量生成；保留 text 与 translationZh，后续可单独补充 ruby 切片。"
+  ],
+  "audioAlignment": {
+    "schemaVersion": 1,
+    "method": "approved-asr-alignment",
+    "sourceAlignment": "data/ocr/lesson23-text-audio-alignment.json",
+    "publishedAt": "2026-08-05T08:48:57.496Z",
+    "approvedSegments": 26
+  }
+}

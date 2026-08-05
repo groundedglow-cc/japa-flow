@@ -1,0 +1,917 @@
+{
+  "lessonId": "lesson17",
+  "sourceImages": [
+    {
+      "section": "basic",
+      "path": "course-assets/by-lesson/lesson17/page206.webp",
+      "pageNo": 206
+    },
+    {
+      "section": "application",
+      "path": "course-assets/by-lesson/lesson17/page211.webp",
+      "pageNo": 211
+    }
+  ],
+  "basicText": {
+    "title": "わたしは 新しい 洋服が 欲しいです",
+    "basicSentences": [
+      {
+        "id": "l17-basic-s001",
+        "order": 1,
+        "text": "わたしは 新しい 洋服が 欲しいです。",
+        "kana": "わたしは あたらしい ようふくが ほしいです。",
+        "segments": [
+          {
+            "text": "わたしは "
+          },
+          {
+            "text": "新しい",
+            "ruby": "あたらしい"
+          },
+          {
+            "text": " "
+          },
+          {
+            "text": "洋服",
+            "ruby": "ようふく"
+          },
+          {
+            "text": "が "
+          },
+          {
+            "text": "欲",
+            "ruby": "ほ"
+          },
+          {
+            "text": "しいです。"
+          }
+        ],
+        "translationZh": "我想要一件新西服。",
+        "confidence": "high",
+        "rawText": "1. わたしは 新しい 洋服が 欲しいです。",
+        "audioSegment": {
+          "id": "l17-basic-s001",
+          "trackId": "lesson_basic",
+          "sourceUrl": "/data/ocr/audio-clips/lesson17/l17-basic-s001.mp3",
+          "start": 0,
+          "end": 3.9,
+          "duration": 3.9,
+          "method": "approved-asr-alignment",
+          "confidence": "approved",
+          "reviewedAt": "2026-08-05T08:40:54.328Z",
+          "sourceAudioSha256": "7a4086683fbeb586b4a8f135bda69785e80b6fe797091c44d1e133d3d8191e06"
+        }
+      },
+      {
+        "id": "l17-basic-s002",
+        "order": 2,
+        "text": "わたしは 映画を 見たいです。",
+        "kana": "わたしは えいがを みたいです。",
+        "segments": [
+          {
+            "text": "わたしは "
+          },
+          {
+            "text": "映画",
+            "ruby": "えいが"
+          },
+          {
+            "text": "を "
+          },
+          {
+            "text": "見",
+            "ruby": "み"
+          },
+          {
+            "text": "たいです。"
+          }
+        ],
+        "translationZh": "我想看电影。",
+        "confidence": "high",
+        "rawText": "2. わたしは 映画を 見たいです。",
+        "audioSegment": {
+          "id": "l17-basic-s002",
+          "trackId": "lesson_basic",
+          "sourceUrl": "/data/ocr/audio-clips/lesson17/l17-basic-s002.mp3",
+          "start": 0,
+          "end": 3.66,
+          "duration": 3.66,
+          "method": "approved-asr-alignment",
+          "confidence": "approved",
+          "reviewedAt": "2026-08-05T08:40:54.328Z",
+          "sourceAudioSha256": "7a4086683fbeb586b4a8f135bda69785e80b6fe797091c44d1e133d3d8191e06"
+        }
+      },
+      {
+        "id": "l17-basic-s003",
+        "order": 3,
+        "text": "いっしょに お茶を 飲みませんか。",
+        "kana": "いっしょに おちゃを のみませんか。",
+        "segments": [
+          {
+            "text": "いっしょに "
+          },
+          {
+            "text": "お茶",
+            "ruby": "おちゃ"
+          },
+          {
+            "text": "を "
+          },
+          {
+            "text": "飲",
+            "ruby": "の"
+          },
+          {
+            "text": "みませんか。"
+          }
+        ],
+        "translationZh": "一起喝茶好吗？",
+        "confidence": "high",
+        "rawText": "3. いっしょに お茶を 飲みませんか。",
+        "audioSegment": {
+          "id": "l17-basic-s003",
+          "trackId": "lesson_basic",
+          "sourceUrl": "/data/ocr/audio-clips/lesson17/l17-basic-s003.mp3",
+          "start": 0,
+          "end": 3.7,
+          "duration": 3.7,
+          "method": "approved-asr-alignment",
+          "confidence": "approved",
+          "reviewedAt": "2026-08-05T08:40:54.328Z",
+          "sourceAudioSha256": "7a4086683fbeb586b4a8f135bda69785e80b6fe797091c44d1e133d3d8191e06"
+        }
+      },
+      {
+        "id": "l17-basic-s004",
+        "order": 4,
+        "text": "ちょっと 休みましょう。",
+        "kana": "ちょっと やすみましょう。",
+        "segments": [
+          {
+            "text": "ちょっと "
+          },
+          {
+            "text": "休",
+            "ruby": "やす"
+          },
+          {
+            "text": "みましょう。"
+          }
+        ],
+        "translationZh": "休息一下吧。",
+        "confidence": "high",
+        "rawText": "4. ちょっと 休みましょう。",
+        "audioSegment": {
+          "id": "l17-basic-s004",
+          "trackId": "lesson_basic",
+          "sourceUrl": "/data/ocr/audio-clips/lesson17/l17-basic-s004.mp3",
+          "start": 0,
+          "end": 1.5,
+          "duration": 1.5,
+          "method": "approved-asr-alignment",
+          "confidence": "approved",
+          "reviewedAt": "2026-08-05T08:40:54.328Z",
+          "sourceAudioSha256": "7a4086683fbeb586b4a8f135bda69785e80b6fe797091c44d1e133d3d8191e06"
+        }
+      }
+    ],
+    "dialogues": [
+      {
+        "id": "l17-basic-dialogue-001",
+        "label": "A",
+        "lines": [
+          {
+            "id": "l17-basic-dialogue-001-line-001",
+            "speaker": "甲",
+            "text": "今 何が いちばん 欲しいですか。",
+            "kana": "いま なにが いちばん ほしいですか。",
+            "segments": [
+              {
+                "text": "今",
+                "ruby": "いま"
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "何",
+                "ruby": "なに"
+              },
+              {
+                "text": "が いちばん "
+              },
+              {
+                "text": "欲",
+                "ruby": "ほ"
+              },
+              {
+                "text": "しいですか。"
+              }
+            ],
+            "translationZh": "现在最想要什么？",
+            "confidence": "high",
+            "rawText": "甲：今 何が いちばん 欲しいですか。",
+            "audioSegment": {
+              "id": "l17-basic-dialogue-001-line-001",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson17/l17-basic-dialogue-001-line-001.mp3",
+              "start": 0,
+              "end": 2.38,
+              "duration": 2.38,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:40:54.328Z",
+              "sourceAudioSha256": "7a4086683fbeb586b4a8f135bda69785e80b6fe797091c44d1e133d3d8191e06"
+            }
+          },
+          {
+            "id": "l17-basic-dialogue-001-line-002",
+            "speaker": "乙",
+            "text": "安い 車が 欲しいです。",
+            "kana": "やすい くるまが ほしいです。",
+            "segments": [
+              {
+                "text": "安い",
+                "ruby": "やすい"
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "車",
+                "ruby": "くるま"
+              },
+              {
+                "text": "が "
+              },
+              {
+                "text": "欲",
+                "ruby": "ほ"
+              },
+              {
+                "text": "しいです。"
+              }
+            ],
+            "translationZh": "我想要一辆便宜的车。",
+            "confidence": "high",
+            "rawText": "乙：安い 車が 欲しいです。",
+            "audioSegment": {
+              "id": "l17-basic-dialogue-001-line-002",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson17/l17-basic-dialogue-001-line-002.mp3",
+              "start": 0,
+              "end": 1.78,
+              "duration": 1.78,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:40:54.328Z",
+              "sourceAudioSha256": "7a4086683fbeb586b4a8f135bda69785e80b6fe797091c44d1e133d3d8191e06"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l17-basic-dialogue-002",
+        "label": "B",
+        "lines": [
+          {
+            "id": "l17-basic-dialogue-002-line-001",
+            "speaker": "甲",
+            "text": "今日 デパートへ 買い物に 行きます。李さんも いっしょに どうですか。",
+            "kana": "きょう デパートへ かいものに いきます。りさんも いっしょに どうですか。",
+            "segments": [
+              {
+                "text": "今日",
+                "ruby": "きょう"
+              },
+              {
+                "text": " デパートへ "
+              },
+              {
+                "text": "買い物",
+                "ruby": "かいもの"
+              },
+              {
+                "text": "に "
+              },
+              {
+                "text": "行",
+                "ruby": "い"
+              },
+              {
+                "text": "きます。"
+              },
+              {
+                "text": "李",
+                "ruby": "り"
+              },
+              {
+                "text": "さんも いっしょに どうですか。"
+              }
+            ],
+            "translationZh": "今天我去百货商店买东西。小李也一起去怎么样？",
+            "confidence": "high",
+            "rawText": "甲：今日 デパートへ 買い物に 行きます。李さんも いっしょに どうですか。",
+            "audioSegment": {
+              "id": "l17-basic-dialogue-002-line-001",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson17/l17-basic-dialogue-002-line-001.mp3",
+              "start": 0,
+              "end": 4.38,
+              "duration": 4.38,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:40:54.328Z",
+              "sourceAudioSha256": "7a4086683fbeb586b4a8f135bda69785e80b6fe797091c44d1e133d3d8191e06"
+            }
+          },
+          {
+            "id": "l17-basic-dialogue-002-line-002",
+            "speaker": "乙",
+            "text": "はい、ぜひ 行きたいです。",
+            "kana": "はい、ぜひ いきたいです。",
+            "segments": [
+              {
+                "text": "はい、ぜひ "
+              },
+              {
+                "text": "行",
+                "ruby": "い"
+              },
+              {
+                "text": "きたいです。"
+              }
+            ],
+            "translationZh": "好的，我一定想去。",
+            "confidence": "high",
+            "rawText": "乙：はい、ぜひ 行きたいです。",
+            "audioSegment": {
+              "id": "l17-basic-dialogue-002-line-002",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson17/l17-basic-dialogue-002-line-002.mp3",
+              "start": 0,
+              "end": 1.82,
+              "duration": 1.82,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:40:54.328Z",
+              "sourceAudioSha256": "7a4086683fbeb586b4a8f135bda69785e80b6fe797091c44d1e133d3d8191e06"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l17-basic-dialogue-003",
+        "label": "C",
+        "lines": [
+          {
+            "id": "l17-basic-dialogue-003-line-001",
+            "speaker": "甲",
+            "text": "李さん、何を 食べたいですか。",
+            "kana": "りさん、なにを たべたいですか。",
+            "segments": [
+              {
+                "text": "李",
+                "ruby": "り"
+              },
+              {
+                "text": "さん、"
+              },
+              {
+                "text": "何",
+                "ruby": "なに"
+              },
+              {
+                "text": "を "
+              },
+              {
+                "text": "食",
+                "ruby": "た"
+              },
+              {
+                "text": "べたいですか。"
+              }
+            ],
+            "translationZh": "小李，你想吃什么？",
+            "confidence": "high",
+            "rawText": "甲：李さん、何を 食べたいですか。",
+            "audioSegment": {
+              "id": "l17-basic-dialogue-003-line-001",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson17/l17-basic-dialogue-003-line-001.mp3",
+              "start": 0,
+              "end": 2.34,
+              "duration": 2.34,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:40:54.328Z",
+              "sourceAudioSha256": "7a4086683fbeb586b4a8f135bda69785e80b6fe797091c44d1e133d3d8191e06"
+            }
+          },
+          {
+            "id": "l17-basic-dialogue-003-line-002",
+            "speaker": "乙",
+            "text": "何でも いいです。",
+            "kana": "なんでも いいです。",
+            "segments": [
+              {
+                "text": "何",
+                "ruby": "なん"
+              },
+              {
+                "text": "でも いいです。"
+              }
+            ],
+            "translationZh": "什么都可以。",
+            "confidence": "high",
+            "rawText": "乙：何でも いいです。",
+            "audioSegment": {
+              "id": "l17-basic-dialogue-003-line-002",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson17/l17-basic-dialogue-003-line-002.mp3",
+              "start": 0,
+              "end": 1.3,
+              "duration": 1.3,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:40:54.328Z",
+              "sourceAudioSha256": "7a4086683fbeb586b4a8f135bda69785e80b6fe797091c44d1e133d3d8191e06"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l17-basic-dialogue-004",
+        "label": "D",
+        "lines": [
+          {
+            "id": "l17-basic-dialogue-004-line-001",
+            "speaker": "甲",
+            "text": "土曜日の 午後、コンサートへ 行きませんか。",
+            "kana": "どようびの ごご、コンサートへ いきませんか。",
+            "segments": [
+              {
+                "text": "土曜日",
+                "ruby": "どようび"
+              },
+              {
+                "text": "の "
+              },
+              {
+                "text": "午後",
+                "ruby": "ごご"
+              },
+              {
+                "text": "、コンサートへ "
+              },
+              {
+                "text": "行",
+                "ruby": "い"
+              },
+              {
+                "text": "きませんか。"
+              }
+            ],
+            "translationZh": "星期六下午去听音乐会好吗？",
+            "confidence": "high",
+            "rawText": "甲：土曜日の 午後、コンサートへ 行きませんか。",
+            "audioSegment": {
+              "id": "l17-basic-dialogue-004-line-001",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson17/l17-basic-dialogue-004-line-001.mp3",
+              "start": 0,
+              "end": 2.9,
+              "duration": 2.9,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:40:54.328Z",
+              "sourceAudioSha256": "7a4086683fbeb586b4a8f135bda69785e80b6fe797091c44d1e133d3d8191e06"
+            }
+          },
+          {
+            "id": "l17-basic-dialogue-004-line-002",
+            "speaker": "乙",
+            "text": "いいですね。行きましょう。",
+            "kana": "いいですね。いきましょう。",
+            "segments": [
+              {
+                "text": "いいですね。"
+              },
+              {
+                "text": "行",
+                "ruby": "い"
+              },
+              {
+                "text": "きましょう。"
+              }
+            ],
+            "translationZh": "好啊。一起去吧。",
+            "confidence": "high",
+            "rawText": "乙：いいですね。行きましょう。",
+            "audioSegment": {
+              "id": "l17-basic-dialogue-004-line-002",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson17/l17-basic-dialogue-004-line-002.mp3",
+              "start": 0,
+              "end": 1.62,
+              "duration": 1.62,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:40:54.328Z",
+              "sourceAudioSha256": "7a4086683fbeb586b4a8f135bda69785e80b6fe797091c44d1e133d3d8191e06"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "applicationText": {
+    "title": "初詣",
+    "blocks": [
+      {
+        "id": "l17-app-block-001",
+        "type": "narration",
+        "text": "新年。为使自己今年的心愿能够实现，许多人去神社参拜。小李也跟着小野到神社去看一看。",
+        "kana": null,
+        "translationZh": "新年。为了实现自己今年的心愿，许多人到神社参拜。小李也跟着小野去神社看看。",
+        "confidence": "high",
+        "rawText": "新年。为使自己今年的心愿能够实现，许多人去神社参拜。小李也跟着小野到神社去看一看。"
+      },
+      {
+        "id": "l17-app-block-002",
+        "type": "scene",
+        "text": "（参拜后）",
+        "kana": null,
+        "translationZh": "参拜后。",
+        "confidence": "high",
+        "rawText": "（参拜后）"
+      },
+      {
+        "id": "l17-app-block-003",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l17-app-block-003-line-001",
+            "speaker": "李",
+            "text": "小野さんは 何を お願いしましたか。",
+            "kana": "おのさんは なにを おねがいしましたか。",
+            "translationZh": "小野女士祈求了什么？",
+            "confidence": "high",
+            "rawText": "李：小野さんは 何を お願いしましたか。",
+            "audioSegment": {
+              "id": "l17-app-block-003-line-001",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson17/l17-app-block-003-line-001.mp3",
+              "start": 0,
+              "end": 2.62,
+              "duration": 2.62,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:41:30.903Z",
+              "sourceAudioSha256": "5b942805ef4c5813254cd047d01e26d6bc89b31b9a1b6647cf7377a1aae15632"
+            }
+          },
+          {
+            "id": "l17-app-block-003-line-002",
+            "speaker": "小野",
+            "text": "健康と 恋愛です。",
+            "kana": "けんこうと れんあいです。",
+            "translationZh": "健康和恋爱。",
+            "confidence": "high",
+            "rawText": "小野：健康と 恋愛です。",
+            "audioSegment": {
+              "id": "l17-app-block-003-line-002",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson17/l17-app-block-003-line-002.mp3",
+              "start": 0,
+              "end": 1.9,
+              "duration": 1.9,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:41:30.903Z",
+              "sourceAudioSha256": "5b942805ef4c5813254cd047d01e26d6bc89b31b9a1b6647cf7377a1aae15632"
+            }
+          },
+          {
+            "id": "l17-app-block-003-line-003",
+            "speaker": "李",
+            "text": "恋愛ですか？",
+            "kana": "れんあいですか？",
+            "translationZh": "恋爱吗？",
+            "confidence": "high",
+            "rawText": "李：恋愛ですか？",
+            "audioSegment": {
+              "id": "l17-app-block-003-line-003",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson17/l17-app-block-003-line-003.mp3",
+              "start": 0,
+              "end": 1.26,
+              "duration": 1.26,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:41:30.903Z",
+              "sourceAudioSha256": "5b942805ef4c5813254cd047d01e26d6bc89b31b9a1b6647cf7377a1aae15632"
+            }
+          },
+          {
+            "id": "l17-app-block-003-line-004",
+            "speaker": "小野",
+            "text": "ええ。今年中に 結婚したいです。",
+            "kana": "ええ。ことしじゅうに けっこんしたいです。",
+            "translationZh": "嗯。我想在今年内结婚。",
+            "confidence": "high",
+            "rawText": "小野：ええ。今年中に 結婚したいです。",
+            "audioSegment": {
+              "id": "l17-app-block-003-line-004",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson17/l17-app-block-003-line-004.mp3",
+              "start": 0,
+              "end": 2.78,
+              "duration": 2.78,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:41:30.903Z",
+              "sourceAudioSha256": "5b942805ef4c5813254cd047d01e26d6bc89b31b9a1b6647cf7377a1aae15632"
+            }
+          },
+          {
+            "id": "l17-app-block-003-line-005",
+            "speaker": "李",
+            "text": "相手は いますか。",
+            "kana": "あいては いますか。",
+            "translationZh": "有对象吗？",
+            "confidence": "high",
+            "rawText": "李：相手は いますか。",
+            "audioSegment": {
+              "id": "l17-app-block-003-line-005",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson17/l17-app-block-003-line-005.mp3",
+              "start": 0,
+              "end": 1.26,
+              "duration": 1.26,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:41:30.903Z",
+              "sourceAudioSha256": "5b942805ef4c5813254cd047d01e26d6bc89b31b9a1b6647cf7377a1aae15632"
+            }
+          },
+          {
+            "id": "l17-app-block-003-line-006",
+            "speaker": "小野",
+            "text": "いいえ。まず 恋人が 欲しいですね。",
+            "kana": "いいえ。まず こいびとが ほしいですね。",
+            "translationZh": "没有。首先得有个恋人啊。",
+            "confidence": "high",
+            "rawText": "小野：いいえ。まず 恋人が 欲しいですね。",
+            "audioSegment": {
+              "id": "l17-app-block-003-line-006",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson17/l17-app-block-003-line-006.mp3",
+              "start": 0,
+              "end": 1.74,
+              "duration": 1.74,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:41:30.903Z",
+              "sourceAudioSha256": "5b942805ef4c5813254cd047d01e26d6bc89b31b9a1b6647cf7377a1aae15632"
+            }
+          },
+          {
+            "id": "l17-app-block-003-line-007",
+            "speaker": "李",
+            "text": "どんな 男性が いいですか。",
+            "kana": "どんな だんせいが いいですか。",
+            "translationZh": "什么样的男性好呢？",
+            "confidence": "high",
+            "rawText": "李：どんな 男性が いいですか。",
+            "audioSegment": {
+              "id": "l17-app-block-003-line-007",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson17/l17-app-block-003-line-007.mp3",
+              "start": 0,
+              "end": 2.1,
+              "duration": 2.1,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:41:30.903Z",
+              "sourceAudioSha256": "5b942805ef4c5813254cd047d01e26d6bc89b31b9a1b6647cf7377a1aae15632"
+            }
+          },
+          {
+            "id": "l17-app-block-003-line-008",
+            "speaker": "小野",
+            "text": "まじめで 優しい 人が いいですね。",
+            "kana": "まじめで やさしい ひとが いいですね。",
+            "translationZh": "认真而温柔的人好。",
+            "confidence": "high",
+            "rawText": "小野：まじめで 優しい 人が いいですね。",
+            "audioSegment": {
+              "id": "l17-app-block-003-line-008",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson17/l17-app-block-003-line-008.mp3",
+              "start": 0,
+              "end": 2.22,
+              "duration": 2.22,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:41:30.903Z",
+              "sourceAudioSha256": "5b942805ef4c5813254cd047d01e26d6bc89b31b9a1b6647cf7377a1aae15632"
+            }
+          },
+          {
+            "id": "l17-app-block-003-line-009",
+            "speaker": "李",
+            "text": "じゃあ、森さんは どうですか。",
+            "kana": "じゃあ、もりさんは どうですか。",
+            "translationZh": "那么，森先生怎么样？",
+            "confidence": "high",
+            "rawText": "李：じゃあ、森さんは どうですか。",
+            "audioSegment": {
+              "id": "l17-app-block-003-line-009",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson17/l17-app-block-003-line-009.mp3",
+              "start": 0,
+              "end": 2.22,
+              "duration": 2.22,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:41:30.903Z",
+              "sourceAudioSha256": "5b942805ef4c5813254cd047d01e26d6bc89b31b9a1b6647cf7377a1aae15632"
+            }
+          },
+          {
+            "id": "l17-app-block-003-line-010",
+            "speaker": "小野",
+            "text": "（脸红）ええ？",
+            "kana": "ええ？",
+            "translationZh": "（脸红）哎？",
+            "confidence": "high",
+            "rawText": "小野：（脸红）ええ？",
+            "audioSegment": {
+              "id": "l17-app-block-003-line-010",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson17/l17-app-block-003-line-010.mp3",
+              "start": 0,
+              "end": 0.82,
+              "duration": 0.82,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:41:30.903Z",
+              "sourceAudioSha256": "5b942805ef4c5813254cd047d01e26d6bc89b31b9a1b6647cf7377a1aae15632"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l17-app-block-004",
+        "type": "scene",
+        "text": "（离开神社）",
+        "kana": null,
+        "translationZh": "离开神社时。",
+        "confidence": "high",
+        "rawText": "（离开神社）"
+      },
+      {
+        "id": "l17-app-block-005",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l17-app-block-005-line-001",
+            "speaker": "小野",
+            "text": "ちょっと 寒いですね。温かい 物を 食べませんか。",
+            "kana": "ちょっと さむいですね。あたたかい ものを たべませんか。",
+            "translationZh": "有点冷啊。要不要吃点热的东西？",
+            "confidence": "high",
+            "rawText": "小野：ちょっと 寒いですね。温かい 物を 食べませんか。",
+            "audioSegment": {
+              "id": "l17-app-block-005-line-001",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson17/l17-app-block-005-line-001.mp3",
+              "start": 0,
+              "end": 3.54,
+              "duration": 3.54,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:41:30.903Z",
+              "sourceAudioSha256": "5b942805ef4c5813254cd047d01e26d6bc89b31b9a1b6647cf7377a1aae15632"
+            }
+          },
+          {
+            "id": "l17-app-block-005-line-002",
+            "speaker": "李",
+            "text": "そうですね。",
+            "kana": "そうですね。",
+            "translationZh": "是啊。",
+            "confidence": "high",
+            "rawText": "李：そうですね。",
+            "audioSegment": {
+              "id": "l17-app-block-005-line-002",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson17/l17-app-block-005-line-002.mp3",
+              "start": 0,
+              "end": 1.02,
+              "duration": 1.02,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:41:30.903Z",
+              "sourceAudioSha256": "5b942805ef4c5813254cd047d01e26d6bc89b31b9a1b6647cf7377a1aae15632"
+            }
+          },
+          {
+            "id": "l17-app-block-005-line-003",
+            "speaker": "小野",
+            "text": "何が いいですか。",
+            "kana": "なにが いいですか。",
+            "translationZh": "吃什么好呢？",
+            "confidence": "high",
+            "rawText": "小野：何が いいですか。",
+            "audioSegment": {
+              "id": "l17-app-block-005-line-003",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson17/l17-app-block-005-line-003.mp3",
+              "start": 0,
+              "end": 1.34,
+              "duration": 1.34,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:41:30.903Z",
+              "sourceAudioSha256": "5b942805ef4c5813254cd047d01e26d6bc89b31b9a1b6647cf7377a1aae15632"
+            }
+          },
+          {
+            "id": "l17-app-block-005-line-004",
+            "speaker": "李",
+            "text": "何でも いいですよ。",
+            "kana": "なんでも いいですよ。",
+            "translationZh": "什么都可以。",
+            "confidence": "high",
+            "rawText": "李：何でも いいですよ。",
+            "audioSegment": {
+              "id": "l17-app-block-005-line-004",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson17/l17-app-block-005-line-004.mp3",
+              "start": 0,
+              "end": 1.3,
+              "duration": 1.3,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:41:30.903Z",
+              "sourceAudioSha256": "5b942805ef4c5813254cd047d01e26d6bc89b31b9a1b6647cf7377a1aae15632"
+            }
+          },
+          {
+            "id": "l17-app-block-005-line-005",
+            "speaker": "小野",
+            "text": "じゃあ、お汁粉は どうですか。いい お店を 知って います。そこに 行きましょう。",
+            "kana": "じゃあ、おしるこは どうですか。いい おみせを しって います。そこに いきましょう。",
+            "translationZh": "那么，年糕小豆汤怎么样？我知道一家不错的店。去那里吧。",
+            "confidence": "high",
+            "rawText": "小野：じゃあ、お汁粉は どうですか。いい お店を 知って います。そこに 行きましょう。",
+            "audioSegment": {
+              "id": "l17-app-block-005-line-005",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson17/l17-app-block-005-line-005.mp3",
+              "start": 0,
+              "end": 5.78,
+              "duration": 5.78,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:41:30.903Z",
+              "sourceAudioSha256": "5b942805ef4c5813254cd047d01e26d6bc89b31b9a1b6647cf7377a1aae15632"
+            }
+          },
+          {
+            "id": "l17-app-block-005-line-006",
+            "speaker": "李",
+            "text": "お汁粉？ ぜひ 食べたいです。",
+            "kana": "おしるこ？ ぜひ たべたいです。",
+            "translationZh": "年糕小豆汤？我一定想吃。",
+            "confidence": "high",
+            "rawText": "李：お汁粉？ ぜひ 食べたいです。",
+            "audioSegment": {
+              "id": "l17-app-block-005-line-006",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson17/l17-app-block-005-line-006.mp3",
+              "start": 0,
+              "end": 2.26,
+              "duration": 2.26,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:41:30.903Z",
+              "sourceAudioSha256": "5b942805ef4c5813254cd047d01e26d6bc89b31b9a1b6647cf7377a1aae15632"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "warnings": [],
+  "audioAlignment": {
+    "schemaVersion": 1,
+    "method": "approved-asr-alignment",
+    "sourceAlignment": "data/ocr/lesson17-text-audio-alignment.json",
+    "publishedAt": "2026-08-05T08:41:34.919Z",
+    "approvedSegments": 28
+  }
+}

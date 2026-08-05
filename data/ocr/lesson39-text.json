@@ -1,0 +1,89 @@
+{
+  "lessonId": "lesson39",
+  "sourceImages": [
+    { "section": "basic", "path": "course-assets/by-lesson/lesson39/page162.webp", "pageNo": 162 },
+    { "section": "application", "path": "course-assets/by-lesson/lesson39/page167.webp", "pageNo": 167 }
+  ],
+  "basicText": {
+    "title": "基本课文",
+    "basicSentences": [
+      { "id": "l39-basic-s001", "order": 1, "text": "眼鏡をかけて本を読みます。", "translationZh": "戴着眼镜读书。", "confidence": "high", "rawText": "1. 眼鏡をかけて本を読みます。" },
+      { "id": "l39-basic-s002", "order": 2, "text": "道路工事のために、道が込んでいます。", "translationZh": "因为在修路，道路很拥挤。", "confidence": "high", "rawText": "2. 道路工事のために、道が込んでいます。" },
+      { "id": "l39-basic-s003", "order": 3, "text": "李さんは急いで帰っていきました。", "translationZh": "小李急急忙忙地回去了。", "confidence": "high", "rawText": "3. 李さんは急いで帰っていきました。" },
+      { "id": "l39-basic-s004", "order": 4, "text": "去年、日本で歌舞伎を見てきました。", "translationZh": "去年在日本看了歌舞伎。", "confidence": "high", "rawText": "4. 去年、日本で歌舞伎を見てきました。" }
+    ],
+    "dialogues": [
+      {
+        "id": "l39-basic-dialogue-001", "label": "A", "lines": [
+          { "id": "l39-basic-dialogue-001-line-001", "speaker": "甲", "text": "森さんは傘を持っていきましたか。", "translationZh": "森先生带伞去了吗？", "confidence": "high", "rawText": "甲：森さんは傘を持っていきましたか。" },
+          { "id": "l39-basic-dialogue-001-line-002", "speaker": "乙", "text": "いいえ、持たないで出かけました。", "translationZh": "没有，没带伞就出门了。", "confidence": "high", "rawText": "乙：いいえ、持たないで出かけました。" }
+        ]
+      },
+      {
+        "id": "l39-basic-dialogue-002", "label": "B", "lines": [
+          { "id": "l39-basic-dialogue-002-line-001", "speaker": "甲", "text": "李さん、遅かったですね。", "translationZh": "小李，你来得真晚啊。", "confidence": "high", "rawText": "甲：李さん、遅かったですね。" },
+          { "id": "l39-basic-dialogue-002-line-002", "speaker": "乙", "text": "すみません。事故があったために、電車が遅れたんです。", "translationZh": "对不起。因为发生了事故，电车晚点了。", "confidence": "high", "rawText": "乙：すみません。事故があったために、電車が遅れたんです。" }
+        ]
+      },
+      {
+        "id": "l39-basic-dialogue-003", "label": "C", "lines": [
+          { "id": "l39-basic-dialogue-003-line-001", "speaker": "甲", "text": "ずいぶんたくさん人が乗ってきましたね。", "translationZh": "上来了很多人啊。", "confidence": "high", "rawText": "甲：ずいぶんたくさん人が乗ってきましたね。" },
+          { "id": "l39-basic-dialogue-003-line-002", "speaker": "乙", "text": "ええ、ちょうど通勤ラッシュの時間ですから。", "translationZh": "是啊，因为正好是上下班高峰时间。", "confidence": "high", "rawText": "乙：ええ、ちょうど通勤ラッシュの時間ですから。" }
+        ]
+      },
+      {
+        "id": "l39-basic-dialogue-004", "label": "D", "lines": [
+          { "id": "l39-basic-dialogue-004-line-001", "speaker": "甲", "text": "ちょっと手紙を出してきます。", "translationZh": "我去寄封信。", "confidence": "high", "rawText": "甲：ちょっと手紙を出してきます。" },
+          { "id": "l39-basic-dialogue-004-line-002", "speaker": "乙", "text": "じゃあ、これもお願いします。", "translationZh": "那这封也拜托你了。", "confidence": "high", "rawText": "乙：じゃあ、これもお願いします。" }
+        ]
+      }
+    ]
+  },
+  "applicationText": {
+    "title": "故宮",
+    "blocks": [
+      { "id": "l39-app-block-001", "type": "narration", "text": "清晨，小李和小野来到了天安门。在薄薄的晨雾中，两人决定先登城楼眺望天安门广场，然后再参观故宫博物院。", "translationZh": "清晨，小李和小野来到天安门。在淡淡的晨雾中，两人决定先登城楼眺望天安门广场，再参观故宫博物院。", "confidence": "high", "rawText": "清晨，小李和小野来到了天安门。在薄薄的晨雾中，两人决定先登城楼眺望天安门广场，然后再参观故宫博物院。" },
+      { "id": "l39-app-block-002", "type": "scene", "text": "在天安门城楼下", "translationZh": "在天安门城楼下。", "confidence": "high", "rawText": "（在天安门城楼下）" },
+      {
+        "id": "l39-app-block-003", "type": "dialogue", "lines": [
+          { "id": "l39-app-block-003-line-001", "speaker": "李", "text": "この門は、昔、火事のために２度も焼けたことがあるんですよ。", "translationZh": "这座门以前曾因火灾烧毁过两次。", "confidence": "high", "rawText": "李：この門は、昔、火事のために２度も焼けたことがあるんですよ。" },
+          { "id": "l39-app-block-003-line-002", "speaker": "小野", "text": "そうなんですか。それにしても立派な建物ですね。中に入れるんですか。", "translationZh": "是吗？即便如此，还是一座很气派的建筑啊。能进去吗？", "confidence": "high", "rawText": "小野：そうなんですか。それにしても立派な建物ですね。中に入れるんですか。" },
+          { "id": "l39-app-block-003-line-003", "speaker": "李", "text": "ええ、入れますよ。チケットを買ってきましょうか。", "translationZh": "可以进去。要不要我去买票？", "confidence": "high", "rawText": "李：ええ、入れますよ。チケットを買ってきましょうか。" }
+        ]
+      },
+      { "id": "l39-app-block-004", "type": "scene", "text": "小李返回来，带小野去行李寄存处", "translationZh": "小李回来后，带小野去行李寄存处。", "confidence": "high", "rawText": "（小李返回来，带小野去行李寄存处）" },
+      {
+        "id": "l39-app-block-005", "type": "dialogue", "lines": [
+          { "id": "l39-app-block-005-line-001", "speaker": "李", "text": "かばんを持って入ることができませんから、ここに預けていきましょう。", "translationZh": "不能带着包进去，我们把它寄存在这里吧。", "confidence": "high", "rawText": "李：かばんを持って入ることができませんから、ここに預けていきましょう。" }
+        ]
+      },
+      { "id": "l39-app-block-006", "type": "scene", "text": "边登天安门城楼边说", "translationZh": "一边登天安门城楼一边说。", "confidence": "high", "rawText": "（边登天安门城楼边说）" },
+      {
+        "id": "l39-app-block-007", "type": "dialogue", "lines": [
+          { "id": "l39-app-block-007-line-001", "speaker": "小野", "text": "天安門からはいろんな建物が見渡せるんですか。", "translationZh": "从天安门能眺望到各种各样的建筑吗？", "confidence": "high", "rawText": "小野：天安門からはいろんな建物が見渡せるんですか。" },
+          { "id": "l39-app-block-007-line-002", "speaker": "李", "text": "ええ。でも、今朝は霧がかかっているために、遠くまで見えないと思いますが…。", "translationZh": "是的。不过，因为今天早晨有雾，我想看不到很远的地方……。", "confidence": "high", "rawText": "李：ええ。でも、今朝は霧がかかっているために、遠くまで見えないと思いますが…。" }
+        ]
+      },
+      { "id": "l39-app-block-008", "type": "scene", "text": "在故宫博物院", "translationZh": "在故宫博物院。", "confidence": "high", "rawText": "（在故宫博物院）" },
+      {
+        "id": "l39-app-block-009", "type": "dialogue", "lines": [
+          { "id": "l39-app-block-009-line-001", "speaker": "李", "text": "ここは、別名「紫禁城」と言って、映画の舞台になった所です。", "translationZh": "这里别名叫“紫禁城”，是电影的拍摄舞台。", "confidence": "high", "rawText": "李：ここは、別名「紫禁城」と言って、映画の舞台になった所です。" },
+          { "id": "l39-app-block-009-line-002", "speaker": "小野", "text": "そうそう。わたしは映画を見て、絶対来たいと思っていたんです。せっかく北京へ来て、ここを見ないで帰ることはできませんよ。", "translationZh": "对对。我看了那部电影后，就一直很想一定要来这里。好不容易来到北京，不看这里是不能回去的。", "confidence": "high", "rawText": "小野：そうそう。わたしは映画を見て、絶対来たいと思っていたんです。せっかく北京へ来て、ここを見ないで帰ることはできませんよ。" }
+        ]
+      },
+      { "id": "l39-app-block-010", "type": "scene", "text": "穿过太和门，看见太和殿", "translationZh": "穿过太和门，看见太和殿。", "confidence": "high", "rawText": "（穿过太和门，看见太和殿）" },
+      {
+        "id": "l39-app-block-011", "type": "dialogue", "lines": [
+          { "id": "l39-app-block-011-line-001", "speaker": "小野", "text": "屋根が黄色で、とてもきれいですね。", "translationZh": "屋顶是黄色的，非常漂亮啊。", "confidence": "high", "rawText": "小野：屋根が黄色で、とてもきれいですね。" },
+          { "id": "l39-app-block-011-line-002", "speaker": "李", "text": "ええ、あれは「瑠璃瓦」と言います。青い空にとてもよく合いますね。", "translationZh": "是的，那叫作“琉璃瓦”。和蓝天非常相配啊。", "confidence": "high", "rawText": "李：ええ、あれは「瑠璃瓦」と言います。青い空にとてもよく合いますね。" },
+          { "id": "l39-app-block-011-line-003", "speaker": "小野", "text": "李さん、あの建物をバックにして、いっしょに写真を撮りませんか。", "translationZh": "小李，以那座建筑为背景，一起拍张照怎么样？", "confidence": "high", "rawText": "小野：李さん、あの建物をバックにして、いっしょに写真を撮りませんか。" },
+          { "id": "l39-app-block-011-line-004", "speaker": "李", "text": "いいですね。", "translationZh": "好啊。", "confidence": "high", "rawText": "李：いいですね。" }
+        ]
+      }
+    ]
+  },
+  "warnings": [
+    "扫描页中的假名标注不适合可靠地逐句切分，未生成 kana 或 segments 字段。",
+    "应用课文的引言和场景说明在教材中以中文排印，按原文保留在 text 字段中。"
+  ]
+}

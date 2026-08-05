@@ -1,0 +1,583 @@
+{
+  "lessonId": "lesson1",
+  "sourceImages": [
+    {
+      "section": "basic",
+      "path": "course-assets/by-lesson/lesson1/page22.webp",
+      "pageNo": 22
+    },
+    {
+      "section": "application",
+      "path": "course-assets/by-lesson/lesson1/page27.webp",
+      "pageNo": 27
+    }
+  ],
+  "basicText": {
+    "title": "基本课文",
+    "basicSentences": [
+      {
+        "id": "l1-basic-s001",
+        "order": 1,
+        "text": "李さんは 中国人です。",
+        "kana": "りさんは ちゅうごくじんです。",
+        "translationZh": "小李是中国人。",
+        "confidence": "high",
+        "rawText": "1. 李さんは 中国人です。",
+        "audioSegment": {
+          "id": "l1-basic-s001",
+          "trackId": "lesson_basic",
+          "sourceUrl": "/data/ocr/audio-clips/lesson1/l1-basic-s001.mp3",
+          "start": 0,
+          "end": 2.58,
+          "duration": 2.58,
+          "method": "approved-asr-alignment",
+          "confidence": "approved",
+          "reviewedAt": "2026-08-05T08:14:54.896Z",
+          "sourceAudioSha256": "defc20f013e69b724fa1227c94f034a434349f5e96ea9bc183f105a0100624ba"
+        }
+      },
+      {
+        "id": "l1-basic-s002",
+        "order": 2,
+        "text": "森さんは 学生では ありません。",
+        "kana": "もりさんは がくせいでは ありません。",
+        "translationZh": "森先生不是学生。",
+        "confidence": "high",
+        "rawText": "2. 森さんは 学生では ありません。",
+        "audioSegment": {
+          "id": "l1-basic-s002",
+          "trackId": "lesson_basic",
+          "sourceUrl": "/data/ocr/audio-clips/lesson1/l1-basic-s002.mp3",
+          "start": 0,
+          "end": 2.82,
+          "duration": 2.82,
+          "method": "approved-asr-alignment",
+          "confidence": "approved",
+          "reviewedAt": "2026-08-05T08:14:54.896Z",
+          "sourceAudioSha256": "defc20f013e69b724fa1227c94f034a434349f5e96ea9bc183f105a0100624ba"
+        }
+      },
+      {
+        "id": "l1-basic-s003",
+        "order": 3,
+        "text": "林さんは 日本人ですか。",
+        "kana": "はやしさんは にほんじんですか。",
+        "translationZh": "林先生是日本人吗？",
+        "confidence": "high",
+        "rawText": "3. 林さんは 日本人ですか。",
+        "audioSegment": {
+          "id": "l1-basic-s003",
+          "trackId": "lesson_basic",
+          "sourceUrl": "/data/ocr/audio-clips/lesson1/l1-basic-s003.mp3",
+          "start": 0,
+          "end": 2.66,
+          "duration": 2.66,
+          "method": "approved-asr-alignment",
+          "confidence": "approved",
+          "reviewedAt": "2026-08-05T08:14:54.896Z",
+          "sourceAudioSha256": "defc20f013e69b724fa1227c94f034a434349f5e96ea9bc183f105a0100624ba"
+        }
+      },
+      {
+        "id": "l1-basic-s004",
+        "order": 4,
+        "text": "李さんは JC企画の 社員です。",
+        "kana": "りさんは ジェーシーきかくの しゃいんです。",
+        "translationZh": "小李是JC策划公司的职员。",
+        "confidence": "high",
+        "rawText": "4. 李さんは JC企画の 社員です。",
+        "audioSegment": {
+          "id": "l1-basic-s004",
+          "trackId": "lesson_basic",
+          "sourceUrl": "/data/ocr/audio-clips/lesson1/l1-basic-s004.mp3",
+          "start": 0,
+          "end": 3.02,
+          "duration": 3.02,
+          "method": "approved-asr-alignment",
+          "confidence": "approved",
+          "reviewedAt": "2026-08-05T08:14:54.896Z",
+          "sourceAudioSha256": "defc20f013e69b724fa1227c94f034a434349f5e96ea9bc183f105a0100624ba"
+        }
+      }
+    ],
+    "dialogues": [
+      {
+        "id": "l1-basic-dialogue-001",
+        "label": "A",
+        "lines": [
+          {
+            "id": "l1-basic-dialogue-001-line-001",
+            "speaker": "甲",
+            "text": "わたしは 李です。小野さんですか。",
+            "kana": "わたしは りです。おのさんですか。",
+            "translationZh": "我姓李。您是小野女士吗？",
+            "confidence": "high",
+            "rawText": "甲：わたしは 李です。小野さんですか。",
+            "audioSegment": {
+              "id": "l1-basic-dialogue-001-line-001",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson1/l1-basic-dialogue-001-line-001.mp3",
+              "start": 0,
+              "end": 4.86,
+              "duration": 4.86,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:14:54.896Z",
+              "sourceAudioSha256": "defc20f013e69b724fa1227c94f034a434349f5e96ea9bc183f105a0100624ba"
+            }
+          },
+          {
+            "id": "l1-basic-dialogue-001-line-002",
+            "speaker": "乙",
+            "text": "はい、そうです。小野です。",
+            "kana": "はい、そうです。おのです。",
+            "translationZh": "是的，我是小野。",
+            "confidence": "high",
+            "rawText": "乙：はい、そうです。小野です。",
+            "audioSegment": {
+              "id": "l1-basic-dialogue-001-line-002",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson1/l1-basic-dialogue-001-line-002.mp3",
+              "start": 0,
+              "end": 2.7,
+              "duration": 2.7,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:14:54.896Z",
+              "sourceAudioSha256": "defc20f013e69b724fa1227c94f034a434349f5e96ea9bc183f105a0100624ba"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l1-basic-dialogue-002",
+        "label": "B",
+        "lines": [
+          {
+            "id": "l1-basic-dialogue-002-line-001",
+            "speaker": "甲",
+            "text": "森さんは 学生ですか。",
+            "kana": "もりさんは がくせいですか。",
+            "translationZh": "森先生是学生吗？",
+            "confidence": "high",
+            "rawText": "甲：森さんは 学生ですか。",
+            "audioSegment": {
+              "id": "l1-basic-dialogue-002-line-001",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson1/l1-basic-dialogue-002-line-001.mp3",
+              "start": 0,
+              "end": 2.22,
+              "duration": 2.22,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:14:54.896Z",
+              "sourceAudioSha256": "defc20f013e69b724fa1227c94f034a434349f5e96ea9bc183f105a0100624ba"
+            }
+          },
+          {
+            "id": "l1-basic-dialogue-002-line-002",
+            "speaker": "乙",
+            "text": "いいえ、学生では ありません。会社員です。",
+            "kana": "いいえ、がくせいでは ありません。かいしゃいんです。",
+            "translationZh": "不，不是学生。是公司职员。",
+            "confidence": "high",
+            "rawText": "乙：いいえ、学生では ありません。会社員です。",
+            "audioSegment": {
+              "id": "l1-basic-dialogue-002-line-002",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson1/l1-basic-dialogue-002-line-002.mp3",
+              "start": 0,
+              "end": 4.58,
+              "duration": 4.58,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:14:54.896Z",
+              "sourceAudioSha256": "defc20f013e69b724fa1227c94f034a434349f5e96ea9bc183f105a0100624ba"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l1-basic-dialogue-003",
+        "label": "C",
+        "lines": [
+          {
+            "id": "l1-basic-dialogue-003-line-001",
+            "speaker": "甲",
+            "text": "吉田さんですか。",
+            "kana": "よしださんですか。",
+            "translationZh": "您是吉田先生吗？",
+            "confidence": "high",
+            "rawText": "甲：吉田さんですか。",
+            "audioSegment": {
+              "id": "l1-basic-dialogue-003-line-001",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson1/l1-basic-dialogue-003-line-001.mp3",
+              "start": 0,
+              "end": 1.3,
+              "duration": 1.3,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:14:54.896Z",
+              "sourceAudioSha256": "defc20f013e69b724fa1227c94f034a434349f5e96ea9bc183f105a0100624ba"
+            }
+          },
+          {
+            "id": "l1-basic-dialogue-003-line-002",
+            "speaker": "乙",
+            "text": "いいえ、ちがいます。森です。",
+            "kana": "いいえ、ちがいます。もりです。",
+            "translationZh": "不，不是。我是森。",
+            "confidence": "high",
+            "rawText": "乙：いいえ、ちがいます。森です。",
+            "audioSegment": {
+              "id": "l1-basic-dialogue-003-line-002",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson1/l1-basic-dialogue-003-line-002.mp3",
+              "start": 0,
+              "end": 3.3,
+              "duration": 3.3,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:14:54.896Z",
+              "sourceAudioSha256": "defc20f013e69b724fa1227c94f034a434349f5e96ea9bc183f105a0100624ba"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l1-basic-dialogue-004",
+        "label": "D",
+        "lines": [
+          {
+            "id": "l1-basic-dialogue-004-line-001",
+            "speaker": "甲",
+            "text": "李さんは JC企画の 社員ですか。",
+            "kana": "りさんは ジェーシーきかくの しゃいんですか。",
+            "translationZh": "小李是JC策划公司的职员吗？",
+            "confidence": "high",
+            "rawText": "甲：李さんは JC企画の 社員ですか。",
+            "audioSegment": {
+              "id": "l1-basic-dialogue-004-line-001",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson1/l1-basic-dialogue-004-line-001.mp3",
+              "start": 0,
+              "end": 4.5,
+              "duration": 4.5,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:14:54.896Z",
+              "sourceAudioSha256": "defc20f013e69b724fa1227c94f034a434349f5e96ea9bc183f105a0100624ba"
+            }
+          },
+          {
+            "id": "l1-basic-dialogue-004-line-002",
+            "speaker": "乙",
+            "text": "はい、そうです。",
+            "kana": "はい、そうです。",
+            "translationZh": "是的，是。",
+            "confidence": "high",
+            "rawText": "乙：はい、そうです。",
+            "audioSegment": {
+              "id": "l1-basic-dialogue-004-line-002",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson1/l1-basic-dialogue-004-line-002.mp3",
+              "start": 0,
+              "end": 1.42,
+              "duration": 1.42,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:14:54.896Z",
+              "sourceAudioSha256": "defc20f013e69b724fa1227c94f034a434349f5e96ea9bc183f105a0100624ba"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "applicationText": {
+    "title": "出迎え",
+    "blocks": [
+      {
+        "id": "l1-app-block-001",
+        "type": "narration",
+        "text": "飞机准点到达成田机场。小野绿和同事森健太郎在候机大厅等着小李。小李办完入境手续，到大厅后，看到写着“李秀麗様”字样的牌子。",
+        "kana": null,
+        "translationZh": "飞机准点到达成田机场。小野绿和同事森健太郎在候机大厅等着小李。小李办完入境手续，到大厅后，看到写着“李秀麗様”字样的牌子。",
+        "confidence": "high",
+        "rawText": "飞机准点到达成田机场。小野绿和同事森健太郎在候机大厅等着小李。小李办完入境手续，到大厅后，看到写着“李秀麗様”字样的牌子。"
+      },
+      {
+        "id": "l1-app-block-002",
+        "type": "scene",
+        "text": "（小李朝牌子的方向走去）",
+        "kana": null,
+        "translationZh": "小李朝牌子的方向走去。",
+        "confidence": "high",
+        "rawText": "（小李朝牌子的方向走去）"
+      },
+      {
+        "id": "l1-app-block-003",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l1-app-block-003-line-001",
+            "speaker": "李",
+            "text": "JC企画の 小野さんですか。",
+            "kana": "ジェーシーきかくの おのさんですか。",
+            "translationZh": "您是JC策划公司的小野女士吗？",
+            "confidence": "high",
+            "rawText": "李：JC企画の 小野さんですか。",
+            "audioSegment": {
+              "id": "l1-app-block-003-line-001",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson1/l1-app-block-003-line-001.mp3",
+              "start": 0,
+              "end": 2.26,
+              "duration": 2.26,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:15:25.711Z",
+              "sourceAudioSha256": "ac552f0d4209ea8166dac9dede0a2fb835aeac129b5898a8a34c171b8c73f37f"
+            }
+          },
+          {
+            "id": "l1-app-block-003-line-002",
+            "speaker": "小野",
+            "text": "はい、小野です。李秀麗さんですか。",
+            "kana": "はい、おのです。りしゅうれいさんですか。",
+            "translationZh": "是的，我是小野。您是李秀丽女士吗？",
+            "confidence": "high",
+            "rawText": "小野：はい、小野です。李秀麗さんですか。",
+            "audioSegment": {
+              "id": "l1-app-block-003-line-002",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson1/l1-app-block-003-line-002.mp3",
+              "start": 0,
+              "end": 3.1,
+              "duration": 3.1,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:15:25.711Z",
+              "sourceAudioSha256": "ac552f0d4209ea8166dac9dede0a2fb835aeac129b5898a8a34c171b8c73f37f"
+            }
+          },
+          {
+            "id": "l1-app-block-003-line-003",
+            "speaker": "李",
+            "text": "はい、李秀麗です。はじめまして。",
+            "kana": "はい、りしゅうれいです。はじめまして。",
+            "translationZh": "是的，我是李秀丽。初次见面。",
+            "confidence": "high",
+            "rawText": "李：はい、李秀麗です。はじめまして。",
+            "audioSegment": {
+              "id": "l1-app-block-003-line-003",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson1/l1-app-block-003-line-003.mp3",
+              "start": 0,
+              "end": 3.06,
+              "duration": 3.06,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:15:25.711Z",
+              "sourceAudioSha256": "ac552f0d4209ea8166dac9dede0a2fb835aeac129b5898a8a34c171b8c73f37f"
+            }
+          },
+          {
+            "id": "l1-app-block-003-line-004",
+            "speaker": "李",
+            "text": "どうぞ よろしく お願いします。",
+            "kana": "どうぞ よろしく おねがいします。",
+            "translationZh": "请多关照。",
+            "confidence": "high",
+            "rawText": "どうぞ よろしく お願いします。",
+            "audioSegment": {
+              "id": "l1-app-block-003-line-004",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson1/l1-app-block-003-line-004.mp3",
+              "start": 0,
+              "end": 2.18,
+              "duration": 2.18,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:15:25.711Z",
+              "sourceAudioSha256": "ac552f0d4209ea8166dac9dede0a2fb835aeac129b5898a8a34c171b8c73f37f"
+            }
+          },
+          {
+            "id": "l1-app-block-003-line-005",
+            "speaker": "小野",
+            "text": "はじめまして、小野緑です。",
+            "kana": "はじめまして、おのみどりです。",
+            "translationZh": "初次见面，我是小野绿。",
+            "confidence": "high",
+            "rawText": "小野：はじめまして、小野緑です。",
+            "audioSegment": {
+              "id": "l1-app-block-003-line-005",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson1/l1-app-block-003-line-005.mp3",
+              "start": 0,
+              "end": 2.5,
+              "duration": 2.5,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:15:25.711Z",
+              "sourceAudioSha256": "ac552f0d4209ea8166dac9dede0a2fb835aeac129b5898a8a34c171b8c73f37f"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l1-app-block-004",
+        "type": "scene",
+        "text": "（森在一旁插话）",
+        "kana": null,
+        "translationZh": "森在一旁插话。",
+        "confidence": "high",
+        "rawText": "（森在一旁插话）"
+      },
+      {
+        "id": "l1-app-block-005",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l1-app-block-005-line-001",
+            "speaker": "森",
+            "text": "李さん、こんにちは。",
+            "kana": "りさん、こんにちは。",
+            "translationZh": "李女士，你好。",
+            "confidence": "high",
+            "rawText": "森：李さん、こんにちは。",
+            "audioSegment": {
+              "id": "l1-app-block-005-line-001",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson1/l1-app-block-005-line-001.mp3",
+              "start": 0,
+              "end": 1.9,
+              "duration": 1.9,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:15:25.711Z",
+              "sourceAudioSha256": "ac552f0d4209ea8166dac9dede0a2fb835aeac129b5898a8a34c171b8c73f37f"
+            }
+          },
+          {
+            "id": "l1-app-block-005-line-002",
+            "speaker": "李",
+            "text": "吉田さんですか。",
+            "kana": "よしださんですか。",
+            "translationZh": "您是吉田先生吗？",
+            "confidence": "high",
+            "rawText": "李：吉田さんですか。",
+            "audioSegment": {
+              "id": "l1-app-block-005-line-002",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson1/l1-app-block-005-line-002.mp3",
+              "start": 0,
+              "end": 1.22,
+              "duration": 1.22,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:15:25.711Z",
+              "sourceAudioSha256": "ac552f0d4209ea8166dac9dede0a2fb835aeac129b5898a8a34c171b8c73f37f"
+            }
+          },
+          {
+            "id": "l1-app-block-005-line-003",
+            "speaker": "森",
+            "text": "いいえ、わたしは 吉田じゃ ありません。森です。",
+            "kana": "いいえ、わたしは よしだじゃ ありません。もりです。",
+            "translationZh": "不，我不是吉田。我是森。",
+            "confidence": "high",
+            "rawText": "森：いいえ、わたしは 吉田じゃ ありません。森です。",
+            "audioSegment": {
+              "id": "l1-app-block-005-line-003",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson1/l1-app-block-005-line-003.mp3",
+              "start": 0,
+              "end": 3.66,
+              "duration": 3.66,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:15:25.711Z",
+              "sourceAudioSha256": "ac552f0d4209ea8166dac9dede0a2fb835aeac129b5898a8a34c171b8c73f37f"
+            }
+          },
+          {
+            "id": "l1-app-block-005-line-004",
+            "speaker": "李",
+            "text": "あっ、森さんですか。どうも すみません。",
+            "kana": "あっ、もりさんですか。どうも すみません。",
+            "translationZh": "啊，是森先生啊。实在对不起。",
+            "confidence": "high",
+            "rawText": "李：あっ、森さんですか。どうも すみません。",
+            "audioSegment": {
+              "id": "l1-app-block-005-line-004",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson1/l1-app-block-005-line-004.mp3",
+              "start": 0,
+              "end": 3.38,
+              "duration": 3.38,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:15:25.711Z",
+              "sourceAudioSha256": "ac552f0d4209ea8166dac9dede0a2fb835aeac129b5898a8a34c171b8c73f37f"
+            }
+          },
+          {
+            "id": "l1-app-block-005-line-005",
+            "speaker": "森",
+            "text": "いいえ。どうぞ よろしく。",
+            "kana": "いいえ。どうぞ よろしく。",
+            "translationZh": "没关系。请多关照。",
+            "confidence": "high",
+            "rawText": "森：いいえ。どうぞ よろしく。",
+            "audioSegment": {
+              "id": "l1-app-block-005-line-005",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson1/l1-app-block-005-line-005.mp3",
+              "start": 0,
+              "end": 2.3,
+              "duration": 2.3,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:15:25.711Z",
+              "sourceAudioSha256": "ac552f0d4209ea8166dac9dede0a2fb835aeac129b5898a8a34c171b8c73f37f"
+            }
+          },
+          {
+            "id": "l1-app-block-005-line-006",
+            "speaker": "李",
+            "text": "李秀麗です。こちらこそ、よろしく お願いします。",
+            "kana": "りしゅうれいです。こちらこそ、よろしく おねがいします。",
+            "translationZh": "我是李秀丽。我才要请您多多关照。",
+            "confidence": "high",
+            "rawText": "李：李秀麗です。こちらこそ、よろしく お願いします。",
+            "audioSegment": {
+              "id": "l1-app-block-005-line-006",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson1/l1-app-block-005-line-006.mp3",
+              "start": 0,
+              "end": 3.02,
+              "duration": 3.02,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:15:25.711Z",
+              "sourceAudioSha256": "ac552f0d4209ea8166dac9dede0a2fb835aeac129b5898a8a34c171b8c73f37f"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "warnings": [
+    "应用课文中的旁白和场景说明在教材页中以中文呈现，因此对应 block 的 text 与 translationZh 均保留中文原文，kana 为 null。"
+  ],
+  "audioAlignment": {
+    "schemaVersion": 1,
+    "method": "approved-asr-alignment",
+    "sourceAlignment": "data/ocr/lesson1-text-audio-alignment.json",
+    "publishedAt": "2026-08-05T08:15:29.020Z",
+    "approvedSegments": 23
+  }
+}

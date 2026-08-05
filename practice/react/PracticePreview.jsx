@@ -17,6 +17,7 @@ const evaluationModeLabel = {
 
 const textbookAudioBaseUrl = "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio";
 const CHOICE_RESULT_KEY = "__choice__";
+const ANSWER_ALTERNATIVE_CACHE_KEY = "japaflow.practice.acceptedAlternatives.v1";
 const answerLexicalVariantGroups = [
   ["わたし", "私", "我"],
   ["あなた", "貴方", "貴女"],
@@ -93,6 +94,7 @@ export function PracticePreview({ practice, localPractice = null }) {
   const [session, setSession] = useState({ lessonId: practice.lessonId, activities: {} });
   const [sessionLoadKey, setSessionLoadKey] = useState(0);
   const [isReady, setIsReady] = useState(false);
+  const [answerAlternatives, setAnswerAlternatives] = useState({});
   const [currentActivityId, setCurrentActivityId] = useState(() => activityIdFromHash(window.location.hash, activities[0]?.id));
 
   useEffect(() => {
@@ -154,6 +156,16 @@ export function PracticePreview({ practice, localPractice = null }) {
   useEffect(() => {
     window.initPracticeAnswerFormatter?.();
   }, [currentActivity?.id, sessionLoadKey, admin]);
+
+  useEffect(() => {
+    let mounted = true;
+    loadAcceptedAnswerAlternatives(practice.lessonId).then((alternatives) => {
+      if (mounted) setAnswerAlternatives(alternatives);
+    });
+    return () => {
+      mounted = false;
+    };
+  }, [practice.lessonId]);
 
   const handleNavigate = (activityId) => {
     if (!activityId || typeof window === "undefined") return;
@@ -228,7 +240,14 @@ export function PracticePreview({ practice, localPractice = null }) {
       </aside>
 
       <section className="practice-content">
-        {admin ? <PracticePublishPanel lessonId={practice.lessonId} localPractice={localPractice} /> : null}
+        {admin ? <PracticePublishPanel lessonId={practice.lessonId} practice={practice} localPractice={localPractice} /> : null}
+        {admin ? (
+          <PracticeAlternativeSyncPanel
+            lessonId={practice.lessonId}
+            practice={practice}
+            answerAlternatives={answerAlternatives}
+          />
+        ) : null}
         {!admin && !isPublished ? (
           <UnpublishedPracticeNotice />
         ) : currentActivity ? (
@@ -239,6 +258,8 @@ export function PracticePreview({ practice, localPractice = null }) {
             admin={admin}
             record={currentRecord}
             isReady={isReady}
+            answerAlternatives={answerAlternatives}
+            onAnswerAlternativesChange={setAnswerAlternatives}
             onSave={handleActivitySave}
             previousActivity={previousActivity}
             nextActivity={nextActivity}
@@ -279,13 +300,14 @@ function UnpublishedPracticeNotice() {
   );
 }
 
-function PracticePublishPanel({ lessonId, localPractice }) {
+function PracticePublishPanel({ lessonId, practice, localPractice }) {
   const [status, setStatus] = useState({ state: "idle", message: "" });
   const lessonNo = String(lessonId || "").match(/\d+/)?.[0] || "";
   const generateCommand = lessonNo
     ? `practise-generete-prompt-v3.md generate lesson ${lessonNo} data`
     : "practise-generete-prompt-v3.md generate lesson N data";
   const canPublish = Boolean(localPractice?.activities?.length);
+  const databaseVersion = practice.practiceVersion || null;
 
   const handlePublish = async () => {
     if (!canPublish) return;
@@ -303,14 +325,17 @@ function PracticePublishPanel({ lessonId, localPractice }) {
       <div>
         <strong>本地练习数据</strong>
         {canPublish ? (
-          <p>{localPractice.title} · {localPractice.activities.length} 题</p>
+          <p>
+            {localPractice.title} · {localPractice.activities.length} 题
+            {databaseVersion ? ` · 当前数据库 version ${databaseVersion}` : " · 当前未加载数据库版本"}
+          </p>
         ) : (
           <p>未找到本课本地练习数据。请先生成 `practice/lesson{lessonNo || "N"}-practice-data.ts`，例如：`{generateCommand}`。</p>
         )}
       </div>
       <div className="admin-publish-actions">
         <button type="button" className="secondary-action" onClick={handlePublish} disabled={!canPublish || status.state === "pending"}>
-          发布到数据库
+          {databaseVersion ? "重新发布为新版本" : "发布到数据库"}
         </button>
         {status.message ? <span className={`admin-publish-status ${status.state}`}>{status.message}</span> : null}
       </div>
@@ -318,7 +343,93 @@ function PracticePublishPanel({ lessonId, localPractice }) {
   );
 }
 
-function PracticeActivity({ activity, practice, admin, record, isReady, onSave, previousActivity, nextActivity, onNavigate }) {
+function PracticeAlternativeSyncPanel({ lessonId, practice, answerAlternatives }) {
+  const [status, setStatus] = useState({ state: "idle", message: "" });
+  const [syncedVersion, setSyncedVersion] = useState(null);
+  const [expanded, setExpanded] = useState(false);
+  const syncPlan = useMemo(
+    () => buildAcceptedAnswerAlternativeSyncPlan(practice, answerAlternatives),
+    [practice, answerAlternatives]
+  );
+
+  if (!syncPlan.answerCount && !syncedVersion) return null;
+
+  const handleSync = async () => {
+    if (!syncPlan.answerCount || status.state === "pending") return;
+    setStatus({ state: "pending", message: "同步中..." });
+    try {
+      const published = await practiceSessionApi.publishPracticeVersion({
+        lessonId,
+        practice: syncPlan.practice,
+        sourcePromptName: "practice-answer-alternative-sync",
+        sourcePromptHash: ""
+      });
+      setSyncedVersion(published.version);
+      setStatus({ state: "success", message: `已同步到 version ${published.version}，刷新后加载数据库版本。` });
+    } catch (error) {
+      setStatus({ state: "error", message: String(error.message || error) });
+    }
+  };
+
+  return (
+    <section className="admin-publish-panel admin-alternative-sync-panel">
+      <div>
+        <strong>候选答案同步</strong>
+        {syncedVersion ? (
+          <p>候选答案已写入数据库 version {syncedVersion}。</p>
+        ) : (
+          <p>
+            有 {syncPlan.itemCount} 个练习题存在 {syncPlan.answerCount} 个候选答案，建议同步到数据库。
+          </p>
+        )}
+      </div>
+      <div className="admin-publish-actions">
+        <button
+          type="button"
+          className="secondary-action compact-action"
+          onClick={() => setExpanded((value) => !value)}
+          disabled={!syncPlan.answerCount}
+        >
+          {expanded ? "收起明细" : "查看明细"}
+        </button>
+        <button
+          type="button"
+          className="secondary-action"
+          onClick={handleSync}
+          disabled={!syncPlan.answerCount || status.state === "pending" || Boolean(syncedVersion)}
+        >
+          同步到数据库
+        </button>
+        {status.message ? <span className={`admin-publish-status ${status.state}`}>{status.message}</span> : null}
+      </div>
+      {expanded && syncPlan.details.length ? (
+        <div className="admin-alternative-details">
+          {syncPlan.details.map((detail) => (
+            <article className="admin-alternative-detail" key={`${detail.itemId}:${detail.slotId}`}>
+              <div className="admin-alternative-detail-head">
+                <strong>{detail.activityTitle}</strong>
+                <span>{detail.itemNumber ? `题号 ${detail.itemNumber}` : detail.itemId}{detail.slotId !== "answer" ? ` · ${detail.slotId}` : ""}</span>
+              </div>
+              {detail.promptText ? <p className="admin-alternative-prompt">{detail.promptText}</p> : null}
+              <div className="admin-answer-columns">
+                <div>
+                  <em>当前数据库答案</em>
+                  {detail.standardAnswers.map((answer, index) => <code key={index}>{answer}</code>)}
+                </div>
+                <div>
+                  <em>待同步候选答案</em>
+                  {detail.candidateAnswers.map((answer, index) => <code key={index}>{answer}</code>)}
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      ) : null}
+    </section>
+  );
+}
+
+function PracticeActivity({ activity, practice, admin, record, isReady, answerAlternatives, onAnswerAlternativesChange, onSave, previousActivity, nextActivity, onNavigate }) {
   const assetMap = useMemo(() => activityAssetMap(activity), [activity]);
   const audioUrl = resolveActivityAudioUrl(practice, activity);
   const formRef = useRef(null);
@@ -330,14 +441,32 @@ function PracticeActivity({ activity, practice, admin, record, isReady, onSave, 
   const handleSubmit = async () => {
     if (!formRef.current) return;
     const answers = collectActivityAnswers(formRef.current, activity);
-    const grading = gradeActivity(activity, answers);
-    setSubmitStatus({ state: "pending", message: "提交中..." });
+    let grading = gradeActivity(activity, answers, undefined, answerAlternatives);
+    const needsReview = hasIncorrectTextAnswers(activity, grading);
+    setSubmitStatus({ state: "pending", message: needsReview ? "正在复核可能的可接受答案..." : "提交中..." });
     try {
+      const review = needsReview
+        ? await reviewIncorrectTextAnswers({ practice, activity, answers, grading, answerAlternatives })
+        : { alternatives: answerAlternatives, acceptedCount: 0, reviewedCount: 0 };
+      if (review.acceptedCount > 0) {
+        onAnswerAlternativesChange(review.alternatives);
+        writeLocalAcceptedAnswerAlternatives(practice.lessonId, review.alternatives);
+        grading = {
+          ...gradeActivity(activity, answers, undefined, review.alternatives),
+          answerReview: {
+            reviewedCount: review.reviewedCount,
+            acceptedCount: review.acceptedCount
+          }
+        };
+      }
       await onSave(activity.id, {
         answers,
         grading
       }, activity);
-      setSubmitStatus({ state: "success", message: "已提交" });
+      setSubmitStatus({
+        state: "success",
+        message: review.acceptedCount > 0 ? `已提交，采纳 ${review.acceptedCount} 个可接受答案` : "已提交"
+      });
     } catch (error) {
       setSubmitStatus({ state: "error", message: String(error.message || error) });
     }
@@ -547,6 +676,23 @@ function LayoutBlockView({ block }) {
 
 function ExampleBlockView({ example }) {
   if (!example) return null;
+  const pairedRows = pairedExampleRows(example);
+  if (pairedRows.length) {
+    return (
+      <div className="example-block paired-example">
+        {example.label ? <span className="example-label">{example.label}</span> : null}
+        <span className="example-pair-list">
+          {pairedRows.map((row, index) => (
+            <span className="example-pair-row" key={index}>
+              <span className="example-before"><RubyText text={row.before} kana={row.beforeKana} /></span>
+              <span className="example-arrow">→</span>
+              <span className="example-after"><RubyText text={row.after} kana={row.afterKana} /></span>
+            </span>
+          ))}
+        </span>
+      </div>
+    );
+  }
   const dialogueLines = exampleDialogueLines(example.after, example.afterKana);
   return (
     <div className={`example-block ${dialogueLines ? "dialogue-example" : ""}`}>
@@ -571,6 +717,27 @@ function ExampleBlockView({ example }) {
       )}
     </div>
   );
+}
+
+function pairedExampleRows(example) {
+  const before = splitExampleTextLines(example.before || promptPartsPlainText(example.beforeParts || []));
+  const after = splitExampleTextLines(promptPartsPlainText(example.after || []));
+  if (before.length < 2 || before.length !== after.length) return [];
+  const beforeKana = splitExampleTextLines(example.beforeKana || "");
+  const afterKana = splitExampleTextLines(example.afterKana || "");
+  return before.map((line, index) => ({
+    before: line,
+    beforeKana: beforeKana[index] || "",
+    after: after[index],
+    afterKana: afterKana[index] || ""
+  }));
+}
+
+function splitExampleTextLines(value) {
+  return String(value || "")
+    .split(/\r?\n/)
+    .map((line) => line.trim())
+    .filter(Boolean);
 }
 
 function IncorrectAnswerModal({ activity, answers, grading, onClose }) {
@@ -964,7 +1131,7 @@ function collectActivityAnswers(form, activity) {
   return answers;
 }
 
-function gradeActivity(activity, answers, submittedAt = new Date().toISOString()) {
+function gradeActivity(activity, answers, submittedAt = new Date().toISOString(), answerAlternatives = {}) {
   const itemResults = {};
   let correctCount = 0;
   let incorrectCount = 0;
@@ -972,7 +1139,7 @@ function gradeActivity(activity, answers, submittedAt = new Date().toISOString()
   let gradedCount = 0;
 
   flattenActivityItems(activity).forEach((item) => {
-    const result = gradeItem(item, answers[item.id] || {});
+    const result = gradeItem(item, answers[item.id] || {}, answerAlternatives);
     itemResults[item.id] = result;
     if (result.status === "correct") {
       correctCount += 1;
@@ -999,7 +1166,7 @@ function gradeActivity(activity, answers, submittedAt = new Date().toISOString()
   };
 }
 
-function gradeItem(item, attempt) {
+function gradeItem(item, attempt, answerAlternatives = {}) {
   if (item.evaluationMode === "manual_review" || !item.answer) {
     return { status: "ungraded", fieldResults: {} };
   }
@@ -1010,7 +1177,7 @@ function gradeItem(item, attempt) {
 
   if (item.inputSlots?.length) {
     item.inputSlots.forEach((slot) => {
-      const matcher = expectedTextMatcher(item, slot.id);
+      const matcher = expectedTextMatcher(item, slot.id, answerAlternatives);
       if (!matcher.exacts.length && !matcher.patterns.length) return;
       sawGradableField = true;
       const actual = normalizeAnswerText(attempt.slotValues?.[slot.id]);
@@ -1043,15 +1210,9 @@ function gradeItem(item, attempt) {
   };
 }
 
-function expectedTextMatcher(item, slotId) {
-  const answers = [];
-  const slotValue = item.answer?.slotValues?.[slotId];
-  if (typeof slotValue === "string" || Array.isArray(slotValue)) answers.push(normalizeAnswerText(slotValue));
-
-  if (slotId === "answer") {
-    (item.answer?.modelAnswers || []).forEach((value) => answers.push(normalizeAnswerText(value)));
-    (item.answer?.acceptableAlternatives || []).forEach((value) => answers.push(normalizeAnswerText(value)));
-  }
+function expectedTextMatcher(item, slotId, answerAlternatives = {}) {
+  const answers = answerValuesForSlot(item, slotId).map((value) => normalizeAnswerText(value));
+  (answerAlternatives?.[item.id]?.[slotId] || []).forEach((value) => answers.push(normalizeAnswerText(value)));
 
   const unique = Array.from(new Set(answers.filter(Boolean)));
   return {
@@ -1062,6 +1223,288 @@ function expectedTextMatcher(item, slotId) {
       .filter(Boolean),
     speakerTaggedExpected: unique.some((value) => /(?:^|\n)[甲乙丙丁A-DＡ-Ｄ][：:]/.test(value))
   };
+}
+
+function hasIncorrectTextAnswers(activity, grading) {
+  return flattenActivityItems(activity).some((item) =>
+    item.inputSlots?.some((slot) => grading?.itemResults?.[item.id]?.fieldResults?.[slot.id] === "incorrect")
+  );
+}
+
+async function reviewIncorrectTextAnswers({ practice, activity, answers, grading, answerAlternatives }) {
+  let alternatives = answerAlternatives || {};
+  let acceptedCount = 0;
+  let reviewedCount = 0;
+  const items = flattenActivityItems(activity);
+
+  for (const item of items) {
+    if (item.evaluationMode === "manual_review" || item.evaluationMode === "self_check") continue;
+    if (!item.inputSlots?.length) continue;
+    for (const slot of item.inputSlots) {
+      if (grading?.itemResults?.[item.id]?.fieldResults?.[slot.id] !== "incorrect") continue;
+      const userAnswer = String(answers?.[item.id]?.slotValues?.[slot.id] || "").trim();
+      if (!userAnswer) continue;
+      reviewedCount += 1;
+      const result = await requestAnswerReview({
+        lessonId: practice.lessonId,
+        activityId: activity.id,
+        activityTitle: activity.title,
+        activityInstruction: activity.instruction,
+        itemId: item.id,
+        itemNumber: item.number,
+        slotId: slot.id,
+        promptText: promptPartsPlainText(item.prompt),
+        promptKana: item.promptKana || "",
+        userAnswer,
+        expectedAnswers: expectedAnswerCandidates(item),
+        answerUnit: slot.expectedUnit || activity.answerUnit,
+        responseScope: item.responseScope || activity.responseScope || "",
+        responseScopeHint: item.responseScopeHint || activity.responseScopeHint || "",
+        examples: exampleTextForItem(activity, item.id)
+      });
+      if (!result?.accepted) continue;
+      alternatives = mergeAcceptedAnswerAlternative(alternatives, item.id, slot.id, result.normalizedAnswer || userAnswer);
+      acceptedCount += 1;
+    }
+  }
+
+  return { alternatives, acceptedCount, reviewedCount };
+}
+
+async function requestAnswerReview(payload) {
+  try {
+    const response = await fetch("/api/practice/review-answer", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    });
+    const data = await response.json().catch(() => ({}));
+    if (!response.ok) return null;
+    return data;
+  } catch {
+    return null;
+  }
+}
+
+async function loadAcceptedAnswerAlternatives(lessonId) {
+  const local = readLocalAcceptedAnswerAlternatives(lessonId);
+  try {
+    const response = await fetch(`/api/practice/answer-alternatives?lessonId=${encodeURIComponent(lessonId)}`, { cache: "no-store" });
+    const data = await response.json().catch(() => ({}));
+    if (!response.ok) return local;
+    const merged = mergeAnswerAlternativeIndexes(local, data.alternatives || {});
+    writeLocalAcceptedAnswerAlternatives(lessonId, merged);
+    return merged;
+  } catch {
+    return local;
+  }
+}
+
+function readLocalAcceptedAnswerAlternatives(lessonId) {
+  if (typeof window === "undefined") return {};
+  try {
+    const all = JSON.parse(window.localStorage.getItem(ANSWER_ALTERNATIVE_CACHE_KEY) || "{}");
+    return all?.[lessonId] && typeof all[lessonId] === "object" ? all[lessonId] : {};
+  } catch {
+    return {};
+  }
+}
+
+function writeLocalAcceptedAnswerAlternatives(lessonId, alternatives) {
+  if (typeof window === "undefined") return;
+  try {
+    const all = JSON.parse(window.localStorage.getItem(ANSWER_ALTERNATIVE_CACHE_KEY) || "{}");
+    all[lessonId] = alternatives || {};
+    window.localStorage.setItem(ANSWER_ALTERNATIVE_CACHE_KEY, JSON.stringify(all));
+  } catch {}
+}
+
+function mergeAnswerAlternativeIndexes(left = {}, right = {}) {
+  let merged = left || {};
+  Object.entries(right || {}).forEach(([itemId, slots]) => {
+    Object.entries(slots || {}).forEach(([slotId, values]) => {
+      (Array.isArray(values) ? values : []).forEach((value) => {
+        merged = mergeAcceptedAnswerAlternative(merged, itemId, slotId, value);
+      });
+    });
+  });
+  return merged;
+}
+
+function mergeAcceptedAnswerAlternative(alternatives = {}, itemId, slotId, answer) {
+  const value = String(answer || "").trim();
+  if (!value) return alternatives;
+  const existing = alternatives?.[itemId]?.[slotId] || [];
+  const normalizedValue = normalizeAnswerText(value);
+  if (existing.some((entry) => normalizeAnswerText(entry) === normalizedValue)) return alternatives;
+  return {
+    ...alternatives,
+    [itemId]: {
+      ...(alternatives[itemId] || {}),
+      [slotId]: [...existing, value]
+    }
+  };
+}
+
+function buildAcceptedAnswerAlternativeSyncPlan(practice, alternatives = {}) {
+  let answerCount = 0;
+  const itemIds = new Set();
+  const details = [];
+  const activities = (practice.activities || []).map((activity) => {
+    let activityChanged = false;
+    const mergeItem = (item) => {
+      const result = mergePracticeItemAcceptedAlternatives(item, alternatives?.[item.id]);
+      if (result.answerCount > 0) {
+        activityChanged = true;
+        answerCount += result.answerCount;
+        itemIds.add(item.id);
+        result.details.forEach((detail) => {
+          details.push({
+            ...detail,
+            activityTitle: activity.title || activity.id || "",
+            itemId: item.id,
+            itemNumber: item.number || "",
+            promptText: promptPartsPlainText(item.prompt || [])
+          });
+        });
+      }
+      return result.item;
+    };
+
+    if (activity.itemGroups?.length) {
+      const itemGroups = activity.itemGroups.map((group) => {
+        let groupChanged = false;
+        const items = (group.items || []).map((item) => {
+          const nextItem = mergeItem(item);
+          if (nextItem !== item) groupChanged = true;
+          return nextItem;
+        });
+        return groupChanged ? { ...group, items } : group;
+      });
+      return activityChanged ? { ...activity, itemGroups } : activity;
+    }
+
+    if (activity.items?.length) {
+      const items = activity.items.map(mergeItem);
+      return activityChanged ? { ...activity, items } : activity;
+    }
+
+    return activity;
+  });
+
+  return {
+    practice: answerCount > 0 ? { ...practice, activities } : practice,
+    itemCount: itemIds.size,
+    answerCount,
+    details
+  };
+}
+
+function mergePracticeItemAcceptedAlternatives(item, itemAlternatives) {
+  if (!itemAlternatives || !item.answer || !item.inputSlots?.length) {
+    return { item, answerCount: 0, details: [] };
+  }
+
+  let nextAnswer = item.answer;
+  let answerCount = 0;
+  const details = [];
+  item.inputSlots.forEach((slot) => {
+    const incoming = Array.isArray(itemAlternatives[slot.id]) ? itemAlternatives[slot.id] : [];
+    const standardAnswers = answerValuesForSlot(item, slot.id);
+    const newValues = uniqueNewAnswerValues(standardAnswers, incoming);
+    if (!newValues.length) return;
+
+    if (nextAnswer === item.answer) nextAnswer = { ...item.answer };
+    if (slot.id === "answer") {
+      nextAnswer.acceptableAlternatives = [
+        ...(Array.isArray(nextAnswer.acceptableAlternatives) ? nextAnswer.acceptableAlternatives : []),
+        ...newValues
+      ];
+    } else {
+      const slotAlternatives = { ...(nextAnswer.slotAlternatives || {}) };
+      slotAlternatives[slot.id] = [
+        ...(Array.isArray(slotAlternatives[slot.id]) ? slotAlternatives[slot.id] : []),
+        ...newValues
+      ];
+      nextAnswer.slotAlternatives = slotAlternatives;
+    }
+    answerCount += newValues.length;
+    details.push({
+      slotId: slot.id,
+      standardAnswers: standardAnswers.length ? standardAnswers : ["暂无"],
+      candidateAnswers: newValues
+    });
+  });
+
+  return answerCount > 0
+    ? { item: { ...item, answer: nextAnswer }, answerCount, details }
+    : { item, answerCount: 0, details: [] };
+}
+
+function uniqueNewAnswerValues(existingValues, incomingValues) {
+  const normalizedExisting = new Set(existingValues.map((value) => normalizeAnswerText(value)).filter(Boolean));
+  const additions = [];
+  incomingValues.forEach((value) => {
+    const answer = String(value || "").trim();
+    const normalized = normalizeAnswerText(answer);
+    if (!answer || !normalized || normalizedExisting.has(normalized)) return;
+    normalizedExisting.add(normalized);
+    additions.push(answer);
+  });
+  return additions;
+}
+
+function answerValuesForSlot(item, slotId) {
+  const values = [];
+  const slotValue = item.answer?.slotValues?.[slotId];
+  if (Array.isArray(slotValue)) {
+    const joined = slotValue.map((entry) => String(entry || "").trim()).filter(Boolean).join("\n");
+    if (joined) values.push(joined);
+  } else {
+    appendAnswerValue(values, slotValue);
+  }
+  if (slotId === "answer") {
+    appendAnswerValue(values, item.answer?.acceptableAlternatives);
+    appendAnswerValue(values, item.answer?.modelAnswers);
+  }
+  appendAnswerValue(values, item.answer?.slotAlternatives?.[slotId]);
+  return values;
+}
+
+function appendAnswerValue(values, value) {
+  if (Array.isArray(value)) {
+    value.forEach((entry) => appendAnswerValue(values, entry));
+    return;
+  }
+  const textValue = String(value || "").trim();
+  if (textValue) values.push(textValue);
+}
+
+function promptPartsPlainText(parts = []) {
+  return parts.map((part) => {
+    if (part.type === "text") return part.text || "";
+    if (part.type === "blank") return "____";
+    if (part.type === "choice_ref") return part.choiceIds?.join(" / ") || "";
+    if (part.type === "asset_ref") return part.assetId || "";
+    return "";
+  }).join("");
+}
+
+function exampleTextForItem(activity, itemId) {
+  const group = (activity.itemGroups || []).find((entry) => entry.items?.some((item) => item.id === itemId));
+  if (group?.example) return examplePlainText(group.example);
+  return (activity.layout || [])
+    .filter((block) => block.type === "example")
+    .map((block) => examplePlainText(block.content))
+    .filter(Boolean)
+    .join("\n\n");
+}
+
+function examplePlainText(example) {
+  if (!example) return "";
+  const before = example.before || promptPartsPlainText(example.beforeParts || []);
+  const after = promptPartsPlainText(example.after || []);
+  return [before, after].filter(Boolean).join("\n→\n");
 }
 
 function canAcceptSpeakerlessAnswer(item, matcher) {
@@ -1136,9 +1579,11 @@ function normalizeActivityRecord(activity, record) {
     if (normalized) answers[item.id] = normalized;
   });
 
-  const grading = record.grading
-    ? gradeActivity(activity, answers, record.grading.submittedAt || record.grading.summary?.submittedAt || record.updatedAt)
-    : record.grading;
+  const grading = record.grading?.itemResults
+    ? record.grading
+    : record.grading
+      ? gradeActivity(activity, answers, record.grading.submittedAt || record.grading.summary?.submittedAt || record.updatedAt)
+      : record.grading;
 
   return {
     ...record,
@@ -1322,16 +1767,11 @@ function formatExpectedAnswerSummary(item) {
   const answers = [];
   if (item.inputSlots?.length) {
     item.inputSlots.forEach((slot) => {
-      const slotValue = item.answer?.slotValues?.[slot.id];
-      if (typeof slotValue === "string" && slotValue.trim()) answers.push(slotValue.trim());
+      answerValuesForSlot(item, slot.id).forEach((value) => {
+        if (String(value || "").trim()) answers.push(String(value).trim());
+      });
     });
   }
-  (item.answer?.acceptableAlternatives || []).forEach((value) => {
-    if (String(value || "").trim()) answers.push(String(value).trim());
-  });
-  (item.answer?.modelAnswers || []).forEach((value) => {
-    if (String(value || "").trim()) answers.push(String(value).trim());
-  });
 
   return Array.from(new Set(answers)).join(" / ") || "暂无";
 }
@@ -1358,21 +1798,11 @@ function expectedAnswerCandidates(item) {
   const answers = [];
   if (item.inputSlots?.length) {
     item.inputSlots.forEach((slot) => {
-      const slotValue = item.answer?.slotValues?.[slot.id];
-      if (Array.isArray(slotValue)) {
-        const value = slotValue.map((entry) => String(entry || "").trim()).filter(Boolean).join("\n");
-        if (value) answers.push(value);
-      } else if (typeof slotValue === "string" && slotValue.trim()) {
-        answers.push(slotValue.trim());
-      }
+      answerValuesForSlot(item, slot.id).forEach((value) => {
+        if (String(value || "").trim()) answers.push(String(value).trim());
+      });
     });
   }
-  (item.answer?.acceptableAlternatives || []).forEach((value) => {
-    if (String(value || "").trim()) answers.push(String(value).trim());
-  });
-  (item.answer?.modelAnswers || []).forEach((value) => {
-    if (String(value || "").trim()) answers.push(String(value).trim());
-  });
   return Array.from(new Set(answers));
 }
 

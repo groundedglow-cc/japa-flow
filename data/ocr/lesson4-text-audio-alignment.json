@@ -1,0 +1,2794 @@
+{
+  "schemaVersion": 1,
+  "lessonId": "lesson4",
+  "generatedAt": "2026-08-05T08:17:25.627Z",
+  "method": "azure-speech-sdk-global-monotonic-alignment",
+  "reviewStatus": "approved",
+  "tracks": [
+    {
+      "id": "lesson_basic",
+      "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit1/lesson4/lesson_basic.mp3",
+      "localAudioPath": "data/ocr/audio-cache/lesson4/lesson_basic.mp3",
+      "sourceAudioSha256": "3bf11a4aa10a8f463b3c151af6fbea9df82ed8699081738e79dc819a1bed6fc7",
+      "transcription": {
+        "provider": "azure-speech-sdk-continuous-recognition",
+        "locale": "ja-JP",
+        "text": "二、部屋に机と椅子があります。 ああ。机の上に猫がいます。 三売店は駅の外にあります。 スー吉田さんは庭にいます。 ええ。その箱の中に何がありますか？ 時計とメガネがあります。 B、部屋に誰がいますか？誰もいません。C、小野さんの家はどこにありますか？横浜にあります。D、あそこに犬がいますね。ええ、私の犬です。",
+        "phrases": [
+          {
+            "index": 0,
+            "text": "二、部屋に机と椅子があります。",
+            "start": 0.35,
+            "end": 3.79,
+            "confidence": 0.8386991,
+            "words": [
+              {
+                "text": "二",
+                "start": 0.35,
+                "end": 0.83
+              },
+              {
+                "text": "部",
+                "start": 1.35,
+                "end": 1.43
+              },
+              {
+                "text": "屋",
+                "start": 1.43,
+                "end": 1.59
+              },
+              {
+                "text": "に",
+                "start": 1.59,
+                "end": 1.79
+              },
+              {
+                "text": "机",
+                "start": 1.79,
+                "end": 2.59
+              },
+              {
+                "text": "と",
+                "start": 2.59,
+                "end": 2.91
+              },
+              {
+                "text": "椅",
+                "start": 2.91,
+                "end": 3.11
+              },
+              {
+                "text": "子",
+                "start": 3.11,
+                "end": 3.19
+              },
+              {
+                "text": "が",
+                "start": 3.19,
+                "end": 3.39
+              },
+              {
+                "text": "あ",
+                "start": 3.39,
+                "end": 3.47
+              },
+              {
+                "text": "り",
+                "start": 3.47,
+                "end": 3.59
+              },
+              {
+                "text": "ま",
+                "start": 3.59,
+                "end": 3.71
+              },
+              {
+                "text": "す",
+                "start": 3.71,
+                "end": 3.79
+              }
+            ]
+          },
+          {
+            "index": 1,
+            "text": "ああ。机の上に猫がいます。",
+            "start": 4.71,
+            "end": 8.15,
+            "confidence": 0.7613933,
+            "words": [
+              {
+                "text": "あ",
+                "start": 4.71,
+                "end": 4.95
+              },
+              {
+                "text": "あ",
+                "start": 4.95,
+                "end": 5.15
+              },
+              {
+                "text": "机",
+                "start": 5.83,
+                "end": 6.39
+              },
+              {
+                "text": "の",
+                "start": 6.39,
+                "end": 6.71
+              },
+              {
+                "text": "上",
+                "start": 6.71,
+                "end": 6.79
+              },
+              {
+                "text": "に",
+                "start": 6.79,
+                "end": 7.19
+              },
+              {
+                "text": "猫",
+                "start": 7.23,
+                "end": 7.71
+              },
+              {
+                "text": "が",
+                "start": 7.71,
+                "end": 7.79
+              },
+              {
+                "text": "い",
+                "start": 7.79,
+                "end": 7.95
+              },
+              {
+                "text": "ま",
+                "start": 7.95,
+                "end": 8.07
+              },
+              {
+                "text": "す",
+                "start": 8.07,
+                "end": 8.15
+              }
+            ]
+          },
+          {
+            "index": 2,
+            "text": "三売店は駅の外にあります。",
+            "start": 9.07,
+            "end": 13.35,
+            "confidence": 0.9374474,
+            "words": [
+              {
+                "text": "三",
+                "start": 9.07,
+                "end": 9.83
+              },
+              {
+                "text": "売",
+                "start": 10.71,
+                "end": 11.07
+              },
+              {
+                "text": "店",
+                "start": 11.07,
+                "end": 11.31
+              },
+              {
+                "text": "は",
+                "start": 11.31,
+                "end": 11.75
+              },
+              {
+                "text": "駅",
+                "start": 11.87,
+                "end": 12.23
+              },
+              {
+                "text": "の",
+                "start": 12.23,
+                "end": 12.59
+              },
+              {
+                "text": "外",
+                "start": 12.59,
+                "end": 12.75
+              },
+              {
+                "text": "に",
+                "start": 12.75,
+                "end": 12.91
+              },
+              {
+                "text": "あ",
+                "start": 12.91,
+                "end": 12.99
+              },
+              {
+                "text": "り",
+                "start": 12.99,
+                "end": 13.11
+              },
+              {
+                "text": "ま",
+                "start": 13.11,
+                "end": 13.27
+              },
+              {
+                "text": "す",
+                "start": 13.27,
+                "end": 13.35
+              }
+            ]
+          },
+          {
+            "index": 3,
+            "text": "スー吉田さんは庭にいます。",
+            "start": 14.15,
+            "end": 17.47,
+            "confidence": 0.749569,
+            "words": [
+              {
+                "text": "ス",
+                "start": 14.15,
+                "end": 14.35
+              },
+              {
+                "text": "ー",
+                "start": 14.35,
+                "end": 14.55
+              },
+              {
+                "text": "吉",
+                "start": 14.55,
+                "end": 14.71
+              },
+              {
+                "text": "田",
+                "start": 15.03,
+                "end": 15.47
+              },
+              {
+                "text": "さ",
+                "start": 15.47,
+                "end": 15.75
+              },
+              {
+                "text": "ん",
+                "start": 15.75,
+                "end": 15.95
+              },
+              {
+                "text": "は",
+                "start": 15.95,
+                "end": 16.31
+              },
+              {
+                "text": "庭",
+                "start": 16.35,
+                "end": 16.75
+              },
+              {
+                "text": "に",
+                "start": 16.75,
+                "end": 16.95
+              },
+              {
+                "text": "い",
+                "start": 16.95,
+                "end": 17.07
+              },
+              {
+                "text": "ま",
+                "start": 17.07,
+                "end": 17.23
+              },
+              {
+                "text": "す",
+                "start": 17.23,
+                "end": 17.47
+              }
+            ]
+          },
+          {
+            "index": 4,
+            "text": "ええ。その箱の中に何がありますか？",
+            "start": 18.19,
+            "end": 21.95,
+            "confidence": 0.90984106,
+            "words": [
+              {
+                "text": "え",
+                "start": 18.19,
+                "end": 18.39
+              },
+              {
+                "text": "え",
+                "start": 18.39,
+                "end": 18.71
+              },
+              {
+                "text": "そ",
+                "start": 19.15,
+                "end": 19.47
+              },
+              {
+                "text": "の",
+                "start": 19.47,
+                "end": 19.83
+              },
+              {
+                "text": "箱",
+                "start": 19.83,
+                "end": 20.27
+              },
+              {
+                "text": "の",
+                "start": 20.27,
+                "end": 20.39
+              },
+              {
+                "text": "中",
+                "start": 20.39,
+                "end": 20.47
+              },
+              {
+                "text": "に",
+                "start": 20.47,
+                "end": 20.87
+              },
+              {
+                "text": "何",
+                "start": 21.07,
+                "end": 21.23
+              },
+              {
+                "text": "が",
+                "start": 21.23,
+                "end": 21.47
+              },
+              {
+                "text": "あ",
+                "start": 21.47,
+                "end": 21.55
+              },
+              {
+                "text": "り",
+                "start": 21.55,
+                "end": 21.63
+              },
+              {
+                "text": "ま",
+                "start": 21.63,
+                "end": 21.75
+              },
+              {
+                "text": "す",
+                "start": 21.75,
+                "end": 21.87
+              },
+              {
+                "text": "か",
+                "start": 21.87,
+                "end": 21.95
+              }
+            ]
+          },
+          {
+            "index": 5,
+            "text": "時計とメガネがあります。",
+            "start": 22.91,
+            "end": 24.67,
+            "confidence": 0.70497507,
+            "words": [
+              {
+                "text": "時",
+                "start": 22.91,
+                "end": 23.15
+              },
+              {
+                "text": "計",
+                "start": 23.15,
+                "end": 23.31
+              },
+              {
+                "text": "と",
+                "start": 23.31,
+                "end": 23.63
+              },
+              {
+                "text": "メ",
+                "start": 23.63,
+                "end": 23.87
+              },
+              {
+                "text": "ガ",
+                "start": 23.87,
+                "end": 23.95
+              },
+              {
+                "text": "ネ",
+                "start": 23.95,
+                "end": 24.03
+              },
+              {
+                "text": "が",
+                "start": 24.03,
+                "end": 24.11
+              },
+              {
+                "text": "あ",
+                "start": 24.11,
+                "end": 24.19
+              },
+              {
+                "text": "り",
+                "start": 24.19,
+                "end": 24.31
+              },
+              {
+                "text": "ま",
+                "start": 24.31,
+                "end": 24.47
+              },
+              {
+                "text": "す",
+                "start": 24.47,
+                "end": 24.67
+              }
+            ]
+          },
+          {
+            "index": 6,
+            "text": "B、部屋に誰がいますか？誰もいません。C、小野さんの家はどこにありますか？横浜にあります。D、あそこに犬がいますね。ええ、私の犬です。",
+            "start": 25.67,
+            "end": 41.63,
+            "confidence": 0.8762196,
+            "words": [
+              {
+                "text": "b",
+                "start": 25.67,
+                "end": 26.27
+              },
+              {
+                "text": "部",
+                "start": 26.87,
+                "end": 26.95
+              },
+              {
+                "text": "屋",
+                "start": 26.95,
+                "end": 27.11
+              },
+              {
+                "text": "に",
+                "start": 27.11,
+                "end": 27.55
+              },
+              {
+                "text": "誰",
+                "start": 27.59,
+                "end": 27.95
+              },
+              {
+                "text": "が",
+                "start": 27.95,
+                "end": 28.07
+              },
+              {
+                "text": "い",
+                "start": 28.07,
+                "end": 28.19
+              },
+              {
+                "text": "ま",
+                "start": 28.19,
+                "end": 28.31
+              },
+              {
+                "text": "す",
+                "start": 28.31,
+                "end": 28.43
+              },
+              {
+                "text": "か",
+                "start": 28.43,
+                "end": 28.87
+              },
+              {
+                "text": "誰",
+                "start": 29.11,
+                "end": 29.51
+              },
+              {
+                "text": "も",
+                "start": 29.51,
+                "end": 29.63
+              },
+              {
+                "text": "い",
+                "start": 29.63,
+                "end": 29.75
+              },
+              {
+                "text": "ま",
+                "start": 29.75,
+                "end": 29.91
+              },
+              {
+                "text": "せ",
+                "start": 29.91,
+                "end": 30.11
+              },
+              {
+                "text": "ん",
+                "start": 30.11,
+                "end": 30.35
+              },
+              {
+                "text": "c",
+                "start": 30.71,
+                "end": 31.15
+              },
+              {
+                "text": "小",
+                "start": 31.67,
+                "end": 31.83
+              },
+              {
+                "text": "野",
+                "start": 31.83,
+                "end": 31.95
+              },
+              {
+                "text": "さ",
+                "start": 31.95,
+                "end": 32.11
+              },
+              {
+                "text": "ん",
+                "start": 32.11,
+                "end": 32.19
+              },
+              {
+                "text": "の",
+                "start": 32.19,
+                "end": 32.39
+              },
+              {
+                "text": "家",
+                "start": 32.39,
+                "end": 32.51
+              },
+              {
+                "text": "は",
+                "start": 32.51,
+                "end": 32.83
+              },
+              {
+                "text": "ど",
+                "start": 32.83,
+                "end": 33.11
+              },
+              {
+                "text": "こ",
+                "start": 33.11,
+                "end": 33.19
+              },
+              {
+                "text": "に",
+                "start": 33.19,
+                "end": 33.31
+              },
+              {
+                "text": "あ",
+                "start": 33.31,
+                "end": 33.39
+              },
+              {
+                "text": "り",
+                "start": 33.39,
+                "end": 33.51
+              },
+              {
+                "text": "ま",
+                "start": 33.51,
+                "end": 33.63
+              },
+              {
+                "text": "す",
+                "start": 33.63,
+                "end": 33.71
+              },
+              {
+                "text": "か",
+                "start": 33.71,
+                "end": 34.03
+              },
+              {
+                "text": "横",
+                "start": 34.55,
+                "end": 34.87
+              },
+              {
+                "text": "浜",
+                "start": 34.87,
+                "end": 35.15
+              },
+              {
+                "text": "に",
+                "start": 35.15,
+                "end": 35.31
+              },
+              {
+                "text": "あ",
+                "start": 35.31,
+                "end": 35.39
+              },
+              {
+                "text": "り",
+                "start": 35.39,
+                "end": 35.51
+              },
+              {
+                "text": "ま",
+                "start": 35.51,
+                "end": 35.67
+              },
+              {
+                "text": "す",
+                "start": 35.67,
+                "end": 35.91
+              },
+              {
+                "text": "d",
+                "start": 36.31,
+                "end": 36.79
+              },
+              {
+                "text": "あ",
+                "start": 37.19,
+                "end": 37.39
+              },
+              {
+                "text": "そ",
+                "start": 37.39,
+                "end": 37.51
+              },
+              {
+                "text": "こ",
+                "start": 37.51,
+                "end": 37.63
+              },
+              {
+                "text": "に",
+                "start": 37.63,
+                "end": 38.23
+              },
+              {
+                "text": "犬",
+                "start": 38.23,
+                "end": 38.39
+              },
+              {
+                "text": "が",
+                "start": 38.39,
+                "end": 38.51
+              },
+              {
+                "text": "い",
+                "start": 38.51,
+                "end": 38.63
+              },
+              {
+                "text": "ま",
+                "start": 38.63,
+                "end": 38.75
+              },
+              {
+                "text": "す",
+                "start": 38.75,
+                "end": 38.91
+              },
+              {
+                "text": "ね",
+                "start": 38.91,
+                "end": 39.31
+              },
+              {
+                "text": "え",
+                "start": 39.51,
+                "end": 40.07
+              },
+              {
+                "text": "え",
+                "start": 40.35,
+                "end": 40.43
+              },
+              {
+                "text": "私",
+                "start": 40.67,
+                "end": 40.83
+              },
+              {
+                "text": "の",
+                "start": 40.83,
+                "end": 40.95
+              },
+              {
+                "text": "犬",
+                "start": 40.95,
+                "end": 41.07
+              },
+              {
+                "text": "で",
+                "start": 41.07,
+                "end": 41.31
+              },
+              {
+                "text": "す",
+                "start": 41.31,
+                "end": 41.63
+              }
+            ]
+          }
+        ]
+      },
+      "items": [
+        {
+          "id": "l4-basic-s001",
+          "trackId": "lesson_basic",
+          "speaker": "",
+          "text": "部屋に 机と いすが あります。",
+          "kana": "へやに つくえと いすが あります。",
+          "translationZh": "房间里有桌子和椅子。",
+          "candidate": {
+            "start": 1.29,
+            "end": 3.87,
+            "asrText": "部 屋 に 机 と 椅 子 が あ り ま す",
+            "phraseIndexes": [
+              0
+            ],
+            "matchScore": 0.833,
+            "confidence": 0.839,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 1.29,
+            "end": 3.87,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:17:47.758Z"
+          }
+        },
+        {
+          "id": "l4-basic-s002",
+          "trackId": "lesson_basic",
+          "speaker": "",
+          "text": "机の 上に 猫が います。",
+          "kana": "つくえの うえに ねこが います。",
+          "translationZh": "桌子上有一只猫。",
+          "candidate": {
+            "start": 5.77,
+            "end": 8.23,
+            "asrText": "机 の 上 に 猫 が い ま す",
+            "phraseIndexes": [
+              1
+            ],
+            "matchScore": 1,
+            "confidence": 0.761,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 5.77,
+            "end": 8.23,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:17:47.758Z"
+          }
+        },
+        {
+          "id": "l4-basic-s003",
+          "trackId": "lesson_basic",
+          "speaker": "",
+          "text": "売店は 駅の 外に あります。",
+          "kana": "ばいてんは えきの そとに あります。",
+          "translationZh": "小卖部在车站外面。",
+          "candidate": {
+            "start": 10.65,
+            "end": 13.43,
+            "asrText": "売 店 は 駅 の 外 に あ り ま す",
+            "phraseIndexes": [
+              2
+            ],
+            "matchScore": 1,
+            "confidence": 0.937,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 10.65,
+            "end": 13.43,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:17:47.758Z"
+          }
+        },
+        {
+          "id": "l4-basic-s004",
+          "trackId": "lesson_basic",
+          "speaker": "",
+          "text": "吉田さんは 庭に います。",
+          "kana": "よしださんは にわに います。",
+          "translationZh": "吉田先生在院子里。",
+          "candidate": {
+            "start": 14.49,
+            "end": 17.55,
+            "asrText": "吉 田 さ ん は 庭 に い ま す",
+            "phraseIndexes": [
+              3
+            ],
+            "matchScore": 1,
+            "confidence": 0.75,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 14.49,
+            "end": 17.55,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:17:47.758Z"
+          }
+        },
+        {
+          "id": "l4-basic-dialogue-001-line-001",
+          "trackId": "lesson_basic",
+          "speaker": "甲",
+          "text": "その 箱の 中に 何が ありますか。",
+          "kana": "その はこの なかに なにが ありますか。",
+          "translationZh": "那个盒子里有什么？",
+          "candidate": {
+            "start": 19.09,
+            "end": 22.03,
+            "asrText": "そ の 箱 の 中 に 何 が あ り ま す か",
+            "phraseIndexes": [
+              4
+            ],
+            "matchScore": 1,
+            "confidence": 0.91,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 19.09,
+            "end": 22.03,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:17:47.758Z"
+          }
+        },
+        {
+          "id": "l4-basic-dialogue-001-line-002",
+          "trackId": "lesson_basic",
+          "speaker": "乙",
+          "text": "時計と 眼鏡が あります。",
+          "kana": "とけいと めがねが あります。",
+          "translationZh": "有表和眼镜。",
+          "candidate": {
+            "start": 22.85,
+            "end": 24.75,
+            "asrText": "時 計 と メ ガ ネ が あ り ま す",
+            "phraseIndexes": [
+              5
+            ],
+            "matchScore": 0.727,
+            "confidence": 0.705,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 22.85,
+            "end": 24.75,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:17:47.758Z"
+          }
+        },
+        {
+          "id": "l4-basic-dialogue-002-line-001",
+          "trackId": "lesson_basic",
+          "speaker": "甲",
+          "text": "部屋に だれが いますか。",
+          "kana": "へやに だれが いますか。",
+          "translationZh": "房间里有谁？",
+          "candidate": {
+            "start": 26.81,
+            "end": 28.95,
+            "asrText": "部 屋 に 誰 が い ま す か",
+            "phraseIndexes": [
+              6
+            ],
+            "matchScore": 0.8,
+            "confidence": 0.876,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 26.81,
+            "end": 28.95,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:17:47.758Z"
+          }
+        },
+        {
+          "id": "l4-basic-dialogue-002-line-002",
+          "trackId": "lesson_basic",
+          "speaker": "乙",
+          "text": "だれも いません。",
+          "kana": "だれも いません。",
+          "translationZh": "谁也没有。",
+          "candidate": {
+            "start": 29.05,
+            "end": 30.43,
+            "asrText": "誰 も い ま せ ん",
+            "phraseIndexes": [
+              6
+            ],
+            "matchScore": 0.714,
+            "confidence": 0.876,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 29.05,
+            "end": 30.43,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:17:47.758Z"
+          }
+        },
+        {
+          "id": "l4-basic-dialogue-003-line-001",
+          "trackId": "lesson_basic",
+          "speaker": "甲",
+          "text": "小野さんの 家は どこに ありますか。",
+          "kana": "おのさんの いえは どこに ありますか。",
+          "translationZh": "小野女士的家在哪里？",
+          "candidate": {
+            "start": 31.61,
+            "end": 34.11,
+            "asrText": "小 野 さ ん の 家 は ど こ に あ り ま す か",
+            "phraseIndexes": [
+              6
+            ],
+            "matchScore": 1,
+            "confidence": 0.876,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 31.61,
+            "end": 34.11,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:17:47.758Z"
+          }
+        },
+        {
+          "id": "l4-basic-dialogue-003-line-002",
+          "trackId": "lesson_basic",
+          "speaker": "乙",
+          "text": "横浜に あります。",
+          "kana": "よこはまに あります。",
+          "translationZh": "在横滨。",
+          "candidate": {
+            "start": 34.49,
+            "end": 35.99,
+            "asrText": "横 浜 に あ り ま す",
+            "phraseIndexes": [
+              6
+            ],
+            "matchScore": 1,
+            "confidence": 0.876,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 34.49,
+            "end": 35.99,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:17:47.758Z"
+          }
+        },
+        {
+          "id": "l4-basic-dialogue-004-line-001",
+          "trackId": "lesson_basic",
+          "speaker": "甲",
+          "text": "あそこに 犬が いますね。",
+          "kana": "あそこに いぬが いますね。",
+          "translationZh": "那儿有一只狗啊。",
+          "candidate": {
+            "start": 37.13,
+            "end": 39.39,
+            "asrText": "あ そ こ に 犬 が い ま す ね",
+            "phraseIndexes": [
+              6
+            ],
+            "matchScore": 1,
+            "confidence": 0.876,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 37.13,
+            "end": 39.39,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:17:47.758Z"
+          }
+        },
+        {
+          "id": "l4-basic-dialogue-004-line-002",
+          "trackId": "lesson_basic",
+          "speaker": "乙",
+          "text": "ええ、わたしの 犬です。",
+          "kana": "ええ、わたしの いぬです。",
+          "translationZh": "是的，是我的狗。",
+          "candidate": {
+            "start": 39.45,
+            "end": 41.71,
+            "asrText": "え え 私 の 犬 で す",
+            "phraseIndexes": [
+              6
+            ],
+            "matchScore": 0.667,
+            "confidence": 0.876,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 39.45,
+            "end": 41.71,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:17:47.758Z"
+          }
+        }
+      ]
+    },
+    {
+      "id": "lesson_apps",
+      "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit1/lesson4/lesson_apps.mp3",
+      "localAudioPath": "data/ocr/audio-cache/lesson4/lesson_apps.mp3",
+      "sourceAudioSha256": "2a6a71cd917d61e8517a418b115f53749208945de00dfd909c6c4afbaad85ce9",
+      "transcription": {
+        "provider": "azure-speech-sdk-continuous-recognition",
+        "locale": "ja-JP",
+        "text": "会社の場所GTACGTA so mini開始、シャアリJアコムスーパーシャンパンシャーヤライダーシャオリンto the Bing、 why santasha miniコンシューザーTDI vage。 シャーリーイベントアケイティtwo、 two。 小野さん。会社はどこにありますか？ ええと。ここです。 近くに駅がありますか？ ええ、 JRと地下鉄の駅があります。JRの駅はここです。 地下鉄の駅はここですね。 ええ、そうです。 JRの駅の隣に地下鉄の駅があります。 小野さんの家はどちらですか？ 私の家は横浜です。 ご家族も。横浜ですか？ いいえ。私は一人暮らしです。 ご両親はどちらですか？ 両親は名古屋にいます。ご兄弟は？ 大阪に妹がいます。",
+        "phrases": [
+          {
+            "index": 0,
+            "text": "会社の場所GTACGTA so mini開始、シャアリJアコムスーパーシャンパンシャーヤライダーシャオリンto the Bing、 why santasha miniコンシューザーTDI vage。",
+            "start": 0.35,
+            "end": 10.99,
+            "confidence": 0.55013764,
+            "words": [
+              {
+                "text": "会",
+                "start": 0.35,
+                "end": 0.75
+              },
+              {
+                "text": "社",
+                "start": 0.75,
+                "end": 0.91
+              },
+              {
+                "text": "の",
+                "start": 0.91,
+                "end": 1.07
+              },
+              {
+                "text": "場",
+                "start": 1.07,
+                "end": 1.23
+              },
+              {
+                "text": "所",
+                "start": 1.23,
+                "end": 1.67
+              },
+              {
+                "text": "g",
+                "start": 1.87,
+                "end": 2.07
+              },
+              {
+                "text": "t",
+                "start": 2.11,
+                "end": 2.23
+              },
+              {
+                "text": "a",
+                "start": 2.23,
+                "end": 2.31
+              },
+              {
+                "text": "c",
+                "start": 2.31,
+                "end": 2.59
+              },
+              {
+                "text": "g",
+                "start": 2.59,
+                "end": 2.75
+              },
+              {
+                "text": "t",
+                "start": 2.75,
+                "end": 2.83
+              },
+              {
+                "text": "a",
+                "start": 2.83,
+                "end": 2.91
+              },
+              {
+                "text": "so",
+                "start": 2.91,
+                "end": 3.19
+              },
+              {
+                "text": "mini",
+                "start": 3.55,
+                "end": 3.91
+              },
+              {
+                "text": "開",
+                "start": 3.91,
+                "end": 4.11
+              },
+              {
+                "text": "始",
+                "start": 4.11,
+                "end": 4.43
+              },
+              {
+                "text": "シ",
+                "start": 4.43,
+                "end": 4.63
+              },
+              {
+                "text": "ャ",
+                "start": 4.63,
+                "end": 4.71
+              },
+              {
+                "text": "ア",
+                "start": 4.71,
+                "end": 4.83
+              },
+              {
+                "text": "リ",
+                "start": 4.83,
+                "end": 5.11
+              },
+              {
+                "text": "j",
+                "start": 5.11,
+                "end": 5.27
+              },
+              {
+                "text": "ア",
+                "start": 5.27,
+                "end": 5.51
+              },
+              {
+                "text": "コ",
+                "start": 5.51,
+                "end": 5.63
+              },
+              {
+                "text": "ム",
+                "start": 5.63,
+                "end": 5.71
+              },
+              {
+                "text": "ス",
+                "start": 5.71,
+                "end": 5.79
+              },
+              {
+                "text": "ー",
+                "start": 5.79,
+                "end": 6.03
+              },
+              {
+                "text": "パ",
+                "start": 6.03,
+                "end": 6.11
+              },
+              {
+                "text": "ー",
+                "start": 6.11,
+                "end": 6.31
+              },
+              {
+                "text": "シ",
+                "start": 6.31,
+                "end": 6.39
+              },
+              {
+                "text": "ャ",
+                "start": 6.39,
+                "end": 6.47
+              },
+              {
+                "text": "ン",
+                "start": 6.47,
+                "end": 6.51
+              },
+              {
+                "text": "パ",
+                "start": 6.51,
+                "end": 6.59
+              },
+              {
+                "text": "ン",
+                "start": 6.59,
+                "end": 6.63
+              },
+              {
+                "text": "シ",
+                "start": 6.63,
+                "end": 6.71
+              },
+              {
+                "text": "ャ",
+                "start": 6.71,
+                "end": 6.79
+              },
+              {
+                "text": "ー",
+                "start": 6.99,
+                "end": 7.19
+              },
+              {
+                "text": "ヤ",
+                "start": 7.19,
+                "end": 7.27
+              },
+              {
+                "text": "ラ",
+                "start": 7.27,
+                "end": 7.39
+              },
+              {
+                "text": "イ",
+                "start": 7.39,
+                "end": 7.47
+              },
+              {
+                "text": "ダ",
+                "start": 7.47,
+                "end": 7.63
+              },
+              {
+                "text": "ー",
+                "start": 7.63,
+                "end": 7.83
+              },
+              {
+                "text": "シ",
+                "start": 7.83,
+                "end": 7.91
+              },
+              {
+                "text": "ャ",
+                "start": 7.91,
+                "end": 7.99
+              },
+              {
+                "text": "オ",
+                "start": 7.99,
+                "end": 8.07
+              },
+              {
+                "text": "リ",
+                "start": 8.07,
+                "end": 8.15
+              },
+              {
+                "text": "ン",
+                "start": 8.15,
+                "end": 8.19
+              },
+              {
+                "text": "to",
+                "start": 8.19,
+                "end": 8.27
+              },
+              {
+                "text": "the",
+                "start": 8.27,
+                "end": 8.35
+              },
+              {
+                "text": "bing",
+                "start": 8.35,
+                "end": 8.63
+              },
+              {
+                "text": "why",
+                "start": 8.63,
+                "end": 8.95
+              },
+              {
+                "text": "santasha",
+                "start": 8.99,
+                "end": 9.47
+              },
+              {
+                "text": "mini",
+                "start": 9.47,
+                "end": 9.63
+              },
+              {
+                "text": "コ",
+                "start": 9.63,
+                "end": 9.71
+              },
+              {
+                "text": "ン",
+                "start": 9.71,
+                "end": 9.75
+              },
+              {
+                "text": "シ",
+                "start": 9.75,
+                "end": 9.83
+              },
+              {
+                "text": "ュ",
+                "start": 9.83,
+                "end": 9.91
+              },
+              {
+                "text": "ー",
+                "start": 9.91,
+                "end": 10.11
+              },
+              {
+                "text": "ザ",
+                "start": 10.11,
+                "end": 10.19
+              },
+              {
+                "text": "ー",
+                "start": 10.19,
+                "end": 10.39
+              },
+              {
+                "text": "tdi",
+                "start": 10.39,
+                "end": 10.71
+              },
+              {
+                "text": "vage",
+                "start": 10.71,
+                "end": 10.99
+              }
+            ]
+          },
+          {
+            "index": 1,
+            "text": "シャーリーイベントアケイティtwo、 two。",
+            "start": 11.63,
+            "end": 13.75,
+            "confidence": 0.48731023,
+            "words": [
+              {
+                "text": "シ",
+                "start": 11.63,
+                "end": 11.75
+              },
+              {
+                "text": "ャ",
+                "start": 11.75,
+                "end": 11.87
+              },
+              {
+                "text": "ー",
+                "start": 11.87,
+                "end": 11.99
+              },
+              {
+                "text": "リ",
+                "start": 11.99,
+                "end": 12.15
+              },
+              {
+                "text": "ー",
+                "start": 12.15,
+                "end": 12.27
+              },
+              {
+                "text": "イ",
+                "start": 12.27,
+                "end": 12.39
+              },
+              {
+                "text": "ベ",
+                "start": 12.39,
+                "end": 12.55
+              },
+              {
+                "text": "ン",
+                "start": 12.55,
+                "end": 12.67
+              },
+              {
+                "text": "ト",
+                "start": 12.67,
+                "end": 12.79
+              },
+              {
+                "text": "ア",
+                "start": 12.79,
+                "end": 12.95
+              },
+              {
+                "text": "ケ",
+                "start": 12.95,
+                "end": 13.07
+              },
+              {
+                "text": "イ",
+                "start": 13.07,
+                "end": 13.19
+              },
+              {
+                "text": "テ",
+                "start": 13.19,
+                "end": 13.35
+              },
+              {
+                "text": "ィ",
+                "start": 13.35,
+                "end": 13.47
+              },
+              {
+                "text": "two",
+                "start": 13.47,
+                "end": 13.59
+              },
+              {
+                "text": "two",
+                "start": 13.59,
+                "end": 13.75
+              }
+            ]
+          },
+          {
+            "index": 2,
+            "text": "小野さん。会社はどこにありますか？",
+            "start": 15.55,
+            "end": 18.23,
+            "confidence": 0.9569185,
+            "words": [
+              {
+                "text": "小",
+                "start": 15.55,
+                "end": 15.71
+              },
+              {
+                "text": "野",
+                "start": 15.71,
+                "end": 15.83
+              },
+              {
+                "text": "さ",
+                "start": 15.83,
+                "end": 16.07
+              },
+              {
+                "text": "ん",
+                "start": 16.07,
+                "end": 16.35
+              },
+              {
+                "text": "会",
+                "start": 16.47,
+                "end": 16.83
+              },
+              {
+                "text": "社",
+                "start": 16.83,
+                "end": 17.03
+              },
+              {
+                "text": "は",
+                "start": 17.03,
+                "end": 17.19
+              },
+              {
+                "text": "ど",
+                "start": 17.19,
+                "end": 17.31
+              },
+              {
+                "text": "こ",
+                "start": 17.31,
+                "end": 17.43
+              },
+              {
+                "text": "に",
+                "start": 17.43,
+                "end": 17.59
+              },
+              {
+                "text": "あ",
+                "start": 17.59,
+                "end": 17.71
+              },
+              {
+                "text": "り",
+                "start": 17.71,
+                "end": 17.83
+              },
+              {
+                "text": "ま",
+                "start": 17.83,
+                "end": 17.95
+              },
+              {
+                "text": "す",
+                "start": 17.95,
+                "end": 18.07
+              },
+              {
+                "text": "か",
+                "start": 18.07,
+                "end": 18.23
+              }
+            ]
+          },
+          {
+            "index": 3,
+            "text": "ええと。ここです。",
+            "start": 19.27,
+            "end": 21.79,
+            "confidence": 0.75251895,
+            "words": [
+              {
+                "text": "え",
+                "start": 19.27,
+                "end": 19.67
+              },
+              {
+                "text": "え",
+                "start": 19.67,
+                "end": 19.91
+              },
+              {
+                "text": "と",
+                "start": 19.99,
+                "end": 20.63
+              },
+              {
+                "text": "こ",
+                "start": 21.07,
+                "end": 21.27
+              },
+              {
+                "text": "こ",
+                "start": 21.27,
+                "end": 21.43
+              },
+              {
+                "text": "で",
+                "start": 21.43,
+                "end": 21.63
+              },
+              {
+                "text": "す",
+                "start": 21.63,
+                "end": 21.79
+              }
+            ]
+          },
+          {
+            "index": 4,
+            "text": "近くに駅がありますか？",
+            "start": 22.79,
+            "end": 24.55,
+            "confidence": 0.9134537,
+            "words": [
+              {
+                "text": "近",
+                "start": 22.79,
+                "end": 23.11
+              },
+              {
+                "text": "く",
+                "start": 23.11,
+                "end": 23.23
+              },
+              {
+                "text": "に",
+                "start": 23.23,
+                "end": 23.47
+              },
+              {
+                "text": "駅",
+                "start": 23.47,
+                "end": 23.79
+              },
+              {
+                "text": "が",
+                "start": 23.79,
+                "end": 23.95
+              },
+              {
+                "text": "あ",
+                "start": 23.95,
+                "end": 24.07
+              },
+              {
+                "text": "り",
+                "start": 24.07,
+                "end": 24.15
+              },
+              {
+                "text": "ま",
+                "start": 24.15,
+                "end": 24.27
+              },
+              {
+                "text": "す",
+                "start": 24.27,
+                "end": 24.39
+              },
+              {
+                "text": "か",
+                "start": 24.39,
+                "end": 24.55
+              }
+            ]
+          },
+          {
+            "index": 5,
+            "text": "ええ、 JRと地下鉄の駅があります。JRの駅はここです。",
+            "start": 26.12,
+            "end": 30.96,
+            "confidence": 0.83707815,
+            "words": [
+              {
+                "text": "え",
+                "start": 26.12,
+                "end": 26.2
+              },
+              {
+                "text": "え",
+                "start": 26.2,
+                "end": 26.28
+              },
+              {
+                "text": "jr",
+                "start": 26.28,
+                "end": 26.6
+              },
+              {
+                "text": "と",
+                "start": 26.6,
+                "end": 26.92
+              },
+              {
+                "text": "地",
+                "start": 26.96,
+                "end": 27.16
+              },
+              {
+                "text": "下",
+                "start": 27.16,
+                "end": 27.24
+              },
+              {
+                "text": "鉄",
+                "start": 27.24,
+                "end": 27.56
+              },
+              {
+                "text": "の",
+                "start": 27.56,
+                "end": 27.68
+              },
+              {
+                "text": "駅",
+                "start": 27.68,
+                "end": 27.88
+              },
+              {
+                "text": "が",
+                "start": 27.88,
+                "end": 27.96
+              },
+              {
+                "text": "あ",
+                "start": 27.96,
+                "end": 28.04
+              },
+              {
+                "text": "り",
+                "start": 28.04,
+                "end": 28.16
+              },
+              {
+                "text": "ま",
+                "start": 28.16,
+                "end": 28.32
+              },
+              {
+                "text": "す",
+                "start": 28.32,
+                "end": 28.56
+              },
+              {
+                "text": "jr",
+                "start": 28.96,
+                "end": 29.6
+              },
+              {
+                "text": "の",
+                "start": 29.6,
+                "end": 29.72
+              },
+              {
+                "text": "駅",
+                "start": 29.72,
+                "end": 30
+              },
+              {
+                "text": "は",
+                "start": 30,
+                "end": 30.28
+              },
+              {
+                "text": "こ",
+                "start": 30.32,
+                "end": 30.56
+              },
+              {
+                "text": "こ",
+                "start": 30.56,
+                "end": 30.68
+              },
+              {
+                "text": "で",
+                "start": 30.68,
+                "end": 30.84
+              },
+              {
+                "text": "す",
+                "start": 30.84,
+                "end": 30.96
+              }
+            ]
+          },
+          {
+            "index": 6,
+            "text": "地下鉄の駅はここですね。",
+            "start": 32.47,
+            "end": 34.63,
+            "confidence": 0.95198035,
+            "words": [
+              {
+                "text": "地",
+                "start": 32.47,
+                "end": 32.67
+              },
+              {
+                "text": "下",
+                "start": 32.67,
+                "end": 32.75
+              },
+              {
+                "text": "鉄",
+                "start": 32.75,
+                "end": 33.07
+              },
+              {
+                "text": "の",
+                "start": 33.07,
+                "end": 33.23
+              },
+              {
+                "text": "駅",
+                "start": 33.23,
+                "end": 33.55
+              },
+              {
+                "text": "は",
+                "start": 33.55,
+                "end": 33.75
+              },
+              {
+                "text": "こ",
+                "start": 33.75,
+                "end": 33.91
+              },
+              {
+                "text": "こ",
+                "start": 33.91,
+                "end": 34.07
+              },
+              {
+                "text": "で",
+                "start": 34.07,
+                "end": 34.19
+              },
+              {
+                "text": "す",
+                "start": 34.19,
+                "end": 34.27
+              },
+              {
+                "text": "ね",
+                "start": 34.27,
+                "end": 34.63
+              }
+            ]
+          },
+          {
+            "index": 7,
+            "text": "ええ、そうです。",
+            "start": 35.35,
+            "end": 36.47,
+            "confidence": 0.9006877,
+            "words": [
+              {
+                "text": "え",
+                "start": 35.35,
+                "end": 35.43
+              },
+              {
+                "text": "え",
+                "start": 35.43,
+                "end": 35.63
+              },
+              {
+                "text": "そ",
+                "start": 35.63,
+                "end": 35.91
+              },
+              {
+                "text": "う",
+                "start": 35.91,
+                "end": 35.99
+              },
+              {
+                "text": "で",
+                "start": 35.99,
+                "end": 36.19
+              },
+              {
+                "text": "す",
+                "start": 36.19,
+                "end": 36.47
+              }
+            ]
+          },
+          {
+            "index": 8,
+            "text": "JRの駅の隣に地下鉄の駅があります。",
+            "start": 37.07,
+            "end": 40.67,
+            "confidence": 0.91687673,
+            "words": [
+              {
+                "text": "jr",
+                "start": 37.07,
+                "end": 37.63
+              },
+              {
+                "text": "の",
+                "start": 37.63,
+                "end": 37.75
+              },
+              {
+                "text": "駅",
+                "start": 37.75,
+                "end": 38.03
+              },
+              {
+                "text": "の",
+                "start": 38.03,
+                "end": 38.27
+              },
+              {
+                "text": "隣",
+                "start": 38.27,
+                "end": 38.59
+              },
+              {
+                "text": "に",
+                "start": 38.59,
+                "end": 38.99
+              },
+              {
+                "text": "地",
+                "start": 39.03,
+                "end": 39.23
+              },
+              {
+                "text": "下",
+                "start": 39.23,
+                "end": 39.31
+              },
+              {
+                "text": "鉄",
+                "start": 39.31,
+                "end": 39.63
+              },
+              {
+                "text": "の",
+                "start": 39.63,
+                "end": 39.75
+              },
+              {
+                "text": "駅",
+                "start": 39.75,
+                "end": 39.99
+              },
+              {
+                "text": "が",
+                "start": 39.99,
+                "end": 40.11
+              },
+              {
+                "text": "あ",
+                "start": 40.11,
+                "end": 40.19
+              },
+              {
+                "text": "り",
+                "start": 40.19,
+                "end": 40.31
+              },
+              {
+                "text": "ま",
+                "start": 40.31,
+                "end": 40.51
+              },
+              {
+                "text": "す",
+                "start": 40.51,
+                "end": 40.67
+              }
+            ]
+          },
+          {
+            "index": 9,
+            "text": "小野さんの家はどちらですか？",
+            "start": 42.44,
+            "end": 44.56,
+            "confidence": 0.8751095,
+            "words": [
+              {
+                "text": "小",
+                "start": 42.44,
+                "end": 42.64
+              },
+              {
+                "text": "野",
+                "start": 42.64,
+                "end": 42.76
+              },
+              {
+                "text": "さ",
+                "start": 42.76,
+                "end": 42.92
+              },
+              {
+                "text": "ん",
+                "start": 42.92,
+                "end": 43.04
+              },
+              {
+                "text": "の",
+                "start": 43.04,
+                "end": 43.24
+              },
+              {
+                "text": "家",
+                "start": 43.24,
+                "end": 43.44
+              },
+              {
+                "text": "は",
+                "start": 43.44,
+                "end": 43.72
+              },
+              {
+                "text": "ど",
+                "start": 43.72,
+                "end": 43.92
+              },
+              {
+                "text": "ち",
+                "start": 43.92,
+                "end": 44.04
+              },
+              {
+                "text": "ら",
+                "start": 44.04,
+                "end": 44.16
+              },
+              {
+                "text": "で",
+                "start": 44.16,
+                "end": 44.24
+              },
+              {
+                "text": "す",
+                "start": 44.24,
+                "end": 44.4
+              },
+              {
+                "text": "か",
+                "start": 44.4,
+                "end": 44.56
+              }
+            ]
+          },
+          {
+            "index": 10,
+            "text": "私の家は横浜です。",
+            "start": 45.75,
+            "end": 47.83,
+            "confidence": 0.9159575,
+            "words": [
+              {
+                "text": "私",
+                "start": 45.75,
+                "end": 45.95
+              },
+              {
+                "text": "の",
+                "start": 45.95,
+                "end": 46.23
+              },
+              {
+                "text": "家",
+                "start": 46.23,
+                "end": 46.39
+              },
+              {
+                "text": "は",
+                "start": 46.39,
+                "end": 46.83
+              },
+              {
+                "text": "横",
+                "start": 46.83,
+                "end": 47.19
+              },
+              {
+                "text": "浜",
+                "start": 47.19,
+                "end": 47.47
+              },
+              {
+                "text": "で",
+                "start": 47.47,
+                "end": 47.63
+              },
+              {
+                "text": "す",
+                "start": 47.63,
+                "end": 47.83
+              }
+            ]
+          },
+          {
+            "index": 11,
+            "text": "ご家族も。横浜ですか？",
+            "start": 48.51,
+            "end": 50.23,
+            "confidence": 0.92477345,
+            "words": [
+              {
+                "text": "ご",
+                "start": 48.51,
+                "end": 48.67
+              },
+              {
+                "text": "家",
+                "start": 48.67,
+                "end": 48.83
+              },
+              {
+                "text": "族",
+                "start": 48.83,
+                "end": 49.11
+              },
+              {
+                "text": "も",
+                "start": 49.11,
+                "end": 49.31
+              },
+              {
+                "text": "横",
+                "start": 49.31,
+                "end": 49.63
+              },
+              {
+                "text": "浜",
+                "start": 49.63,
+                "end": 49.87
+              },
+              {
+                "text": "で",
+                "start": 49.87,
+                "end": 49.99
+              },
+              {
+                "text": "す",
+                "start": 49.99,
+                "end": 50.11
+              },
+              {
+                "text": "か",
+                "start": 50.11,
+                "end": 50.23
+              }
+            ]
+          },
+          {
+            "index": 12,
+            "text": "いいえ。私は一人暮らしです。",
+            "start": 51.8,
+            "end": 53.68,
+            "confidence": 0.93980515,
+            "words": [
+              {
+                "text": "い",
+                "start": 51.8,
+                "end": 51.88
+              },
+              {
+                "text": "い",
+                "start": 51.88,
+                "end": 51.96
+              },
+              {
+                "text": "え",
+                "start": 51.96,
+                "end": 52.04
+              },
+              {
+                "text": "私",
+                "start": 52.04,
+                "end": 52.2
+              },
+              {
+                "text": "は",
+                "start": 52.2,
+                "end": 52.4
+              },
+              {
+                "text": "一",
+                "start": 52.4,
+                "end": 52.56
+              },
+              {
+                "text": "人",
+                "start": 52.56,
+                "end": 52.8
+              },
+              {
+                "text": "暮",
+                "start": 52.8,
+                "end": 53
+              },
+              {
+                "text": "ら",
+                "start": 53,
+                "end": 53.16
+              },
+              {
+                "text": "し",
+                "start": 53.16,
+                "end": 53.28
+              },
+              {
+                "text": "で",
+                "start": 53.28,
+                "end": 53.44
+              },
+              {
+                "text": "す",
+                "start": 53.44,
+                "end": 53.68
+              }
+            ]
+          },
+          {
+            "index": 13,
+            "text": "ご両親はどちらですか？",
+            "start": 54.67,
+            "end": 56.67,
+            "confidence": 0.9625408,
+            "words": [
+              {
+                "text": "ご",
+                "start": 54.67,
+                "end": 54.87
+              },
+              {
+                "text": "両",
+                "start": 54.87,
+                "end": 55.11
+              },
+              {
+                "text": "親",
+                "start": 55.11,
+                "end": 55.43
+              },
+              {
+                "text": "は",
+                "start": 55.43,
+                "end": 55.71
+              },
+              {
+                "text": "ど",
+                "start": 55.71,
+                "end": 55.95
+              },
+              {
+                "text": "ち",
+                "start": 55.95,
+                "end": 56.07
+              },
+              {
+                "text": "ら",
+                "start": 56.07,
+                "end": 56.19
+              },
+              {
+                "text": "で",
+                "start": 56.19,
+                "end": 56.27
+              },
+              {
+                "text": "す",
+                "start": 56.27,
+                "end": 56.43
+              },
+              {
+                "text": "か",
+                "start": 56.43,
+                "end": 56.67
+              }
+            ]
+          },
+          {
+            "index": 14,
+            "text": "両親は名古屋にいます。ご兄弟は？",
+            "start": 58.24,
+            "end": 60.72,
+            "confidence": 0.89187855,
+            "words": [
+              {
+                "text": "両",
+                "start": 58.24,
+                "end": 58.36
+              },
+              {
+                "text": "親",
+                "start": 58.36,
+                "end": 58.52
+              },
+              {
+                "text": "は",
+                "start": 58.52,
+                "end": 58.6
+              },
+              {
+                "text": "名",
+                "start": 58.6,
+                "end": 58.68
+              },
+              {
+                "text": "古",
+                "start": 58.68,
+                "end": 58.84
+              },
+              {
+                "text": "屋",
+                "start": 58.84,
+                "end": 59
+              },
+              {
+                "text": "に",
+                "start": 59,
+                "end": 59.08
+              },
+              {
+                "text": "い",
+                "start": 59.08,
+                "end": 59.16
+              },
+              {
+                "text": "ま",
+                "start": 59.16,
+                "end": 59.24
+              },
+              {
+                "text": "す",
+                "start": 59.64,
+                "end": 59.72
+              },
+              {
+                "text": "ご",
+                "start": 59.72,
+                "end": 59.88
+              },
+              {
+                "text": "兄",
+                "start": 59.88,
+                "end": 60.04
+              },
+              {
+                "text": "弟",
+                "start": 60.04,
+                "end": 60.32
+              },
+              {
+                "text": "は",
+                "start": 60.32,
+                "end": 60.72
+              }
+            ]
+          },
+          {
+            "index": 15,
+            "text": "大阪に妹がいます。",
+            "start": 61.59,
+            "end": 63.63,
+            "confidence": 0.902291,
+            "words": [
+              {
+                "text": "大",
+                "start": 61.59,
+                "end": 61.75
+              },
+              {
+                "text": "阪",
+                "start": 61.75,
+                "end": 62.03
+              },
+              {
+                "text": "に",
+                "start": 62.03,
+                "end": 62.43
+              },
+              {
+                "text": "妹",
+                "start": 62.47,
+                "end": 63.03
+              },
+              {
+                "text": "が",
+                "start": 63.03,
+                "end": 63.15
+              },
+              {
+                "text": "い",
+                "start": 63.15,
+                "end": 63.27
+              },
+              {
+                "text": "ま",
+                "start": 63.27,
+                "end": 63.47
+              },
+              {
+                "text": "す",
+                "start": 63.47,
+                "end": 63.63
+              }
+            ]
+          }
+        ]
+      },
+      "items": [
+        {
+          "id": "l4-app-block-003-line-001",
+          "trackId": "lesson_apps",
+          "speaker": "李",
+          "text": "小野さん、会社は どこに ありますか。",
+          "kana": "おのさん、かいしゃは どこに ありますか。",
+          "translationZh": "小野女士，公司在哪里？",
+          "candidate": {
+            "start": 15.49,
+            "end": 18.31,
+            "asrText": "小 野 さ ん 会 社 は ど こ に あ り ま す か",
+            "phraseIndexes": [
+              2
+            ],
+            "matchScore": 1,
+            "confidence": 0.957,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 15.49,
+            "end": 18.31,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:18:25.004Z"
+          }
+        },
+        {
+          "id": "l4-app-block-003-line-002",
+          "trackId": "lesson_apps",
+          "speaker": "小野",
+          "text": "ええと、ここです。",
+          "kana": "ええと、ここです。",
+          "translationZh": "嗯，在这里。",
+          "candidate": {
+            "start": 19.21,
+            "end": 21.87,
+            "asrText": "え え と こ こ で す",
+            "phraseIndexes": [
+              3
+            ],
+            "matchScore": 1,
+            "confidence": 0.753,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 19.21,
+            "end": 21.87,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:18:25.004Z"
+          }
+        },
+        {
+          "id": "l4-app-block-003-line-003",
+          "trackId": "lesson_apps",
+          "speaker": "李",
+          "text": "近くに 駅が ありますか。",
+          "kana": "ちかくに えきが ありますか。",
+          "translationZh": "附近有车站吗？",
+          "candidate": {
+            "start": 22.73,
+            "end": 24.63,
+            "asrText": "近 く に 駅 が あ り ま す か",
+            "phraseIndexes": [
+              4
+            ],
+            "matchScore": 1,
+            "confidence": 0.913,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 22.73,
+            "end": 24.63,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:18:25.004Z"
+          }
+        },
+        {
+          "id": "l4-app-block-003-line-004",
+          "trackId": "lesson_apps",
+          "speaker": "小野",
+          "text": "ええ。JRと 地下鉄の 駅が あります。",
+          "kana": "ええ。ジェーアールと ちかてつの えきが あります。",
+          "translationZh": "有。有JR和地铁的车站。",
+          "candidate": {
+            "start": 26.06,
+            "end": 28.64,
+            "asrText": "え え jr と 地 下 鉄 の 駅 が あ り ま す",
+            "phraseIndexes": [
+              5
+            ],
+            "matchScore": 1,
+            "confidence": 0.837,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 26.06,
+            "end": 28.64,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:18:25.004Z"
+          }
+        },
+        {
+          "id": "l4-app-block-003-line-005",
+          "trackId": "lesson_apps",
+          "speaker": "小野",
+          "text": "JRの 駅は ここです。",
+          "kana": "ジェーアールの えきは ここです。",
+          "translationZh": "JR车站在这里。",
+          "candidate": {
+            "start": 28.9,
+            "end": 31.04,
+            "asrText": "jr の 駅 は こ こ で す",
+            "phraseIndexes": [
+              5
+            ],
+            "matchScore": 1,
+            "confidence": 0.837,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 28.9,
+            "end": 31.04,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:18:25.004Z"
+          }
+        },
+        {
+          "id": "l4-app-block-005-line-001",
+          "trackId": "lesson_apps",
+          "speaker": "李",
+          "text": "地下鉄の 駅は ここですね。",
+          "kana": "ちかてつの えきは ここですね。",
+          "translationZh": "地铁站在这里吧。",
+          "candidate": {
+            "start": 32.41,
+            "end": 34.71,
+            "asrText": "地 下 鉄 の 駅 は こ こ で す ね",
+            "phraseIndexes": [
+              6
+            ],
+            "matchScore": 1,
+            "confidence": 0.952,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 32.41,
+            "end": 34.71,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:18:25.004Z"
+          }
+        },
+        {
+          "id": "l4-app-block-005-line-002",
+          "trackId": "lesson_apps",
+          "speaker": "小野",
+          "text": "ええ、そうです。JRの 駅の 隣に 地下鉄の 駅が あります。",
+          "kana": "ええ、そうです。ジェーアールの えきの となりに ちかてつの えきが あります。",
+          "translationZh": "是的。地铁站在JR车站的旁边。",
+          "candidate": {
+            "start": 35.29,
+            "end": 40.75,
+            "asrText": "え え そ う で す jr の 駅 の 隣 に 地 下 鉄 の 駅 が あ り ま す",
+            "phraseIndexes": [
+              7,
+              8
+            ],
+            "matchScore": 1,
+            "confidence": 0.912,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 35.29,
+            "end": 40.75,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:18:25.004Z"
+          }
+        },
+        {
+          "id": "l4-app-block-007-line-001",
+          "trackId": "lesson_apps",
+          "speaker": "李",
+          "text": "小野さんの 家は どちらですか。",
+          "kana": "おのさんの いえは どちらですか。",
+          "translationZh": "小野女士的家在哪里？",
+          "candidate": {
+            "start": 42.38,
+            "end": 44.64,
+            "asrText": "小 野 さ ん の 家 は ど ち ら で す か",
+            "phraseIndexes": [
+              9
+            ],
+            "matchScore": 1,
+            "confidence": 0.875,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 42.38,
+            "end": 44.64,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:18:25.004Z"
+          }
+        },
+        {
+          "id": "l4-app-block-007-line-002",
+          "trackId": "lesson_apps",
+          "speaker": "小野",
+          "text": "わたしの 家は 横浜です。",
+          "kana": "わたしの いえは よこはまです。",
+          "translationZh": "我家在横滨。",
+          "candidate": {
+            "start": 45.69,
+            "end": 47.91,
+            "asrText": "私 の 家 は 横 浜 で す",
+            "phraseIndexes": [
+              10
+            ],
+            "matchScore": 0.7,
+            "confidence": 0.916,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 45.69,
+            "end": 47.91,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:18:25.004Z"
+          }
+        },
+        {
+          "id": "l4-app-block-007-line-003",
+          "trackId": "lesson_apps",
+          "speaker": "李",
+          "text": "ご家族も 横浜ですか。",
+          "kana": "ごかぞくも よこはまですか。",
+          "translationZh": "您的家人也在横滨吗？",
+          "candidate": {
+            "start": 48.45,
+            "end": 50.31,
+            "asrText": "ご 家 族 も 横 浜 で す か",
+            "phraseIndexes": [
+              11
+            ],
+            "matchScore": 1,
+            "confidence": 0.925,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 48.45,
+            "end": 50.31,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:18:25.004Z"
+          }
+        },
+        {
+          "id": "l4-app-block-007-line-004",
+          "trackId": "lesson_apps",
+          "speaker": "小野",
+          "text": "いいえ、わたしは 一人暮らしです。",
+          "kana": "いいえ、わたしは ひとりぐらしです。",
+          "translationZh": "不，我是一个人生活。",
+          "candidate": {
+            "start": 51.74,
+            "end": 53.76,
+            "asrText": "い い え 私 は 一 人 暮 ら し で す",
+            "phraseIndexes": [
+              12
+            ],
+            "matchScore": 0.786,
+            "confidence": 0.94,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 51.74,
+            "end": 53.76,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:18:25.004Z"
+          }
+        },
+        {
+          "id": "l4-app-block-007-line-005",
+          "trackId": "lesson_apps",
+          "speaker": "李",
+          "text": "ご両親は どちらですか。",
+          "kana": "ごりょうしんは どちらですか。",
+          "translationZh": "您父母在哪里？",
+          "candidate": {
+            "start": 54.61,
+            "end": 56.75,
+            "asrText": "ご 両 親 は ど ち ら で す か",
+            "phraseIndexes": [
+              13
+            ],
+            "matchScore": 1,
+            "confidence": 0.963,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 54.61,
+            "end": 56.75,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:18:25.004Z"
+          }
+        },
+        {
+          "id": "l4-app-block-007-line-006",
+          "trackId": "lesson_apps",
+          "speaker": "小野",
+          "text": "両親は 名古屋に います。",
+          "kana": "りょうしんは なごやに います。",
+          "translationZh": "我父母在名古屋。",
+          "candidate": {
+            "start": 58.18,
+            "end": 59.8,
+            "asrText": "両 親 は 名 古 屋 に い ま す",
+            "phraseIndexes": [
+              14
+            ],
+            "matchScore": 1,
+            "confidence": 0.892,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 58.18,
+            "end": 59.8,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:18:25.004Z"
+          }
+        },
+        {
+          "id": "l4-app-block-007-line-007",
+          "trackId": "lesson_apps",
+          "speaker": "李",
+          "text": "ご兄弟は？",
+          "kana": "ごきょうだいは？",
+          "translationZh": "您的兄弟姐妹呢？",
+          "candidate": {
+            "start": 59.66,
+            "end": 60.8,
+            "asrText": "ご 兄 弟 は",
+            "phraseIndexes": [
+              14
+            ],
+            "matchScore": 1,
+            "confidence": 0.892,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 59.66,
+            "end": 60.8,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:18:25.004Z"
+          }
+        },
+        {
+          "id": "l4-app-block-007-line-008",
+          "trackId": "lesson_apps",
+          "speaker": "小野",
+          "text": "大阪に 妹が います。",
+          "kana": "おおさかに いもうとが います。",
+          "translationZh": "我妹妹在大阪。",
+          "candidate": {
+            "start": 61.53,
+            "end": 63.71,
+            "asrText": "大 阪 に 妹 が い ま す",
+            "phraseIndexes": [
+              15
+            ],
+            "matchScore": 1,
+            "confidence": 0.902,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 61.53,
+            "end": 63.71,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:18:25.004Z"
+          }
+        }
+      ]
+    }
+  ]
+}

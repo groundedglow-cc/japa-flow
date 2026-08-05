@@ -1,0 +1,3493 @@
+{
+  "schemaVersion": 1,
+  "lessonId": "lesson14",
+  "generatedAt": "2026-08-05T08:36:18.556Z",
+  "method": "azure-speech-sdk-global-monotonic-alignment",
+  "reviewStatus": "approved",
+  "tracks": [
+    {
+      "id": "lesson_basic",
+      "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit4/lesson14/lesson_basic.mp3",
+      "localAudioPath": "data/ocr/audio-cache/lesson14/lesson_basic.mp3",
+      "sourceAudioSha256": "fbff5318bcc9b90d5df6e1c967049a04c182de68c18e3946514732b1402508e6",
+      "transcription": {
+        "provider": "azure-speech-sdk-continuous-recognition",
+        "locale": "ja-JP",
+        "text": "いい。昨日デパートへ行って買い物をしました。 ああ。リーさんは毎晩ラジオを聞いてから寝ます。 三、ここに住所と名前を書いてください。 す。李さんは毎朝7時に家を出ます。A。 今日の午後は何をしますか？ 図書館へ行って勉強します。それから家へ帰って手紙を書きます。 B。いつ出かけますか？ 昼ごはんを食べてから出かけます。 C、すみません。この荷物を中国へ送ってください。 船便ですか、航空便ですか？船便でお願いします。 D、このバスは駅前を通りますか？はい、通ります。",
+        "phrases": [
+          {
+            "index": 0,
+            "text": "いい。昨日デパートへ行って買い物をしました。",
+            "start": 0.35,
+            "end": 4.39,
+            "confidence": 0.92741823,
+            "words": [
+              {
+                "text": "い",
+                "start": 0.35,
+                "end": 0.63
+              },
+              {
+                "text": "い",
+                "start": 0.63,
+                "end": 0.71
+              },
+              {
+                "text": "昨",
+                "start": 0.71,
+                "end": 0.87
+              },
+              {
+                "text": "日",
+                "start": 0.87,
+                "end": 0.95
+              },
+              {
+                "text": "デ",
+                "start": 1.31,
+                "end": 1.39
+              },
+              {
+                "text": "パ",
+                "start": 1.39,
+                "end": 1.47
+              },
+              {
+                "text": "ー",
+                "start": 1.47,
+                "end": 1.99
+              },
+              {
+                "text": "ト",
+                "start": 1.99,
+                "end": 2.59
+              },
+              {
+                "text": "へ",
+                "start": 2.59,
+                "end": 2.67
+              },
+              {
+                "text": "行",
+                "start": 2.67,
+                "end": 2.83
+              },
+              {
+                "text": "っ",
+                "start": 2.83,
+                "end": 2.91
+              },
+              {
+                "text": "て",
+                "start": 2.91,
+                "end": 3.31
+              },
+              {
+                "text": "買",
+                "start": 3.31,
+                "end": 3.47
+              },
+              {
+                "text": "い",
+                "start": 3.47,
+                "end": 3.55
+              },
+              {
+                "text": "物",
+                "start": 3.55,
+                "end": 3.75
+              },
+              {
+                "text": "を",
+                "start": 3.75,
+                "end": 3.83
+              },
+              {
+                "text": "し",
+                "start": 3.83,
+                "end": 3.95
+              },
+              {
+                "text": "ま",
+                "start": 3.95,
+                "end": 4.11
+              },
+              {
+                "text": "し",
+                "start": 4.11,
+                "end": 4.19
+              },
+              {
+                "text": "た",
+                "start": 4.19,
+                "end": 4.39
+              }
+            ]
+          },
+          {
+            "index": 1,
+            "text": "ああ。リーさんは毎晩ラジオを聞いてから寝ます。",
+            "start": 5.15,
+            "end": 9.15,
+            "confidence": 0.78317547,
+            "words": [
+              {
+                "text": "あ",
+                "start": 5.15,
+                "end": 5.39
+              },
+              {
+                "text": "あ",
+                "start": 5.39,
+                "end": 5.55
+              },
+              {
+                "text": "リ",
+                "start": 6.07,
+                "end": 6.35
+              },
+              {
+                "text": "ー",
+                "start": 6.35,
+                "end": 6.67
+              },
+              {
+                "text": "さ",
+                "start": 6.67,
+                "end": 6.99
+              },
+              {
+                "text": "ん",
+                "start": 7.11,
+                "end": 7.15
+              },
+              {
+                "text": "は",
+                "start": 7.15,
+                "end": 7.31
+              },
+              {
+                "text": "毎",
+                "start": 7.31,
+                "end": 7.47
+              },
+              {
+                "text": "晩",
+                "start": 7.47,
+                "end": 7.71
+              },
+              {
+                "text": "ラ",
+                "start": 7.71,
+                "end": 7.87
+              },
+              {
+                "text": "ジ",
+                "start": 7.87,
+                "end": 8.03
+              },
+              {
+                "text": "オ",
+                "start": 8.03,
+                "end": 8.19
+              },
+              {
+                "text": "を",
+                "start": 8.19,
+                "end": 8.27
+              },
+              {
+                "text": "聞",
+                "start": 8.27,
+                "end": 8.39
+              },
+              {
+                "text": "い",
+                "start": 8.39,
+                "end": 8.47
+              },
+              {
+                "text": "て",
+                "start": 8.47,
+                "end": 8.59
+              },
+              {
+                "text": "か",
+                "start": 8.59,
+                "end": 8.67
+              },
+              {
+                "text": "ら",
+                "start": 8.67,
+                "end": 8.79
+              },
+              {
+                "text": "寝",
+                "start": 8.79,
+                "end": 8.95
+              },
+              {
+                "text": "ま",
+                "start": 8.95,
+                "end": 9.07
+              },
+              {
+                "text": "す",
+                "start": 9.07,
+                "end": 9.15
+              }
+            ]
+          },
+          {
+            "index": 2,
+            "text": "三、ここに住所と名前を書いてください。",
+            "start": 10.72,
+            "end": 13.6,
+            "confidence": 0.92807484,
+            "words": [
+              {
+                "text": "三",
+                "start": 10.72,
+                "end": 10.84
+              },
+              {
+                "text": "こ",
+                "start": 10.84,
+                "end": 10.92
+              },
+              {
+                "text": "こ",
+                "start": 10.92,
+                "end": 11.08
+              },
+              {
+                "text": "に",
+                "start": 11.08,
+                "end": 11.44
+              },
+              {
+                "text": "住",
+                "start": 11.6,
+                "end": 11.84
+              },
+              {
+                "text": "所",
+                "start": 11.84,
+                "end": 12.16
+              },
+              {
+                "text": "と",
+                "start": 12.16,
+                "end": 12.24
+              },
+              {
+                "text": "名",
+                "start": 12.24,
+                "end": 12.32
+              },
+              {
+                "text": "前",
+                "start": 12.32,
+                "end": 12.6
+              },
+              {
+                "text": "を",
+                "start": 12.6,
+                "end": 12.72
+              },
+              {
+                "text": "書",
+                "start": 12.72,
+                "end": 12.88
+              },
+              {
+                "text": "い",
+                "start": 12.88,
+                "end": 12.96
+              },
+              {
+                "text": "て",
+                "start": 12.96,
+                "end": 13.04
+              },
+              {
+                "text": "く",
+                "start": 13.04,
+                "end": 13.16
+              },
+              {
+                "text": "だ",
+                "start": 13.16,
+                "end": 13.32
+              },
+              {
+                "text": "さ",
+                "start": 13.32,
+                "end": 13.48
+              },
+              {
+                "text": "い",
+                "start": 13.48,
+                "end": 13.6
+              }
+            ]
+          },
+          {
+            "index": 3,
+            "text": "す。李さんは毎朝7時に家を出ます。A。",
+            "start": 15.6,
+            "end": 19.2,
+            "confidence": 0.8035018,
+            "words": [
+              {
+                "text": "す",
+                "start": 15.6,
+                "end": 15.68
+              },
+              {
+                "text": "李",
+                "start": 15.68,
+                "end": 15.76
+              },
+              {
+                "text": "さ",
+                "start": 15.76,
+                "end": 16.12
+              },
+              {
+                "text": "ん",
+                "start": 16.36,
+                "end": 16.4
+              },
+              {
+                "text": "は",
+                "start": 16.4,
+                "end": 16.48
+              },
+              {
+                "text": "毎",
+                "start": 16.48,
+                "end": 16.64
+              },
+              {
+                "text": "朝",
+                "start": 16.64,
+                "end": 16.72
+              },
+              {
+                "text": "七",
+                "start": 16.72,
+                "end": 17
+              },
+              {
+                "text": "時",
+                "start": 17,
+                "end": 17.36
+              },
+              {
+                "text": "に",
+                "start": 17.36,
+                "end": 17.72
+              },
+              {
+                "text": "家",
+                "start": 17.72,
+                "end": 17.8
+              },
+              {
+                "text": "を",
+                "start": 17.8,
+                "end": 17.88
+              },
+              {
+                "text": "出",
+                "start": 17.88,
+                "end": 17.96
+              },
+              {
+                "text": "ま",
+                "start": 17.96,
+                "end": 18.12
+              },
+              {
+                "text": "す",
+                "start": 18.12,
+                "end": 18.44
+              },
+              {
+                "text": "a",
+                "start": 18.76,
+                "end": 19.2
+              }
+            ]
+          },
+          {
+            "index": 4,
+            "text": "今日の午後は何をしますか？",
+            "start": 20.03,
+            "end": 22.07,
+            "confidence": 0.91625476,
+            "words": [
+              {
+                "text": "今",
+                "start": 20.03,
+                "end": 20.27
+              },
+              {
+                "text": "日",
+                "start": 20.27,
+                "end": 20.35
+              },
+              {
+                "text": "の",
+                "start": 20.35,
+                "end": 20.83
+              },
+              {
+                "text": "午",
+                "start": 20.83,
+                "end": 21.03
+              },
+              {
+                "text": "後",
+                "start": 21.03,
+                "end": 21.11
+              },
+              {
+                "text": "は",
+                "start": 21.11,
+                "end": 21.27
+              },
+              {
+                "text": "何",
+                "start": 21.27,
+                "end": 21.35
+              },
+              {
+                "text": "を",
+                "start": 21.35,
+                "end": 21.51
+              },
+              {
+                "text": "し",
+                "start": 21.51,
+                "end": 21.59
+              },
+              {
+                "text": "ま",
+                "start": 21.59,
+                "end": 21.71
+              },
+              {
+                "text": "す",
+                "start": 21.71,
+                "end": 21.83
+              },
+              {
+                "text": "か",
+                "start": 21.83,
+                "end": 22.07
+              }
+            ]
+          },
+          {
+            "index": 5,
+            "text": "図書館へ行って勉強します。それから家へ帰って手紙を書きます。",
+            "start": 22.99,
+            "end": 28.71,
+            "confidence": 0.92102396,
+            "words": [
+              {
+                "text": "図",
+                "start": 22.99,
+                "end": 23.15
+              },
+              {
+                "text": "書",
+                "start": 23.15,
+                "end": 23.31
+              },
+              {
+                "text": "館",
+                "start": 23.31,
+                "end": 23.51
+              },
+              {
+                "text": "へ",
+                "start": 23.51,
+                "end": 23.59
+              },
+              {
+                "text": "行",
+                "start": 23.59,
+                "end": 23.71
+              },
+              {
+                "text": "っ",
+                "start": 23.71,
+                "end": 23.83
+              },
+              {
+                "text": "て",
+                "start": 23.83,
+                "end": 24.19
+              },
+              {
+                "text": "勉",
+                "start": 24.19,
+                "end": 24.47
+              },
+              {
+                "text": "強",
+                "start": 24.47,
+                "end": 24.67
+              },
+              {
+                "text": "し",
+                "start": 24.67,
+                "end": 24.83
+              },
+              {
+                "text": "ま",
+                "start": 24.83,
+                "end": 24.95
+              },
+              {
+                "text": "す",
+                "start": 24.95,
+                "end": 25.19
+              },
+              {
+                "text": "そ",
+                "start": 25.63,
+                "end": 25.83
+              },
+              {
+                "text": "れ",
+                "start": 25.83,
+                "end": 25.91
+              },
+              {
+                "text": "か",
+                "start": 25.91,
+                "end": 26.03
+              },
+              {
+                "text": "ら",
+                "start": 26.03,
+                "end": 26.39
+              },
+              {
+                "text": "家",
+                "start": 26.59,
+                "end": 26.71
+              },
+              {
+                "text": "へ",
+                "start": 26.71,
+                "end": 26.99
+              },
+              {
+                "text": "帰",
+                "start": 26.99,
+                "end": 27.27
+              },
+              {
+                "text": "っ",
+                "start": 27.27,
+                "end": 27.35
+              },
+              {
+                "text": "て",
+                "start": 27.35,
+                "end": 27.91
+              },
+              {
+                "text": "手",
+                "start": 27.91,
+                "end": 27.99
+              },
+              {
+                "text": "紙",
+                "start": 27.99,
+                "end": 28.23
+              },
+              {
+                "text": "を",
+                "start": 28.23,
+                "end": 28.31
+              },
+              {
+                "text": "書",
+                "start": 28.31,
+                "end": 28.47
+              },
+              {
+                "text": "き",
+                "start": 28.47,
+                "end": 28.55
+              },
+              {
+                "text": "ま",
+                "start": 28.55,
+                "end": 28.63
+              },
+              {
+                "text": "す",
+                "start": 28.63,
+                "end": 28.71
+              }
+            ]
+          },
+          {
+            "index": 6,
+            "text": "B。いつ出かけますか？",
+            "start": 30.46,
+            "end": 32.9,
+            "confidence": 0.87184596,
+            "words": [
+              {
+                "text": "b",
+                "start": 30.46,
+                "end": 31.02
+              },
+              {
+                "text": "い",
+                "start": 31.46,
+                "end": 31.66
+              },
+              {
+                "text": "つ",
+                "start": 31.66,
+                "end": 31.86
+              },
+              {
+                "text": "出",
+                "start": 31.86,
+                "end": 31.98
+              },
+              {
+                "text": "か",
+                "start": 31.98,
+                "end": 32.14
+              },
+              {
+                "text": "け",
+                "start": 32.14,
+                "end": 32.3
+              },
+              {
+                "text": "ま",
+                "start": 32.3,
+                "end": 32.42
+              },
+              {
+                "text": "す",
+                "start": 32.42,
+                "end": 32.5
+              },
+              {
+                "text": "か",
+                "start": 32.5,
+                "end": 32.9
+              }
+            ]
+          },
+          {
+            "index": 7,
+            "text": "昼ごはんを食べてから出かけます。",
+            "start": 33.83,
+            "end": 35.95,
+            "confidence": 0.8440285,
+            "words": [
+              {
+                "text": "昼",
+                "start": 33.83,
+                "end": 34.15
+              },
+              {
+                "text": "ご",
+                "start": 34.15,
+                "end": 34.31
+              },
+              {
+                "text": "は",
+                "start": 34.31,
+                "end": 34.39
+              },
+              {
+                "text": "ん",
+                "start": 34.39,
+                "end": 34.47
+              },
+              {
+                "text": "を",
+                "start": 34.47,
+                "end": 34.55
+              },
+              {
+                "text": "食",
+                "start": 34.55,
+                "end": 34.67
+              },
+              {
+                "text": "べ",
+                "start": 34.67,
+                "end": 34.79
+              },
+              {
+                "text": "て",
+                "start": 34.79,
+                "end": 34.91
+              },
+              {
+                "text": "か",
+                "start": 34.91,
+                "end": 35.03
+              },
+              {
+                "text": "ら",
+                "start": 35.03,
+                "end": 35.23
+              },
+              {
+                "text": "出",
+                "start": 35.23,
+                "end": 35.39
+              },
+              {
+                "text": "か",
+                "start": 35.39,
+                "end": 35.51
+              },
+              {
+                "text": "け",
+                "start": 35.51,
+                "end": 35.63
+              },
+              {
+                "text": "ま",
+                "start": 35.63,
+                "end": 35.75
+              },
+              {
+                "text": "す",
+                "start": 35.75,
+                "end": 35.95
+              }
+            ]
+          },
+          {
+            "index": 8,
+            "text": "C、すみません。この荷物を中国へ送ってください。",
+            "start": 37.59,
+            "end": 42.19,
+            "confidence": 0.93459654,
+            "words": [
+              {
+                "text": "c",
+                "start": 37.59,
+                "end": 38.23
+              },
+              {
+                "text": "す",
+                "start": 38.67,
+                "end": 38.91
+              },
+              {
+                "text": "み",
+                "start": 38.91,
+                "end": 39.03
+              },
+              {
+                "text": "ま",
+                "start": 39.03,
+                "end": 39.19
+              },
+              {
+                "text": "せ",
+                "start": 39.19,
+                "end": 39.35
+              },
+              {
+                "text": "ん",
+                "start": 39.35,
+                "end": 39.67
+              },
+              {
+                "text": "こ",
+                "start": 39.83,
+                "end": 40.03
+              },
+              {
+                "text": "の",
+                "start": 40.03,
+                "end": 40.15
+              },
+              {
+                "text": "荷",
+                "start": 40.15,
+                "end": 40.27
+              },
+              {
+                "text": "物",
+                "start": 40.27,
+                "end": 40.59
+              },
+              {
+                "text": "を",
+                "start": 40.59,
+                "end": 40.75
+              },
+              {
+                "text": "中",
+                "start": 40.75,
+                "end": 41.03
+              },
+              {
+                "text": "国",
+                "start": 41.03,
+                "end": 41.31
+              },
+              {
+                "text": "へ",
+                "start": 41.31,
+                "end": 41.43
+              },
+              {
+                "text": "送",
+                "start": 41.43,
+                "end": 41.67
+              },
+              {
+                "text": "っ",
+                "start": 41.67,
+                "end": 41.71
+              },
+              {
+                "text": "て",
+                "start": 41.71,
+                "end": 41.79
+              },
+              {
+                "text": "く",
+                "start": 41.79,
+                "end": 41.91
+              },
+              {
+                "text": "だ",
+                "start": 41.91,
+                "end": 42.03
+              },
+              {
+                "text": "さ",
+                "start": 42.03,
+                "end": 42.11
+              },
+              {
+                "text": "い",
+                "start": 42.11,
+                "end": 42.19
+              }
+            ]
+          },
+          {
+            "index": 9,
+            "text": "船便ですか、航空便ですか？船便でお願いします。",
+            "start": 43.27,
+            "end": 47.71,
+            "confidence": 0.9302063,
+            "words": [
+              {
+                "text": "船",
+                "start": 43.27,
+                "end": 43.51
+              },
+              {
+                "text": "便",
+                "start": 43.51,
+                "end": 43.75
+              },
+              {
+                "text": "で",
+                "start": 43.75,
+                "end": 43.87
+              },
+              {
+                "text": "す",
+                "start": 43.87,
+                "end": 43.95
+              },
+              {
+                "text": "か",
+                "start": 43.95,
+                "end": 44.31
+              },
+              {
+                "text": "航",
+                "start": 44.43,
+                "end": 44.71
+              },
+              {
+                "text": "空",
+                "start": 44.71,
+                "end": 44.95
+              },
+              {
+                "text": "便",
+                "start": 44.95,
+                "end": 45.11
+              },
+              {
+                "text": "で",
+                "start": 45.11,
+                "end": 45.23
+              },
+              {
+                "text": "す",
+                "start": 45.23,
+                "end": 45.35
+              },
+              {
+                "text": "か",
+                "start": 45.35,
+                "end": 45.71
+              },
+              {
+                "text": "船",
+                "start": 46.07,
+                "end": 46.35
+              },
+              {
+                "text": "便",
+                "start": 46.35,
+                "end": 46.59
+              },
+              {
+                "text": "で",
+                "start": 46.59,
+                "end": 46.79
+              },
+              {
+                "text": "お",
+                "start": 46.79,
+                "end": 46.91
+              },
+              {
+                "text": "願",
+                "start": 46.99,
+                "end": 47.11
+              },
+              {
+                "text": "い",
+                "start": 47.11,
+                "end": 47.23
+              },
+              {
+                "text": "し",
+                "start": 47.23,
+                "end": 47.35
+              },
+              {
+                "text": "ま",
+                "start": 47.35,
+                "end": 47.47
+              },
+              {
+                "text": "す",
+                "start": 47.47,
+                "end": 47.71
+              }
+            ]
+          },
+          {
+            "index": 10,
+            "text": "D、このバスは駅前を通りますか？はい、通ります。",
+            "start": 49.17,
+            "end": 54.69,
+            "confidence": 0.82491136,
+            "words": [
+              {
+                "text": "d",
+                "start": 49.17,
+                "end": 49.73
+              },
+              {
+                "text": "こ",
+                "start": 50.49,
+                "end": 50.69
+              },
+              {
+                "text": "の",
+                "start": 50.69,
+                "end": 50.81
+              },
+              {
+                "text": "バ",
+                "start": 50.81,
+                "end": 51.01
+              },
+              {
+                "text": "ス",
+                "start": 51.01,
+                "end": 51.17
+              },
+              {
+                "text": "は",
+                "start": 51.17,
+                "end": 51.45
+              },
+              {
+                "text": "駅",
+                "start": 51.45,
+                "end": 51.81
+              },
+              {
+                "text": "前",
+                "start": 51.81,
+                "end": 52.01
+              },
+              {
+                "text": "を",
+                "start": 52.01,
+                "end": 52.13
+              },
+              {
+                "text": "通",
+                "start": 52.13,
+                "end": 52.37
+              },
+              {
+                "text": "り",
+                "start": 52.37,
+                "end": 52.45
+              },
+              {
+                "text": "ま",
+                "start": 52.45,
+                "end": 52.57
+              },
+              {
+                "text": "す",
+                "start": 52.57,
+                "end": 52.69
+              },
+              {
+                "text": "か",
+                "start": 52.69,
+                "end": 53.05
+              },
+              {
+                "text": "は",
+                "start": 53.37,
+                "end": 53.65
+              },
+              {
+                "text": "い",
+                "start": 53.65,
+                "end": 53.85
+              },
+              {
+                "text": "通",
+                "start": 53.93,
+                "end": 54.09
+              },
+              {
+                "text": "り",
+                "start": 54.09,
+                "end": 54.25
+              },
+              {
+                "text": "ま",
+                "start": 54.25,
+                "end": 54.37
+              },
+              {
+                "text": "す",
+                "start": 54.37,
+                "end": 54.69
+              }
+            ]
+          }
+        ]
+      },
+      "items": [
+        {
+          "id": "l14-basic-s001",
+          "trackId": "lesson_basic",
+          "speaker": "",
+          "text": "昨日 デパートへ 行って、買い物しました。",
+          "kana": "きのう デパートへ いって、かいものしました。",
+          "translationZh": "昨天去了百货商店，买了东西。",
+          "candidate": {
+            "start": 0.65,
+            "end": 4.47,
+            "asrText": "昨 日 デ パ ー ト へ 行 っ て 買 い 物 を し ま し た",
+            "phraseIndexes": [
+              0
+            ],
+            "matchScore": 0.944,
+            "confidence": 0.927,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 0.65,
+            "end": 4.47,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:36:49.213Z"
+          }
+        },
+        {
+          "id": "l14-basic-s002",
+          "trackId": "lesson_basic",
+          "speaker": "",
+          "text": "李さんは 毎晩 ラジオを 聞いてから 寝ます。",
+          "kana": "りさんは まいばん ラジオを きいてから ねます。",
+          "translationZh": "小李每天晚上听完收音机后睡觉。",
+          "candidate": {
+            "start": 6.29,
+            "end": 9.23,
+            "asrText": "ー さ ん は 毎 晩 ラ ジ オ を 聞 い て か ら 寝 ま す",
+            "phraseIndexes": [
+              1
+            ],
+            "matchScore": 0.944,
+            "confidence": 0.783,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 6.29,
+            "end": 9.23,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:36:49.213Z"
+          }
+        },
+        {
+          "id": "l14-basic-s003",
+          "trackId": "lesson_basic",
+          "speaker": "",
+          "text": "ここに 住所と 名前を 書いて ください。",
+          "kana": "ここに じゅうしょと なまえを かいて ください。",
+          "translationZh": "请在这里写下住址和姓名。",
+          "candidate": {
+            "start": 10.78,
+            "end": 13.68,
+            "asrText": "こ こ に 住 所 と 名 前 を 書 い て く だ さ い",
+            "phraseIndexes": [
+              2
+            ],
+            "matchScore": 1,
+            "confidence": 0.928,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 10.78,
+            "end": 13.68,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:36:49.213Z"
+          }
+        },
+        {
+          "id": "l14-basic-s004",
+          "trackId": "lesson_basic",
+          "speaker": "",
+          "text": "李さんは 毎朝 7時に 家を 出ます。",
+          "kana": "りさんは まいあさ しちじに いえを でます。",
+          "translationZh": "小李每天早晨七点离开家。",
+          "candidate": {
+            "start": 15.62,
+            "end": 18.52,
+            "asrText": "李 さ ん は 毎 朝 七 時 に 家 を 出 ま す",
+            "phraseIndexes": [
+              3
+            ],
+            "matchScore": 0.929,
+            "confidence": 0.804,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 15.62,
+            "end": 18.52,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:36:49.213Z"
+          }
+        },
+        {
+          "id": "l14-basic-dialogue-001-line-001",
+          "trackId": "lesson_basic",
+          "speaker": "甲",
+          "text": "今日の 午後は 何を しますか。",
+          "kana": "きょうの ごごは なにを しますか。",
+          "translationZh": "今天下午做什么？",
+          "candidate": {
+            "start": 19.97,
+            "end": 22.15,
+            "asrText": "今 日 の 午 後 は 何 を し ま す か",
+            "phraseIndexes": [
+              4
+            ],
+            "matchScore": 1,
+            "confidence": 0.916,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 19.97,
+            "end": 22.15,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:36:49.213Z"
+          }
+        },
+        {
+          "id": "l14-basic-dialogue-001-line-002",
+          "trackId": "lesson_basic",
+          "speaker": "乙",
+          "text": "図書館へ 行って、勉強を します。",
+          "kana": "としょかんへ いって、べんきょうを します。",
+          "translationZh": "去图书馆学习。",
+          "candidate": {
+            "start": 22.93,
+            "end": 25.27,
+            "asrText": "図 書 館 へ 行 っ て 勉 強 し ま す",
+            "phraseIndexes": [
+              5
+            ],
+            "matchScore": 0.923,
+            "confidence": 0.921,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 22.93,
+            "end": 25.27,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:36:49.213Z"
+          }
+        },
+        {
+          "id": "l14-basic-dialogue-001-line-003",
+          "trackId": "lesson_basic",
+          "speaker": "乙",
+          "text": "それから 家へ 帰って、手紙を 書きます。",
+          "kana": "それから いえへ かえって、てがみを かきます。",
+          "translationZh": "然后回家写信。",
+          "candidate": {
+            "start": 25.57,
+            "end": 28.79,
+            "asrText": "そ れ か ら 家 へ 帰 っ て 手 紙 を 書 き ま す",
+            "phraseIndexes": [
+              5
+            ],
+            "matchScore": 1,
+            "confidence": 0.921,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 25.57,
+            "end": 28.79,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:36:49.213Z"
+          }
+        },
+        {
+          "id": "l14-basic-dialogue-002-line-001",
+          "trackId": "lesson_basic",
+          "speaker": "甲",
+          "text": "いつ 出かけますか。",
+          "kana": "いつ でかけますか。",
+          "translationZh": "什么时候出门？",
+          "candidate": {
+            "start": 31.4,
+            "end": 32.98,
+            "asrText": "い つ 出 か け ま す か",
+            "phraseIndexes": [
+              6
+            ],
+            "matchScore": 1,
+            "confidence": 0.872,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 31.4,
+            "end": 32.98,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:36:49.213Z"
+          }
+        },
+        {
+          "id": "l14-basic-dialogue-002-line-002",
+          "trackId": "lesson_basic",
+          "speaker": "乙",
+          "text": "昼ご飯を 食べてから 出かけます。",
+          "kana": "ひるごはんを たべてから でかけます。",
+          "translationZh": "吃完午饭后出门。",
+          "candidate": {
+            "start": 33.77,
+            "end": 36.03,
+            "asrText": "昼 ご は ん を 食 べ て か ら 出 か け ま す",
+            "phraseIndexes": [
+              7
+            ],
+            "matchScore": 0.867,
+            "confidence": 0.844,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 33.77,
+            "end": 36.03,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:36:49.213Z"
+          }
+        },
+        {
+          "id": "l14-basic-dialogue-003-line-001",
+          "trackId": "lesson_basic",
+          "speaker": "甲",
+          "text": "すみません、この 荷物を 中国へ 送って ください。",
+          "kana": "すみません、この にもつを ちゅうごくへ おくって ください。",
+          "translationZh": "劳驾，请把这个包裹寄到中国。",
+          "candidate": {
+            "start": 38.61,
+            "end": 42.27,
+            "asrText": "す み ま せ ん こ の 荷 物 を 中 国 へ 送 っ て く だ さ い",
+            "phraseIndexes": [
+              8
+            ],
+            "matchScore": 1,
+            "confidence": 0.935,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 38.61,
+            "end": 42.27,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:36:49.213Z"
+          }
+        },
+        {
+          "id": "l14-basic-dialogue-003-line-002",
+          "trackId": "lesson_basic",
+          "speaker": "乙",
+          "text": "船便ですか、航空便ですか。",
+          "kana": "ふなびんですか、こうくうびんですか。",
+          "translationZh": "海运还是航空邮件？",
+          "candidate": {
+            "start": 43.21,
+            "end": 45.79,
+            "asrText": "船 便 で す か 航 空 便 で す か",
+            "phraseIndexes": [
+              9
+            ],
+            "matchScore": 1,
+            "confidence": 0.93,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 43.21,
+            "end": 45.79,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:36:49.213Z"
+          }
+        },
+        {
+          "id": "l14-basic-dialogue-003-line-003",
+          "trackId": "lesson_basic",
+          "speaker": "甲",
+          "text": "船便で お願いします。",
+          "kana": "ふなびんで おねがいします。",
+          "translationZh": "请走海运。",
+          "candidate": {
+            "start": 46.01,
+            "end": 47.79,
+            "asrText": "船 便 で お 願 い し ま す",
+            "phraseIndexes": [
+              9
+            ],
+            "matchScore": 1,
+            "confidence": 0.93,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 46.01,
+            "end": 47.79,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:36:49.213Z"
+          }
+        },
+        {
+          "id": "l14-basic-dialogue-004-line-001",
+          "trackId": "lesson_basic",
+          "speaker": "甲",
+          "text": "この バスは 駅前を 通りますか。",
+          "kana": "この バスは えきまえを とおりますか。",
+          "translationZh": "这辆公交车经过车站前面吗？",
+          "candidate": {
+            "start": 50.43,
+            "end": 53.13,
+            "asrText": "こ の バ ス は 駅 前 を 通 り ま す か",
+            "phraseIndexes": [
+              10
+            ],
+            "matchScore": 1,
+            "confidence": 0.825,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 50.43,
+            "end": 53.13,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:36:49.213Z"
+          }
+        },
+        {
+          "id": "l14-basic-dialogue-004-line-002",
+          "trackId": "lesson_basic",
+          "speaker": "乙",
+          "text": "はい、通ります。",
+          "kana": "はい、とおります。",
+          "translationZh": "是的，经过。",
+          "candidate": {
+            "start": 53.31,
+            "end": 54.77,
+            "asrText": "は い 通 り ま す",
+            "phraseIndexes": [
+              10
+            ],
+            "matchScore": 1,
+            "confidence": 0.825,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 53.31,
+            "end": 54.77,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:36:49.213Z"
+          }
+        }
+      ]
+    },
+    {
+      "id": "lesson_apps",
+      "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit4/lesson14/lesson_apps.mp3",
+      "localAudioPath": "data/ocr/audio-cache/lesson14/lesson_apps.mp3",
+      "sourceAudioSha256": "23e101b162bae5ee678c864ffea7da51c8e82989c8a524271c268774b1f50d0f",
+      "transcription": {
+        "provider": "azure-speech-sdk-continuous-recognition",
+        "locale": "ja-JP",
+        "text": "現行。 行けないじゃん。シャーリーフィッターコンビはよりシーハーデイシャンケンシャイフォントカウント。 しゃん、 gtn、 kucha、 weba。 吉田課長、原稿ができました。 箱根の記事ですね。 ちょっと似せてください。 なかなかいいですね。 いつかきましたか？ 昨日、会社でメモを整理して小野さんに見せました。そしてアパートへ帰ってから書きました。 そうですか。大変でしたね。 写真もできましたか？ はい。これから長島さんの事務所へ行って写真を選びます。 そうですか。後で写真も見てくださいませんか？ 李さん、もう会社を出ますか？はい、銀行でお金を下ろしてから行きます。 じゃあ、郵便局の近くを通りますね。 すみませんが、この手紙を出してください。はい。速達でいたしますか。 ええ。そうしてください。",
+        "phrases": [
+          {
+            "index": 0,
+            "text": "現行。",
+            "start": 0.19,
+            "end": 1.27,
+            "confidence": 0.81732035,
+            "words": [
+              {
+                "text": "現",
+                "start": 0.19,
+                "end": 0.67
+              },
+              {
+                "text": "行",
+                "start": 0.67,
+                "end": 1.27
+              }
+            ]
+          },
+          {
+            "index": 1,
+            "text": "行けないじゃん。シャーリーフィッターコンビはよりシーハーデイシャンケンシャイフォントカウント。",
+            "start": 2.27,
+            "end": 7.91,
+            "confidence": 0.59813863,
+            "words": [
+              {
+                "text": "行",
+                "start": 2.27,
+                "end": 2.47
+              },
+              {
+                "text": "け",
+                "start": 2.47,
+                "end": 2.59
+              },
+              {
+                "text": "な",
+                "start": 2.59,
+                "end": 2.71
+              },
+              {
+                "text": "い",
+                "start": 2.71,
+                "end": 2.79
+              },
+              {
+                "text": "じ",
+                "start": 2.79,
+                "end": 2.87
+              },
+              {
+                "text": "ゃ",
+                "start": 2.87,
+                "end": 3.03
+              },
+              {
+                "text": "ん",
+                "start": 3.03,
+                "end": 3.23
+              },
+              {
+                "text": "シ",
+                "start": 3.39,
+                "end": 3.63
+              },
+              {
+                "text": "ャ",
+                "start": 3.63,
+                "end": 3.71
+              },
+              {
+                "text": "ー",
+                "start": 3.71,
+                "end": 3.91
+              },
+              {
+                "text": "リ",
+                "start": 3.91,
+                "end": 4.03
+              },
+              {
+                "text": "ー",
+                "start": 4.03,
+                "end": 4.27
+              },
+              {
+                "text": "フ",
+                "start": 4.27,
+                "end": 4.35
+              },
+              {
+                "text": "ィ",
+                "start": 4.35,
+                "end": 4.47
+              },
+              {
+                "text": "ッ",
+                "start": 4.47,
+                "end": 4.51
+              },
+              {
+                "text": "タ",
+                "start": 4.51,
+                "end": 4.59
+              },
+              {
+                "text": "ー",
+                "start": 4.59,
+                "end": 4.79
+              },
+              {
+                "text": "コ",
+                "start": 4.79,
+                "end": 4.87
+              },
+              {
+                "text": "ン",
+                "start": 4.87,
+                "end": 4.91
+              },
+              {
+                "text": "ビ",
+                "start": 4.91,
+                "end": 4.99
+              },
+              {
+                "text": "は",
+                "start": 4.99,
+                "end": 5.07
+              },
+              {
+                "text": "よ",
+                "start": 5.07,
+                "end": 5.27
+              },
+              {
+                "text": "り",
+                "start": 5.27,
+                "end": 5.91
+              },
+              {
+                "text": "シ",
+                "start": 5.91,
+                "end": 5.99
+              },
+              {
+                "text": "ー",
+                "start": 5.99,
+                "end": 6.19
+              },
+              {
+                "text": "ハ",
+                "start": 6.19,
+                "end": 6.27
+              },
+              {
+                "text": "ー",
+                "start": 6.27,
+                "end": 6.47
+              },
+              {
+                "text": "デ",
+                "start": 6.47,
+                "end": 6.55
+              },
+              {
+                "text": "イ",
+                "start": 6.55,
+                "end": 6.63
+              },
+              {
+                "text": "シ",
+                "start": 6.63,
+                "end": 6.71
+              },
+              {
+                "text": "ャ",
+                "start": 6.71,
+                "end": 6.79
+              },
+              {
+                "text": "ン",
+                "start": 6.79,
+                "end": 6.83
+              },
+              {
+                "text": "ケ",
+                "start": 6.83,
+                "end": 6.95
+              },
+              {
+                "text": "ン",
+                "start": 6.95,
+                "end": 6.99
+              },
+              {
+                "text": "シ",
+                "start": 6.99,
+                "end": 7.07
+              },
+              {
+                "text": "ャ",
+                "start": 7.07,
+                "end": 7.15
+              },
+              {
+                "text": "イ",
+                "start": 7.15,
+                "end": 7.23
+              },
+              {
+                "text": "フ",
+                "start": 7.23,
+                "end": 7.31
+              },
+              {
+                "text": "ォ",
+                "start": 7.31,
+                "end": 7.39
+              },
+              {
+                "text": "ン",
+                "start": 7.39,
+                "end": 7.43
+              },
+              {
+                "text": "ト",
+                "start": 7.43,
+                "end": 7.51
+              },
+              {
+                "text": "カ",
+                "start": 7.51,
+                "end": 7.71
+              },
+              {
+                "text": "ウ",
+                "start": 7.71,
+                "end": 7.79
+              },
+              {
+                "text": "ン",
+                "start": 7.79,
+                "end": 7.83
+              },
+              {
+                "text": "ト",
+                "start": 7.83,
+                "end": 7.91
+              }
+            ]
+          },
+          {
+            "index": 2,
+            "text": "しゃん、 gtn、 kucha、 weba。",
+            "start": 9.52,
+            "end": 10.56,
+            "confidence": 0.205799,
+            "words": [
+              {
+                "text": "し",
+                "start": 9.52,
+                "end": 9.6
+              },
+              {
+                "text": "ゃ",
+                "start": 9.6,
+                "end": 9.68
+              },
+              {
+                "text": "ん",
+                "start": 9.68,
+                "end": 9.72
+              },
+              {
+                "text": "gtn",
+                "start": 9.72,
+                "end": 10.08
+              },
+              {
+                "text": "kucha",
+                "start": 10.08,
+                "end": 10.32
+              },
+              {
+                "text": "weba",
+                "start": 10.32,
+                "end": 10.56
+              }
+            ]
+          },
+          {
+            "index": 3,
+            "text": "吉田課長、原稿ができました。",
+            "start": 17.96,
+            "end": 21.72,
+            "confidence": 0.89051646,
+            "words": [
+              {
+                "text": "吉",
+                "start": 17.96,
+                "end": 18.2
+              },
+              {
+                "text": "田",
+                "start": 19.12,
+                "end": 19.48
+              },
+              {
+                "text": "課",
+                "start": 19.48,
+                "end": 19.72
+              },
+              {
+                "text": "長",
+                "start": 19.72,
+                "end": 20.12
+              },
+              {
+                "text": "原",
+                "start": 20.4,
+                "end": 20.6
+              },
+              {
+                "text": "稿",
+                "start": 20.64,
+                "end": 20.88
+              },
+              {
+                "text": "が",
+                "start": 20.88,
+                "end": 21
+              },
+              {
+                "text": "で",
+                "start": 21,
+                "end": 21.12
+              },
+              {
+                "text": "き",
+                "start": 21.12,
+                "end": 21.24
+              },
+              {
+                "text": "ま",
+                "start": 21.24,
+                "end": 21.36
+              },
+              {
+                "text": "し",
+                "start": 21.36,
+                "end": 21.44
+              },
+              {
+                "text": "た",
+                "start": 21.44,
+                "end": 21.72
+              }
+            ]
+          },
+          {
+            "index": 4,
+            "text": "箱根の記事ですね。",
+            "start": 23.11,
+            "end": 24.47,
+            "confidence": 0.81069535,
+            "words": [
+              {
+                "text": "箱",
+                "start": 23.11,
+                "end": 23.39
+              },
+              {
+                "text": "根",
+                "start": 23.39,
+                "end": 23.51
+              },
+              {
+                "text": "の",
+                "start": 23.51,
+                "end": 23.63
+              },
+              {
+                "text": "記",
+                "start": 23.63,
+                "end": 23.75
+              },
+              {
+                "text": "事",
+                "start": 23.75,
+                "end": 23.91
+              },
+              {
+                "text": "で",
+                "start": 23.91,
+                "end": 24.03
+              },
+              {
+                "text": "す",
+                "start": 24.03,
+                "end": 24.15
+              },
+              {
+                "text": "ね",
+                "start": 24.15,
+                "end": 24.47
+              }
+            ]
+          },
+          {
+            "index": 5,
+            "text": "ちょっと似せてください。",
+            "start": 25.15,
+            "end": 26.31,
+            "confidence": 0.8791414,
+            "words": [
+              {
+                "text": "ち",
+                "start": 25.15,
+                "end": 25.23
+              },
+              {
+                "text": "ょ",
+                "start": 25.23,
+                "end": 25.35
+              },
+              {
+                "text": "っ",
+                "start": 25.35,
+                "end": 25.47
+              },
+              {
+                "text": "と",
+                "start": 25.47,
+                "end": 25.55
+              },
+              {
+                "text": "似",
+                "start": 25.55,
+                "end": 25.67
+              },
+              {
+                "text": "せ",
+                "start": 25.67,
+                "end": 25.79
+              },
+              {
+                "text": "て",
+                "start": 25.79,
+                "end": 25.91
+              },
+              {
+                "text": "く",
+                "start": 25.91,
+                "end": 25.99
+              },
+              {
+                "text": "だ",
+                "start": 25.99,
+                "end": 26.11
+              },
+              {
+                "text": "さ",
+                "start": 26.11,
+                "end": 26.23
+              },
+              {
+                "text": "い",
+                "start": 26.23,
+                "end": 26.31
+              }
+            ]
+          },
+          {
+            "index": 6,
+            "text": "なかなかいいですね。",
+            "start": 29.56,
+            "end": 30.64,
+            "confidence": 0.9057955,
+            "words": [
+              {
+                "text": "な",
+                "start": 29.56,
+                "end": 29.76
+              },
+              {
+                "text": "か",
+                "start": 29.76,
+                "end": 29.88
+              },
+              {
+                "text": "な",
+                "start": 29.88,
+                "end": 29.96
+              },
+              {
+                "text": "か",
+                "start": 29.96,
+                "end": 30.08
+              },
+              {
+                "text": "い",
+                "start": 30.08,
+                "end": 30.2
+              },
+              {
+                "text": "い",
+                "start": 30.2,
+                "end": 30.32
+              },
+              {
+                "text": "で",
+                "start": 30.32,
+                "end": 30.44
+              },
+              {
+                "text": "す",
+                "start": 30.44,
+                "end": 30.52
+              },
+              {
+                "text": "ね",
+                "start": 30.52,
+                "end": 30.64
+              }
+            ]
+          },
+          {
+            "index": 7,
+            "text": "いつかきましたか？",
+            "start": 31.55,
+            "end": 32.63,
+            "confidence": 0.85459036,
+            "words": [
+              {
+                "text": "い",
+                "start": 31.55,
+                "end": 31.75
+              },
+              {
+                "text": "つ",
+                "start": 31.75,
+                "end": 31.87
+              },
+              {
+                "text": "か",
+                "start": 31.87,
+                "end": 31.99
+              },
+              {
+                "text": "き",
+                "start": 31.99,
+                "end": 32.07
+              },
+              {
+                "text": "ま",
+                "start": 32.07,
+                "end": 32.19
+              },
+              {
+                "text": "し",
+                "start": 32.19,
+                "end": 32.27
+              },
+              {
+                "text": "た",
+                "start": 32.27,
+                "end": 32.35
+              },
+              {
+                "text": "か",
+                "start": 32.35,
+                "end": 32.63
+              }
+            ]
+          },
+          {
+            "index": 8,
+            "text": "昨日、会社でメモを整理して小野さんに見せました。そしてアパートへ帰ってから書きました。",
+            "start": 33.39,
+            "end": 39.87,
+            "confidence": 0.9020587,
+            "words": [
+              {
+                "text": "昨",
+                "start": 33.39,
+                "end": 33.55
+              },
+              {
+                "text": "日",
+                "start": 33.55,
+                "end": 33.63
+              },
+              {
+                "text": "会",
+                "start": 33.79,
+                "end": 34.19
+              },
+              {
+                "text": "社",
+                "start": 34.19,
+                "end": 34.31
+              },
+              {
+                "text": "で",
+                "start": 34.31,
+                "end": 34.43
+              },
+              {
+                "text": "メ",
+                "start": 34.43,
+                "end": 34.59
+              },
+              {
+                "text": "モ",
+                "start": 34.59,
+                "end": 34.67
+              },
+              {
+                "text": "を",
+                "start": 34.67,
+                "end": 34.75
+              },
+              {
+                "text": "整",
+                "start": 34.75,
+                "end": 34.99
+              },
+              {
+                "text": "理",
+                "start": 34.99,
+                "end": 35.23
+              },
+              {
+                "text": "し",
+                "start": 35.23,
+                "end": 35.35
+              },
+              {
+                "text": "て",
+                "start": 35.35,
+                "end": 35.63
+              },
+              {
+                "text": "小",
+                "start": 35.67,
+                "end": 35.83
+              },
+              {
+                "text": "野",
+                "start": 35.83,
+                "end": 35.95
+              },
+              {
+                "text": "さ",
+                "start": 35.95,
+                "end": 36.11
+              },
+              {
+                "text": "ん",
+                "start": 36.11,
+                "end": 36.19
+              },
+              {
+                "text": "に",
+                "start": 36.19,
+                "end": 36.31
+              },
+              {
+                "text": "見",
+                "start": 36.31,
+                "end": 36.43
+              },
+              {
+                "text": "せ",
+                "start": 36.43,
+                "end": 36.55
+              },
+              {
+                "text": "ま",
+                "start": 36.55,
+                "end": 36.67
+              },
+              {
+                "text": "し",
+                "start": 36.67,
+                "end": 36.79
+              },
+              {
+                "text": "た",
+                "start": 36.79,
+                "end": 37.03
+              },
+              {
+                "text": "そ",
+                "start": 37.55,
+                "end": 37.75
+              },
+              {
+                "text": "し",
+                "start": 37.75,
+                "end": 37.87
+              },
+              {
+                "text": "て",
+                "start": 37.87,
+                "end": 37.99
+              },
+              {
+                "text": "ア",
+                "start": 37.99,
+                "end": 38.11
+              },
+              {
+                "text": "パ",
+                "start": 38.11,
+                "end": 38.19
+              },
+              {
+                "text": "ー",
+                "start": 38.19,
+                "end": 38.39
+              },
+              {
+                "text": "ト",
+                "start": 38.39,
+                "end": 38.55
+              },
+              {
+                "text": "へ",
+                "start": 38.55,
+                "end": 38.63
+              },
+              {
+                "text": "帰",
+                "start": 38.63,
+                "end": 38.87
+              },
+              {
+                "text": "っ",
+                "start": 38.87,
+                "end": 38.95
+              },
+              {
+                "text": "て",
+                "start": 38.95,
+                "end": 39.03
+              },
+              {
+                "text": "か",
+                "start": 39.03,
+                "end": 39.15
+              },
+              {
+                "text": "ら",
+                "start": 39.15,
+                "end": 39.31
+              },
+              {
+                "text": "書",
+                "start": 39.31,
+                "end": 39.47
+              },
+              {
+                "text": "き",
+                "start": 39.47,
+                "end": 39.59
+              },
+              {
+                "text": "ま",
+                "start": 39.59,
+                "end": 39.71
+              },
+              {
+                "text": "し",
+                "start": 39.71,
+                "end": 39.79
+              },
+              {
+                "text": "た",
+                "start": 39.79,
+                "end": 39.87
+              }
+            ]
+          },
+          {
+            "index": 9,
+            "text": "そうですか。大変でしたね。",
+            "start": 40.91,
+            "end": 43.27,
+            "confidence": 0.92606217,
+            "words": [
+              {
+                "text": "そ",
+                "start": 40.91,
+                "end": 41.07
+              },
+              {
+                "text": "う",
+                "start": 41.07,
+                "end": 41.15
+              },
+              {
+                "text": "で",
+                "start": 41.15,
+                "end": 41.31
+              },
+              {
+                "text": "す",
+                "start": 41.31,
+                "end": 41.39
+              },
+              {
+                "text": "か",
+                "start": 41.39,
+                "end": 41.71
+              },
+              {
+                "text": "大",
+                "start": 42.31,
+                "end": 42.55
+              },
+              {
+                "text": "変",
+                "start": 42.55,
+                "end": 42.71
+              },
+              {
+                "text": "で",
+                "start": 42.71,
+                "end": 42.83
+              },
+              {
+                "text": "し",
+                "start": 42.83,
+                "end": 42.91
+              },
+              {
+                "text": "た",
+                "start": 42.91,
+                "end": 42.99
+              },
+              {
+                "text": "ね",
+                "start": 42.99,
+                "end": 43.27
+              }
+            ]
+          },
+          {
+            "index": 10,
+            "text": "写真もできましたか？",
+            "start": 44.07,
+            "end": 45.43,
+            "confidence": 0.8148257,
+            "words": [
+              {
+                "text": "写",
+                "start": 44.07,
+                "end": 44.27
+              },
+              {
+                "text": "真",
+                "start": 44.27,
+                "end": 44.35
+              },
+              {
+                "text": "も",
+                "start": 44.35,
+                "end": 44.71
+              },
+              {
+                "text": "で",
+                "start": 44.71,
+                "end": 44.83
+              },
+              {
+                "text": "き",
+                "start": 44.83,
+                "end": 44.95
+              },
+              {
+                "text": "ま",
+                "start": 44.95,
+                "end": 45.03
+              },
+              {
+                "text": "し",
+                "start": 45.03,
+                "end": 45.11
+              },
+              {
+                "text": "た",
+                "start": 45.11,
+                "end": 45.23
+              },
+              {
+                "text": "か",
+                "start": 45.23,
+                "end": 45.43
+              }
+            ]
+          },
+          {
+            "index": 11,
+            "text": "はい。これから長島さんの事務所へ行って写真を選びます。",
+            "start": 47,
+            "end": 50.52,
+            "confidence": 0.88639283,
+            "words": [
+              {
+                "text": "は",
+                "start": 47,
+                "end": 47.08
+              },
+              {
+                "text": "い",
+                "start": 47.08,
+                "end": 47.16
+              },
+              {
+                "text": "こ",
+                "start": 47.16,
+                "end": 47.24
+              },
+              {
+                "text": "れ",
+                "start": 47.24,
+                "end": 47.32
+              },
+              {
+                "text": "か",
+                "start": 47.32,
+                "end": 47.4
+              },
+              {
+                "text": "ら",
+                "start": 47.4,
+                "end": 47.48
+              },
+              {
+                "text": "長",
+                "start": 47.48,
+                "end": 47.56
+              },
+              {
+                "text": "島",
+                "start": 47.56,
+                "end": 47.72
+              },
+              {
+                "text": "さ",
+                "start": 47.72,
+                "end": 47.8
+              },
+              {
+                "text": "ん",
+                "start": 47.8,
+                "end": 47.84
+              },
+              {
+                "text": "の",
+                "start": 47.84,
+                "end": 47.96
+              },
+              {
+                "text": "事",
+                "start": 47.96,
+                "end": 48.2
+              },
+              {
+                "text": "務",
+                "start": 48.2,
+                "end": 48.48
+              },
+              {
+                "text": "所",
+                "start": 48.48,
+                "end": 48.72
+              },
+              {
+                "text": "へ",
+                "start": 48.72,
+                "end": 48.88
+              },
+              {
+                "text": "行",
+                "start": 48.88,
+                "end": 49
+              },
+              {
+                "text": "っ",
+                "start": 49.08,
+                "end": 49.12
+              },
+              {
+                "text": "て",
+                "start": 49.12,
+                "end": 49.2
+              },
+              {
+                "text": "写",
+                "start": 49.2,
+                "end": 49.28
+              },
+              {
+                "text": "真",
+                "start": 49.28,
+                "end": 49.36
+              },
+              {
+                "text": "を",
+                "start": 49.36,
+                "end": 49.44
+              },
+              {
+                "text": "選",
+                "start": 49.44,
+                "end": 49.76
+              },
+              {
+                "text": "び",
+                "start": 49.76,
+                "end": 50.08
+              },
+              {
+                "text": "ま",
+                "start": 50.08,
+                "end": 50.24
+              },
+              {
+                "text": "す",
+                "start": 50.24,
+                "end": 50.52
+              }
+            ]
+          },
+          {
+            "index": 12,
+            "text": "そうですか。後で写真も見てくださいませんか？",
+            "start": 51.43,
+            "end": 55.03,
+            "confidence": 0.91123074,
+            "words": [
+              {
+                "text": "そ",
+                "start": 51.43,
+                "end": 51.59
+              },
+              {
+                "text": "う",
+                "start": 51.59,
+                "end": 51.67
+              },
+              {
+                "text": "で",
+                "start": 51.67,
+                "end": 51.83
+              },
+              {
+                "text": "す",
+                "start": 51.83,
+                "end": 51.91
+              },
+              {
+                "text": "か",
+                "start": 51.91,
+                "end": 52.15
+              },
+              {
+                "text": "後",
+                "start": 53.03,
+                "end": 53.15
+              },
+              {
+                "text": "で",
+                "start": 53.15,
+                "end": 53.39
+              },
+              {
+                "text": "写",
+                "start": 53.39,
+                "end": 53.67
+              },
+              {
+                "text": "真",
+                "start": 53.67,
+                "end": 53.75
+              },
+              {
+                "text": "も",
+                "start": 53.75,
+                "end": 53.99
+              },
+              {
+                "text": "見",
+                "start": 53.99,
+                "end": 54.11
+              },
+              {
+                "text": "て",
+                "start": 54.11,
+                "end": 54.19
+              },
+              {
+                "text": "く",
+                "start": 54.19,
+                "end": 54.27
+              },
+              {
+                "text": "だ",
+                "start": 54.27,
+                "end": 54.43
+              },
+              {
+                "text": "さ",
+                "start": 54.43,
+                "end": 54.51
+              },
+              {
+                "text": "い",
+                "start": 54.51,
+                "end": 54.63
+              },
+              {
+                "text": "ま",
+                "start": 54.63,
+                "end": 54.71
+              },
+              {
+                "text": "せ",
+                "start": 54.71,
+                "end": 54.83
+              },
+              {
+                "text": "ん",
+                "start": 54.83,
+                "end": 54.91
+              },
+              {
+                "text": "か",
+                "start": 54.91,
+                "end": 55.03
+              }
+            ]
+          },
+          {
+            "index": 13,
+            "text": "李さん、もう会社を出ますか？はい、銀行でお金を下ろしてから行きます。",
+            "start": 56.35,
+            "end": 62.51,
+            "confidence": 0.8808638,
+            "words": [
+              {
+                "text": "李",
+                "start": 56.35,
+                "end": 56.55
+              },
+              {
+                "text": "さ",
+                "start": 56.55,
+                "end": 56.75
+              },
+              {
+                "text": "ん",
+                "start": 56.75,
+                "end": 57.03
+              },
+              {
+                "text": "も",
+                "start": 57.63,
+                "end": 57.87
+              },
+              {
+                "text": "う",
+                "start": 57.87,
+                "end": 57.95
+              },
+              {
+                "text": "会",
+                "start": 57.95,
+                "end": 58.19
+              },
+              {
+                "text": "社",
+                "start": 58.19,
+                "end": 58.27
+              },
+              {
+                "text": "を",
+                "start": 58.27,
+                "end": 58.35
+              },
+              {
+                "text": "出",
+                "start": 58.35,
+                "end": 58.47
+              },
+              {
+                "text": "ま",
+                "start": 58.47,
+                "end": 58.59
+              },
+              {
+                "text": "す",
+                "start": 58.59,
+                "end": 58.67
+              },
+              {
+                "text": "か",
+                "start": 58.67,
+                "end": 58.99
+              },
+              {
+                "text": "は",
+                "start": 59.51,
+                "end": 59.71
+              },
+              {
+                "text": "い",
+                "start": 59.71,
+                "end": 60.11
+              },
+              {
+                "text": "銀",
+                "start": 60.23,
+                "end": 60.59
+              },
+              {
+                "text": "行",
+                "start": 60.59,
+                "end": 60.79
+              },
+              {
+                "text": "で",
+                "start": 60.79,
+                "end": 60.99
+              },
+              {
+                "text": "お",
+                "start": 60.99,
+                "end": 61.15
+              },
+              {
+                "text": "金",
+                "start": 61.15,
+                "end": 61.47
+              },
+              {
+                "text": "を",
+                "start": 61.47,
+                "end": 61.55
+              },
+              {
+                "text": "下",
+                "start": 61.55,
+                "end": 61.63
+              },
+              {
+                "text": "ろ",
+                "start": 61.63,
+                "end": 61.75
+              },
+              {
+                "text": "し",
+                "start": 61.75,
+                "end": 61.83
+              },
+              {
+                "text": "て",
+                "start": 61.83,
+                "end": 61.91
+              },
+              {
+                "text": "か",
+                "start": 61.91,
+                "end": 62.03
+              },
+              {
+                "text": "ら",
+                "start": 62.03,
+                "end": 62.11
+              },
+              {
+                "text": "行",
+                "start": 62.11,
+                "end": 62.23
+              },
+              {
+                "text": "き",
+                "start": 62.23,
+                "end": 62.35
+              },
+              {
+                "text": "ま",
+                "start": 62.35,
+                "end": 62.43
+              },
+              {
+                "text": "す",
+                "start": 62.43,
+                "end": 62.51
+              }
+            ]
+          },
+          {
+            "index": 14,
+            "text": "じゃあ、郵便局の近くを通りますね。",
+            "start": 64.11,
+            "end": 66.83,
+            "confidence": 0.904264,
+            "words": [
+              {
+                "text": "じ",
+                "start": 64.11,
+                "end": 64.35
+              },
+              {
+                "text": "ゃ",
+                "start": 64.35,
+                "end": 64.43
+              },
+              {
+                "text": "あ",
+                "start": 64.43,
+                "end": 64.67
+              },
+              {
+                "text": "郵",
+                "start": 64.79,
+                "end": 65.11
+              },
+              {
+                "text": "便",
+                "start": 65.11,
+                "end": 65.31
+              },
+              {
+                "text": "局",
+                "start": 65.31,
+                "end": 65.51
+              },
+              {
+                "text": "の",
+                "start": 65.51,
+                "end": 65.67
+              },
+              {
+                "text": "近",
+                "start": 65.67,
+                "end": 65.91
+              },
+              {
+                "text": "く",
+                "start": 65.91,
+                "end": 65.99
+              },
+              {
+                "text": "を",
+                "start": 65.99,
+                "end": 66.27
+              },
+              {
+                "text": "通",
+                "start": 66.27,
+                "end": 66.47
+              },
+              {
+                "text": "り",
+                "start": 66.47,
+                "end": 66.55
+              },
+              {
+                "text": "ま",
+                "start": 66.55,
+                "end": 66.63
+              },
+              {
+                "text": "す",
+                "start": 66.63,
+                "end": 66.71
+              },
+              {
+                "text": "ね",
+                "start": 66.71,
+                "end": 66.83
+              }
+            ]
+          },
+          {
+            "index": 15,
+            "text": "すみませんが、この手紙を出してください。はい。速達でいたしますか。",
+            "start": 67.79,
+            "end": 73.59,
+            "confidence": 0.86171126,
+            "words": [
+              {
+                "text": "す",
+                "start": 67.79,
+                "end": 68.03
+              },
+              {
+                "text": "み",
+                "start": 68.03,
+                "end": 68.15
+              },
+              {
+                "text": "ま",
+                "start": 68.15,
+                "end": 68.31
+              },
+              {
+                "text": "せ",
+                "start": 68.31,
+                "end": 68.39
+              },
+              {
+                "text": "ん",
+                "start": 68.39,
+                "end": 68.51
+              },
+              {
+                "text": "が",
+                "start": 68.51,
+                "end": 68.79
+              },
+              {
+                "text": "こ",
+                "start": 69.27,
+                "end": 69.35
+              },
+              {
+                "text": "の",
+                "start": 69.35,
+                "end": 69.47
+              },
+              {
+                "text": "手",
+                "start": 69.47,
+                "end": 69.55
+              },
+              {
+                "text": "紙",
+                "start": 69.55,
+                "end": 69.83
+              },
+              {
+                "text": "を",
+                "start": 69.83,
+                "end": 69.91
+              },
+              {
+                "text": "出",
+                "start": 69.91,
+                "end": 70.07
+              },
+              {
+                "text": "し",
+                "start": 70.07,
+                "end": 70.15
+              },
+              {
+                "text": "て",
+                "start": 70.15,
+                "end": 70.23
+              },
+              {
+                "text": "く",
+                "start": 70.23,
+                "end": 70.35
+              },
+              {
+                "text": "だ",
+                "start": 70.35,
+                "end": 70.47
+              },
+              {
+                "text": "さ",
+                "start": 70.47,
+                "end": 70.59
+              },
+              {
+                "text": "い",
+                "start": 70.59,
+                "end": 70.79
+              },
+              {
+                "text": "は",
+                "start": 71.27,
+                "end": 71.43
+              },
+              {
+                "text": "い",
+                "start": 71.43,
+                "end": 71.83
+              },
+              {
+                "text": "速",
+                "start": 72.35,
+                "end": 72.59
+              },
+              {
+                "text": "達",
+                "start": 72.59,
+                "end": 72.83
+              },
+              {
+                "text": "で",
+                "start": 72.83,
+                "end": 72.91
+              },
+              {
+                "text": "い",
+                "start": 72.91,
+                "end": 72.99
+              },
+              {
+                "text": "た",
+                "start": 72.99,
+                "end": 73.07
+              },
+              {
+                "text": "し",
+                "start": 73.07,
+                "end": 73.19
+              },
+              {
+                "text": "ま",
+                "start": 73.19,
+                "end": 73.31
+              },
+              {
+                "text": "す",
+                "start": 73.31,
+                "end": 73.43
+              },
+              {
+                "text": "か",
+                "start": 73.43,
+                "end": 73.59
+              }
+            ]
+          },
+          {
+            "index": 16,
+            "text": "ええ。そうしてください。",
+            "start": 74.51,
+            "end": 75.99,
+            "confidence": 0.8975058,
+            "words": [
+              {
+                "text": "え",
+                "start": 74.51,
+                "end": 74.71
+              },
+              {
+                "text": "え",
+                "start": 74.71,
+                "end": 74.99
+              },
+              {
+                "text": "そ",
+                "start": 75.11,
+                "end": 75.35
+              },
+              {
+                "text": "う",
+                "start": 75.35,
+                "end": 75.43
+              },
+              {
+                "text": "し",
+                "start": 75.43,
+                "end": 75.51
+              },
+              {
+                "text": "て",
+                "start": 75.51,
+                "end": 75.59
+              },
+              {
+                "text": "く",
+                "start": 75.59,
+                "end": 75.67
+              },
+              {
+                "text": "だ",
+                "start": 75.67,
+                "end": 75.79
+              },
+              {
+                "text": "さ",
+                "start": 75.79,
+                "end": 75.91
+              },
+              {
+                "text": "い",
+                "start": 75.91,
+                "end": 75.99
+              }
+            ]
+          }
+        ]
+      },
+      "items": [
+        {
+          "id": "l14-app-block-003-line-001",
+          "trackId": "lesson_apps",
+          "speaker": "李",
+          "text": "吉田課長、原稿が できました。",
+          "kana": "よしだかちょう、げんこうが できました。",
+          "translationZh": "吉田科长，稿子写好了。",
+          "candidate": {
+            "start": 17.9,
+            "end": 21.8,
+            "asrText": "吉 田 課 長 原 稿 が で き ま し た",
+            "phraseIndexes": [
+              3
+            ],
+            "matchScore": 1,
+            "confidence": 0.891,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 17.9,
+            "end": 21.8,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:37:35.851Z"
+          }
+        },
+        {
+          "id": "l14-app-block-003-line-002",
+          "trackId": "lesson_apps",
+          "speaker": "吉田",
+          "text": "箱根の 記事ですね。ちょっと 見せて ください。",
+          "kana": "はこねの きじですね。ちょっと みせて ください。",
+          "translationZh": "是箱根的报道吧。请给我看一下。",
+          "candidate": {
+            "start": 23.05,
+            "end": 26.39,
+            "asrText": "箱 根 の 記 事 で す ね ち ょ っ と 似 せ て く だ さ い",
+            "phraseIndexes": [
+              4,
+              5
+            ],
+            "matchScore": 0.947,
+            "confidence": 0.85,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 23.05,
+            "end": 26.39,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:37:35.851Z"
+          }
+        },
+        {
+          "id": "l14-app-block-005-line-001",
+          "trackId": "lesson_apps",
+          "speaker": "吉田",
+          "text": "なかなか いいですね。いつ 書きましたか。",
+          "kana": "なかなか いいですね。いつ かきましたか。",
+          "translationZh": "相当不错啊。是什么时候写的？",
+          "candidate": {
+            "start": 29.5,
+            "end": 32.71,
+            "asrText": "な か な か い い で す ね い つ か き ま し た か",
+            "phraseIndexes": [
+              6,
+              7
+            ],
+            "matchScore": 1,
+            "confidence": 0.882,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 29.5,
+            "end": 32.71,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:37:35.851Z"
+          }
+        },
+        {
+          "id": "l14-app-block-005-line-002",
+          "trackId": "lesson_apps",
+          "speaker": "李",
+          "text": "昨日 会社で メモを 整理して、小野さんに 見せました。",
+          "kana": "きのう かいしゃで メモを せいりして、おのさんに みせました。",
+          "translationZh": "昨天在公司整理了笔记，给小野女士看了。",
+          "candidate": {
+            "start": 33.33,
+            "end": 37.11,
+            "asrText": "昨 日 会 社 で メ モ を 整 理 し て 小 野 さ ん に 見 せ ま し た",
+            "phraseIndexes": [
+              8
+            ],
+            "matchScore": 1,
+            "confidence": 0.902,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 33.33,
+            "end": 37.11,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:37:35.851Z"
+          }
+        },
+        {
+          "id": "l14-app-block-005-line-003",
+          "trackId": "lesson_apps",
+          "speaker": "李",
+          "text": "そして、アパートへ 帰ってから 書きました。",
+          "kana": "そして、アパートへ かえってから かきました。",
+          "translationZh": "然后回到公寓后写的。",
+          "candidate": {
+            "start": 37.49,
+            "end": 39.95,
+            "asrText": "そ し て ア パ ー ト へ 帰 っ て か ら 書 き ま し た",
+            "phraseIndexes": [
+              8
+            ],
+            "matchScore": 1,
+            "confidence": 0.902,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 37.49,
+            "end": 39.95,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:37:35.851Z"
+          }
+        },
+        {
+          "id": "l14-app-block-005-line-004",
+          "trackId": "lesson_apps",
+          "speaker": "吉田",
+          "text": "そうですか。大変でしたね。写真も できましたか。",
+          "kana": "そうですか。たいへんでしたね。しゃしんも できましたか。",
+          "translationZh": "是吗。辛苦了。照片也弄好了吗？",
+          "candidate": {
+            "start": 40.85,
+            "end": 45.51,
+            "asrText": "そ う で す か 大 変 で し た ね 写 真 も で き ま し た か",
+            "phraseIndexes": [
+              9,
+              10
+            ],
+            "matchScore": 1,
+            "confidence": 0.876,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 40.85,
+            "end": 45.51,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:37:35.851Z"
+          }
+        },
+        {
+          "id": "l14-app-block-005-line-005",
+          "trackId": "lesson_apps",
+          "speaker": "李",
+          "text": "はい。これから 長島さんの 事務所へ 行って、写真を 選びます。",
+          "kana": "はい。これから ながしまさんの じむしょへ いって、しゃしんを えらびます。",
+          "translationZh": "是的。接下来要去长岛先生的事务所挑选照片。",
+          "candidate": {
+            "start": 46.94,
+            "end": 50.6,
+            "asrText": "は い こ れ か ら 長 島 さ ん の 事 務 所 へ 行 っ て 写 真 を 選 び ま す",
+            "phraseIndexes": [
+              11
+            ],
+            "matchScore": 1,
+            "confidence": 0.886,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 46.94,
+            "end": 50.6,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:37:35.851Z"
+          }
+        },
+        {
+          "id": "l14-app-block-005-line-006",
+          "trackId": "lesson_apps",
+          "speaker": "吉田",
+          "text": "そうですか。",
+          "kana": "そうですか。",
+          "translationZh": "是吗。",
+          "candidate": {
+            "start": 51.37,
+            "end": 52.23,
+            "asrText": "そ う で す か",
+            "phraseIndexes": [
+              12
+            ],
+            "matchScore": 1,
+            "confidence": 0.911,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 51.37,
+            "end": 52.23,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:37:35.851Z"
+          }
+        },
+        {
+          "id": "l14-app-block-005-line-007",
+          "trackId": "lesson_apps",
+          "speaker": "李",
+          "text": "後で 写真も 見て くださいませんか。",
+          "kana": "あとで しゃしんも みて くださいませんか。",
+          "translationZh": "之后也请看看照片好吗？",
+          "candidate": {
+            "start": 52.97,
+            "end": 55.11,
+            "asrText": "後 で 写 真 も 見 て く だ さ い ま せ ん か",
+            "phraseIndexes": [
+              12
+            ],
+            "matchScore": 1,
+            "confidence": 0.911,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 52.97,
+            "end": 55.11,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:37:35.851Z"
+          }
+        },
+        {
+          "id": "l14-app-block-007-line-001",
+          "trackId": "lesson_apps",
+          "speaker": "吉田",
+          "text": "李さん、もう 会社を 出ますか。",
+          "kana": "りさん、もう かいしゃを でますか。",
+          "translationZh": "小李，已经要离开公司了吗？",
+          "candidate": {
+            "start": 56.29,
+            "end": 59.07,
+            "asrText": "李 さ ん も う 会 社 を 出 ま す か",
+            "phraseIndexes": [
+              13
+            ],
+            "matchScore": 1,
+            "confidence": 0.881,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 56.29,
+            "end": 59.07,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:37:35.851Z"
+          }
+        },
+        {
+          "id": "l14-app-block-007-line-002",
+          "trackId": "lesson_apps",
+          "speaker": "李",
+          "text": "はい。銀行で お金を 下ろしてから 行きます。",
+          "kana": "はい。ぎんこうで おかねを おろしてから いきます。",
+          "translationZh": "是的。我从银行取了钱后再去。",
+          "candidate": {
+            "start": 59.45,
+            "end": 62.59,
+            "asrText": "は い 銀 行 で お 金 を 下 ろ し て か ら 行 き ま す",
+            "phraseIndexes": [
+              13
+            ],
+            "matchScore": 1,
+            "confidence": 0.881,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 59.45,
+            "end": 62.59,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:37:35.851Z"
+          }
+        },
+        {
+          "id": "l14-app-block-007-line-003",
+          "trackId": "lesson_apps",
+          "speaker": "吉田",
+          "text": "じゃあ、郵便局の 近くを 通りますね。",
+          "kana": "じゃあ、ゆうびんきょくの ちかくを とおりますね。",
+          "translationZh": "那么，你会经过邮局附近吧。",
+          "candidate": {
+            "start": 64.05,
+            "end": 66.91,
+            "asrText": "じ ゃ あ 郵 便 局 の 近 く を 通 り ま す ね",
+            "phraseIndexes": [
+              14
+            ],
+            "matchScore": 1,
+            "confidence": 0.904,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 64.05,
+            "end": 66.91,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:37:35.851Z"
+          }
+        },
+        {
+          "id": "l14-app-block-007-line-004",
+          "trackId": "lesson_apps",
+          "speaker": "吉田",
+          "text": "すみませんが、この 手紙を 出して ください。",
+          "kana": "すみませんが、この てがみを だして ください。",
+          "translationZh": "劳驾，请把这封信寄出去。",
+          "candidate": {
+            "start": 67.73,
+            "end": 70.87,
+            "asrText": "す み ま せ ん が こ の 手 紙 を 出 し て く だ さ い",
+            "phraseIndexes": [
+              15
+            ],
+            "matchScore": 1,
+            "confidence": 0.862,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 67.73,
+            "end": 70.87,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:37:35.851Z"
+          }
+        },
+        {
+          "id": "l14-app-block-007-line-005",
+          "trackId": "lesson_apps",
+          "speaker": "李",
+          "text": "はい。速達で 出しますか。",
+          "kana": "はい。そくたつで だしますか。",
+          "translationZh": "好的。用快递寄吗？",
+          "candidate": {
+            "start": 71.21,
+            "end": 73.67,
+            "asrText": "は い 速 達 で い た し ま す か",
+            "phraseIndexes": [
+              15
+            ],
+            "matchScore": 0.818,
+            "confidence": 0.862,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 71.21,
+            "end": 73.67,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:37:35.851Z"
+          }
+        },
+        {
+          "id": "l14-app-block-007-line-006",
+          "trackId": "lesson_apps",
+          "speaker": "吉田",
+          "text": "ええ、そうして ください。",
+          "kana": "ええ、そうして ください。",
+          "translationZh": "嗯，请那样办。",
+          "candidate": {
+            "start": 74.45,
+            "end": 76.07,
+            "asrText": "え え そ う し て く だ さ い",
+            "phraseIndexes": [
+              16
+            ],
+            "matchScore": 1,
+            "confidence": 0.898,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 74.45,
+            "end": 76.07,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:37:35.851Z"
+          }
+        }
+      ]
+    }
+  ]
+}

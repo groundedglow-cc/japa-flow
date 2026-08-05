@@ -1,0 +1,677 @@
+{
+  "lessonId": "lesson13",
+  "sourceImages": [
+    {
+      "section": "basic",
+      "path": "course-assets/by-lesson/lesson13/page160.webp",
+      "pageNo": 160
+    },
+    {
+      "section": "application",
+      "path": "course-assets/by-lesson/lesson13/page165.webp",
+      "pageNo": 165
+    }
+  ],
+  "basicText": {
+    "title": "基本课文",
+    "basicSentences": [
+      {
+        "id": "l13-basic-s001",
+        "order": 1,
+        "text": "机の 上に 本が 3冊 あります。",
+        "kana": "つくえの うえに ほんが さんさつ あります。",
+        "translationZh": "桌子上有3本书。",
+        "confidence": "high",
+        "rawText": "1. 机の 上に 本が 3冊 あります。",
+        "audioSegment": {
+          "id": "l13-basic-s001",
+          "trackId": "lesson_basic",
+          "sourceUrl": "/data/ocr/audio-clips/lesson13/l13-basic-s001.mp3",
+          "start": 0,
+          "end": 3.46,
+          "duration": 3.46,
+          "method": "approved-asr-alignment",
+          "confidence": "approved",
+          "reviewedAt": "2026-08-05T08:35:30.207Z",
+          "sourceAudioSha256": "7a164e7e966361c034534883f9c23766ec52c62050507f97e3c30b04cca700a5"
+        }
+      },
+      {
+        "id": "l13-basic-s002",
+        "order": 2,
+        "text": "李さんは 毎日 7時間 働きます。",
+        "kana": "りさんは まいにち しちじかん はたらきます。",
+        "translationZh": "小李每天工作7个小时。",
+        "confidence": "high",
+        "rawText": "2. 李さんは 毎日 7時間 働きます。",
+        "audioSegment": {
+          "id": "l13-basic-s002",
+          "trackId": "lesson_basic",
+          "sourceUrl": "/data/ocr/audio-clips/lesson13/l13-basic-s002.mp3",
+          "start": 0,
+          "end": 3.5,
+          "duration": 3.5,
+          "method": "approved-asr-alignment",
+          "confidence": "approved",
+          "reviewedAt": "2026-08-05T08:35:30.207Z",
+          "sourceAudioSha256": "7a164e7e966361c034534883f9c23766ec52c62050507f97e3c30b04cca700a5"
+        }
+      },
+      {
+        "id": "l13-basic-s003",
+        "order": 3,
+        "text": "李さんは 1週間に 2回 プールへ 行きます。",
+        "kana": "りさんは いっしゅうかんに にかい プールへ いきます。",
+        "translationZh": "小李每周去两次游泳池。",
+        "confidence": "high",
+        "rawText": "3. 李さんは 1週間に 2回 プールへ 行きます。",
+        "audioSegment": {
+          "id": "l13-basic-s003",
+          "trackId": "lesson_basic",
+          "sourceUrl": "/data/ocr/audio-clips/lesson13/l13-basic-s003.mp3",
+          "start": 0,
+          "end": 2.66,
+          "duration": 2.66,
+          "method": "approved-asr-alignment",
+          "confidence": "approved",
+          "reviewedAt": "2026-08-05T08:35:30.207Z",
+          "sourceAudioSha256": "7a164e7e966361c034534883f9c23766ec52c62050507f97e3c30b04cca700a5"
+        }
+      },
+      {
+        "id": "l13-basic-s004",
+        "order": 4,
+        "text": "午後 郵便局へ 荷物を 出しに 行きます。",
+        "kana": "ごご ゆうびんきょくへ にもつを だしに いきます。",
+        "translationZh": "下午去邮局寄包裹。",
+        "confidence": "high",
+        "rawText": "4. 午後 郵便局へ 荷物を 出しに 行きます。",
+        "audioSegment": {
+          "id": "l13-basic-s004",
+          "trackId": "lesson_basic",
+          "sourceUrl": "/data/ocr/audio-clips/lesson13/l13-basic-s004.mp3",
+          "start": 0,
+          "end": 3.82,
+          "duration": 3.82,
+          "method": "approved-asr-alignment",
+          "confidence": "approved",
+          "reviewedAt": "2026-08-05T08:35:30.207Z",
+          "sourceAudioSha256": "7a164e7e966361c034534883f9c23766ec52c62050507f97e3c30b04cca700a5"
+        }
+      }
+    ],
+    "dialogues": [
+      {
+        "id": "l13-basic-dialogue-001",
+        "label": "A",
+        "lines": [
+          {
+            "id": "l13-basic-dialogue-001-line-001",
+            "speaker": "甲",
+            "text": "すみません、はがきを 5枚 ください。",
+            "kana": "すみません、はがきを ごまい ください。",
+            "translationZh": "请给我5张明信片。",
+            "confidence": "high",
+            "rawText": "甲：すみません、はがきを 5枚 ください。",
+            "audioSegment": {
+              "id": "l13-basic-dialogue-001-line-001",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson13/l13-basic-dialogue-001-line-001.mp3",
+              "start": 0,
+              "end": 2.86,
+              "duration": 2.86,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:35:30.207Z",
+              "sourceAudioSha256": "7a164e7e966361c034534883f9c23766ec52c62050507f97e3c30b04cca700a5"
+            }
+          },
+          {
+            "id": "l13-basic-dialogue-001-line-002",
+            "speaker": "乙",
+            "text": "はい。5枚で 250円です。",
+            "kana": "はい。ごまいで にひゃくごじゅうえんです。",
+            "translationZh": "好的。5张250日元。",
+            "confidence": "high",
+            "rawText": "乙：はい。5枚で 250円です。",
+            "audioSegment": {
+              "id": "l13-basic-dialogue-001-line-002",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson13/l13-basic-dialogue-001-line-002.mp3",
+              "start": 0,
+              "end": 2.1,
+              "duration": 2.1,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:35:30.207Z",
+              "sourceAudioSha256": "7a164e7e966361c034534883f9c23766ec52c62050507f97e3c30b04cca700a5"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l13-basic-dialogue-002",
+        "label": "B",
+        "lines": [
+          {
+            "id": "l13-basic-dialogue-002-line-001",
+            "speaker": "甲",
+            "text": "よく 映画を 見ますか。",
+            "kana": "よく えいがを みますか。",
+            "translationZh": "你经常看电影吗？",
+            "confidence": "high",
+            "rawText": "甲：よく 映画を 見ますか。",
+            "audioSegment": {
+              "id": "l13-basic-dialogue-002-line-001",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson13/l13-basic-dialogue-002-line-001.mp3",
+              "start": 0,
+              "end": 2.14,
+              "duration": 2.14,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:35:30.207Z",
+              "sourceAudioSha256": "7a164e7e966361c034534883f9c23766ec52c62050507f97e3c30b04cca700a5"
+            }
+          },
+          {
+            "id": "l13-basic-dialogue-002-line-002",
+            "speaker": "乙",
+            "text": "ええ、1か月に 2回ぐらい 見ます。",
+            "kana": "ええ、いっかげつに にかいぐらい みます。",
+            "translationZh": "是的，一个月看两次左右。",
+            "confidence": "high",
+            "rawText": "乙：ええ、1か月に 2回ぐらい 見ます。",
+            "audioSegment": {
+              "id": "l13-basic-dialogue-002-line-002",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson13/l13-basic-dialogue-002-line-002.mp3",
+              "start": 0,
+              "end": 2.02,
+              "duration": 2.02,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:35:30.207Z",
+              "sourceAudioSha256": "7a164e7e966361c034534883f9c23766ec52c62050507f97e3c30b04cca700a5"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l13-basic-dialogue-003",
+        "label": "C",
+        "lines": [
+          {
+            "id": "l13-basic-dialogue-003-line-001",
+            "speaker": "甲",
+            "text": "家から 会社まで どのぐらい かかりますか。",
+            "kana": "いえから かいしゃまで どのぐらい かかりますか。",
+            "translationZh": "从家到公司要花多长时间？",
+            "confidence": "high",
+            "rawText": "甲：家から 会社まで どのぐらい かかりますか。",
+            "audioSegment": {
+              "id": "l13-basic-dialogue-003-line-001",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson13/l13-basic-dialogue-003-line-001.mp3",
+              "start": 0,
+              "end": 3.14,
+              "duration": 3.14,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:35:30.207Z",
+              "sourceAudioSha256": "7a164e7e966361c034534883f9c23766ec52c62050507f97e3c30b04cca700a5"
+            }
+          },
+          {
+            "id": "l13-basic-dialogue-003-line-002",
+            "speaker": "乙",
+            "text": "電車で 1時間ぐらい かかります。",
+            "kana": "でんしゃで いちじかんぐらい かかります。",
+            "translationZh": "坐电车大约要一个小时。",
+            "confidence": "high",
+            "rawText": "乙：電車で 1時間ぐらい かかります。",
+            "audioSegment": {
+              "id": "l13-basic-dialogue-003-line-002",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson13/l13-basic-dialogue-003-line-002.mp3",
+              "start": 0,
+              "end": 2.86,
+              "duration": 2.86,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:35:30.207Z",
+              "sourceAudioSha256": "7a164e7e966361c034534883f9c23766ec52c62050507f97e3c30b04cca700a5"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l13-basic-dialogue-004",
+        "label": "D",
+        "lines": [
+          {
+            "id": "l13-basic-dialogue-004-line-001",
+            "speaker": "甲",
+            "text": "昨日 何を しましたか。",
+            "kana": "きのう なにを しましたか。",
+            "translationZh": "昨天做什么了？",
+            "confidence": "high",
+            "rawText": "甲：昨日 何を しましたか。",
+            "audioSegment": {
+              "id": "l13-basic-dialogue-004-line-001",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson13/l13-basic-dialogue-004-line-001.mp3",
+              "start": 0,
+              "end": 2.3,
+              "duration": 2.3,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:35:30.207Z",
+              "sourceAudioSha256": "7a164e7e966361c034534883f9c23766ec52c62050507f97e3c30b04cca700a5"
+            }
+          },
+          {
+            "id": "l13-basic-dialogue-004-line-002",
+            "speaker": "乙",
+            "text": "新宿へ 映画を 見に 行きました。",
+            "kana": "しんじゅくへ えいがを みに いきました。",
+            "translationZh": "去新宿看电影了。",
+            "confidence": "high",
+            "rawText": "乙：新宿へ 映画を 見に 行きました。",
+            "audioSegment": {
+              "id": "l13-basic-dialogue-004-line-002",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson13/l13-basic-dialogue-004-line-002.mp3",
+              "start": 0,
+              "end": 2.7,
+              "duration": 2.7,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:35:30.207Z",
+              "sourceAudioSha256": "7a164e7e966361c034534883f9c23766ec52c62050507f97e3c30b04cca700a5"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "applicationText": {
+    "title": "居酒屋",
+    "blocks": [
+      {
+        "id": "l13-app-block-001",
+        "type": "narration",
+        "text": "下午6点，小李正准备收拾东西回家，小野邀请她一起去喝酒。",
+        "kana": null,
+        "translationZh": "下午6点，小李正准备收拾东西回家，小野邀请她一起去喝酒。",
+        "confidence": "high",
+        "rawText": "下午6点，小李正准备收拾东西回家，小野邀请她一起去喝酒。"
+      },
+      {
+        "id": "l13-app-block-002",
+        "type": "scene",
+        "text": "（在办公室）",
+        "kana": null,
+        "translationZh": "在办公室。",
+        "confidence": "high",
+        "rawText": "（在办公室）"
+      },
+      {
+        "id": "l13-app-block-003",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l13-app-block-003-line-001",
+            "speaker": "小野",
+            "text": "これから 森さんと 近くの お店へ 飲みに 行きます。",
+            "kana": "これから もりさんと ちかくの おみせへ のみに いきます。",
+            "translationZh": "现在要和森先生去附近的店喝酒。",
+            "confidence": "high",
+            "rawText": "小野：これから 森さんと 近くの お店へ 飲みに 行きます。",
+            "audioSegment": {
+              "id": "l13-app-block-003-line-001",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson13/l13-app-block-003-line-001.mp3",
+              "start": 0,
+              "end": 3.58,
+              "duration": 3.58,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:36:13.940Z",
+              "sourceAudioSha256": "37decc207cd3e1304332f0a455f46eb407da18df6d591661788b93c54c65b19f"
+            }
+          },
+          {
+            "id": "l13-app-block-003-line-002",
+            "speaker": "小野",
+            "text": "李さんも いっしょに どうですか。",
+            "kana": "りさんも いっしょに どうですか。",
+            "translationZh": "小李也一起去怎么样？",
+            "confidence": "high",
+            "rawText": "小野：李さんも いっしょに どうですか。",
+            "audioSegment": {
+              "id": "l13-app-block-003-line-002",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson13/l13-app-block-003-line-002.mp3",
+              "start": 0,
+              "end": 1.86,
+              "duration": 1.86,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:36:13.940Z",
+              "sourceAudioSha256": "37decc207cd3e1304332f0a455f46eb407da18df6d591661788b93c54c65b19f"
+            }
+          },
+          {
+            "id": "l13-app-block-003-line-003",
+            "speaker": "李",
+            "text": "えっ、いいですか。お願いします。",
+            "kana": "えっ、いいですか。おねがいします。",
+            "translationZh": "啊，可以吗？那就拜托了。",
+            "confidence": "high",
+            "rawText": "李：えっ、いいですか。お願いします。",
+            "audioSegment": {
+              "id": "l13-app-block-003-line-003",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson13/l13-app-block-003-line-003.mp3",
+              "start": 0,
+              "end": 2.62,
+              "duration": 2.62,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:36:13.940Z",
+              "sourceAudioSha256": "37decc207cd3e1304332f0a455f46eb407da18df6d591661788b93c54c65b19f"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l13-app-block-004",
+        "type": "scene",
+        "text": "（酒馆里有许多下班后的公司职员，非常热闹）",
+        "kana": null,
+        "translationZh": "酒馆里有许多下班后的公司职员，非常热闹。",
+        "confidence": "high",
+        "rawText": "（酒馆里有许多下班后的公司职员，非常热闹）"
+      },
+      {
+        "id": "l13-app-block-005",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l13-app-block-005-line-001",
+            "speaker": "李",
+            "text": "森さんたちは この お店へ よく 来ますか。",
+            "kana": "もりさんたちは この おみせへ よく きますか。",
+            "translationZh": "森先生你们经常来这家店吗？",
+            "confidence": "high",
+            "rawText": "李：森さんたちは この お店へ よく 来ますか。",
+            "audioSegment": {
+              "id": "l13-app-block-005-line-001",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson13/l13-app-block-005-line-001.mp3",
+              "start": 0,
+              "end": 2.86,
+              "duration": 2.86,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:36:13.940Z",
+              "sourceAudioSha256": "37decc207cd3e1304332f0a455f46eb407da18df6d591661788b93c54c65b19f"
+            }
+          },
+          {
+            "id": "l13-app-block-005-line-002",
+            "speaker": "森",
+            "text": "ええ、ぼくは 週に 2回ぐらい 来ます。",
+            "kana": "ええ、ぼくは しゅうに にかいぐらい きます。",
+            "translationZh": "是的，我一周来两次左右。",
+            "confidence": "high",
+            "rawText": "森：ええ、ぼくは 週に 2回ぐらい 来ます。",
+            "audioSegment": {
+              "id": "l13-app-block-005-line-002",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson13/l13-app-block-005-line-002.mp3",
+              "start": 0,
+              "end": 3.02,
+              "duration": 3.02,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:36:13.940Z",
+              "sourceAudioSha256": "37decc207cd3e1304332f0a455f46eb407da18df6d591661788b93c54c65b19f"
+            }
+          },
+          {
+            "id": "l13-app-block-005-line-003",
+            "speaker": "小野",
+            "text": "わたしも よく 来ます。",
+            "kana": "わたしも よく きます。",
+            "translationZh": "我也常来。",
+            "confidence": "high",
+            "rawText": "小野：わたしも よく 来ます。",
+            "audioSegment": {
+              "id": "l13-app-block-005-line-003",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson13/l13-app-block-005-line-003.mp3",
+              "start": 0,
+              "end": 1.18,
+              "duration": 1.18,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:36:13.940Z",
+              "sourceAudioSha256": "37decc207cd3e1304332f0a455f46eb407da18df6d591661788b93c54c65b19f"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l13-app-block-006",
+        "type": "scene",
+        "text": "（对店员）",
+        "kana": null,
+        "translationZh": "对店员说。",
+        "confidence": "high",
+        "rawText": "（对店员）"
+      },
+      {
+        "id": "l13-app-block-007",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l13-app-block-007-line-001",
+            "speaker": "森",
+            "text": "あのう、すみません。とりあえず 生ビールを 3つ お願いします。",
+            "kana": "あのう、すみません。とりあえず なまビールを みっつ おねがいします。",
+            "translationZh": "那个，不好意思。先来3杯生啤酒。",
+            "confidence": "high",
+            "rawText": "森：あのう、すみません。とりあえず 生ビールを 3つ お願いします。",
+            "audioSegment": {
+              "id": "l13-app-block-007-line-001",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson13/l13-app-block-007-line-001.mp3",
+              "start": 0,
+              "end": 5.18,
+              "duration": 5.18,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:36:13.940Z",
+              "sourceAudioSha256": "37decc207cd3e1304332f0a455f46eb407da18df6d591661788b93c54c65b19f"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l13-app-block-008",
+        "type": "scene",
+        "text": "（一边看菜单）",
+        "kana": null,
+        "translationZh": "一边看菜单。",
+        "confidence": "high",
+        "rawText": "（一边看菜单）"
+      },
+      {
+        "id": "l13-app-block-009",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l13-app-block-009-line-001",
+            "speaker": "李",
+            "text": "生ビールが 1杯 300円ですか。",
+            "kana": "なまビールが いっぱい さんびゃくえんですか。",
+            "translationZh": "一杯生啤酒300日元吗？",
+            "confidence": "high",
+            "rawText": "李：生ビールが 1杯 300円ですか。",
+            "audioSegment": {
+              "id": "l13-app-block-009-line-001",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson13/l13-app-block-009-line-001.mp3",
+              "start": 0,
+              "end": 3.02,
+              "duration": 3.02,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:36:13.940Z",
+              "sourceAudioSha256": "37decc207cd3e1304332f0a455f46eb407da18df6d591661788b93c54c65b19f"
+            }
+          },
+          {
+            "id": "l13-app-block-009-line-002",
+            "speaker": "森",
+            "text": "ここは お酒も 食べ物も 安いです。焼き鳥は 5本で 400円ですからね。",
+            "kana": "ここは おさけも たべものも やすいです。やきとりは ごほんで よんひゃくえんですからね。",
+            "translationZh": "这里酒和食物都便宜。烤鸡肉串5串才400日元呢。",
+            "confidence": "high",
+            "rawText": "森：ここは お酒も 食べ物も 安いです。焼き鳥は 5本で 400円ですからね。",
+            "audioSegment": {
+              "id": "l13-app-block-009-line-002",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson13/l13-app-block-009-line-002.mp3",
+              "start": 0,
+              "end": 5.66,
+              "duration": 5.66,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:36:13.940Z",
+              "sourceAudioSha256": "37decc207cd3e1304332f0a455f46eb407da18df6d591661788b93c54c65b19f"
+            }
+          },
+          {
+            "id": "l13-app-block-009-line-003",
+            "speaker": "小野",
+            "text": "唐揚げや 肉じゃがは 1皿 350円です。",
+            "kana": "からあげや にくじゃがは ひとさら さんびゃくごじゅうえんです。",
+            "translationZh": "炸鸡和土豆炖肉一盘350日元。",
+            "confidence": "high",
+            "rawText": "小野：唐揚げや 肉じゃがは 1皿 350円です。",
+            "audioSegment": {
+              "id": "l13-app-block-009-line-003",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson13/l13-app-block-009-line-003.mp3",
+              "start": 0,
+              "end": 3.1,
+              "duration": 3.1,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:36:13.940Z",
+              "sourceAudioSha256": "37decc207cd3e1304332f0a455f46eb407da18df6d591661788b93c54c65b19f"
+            }
+          },
+          {
+            "id": "l13-app-block-009-line-004",
+            "speaker": "李",
+            "text": "ほかの お店は いくらぐらいですか。",
+            "kana": "ほかの おみせは いくらぐらいですか。",
+            "translationZh": "别的店大概多少钱？",
+            "confidence": "high",
+            "rawText": "李：ほかの お店は いくらぐらいですか。",
+            "audioSegment": {
+              "id": "l13-app-block-009-line-004",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson13/l13-app-block-009-line-004.mp3",
+              "start": 0,
+              "end": 2.3,
+              "duration": 2.3,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:36:13.940Z",
+              "sourceAudioSha256": "37decc207cd3e1304332f0a455f46eb407da18df6d591661788b93c54c65b19f"
+            }
+          },
+          {
+            "id": "l13-app-block-009-line-005",
+            "speaker": "森",
+            "text": "生ビールは だいたい 1杯 400円か 450円ですね。",
+            "kana": "なまビールは だいたい いっぱい よんひゃくえんか よんひゃくごじゅうえんですね。",
+            "translationZh": "生啤酒大概一杯400到450日元。",
+            "confidence": "high",
+            "rawText": "森：生ビールは だいたい 1杯 400円か 450円ですね。",
+            "audioSegment": {
+              "id": "l13-app-block-009-line-005",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson13/l13-app-block-009-line-005.mp3",
+              "start": 0,
+              "end": 4.78,
+              "duration": 4.78,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:36:13.940Z",
+              "sourceAudioSha256": "37decc207cd3e1304332f0a455f46eb407da18df6d591661788b93c54c65b19f"
+            }
+          },
+          {
+            "id": "l13-app-block-009-line-006",
+            "speaker": "小野",
+            "text": "焼き鳥は 1本 150円ぐらいですよ。",
+            "kana": "やきとりは いっぽん ひゃくごじゅうえんぐらいですよ。",
+            "translationZh": "烤鸡肉串一串大约150日元。",
+            "confidence": "high",
+            "rawText": "小野：焼き鳥は 1本 150円ぐらいですよ。",
+            "audioSegment": {
+              "id": "l13-app-block-009-line-006",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson13/l13-app-block-009-line-006.mp3",
+              "start": 0,
+              "end": 3.3,
+              "duration": 3.3,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:36:13.940Z",
+              "sourceAudioSha256": "37decc207cd3e1304332f0a455f46eb407da18df6d591661788b93c54c65b19f"
+            }
+          },
+          {
+            "id": "l13-app-block-009-line-007",
+            "speaker": "李",
+            "text": "じゃあ、ここは 安いですね。",
+            "kana": "じゃあ、ここは やすいですね。",
+            "translationZh": "那这里很便宜啊。",
+            "confidence": "high",
+            "rawText": "李：じゃあ、ここは 安いですね。",
+            "audioSegment": {
+              "id": "l13-app-block-009-line-007",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson13/l13-app-block-009-line-007.mp3",
+              "start": 0,
+              "end": 2.06,
+              "duration": 2.06,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:36:13.940Z",
+              "sourceAudioSha256": "37decc207cd3e1304332f0a455f46eb407da18df6d591661788b93c54c65b19f"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "warnings": [
+    "应用课文中的开场旁白和场景说明在教材页中以中文呈现，因此对应 block 的 text 与 translationZh 均保留中文原文，kana 为 null。",
+    "未输出 segments；已保留可可靠识别的整句 kana。"
+  ],
+  "audioAlignment": {
+    "schemaVersion": 1,
+    "method": "approved-asr-alignment",
+    "sourceAlignment": "data/ocr/lesson13-text-audio-alignment.json",
+    "publishedAt": "2026-08-05T08:36:18.277Z",
+    "approvedSegments": 26
+  }
+}

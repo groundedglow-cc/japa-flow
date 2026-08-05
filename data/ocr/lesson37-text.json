@@ -1,0 +1,83 @@
+{
+  "lessonId": "lesson37",
+  "sourceImages": [
+    { "section": "basic", "path": "course-assets/by-lesson/lesson37/page142.webp", "pageNo": 142 },
+    { "section": "application", "path": "course-assets/by-lesson/lesson37/page147.webp", "pageNo": 147 }
+  ],
+  "basicText": {
+    "title": "基本课文",
+    "basicSentences": [
+      { "id": "l37-basic-s001", "order": 1, "text": "優勝すれば、オリンピックに出場することができます。", "translationZh": "如果获得冠军，就能够参加奥运会。", "confidence": "high", "rawText": "1. 優勝すれば、オリンピックに出場することができます。" },
+      { "id": "l37-basic-s002", "order": 2, "text": "天安門へ行くなら、地下鉄が便利ですよ。", "translationZh": "如果去天安门，坐地铁很方便。", "confidence": "high", "rawText": "2. 天安門へ行くなら、地下鉄が便利ですよ。" },
+      { "id": "l37-basic-s003", "order": 3, "text": "映画でも見に行きませんか。", "translationZh": "一起去看场电影怎么样？", "confidence": "high", "rawText": "3. 映画でも見に行きませんか。" },
+      { "id": "l37-basic-s004", "order": 4, "text": "パーティーで、戴さんとか楊さんとか、いろいろな人に会いました。", "translationZh": "在聚会上见到了戴先生、杨先生等各种各样的人。", "confidence": "high", "rawText": "4. パーティーで、戴さんとか楊さんとか、いろいろな人に会いました。" }
+    ],
+    "dialogues": [
+      {
+        "id": "l37-basic-dialogue-001", "label": "A", "lines": [
+          { "id": "l37-basic-dialogue-001-line-001", "speaker": "甲", "text": "陳さんの携帯電話の番号が分からないんですが…。", "translationZh": "我不知道陈先生的手机号码……。", "confidence": "high", "rawText": "甲：陳さんの携帯電話の番号が分からないんですが…。" },
+          { "id": "l37-basic-dialogue-001-line-002", "speaker": "乙", "text": "李さんに聞けば、分かりますよ。", "translationZh": "问问小李就知道了。", "confidence": "high", "rawText": "乙：李さんに聞けば、分かりますよ。" }
+        ]
+      },
+      {
+        "id": "l37-basic-dialogue-002", "label": "B", "lines": [
+          { "id": "l37-basic-dialogue-002-line-001", "speaker": "甲", "text": "李さん、プールに行きませんか。", "translationZh": "小李，一起去游泳池吗？", "confidence": "high", "rawText": "甲：李さん、プールに行きませんか。" },
+          { "id": "l37-basic-dialogue-002-line-002", "speaker": "乙", "text": "今日はちょっと用事があるんです。明日なら暇ですが…。", "translationZh": "我今天有点事。明天的话倒是有空……。", "confidence": "high", "rawText": "乙：今日はちょっと用事があるんです。明日なら暇ですが…。" }
+        ]
+      },
+      {
+        "id": "l37-basic-dialogue-003", "label": "C", "lines": [
+          { "id": "l37-basic-dialogue-003-line-001", "speaker": "甲", "text": "最近、ちょっと太りました。", "translationZh": "最近有点发胖了。", "confidence": "high", "rawText": "甲：最近、ちょっと太りました。" },
+          { "id": "l37-basic-dialogue-003-line-002", "speaker": "乙", "text": "じゃあ、運動でもしたらどうですか。", "translationZh": "那运动一下怎么样？", "confidence": "high", "rawText": "乙：じゃあ、運動でもしたらどうですか。" }
+        ]
+      },
+      {
+        "id": "l37-basic-dialogue-004", "label": "D", "lines": [
+          { "id": "l37-basic-dialogue-004-line-001", "speaker": "甲", "text": "葉子さん、昨日バーゲンに行ったの？", "translationZh": "叶子，你昨天去大减价了吗？", "confidence": "high", "rawText": "甲：葉子さん、昨日バーゲンに行ったの？" },
+          { "id": "l37-basic-dialogue-004-line-002", "speaker": "乙", "text": "うん、コートとか靴とか、いっぱい買っちゃった。", "translationZh": "嗯，买了好多大衣、鞋子之类的东西。", "confidence": "high", "rawText": "乙：うん、コートとか靴とか、いっぱい買っちゃった。" }
+        ]
+      }
+    ]
+  },
+  "applicationText": {
+    "title": "万里の長城",
+    "blocks": [
+      { "id": "l37-app-block-001", "type": "scene", "text": "在前往八达岭的出租车里", "translationZh": "在前往八达岭的出租车里。", "confidence": "high", "rawText": "（在前往八达岭的出租车里）" },
+      {
+        "id": "l37-app-block-002", "type": "dialogue", "lines": [
+          { "id": "l37-app-block-002-line-001", "speaker": "小野", "text": "「八達嶺」までどのぐらいですか。", "translationZh": "到八达岭大约要多久？", "confidence": "high", "rawText": "小野：「八達嶺」までどのぐらいですか。" },
+          { "id": "l37-app-block-002-line-002", "speaker": "李", "text": "高速道路を利用すれば、だいたい１時間ぐらいです。鉄道なら２時間ちょっとですね。", "translationZh": "如果走高速公路，大约一小时。坐火车的话要两个多小时。", "confidence": "high", "rawText": "李：高速道路を利用すれば、だいたい１時間ぐらいです。鉄道なら２時間ちょっとですね。" },
+          { "id": "l37-app-block-002-line-003", "speaker": "小野", "text": "鉄道でも行くことができるんですか。", "translationZh": "坐火车也能去吗？", "confidence": "high", "rawText": "小野：鉄道でも行くことができるんですか。" },
+          { "id": "l37-app-block-002-line-004", "speaker": "李", "text": "ええ。鉄道で行くなら、北京北駅が便利です。直通列車が出ていますから。", "translationZh": "是的。如果坐火车去，从北京北站出发很方便，因为有直达列车。", "confidence": "high", "rawText": "李：ええ。鉄道で行くなら、北京北駅が便利です。直通列車が出ていますから。" }
+        ]
+      },
+      { "id": "l37-app-block-003", "type": "scene", "text": "抵达八达岭", "translationZh": "抵达八达岭。", "confidence": "high", "rawText": "（抵达八达岭）" },
+      {
+        "id": "l37-app-block-004", "type": "dialogue", "lines": [
+          { "id": "l37-app-block-004-line-001", "speaker": "李", "text": "八達嶺は万里の長城の観光スポットの１つです。北京から近くて、いちばん有名な場所です。", "translationZh": "八达岭是万里长城的一个旅游景点，离北京近，也是最有名的地方。", "confidence": "high", "rawText": "李：八達嶺は万里の長城の観光スポットの１つです。北京から近くて、いちばん有名な場所です。" },
+          { "id": "l37-app-block-004-line-002", "speaker": "小野", "text": "テレビとか写真集とかで見たことがありますが、実際に見ると、本当に規模が大きいですね。さすが「世界遺産」です。", "translationZh": "我在电视和画册上见过，但亲眼一看，规模真是宏大。不愧是“世界遗产”。", "confidence": "high", "rawText": "小野：テレビとか写真集とかで見たことがありますが、実際に見ると、本当に規模が大きいですね。さすが「世界遺産」です。" }
+        ]
+      },
+      { "id": "l37-app-block-005", "type": "scene", "text": "登长城途中", "translationZh": "登长城途中。", "confidence": "high", "rawText": "（登长城途中）" },
+      {
+        "id": "l37-app-block-006", "type": "dialogue", "lines": [
+          { "id": "l37-app-block-006-line-001", "speaker": "小野", "text": "どうして「万里の長城」と言うんですか。", "translationZh": "为什么叫“万里长城”呢？", "confidence": "high", "rawText": "小野：どうして「万里の長城」と言うんですか。" },
+          { "id": "l37-app-block-006-line-002", "speaker": "李", "text": "長城の全長は５，０００キロメートル以上あります。中国では「１里」は0.5キロメートルですから、中国の単位に換算すれば、１万里を超えるんですよ。", "translationZh": "长城全长有五千多公里。在中国，一里是0.5公里，换算成中国的单位就超过一万里。", "confidence": "high", "rawText": "李：長城の全長は５，０００キロメートル以上あります。中国では「１里」は0.5キロメートルですから、中国の単位に換算すれば、１万里を超えるんですよ。" }
+        ]
+      },
+      { "id": "l37-app-block-007", "type": "scene", "text": "下长城途中", "translationZh": "下长城途中。", "confidence": "high", "rawText": "（下长城途中）" },
+      {
+        "id": "l37-app-block-008", "type": "dialogue", "lines": [
+          { "id": "l37-app-block-008-line-001", "speaker": "小野", "text": "何かお土産を買おうと思うんですが…。", "translationZh": "我想买点纪念品……。", "confidence": "high", "rawText": "小野：何かお土産を買おうと思うんですが…。" },
+          { "id": "l37-app-block-008-line-002", "speaker": "李", "text": "お土産なら、Ｔシャツとかメダルとか、いろいろありますよ。", "translationZh": "要买纪念品的话，有T恤、纪念章之类的很多东西。", "confidence": "high", "rawText": "李：お土産なら、Ｔシャツとかメダルとか、いろいろありますよ。" },
+          { "id": "l37-app-block-008-line-003", "speaker": "小野", "text": "そうですか。じゃあ、メダルでも買おうかな。", "translationZh": "是吗？那我买个纪念章什么的吧。", "confidence": "high", "rawText": "小野：そうですか。じゃあ、メダルでも買おうかな。" },
+          { "id": "l37-app-block-008-line-004", "speaker": "李", "text": "ゆっくり探せば、ほかにもいいお土産があると思いますよ。", "translationZh": "慢慢找的话，我想还有别的好纪念品。", "confidence": "high", "rawText": "李：ゆっくり探せば、ほかにもいいお土産があると思いますよ。" }
+        ]
+      }
+    ]
+  },
+  "warnings": [
+    "扫描页中的假名标注不适合可靠地逐句切分，未生成 kana 或 segments 字段。",
+    "应用课文的场景说明在教材中以中文排印，按原文保留在 text 字段中。"
+  ]
+}

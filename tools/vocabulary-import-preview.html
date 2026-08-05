@@ -1,0 +1,742 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vocabulary OCR Import Preview</title>
+    <script>
+      if (new URLSearchParams(location.search).get("embedded") === "1") {
+        document.documentElement.classList.add("embedded");
+      }
+    </script>
+    <style>
+      :root {
+        color-scheme: light;
+        --bg: #f6f7f8;
+        --panel: #ffffff;
+        --line: #d9dee5;
+        --text: #17202a;
+        --muted: #657181;
+        --accent: #1f7a5b;
+        --accent-soft: #e7f3ee;
+        --warn: #9b5b00;
+        --warn-soft: #fff4dc;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+
+      header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 14px 20px;
+        border-bottom: 1px solid var(--line);
+        background: var(--panel);
+        position: sticky;
+        top: 0;
+        z-index: 10;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: 18px;
+        letter-spacing: 0;
+      }
+
+      a {
+        color: var(--accent);
+        text-decoration: none;
+      }
+
+      button,
+      input::file-selector-button {
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        background: var(--panel);
+        color: var(--text);
+        cursor: pointer;
+        font: inherit;
+        padding: 8px 12px;
+      }
+
+      button.primary {
+        border-color: var(--accent);
+        background: var(--accent);
+        color: #fff;
+      }
+
+      button:disabled {
+        cursor: not-allowed;
+        opacity: 0.5;
+      }
+
+      .workspace {
+        display: grid;
+        grid-template-columns: minmax(440px, 0.95fr) minmax(360px, 1.05fr);
+        gap: 16px;
+        padding: 16px;
+        align-items: start;
+      }
+
+      .panel {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+      }
+
+      .data-panel {
+        padding: 16px;
+      }
+
+      .toolbar {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        align-items: center;
+        margin-bottom: 14px;
+      }
+
+      .summary {
+        color: var(--muted);
+        font-size: 13px;
+        margin-left: auto;
+      }
+
+      .lesson-row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin: 0 0 14px;
+      }
+
+      .lesson-title {
+        color: var(--muted);
+        font-size: 13px;
+        white-space: nowrap;
+      }
+
+      .lesson-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .lesson-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        min-height: 32px;
+        padding: 5px 10px;
+        border-radius: 999px;
+        font-size: 13px;
+      }
+
+      .lesson-chip.active {
+        border-color: var(--accent);
+        background: var(--accent-soft);
+        color: var(--accent);
+      }
+
+      .lesson-chip .count {
+        color: var(--muted);
+        font-variant-numeric: tabular-nums;
+      }
+
+      details {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        margin-bottom: 16px;
+        overflow: hidden;
+      }
+
+      summary {
+        cursor: pointer;
+        padding: 10px 12px;
+        color: var(--muted);
+      }
+
+      textarea {
+        display: block;
+        width: 100%;
+        min-height: 180px;
+        border: 0;
+        border-top: 1px solid var(--line);
+        resize: vertical;
+        padding: 12px;
+        font: 13px/1.5 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      }
+
+      .status {
+        min-height: 20px;
+        color: var(--muted);
+        font-size: 13px;
+        margin-bottom: 12px;
+      }
+
+      .status.error {
+        color: #b42318;
+      }
+
+      .word-card {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        overflow: hidden;
+      }
+
+      .word-nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        border-bottom: 1px solid var(--line);
+        padding: 10px;
+        background: #fbfcfd;
+      }
+
+      .word-index {
+        color: var(--muted);
+        font-variant-numeric: tabular-nums;
+      }
+
+      .word-body {
+        padding: 18px;
+      }
+
+      .word-main {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 18px;
+      }
+
+      .jp {
+        display: flex;
+        align-items: baseline;
+        flex-wrap: wrap;
+        gap: 10px;
+        min-width: 0;
+      }
+
+      .writing {
+        font-size: 42px;
+        font-weight: 700;
+        letter-spacing: 0;
+      }
+
+      .kana {
+        font-size: 18px;
+        color: var(--muted);
+      }
+
+      .meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        justify-content: flex-end;
+        margin: 8px 0 0;
+        flex: 0 0 auto;
+      }
+
+      .tag {
+        display: inline-flex;
+        align-items: center;
+        min-height: 24px;
+        padding: 2px 8px;
+        border-radius: 999px;
+        background: var(--accent-soft);
+        color: var(--accent);
+        font-size: 12px;
+      }
+
+      .tag.warn {
+        background: var(--warn-soft);
+        color: var(--warn);
+      }
+
+      .meaning {
+        font-size: 18px;
+        margin: 8px 0 14px;
+      }
+
+      .raw {
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.5;
+      }
+
+      .audio-row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin: 12px 0 4px;
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      .audio-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 34px;
+        height: 34px;
+        padding: 0;
+        border-color: var(--accent);
+        color: var(--accent);
+        background: var(--accent-soft);
+        font-size: 14px;
+        line-height: 1;
+      }
+
+      .word-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(96px, 1fr));
+        gap: 8px;
+        margin-top: 14px;
+        max-height: 360px;
+        overflow: auto;
+      }
+
+      .word-list button {
+        min-height: 42px;
+        display: flex;
+        align-items: center;
+        text-align: left;
+        padding: 7px 9px;
+      }
+
+      .word-list strong {
+        display: block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .word-list button.active {
+        border-color: var(--accent);
+        background: var(--accent-soft);
+      }
+
+      .image-panel {
+        position: sticky;
+        top: 72px;
+        padding: 12px;
+      }
+
+      .image-title {
+        display: flex;
+        justify-content: space-between;
+        color: var(--muted);
+        font-size: 13px;
+        margin: 0 0 10px;
+      }
+
+      .source-image {
+        display: block;
+        width: 100%;
+        height: auto;
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        background: #fff;
+      }
+
+      html.embedded header,
+      html.embedded .data-panel > .toolbar,
+      html.embedded .data-panel > .lesson-row,
+      html.embedded .data-panel > details {
+        display: none;
+      }
+
+      html.embedded .status {
+        display: none;
+      }
+
+      html.embedded .workspace {
+        padding: 0;
+      }
+
+      html.embedded .panel {
+        border-radius: 0;
+      }
+
+      html.embedded .data-panel {
+        border-left: 0;
+        border-top: 0;
+        border-bottom: 0;
+      }
+
+      html.embedded .image-panel {
+        top: 0;
+        border-top: 0;
+        border-right: 0;
+        border-bottom: 0;
+      }
+
+      @media (max-width: 920px) {
+        .workspace {
+          grid-template-columns: 1fr;
+        }
+
+        .image-panel {
+          position: static;
+        }
+
+        .word-main {
+          display: block;
+        }
+
+        .meta {
+          justify-content: flex-start;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>单词 OCR 导入校对</h1>
+      <nav><a href="./text-import-preview.html">课文导入校对</a></nav>
+    </header>
+
+    <main class="workspace">
+      <section class="panel data-panel">
+        <div class="toolbar">
+          <button class="primary" id="loadDefault" type="button">重新加载当前课次</button>
+          <button id="generateAudio" type="button">生成音频切片</button>
+          <input id="fileInput" type="file" accept="application/json,.json" />
+          <span class="summary" id="summary">未加载</span>
+        </div>
+
+        <div class="lesson-row">
+          <span class="lesson-title">样例课次</span>
+          <div class="lesson-list" id="lessonList"></div>
+        </div>
+
+        <details>
+          <summary>手动粘贴 JSON 导入</summary>
+          <textarea id="jsonInput" spellcheck="false" placeholder="粘贴 vocabulary OCR JSON"></textarea>
+          <div class="toolbar" style="padding: 10px 12px;">
+            <button id="parseInput" type="button">解析文本框</button>
+          </div>
+        </details>
+
+        <div class="status" id="status"></div>
+        <div id="wordCard"></div>
+        <div class="word-list" id="wordList"></div>
+      </section>
+
+      <aside class="panel image-panel">
+        <p class="image-title">
+          <span id="imageLabel">教材图片</span>
+          <a id="imageLink" href="#" target="_blank" rel="noreferrer">打开图片</a>
+        </p>
+        <img class="source-image" id="sourceImage" alt="教材词汇页" />
+      </aside>
+    </main>
+
+    <script type="module">
+      const state = { data: null, index: 0, audio: new Audio(), stopTimer: 0, samples: [], selectedSample: null, autoPlayToken: 0 };
+
+      const $ = (selector) => document.querySelector(selector);
+      const escapeHtml = (value) => String(value ?? "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#39;");
+
+      const assetSrc = (path) => {
+        if (!path) return "";
+        if (/^(?:https?:)?\/\//.test(path) || path.startsWith("/")) return path;
+        return `../${path}`;
+      };
+
+      function normalizePayload(payload) {
+        if (!payload || !Array.isArray(payload.vocabulary)) {
+          throw new Error("JSON 中缺少 vocabulary 数组。");
+        }
+        return payload;
+      }
+
+      function setStatus(message, isError = false) {
+        $("#status").textContent = message || "";
+        $("#status").classList.toggle("error", Boolean(isError));
+      }
+
+      function setData(payload, sourceLabel = "导入数据") {
+        state.data = normalizePayload(payload);
+        state.index = 0;
+        $("#jsonInput").value = JSON.stringify(state.data, null, 2);
+        setStatus(`${sourceLabel} 已加载。`);
+        render();
+      }
+
+      function lessonNoFromLocation() {
+        const params = new URLSearchParams(location.search);
+        const raw = params.get("lesson") || params.get("lessonId") || params.get("lessonNo") || "";
+        const queryMatch = String(raw).match(/\d+/);
+        if (queryMatch) return Number(queryMatch[0]);
+        const hashMatch = location.hash.match(/lesson=(\d+)/);
+        return hashMatch ? Number(hashMatch[1]) : 0;
+      }
+
+      async function initSamples() {
+        const requestedLessonNo = lessonNoFromLocation();
+        await refreshSamples(requestedLessonNo || null);
+        const initialSample = requestedLessonNo
+          ? state.samples.find((sample) => sample.lessonNo === requestedLessonNo)
+          : state.samples[0];
+        if (initialSample) {
+          await selectSample(initialSample.lessonNo);
+        } else {
+          setStatus(requestedLessonNo ? `data/ocr 下暂无第 ${requestedLessonNo} 课单词样例数据。` : "data/ocr 下暂无单词样例数据。", true);
+          renderLessonList();
+        }
+      }
+
+      async function refreshSamples(preferredLessonNo = null) {
+        const response = await fetch("/api/ocr/sample-lessons?type=vocabulary", { cache: "no-store" });
+        const result = await response.json();
+        if (!response.ok) throw new Error(result.error || `读取样例列表失败：${response.status}`);
+        state.samples = result.lessons || [];
+        if (preferredLessonNo) {
+          state.selectedSample = state.samples.find((sample) => sample.lessonNo === preferredLessonNo) || state.selectedSample;
+        }
+        renderLessonList();
+      }
+
+      async function selectSample(lessonNo) {
+        const sample = state.samples.find((item) => item.lessonNo === lessonNo);
+        if (!sample) return;
+        state.selectedSample = sample;
+        renderLessonList();
+        const response = await fetch(sample.url, { cache: "no-store" });
+        if (!response.ok) throw new Error(`读取 ${sample.label} JSON 失败：${response.status}`);
+        setData(await response.json(), `${sample.label}${sample.hasAudio ? "切片样例" : "样例"}`);
+      }
+
+      async function loadDefault() {
+        if (!state.selectedSample && state.samples.length) state.selectedSample = state.samples[0];
+        if (!state.selectedSample) {
+          await initSamples();
+          return;
+        }
+        await selectSample(state.selectedSample.lessonNo);
+      }
+
+      function renderLessonList() {
+        $("#lessonList").innerHTML = state.samples.length ? state.samples.map((sample) => `
+          <button class="lesson-chip ${sample.lessonNo === state.selectedSample?.lessonNo ? "active" : ""}" type="button" data-lesson-no="${sample.lessonNo}">
+            <span>${escapeHtml(sample.label)}</span>
+            <span class="count">${escapeHtml(sample.counts?.vocabulary || 0)}</span>
+            ${sample.hasAudio ? "<span aria-label=\"有音频切片\">▶</span>" : ""}
+          </button>
+        `).join("") : `<span class="status">暂无样例</span>`;
+        $("#lessonList").querySelectorAll("button[data-lesson-no]").forEach((button) => {
+          button.addEventListener("click", () => {
+            selectSample(Number(button.dataset.lessonNo)).catch((error) => setStatus(error.message, true));
+          });
+        });
+      }
+
+      async function generateAudioAlignment() {
+        const lessonNo = state.selectedSample?.lessonNo || lessonNoFromData() || 1;
+        setStatus("正在生成音频切片...");
+        $("#generateAudio").disabled = true;
+        try {
+          const response = await fetch("/api/ocr/audio-align", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ lessonId: lessonNo, target: "vocabulary", force: true })
+          });
+          const result = await response.json();
+          if (!response.ok) throw new Error(result.error || `生成失败：${response.status}`);
+          setData(result.vocabularyData, "音频切片数据");
+          await refreshSamples(lessonNo);
+          const summary = result.summaries?.find((item) => item.trackId === "lesson_words");
+          setStatus(summary ? `音频切片已生成：${summary.mappedSegments}/${summary.expectedItems}。` : "音频切片已生成。");
+        } catch (error) {
+          setStatus(error.message, true);
+        } finally {
+          $("#generateAudio").disabled = false;
+        }
+      }
+
+      function render() {
+        const data = state.data;
+        const words = data?.vocabulary || [];
+        $("#summary").textContent = data ? `${data.lessonId || "unknown"} · ${words.length} 个词` : "未加载";
+        renderImage(data);
+        renderWord(words[state.index], words.length);
+        renderWordList(words);
+        scheduleCurrentWordPlayback(words[state.index]);
+      }
+
+      function lessonNoFromData() {
+        const match = String(state.data?.lessonId || "").match(/\d+/);
+        return match ? Number(match[0]) : 0;
+      }
+
+      function renderImage(data) {
+        const image = data?.sourceImages?.[0];
+        const src = assetSrc(image?.path);
+        $("#sourceImage").src = src;
+        $("#sourceImage").hidden = !src;
+        $("#imageLink").href = src || "#";
+        $("#imageLabel").textContent = image ? `page${image.pageNo || ""} · ${image.path}` : "教材图片";
+      }
+
+      function renderWord(word, total) {
+        if (!word) {
+          $("#wordCard").innerHTML = `<div class="word-card"><div class="word-body">暂无单词数据。</div></div>`;
+          return;
+        }
+        const meanings = Array.isArray(word.meaningZh) ? word.meaningZh : [word.meaningZh].filter(Boolean);
+        $("#wordCard").innerHTML = `
+          <article class="word-card">
+            <div class="word-nav">
+              <button id="prevWord" type="button" ${state.index <= 0 ? "disabled" : ""}>上一个</button>
+              <span class="word-index">${state.index + 1} / ${total}</span>
+              <button id="nextWord" type="button" ${state.index >= total - 1 ? "disabled" : ""}>下一个</button>
+            </div>
+            <div class="word-body">
+              <div class="word-main">
+                <div class="jp">
+                  <strong class="writing">${escapeHtml(word.writing || word.kana)}</strong>
+                  <span class="kana">${escapeHtml(word.kana || "")}</span>
+                </div>
+                <div class="meta">
+                  <span class="tag">${escapeHtml(word.id || "")}</span>
+                  <span class="tag">${escapeHtml(word.partOfSpeech || "无词性")}</span>
+                  <span class="tag ${word.confidence === "low" ? "warn" : ""}">${escapeHtml(word.confidence || "unknown")}</span>
+                </div>
+              </div>
+              <div class="meaning">${meanings.length ? meanings.map(escapeHtml).join(" / ") : "暂无中文释义"}</div>
+              ${word.audioSegment ? `
+                <div class="audio-row">
+                  <button class="audio-button" id="playWordAudio" type="button" title="播放音频片段" aria-label="播放音频片段">▶</button>
+                  <span>${escapeHtml(formatSegmentTime(word.audioSegment))}</span>
+                </div>
+              ` : ""}
+            </div>
+          </article>
+        `;
+        $("#prevWord")?.addEventListener("click", () => move(-1));
+        $("#nextWord")?.addEventListener("click", () => move(1));
+        $("#playWordAudio")?.addEventListener("click", () => playSegment(word.audioSegment));
+      }
+
+      function renderWordList(words) {
+        $("#wordList").innerHTML = words.map((word, index) => `
+          <button type="button" class="${index === state.index ? "active" : ""}" data-index="${index}">
+            <strong>${escapeHtml(word.writing || word.kana)}</strong>
+          </button>
+        `).join("");
+        $("#wordList").querySelectorAll("button").forEach((button) => {
+          button.addEventListener("click", () => {
+            state.index = Number(button.dataset.index) || 0;
+            render();
+          });
+        });
+      }
+
+      function move(offset) {
+        const total = state.data?.vocabulary?.length || 0;
+        state.index = Math.max(0, Math.min(total - 1, state.index + offset));
+        render();
+      }
+
+      function scheduleCurrentWordPlayback(word) {
+        const segment = word?.audioSegment;
+        if (!segment) return;
+        const token = ++state.autoPlayToken;
+        window.requestAnimationFrame(() => {
+          window.setTimeout(() => {
+            if (token !== state.autoPlayToken) return;
+            if (state.data?.vocabulary?.[state.index]?.id !== word?.id) return;
+            playSegment(segment);
+          }, 40);
+        });
+      }
+
+      function formatSegmentTime(segment) {
+        return `${Number(segment.start || 0).toFixed(3)}s - ${Number(segment.end || 0).toFixed(3)}s`;
+      }
+
+      async function playSegment(segment) {
+        if (!segment?.sourceUrl && !segment?.localAudioPath) {
+          setStatus("当前条目没有音频片段。", true);
+          return;
+        }
+        const source = segment.sourceUrl || assetSrc(segment.localAudioPath);
+        clearInterval(state.stopTimer);
+        state.audio.pause();
+        state.audio.src = source;
+        try {
+          await waitForAudioMetadata();
+          state.audio.currentTime = Math.max(0, Number(segment.start) || 0);
+          state.stopTimer = window.setInterval(() => {
+            if (state.audio.currentTime >= Number(segment.end || 0)) {
+              state.audio.pause();
+              clearInterval(state.stopTimer);
+            }
+          }, 30);
+          await state.audio.play();
+        } catch (error) {
+          clearInterval(state.stopTimer);
+          setStatus(`播放失败：${error.message}`, true);
+        }
+      }
+
+      function waitForAudioMetadata() {
+        if (state.audio.readyState >= 1) return Promise.resolve();
+        state.audio.load();
+        return new Promise((resolve, reject) => {
+          const cleanup = () => {
+            state.audio.removeEventListener("loadedmetadata", handleLoaded);
+            state.audio.removeEventListener("error", handleError);
+          };
+          const handleLoaded = () => {
+            cleanup();
+            resolve();
+          };
+          const handleError = () => {
+            cleanup();
+            reject(new Error("音频加载失败"));
+          };
+          state.audio.addEventListener("loadedmetadata", handleLoaded);
+          state.audio.addEventListener("error", handleError);
+        });
+      }
+
+      $("#loadDefault").addEventListener("click", () => loadDefault().catch((error) => setStatus(error.message, true)));
+      $("#generateAudio").addEventListener("click", generateAudioAlignment);
+      $("#parseInput").addEventListener("click", () => {
+        try {
+          setData(JSON.parse($("#jsonInput").value), "文本框 JSON");
+        } catch (error) {
+          setStatus(error.message, true);
+        }
+      });
+      $("#fileInput").addEventListener("change", async (event) => {
+        const file = event.target.files?.[0];
+        if (!file) return;
+        try {
+          setData(JSON.parse(await file.text()), file.name);
+        } catch (error) {
+          setStatus(error.message, true);
+        }
+      });
+
+      initSamples().catch((error) => setStatus(error.message, true));
+    </script>
+  </body>
+</html>

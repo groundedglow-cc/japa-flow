@@ -1,0 +1,280 @@
+{
+  "lessonId": "lesson48",
+  "sourceImages": [
+    {
+      "section": "basic",
+      "path": "course-assets/by-lesson/lesson48/page264.webp",
+      "pageNo": 264
+    },
+    {
+      "section": "application",
+      "path": "course-assets/by-lesson/lesson48/page269.webp",
+      "pageNo": 269
+    }
+  ],
+  "basicText": {
+    "title": "基本课文",
+    "basicSentences": [
+      {
+        "id": "l48-basic-s001",
+        "order": 1,
+        "text": "お荷物は私がお持ちします。",
+        "translationZh": "行李我来拿。",
+        "confidence": "high",
+        "rawText": "1. お荷物は私がお持ちします。"
+      },
+      {
+        "id": "l48-basic-s002",
+        "order": 2,
+        "text": "明日、私がそちらへ伺います。",
+        "translationZh": "明天我去您那里拜访。",
+        "confidence": "high",
+        "rawText": "2. 明日、私がそちらへ伺います。"
+      },
+      {
+        "id": "l48-basic-s003",
+        "order": 3,
+        "text": "コピーは私がいたします。",
+        "translationZh": "复印件我来做。",
+        "confidence": "high",
+        "rawText": "3. コピーは私がいたします。"
+      },
+      {
+        "id": "l48-basic-s004",
+        "order": 4,
+        "text": "黄教授に論文を見ていただきました。",
+        "translationZh": "黄教授帮我看了论文。",
+        "confidence": "high",
+        "rawText": "4. 黄教授に論文を見ていただきました。"
+      }
+    ],
+    "dialogues": [
+      {
+        "id": "l48-basic-dialogue-001",
+        "label": "A",
+        "lines": [
+          {
+            "id": "l48-basic-dialogue-001-line-001",
+            "speaker": "甲",
+            "text": "昨日、メールをお送りしたんですが…。",
+            "translationZh": "昨天我给您发了邮件……",
+            "confidence": "high",
+            "rawText": "甲：昨日、メールをお送りしたんですが…。"
+          },
+          {
+            "id": "l48-basic-dialogue-001-line-002",
+            "speaker": "乙",
+            "text": "ええ、拝見しました。先ほど返事をお出ししました。",
+            "translationZh": "嗯，我看过了。刚才已经回信了。",
+            "confidence": "high",
+            "rawText": "乙：ええ、拝見しました。先ほど返事をお出ししました。"
+          }
+        ]
+      },
+      {
+        "id": "l48-basic-dialogue-002",
+        "label": "B",
+        "lines": [
+          {
+            "id": "l48-basic-dialogue-002-line-001",
+            "speaker": "甲",
+            "text": "どちらからいらっしゃったんですか。",
+            "translationZh": "您是从哪里来的？",
+            "confidence": "high",
+            "rawText": "甲：どちらからいらっしゃったんですか。"
+          },
+          {
+            "id": "l48-basic-dialogue-002-line-002",
+            "speaker": "乙",
+            "text": "中国の北京から参りました。",
+            "translationZh": "我从中国北京来。",
+            "confidence": "high",
+            "rawText": "乙：中国の北京から参りました。"
+          }
+        ]
+      },
+      {
+        "id": "l48-basic-dialogue-003",
+        "label": "C",
+        "lines": [
+          {
+            "id": "l48-basic-dialogue-003-line-001",
+            "speaker": "甲",
+            "text": "そろそろ失礼いたします。",
+            "translationZh": "我差不多该告辞了。",
+            "confidence": "high",
+            "rawText": "甲：そろそろ失礼いたします。"
+          },
+          {
+            "id": "l48-basic-dialogue-003-line-002",
+            "speaker": "甲",
+            "text": "どうもお邪魔いたしました。",
+            "translationZh": "打扰了。",
+            "confidence": "high",
+            "rawText": "どうもお邪魔いたしました。"
+          },
+          {
+            "id": "l48-basic-dialogue-003-line-003",
+            "speaker": "乙",
+            "text": "何のお構いもしませんで。",
+            "translationZh": "招待不周。",
+            "confidence": "high",
+            "rawText": "乙：何のお構いもしませんで。"
+          }
+        ]
+      },
+      {
+        "id": "l48-basic-dialogue-004",
+        "label": "D",
+        "lines": [
+          {
+            "id": "l48-basic-dialogue-004-line-001",
+            "speaker": "甲",
+            "text": "この服、ちょっと小さいので、取り替えていただけますか。",
+            "translationZh": "这件衣服有点小，能给我换一下吗？",
+            "confidence": "high",
+            "rawText": "甲：この服、ちょっと小さいので、取り替えていただけますか。"
+          },
+          {
+            "id": "l48-basic-dialogue-004-line-002",
+            "speaker": "乙",
+            "text": "承知いたしました。少々お待ちください。",
+            "translationZh": "知道了。请稍等。",
+            "confidence": "high",
+            "rawText": "乙：承知いたしました。少々お待ちください。"
+          }
+        ]
+      }
+    ]
+  },
+  "applicationText": {
+    "title": "上海事務所",
+    "blocks": [
+      {
+        "id": "l48-app-block-001",
+        "type": "narration",
+        "text": "上海事務所开业了。北京分公司的老陈兼任所长，小李就任副所长，事务所新聘了新职员山田拓也。上海事务所开业之际，给上海市内的日资企业发出了开业通知。",
+        "translationZh": "上海事務所开业了。北京分公司的老陈兼任所长，小李就任副所长，事务所新聘了新职员山田拓也。上海事务所开业之际，给上海市内的日资企业发出了开业通知。",
+        "confidence": "high",
+        "rawText": "上海事務所开业了。北京分公司的老陈兼任所长，小李就任副所长，事务所新聘了新职员山田拓也。上海事务所开业之际，给上海市内的日资企业发出了开业通知。"
+      },
+      {
+        "id": "l48-app-block-002",
+        "type": "scene",
+        "text": "（第一天上班的山田拓也跟老陈和小李寒暄）",
+        "translationZh": "（第一天上班的山田拓也跟老陈和小李寒暄）",
+        "confidence": "high",
+        "rawText": "（第一天上班的山田拓也跟老陈和小李寒暄）"
+      },
+      {
+        "id": "l48-app-block-003",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l48-app-block-003-line-001",
+            "speaker": "山田",
+            "text": "おはようございます。山田です。今日からお世話になります。大学を卒業したばかりで、右も左も分かりませんが、一生懸命頑張りますので、ご指導よろしくお願いいたします。",
+            "translationZh": "早上好。我是山田。从今天开始请多关照。我刚大学毕业，什么都不懂，不过我会努力的，请多指教。",
+            "confidence": "high",
+            "rawText": "山田：おはようございます。山田です。今日からお世話になります。大学を卒業したばかりで、右も左も分かりませんが、一生懸命頑張りますので、ご指導よろしくお願いいたします。"
+          },
+          {
+            "id": "l48-app-block-003-line-002",
+            "speaker": "陈",
+            "text": "期待していますよ。こちらこそよろしく。",
+            "translationZh": "我们很期待。也请你多关照。",
+            "confidence": "high",
+            "rawText": "陈：期待していますよ。こちらこそよろしく。"
+          },
+          {
+            "id": "l48-app-block-003-line-003",
+            "speaker": "李",
+            "text": "よろしくお願いします。いっしょに頑張りましょう。",
+            "translationZh": "请多关照。一起努力吧。",
+            "confidence": "high",
+            "rawText": "李：よろしくお願いします。いっしょに頑張りましょう。"
+          }
+        ]
+      },
+      {
+        "id": "l48-app-block-004",
+        "type": "scene",
+        "text": "（电话铃响了，小李接电话）",
+        "translationZh": "（电话铃响了，小李接电话）",
+        "confidence": "high",
+        "rawText": "（电话铃响了，小李接电话）"
+      },
+      {
+        "id": "l48-app-block-005",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l48-app-block-005-line-001",
+            "speaker": "李",
+            "text": "はい、ＪＣ企画上海事務所でございます。",
+            "translationZh": "您好，这里是JC企划上海事务所。",
+            "confidence": "high",
+            "rawText": "李：はい、ＪＣ企画上海事務所でございます。"
+          },
+          {
+            "id": "l48-app-block-005-line-002",
+            "speaker": "佐藤",
+            "text": "私、日中商事の佐藤と申します。お送りいただいた案内状、拝見しました。",
+            "translationZh": "我是日中商事的佐藤。您寄来的通知，我已经看过了。",
+            "confidence": "high",
+            "rawText": "佐藤：私、日中商事の佐藤と申します。お送りいただいた案内状、拝見しました。"
+          },
+          {
+            "id": "l48-app-block-005-line-003",
+            "speaker": "李",
+            "text": "いつもお世話になっております。また、この度は、突然お手紙を差し上げ、失礼いたしました。",
+            "translationZh": "承蒙您一直以来的关照。这次突然给您写信，失礼了。",
+            "confidence": "high",
+            "rawText": "李：いつもお世話になっております。また、この度は、突然お手紙を差し上げ、失礼いたしました。"
+          },
+          {
+            "id": "l48-app-block-005-line-004",
+            "speaker": "佐藤",
+            "text": "いえ。実は、私どもでは、これから新商品の開発を進めていく予定なんです。そこで、ぜひ、詳しいお話を伺いたいのですが。",
+            "translationZh": "没有。其实，我们公司今后打算推进新产品的开发。所以，想详细听听您的情况。",
+            "confidence": "high",
+            "rawText": "佐藤：いえ。実は、私どもでは、これから新商品の開発を進めていく予定なんです。そこで、ぜひ、詳しいお話を伺いたいのですが。"
+          },
+          {
+            "id": "l48-app-block-005-line-005",
+            "speaker": "李",
+            "text": "ありがとうございます。早速、資料を届けさせていただきます。",
+            "translationZh": "非常感谢。我马上把资料送过去。",
+            "confidence": "high",
+            "rawText": "李：ありがとうございます。早速、資料を届けさせていただきます。"
+          },
+          {
+            "id": "l48-app-block-005-line-006",
+            "speaker": "佐藤",
+            "text": "そうですか。では、一度社の方においでいただけますか。明日なら午後はずっと社におりますが…。",
+            "translationZh": "是吗。那么，能不能请您到我们公司来一趟？如果是明天的话，我下午都在公司……",
+            "confidence": "high",
+            "rawText": "佐藤：そうですか。では、一度社の方においでいただけますか。明日なら午後はずっと社におりますが…。"
+          },
+          {
+            "id": "l48-app-block-005-line-007",
+            "speaker": "李",
+            "text": "承知いたしました。私、李秀麗と申します。では、明日の午後、お伺いします。",
+            "translationZh": "知道了。我叫李秀丽。那么，明天下午我去拜访。",
+            "confidence": "high",
+            "rawText": "李：承知いたしました。私、李秀麗と申します。では、明日の午後、お伺いします。"
+          }
+        ]
+      },
+      {
+        "id": "l48-app-block-006",
+        "type": "narration",
+        "text": "这是上海事务所的开端。以后会发生什么事情呢？让我们拭目以待。",
+        "translationZh": "这是上海事务所的开端。以后会发生什么事情呢？让我们拭目以待。",
+        "confidence": "high",
+        "rawText": "这是上海事务所的开端。以后会发生什么事情呢？让我们拭目以待。"
+      }
+    ]
+  },
+  "warnings": []
+}

@@ -1,0 +1,86 @@
+{
+  "lessonId": "lesson15",
+  "sourceImages": [
+    { "section": "basic", "path": "course-assets/by-lesson/lesson15/page180.webp", "pageNo": 180 },
+    { "section": "application", "path": "course-assets/by-lesson/lesson15/page185.webp", "pageNo": 185 }
+  ],
+  "basicText": {
+    "title": "小野さんは 今 新聞を 読んで います",
+    "basicSentences": [
+      { "id": "l15-basic-s001", "order": 1, "text": "小野さんは 今 新聞を 読んで います。", "kana": "おのさんは いま しんぶんを よんで います。", "translationZh": "小野女士现在正在读报纸。", "confidence": "high", "rawText": "1. 小野さんは 今 新聞を 読んで います。" },
+      { "id": "l15-basic-s002", "order": 2, "text": "ここで 写真を 撮っても いいですか。", "kana": "ここで しゃしんを とっても いいですか。", "translationZh": "可以在这里拍照吗？", "confidence": "high", "rawText": "2. ここで 写真を 撮っても いいですか。" },
+      { "id": "l15-basic-s003", "order": 3, "text": "飛行機の 中で タバコを 吸っては いけません。", "kana": "ひこうきの なかで タバコを すっては いけません。", "translationZh": "在飞机上不可以吸烟。", "confidence": "high", "rawText": "3. 飛行機の 中で タバコを 吸っては いけません。" },
+      { "id": "l15-basic-s004", "order": 4, "text": "日曜日、小野さんは 公園で ボートに 乗りました。", "kana": "にちようび、おのさんは こうえんで ボートに のりました。", "translationZh": "星期天，小野女士在公园坐了小船。", "confidence": "high", "rawText": "4. 日曜日、小野さんは 公園で ボートに 乗りました。" }
+    ],
+    "dialogues": [
+      {
+        "id": "l15-basic-dialogue-001",
+        "label": "A",
+        "lines": [
+          { "id": "l15-basic-dialogue-001-line-001", "speaker": "甲", "text": "もしもし、森さん？ 今 どこですか。", "kana": "もしもし、もりさん？ いま どこですか。", "translationZh": "喂，森先生吗？您现在在哪里？", "confidence": "high", "rawText": "甲：もしもし、森さん？ 今 どこですか。" },
+          { "id": "l15-basic-dialogue-001-line-002", "speaker": "乙", "text": "今 市役所の 前を 歩いて います。", "kana": "いま しやくしょの まえを あるいて います。", "translationZh": "我现在正在市政府前面走。", "confidence": "high", "rawText": "乙：今 市役所の 前を 歩いて います。" }
+        ]
+      },
+      {
+        "id": "l15-basic-dialogue-002",
+        "label": "B",
+        "lines": [
+          { "id": "l15-basic-dialogue-002-line-001", "speaker": "甲", "text": "すみません、この 辞書を 借りても いいですか。", "kana": "すみません、この じしょを かりても いいですか。", "translationZh": "对不起，可以借一下这本词典吗？", "confidence": "high", "rawText": "甲：すみません、この 辞書を 借りても いいですか。" },
+          { "id": "l15-basic-dialogue-002-line-002", "speaker": "乙", "text": "いえ、ちょっと…。今 使って います。", "kana": "いえ、ちょっと…。いま つかって います。", "translationZh": "不，恐怕不行……我现在正在用。", "confidence": "high", "rawText": "乙：いえ、ちょっと…。今 使って います。" }
+        ]
+      },
+      {
+        "id": "l15-basic-dialogue-003",
+        "label": "C",
+        "lines": [
+          { "id": "l15-basic-dialogue-003-line-001", "speaker": "甲", "text": "すみません、ここに 座っても いいですか。", "kana": "すみません、ここに すわっても いいですか。", "translationZh": "对不起，可以坐在这里吗？", "confidence": "high", "rawText": "甲：すみません、ここに 座っても いいですか。" },
+          { "id": "l15-basic-dialogue-003-line-002", "speaker": "乙", "text": "ええ、どうぞ。", "kana": "ええ、どうぞ。", "translationZh": "可以，请坐。", "confidence": "high", "rawText": "乙：ええ、どうぞ。" }
+        ]
+      },
+      {
+        "id": "l15-basic-dialogue-004",
+        "label": "D",
+        "lines": [
+          { "id": "l15-basic-dialogue-004-line-001", "speaker": "甲", "text": "あっ、ここで 携帯電話を 使っては いけませんよ。", "kana": "あっ、ここで けいたいでんわを つかっては いけませんよ。", "translationZh": "啊，这里不可以使用手机。", "confidence": "high", "rawText": "甲：あっ、ここで 携帯電話を 使っては いけませんよ。" },
+          { "id": "l15-basic-dialogue-004-line-002", "speaker": "乙", "text": "すみません。これから 気を つけます。", "kana": "すみません。これから きを つけます。", "translationZh": "对不起，我以后会注意的。", "confidence": "high", "rawText": "乙：すみません。これから 気を つけます。" }
+        ]
+      }
+    ]
+  },
+  "applicationText": {
+    "title": "風邪",
+    "blocks": [
+      { "id": "l15-app-block-001", "type": "narration", "text": "一天早上，已经过了9点小李还没来上班。小野正在为她担心的时候，小李打来了电话。", "kana": null, "translationZh": "一天早上，已经过了9点小李还没来上班。小野正在为她担心的时候，小李打来了电话。", "confidence": "high", "rawText": "一天早上，已经过了9点小李还没来上班。小野正在为她担心的时候，小李打来了电话。" },
+      { "id": "l15-app-block-002", "type": "scene", "text": "（电话转接到小野处）", "kana": null, "translationZh": "电话转接到小野处。", "confidence": "high", "rawText": "（电话转接到小野处）" },
+      {
+        "id": "l15-app-block-003",
+        "type": "dialogue",
+        "lines": [
+          { "id": "l15-app-block-003-line-001", "speaker": "小野", "text": "もしもし、小野です。どうしました？", "kana": "もしもし、おのです。どうしました？", "translationZh": "喂，我是小野。怎么了？", "confidence": "high", "rawText": "小野：もしもし、小野です。どうしました？" },
+          { "id": "l15-app-block-003-line-002", "speaker": "李", "text": "ちょっと 熱が あります。今日 会社を 休んでも いいですか。", "kana": "ちょっと ねつが あります。きょう かいしゃを やすんでも いいですか。", "translationZh": "我有点发烧。今天可以请假吗？", "confidence": "high", "rawText": "李：ちょっと 熱が あります。今日 会社を 休んでも いいですか。" },
+          { "id": "l15-app-block-003-line-003", "speaker": "小野", "text": "ええ、もちろんです。あまり 無理を しては いけませんよ。", "kana": "ええ、もちろんです。あまり むりを しては いけませんよ。", "translationZh": "嗯，当然可以。不要太勉强自己。", "confidence": "high", "rawText": "小野：ええ、もちろんです。あまり 無理を しては いけませんよ。" },
+          { "id": "l15-app-block-003-line-004", "speaker": "李", "text": "はい、分かりました。あのう、吉田課長は？", "kana": "はい、わかりました。あのう、よしだかちょうは？", "translationZh": "好的，我明白了。那个，吉田科长呢？", "confidence": "high", "rawText": "李：はい、分かりました。あのう、吉田課長は？" },
+          { "id": "l15-app-block-003-line-005", "speaker": "小野", "text": "今 会議室で 打ち合わせを して います。後で 伝えます。", "kana": "いま かいぎしつで うちあわせを して います。あとで つたえます。", "translationZh": "他现在正在会议室商谈。之后我会转告他。", "confidence": "high", "rawText": "小野：今 会議室で 打ち合わせを して います。後で 伝えます。" },
+          { "id": "l15-app-block-003-line-006", "speaker": "李", "text": "お願いします。", "kana": "おねがいします。", "translationZh": "拜托您了。", "confidence": "high", "rawText": "李：お願いします。" },
+          { "id": "l15-app-block-003-line-007", "speaker": "小野", "text": "もう 病院に 行きましたか。", "kana": "もう びょういんに いきましたか。", "translationZh": "已经去医院了吗？", "confidence": "high", "rawText": "小野：もう 病院に 行きましたか。" },
+          { "id": "l15-app-block-003-line-008", "speaker": "李", "text": "いいえ、まだです。", "kana": "いいえ、まだです。", "translationZh": "不，还没有。", "confidence": "high", "rawText": "李：いいえ、まだです。" },
+          { "id": "l15-app-block-003-line-009", "speaker": "小野", "text": "じゃあ、病院に 行ってから、ゆっくり 休んで ください。", "kana": "じゃあ、びょういんに いってから、ゆっくり やすんで ください。", "translationZh": "那么，去医院以后请好好休息。", "confidence": "high", "rawText": "小野：じゃあ、病院に 行ってから、ゆっくり 休んで ください。" },
+          { "id": "l15-app-block-003-line-010", "speaker": "李", "text": "はい、ありがとう ございます。", "kana": "はい、ありがとう ございます。", "translationZh": "好的，谢谢您。", "confidence": "high", "rawText": "李：はい、ありがとう ございます。" }
+        ]
+      },
+      { "id": "l15-app-block-004", "type": "scene", "text": "（在医院里）", "kana": null, "translationZh": "在医院里。", "confidence": "high", "rawText": "（在医院里）" },
+      {
+        "id": "l15-app-block-005",
+        "type": "dialogue",
+        "lines": [
+          { "id": "l15-app-block-005-line-001", "speaker": "医者", "text": "風邪ですね。温かい 物を 食べて、十分 睡眠を とって ください。それから 今晩 お風呂に 入っては いけませんよ。", "kana": "かぜですね。あたたかい ものを たべて、じゅうぶん すいみんを とって ください。それから こんばん おふろに はいっては いけませんよ。", "translationZh": "是感冒。请吃些热的东西，好好睡一觉。另外，今晚不可以洗澡。", "confidence": "high", "rawText": "医者：風邪ですね。温かい 物を 食べて、十分 睡眠を とって ください。それから 今晩 お風呂に 入っては いけませんよ。" },
+          { "id": "l15-app-block-005-line-002", "speaker": "李", "text": "分かりました。", "kana": "わかりました。", "translationZh": "明白了。", "confidence": "high", "rawText": "李：分かりました。" },
+          { "id": "l15-app-block-005-line-003", "speaker": "医者", "text": "では、薬を 出します。薬局に 行って、もらって ください。", "kana": "では、くすりを だします。やっきょくに いって、もらって ください。", "translationZh": "那么，我给您开药。请去药店取药。", "confidence": "high", "rawText": "医者：では、薬を 出します。薬局に 行って、もらって ください。" },
+          { "id": "l15-app-block-005-line-004", "speaker": "李", "text": "ありがとう ございました。", "kana": "ありがとう ございました。", "translationZh": "非常感谢。", "confidence": "high", "rawText": "李：ありがとう ございました。" },
+          { "id": "l15-app-block-005-line-005", "speaker": "医者", "text": "お大事に。", "kana": "おだいじに。", "translationZh": "请多保重。", "confidence": "high", "rawText": "医者：お大事に。" }
+        ]
+      }
+    ]
+  },
+  "warnings": []
+}

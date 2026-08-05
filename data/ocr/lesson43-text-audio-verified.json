@@ -1,0 +1,469 @@
+{
+  "lessonId": "lesson43",
+  "sourceImages": [
+    {
+      "section": "basic",
+      "path": "course-assets/by-lesson/lesson43/page208.webp",
+      "pageNo": 208
+    },
+    {
+      "section": "application",
+      "path": "course-assets/by-lesson/lesson43/page213.webp",
+      "pageNo": 213
+    }
+  ],
+  "basicText": {
+    "title": "基本课文",
+    "basicSentences": [
+      {
+        "id": "l43-basic-s001",
+        "order": 1,
+        "text": "陳さんは、息子をアメリカに留学させます。",
+        "translationZh": "陈先生让儿子去美国留学。",
+        "confidence": "high",
+        "rawText": "1. 陳さんは、息子をアメリカに留学させます。",
+        "audioSegment": {
+          "id": "l43-basic-s001",
+          "trackId": "lesson_basic",
+          "sourceUrl": "/data/ocr/audio-clips/lesson43/l43-basic-s001.mp3",
+          "start": 0,
+          "end": 3.58,
+          "duration": 3.58,
+          "method": "approved-asr-alignment",
+          "confidence": "approved",
+          "reviewedAt": "2026-08-05T10:28:08.334Z",
+          "sourceAudioSha256": "7df826f5415a6d73d1fa3e6ea50bd77ba0a0c1c34a29ff34a7895c9c07aee202"
+        }
+      },
+      {
+        "id": "l43-basic-s002",
+        "order": 2,
+        "text": "部長は太田さんにレポートを書かせました。",
+        "translationZh": "部长让太田写了报告。",
+        "confidence": "high",
+        "rawText": "2. 部長は太田さんにレポートを書かせました。",
+        "audioSegment": {
+          "id": "l43-basic-s002",
+          "trackId": "lesson_basic",
+          "sourceUrl": "/data/ocr/audio-clips/lesson43/l43-basic-s002.mp3",
+          "start": 0,
+          "end": 3.9,
+          "duration": 3.9,
+          "method": "approved-asr-alignment",
+          "confidence": "approved",
+          "reviewedAt": "2026-08-05T10:28:08.334Z",
+          "sourceAudioSha256": "7df826f5415a6d73d1fa3e6ea50bd77ba0a0c1c34a29ff34a7895c9c07aee202"
+        }
+      },
+      {
+        "id": "l43-basic-s003",
+        "order": 3,
+        "text": "疲れました。少し休ませてください。",
+        "translationZh": "累了。请让我稍微休息一下。",
+        "confidence": "high",
+        "rawText": "3. 疲れました。少し休ませてください。",
+        "audioSegment": {
+          "id": "l43-basic-s003",
+          "trackId": "lesson_basic",
+          "sourceUrl": "/data/ocr/audio-clips/lesson43/l43-basic-s003.mp3",
+          "start": 0,
+          "end": 3.3,
+          "duration": 3.3,
+          "method": "approved-asr-alignment",
+          "confidence": "approved",
+          "reviewedAt": "2026-08-05T10:28:08.334Z",
+          "sourceAudioSha256": "7df826f5415a6d73d1fa3e6ea50bd77ba0a0c1c34a29ff34a7895c9c07aee202"
+        }
+      },
+      {
+        "id": "l43-basic-s004",
+        "order": 4,
+        "text": "このボールペンはとても書きやすいです。",
+        "translationZh": "这支圆珠笔非常好写。",
+        "confidence": "high",
+        "rawText": "4. このボールペンはとても書きやすいです。",
+        "audioSegment": {
+          "id": "l43-basic-s004",
+          "trackId": "lesson_basic",
+          "sourceUrl": "/data/ocr/audio-clips/lesson43/l43-basic-s004.mp3",
+          "start": 0,
+          "end": 2.86,
+          "duration": 2.86,
+          "method": "approved-asr-alignment",
+          "confidence": "approved",
+          "reviewedAt": "2026-08-05T10:28:08.334Z",
+          "sourceAudioSha256": "7df826f5415a6d73d1fa3e6ea50bd77ba0a0c1c34a29ff34a7895c9c07aee202"
+        }
+      }
+    ],
+    "dialogues": [
+      {
+        "id": "l43-basic-dialogue-001",
+        "label": "A",
+        "lines": [
+          {
+            "id": "l43-basic-dialogue-001-line-001",
+            "speaker": "甲",
+            "text": "今、子供を買い物に行かせています。",
+            "translationZh": "我现在让孩子去买东西了。",
+            "confidence": "high",
+            "rawText": "甲：今、子供を買い物に行かせています。",
+            "audioSegment": {
+              "id": "l43-basic-dialogue-001-line-001",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson43/l43-basic-dialogue-001-line-001.mp3",
+              "start": 0,
+              "end": 2.9,
+              "duration": 2.9,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:28:08.334Z",
+              "sourceAudioSha256": "7df826f5415a6d73d1fa3e6ea50bd77ba0a0c1c34a29ff34a7895c9c07aee202"
+            }
+          },
+          {
+            "id": "l43-basic-dialogue-001-line-002",
+            "speaker": "乙",
+            "text": "お手伝いですか。わたしもよく子供に家の仕事を手伝わせます。",
+            "translationZh": "是帮忙吗？我也经常让孩子帮着做家务。",
+            "confidence": "high",
+            "rawText": "乙：お手伝いですか。わたしもよく子供に家の仕事を手伝わせます。",
+            "audioSegment": {
+              "id": "l43-basic-dialogue-001-line-002",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson43/l43-basic-dialogue-001-line-002.mp3",
+              "start": 0,
+              "end": 5.98,
+              "duration": 5.98,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:28:08.334Z",
+              "sourceAudioSha256": "7df826f5415a6d73d1fa3e6ea50bd77ba0a0c1c34a29ff34a7895c9c07aee202"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l43-basic-dialogue-002",
+        "label": "B",
+        "lines": [
+          {
+            "id": "l43-basic-dialogue-002-line-001",
+            "speaker": "甲",
+            "text": "遠いですから、駅まで部下に送らせましょうか。",
+            "translationZh": "因为很远，要不要让部下送您到车站？",
+            "confidence": "high",
+            "rawText": "甲：遠いですから、駅まで部下に送らせましょうか。",
+            "audioSegment": {
+              "id": "l43-basic-dialogue-002-line-001",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson43/l43-basic-dialogue-002-line-001.mp3",
+              "start": 0,
+              "end": 3.5,
+              "duration": 3.5,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:28:08.334Z",
+              "sourceAudioSha256": "7df826f5415a6d73d1fa3e6ea50bd77ba0a0c1c34a29ff34a7895c9c07aee202"
+            }
+          },
+          {
+            "id": "l43-basic-dialogue-002-line-002",
+            "speaker": "乙",
+            "text": "大丈夫です。ありがとうございます。",
+            "translationZh": "没关系。谢谢。",
+            "confidence": "high",
+            "rawText": "乙：大丈夫です。ありがとうございます。",
+            "audioSegment": {
+              "id": "l43-basic-dialogue-002-line-002",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson43/l43-basic-dialogue-002-line-002.mp3",
+              "start": 0,
+              "end": 2.74,
+              "duration": 2.74,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:28:08.334Z",
+              "sourceAudioSha256": "7df826f5415a6d73d1fa3e6ea50bd77ba0a0c1c34a29ff34a7895c9c07aee202"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l43-basic-dialogue-003",
+        "label": "C",
+        "lines": [
+          {
+            "id": "l43-basic-dialogue-003-line-001",
+            "speaker": "甲",
+            "text": "部長、気分が悪いので、早く帰らせてください。",
+            "translationZh": "部长，我身体不舒服，请让我早点回去。",
+            "confidence": "high",
+            "rawText": "甲：部長、気分が悪いので、早く帰らせてください。",
+            "audioSegment": {
+              "id": "l43-basic-dialogue-003-line-001",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson43/l43-basic-dialogue-003-line-001.mp3",
+              "start": 0,
+              "end": 5.1,
+              "duration": 5.1,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:28:08.334Z",
+              "sourceAudioSha256": "7df826f5415a6d73d1fa3e6ea50bd77ba0a0c1c34a29ff34a7895c9c07aee202"
+            }
+          },
+          {
+            "id": "l43-basic-dialogue-003-line-002",
+            "speaker": "乙",
+            "text": "ええ、いいですよ。お大事に。",
+            "translationZh": "嗯，可以。请多保重。",
+            "confidence": "high",
+            "rawText": "乙：ええ、いいですよ。お大事に。",
+            "audioSegment": {
+              "id": "l43-basic-dialogue-003-line-002",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson43/l43-basic-dialogue-003-line-002.mp3",
+              "start": 0,
+              "end": 2.7,
+              "duration": 2.7,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:28:08.334Z",
+              "sourceAudioSha256": "7df826f5415a6d73d1fa3e6ea50bd77ba0a0c1c34a29ff34a7895c9c07aee202"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l43-basic-dialogue-004",
+        "label": "D",
+        "lines": [
+          {
+            "id": "l43-basic-dialogue-004-line-001",
+            "speaker": "甲",
+            "text": "この駅は乗り換えが分かりにくいですね。",
+            "translationZh": "这个车站换乘不太容易懂啊。",
+            "confidence": "high",
+            "rawText": "甲：この駅は乗り換えが分かりにくいですね。",
+            "audioSegment": {
+              "id": "l43-basic-dialogue-004-line-001",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson43/l43-basic-dialogue-004-line-001.mp3",
+              "start": 0,
+              "end": 2.86,
+              "duration": 2.86,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:28:08.334Z",
+              "sourceAudioSha256": "7df826f5415a6d73d1fa3e6ea50bd77ba0a0c1c34a29ff34a7895c9c07aee202"
+            }
+          },
+          {
+            "id": "l43-basic-dialogue-004-line-002",
+            "speaker": "乙",
+            "text": "ええ、とても大きい駅ですからね。",
+            "translationZh": "是啊，因为是个很大的车站嘛。",
+            "confidence": "high",
+            "rawText": "乙：ええ、とても大きい駅ですからね。",
+            "audioSegment": {
+              "id": "l43-basic-dialogue-004-line-002",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson43/l43-basic-dialogue-004-line-002.mp3",
+              "start": 0,
+              "end": 3.18,
+              "duration": 3.18,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:28:08.334Z",
+              "sourceAudioSha256": "7df826f5415a6d73d1fa3e6ea50bd77ba0a0c1c34a29ff34a7895c9c07aee202"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "applicationText": {
+    "title": "プレゼンテーション",
+    "blocks": [
+      {
+        "id": "l43-app-block-001",
+        "type": "narration",
+        "text": "JC策划北京分公司受CS公司委托，承担他们新产品的策划、宣传。森和小李在CS公司就新产品的名称以及设计图案等做了说明。",
+        "translationZh": "JC策划北京分公司受CS公司委托，承担他们新产品的策划、宣传。森和小李在CS公司就新产品的名称以及设计图案等做了说明。",
+        "confidence": "high",
+        "rawText": "JC策划北京分公司受CS公司委托，承担他们新产品的策划、宣传。森和小李在CS公司就新产品的名称以及设计图案等做了说明。"
+      },
+      {
+        "id": "l43-app-block-002",
+        "type": "scene",
+        "text": "（在北京分公司的办公室。加藤经理告诉老陈派森和小李去CS公司）",
+        "translationZh": "（在北京分公司的办公室。加藤经理告诉老陈派森和小李去CS公司）",
+        "confidence": "high",
+        "rawText": "（在北京分公司的办公室。加藤经理告诉老陈派森和小李去CS公司）"
+      },
+      {
+        "id": "l43-app-block-003",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l43-app-block-003-line-001",
+            "speaker": "陈",
+            "text": "ＣＳ公司的プレゼン，だれに行ってもらいましょうか。",
+            "translationZh": "CS公司的展示会，派谁去比较好呢？",
+            "confidence": "high",
+            "rawText": "陳：ＣＳ公司的プレゼン，だれに行ってもらいましょうか。",
+            "audioSegment": {
+              "id": "l43-app-block-003-line-001",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson43/l43-app-block-003-line-001.mp3",
+              "start": 0,
+              "end": 15.05,
+              "duration": 15.05,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:29:05.294Z",
+              "sourceAudioSha256": "4b2ef0bc37bfdd3843e05e06774f33bbf5c2938e1c1a1fa6ea6a333a7d22aaf8"
+            }
+          },
+          {
+            "id": "l43-app-block-003-line-002",
+            "speaker": "加藤",
+            "text": "森君と李さんを行かせるつもりです。",
+            "translationZh": "打算让森和小李去。",
+            "confidence": "high",
+            "rawText": "加藤：森君と李さんを行かせるつもりです。",
+            "audioSegment": {
+              "id": "l43-app-block-003-line-002",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson43/l43-app-block-003-line-002.mp3",
+              "start": 0,
+              "end": 2.42,
+              "duration": 2.42,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:29:05.294Z",
+              "sourceAudioSha256": "4b2ef0bc37bfdd3843e05e06774f33bbf5c2938e1c1a1fa6ea6a333a7d22aaf8"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l43-app-block-004",
+        "type": "scene",
+        "text": "（在CS公司的会议室，森和小李利用大屏幕做说明）",
+        "translationZh": "（在CS公司的会议室，森和小李利用大屏幕做说明）",
+        "confidence": "high",
+        "rawText": "（在CS公司的会议室，森和小李利用大屏幕做说明）"
+      },
+      {
+        "id": "l43-app-block-005",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l43-app-block-005-line-001",
+            "speaker": "森",
+            "text": "……言うまでもなく品質は重要ですが、ネーミングとデザインもとても大切です。まず、ネーミングですが、理解しやすくて単純なものがいいと考えます。しかも、多くの人に親近感を感じさせるものが理想的です。アルファベットは分かりにくいので、避けたほうがいいのではないでしょうか。",
+            "translationZh": "……不用说，质量很重要，不过命名和设计也非常重要。首先说命名，我认为最好是容易理解、简单明了的东西。而且，理想的是能让很多人产生亲近感的东西。字母表不太容易懂，所以我觉得还是避开比较好。",
+            "confidence": "high",
+            "rawText": "森：……言うまでもなく品質は重要ですが、ネーミングとデザインもとても大切です。まず、ネーミングですが、理解しやすくて単純なものがいいと考えます。しかも、多くの人に親近感を感じさせるものが理想的です。アルファベットは分かりにくいので、避けたほうがいいのではないでしょうか。",
+            "audioSegment": {
+              "id": "l43-app-block-005-line-001",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson43/l43-app-block-005-line-001.mp3",
+              "start": 0,
+              "end": 12.22,
+              "duration": 12.22,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:29:05.294Z",
+              "sourceAudioSha256": "4b2ef0bc37bfdd3843e05e06774f33bbf5c2938e1c1a1fa6ea6a333a7d22aaf8"
+            }
+          },
+          {
+            "id": "l43-app-block-005-line-002",
+            "speaker": "李",
+            "text": "では、ネーミングについて具体的に提案させてください。例えば、「动力」はどうでしょう？力強い感じを受けませんか。「Energy」や「Power」などの英語を使うこともできますが、英語が分からない人には商品のイメージが浮かびにくいと思います。……",
+            "translationZh": "那么，我就关于命名具体提个建议吧。比如“动力”怎么样？是不是有种很有力量的感觉？虽然也可以使用“Energy”或“Power”这样的英语，但对不懂英语的人来说，商品形象不容易浮现在脑海里。我是这么想的。……",
+            "confidence": "high",
+            "rawText": "李：では、ネーミングについて具体的に提案させてください。例えば、「动力」はどうでしょう？力強い感じを受けませんか。「Energy」や「Power」などの英語を使うこともできますが、英語が分からない人には商品のイメージが浮かびにくいと思います。……",
+            "audioSegment": {
+              "id": "l43-app-block-005-line-002",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson43/l43-app-block-005-line-002.mp3",
+              "start": 0,
+              "end": 11.1,
+              "duration": 11.1,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:29:05.294Z",
+              "sourceAudioSha256": "4b2ef0bc37bfdd3843e05e06774f33bbf5c2938e1c1a1fa6ea6a333a7d22aaf8"
+            }
+          },
+          {
+            "id": "l43-app-block-005-line-003",
+            "speaker": "森",
+            "text": "次に、デザインですが、やはりインパクトのあるものが必要です。そこで、今回、赤と黄色を使った斬新なデザインを考えてみました。今、デザイナーにいくつか試作させています。……",
+            "translationZh": "接下来是设计，我认为还是需要有冲击力的东西。所以，这次我考虑了使用红色和黄色的崭新设计。现在正让设计师做几种试作。……",
+            "confidence": "high",
+            "rawText": "森：次に、デザインですが、やはりインパクトのあるものが必要です。そこで、今回、赤と黄色を使った斬新なデザインを考えてみました。今、デザイナーにいくつか試作させています。……",
+            "audioSegment": {
+              "id": "l43-app-block-005-line-003",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson43/l43-app-block-005-line-003.mp3",
+              "start": 0,
+              "end": 14.82,
+              "duration": 14.82,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:29:05.294Z",
+              "sourceAudioSha256": "4b2ef0bc37bfdd3843e05e06774f33bbf5c2938e1c1a1fa6ea6a333a7d22aaf8"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l43-app-block-006",
+        "type": "scene",
+        "text": "（最后谈到了定价）",
+        "translationZh": "（最后谈到了定价）",
+        "confidence": "high",
+        "rawText": "（最后谈到了定价）"
+      },
+      {
+        "id": "l43-app-block-007",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l43-app-block-007-line-001",
+            "speaker": "森",
+            "text": "定価については、少し高いほうがいいと考えます。商品のイメージがぐっとよくなって、消費者が安心して買えると思います。……",
+            "translationZh": "关于定价，我认为稍微高一些比较好。这样商品的形象会一下子变得更好，消费者也会更安心地购买。我是这么想的。……",
+            "confidence": "high",
+            "rawText": "森：定価については、少し高いほうがいいと考えます。商品のイメージがぐっとよくなって、消費者が安心して買えると思います。……",
+            "audioSegment": {
+              "id": "l43-app-block-007-line-001",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson43/l43-app-block-007-line-001.mp3",
+              "start": 0,
+              "end": 9.53,
+              "duration": 9.53,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:29:05.294Z",
+              "sourceAudioSha256": "4b2ef0bc37bfdd3843e05e06774f33bbf5c2938e1c1a1fa6ea6a333a7d22aaf8"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "warnings": [],
+  "audioAlignment": {
+    "schemaVersion": 1,
+    "method": "approved-asr-alignment",
+    "sourceAlignment": "data/ocr/lesson43-text-audio-alignment.json",
+    "publishedAt": "2026-08-05T10:29:09.009Z",
+    "approvedSegments": 18
+  }
+}

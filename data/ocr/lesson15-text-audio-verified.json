@@ -1,0 +1,665 @@
+{
+  "lessonId": "lesson15",
+  "sourceImages": [
+    {
+      "section": "basic",
+      "path": "course-assets/by-lesson/lesson15/page180.webp",
+      "pageNo": 180
+    },
+    {
+      "section": "application",
+      "path": "course-assets/by-lesson/lesson15/page185.webp",
+      "pageNo": 185
+    }
+  ],
+  "basicText": {
+    "title": "小野さんは 今 新聞を 読んで います",
+    "basicSentences": [
+      {
+        "id": "l15-basic-s001",
+        "order": 1,
+        "text": "小野さんは 今 新聞を 読んで います。",
+        "kana": "おのさんは いま しんぶんを よんで います。",
+        "translationZh": "小野女士现在正在读报纸。",
+        "confidence": "high",
+        "rawText": "1. 小野さんは 今 新聞を 読んで います。",
+        "audioSegment": {
+          "id": "l15-basic-s001",
+          "trackId": "lesson_basic",
+          "sourceUrl": "/data/ocr/audio-clips/lesson15/l15-basic-s001.mp3",
+          "start": 0,
+          "end": 3.02,
+          "duration": 3.02,
+          "method": "approved-asr-alignment",
+          "confidence": "approved",
+          "reviewedAt": "2026-08-05T08:38:09.278Z",
+          "sourceAudioSha256": "8c0041f5d4ad7017f1cb4b16432fdf3c7c594797c9bcad3ac3b1ddf2fa138f78"
+        }
+      },
+      {
+        "id": "l15-basic-s002",
+        "order": 2,
+        "text": "ここで 写真を 撮っても いいですか。",
+        "kana": "ここで しゃしんを とっても いいですか。",
+        "translationZh": "可以在这里拍照吗？",
+        "confidence": "high",
+        "rawText": "2. ここで 写真を 撮っても いいですか。",
+        "audioSegment": {
+          "id": "l15-basic-s002",
+          "trackId": "lesson_basic",
+          "sourceUrl": "/data/ocr/audio-clips/lesson15/l15-basic-s002.mp3",
+          "start": 0,
+          "end": 2.5,
+          "duration": 2.5,
+          "method": "approved-asr-alignment",
+          "confidence": "approved",
+          "reviewedAt": "2026-08-05T08:38:09.278Z",
+          "sourceAudioSha256": "8c0041f5d4ad7017f1cb4b16432fdf3c7c594797c9bcad3ac3b1ddf2fa138f78"
+        }
+      },
+      {
+        "id": "l15-basic-s003",
+        "order": 3,
+        "text": "飛行機の 中で タバコを 吸っては いけません。",
+        "kana": "ひこうきの なかで タバコを すっては いけません。",
+        "translationZh": "在飞机上不可以吸烟。",
+        "confidence": "high",
+        "rawText": "3. 飛行機の 中で タバコを 吸っては いけません。",
+        "audioSegment": {
+          "id": "l15-basic-s003",
+          "trackId": "lesson_basic",
+          "sourceUrl": "/data/ocr/audio-clips/lesson15/l15-basic-s003.mp3",
+          "start": 0,
+          "end": 3.02,
+          "duration": 3.02,
+          "method": "approved-asr-alignment",
+          "confidence": "approved",
+          "reviewedAt": "2026-08-05T08:38:09.278Z",
+          "sourceAudioSha256": "8c0041f5d4ad7017f1cb4b16432fdf3c7c594797c9bcad3ac3b1ddf2fa138f78"
+        }
+      },
+      {
+        "id": "l15-basic-s004",
+        "order": 4,
+        "text": "日曜日、小野さんは 公園で ボートに 乗りました。",
+        "kana": "にちようび、おのさんは こうえんで ボートに のりました。",
+        "translationZh": "星期天，小野女士在公园坐了小船。",
+        "confidence": "high",
+        "rawText": "4. 日曜日、小野さんは 公園で ボートに 乗りました。",
+        "audioSegment": {
+          "id": "l15-basic-s004",
+          "trackId": "lesson_basic",
+          "sourceUrl": "/data/ocr/audio-clips/lesson15/l15-basic-s004.mp3",
+          "start": 0,
+          "end": 4.34,
+          "duration": 4.34,
+          "method": "approved-asr-alignment",
+          "confidence": "approved",
+          "reviewedAt": "2026-08-05T08:38:09.278Z",
+          "sourceAudioSha256": "8c0041f5d4ad7017f1cb4b16432fdf3c7c594797c9bcad3ac3b1ddf2fa138f78"
+        }
+      }
+    ],
+    "dialogues": [
+      {
+        "id": "l15-basic-dialogue-001",
+        "label": "A",
+        "lines": [
+          {
+            "id": "l15-basic-dialogue-001-line-001",
+            "speaker": "甲",
+            "text": "もしもし、森さん？ 今 どこですか。",
+            "kana": "もしもし、もりさん？ いま どこですか。",
+            "translationZh": "喂，森先生吗？您现在在哪里？",
+            "confidence": "high",
+            "rawText": "甲：もしもし、森さん？ 今 どこですか。",
+            "audioSegment": {
+              "id": "l15-basic-dialogue-001-line-001",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson15/l15-basic-dialogue-001-line-001.mp3",
+              "start": 0,
+              "end": 2.7,
+              "duration": 2.7,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:38:09.278Z",
+              "sourceAudioSha256": "8c0041f5d4ad7017f1cb4b16432fdf3c7c594797c9bcad3ac3b1ddf2fa138f78"
+            }
+          },
+          {
+            "id": "l15-basic-dialogue-001-line-002",
+            "speaker": "乙",
+            "text": "今 市役所の 前を 歩いて います。",
+            "kana": "いま しやくしょの まえを あるいて います。",
+            "translationZh": "我现在正在市政府前面走。",
+            "confidence": "high",
+            "rawText": "乙：今 市役所の 前を 歩いて います。",
+            "audioSegment": {
+              "id": "l15-basic-dialogue-001-line-002",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson15/l15-basic-dialogue-001-line-002.mp3",
+              "start": 0,
+              "end": 2.06,
+              "duration": 2.06,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:38:09.278Z",
+              "sourceAudioSha256": "8c0041f5d4ad7017f1cb4b16432fdf3c7c594797c9bcad3ac3b1ddf2fa138f78"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l15-basic-dialogue-002",
+        "label": "B",
+        "lines": [
+          {
+            "id": "l15-basic-dialogue-002-line-001",
+            "speaker": "甲",
+            "text": "すみません、この 辞書を 借りても いいですか。",
+            "kana": "すみません、この じしょを かりても いいですか。",
+            "translationZh": "对不起，可以借一下这本词典吗？",
+            "confidence": "high",
+            "rawText": "甲：すみません、この 辞書を 借りても いいですか。",
+            "audioSegment": {
+              "id": "l15-basic-dialogue-002-line-001",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson15/l15-basic-dialogue-002-line-001.mp3",
+              "start": 0,
+              "end": 3.18,
+              "duration": 3.18,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:38:09.278Z",
+              "sourceAudioSha256": "8c0041f5d4ad7017f1cb4b16432fdf3c7c594797c9bcad3ac3b1ddf2fa138f78"
+            }
+          },
+          {
+            "id": "l15-basic-dialogue-002-line-002",
+            "speaker": "乙",
+            "text": "いえ、ちょっと…。今 使って います。",
+            "kana": "いえ、ちょっと…。いま つかって います。",
+            "translationZh": "不，恐怕不行……我现在正在用。",
+            "confidence": "high",
+            "rawText": "乙：いえ、ちょっと…。今 使って います。",
+            "audioSegment": {
+              "id": "l15-basic-dialogue-002-line-002",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson15/l15-basic-dialogue-002-line-002.mp3",
+              "start": 0,
+              "end": 1.62,
+              "duration": 1.62,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:38:09.278Z",
+              "sourceAudioSha256": "8c0041f5d4ad7017f1cb4b16432fdf3c7c594797c9bcad3ac3b1ddf2fa138f78"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l15-basic-dialogue-003",
+        "label": "C",
+        "lines": [
+          {
+            "id": "l15-basic-dialogue-003-line-001",
+            "speaker": "甲",
+            "text": "すみません、ここに 座っても いいですか。",
+            "kana": "すみません、ここに すわっても いいですか。",
+            "translationZh": "对不起，可以坐在这里吗？",
+            "confidence": "high",
+            "rawText": "甲：すみません、ここに 座っても いいですか。",
+            "audioSegment": {
+              "id": "l15-basic-dialogue-003-line-001",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson15/l15-basic-dialogue-003-line-001.mp3",
+              "start": 0,
+              "end": 3.1,
+              "duration": 3.1,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:38:09.278Z",
+              "sourceAudioSha256": "8c0041f5d4ad7017f1cb4b16432fdf3c7c594797c9bcad3ac3b1ddf2fa138f78"
+            }
+          },
+          {
+            "id": "l15-basic-dialogue-003-line-002",
+            "speaker": "乙",
+            "text": "ええ、どうぞ。",
+            "kana": "ええ、どうぞ。",
+            "translationZh": "可以，请坐。",
+            "confidence": "high",
+            "rawText": "乙：ええ、どうぞ。",
+            "audioSegment": {
+              "id": "l15-basic-dialogue-003-line-002",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson15/l15-basic-dialogue-003-line-002.mp3",
+              "start": 0,
+              "end": 0.7,
+              "duration": 0.7,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:38:09.278Z",
+              "sourceAudioSha256": "8c0041f5d4ad7017f1cb4b16432fdf3c7c594797c9bcad3ac3b1ddf2fa138f78"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l15-basic-dialogue-004",
+        "label": "D",
+        "lines": [
+          {
+            "id": "l15-basic-dialogue-004-line-001",
+            "speaker": "甲",
+            "text": "あっ、ここで 携帯電話を 使っては いけませんよ。",
+            "kana": "あっ、ここで けいたいでんわを つかっては いけませんよ。",
+            "translationZh": "啊，这里不可以使用手机。",
+            "confidence": "high",
+            "rawText": "甲：あっ、ここで 携帯電話を 使っては いけませんよ。",
+            "audioSegment": {
+              "id": "l15-basic-dialogue-004-line-001",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson15/l15-basic-dialogue-004-line-001.mp3",
+              "start": 0,
+              "end": 3.54,
+              "duration": 3.54,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:38:09.278Z",
+              "sourceAudioSha256": "8c0041f5d4ad7017f1cb4b16432fdf3c7c594797c9bcad3ac3b1ddf2fa138f78"
+            }
+          },
+          {
+            "id": "l15-basic-dialogue-004-line-002",
+            "speaker": "乙",
+            "text": "すみません。これから 気を つけます。",
+            "kana": "すみません。これから きを つけます。",
+            "translationZh": "对不起，我以后会注意的。",
+            "confidence": "high",
+            "rawText": "乙：すみません。これから 気を つけます。",
+            "audioSegment": {
+              "id": "l15-basic-dialogue-004-line-002",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson15/l15-basic-dialogue-004-line-002.mp3",
+              "start": 0,
+              "end": 2.78,
+              "duration": 2.78,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:38:09.278Z",
+              "sourceAudioSha256": "8c0041f5d4ad7017f1cb4b16432fdf3c7c594797c9bcad3ac3b1ddf2fa138f78"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "applicationText": {
+    "title": "風邪",
+    "blocks": [
+      {
+        "id": "l15-app-block-001",
+        "type": "narration",
+        "text": "一天早上，已经过了9点小李还没来上班。小野正在为她担心的时候，小李打来了电话。",
+        "kana": null,
+        "translationZh": "一天早上，已经过了9点小李还没来上班。小野正在为她担心的时候，小李打来了电话。",
+        "confidence": "high",
+        "rawText": "一天早上，已经过了9点小李还没来上班。小野正在为她担心的时候，小李打来了电话。"
+      },
+      {
+        "id": "l15-app-block-002",
+        "type": "scene",
+        "text": "（电话转接到小野处）",
+        "kana": null,
+        "translationZh": "电话转接到小野处。",
+        "confidence": "high",
+        "rawText": "（电话转接到小野处）"
+      },
+      {
+        "id": "l15-app-block-003",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l15-app-block-003-line-001",
+            "speaker": "小野",
+            "text": "もしもし、小野です。どうしました？",
+            "kana": "もしもし、おのです。どうしました？",
+            "translationZh": "喂，我是小野。怎么了？",
+            "confidence": "high",
+            "rawText": "小野：もしもし、小野です。どうしました？",
+            "audioSegment": {
+              "id": "l15-app-block-003-line-001",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson15/l15-app-block-003-line-001.mp3",
+              "start": 0,
+              "end": 2.18,
+              "duration": 2.18,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:38:51.814Z",
+              "sourceAudioSha256": "02277fc8846d6e3af3897c16a1155cad044f6db72ed21a994550b8b46154c14e"
+            }
+          },
+          {
+            "id": "l15-app-block-003-line-002",
+            "speaker": "李",
+            "text": "ちょっと 熱が あります。今日 会社を 休んでも いいですか。",
+            "kana": "ちょっと ねつが あります。きょう かいしゃを やすんでも いいですか。",
+            "translationZh": "我有点发烧。今天可以请假吗？",
+            "confidence": "high",
+            "rawText": "李：ちょっと 熱が あります。今日 会社を 休んでも いいですか。",
+            "audioSegment": {
+              "id": "l15-app-block-003-line-002",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson15/l15-app-block-003-line-002.mp3",
+              "start": 0,
+              "end": 4.86,
+              "duration": 4.86,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:38:51.814Z",
+              "sourceAudioSha256": "02277fc8846d6e3af3897c16a1155cad044f6db72ed21a994550b8b46154c14e"
+            }
+          },
+          {
+            "id": "l15-app-block-003-line-003",
+            "speaker": "小野",
+            "text": "ええ、もちろんです。あまり 無理を しては いけませんよ。",
+            "kana": "ええ、もちろんです。あまり むりを しては いけませんよ。",
+            "translationZh": "嗯，当然可以。不要太勉强自己。",
+            "confidence": "high",
+            "rawText": "小野：ええ、もちろんです。あまり 無理を しては いけませんよ。",
+            "audioSegment": {
+              "id": "l15-app-block-003-line-003",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson15/l15-app-block-003-line-003.mp3",
+              "start": 0,
+              "end": 3.66,
+              "duration": 3.66,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:38:51.814Z",
+              "sourceAudioSha256": "02277fc8846d6e3af3897c16a1155cad044f6db72ed21a994550b8b46154c14e"
+            }
+          },
+          {
+            "id": "l15-app-block-003-line-004",
+            "speaker": "李",
+            "text": "はい、分かりました。あのう、吉田課長は？",
+            "kana": "はい、わかりました。あのう、よしだかちょうは？",
+            "translationZh": "好的，我明白了。那个，吉田科长呢？",
+            "confidence": "high",
+            "rawText": "李：はい、分かりました。あのう、吉田課長は？",
+            "audioSegment": {
+              "id": "l15-app-block-003-line-004",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson15/l15-app-block-003-line-004.mp3",
+              "start": 0,
+              "end": 4.38,
+              "duration": 4.38,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:38:51.814Z",
+              "sourceAudioSha256": "02277fc8846d6e3af3897c16a1155cad044f6db72ed21a994550b8b46154c14e"
+            }
+          },
+          {
+            "id": "l15-app-block-003-line-005",
+            "speaker": "小野",
+            "text": "今 会議室で 打ち合わせを して います。後で 伝えます。",
+            "kana": "いま かいぎしつで うちあわせを して います。あとで つたえます。",
+            "translationZh": "他现在正在会议室商谈。之后我会转告他。",
+            "confidence": "high",
+            "rawText": "小野：今 会議室で 打ち合わせを して います。後で 伝えます。",
+            "audioSegment": {
+              "id": "l15-app-block-003-line-005",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson15/l15-app-block-003-line-005.mp3",
+              "start": 0,
+              "end": 4.22,
+              "duration": 4.22,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:38:51.814Z",
+              "sourceAudioSha256": "02277fc8846d6e3af3897c16a1155cad044f6db72ed21a994550b8b46154c14e"
+            }
+          },
+          {
+            "id": "l15-app-block-003-line-006",
+            "speaker": "李",
+            "text": "お願いします。",
+            "kana": "おねがいします。",
+            "translationZh": "拜托您了。",
+            "confidence": "high",
+            "rawText": "李：お願いします。",
+            "audioSegment": {
+              "id": "l15-app-block-003-line-006",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson15/l15-app-block-003-line-006.mp3",
+              "start": 0,
+              "end": 1.1,
+              "duration": 1.1,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:38:51.814Z",
+              "sourceAudioSha256": "02277fc8846d6e3af3897c16a1155cad044f6db72ed21a994550b8b46154c14e"
+            }
+          },
+          {
+            "id": "l15-app-block-003-line-007",
+            "speaker": "小野",
+            "text": "もう 病院に 行きましたか。",
+            "kana": "もう びょういんに いきましたか。",
+            "translationZh": "已经去医院了吗？",
+            "confidence": "high",
+            "rawText": "小野：もう 病院に 行きましたか。",
+            "audioSegment": {
+              "id": "l15-app-block-003-line-007",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson15/l15-app-block-003-line-007.mp3",
+              "start": 0,
+              "end": 2.02,
+              "duration": 2.02,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:38:51.814Z",
+              "sourceAudioSha256": "02277fc8846d6e3af3897c16a1155cad044f6db72ed21a994550b8b46154c14e"
+            }
+          },
+          {
+            "id": "l15-app-block-003-line-008",
+            "speaker": "李",
+            "text": "いいえ、まだです。",
+            "kana": "いいえ、まだです。",
+            "translationZh": "不，还没有。",
+            "confidence": "high",
+            "rawText": "李：いいえ、まだです。",
+            "audioSegment": {
+              "id": "l15-app-block-003-line-008",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson15/l15-app-block-003-line-008.mp3",
+              "start": 0,
+              "end": 1.5,
+              "duration": 1.5,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:38:51.814Z",
+              "sourceAudioSha256": "02277fc8846d6e3af3897c16a1155cad044f6db72ed21a994550b8b46154c14e"
+            }
+          },
+          {
+            "id": "l15-app-block-003-line-009",
+            "speaker": "小野",
+            "text": "じゃあ、病院に 行ってから、ゆっくり 休んで ください。",
+            "kana": "じゃあ、びょういんに いってから、ゆっくり やすんで ください。",
+            "translationZh": "那么，去医院以后请好好休息。",
+            "confidence": "high",
+            "rawText": "小野：じゃあ、病院に 行ってから、ゆっくり 休んで ください。",
+            "audioSegment": {
+              "id": "l15-app-block-003-line-009",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson15/l15-app-block-003-line-009.mp3",
+              "start": 0,
+              "end": 3.34,
+              "duration": 3.34,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:38:51.814Z",
+              "sourceAudioSha256": "02277fc8846d6e3af3897c16a1155cad044f6db72ed21a994550b8b46154c14e"
+            }
+          },
+          {
+            "id": "l15-app-block-003-line-010",
+            "speaker": "李",
+            "text": "はい、ありがとう ございます。",
+            "kana": "はい、ありがとう ございます。",
+            "translationZh": "好的，谢谢您。",
+            "confidence": "high",
+            "rawText": "李：はい、ありがとう ございます。",
+            "audioSegment": {
+              "id": "l15-app-block-003-line-010",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson15/l15-app-block-003-line-010.mp3",
+              "start": 0,
+              "end": 1.98,
+              "duration": 1.98,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:38:51.814Z",
+              "sourceAudioSha256": "02277fc8846d6e3af3897c16a1155cad044f6db72ed21a994550b8b46154c14e"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l15-app-block-004",
+        "type": "scene",
+        "text": "（在医院里）",
+        "kana": null,
+        "translationZh": "在医院里。",
+        "confidence": "high",
+        "rawText": "（在医院里）"
+      },
+      {
+        "id": "l15-app-block-005",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l15-app-block-005-line-001",
+            "speaker": "医者",
+            "text": "風邪ですね。温かい 物を 食べて、十分 睡眠を とって ください。それから 今晩 お風呂に 入っては いけませんよ。",
+            "kana": "かぜですね。あたたかい ものを たべて、じゅうぶん すいみんを とって ください。それから こんばん おふろに はいっては いけませんよ。",
+            "translationZh": "是感冒。请吃些热的东西，好好睡一觉。另外，今晚不可以洗澡。",
+            "confidence": "high",
+            "rawText": "医者：風邪ですね。温かい 物を 食べて、十分 睡眠を とって ください。それから 今晩 お風呂に 入っては いけませんよ。",
+            "audioSegment": {
+              "id": "l15-app-block-005-line-001",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson15/l15-app-block-005-line-001.mp3",
+              "start": 0,
+              "end": 7.66,
+              "duration": 7.66,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:38:51.814Z",
+              "sourceAudioSha256": "02277fc8846d6e3af3897c16a1155cad044f6db72ed21a994550b8b46154c14e"
+            }
+          },
+          {
+            "id": "l15-app-block-005-line-002",
+            "speaker": "李",
+            "text": "分かりました。",
+            "kana": "わかりました。",
+            "translationZh": "明白了。",
+            "confidence": "high",
+            "rawText": "李：分かりました。",
+            "audioSegment": {
+              "id": "l15-app-block-005-line-002",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson15/l15-app-block-005-line-002.mp3",
+              "start": 0,
+              "end": 0.58,
+              "duration": 0.58,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:38:51.814Z",
+              "sourceAudioSha256": "02277fc8846d6e3af3897c16a1155cad044f6db72ed21a994550b8b46154c14e"
+            }
+          },
+          {
+            "id": "l15-app-block-005-line-003",
+            "speaker": "医者",
+            "text": "では、薬を 出します。薬局に 行って、もらって ください。",
+            "kana": "では、くすりを だします。やっきょくに いって、もらって ください。",
+            "translationZh": "那么，我给您开药。请去药店取药。",
+            "confidence": "high",
+            "rawText": "医者：では、薬を 出します。薬局に 行って、もらって ください。",
+            "audioSegment": {
+              "id": "l15-app-block-005-line-003",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson15/l15-app-block-005-line-003.mp3",
+              "start": 0,
+              "end": 3.22,
+              "duration": 3.22,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:38:51.814Z",
+              "sourceAudioSha256": "02277fc8846d6e3af3897c16a1155cad044f6db72ed21a994550b8b46154c14e"
+            }
+          },
+          {
+            "id": "l15-app-block-005-line-004",
+            "speaker": "李",
+            "text": "ありがとう ございました。",
+            "kana": "ありがとう ございました。",
+            "translationZh": "非常感谢。",
+            "confidence": "high",
+            "rawText": "李：ありがとう ございました。",
+            "audioSegment": {
+              "id": "l15-app-block-005-line-004",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson15/l15-app-block-005-line-004.mp3",
+              "start": 0,
+              "end": 1.66,
+              "duration": 1.66,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:38:51.814Z",
+              "sourceAudioSha256": "02277fc8846d6e3af3897c16a1155cad044f6db72ed21a994550b8b46154c14e"
+            }
+          },
+          {
+            "id": "l15-app-block-005-line-005",
+            "speaker": "医者",
+            "text": "お大事に。",
+            "kana": "おだいじに。",
+            "translationZh": "请多保重。",
+            "confidence": "high",
+            "rawText": "医者：お大事に。",
+            "audioSegment": {
+              "id": "l15-app-block-005-line-005",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson15/l15-app-block-005-line-005.mp3",
+              "start": 0,
+              "end": 0.82,
+              "duration": 0.82,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:38:51.814Z",
+              "sourceAudioSha256": "02277fc8846d6e3af3897c16a1155cad044f6db72ed21a994550b8b46154c14e"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "warnings": [],
+  "audioAlignment": {
+    "schemaVersion": 1,
+    "method": "approved-asr-alignment",
+    "sourceAlignment": "data/ocr/lesson15-text-audio-alignment.json",
+    "publishedAt": "2026-08-05T08:38:56.208Z",
+    "approvedSegments": 27
+  }
+}

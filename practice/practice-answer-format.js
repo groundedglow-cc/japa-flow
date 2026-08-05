@@ -16,6 +16,15 @@
   }
 
   function exampleBlockText(example) {
+    const pairedRows = Array.from(example.querySelectorAll(".example-pair-row"))
+      .map((row) => {
+        const before = textOf(row.querySelector(".example-before"));
+        const after = textOf(row.querySelector(".example-after"));
+        return before && after ? `${before}\n→\n${after}` : [before, after].filter(Boolean).join("\n");
+      })
+      .filter(Boolean);
+    if (pairedRows.length) return pairedRows.join("\n\n");
+
     const lines = [];
     const before = textOf(example.querySelector(".example-before"));
     if (before) lines.push(before);

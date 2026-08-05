@@ -1,0 +1,324 @@
+{
+  "lessonId": "lesson47",
+  "sourceImages": [
+    {
+      "section": "basic",
+      "path": "course-assets/by-lesson/lesson47/page254.webp",
+      "pageNo": 254
+    },
+    {
+      "section": "application",
+      "path": "course-assets/by-lesson/lesson47/page259.webp",
+      "pageNo": 259
+    }
+  ],
+  "basicText": {
+    "title": "基本课文",
+    "basicSentences": [
+      {
+        "id": "l47-basic-s001",
+        "order": 1,
+        "text": "周先生は明日日本へ行かれます。",
+        "translationZh": "周先生明天要去日本。",
+        "confidence": "high",
+        "rawText": "1. 周先生は明日日本へ行かれます。"
+      },
+      {
+        "id": "l47-basic-s002",
+        "order": 2,
+        "text": "お客様はもうお帰りになりました。",
+        "translationZh": "客人已经回去了。",
+        "confidence": "high",
+        "rawText": "2. お客様はもうお帰りになりました。"
+      },
+      {
+        "id": "l47-basic-s003",
+        "order": 3,
+        "text": "どうぞお座りください。",
+        "translationZh": "请坐。",
+        "confidence": "high",
+        "rawText": "3. どうぞお座りください。"
+      },
+      {
+        "id": "l47-basic-s004",
+        "order": 4,
+        "text": "先生、何を召し上がりますか。",
+        "translationZh": "老师，您要吃什么？",
+        "confidence": "high",
+        "rawText": "4. 先生、何を召し上がりますか。"
+      }
+    ],
+    "dialogues": [
+      {
+        "id": "l47-basic-dialogue-001",
+        "label": "A",
+        "lines": [
+          {
+            "id": "l47-basic-dialogue-001-line-001",
+            "speaker": "甲",
+            "text": "お土産はもう買われましたか。",
+            "translationZh": "纪念品已经买好了吗？",
+            "confidence": "high",
+            "rawText": "甲：お土産はもう買われましたか。"
+          },
+          {
+            "id": "l47-basic-dialogue-001-line-002",
+            "speaker": "乙",
+            "text": "はい、買いました。",
+            "translationZh": "是的，买好了。",
+            "confidence": "high",
+            "rawText": "乙：はい、買いました。"
+          }
+        ]
+      },
+      {
+        "id": "l47-basic-dialogue-002",
+        "label": "B",
+        "lines": [
+          {
+            "id": "l47-basic-dialogue-002-line-001",
+            "speaker": "甲",
+            "text": "もうその資料をご覧になりましたか。",
+            "translationZh": "您已经看过那份资料了吗？",
+            "confidence": "high",
+            "rawText": "甲：もうその資料をご覧になりましたか。"
+          },
+          {
+            "id": "l47-basic-dialogue-002-line-002",
+            "speaker": "乙",
+            "text": "いいえ、まだです。",
+            "translationZh": "没有，还没有。",
+            "confidence": "high",
+            "rawText": "乙：いいえ、まだです。"
+          },
+          {
+            "id": "l47-basic-dialogue-002-line-003",
+            "speaker": "乙",
+            "text": "忙しくて、読む暇がありませんでした。",
+            "translationZh": "因为太忙了，没有时间看。",
+            "confidence": "high",
+            "rawText": "忙しくて、読む暇がありませんでした。"
+          }
+        ]
+      },
+      {
+        "id": "l47-basic-dialogue-003",
+        "label": "C",
+        "lines": [
+          {
+            "id": "l47-basic-dialogue-003-line-001",
+            "speaker": "甲",
+            "text": "あのう、靴売り場は何階ですか。",
+            "translationZh": "请问，鞋区在几楼？",
+            "confidence": "high",
+            "rawText": "甲：あのう、靴売り場は何階ですか。"
+          },
+          {
+            "id": "l47-basic-dialogue-003-line-002",
+            "speaker": "乙",
+            "text": "4階です。エスカレーターをご利用ください。",
+            "translationZh": "在4楼。请乘扶梯。",
+            "confidence": "high",
+            "rawText": "乙：4階です。エスカレーターをご利用ください。"
+          }
+        ]
+      },
+      {
+        "id": "l47-basic-dialogue-004",
+        "label": "D",
+        "lines": [
+          {
+            "id": "l47-basic-dialogue-004-line-001",
+            "speaker": "甲",
+            "text": "小野さん、木村部長、何時に戻るっておっしゃいましたか。",
+            "translationZh": "小野，木村部长，您说几点回来来着？",
+            "confidence": "high",
+            "rawText": "甲：小野さん、木村部長、何時に戻るっておっしゃいましたか。"
+          },
+          {
+            "id": "l47-basic-dialogue-004-line-002",
+            "speaker": "乙",
+            "text": "木村部長ですか。先ほど戻っていらっしゃいましたよ。",
+            "translationZh": "木村部长吗？他刚才已经回来了哦。",
+            "confidence": "high",
+            "rawText": "乙：木村部長ですか。先ほど戻っていらっしゃいましたよ。"
+          }
+        ]
+      }
+    ]
+  },
+  "applicationText": {
+    "title": "社長の下見",
+    "blocks": [
+      {
+        "id": "l47-app-block-001",
+        "type": "narration",
+        "text": "为了视察上海事务所，东京总公司的总经理来到上海。北京分公司的加藤经理和森也来到上海。亲自敲定上海事务所所在地的老陈却因为一件重要的生意而离不开北京。",
+        "translationZh": "为了视察上海事务所，东京总公司的总经理来到上海。北京分公司的加藤经理和森也来到上海。亲自敲定上海事务所所在地的老陈却因为一件重要的生意而离不开北京。",
+        "confidence": "high",
+        "rawText": "为了视察上海事务所，东京总公司的总经理来到上海。北京分公司的加藤经理和森也来到上海。亲自敲定上海事务所所在地的老陈却因为一件重要的生意而离不开北京。"
+      },
+      {
+        "id": "l47-app-block-002",
+        "type": "scene",
+        "text": "（加藤经理和森在机场接到总经理，他们走向出租车车站）",
+        "translationZh": "（加藤经理和森在机场接到总经理，他们走向出租车车站）",
+        "confidence": "high",
+        "rawText": "（加藤经理和森在机场接到总经理，他们走向出租车车站）"
+      },
+      {
+        "id": "l47-app-block-003",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l47-app-block-003-line-001",
+            "speaker": "加藤",
+            "text": "お食事はもうお済みになりましたか。",
+            "translationZh": "您已经吃过饭了吗？",
+            "confidence": "high",
+            "rawText": "加藤：お食事はもうお済みになりましたか。"
+          },
+          {
+            "id": "l47-app-block-003-line-002",
+            "speaker": "社長",
+            "text": "うん、飛行機の中で食べてきたよ。",
+            "translationZh": "嗯，在飞机上吃过了。",
+            "confidence": "high",
+            "rawText": "社長：うん、飛行機の中で食べてきたよ。"
+          },
+          {
+            "id": "l47-app-block-003-line-003",
+            "speaker": "加藤",
+            "text": "では、まずホテルにチェックインなさいますか。それとも、先に事務所をご覧になりますか。",
+            "translationZh": "那么，您是先去酒店办理入住，还是先去看看事务所？",
+            "confidence": "high",
+            "rawText": "加藤：では、まずホテルにチェックインなさいますか。それとも、先に事務所をご覧になりますか。"
+          },
+          {
+            "id": "l47-app-block-003-line-004",
+            "speaker": "社長",
+            "text": "そうだな。事務所へ直行しようか。早く見てみたいからな。",
+            "translationZh": "嗯，先直接去事务所吧。我想早点看看。",
+            "confidence": "high",
+            "rawText": "社長：そうだな。事務所へ直行しようか。早く見てみたいからな。"
+          }
+        ]
+      },
+      {
+        "id": "l47-app-block-004",
+        "type": "scene",
+        "text": "（到了上海事务所）",
+        "translationZh": "（到了上海事务所）",
+        "confidence": "high",
+        "rawText": "（到了上海事务所）"
+      },
+      {
+        "id": "l47-app-block-005",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l47-app-block-005-line-001",
+            "speaker": "森",
+            "text": "こちらのドアからお入りください。",
+            "translationZh": "请从这边的门进去。",
+            "confidence": "high",
+            "rawText": "森：こちらのドアからお入りください。"
+          }
+        ]
+      },
+      {
+        "id": "l47-app-block-006",
+        "type": "scene",
+        "text": "（一进门就看见正面的墙壁上挂着一幅很大的画）",
+        "translationZh": "（一进门就看见正面的墙壁上挂着一幅很大的画）",
+        "confidence": "high",
+        "rawText": "（一进门就看见正面的墙壁上挂着一幅很大的画）"
+      },
+      {
+        "id": "l47-app-block-007",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l47-app-block-007-line-001",
+            "speaker": "社長",
+            "text": "広くて明るいね。（注意到那幅画）あの絵は？",
+            "translationZh": "又宽敞又明亮啊。（注意到那幅画）那幅画是？",
+            "confidence": "high",
+            "rawText": "社長：広くて明るいね。（注意到那幅画）あの絵は？"
+          },
+          {
+            "id": "l47-app-block-007-line-002",
+            "speaker": "加藤",
+            "text": "ああ、あれは日中商事の社長がくださった絵です。",
+            "translationZh": "啊，那是日中商事的社长送的画。",
+            "confidence": "high",
+            "rawText": "加藤：ああ、あれは日中商事の社長がくださった絵です。"
+          },
+          {
+            "id": "l47-app-block-007-line-003",
+            "speaker": "社長",
+            "text": "あっ、そう。なかなかいいじゃないか。",
+            "translationZh": "啊，是吗。挺不错的嘛。",
+            "confidence": "high",
+            "rawText": "社長：あっ、そう。なかなかいいじゃないか。"
+          },
+          {
+            "id": "l47-app-block-007-line-004",
+            "speaker": "加藤",
+            "text": "はい。ところで、社長がおっしゃっていたスタッフの件ですが、李さんに上海に来てもらおうと思うんですが…。",
+            "translationZh": "是。顺便说一下，关于社长提过的员工的事，我想让李先生来上海……",
+            "confidence": "high",
+            "rawText": "加藤：はい。ところで、社長がおっしゃっていたスタッフの件ですが、李さんに上海に来てもらおうと思うんですが…。"
+          }
+        ]
+      },
+      {
+        "id": "l47-app-block-008",
+        "type": "scene",
+        "text": "（当天晚上，森给在北京的老陈打电话）",
+        "translationZh": "（当天晚上，森给在北京的老陈打电话）",
+        "confidence": "high",
+        "rawText": "（当天晚上，森给在北京的老陈打电话）"
+      },
+      {
+        "id": "l47-app-block-009",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l47-app-block-009-line-001",
+            "speaker": "森",
+            "text": "いい事務所だって、社長がほめていらっしゃいましたよ。",
+            "translationZh": "他说事务所很好，社长夸奖了呢。",
+            "confidence": "high",
+            "rawText": "森：いい事務所だって、社長がほめていらっしゃいましたよ。"
+          },
+          {
+            "id": "l47-app-block-009-line-002",
+            "speaker": "陳",
+            "text": "そうですか。よかったです。気に入ってくださって。",
+            "translationZh": "是吗。太好了。承蒙他喜欢。",
+            "confidence": "high",
+            "rawText": "陳：そうですか。よかったです。気に入ってくださって。"
+          },
+          {
+            "id": "l47-app-block-009-line-003",
+            "speaker": "森",
+            "text": "それで、社長はこちらにもお寄りになるのかしら？",
+            "translationZh": "那么，社长也会顺便来这边吗？",
+            "confidence": "high",
+            "rawText": "森：それで、社長はこちらにもお寄りになるのかしら？"
+          },
+          {
+            "id": "l47-app-block-009-line-004",
+            "speaker": "森",
+            "text": "いいえ、そちらへは寄らずに、明日の朝の便で、東京に戻られる予定です。",
+            "translationZh": "不，他不会去那边，预定明天早上乘飞机回东京。",
+            "confidence": "high",
+            "rawText": "森：いいえ、そちらへは寄らずに、明日の朝の便で、東京に戻られる予定です。"
+          }
+        ]
+      }
+    ]
+  },
+  "warnings": []
+}

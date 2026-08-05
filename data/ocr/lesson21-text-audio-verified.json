@@ -1,0 +1,569 @@
+{
+  "lessonId": "lesson21",
+  "sourceImages": [
+    {
+      "section": "basic",
+      "path": "course-assets/by-lesson/lesson21/page252.webp",
+      "pageNo": 252
+    },
+    {
+      "section": "application",
+      "path": "course-assets/by-lesson/lesson21/page257.webp",
+      "pageNo": 257
+    }
+  ],
+  "basicText": {
+    "title": "基本课文",
+    "basicSentences": [
+      {
+        "id": "l21-basic-s001",
+        "order": 1,
+        "text": "わたしは すき焼きを 食べた ことが あります。",
+        "translationZh": "我吃过寿喜烧。",
+        "confidence": "high",
+        "rawText": "1. わたしは すき焼きを 食べた ことが あります。",
+        "audioSegment": {
+          "id": "l21-basic-s001",
+          "trackId": "lesson_basic",
+          "sourceUrl": "/data/ocr/audio-clips/lesson21/l21-basic-s001.mp3",
+          "start": 0,
+          "end": 3.78,
+          "duration": 3.78,
+          "method": "approved-asr-alignment",
+          "confidence": "approved",
+          "reviewedAt": "2026-08-05T08:45:36.419Z",
+          "sourceAudioSha256": "1e3d0633586d4a5744de3c78ec106a8fc12a2aae654699236b03e2612d96ec4e"
+        }
+      },
+      {
+        "id": "l21-basic-s002",
+        "order": 2,
+        "text": "李さんは 会社が 終わった 後で、飲みに 行きます。",
+        "translationZh": "小李公司下班后去喝酒。",
+        "confidence": "high",
+        "rawText": "2. 李さんは 会社が 終わった 後で、飲みに 行きます。",
+        "audioSegment": {
+          "id": "l21-basic-s002",
+          "trackId": "lesson_basic",
+          "sourceUrl": "/data/ocr/audio-clips/lesson21/l21-basic-s002.mp3",
+          "start": 0,
+          "end": 3.54,
+          "duration": 3.54,
+          "method": "approved-asr-alignment",
+          "confidence": "approved",
+          "reviewedAt": "2026-08-05T08:45:36.419Z",
+          "sourceAudioSha256": "1e3d0633586d4a5744de3c78ec106a8fc12a2aae654699236b03e2612d96ec4e"
+        }
+      },
+      {
+        "id": "l21-basic-s003",
+        "order": 3,
+        "text": "もっと 野菜を 食べた ほうが いいですよ。",
+        "translationZh": "还是多吃点蔬菜好。",
+        "confidence": "high",
+        "rawText": "3. もっと 野菜を 食べた ほうが いいですよ。",
+        "audioSegment": {
+          "id": "l21-basic-s003",
+          "trackId": "lesson_basic",
+          "sourceUrl": "/data/ocr/audio-clips/lesson21/l21-basic-s003.mp3",
+          "start": 0,
+          "end": 2.58,
+          "duration": 2.58,
+          "method": "approved-asr-alignment",
+          "confidence": "approved",
+          "reviewedAt": "2026-08-05T08:45:36.419Z",
+          "sourceAudioSha256": "1e3d0633586d4a5744de3c78ec106a8fc12a2aae654699236b03e2612d96ec4e"
+        }
+      },
+      {
+        "id": "l21-basic-s004",
+        "order": 4,
+        "text": "窓を 閉めましょうか。",
+        "translationZh": "把窗户关上吧。",
+        "confidence": "high",
+        "rawText": "4. 窓を 閉めましょうか。",
+        "audioSegment": {
+          "id": "l21-basic-s004",
+          "trackId": "lesson_basic",
+          "sourceUrl": "/data/ocr/audio-clips/lesson21/l21-basic-s004.mp3",
+          "start": 0,
+          "end": 1.3,
+          "duration": 1.3,
+          "method": "approved-asr-alignment",
+          "confidence": "approved",
+          "reviewedAt": "2026-08-05T08:45:36.419Z",
+          "sourceAudioSha256": "1e3d0633586d4a5744de3c78ec106a8fc12a2aae654699236b03e2612d96ec4e"
+        }
+      }
+    ],
+    "dialogues": [
+      {
+        "id": "l21-basic-dialogue-001",
+        "label": "A",
+        "lines": [
+          {
+            "id": "l21-basic-dialogue-001-line-001",
+            "speaker": "甲",
+            "text": "お寿司を 食べた ことが ありますか。",
+            "translationZh": "吃过寿司吗？",
+            "confidence": "high",
+            "rawText": "甲：お寿司を 食べた ことが ありますか。",
+            "audioSegment": {
+              "id": "l21-basic-dialogue-001-line-001",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson21/l21-basic-dialogue-001-line-001.mp3",
+              "start": 0,
+              "end": 3.02,
+              "duration": 3.02,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:45:36.419Z",
+              "sourceAudioSha256": "1e3d0633586d4a5744de3c78ec106a8fc12a2aae654699236b03e2612d96ec4e"
+            }
+          },
+          {
+            "id": "l21-basic-dialogue-001-line-002",
+            "speaker": "乙",
+            "text": "いいえ、一度も ありません。天ぷらは 食べた ことが あります。",
+            "translationZh": "没有，一次也没有。天妇罗吃过。",
+            "confidence": "high",
+            "rawText": "乙：いいえ、一度も ありません。天ぷらは 食べた ことが あります。",
+            "audioSegment": {
+              "id": "l21-basic-dialogue-001-line-002",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson21/l21-basic-dialogue-001-line-002.mp3",
+              "start": 0,
+              "end": 4.82,
+              "duration": 4.82,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:45:36.419Z",
+              "sourceAudioSha256": "1e3d0633586d4a5744de3c78ec106a8fc12a2aae654699236b03e2612d96ec4e"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l21-basic-dialogue-002",
+        "label": "B",
+        "lines": [
+          {
+            "id": "l21-basic-dialogue-002-line-001",
+            "speaker": "甲",
+            "text": "この 資料を 見ても いいですか。",
+            "translationZh": "可以看这份资料吗？",
+            "confidence": "high",
+            "rawText": "甲：この 資料を 見ても いいですか。",
+            "audioSegment": {
+              "id": "l21-basic-dialogue-002-line-001",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson21/l21-basic-dialogue-002-line-001.mp3",
+              "start": 0,
+              "end": 1.98,
+              "duration": 1.98,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:45:36.419Z",
+              "sourceAudioSha256": "1e3d0633586d4a5744de3c78ec106a8fc12a2aae654699236b03e2612d96ec4e"
+            }
+          },
+          {
+            "id": "l21-basic-dialogue-002-line-002",
+            "speaker": "乙",
+            "text": "はい。読んだ 後で、森さんに 渡して ください。",
+            "translationZh": "可以。读完后请交给森先生。",
+            "confidence": "high",
+            "rawText": "乙：はい。読んだ 後で、森さんに 渡して ください。",
+            "audioSegment": {
+              "id": "l21-basic-dialogue-002-line-002",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson21/l21-basic-dialogue-002-line-002.mp3",
+              "start": 0,
+              "end": 3.18,
+              "duration": 3.18,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:45:36.419Z",
+              "sourceAudioSha256": "1e3d0633586d4a5744de3c78ec106a8fc12a2aae654699236b03e2612d96ec4e"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l21-basic-dialogue-003",
+        "label": "C",
+        "lines": [
+          {
+            "id": "l21-basic-dialogue-003-line-001",
+            "speaker": "甲",
+            "text": "ホテルを 予約した ほうが いいですか。",
+            "translationZh": "还是预约宾馆比较好吗？",
+            "confidence": "high",
+            "rawText": "甲：ホテルを 予約した ほうが いいですか。",
+            "audioSegment": {
+              "id": "l21-basic-dialogue-003-line-001",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson21/l21-basic-dialogue-003-line-001.mp3",
+              "start": 0,
+              "end": 2.22,
+              "duration": 2.22,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:45:36.419Z",
+              "sourceAudioSha256": "1e3d0633586d4a5744de3c78ec106a8fc12a2aae654699236b03e2612d96ec4e"
+            }
+          },
+          {
+            "id": "l21-basic-dialogue-003-line-002",
+            "speaker": "乙",
+            "text": "そうですね。連休ですから、その ほうが いいですね。",
+            "translationZh": "是啊。因为是连休，那样比较好。",
+            "confidence": "high",
+            "rawText": "乙：そうですね。連休ですから、その ほうが いいですね。",
+            "audioSegment": {
+              "id": "l21-basic-dialogue-003-line-002",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson21/l21-basic-dialogue-003-line-002.mp3",
+              "start": 0,
+              "end": 3.18,
+              "duration": 3.18,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:45:36.419Z",
+              "sourceAudioSha256": "1e3d0633586d4a5744de3c78ec106a8fc12a2aae654699236b03e2612d96ec4e"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l21-basic-dialogue-004",
+        "label": "D",
+        "lines": [
+          {
+            "id": "l21-basic-dialogue-004-line-001",
+            "speaker": "甲",
+            "text": "何か 食べましょうか。",
+            "translationZh": "吃点什么吧？",
+            "confidence": "high",
+            "rawText": "甲：何か 食べましょうか。",
+            "audioSegment": {
+              "id": "l21-basic-dialogue-004-line-001",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson21/l21-basic-dialogue-004-line-001.mp3",
+              "start": 0,
+              "end": 1.54,
+              "duration": 1.54,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:45:36.419Z",
+              "sourceAudioSha256": "1e3d0633586d4a5744de3c78ec106a8fc12a2aae654699236b03e2612d96ec4e"
+            }
+          },
+          {
+            "id": "l21-basic-dialogue-004-line-002",
+            "speaker": "乙",
+            "text": "いいえ。寝る 前に 食べない ほうが いいですよ。",
+            "translationZh": "不，睡觉前最好不要吃。",
+            "confidence": "high",
+            "rawText": "乙：いいえ。寝る 前に 食べない ほうが いいですよ。",
+            "audioSegment": {
+              "id": "l21-basic-dialogue-004-line-002",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson21/l21-basic-dialogue-004-line-002.mp3",
+              "start": 0,
+              "end": 3.1,
+              "duration": 3.1,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:45:36.419Z",
+              "sourceAudioSha256": "1e3d0633586d4a5744de3c78ec106a8fc12a2aae654699236b03e2612d96ec4e"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "applicationText": {
+    "title": "歌舞伎",
+    "blocks": [
+      {
+        "id": "l21-app-block-001",
+        "type": "scene",
+        "text": "4点前，小李和小野离开公司，去车站。",
+        "translationZh": "4点前，小李和小野离开公司，去车站。",
+        "confidence": "high",
+        "rawText": "4点前，小李和小野离开公司，去车站。"
+      },
+      {
+        "id": "l21-app-block-002",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l21-app-block-002-line-001",
+            "speaker": "小野",
+            "text": "少し 急ぎましょうか。遅れない ほうが いいですから。",
+            "translationZh": "稍微快点儿吧，最好不要迟到。",
+            "confidence": "high",
+            "rawText": "小野：少し 急ぎましょうか。遅れない ほうが いいですから。",
+            "audioSegment": {
+              "id": "l21-app-block-002-line-001",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson21/l21-app-block-002-line-001.mp3",
+              "start": 0,
+              "end": 3.78,
+              "duration": 3.78,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:46:26.551Z",
+              "sourceAudioSha256": "f1bacaf343ff40dcae76ac2862d2ca7b3db70a13b6d1a68913ab7f11f0be0119"
+            }
+          },
+          {
+            "id": "l21-app-block-002-line-002",
+            "speaker": "李",
+            "text": "そうしましょう。ところで、小野さんは よく 歌舞伎を 見ますか。",
+            "translationZh": "好。话说回来，小野经常看歌舞伎吗？",
+            "confidence": "high",
+            "rawText": "李：そうしましょう。ところで、小野さんは よく 歌舞伎を 見ますか。",
+            "audioSegment": {
+              "id": "l21-app-block-002-line-002",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson21/l21-app-block-002-line-002.mp3",
+              "start": 0,
+              "end": 4.3,
+              "duration": 4.3,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:46:26.551Z",
+              "sourceAudioSha256": "f1bacaf343ff40dcae76ac2862d2ca7b3db70a13b6d1a68913ab7f11f0be0119"
+            }
+          },
+          {
+            "id": "l21-app-block-002-line-003",
+            "speaker": "小野",
+            "text": "仕事の 後で、何度か 見に 行った ことが あります。終わりは 9時過ぎですね。食事は どうしますか。",
+            "translationZh": "下班后去看过几次。结束大概九点多。饭怎么办？",
+            "confidence": "high",
+            "rawText": "小野：仕事の 後で、何度か 見に 行った ことが あります。終わりは 9時過ぎですね。食事は どうしますか。",
+            "audioSegment": {
+              "id": "l21-app-block-002-line-003",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson21/l21-app-block-002-line-003.mp3",
+              "start": 0,
+              "end": 11.34,
+              "duration": 11.34,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:46:26.551Z",
+              "sourceAudioSha256": "f1bacaf343ff40dcae76ac2862d2ca7b3db70a13b6d1a68913ab7f11f0be0119"
+            }
+          },
+          {
+            "id": "l21-app-block-002-line-004",
+            "speaker": "李",
+            "text": "歌舞伎を 見た 後で、食べますか。それとも、見る 前に 何か 食べますか。",
+            "translationZh": "看完歌舞伎后吃，还是看之前吃点什么？",
+            "confidence": "high",
+            "rawText": "李：歌舞伎を 見た 後で、食べますか。それとも、見る 前に 何か 食べますか。",
+            "audioSegment": {
+              "id": "l21-app-block-002-line-004",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson21/l21-app-block-002-line-004.mp3",
+              "start": 0,
+              "end": 5.54,
+              "duration": 5.54,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:46:26.551Z",
+              "sourceAudioSha256": "f1bacaf343ff40dcae76ac2862d2ca7b3db70a13b6d1a68913ab7f11f0be0119"
+            }
+          },
+          {
+            "id": "l21-app-block-002-line-005",
+            "speaker": "小野",
+            "text": "そうですね…、休憩時間に 食事を しましょうか。",
+            "translationZh": "这样啊……休息时间吃饭吧。",
+            "confidence": "high",
+            "rawText": "小野：そうですね…、休憩時間に 食事を しましょうか。",
+            "audioSegment": {
+              "id": "l21-app-block-002-line-005",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson21/l21-app-block-002-line-005.mp3",
+              "start": 0,
+              "end": 4.11,
+              "duration": 4.11,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:46:26.551Z",
+              "sourceAudioSha256": "f1bacaf343ff40dcae76ac2862d2ca7b3db70a13b6d1a68913ab7f11f0be0119"
+            }
+          },
+          {
+            "id": "l21-app-block-002-line-006",
+            "speaker": "李",
+            "text": "ええ、いいですよ。",
+            "translationZh": "好，可以。",
+            "confidence": "high",
+            "rawText": "李：ええ、いいですよ。",
+            "audioSegment": {
+              "id": "l21-app-block-002-line-006",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson21/l21-app-block-002-line-006.mp3",
+              "start": 0,
+              "end": 1.42,
+              "duration": 1.42,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:46:26.551Z",
+              "sourceAudioSha256": "f1bacaf343ff40dcae76ac2862d2ca7b3db70a13b6d1a68913ab7f11f0be0119"
+            }
+          },
+          {
+            "id": "l21-app-block-002-line-007",
+            "speaker": "小野",
+            "text": "じゃあ、早く 行って お弁当を 買った ほうが いいですね。",
+            "translationZh": "那快点去买盒饭比较好。",
+            "confidence": "high",
+            "rawText": "小野：じゃあ、早く 行って お弁当を 買った ほうが いいですね。",
+            "audioSegment": {
+              "id": "l21-app-block-002-line-007",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson21/l21-app-block-002-line-007.mp3",
+              "start": 0,
+              "end": 3.34,
+              "duration": 3.34,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:46:26.551Z",
+              "sourceAudioSha256": "f1bacaf343ff40dcae76ac2862d2ca7b3db70a13b6d1a68913ab7f11f0be0119"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l21-app-block-003",
+        "type": "scene",
+        "text": "看完歌舞伎后，小李很兴奋。",
+        "translationZh": "看完歌舞伎后，小李很兴奋。",
+        "confidence": "high",
+        "rawText": "看完歌舞伎后，小李很兴奋。"
+      },
+      {
+        "id": "l21-app-block-004",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l21-app-block-004-line-001",
+            "speaker": "李",
+            "text": "言葉は 分かりませんでしたが、とても よかったです。",
+            "translationZh": "虽然听不懂语言，但非常好。",
+            "confidence": "high",
+            "rawText": "李：言葉は 分かりませんでしたが、とても よかったです。",
+            "audioSegment": {
+              "id": "l21-app-block-004-line-001",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson21/l21-app-block-004-line-001.mp3",
+              "start": 0,
+              "end": 3.3,
+              "duration": 3.3,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:46:26.551Z",
+              "sourceAudioSha256": "f1bacaf343ff40dcae76ac2862d2ca7b3db70a13b6d1a68913ab7f11f0be0119"
+            }
+          },
+          {
+            "id": "l21-app-block-004-line-002",
+            "speaker": "小野",
+            "text": "そうですね。課長に 感謝しましょう。",
+            "translationZh": "是啊。感谢科长吧。",
+            "confidence": "high",
+            "rawText": "小野：そうですね。課長に 感謝しましょう。",
+            "audioSegment": {
+              "id": "l21-app-block-004-line-002",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson21/l21-app-block-004-line-002.mp3",
+              "start": 0,
+              "end": 2.98,
+              "duration": 2.98,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:46:26.551Z",
+              "sourceAudioSha256": "f1bacaf343ff40dcae76ac2862d2ca7b3db70a13b6d1a68913ab7f11f0be0119"
+            }
+          },
+          {
+            "id": "l21-app-block-004-line-003",
+            "speaker": "李",
+            "text": "ええ。京劇も いいですが、歌舞伎も すばらしいですね。小野さんは 京劇を 見た ことが ありますか。",
+            "translationZh": "嗯。京剧也好，歌舞伎也很棒。小野看过京剧吗？",
+            "confidence": "high",
+            "rawText": "李：ええ。京劇も いいですが、歌舞伎も すばらしいですね。小野さんは 京劇を 見た ことが ありますか。",
+            "audioSegment": {
+              "id": "l21-app-block-004-line-003",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson21/l21-app-block-004-line-003.mp3",
+              "start": 0,
+              "end": 6.82,
+              "duration": 6.82,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:46:26.551Z",
+              "sourceAudioSha256": "f1bacaf343ff40dcae76ac2862d2ca7b3db70a13b6d1a68913ab7f11f0be0119"
+            }
+          },
+          {
+            "id": "l21-app-block-004-line-004",
+            "speaker": "小野",
+            "text": "いいえ、一度も ありません。いつか 見たいですね。",
+            "translationZh": "没有，一次也没有。什么时候想看看。",
+            "confidence": "high",
+            "rawText": "小野：いいえ、一度も ありません。いつか 見たいですね。",
+            "audioSegment": {
+              "id": "l21-app-block-004-line-004",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson21/l21-app-block-004-line-004.mp3",
+              "start": 0,
+              "end": 4.02,
+              "duration": 4.02,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:46:26.551Z",
+              "sourceAudioSha256": "f1bacaf343ff40dcae76ac2862d2ca7b3db70a13b6d1a68913ab7f11f0be0119"
+            }
+          },
+          {
+            "id": "l21-app-block-004-line-005",
+            "speaker": "李",
+            "text": "じゃあ、ぜひ 北京へ 京劇を 見に 来て ください。",
+            "translationZh": "那请一定来北京看京剧。",
+            "confidence": "high",
+            "rawText": "李：じゃあ、ぜひ 北京へ 京劇を 見に 来て ください。",
+            "audioSegment": {
+              "id": "l21-app-block-004-line-005",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson21/l21-app-block-004-line-005.mp3",
+              "start": 0,
+              "end": 3.1,
+              "duration": 3.1,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:46:26.551Z",
+              "sourceAudioSha256": "f1bacaf343ff40dcae76ac2862d2ca7b3db70a13b6d1a68913ab7f11f0be0119"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "warnings": [
+    "segments/ruby 未批量生成；保留 text 与 translationZh，后续可单独补充 ruby 切片。"
+  ],
+  "audioAlignment": {
+    "schemaVersion": 1,
+    "method": "approved-asr-alignment",
+    "sourceAlignment": "data/ocr/lesson21-text-audio-alignment.json",
+    "publishedAt": "2026-08-05T08:46:31.801Z",
+    "approvedSegments": 24
+  }
+}

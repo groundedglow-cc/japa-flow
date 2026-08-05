@@ -1,0 +1,73 @@
+{
+  "lessonId": "lesson34",
+  "sourceImages": [
+    {"section":"basic","path":"course-assets/by-lesson/lesson34/page106.webp","pageNo":106},
+    {"section":"application","path":"course-assets/by-lesson/lesson34/page111.webp","pageNo":111}
+  ],
+  "basicText": {
+    "title": "基本课文",
+    "basicSentences": [
+      {"id":"l34-basic-s001","order":1,"text":"壁にカレンダーが掛けてあります。","translationZh":"墙上挂着日历。","confidence":"high","rawText":"1. 壁にカレンダーが掛けてあります。"},
+      {"id":"l34-basic-s002","order":2,"text":"お客さんが来る前に、部屋を掃除しておきます。","translationZh":"在客人来之前，先把房间打扫好。","confidence":"high","rawText":"2. お客さんが来る前に、部屋を掃除しておきます。"},
+      {"id":"l34-basic-s003","order":3,"text":"太田さんは中国語で手紙を書いてみました。","translationZh":"太田先生试着用中文写了一封信。","confidence":"high","rawText":"3. 太田さんは中国語で手紙を書いてみました。"},
+      {"id":"l34-basic-s004","order":4,"text":"日本へ留学するために、お金をためています。","translationZh":"为了去日本留学，正在攒钱。","confidence":"high","rawText":"4. 日本へ留学するために、お金をためています。"}
+    ],
+    "dialogues": [
+      {"id":"l34-basic-dialogue-001","label":"A","lines":[
+        {"id":"l34-basic-dialogue-001-line-001","speaker":"甲","text":"森さん、車をどこに止めましたか。","translationZh":"森先生，您把车停在哪里了？","confidence":"high","rawText":"甲：森さん、車をどこに止めましたか。"},
+        {"id":"l34-basic-dialogue-001-line-002","speaker":"乙","text":"公園の前に止めてあります。","translationZh":"停在公园前面。","confidence":"high","rawText":"乙：公園の前に止めてあります。"}
+      ]},
+      {"id":"l34-basic-dialogue-002","label":"B","lines":[
+        {"id":"l34-basic-dialogue-002-line-001","speaker":"甲","text":"森さん、会議の資料はどうしますか。","translationZh":"森先生，会议资料怎么办？","confidence":"high","rawText":"甲：森さん、会議の資料はどうしますか。"},
+        {"id":"l34-basic-dialogue-002-line-002","speaker":"乙","text":"10部コピーしておいてください。","translationZh":"请先复印10份。","confidence":"high","rawText":"乙：10部コピーしておいてください。"}
+      ]},
+      {"id":"l34-basic-dialogue-003","label":"C","lines":[
+        {"id":"l34-basic-dialogue-003-line-001","speaker":"甲","text":"カレーライスを作ってみました。食べてみてください。","translationZh":"我试着做了咖喱饭。请尝尝看。","confidence":"high","rawText":"甲：カレーライスを作ってみました。食べてみてください。"},
+        {"id":"l34-basic-dialogue-003-line-002","speaker":"乙","text":"ああ、おいしそうですね。いただきます。","translationZh":"啊，看起来很好吃。那我开动了。","confidence":"high","rawText":"乙：ああ、おいしそうですね。いただきます。"}
+      ]},
+      {"id":"l34-basic-dialogue-004","label":"D","lines":[
+        {"id":"l34-basic-dialogue-004-line-001","speaker":"甲","text":"太田さん、タバコをやめたんですか。","translationZh":"太田先生，您戒烟了吗？","confidence":"high","rawText":"甲：太田さん、タバコをやめたんですか。"},
+        {"id":"l34-basic-dialogue-004-line-002","speaker":"乙","text":"ええ、健康のためにやめました。","translationZh":"是的，为了健康戒掉了。","confidence":"high","rawText":"乙：ええ、健康のためにやめました。"}
+      ]}
+    ]
+  },
+  "applicationText": {
+    "title": "北京ダック",
+    "blocks": [
+      {"id":"l34-app-block-001","type":"narration","text":"森和小李为了祝贺与小野的重逢，预订了北京有名的烤鸭店。小野到北京的第二天，三个人一起去吃饭。","translationZh":"森和小李为了庆祝与小野重逢，预订了北京一家有名的烤鸭店。小野到北京的第二天，三个人一起去吃饭。","confidence":"high","rawText":"森和小李为了祝贺与小野的重逢，预订了北京有名的烤鸭店。小野到北京的第二天，三个人一起去吃饭。"},
+      {"id":"l34-app-block-002","type":"scene","text":"傍晚，森和小李去宾馆接小野","translationZh":"傍晚，森和小李去宾馆接小野。","confidence":"high","rawText":"（傍晚，森和小李去宾馆接小野）"},
+      {"id":"l34-app-block-003","type":"dialogue","lines":[
+        {"id":"l34-app-block-003-line-001","speaker":"森","text":"小野さんを歓迎するために、とっておきのお店を予約しておきましたよ。","translationZh":"为了欢迎小野女士，我已经预订了一家特别好的店。","confidence":"high","rawText":"森：小野さんを歓迎するために、とっておきのお店を予約しておきましたよ。"},
+        {"id":"l34-app-block-003-line-002","speaker":"小野","text":"本当ですか!? ありがとうございます。","translationZh":"真的吗！？谢谢您。","confidence":"high","rawText":"小野：本当ですか!? ありがとうございます。"},
+        {"id":"l34-app-block-003-line-003","speaker":"李","text":"北京ダックがおいしいお店なんですよ。","translationZh":"这是一家北京烤鸭很好吃的店。","confidence":"high","rawText":"李：北京ダックがおいしいお店なんですよ。"}
+      ]},
+      {"id":"l34-app-block-004","type":"scene","text":"在餐厅，烤鸭端了上来","translationZh":"在餐厅，烤鸭端上来了。","confidence":"high","rawText":"（在餐厅，烤鸭端了上来）"},
+      {"id":"l34-app-block-005","type":"dialogue","lines":[
+        {"id":"l34-app-block-005-line-001","speaker":"小野","text":"うわあ、きれいに焼いてありますね。","translationZh":"哇，烤得真漂亮啊。","confidence":"high","rawText":"小野：うわあ、きれいに焼いてありますね。"},
+        {"id":"l34-app-block-005-line-002","speaker":"李","text":"ええ。おいしそうな色でしょう。","translationZh":"是啊，看起来颜色很诱人吧。","confidence":"high","rawText":"李：ええ。おいしそうな色でしょう。"}
+      ]},
+      {"id":"l34-app-block-006","type":"scene","text":"厨师在身边削着烤鸭，服务员小姐把削好的烤鸭卷在薄饼里递给小野","translationZh":"厨师在旁边片着烤鸭，服务员把片好的烤鸭卷在薄饼里递给小野。","confidence":"high","rawText":"（厨师在身边削着烤鸭，服务员小姐把削好的烤鸭卷在薄饼里递给小野）"},
+      {"id":"l34-app-block-007","type":"dialogue","lines":[
+        {"id":"l34-app-block-007-line-001","speaker":"小野","text":"おいしい! 今まで、こんなにおいしいの食べたことありません。","translationZh":"真好吃！我从没吃过这么好吃的东西。","confidence":"high","rawText":"小野：（尝了一口）おいしい! 今まで、こんなにおいしいの食べたことありません。"},
+        {"id":"l34-app-block-007-line-002","speaker":"森","text":"本場の料理は最高でしょう？","translationZh":"原产地的菜肴最棒吧？","confidence":"high","rawText":"森：本場の料理は最高でしょう？"},
+        {"id":"l34-app-block-007-line-003","speaker":"小野","text":"ええ、最高! 今度は自分で包んでみます。","translationZh":"是的，太棒了！下次我自己试着卷。","confidence":"high","rawText":"小野：ええ、最高! 今度は自分で包んでみます。"},
+        {"id":"l34-app-block-007-line-004","speaker":"森","text":"ほかにも料理はたくさん頼んでありますからね。","translationZh":"另外还已经点了很多菜呢。","confidence":"high","rawText":"森：ほかにも料理はたくさん頼んでありますからね。"}
+      ]},
+      {"id":"l34-app-block-008","type":"scene","text":"其后，又有菜端上来","translationZh":"之后，又有菜端上来了。","confidence":"high","rawText":"（其后，又有菜端上来）"},
+      {"id":"l34-app-block-009","type":"dialogue","lines":[
+        {"id":"l34-app-block-009-line-001","speaker":"李","text":"小野さん、今日はしっかり食べておいてください。明日からハードスケジュールで、あちこち行きますからね。","translationZh":"小野女士，今天请好好吃饱。从明天起日程很紧，要到处去。","confidence":"high","rawText":"李：小野さん、今日はしっかり食べておいてください。明日からハードスケジュールで、あちこち行きますからね。"}
+      ]},
+      {"id":"l34-app-block-010","type":"scene","text":"吃完后，看到很多剩下的菜肴","translationZh":"吃完后，看到剩下很多菜肴。","confidence":"high","rawText":"（吃完后，看到很多剩下的菜肴）"},
+      {"id":"l34-app-block-011","type":"dialogue","lines":[
+        {"id":"l34-app-block-011-line-001","speaker":"小野","text":"こんなに残ってしまいました。もったいないですね。","translationZh":"剩下这么多，太可惜了。","confidence":"high","rawText":"小野：こんなに残ってしまいました。もったいないですね。"},
+        {"id":"l34-app-block-011-line-002","speaker":"李","text":"本当ですね。じゃあ、持ち帰りにしましょう。","translationZh":"确实如此。那么，打包带走吧。","confidence":"high","rawText":"李：本当ですね。じゃあ、持ち帰りにしましょう。"},
+        {"id":"l34-app-block-011-line-003","speaker":"森","text":"小野さん、カラオケも予約してあるんですが、どうしますか。","translationZh":"小野女士，卡拉OK也已经预订好了，怎么办呢？","confidence":"high","rawText":"森：小野さん、カラオケも予約してあるんですが、どうしますか。"},
+        {"id":"l34-app-block-011-line-004","speaker":"小野","text":"もちろん行きますよ。","translationZh":"当然去。","confidence":"high","rawText":"小野：もちろん行きますよ。"}
+      ]}
+    ]
+  },
+  "warnings": [
+    "扫描页中的假名标注不适合可靠地逐句切分，未生成 kana 或 segments 字段。",
+    "应用课文的开场旁白和场景说明在教材中以中文排印，按原文保留在 text 字段中。"
+  ]
+}

@@ -1,0 +1,710 @@
+{
+  "lessonId": "lesson11",
+  "sourceImages": [
+    {
+      "section": "basic",
+      "path": "course-assets/by-lesson/lesson11/page134.webp",
+      "pageNo": 134
+    },
+    {
+      "section": "application",
+      "path": "course-assets/by-lesson/lesson11/page139.webp",
+      "pageNo": 139
+    }
+  ],
+  "basicText": {
+    "title": "基本课文",
+    "basicSentences": [
+      {
+        "id": "l11-basic-s001",
+        "order": 1,
+        "text": "小野さんは 歌が 好きです。",
+        "kana": "おのさんは うたが すきです。",
+        "translationZh": "小野女士喜欢唱歌。",
+        "confidence": "high",
+        "rawText": "1. 小野さんは 歌が 好きです。",
+        "audioSegment": {
+          "id": "l11-basic-s001",
+          "trackId": "lesson_basic",
+          "sourceUrl": "/data/ocr/audio-clips/lesson11/l11-basic-s001.mp3",
+          "start": 0,
+          "end": 2.42,
+          "duration": 2.42,
+          "method": "approved-asr-alignment",
+          "confidence": "approved",
+          "reviewedAt": "2026-08-05T08:33:04.138Z",
+          "sourceAudioSha256": "7eb3d8a224dfecc2441ff02914bce7fd5a2a4eb4cb729c928df641230e3e9b41"
+        }
+      },
+      {
+        "id": "l11-basic-s002",
+        "order": 2,
+        "text": "スミスさんは 韓国語が 分かります。",
+        "kana": "スミスさんは かんこくごが わかります。",
+        "translationZh": "史密斯先生懂韩语。",
+        "confidence": "high",
+        "rawText": "2. スミスさんは 韓国語が 分かります。",
+        "audioSegment": {
+          "id": "l11-basic-s002",
+          "trackId": "lesson_basic",
+          "sourceUrl": "/data/ocr/audio-clips/lesson11/l11-basic-s002.mp3",
+          "start": 0,
+          "end": 2.46,
+          "duration": 2.46,
+          "method": "approved-asr-alignment",
+          "confidence": "approved",
+          "reviewedAt": "2026-08-05T08:33:04.138Z",
+          "sourceAudioSha256": "7eb3d8a224dfecc2441ff02914bce7fd5a2a4eb4cb729c928df641230e3e9b41"
+        }
+      },
+      {
+        "id": "l11-basic-s003",
+        "order": 3,
+        "text": "吉田さんは 時々 中国や 韓国へ 行きます。",
+        "kana": "よしださんは ときどき ちゅうごくや かんこくへ いきます。",
+        "translationZh": "吉田先生有时去中国和韩国。",
+        "confidence": "high",
+        "rawText": "3. 吉田さんは 時々 中国や 韓国へ 行きます。",
+        "audioSegment": {
+          "id": "l11-basic-s003",
+          "trackId": "lesson_basic",
+          "sourceUrl": "/data/ocr/audio-clips/lesson11/l11-basic-s003.mp3",
+          "start": 0,
+          "end": 4.94,
+          "duration": 4.94,
+          "method": "approved-asr-alignment",
+          "confidence": "approved",
+          "reviewedAt": "2026-08-05T08:33:04.138Z",
+          "sourceAudioSha256": "7eb3d8a224dfecc2441ff02914bce7fd5a2a4eb4cb729c928df641230e3e9b41"
+        }
+      },
+      {
+        "id": "l11-basic-s004",
+        "order": 4,
+        "text": "森さんは お酒が 好きですから、毎日 飲みます。",
+        "kana": "もりさんは おさけが すきですから、まいにち のみます。",
+        "translationZh": "森先生喜欢喝酒，所以每天都喝。",
+        "confidence": "high",
+        "rawText": "4. 森さんは お酒が 好きですから、毎日 飲みます。",
+        "audioSegment": {
+          "id": "l11-basic-s004",
+          "trackId": "lesson_basic",
+          "sourceUrl": "/data/ocr/audio-clips/lesson11/l11-basic-s004.mp3",
+          "start": 0,
+          "end": 4.3,
+          "duration": 4.3,
+          "method": "approved-asr-alignment",
+          "confidence": "approved",
+          "reviewedAt": "2026-08-05T08:33:04.138Z",
+          "sourceAudioSha256": "7eb3d8a224dfecc2441ff02914bce7fd5a2a4eb4cb729c928df641230e3e9b41"
+        }
+      }
+    ],
+    "dialogues": [
+      {
+        "id": "l11-basic-dialogue-001",
+        "label": "A",
+        "lines": [
+          {
+            "id": "l11-basic-dialogue-001-line-001",
+            "speaker": "甲",
+            "text": "吉田さんは 料理が できますか。",
+            "kana": "よしださんは りょうりが できますか。",
+            "translationZh": "吉田先生会做菜吗？",
+            "confidence": "high",
+            "rawText": "甲：吉田さんは 料理が できますか。",
+            "audioSegment": {
+              "id": "l11-basic-dialogue-001-line-001",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson11/l11-basic-dialogue-001-line-001.mp3",
+              "start": 0,
+              "end": 2.66,
+              "duration": 2.66,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:33:04.138Z",
+              "sourceAudioSha256": "7eb3d8a224dfecc2441ff02914bce7fd5a2a4eb4cb729c928df641230e3e9b41"
+            }
+          },
+          {
+            "id": "l11-basic-dialogue-001-line-002",
+            "speaker": "乙",
+            "text": "いいえ、全然 できません。",
+            "kana": "いいえ、ぜんぜん できません。",
+            "translationZh": "不，完全不会。",
+            "confidence": "high",
+            "rawText": "乙：いいえ、全然 できません。",
+            "audioSegment": {
+              "id": "l11-basic-dialogue-001-line-002",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson11/l11-basic-dialogue-001-line-002.mp3",
+              "start": 0,
+              "end": 1.14,
+              "duration": 1.14,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:33:04.138Z",
+              "sourceAudioSha256": "7eb3d8a224dfecc2441ff02914bce7fd5a2a4eb4cb729c928df641230e3e9b41"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l11-basic-dialogue-002",
+        "label": "B",
+        "lines": [
+          {
+            "id": "l11-basic-dialogue-002-line-001",
+            "speaker": "甲",
+            "text": "どんな 音楽が 好きですか。",
+            "kana": "どんな おんがくが すきですか。",
+            "translationZh": "喜欢什么样的音乐？",
+            "confidence": "high",
+            "rawText": "甲：どんな 音楽が 好きですか。",
+            "audioSegment": {
+              "id": "l11-basic-dialogue-002-line-001",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson11/l11-basic-dialogue-002-line-001.mp3",
+              "start": 0,
+              "end": 1.98,
+              "duration": 1.98,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:33:04.138Z",
+              "sourceAudioSha256": "7eb3d8a224dfecc2441ff02914bce7fd5a2a4eb4cb729c928df641230e3e9b41"
+            }
+          },
+          {
+            "id": "l11-basic-dialogue-002-line-002",
+            "speaker": "乙",
+            "text": "ロックや ポップスなどが 好きです。",
+            "kana": "ロックや ポップスなどが すきです。",
+            "translationZh": "喜欢摇滚乐、流行音乐等。",
+            "confidence": "high",
+            "rawText": "乙：ロックや ポップスなどが 好きです。",
+            "audioSegment": {
+              "id": "l11-basic-dialogue-002-line-002",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson11/l11-basic-dialogue-002-line-002.mp3",
+              "start": 0,
+              "end": 2.58,
+              "duration": 2.58,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:33:04.138Z",
+              "sourceAudioSha256": "7eb3d8a224dfecc2441ff02914bce7fd5a2a4eb4cb729c928df641230e3e9b41"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l11-basic-dialogue-003",
+        "label": "C",
+        "lines": [
+          {
+            "id": "l11-basic-dialogue-003-line-001",
+            "speaker": "甲",
+            "text": "長島さん、スペイン語が 分かりますか。",
+            "kana": "ながしまさん、スペインごが わかりますか。",
+            "translationZh": "长岛先生懂西班牙语吗？",
+            "confidence": "high",
+            "rawText": "甲：長島さん、スペイン語が 分かりますか。",
+            "audioSegment": {
+              "id": "l11-basic-dialogue-003-line-001",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson11/l11-basic-dialogue-003-line-001.mp3",
+              "start": 0,
+              "end": 3.46,
+              "duration": 3.46,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:33:04.138Z",
+              "sourceAudioSha256": "7eb3d8a224dfecc2441ff02914bce7fd5a2a4eb4cb729c928df641230e3e9b41"
+            }
+          },
+          {
+            "id": "l11-basic-dialogue-003-line-002",
+            "speaker": "乙",
+            "text": "ええ、大学で 習いましたから、少し 分かります。",
+            "kana": "ええ、だいがくで ならいましたから、すこし わかります。",
+            "translationZh": "是的，因为在大学学过，所以懂一点。",
+            "confidence": "high",
+            "rawText": "乙：ええ、大学で 習いましたから、少し 分かります。",
+            "audioSegment": {
+              "id": "l11-basic-dialogue-003-line-002",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson11/l11-basic-dialogue-003-line-002.mp3",
+              "start": 0,
+              "end": 3.7,
+              "duration": 3.7,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:33:04.138Z",
+              "sourceAudioSha256": "7eb3d8a224dfecc2441ff02914bce7fd5a2a4eb4cb729c928df641230e3e9b41"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l11-basic-dialogue-004",
+        "label": "D",
+        "lines": [
+          {
+            "id": "l11-basic-dialogue-004-line-001",
+            "speaker": "甲",
+            "text": "小野さん、よく 音楽を 聞きますか。",
+            "kana": "おのさん、よく おんがくを ききますか。",
+            "translationZh": "小野女士经常听音乐吗？",
+            "confidence": "high",
+            "rawText": "甲：小野さん、よく 音楽を 聞きますか。",
+            "audioSegment": {
+              "id": "l11-basic-dialogue-004-line-001",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson11/l11-basic-dialogue-004-line-001.mp3",
+              "start": 0,
+              "end": 2.82,
+              "duration": 2.82,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:33:04.138Z",
+              "sourceAudioSha256": "7eb3d8a224dfecc2441ff02914bce7fd5a2a4eb4cb729c928df641230e3e9b41"
+            }
+          },
+          {
+            "id": "l11-basic-dialogue-004-line-002",
+            "speaker": "乙",
+            "text": "ええ、家で CDを よく 聞きます。",
+            "kana": "ええ、いえで シーディーを よく ききます。",
+            "translationZh": "是的，我在家经常听CD。",
+            "confidence": "high",
+            "rawText": "乙：ええ、家で CDを よく 聞きます。",
+            "audioSegment": {
+              "id": "l11-basic-dialogue-004-line-002",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson11/l11-basic-dialogue-004-line-002.mp3",
+              "start": 0,
+              "end": 1.7,
+              "duration": 1.7,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:33:04.138Z",
+              "sourceAudioSha256": "7eb3d8a224dfecc2441ff02914bce7fd5a2a4eb4cb729c928df641230e3e9b41"
+            }
+          },
+          {
+            "id": "l11-basic-dialogue-004-line-003",
+            "speaker": "乙",
+            "text": "そして、たまに コンサートへ 行きます。",
+            "kana": "そして、たまに コンサートへ いきます。",
+            "translationZh": "而且，偶尔去听音乐会。",
+            "confidence": "high",
+            "rawText": "乙：そして、たまに コンサートへ 行きます。",
+            "audioSegment": {
+              "id": "l11-basic-dialogue-004-line-003",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson11/l11-basic-dialogue-004-line-003.mp3",
+              "start": 0,
+              "end": 2.42,
+              "duration": 2.42,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:33:04.138Z",
+              "sourceAudioSha256": "7eb3d8a224dfecc2441ff02914bce7fd5a2a4eb4cb729c928df641230e3e9b41"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "applicationText": {
+    "title": "お土産",
+    "blocks": [
+      {
+        "id": "l11-app-block-001",
+        "type": "narration",
+        "text": "小李等人在箱根市内四处采访。由于交通便利，箱根有许多公司的别墅、疗养院。采访途中，小李进了一家商店买礼物。",
+        "kana": null,
+        "translationZh": "小李等人在箱根市内四处采访。由于交通便利，箱根有许多公司的别墅、疗养院。采访途中，小李进了一家商店买礼物。",
+        "confidence": "high",
+        "rawText": "小李等人在箱根市内四处采访。由于交通便利，箱根有许多公司的别墅、疗养院。采访途中，小李进了一家商店买礼物。"
+      },
+      {
+        "id": "l11-app-block-002",
+        "type": "scene",
+        "text": "（从车里观看外景）",
+        "kana": null,
+        "translationZh": "从车里观看外景。",
+        "confidence": "high",
+        "rawText": "（从车里观看外景）"
+      },
+      {
+        "id": "l11-app-block-003",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l11-app-block-003-line-001",
+            "speaker": "李",
+            "text": "箱根は ホテルや 旅館が 多いですね。",
+            "kana": "はこねは ホテルや りょかんが おおいですね。",
+            "translationZh": "箱根的酒店和旅馆很多啊。",
+            "confidence": "high",
+            "rawText": "李：箱根は ホテルや 旅館が 多いですね。",
+            "audioSegment": {
+              "id": "l11-app-block-003-line-001",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson11/l11-app-block-003-line-001.mp3",
+              "start": 0,
+              "end": 12.02,
+              "duration": 12.02,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:33:42.297Z",
+              "sourceAudioSha256": "dd40dcc711d630681bfe2b29abc8a0722515d2462821a6178c5d90f44c61935a"
+            }
+          },
+          {
+            "id": "l11-app-block-003-line-002",
+            "speaker": "小野",
+            "text": "そうですね。会社の 別荘も たくさん あります。",
+            "kana": "そうですね。かいしゃの べっそうも たくさん あります。",
+            "translationZh": "是啊，公司的别墅也有很多。",
+            "confidence": "high",
+            "rawText": "小野：そうですね。会社の 別荘も たくさん あります。",
+            "audioSegment": {
+              "id": "l11-app-block-003-line-002",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson11/l11-app-block-003-line-002.mp3",
+              "start": 0,
+              "end": 3.62,
+              "duration": 3.62,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:33:42.297Z",
+              "sourceAudioSha256": "dd40dcc711d630681bfe2b29abc8a0722515d2462821a6178c5d90f44c61935a"
+            }
+          },
+          {
+            "id": "l11-app-block-003-line-003",
+            "speaker": "李",
+            "text": "長島さんや 小野さんも よく 来ますか。",
+            "kana": "ながしまさんや おのさんも よく きますか。",
+            "translationZh": "长岛先生和小野女士也经常来吗？",
+            "confidence": "high",
+            "rawText": "李：長島さんや 小野さんも よく 来ますか。",
+            "audioSegment": {
+              "id": "l11-app-block-003-line-003",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson11/l11-app-block-003-line-003.mp3",
+              "start": 0,
+              "end": 2.7,
+              "duration": 2.7,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:33:42.297Z",
+              "sourceAudioSha256": "dd40dcc711d630681bfe2b29abc8a0722515d2462821a6178c5d90f44c61935a"
+            }
+          },
+          {
+            "id": "l11-app-block-003-line-004",
+            "speaker": "長島",
+            "text": "ええ、車で 時々 来ます。",
+            "kana": "ええ、くるまで ときどき きます。",
+            "translationZh": "是的，时常开车来。",
+            "confidence": "high",
+            "rawText": "長島：ええ、車で 時々 来ます。",
+            "audioSegment": {
+              "id": "l11-app-block-003-line-004",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson11/l11-app-block-003-line-004.mp3",
+              "start": 0,
+              "end": 3.1,
+              "duration": 3.1,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:33:42.297Z",
+              "sourceAudioSha256": "dd40dcc711d630681bfe2b29abc8a0722515d2462821a6178c5d90f44c61935a"
+            }
+          },
+          {
+            "id": "l11-app-block-003-line-005",
+            "speaker": "小野",
+            "text": "わたしは 運転が できませんから、いつも 電車です。",
+            "kana": "わたしは うんてんが できませんから、いつも でんしゃです。",
+            "translationZh": "我不会开车，所以总是坐电车。",
+            "confidence": "high",
+            "rawText": "小野：わたしは 運転が できませんから、いつも 電車です。",
+            "audioSegment": {
+              "id": "l11-app-block-003-line-005",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson11/l11-app-block-003-line-005.mp3",
+              "start": 0,
+              "end": 3.42,
+              "duration": 3.42,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:33:42.297Z",
+              "sourceAudioSha256": "dd40dcc711d630681bfe2b29abc8a0722515d2462821a6178c5d90f44c61935a"
+            }
+          },
+          {
+            "id": "l11-app-block-003-line-006",
+            "speaker": "長島",
+            "text": "ぼくは 来月 また 来ますよ。",
+            "kana": "ぼくは らいげつ また きますよ。",
+            "translationZh": "我下个月还会来。",
+            "confidence": "high",
+            "rawText": "長島：ぼくは 来月 また 来ますよ。",
+            "audioSegment": {
+              "id": "l11-app-block-003-line-006",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson11/l11-app-block-003-line-006.mp3",
+              "start": 0,
+              "end": 2.06,
+              "duration": 2.06,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:33:42.297Z",
+              "sourceAudioSha256": "dd40dcc711d630681bfe2b29abc8a0722515d2462821a6178c5d90f44c61935a"
+            }
+          },
+          {
+            "id": "l11-app-block-003-line-007",
+            "speaker": "李",
+            "text": "どうしてですか。",
+            "kana": "どうしてですか。",
+            "translationZh": "为什么呢？",
+            "confidence": "high",
+            "rawText": "李：どうしてですか。",
+            "audioSegment": {
+              "id": "l11-app-block-003-line-007",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson11/l11-app-block-003-line-007.mp3",
+              "start": 0,
+              "end": 1.18,
+              "duration": 1.18,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:33:42.297Z",
+              "sourceAudioSha256": "dd40dcc711d630681bfe2b29abc8a0722515d2462821a6178c5d90f44c61935a"
+            }
+          },
+          {
+            "id": "l11-app-block-003-line-008",
+            "speaker": "長島",
+            "text": "この 近くの ホテルで 友達の 写真展が ありますから。",
+            "kana": "この ちかくの ホテルで ともだちの しゃしんてんが ありますから。",
+            "translationZh": "因为附近的酒店有朋友的摄影展。",
+            "confidence": "high",
+            "rawText": "長島：この 近くの ホテルで 友達の 写真展が ありますから。",
+            "audioSegment": {
+              "id": "l11-app-block-003-line-008",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson11/l11-app-block-003-line-008.mp3",
+              "start": 0,
+              "end": 3.34,
+              "duration": 3.34,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:33:42.297Z",
+              "sourceAudioSha256": "dd40dcc711d630681bfe2b29abc8a0722515d2462821a6178c5d90f44c61935a"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l11-app-block-004",
+        "type": "scene",
+        "text": "（在礼品店）",
+        "kana": null,
+        "translationZh": "在礼品店。",
+        "confidence": "high",
+        "rawText": "（在礼品店）"
+      },
+      {
+        "id": "l11-app-block-005",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l11-app-block-005-line-001",
+            "speaker": "李",
+            "text": "箱根の お土産は 何が いいですか。",
+            "kana": "はこねの おみやげは なにが いいですか。",
+            "translationZh": "箱根的特产什么好？",
+            "confidence": "high",
+            "rawText": "李：箱根の お土産は 何が いいですか。",
+            "audioSegment": {
+              "id": "l11-app-block-005-line-001",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson11/l11-app-block-005-line-001.mp3",
+              "start": 0,
+              "end": 2.82,
+              "duration": 2.82,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:33:42.297Z",
+              "sourceAudioSha256": "dd40dcc711d630681bfe2b29abc8a0722515d2462821a6178c5d90f44c61935a"
+            }
+          },
+          {
+            "id": "l11-app-block-005-line-002",
+            "speaker": "小野",
+            "text": "うーん、そうですね…。迷いますね。",
+            "kana": "うーん、そうですね…。まよいますね。",
+            "translationZh": "嗯，这个……很难决定呢。",
+            "confidence": "high",
+            "rawText": "小野：うーん、そうですね…。迷いますね。",
+            "audioSegment": {
+              "id": "l11-app-block-005-line-002",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson11/l11-app-block-005-line-002.mp3",
+              "start": 0,
+              "end": 3.38,
+              "duration": 3.38,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:33:42.297Z",
+              "sourceAudioSha256": "dd40dcc711d630681bfe2b29abc8a0722515d2462821a6178c5d90f44c61935a"
+            }
+          },
+          {
+            "id": "l11-app-block-005-line-003",
+            "speaker": "長島",
+            "text": "寄木細工は いかがですか。",
+            "kana": "よせざいくは いかがですか。",
+            "translationZh": "木片拼花工艺品怎么样？",
+            "confidence": "high",
+            "rawText": "長島：寄木細工は いかがですか。",
+            "audioSegment": {
+              "id": "l11-app-block-005-line-003",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson11/l11-app-block-005-line-003.mp3",
+              "start": 0,
+              "end": 1.82,
+              "duration": 1.82,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:33:42.297Z",
+              "sourceAudioSha256": "dd40dcc711d630681bfe2b29abc8a0722515d2462821a6178c5d90f44c61935a"
+            }
+          },
+          {
+            "id": "l11-app-block-005-line-004",
+            "speaker": "長島",
+            "text": "とても 有名ですよ。",
+            "kana": "とても ゆうめいですよ。",
+            "translationZh": "非常有名哦。",
+            "confidence": "high",
+            "rawText": "長島：とても 有名ですよ。",
+            "audioSegment": {
+              "id": "l11-app-block-005-line-004",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson11/l11-app-block-005-line-004.mp3",
+              "start": 0,
+              "end": 1.1,
+              "duration": 1.1,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:33:42.297Z",
+              "sourceAudioSha256": "dd40dcc711d630681bfe2b29abc8a0722515d2462821a6178c5d90f44c61935a"
+            }
+          },
+          {
+            "id": "l11-app-block-005-line-005",
+            "speaker": "李",
+            "text": "きれいな 模様ですね。",
+            "kana": "きれいな もようですね。",
+            "translationZh": "花纹真漂亮啊。",
+            "confidence": "high",
+            "rawText": "李：（拿起木片儿拼花工艺品）きれいな 模様ですね。",
+            "audioSegment": {
+              "id": "l11-app-block-005-line-005",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson11/l11-app-block-005-line-005.mp3",
+              "start": 0,
+              "end": 1.62,
+              "duration": 1.62,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:33:42.297Z",
+              "sourceAudioSha256": "dd40dcc711d630681bfe2b29abc8a0722515d2462821a6178c5d90f44c61935a"
+            }
+          },
+          {
+            "id": "l11-app-block-005-line-006",
+            "speaker": "小野",
+            "text": "ええ。",
+            "kana": "ええ。",
+            "translationZh": "是的。",
+            "confidence": "high",
+            "rawText": "小野：ええ。",
+            "audioSegment": {
+              "id": "l11-app-block-005-line-006",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson11/l11-app-block-005-line-006.mp3",
+              "start": 0,
+              "end": 0.7,
+              "duration": 0.7,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:33:42.297Z",
+              "sourceAudioSha256": "dd40dcc711d630681bfe2b29abc8a0722515d2462821a6178c5d90f44c61935a"
+            }
+          },
+          {
+            "id": "l11-app-block-005-line-007",
+            "speaker": "長島",
+            "text": "気に 入りましたか。",
+            "kana": "きに いりましたか。",
+            "translationZh": "喜欢吗？",
+            "confidence": "high",
+            "rawText": "長島：気に 入りましたか。",
+            "audioSegment": {
+              "id": "l11-app-block-005-line-007",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson11/l11-app-block-005-line-007.mp3",
+              "start": 0,
+              "end": 1.26,
+              "duration": 1.26,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:33:42.297Z",
+              "sourceAudioSha256": "dd40dcc711d630681bfe2b29abc8a0722515d2462821a6178c5d90f44c61935a"
+            }
+          },
+          {
+            "id": "l11-app-block-005-line-008",
+            "speaker": "李",
+            "text": "はい、とても。",
+            "kana": "はい、とても。",
+            "translationZh": "是的，非常喜欢。",
+            "confidence": "high",
+            "rawText": "李：はい、とても。",
+            "audioSegment": {
+              "id": "l11-app-block-005-line-008",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson11/l11-app-block-005-line-008.mp3",
+              "start": 0,
+              "end": 1.22,
+              "duration": 1.22,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:33:42.297Z",
+              "sourceAudioSha256": "dd40dcc711d630681bfe2b29abc8a0722515d2462821a6178c5d90f44c61935a"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "warnings": [
+    "应用课文的整体旁白和场景说明在教材页中以中文呈现，因此对应 block 的 text 与 translationZh 均保留中文原文，kana 为 null。",
+    "未输出 segments；已保留可可靠识别的整句 kana。"
+  ],
+  "audioAlignment": {
+    "schemaVersion": 1,
+    "method": "approved-asr-alignment",
+    "sourceAlignment": "data/ocr/lesson11-text-audio-alignment.json",
+    "publishedAt": "2026-08-05T08:33:46.919Z",
+    "approvedSegments": 29
+  }
+}

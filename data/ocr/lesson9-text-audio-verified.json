@@ -1,0 +1,650 @@
+{
+  "lessonId": "lesson9",
+  "sourceImages": [
+    {
+      "section": "basic",
+      "path": "course-assets/by-lesson/lesson9/page114.webp",
+      "pageNo": 114
+    },
+    {
+      "section": "application",
+      "path": "course-assets/by-lesson/lesson9/page119.webp",
+      "pageNo": 119
+    }
+  ],
+  "basicText": {
+    "title": "基本课文",
+    "basicSentences": [
+      {
+        "id": "l9-basic-s001",
+        "order": 1,
+        "text": "四川料理は 辛いです。",
+        "kana": "しせんりょうりは からいです。",
+        "translationZh": "四川菜很辣。",
+        "confidence": "high",
+        "rawText": "1. 四川料理は 辛いです。",
+        "audioSegment": {
+          "id": "l9-basic-s001",
+          "trackId": "lesson_basic",
+          "sourceUrl": "/data/ocr/audio-clips/lesson9/l9-basic-s001.mp3",
+          "start": 0,
+          "end": 2.14,
+          "duration": 2.14,
+          "method": "approved-asr-alignment",
+          "confidence": "approved",
+          "reviewedAt": "2026-08-05T08:30:48.468Z",
+          "sourceAudioSha256": "c3d32ef146d2dbac9cfac50349bcebf1fa9c5b126550c6df82ff7107ddb29114"
+        }
+      },
+      {
+        "id": "l9-basic-s002",
+        "order": 2,
+        "text": "この スープは あまり 熱く ないです。",
+        "kana": "この スープは あまり あつく ないです。",
+        "translationZh": "这个汤不太烫。",
+        "confidence": "high",
+        "rawText": "2. この スープは あまり 熱く ないです。",
+        "audioSegment": {
+          "id": "l9-basic-s002",
+          "trackId": "lesson_basic",
+          "sourceUrl": "/data/ocr/audio-clips/lesson9/l9-basic-s002.mp3",
+          "start": 0,
+          "end": 2.7,
+          "duration": 2.7,
+          "method": "approved-asr-alignment",
+          "confidence": "approved",
+          "reviewedAt": "2026-08-05T08:30:48.468Z",
+          "sourceAudioSha256": "c3d32ef146d2dbac9cfac50349bcebf1fa9c5b126550c6df82ff7107ddb29114"
+        }
+      },
+      {
+        "id": "l9-basic-s003",
+        "order": 3,
+        "text": "旅行は とても 楽しかったです。",
+        "kana": "りょこうは とても たのしかったです。",
+        "translationZh": "旅行非常愉快。",
+        "confidence": "high",
+        "rawText": "3. 旅行は とても 楽しかったです。",
+        "audioSegment": {
+          "id": "l9-basic-s003",
+          "trackId": "lesson_basic",
+          "sourceUrl": "/data/ocr/audio-clips/lesson9/l9-basic-s003.mp3",
+          "start": 0,
+          "end": 1.94,
+          "duration": 1.94,
+          "method": "approved-asr-alignment",
+          "confidence": "approved",
+          "reviewedAt": "2026-08-05T08:30:48.468Z",
+          "sourceAudioSha256": "c3d32ef146d2dbac9cfac50349bcebf1fa9c5b126550c6df82ff7107ddb29114"
+        }
+      },
+      {
+        "id": "l9-basic-s004",
+        "order": 4,
+        "text": "中国は 広い 国です。",
+        "kana": "ちゅうごくは ひろい くにです。",
+        "translationZh": "中国是个幅员辽阔的国家。",
+        "confidence": "high",
+        "rawText": "4. 中国は 広い 国です。",
+        "audioSegment": {
+          "id": "l9-basic-s004",
+          "trackId": "lesson_basic",
+          "sourceUrl": "/data/ocr/audio-clips/lesson9/l9-basic-s004.mp3",
+          "start": 0,
+          "end": 2.5,
+          "duration": 2.5,
+          "method": "approved-asr-alignment",
+          "confidence": "approved",
+          "reviewedAt": "2026-08-05T08:30:48.468Z",
+          "sourceAudioSha256": "c3d32ef146d2dbac9cfac50349bcebf1fa9c5b126550c6df82ff7107ddb29114"
+        }
+      }
+    ],
+    "dialogues": [
+      {
+        "id": "l9-basic-dialogue-001",
+        "label": "A",
+        "lines": [
+          {
+            "id": "l9-basic-dialogue-001-line-001",
+            "speaker": "甲",
+            "text": "天気は よかったですか。",
+            "kana": "てんきは よかったですか。",
+            "translationZh": "天气好吗？",
+            "confidence": "high",
+            "rawText": "甲：天気は よかったですか。",
+            "audioSegment": {
+              "id": "l9-basic-dialogue-001-line-001",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson9/l9-basic-dialogue-001-line-001.mp3",
+              "start": 0,
+              "end": 1.7,
+              "duration": 1.7,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:30:48.468Z",
+              "sourceAudioSha256": "c3d32ef146d2dbac9cfac50349bcebf1fa9c5b126550c6df82ff7107ddb29114"
+            }
+          },
+          {
+            "id": "l9-basic-dialogue-001-line-002",
+            "speaker": "乙",
+            "text": "いいえ、あまり よく なかったです。",
+            "kana": "いいえ、あまり よく なかったです。",
+            "translationZh": "不，不太好。",
+            "confidence": "high",
+            "rawText": "乙：いいえ、あまり よく なかったです。",
+            "audioSegment": {
+              "id": "l9-basic-dialogue-001-line-002",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson9/l9-basic-dialogue-001-line-002.mp3",
+              "start": 0,
+              "end": 2.26,
+              "duration": 2.26,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:30:48.468Z",
+              "sourceAudioSha256": "c3d32ef146d2dbac9cfac50349bcebf1fa9c5b126550c6df82ff7107ddb29114"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l9-basic-dialogue-002",
+        "label": "B",
+        "lines": [
+          {
+            "id": "l9-basic-dialogue-002-line-001",
+            "speaker": "甲",
+            "text": "天安門へ 行きましたか。",
+            "kana": "てんあんもんへ いきましたか。",
+            "translationZh": "去天安门了吗？",
+            "confidence": "high",
+            "rawText": "甲：天安門へ 行きましたか。",
+            "audioSegment": {
+              "id": "l9-basic-dialogue-002-line-001",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson9/l9-basic-dialogue-002-line-001.mp3",
+              "start": 0,
+              "end": 2.06,
+              "duration": 2.06,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:30:48.468Z",
+              "sourceAudioSha256": "c3d32ef146d2dbac9cfac50349bcebf1fa9c5b126550c6df82ff7107ddb29114"
+            }
+          },
+          {
+            "id": "l9-basic-dialogue-002-line-002",
+            "speaker": "乙",
+            "text": "はい。とても 大きい 建物ですね。",
+            "kana": "はい。とても おおきい たてものですね。",
+            "translationZh": "去了。是非常大的建筑物呢。",
+            "confidence": "high",
+            "rawText": "乙：はい。とても 大きい 建物ですね。",
+            "audioSegment": {
+              "id": "l9-basic-dialogue-002-line-002",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson9/l9-basic-dialogue-002-line-002.mp3",
+              "start": 0,
+              "end": 2.54,
+              "duration": 2.54,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:30:48.468Z",
+              "sourceAudioSha256": "c3d32ef146d2dbac9cfac50349bcebf1fa9c5b126550c6df82ff7107ddb29114"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l9-basic-dialogue-003",
+        "label": "C",
+        "lines": [
+          {
+            "id": "l9-basic-dialogue-003-line-001",
+            "speaker": "甲",
+            "text": "万里の 長城は 北京から 遠いですか。",
+            "kana": "ばんりの ちょうじょうは ペキンから とおいですか。",
+            "translationZh": "万里长城离北京远吗？",
+            "confidence": "high",
+            "rawText": "甲：万里の 長城は 北京から 遠いですか。",
+            "audioSegment": {
+              "id": "l9-basic-dialogue-003-line-001",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson9/l9-basic-dialogue-003-line-001.mp3",
+              "start": 0,
+              "end": 3.22,
+              "duration": 3.22,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:30:48.468Z",
+              "sourceAudioSha256": "c3d32ef146d2dbac9cfac50349bcebf1fa9c5b126550c6df82ff7107ddb29114"
+            }
+          },
+          {
+            "id": "l9-basic-dialogue-003-line-002",
+            "speaker": "乙",
+            "text": "いいえ、あまり 遠く ないです。",
+            "kana": "いいえ、あまり とおく ないです。",
+            "translationZh": "不，不太远。",
+            "confidence": "high",
+            "rawText": "乙：いいえ、あまり 遠く ないです。",
+            "audioSegment": {
+              "id": "l9-basic-dialogue-003-line-002",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson9/l9-basic-dialogue-003-line-002.mp3",
+              "start": 0,
+              "end": 1.46,
+              "duration": 1.46,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:30:48.468Z",
+              "sourceAudioSha256": "c3d32ef146d2dbac9cfac50349bcebf1fa9c5b126550c6df82ff7107ddb29114"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l9-basic-dialogue-004",
+        "label": "D",
+        "lines": [
+          {
+            "id": "l9-basic-dialogue-004-line-001",
+            "speaker": "甲",
+            "text": "北京ダックは 食べましたか。",
+            "kana": "ペキンダックは たべましたか。",
+            "translationZh": "吃北京烤鸭了吗？",
+            "confidence": "high",
+            "rawText": "甲：北京ダックは 食べましたか。",
+            "audioSegment": {
+              "id": "l9-basic-dialogue-004-line-001",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson9/l9-basic-dialogue-004-line-001.mp3",
+              "start": 0,
+              "end": 2.18,
+              "duration": 2.18,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:30:48.468Z",
+              "sourceAudioSha256": "c3d32ef146d2dbac9cfac50349bcebf1fa9c5b126550c6df82ff7107ddb29114"
+            }
+          },
+          {
+            "id": "l9-basic-dialogue-004-line-002",
+            "speaker": "乙",
+            "text": "はい、食べました。とても おいしかったですよ。",
+            "kana": "はい、たべました。とても おいしかったですよ。",
+            "translationZh": "吃了。非常好吃。",
+            "confidence": "high",
+            "rawText": "乙：はい、食べました。とても おいしかったですよ。",
+            "audioSegment": {
+              "id": "l9-basic-dialogue-004-line-002",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson9/l9-basic-dialogue-004-line-002.mp3",
+              "start": 0,
+              "end": 2.86,
+              "duration": 2.86,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:30:48.468Z",
+              "sourceAudioSha256": "c3d32ef146d2dbac9cfac50349bcebf1fa9c5b126550c6df82ff7107ddb29114"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "applicationText": {
+    "title": "温泉",
+    "blocks": [
+      {
+        "id": "l9-app-block-001",
+        "type": "narration",
+        "text": "小李和小野来到箱根采访。秋天的箱根层林尽染。住进旅馆以后，两个人马上去洗露天浴。露天浴场的一角有能够饮用的温泉水。",
+        "kana": null,
+        "translationZh": "小李和小野来到箱根采访。秋天的箱根层林尽染。住进旅馆以后，两个人马上去洗露天浴。露天浴场的一角有能够饮用的温泉水。",
+        "confidence": "high",
+        "rawText": "小李和小野来到箱根采访。秋天的箱根层林尽染。住进旅馆以后，两个人马上去洗露天浴。露天浴场的一角有能够饮用的温泉水。"
+      },
+      {
+        "id": "l9-app-block-002",
+        "type": "scene",
+        "text": "（去浴场之前在房间里换浴衣）",
+        "kana": null,
+        "translationZh": "去浴场之前在房间里换浴衣。",
+        "confidence": "high",
+        "rawText": "（去浴场之前在房间里换浴衣）"
+      },
+      {
+        "id": "l9-app-block-003",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l9-app-block-003-line-001",
+            "speaker": "李",
+            "text": "小野さん、この 浴衣は ちょっと 小さいです。",
+            "kana": "おのさん、この ゆかたは ちょっと ちいさいです。",
+            "translationZh": "小野女士，这件浴衣有点小。",
+            "confidence": "high",
+            "rawText": "李：小野さん、この 浴衣は ちょっと 小さいです。",
+            "audioSegment": {
+              "id": "l9-app-block-003-line-001",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson9/l9-app-block-003-line-001.mp3",
+              "start": 0,
+              "end": 13.9,
+              "duration": 13.9,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:31:24.591Z",
+              "sourceAudioSha256": "c2a94137575f1a8315ad4be5bea369c31d236b37565adcc224e57b8515f77ee1"
+            }
+          },
+          {
+            "id": "l9-app-block-003-line-002",
+            "speaker": "小野",
+            "text": "あら、それは 子供用ですよ。",
+            "kana": "あら、それは こどもようですよ。",
+            "translationZh": "哎呀，那是儿童用的。",
+            "confidence": "high",
+            "rawText": "小野：あら、それは 子供用ですよ。",
+            "audioSegment": {
+              "id": "l9-app-block-003-line-002",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson9/l9-app-block-003-line-002.mp3",
+              "start": 0,
+              "end": 2.74,
+              "duration": 2.74,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:31:24.591Z",
+              "sourceAudioSha256": "c2a94137575f1a8315ad4be5bea369c31d236b37565adcc224e57b8515f77ee1"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l9-app-block-004",
+        "type": "scene",
+        "text": "（取出大人用的）これを どうぞ。",
+        "kana": null,
+        "translationZh": "（取出成人用的）请用这个。",
+        "confidence": "high",
+        "rawText": "（取出大人用的）これを どうぞ。"
+      },
+      {
+        "id": "l9-app-block-005",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l9-app-block-005-line-001",
+            "speaker": "李",
+            "text": "これは ちょうど いいです。",
+            "kana": "これは ちょうど いいです。",
+            "translationZh": "这个正合适。",
+            "confidence": "high",
+            "rawText": "李：（试穿）これは ちょうど いいです。",
+            "audioSegment": {
+              "id": "l9-app-block-005-line-001",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson9/l9-app-block-005-line-001.mp3",
+              "start": 0,
+              "end": 1.58,
+              "duration": 1.58,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:31:24.591Z",
+              "sourceAudioSha256": "c2a94137575f1a8315ad4be5bea369c31d236b37565adcc224e57b8515f77ee1"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l9-app-block-006",
+        "type": "scene",
+        "text": "（来到浴场，在外面冲过身子后，进入浴池）",
+        "kana": null,
+        "translationZh": "来到浴场，在外面冲过身子后，进入浴池。",
+        "confidence": "high",
+        "rawText": "（来到浴场，在外面冲过身子后，进入浴池）"
+      },
+      {
+        "id": "l9-app-block-007",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l9-app-block-007-line-001",
+            "speaker": "小野",
+            "text": "李さん、熱く ないですか。",
+            "kana": "りさん、あつく ないですか。",
+            "translationZh": "小李，不烫吗？",
+            "confidence": "high",
+            "rawText": "小野：李さん、熱く ないですか。",
+            "audioSegment": {
+              "id": "l9-app-block-007-line-001",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson9/l9-app-block-007-line-001.mp3",
+              "start": 0,
+              "end": 2.18,
+              "duration": 2.18,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:31:24.591Z",
+              "sourceAudioSha256": "c2a94137575f1a8315ad4be5bea369c31d236b37565adcc224e57b8515f77ee1"
+            }
+          },
+          {
+            "id": "l9-app-block-007-line-002",
+            "speaker": "李",
+            "text": "いいえ、ちょうど いいです。",
+            "kana": "いいえ、ちょうど いいです。",
+            "translationZh": "不，正合适。",
+            "confidence": "high",
+            "rawText": "李：いいえ、ちょうど いいです。",
+            "audioSegment": {
+              "id": "l9-app-block-007-line-002",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson9/l9-app-block-007-line-002.mp3",
+              "start": 0,
+              "end": 1.14,
+              "duration": 1.14,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:31:24.591Z",
+              "sourceAudioSha256": "c2a94137575f1a8315ad4be5bea369c31d236b37565adcc224e57b8515f77ee1"
+            }
+          },
+          {
+            "id": "l9-app-block-007-line-003",
+            "speaker": "李",
+            "text": "とても 気持ちが いいですね。",
+            "kana": "とても きもちが いいですね。",
+            "translationZh": "感觉非常舒服呢。",
+            "confidence": "high",
+            "rawText": "李：とても 気持ちが いいですね。",
+            "audioSegment": {
+              "id": "l9-app-block-007-line-003",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson9/l9-app-block-007-line-003.mp3",
+              "start": 0,
+              "end": 2.02,
+              "duration": 2.02,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:31:24.591Z",
+              "sourceAudioSha256": "c2a94137575f1a8315ad4be5bea369c31d236b37565adcc224e57b8515f77ee1"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l9-app-block-008",
+        "type": "scene",
+        "text": "（望着露天浴场外的红叶）",
+        "kana": null,
+        "translationZh": "望着露天浴场外的红叶。",
+        "confidence": "high",
+        "rawText": "（望着露天浴场外的红叶）"
+      },
+      {
+        "id": "l9-app-block-009",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l9-app-block-009-line-001",
+            "speaker": "李",
+            "text": "小野さん、すばらしい 眺めですね。",
+            "kana": "おのさん、すばらしい ながめですね。",
+            "translationZh": "小野女士，景色真棒啊。",
+            "confidence": "high",
+            "rawText": "李：小野さん、すばらしい 眺めですね。",
+            "audioSegment": {
+              "id": "l9-app-block-009-line-001",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson9/l9-app-block-009-line-001.mp3",
+              "start": 0,
+              "end": 2.78,
+              "duration": 2.78,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:31:24.591Z",
+              "sourceAudioSha256": "c2a94137575f1a8315ad4be5bea369c31d236b37565adcc224e57b8515f77ee1"
+            }
+          },
+          {
+            "id": "l9-app-block-009-line-002",
+            "speaker": "小野",
+            "text": "ええ、本当に。",
+            "kana": "ええ、ほんとうに。",
+            "translationZh": "是啊，真的。",
+            "confidence": "high",
+            "rawText": "小野：ええ、本当に。",
+            "audioSegment": {
+              "id": "l9-app-block-009-line-002",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson9/l9-app-block-009-line-002.mp3",
+              "start": 0,
+              "end": 0.62,
+              "duration": 0.62,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:31:24.591Z",
+              "sourceAudioSha256": "c2a94137575f1a8315ad4be5bea369c31d236b37565adcc224e57b8515f77ee1"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l9-app-block-010",
+        "type": "scene",
+        "text": "（在露天浴场的一角，小野在喝温泉水）",
+        "kana": null,
+        "translationZh": "在露天浴场的一角，小野在喝温泉水。",
+        "confidence": "high",
+        "rawText": "（在露天浴场的一角，小野在喝温泉水）"
+      },
+      {
+        "id": "l9-app-block-011",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l9-app-block-011-line-001",
+            "speaker": "李",
+            "text": "小野さん、それは 何ですか。",
+            "kana": "おのさん、それは なんですか。",
+            "translationZh": "小野女士，那是什么？",
+            "confidence": "high",
+            "rawText": "李：小野さん、それは 何ですか。",
+            "audioSegment": {
+              "id": "l9-app-block-011-line-001",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson9/l9-app-block-011-line-001.mp3",
+              "start": 0,
+              "end": 2.26,
+              "duration": 2.26,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:31:24.591Z",
+              "sourceAudioSha256": "c2a94137575f1a8315ad4be5bea369c31d236b37565adcc224e57b8515f77ee1"
+            }
+          },
+          {
+            "id": "l9-app-block-011-line-002",
+            "speaker": "小野",
+            "text": "ああ、これは 温泉の お湯です。",
+            "kana": "ああ、これは おんせんの おゆです。",
+            "translationZh": "啊，这是温泉水。",
+            "confidence": "high",
+            "rawText": "小野：ああ、これは 温泉の お湯です。",
+            "audioSegment": {
+              "id": "l9-app-block-011-line-002",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson9/l9-app-block-011-line-002.mp3",
+              "start": 0,
+              "end": 2.66,
+              "duration": 2.66,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:31:24.591Z",
+              "sourceAudioSha256": "c2a94137575f1a8315ad4be5bea369c31d236b37565adcc224e57b8515f77ee1"
+            }
+          },
+          {
+            "id": "l9-app-block-011-line-003",
+            "speaker": "小野",
+            "text": "李さんも 飲みますか。",
+            "kana": "りさんも のみますか。",
+            "translationZh": "小李也喝吗？",
+            "confidence": "high",
+            "rawText": "小野：李さんも 飲みますか。",
+            "audioSegment": {
+              "id": "l9-app-block-011-line-003",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson9/l9-app-block-011-line-003.mp3",
+              "start": 0,
+              "end": 1.54,
+              "duration": 1.54,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:31:24.591Z",
+              "sourceAudioSha256": "c2a94137575f1a8315ad4be5bea369c31d236b37565adcc224e57b8515f77ee1"
+            }
+          },
+          {
+            "id": "l9-app-block-011-line-004",
+            "speaker": "李",
+            "text": "ええ。あまり おいしく ないですね。",
+            "kana": "ええ。あまり おいしく ないですね。",
+            "translationZh": "嗯。不太好喝呢。",
+            "confidence": "high",
+            "rawText": "李：（喝了一点）あまり おいしく ないですね。",
+            "audioSegment": {
+              "id": "l9-app-block-011-line-004",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson9/l9-app-block-011-line-004.mp3",
+              "start": 0,
+              "end": 4.88,
+              "duration": 4.88,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:31:24.591Z",
+              "sourceAudioSha256": "c2a94137575f1a8315ad4be5bea369c31d236b37565adcc224e57b8515f77ee1"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "warnings": [
+    "应用课文中的旁白和场景说明以中文呈现，因此对应 block 的 text 与 translationZh 均保留中文原文，kana 为 null。",
+    "未输出 segments；已保留可可靠识别的整句 kana。"
+  ],
+  "audioAlignment": {
+    "schemaVersion": 1,
+    "method": "approved-asr-alignment",
+    "sourceAlignment": "data/ocr/lesson9-text-audio-alignment.json",
+    "publishedAt": "2026-08-05T08:31:28.183Z",
+    "approvedSegments": 24
+  }
+}

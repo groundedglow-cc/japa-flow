@@ -1,0 +1,457 @@
+{
+  "lessonId": "lesson19",
+  "sourceImages": [
+    {
+      "path": "course-assets/by-lesson/lesson19/page235.webp",
+      "pageNo": 235
+    }
+  ],
+  "vocabulary": [
+    {
+      "id": "l19-v001",
+      "kana": "しなもの",
+      "writing": "品物",
+      "meaningZh": [
+        "物品",
+        "商品"
+      ],
+      "partOfSpeech": "名",
+      "rawText": "しなもの（品物）[名] 物品，商品",
+      "confidence": "high"
+    },
+    {
+      "id": "l19-v002",
+      "kana": "おさら",
+      "writing": "お皿",
+      "meaningZh": [
+        "盘子"
+      ],
+      "partOfSpeech": "名",
+      "rawText": "おさら（お皿）[名] 盘子",
+      "confidence": "high"
+    },
+    {
+      "id": "l19-v003",
+      "kana": "ごみ",
+      "writing": "ごみ",
+      "meaningZh": [
+        "垃圾"
+      ],
+      "partOfSpeech": "名",
+      "rawText": "ごみ[名] 垃圾",
+      "confidence": "high"
+    },
+    {
+      "id": "l19-v004",
+      "kana": "しょしんしゃ",
+      "writing": "初心者",
+      "meaningZh": [
+        "初学者"
+      ],
+      "partOfSpeech": "名",
+      "rawText": "しょしんしゃ（初心者）[名] 初学者",
+      "confidence": "high"
+    },
+    {
+      "id": "l19-v005",
+      "kana": "じょうきゅうしゃ",
+      "writing": "上級者",
+      "meaningZh": [
+        "熟练者"
+      ],
+      "partOfSpeech": "名",
+      "rawText": "じょうきゅうしゃ（上級者）[名] 熟练者",
+      "confidence": "high"
+    },
+    {
+      "id": "l19-v006",
+      "kana": "こうきゅう",
+      "writing": "高級",
+      "meaningZh": [
+        "高级"
+      ],
+      "partOfSpeech": "名",
+      "rawText": "こうきゅう（高級）[名] 高级",
+      "confidence": "high"
+    },
+    {
+      "id": "l19-v007",
+      "kana": "じょうきゅうクラス",
+      "writing": "上級クラス",
+      "meaningZh": [
+        "高级班"
+      ],
+      "partOfSpeech": "名",
+      "rawText": "じょうきゅうクラス（上級クラス）[名] 高级班",
+      "confidence": "high"
+    },
+    {
+      "id": "l19-v008",
+      "kana": "えいかいわ",
+      "writing": "英会話",
+      "meaningZh": [
+        "英语会话"
+      ],
+      "partOfSpeech": "名",
+      "rawText": "えいかいわ（英会話）[名] 英语会话",
+      "confidence": "high"
+    },
+    {
+      "id": "l19-v009",
+      "kana": "コース",
+      "writing": "コース",
+      "meaningZh": [
+        "路线",
+        "滑道"
+      ],
+      "partOfSpeech": "名",
+      "rawText": "コース[名] 路线，滑道",
+      "confidence": "high"
+    },
+    {
+      "id": "l19-v010",
+      "kana": "スキー",
+      "writing": "スキー",
+      "meaningZh": [
+        "滑雪"
+      ],
+      "partOfSpeech": "名",
+      "rawText": "スキー[名] 滑雪",
+      "confidence": "high"
+    },
+    {
+      "id": "l19-v011",
+      "kana": "レポート",
+      "writing": "レポート",
+      "meaningZh": [
+        "报告"
+      ],
+      "partOfSpeech": "名",
+      "rawText": "レポート[名] 报告",
+      "confidence": "high"
+    },
+    {
+      "id": "l19-v012",
+      "kana": "パスポート",
+      "writing": "パスポート",
+      "meaningZh": [
+        "护照"
+      ],
+      "partOfSpeech": "名",
+      "rawText": "パスポート[名] 护照",
+      "confidence": "high"
+    },
+    {
+      "id": "l19-v013",
+      "kana": "のど",
+      "writing": "のど",
+      "meaningZh": [
+        "喉咙"
+      ],
+      "partOfSpeech": "名",
+      "rawText": "のど[名] 喉咙",
+      "confidence": "high"
+    },
+    {
+      "id": "l19-v014",
+      "kana": "さわります",
+      "writing": "触ります",
+      "meaningZh": [
+        "碰",
+        "触"
+      ],
+      "partOfSpeech": "动1",
+      "rawText": "さわります（触ります）[动1] 碰，触",
+      "confidence": "high"
+    },
+    {
+      "id": "l19-v015",
+      "kana": "ぬぎます",
+      "writing": "脱ぎます",
+      "meaningZh": [
+        "脱"
+      ],
+      "partOfSpeech": "动1",
+      "rawText": "ぬぎます（脱ぎます）[动1] 脱",
+      "confidence": "high"
+    },
+    {
+      "id": "l19-v016",
+      "kana": "ころびます",
+      "writing": "転びます",
+      "meaningZh": [
+        "摔",
+        "摔倒",
+        "跌倒"
+      ],
+      "partOfSpeech": "动1",
+      "rawText": "ころびます（転びます）[动1] 摔，摔倒，跌倒",
+      "confidence": "high"
+    },
+    {
+      "id": "l19-v017",
+      "kana": "かわきます",
+      "writing": "渇きます",
+      "meaningZh": [
+        "渴"
+      ],
+      "partOfSpeech": "动1",
+      "rawText": "かわきます（渇きます）[动1] 渴",
+      "confidence": "high"
+    },
+    {
+      "id": "l19-v018",
+      "kana": "なおります",
+      "writing": "治ります",
+      "meaningZh": [
+        "痊愈",
+        "医好"
+      ],
+      "partOfSpeech": "动1",
+      "rawText": "なおります（治ります）[动1] 痊愈，医好",
+      "confidence": "high"
+    },
+    {
+      "id": "l19-v019",
+      "kana": "すべります",
+      "writing": "滑ります",
+      "meaningZh": [
+        "滑",
+        "滑行"
+      ],
+      "partOfSpeech": "动1",
+      "rawText": "すべります（滑ります）[动1] 滑，滑行",
+      "confidence": "high"
+    },
+    {
+      "id": "l19-v020",
+      "kana": "よびます",
+      "writing": "呼びます",
+      "meaningZh": [
+        "呼喊"
+      ],
+      "partOfSpeech": "动1",
+      "rawText": "よびます（呼びます）[动1] 呼喊",
+      "confidence": "high"
+    },
+    {
+      "id": "l19-v021",
+      "kana": "かえします",
+      "writing": "返します",
+      "meaningZh": [
+        "归还"
+      ],
+      "partOfSpeech": "动1",
+      "rawText": "かえします（返します）[动1] 归还",
+      "confidence": "high"
+    },
+    {
+      "id": "l19-v022",
+      "kana": "てつだいます",
+      "writing": "手伝います",
+      "meaningZh": [
+        "帮忙"
+      ],
+      "partOfSpeech": "动1",
+      "rawText": "てつだいます（手伝います）[动1] 帮忙",
+      "confidence": "high"
+    },
+    {
+      "id": "l19-v023",
+      "kana": "はこびます",
+      "writing": "運びます",
+      "meaningZh": [
+        "搬运"
+      ],
+      "partOfSpeech": "动1",
+      "rawText": "はこびます（運びます）[动1] 搬运",
+      "confidence": "high"
+    },
+    {
+      "id": "l19-v024",
+      "kana": "なくします",
+      "writing": "なくします",
+      "meaningZh": [
+        "丢",
+        "丢失"
+      ],
+      "partOfSpeech": "动1",
+      "rawText": "なくします[动1] 丢，丢失",
+      "confidence": "high"
+    },
+    {
+      "id": "l19-v025",
+      "kana": "おとします",
+      "writing": "落とします",
+      "meaningZh": [
+        "掉",
+        "使落下"
+      ],
+      "partOfSpeech": "动1",
+      "rawText": "おとします（落とします）[动1] 掉，使落下",
+      "confidence": "high"
+    },
+    {
+      "id": "l19-v026",
+      "kana": "おきます",
+      "writing": "置きます",
+      "meaningZh": [
+        "放置"
+      ],
+      "partOfSpeech": "动1",
+      "rawText": "おきます（置きます）[动1] 放置",
+      "confidence": "high"
+    },
+    {
+      "id": "l19-v027",
+      "kana": "はらいます",
+      "writing": "払います",
+      "meaningZh": [
+        "支付"
+      ],
+      "partOfSpeech": "动1",
+      "rawText": "はらいます（払います）[动1] 支付",
+      "confidence": "high"
+    },
+    {
+      "id": "l19-v028",
+      "kana": "たちます",
+      "writing": "立ちます",
+      "meaningZh": [
+        "站",
+        "立"
+      ],
+      "partOfSpeech": "动1",
+      "rawText": "たちます（立ちます）[动1] 站，立",
+      "confidence": "high"
+    },
+    {
+      "id": "l19-v029",
+      "kana": "わすれます",
+      "writing": "忘れます",
+      "meaningZh": [
+        "忘记"
+      ],
+      "partOfSpeech": "动2",
+      "rawText": "わすれます（忘れます）[动2] 忘记",
+      "confidence": "high"
+    },
+    {
+      "id": "l19-v030",
+      "kana": "あわてます",
+      "writing": "慌てます",
+      "meaningZh": [
+        "慌张",
+        "惊慌",
+        "着急"
+      ],
+      "partOfSpeech": "动2",
+      "rawText": "あわてます（慌てます）[动2] 慌张，惊慌，着急",
+      "confidence": "high"
+    },
+    {
+      "id": "l19-v031",
+      "kana": "すてます",
+      "writing": "捨てます",
+      "meaningZh": [
+        "扔",
+        "扔掉"
+      ],
+      "partOfSpeech": "动2",
+      "rawText": "すてます（捨てます）[动2] 扔，扔掉",
+      "confidence": "high"
+    },
+    {
+      "id": "l19-v032",
+      "kana": "ざんぎょうします",
+      "writing": "残業します",
+      "meaningZh": [
+        "加班"
+      ],
+      "partOfSpeech": "动2",
+      "rawText": "ざんぎょうします（残業します）[动2] 加班",
+      "confidence": "high"
+    },
+    {
+      "id": "l19-v033",
+      "kana": "しんぱいします",
+      "writing": "心配します",
+      "meaningZh": [
+        "担心"
+      ],
+      "partOfSpeech": "动3",
+      "rawText": "しんぱいします（心配します）[动3] 担心",
+      "confidence": "high"
+    },
+    {
+      "id": "l19-v034",
+      "kana": "ほんとう",
+      "writing": "本当",
+      "meaningZh": [
+        "真的",
+        "真正"
+      ],
+      "partOfSpeech": "形2",
+      "rawText": "ほんとう（本当）[形2] 真的，真正",
+      "confidence": "high"
+    },
+    {
+      "id": "l19-v035",
+      "kana": "はやく",
+      "writing": "早く",
+      "meaningZh": [
+        "早点儿"
+      ],
+      "partOfSpeech": "副",
+      "rawText": "はやく（早く）[副] 早点儿",
+      "confidence": "high"
+    },
+    {
+      "id": "l19-v036",
+      "kana": "やっと",
+      "writing": "やっと",
+      "meaningZh": [
+        "好不容易",
+        "终于"
+      ],
+      "partOfSpeech": "副",
+      "rawText": "やっと[副] 好不容易，终于",
+      "confidence": "high"
+    },
+    {
+      "id": "l19-v037",
+      "kana": "だいぶ",
+      "writing": "だいぶ",
+      "meaningZh": [
+        "很",
+        "相当地"
+      ],
+      "partOfSpeech": "副",
+      "rawText": "だいぶ[副] 很，相当地",
+      "confidence": "high"
+    },
+    {
+      "id": "l19-v038",
+      "kana": "はじめて",
+      "writing": "初めて",
+      "meaningZh": [
+        "第一次"
+      ],
+      "partOfSpeech": "副",
+      "rawText": "はじめて（初めて）[副] 第一次",
+      "confidence": "high"
+    },
+    {
+      "id": "l19-v039",
+      "kana": "やまだ",
+      "writing": "山田",
+      "meaningZh": [
+        "山田"
+      ],
+      "partOfSpeech": "专",
+      "rawText": "やまだ（山田）[专] 山田",
+      "confidence": "high"
+    }
+  ],
+  "warnings": []
+}

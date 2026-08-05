@@ -1,0 +1,589 @@
+{
+  "lessonId": "lesson20",
+  "sourceImages": [
+    {
+      "section": "basic",
+      "path": "course-assets/by-lesson/lesson20/page236.webp",
+      "pageNo": 236
+    },
+    {
+      "section": "application",
+      "path": "course-assets/by-lesson/lesson20/page241.webp",
+      "pageNo": 241
+    }
+  ],
+  "basicText": {
+    "title": "基本课文",
+    "basicSentences": [
+      {
+        "id": "l20-basic-s001",
+        "order": 1,
+        "text": "スミスさんは ピアノを 弾く ことが できます。",
+        "translationZh": "史密斯先生会弹钢琴。",
+        "confidence": "high",
+        "rawText": "1. スミスさんは ピアノを 弾く ことが できます。",
+        "audioSegment": {
+          "id": "l20-basic-s001",
+          "trackId": "lesson_basic",
+          "sourceUrl": "/data/ocr/audio-clips/lesson20/l20-basic-s001.mp3",
+          "start": 0,
+          "end": 3.06,
+          "duration": 3.06,
+          "method": "approved-asr-alignment",
+          "confidence": "approved",
+          "reviewedAt": "2026-08-05T08:44:23.445Z",
+          "sourceAudioSha256": "df86ad501a3d3bc320f8c6906d56ff61046c39c8981dc41089130442f733e849"
+        }
+      },
+      {
+        "id": "l20-basic-s002",
+        "order": 2,
+        "text": "わたしの 趣味は 切手を 集める ことです。",
+        "translationZh": "我的爱好是集邮。",
+        "confidence": "high",
+        "rawText": "2. わたしの 趣味は 切手を 集める ことです。",
+        "audioSegment": {
+          "id": "l20-basic-s002",
+          "trackId": "lesson_basic",
+          "sourceUrl": "/data/ocr/audio-clips/lesson20/l20-basic-s002.mp3",
+          "start": 0,
+          "end": 4.1,
+          "duration": 4.1,
+          "method": "approved-asr-alignment",
+          "confidence": "approved",
+          "reviewedAt": "2026-08-05T08:44:23.445Z",
+          "sourceAudioSha256": "df86ad501a3d3bc320f8c6906d56ff61046c39c8981dc41089130442f733e849"
+        }
+      },
+      {
+        "id": "l20-basic-s003",
+        "order": 3,
+        "text": "こちらへ 来る 前に、電話を かけて ください。",
+        "translationZh": "来这里之前请打电话。",
+        "confidence": "high",
+        "rawText": "3. こちらへ 来る 前に、電話を かけて ください。",
+        "audioSegment": {
+          "id": "l20-basic-s003",
+          "trackId": "lesson_basic",
+          "sourceUrl": "/data/ocr/audio-clips/lesson20/l20-basic-s003.mp3",
+          "start": 0,
+          "end": 3.18,
+          "duration": 3.18,
+          "method": "approved-asr-alignment",
+          "confidence": "approved",
+          "reviewedAt": "2026-08-05T08:44:23.445Z",
+          "sourceAudioSha256": "df86ad501a3d3bc320f8c6906d56ff61046c39c8981dc41089130442f733e849"
+        }
+      },
+      {
+        "id": "l20-basic-s004",
+        "order": 4,
+        "text": "冬休み、どこかへ 行きたいです。",
+        "translationZh": "寒假想去个什么地方。",
+        "confidence": "high",
+        "rawText": "4. 冬休み、どこかへ 行きたいです。",
+        "audioSegment": {
+          "id": "l20-basic-s004",
+          "trackId": "lesson_basic",
+          "sourceUrl": "/data/ocr/audio-clips/lesson20/l20-basic-s004.mp3",
+          "start": 0,
+          "end": 2.5,
+          "duration": 2.5,
+          "method": "approved-asr-alignment",
+          "confidence": "approved",
+          "reviewedAt": "2026-08-05T08:44:23.445Z",
+          "sourceAudioSha256": "df86ad501a3d3bc320f8c6906d56ff61046c39c8981dc41089130442f733e849"
+        }
+      }
+    ],
+    "dialogues": [
+      {
+        "id": "l20-basic-dialogue-001",
+        "label": "A",
+        "lines": [
+          {
+            "id": "l20-basic-dialogue-001-line-001",
+            "speaker": "甲",
+            "text": "李さんは 車を 運転する ことが できますか。",
+            "translationZh": "小李会开车吗？",
+            "confidence": "high",
+            "rawText": "甲：李さんは 車を 運転する ことが できますか。",
+            "audioSegment": {
+              "id": "l20-basic-dialogue-001-line-001",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson20/l20-basic-dialogue-001-line-001.mp3",
+              "start": 0,
+              "end": 2.9,
+              "duration": 2.9,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:44:23.445Z",
+              "sourceAudioSha256": "df86ad501a3d3bc320f8c6906d56ff61046c39c8981dc41089130442f733e849"
+            }
+          },
+          {
+            "id": "l20-basic-dialogue-001-line-002",
+            "speaker": "乙",
+            "text": "はい、できます。",
+            "translationZh": "会。",
+            "confidence": "high",
+            "rawText": "乙：はい、できます。",
+            "audioSegment": {
+              "id": "l20-basic-dialogue-001-line-002",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson20/l20-basic-dialogue-001-line-002.mp3",
+              "start": 0,
+              "end": 1.22,
+              "duration": 1.22,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:44:23.445Z",
+              "sourceAudioSha256": "df86ad501a3d3bc320f8c6906d56ff61046c39c8981dc41089130442f733e849"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l20-basic-dialogue-002",
+        "label": "B",
+        "lines": [
+          {
+            "id": "l20-basic-dialogue-002-line-001",
+            "speaker": "甲",
+            "text": "ここで 写真を 撮っても いいですか。",
+            "translationZh": "可以在这里拍照吗？",
+            "confidence": "high",
+            "rawText": "甲：ここで 写真を 撮っても いいですか。",
+            "audioSegment": {
+              "id": "l20-basic-dialogue-002-line-001",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson20/l20-basic-dialogue-002-line-001.mp3",
+              "start": 0,
+              "end": 2.54,
+              "duration": 2.54,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:44:23.445Z",
+              "sourceAudioSha256": "df86ad501a3d3bc320f8c6906d56ff61046c39c8981dc41089130442f733e849"
+            }
+          },
+          {
+            "id": "l20-basic-dialogue-002-line-002",
+            "speaker": "乙",
+            "text": "いいえ、ここでは 撮る ことが できません。",
+            "translationZh": "不，这里不能拍照。",
+            "confidence": "high",
+            "rawText": "乙：いいえ、ここでは 撮る ことが できません。",
+            "audioSegment": {
+              "id": "l20-basic-dialogue-002-line-002",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson20/l20-basic-dialogue-002-line-002.mp3",
+              "start": 0,
+              "end": 2.86,
+              "duration": 2.86,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:44:23.445Z",
+              "sourceAudioSha256": "df86ad501a3d3bc320f8c6906d56ff61046c39c8981dc41089130442f733e849"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l20-basic-dialogue-003",
+        "label": "C",
+        "lines": [
+          {
+            "id": "l20-basic-dialogue-003-line-001",
+            "speaker": "甲",
+            "text": "何か 趣味が ありますか。",
+            "translationZh": "你有什么爱好吗？",
+            "confidence": "high",
+            "rawText": "甲：何か 趣味が ありますか。",
+            "audioSegment": {
+              "id": "l20-basic-dialogue-003-line-001",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson20/l20-basic-dialogue-003-line-001.mp3",
+              "start": 0,
+              "end": 2.1,
+              "duration": 2.1,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:44:23.445Z",
+              "sourceAudioSha256": "df86ad501a3d3bc320f8c6906d56ff61046c39c8981dc41089130442f733e849"
+            }
+          },
+          {
+            "id": "l20-basic-dialogue-003-line-002",
+            "speaker": "乙",
+            "text": "ええ。音楽を 聞く ことです。",
+            "translationZh": "有，是听音乐。",
+            "confidence": "high",
+            "rawText": "乙：ええ。音楽を 聞く ことです。",
+            "audioSegment": {
+              "id": "l20-basic-dialogue-003-line-002",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson20/l20-basic-dialogue-003-line-002.mp3",
+              "start": 0,
+              "end": 2.22,
+              "duration": 2.22,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:44:23.445Z",
+              "sourceAudioSha256": "df86ad501a3d3bc320f8c6906d56ff61046c39c8981dc41089130442f733e849"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l20-basic-dialogue-004",
+        "label": "D",
+        "lines": [
+          {
+            "id": "l20-basic-dialogue-004-line-001",
+            "speaker": "甲",
+            "text": "森さんは いつ ギターを 練習しますか。",
+            "translationZh": "森先生什么时候练吉他？",
+            "confidence": "high",
+            "rawText": "甲：森さんは いつ ギターを 練習しますか。",
+            "audioSegment": {
+              "id": "l20-basic-dialogue-004-line-001",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson20/l20-basic-dialogue-004-line-001.mp3",
+              "start": 0,
+              "end": 3.14,
+              "duration": 3.14,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:44:23.445Z",
+              "sourceAudioSha256": "df86ad501a3d3bc320f8c6906d56ff61046c39c8981dc41089130442f733e849"
+            }
+          },
+          {
+            "id": "l20-basic-dialogue-004-line-002",
+            "speaker": "乙",
+            "text": "毎晩、寝る 前に 練習します。",
+            "translationZh": "每天晚上睡觉前练习。",
+            "confidence": "high",
+            "rawText": "乙：毎晩、寝る 前に 練習します。",
+            "audioSegment": {
+              "id": "l20-basic-dialogue-004-line-002",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson20/l20-basic-dialogue-004-line-002.mp3",
+              "start": 0,
+              "end": 2.22,
+              "duration": 2.22,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:44:23.445Z",
+              "sourceAudioSha256": "df86ad501a3d3bc320f8c6906d56ff61046c39c8981dc41089130442f733e849"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "applicationText": {
+    "title": "春節",
+    "blocks": [
+      {
+        "id": "l20-app-block-001",
+        "type": "scene",
+        "text": "看着挂历。",
+        "translationZh": "看着挂历。",
+        "confidence": "high",
+        "rawText": "看着挂历。"
+      },
+      {
+        "id": "l20-app-block-002",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l20-app-block-002-line-001",
+            "speaker": "小野",
+            "text": "李さん、春節は 中国へ 帰りますか。",
+            "translationZh": "小李，春节回中国吗？",
+            "confidence": "high",
+            "rawText": "小野：李さん、春節は 中国へ 帰りますか。",
+            "audioSegment": {
+              "id": "l20-app-block-002-line-001",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson20/l20-app-block-002-line-001.mp3",
+              "start": 0,
+              "end": 2.14,
+              "duration": 2.14,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:45:03.611Z",
+              "sourceAudioSha256": "11d2e0cc2548954dbf3362919ee729e1fae648dec261bd26c561398f004b9a38"
+            }
+          },
+          {
+            "id": "l20-app-block-002-line-002",
+            "speaker": "李",
+            "text": "いいえ、今 日本の 仕事が 忙しいですから、帰りません。",
+            "translationZh": "不，现在日本的工作很忙，所以不回去。",
+            "confidence": "high",
+            "rawText": "李：いいえ、今 日本の 仕事が 忙しいですから、帰りません。",
+            "audioSegment": {
+              "id": "l20-app-block-002-line-002",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson20/l20-app-block-002-line-002.mp3",
+              "start": 0,
+              "end": 3.3,
+              "duration": 3.3,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:45:03.611Z",
+              "sourceAudioSha256": "11d2e0cc2548954dbf3362919ee729e1fae648dec261bd26c561398f004b9a38"
+            }
+          },
+          {
+            "id": "l20-app-block-002-line-003",
+            "speaker": "森",
+            "text": "じゃあ、いっしょに どこかへ 行きませんか。",
+            "translationZh": "那一起去什么地方吧？",
+            "confidence": "high",
+            "rawText": "森：じゃあ、いっしょに どこかへ 行きませんか。",
+            "audioSegment": {
+              "id": "l20-app-block-002-line-003",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson20/l20-app-block-002-line-003.mp3",
+              "start": 0,
+              "end": 2.9,
+              "duration": 2.9,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:45:03.611Z",
+              "sourceAudioSha256": "11d2e0cc2548954dbf3362919ee729e1fae648dec261bd26c561398f004b9a38"
+            }
+          },
+          {
+            "id": "l20-app-block-002-line-004",
+            "speaker": "小野",
+            "text": "横浜の 中華街へ 行きましょうよ。中国の 獅子舞を 見る ことが できますよ。",
+            "translationZh": "去横滨中华街吧。可以看到中国的狮子舞。",
+            "confidence": "high",
+            "rawText": "小野：横浜の 中華街へ 行きましょうよ。中国の 獅子舞を 見る ことが できますよ。",
+            "audioSegment": {
+              "id": "l20-app-block-002-line-004",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson20/l20-app-block-002-line-004.mp3",
+              "start": 0,
+              "end": 5.02,
+              "duration": 5.02,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:45:03.611Z",
+              "sourceAudioSha256": "11d2e0cc2548954dbf3362919ee729e1fae648dec261bd26c561398f004b9a38"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l20-app-block-003",
+        "type": "scene",
+        "text": "在中华街，饭后。",
+        "translationZh": "在中华街，饭后。",
+        "confidence": "high",
+        "rawText": "在中华街，饭后。"
+      },
+      {
+        "id": "l20-app-block-004",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l20-app-block-004-line-001",
+            "speaker": "小野",
+            "text": "料理は どうでしたか。",
+            "translationZh": "菜怎么样？",
+            "confidence": "high",
+            "rawText": "小野：料理は どうでしたか。",
+            "audioSegment": {
+              "id": "l20-app-block-004-line-001",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson20/l20-app-block-004-line-001.mp3",
+              "start": 0,
+              "end": 1.58,
+              "duration": 1.58,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:45:03.611Z",
+              "sourceAudioSha256": "11d2e0cc2548954dbf3362919ee729e1fae648dec261bd26c561398f004b9a38"
+            }
+          },
+          {
+            "id": "l20-app-block-004-line-002",
+            "speaker": "李",
+            "text": "とても おいしかったですよ。特に 餃子は。",
+            "translationZh": "很好吃，特别是饺子。",
+            "confidence": "high",
+            "rawText": "李：とても おいしかったですよ。特に 餃子は。",
+            "audioSegment": {
+              "id": "l20-app-block-004-line-002",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson20/l20-app-block-004-line-002.mp3",
+              "start": 0,
+              "end": 3.14,
+              "duration": 3.14,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:45:03.611Z",
+              "sourceAudioSha256": "11d2e0cc2548954dbf3362919ee729e1fae648dec261bd26c561398f004b9a38"
+            }
+          },
+          {
+            "id": "l20-app-block-004-line-003",
+            "speaker": "森",
+            "text": "李さんは 餃子を 作る ことが できますか。",
+            "translationZh": "小李会包饺子吗？",
+            "confidence": "high",
+            "rawText": "森：李さんは 餃子を 作る ことが できますか。",
+            "audioSegment": {
+              "id": "l20-app-block-004-line-003",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson20/l20-app-block-004-line-003.mp3",
+              "start": 0,
+              "end": 2.7,
+              "duration": 2.7,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:45:03.611Z",
+              "sourceAudioSha256": "11d2e0cc2548954dbf3362919ee729e1fae648dec261bd26c561398f004b9a38"
+            }
+          },
+          {
+            "id": "l20-app-block-004-line-004",
+            "speaker": "李",
+            "text": "ええ。北京では 春節の 前に、家族 みんなで 餃子を 作ります。",
+            "translationZh": "会。在北京春节前全家人一起包饺子。",
+            "confidence": "high",
+            "rawText": "李：ええ。北京では 春節の 前に、家族 みんなで 餃子を 作ります。",
+            "audioSegment": {
+              "id": "l20-app-block-004-line-004",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson20/l20-app-block-004-line-004.mp3",
+              "start": 0,
+              "end": 3.9,
+              "duration": 3.9,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:45:03.611Z",
+              "sourceAudioSha256": "11d2e0cc2548954dbf3362919ee729e1fae648dec261bd26c561398f004b9a38"
+            }
+          },
+          {
+            "id": "l20-app-block-004-line-005",
+            "speaker": "小野",
+            "text": "手作りの 餃子は 皮が おいしいですよね。",
+            "translationZh": "手工饺子的皮很好吃吧。",
+            "confidence": "high",
+            "rawText": "小野：手作りの 餃子は 皮が おいしいですよね。",
+            "audioSegment": {
+              "id": "l20-app-block-004-line-005",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson20/l20-app-block-004-line-005.mp3",
+              "start": 0,
+              "end": 2.42,
+              "duration": 2.42,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:45:03.611Z",
+              "sourceAudioSha256": "11d2e0cc2548954dbf3362919ee729e1fae648dec261bd26c561398f004b9a38"
+            }
+          },
+          {
+            "id": "l20-app-block-004-line-006",
+            "speaker": "李",
+            "text": "小野さんも 作る ことが できますか。",
+            "translationZh": "小野也会做吗？",
+            "confidence": "high",
+            "rawText": "李：小野さんも 作る ことが できますか。",
+            "audioSegment": {
+              "id": "l20-app-block-004-line-006",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson20/l20-app-block-004-line-006.mp3",
+              "start": 0,
+              "end": 2.46,
+              "duration": 2.46,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:45:03.611Z",
+              "sourceAudioSha256": "11d2e0cc2548954dbf3362919ee729e1fae648dec261bd26c561398f004b9a38"
+            }
+          },
+          {
+            "id": "l20-app-block-004-line-007",
+            "speaker": "小野",
+            "text": "ええ、もちろん。わたしの 趣味は おいしい 物を 作る ことですから。",
+            "translationZh": "会，当然。因为我的爱好就是做好吃的东西。",
+            "confidence": "high",
+            "rawText": "小野：ええ、もちろん。わたしの 趣味は おいしい 物を 作る ことですから。",
+            "audioSegment": {
+              "id": "l20-app-block-004-line-007",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson20/l20-app-block-004-line-007.mp3",
+              "start": 0,
+              "end": 4.78,
+              "duration": 4.78,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:45:03.611Z",
+              "sourceAudioSha256": "11d2e0cc2548954dbf3362919ee729e1fae648dec261bd26c561398f004b9a38"
+            }
+          },
+          {
+            "id": "l20-app-block-004-line-008",
+            "speaker": "森",
+            "text": "本当ですか？じゃあ、いつか ごちそうして ください。",
+            "translationZh": "真的吗？那改天请做给我吃。",
+            "confidence": "high",
+            "rawText": "森：本当ですか？じゃあ、いつか ごちそうして ください。",
+            "audioSegment": {
+              "id": "l20-app-block-004-line-008",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson20/l20-app-block-004-line-008.mp3",
+              "start": 0,
+              "end": 3.82,
+              "duration": 3.82,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:45:03.611Z",
+              "sourceAudioSha256": "11d2e0cc2548954dbf3362919ee729e1fae648dec261bd26c561398f004b9a38"
+            }
+          },
+          {
+            "id": "l20-app-block-004-line-009",
+            "speaker": "小野",
+            "text": "いいですよ。李さんが 帰国する 前に、ぜひ いっしょに うちに 来て ください。",
+            "translationZh": "好啊。小李回国之前，请一定一起来我家。",
+            "confidence": "high",
+            "rawText": "小野：いいですよ。李さんが 帰国する 前に、ぜひ いっしょに うちに 来て ください。",
+            "audioSegment": {
+              "id": "l20-app-block-004-line-009",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson20/l20-app-block-004-line-009.mp3",
+              "start": 0,
+              "end": 5.34,
+              "duration": 5.34,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:45:03.611Z",
+              "sourceAudioSha256": "11d2e0cc2548954dbf3362919ee729e1fae648dec261bd26c561398f004b9a38"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "warnings": [
+    "segments/ruby 未批量生成；保留 text 与 translationZh，后续可单独补充 ruby 切片。"
+  ],
+  "audioAlignment": {
+    "schemaVersion": 1,
+    "method": "approved-asr-alignment",
+    "sourceAlignment": "data/ocr/lesson20-text-audio-alignment.json",
+    "publishedAt": "2026-08-05T08:45:08.209Z",
+    "approvedSegments": 25
+  }
+}

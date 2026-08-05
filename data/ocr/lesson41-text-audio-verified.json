@@ -1,0 +1,474 @@
+{
+  "lessonId": "lesson41",
+  "sourceImages": [
+    {
+      "section": "basic",
+      "path": "course-assets/by-lesson/lesson41/page188.webp",
+      "pageNo": 188
+    },
+    {
+      "section": "application",
+      "path": "course-assets/by-lesson/lesson41/page193.webp",
+      "pageNo": 193
+    }
+  ],
+  "basicText": {
+    "title": "基本课文",
+    "basicSentences": [
+      {
+        "id": "l41-basic-s001",
+        "order": 1,
+        "text": "李さんは部長にほめられました。",
+        "translationZh": "小李受到了部长的表扬。",
+        "confidence": "high",
+        "rawText": "1. 李さんは部長にほめられました。",
+        "audioSegment": {
+          "id": "l41-basic-s001",
+          "trackId": "lesson_basic",
+          "sourceUrl": "/data/ocr/audio-clips/lesson41/l41-basic-s001.mp3",
+          "start": 0,
+          "end": 1.86,
+          "duration": 1.86,
+          "method": "approved-asr-alignment",
+          "confidence": "approved",
+          "reviewedAt": "2026-08-05T10:24:59.931Z",
+          "sourceAudioSha256": "241ddc96714b0867e5104c22a1c7278e2bd3fcd19612627d2057d6492fef877d"
+        }
+      },
+      {
+        "id": "l41-basic-s002",
+        "order": 2,
+        "text": "馬さんは森さんにカメラを壊されました。",
+        "translationZh": "小马的相机被森先生弄坏了。",
+        "confidence": "high",
+        "rawText": "2. 馬さんは森さんにカメラを壊されました。",
+        "audioSegment": {
+          "id": "l41-basic-s002",
+          "trackId": "lesson_basic",
+          "sourceUrl": "/data/ocr/audio-clips/lesson41/l41-basic-s002.mp3",
+          "start": 0,
+          "end": 3.5,
+          "duration": 3.5,
+          "method": "approved-asr-alignment",
+          "confidence": "approved",
+          "reviewedAt": "2026-08-05T10:24:59.931Z",
+          "sourceAudioSha256": "241ddc96714b0867e5104c22a1c7278e2bd3fcd19612627d2057d6492fef877d"
+        }
+      },
+      {
+        "id": "l41-basic-s003",
+        "order": 3,
+        "text": "陳さんは飼っていた小鳥に逃げられました。",
+        "translationZh": "陈先生养的小鸟飞走了。",
+        "confidence": "high",
+        "rawText": "3. 陳さんは飼っていた小鳥に逃げられました。",
+        "audioSegment": {
+          "id": "l41-basic-s003",
+          "trackId": "lesson_basic",
+          "sourceUrl": "/data/ocr/audio-clips/lesson41/l41-basic-s003.mp3",
+          "start": 0,
+          "end": 3.1,
+          "duration": 3.1,
+          "method": "approved-asr-alignment",
+          "confidence": "approved",
+          "reviewedAt": "2026-08-05T10:24:59.931Z",
+          "sourceAudioSha256": "241ddc96714b0867e5104c22a1c7278e2bd3fcd19612627d2057d6492fef877d"
+        }
+      },
+      {
+        "id": "l41-basic-s004",
+        "order": 4,
+        "text": "2010年に上海で万博が開かれます。",
+        "translationZh": "2010年将在上海举办世博会。",
+        "confidence": "high",
+        "rawText": "4. 2010年に上海で万博が開かれます。",
+        "audioSegment": {
+          "id": "l41-basic-s004",
+          "trackId": "lesson_basic",
+          "sourceUrl": "/data/ocr/audio-clips/lesson41/l41-basic-s004.mp3",
+          "start": 0,
+          "end": 5.66,
+          "duration": 5.66,
+          "method": "approved-asr-alignment",
+          "confidence": "approved",
+          "reviewedAt": "2026-08-05T10:24:59.931Z",
+          "sourceAudioSha256": "241ddc96714b0867e5104c22a1c7278e2bd3fcd19612627d2057d6492fef877d"
+        }
+      }
+    ],
+    "dialogues": [
+      {
+        "id": "l41-basic-dialogue-001",
+        "label": "A",
+        "lines": [
+          {
+            "id": "l41-basic-dialogue-001-line-001",
+            "speaker": "甲",
+            "text": "太田君、どうしたんだ。元気がないね。",
+            "translationZh": "太田，你怎么了？没精神啊。",
+            "confidence": "high",
+            "rawText": "甲：太田君、どうしたんだ。元気がないね。",
+            "audioSegment": {
+              "id": "l41-basic-dialogue-001-line-001",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson41/l41-basic-dialogue-001-line-001.mp3",
+              "start": 0,
+              "end": 3.26,
+              "duration": 3.26,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:24:59.931Z",
+              "sourceAudioSha256": "241ddc96714b0867e5104c22a1c7278e2bd3fcd19612627d2057d6492fef877d"
+            }
+          },
+          {
+            "id": "l41-basic-dialogue-001-line-002",
+            "speaker": "乙",
+            "text": "ええ。部長にしかられたんです。",
+            "translationZh": "嗯。被部长批评了。",
+            "confidence": "high",
+            "rawText": "乙：ええ。部長にしかられたんです。",
+            "audioSegment": {
+              "id": "l41-basic-dialogue-001-line-002",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson41/l41-basic-dialogue-001-line-002.mp3",
+              "start": 0,
+              "end": 2.34,
+              "duration": 2.34,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:24:59.931Z",
+              "sourceAudioSha256": "241ddc96714b0867e5104c22a1c7278e2bd3fcd19612627d2057d6492fef877d"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l41-basic-dialogue-002",
+        "label": "B",
+        "lines": [
+          {
+            "id": "l41-basic-dialogue-002-line-001",
+            "speaker": "甲",
+            "text": "李さん、どうしたんですか。",
+            "translationZh": "小李，你怎么了？",
+            "confidence": "high",
+            "rawText": "甲：李さん、どうしたんですか。",
+            "audioSegment": {
+              "id": "l41-basic-dialogue-002-line-001",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson41/l41-basic-dialogue-002-line-001.mp3",
+              "start": 0,
+              "end": 3.87,
+              "duration": 3.87,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:24:59.931Z",
+              "sourceAudioSha256": "241ddc96714b0867e5104c22a1c7278e2bd3fcd19612627d2057d6492fef877d"
+            }
+          },
+          {
+            "id": "l41-basic-dialogue-002-line-002",
+            "speaker": "乙",
+            "text": "昨日犬に手をかまれたんです。",
+            "translationZh": "昨天手被狗咬了。",
+            "confidence": "high",
+            "rawText": "乙：昨日犬に手をかまれたんです。",
+            "audioSegment": {
+              "id": "l41-basic-dialogue-002-line-002",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson41/l41-basic-dialogue-002-line-002.mp3",
+              "start": 0,
+              "end": 2.54,
+              "duration": 2.54,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:24:59.931Z",
+              "sourceAudioSha256": "241ddc96714b0867e5104c22a1c7278e2bd3fcd19612627d2057d6492fef877d"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l41-basic-dialogue-003",
+        "label": "C",
+        "lines": [
+          {
+            "id": "l41-basic-dialogue-003-line-001",
+            "speaker": "甲",
+            "text": "週末にキャンプに行きました。",
+            "translationZh": "周末去露营了。",
+            "confidence": "high",
+            "rawText": "甲：週末にキャンプに行きました。",
+            "audioSegment": {
+              "id": "l41-basic-dialogue-003-line-001",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson41/l41-basic-dialogue-003-line-001.mp3",
+              "start": 0,
+              "end": 2.46,
+              "duration": 2.46,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:24:59.931Z",
+              "sourceAudioSha256": "241ddc96714b0867e5104c22a1c7278e2bd3fcd19612627d2057d6492fef877d"
+            }
+          },
+          {
+            "id": "l41-basic-dialogue-003-line-002",
+            "speaker": "乙",
+            "text": "へえ。楽しかったですか。",
+            "translationZh": "哦。玩得开心吗？",
+            "confidence": "high",
+            "rawText": "乙：へえ。楽しかったですか。",
+            "audioSegment": {
+              "id": "l41-basic-dialogue-003-line-002",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson41/l41-basic-dialogue-003-line-002.mp3",
+              "start": 0,
+              "end": 1.38,
+              "duration": 1.38,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:24:59.931Z",
+              "sourceAudioSha256": "241ddc96714b0867e5104c22a1c7278e2bd3fcd19612627d2057d6492fef877d"
+            }
+          },
+          {
+            "id": "l41-basic-dialogue-003-line-003",
+            "speaker": "甲",
+            "text": "２日とも雨に降られて、大変でしたよ。",
+            "translationZh": "两天都遇上了下雨，够受的。",
+            "confidence": "high",
+            "rawText": "甲：２日とも雨に降られて、大変でしたよ。",
+            "audioSegment": {
+              "id": "l41-basic-dialogue-003-line-003",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson41/l41-basic-dialogue-003-line-003.mp3",
+              "start": 0,
+              "end": 3.1,
+              "duration": 3.1,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:24:59.931Z",
+              "sourceAudioSha256": "241ddc96714b0867e5104c22a1c7278e2bd3fcd19612627d2057d6492fef877d"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l41-basic-dialogue-004",
+        "label": "D",
+        "lines": [
+          {
+            "id": "l41-basic-dialogue-004-line-001",
+            "speaker": "甲",
+            "text": "この車のデザインはとてもいいですね。",
+            "translationZh": "这辆车的设计非常好啊。",
+            "confidence": "high",
+            "rawText": "甲：この車のデザインはとてもいいですね。",
+            "audioSegment": {
+              "id": "l41-basic-dialogue-004-line-001",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson41/l41-basic-dialogue-004-line-001.mp3",
+              "start": 0,
+              "end": 2.86,
+              "duration": 2.86,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:24:59.931Z",
+              "sourceAudioSha256": "241ddc96714b0867e5104c22a1c7278e2bd3fcd19612627d2057d6492fef877d"
+            }
+          },
+          {
+            "id": "l41-basic-dialogue-004-line-002",
+            "speaker": "乙",
+            "text": "ええ。日本の有名なデザイナーによって設計されました。",
+            "translationZh": "是的，是由一位日本著名设计师设计的。",
+            "confidence": "high",
+            "rawText": "乙：ええ。日本の有名なデザイナーによって設計されました。",
+            "audioSegment": {
+              "id": "l41-basic-dialogue-004-line-002",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson41/l41-basic-dialogue-004-line-002.mp3",
+              "start": 0,
+              "end": 3.66,
+              "duration": 3.66,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:24:59.931Z",
+              "sourceAudioSha256": "241ddc96714b0867e5104c22a1c7278e2bd3fcd19612627d2057d6492fef877d"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "applicationText": {
+    "title": "市場調査",
+    "blocks": [
+      {
+        "id": "l41-app-block-001",
+        "type": "narration",
+        "text": "太田所在的CS公司计划近期推出一种新开发的饮用水。JC策划北京分公司接受委托，负责市场调查和商品宣传策划。北京分公司的森和小李分头出去调查。",
+        "translationZh": "太田所在的CS公司计划近期推出一种新开发的饮用水。JC策划北京分公司接受委托，负责市场调查和商品宣传策划。北京分公司的森和小李分头出去调查。",
+        "confidence": "high",
+        "rawText": "太田所在的CS公司计划近期推出一种新开发的饮用水。JC策划北京分公司接受委托，负责市场调查和商品宣传策划。北京分公司的森和小李分头出去调查。"
+      },
+      {
+        "id": "l41-app-block-002",
+        "type": "scene",
+        "text": "小李回到办公室后不久，森也回来了",
+        "translationZh": "小李回到办公室后不久，森也回来了。",
+        "confidence": "high",
+        "rawText": "（小李回到办公室后不久，森也回来了）"
+      },
+      {
+        "id": "l41-app-block-003",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l41-app-block-003-line-001",
+            "speaker": "李",
+            "text": "あっ、森さん、お疲れ様でした。遅かったですね。",
+            "translationZh": "啊，森先生，您辛苦了。回来得真晚啊。",
+            "confidence": "high",
+            "rawText": "李：あっ、森さん、お疲れ様でした。遅かったですね。",
+            "audioSegment": {
+              "id": "l41-app-block-003-line-001",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson41/l41-app-block-003-line-001.mp3",
+              "start": 0,
+              "end": 4.38,
+              "duration": 4.38,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:26:01.157Z",
+              "sourceAudioSha256": "7cef1ab86d7e5b824d22ceceec647231f67a2babcd5ae29fc1ce6bb4003a6fa6"
+            }
+          },
+          {
+            "id": "l41-app-block-003-line-002",
+            "speaker": "森",
+            "text": "いやあ、参りましたよ。タクシーで帰ってきたんですが、渋滞に巻き込まれて。北京の交通事情は大変ですね。",
+            "translationZh": "哎呀，真倒霉。我是坐出租车回来的，可遇上了堵车。北京的交通状况真够呛啊。",
+            "confidence": "high",
+            "rawText": "森：いやあ、参りましたよ。タクシーで帰ってきたんですが、渋滞に巻き込まれて。北京の交通事情は大変ですね。",
+            "audioSegment": {
+              "id": "l41-app-block-003-line-002",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson41/l41-app-block-003-line-002.mp3",
+              "start": 0,
+              "end": 8.37,
+              "duration": 8.37,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:26:01.157Z",
+              "sourceAudioSha256": "7cef1ab86d7e5b824d22ceceec647231f67a2babcd5ae29fc1ce6bb4003a6fa6"
+            }
+          },
+          {
+            "id": "l41-app-block-003-line-003",
+            "speaker": "李",
+            "text": "ええ、そうなんです。わたしも毎日、バスの中で足を踏まれていますよ。",
+            "translationZh": "是啊，就是这样。我每天在公交车里也总被人踩脚。",
+            "confidence": "high",
+            "rawText": "李：ええ、そうなんです。わたしも毎日、バスの中で足を踏まれていますよ。",
+            "audioSegment": {
+              "id": "l41-app-block-003-line-003",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson41/l41-app-block-003-line-003.mp3",
+              "start": 0,
+              "end": 4.18,
+              "duration": 4.18,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:26:01.157Z",
+              "sourceAudioSha256": "7cef1ab86d7e5b824d22ceceec647231f67a2babcd5ae29fc1ce6bb4003a6fa6"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l41-app-block-004",
+        "type": "scene",
+        "text": "森被加藤经理叫去了。回来后小李问他",
+        "translationZh": "森被加藤经理叫去了。回来后小李问他。",
+        "confidence": "high",
+        "rawText": "（森被加藤经理叫去了。回来后小李问他）"
+      },
+      {
+        "id": "l41-app-block-005",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l41-app-block-005-line-001",
+            "speaker": "李",
+            "text": "森さん、支社長に呼ばれて何か言われたんですか。",
+            "translationZh": "森先生，您被分公司经理叫去，是说了什么吗？",
+            "confidence": "high",
+            "rawText": "李：森さん、支社長に呼ばれて何か言われたんですか。",
+            "audioSegment": {
+              "id": "l41-app-block-005-line-001",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson41/l41-app-block-005-line-001.mp3",
+              "start": 0,
+              "end": 3.94,
+              "duration": 3.94,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:26:01.157Z",
+              "sourceAudioSha256": "7cef1ab86d7e5b824d22ceceec647231f67a2babcd5ae29fc1ce6bb4003a6fa6"
+            }
+          },
+          {
+            "id": "l41-app-block-005-line-002",
+            "speaker": "森",
+            "text": "ええ。CS会社から依頼された調査のレポートが遅いって、しかられました。",
+            "translationZh": "嗯。因为CS公司委托的调查报告迟了，被批评了。",
+            "confidence": "high",
+            "rawText": "森：ええ。CS会社から依頼された調査のレポートが遅いって、しかられました。",
+            "audioSegment": {
+              "id": "l41-app-block-005-line-002",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson41/l41-app-block-005-line-002.mp3",
+              "start": 0,
+              "end": 4.7,
+              "duration": 4.7,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:26:01.157Z",
+              "sourceAudioSha256": "7cef1ab86d7e5b824d22ceceec647231f67a2babcd5ae29fc1ce6bb4003a6fa6"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l41-app-block-006",
+        "type": "scene",
+        "text": "森把调查结果整理成报告",
+        "translationZh": "森把调查结果整理成报告。",
+        "confidence": "high",
+        "rawText": "（森把调查结果整理成报告）"
+      },
+      {
+        "id": "l41-app-block-007",
+        "type": "narration",
+        "text": "「CS会社」調査報告書\n\n……昨年発売された清涼飲料水は５種類あり、最も売れているのは、中国のA社によって開発された「爽快」である。定価が最も安く、子供からお年寄りまで、幅広い世代に人気がある。……昨年、A社と日本のB社によって北京に合弁会社が作られ、「爽快」は昨年から大量に製造されるようになった。製造から出荷に至るまですべてコンピュータで管理され、大幅なコストダウンが図られているため、低価格が実現できたと考えられる。……\n\n清涼飲料水の市場は今後も成長が見込まれるが、新しい商品に求められるのは、魅力あるネーミングと洗練されたデザインである。……",
+        "translationZh": "《CS公司》调查报告书\n\n……去年上市的清凉饮料水有5种，其中卖得最好的是由中国A公司开发的“爽快”。其定价最低，受到从儿童到老年人的广泛欢迎。……去年，A公司和日本B公司在北京成立了合资公司，“爽快”从去年开始得以大量生产。从制造到出货全部由计算机管理，并且因为实现了大幅降低成本，所以可以认为低价得以实现。……\n\n预计清凉饮料水市场今后仍会增长，但新商品所需要的是有魅力的命名和洗练的设计。……",
+        "confidence": "high",
+        "rawText": "「CS会社」調査報告書\n……昨年発売された清涼飲料水は５種類あり、最も売れているのは、中国のA社によって開発された「爽快」である。定価が最も安く、子供からお年寄りまで、幅広い世代に人気がある。……\n昨年、A社と日本のB社によって北京に合弁会社が作られ、「爽快」は昨年から大量に製造されるようになった。製造から出荷に至るまですべてコンピュータで管理され、大幅なコストダウンが図られているため、低価格が実現できたと考えられる。……\n清涼飲料水の市場は今後も成長が見込まれるが、新しい商品に求められるのは、魅力あるネーミングと洗練されたデザインである。……"
+      }
+    ]
+  },
+  "warnings": [
+    "扫描页中的假名标注不适合可靠地逐句切分，未生成 kana 或 segments 字段。",
+    "应用课文的引言和场景说明在教材中以中文排印，按原文保留在 text 字段中。"
+  ],
+  "audioAlignment": {
+    "schemaVersion": 1,
+    "method": "approved-asr-alignment",
+    "sourceAlignment": "data/ocr/lesson41-text-audio-alignment.json",
+    "publishedAt": "2026-08-05T10:26:03.928Z",
+    "approvedSegments": 18
+  }
+}

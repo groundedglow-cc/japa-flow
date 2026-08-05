@@ -1,0 +1,830 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Text OCR Import Preview</title>
+    <script>
+      if (new URLSearchParams(location.search).get("embedded") === "1") {
+        document.documentElement.classList.add("embedded");
+      }
+    </script>
+    <style>
+      :root {
+        color-scheme: light;
+        --bg: #f6f7f8;
+        --panel: #ffffff;
+        --line: #d9dee5;
+        --text: #17202a;
+        --muted: #657181;
+        --accent: #1f6f8b;
+        --accent-soft: #e7f1f7;
+        --scene: #fff7e8;
+        --scene-line: #efc46b;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+
+      header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 14px 20px;
+        border-bottom: 1px solid var(--line);
+        background: var(--panel);
+        position: sticky;
+        top: 0;
+        z-index: 10;
+      }
+
+      h1,
+      h2,
+      h3 {
+        margin: 0;
+        letter-spacing: 0;
+      }
+
+      h1 {
+        font-size: 18px;
+      }
+
+      h2 {
+        font-size: 22px;
+      }
+
+      h3 {
+        font-size: 15px;
+      }
+
+      a {
+        color: var(--accent);
+        text-decoration: none;
+      }
+
+      button,
+      input::file-selector-button {
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        background: var(--panel);
+        color: var(--text);
+        cursor: pointer;
+        font: inherit;
+        padding: 8px 12px;
+      }
+
+      button.primary {
+        border-color: var(--accent);
+        background: var(--accent);
+        color: #fff;
+      }
+
+      .workspace {
+        display: grid;
+        grid-template-columns: minmax(500px, 1fr) minmax(360px, 0.95fr);
+        gap: 16px;
+        padding: 16px;
+        align-items: start;
+      }
+
+      .panel {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+      }
+
+      .data-panel {
+        padding: 16px;
+      }
+
+      .toolbar {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        align-items: center;
+        margin-bottom: 14px;
+      }
+
+      .summary,
+      .status {
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      .summary {
+        margin-left: auto;
+      }
+
+      .lesson-row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin: 0 0 14px;
+      }
+
+      .lesson-title {
+        color: var(--muted);
+        font-size: 13px;
+        white-space: nowrap;
+      }
+
+      .lesson-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .lesson-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        min-height: 32px;
+        padding: 5px 10px;
+        border-radius: 999px;
+        font-size: 13px;
+      }
+
+      .lesson-chip.active {
+        border-color: var(--accent);
+        background: var(--accent-soft);
+        color: var(--accent);
+      }
+
+      .lesson-chip .count {
+        color: var(--muted);
+        font-variant-numeric: tabular-nums;
+      }
+
+      .status {
+        min-height: 20px;
+        margin-bottom: 12px;
+      }
+
+      .status.error {
+        color: #b42318;
+      }
+
+      details {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        margin-bottom: 16px;
+        overflow: hidden;
+      }
+
+      summary {
+        cursor: pointer;
+        padding: 10px 12px;
+        color: var(--muted);
+      }
+
+      textarea {
+        display: block;
+        width: 100%;
+        min-height: 180px;
+        border: 0;
+        border-top: 1px solid var(--line);
+        resize: vertical;
+        padding: 12px;
+        font: 13px/1.5 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      }
+
+      .text-section {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        margin-bottom: 16px;
+        overflow: hidden;
+      }
+
+      .section-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        background: #fbfcfd;
+        border-bottom: 1px solid var(--line);
+        padding: 12px 14px;
+      }
+
+      .section-label {
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      .basic-sentences,
+      .dialogue,
+      .block {
+        padding: 12px 14px;
+      }
+
+      .sentence {
+        display: grid;
+        grid-template-columns: 36px 1fr auto;
+        gap: 12px;
+        padding: 10px 0;
+        border-bottom: 1px solid #edf0f3;
+        align-items: start;
+        cursor: pointer;
+      }
+
+      .sentence:last-child {
+        border-bottom: 0;
+      }
+
+      .num {
+        color: var(--muted);
+        font-variant-numeric: tabular-nums;
+      }
+
+      .jp {
+        font-size: 20px;
+        font-weight: 650;
+        line-height: 1.45;
+      }
+
+      .jp ruby {
+        ruby-position: over;
+        ruby-align: center;
+      }
+
+      .jp rt {
+        color: var(--muted);
+        font-size: 0.56em;
+        font-weight: 500;
+        line-height: 1;
+        user-select: none;
+      }
+
+      .jp .base-text {
+        white-space: pre-wrap;
+      }
+
+      .kana,
+      .cn,
+      .raw {
+        color: var(--muted);
+        line-height: 1.5;
+        margin-top: 4px;
+      }
+
+      .cn {
+        color: #46515f;
+      }
+
+      .raw {
+        font-size: 12px;
+      }
+
+      .dialogue-title {
+        margin: 4px 0 8px;
+        color: var(--accent);
+      }
+
+      .line {
+        display: grid;
+        grid-template-columns: 52px 1fr auto;
+        gap: 10px;
+        padding: 9px 0;
+        border-bottom: 1px solid #edf0f3;
+        align-items: start;
+        cursor: pointer;
+      }
+
+      .line:last-child {
+        border-bottom: 0;
+      }
+
+      .speaker {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        min-width: 36px;
+        height: 28px;
+        border-radius: 999px;
+        background: var(--accent-soft);
+        color: var(--accent);
+        font-weight: 700;
+      }
+
+      .block.scene,
+      .block.narration {
+        border-left: 4px solid var(--scene-line);
+        background: var(--scene);
+        margin: 12px 14px;
+        border-radius: 6px;
+      }
+
+      .block-title {
+        color: var(--muted);
+        font-size: 12px;
+        text-transform: uppercase;
+        margin-bottom: 6px;
+      }
+
+      .audio-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 34px;
+        height: 34px;
+        padding: 0;
+        border-color: var(--accent);
+        color: var(--accent);
+        background: var(--accent-soft);
+        font-size: 14px;
+        line-height: 1;
+      }
+
+      .audio-placeholder {
+        width: 34px;
+        height: 34px;
+      }
+
+      .image-panel {
+        position: sticky;
+        top: 72px;
+        padding: 12px;
+      }
+
+      .image-block + .image-block {
+        margin-top: 14px;
+      }
+
+      .image-title {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        color: var(--muted);
+        font-size: 13px;
+        margin: 0 0 10px;
+      }
+
+      .source-image {
+        display: block;
+        width: 100%;
+        height: auto;
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        background: #fff;
+      }
+
+      html.embedded header,
+      html.embedded .data-panel > .toolbar,
+      html.embedded .data-panel > .lesson-row,
+      html.embedded .data-panel > details {
+        display: none;
+      }
+
+      html.embedded .workspace {
+        padding: 0;
+      }
+
+      html.embedded .panel {
+        border-radius: 0;
+      }
+
+      html.embedded .data-panel {
+        border-left: 0;
+        border-top: 0;
+        border-bottom: 0;
+      }
+
+      html.embedded .image-panel {
+        top: 0;
+        border-top: 0;
+        border-right: 0;
+        border-bottom: 0;
+      }
+
+      @media (max-width: 980px) {
+        .workspace {
+          grid-template-columns: 1fr;
+        }
+
+        .image-panel {
+          position: static;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>课文 OCR 导入校对</h1>
+      <nav><a href="./vocabulary-import-preview.html">单词导入校对</a></nav>
+    </header>
+
+    <main class="workspace">
+      <section class="panel data-panel">
+        <div class="toolbar">
+          <button class="primary" id="loadDefault" type="button">重新加载当前课次</button>
+          <button id="generateAudio" type="button">生成音频切片</button>
+          <input id="fileInput" type="file" accept="application/json,.json" />
+          <span class="summary" id="summary">未加载</span>
+        </div>
+
+        <div class="lesson-row">
+          <span class="lesson-title">样例课次</span>
+          <div class="lesson-list" id="lessonList"></div>
+        </div>
+
+        <details>
+          <summary>手动粘贴 JSON 导入</summary>
+          <textarea id="jsonInput" spellcheck="false" placeholder="粘贴 text OCR JSON"></textarea>
+          <div class="toolbar" style="padding: 10px 12px;">
+            <button id="parseInput" type="button">解析文本框</button>
+          </div>
+        </details>
+
+        <div class="status" id="status"></div>
+        <div id="textPreview"></div>
+      </section>
+
+      <aside class="panel image-panel" id="imagePanel"></aside>
+    </main>
+
+    <script type="module">
+      const state = { data: null, audio: new Audio(), stopTimer: 0, segmentMap: new Map(), segmentSeq: 0, samples: [], selectedSample: null };
+
+      const $ = (selector) => document.querySelector(selector);
+      const escapeHtml = (value) => String(value ?? "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#39;");
+
+      const assetSrc = (path) => {
+        if (!path) return "";
+        if (/^(?:https?:)?\/\//.test(path) || path.startsWith("/")) return path;
+        return `../${path}`;
+      };
+
+      function normalizePayload(payload) {
+        if (!payload || (!payload.basicText && !payload.applicationText)) {
+          throw new Error("JSON 中缺少 basicText 或 applicationText。");
+        }
+        return payload;
+      }
+
+      function setStatus(message, isError = false) {
+        $("#status").textContent = message || "";
+        $("#status").classList.toggle("error", Boolean(isError));
+      }
+
+      function setData(payload, sourceLabel = "导入数据") {
+        state.data = normalizePayload(payload);
+        $("#jsonInput").value = JSON.stringify(state.data, null, 2);
+        setStatus(`${sourceLabel} 已加载。`);
+        render();
+      }
+
+      function lessonNoFromLocation() {
+        const params = new URLSearchParams(location.search);
+        const raw = params.get("lesson") || params.get("lessonId") || params.get("lessonNo") || "";
+        const queryMatch = String(raw).match(/\d+/);
+        if (queryMatch) return Number(queryMatch[0]);
+        const hashMatch = location.hash.match(/lesson=(\d+)/);
+        return hashMatch ? Number(hashMatch[1]) : 0;
+      }
+
+      async function initSamples() {
+        const requestedLessonNo = lessonNoFromLocation();
+        await refreshSamples(requestedLessonNo || null);
+        const initialSample = requestedLessonNo
+          ? state.samples.find((sample) => sample.lessonNo === requestedLessonNo)
+          : state.samples[0];
+        if (initialSample) {
+          await selectSample(initialSample.lessonNo);
+        } else {
+          setStatus(requestedLessonNo ? `data/ocr 下暂无第 ${requestedLessonNo} 课课文样例数据。` : "data/ocr 下暂无课文样例数据。", true);
+          renderLessonList();
+        }
+      }
+
+      async function refreshSamples(preferredLessonNo = null) {
+        const response = await fetch("/api/ocr/sample-lessons?type=text", { cache: "no-store" });
+        const result = await response.json();
+        if (!response.ok) throw new Error(result.error || `读取样例列表失败：${response.status}`);
+        state.samples = result.lessons || [];
+        if (preferredLessonNo) {
+          state.selectedSample = state.samples.find((sample) => sample.lessonNo === preferredLessonNo) || state.selectedSample;
+        }
+        renderLessonList();
+      }
+
+      async function selectSample(lessonNo) {
+        const sample = state.samples.find((item) => item.lessonNo === lessonNo);
+        if (!sample) return;
+        state.selectedSample = sample;
+        renderLessonList();
+        const response = await fetch(sample.url, { cache: "no-store" });
+        if (!response.ok) throw new Error(`读取 ${sample.label} JSON 失败：${response.status}`);
+        setData(await response.json(), `${sample.label}${sample.hasAudio ? "切片样例" : "样例"}`);
+      }
+
+      async function loadDefault() {
+        if (!state.selectedSample && state.samples.length) state.selectedSample = state.samples[0];
+        if (!state.selectedSample) {
+          await initSamples();
+          return;
+        }
+        await selectSample(state.selectedSample.lessonNo);
+      }
+
+      function renderLessonList() {
+        $("#lessonList").innerHTML = state.samples.length ? state.samples.map((sample) => {
+          const totalLines = (sample.counts?.basicSentences || 0) + (sample.counts?.basicDialogueLines || 0) + (sample.counts?.applicationDialogueLines || 0);
+          return `
+            <button class="lesson-chip ${sample.lessonNo === state.selectedSample?.lessonNo ? "active" : ""}" type="button" data-lesson-no="${sample.lessonNo}">
+              <span>${escapeHtml(sample.label)}</span>
+              <span class="count">${escapeHtml(totalLines)}</span>
+              ${sample.hasAudio ? "<span aria-label=\"有音频切片\">▶</span>" : ""}
+            </button>
+          `;
+        }).join("") : `<span class="status">暂无样例</span>`;
+        $("#lessonList").querySelectorAll("button[data-lesson-no]").forEach((button) => {
+          button.addEventListener("click", () => {
+            selectSample(Number(button.dataset.lessonNo)).catch((error) => setStatus(error.message, true));
+          });
+        });
+      }
+
+      async function generateAudioAlignment() {
+        const lessonNo = state.selectedSample?.lessonNo || lessonNoFromData() || 1;
+        setStatus("正在生成音频切片...");
+        $("#generateAudio").disabled = true;
+        try {
+          const response = await fetch("/api/ocr/audio-align", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ lessonId: lessonNo, target: "text", force: true })
+          });
+          const result = await response.json();
+          if (!response.ok) throw new Error(result.error || `生成失败：${response.status}`);
+          setData(result.textData, "音频切片数据");
+          await refreshSamples(lessonNo);
+          const mapped = (result.summaries || []).reduce((sum, item) => sum + (item.mappedSegments || 0), 0);
+          const expected = (result.summaries || []).reduce((sum, item) => sum + (item.expectedItems || 0), 0);
+          setStatus(expected ? `音频切片已生成：${mapped}/${expected}。` : "音频切片已生成。");
+        } catch (error) {
+          setStatus(error.message, true);
+        } finally {
+          $("#generateAudio").disabled = false;
+        }
+      }
+
+      function render() {
+        const data = state.data;
+        const sentenceCount = (data?.basicText?.basicSentences || []).length;
+        const basicDialogueLines = (data?.basicText?.dialogues || []).reduce((sum, dialogue) => sum + (dialogue.lines || []).length, 0);
+        const appLines = (data?.applicationText?.blocks || []).reduce((sum, block) => sum + (block.lines || []).length, 0);
+        state.segmentMap = new Map();
+        state.segmentSeq = 0;
+        $("#summary").textContent = data ? `${data.lessonId || "unknown"} · 基本句 ${sentenceCount} · 对话 ${basicDialogueLines + appLines} 行` : "未加载";
+        $("#textPreview").innerHTML = data ? `${renderBasic(data.basicText)}${renderApplication(data.applicationText)}` : "";
+        bindSegmentButtons();
+        renderImages(data);
+      }
+
+      function lessonNoFromData() {
+        const match = String(state.data?.lessonId || "").match(/\d+/);
+        return match ? Number(match[0]) : 0;
+      }
+
+      function renderBasic(basicText) {
+        if (!basicText) return "";
+        const sentences = (basicText.basicSentences || []).map((sentence) => {
+          const segmentId = registerSegment(sentence.audioSegment);
+          return `
+            <div class="sentence${segmentId ? " has-audio" : ""}" ${segmentId ? `data-play-segment-id="${escapeHtml(segmentId)}"` : ""}>
+              <div class="num">${escapeHtml(sentence.order || "")}</div>
+              <div>
+                <div class="jp" data-copy-text="${escapeHtml(copyTextForJapanese(sentence))}">${renderJapanese(sentence)}</div>
+                <div class="cn">${escapeHtml(sentence.translationZh || "")}</div>
+              </div>
+              <div>${segmentButton(segmentId, sentence.audioSegment)}</div>
+            </div>
+          `;
+        }).join("");
+
+        const dialogues = (basicText.dialogues || []).map((dialogue) => `
+          <div class="dialogue">
+            <h3 class="dialogue-title">对话 ${escapeHtml(dialogue.label || "")}</h3>
+            ${(dialogue.lines || []).map(renderLine).join("")}
+          </div>
+        `).join("");
+
+        return `
+          <section class="text-section">
+            <div class="section-head">
+              <h2>${escapeHtml(basicText.title || "基本课文")}</h2>
+              <span class="section-label">基本句 + 甲乙对话</span>
+            </div>
+            <div class="basic-sentences">${sentences}</div>
+            ${dialogues}
+          </section>
+        `;
+      }
+
+      function renderApplication(applicationText) {
+        if (!applicationText) return "";
+        const blocks = (applicationText.blocks || []).map((block) => {
+          if (block.type === "dialogue") {
+            return `<div class="dialogue">${(block.lines || []).map(renderLine).join("")}</div>`;
+          }
+          return `
+            <div class="block ${escapeHtml(block.type || "narration")}">
+              <div class="block-title">${escapeHtml(block.type || "narration")}</div>
+              <div class="cn">${escapeHtml(block.text || "")}</div>
+              ${block.rawText && block.rawText !== block.text ? `<div class="raw">${escapeHtml(block.rawText)}</div>` : ""}
+            </div>
+          `;
+        }).join("");
+
+        return `
+          <section class="text-section">
+            <div class="section-head">
+              <h2>${escapeHtml(applicationText.title || "应用课文")}</h2>
+              <span class="section-label">旁白 / 场景 / 多人对话</span>
+            </div>
+            ${blocks}
+          </section>
+        `;
+      }
+
+      function renderLine(line) {
+        const segmentId = registerSegment(line.audioSegment);
+        return `
+          <div class="line${segmentId ? " has-audio" : ""}" ${segmentId ? `data-play-segment-id="${escapeHtml(segmentId)}"` : ""}>
+            <div><span class="speaker">${escapeHtml(line.speaker || "?")}</span></div>
+            <div>
+              <div class="jp" data-copy-text="${escapeHtml(copyTextForJapanese(line))}">${renderJapanese(line)}</div>
+              <div class="cn">${escapeHtml(line.translationZh || "")}</div>
+            </div>
+            <div>${segmentButton(segmentId, line.audioSegment)}</div>
+          </div>
+        `;
+      }
+
+      function segmentButton(segmentId, segment) {
+        if (!segmentId || !segment) return `<span class="audio-placeholder"></span>`;
+        return `<button class="audio-button" type="button" data-segment-id="${escapeHtml(segmentId)}" title="${escapeHtml(formatSegmentTime(segment))}" aria-label="播放音频片段">▶</button>`;
+      }
+
+      function registerSegment(segment) {
+        if (!segment) return "";
+        const id = `segment-${state.segmentSeq += 1}`;
+        state.segmentMap.set(id, segment);
+        return id;
+      }
+
+      function renderJapanese(item) {
+        const segments = Array.isArray(item?.segments) ? item.segments : [];
+        if (!segments.length) return `<span class="base-text">${escapeHtml(item?.text || "")}</span>`;
+        return segments.map((segment) => {
+          const text = segment?.text || "";
+          const ruby = segment?.ruby || "";
+          if (!ruby) return `<span class="base-text">${escapeHtml(text)}</span>`;
+          return `<ruby><rb>${escapeHtml(text)}</rb><rt aria-hidden="true">${escapeHtml(ruby)}</rt></ruby>`;
+        }).join("");
+      }
+
+      function copyTextForJapanese(item) {
+        const segments = Array.isArray(item?.segments) ? item.segments : [];
+        return segments.length ? segments.map((segment) => segment?.text || "").join("") : item?.text || "";
+      }
+
+      function bindSegmentButtons() {
+        $("#textPreview").querySelectorAll(".sentence[data-play-segment-id], .line[data-play-segment-id]").forEach((row) => {
+          row.addEventListener("click", (event) => {
+            if (event.target.closest("button[data-segment-id]")) return;
+            const segmentId = row.dataset.playSegmentId;
+            if (!segmentId) return;
+            playSegment(state.segmentMap.get(segmentId));
+          });
+        });
+        $("#textPreview").querySelectorAll("[data-segment-id]").forEach((button) => {
+          button.addEventListener("click", (event) => {
+            event.stopPropagation();
+            playSegment(state.segmentMap.get(button.dataset.segmentId));
+          });
+        });
+      }
+
+      function bindCopyBehavior() {
+        $("#textPreview").addEventListener("copy", (event) => {
+          const selection = window.getSelection();
+          if (!selection || selection.isCollapsed || selection.rangeCount !== 1) return;
+          const range = selection.getRangeAt(0);
+          const copied = selectedBaseText(range);
+          if (!copied) return;
+          event.clipboardData.setData("text/plain", copied);
+          event.preventDefault();
+        });
+      }
+
+      function selectedBaseText(range) {
+        const selectedNodes = [...$("#textPreview").querySelectorAll(".jp[data-copy-text]")]
+          .filter((node) => range.intersectsNode(node));
+        if (!selectedNodes.length) return "";
+        return selectedNodes.map((node) => node.dataset.copyText || node.textContent || "").join("\n");
+      }
+
+      function formatSegmentTime(segment) {
+        return `${Number(segment.start || 0).toFixed(3)}s - ${Number(segment.end || 0).toFixed(3)}s`;
+      }
+
+      async function playSegment(segment) {
+        if (!segment?.sourceUrl && !segment?.localAudioPath) {
+          setStatus("当前句子没有音频片段。", true);
+          return;
+        }
+        const source = segment.sourceUrl || assetSrc(segment.localAudioPath);
+        clearInterval(state.stopTimer);
+        state.audio.pause();
+        state.audio.src = source;
+        try {
+          await waitForAudioMetadata();
+          state.audio.currentTime = Math.max(0, Number(segment.start) || 0);
+          state.stopTimer = window.setInterval(() => {
+            if (state.audio.currentTime >= Number(segment.end || 0)) {
+              state.audio.pause();
+              clearInterval(state.stopTimer);
+            }
+          }, 30);
+          await state.audio.play();
+        } catch (error) {
+          clearInterval(state.stopTimer);
+          setStatus(`播放失败：${error.message}`, true);
+        }
+      }
+
+      function waitForAudioMetadata() {
+        if (state.audio.readyState >= 1) return Promise.resolve();
+        state.audio.load();
+        return new Promise((resolve, reject) => {
+          const cleanup = () => {
+            state.audio.removeEventListener("loadedmetadata", handleLoaded);
+            state.audio.removeEventListener("error", handleError);
+          };
+          const handleLoaded = () => {
+            cleanup();
+            resolve();
+          };
+          const handleError = () => {
+            cleanup();
+            reject(new Error("音频加载失败"));
+          };
+          state.audio.addEventListener("loadedmetadata", handleLoaded);
+          state.audio.addEventListener("error", handleError);
+        });
+      }
+
+      function renderImages(data) {
+        const images = data?.sourceImages || [];
+        $("#imagePanel").innerHTML = images.length ? images.map((image) => {
+          const src = assetSrc(image.path);
+          return `
+            <div class="image-block">
+              <p class="image-title">
+                <span>${escapeHtml(image.section || "")} · page${escapeHtml(image.pageNo || "")}</span>
+                <a href="${escapeHtml(src)}" target="_blank" rel="noreferrer">打开图片</a>
+              </p>
+              <img class="source-image" src="${escapeHtml(src)}" alt="${escapeHtml(image.section || "source")}" />
+            </div>
+          `;
+        }).join("") : `<p class="status">暂无 sourceImages。</p>`;
+      }
+
+      $("#loadDefault").addEventListener("click", () => loadDefault().catch((error) => setStatus(error.message, true)));
+      $("#generateAudio").addEventListener("click", generateAudioAlignment);
+      $("#parseInput").addEventListener("click", () => {
+        try {
+          setData(JSON.parse($("#jsonInput").value), "文本框 JSON");
+        } catch (error) {
+          setStatus(error.message, true);
+        }
+      });
+      $("#fileInput").addEventListener("change", async (event) => {
+        const file = event.target.files?.[0];
+        if (!file) return;
+        try {
+          setData(JSON.parse(await file.text()), file.name);
+        } catch (error) {
+          setStatus(error.message, true);
+        }
+      });
+
+      bindCopyBehavior();
+      initSamples().catch((error) => setStatus(error.message, true));
+    </script>
+  </body>
+</html>

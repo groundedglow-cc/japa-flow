@@ -1,0 +1,112 @@
+{
+  "lessonId": "lesson8",
+  "sourceImages": [
+    {
+      "section": "basic",
+      "path": "course-assets/by-lesson/lesson8/page98.webp",
+      "pageNo": 98
+    },
+    {
+      "section": "application",
+      "path": "course-assets/by-lesson/lesson8/page103.webp",
+      "pageNo": 103
+    }
+  ],
+  "basicText": {
+    "title": "基本课文",
+    "basicSentences": [
+      { "id": "l8-basic-s001", "order": 1, "text": "李さんは 日本語で 手紙を 書きます。", "kana": "りさんは にほんごで てがみを かきます。", "translationZh": "小李用日语写信。", "confidence": "high", "rawText": "1. 李さんは 日本語で 手紙を 書きます。" },
+      { "id": "l8-basic-s002", "order": 2, "text": "わたしは 小野さんに お土産を あげます。", "kana": "わたしは おのさんに おみやげを あげます。", "translationZh": "我送给小野女士礼物。", "confidence": "high", "rawText": "2. わたしは 小野さんに お土産を あげます。" },
+      { "id": "l8-basic-s003", "order": 3, "text": "わたしは 小野さんに 辞書を もらいました。", "kana": "わたしは おのさんに じしょを もらいました。", "translationZh": "我从小野女士那里得到了词典。", "confidence": "high", "rawText": "3. わたしは 小野さんに 辞書を もらいました。" },
+      { "id": "l8-basic-s004", "order": 4, "text": "李さんは 明日 長島さんに 会います。", "kana": "りさんは あした ながしまさんに あいます。", "translationZh": "小李明天见长岛先生。", "confidence": "high", "rawText": "4. 李さんは 明日 長島さんに 会います。" }
+    ],
+    "dialogues": [
+      {
+        "id": "l8-basic-dialogue-001",
+        "label": "A",
+        "lines": [
+          { "id": "l8-basic-dialogue-001-line-001", "speaker": "甲", "text": "昨日、母に 誕生日の プレゼントを 送りました。", "kana": "きのう、ははに たんじょうびの プレゼントを おくりました。", "translationZh": "昨天我给母亲寄了生日礼物。", "confidence": "high", "rawText": "甲：昨日、母に 誕生日の プレゼントを 送りました。" },
+          { "id": "l8-basic-dialogue-001-line-002", "speaker": "乙", "text": "何で 送りましたか。", "kana": "なにで おくりましたか。", "translationZh": "用什么寄的？", "confidence": "high", "rawText": "乙：何で 送りましたか。" },
+          { "id": "l8-basic-dialogue-001-line-003", "speaker": "甲", "text": "航空便で 送りました。", "kana": "こうくうびんで おくりました。", "translationZh": "用航空邮件寄的。", "confidence": "high", "rawText": "甲：航空便で 送りました。" }
+        ]
+      },
+      {
+        "id": "l8-basic-dialogue-002",
+        "label": "B",
+        "lines": [
+          { "id": "l8-basic-dialogue-002-line-001", "speaker": "甲", "text": "その 映画の チケットを だれに あげますか。", "kana": "その えいがの チケットを だれに あげますか。", "translationZh": "那张电影票给谁？", "confidence": "high", "rawText": "甲：その 映画の チケットを だれに あげますか。" },
+          { "id": "l8-basic-dialogue-002-line-002", "speaker": "乙", "text": "李さんに あげます。", "kana": "りさんに あげます。", "translationZh": "给小李。", "confidence": "high", "rawText": "乙：李さんに あげます。" }
+        ]
+      },
+      {
+        "id": "l8-basic-dialogue-003",
+        "label": "C",
+        "lines": [
+          { "id": "l8-basic-dialogue-003-line-001", "speaker": "甲", "text": "だれに その パンフレットを もらいましたか。", "kana": "だれに その パンフレットを もらいましたか。", "translationZh": "你从谁那里得到了那本小册子？", "confidence": "high", "rawText": "甲：だれに その パンフレットを もらいましたか。" },
+          { "id": "l8-basic-dialogue-003-line-002", "speaker": "乙", "text": "長島さんに もらいました。", "kana": "ながしまさんに もらいました。", "translationZh": "从长岛先生那里得到的。", "confidence": "high", "rawText": "乙：長島さんに もらいました。" }
+        ]
+      },
+      {
+        "id": "l8-basic-dialogue-004",
+        "label": "D",
+        "lines": [
+          { "id": "l8-basic-dialogue-004-line-001", "speaker": "甲", "text": "すみません、李さんは いますか。", "kana": "すみません、りさんは いますか。", "translationZh": "请问，小李在吗？", "confidence": "high", "rawText": "甲：すみません、李さんは いますか。" },
+          { "id": "l8-basic-dialogue-004-line-002", "speaker": "乙", "text": "もう 帰りましたよ。", "kana": "もう かえりましたよ。", "translationZh": "已经回去了。", "confidence": "high", "rawText": "乙：もう 帰りましたよ。" }
+        ]
+      }
+    ]
+  },
+  "applicationText": {
+    "title": "スケジュール表",
+    "blocks": [
+      {
+        "id": "l8-app-block-001",
+        "type": "narration",
+        "text": "小李11月初计划和摄影师长岛及小野一起去箱根采访，但小李给长岛发过去的日程表长岛好像没有收到。于是，他打来电话。",
+        "kana": null,
+        "translationZh": "小李11月初计划和摄影师长岛及小野一起去箱根采访，但小李给长岛发过去的日程表长岛好像没有收到。于是，他打来电话。",
+        "confidence": "high",
+        "rawText": "小李11月初计划和摄影师长岛及小野一起去箱根采访，但小李给长岛发过去的日程表长岛好像没有收到。于是，他打来电话。"
+      },
+      { "id": "l8-app-block-002", "type": "scene", "text": "（小野告诉小李，长岛来电话了）", "kana": null, "translationZh": "小野告诉小李，长岛来电话了。", "confidence": "high", "rawText": "（小野告诉小李，长岛来电话了）" },
+      {
+        "id": "l8-app-block-003",
+        "type": "dialogue",
+        "lines": [
+          { "id": "l8-app-block-003-line-001", "speaker": "小野", "text": "さっき 長島さんに 電話を もらいました。", "kana": "さっき ながしまさんに でんわを もらいました。", "translationZh": "刚才长岛先生来电话了。", "confidence": "high", "rawText": "小野：さっき 長島さんに 電話を もらいました。" },
+          { "id": "l8-app-block-003-line-002", "speaker": "李", "text": "スケジュール表の 件ですか。", "kana": "スケジュールひょうの けんですか。", "translationZh": "是日程表的事吗？", "confidence": "high", "rawText": "李：スケジュール表の 件ですか。" },
+          { "id": "l8-app-block-003-line-003", "speaker": "小野", "text": "はい。", "kana": "はい。", "translationZh": "是的。", "confidence": "high", "rawText": "小野：はい。" },
+          { "id": "l8-app-block-003-line-004", "speaker": "李", "text": "もう ファックスで 送りましたよ。", "kana": "もう ファックスで おくりましたよ。", "translationZh": "已经用传真发过去了。", "confidence": "high", "rawText": "李：もう ファックスで 送りましたよ。" },
+          { "id": "l8-app-block-003-line-005", "speaker": "小野", "text": "いつですか。", "kana": "いつですか。", "translationZh": "什么时候？", "confidence": "high", "rawText": "小野：いつですか。" },
+          { "id": "l8-app-block-003-line-006", "speaker": "李", "text": "昨日の 夕方です。もう 一度 送りますか。", "kana": "きのうの ゆうがたです。もう いちど おくりますか。", "translationZh": "昨天傍晚。再发一次吗？", "confidence": "high", "rawText": "李：昨日の 夕方です。もう 一度 送りますか。" },
+          { "id": "l8-app-block-003-line-007", "speaker": "小野", "text": "ええ、お願いします。わたしは メールで 送ります。", "kana": "ええ、おねがいします。わたしは メールで おくります。", "translationZh": "嗯，拜托了。我用邮件发。", "confidence": "high", "rawText": "小野：ええ、お願いします。わたしは メールで 送ります。" },
+          { "id": "l8-app-block-003-line-008", "speaker": "李", "text": "分かりました。", "kana": "わかりました。", "translationZh": "明白了。", "confidence": "high", "rawText": "李：分かりました。" }
+        ]
+      },
+      { "id": "l8-app-block-004", "type": "scene", "text": "（过了一会儿）", "kana": null, "translationZh": "过了一会儿。", "confidence": "high", "rawText": "（过了一会儿）" },
+      {
+        "id": "l8-app-block-005",
+        "type": "dialogue",
+        "lines": [
+          { "id": "l8-app-block-005-line-001", "speaker": "小野", "text": "李さん、たった 今 長島さんに メールを もらいました。", "kana": "りさん、たった いま ながしまさんに メールを もらいました。", "translationZh": "小李，刚刚收到了长岛先生的邮件。", "confidence": "high", "rawText": "小野：李さん、たった 今 長島さんに メールを もらいました。" },
+          { "id": "l8-app-block-005-line-002", "speaker": "李", "text": "ファックスは 届きましたか。", "kana": "ファックスは とどきましたか。", "translationZh": "传真收到了吗？", "confidence": "high", "rawText": "李：ファックスは 届きましたか。" },
+          { "id": "l8-app-block-005-line-003", "speaker": "小野", "text": "ええ、ファックスも メールも 届きましたよ。", "kana": "ええ、ファックスも メールも とどきましたよ。", "translationZh": "嗯，传真和邮件都收到了。", "confidence": "high", "rawText": "小野：ええ、ファックスも メールも 届きましたよ。" },
+          { "id": "l8-app-block-005-line-004", "speaker": "李", "text": "そうですか。よかったです。", "kana": "そうですか。よかったです。", "translationZh": "是吗？太好了。", "confidence": "high", "rawText": "李：そうですか。よかったです。" }
+        ]
+      },
+      { "id": "l8-app-block-006", "type": "scene", "text": "（小野从抽屉里取出一本影集来）", "kana": null, "translationZh": "小野从抽屉里取出一本影集来。", "confidence": "high", "rawText": "（小野从抽屉里取出一本影集来）" },
+      {
+        "id": "l8-app-block-007",
+        "type": "dialogue",
+        "lines": [
+          { "id": "l8-app-block-007-line-001", "speaker": "小野", "text": "李さん、これ、どうぞ。箱根の 写真集です。前に 長島さんに もらいました。", "kana": "りさん、これ、どうぞ。はこねの しゃしんしゅうです。まえに ながしまさんに もらいました。", "translationZh": "小李，这个给你。是箱根的影集。以前从长岛先生那里得到的。", "confidence": "high", "rawText": "小野：李さん、これ、どうぞ。箱根の 写真集です。前に 長島さんに もらいました。" },
+          { "id": "l8-app-block-007-line-002", "speaker": "李", "text": "ありがとう ございます。", "kana": "ありがとう ございます。", "translationZh": "谢谢。", "confidence": "high", "rawText": "李：ありがとう ございます。" }
+        ]
+      }
+    ]
+  },
+  "warnings": [
+    "应用课文中的旁白和场景说明在教材页中以中文呈现，因此对应 block 的 text 与 translationZh 均保留中文原文，kana 为 null。",
+    "未输出 segments；已保留可可靠识别的整句 kana。"
+  ]
+}

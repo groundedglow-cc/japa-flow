@@ -1,0 +1,619 @@
+{
+  "lessonId": "lesson2",
+  "sourceImages": [
+    {
+      "section": "basic",
+      "path": "course-assets/by-lesson/lesson2/page32.webp",
+      "pageNo": 32
+    },
+    {
+      "section": "application",
+      "path": "course-assets/by-lesson/lesson2/page37.webp",
+      "pageNo": 37
+    }
+  ],
+  "basicText": {
+    "title": "基本课文",
+    "basicSentences": [
+      {
+        "id": "l2-basic-s001",
+        "order": 1,
+        "text": "これは 本です。",
+        "kana": "これは ほんです。",
+        "translationZh": "这是书。",
+        "confidence": "high",
+        "rawText": "1. これは 本です。",
+        "audioSegment": {
+          "id": "l2-basic-s001",
+          "trackId": "lesson_basic",
+          "sourceUrl": "/data/ocr/audio-clips/lesson2/l2-basic-s001.mp3",
+          "start": 0,
+          "end": 1.7,
+          "duration": 1.7,
+          "method": "approved-asr-alignment",
+          "confidence": "approved",
+          "reviewedAt": "2026-08-05T08:15:52.090Z",
+          "sourceAudioSha256": "780f1dd3937e9bdbdd64bbf28d3dd1ce109c9d0bd425786a2e57cdfa1a12d49e"
+        }
+      },
+      {
+        "id": "l2-basic-s002",
+        "order": 2,
+        "text": "それは 何ですか。",
+        "kana": "それは なんですか。",
+        "translationZh": "那是什么？",
+        "confidence": "high",
+        "rawText": "2. それは 何ですか。",
+        "audioSegment": {
+          "id": "l2-basic-s002",
+          "trackId": "lesson_basic",
+          "sourceUrl": "/data/ocr/audio-clips/lesson2/l2-basic-s002.mp3",
+          "start": 0,
+          "end": 1.94,
+          "duration": 1.94,
+          "method": "approved-asr-alignment",
+          "confidence": "approved",
+          "reviewedAt": "2026-08-05T08:15:52.090Z",
+          "sourceAudioSha256": "780f1dd3937e9bdbdd64bbf28d3dd1ce109c9d0bd425786a2e57cdfa1a12d49e"
+        }
+      },
+      {
+        "id": "l2-basic-s003",
+        "order": 3,
+        "text": "あれは だれの 傘ですか。",
+        "kana": "あれは だれの かさですか。",
+        "translationZh": "那是谁的伞？",
+        "confidence": "high",
+        "rawText": "3. あれは だれの 傘ですか。",
+        "audioSegment": {
+          "id": "l2-basic-s003",
+          "trackId": "lesson_basic",
+          "sourceUrl": "/data/ocr/audio-clips/lesson2/l2-basic-s003.mp3",
+          "start": 0,
+          "end": 2.5,
+          "duration": 2.5,
+          "method": "approved-asr-alignment",
+          "confidence": "approved",
+          "reviewedAt": "2026-08-05T08:15:52.090Z",
+          "sourceAudioSha256": "780f1dd3937e9bdbdd64bbf28d3dd1ce109c9d0bd425786a2e57cdfa1a12d49e"
+        }
+      },
+      {
+        "id": "l2-basic-s004",
+        "order": 4,
+        "text": "この カメラは スミスさんのです。",
+        "kana": "この カメラは スミスさんのです。",
+        "translationZh": "这个照相机是史密斯先生的。",
+        "confidence": "high",
+        "rawText": "4. この カメラは スミスさんのです。",
+        "audioSegment": {
+          "id": "l2-basic-s004",
+          "trackId": "lesson_basic",
+          "sourceUrl": "/data/ocr/audio-clips/lesson2/l2-basic-s004.mp3",
+          "start": 0,
+          "end": 2.78,
+          "duration": 2.78,
+          "method": "approved-asr-alignment",
+          "confidence": "approved",
+          "reviewedAt": "2026-08-05T08:15:52.090Z",
+          "sourceAudioSha256": "780f1dd3937e9bdbdd64bbf28d3dd1ce109c9d0bd425786a2e57cdfa1a12d49e"
+        }
+      }
+    ],
+    "dialogues": [
+      {
+        "id": "l2-basic-dialogue-001",
+        "label": "A",
+        "lines": [
+          {
+            "id": "l2-basic-dialogue-001-line-001",
+            "speaker": "甲",
+            "text": "これは テレビですか。",
+            "kana": "これは テレビですか。",
+            "translationZh": "这是电视机吗？",
+            "confidence": "high",
+            "rawText": "甲：これは テレビですか。",
+            "audioSegment": {
+              "id": "l2-basic-dialogue-001-line-001",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson2/l2-basic-dialogue-001-line-001.mp3",
+              "start": 0,
+              "end": 1.9,
+              "duration": 1.9,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:15:52.090Z",
+              "sourceAudioSha256": "780f1dd3937e9bdbdd64bbf28d3dd1ce109c9d0bd425786a2e57cdfa1a12d49e"
+            }
+          },
+          {
+            "id": "l2-basic-dialogue-001-line-002",
+            "speaker": "乙",
+            "text": "いいえ、それは テレビでは ありません。パソコンです。",
+            "kana": "いいえ、それは テレビでは ありません。パソコンです。",
+            "translationZh": "不，那不是电视机。是个人电脑。",
+            "confidence": "high",
+            "rawText": "乙：いいえ、それは テレビでは ありません。パソコンです。",
+            "audioSegment": {
+              "id": "l2-basic-dialogue-001-line-002",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson2/l2-basic-dialogue-001-line-002.mp3",
+              "start": 0,
+              "end": 4.46,
+              "duration": 4.46,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:15:52.090Z",
+              "sourceAudioSha256": "780f1dd3937e9bdbdd64bbf28d3dd1ce109c9d0bd425786a2e57cdfa1a12d49e"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l2-basic-dialogue-002",
+        "label": "B",
+        "lines": [
+          {
+            "id": "l2-basic-dialogue-002-line-001",
+            "speaker": "甲",
+            "text": "それは 何ですか。",
+            "kana": "それは なんですか。",
+            "translationZh": "那是什么？",
+            "confidence": "high",
+            "rawText": "甲：それは 何ですか。",
+            "audioSegment": {
+              "id": "l2-basic-dialogue-002-line-001",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson2/l2-basic-dialogue-002-line-001.mp3",
+              "start": 0,
+              "end": 1.54,
+              "duration": 1.54,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:15:52.090Z",
+              "sourceAudioSha256": "780f1dd3937e9bdbdd64bbf28d3dd1ce109c9d0bd425786a2e57cdfa1a12d49e"
+            }
+          },
+          {
+            "id": "l2-basic-dialogue-002-line-002",
+            "speaker": "乙",
+            "text": "これは 日本語の 本です。",
+            "kana": "これは にほんごの ほんです。",
+            "translationZh": "这是日语书。",
+            "confidence": "high",
+            "rawText": "乙：これは 日本語の 本です。",
+            "audioSegment": {
+              "id": "l2-basic-dialogue-002-line-002",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson2/l2-basic-dialogue-002-line-002.mp3",
+              "start": 0,
+              "end": 2.34,
+              "duration": 2.34,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:15:52.090Z",
+              "sourceAudioSha256": "780f1dd3937e9bdbdd64bbf28d3dd1ce109c9d0bd425786a2e57cdfa1a12d49e"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l2-basic-dialogue-003",
+        "label": "C",
+        "lines": [
+          {
+            "id": "l2-basic-dialogue-003-line-001",
+            "speaker": "甲",
+            "text": "森さんの かばんは どれですか。",
+            "kana": "もりさんの かばんは どれですか。",
+            "translationZh": "森先生的包是哪一个？",
+            "confidence": "high",
+            "rawText": "甲：森さんの かばんは どれですか。",
+            "audioSegment": {
+              "id": "l2-basic-dialogue-003-line-001",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson2/l2-basic-dialogue-003-line-001.mp3",
+              "start": 0,
+              "end": 2.46,
+              "duration": 2.46,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:15:52.090Z",
+              "sourceAudioSha256": "780f1dd3937e9bdbdd64bbf28d3dd1ce109c9d0bd425786a2e57cdfa1a12d49e"
+            }
+          },
+          {
+            "id": "l2-basic-dialogue-003-line-002",
+            "speaker": "乙",
+            "text": "あの かばんです。",
+            "kana": "あの かばんです。",
+            "translationZh": "是那个包。",
+            "confidence": "high",
+            "rawText": "乙：あの かばんです。",
+            "audioSegment": {
+              "id": "l2-basic-dialogue-003-line-002",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson2/l2-basic-dialogue-003-line-002.mp3",
+              "start": 0,
+              "end": 1.3,
+              "duration": 1.3,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:15:52.090Z",
+              "sourceAudioSha256": "780f1dd3937e9bdbdd64bbf28d3dd1ce109c9d0bd425786a2e57cdfa1a12d49e"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l2-basic-dialogue-004",
+        "label": "D",
+        "lines": [
+          {
+            "id": "l2-basic-dialogue-004-line-001",
+            "speaker": "甲",
+            "text": "その ノートは だれのですか。",
+            "kana": "その ノートは だれのですか。",
+            "translationZh": "那个笔记本是谁的？",
+            "confidence": "high",
+            "rawText": "甲：その ノートは だれのですか。",
+            "audioSegment": {
+              "id": "l2-basic-dialogue-004-line-001",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson2/l2-basic-dialogue-004-line-001.mp3",
+              "start": 0,
+              "end": 2.98,
+              "duration": 2.98,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:15:52.090Z",
+              "sourceAudioSha256": "780f1dd3937e9bdbdd64bbf28d3dd1ce109c9d0bd425786a2e57cdfa1a12d49e"
+            }
+          },
+          {
+            "id": "l2-basic-dialogue-004-line-002",
+            "speaker": "乙",
+            "text": "わたしのです。",
+            "kana": "わたしのです。",
+            "translationZh": "是我的。",
+            "confidence": "high",
+            "rawText": "乙：わたしのです。",
+            "audioSegment": {
+              "id": "l2-basic-dialogue-004-line-002",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson2/l2-basic-dialogue-004-line-002.mp3",
+              "start": 0,
+              "end": 0.86,
+              "duration": 0.86,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:15:52.090Z",
+              "sourceAudioSha256": "780f1dd3937e9bdbdd64bbf28d3dd1ce109c9d0bd425786a2e57cdfa1a12d49e"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "applicationText": {
+    "title": "家族の 写真",
+    "blocks": [
+      {
+        "id": "l2-app-block-001",
+        "type": "narration",
+        "text": "小李计划先在涩谷的某宾馆住一段时间，然后再搬到公寓里。这天，小野来宾馆看望小李。两人在大厅喝茶。",
+        "kana": null,
+        "translationZh": "小李计划先在涩谷的某宾馆住一段时间，然后再搬到公寓里。这天，小野来宾馆看望小李。两人在大厅喝茶。",
+        "confidence": "high",
+        "rawText": "小李计划先在涩谷的某宾馆住一段时间，然后再搬到公寓里。这天，小野来宾馆看望小李。两人在大厅喝茶。"
+      },
+      {
+        "id": "l2-app-block-002",
+        "type": "scene",
+        "text": "（小李从包里取记事本时，从记事本里掉出一张照片）",
+        "kana": null,
+        "translationZh": "小李从包里取记事本时，从记事本里掉出一张照片。",
+        "confidence": "high",
+        "rawText": "（小李从包里取记事本时，从记事本里掉出一张照片）"
+      },
+      {
+        "id": "l2-app-block-003",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l2-app-block-003-line-001",
+            "speaker": "小野",
+            "text": "李さん、それは 何ですか。",
+            "kana": "りさん、それは なんですか。",
+            "translationZh": "小李，那是什么？",
+            "confidence": "high",
+            "rawText": "小野：李さん、それは 何ですか。",
+            "audioSegment": {
+              "id": "l2-app-block-003-line-001",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson2/l2-app-block-003-line-001.mp3",
+              "start": 0,
+              "end": 2.38,
+              "duration": 2.38,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:16:24.170Z",
+              "sourceAudioSha256": "dd1cd75132289b4458be0a68664eed872b5987e14db289d05c9480db0b742502"
+            }
+          },
+          {
+            "id": "l2-app-block-003-line-002",
+            "speaker": "李",
+            "text": "これですか。家族の 写真です。",
+            "kana": "これですか。かぞくの しゃしんです。",
+            "translationZh": "这个吗？是家人的照片。",
+            "confidence": "high",
+            "rawText": "李：これですか。家族の 写真です。",
+            "audioSegment": {
+              "id": "l2-app-block-003-line-002",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson2/l2-app-block-003-line-002.mp3",
+              "start": 0,
+              "end": 2.86,
+              "duration": 2.86,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:16:24.170Z",
+              "sourceAudioSha256": "dd1cd75132289b4458be0a68664eed872b5987e14db289d05c9480db0b742502"
+            }
+          },
+          {
+            "id": "l2-app-block-003-line-003",
+            "speaker": "小野",
+            "text": "この 方は どなたですか。",
+            "kana": "この かたは どなたですか。",
+            "translationZh": "这位是谁？",
+            "confidence": "high",
+            "rawText": "小野：（指着其中一个人）この 方は どなたですか。",
+            "audioSegment": {
+              "id": "l2-app-block-003-line-003",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson2/l2-app-block-003-line-003.mp3",
+              "start": 0,
+              "end": 2.18,
+              "duration": 2.18,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:16:24.170Z",
+              "sourceAudioSha256": "dd1cd75132289b4458be0a68664eed872b5987e14db289d05c9480db0b742502"
+            }
+          },
+          {
+            "id": "l2-app-block-003-line-004",
+            "speaker": "李",
+            "text": "わたしの 母です。",
+            "kana": "わたしの ははです。",
+            "translationZh": "是我母亲。",
+            "confidence": "high",
+            "rawText": "李：わたしの 母です。",
+            "audioSegment": {
+              "id": "l2-app-block-003-line-004",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson2/l2-app-block-003-line-004.mp3",
+              "start": 0,
+              "end": 1.22,
+              "duration": 1.22,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:16:24.170Z",
+              "sourceAudioSha256": "dd1cd75132289b4458be0a68664eed872b5987e14db289d05c9480db0b742502"
+            }
+          },
+          {
+            "id": "l2-app-block-003-line-005",
+            "speaker": "小野",
+            "text": "お母さんは おいくつですか。",
+            "kana": "おかあさんは おいくつですか。",
+            "translationZh": "您母亲多大年纪？",
+            "confidence": "high",
+            "rawText": "小野：お母さんは おいくつですか。",
+            "audioSegment": {
+              "id": "l2-app-block-003-line-005",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson2/l2-app-block-003-line-005.mp3",
+              "start": 0,
+              "end": 2.38,
+              "duration": 2.38,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:16:24.170Z",
+              "sourceAudioSha256": "dd1cd75132289b4458be0a68664eed872b5987e14db289d05c9480db0b742502"
+            }
+          },
+          {
+            "id": "l2-app-block-003-line-006",
+            "speaker": "李",
+            "text": "52 歳です。",
+            "kana": "ごじゅうに さいです。",
+            "translationZh": "52岁。",
+            "confidence": "high",
+            "rawText": "李：52 歳です。",
+            "audioSegment": {
+              "id": "l2-app-block-003-line-006",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson2/l2-app-block-003-line-006.mp3",
+              "start": 0,
+              "end": 1.14,
+              "duration": 1.14,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:16:24.170Z",
+              "sourceAudioSha256": "dd1cd75132289b4458be0a68664eed872b5987e14db289d05c9480db0b742502"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l2-app-block-004",
+        "type": "scene",
+        "text": "（小李从包里取出一个盒子）",
+        "kana": null,
+        "translationZh": "小李从包里取出一个盒子。",
+        "confidence": "high",
+        "rawText": "（小李从包里取出一个盒子）"
+      },
+      {
+        "id": "l2-app-block-005",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l2-app-block-005-line-001",
+            "speaker": "李",
+            "text": "小野さん、これ、どうぞ。",
+            "kana": "おのさん、これ、どうぞ。",
+            "translationZh": "小野女士，这个，请收下。",
+            "confidence": "high",
+            "rawText": "李：小野さん、これ、どうぞ。",
+            "audioSegment": {
+              "id": "l2-app-block-005-line-001",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson2/l2-app-block-005-line-001.mp3",
+              "start": 0,
+              "end": 2.18,
+              "duration": 2.18,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:16:24.170Z",
+              "sourceAudioSha256": "dd1cd75132289b4458be0a68664eed872b5987e14db289d05c9480db0b742502"
+            }
+          },
+          {
+            "id": "l2-app-block-005-line-002",
+            "speaker": "小野",
+            "text": "えっ、何ですか。",
+            "kana": "えっ、なんですか。",
+            "translationZh": "啊，是什么？",
+            "confidence": "high",
+            "rawText": "小野：えっ、何ですか。",
+            "audioSegment": {
+              "id": "l2-app-block-005-line-002",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson2/l2-app-block-005-line-002.mp3",
+              "start": 0,
+              "end": 1.1,
+              "duration": 1.1,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:16:24.170Z",
+              "sourceAudioSha256": "dd1cd75132289b4458be0a68664eed872b5987e14db289d05c9480db0b742502"
+            }
+          },
+          {
+            "id": "l2-app-block-005-line-003",
+            "speaker": "李",
+            "text": "お土産です。",
+            "kana": "おみやげです。",
+            "translationZh": "是礼物。",
+            "confidence": "high",
+            "rawText": "李：お土産です。",
+            "audioSegment": {
+              "id": "l2-app-block-005-line-003",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson2/l2-app-block-005-line-003.mp3",
+              "start": 0,
+              "end": 0.9,
+              "duration": 0.9,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:16:24.170Z",
+              "sourceAudioSha256": "dd1cd75132289b4458be0a68664eed872b5987e14db289d05c9480db0b742502"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l2-app-block-006",
+        "type": "scene",
+        "text": "（小野打开一看，是一块很漂亮的刺绣手绢）",
+        "kana": null,
+        "translationZh": "小野打开一看，是一块很漂亮的刺绣手绢。",
+        "confidence": "high",
+        "rawText": "（小野打开一看，是一块很漂亮的刺绣手绢）"
+      },
+      {
+        "id": "l2-app-block-007",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l2-app-block-007-line-001",
+            "speaker": "小野",
+            "text": "わあ、シルクの ハンカチですか。",
+            "kana": "わあ、シルクの ハンカチですか。",
+            "translationZh": "哇，是丝绸手绢吗？",
+            "confidence": "high",
+            "rawText": "小野：わあ、シルクの ハンカチですか。",
+            "audioSegment": {
+              "id": "l2-app-block-007-line-001",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson2/l2-app-block-007-line-001.mp3",
+              "start": 0,
+              "end": 2.66,
+              "duration": 2.66,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:16:24.170Z",
+              "sourceAudioSha256": "dd1cd75132289b4458be0a68664eed872b5987e14db289d05c9480db0b742502"
+            }
+          },
+          {
+            "id": "l2-app-block-007-line-002",
+            "speaker": "李",
+            "text": "ええ。スワトウの ハンカチです。中国の 名産品です。",
+            "kana": "ええ。スワトウの ハンカチです。ちゅうごくの めいさんひんです。",
+            "translationZh": "嗯，是汕头的手绢。是中国的名产。",
+            "confidence": "high",
+            "rawText": "李：ええ。スワトウの ハンカチです。中国の 名産品です。",
+            "audioSegment": {
+              "id": "l2-app-block-007-line-002",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson2/l2-app-block-007-line-002.mp3",
+              "start": 0,
+              "end": 4.5,
+              "duration": 4.5,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:16:24.170Z",
+              "sourceAudioSha256": "dd1cd75132289b4458be0a68664eed872b5987e14db289d05c9480db0b742502"
+            }
+          },
+          {
+            "id": "l2-app-block-007-line-003",
+            "speaker": "小野",
+            "text": "どうも ありがとう ございます。",
+            "kana": "どうも ありがとう ございます。",
+            "translationZh": "非常感谢。",
+            "confidence": "high",
+            "rawText": "小野：どうも ありがとう ございます。",
+            "audioSegment": {
+              "id": "l2-app-block-007-line-003",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson2/l2-app-block-007-line-003.mp3",
+              "start": 0,
+              "end": 1.78,
+              "duration": 1.78,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:16:24.170Z",
+              "sourceAudioSha256": "dd1cd75132289b4458be0a68664eed872b5987e14db289d05c9480db0b742502"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "warnings": [
+    "应用课文中的旁白和场景说明在教材页中以中文呈现，因此对应 block 的 text 与 translationZh 均保留中文原文，kana 为 null。"
+  ],
+  "audioAlignment": {
+    "schemaVersion": 1,
+    "method": "approved-asr-alignment",
+    "sourceAlignment": "data/ocr/lesson2-text-audio-alignment.json",
+    "publishedAt": "2026-08-05T08:16:27.362Z",
+    "approvedSegments": 24
+  }
+}

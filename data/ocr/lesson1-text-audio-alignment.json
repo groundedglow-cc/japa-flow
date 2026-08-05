@@ -1,0 +1,2379 @@
+{
+  "schemaVersion": 1,
+  "lessonId": "lesson1",
+  "generatedAt": "2026-08-05T08:14:23.932Z",
+  "method": "azure-speech-sdk-global-monotonic-alignment",
+  "reviewStatus": "approved",
+  "tracks": [
+    {
+      "id": "lesson_basic",
+      "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit1/lesson1/lesson_basic.mp3",
+      "localAudioPath": "data/ocr/audio-cache/lesson1/lesson_basic.mp3",
+      "sourceAudioSha256": "defc20f013e69b724fa1227c94f034a434349f5e96ea9bc183f105a0100624ba",
+      "transcription": {
+        "provider": "azure-speech-sdk-continuous-recognition",
+        "locale": "ja-JP",
+        "text": "二、李さんは中国人です。 森さんは学生ではありません。 三林さんは日本人ですか？ 数李さんはJC企画の社員です。 ええ、私はリです。小野さんですか？ はい、そうです。小野です。 B、森さんは学生ですか？ いいえ、学生ではありません。 会社員です。 C吉田さんですか。 いいえ。違います。 森です。 DさんはJC規格の社員ですか？ はい、そうです。",
+        "phrases": [
+          {
+            "index": 0,
+            "text": "二、李さんは中国人です。",
+            "start": 0.59,
+            "end": 4.39,
+            "confidence": 0.809425,
+            "words": [
+              {
+                "text": "二",
+                "start": 0.59,
+                "end": 1.11
+              },
+              {
+                "text": "李",
+                "start": 1.95,
+                "end": 2.23
+              },
+              {
+                "text": "さ",
+                "start": 2.23,
+                "end": 2.35
+              },
+              {
+                "text": "ん",
+                "start": 2.35,
+                "end": 2.55
+              },
+              {
+                "text": "は",
+                "start": 2.55,
+                "end": 2.91
+              },
+              {
+                "text": "中",
+                "start": 3.11,
+                "end": 3.47
+              },
+              {
+                "text": "国",
+                "start": 3.47,
+                "end": 3.79
+              },
+              {
+                "text": "人",
+                "start": 3.79,
+                "end": 4.03
+              },
+              {
+                "text": "で",
+                "start": 4.03,
+                "end": 4.19
+              },
+              {
+                "text": "す",
+                "start": 4.19,
+                "end": 4.39
+              }
+            ]
+          },
+          {
+            "index": 1,
+            "text": "森さんは学生ではありません。",
+            "start": 7.43,
+            "end": 10.11,
+            "confidence": 0.9278619,
+            "words": [
+              {
+                "text": "森",
+                "start": 7.43,
+                "end": 7.71
+              },
+              {
+                "text": "さ",
+                "start": 7.71,
+                "end": 7.83
+              },
+              {
+                "text": "ん",
+                "start": 7.83,
+                "end": 8.03
+              },
+              {
+                "text": "は",
+                "start": 8.03,
+                "end": 8.39
+              },
+              {
+                "text": "学",
+                "start": 8.67,
+                "end": 9.11
+              },
+              {
+                "text": "生",
+                "start": 9.11,
+                "end": 9.35
+              },
+              {
+                "text": "で",
+                "start": 9.35,
+                "end": 9.55
+              },
+              {
+                "text": "は",
+                "start": 9.55,
+                "end": 9.67
+              },
+              {
+                "text": "あ",
+                "start": 9.67,
+                "end": 9.79
+              },
+              {
+                "text": "り",
+                "start": 9.79,
+                "end": 9.91
+              },
+              {
+                "text": "ま",
+                "start": 9.91,
+                "end": 9.99
+              },
+              {
+                "text": "せ",
+                "start": 9.99,
+                "end": 10.07
+              },
+              {
+                "text": "ん",
+                "start": 10.07,
+                "end": 10.11
+              }
+            ]
+          },
+          {
+            "index": 2,
+            "text": "三林さんは日本人ですか？",
+            "start": 11.39,
+            "end": 15.55,
+            "confidence": 0.9561301,
+            "words": [
+              {
+                "text": "三",
+                "start": 11.39,
+                "end": 12.07
+              },
+              {
+                "text": "林",
+                "start": 13.03,
+                "end": 13.51
+              },
+              {
+                "text": "さ",
+                "start": 13.51,
+                "end": 13.67
+              },
+              {
+                "text": "ん",
+                "start": 13.67,
+                "end": 13.87
+              },
+              {
+                "text": "は",
+                "start": 13.87,
+                "end": 14.19
+              },
+              {
+                "text": "日",
+                "start": 14.27,
+                "end": 14.47
+              },
+              {
+                "text": "本",
+                "start": 14.47,
+                "end": 14.75
+              },
+              {
+                "text": "人",
+                "start": 14.75,
+                "end": 14.95
+              },
+              {
+                "text": "で",
+                "start": 14.95,
+                "end": 15.11
+              },
+              {
+                "text": "す",
+                "start": 15.11,
+                "end": 15.23
+              },
+              {
+                "text": "か",
+                "start": 15.23,
+                "end": 15.55
+              }
+            ]
+          },
+          {
+            "index": 3,
+            "text": "数李さんはJC企画の社員です。",
+            "start": 17.34,
+            "end": 21.78,
+            "confidence": 0.74310476,
+            "words": [
+              {
+                "text": "数",
+                "start": 17.34,
+                "end": 17.86
+              },
+              {
+                "text": "李",
+                "start": 18.9,
+                "end": 19.14
+              },
+              {
+                "text": "さ",
+                "start": 19.14,
+                "end": 19.3
+              },
+              {
+                "text": "ん",
+                "start": 19.3,
+                "end": 19.46
+              },
+              {
+                "text": "は",
+                "start": 19.46,
+                "end": 19.82
+              },
+              {
+                "text": "jc",
+                "start": 20.06,
+                "end": 20.7
+              },
+              {
+                "text": "企",
+                "start": 20.7,
+                "end": 20.86
+              },
+              {
+                "text": "画",
+                "start": 20.86,
+                "end": 21.1
+              },
+              {
+                "text": "の",
+                "start": 21.1,
+                "end": 21.22
+              },
+              {
+                "text": "社",
+                "start": 21.22,
+                "end": 21.42
+              },
+              {
+                "text": "員",
+                "start": 21.42,
+                "end": 21.62
+              },
+              {
+                "text": "で",
+                "start": 21.62,
+                "end": 21.7
+              },
+              {
+                "text": "す",
+                "start": 21.7,
+                "end": 21.78
+              }
+            ]
+          },
+          {
+            "index": 4,
+            "text": "ええ、私はリです。小野さんですか？",
+            "start": 24.27,
+            "end": 28.99,
+            "confidence": 0.6855892,
+            "words": [
+              {
+                "text": "え",
+                "start": 24.27,
+                "end": 24.51
+              },
+              {
+                "text": "え",
+                "start": 24.51,
+                "end": 24.83
+              },
+              {
+                "text": "私",
+                "start": 26.03,
+                "end": 26.11
+              },
+              {
+                "text": "は",
+                "start": 26.11,
+                "end": 26.87
+              },
+              {
+                "text": "リ",
+                "start": 26.87,
+                "end": 27.07
+              },
+              {
+                "text": "で",
+                "start": 27.07,
+                "end": 27.23
+              },
+              {
+                "text": "す",
+                "start": 27.23,
+                "end": 27.51
+              },
+              {
+                "text": "小",
+                "start": 28.07,
+                "end": 28.19
+              },
+              {
+                "text": "野",
+                "start": 28.19,
+                "end": 28.35
+              },
+              {
+                "text": "さ",
+                "start": 28.35,
+                "end": 28.51
+              },
+              {
+                "text": "ん",
+                "start": 28.51,
+                "end": 28.63
+              },
+              {
+                "text": "で",
+                "start": 28.63,
+                "end": 28.75
+              },
+              {
+                "text": "す",
+                "start": 28.75,
+                "end": 28.87
+              },
+              {
+                "text": "か",
+                "start": 28.87,
+                "end": 28.99
+              }
+            ]
+          },
+          {
+            "index": 5,
+            "text": "はい、そうです。小野です。",
+            "start": 29.99,
+            "end": 32.55,
+            "confidence": 0.9055601,
+            "words": [
+              {
+                "text": "は",
+                "start": 29.99,
+                "end": 30.23
+              },
+              {
+                "text": "い",
+                "start": 30.23,
+                "end": 30.47
+              },
+              {
+                "text": "そ",
+                "start": 30.59,
+                "end": 30.87
+              },
+              {
+                "text": "う",
+                "start": 30.87,
+                "end": 30.95
+              },
+              {
+                "text": "で",
+                "start": 30.95,
+                "end": 31.19
+              },
+              {
+                "text": "す",
+                "start": 31.19,
+                "end": 31.47
+              },
+              {
+                "text": "小",
+                "start": 31.75,
+                "end": 31.91
+              },
+              {
+                "text": "野",
+                "start": 31.91,
+                "end": 32.03
+              },
+              {
+                "text": "で",
+                "start": 32.03,
+                "end": 32.23
+              },
+              {
+                "text": "す",
+                "start": 32.23,
+                "end": 32.55
+              }
+            ]
+          },
+          {
+            "index": 6,
+            "text": "B、森さんは学生ですか？",
+            "start": 33.55,
+            "end": 37.43,
+            "confidence": 0.8395736,
+            "words": [
+              {
+                "text": "b",
+                "start": 33.55,
+                "end": 34.15
+              },
+              {
+                "text": "森",
+                "start": 35.35,
+                "end": 35.71
+              },
+              {
+                "text": "さ",
+                "start": 35.71,
+                "end": 35.87
+              },
+              {
+                "text": "ん",
+                "start": 35.87,
+                "end": 36.03
+              },
+              {
+                "text": "は",
+                "start": 36.03,
+                "end": 36.35
+              },
+              {
+                "text": "学",
+                "start": 36.35,
+                "end": 36.63
+              },
+              {
+                "text": "生",
+                "start": 36.63,
+                "end": 36.87
+              },
+              {
+                "text": "で",
+                "start": 36.87,
+                "end": 37.03
+              },
+              {
+                "text": "す",
+                "start": 37.03,
+                "end": 37.11
+              },
+              {
+                "text": "か",
+                "start": 37.11,
+                "end": 37.43
+              }
+            ]
+          },
+          {
+            "index": 7,
+            "text": "いいえ、学生ではありません。",
+            "start": 38.15,
+            "end": 40.55,
+            "confidence": 0.9522995,
+            "words": [
+              {
+                "text": "い",
+                "start": 38.15,
+                "end": 38.39
+              },
+              {
+                "text": "い",
+                "start": 38.39,
+                "end": 38.51
+              },
+              {
+                "text": "え",
+                "start": 38.51,
+                "end": 38.83
+              },
+              {
+                "text": "学",
+                "start": 39.19,
+                "end": 39.59
+              },
+              {
+                "text": "生",
+                "start": 39.59,
+                "end": 39.83
+              },
+              {
+                "text": "で",
+                "start": 39.83,
+                "end": 39.99
+              },
+              {
+                "text": "は",
+                "start": 39.99,
+                "end": 40.07
+              },
+              {
+                "text": "あ",
+                "start": 40.07,
+                "end": 40.15
+              },
+              {
+                "text": "り",
+                "start": 40.15,
+                "end": 40.27
+              },
+              {
+                "text": "ま",
+                "start": 40.27,
+                "end": 40.39
+              },
+              {
+                "text": "せ",
+                "start": 40.39,
+                "end": 40.51
+              },
+              {
+                "text": "ん",
+                "start": 40.51,
+                "end": 40.55
+              }
+            ]
+          },
+          {
+            "index": 8,
+            "text": "会社員です。",
+            "start": 41.47,
+            "end": 42.59,
+            "confidence": 0.94406307,
+            "words": [
+              {
+                "text": "会",
+                "start": 41.47,
+                "end": 41.83
+              },
+              {
+                "text": "社",
+                "start": 41.83,
+                "end": 41.99
+              },
+              {
+                "text": "員",
+                "start": 41.99,
+                "end": 42.19
+              },
+              {
+                "text": "で",
+                "start": 42.19,
+                "end": 42.31
+              },
+              {
+                "text": "す",
+                "start": 42.31,
+                "end": 42.59
+              }
+            ]
+          },
+          {
+            "index": 9,
+            "text": "C吉田さんですか。",
+            "start": 44.34,
+            "end": 47.3,
+            "confidence": 0.870025,
+            "words": [
+              {
+                "text": "c",
+                "start": 44.34,
+                "end": 45.1
+              },
+              {
+                "text": "吉",
+                "start": 46.14,
+                "end": 46.3
+              },
+              {
+                "text": "田",
+                "start": 46.3,
+                "end": 46.58
+              },
+              {
+                "text": "さ",
+                "start": 46.58,
+                "end": 46.7
+              },
+              {
+                "text": "ん",
+                "start": 46.7,
+                "end": 46.82
+              },
+              {
+                "text": "で",
+                "start": 46.82,
+                "end": 46.94
+              },
+              {
+                "text": "す",
+                "start": 46.94,
+                "end": 47.06
+              },
+              {
+                "text": "か",
+                "start": 47.06,
+                "end": 47.3
+              }
+            ]
+          },
+          {
+            "index": 10,
+            "text": "いいえ。違います。",
+            "start": 48.43,
+            "end": 49.91,
+            "confidence": 0.90589356,
+            "words": [
+              {
+                "text": "い",
+                "start": 48.43,
+                "end": 48.67
+              },
+              {
+                "text": "い",
+                "start": 48.67,
+                "end": 48.75
+              },
+              {
+                "text": "え",
+                "start": 48.75,
+                "end": 49.15
+              },
+              {
+                "text": "違",
+                "start": 49.19,
+                "end": 49.59
+              },
+              {
+                "text": "い",
+                "start": 49.59,
+                "end": 49.71
+              },
+              {
+                "text": "ま",
+                "start": 49.71,
+                "end": 49.83
+              },
+              {
+                "text": "す",
+                "start": 49.83,
+                "end": 49.91
+              }
+            ]
+          },
+          {
+            "index": 11,
+            "text": "森です。",
+            "start": 50.83,
+            "end": 51.59,
+            "confidence": 0.8472144,
+            "words": [
+              {
+                "text": "森",
+                "start": 50.83,
+                "end": 51.11
+              },
+              {
+                "text": "で",
+                "start": 51.11,
+                "end": 51.27
+              },
+              {
+                "text": "す",
+                "start": 51.27,
+                "end": 51.59
+              }
+            ]
+          },
+          {
+            "index": 12,
+            "text": "DさんはJC規格の社員ですか？",
+            "start": 53.51,
+            "end": 57.87,
+            "confidence": 0.7567518,
+            "words": [
+              {
+                "text": "d",
+                "start": 53.51,
+                "end": 54.23
+              },
+              {
+                "text": "さ",
+                "start": 55.23,
+                "end": 55.43
+              },
+              {
+                "text": "ん",
+                "start": 55.43,
+                "end": 55.63
+              },
+              {
+                "text": "は",
+                "start": 55.63,
+                "end": 56.03
+              },
+              {
+                "text": "jc",
+                "start": 56.11,
+                "end": 56.71
+              },
+              {
+                "text": "規",
+                "start": 56.71,
+                "end": 56.83
+              },
+              {
+                "text": "格",
+                "start": 56.83,
+                "end": 57.07
+              },
+              {
+                "text": "の",
+                "start": 57.07,
+                "end": 57.19
+              },
+              {
+                "text": "社",
+                "start": 57.19,
+                "end": 57.35
+              },
+              {
+                "text": "員",
+                "start": 57.35,
+                "end": 57.51
+              },
+              {
+                "text": "で",
+                "start": 57.51,
+                "end": 57.63
+              },
+              {
+                "text": "す",
+                "start": 57.63,
+                "end": 57.75
+              },
+              {
+                "text": "か",
+                "start": 57.75,
+                "end": 57.87
+              }
+            ]
+          },
+          {
+            "index": 13,
+            "text": "はい、そうです。",
+            "start": 58.87,
+            "end": 60.15,
+            "confidence": 0.9475892,
+            "words": [
+              {
+                "text": "は",
+                "start": 58.87,
+                "end": 59.07
+              },
+              {
+                "text": "い",
+                "start": 59.07,
+                "end": 59.35
+              },
+              {
+                "text": "そ",
+                "start": 59.35,
+                "end": 59.63
+              },
+              {
+                "text": "う",
+                "start": 59.63,
+                "end": 59.71
+              },
+              {
+                "text": "で",
+                "start": 59.71,
+                "end": 59.91
+              },
+              {
+                "text": "す",
+                "start": 59.91,
+                "end": 60.15
+              }
+            ]
+          }
+        ]
+      },
+      "items": [
+        {
+          "id": "l1-basic-s001",
+          "trackId": "lesson_basic",
+          "speaker": "",
+          "text": "李さんは 中国人です。",
+          "kana": "りさんは ちゅうごくじんです。",
+          "translationZh": "小李是中国人。",
+          "candidate": {
+            "start": 1.89,
+            "end": 4.47,
+            "asrText": "李 さ ん は 中 国 人 で す",
+            "phraseIndexes": [
+              0
+            ],
+            "matchScore": 1,
+            "confidence": 0.809,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 1.89,
+            "end": 4.47,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:14:54.896Z"
+          }
+        },
+        {
+          "id": "l1-basic-s002",
+          "trackId": "lesson_basic",
+          "speaker": "",
+          "text": "森さんは 学生では ありません。",
+          "kana": "もりさんは がくせいでは ありません。",
+          "translationZh": "森先生不是学生。",
+          "candidate": {
+            "start": 7.37,
+            "end": 10.19,
+            "asrText": "森 さ ん は 学 生 で は あ り ま せ ん",
+            "phraseIndexes": [
+              1
+            ],
+            "matchScore": 1,
+            "confidence": 0.928,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 7.37,
+            "end": 10.19,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:14:54.896Z"
+          }
+        },
+        {
+          "id": "l1-basic-s003",
+          "trackId": "lesson_basic",
+          "speaker": "",
+          "text": "林さんは 日本人ですか。",
+          "kana": "はやしさんは にほんじんですか。",
+          "translationZh": "林先生是日本人吗？",
+          "candidate": {
+            "start": 12.97,
+            "end": 15.63,
+            "asrText": "林 さ ん は 日 本 人 で す か",
+            "phraseIndexes": [
+              2
+            ],
+            "matchScore": 1,
+            "confidence": 0.956,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 12.97,
+            "end": 15.63,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:14:54.896Z"
+          }
+        },
+        {
+          "id": "l1-basic-s004",
+          "trackId": "lesson_basic",
+          "speaker": "",
+          "text": "李さんは JC企画の 社員です。",
+          "kana": "りさんは ジェーシーきかくの しゃいんです。",
+          "translationZh": "小李是JC策划公司的职员。",
+          "candidate": {
+            "start": 18.84,
+            "end": 21.86,
+            "asrText": "李 さ ん は jc 企 画 の 社 員 で す",
+            "phraseIndexes": [
+              3
+            ],
+            "matchScore": 1,
+            "confidence": 0.743,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 18.84,
+            "end": 21.86,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:14:54.896Z"
+          }
+        },
+        {
+          "id": "l1-basic-dialogue-001-line-001",
+          "trackId": "lesson_basic",
+          "speaker": "甲",
+          "text": "わたしは 李です。小野さんですか。",
+          "kana": "わたしは りです。おのさんですか。",
+          "translationZh": "我姓李。您是小野女士吗？",
+          "candidate": {
+            "start": 24.21,
+            "end": 29.07,
+            "asrText": "え え 私 は リ で す 小 野 さ ん で す か",
+            "phraseIndexes": [
+              4
+            ],
+            "matchScore": 0.714,
+            "confidence": 0.686,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 24.21,
+            "end": 29.07,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:14:54.896Z"
+          }
+        },
+        {
+          "id": "l1-basic-dialogue-001-line-002",
+          "trackId": "lesson_basic",
+          "speaker": "乙",
+          "text": "はい、そうです。小野です。",
+          "kana": "はい、そうです。おのです。",
+          "translationZh": "是的，我是小野。",
+          "candidate": {
+            "start": 29.93,
+            "end": 32.63,
+            "asrText": "は い そ う で す 小 野 で す",
+            "phraseIndexes": [
+              5
+            ],
+            "matchScore": 1,
+            "confidence": 0.906,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 29.93,
+            "end": 32.63,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:14:54.896Z"
+          }
+        },
+        {
+          "id": "l1-basic-dialogue-002-line-001",
+          "trackId": "lesson_basic",
+          "speaker": "甲",
+          "text": "森さんは 学生ですか。",
+          "kana": "もりさんは がくせいですか。",
+          "translationZh": "森先生是学生吗？",
+          "candidate": {
+            "start": 35.29,
+            "end": 37.51,
+            "asrText": "森 さ ん は 学 生 で す か",
+            "phraseIndexes": [
+              6
+            ],
+            "matchScore": 1,
+            "confidence": 0.84,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 35.29,
+            "end": 37.51,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:14:54.896Z"
+          }
+        },
+        {
+          "id": "l1-basic-dialogue-002-line-002",
+          "trackId": "lesson_basic",
+          "speaker": "乙",
+          "text": "いいえ、学生では ありません。会社員です。",
+          "kana": "いいえ、がくせいでは ありません。かいしゃいんです。",
+          "translationZh": "不，不是学生。是公司职员。",
+          "candidate": {
+            "start": 38.09,
+            "end": 42.67,
+            "asrText": "い い え 学 生 で は あ り ま せ ん 会 社 員 で す",
+            "phraseIndexes": [
+              7,
+              8
+            ],
+            "matchScore": 1,
+            "confidence": 0.95,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 38.09,
+            "end": 42.67,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:14:54.896Z"
+          }
+        },
+        {
+          "id": "l1-basic-dialogue-003-line-001",
+          "trackId": "lesson_basic",
+          "speaker": "甲",
+          "text": "吉田さんですか。",
+          "kana": "よしださんですか。",
+          "translationZh": "您是吉田先生吗？",
+          "candidate": {
+            "start": 46.08,
+            "end": 47.38,
+            "asrText": "吉 田 さ ん で す か",
+            "phraseIndexes": [
+              9
+            ],
+            "matchScore": 1,
+            "confidence": 0.87,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 46.08,
+            "end": 47.38,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:14:54.896Z"
+          }
+        },
+        {
+          "id": "l1-basic-dialogue-003-line-002",
+          "trackId": "lesson_basic",
+          "speaker": "乙",
+          "text": "いいえ、ちがいます。森です。",
+          "kana": "いいえ、ちがいます。もりです。",
+          "translationZh": "不，不是。我是森。",
+          "candidate": {
+            "start": 48.37,
+            "end": 51.67,
+            "asrText": "い い え 違 い ま す 森 で す",
+            "phraseIndexes": [
+              10,
+              11
+            ],
+            "matchScore": 0.818,
+            "confidence": 0.888,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 48.37,
+            "end": 51.67,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:14:54.896Z"
+          }
+        },
+        {
+          "id": "l1-basic-dialogue-004-line-001",
+          "trackId": "lesson_basic",
+          "speaker": "甲",
+          "text": "李さんは JC企画の 社員ですか。",
+          "kana": "りさんは ジェーシーきかくの しゃいんですか。",
+          "translationZh": "小李是JC策划公司的职员吗？",
+          "candidate": {
+            "start": 53.45,
+            "end": 57.95,
+            "asrText": "d さ ん は jc 規 格 の 社 員 で す か",
+            "phraseIndexes": [
+              12
+            ],
+            "matchScore": 0.786,
+            "confidence": 0.757,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 53.45,
+            "end": 57.95,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:14:54.896Z"
+          }
+        },
+        {
+          "id": "l1-basic-dialogue-004-line-002",
+          "trackId": "lesson_basic",
+          "speaker": "乙",
+          "text": "はい、そうです。",
+          "kana": "はい、そうです。",
+          "translationZh": "是的，是。",
+          "candidate": {
+            "start": 58.81,
+            "end": 60.23,
+            "asrText": "は い そ う で す",
+            "phraseIndexes": [
+              13
+            ],
+            "matchScore": 1,
+            "confidence": 0.948,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 58.81,
+            "end": 60.23,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:14:54.896Z"
+          }
+        }
+      ]
+    },
+    {
+      "id": "lesson_apps",
+      "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit1/lesson1/lesson_apps.mp3",
+      "localAudioPath": "data/ocr/audio-cache/lesson1/lesson_apps.mp3",
+      "sourceAudioSha256": "ac552f0d4209ea8166dac9dede0a2fb835aeac129b5898a8a34c171b8c73f37f",
+      "transcription": {
+        "provider": "azure-speech-sdk-continuous-recognition",
+        "locale": "ja-JP",
+        "text": "出迎え。 履修レーサー、ツーアンドパイズ。 周り、 topies、 the functionalチーム。 JC規格の小野さんですか？ はい、小野です。李秀嶺さんですか？ はい、李秋冷です。はじめまして。どうぞよろしくお願いします。はじめまして、小野みどりです。 李さん、こんにちは。 吉田さんですか？ いいえ、私は吉田じゃありません。森です。 あ、森さんですか。どうもすみません。いいえ。 どうぞ、よろしく。 李秋嶺です。こちらこそよろしくお願いします。",
+        "phrases": [
+          {
+            "index": 0,
+            "text": "出迎え。",
+            "start": 0.47,
+            "end": 1.51,
+            "confidence": 0.91139567,
+            "words": [
+              {
+                "text": "出",
+                "start": 0.47,
+                "end": 1.03
+              },
+              {
+                "text": "迎",
+                "start": 1.03,
+                "end": 1.11
+              },
+              {
+                "text": "え",
+                "start": 1.11,
+                "end": 1.51
+              }
+            ]
+          },
+          {
+            "index": 1,
+            "text": "履修レーサー、ツーアンドパイズ。",
+            "start": 2.43,
+            "end": 17.31,
+            "confidence": 0.5670237,
+            "words": [
+              {
+                "text": "履",
+                "start": 2.43,
+                "end": 4.63
+              },
+              {
+                "text": "修",
+                "start": 5.47,
+                "end": 9.55
+              },
+              {
+                "text": "レ",
+                "start": 10.55,
+                "end": 11.07
+              },
+              {
+                "text": "ー",
+                "start": 11.07,
+                "end": 11.35
+              },
+              {
+                "text": "サ",
+                "start": 11.35,
+                "end": 12.71
+              },
+              {
+                "text": "ー",
+                "start": 12.99,
+                "end": 13.23
+              },
+              {
+                "text": "ツ",
+                "start": 13.23,
+                "end": 13.39
+              },
+              {
+                "text": "ー",
+                "start": 13.39,
+                "end": 13.59
+              },
+              {
+                "text": "ア",
+                "start": 13.59,
+                "end": 13.91
+              },
+              {
+                "text": "ン",
+                "start": 14.71,
+                "end": 15.19
+              },
+              {
+                "text": "ド",
+                "start": 15.19,
+                "end": 15.35
+              },
+              {
+                "text": "パ",
+                "start": 15.43,
+                "end": 16.87
+              },
+              {
+                "text": "イ",
+                "start": 16.87,
+                "end": 16.99
+              },
+              {
+                "text": "ズ",
+                "start": 16.99,
+                "end": 17.31
+              }
+            ]
+          },
+          {
+            "index": 2,
+            "text": "周り、 topies、 the functionalチーム。",
+            "start": 17.99,
+            "end": 19.95,
+            "confidence": 0.39535677,
+            "words": [
+              {
+                "text": "周",
+                "start": 17.99,
+                "end": 18.19
+              },
+              {
+                "text": "り",
+                "start": 18.19,
+                "end": 18.35
+              },
+              {
+                "text": "topies",
+                "start": 18.35,
+                "end": 18.51
+              },
+              {
+                "text": "the",
+                "start": 18.51,
+                "end": 18.63
+              },
+              {
+                "text": "functional",
+                "start": 18.63,
+                "end": 19.39
+              },
+              {
+                "text": "チ",
+                "start": 19.39,
+                "end": 19.67
+              },
+              {
+                "text": "ー",
+                "start": 19.67,
+                "end": 19.87
+              },
+              {
+                "text": "ム",
+                "start": 19.87,
+                "end": 19.95
+              }
+            ]
+          },
+          {
+            "index": 3,
+            "text": "JC規格の小野さんですか？",
+            "start": 21.55,
+            "end": 23.67,
+            "confidence": 0.74875474,
+            "words": [
+              {
+                "text": "jc",
+                "start": 21.55,
+                "end": 22.15
+              },
+              {
+                "text": "規",
+                "start": 22.15,
+                "end": 22.31
+              },
+              {
+                "text": "格",
+                "start": 22.31,
+                "end": 22.55
+              },
+              {
+                "text": "の",
+                "start": 22.55,
+                "end": 22.79
+              },
+              {
+                "text": "小",
+                "start": 22.79,
+                "end": 22.91
+              },
+              {
+                "text": "野",
+                "start": 22.91,
+                "end": 23.03
+              },
+              {
+                "text": "さ",
+                "start": 23.03,
+                "end": 23.15
+              },
+              {
+                "text": "ん",
+                "start": 23.15,
+                "end": 23.27
+              },
+              {
+                "text": "で",
+                "start": 23.27,
+                "end": 23.39
+              },
+              {
+                "text": "す",
+                "start": 23.39,
+                "end": 23.51
+              },
+              {
+                "text": "か",
+                "start": 23.51,
+                "end": 23.67
+              }
+            ]
+          },
+          {
+            "index": 4,
+            "text": "はい、小野です。李秀嶺さんですか？",
+            "start": 24.59,
+            "end": 27.55,
+            "confidence": 0.76172704,
+            "words": [
+              {
+                "text": "は",
+                "start": 24.59,
+                "end": 24.75
+              },
+              {
+                "text": "い",
+                "start": 24.75,
+                "end": 24.91
+              },
+              {
+                "text": "小",
+                "start": 24.95,
+                "end": 25.15
+              },
+              {
+                "text": "野",
+                "start": 25.15,
+                "end": 25.31
+              },
+              {
+                "text": "で",
+                "start": 25.31,
+                "end": 25.47
+              },
+              {
+                "text": "す",
+                "start": 25.47,
+                "end": 25.83
+              },
+              {
+                "text": "李",
+                "start": 26.03,
+                "end": 26.39
+              },
+              {
+                "text": "秀",
+                "start": 26.39,
+                "end": 26.63
+              },
+              {
+                "text": "嶺",
+                "start": 26.63,
+                "end": 26.87
+              },
+              {
+                "text": "さ",
+                "start": 26.87,
+                "end": 27.07
+              },
+              {
+                "text": "ん",
+                "start": 27.07,
+                "end": 27.15
+              },
+              {
+                "text": "で",
+                "start": 27.15,
+                "end": 27.31
+              },
+              {
+                "text": "す",
+                "start": 27.31,
+                "end": 27.39
+              },
+              {
+                "text": "か",
+                "start": 27.39,
+                "end": 27.55
+              }
+            ]
+          },
+          {
+            "index": 5,
+            "text": "はい、李秋冷です。はじめまして。どうぞよろしくお願いします。はじめまして、小野みどりです。",
+            "start": 28.43,
+            "end": 36.55,
+            "confidence": 0.82116675,
+            "words": [
+              {
+                "text": "は",
+                "start": 28.43,
+                "end": 28.51
+              },
+              {
+                "text": "い",
+                "start": 28.51,
+                "end": 28.71
+              },
+              {
+                "text": "李",
+                "start": 28.83,
+                "end": 29.15
+              },
+              {
+                "text": "秋",
+                "start": 29.15,
+                "end": 29.43
+              },
+              {
+                "text": "冷",
+                "start": 29.43,
+                "end": 29.59
+              },
+              {
+                "text": "で",
+                "start": 29.59,
+                "end": 29.79
+              },
+              {
+                "text": "す",
+                "start": 29.79,
+                "end": 30.11
+              },
+              {
+                "text": "は",
+                "start": 30.31,
+                "end": 30.47
+              },
+              {
+                "text": "じ",
+                "start": 30.47,
+                "end": 30.59
+              },
+              {
+                "text": "め",
+                "start": 30.59,
+                "end": 30.71
+              },
+              {
+                "text": "ま",
+                "start": 30.71,
+                "end": 30.87
+              },
+              {
+                "text": "し",
+                "start": 30.87,
+                "end": 30.95
+              },
+              {
+                "text": "て",
+                "start": 30.95,
+                "end": 31.35
+              },
+              {
+                "text": "ど",
+                "start": 31.67,
+                "end": 31.91
+              },
+              {
+                "text": "う",
+                "start": 31.91,
+                "end": 31.99
+              },
+              {
+                "text": "ぞ",
+                "start": 31.99,
+                "end": 32.19
+              },
+              {
+                "text": "よ",
+                "start": 32.19,
+                "end": 32.35
+              },
+              {
+                "text": "ろ",
+                "start": 32.35,
+                "end": 32.47
+              },
+              {
+                "text": "し",
+                "start": 32.47,
+                "end": 32.59
+              },
+              {
+                "text": "く",
+                "start": 32.59,
+                "end": 32.75
+              },
+              {
+                "text": "お",
+                "start": 32.75,
+                "end": 32.83
+              },
+              {
+                "text": "願",
+                "start": 32.91,
+                "end": 33.07
+              },
+              {
+                "text": "い",
+                "start": 33.07,
+                "end": 33.15
+              },
+              {
+                "text": "し",
+                "start": 33.15,
+                "end": 33.27
+              },
+              {
+                "text": "ま",
+                "start": 33.27,
+                "end": 33.43
+              },
+              {
+                "text": "す",
+                "start": 33.43,
+                "end": 33.71
+              },
+              {
+                "text": "は",
+                "start": 34.19,
+                "end": 34.39
+              },
+              {
+                "text": "じ",
+                "start": 34.39,
+                "end": 34.51
+              },
+              {
+                "text": "め",
+                "start": 34.51,
+                "end": 34.63
+              },
+              {
+                "text": "ま",
+                "start": 34.63,
+                "end": 34.79
+              },
+              {
+                "text": "し",
+                "start": 34.79,
+                "end": 34.91
+              },
+              {
+                "text": "て",
+                "start": 34.91,
+                "end": 35.19
+              },
+              {
+                "text": "小",
+                "start": 35.47,
+                "end": 35.67
+              },
+              {
+                "text": "野",
+                "start": 35.67,
+                "end": 35.83
+              },
+              {
+                "text": "み",
+                "start": 35.83,
+                "end": 36.03
+              },
+              {
+                "text": "ど",
+                "start": 36.03,
+                "end": 36.15
+              },
+              {
+                "text": "り",
+                "start": 36.15,
+                "end": 36.27
+              },
+              {
+                "text": "で",
+                "start": 36.27,
+                "end": 36.43
+              },
+              {
+                "text": "す",
+                "start": 36.43,
+                "end": 36.55
+              }
+            ]
+          },
+          {
+            "index": 6,
+            "text": "李さん、こんにちは。",
+            "start": 38.69,
+            "end": 40.45,
+            "confidence": 0.8950155,
+            "words": [
+              {
+                "text": "李",
+                "start": 38.69,
+                "end": 38.93
+              },
+              {
+                "text": "さ",
+                "start": 38.93,
+                "end": 39.09
+              },
+              {
+                "text": "ん",
+                "start": 39.09,
+                "end": 39.37
+              },
+              {
+                "text": "こ",
+                "start": 39.69,
+                "end": 39.89
+              },
+              {
+                "text": "ん",
+                "start": 39.89,
+                "end": 39.93
+              },
+              {
+                "text": "に",
+                "start": 39.93,
+                "end": 40.09
+              },
+              {
+                "text": "ち",
+                "start": 40.09,
+                "end": 40.25
+              },
+              {
+                "text": "は",
+                "start": 40.25,
+                "end": 40.45
+              }
+            ]
+          },
+          {
+            "index": 7,
+            "text": "吉田さんですか？",
+            "start": 41.27,
+            "end": 42.35,
+            "confidence": 0.8878932,
+            "words": [
+              {
+                "text": "吉",
+                "start": 41.27,
+                "end": 41.43
+              },
+              {
+                "text": "田",
+                "start": 41.43,
+                "end": 41.71
+              },
+              {
+                "text": "さ",
+                "start": 41.71,
+                "end": 41.83
+              },
+              {
+                "text": "ん",
+                "start": 41.83,
+                "end": 41.91
+              },
+              {
+                "text": "で",
+                "start": 41.91,
+                "end": 42.03
+              },
+              {
+                "text": "す",
+                "start": 42.03,
+                "end": 42.15
+              },
+              {
+                "text": "か",
+                "start": 42.15,
+                "end": 42.35
+              }
+            ]
+          },
+          {
+            "index": 8,
+            "text": "いいえ、私は吉田じゃありません。森です。",
+            "start": 43.92,
+            "end": 47.44,
+            "confidence": 0.9238639,
+            "words": [
+              {
+                "text": "い",
+                "start": 43.92,
+                "end": 44
+              },
+              {
+                "text": "い",
+                "start": 44,
+                "end": 44.08
+              },
+              {
+                "text": "え",
+                "start": 44.08,
+                "end": 44.16
+              },
+              {
+                "text": "私",
+                "start": 44.16,
+                "end": 44.32
+              },
+              {
+                "text": "は",
+                "start": 44.32,
+                "end": 44.56
+              },
+              {
+                "text": "吉",
+                "start": 44.56,
+                "end": 44.72
+              },
+              {
+                "text": "田",
+                "start": 44.76,
+                "end": 45.08
+              },
+              {
+                "text": "じ",
+                "start": 45.08,
+                "end": 45.16
+              },
+              {
+                "text": "ゃ",
+                "start": 45.16,
+                "end": 45.44
+              },
+              {
+                "text": "あ",
+                "start": 45.44,
+                "end": 45.52
+              },
+              {
+                "text": "り",
+                "start": 45.52,
+                "end": 45.64
+              },
+              {
+                "text": "ま",
+                "start": 45.64,
+                "end": 45.76
+              },
+              {
+                "text": "せ",
+                "start": 45.76,
+                "end": 45.88
+              },
+              {
+                "text": "ん",
+                "start": 45.88,
+                "end": 46.08
+              },
+              {
+                "text": "森",
+                "start": 46.56,
+                "end": 46.96
+              },
+              {
+                "text": "で",
+                "start": 46.96,
+                "end": 47.08
+              },
+              {
+                "text": "す",
+                "start": 47.08,
+                "end": 47.44
+              }
+            ]
+          },
+          {
+            "index": 9,
+            "text": "あ、森さんですか。どうもすみません。いいえ。",
+            "start": 48.31,
+            "end": 52.47,
+            "confidence": 0.913969,
+            "words": [
+              {
+                "text": "あ",
+                "start": 48.31,
+                "end": 48.55
+              },
+              {
+                "text": "森",
+                "start": 48.75,
+                "end": 49.11
+              },
+              {
+                "text": "さ",
+                "start": 49.11,
+                "end": 49.27
+              },
+              {
+                "text": "ん",
+                "start": 49.27,
+                "end": 49.35
+              },
+              {
+                "text": "で",
+                "start": 49.35,
+                "end": 49.47
+              },
+              {
+                "text": "す",
+                "start": 49.47,
+                "end": 49.59
+              },
+              {
+                "text": "か",
+                "start": 49.59,
+                "end": 49.91
+              },
+              {
+                "text": "ど",
+                "start": 50.27,
+                "end": 50.47
+              },
+              {
+                "text": "う",
+                "start": 50.47,
+                "end": 50.55
+              },
+              {
+                "text": "も",
+                "start": 50.55,
+                "end": 50.79
+              },
+              {
+                "text": "す",
+                "start": 50.79,
+                "end": 50.91
+              },
+              {
+                "text": "み",
+                "start": 50.91,
+                "end": 51.03
+              },
+              {
+                "text": "ま",
+                "start": 51.03,
+                "end": 51.15
+              },
+              {
+                "text": "せ",
+                "start": 51.15,
+                "end": 51.35
+              },
+              {
+                "text": "ん",
+                "start": 51.35,
+                "end": 51.55
+              },
+              {
+                "text": "い",
+                "start": 51.95,
+                "end": 52.23
+              },
+              {
+                "text": "い",
+                "start": 52.23,
+                "end": 52.35
+              },
+              {
+                "text": "え",
+                "start": 52.35,
+                "end": 52.47
+              }
+            ]
+          },
+          {
+            "index": 10,
+            "text": "どうぞ、よろしく。",
+            "start": 53.27,
+            "end": 54.11,
+            "confidence": 0.95815176,
+            "words": [
+              {
+                "text": "ど",
+                "start": 53.27,
+                "end": 53.39
+              },
+              {
+                "text": "う",
+                "start": 53.39,
+                "end": 53.51
+              },
+              {
+                "text": "ぞ",
+                "start": 53.51,
+                "end": 53.63
+              },
+              {
+                "text": "よ",
+                "start": 53.63,
+                "end": 53.75
+              },
+              {
+                "text": "ろ",
+                "start": 53.75,
+                "end": 53.87
+              },
+              {
+                "text": "し",
+                "start": 53.87,
+                "end": 53.99
+              },
+              {
+                "text": "く",
+                "start": 53.99,
+                "end": 54.11
+              }
+            ]
+          },
+          {
+            "index": 11,
+            "text": "李秋嶺です。こちらこそよろしくお願いします。",
+            "start": 55.64,
+            "end": 58.52,
+            "confidence": 0.8044037,
+            "words": [
+              {
+                "text": "李",
+                "start": 55.64,
+                "end": 55.72
+              },
+              {
+                "text": "秋",
+                "start": 55.72,
+                "end": 55.8
+              },
+              {
+                "text": "嶺",
+                "start": 55.8,
+                "end": 55.96
+              },
+              {
+                "text": "で",
+                "start": 55.96,
+                "end": 56.04
+              },
+              {
+                "text": "す",
+                "start": 56.04,
+                "end": 56.12
+              },
+              {
+                "text": "こ",
+                "start": 56.24,
+                "end": 56.4
+              },
+              {
+                "text": "ち",
+                "start": 56.4,
+                "end": 56.52
+              },
+              {
+                "text": "ら",
+                "start": 56.52,
+                "end": 56.64
+              },
+              {
+                "text": "こ",
+                "start": 56.64,
+                "end": 56.8
+              },
+              {
+                "text": "そ",
+                "start": 56.8,
+                "end": 57.04
+              },
+              {
+                "text": "よ",
+                "start": 57.04,
+                "end": 57.24
+              },
+              {
+                "text": "ろ",
+                "start": 57.24,
+                "end": 57.4
+              },
+              {
+                "text": "し",
+                "start": 57.4,
+                "end": 57.48
+              },
+              {
+                "text": "く",
+                "start": 57.48,
+                "end": 57.6
+              },
+              {
+                "text": "お",
+                "start": 57.6,
+                "end": 57.76
+              },
+              {
+                "text": "願",
+                "start": 57.76,
+                "end": 57.92
+              },
+              {
+                "text": "い",
+                "start": 57.92,
+                "end": 58.04
+              },
+              {
+                "text": "し",
+                "start": 58.04,
+                "end": 58.16
+              },
+              {
+                "text": "ま",
+                "start": 58.16,
+                "end": 58.28
+              },
+              {
+                "text": "す",
+                "start": 58.28,
+                "end": 58.52
+              }
+            ]
+          }
+        ]
+      },
+      "items": [
+        {
+          "id": "l1-app-block-003-line-001",
+          "trackId": "lesson_apps",
+          "speaker": "李",
+          "text": "JC企画の 小野さんですか。",
+          "kana": "ジェーシーきかくの おのさんですか。",
+          "translationZh": "您是JC策划公司的小野女士吗？",
+          "candidate": {
+            "start": 21.49,
+            "end": 23.75,
+            "asrText": "jc 規 格 の 小 野 さ ん で す か",
+            "phraseIndexes": [
+              3
+            ],
+            "matchScore": 0.833,
+            "confidence": 0.749,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 21.49,
+            "end": 23.75,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:15:25.711Z"
+          }
+        },
+        {
+          "id": "l1-app-block-003-line-002",
+          "trackId": "lesson_apps",
+          "speaker": "小野",
+          "text": "はい、小野です。李秀麗さんですか。",
+          "kana": "はい、おのです。りしゅうれいさんですか。",
+          "translationZh": "是的，我是小野。您是李秀丽女士吗？",
+          "candidate": {
+            "start": 24.53,
+            "end": 27.63,
+            "asrText": "は い 小 野 で す 李 秀 嶺 さ ん で す か",
+            "phraseIndexes": [
+              4
+            ],
+            "matchScore": 0.929,
+            "confidence": 0.762,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 24.53,
+            "end": 27.63,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:15:25.711Z"
+          }
+        },
+        {
+          "id": "l1-app-block-003-line-003",
+          "trackId": "lesson_apps",
+          "speaker": "李",
+          "text": "はい、李秀麗です。はじめまして。",
+          "kana": "はい、りしゅうれいです。はじめまして。",
+          "translationZh": "是的，我是李秀丽。初次见面。",
+          "candidate": {
+            "start": 28.37,
+            "end": 31.43,
+            "asrText": "は い 李 秋 冷 で す は じ め ま し て",
+            "phraseIndexes": [
+              5
+            ],
+            "matchScore": 0.846,
+            "confidence": 0.821,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 28.37,
+            "end": 31.43,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:15:25.711Z"
+          }
+        },
+        {
+          "id": "l1-app-block-003-line-004",
+          "trackId": "lesson_apps",
+          "speaker": "李",
+          "text": "どうぞ よろしく お願いします。",
+          "kana": "どうぞ よろしく おねがいします。",
+          "translationZh": "请多关照。",
+          "candidate": {
+            "start": 31.61,
+            "end": 33.79,
+            "asrText": "ど う ぞ よ ろ し く お 願 い し ま す",
+            "phraseIndexes": [
+              5
+            ],
+            "matchScore": 1,
+            "confidence": 0.821,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 31.61,
+            "end": 33.79,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:15:25.711Z"
+          }
+        },
+        {
+          "id": "l1-app-block-003-line-005",
+          "trackId": "lesson_apps",
+          "speaker": "小野",
+          "text": "はじめまして、小野緑です。",
+          "kana": "はじめまして、おのみどりです。",
+          "translationZh": "初次见面，我是小野绿。",
+          "candidate": {
+            "start": 34.13,
+            "end": 36.63,
+            "asrText": "は じ め ま し て 小 野 み ど り で す",
+            "phraseIndexes": [
+              5
+            ],
+            "matchScore": 0.846,
+            "confidence": 0.821,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 34.13,
+            "end": 36.63,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:15:25.711Z"
+          }
+        },
+        {
+          "id": "l1-app-block-005-line-001",
+          "trackId": "lesson_apps",
+          "speaker": "森",
+          "text": "李さん、こんにちは。",
+          "kana": "りさん、こんにちは。",
+          "translationZh": "李女士，你好。",
+          "candidate": {
+            "start": 38.63,
+            "end": 40.53,
+            "asrText": "李 さ ん こ ん に ち は",
+            "phraseIndexes": [
+              6
+            ],
+            "matchScore": 1,
+            "confidence": 0.895,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 38.63,
+            "end": 40.53,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:15:25.711Z"
+          }
+        },
+        {
+          "id": "l1-app-block-005-line-002",
+          "trackId": "lesson_apps",
+          "speaker": "李",
+          "text": "吉田さんですか。",
+          "kana": "よしださんですか。",
+          "translationZh": "您是吉田先生吗？",
+          "candidate": {
+            "start": 41.21,
+            "end": 42.43,
+            "asrText": "吉 田 さ ん で す か",
+            "phraseIndexes": [
+              7
+            ],
+            "matchScore": 1,
+            "confidence": 0.888,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 41.21,
+            "end": 42.43,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:15:25.711Z"
+          }
+        },
+        {
+          "id": "l1-app-block-005-line-003",
+          "trackId": "lesson_apps",
+          "speaker": "森",
+          "text": "いいえ、わたしは 吉田じゃ ありません。森です。",
+          "kana": "いいえ、わたしは よしだじゃ ありません。もりです。",
+          "translationZh": "不，我不是吉田。我是森。",
+          "candidate": {
+            "start": 43.86,
+            "end": 47.52,
+            "asrText": "い い え 私 は 吉 田 じ ゃ あ り ま せ ん 森 で す",
+            "phraseIndexes": [
+              8
+            ],
+            "matchScore": 0.842,
+            "confidence": 0.924,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 43.86,
+            "end": 47.52,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:15:25.711Z"
+          }
+        },
+        {
+          "id": "l1-app-block-005-line-004",
+          "trackId": "lesson_apps",
+          "speaker": "李",
+          "text": "あっ、森さんですか。どうも すみません。",
+          "kana": "あっ、もりさんですか。どうも すみません。",
+          "translationZh": "啊，是森先生啊。实在对不起。",
+          "candidate": {
+            "start": 48.25,
+            "end": 51.63,
+            "asrText": "あ 森 さ ん で す か ど う も す み ま せ ん",
+            "phraseIndexes": [
+              9
+            ],
+            "matchScore": 0.938,
+            "confidence": 0.914,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 48.25,
+            "end": 51.63,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:15:25.711Z"
+          }
+        },
+        {
+          "id": "l1-app-block-005-line-005",
+          "trackId": "lesson_apps",
+          "speaker": "森",
+          "text": "いいえ。どうぞ よろしく。",
+          "kana": "いいえ。どうぞ よろしく。",
+          "translationZh": "没关系。请多关照。",
+          "candidate": {
+            "start": 51.89,
+            "end": 54.19,
+            "asrText": "い い え ど う ぞ よ ろ し く",
+            "phraseIndexes": [
+              9,
+              10
+            ],
+            "matchScore": 1,
+            "confidence": 0.945,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 51.89,
+            "end": 54.19,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:15:25.711Z"
+          }
+        },
+        {
+          "id": "l1-app-block-005-line-006",
+          "trackId": "lesson_apps",
+          "speaker": "李",
+          "text": "李秀麗です。こちらこそ、よろしく お願いします。",
+          "kana": "りしゅうれいです。こちらこそ、よろしく おねがいします。",
+          "translationZh": "我是李秀丽。我才要请您多多关照。",
+          "candidate": {
+            "start": 55.58,
+            "end": 58.6,
+            "asrText": "李 秋 嶺 で す こ ち ら こ そ よ ろ し く お 願 い し ま す",
+            "phraseIndexes": [
+              11
+            ],
+            "matchScore": 0.9,
+            "confidence": 0.804,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 55.58,
+            "end": 58.6,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:15:25.711Z"
+          }
+        }
+      ]
+    }
+  ]
+}

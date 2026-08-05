@@ -1,0 +1,632 @@
+{
+  "lessonId": "lesson36",
+  "sourceImages": [
+    {
+      "section": "basic",
+      "path": "course-assets/by-lesson/lesson36/page126.webp",
+      "pageNo": 126
+    },
+    {
+      "section": "application",
+      "path": "course-assets/by-lesson/lesson36/page131.webp",
+      "pageNo": 131
+    }
+  ],
+  "basicText": {
+    "title": "基本课文",
+    "basicSentences": [
+      {
+        "id": "l36-basic-s001",
+        "order": 1,
+        "text": "遅くなって、すみません。",
+        "translationZh": "对不起，我迟到了。",
+        "confidence": "high",
+        "rawText": "1. 遅くなって、すみません。",
+        "audioSegment": {
+          "id": "l36-basic-s001",
+          "trackId": "lesson_basic",
+          "sourceUrl": "/data/ocr/audio-clips/lesson36/l36-basic-s001.mp3",
+          "start": 0,
+          "end": 1.26,
+          "duration": 1.26,
+          "method": "approved-asr-alignment",
+          "confidence": "approved",
+          "reviewedAt": "2026-08-05T10:17:28.871Z",
+          "sourceAudioSha256": "6c83c50a490a063ec9b11bbd2a7a0508e2645874a934255d60d36b3d5b1e4723"
+        }
+      },
+      {
+        "id": "l36-basic-s002",
+        "order": 2,
+        "text": "この写真はパスポートの申請に使います。",
+        "translationZh": "这张照片用于申请护照。",
+        "confidence": "high",
+        "rawText": "2. この写真はパスポートの申請に使います。",
+        "audioSegment": {
+          "id": "l36-basic-s002",
+          "trackId": "lesson_basic",
+          "sourceUrl": "/data/ocr/audio-clips/lesson36/l36-basic-s002.mp3",
+          "start": 0,
+          "end": 3.94,
+          "duration": 3.94,
+          "method": "approved-asr-alignment",
+          "confidence": "approved",
+          "reviewedAt": "2026-08-05T10:17:28.871Z",
+          "sourceAudioSha256": "6c83c50a490a063ec9b11bbd2a7a0508e2645874a934255d60d36b3d5b1e4723"
+        }
+      },
+      {
+        "id": "l36-basic-s003",
+        "order": 3,
+        "text": "張さんは毎日お酒を飲んでばかりいます。",
+        "translationZh": "小张每天净喝酒。",
+        "confidence": "high",
+        "rawText": "3. 張さんは毎日お酒を飲んでばかりいます。",
+        "audioSegment": {
+          "id": "l36-basic-s003",
+          "trackId": "lesson_basic",
+          "sourceUrl": "/data/ocr/audio-clips/lesson36/l36-basic-s003.mp3",
+          "start": 0,
+          "end": 3.02,
+          "duration": 3.02,
+          "method": "approved-asr-alignment",
+          "confidence": "approved",
+          "reviewedAt": "2026-08-05T10:17:28.871Z",
+          "sourceAudioSha256": "6c83c50a490a063ec9b11bbd2a7a0508e2645874a934255d60d36b3d5b1e4723"
+        }
+      },
+      {
+        "id": "l36-basic-s004",
+        "order": 4,
+        "text": "空港の入り口に警官が立っているのが見えます。",
+        "translationZh": "能看见机场入口处站着一位警察。",
+        "confidence": "high",
+        "rawText": "4. 空港の入り口に警官が立っているのが見えます。",
+        "audioSegment": {
+          "id": "l36-basic-s004",
+          "trackId": "lesson_basic",
+          "sourceUrl": "/data/ocr/audio-clips/lesson36/l36-basic-s004.mp3",
+          "start": 0,
+          "end": 4.74,
+          "duration": 4.74,
+          "method": "approved-asr-alignment",
+          "confidence": "approved",
+          "reviewedAt": "2026-08-05T10:17:28.871Z",
+          "sourceAudioSha256": "6c83c50a490a063ec9b11bbd2a7a0508e2645874a934255d60d36b3d5b1e4723"
+        }
+      }
+    ],
+    "dialogues": [
+      {
+        "id": "l36-basic-dialogue-001",
+        "label": "A",
+        "lines": [
+          {
+            "id": "l36-basic-dialogue-001-line-001",
+            "speaker": "甲",
+            "text": "陳さん、明日のパーティーに行きますか。",
+            "translationZh": "陈先生，您明天去聚会吗？",
+            "confidence": "high",
+            "rawText": "甲：陳さん、明日のパーティーに行きますか。",
+            "audioSegment": {
+              "id": "l36-basic-dialogue-001-line-001",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson36/l36-basic-dialogue-001-line-001.mp3",
+              "start": 0,
+              "end": 2.74,
+              "duration": 2.74,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:17:28.871Z",
+              "sourceAudioSha256": "6c83c50a490a063ec9b11bbd2a7a0508e2645874a934255d60d36b3d5b1e4723"
+            }
+          },
+          {
+            "id": "l36-basic-dialogue-001-line-002",
+            "speaker": "乙",
+            "text": "いいえ、明日は仕事で、行くことができません。",
+            "translationZh": "不，明天要工作，去不了。",
+            "confidence": "high",
+            "rawText": "乙：いいえ、明日は仕事で、行くことができません。",
+            "audioSegment": {
+              "id": "l36-basic-dialogue-001-line-002",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson36/l36-basic-dialogue-001-line-002.mp3",
+              "start": 0,
+              "end": 3.62,
+              "duration": 3.62,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:17:28.871Z",
+              "sourceAudioSha256": "6c83c50a490a063ec9b11bbd2a7a0508e2645874a934255d60d36b3d5b1e4723"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l36-basic-dialogue-002",
+        "label": "B",
+        "lines": [
+          {
+            "id": "l36-basic-dialogue-002-line-001",
+            "speaker": "甲",
+            "text": "わあ、とても小さいカメラですね。",
+            "translationZh": "哇，好小的相机啊。",
+            "confidence": "high",
+            "rawText": "甲：わあ、とても小さいカメラですね。",
+            "audioSegment": {
+              "id": "l36-basic-dialogue-002-line-001",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson36/l36-basic-dialogue-002-line-001.mp3",
+              "start": 0,
+              "end": 3.18,
+              "duration": 3.18,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:17:28.871Z",
+              "sourceAudioSha256": "6c83c50a490a063ec9b11bbd2a7a0508e2645874a934255d60d36b3d5b1e4723"
+            }
+          },
+          {
+            "id": "l36-basic-dialogue-002-line-002",
+            "speaker": "乙",
+            "text": "ええ。これは軽くて、持ち歩くのにとても便利なんですよ。",
+            "translationZh": "是啊。它很轻，携带起来非常方便。",
+            "confidence": "high",
+            "rawText": "乙：ええ。これは軽くて、持ち歩くのにとても便利なんですよ。",
+            "audioSegment": {
+              "id": "l36-basic-dialogue-002-line-002",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson36/l36-basic-dialogue-002-line-002.mp3",
+              "start": 0,
+              "end": 4.3,
+              "duration": 4.3,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:17:28.871Z",
+              "sourceAudioSha256": "6c83c50a490a063ec9b11bbd2a7a0508e2645874a934255d60d36b3d5b1e4723"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l36-basic-dialogue-003",
+        "label": "C",
+        "lines": [
+          {
+            "id": "l36-basic-dialogue-003-line-001",
+            "speaker": "甲",
+            "text": "何で野菜ばかり食べているんですか。",
+            "translationZh": "你为什么净吃蔬菜？",
+            "confidence": "high",
+            "rawText": "甲：何で野菜ばかり食べているんですか。",
+            "audioSegment": {
+              "id": "l36-basic-dialogue-003-line-001",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson36/l36-basic-dialogue-003-line-001.mp3",
+              "start": 0,
+              "end": 2.42,
+              "duration": 2.42,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:17:28.871Z",
+              "sourceAudioSha256": "6c83c50a490a063ec9b11bbd2a7a0508e2645874a934255d60d36b3d5b1e4723"
+            }
+          },
+          {
+            "id": "l36-basic-dialogue-003-line-002",
+            "speaker": "乙",
+            "text": "今、ダイエット中なんです。",
+            "translationZh": "我现在正在减肥。",
+            "confidence": "high",
+            "rawText": "乙：今、ダイエット中なんです。",
+            "audioSegment": {
+              "id": "l36-basic-dialogue-003-line-002",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson36/l36-basic-dialogue-003-line-002.mp3",
+              "start": 0,
+              "end": 2.54,
+              "duration": 2.54,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:17:28.871Z",
+              "sourceAudioSha256": "6c83c50a490a063ec9b11bbd2a7a0508e2645874a934255d60d36b3d5b1e4723"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l36-basic-dialogue-004",
+        "label": "D",
+        "lines": [
+          {
+            "id": "l36-basic-dialogue-004-line-001",
+            "speaker": "甲",
+            "text": "李さんが呼んでいたのが聞こえましたか。",
+            "translationZh": "听见小李在叫了吗？",
+            "confidence": "high",
+            "rawText": "甲：李さんが呼んでいたのが聞こえましたか。",
+            "audioSegment": {
+              "id": "l36-basic-dialogue-004-line-001",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson36/l36-basic-dialogue-004-line-001.mp3",
+              "start": 0,
+              "end": 3.98,
+              "duration": 3.98,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:17:28.871Z",
+              "sourceAudioSha256": "6c83c50a490a063ec9b11bbd2a7a0508e2645874a934255d60d36b3d5b1e4723"
+            }
+          },
+          {
+            "id": "l36-basic-dialogue-004-line-002",
+            "speaker": "乙",
+            "text": "いいえ、聞こえませんでした。",
+            "translationZh": "没有，没听见。",
+            "confidence": "high",
+            "rawText": "乙：いいえ、聞こえませんでした。",
+            "audioSegment": {
+              "id": "l36-basic-dialogue-004-line-002",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson36/l36-basic-dialogue-004-line-002.mp3",
+              "start": 0,
+              "end": 2.54,
+              "duration": 2.54,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:17:28.871Z",
+              "sourceAudioSha256": "6c83c50a490a063ec9b11bbd2a7a0508e2645874a934255d60d36b3d5b1e4723"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "applicationText": {
+    "title": "北京の生活",
+    "blocks": [
+      {
+        "id": "l36-app-block-001",
+        "type": "narration",
+        "text": "小李、小野和太田夫人一起，从建国门向西走。小李和小野向太田夫人打听在北京的生活。现在，太田夫人已经完全习惯了北京的生活，但起初好像遇到过一些困难。",
+        "translationZh": "小李、小野和太田夫人一起从建国门向西走。小李和小野向太田夫人打听她在北京的生活。现在太田夫人已完全习惯了北京的生活，但起初似乎遇到过一些困难。",
+        "confidence": "high",
+        "rawText": "小李、小野和太田夫人一起，从建国门向西走。小李和小野向太田夫人打听在北京的生活。现在，太田夫人已经完全习惯了北京的生活，但起初好像遇到过一些困难。"
+      },
+      {
+        "id": "l36-app-block-002",
+        "type": "scene",
+        "text": "走到二环路附近，听到“呜呜”的声音。",
+        "translationZh": "走到二环路附近时，听到“呜呜”的声音。",
+        "confidence": "high",
+        "rawText": "（走到二环路附近，听到“呜呜”的声音。）"
+      },
+      {
+        "id": "l36-app-block-003",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l36-app-block-003-line-001",
+            "speaker": "小野",
+            "text": "何か変な音が聞こえませんか。",
+            "translationZh": "你没听见什么奇怪的声音吗？",
+            "confidence": "high",
+            "rawText": "小野：何か変な音が聞こえませんか。",
+            "audioSegment": {
+              "id": "l36-app-block-003-line-001",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson36/l36-app-block-003-line-001.mp3",
+              "start": 0,
+              "end": 2.74,
+              "duration": 2.74,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:18:21.043Z",
+              "sourceAudioSha256": "c7e35ab4bf325113d41c5ee97e196bd9c090ee728c4ab2dba8c9b5d306ae5045"
+            }
+          },
+          {
+            "id": "l36-app-block-003-line-002",
+            "speaker": "李",
+            "text": "凧の音ですよ。",
+            "translationZh": "是风筝的声音。",
+            "confidence": "high",
+            "rawText": "李：（手指天空）凧の音ですよ。",
+            "audioSegment": {
+              "id": "l36-app-block-003-line-002",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson36/l36-app-block-003-line-002.mp3",
+              "start": 0,
+              "end": 1.22,
+              "duration": 1.22,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:18:21.043Z",
+              "sourceAudioSha256": "c7e35ab4bf325113d41c5ee97e196bd9c090ee728c4ab2dba8c9b5d306ae5045"
+            }
+          },
+          {
+            "id": "l36-app-block-003-line-003",
+            "speaker": "李",
+            "text": "ほら、あそこで凧を揚げているのが見えるでしょう。",
+            "translationZh": "你看，看得见那边正在放风筝吧？",
+            "confidence": "high",
+            "rawText": "李：ほら、あそこで凧を揚げているのが見えるでしょう。",
+            "audioSegment": {
+              "id": "l36-app-block-003-line-003",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson36/l36-app-block-003-line-003.mp3",
+              "start": 0,
+              "end": 3.06,
+              "duration": 3.06,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:18:21.043Z",
+              "sourceAudioSha256": "c7e35ab4bf325113d41c5ee97e196bd9c090ee728c4ab2dba8c9b5d306ae5045"
+            }
+          },
+          {
+            "id": "l36-app-block-003-line-004",
+            "speaker": "小野",
+            "text": "あら、ほんと。凧が鳴っているのが聞こえたんですね。",
+            "translationZh": "啊，真的。原来是听见风筝在响啊。",
+            "confidence": "high",
+            "rawText": "小野：あら、ほんと。凧が鳴っているのが聞こえたんですね。",
+            "audioSegment": {
+              "id": "l36-app-block-003-line-004",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson36/l36-app-block-003-line-004.mp3",
+              "start": 0,
+              "end": 4.18,
+              "duration": 4.18,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:18:21.043Z",
+              "sourceAudioSha256": "c7e35ab4bf325113d41c5ee97e196bd9c090ee728c4ab2dba8c9b5d306ae5045"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l36-app-block-004",
+        "type": "scene",
+        "text": "小野、小李和太田夫人边走边聊。",
+        "translationZh": "小野、小李和太田夫人边走边聊。",
+        "confidence": "high",
+        "rawText": "（小野、小李和太田夫人边走边聊）"
+      },
+      {
+        "id": "l36-app-block-005",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l36-app-block-005-line-001",
+            "speaker": "小野",
+            "text": "奥さんは、北京の生活に慣れるのに苦労しましたか。",
+            "translationZh": "您习惯北京的生活时辛苦吗？",
+            "confidence": "high",
+            "rawText": "小野：奥さんは、北京の生活に慣れるのに苦労しましたか。",
+            "audioSegment": {
+              "id": "l36-app-block-005-line-001",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson36/l36-app-block-005-line-001.mp3",
+              "start": 0,
+              "end": 4.02,
+              "duration": 4.02,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:18:21.043Z",
+              "sourceAudioSha256": "c7e35ab4bf325113d41c5ee97e196bd9c090ee728c4ab2dba8c9b5d306ae5045"
+            }
+          },
+          {
+            "id": "l36-app-block-005-line-002",
+            "speaker": "夫人",
+            "text": "ええ。とにかく最初は言葉が通じなくて、とても困りました。",
+            "translationZh": "是的。总之，最开始语言不通，很伤脑筋。",
+            "confidence": "high",
+            "rawText": "夫人：ええ。とにかく最初は言葉が通じなくて、とても困りました。",
+            "audioSegment": {
+              "id": "l36-app-block-005-line-002",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson36/l36-app-block-005-line-002.mp3",
+              "start": 0,
+              "end": 5.3,
+              "duration": 5.3,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:18:21.043Z",
+              "sourceAudioSha256": "c7e35ab4bf325113d41c5ee97e196bd9c090ee728c4ab2dba8c9b5d306ae5045"
+            }
+          },
+          {
+            "id": "l36-app-block-005-line-003",
+            "speaker": "小野",
+            "text": "今はどうですか。もうぺらぺらでしょう。",
+            "translationZh": "现在怎么样？已经说得很流利了吧？",
+            "confidence": "high",
+            "rawText": "小野：今はどうですか。もうぺらぺらでしょう。",
+            "audioSegment": {
+              "id": "l36-app-block-005-line-003",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson36/l36-app-block-005-line-003.mp3",
+              "start": 0,
+              "end": 3.1,
+              "duration": 3.1,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:18:21.043Z",
+              "sourceAudioSha256": "c7e35ab4bf325113d41c5ee97e196bd9c090ee728c4ab2dba8c9b5d306ae5045"
+            }
+          },
+          {
+            "id": "l36-app-block-005-line-004",
+            "speaker": "夫人",
+            "text": "いいえ、まだまだです。でも、日常会話には困りません。",
+            "translationZh": "不，还差得远呢。不过日常会话没问题。",
+            "confidence": "high",
+            "rawText": "夫人：いいえ、まだまだです。でも、日常会話には困りません。",
+            "audioSegment": {
+              "id": "l36-app-block-005-line-004",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson36/l36-app-block-005-line-004.mp3",
+              "start": 0,
+              "end": 4.58,
+              "duration": 4.58,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:18:21.043Z",
+              "sourceAudioSha256": "c7e35ab4bf325113d41c5ee97e196bd9c090ee728c4ab2dba8c9b5d306ae5045"
+            }
+          },
+          {
+            "id": "l36-app-block-005-line-005",
+            "speaker": "李",
+            "text": "買い物は。",
+            "translationZh": "那买东西呢？",
+            "confidence": "high",
+            "rawText": "李：買い物は？",
+            "audioSegment": {
+              "id": "l36-app-block-005-line-005",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson36/l36-app-block-005-line-005.mp3",
+              "start": 0,
+              "end": 0.82,
+              "duration": 0.82,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:18:21.043Z",
+              "sourceAudioSha256": "c7e35ab4bf325113d41c5ee97e196bd9c090ee728c4ab2dba8c9b5d306ae5045"
+            }
+          },
+          {
+            "id": "l36-app-block-005-line-006",
+            "speaker": "夫人",
+            "text": "自分で市場へ行きますよ。市場は食べ物のほかにもいろいろ売っていて、買い物に便利ですね。",
+            "translationZh": "我自己去市场。市场除了食物外还卖各种东西，买东西很方便。",
+            "confidence": "high",
+            "rawText": "夫人：自分で市場へ行きますよ。市場は食べ物のほかにもいろいろ売っていて、買い物に便利ですね。",
+            "audioSegment": {
+              "id": "l36-app-block-005-line-006",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson36/l36-app-block-005-line-006.mp3",
+              "start": 0,
+              "end": 7.38,
+              "duration": 7.38,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:18:21.043Z",
+              "sourceAudioSha256": "c7e35ab4bf325113d41c5ee97e196bd9c090ee728c4ab2dba8c9b5d306ae5045"
+            }
+          },
+          {
+            "id": "l36-app-block-005-line-007",
+            "speaker": "李",
+            "text": "そうですね。でも、市場は量り売りのお店が多いでしょう。",
+            "translationZh": "是啊。不过市场里论斤卖的店很多吧？",
+            "confidence": "high",
+            "rawText": "李：そうですね。でも、市場は量り売りのお店が多いでしょう。",
+            "audioSegment": {
+              "id": "l36-app-block-005-line-007",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson36/l36-app-block-005-line-007.mp3",
+              "start": 0,
+              "end": 4.5,
+              "duration": 4.5,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:18:21.043Z",
+              "sourceAudioSha256": "c7e35ab4bf325113d41c5ee97e196bd9c090ee728c4ab2dba8c9b5d306ae5045"
+            }
+          },
+          {
+            "id": "l36-app-block-005-line-008",
+            "speaker": "夫人",
+            "text": "そうなんですよ。食べ物を買うのに、知っている言い方ばかり繰り返していました。だから、卵も１斤、リンゴも１斤…。",
+            "translationZh": "就是这样。为了买食物，我净重复自己知道的说法。所以鸡蛋也是一斤，苹果也是一斤……",
+            "confidence": "high",
+            "rawText": "夫人：そうなんですよ。食べ物を買うのに、知っている言い方ばかり繰り返していました。だから、卵も１斤、リンゴも１斤…。",
+            "audioSegment": {
+              "id": "l36-app-block-005-line-008",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson36/l36-app-block-005-line-008.mp3",
+              "start": 0,
+              "end": 10.63,
+              "duration": 10.63,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:18:21.043Z",
+              "sourceAudioSha256": "c7e35ab4bf325113d41c5ee97e196bd9c090ee728c4ab2dba8c9b5d306ae5045"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l36-app-block-006",
+        "type": "scene",
+        "text": "小李转换话题。",
+        "translationZh": "小李转换话题。",
+        "confidence": "high",
+        "rawText": "（小李转换话题）"
+      },
+      {
+        "id": "l36-app-block-007",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l36-app-block-007-line-001",
+            "speaker": "李",
+            "text": "ところで、こちらへ来てから、ご主人とどこかへ旅行に行きましたか。",
+            "translationZh": "对了，来到这里以后，您和丈夫去哪里旅行过吗？",
+            "confidence": "high",
+            "rawText": "李：ところで、こちらへ来てから、ご主人とどこかへ旅行に行きましたか。",
+            "audioSegment": {
+              "id": "l36-app-block-007-line-001",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson36/l36-app-block-007-line-001.mp3",
+              "start": 0,
+              "end": 4.82,
+              "duration": 4.82,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:18:21.043Z",
+              "sourceAudioSha256": "c7e35ab4bf325113d41c5ee97e196bd9c090ee728c4ab2dba8c9b5d306ae5045"
+            }
+          },
+          {
+            "id": "l36-app-block-007-line-002",
+            "speaker": "夫人",
+            "text": "いいえ。主人は働いてばかりで、どこへも行かないんですよ。",
+            "translationZh": "没有。我丈夫净顾着工作，哪儿也不去。",
+            "confidence": "high",
+            "rawText": "夫人：いいえ。主人は働いてばかりで、どこへも行かないんですよ。",
+            "audioSegment": {
+              "id": "l36-app-block-007-line-002",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson36/l36-app-block-007-line-002.mp3",
+              "start": 0,
+              "end": 4.78,
+              "duration": 4.78,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:18:21.043Z",
+              "sourceAudioSha256": "c7e35ab4bf325113d41c5ee97e196bd9c090ee728c4ab2dba8c9b5d306ae5045"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "warnings": [
+    "扫描页中的假名标注不适合可靠地逐句切分，未生成 kana 或 segments 字段。",
+    "应用课文的开场旁白和场景说明在教材中以中文排印，按原文保留在 text 字段中。"
+  ],
+  "audioAlignment": {
+    "schemaVersion": 1,
+    "method": "approved-asr-alignment",
+    "sourceAlignment": "data/ocr/lesson36-text-audio-alignment.json",
+    "publishedAt": "2026-08-05T10:18:26.313Z",
+    "approvedSegments": 26
+  }
+}

@@ -1,0 +1,3374 @@
+{
+  "schemaVersion": 1,
+  "lessonId": "lesson12",
+  "generatedAt": "2026-08-05T08:33:47.198Z",
+  "method": "azure-speech-sdk-global-monotonic-alignment",
+  "reviewStatus": "approved",
+  "tracks": [
+    {
+      "id": "lesson_basic",
+      "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit3/lesson12/lesson_basic.mp3",
+      "localAudioPath": "data/ocr/audio-cache/lesson12/lesson_basic.mp3",
+      "sourceAudioSha256": "eda376016a97bba4d20ecb8820658065bb19035117896a58f80507f02b65da79",
+      "transcription": {
+        "provider": "azure-speech-sdk-continuous-recognition",
+        "locale": "ja-JP",
+        "text": "ERさんは森さんより若いです。ああ、日本より中国の方が広いです。 三、神戸は大阪ほどにぎやかではありません。ス。 スポーツの中でサッカーが一番面白いです。 ええ。北京は東京より寒いですか？ ええ。冬の北京は東京よりずっと寒いです。 B。日本語と英語と、どちらが難しいですか？ 日本語の方が難しいです。 C森さんはテニスが上手ですね。 いいえ。長嶋さんほど上手ではありません。 李季節の中でいつが一番好きですか？私は春が一番好き。",
+        "phrases": [
+          {
+            "index": 0,
+            "text": "ERさんは森さんより若いです。ああ、日本より中国の方が広いです。",
+            "start": 0.43,
+            "end": 8.07,
+            "confidence": 0.8434099,
+            "words": [
+              {
+                "text": "e",
+                "start": 0.43,
+                "end": 0.95
+              },
+              {
+                "text": "r",
+                "start": 1.47,
+                "end": 1.67
+              },
+              {
+                "text": "さ",
+                "start": 1.67,
+                "end": 1.87
+              },
+              {
+                "text": "ん",
+                "start": 1.87,
+                "end": 2.07
+              },
+              {
+                "text": "は",
+                "start": 2.07,
+                "end": 2.31
+              },
+              {
+                "text": "森",
+                "start": 2.31,
+                "end": 2.63
+              },
+              {
+                "text": "さ",
+                "start": 2.63,
+                "end": 2.79
+              },
+              {
+                "text": "ん",
+                "start": 2.79,
+                "end": 2.83
+              },
+              {
+                "text": "よ",
+                "start": 2.83,
+                "end": 2.99
+              },
+              {
+                "text": "り",
+                "start": 2.99,
+                "end": 3.19
+              },
+              {
+                "text": "若",
+                "start": 3.23,
+                "end": 3.31
+              },
+              {
+                "text": "い",
+                "start": 3.39,
+                "end": 3.55
+              },
+              {
+                "text": "で",
+                "start": 3.55,
+                "end": 3.71
+              },
+              {
+                "text": "す",
+                "start": 3.71,
+                "end": 3.91
+              },
+              {
+                "text": "あ",
+                "start": 4.11,
+                "end": 4.59
+              },
+              {
+                "text": "あ",
+                "start": 4.83,
+                "end": 4.91
+              },
+              {
+                "text": "日",
+                "start": 4.91,
+                "end": 5.07
+              },
+              {
+                "text": "本",
+                "start": 5.07,
+                "end": 5.31
+              },
+              {
+                "text": "よ",
+                "start": 5.31,
+                "end": 5.43
+              },
+              {
+                "text": "り",
+                "start": 5.43,
+                "end": 5.75
+              },
+              {
+                "text": "中",
+                "start": 5.87,
+                "end": 6.23
+              },
+              {
+                "text": "国",
+                "start": 6.23,
+                "end": 6.51
+              },
+              {
+                "text": "の",
+                "start": 6.51,
+                "end": 6.63
+              },
+              {
+                "text": "方",
+                "start": 6.63,
+                "end": 6.79
+              },
+              {
+                "text": "が",
+                "start": 6.79,
+                "end": 7.11
+              },
+              {
+                "text": "広",
+                "start": 7.11,
+                "end": 7.43
+              },
+              {
+                "text": "い",
+                "start": 7.43,
+                "end": 7.51
+              },
+              {
+                "text": "で",
+                "start": 7.51,
+                "end": 7.63
+              },
+              {
+                "text": "す",
+                "start": 7.63,
+                "end": 8.07
+              }
+            ]
+          },
+          {
+            "index": 1,
+            "text": "三、神戸は大阪ほどにぎやかではありません。ス。",
+            "start": 9.72,
+            "end": 13.4,
+            "confidence": 0.8106742,
+            "words": [
+              {
+                "text": "三",
+                "start": 9.72,
+                "end": 9.96
+              },
+              {
+                "text": "神",
+                "start": 9.96,
+                "end": 10.12
+              },
+              {
+                "text": "戸",
+                "start": 10.12,
+                "end": 10.24
+              },
+              {
+                "text": "は",
+                "start": 10.24,
+                "end": 10.32
+              },
+              {
+                "text": "大",
+                "start": 10.32,
+                "end": 10.48
+              },
+              {
+                "text": "阪",
+                "start": 10.48,
+                "end": 10.6
+              },
+              {
+                "text": "ほ",
+                "start": 10.6,
+                "end": 10.72
+              },
+              {
+                "text": "ど",
+                "start": 10.72,
+                "end": 10.84
+              },
+              {
+                "text": "に",
+                "start": 10.84,
+                "end": 11
+              },
+              {
+                "text": "ぎ",
+                "start": 11,
+                "end": 11.12
+              },
+              {
+                "text": "や",
+                "start": 11.12,
+                "end": 11.24
+              },
+              {
+                "text": "か",
+                "start": 11.24,
+                "end": 11.36
+              },
+              {
+                "text": "で",
+                "start": 11.36,
+                "end": 11.48
+              },
+              {
+                "text": "は",
+                "start": 11.48,
+                "end": 11.6
+              },
+              {
+                "text": "あ",
+                "start": 11.6,
+                "end": 11.68
+              },
+              {
+                "text": "り",
+                "start": 11.68,
+                "end": 11.8
+              },
+              {
+                "text": "ま",
+                "start": 11.8,
+                "end": 11.92
+              },
+              {
+                "text": "せ",
+                "start": 11.92,
+                "end": 12.12
+              },
+              {
+                "text": "ん",
+                "start": 12.12,
+                "end": 12.28
+              },
+              {
+                "text": "ス",
+                "start": 12.84,
+                "end": 13.4
+              }
+            ]
+          },
+          {
+            "index": 2,
+            "text": "スポーツの中でサッカーが一番面白いです。",
+            "start": 14.35,
+            "end": 18.07,
+            "confidence": 0.9328208,
+            "words": [
+              {
+                "text": "ス",
+                "start": 14.35,
+                "end": 14.47
+              },
+              {
+                "text": "ポ",
+                "start": 14.47,
+                "end": 14.55
+              },
+              {
+                "text": "ー",
+                "start": 14.55,
+                "end": 14.75
+              },
+              {
+                "text": "ツ",
+                "start": 14.75,
+                "end": 14.87
+              },
+              {
+                "text": "の",
+                "start": 14.87,
+                "end": 15.15
+              },
+              {
+                "text": "中",
+                "start": 15.15,
+                "end": 15.23
+              },
+              {
+                "text": "で",
+                "start": 15.23,
+                "end": 15.63
+              },
+              {
+                "text": "サ",
+                "start": 15.67,
+                "end": 16.03
+              },
+              {
+                "text": "ッ",
+                "start": 16.03,
+                "end": 16.11
+              },
+              {
+                "text": "カ",
+                "start": 16.11,
+                "end": 16.23
+              },
+              {
+                "text": "ー",
+                "start": 16.23,
+                "end": 16.43
+              },
+              {
+                "text": "が",
+                "start": 16.43,
+                "end": 16.71
+              },
+              {
+                "text": "一",
+                "start": 16.71,
+                "end": 17.11
+              },
+              {
+                "text": "番",
+                "start": 17.11,
+                "end": 17.39
+              },
+              {
+                "text": "面",
+                "start": 17.39,
+                "end": 17.51
+              },
+              {
+                "text": "白",
+                "start": 17.51,
+                "end": 17.75
+              },
+              {
+                "text": "い",
+                "start": 17.75,
+                "end": 17.91
+              },
+              {
+                "text": "で",
+                "start": 17.91,
+                "end": 17.99
+              },
+              {
+                "text": "す",
+                "start": 17.99,
+                "end": 18.07
+              }
+            ]
+          },
+          {
+            "index": 3,
+            "text": "ええ。北京は東京より寒いですか？",
+            "start": 19.23,
+            "end": 22.99,
+            "confidence": 0.8887586,
+            "words": [
+              {
+                "text": "え",
+                "start": 19.23,
+                "end": 19.75
+              },
+              {
+                "text": "え",
+                "start": 20.47,
+                "end": 20.59
+              },
+              {
+                "text": "北",
+                "start": 20.59,
+                "end": 20.91
+              },
+              {
+                "text": "京",
+                "start": 20.91,
+                "end": 20.99
+              },
+              {
+                "text": "は",
+                "start": 20.99,
+                "end": 21.27
+              },
+              {
+                "text": "東",
+                "start": 21.27,
+                "end": 21.51
+              },
+              {
+                "text": "京",
+                "start": 21.51,
+                "end": 21.67
+              },
+              {
+                "text": "よ",
+                "start": 21.67,
+                "end": 21.91
+              },
+              {
+                "text": "り",
+                "start": 21.91,
+                "end": 22.03
+              },
+              {
+                "text": "寒",
+                "start": 22.03,
+                "end": 22.23
+              },
+              {
+                "text": "い",
+                "start": 22.27,
+                "end": 22.39
+              },
+              {
+                "text": "で",
+                "start": 22.39,
+                "end": 22.55
+              },
+              {
+                "text": "す",
+                "start": 22.55,
+                "end": 22.63
+              },
+              {
+                "text": "か",
+                "start": 22.63,
+                "end": 22.99
+              }
+            ]
+          },
+          {
+            "index": 4,
+            "text": "ええ。冬の北京は東京よりずっと寒いです。",
+            "start": 24.64,
+            "end": 27.52,
+            "confidence": 0.8825277,
+            "words": [
+              {
+                "text": "え",
+                "start": 24.64,
+                "end": 24.72
+              },
+              {
+                "text": "え",
+                "start": 24.72,
+                "end": 24.8
+              },
+              {
+                "text": "冬",
+                "start": 24.8,
+                "end": 24.96
+              },
+              {
+                "text": "の",
+                "start": 24.96,
+                "end": 25.04
+              },
+              {
+                "text": "北",
+                "start": 25.04,
+                "end": 25.4
+              },
+              {
+                "text": "京",
+                "start": 25.4,
+                "end": 25.48
+              },
+              {
+                "text": "は",
+                "start": 25.48,
+                "end": 25.56
+              },
+              {
+                "text": "東",
+                "start": 25.56,
+                "end": 25.8
+              },
+              {
+                "text": "京",
+                "start": 25.8,
+                "end": 25.88
+              },
+              {
+                "text": "よ",
+                "start": 25.88,
+                "end": 26.16
+              },
+              {
+                "text": "り",
+                "start": 26.16,
+                "end": 26.4
+              },
+              {
+                "text": "ず",
+                "start": 26.4,
+                "end": 26.64
+              },
+              {
+                "text": "っ",
+                "start": 26.64,
+                "end": 26.68
+              },
+              {
+                "text": "と",
+                "start": 26.68,
+                "end": 26.8
+              },
+              {
+                "text": "寒",
+                "start": 26.8,
+                "end": 27.04
+              },
+              {
+                "text": "い",
+                "start": 27.04,
+                "end": 27.12
+              },
+              {
+                "text": "で",
+                "start": 27.12,
+                "end": 27.24
+              },
+              {
+                "text": "す",
+                "start": 27.24,
+                "end": 27.52
+              }
+            ]
+          },
+          {
+            "index": 5,
+            "text": "B。日本語と英語と、どちらが難しいですか？",
+            "start": 28.35,
+            "end": 32.63,
+            "confidence": 0.9291063,
+            "words": [
+              {
+                "text": "b",
+                "start": 28.35,
+                "end": 28.91
+              },
+              {
+                "text": "日",
+                "start": 29.55,
+                "end": 29.71
+              },
+              {
+                "text": "本",
+                "start": 29.71,
+                "end": 29.91
+              },
+              {
+                "text": "語",
+                "start": 29.91,
+                "end": 30.07
+              },
+              {
+                "text": "と",
+                "start": 30.07,
+                "end": 30.31
+              },
+              {
+                "text": "英",
+                "start": 30.31,
+                "end": 30.63
+              },
+              {
+                "text": "語",
+                "start": 30.63,
+                "end": 30.79
+              },
+              {
+                "text": "と",
+                "start": 30.79,
+                "end": 31.15
+              },
+              {
+                "text": "ど",
+                "start": 31.19,
+                "end": 31.47
+              },
+              {
+                "text": "ち",
+                "start": 31.47,
+                "end": 31.55
+              },
+              {
+                "text": "ら",
+                "start": 31.55,
+                "end": 31.67
+              },
+              {
+                "text": "が",
+                "start": 31.67,
+                "end": 31.91
+              },
+              {
+                "text": "難",
+                "start": 31.95,
+                "end": 32.15
+              },
+              {
+                "text": "し",
+                "start": 32.15,
+                "end": 32.27
+              },
+              {
+                "text": "い",
+                "start": 32.27,
+                "end": 32.35
+              },
+              {
+                "text": "で",
+                "start": 32.35,
+                "end": 32.47
+              },
+              {
+                "text": "す",
+                "start": 32.47,
+                "end": 32.55
+              },
+              {
+                "text": "か",
+                "start": 32.55,
+                "end": 32.63
+              }
+            ]
+          },
+          {
+            "index": 6,
+            "text": "日本語の方が難しいです。",
+            "start": 33.71,
+            "end": 35.67,
+            "confidence": 0.9438912,
+            "words": [
+              {
+                "text": "日",
+                "start": 33.71,
+                "end": 33.91
+              },
+              {
+                "text": "本",
+                "start": 33.91,
+                "end": 34.11
+              },
+              {
+                "text": "語",
+                "start": 34.11,
+                "end": 34.23
+              },
+              {
+                "text": "の",
+                "start": 34.23,
+                "end": 34.51
+              },
+              {
+                "text": "方",
+                "start": 34.51,
+                "end": 34.91
+              },
+              {
+                "text": "が",
+                "start": 34.91,
+                "end": 34.99
+              },
+              {
+                "text": "難",
+                "start": 34.99,
+                "end": 35.19
+              },
+              {
+                "text": "し",
+                "start": 35.19,
+                "end": 35.31
+              },
+              {
+                "text": "い",
+                "start": 35.31,
+                "end": 35.39
+              },
+              {
+                "text": "で",
+                "start": 35.39,
+                "end": 35.51
+              },
+              {
+                "text": "す",
+                "start": 35.51,
+                "end": 35.67
+              }
+            ]
+          },
+          {
+            "index": 7,
+            "text": "C森さんはテニスが上手ですね。",
+            "start": 36.47,
+            "end": 40.23,
+            "confidence": 0.83477545,
+            "words": [
+              {
+                "text": "c",
+                "start": 36.47,
+                "end": 37.11
+              },
+              {
+                "text": "森",
+                "start": 37.59,
+                "end": 37.95
+              },
+              {
+                "text": "さ",
+                "start": 37.95,
+                "end": 38.11
+              },
+              {
+                "text": "ん",
+                "start": 38.11,
+                "end": 38.27
+              },
+              {
+                "text": "は",
+                "start": 38.27,
+                "end": 38.59
+              },
+              {
+                "text": "テ",
+                "start": 38.67,
+                "end": 38.79
+              },
+              {
+                "text": "ニ",
+                "start": 38.79,
+                "end": 38.95
+              },
+              {
+                "text": "ス",
+                "start": 38.95,
+                "end": 39.07
+              },
+              {
+                "text": "が",
+                "start": 39.07,
+                "end": 39.23
+              },
+              {
+                "text": "上",
+                "start": 39.23,
+                "end": 39.47
+              },
+              {
+                "text": "手",
+                "start": 39.47,
+                "end": 39.55
+              },
+              {
+                "text": "で",
+                "start": 39.55,
+                "end": 39.71
+              },
+              {
+                "text": "す",
+                "start": 39.71,
+                "end": 39.83
+              },
+              {
+                "text": "ね",
+                "start": 39.83,
+                "end": 40.23
+              }
+            ]
+          },
+          {
+            "index": 8,
+            "text": "いいえ。長嶋さんほど上手ではありません。",
+            "start": 40.83,
+            "end": 43.83,
+            "confidence": 0.9132802,
+            "words": [
+              {
+                "text": "い",
+                "start": 40.83,
+                "end": 40.99
+              },
+              {
+                "text": "い",
+                "start": 40.99,
+                "end": 41.07
+              },
+              {
+                "text": "え",
+                "start": 41.07,
+                "end": 41.43
+              },
+              {
+                "text": "長",
+                "start": 41.95,
+                "end": 42.03
+              },
+              {
+                "text": "嶋",
+                "start": 42.03,
+                "end": 42.27
+              },
+              {
+                "text": "さ",
+                "start": 42.27,
+                "end": 42.35
+              },
+              {
+                "text": "ん",
+                "start": 42.35,
+                "end": 42.47
+              },
+              {
+                "text": "ほ",
+                "start": 42.47,
+                "end": 42.59
+              },
+              {
+                "text": "ど",
+                "start": 42.59,
+                "end": 42.79
+              },
+              {
+                "text": "上",
+                "start": 42.79,
+                "end": 43.11
+              },
+              {
+                "text": "手",
+                "start": 43.11,
+                "end": 43.19
+              },
+              {
+                "text": "で",
+                "start": 43.19,
+                "end": 43.27
+              },
+              {
+                "text": "は",
+                "start": 43.27,
+                "end": 43.35
+              },
+              {
+                "text": "あ",
+                "start": 43.35,
+                "end": 43.43
+              },
+              {
+                "text": "り",
+                "start": 43.43,
+                "end": 43.55
+              },
+              {
+                "text": "ま",
+                "start": 43.55,
+                "end": 43.63
+              },
+              {
+                "text": "せ",
+                "start": 43.63,
+                "end": 43.79
+              },
+              {
+                "text": "ん",
+                "start": 43.79,
+                "end": 43.83
+              }
+            ]
+          },
+          {
+            "index": 9,
+            "text": "李季節の中でいつが一番好きですか？私は春が一番好き。",
+            "start": 44.63,
+            "end": 50.59,
+            "confidence": 0.88586426,
+            "words": [
+              {
+                "text": "李",
+                "start": 44.63,
+                "end": 45.15
+              },
+              {
+                "text": "季",
+                "start": 45.63,
+                "end": 45.91
+              },
+              {
+                "text": "節",
+                "start": 45.91,
+                "end": 46.07
+              },
+              {
+                "text": "の",
+                "start": 46.07,
+                "end": 46.35
+              },
+              {
+                "text": "中",
+                "start": 46.35,
+                "end": 46.43
+              },
+              {
+                "text": "で",
+                "start": 46.47,
+                "end": 46.83
+              },
+              {
+                "text": "い",
+                "start": 46.83,
+                "end": 47.03
+              },
+              {
+                "text": "つ",
+                "start": 47.03,
+                "end": 47.15
+              },
+              {
+                "text": "が",
+                "start": 47.15,
+                "end": 47.27
+              },
+              {
+                "text": "一",
+                "start": 47.27,
+                "end": 47.51
+              },
+              {
+                "text": "番",
+                "start": 47.51,
+                "end": 47.63
+              },
+              {
+                "text": "好",
+                "start": 47.63,
+                "end": 47.87
+              },
+              {
+                "text": "き",
+                "start": 47.87,
+                "end": 47.95
+              },
+              {
+                "text": "で",
+                "start": 47.95,
+                "end": 48.03
+              },
+              {
+                "text": "す",
+                "start": 48.03,
+                "end": 48.15
+              },
+              {
+                "text": "か",
+                "start": 48.15,
+                "end": 48.47
+              },
+              {
+                "text": "私",
+                "start": 48.79,
+                "end": 48.87
+              },
+              {
+                "text": "は",
+                "start": 48.87,
+                "end": 49.31
+              },
+              {
+                "text": "春",
+                "start": 49.31,
+                "end": 49.55
+              },
+              {
+                "text": "が",
+                "start": 49.55,
+                "end": 49.79
+              },
+              {
+                "text": "一",
+                "start": 49.79,
+                "end": 49.99
+              },
+              {
+                "text": "番",
+                "start": 49.99,
+                "end": 50.19
+              },
+              {
+                "text": "好",
+                "start": 50.19,
+                "end": 50.51
+              },
+              {
+                "text": "き",
+                "start": 50.51,
+                "end": 50.59
+              }
+            ]
+          }
+        ]
+      },
+      "items": [
+        {
+          "id": "l12-basic-s001",
+          "trackId": "lesson_basic",
+          "speaker": "",
+          "text": "李さんは 森さんより 若いです。",
+          "kana": "りさんは もりさんより わかいです。",
+          "translationZh": "小李比森先生年轻。",
+          "candidate": {
+            "start": 1.41,
+            "end": 3.99,
+            "asrText": "r さ ん は 森 さ ん よ り 若 い で す",
+            "phraseIndexes": [
+              0
+            ],
+            "matchScore": 0.923,
+            "confidence": 0.843,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 1.41,
+            "end": 3.99,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:34:15.963Z"
+          }
+        },
+        {
+          "id": "l12-basic-s002",
+          "trackId": "lesson_basic",
+          "speaker": "",
+          "text": "日本より 中国の ほうが 広いです。",
+          "kana": "にほんより ちゅうごくの ほうが ひろいです。",
+          "translationZh": "中国比日本大。",
+          "candidate": {
+            "start": 4.85,
+            "end": 8.15,
+            "asrText": "日 本 よ り 中 国 の 方 が 広 い で す",
+            "phraseIndexes": [
+              0
+            ],
+            "matchScore": 0.857,
+            "confidence": 0.843,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 4.85,
+            "end": 8.15,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:34:15.963Z"
+          }
+        },
+        {
+          "id": "l12-basic-s003",
+          "trackId": "lesson_basic",
+          "speaker": "",
+          "text": "神戸は 大阪ほど にぎやかでは ありません。",
+          "kana": "こうべは おおさかほど にぎやかでは ありません。",
+          "translationZh": "神户不像大阪那么热闹。",
+          "candidate": {
+            "start": 9.9,
+            "end": 12.36,
+            "asrText": "神 戸 は 大 阪 ほ ど に ぎ や か で は あ り ま せ ん",
+            "phraseIndexes": [
+              1
+            ],
+            "matchScore": 1,
+            "confidence": 0.811,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 9.9,
+            "end": 12.36,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:34:15.963Z"
+          }
+        },
+        {
+          "id": "l12-basic-s004",
+          "trackId": "lesson_basic",
+          "speaker": "",
+          "text": "スポーツの 中で サッカーが いちばん おもしろいです。",
+          "kana": "スポーツの なかで サッカーが いちばん おもしろいです。",
+          "translationZh": "在运动中，足球最有趣。",
+          "candidate": {
+            "start": 14.29,
+            "end": 18.15,
+            "asrText": "ス ポ ー ツ の 中 で サ ッ カ ー が 一 番 面 白 い で す",
+            "phraseIndexes": [
+              2
+            ],
+            "matchScore": 0.652,
+            "confidence": 0.933,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 14.29,
+            "end": 18.15,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:34:15.963Z"
+          }
+        },
+        {
+          "id": "l12-basic-dialogue-001-line-001",
+          "trackId": "lesson_basic",
+          "speaker": "甲",
+          "text": "北京は 東京より 寒いですか。",
+          "kana": "ペキンは とうきょうより さむいですか。",
+          "translationZh": "北京比东京冷吗？",
+          "candidate": {
+            "start": 20.53,
+            "end": 23.07,
+            "asrText": "北 京 は 東 京 よ り 寒 い で す か",
+            "phraseIndexes": [
+              3
+            ],
+            "matchScore": 1,
+            "confidence": 0.889,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 20.53,
+            "end": 23.07,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:34:15.963Z"
+          }
+        },
+        {
+          "id": "l12-basic-dialogue-001-line-002",
+          "trackId": "lesson_basic",
+          "speaker": "乙",
+          "text": "ええ、冬の 北京は 東京より ずっと 寒いです。",
+          "kana": "ええ、ふゆの ペキンは とうきょうより ずっと さむいです。",
+          "translationZh": "是的，冬天的北京比东京冷得多。",
+          "candidate": {
+            "start": 24.58,
+            "end": 27.6,
+            "asrText": "え え 冬 の 北 京 は 東 京 よ り ず っ と 寒 い で す",
+            "phraseIndexes": [
+              4
+            ],
+            "matchScore": 1,
+            "confidence": 0.883,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 24.58,
+            "end": 27.6,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:34:15.963Z"
+          }
+        },
+        {
+          "id": "l12-basic-dialogue-002-line-001",
+          "trackId": "lesson_basic",
+          "speaker": "甲",
+          "text": "日本語と 英語と どちらが 難しいですか。",
+          "kana": "にほんごと えいごと どちらが むずかしいですか。",
+          "translationZh": "日语和英语，哪个难？",
+          "candidate": {
+            "start": 29.49,
+            "end": 32.71,
+            "asrText": "日 本 語 と 英 語 と ど ち ら が 難 し い で す か",
+            "phraseIndexes": [
+              5
+            ],
+            "matchScore": 1,
+            "confidence": 0.929,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 29.49,
+            "end": 32.71,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:34:15.963Z"
+          }
+        },
+        {
+          "id": "l12-basic-dialogue-002-line-002",
+          "trackId": "lesson_basic",
+          "speaker": "乙",
+          "text": "日本語の ほうが 難しいです。",
+          "kana": "にほんごの ほうが むずかしいです。",
+          "translationZh": "日语更难。",
+          "candidate": {
+            "start": 33.65,
+            "end": 35.75,
+            "asrText": "日 本 語 の 方 が 難 し い で す",
+            "phraseIndexes": [
+              6
+            ],
+            "matchScore": 0.833,
+            "confidence": 0.944,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 33.65,
+            "end": 35.75,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:34:15.963Z"
+          }
+        },
+        {
+          "id": "l12-basic-dialogue-003-line-001",
+          "trackId": "lesson_basic",
+          "speaker": "甲",
+          "text": "森さんは テニスが 上手ですね。",
+          "kana": "もりさんは テニスが じょうずですね。",
+          "translationZh": "森先生网球打得很好啊。",
+          "candidate": {
+            "start": 37.53,
+            "end": 40.31,
+            "asrText": "森 さ ん は テ ニ ス が 上 手 で す ね",
+            "phraseIndexes": [
+              7
+            ],
+            "matchScore": 1,
+            "confidence": 0.835,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 37.53,
+            "end": 40.31,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:34:15.963Z"
+          }
+        },
+        {
+          "id": "l12-basic-dialogue-003-line-002",
+          "trackId": "lesson_basic",
+          "speaker": "乙",
+          "text": "いいえ、長島さんほど 上手では ありません。",
+          "kana": "いいえ、ながしまさんほど じょうずでは ありません。",
+          "translationZh": "不，没有长岛先生打得那么好。",
+          "candidate": {
+            "start": 40.77,
+            "end": 43.91,
+            "asrText": "い い え 長 嶋 さ ん ほ ど 上 手 で は あ り ま せ ん",
+            "phraseIndexes": [
+              8
+            ],
+            "matchScore": 0.944,
+            "confidence": 0.913,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 40.77,
+            "end": 43.91,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:34:15.963Z"
+          }
+        },
+        {
+          "id": "l12-basic-dialogue-004-line-001",
+          "trackId": "lesson_basic",
+          "speaker": "甲",
+          "text": "季節の 中で いつが いちばん 好きですか。",
+          "kana": "きせつの なかで いつが いちばん すきですか。",
+          "translationZh": "四季中你最喜欢哪个季节？",
+          "candidate": {
+            "start": 45.57,
+            "end": 48.55,
+            "asrText": "季 節 の 中 で い つ が 一 番 好 き で す か",
+            "phraseIndexes": [
+              9
+            ],
+            "matchScore": 0.765,
+            "confidence": 0.886,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 45.57,
+            "end": 48.55,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:34:15.963Z"
+          }
+        },
+        {
+          "id": "l12-basic-dialogue-004-line-002",
+          "trackId": "lesson_basic",
+          "speaker": "乙",
+          "text": "わたしは 春が いちばん 好きです。",
+          "kana": "わたしは はるが いちばん すきです。",
+          "translationZh": "我最喜欢春天。",
+          "candidate": {
+            "start": 48.73,
+            "end": 50.67,
+            "asrText": "私 は 春 が 一 番 好 き",
+            "phraseIndexes": [
+              9
+            ],
+            "matchScore": 0.357,
+            "confidence": 0.886,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 48.73,
+            "end": 50.67,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:34:15.963Z"
+          }
+        }
+      ]
+    },
+    {
+      "id": "lesson_apps",
+      "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit3/lesson12/lesson_apps.mp3",
+      "localAudioPath": "data/ocr/audio-cache/lesson12/lesson_apps.mp3",
+      "sourceAudioSha256": "052cd4a9f9eca3be642bdd267437bcd633f55c10baf2d3eb543d51b579215276",
+      "transcription": {
+        "provider": "azure-speech-sdk-continuous-recognition",
+        "locale": "ja-JP",
+        "text": "シャリーダウン、シシャンケン兄ちゃんよ、みんな。you shouldファングランドハイファ。 長島さんはよくお酒を飲みますか？ええ、お酒は大好きですから、毎晩飲みますよ。ビールと日本酒と、どちらが好きですか？どちらも好きです。でも、焼酎が一番好きです。 焼酎は最近人気がありますね。 小野さんも焼酎が好きですか？ いいえ、私は焼酎よりワインの方がいいです。でも、ビールもよく飲みますよ。 中国はお茶の種類が多いですね。 ええ。ウーロン茶、ジャスミン茶、緑茶などたくさんあります。 どのお茶が一番人気がありますか？ やっぱりウーロン茶です。Pさんもよく飲みますか？A、毎日ウーロン茶かジャスミン茶を飲みます。どちらが美味しいですか？どちらも美味しいですよ。私はジャスミン茶のほうが好きですが。",
+        "phrases": [
+          {
+            "index": 0,
+            "text": "シャリーダウン、シシャンケン兄ちゃんよ、みんな。you shouldファングランドハイファ。",
+            "start": 0.03,
+            "end": 4.07,
+            "confidence": 0.60692894,
+            "words": [
+              {
+                "text": "シ",
+                "start": 0.03,
+                "end": 0.11
+              },
+              {
+                "text": "ャ",
+                "start": 0.11,
+                "end": 0.23
+              },
+              {
+                "text": "リ",
+                "start": 0.23,
+                "end": 0.35
+              },
+              {
+                "text": "ー",
+                "start": 0.35,
+                "end": 0.47
+              },
+              {
+                "text": "ダ",
+                "start": 0.47,
+                "end": 0.59
+              },
+              {
+                "text": "ウ",
+                "start": 0.59,
+                "end": 0.71
+              },
+              {
+                "text": "ン",
+                "start": 0.71,
+                "end": 0.83
+              },
+              {
+                "text": "シ",
+                "start": 0.83,
+                "end": 0.95
+              },
+              {
+                "text": "シ",
+                "start": 0.95,
+                "end": 1.07
+              },
+              {
+                "text": "ャ",
+                "start": 1.07,
+                "end": 1.19
+              },
+              {
+                "text": "ン",
+                "start": 1.19,
+                "end": 1.31
+              },
+              {
+                "text": "ケ",
+                "start": 1.31,
+                "end": 1.43
+              },
+              {
+                "text": "ン",
+                "start": 1.43,
+                "end": 1.55
+              },
+              {
+                "text": "兄",
+                "start": 1.55,
+                "end": 1.67
+              },
+              {
+                "text": "ち",
+                "start": 1.67,
+                "end": 1.79
+              },
+              {
+                "text": "ゃ",
+                "start": 1.79,
+                "end": 1.91
+              },
+              {
+                "text": "ん",
+                "start": 1.91,
+                "end": 2.03
+              },
+              {
+                "text": "よ",
+                "start": 2.03,
+                "end": 2.15
+              },
+              {
+                "text": "み",
+                "start": 2.15,
+                "end": 2.27
+              },
+              {
+                "text": "ん",
+                "start": 2.27,
+                "end": 2.39
+              },
+              {
+                "text": "な",
+                "start": 2.39,
+                "end": 2.51
+              },
+              {
+                "text": "you",
+                "start": 2.51,
+                "end": 2.63
+              },
+              {
+                "text": "should",
+                "start": 2.63,
+                "end": 2.75
+              },
+              {
+                "text": "フ",
+                "start": 2.75,
+                "end": 2.87
+              },
+              {
+                "text": "ァ",
+                "start": 2.87,
+                "end": 2.99
+              },
+              {
+                "text": "ン",
+                "start": 2.99,
+                "end": 3.11
+              },
+              {
+                "text": "グ",
+                "start": 3.11,
+                "end": 3.23
+              },
+              {
+                "text": "ラ",
+                "start": 3.23,
+                "end": 3.35
+              },
+              {
+                "text": "ン",
+                "start": 3.35,
+                "end": 3.47
+              },
+              {
+                "text": "ド",
+                "start": 3.47,
+                "end": 3.59
+              },
+              {
+                "text": "ハ",
+                "start": 3.59,
+                "end": 3.71
+              },
+              {
+                "text": "イ",
+                "start": 3.71,
+                "end": 3.83
+              },
+              {
+                "text": "フ",
+                "start": 3.83,
+                "end": 3.95
+              },
+              {
+                "text": "ァ",
+                "start": 3.95,
+                "end": 4.07
+              }
+            ]
+          },
+          {
+            "index": 1,
+            "text": "長島さんはよくお酒を飲みますか？ええ、お酒は大好きですから、毎晩飲みますよ。ビールと日本酒と、どちらが好きですか？どちらも好きです。でも、焼酎が一番好きです。",
+            "start": 4.91,
+            "end": 23.07,
+            "confidence": 0.9095471,
+            "words": [
+              {
+                "text": "長",
+                "start": 4.91,
+                "end": 5.55
+              },
+              {
+                "text": "島",
+                "start": 5.67,
+                "end": 8.43
+              },
+              {
+                "text": "さ",
+                "start": 9.39,
+                "end": 10.11
+              },
+              {
+                "text": "ん",
+                "start": 10.11,
+                "end": 10.23
+              },
+              {
+                "text": "は",
+                "start": 10.23,
+                "end": 10.47
+              },
+              {
+                "text": "よ",
+                "start": 10.51,
+                "end": 10.75
+              },
+              {
+                "text": "く",
+                "start": 10.75,
+                "end": 10.91
+              },
+              {
+                "text": "お",
+                "start": 10.91,
+                "end": 11.03
+              },
+              {
+                "text": "酒",
+                "start": 11.03,
+                "end": 11.31
+              },
+              {
+                "text": "を",
+                "start": 11.31,
+                "end": 11.39
+              },
+              {
+                "text": "飲",
+                "start": 11.39,
+                "end": 11.51
+              },
+              {
+                "text": "み",
+                "start": 11.51,
+                "end": 11.63
+              },
+              {
+                "text": "ま",
+                "start": 11.63,
+                "end": 11.75
+              },
+              {
+                "text": "す",
+                "start": 11.75,
+                "end": 11.87
+              },
+              {
+                "text": "か",
+                "start": 11.87,
+                "end": 12.23
+              },
+              {
+                "text": "え",
+                "start": 12.67,
+                "end": 12.91
+              },
+              {
+                "text": "え",
+                "start": 12.91,
+                "end": 13.19
+              },
+              {
+                "text": "お",
+                "start": 13.35,
+                "end": 13.47
+              },
+              {
+                "text": "酒",
+                "start": 13.47,
+                "end": 13.67
+              },
+              {
+                "text": "は",
+                "start": 13.67,
+                "end": 13.75
+              },
+              {
+                "text": "大",
+                "start": 13.75,
+                "end": 13.91
+              },
+              {
+                "text": "好",
+                "start": 13.91,
+                "end": 14.15
+              },
+              {
+                "text": "き",
+                "start": 14.15,
+                "end": 14.23
+              },
+              {
+                "text": "で",
+                "start": 14.23,
+                "end": 14.31
+              },
+              {
+                "text": "す",
+                "start": 14.31,
+                "end": 14.39
+              },
+              {
+                "text": "か",
+                "start": 14.39,
+                "end": 14.51
+              },
+              {
+                "text": "ら",
+                "start": 14.51,
+                "end": 14.83
+              },
+              {
+                "text": "毎",
+                "start": 14.91,
+                "end": 15.07
+              },
+              {
+                "text": "晩",
+                "start": 15.11,
+                "end": 15.27
+              },
+              {
+                "text": "飲",
+                "start": 15.27,
+                "end": 15.39
+              },
+              {
+                "text": "み",
+                "start": 15.39,
+                "end": 15.47
+              },
+              {
+                "text": "ま",
+                "start": 15.47,
+                "end": 15.59
+              },
+              {
+                "text": "す",
+                "start": 15.59,
+                "end": 15.71
+              },
+              {
+                "text": "よ",
+                "start": 15.71,
+                "end": 16.03
+              },
+              {
+                "text": "ビ",
+                "start": 16.59,
+                "end": 16.75
+              },
+              {
+                "text": "ー",
+                "start": 16.75,
+                "end": 16.95
+              },
+              {
+                "text": "ル",
+                "start": 16.95,
+                "end": 17.11
+              },
+              {
+                "text": "と",
+                "start": 17.11,
+                "end": 17.31
+              },
+              {
+                "text": "日",
+                "start": 17.31,
+                "end": 17.47
+              },
+              {
+                "text": "本",
+                "start": 17.47,
+                "end": 17.67
+              },
+              {
+                "text": "酒",
+                "start": 17.67,
+                "end": 17.83
+              },
+              {
+                "text": "と",
+                "start": 17.83,
+                "end": 18.11
+              },
+              {
+                "text": "ど",
+                "start": 18.19,
+                "end": 18.47
+              },
+              {
+                "text": "ち",
+                "start": 18.47,
+                "end": 18.55
+              },
+              {
+                "text": "ら",
+                "start": 18.55,
+                "end": 18.63
+              },
+              {
+                "text": "が",
+                "start": 18.63,
+                "end": 18.71
+              },
+              {
+                "text": "好",
+                "start": 18.71,
+                "end": 18.95
+              },
+              {
+                "text": "き",
+                "start": 18.95,
+                "end": 19.03
+              },
+              {
+                "text": "で",
+                "start": 19.03,
+                "end": 19.15
+              },
+              {
+                "text": "す",
+                "start": 19.15,
+                "end": 19.27
+              },
+              {
+                "text": "か",
+                "start": 19.27,
+                "end": 19.55
+              },
+              {
+                "text": "ど",
+                "start": 19.75,
+                "end": 20.03
+              },
+              {
+                "text": "ち",
+                "start": 20.03,
+                "end": 20.15
+              },
+              {
+                "text": "ら",
+                "start": 20.15,
+                "end": 20.27
+              },
+              {
+                "text": "も",
+                "start": 20.27,
+                "end": 20.35
+              },
+              {
+                "text": "好",
+                "start": 20.35,
+                "end": 20.59
+              },
+              {
+                "text": "き",
+                "start": 20.59,
+                "end": 20.67
+              },
+              {
+                "text": "で",
+                "start": 20.67,
+                "end": 20.75
+              },
+              {
+                "text": "す",
+                "start": 20.75,
+                "end": 21.03
+              },
+              {
+                "text": "で",
+                "start": 21.35,
+                "end": 21.51
+              },
+              {
+                "text": "も",
+                "start": 21.51,
+                "end": 21.79
+              },
+              {
+                "text": "焼",
+                "start": 21.79,
+                "end": 22.03
+              },
+              {
+                "text": "酎",
+                "start": 22.03,
+                "end": 22.23
+              },
+              {
+                "text": "が",
+                "start": 22.23,
+                "end": 22.31
+              },
+              {
+                "text": "一",
+                "start": 22.31,
+                "end": 22.47
+              },
+              {
+                "text": "番",
+                "start": 22.47,
+                "end": 22.59
+              },
+              {
+                "text": "好",
+                "start": 22.59,
+                "end": 22.83
+              },
+              {
+                "text": "き",
+                "start": 22.83,
+                "end": 22.91
+              },
+              {
+                "text": "で",
+                "start": 22.91,
+                "end": 22.99
+              },
+              {
+                "text": "す",
+                "start": 22.99,
+                "end": 23.07
+              }
+            ]
+          },
+          {
+            "index": 2,
+            "text": "焼酎は最近人気がありますね。",
+            "start": 24.23,
+            "end": 26.87,
+            "confidence": 0.94387186,
+            "words": [
+              {
+                "text": "焼",
+                "start": 24.23,
+                "end": 24.47
+              },
+              {
+                "text": "酎",
+                "start": 24.47,
+                "end": 24.79
+              },
+              {
+                "text": "は",
+                "start": 24.79,
+                "end": 24.91
+              },
+              {
+                "text": "最",
+                "start": 24.91,
+                "end": 25.43
+              },
+              {
+                "text": "近",
+                "start": 25.43,
+                "end": 25.67
+              },
+              {
+                "text": "人",
+                "start": 25.67,
+                "end": 25.95
+              },
+              {
+                "text": "気",
+                "start": 25.95,
+                "end": 26.03
+              },
+              {
+                "text": "が",
+                "start": 26.03,
+                "end": 26.15
+              },
+              {
+                "text": "あ",
+                "start": 26.15,
+                "end": 26.23
+              },
+              {
+                "text": "り",
+                "start": 26.23,
+                "end": 26.35
+              },
+              {
+                "text": "ま",
+                "start": 26.35,
+                "end": 26.47
+              },
+              {
+                "text": "す",
+                "start": 26.47,
+                "end": 26.59
+              },
+              {
+                "text": "ね",
+                "start": 26.59,
+                "end": 26.87
+              }
+            ]
+          },
+          {
+            "index": 3,
+            "text": "小野さんも焼酎が好きですか？",
+            "start": 27.71,
+            "end": 29.99,
+            "confidence": 0.8282326,
+            "words": [
+              {
+                "text": "小",
+                "start": 27.71,
+                "end": 27.91
+              },
+              {
+                "text": "野",
+                "start": 27.91,
+                "end": 28.03
+              },
+              {
+                "text": "さ",
+                "start": 28.03,
+                "end": 28.19
+              },
+              {
+                "text": "ん",
+                "start": 28.19,
+                "end": 28.27
+              },
+              {
+                "text": "も",
+                "start": 28.27,
+                "end": 28.59
+              },
+              {
+                "text": "焼",
+                "start": 28.59,
+                "end": 28.87
+              },
+              {
+                "text": "酎",
+                "start": 28.87,
+                "end": 29.11
+              },
+              {
+                "text": "が",
+                "start": 29.11,
+                "end": 29.19
+              },
+              {
+                "text": "好",
+                "start": 29.19,
+                "end": 29.43
+              },
+              {
+                "text": "き",
+                "start": 29.43,
+                "end": 29.55
+              },
+              {
+                "text": "で",
+                "start": 29.55,
+                "end": 29.63
+              },
+              {
+                "text": "す",
+                "start": 29.63,
+                "end": 29.79
+              },
+              {
+                "text": "か",
+                "start": 29.79,
+                "end": 29.99
+              }
+            ]
+          },
+          {
+            "index": 4,
+            "text": "いいえ、私は焼酎よりワインの方がいいです。でも、ビールもよく飲みますよ。",
+            "start": 31.56,
+            "end": 36.56,
+            "confidence": 0.90254414,
+            "words": [
+              {
+                "text": "い",
+                "start": 31.56,
+                "end": 31.64
+              },
+              {
+                "text": "い",
+                "start": 31.64,
+                "end": 31.72
+              },
+              {
+                "text": "え",
+                "start": 31.72,
+                "end": 31.8
+              },
+              {
+                "text": "私",
+                "start": 31.8,
+                "end": 31.88
+              },
+              {
+                "text": "は",
+                "start": 31.88,
+                "end": 31.96
+              },
+              {
+                "text": "焼",
+                "start": 31.96,
+                "end": 32.12
+              },
+              {
+                "text": "酎",
+                "start": 32.12,
+                "end": 32.4
+              },
+              {
+                "text": "よ",
+                "start": 32.4,
+                "end": 32.56
+              },
+              {
+                "text": "り",
+                "start": 32.56,
+                "end": 32.84
+              },
+              {
+                "text": "ワ",
+                "start": 32.84,
+                "end": 33
+              },
+              {
+                "text": "イ",
+                "start": 33,
+                "end": 33.12
+              },
+              {
+                "text": "ン",
+                "start": 33.12,
+                "end": 33.16
+              },
+              {
+                "text": "の",
+                "start": 33.16,
+                "end": 33.28
+              },
+              {
+                "text": "方",
+                "start": 33.28,
+                "end": 33.48
+              },
+              {
+                "text": "が",
+                "start": 33.48,
+                "end": 33.6
+              },
+              {
+                "text": "い",
+                "start": 33.6,
+                "end": 33.68
+              },
+              {
+                "text": "い",
+                "start": 33.68,
+                "end": 33.8
+              },
+              {
+                "text": "で",
+                "start": 33.8,
+                "end": 33.96
+              },
+              {
+                "text": "す",
+                "start": 33.96,
+                "end": 34.16
+              },
+              {
+                "text": "で",
+                "start": 34.56,
+                "end": 34.76
+              },
+              {
+                "text": "も",
+                "start": 34.76,
+                "end": 34.88
+              },
+              {
+                "text": "ビ",
+                "start": 34.88,
+                "end": 34.96
+              },
+              {
+                "text": "ー",
+                "start": 34.96,
+                "end": 35.16
+              },
+              {
+                "text": "ル",
+                "start": 35.16,
+                "end": 35.24
+              },
+              {
+                "text": "も",
+                "start": 35.24,
+                "end": 35.44
+              },
+              {
+                "text": "よ",
+                "start": 35.44,
+                "end": 35.6
+              },
+              {
+                "text": "く",
+                "start": 35.6,
+                "end": 35.72
+              },
+              {
+                "text": "飲",
+                "start": 35.72,
+                "end": 35.8
+              },
+              {
+                "text": "み",
+                "start": 35.8,
+                "end": 35.96
+              },
+              {
+                "text": "ま",
+                "start": 35.96,
+                "end": 36.08
+              },
+              {
+                "text": "す",
+                "start": 36.08,
+                "end": 36.2
+              },
+              {
+                "text": "よ",
+                "start": 36.2,
+                "end": 36.56
+              }
+            ]
+          },
+          {
+            "index": 5,
+            "text": "中国はお茶の種類が多いですね。",
+            "start": 38.24,
+            "end": 39.52,
+            "confidence": 0.9478504,
+            "words": [
+              {
+                "text": "中",
+                "start": 38.24,
+                "end": 38.32
+              },
+              {
+                "text": "国",
+                "start": 38.32,
+                "end": 38.4
+              },
+              {
+                "text": "は",
+                "start": 38.4,
+                "end": 38.48
+              },
+              {
+                "text": "お",
+                "start": 38.48,
+                "end": 38.6
+              },
+              {
+                "text": "茶",
+                "start": 38.6,
+                "end": 38.68
+              },
+              {
+                "text": "の",
+                "start": 38.68,
+                "end": 38.76
+              },
+              {
+                "text": "種",
+                "start": 38.76,
+                "end": 38.88
+              },
+              {
+                "text": "類",
+                "start": 38.88,
+                "end": 38.96
+              },
+              {
+                "text": "が",
+                "start": 38.96,
+                "end": 39.04
+              },
+              {
+                "text": "多",
+                "start": 39.04,
+                "end": 39.12
+              },
+              {
+                "text": "い",
+                "start": 39.12,
+                "end": 39.24
+              },
+              {
+                "text": "で",
+                "start": 39.24,
+                "end": 39.32
+              },
+              {
+                "text": "す",
+                "start": 39.32,
+                "end": 39.4
+              },
+              {
+                "text": "ね",
+                "start": 39.4,
+                "end": 39.52
+              }
+            ]
+          },
+          {
+            "index": 6,
+            "text": "ええ。ウーロン茶、ジャスミン茶、緑茶などたくさんあります。",
+            "start": 41.28,
+            "end": 44.84,
+            "confidence": 0.8714352,
+            "words": [
+              {
+                "text": "え",
+                "start": 41.28,
+                "end": 41.36
+              },
+              {
+                "text": "え",
+                "start": 41.36,
+                "end": 41.44
+              },
+              {
+                "text": "ウ",
+                "start": 41.44,
+                "end": 41.52
+              },
+              {
+                "text": "ー",
+                "start": 41.52,
+                "end": 41.72
+              },
+              {
+                "text": "ロ",
+                "start": 41.72,
+                "end": 41.8
+              },
+              {
+                "text": "ン",
+                "start": 41.8,
+                "end": 41.84
+              },
+              {
+                "text": "茶",
+                "start": 41.84,
+                "end": 41.92
+              },
+              {
+                "text": "ジ",
+                "start": 41.92,
+                "end": 42
+              },
+              {
+                "text": "ャ",
+                "start": 42,
+                "end": 42.16
+              },
+              {
+                "text": "ス",
+                "start": 42.16,
+                "end": 42.24
+              },
+              {
+                "text": "ミ",
+                "start": 42.24,
+                "end": 42.4
+              },
+              {
+                "text": "ン",
+                "start": 42.4,
+                "end": 42.52
+              },
+              {
+                "text": "茶",
+                "start": 42.52,
+                "end": 42.84
+              },
+              {
+                "text": "緑",
+                "start": 42.88,
+                "end": 43.2
+              },
+              {
+                "text": "茶",
+                "start": 43.2,
+                "end": 43.36
+              },
+              {
+                "text": "な",
+                "start": 43.36,
+                "end": 43.48
+              },
+              {
+                "text": "ど",
+                "start": 43.48,
+                "end": 43.72
+              },
+              {
+                "text": "た",
+                "start": 43.72,
+                "end": 43.96
+              },
+              {
+                "text": "く",
+                "start": 43.96,
+                "end": 44.04
+              },
+              {
+                "text": "さ",
+                "start": 44.04,
+                "end": 44.2
+              },
+              {
+                "text": "ん",
+                "start": 44.2,
+                "end": 44.28
+              },
+              {
+                "text": "あ",
+                "start": 44.28,
+                "end": 44.4
+              },
+              {
+                "text": "り",
+                "start": 44.4,
+                "end": 44.48
+              },
+              {
+                "text": "ま",
+                "start": 44.48,
+                "end": 44.64
+              },
+              {
+                "text": "す",
+                "start": 44.64,
+                "end": 44.84
+              }
+            ]
+          },
+          {
+            "index": 7,
+            "text": "どのお茶が一番人気がありますか？",
+            "start": 45.75,
+            "end": 48.03,
+            "confidence": 0.93840885,
+            "words": [
+              {
+                "text": "ど",
+                "start": 45.75,
+                "end": 45.95
+              },
+              {
+                "text": "の",
+                "start": 45.95,
+                "end": 46.07
+              },
+              {
+                "text": "お",
+                "start": 46.07,
+                "end": 46.19
+              },
+              {
+                "text": "茶",
+                "start": 46.19,
+                "end": 46.35
+              },
+              {
+                "text": "が",
+                "start": 46.35,
+                "end": 46.47
+              },
+              {
+                "text": "一",
+                "start": 46.47,
+                "end": 46.71
+              },
+              {
+                "text": "番",
+                "start": 46.71,
+                "end": 46.95
+              },
+              {
+                "text": "人",
+                "start": 46.95,
+                "end": 47.23
+              },
+              {
+                "text": "気",
+                "start": 47.23,
+                "end": 47.31
+              },
+              {
+                "text": "が",
+                "start": 47.31,
+                "end": 47.43
+              },
+              {
+                "text": "あ",
+                "start": 47.43,
+                "end": 47.51
+              },
+              {
+                "text": "り",
+                "start": 47.51,
+                "end": 47.59
+              },
+              {
+                "text": "ま",
+                "start": 47.59,
+                "end": 47.71
+              },
+              {
+                "text": "す",
+                "start": 47.71,
+                "end": 47.83
+              },
+              {
+                "text": "か",
+                "start": 47.83,
+                "end": 48.03
+              }
+            ]
+          },
+          {
+            "index": 8,
+            "text": "やっぱりウーロン茶です。Pさんもよく飲みますか？A、毎日ウーロン茶かジャスミン茶を飲みます。どちらが美味しいですか？どちらも美味しいですよ。私はジャスミン茶のほうが好きですが。",
+            "start": 49.6,
+            "end": 63.96,
+            "confidence": 0.89091355,
+            "words": [
+              {
+                "text": "や",
+                "start": 49.6,
+                "end": 49.76
+              },
+              {
+                "text": "っ",
+                "start": 49.76,
+                "end": 49.8
+              },
+              {
+                "text": "ぱ",
+                "start": 49.8,
+                "end": 49.88
+              },
+              {
+                "text": "り",
+                "start": 49.88,
+                "end": 49.96
+              },
+              {
+                "text": "ウ",
+                "start": 49.96,
+                "end": 50.04
+              },
+              {
+                "text": "ー",
+                "start": 50.04,
+                "end": 50.24
+              },
+              {
+                "text": "ロ",
+                "start": 50.24,
+                "end": 50.32
+              },
+              {
+                "text": "ン",
+                "start": 50.36,
+                "end": 50.4
+              },
+              {
+                "text": "茶",
+                "start": 50.4,
+                "end": 50.48
+              },
+              {
+                "text": "で",
+                "start": 50.48,
+                "end": 50.56
+              },
+              {
+                "text": "す",
+                "start": 50.76,
+                "end": 50.84
+              },
+              {
+                "text": "p",
+                "start": 50.84,
+                "end": 51
+              },
+              {
+                "text": "さ",
+                "start": 51,
+                "end": 51.2
+              },
+              {
+                "text": "ん",
+                "start": 51.2,
+                "end": 51.24
+              },
+              {
+                "text": "も",
+                "start": 51.24,
+                "end": 51.48
+              },
+              {
+                "text": "よ",
+                "start": 51.48,
+                "end": 51.64
+              },
+              {
+                "text": "く",
+                "start": 51.64,
+                "end": 51.76
+              },
+              {
+                "text": "飲",
+                "start": 51.76,
+                "end": 51.88
+              },
+              {
+                "text": "み",
+                "start": 51.88,
+                "end": 52
+              },
+              {
+                "text": "ま",
+                "start": 52,
+                "end": 52.16
+              },
+              {
+                "text": "す",
+                "start": 52.16,
+                "end": 52.24
+              },
+              {
+                "text": "か",
+                "start": 52.24,
+                "end": 52.52
+              },
+              {
+                "text": "a",
+                "start": 52.96,
+                "end": 53.4
+              },
+              {
+                "text": "毎",
+                "start": 53.72,
+                "end": 53.88
+              },
+              {
+                "text": "日",
+                "start": 53.88,
+                "end": 54.36
+              },
+              {
+                "text": "ウ",
+                "start": 54.36,
+                "end": 54.48
+              },
+              {
+                "text": "ー",
+                "start": 54.48,
+                "end": 54.68
+              },
+              {
+                "text": "ロ",
+                "start": 54.68,
+                "end": 54.8
+              },
+              {
+                "text": "ン",
+                "start": 54.8,
+                "end": 54.88
+              },
+              {
+                "text": "茶",
+                "start": 54.88,
+                "end": 55.04
+              },
+              {
+                "text": "か",
+                "start": 55.04,
+                "end": 55.24
+              },
+              {
+                "text": "ジ",
+                "start": 55.24,
+                "end": 55.32
+              },
+              {
+                "text": "ャ",
+                "start": 55.32,
+                "end": 55.44
+              },
+              {
+                "text": "ス",
+                "start": 55.44,
+                "end": 55.56
+              },
+              {
+                "text": "ミ",
+                "start": 55.56,
+                "end": 55.68
+              },
+              {
+                "text": "ン",
+                "start": 55.68,
+                "end": 55.76
+              },
+              {
+                "text": "茶",
+                "start": 55.76,
+                "end": 55.96
+              },
+              {
+                "text": "を",
+                "start": 55.96,
+                "end": 56.04
+              },
+              {
+                "text": "飲",
+                "start": 56.04,
+                "end": 56.12
+              },
+              {
+                "text": "み",
+                "start": 56.12,
+                "end": 56.24
+              },
+              {
+                "text": "ま",
+                "start": 56.24,
+                "end": 56.4
+              },
+              {
+                "text": "す",
+                "start": 56.4,
+                "end": 56.68
+              },
+              {
+                "text": "ど",
+                "start": 57.16,
+                "end": 57.36
+              },
+              {
+                "text": "ち",
+                "start": 57.36,
+                "end": 57.48
+              },
+              {
+                "text": "ら",
+                "start": 57.48,
+                "end": 57.56
+              },
+              {
+                "text": "が",
+                "start": 57.56,
+                "end": 57.68
+              },
+              {
+                "text": "美",
+                "start": 57.68,
+                "end": 57.76
+              },
+              {
+                "text": "味",
+                "start": 57.76,
+                "end": 57.88
+              },
+              {
+                "text": "し",
+                "start": 57.88,
+                "end": 57.96
+              },
+              {
+                "text": "い",
+                "start": 57.96,
+                "end": 58.04
+              },
+              {
+                "text": "で",
+                "start": 58.04,
+                "end": 58.16
+              },
+              {
+                "text": "す",
+                "start": 58.16,
+                "end": 58.28
+              },
+              {
+                "text": "か",
+                "start": 58.28,
+                "end": 58.6
+              },
+              {
+                "text": "ど",
+                "start": 59.16,
+                "end": 59.36
+              },
+              {
+                "text": "ち",
+                "start": 59.36,
+                "end": 59.48
+              },
+              {
+                "text": "ら",
+                "start": 59.48,
+                "end": 59.6
+              },
+              {
+                "text": "も",
+                "start": 59.6,
+                "end": 59.8
+              },
+              {
+                "text": "美",
+                "start": 59.8,
+                "end": 59.88
+              },
+              {
+                "text": "味",
+                "start": 59.88,
+                "end": 59.96
+              },
+              {
+                "text": "し",
+                "start": 59.96,
+                "end": 60.08
+              },
+              {
+                "text": "い",
+                "start": 60.08,
+                "end": 60.16
+              },
+              {
+                "text": "で",
+                "start": 60.16,
+                "end": 60.28
+              },
+              {
+                "text": "す",
+                "start": 60.28,
+                "end": 60.4
+              },
+              {
+                "text": "よ",
+                "start": 60.4,
+                "end": 60.76
+              },
+              {
+                "text": "私",
+                "start": 61.16,
+                "end": 61.24
+              },
+              {
+                "text": "は",
+                "start": 61.24,
+                "end": 61.56
+              },
+              {
+                "text": "ジ",
+                "start": 61.56,
+                "end": 61.72
+              },
+              {
+                "text": "ャ",
+                "start": 61.72,
+                "end": 62.16
+              },
+              {
+                "text": "ス",
+                "start": 62.16,
+                "end": 62.28
+              },
+              {
+                "text": "ミ",
+                "start": 62.28,
+                "end": 62.4
+              },
+              {
+                "text": "ン",
+                "start": 62.4,
+                "end": 62.44
+              },
+              {
+                "text": "茶",
+                "start": 62.44,
+                "end": 62.6
+              },
+              {
+                "text": "の",
+                "start": 62.6,
+                "end": 62.72
+              },
+              {
+                "text": "ほ",
+                "start": 62.72,
+                "end": 62.84
+              },
+              {
+                "text": "う",
+                "start": 62.84,
+                "end": 62.92
+              },
+              {
+                "text": "が",
+                "start": 62.92,
+                "end": 63
+              },
+              {
+                "text": "好",
+                "start": 63,
+                "end": 63.24
+              },
+              {
+                "text": "き",
+                "start": 63.24,
+                "end": 63.36
+              },
+              {
+                "text": "で",
+                "start": 63.36,
+                "end": 63.48
+              },
+              {
+                "text": "す",
+                "start": 63.48,
+                "end": 63.6
+              },
+              {
+                "text": "が",
+                "start": 63.6,
+                "end": 63.96
+              }
+            ]
+          }
+        ]
+      },
+      "items": [
+        {
+          "id": "l12-app-block-003-line-001",
+          "trackId": "lesson_apps",
+          "speaker": "李",
+          "text": "長島さんは よく お酒を 飲みますか。",
+          "kana": "ながしまさんは よく おさけを のみますか。",
+          "translationZh": "长岛先生经常喝酒吗？",
+          "candidate": {
+            "start": 4.85,
+            "end": 12.31,
+            "asrText": "長 島 さ ん は よ く お 酒 を 飲 み ま す か",
+            "phraseIndexes": [
+              1
+            ],
+            "matchScore": 1,
+            "confidence": 0.91,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 4.85,
+            "end": 12.31,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:34:57.331Z"
+          }
+        },
+        {
+          "id": "l12-app-block-003-line-002",
+          "trackId": "lesson_apps",
+          "speaker": "長島",
+          "text": "ええ。お酒は 大好きですから、毎晩 飲みますよ。",
+          "kana": "ええ。おさけは だいすきですから、まいばん のみますよ。",
+          "translationZh": "是的。因为我很喜欢酒，所以每天晚上都喝。",
+          "candidate": {
+            "start": 12.61,
+            "end": 16.11,
+            "asrText": "え え お 酒 は 大 好 き で す か ら 毎 晩 飲 み ま す よ",
+            "phraseIndexes": [
+              1
+            ],
+            "matchScore": 1,
+            "confidence": 0.91,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 12.61,
+            "end": 16.11,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:34:57.331Z"
+          }
+        },
+        {
+          "id": "l12-app-block-003-line-003",
+          "trackId": "lesson_apps",
+          "speaker": "李",
+          "text": "ビールと 日本酒と、どちらが 好きですか。",
+          "kana": "ビールと にほんしゅと、どちらが すきですか。",
+          "translationZh": "啤酒和日本酒，你喜欢哪个？",
+          "candidate": {
+            "start": 16.53,
+            "end": 19.63,
+            "asrText": "ビ ー ル と 日 本 酒 と ど ち ら が 好 き で す か",
+            "phraseIndexes": [
+              1
+            ],
+            "matchScore": 1,
+            "confidence": 0.91,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 16.53,
+            "end": 19.63,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:34:57.331Z"
+          }
+        },
+        {
+          "id": "l12-app-block-003-line-004",
+          "trackId": "lesson_apps",
+          "speaker": "長島",
+          "text": "どちらも 好きです。でも、焼酎が いちばん 好きです。",
+          "kana": "どちらも すきです。でも、しょうちゅうが いちばん すきです。",
+          "translationZh": "两个都喜欢。不过我最喜欢烧酒。",
+          "candidate": {
+            "start": 19.69,
+            "end": 23.15,
+            "asrText": "ど ち ら も 好 き で す で も 焼 酎 が 一 番 好 き で す",
+            "phraseIndexes": [
+              1
+            ],
+            "matchScore": 0.81,
+            "confidence": 0.91,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 19.69,
+            "end": 23.15,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:34:57.331Z"
+          }
+        },
+        {
+          "id": "l12-app-block-003-line-005",
+          "trackId": "lesson_apps",
+          "speaker": "小野",
+          "text": "焼酎は 最近 人気が ありますね。",
+          "kana": "しょうちゅうは さいきん にんきが ありますね。",
+          "translationZh": "烧酒最近很受欢迎啊。",
+          "candidate": {
+            "start": 24.17,
+            "end": 26.95,
+            "asrText": "焼 酎 は 最 近 人 気 が あ り ま す ね",
+            "phraseIndexes": [
+              2
+            ],
+            "matchScore": 1,
+            "confidence": 0.944,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 24.17,
+            "end": 26.95,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:34:57.331Z"
+          }
+        },
+        {
+          "id": "l12-app-block-003-line-006",
+          "trackId": "lesson_apps",
+          "speaker": "李",
+          "text": "小野さんも 焼酎が 好きですか。",
+          "kana": "おのさんも しょうちゅうが すきですか。",
+          "translationZh": "小野女士也喜欢烧酒吗？",
+          "candidate": {
+            "start": 27.65,
+            "end": 30.07,
+            "asrText": "小 野 さ ん も 焼 酎 が 好 き で す か",
+            "phraseIndexes": [
+              3
+            ],
+            "matchScore": 1,
+            "confidence": 0.828,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 27.65,
+            "end": 30.07,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:34:57.331Z"
+          }
+        },
+        {
+          "id": "l12-app-block-003-line-007",
+          "trackId": "lesson_apps",
+          "speaker": "小野",
+          "text": "いいえ。わたしは 焼酎より ワインの ほうが いいです。",
+          "kana": "いいえ。わたしは しょうちゅうより ワインの ほうが いいです。",
+          "translationZh": "不。我觉得葡萄酒比烧酒更好。",
+          "candidate": {
+            "start": 31.5,
+            "end": 34.24,
+            "asrText": "い い え 私 は 焼 酎 よ り ワ イ ン の 方 が い い で す",
+            "phraseIndexes": [
+              4
+            ],
+            "matchScore": 0.773,
+            "confidence": 0.903,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 31.5,
+            "end": 34.24,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:34:57.331Z"
+          }
+        },
+        {
+          "id": "l12-app-block-003-line-008",
+          "trackId": "lesson_apps",
+          "speaker": "小野",
+          "text": "でも、ビールも よく 飲みますよ。",
+          "kana": "でも、ビールも よく のみますよ。",
+          "translationZh": "不过，我也经常喝啤酒。",
+          "candidate": {
+            "start": 34.5,
+            "end": 36.64,
+            "asrText": "で も ビ ー ル も よ く 飲 み ま す よ",
+            "phraseIndexes": [
+              4
+            ],
+            "matchScore": 1,
+            "confidence": 0.903,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 34.5,
+            "end": 36.64,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:34:57.331Z"
+          }
+        },
+        {
+          "id": "l12-app-block-005-line-001",
+          "trackId": "lesson_apps",
+          "speaker": "長島",
+          "text": "中国は お茶の 種類が 多いですね。",
+          "kana": "ちゅうごくは おちゃの しゅるいが おおいですね。",
+          "translationZh": "中国的茶种类很多啊。",
+          "candidate": {
+            "start": 38.18,
+            "end": 39.6,
+            "asrText": "中 国 は お 茶 の 種 類 が 多 い で す ね",
+            "phraseIndexes": [
+              5
+            ],
+            "matchScore": 1,
+            "confidence": 0.948,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 38.18,
+            "end": 39.6,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:34:57.331Z"
+          }
+        },
+        {
+          "id": "l12-app-block-005-line-002",
+          "trackId": "lesson_apps",
+          "speaker": "李",
+          "text": "ええ。ウーロン茶、ジャスミン茶、緑茶など、たくさん あります。",
+          "kana": "ええ。ウーロンちゃ、ジャスミンちゃ、りょくちゃなど、たくさん あります。",
+          "translationZh": "是的。有乌龙茶、茉莉花茶、绿茶等很多种。",
+          "candidate": {
+            "start": 41.22,
+            "end": 44.92,
+            "asrText": "え え ウ ー ロ ン 茶 ジ ャ ス ミ ン 茶 緑 茶 な ど た く さ ん あ り ま す",
+            "phraseIndexes": [
+              6
+            ],
+            "matchScore": 1,
+            "confidence": 0.871,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 41.22,
+            "end": 44.92,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:34:57.331Z"
+          }
+        },
+        {
+          "id": "l12-app-block-005-line-003",
+          "trackId": "lesson_apps",
+          "speaker": "小野",
+          "text": "どの お茶が いちばん 人気が ありますか。",
+          "kana": "どの おちゃが いちばん にんきが ありますか。",
+          "translationZh": "哪种茶最受欢迎？",
+          "candidate": {
+            "start": 45.69,
+            "end": 48.11,
+            "asrText": "ど の お 茶 が 一 番 人 気 が あ り ま す か",
+            "phraseIndexes": [
+              7
+            ],
+            "matchScore": 0.765,
+            "confidence": 0.938,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 45.69,
+            "end": 48.11,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:34:57.331Z"
+          }
+        },
+        {
+          "id": "l12-app-block-005-line-004",
+          "trackId": "lesson_apps",
+          "speaker": "李",
+          "text": "やっぱり ウーロン茶です。",
+          "kana": "やっぱり ウーロンちゃです。",
+          "translationZh": "还是乌龙茶。",
+          "candidate": {
+            "start": 49.54,
+            "end": 50.92,
+            "asrText": "や っ ぱ り ウ ー ロ ン 茶 で す",
+            "phraseIndexes": [
+              8
+            ],
+            "matchScore": 1,
+            "confidence": 0.891,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 49.54,
+            "end": 50.92,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:34:57.331Z"
+          }
+        },
+        {
+          "id": "l12-app-block-005-line-005",
+          "trackId": "lesson_apps",
+          "speaker": "小野",
+          "text": "李さんも よく 飲みますか。",
+          "kana": "りさんも よく のみますか。",
+          "translationZh": "小李也经常喝吗？",
+          "candidate": {
+            "start": 50.78,
+            "end": 52.6,
+            "asrText": "p さ ん も よ く 飲 み ま す か",
+            "phraseIndexes": [
+              8
+            ],
+            "matchScore": 0.909,
+            "confidence": 0.891,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 50.78,
+            "end": 52.6,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:34:57.331Z"
+          }
+        },
+        {
+          "id": "l12-app-block-005-line-006",
+          "trackId": "lesson_apps",
+          "speaker": "李",
+          "text": "ええ。毎日 ウーロン茶か ジャスミン茶を 飲みます。",
+          "kana": "ええ。まいにち ウーロンちゃか ジャスミンちゃを のみます。",
+          "translationZh": "是的。每天喝乌龙茶或茉莉花茶。",
+          "candidate": {
+            "start": 52.9,
+            "end": 56.76,
+            "asrText": "a 毎 日 ウ ー ロ ン 茶 か ジ ャ ス ミ ン 茶 を 飲 み ま す",
+            "phraseIndexes": [
+              8
+            ],
+            "matchScore": 0.905,
+            "confidence": 0.891,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 52.9,
+            "end": 56.76,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:34:57.331Z"
+          }
+        },
+        {
+          "id": "l12-app-block-005-line-007",
+          "trackId": "lesson_apps",
+          "speaker": "長島",
+          "text": "どちらが おいしいですか。",
+          "kana": "どちらが おいしいですか。",
+          "translationZh": "哪个更好喝？",
+          "candidate": {
+            "start": 57.1,
+            "end": 58.68,
+            "asrText": "ど ち ら が 美 味 し い で す か",
+            "phraseIndexes": [
+              8
+            ],
+            "matchScore": 0.818,
+            "confidence": 0.891,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 57.1,
+            "end": 58.68,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:34:57.331Z"
+          }
+        },
+        {
+          "id": "l12-app-block-005-line-008",
+          "trackId": "lesson_apps",
+          "speaker": "李",
+          "text": "どちらも おいしいですよ。",
+          "kana": "どちらも おいしいですよ。",
+          "translationZh": "两个都好喝。",
+          "candidate": {
+            "start": 59.1,
+            "end": 60.84,
+            "asrText": "ど ち ら も 美 味 し い で す よ",
+            "phraseIndexes": [
+              8
+            ],
+            "matchScore": 0.818,
+            "confidence": 0.891,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 59.1,
+            "end": 60.84,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:34:57.331Z"
+          }
+        },
+        {
+          "id": "l12-app-block-005-line-009",
+          "trackId": "lesson_apps",
+          "speaker": "李",
+          "text": "わたしは ジャスミン茶の ほうが 好きですが・・・。",
+          "kana": "わたしは ジャスミンちゃの ほうが すきですが・・・。",
+          "translationZh": "不过我更喜欢茉莉花茶……。",
+          "candidate": {
+            "start": 61.1,
+            "end": 64.04,
+            "asrText": "私 は ジ ャ ス ミ ン 茶 の ほ う が 好 き で す が",
+            "phraseIndexes": [
+              8
+            ],
+            "matchScore": 0.842,
+            "confidence": 0.891,
+            "status": "needs-review"
+          },
+          "review": {
+            "status": "approved",
+            "start": 61.1,
+            "end": 64.04,
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-05T08:34:57.331Z"
+          }
+        }
+      ]
+    }
+  ]
+}

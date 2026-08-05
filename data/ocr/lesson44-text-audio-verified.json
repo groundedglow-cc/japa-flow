@@ -1,0 +1,689 @@
+{
+  "lessonId": "lesson44",
+  "sourceImages": [
+    {
+      "section": "basic",
+      "path": "course-assets/by-lesson/lesson44/page218.webp",
+      "pageNo": 218
+    },
+    {
+      "section": "application",
+      "path": "course-assets/by-lesson/lesson44/page223.webp",
+      "pageNo": 223
+    }
+  ],
+  "basicText": {
+    "title": "玄関のところにだれかいるようです",
+    "basicSentences": [
+      {
+        "id": "l44-basic-s001",
+        "order": 1,
+        "text": "玄関のところにだれかいるようです。",
+        "translationZh": "门口好像有人。",
+        "confidence": "high",
+        "rawText": "1. 玄関のところにだれかいるようです。",
+        "audioSegment": {
+          "id": "l44-basic-s001",
+          "trackId": "lesson_basic",
+          "sourceUrl": "/data/ocr/audio-clips/lesson44/l44-basic-s001.mp3",
+          "start": 0,
+          "end": 2.58,
+          "duration": 2.58,
+          "method": "approved-asr-alignment",
+          "confidence": "approved",
+          "reviewedAt": "2026-08-05T10:29:40.950Z",
+          "sourceAudioSha256": "62b907006d05937a5eae3898d932bfaf820ffe58921e63b5f421e456af4f3fc6"
+        }
+      },
+      {
+        "id": "l44-basic-s002",
+        "order": 2,
+        "text": "小野さんは森さんが好きみたいです。",
+        "translationZh": "小野小姐好像喜欢森先生。",
+        "confidence": "high",
+        "rawText": "2. 小野さんは森さんが好きみたいです。",
+        "audioSegment": {
+          "id": "l44-basic-s002",
+          "trackId": "lesson_basic",
+          "sourceUrl": "/data/ocr/audio-clips/lesson44/l44-basic-s002.mp3",
+          "start": 0,
+          "end": 3.18,
+          "duration": 3.18,
+          "method": "approved-asr-alignment",
+          "confidence": "approved",
+          "reviewedAt": "2026-08-05T10:29:40.950Z",
+          "sourceAudioSha256": "62b907006d05937a5eae3898d932bfaf820ffe58921e63b5f421e456af4f3fc6"
+        }
+      },
+      {
+        "id": "l44-basic-s003",
+        "order": 3,
+        "text": "今度の社員旅行は韓国へ行くらしいです。",
+        "translationZh": "这次的员工旅行好像要去韩国。",
+        "confidence": "high",
+        "rawText": "3. 今度の社員旅行は韓国へ行くらしいです。",
+        "audioSegment": {
+          "id": "l44-basic-s003",
+          "trackId": "lesson_basic",
+          "sourceUrl": "/data/ocr/audio-clips/lesson44/l44-basic-s003.mp3",
+          "start": 0,
+          "end": 3.38,
+          "duration": 3.38,
+          "method": "approved-asr-alignment",
+          "confidence": "approved",
+          "reviewedAt": "2026-08-05T10:29:40.950Z",
+          "sourceAudioSha256": "62b907006d05937a5eae3898d932bfaf820ffe58921e63b5f421e456af4f3fc6"
+        }
+      },
+      {
+        "id": "l44-basic-s004",
+        "order": 4,
+        "text": "昼ご飯を食べ過ぎました。",
+        "translationZh": "我午饭吃多了。",
+        "confidence": "high",
+        "rawText": "4. 昼ご飯を食べ過ぎました。",
+        "audioSegment": {
+          "id": "l44-basic-s004",
+          "trackId": "lesson_basic",
+          "sourceUrl": "/data/ocr/audio-clips/lesson44/l44-basic-s004.mp3",
+          "start": 0,
+          "end": 2.18,
+          "duration": 2.18,
+          "method": "approved-asr-alignment",
+          "confidence": "approved",
+          "reviewedAt": "2026-08-05T10:29:40.950Z",
+          "sourceAudioSha256": "62b907006d05937a5eae3898d932bfaf820ffe58921e63b5f421e456af4f3fc6"
+        }
+      }
+    ],
+    "dialogues": [
+      {
+        "id": "l44-basic-dialogue-001",
+        "label": "A",
+        "lines": [
+          {
+            "id": "l44-basic-dialogue-001-line-001",
+            "speaker": "甲",
+            "text": "葉子さんは留学試験に合格したようですよ。",
+            "translationZh": "叶子小姐好像通过了留学考试。",
+            "confidence": "high",
+            "rawText": "甲：葉子さんは留学試験に合格したようですよ。",
+            "audioSegment": {
+              "id": "l44-basic-dialogue-001-line-001",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson44/l44-basic-dialogue-001-line-001.mp3",
+              "start": 0,
+              "end": 3.42,
+              "duration": 3.42,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:29:40.950Z",
+              "sourceAudioSha256": "62b907006d05937a5eae3898d932bfaf820ffe58921e63b5f421e456af4f3fc6"
+            }
+          },
+          {
+            "id": "l44-basic-dialogue-001-line-002",
+            "speaker": "乙",
+            "text": "それはよかったですね。",
+            "translationZh": "那太好了。",
+            "confidence": "high",
+            "rawText": "乙：それはよかったですね。",
+            "audioSegment": {
+              "id": "l44-basic-dialogue-001-line-002",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson44/l44-basic-dialogue-001-line-002.mp3",
+              "start": 0,
+              "end": 1.94,
+              "duration": 1.94,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:29:40.950Z",
+              "sourceAudioSha256": "62b907006d05937a5eae3898d932bfaf820ffe58921e63b5f421e456af4f3fc6"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l44-basic-dialogue-002",
+        "label": "B",
+        "lines": [
+          {
+            "id": "l44-basic-dialogue-002-line-001",
+            "speaker": "甲",
+            "text": "毎日暑いですね。この暑さはいつまで続くんでしょう。",
+            "translationZh": "每天都这么热啊。这股热天要持续到什么时候呢？",
+            "confidence": "high",
+            "rawText": "甲：毎日暑いですね。この暑さはいつまで続くんでしょう。",
+            "audioSegment": {
+              "id": "l44-basic-dialogue-002-line-001",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson44/l44-basic-dialogue-002-line-001.mp3",
+              "start": 0,
+              "end": 4.93,
+              "duration": 4.93,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:29:40.950Z",
+              "sourceAudioSha256": "62b907006d05937a5eae3898d932bfaf820ffe58921e63b5f421e456af4f3fc6"
+            }
+          },
+          {
+            "id": "l44-basic-dialogue-002-line-002",
+            "speaker": "乙",
+            "text": "天気予報によると、まだまだ続くみたいですよ。",
+            "translationZh": "据天气预报说，好像还要持续很久。",
+            "confidence": "high",
+            "rawText": "乙：天気予報によると、まだまだ続くみたいですよ。",
+            "audioSegment": {
+              "id": "l44-basic-dialogue-002-line-002",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson44/l44-basic-dialogue-002-line-002.mp3",
+              "start": 0,
+              "end": 3.82,
+              "duration": 3.82,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:29:40.950Z",
+              "sourceAudioSha256": "62b907006d05937a5eae3898d932bfaf820ffe58921e63b5f421e456af4f3fc6"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l44-basic-dialogue-003",
+        "label": "C",
+        "lines": [
+          {
+            "id": "l44-basic-dialogue-003-line-001",
+            "speaker": "甲",
+            "text": "新しい遊園地は、とても人気があるみたいですね。",
+            "translationZh": "新的游乐园好像非常受欢迎呢。",
+            "confidence": "high",
+            "rawText": "甲：新しい遊園地は、とても人気があるみたいですね。",
+            "audioSegment": {
+              "id": "l44-basic-dialogue-003-line-001",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson44/l44-basic-dialogue-003-line-001.mp3",
+              "start": 0,
+              "end": 3.22,
+              "duration": 3.22,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:29:40.950Z",
+              "sourceAudioSha256": "62b907006d05937a5eae3898d932bfaf820ffe58921e63b5f421e456af4f3fc6"
+            }
+          },
+          {
+            "id": "l44-basic-dialogue-003-line-002",
+            "speaker": "乙",
+            "text": "ええ。馬さんたちも来週行くらしいですよ。",
+            "translationZh": "嗯。马先生他们下周也好像要去。",
+            "confidence": "high",
+            "rawText": "乙：ええ。馬さんたちも来週行くらしいですよ。",
+            "audioSegment": {
+              "id": "l44-basic-dialogue-003-line-002",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson44/l44-basic-dialogue-003-line-002.mp3",
+              "start": 0,
+              "end": 3.02,
+              "duration": 3.02,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:29:40.950Z",
+              "sourceAudioSha256": "62b907006d05937a5eae3898d932bfaf820ffe58921e63b5f421e456af4f3fc6"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l44-basic-dialogue-004",
+        "label": "D",
+        "lines": [
+          {
+            "id": "l44-basic-dialogue-004-line-001",
+            "speaker": "甲",
+            "text": "ゆうべ行ったビアガーデンはなかなかよかったですね。",
+            "translationZh": "昨天晚上去的啤酒花园真不错呢。",
+            "confidence": "high",
+            "rawText": "甲：ゆうべ行ったビアガーデンはなかなかよかったですね。",
+            "audioSegment": {
+              "id": "l44-basic-dialogue-004-line-001",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson44/l44-basic-dialogue-004-line-001.mp3",
+              "start": 0,
+              "end": 4.46,
+              "duration": 4.46,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:29:40.950Z",
+              "sourceAudioSha256": "62b907006d05937a5eae3898d932bfaf820ffe58921e63b5f421e456af4f3fc6"
+            }
+          },
+          {
+            "id": "l44-basic-dialogue-004-line-002",
+            "speaker": "乙",
+            "text": "ええ。でも、ちょっと飲み過ぎました。",
+            "translationZh": "嗯。不过，我喝得有点多了。",
+            "confidence": "high",
+            "rawText": "乙：ええ。でも、ちょっと飲み過ぎました。",
+            "audioSegment": {
+              "id": "l44-basic-dialogue-004-line-002",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson44/l44-basic-dialogue-004-line-002.mp3",
+              "start": 0,
+              "end": 2.06,
+              "duration": 2.06,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:29:40.950Z",
+              "sourceAudioSha256": "62b907006d05937a5eae3898d932bfaf820ffe58921e63b5f421e456af4f3fc6"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "applicationText": {
+    "title": "売れ行き",
+    "blocks": [
+      {
+        "id": "l44-app-block-001",
+        "type": "narration",
+        "text": "CS公司的新产品——运动饮料在北京和上海上市。销售情况不错。但市场对该产品的命名和图案设计评价如何呢？负责市场调研和广告业务的JC策划北京分公司正在谈论此事。",
+        "kana": null,
+        "translationZh": "CS公司的新产品——运动饮料在北京和上海上市。销售情况不错。但市场对该产品的命名和图案设计评价如何呢？负责市场调研和广告业务的JC策划北京分公司正在谈论此事。",
+        "confidence": "high",
+        "rawText": "CS公司的新产品——运动饮料在北京和上海上市。销售情况不错。但市场对该产品的命名和图案设计评价如何呢？负责市场调研和广告业务的JC策划北京分公司正在谈论此事。"
+      },
+      {
+        "id": "l44-app-block-002",
+        "type": "scene",
+        "text": "在JC策划北京分公司办公室",
+        "kana": null,
+        "translationZh": "在JC策划北京分公司办公室",
+        "confidence": "high",
+        "rawText": "（在JC策划北京分公司办公室）"
+      },
+      {
+        "id": "l44-app-block-003",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l44-app-block-003-line-001",
+            "speaker": "馬",
+            "text": "森さん、「動力」、売れ行きが好調のようですね。",
+            "kana": null,
+            "translationZh": "森先生，“动力”卖得好像不错呢。",
+            "confidence": "high",
+            "rawText": "馬：森さん、「動力」、売れ行きが好調のようですね。",
+            "audioSegment": {
+              "id": "l44-app-block-003-line-001",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson44/l44-app-block-003-line-001.mp3",
+              "start": 0,
+              "end": 3.7,
+              "duration": 3.7,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:30:30.245Z",
+              "sourceAudioSha256": "b8d376e851e711dd3262e5d6974eaa1d219d62a21c7b78a915efb0bf2e3d635b"
+            }
+          },
+          {
+            "id": "l44-app-block-003-line-002",
+            "speaker": "森",
+            "text": "ええ、おかげさまで。とりあえず、北京と上海で売り出したんですが、けっこう評判がいいみたいなんですよ。",
+            "kana": null,
+            "translationZh": "是啊，托您的福。我们首先在北京和上海上市了，评价好像相当不错。",
+            "confidence": "high",
+            "rawText": "森：ええ、おかげさまで。とりあえず、北京と上海で売り出したんですが、けっこう評判がいいみたいなんですよ。",
+            "audioSegment": {
+              "id": "l44-app-block-003-line-002",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson44/l44-app-block-003-line-002.mp3",
+              "start": 0,
+              "end": 7.26,
+              "duration": 7.26,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:30:30.245Z",
+              "sourceAudioSha256": "b8d376e851e711dd3262e5d6974eaa1d219d62a21c7b78a915efb0bf2e3d635b"
+            }
+          },
+          {
+            "id": "l44-app-block-003-line-003",
+            "speaker": "馬",
+            "text": "どの辺が受けたんでしょうか。",
+            "kana": null,
+            "translationZh": "哪一点受欢迎了呢？",
+            "confidence": "high",
+            "rawText": "馬：どの辺が受けたんでしょうか。",
+            "audioSegment": {
+              "id": "l44-app-block-003-line-003",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson44/l44-app-block-003-line-003.mp3",
+              "start": 0,
+              "end": 1.78,
+              "duration": 1.78,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:30:30.245Z",
+              "sourceAudioSha256": "b8d376e851e711dd3262e5d6974eaa1d219d62a21c7b78a915efb0bf2e3d635b"
+            }
+          },
+          {
+            "id": "l44-app-block-003-line-004",
+            "speaker": "森",
+            "text": "何と言ってもおいしさですが、容器のデザインも好評です。",
+            "kana": null,
+            "translationZh": "首先当然是好喝，不过容器设计也很受好评。",
+            "confidence": "high",
+            "rawText": "森：何と言ってもおいしさですが、容器のデザインも好評です。",
+            "audioSegment": {
+              "id": "l44-app-block-003-line-004",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson44/l44-app-block-003-line-004.mp3",
+              "start": 0,
+              "end": 4.1,
+              "duration": 4.1,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:30:30.245Z",
+              "sourceAudioSha256": "b8d376e851e711dd3262e5d6974eaa1d219d62a21c7b78a915efb0bf2e3d635b"
+            }
+          },
+          {
+            "id": "l44-app-block-003-line-005",
+            "speaker": "戴",
+            "text": "デザインがしゃれていて、人気があるみたいですね。",
+            "kana": null,
+            "translationZh": "设计很雅致，好像很受欢迎呢。",
+            "confidence": "high",
+            "rawText": "戴：デザインがしゃれていて、人気があるみたいですね。",
+            "audioSegment": {
+              "id": "l44-app-block-003-line-005",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson44/l44-app-block-003-line-005.mp3",
+              "start": 0,
+              "end": 3.58,
+              "duration": 3.58,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:30:30.245Z",
+              "sourceAudioSha256": "b8d376e851e711dd3262e5d6974eaa1d219d62a21c7b78a915efb0bf2e3d635b"
+            }
+          },
+          {
+            "id": "l44-app-block-003-line-006",
+            "speaker": "李",
+            "text": "そうなんです。それに、ネーミングも受けたようです。",
+            "kana": null,
+            "translationZh": "是啊，而且命名也很受欢迎。",
+            "confidence": "high",
+            "rawText": "李：そうなんです。それに、ネーミングも受けたようです。",
+            "audioSegment": {
+              "id": "l44-app-block-003-line-006",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson44/l44-app-block-003-line-006.mp3",
+              "start": 0,
+              "end": 3.62,
+              "duration": 3.62,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:30:30.245Z",
+              "sourceAudioSha256": "b8d376e851e711dd3262e5d6974eaa1d219d62a21c7b78a915efb0bf2e3d635b"
+            }
+          },
+          {
+            "id": "l44-app-block-003-line-007",
+            "speaker": "戴",
+            "text": "よかったですね。",
+            "kana": null,
+            "translationZh": "那太好了。",
+            "confidence": "high",
+            "rawText": "戴：よかったですね。",
+            "audioSegment": {
+              "id": "l44-app-block-003-line-007",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson44/l44-app-block-003-line-007.mp3",
+              "start": 0,
+              "end": 1.14,
+              "duration": 1.14,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:30:30.245Z",
+              "sourceAudioSha256": "b8d376e851e711dd3262e5d6974eaa1d219d62a21c7b78a915efb0bf2e3d635b"
+            }
+          },
+          {
+            "id": "l44-app-block-003-line-008",
+            "speaker": "李",
+            "text": "ええ。ネーミングとデザインの重要さを実感しましたね。",
+            "kana": null,
+            "translationZh": "是啊。我们真切感受到了命名和设计的重要性。",
+            "confidence": "high",
+            "rawText": "李：ええ。ネーミングとデザインの重要さを実感しましたね。",
+            "audioSegment": {
+              "id": "l44-app-block-003-line-008",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson44/l44-app-block-003-line-008.mp3",
+              "start": 0,
+              "end": 3.18,
+              "duration": 3.18,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:30:30.245Z",
+              "sourceAudioSha256": "b8d376e851e711dd3262e5d6974eaa1d219d62a21c7b78a915efb0bf2e3d635b"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l44-app-block-004",
+        "type": "scene",
+        "text": "接下来",
+        "kana": null,
+        "translationZh": "接下来",
+        "confidence": "high",
+        "rawText": "（接下来）"
+      },
+      {
+        "id": "l44-app-block-005",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l44-app-block-005-line-001",
+            "speaker": "森",
+            "text": "評判がいいので、今度は、中国全土で売り出すようです。",
+            "kana": null,
+            "translationZh": "因为评价不错，接下来好像要在全中国销售。",
+            "confidence": "high",
+            "rawText": "森：評判がいいので、今度は、中国全土で売り出すようです。",
+            "audioSegment": {
+              "id": "l44-app-block-005-line-001",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson44/l44-app-block-005-line-001.mp3",
+              "start": 0,
+              "end": 3.9,
+              "duration": 3.9,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:30:30.245Z",
+              "sourceAudioSha256": "b8d376e851e711dd3262e5d6974eaa1d219d62a21c7b78a915efb0bf2e3d635b"
+            }
+          },
+          {
+            "id": "l44-app-block-005-line-002",
+            "speaker": "戴",
+            "text": "売れ行きがどうなるか、楽しみですね。",
+            "kana": null,
+            "translationZh": "销量会怎么样，真让人期待呢。",
+            "confidence": "high",
+            "rawText": "戴：売れ行きがどうなるか、楽しみですね。",
+            "audioSegment": {
+              "id": "l44-app-block-005-line-002",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson44/l44-app-block-005-line-002.mp3",
+              "start": 0,
+              "end": 1.82,
+              "duration": 1.82,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:30:30.245Z",
+              "sourceAudioSha256": "b8d376e851e711dd3262e5d6974eaa1d219d62a21c7b78a915efb0bf2e3d635b"
+            }
+          },
+          {
+            "id": "l44-app-block-005-line-003",
+            "speaker": "馬",
+            "text": "売れ過ぎて、笑いが止まらなくなるかもしれませんよ。",
+            "kana": null,
+            "translationZh": "说不定会卖得太好，笑得合不拢嘴呢。",
+            "confidence": "high",
+            "rawText": "馬：売れ過ぎて、笑いが止まらなくなるかもしれませんよ。",
+            "audioSegment": {
+              "id": "l44-app-block-005-line-003",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson44/l44-app-block-005-line-003.mp3",
+              "start": 0,
+              "end": 3.74,
+              "duration": 3.74,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:30:30.245Z",
+              "sourceAudioSha256": "b8d376e851e711dd3262e5d6974eaa1d219d62a21c7b78a915efb0bf2e3d635b"
+            }
+          },
+          {
+            "id": "l44-app-block-005-line-004",
+            "speaker": "森",
+            "text": "そうだといいんですが・・・。",
+            "kana": null,
+            "translationZh": "但愿如此……",
+            "confidence": "high",
+            "rawText": "森：そうだといいんですが・・・。",
+            "audioSegment": {
+              "id": "l44-app-block-005-line-004",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson44/l44-app-block-005-line-004.mp3",
+              "start": 0,
+              "end": 1.18,
+              "duration": 1.18,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:30:30.245Z",
+              "sourceAudioSha256": "b8d376e851e711dd3262e5d6974eaa1d219d62a21c7b78a915efb0bf2e3d635b"
+            }
+          },
+          {
+            "id": "l44-app-block-005-line-005",
+            "speaker": "李",
+            "text": "ＣＳ公司では、もう次の商品の開発を始めているらしいですよ。",
+            "kana": null,
+            "translationZh": "CS公司好像已经开始开发下一款商品了。",
+            "confidence": "high",
+            "rawText": "李：ＣＳ公司では、もう次の商品の開発を始めているらしいですよ。",
+            "audioSegment": {
+              "id": "l44-app-block-005-line-005",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson44/l44-app-block-005-line-005.mp3",
+              "start": 0,
+              "end": 4.82,
+              "duration": 4.82,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:30:30.245Z",
+              "sourceAudioSha256": "b8d376e851e711dd3262e5d6974eaa1d219d62a21c7b78a915efb0bf2e3d635b"
+            }
+          },
+          {
+            "id": "l44-app-block-005-line-006",
+            "speaker": "馬",
+            "text": "すごいパワーですね!",
+            "kana": null,
+            "translationZh": "真厉害啊！",
+            "confidence": "high",
+            "rawText": "馬：すごいパワーですね!",
+            "audioSegment": {
+              "id": "l44-app-block-005-line-006",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson44/l44-app-block-005-line-006.mp3",
+              "start": 0,
+              "end": 1.38,
+              "duration": 1.38,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:30:30.245Z",
+              "sourceAudioSha256": "b8d376e851e711dd3262e5d6974eaa1d219d62a21c7b78a915efb0bf2e3d635b"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l44-app-block-006",
+        "type": "scene",
+        "text": "大家喝着CS公司送来的“动力”",
+        "kana": null,
+        "translationZh": "大家喝着CS公司送来的“动力”",
+        "confidence": "high",
+        "rawText": "（大家喝着CS公司送来的“动力”）"
+      },
+      {
+        "id": "l44-app-block-007",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l44-app-block-007-line-001",
+            "speaker": "戴",
+            "text": "甘さが控えめで、確かにおいしいですね。",
+            "kana": null,
+            "translationZh": "甜味不太重，确实很好喝。",
+            "confidence": "high",
+            "rawText": "戴：甘さが控えめで、確かにおいしいですね。",
+            "audioSegment": {
+              "id": "l44-app-block-007-line-001",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson44/l44-app-block-007-line-001.mp3",
+              "start": 0,
+              "end": 3.7,
+              "duration": 3.7,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:30:30.245Z",
+              "sourceAudioSha256": "b8d376e851e711dd3262e5d6974eaa1d219d62a21c7b78a915efb0bf2e3d635b"
+            }
+          },
+          {
+            "id": "l44-app-block-007-line-002",
+            "speaker": "李",
+            "text": "それに、健康にもいいらしいですよ。",
+            "kana": null,
+            "translationZh": "而且好像对健康也有好处。",
+            "confidence": "high",
+            "rawText": "李：それに、健康にもいいらしいですよ。",
+            "audioSegment": {
+              "id": "l44-app-block-007-line-002",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson44/l44-app-block-007-line-002.mp3",
+              "start": 0,
+              "end": 2.54,
+              "duration": 2.54,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:30:30.245Z",
+              "sourceAudioSha256": "b8d376e851e711dd3262e5d6974eaa1d219d62a21c7b78a915efb0bf2e3d635b"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "warnings": [],
+  "audioAlignment": {
+    "schemaVersion": 1,
+    "method": "approved-asr-alignment",
+    "sourceAlignment": "data/ocr/lesson44-text-audio-alignment.json",
+    "publishedAt": "2026-08-05T10:30:34.595Z",
+    "approvedSegments": 28
+  }
+}

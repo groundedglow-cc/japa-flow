@@ -8,6 +8,12 @@
     "export:catalog": "node scripts/export-catalog.mjs",
     "build:practice": "node scripts/build-practice-preview.mjs",
     "build:app": "node scripts/export-catalog.mjs && node scripts/build-practice-preview.mjs && node scripts/build-app-dist.mjs",
+    "align:ocr-audio": "node scripts/generate-ocr-audio-segments.mjs",
+    "align:ocr-text-audio": "node scripts/align-ocr-text-audio.mjs",
+    "align:ocr-vocabulary-audio": "node scripts/align-ocr-vocabulary-audio.mjs",
+    "align:ocr-vocabulary-audio:auto": "node scripts/auto-align-ocr-vocabulary-audio.mjs",
+    "publish:ocr-text-audio": "node scripts/publish-ocr-text-audio-alignment.mjs",
+    "publish:ocr-text-audio:auto": "node scripts/auto-publish-ocr-text-audio.mjs",
     "init:task": "node scripts/create-codex-parse-task.mjs",
     "diff:lesson": "node scripts/diff-lesson-init.mjs",
     "backfill:exercise-kana": "node scripts/backfill-exercise-kana.mjs",
@@ -18,7 +24,8 @@
     "@capacitor/cli": "^8.3.4",
     "@capacitor/core": "^8.3.4",
     "@capacitor/ios": "^8.3.4",
-    "ali-oss": "^6.21.0"
+    "ali-oss": "^6.21.0",
+    "microsoft-cognitiveservices-speech-sdk": "^1.51.0"
   },
   "devDependencies": {
     "esbuild": "^0.28.1",

@@ -1,0 +1,1654 @@
+{
+  "lessonId": "lesson18",
+  "sourceImages": [
+    {
+      "path": "course-assets/by-lesson/lesson18/page225.webp",
+      "pageNo": 225
+    }
+  ],
+  "vocabulary": [
+    {
+      "id": "l18-v001",
+      "kana": "おと",
+      "writing": "音",
+      "meaningZh": [
+        "声音",
+        "响声"
+      ],
+      "partOfSpeech": "名",
+      "rawText": "おと（音）[名] 声音，响声",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l18-v001",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+        "itemIndex": 1,
+        "text": "おと",
+        "label": "音",
+        "start": 0.894,
+        "end": 1.424,
+        "duration": 0.531,
+        "speechUnitCount": 1,
+        "method": "ffmpeg-silencedetect-order",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "l18-v002",
+      "kana": "こえ",
+      "writing": "声",
+      "meaningZh": [
+        "声音"
+      ],
+      "partOfSpeech": "名",
+      "rawText": "こえ（声）[名] 声音",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l18-v002",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+        "itemIndex": 2,
+        "text": "こえ",
+        "label": "声",
+        "start": 2.479,
+        "end": 2.99,
+        "duration": 0.511,
+        "speechUnitCount": 1,
+        "method": "ffmpeg-silencedetect-order",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "l18-v003",
+      "kana": "くうき",
+      "writing": "空気",
+      "meaningZh": [
+        "空气"
+      ],
+      "partOfSpeech": "名",
+      "rawText": "くうき（空気）[名] 空气",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l18-v003",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+        "itemIndex": 3,
+        "text": "くうき",
+        "label": "空気",
+        "start": 3.981,
+        "end": 4.645,
+        "duration": 0.664,
+        "speechUnitCount": 1,
+        "method": "ffmpeg-silencedetect-order",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "l18-v004",
+      "kana": "むすこ",
+      "writing": "息子",
+      "meaningZh": [
+        "儿子"
+      ],
+      "partOfSpeech": "名",
+      "rawText": "むすこ（息子）[名] 儿子",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l18-v004",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+        "itemIndex": 4,
+        "text": "むすこ",
+        "label": "息子",
+        "start": 5.472,
+        "end": 6.269,
+        "duration": 0.797,
+        "speechUnitCount": 1,
+        "method": "ffmpeg-silencedetect-order",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "l18-v005",
+      "kana": "いしゃ",
+      "writing": "医者",
+      "meaningZh": [
+        "医生"
+      ],
+      "partOfSpeech": "名",
+      "rawText": "いしゃ（医者）[名] 医生",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l18-v005",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+        "itemIndex": 5,
+        "text": "いしゃ",
+        "label": "医者",
+        "start": 6.95,
+        "end": 7.502,
+        "duration": 0.552,
+        "speechUnitCount": 1,
+        "method": "ffmpeg-silencedetect-order",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "l18-v006",
+      "kana": "おじょうさん",
+      "writing": "お嬢さん",
+      "meaningZh": [
+        "令爱"
+      ],
+      "partOfSpeech": "名",
+      "rawText": "おじょうさん（お嬢さん）[名] 令爱",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l18-v006",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+        "itemIndex": 6,
+        "text": "おじょうさん",
+        "label": "お嬢さん",
+        "start": 8.849,
+        "end": 9.787,
+        "duration": 0.938,
+        "speechUnitCount": 1,
+        "method": "ffmpeg-silencedetect-order",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "l18-v007",
+      "kana": "しゃかいじん",
+      "writing": "社会人",
+      "meaningZh": [
+        "社会的一员",
+        "成人"
+      ],
+      "partOfSpeech": "名",
+      "rawText": "しゃかいじん（社会人）[名] 社会的一员，成人",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l18-v007",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+        "itemIndex": 7,
+        "text": "しゃかいじん",
+        "label": "社会人",
+        "start": 10.556,
+        "end": 11.535,
+        "duration": 0.979,
+        "speechUnitCount": 1,
+        "method": "ffmpeg-silencedetect-order",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "l18-v008",
+      "kana": "りょこうガイド",
+      "writing": "旅行ガイド",
+      "meaningZh": [
+        "旅行导游"
+      ],
+      "partOfSpeech": "名",
+      "rawText": "りょこうガイド（旅行〜）[名] 旅行导游",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l18-v008",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+        "itemIndex": 8,
+        "text": "りょこうガイド",
+        "label": "旅行ガイド",
+        "start": 12.853,
+        "end": 14.046,
+        "duration": 1.193,
+        "speechUnitCount": 1,
+        "method": "ffmpeg-silencedetect-order",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "l18-v009",
+      "kana": "がくしゃ",
+      "writing": "学者",
+      "meaningZh": [
+        "学者"
+      ],
+      "partOfSpeech": "名",
+      "rawText": "がくしゃ（学者）[名] 学者",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l18-v009",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+        "itemIndex": 9,
+        "text": "がくしゃ",
+        "label": "学者",
+        "start": 14.674,
+        "end": 15.51,
+        "duration": 0.836,
+        "speechUnitCount": 1,
+        "method": "ffmpeg-silencedetect-order",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "l18-v010",
+      "kana": "パイロット",
+      "writing": "パイロット",
+      "meaningZh": [
+        "飞行员"
+      ],
+      "partOfSpeech": "名",
+      "rawText": "パイロット [名] 飞行员",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l18-v010",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+        "itemIndex": 10,
+        "text": "パイロット",
+        "label": "パイロット",
+        "start": 16.666,
+        "end": 17.53,
+        "duration": 0.864,
+        "speechUnitCount": 1,
+        "method": "ffmpeg-silencedetect-order",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "l18-v011",
+      "kana": "デザイナー",
+      "writing": "デザイナー",
+      "meaningZh": [
+        "设计者",
+        "设计家"
+      ],
+      "partOfSpeech": "名",
+      "rawText": "デザイナー [名] 设计者，设计家",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l18-v011",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+        "itemIndex": 11,
+        "text": "デザイナー",
+        "label": "デザイナー",
+        "start": 18.544,
+        "end": 19.533,
+        "duration": 0.989,
+        "speechUnitCount": 1,
+        "method": "ffmpeg-silencedetect-order",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "l18-v012",
+      "kana": "タイムサービス",
+      "writing": "タイムサービス",
+      "meaningZh": [
+        "时段廉价销售"
+      ],
+      "partOfSpeech": "名",
+      "rawText": "タイムサービス [名] 时段廉价销售",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l18-v012",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+        "itemIndex": 12,
+        "text": "タイムサービス",
+        "label": "タイムサービス",
+        "start": 20.757,
+        "end": 22.058,
+        "duration": 1.301,
+        "speechUnitCount": 1,
+        "method": "ffmpeg-silencedetect-order",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "l18-v013",
+      "kana": "しんしゅんセール",
+      "writing": "新春セール",
+      "meaningZh": [
+        "新年大甩卖"
+      ],
+      "partOfSpeech": "名",
+      "rawText": "しんしゅんセール（新春〜）[名] 新年大甩卖",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l18-v013",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+        "itemIndex": 13,
+        "text": "しんしゅんセール",
+        "label": "新春セール",
+        "start": 22.643,
+        "end": 23.927,
+        "duration": 1.284,
+        "speechUnitCount": 1,
+        "method": "ffmpeg-silencedetect-order",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "l18-v014",
+      "kana": "さんわりびき",
+      "writing": "3割引",
+      "meaningZh": [
+        "七折"
+      ],
+      "partOfSpeech": "名",
+      "rawText": "さんわりびき（3割引）[名] 七折",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l18-v014",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+        "itemIndex": 14,
+        "text": "さんわりびき",
+        "label": "3割引",
+        "start": 25.408,
+        "end": 26.499,
+        "duration": 1.091,
+        "speechUnitCount": 1,
+        "method": "ffmpeg-silencedetect-order",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "l18-v015",
+      "kana": "ていか",
+      "writing": "定価",
+      "meaningZh": [
+        "定价"
+      ],
+      "partOfSpeech": "名",
+      "rawText": "ていか（定価）[名] 定价",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l18-v015",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+        "itemIndex": 15,
+        "text": "ていか",
+        "label": "定価",
+        "start": 27.564,
+        "end": 28.24,
+        "duration": 0.676,
+        "speechUnitCount": 1,
+        "method": "ffmpeg-silencedetect-order",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "l18-v016",
+      "kana": "はんがく",
+      "writing": "半額",
+      "meaningZh": [
+        "半价"
+      ],
+      "partOfSpeech": "名",
+      "rawText": "はんがく（半額）[名] 半价",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l18-v016",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+        "itemIndex": 16,
+        "text": "はんがく",
+        "label": "半額",
+        "start": 29.387,
+        "end": 30.251,
+        "duration": 0.864,
+        "speechUnitCount": 1,
+        "method": "ffmpeg-silencedetect-order",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "l18-v017",
+      "kana": "ねだん",
+      "writing": "値段",
+      "meaningZh": [
+        "价格"
+      ],
+      "partOfSpeech": "名",
+      "rawText": "ねだん（値段）[名] 价格",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l18-v017",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+        "itemIndex": 17,
+        "text": "ねだん",
+        "label": "値段",
+        "start": 30.859,
+        "end": 31.511,
+        "duration": 0.652,
+        "speechUnitCount": 1,
+        "method": "ffmpeg-silencedetect-order",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "l18-v018",
+      "kana": "シャツ",
+      "writing": "シャツ",
+      "meaningZh": [
+        "衬衫"
+      ],
+      "partOfSpeech": "名",
+      "rawText": "シャツ [名] 衬衫",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l18-v018",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+        "itemIndex": 18,
+        "text": "シャツ",
+        "label": "シャツ",
+        "start": 32.418,
+        "end": 33.07,
+        "duration": 0.652,
+        "speechUnitCount": 1,
+        "method": "ffmpeg-silencedetect-order",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "l18-v019",
+      "kana": "スカート",
+      "writing": "スカート",
+      "meaningZh": [
+        "裙子"
+      ],
+      "partOfSpeech": "名",
+      "rawText": "スカート [名] 裙子",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l18-v019",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+        "itemIndex": 19,
+        "text": "スカート",
+        "label": "スカート",
+        "start": 33.672,
+        "end": 34.478,
+        "duration": 0.805,
+        "speechUnitCount": 1,
+        "method": "ffmpeg-silencedetect-order",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "l18-v020",
+      "kana": "いろ",
+      "writing": "色",
+      "meaningZh": [
+        "颜色"
+      ],
+      "partOfSpeech": "名",
+      "rawText": "いろ（色）[名] 颜色",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l18-v020",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+        "itemIndex": 20,
+        "text": "いろ",
+        "label": "色",
+        "start": 35.213,
+        "end": 35.652,
+        "duration": 0.438,
+        "speechUnitCount": 1,
+        "method": "ffmpeg-silencedetect-order",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "l18-v021",
+      "kana": "あか",
+      "writing": "赤",
+      "meaningZh": [
+        "红色"
+      ],
+      "partOfSpeech": "名",
+      "rawText": "あか（赤）[名] 红色",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l18-v021",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+        "itemIndex": 21,
+        "text": "あか",
+        "label": "赤",
+        "start": 36.552,
+        "end": 37,
+        "duration": 0.448,
+        "speechUnitCount": 1,
+        "method": "ffmpeg-silencedetect-order",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "l18-v022",
+      "kana": "あお",
+      "writing": "青",
+      "meaningZh": [
+        "蓝色"
+      ],
+      "partOfSpeech": "名",
+      "rawText": "あお（青）[名] 蓝色",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l18-v022",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+        "itemIndex": 22,
+        "text": "あお",
+        "label": "青",
+        "start": 37.926,
+        "end": 38.363,
+        "duration": 0.437,
+        "speechUnitCount": 1,
+        "method": "ffmpeg-silencedetect-order",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "l18-v023",
+      "kana": "おしょうがつ",
+      "writing": "お正月",
+      "meaningZh": [
+        "过年",
+        "新年"
+      ],
+      "partOfSpeech": "名",
+      "rawText": "おしょうがつ（お正月）[名] 过年，新年",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l18-v023",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+        "itemIndex": 23,
+        "text": "おしょうがつ",
+        "label": "お正月",
+        "start": 39.075,
+        "end": 40.204,
+        "duration": 1.129,
+        "speechUnitCount": 1,
+        "method": "ffmpeg-silencedetect-order",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "l18-v024",
+      "kana": "じかん",
+      "writing": "時間",
+      "meaningZh": [
+        "时间"
+      ],
+      "partOfSpeech": "名",
+      "rawText": "じかん（時間）[名] 时间",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l18-v024",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+        "itemIndex": 24,
+        "text": "じかん",
+        "label": "時間",
+        "start": 41.024,
+        "end": 41.798,
+        "duration": 0.775,
+        "speechUnitCount": 1,
+        "method": "ffmpeg-silencedetect-order",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "l18-v025",
+      "kana": "しょうらい",
+      "writing": "将来",
+      "meaningZh": [
+        "将来"
+      ],
+      "partOfSpeech": "名",
+      "rawText": "しょうらい（将来）[名] 将来",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l18-v025",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+        "itemIndex": 25,
+        "text": "しょうらい",
+        "label": "将来",
+        "start": 42.817,
+        "end": 43.57,
+        "duration": 0.753,
+        "speechUnitCount": 1,
+        "method": "ffmpeg-silencedetect-order",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "l18-v026",
+      "kana": "じゅんび",
+      "writing": "準備",
+      "meaningZh": [
+        "准备"
+      ],
+      "partOfSpeech": "名",
+      "rawText": "じゅんび（準備）[名] 准备",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l18-v026",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+        "itemIndex": 26,
+        "text": "じゅんび",
+        "label": "準備",
+        "start": 44.526,
+        "end": 45.223,
+        "duration": 0.697,
+        "speechUnitCount": 1,
+        "method": "ffmpeg-silencedetect-order",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "l18-v027",
+      "kana": "びょうき",
+      "writing": "病気",
+      "meaningZh": [
+        "疾病"
+      ],
+      "partOfSpeech": "名",
+      "rawText": "びょうき（病気）[名] 疾病",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l18-v027",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+        "itemIndex": 27,
+        "text": "びょうき",
+        "label": "病気",
+        "start": 45.913,
+        "end": 46.683,
+        "duration": 0.771,
+        "speechUnitCount": 1,
+        "method": "ffmpeg-silencedetect-order",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "l18-v028",
+      "kana": "なります",
+      "writing": "なります",
+      "meaningZh": [
+        "变",
+        "当",
+        "变成",
+        "成为"
+      ],
+      "partOfSpeech": "动1",
+      "rawText": "なります [动1] 变，当，变成，成为",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l18-v028",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+        "itemIndex": 28,
+        "text": "なります",
+        "label": "なります",
+        "start": 47.581,
+        "end": 48.515,
+        "duration": 0.934,
+        "speechUnitCount": 1,
+        "method": "ffmpeg-silencedetect-order",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "l18-v029",
+      "kana": "あきます",
+      "writing": "開きます",
+      "meaningZh": [
+        "开"
+      ],
+      "partOfSpeech": "动1",
+      "rawText": "あきます（開きます）[动1] 开",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l18-v029",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+        "itemIndex": 29,
+        "text": "あきます",
+        "label": "開きます",
+        "start": 49.099,
+        "end": 50.003,
+        "duration": 0.904,
+        "speechUnitCount": 1,
+        "method": "ffmpeg-silencedetect-order",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "l18-v030",
+      "kana": "にあいます",
+      "writing": "似合います",
+      "meaningZh": [
+        "适合",
+        "相称"
+      ],
+      "partOfSpeech": "动1",
+      "rawText": "にあいます（似合います）[动1] 适合，相称",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l18-v030",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+        "itemIndex": 30,
+        "text": "にあいます",
+        "label": "似合います",
+        "start": 50.613,
+        "end": 51.661,
+        "duration": 1.049,
+        "speechUnitCount": 1,
+        "method": "ffmpeg-silencedetect-order",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "l18-v031",
+      "kana": "うるさい",
+      "writing": "うるさい",
+      "meaningZh": [
+        "闹",
+        "使人心烦"
+      ],
+      "partOfSpeech": "形1",
+      "rawText": "うるさい [形1] 闹，使人心烦",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l18-v031",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+        "itemIndex": 31,
+        "text": "うるさい",
+        "label": "うるさい",
+        "start": 52.182,
+        "end": 52.896,
+        "duration": 0.715,
+        "speechUnitCount": 1,
+        "method": "ffmpeg-silencedetect-order",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "l18-v032",
+      "kana": "シンプル",
+      "writing": "シンプル",
+      "meaningZh": [
+        "单纯",
+        "简洁"
+      ],
+      "partOfSpeech": "形2",
+      "rawText": "シンプル [形2] 单纯，简洁",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l18-v032",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+        "itemIndex": 32,
+        "text": "シンプル",
+        "label": "シンプル",
+        "start": 53.89,
+        "end": 54.753,
+        "duration": 0.863,
+        "speechUnitCount": 1,
+        "method": "ffmpeg-silencedetect-order",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "l18-v033",
+      "kana": "まもなく",
+      "writing": "間もなく",
+      "meaningZh": [
+        "马上",
+        "一会儿",
+        "不久"
+      ],
+      "partOfSpeech": "副",
+      "rawText": "まもなく（間もなく）[副] 马上，一会儿，不久",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l18-v033",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+        "itemIndex": 33,
+        "text": "まもなく",
+        "label": "間もなく",
+        "start": 55.521,
+        "end": 56.378,
+        "duration": 0.858,
+        "speechUnitCount": 1,
+        "method": "ffmpeg-silencedetect-order",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "l18-v034",
+      "kana": "もうすぐ",
+      "writing": "もうすぐ",
+      "meaningZh": [
+        "马上"
+      ],
+      "partOfSpeech": "副",
+      "rawText": "もうすぐ [副] 马上",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l18-v034",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+        "itemIndex": 34,
+        "text": "もうすぐ",
+        "label": "もうすぐ",
+        "start": 57.237,
+        "end": 58.09,
+        "duration": 0.854,
+        "speechUnitCount": 1,
+        "method": "ffmpeg-silencedetect-order",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "l18-v035",
+      "kana": "さらに／もっと",
+      "writing": "さらに／もっと",
+      "meaningZh": [
+        "更加",
+        "更"
+      ],
+      "partOfSpeech": "副",
+      "rawText": "さらに／もっと [副] 更加，更",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l18-v035",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+        "itemIndex": 35,
+        "text": "さらに／もっと",
+        "label": "さらに／もっと",
+        "start": 58.895,
+        "end": 61.151,
+        "duration": 2.256,
+        "speechUnitCount": 2,
+        "method": "ffmpeg-silencedetect-order",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "l18-v036",
+      "kana": "さあ",
+      "writing": "さあ",
+      "meaningZh": [
+        "啊",
+        "喂"
+      ],
+      "partOfSpeech": "叹",
+      "rawText": "さあ [叹] 啊，喂",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l18-v036",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+        "itemIndex": 36,
+        "text": "さあ",
+        "label": "さあ",
+        "start": 62.559,
+        "end": 63.386,
+        "duration": 0.827,
+        "speechUnitCount": 1,
+        "method": "ffmpeg-silencedetect-order",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "l18-v037",
+      "kana": "できるだけ",
+      "writing": "できるだけ",
+      "meaningZh": [
+        "尽量",
+        "尽可能"
+      ],
+      "partOfSpeech": null,
+      "rawText": "できるだけ 尽量，尽可能",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l18-v037",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+        "itemIndex": 37,
+        "text": "できるだけ",
+        "label": "できるだけ",
+        "start": 64.556,
+        "end": 65.557,
+        "duration": 1.001,
+        "speechUnitCount": 1,
+        "method": "ffmpeg-silencedetect-order",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "l18-v038",
+      "kana": "まとめて",
+      "writing": "まとめて",
+      "meaningZh": [
+        "一下子",
+        "一起",
+        "汇总",
+        "汇集"
+      ],
+      "partOfSpeech": null,
+      "rawText": "まとめて 一下子，一起，汇总，汇集",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l18-v038",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+        "itemIndex": 38,
+        "text": "まとめて",
+        "label": "まとめて",
+        "start": 66.838,
+        "end": 67.722,
+        "duration": 0.884,
+        "speechUnitCount": 1,
+        "method": "ffmpeg-silencedetect-order",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "l18-v039",
+      "kana": "いまから",
+      "writing": "今から",
+      "meaningZh": [
+        "从现在起"
+      ],
+      "partOfSpeech": null,
+      "rawText": "いまから（今から）从现在起",
+      "confidence": "high",
+      "audioSegment": {
+        "id": "l18-v039",
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+        "itemIndex": 39,
+        "text": "いまから",
+        "label": "今から",
+        "start": 68.591,
+        "end": 69.321,
+        "duration": 0.729,
+        "speechUnitCount": 1,
+        "method": "ffmpeg-silencedetect-order",
+        "confidence": "high"
+      }
+    }
+  ],
+  "warnings": [],
+  "audioAlignment": {
+    "generatedAt": "2026-08-05T04:20:35.413Z",
+    "method": "ffmpeg-silencedetect-order",
+    "tracks": {
+      "lesson_words": {
+        "trackId": "lesson_words",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+        "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+        "outputPath": "data/ocr/lesson18-vocabulary-audio.json",
+        "duration": 70.11,
+        "expectedItems": 39,
+        "expectedSpeechUnits": 40,
+        "skippedSpeechUnits": 0,
+        "detectedSpeechIntervals": 40,
+        "mappedSegments": 39,
+        "selectedProfile": {
+          "noiseDb": -44,
+          "minSilence": 0.28
+        },
+        "warnings": [],
+        "segments": [
+          {
+            "id": "l18-v001",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+            "itemIndex": 1,
+            "text": "おと",
+            "label": "音",
+            "start": 0.894,
+            "end": 1.424,
+            "duration": 0.531,
+            "speechUnitCount": 1,
+            "method": "ffmpeg-silencedetect-order",
+            "confidence": "high"
+          },
+          {
+            "id": "l18-v002",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+            "itemIndex": 2,
+            "text": "こえ",
+            "label": "声",
+            "start": 2.479,
+            "end": 2.99,
+            "duration": 0.511,
+            "speechUnitCount": 1,
+            "method": "ffmpeg-silencedetect-order",
+            "confidence": "high"
+          },
+          {
+            "id": "l18-v003",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+            "itemIndex": 3,
+            "text": "くうき",
+            "label": "空気",
+            "start": 3.981,
+            "end": 4.645,
+            "duration": 0.664,
+            "speechUnitCount": 1,
+            "method": "ffmpeg-silencedetect-order",
+            "confidence": "high"
+          },
+          {
+            "id": "l18-v004",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+            "itemIndex": 4,
+            "text": "むすこ",
+            "label": "息子",
+            "start": 5.472,
+            "end": 6.269,
+            "duration": 0.797,
+            "speechUnitCount": 1,
+            "method": "ffmpeg-silencedetect-order",
+            "confidence": "high"
+          },
+          {
+            "id": "l18-v005",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+            "itemIndex": 5,
+            "text": "いしゃ",
+            "label": "医者",
+            "start": 6.95,
+            "end": 7.502,
+            "duration": 0.552,
+            "speechUnitCount": 1,
+            "method": "ffmpeg-silencedetect-order",
+            "confidence": "high"
+          },
+          {
+            "id": "l18-v006",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+            "itemIndex": 6,
+            "text": "おじょうさん",
+            "label": "お嬢さん",
+            "start": 8.849,
+            "end": 9.787,
+            "duration": 0.938,
+            "speechUnitCount": 1,
+            "method": "ffmpeg-silencedetect-order",
+            "confidence": "high"
+          },
+          {
+            "id": "l18-v007",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+            "itemIndex": 7,
+            "text": "しゃかいじん",
+            "label": "社会人",
+            "start": 10.556,
+            "end": 11.535,
+            "duration": 0.979,
+            "speechUnitCount": 1,
+            "method": "ffmpeg-silencedetect-order",
+            "confidence": "high"
+          },
+          {
+            "id": "l18-v008",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+            "itemIndex": 8,
+            "text": "りょこうガイド",
+            "label": "旅行ガイド",
+            "start": 12.853,
+            "end": 14.046,
+            "duration": 1.193,
+            "speechUnitCount": 1,
+            "method": "ffmpeg-silencedetect-order",
+            "confidence": "high"
+          },
+          {
+            "id": "l18-v009",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+            "itemIndex": 9,
+            "text": "がくしゃ",
+            "label": "学者",
+            "start": 14.674,
+            "end": 15.51,
+            "duration": 0.836,
+            "speechUnitCount": 1,
+            "method": "ffmpeg-silencedetect-order",
+            "confidence": "high"
+          },
+          {
+            "id": "l18-v010",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+            "itemIndex": 10,
+            "text": "パイロット",
+            "label": "パイロット",
+            "start": 16.666,
+            "end": 17.53,
+            "duration": 0.864,
+            "speechUnitCount": 1,
+            "method": "ffmpeg-silencedetect-order",
+            "confidence": "high"
+          },
+          {
+            "id": "l18-v011",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+            "itemIndex": 11,
+            "text": "デザイナー",
+            "label": "デザイナー",
+            "start": 18.544,
+            "end": 19.533,
+            "duration": 0.989,
+            "speechUnitCount": 1,
+            "method": "ffmpeg-silencedetect-order",
+            "confidence": "high"
+          },
+          {
+            "id": "l18-v012",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+            "itemIndex": 12,
+            "text": "タイムサービス",
+            "label": "タイムサービス",
+            "start": 20.757,
+            "end": 22.058,
+            "duration": 1.301,
+            "speechUnitCount": 1,
+            "method": "ffmpeg-silencedetect-order",
+            "confidence": "high"
+          },
+          {
+            "id": "l18-v013",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+            "itemIndex": 13,
+            "text": "しんしゅんセール",
+            "label": "新春セール",
+            "start": 22.643,
+            "end": 23.927,
+            "duration": 1.284,
+            "speechUnitCount": 1,
+            "method": "ffmpeg-silencedetect-order",
+            "confidence": "high"
+          },
+          {
+            "id": "l18-v014",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+            "itemIndex": 14,
+            "text": "さんわりびき",
+            "label": "3割引",
+            "start": 25.408,
+            "end": 26.499,
+            "duration": 1.091,
+            "speechUnitCount": 1,
+            "method": "ffmpeg-silencedetect-order",
+            "confidence": "high"
+          },
+          {
+            "id": "l18-v015",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+            "itemIndex": 15,
+            "text": "ていか",
+            "label": "定価",
+            "start": 27.564,
+            "end": 28.24,
+            "duration": 0.676,
+            "speechUnitCount": 1,
+            "method": "ffmpeg-silencedetect-order",
+            "confidence": "high"
+          },
+          {
+            "id": "l18-v016",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+            "itemIndex": 16,
+            "text": "はんがく",
+            "label": "半額",
+            "start": 29.387,
+            "end": 30.251,
+            "duration": 0.864,
+            "speechUnitCount": 1,
+            "method": "ffmpeg-silencedetect-order",
+            "confidence": "high"
+          },
+          {
+            "id": "l18-v017",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+            "itemIndex": 17,
+            "text": "ねだん",
+            "label": "値段",
+            "start": 30.859,
+            "end": 31.511,
+            "duration": 0.652,
+            "speechUnitCount": 1,
+            "method": "ffmpeg-silencedetect-order",
+            "confidence": "high"
+          },
+          {
+            "id": "l18-v018",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+            "itemIndex": 18,
+            "text": "シャツ",
+            "label": "シャツ",
+            "start": 32.418,
+            "end": 33.07,
+            "duration": 0.652,
+            "speechUnitCount": 1,
+            "method": "ffmpeg-silencedetect-order",
+            "confidence": "high"
+          },
+          {
+            "id": "l18-v019",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+            "itemIndex": 19,
+            "text": "スカート",
+            "label": "スカート",
+            "start": 33.672,
+            "end": 34.478,
+            "duration": 0.805,
+            "speechUnitCount": 1,
+            "method": "ffmpeg-silencedetect-order",
+            "confidence": "high"
+          },
+          {
+            "id": "l18-v020",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+            "itemIndex": 20,
+            "text": "いろ",
+            "label": "色",
+            "start": 35.213,
+            "end": 35.652,
+            "duration": 0.438,
+            "speechUnitCount": 1,
+            "method": "ffmpeg-silencedetect-order",
+            "confidence": "high"
+          },
+          {
+            "id": "l18-v021",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+            "itemIndex": 21,
+            "text": "あか",
+            "label": "赤",
+            "start": 36.552,
+            "end": 37,
+            "duration": 0.448,
+            "speechUnitCount": 1,
+            "method": "ffmpeg-silencedetect-order",
+            "confidence": "high"
+          },
+          {
+            "id": "l18-v022",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+            "itemIndex": 22,
+            "text": "あお",
+            "label": "青",
+            "start": 37.926,
+            "end": 38.363,
+            "duration": 0.437,
+            "speechUnitCount": 1,
+            "method": "ffmpeg-silencedetect-order",
+            "confidence": "high"
+          },
+          {
+            "id": "l18-v023",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+            "itemIndex": 23,
+            "text": "おしょうがつ",
+            "label": "お正月",
+            "start": 39.075,
+            "end": 40.204,
+            "duration": 1.129,
+            "speechUnitCount": 1,
+            "method": "ffmpeg-silencedetect-order",
+            "confidence": "high"
+          },
+          {
+            "id": "l18-v024",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+            "itemIndex": 24,
+            "text": "じかん",
+            "label": "時間",
+            "start": 41.024,
+            "end": 41.798,
+            "duration": 0.775,
+            "speechUnitCount": 1,
+            "method": "ffmpeg-silencedetect-order",
+            "confidence": "high"
+          },
+          {
+            "id": "l18-v025",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+            "itemIndex": 25,
+            "text": "しょうらい",
+            "label": "将来",
+            "start": 42.817,
+            "end": 43.57,
+            "duration": 0.753,
+            "speechUnitCount": 1,
+            "method": "ffmpeg-silencedetect-order",
+            "confidence": "high"
+          },
+          {
+            "id": "l18-v026",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+            "itemIndex": 26,
+            "text": "じゅんび",
+            "label": "準備",
+            "start": 44.526,
+            "end": 45.223,
+            "duration": 0.697,
+            "speechUnitCount": 1,
+            "method": "ffmpeg-silencedetect-order",
+            "confidence": "high"
+          },
+          {
+            "id": "l18-v027",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+            "itemIndex": 27,
+            "text": "びょうき",
+            "label": "病気",
+            "start": 45.913,
+            "end": 46.683,
+            "duration": 0.771,
+            "speechUnitCount": 1,
+            "method": "ffmpeg-silencedetect-order",
+            "confidence": "high"
+          },
+          {
+            "id": "l18-v028",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+            "itemIndex": 28,
+            "text": "なります",
+            "label": "なります",
+            "start": 47.581,
+            "end": 48.515,
+            "duration": 0.934,
+            "speechUnitCount": 1,
+            "method": "ffmpeg-silencedetect-order",
+            "confidence": "high"
+          },
+          {
+            "id": "l18-v029",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+            "itemIndex": 29,
+            "text": "あきます",
+            "label": "開きます",
+            "start": 49.099,
+            "end": 50.003,
+            "duration": 0.904,
+            "speechUnitCount": 1,
+            "method": "ffmpeg-silencedetect-order",
+            "confidence": "high"
+          },
+          {
+            "id": "l18-v030",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+            "itemIndex": 30,
+            "text": "にあいます",
+            "label": "似合います",
+            "start": 50.613,
+            "end": 51.661,
+            "duration": 1.049,
+            "speechUnitCount": 1,
+            "method": "ffmpeg-silencedetect-order",
+            "confidence": "high"
+          },
+          {
+            "id": "l18-v031",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+            "itemIndex": 31,
+            "text": "うるさい",
+            "label": "うるさい",
+            "start": 52.182,
+            "end": 52.896,
+            "duration": 0.715,
+            "speechUnitCount": 1,
+            "method": "ffmpeg-silencedetect-order",
+            "confidence": "high"
+          },
+          {
+            "id": "l18-v032",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+            "itemIndex": 32,
+            "text": "シンプル",
+            "label": "シンプル",
+            "start": 53.89,
+            "end": 54.753,
+            "duration": 0.863,
+            "speechUnitCount": 1,
+            "method": "ffmpeg-silencedetect-order",
+            "confidence": "high"
+          },
+          {
+            "id": "l18-v033",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+            "itemIndex": 33,
+            "text": "まもなく",
+            "label": "間もなく",
+            "start": 55.521,
+            "end": 56.378,
+            "duration": 0.858,
+            "speechUnitCount": 1,
+            "method": "ffmpeg-silencedetect-order",
+            "confidence": "high"
+          },
+          {
+            "id": "l18-v034",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+            "itemIndex": 34,
+            "text": "もうすぐ",
+            "label": "もうすぐ",
+            "start": 57.237,
+            "end": 58.09,
+            "duration": 0.854,
+            "speechUnitCount": 1,
+            "method": "ffmpeg-silencedetect-order",
+            "confidence": "high"
+          },
+          {
+            "id": "l18-v035",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+            "itemIndex": 35,
+            "text": "さらに／もっと",
+            "label": "さらに／もっと",
+            "start": 58.895,
+            "end": 61.151,
+            "duration": 2.256,
+            "speechUnitCount": 2,
+            "method": "ffmpeg-silencedetect-order",
+            "confidence": "high"
+          },
+          {
+            "id": "l18-v036",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+            "itemIndex": 36,
+            "text": "さあ",
+            "label": "さあ",
+            "start": 62.559,
+            "end": 63.386,
+            "duration": 0.827,
+            "speechUnitCount": 1,
+            "method": "ffmpeg-silencedetect-order",
+            "confidence": "high"
+          },
+          {
+            "id": "l18-v037",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+            "itemIndex": 37,
+            "text": "できるだけ",
+            "label": "できるだけ",
+            "start": 64.556,
+            "end": 65.557,
+            "duration": 1.001,
+            "speechUnitCount": 1,
+            "method": "ffmpeg-silencedetect-order",
+            "confidence": "high"
+          },
+          {
+            "id": "l18-v038",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+            "itemIndex": 38,
+            "text": "まとめて",
+            "label": "まとめて",
+            "start": 66.838,
+            "end": 67.722,
+            "duration": 0.884,
+            "speechUnitCount": 1,
+            "method": "ffmpeg-silencedetect-order",
+            "confidence": "high"
+          },
+          {
+            "id": "l18-v039",
+            "trackId": "lesson_words",
+            "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/lesson_words.mp3",
+            "localAudioPath": "data/ocr/audio-cache/lesson18/lesson_words.mp3",
+            "itemIndex": 39,
+            "text": "いまから",
+            "label": "今から",
+            "start": 68.591,
+            "end": 69.321,
+            "duration": 0.729,
+            "speechUnitCount": 1,
+            "method": "ffmpeg-silencedetect-order",
+            "confidence": "high"
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "lessonId": "lesson35",
+  "sourceImages": [
+    { "section": "basic", "path": "course-assets/by-lesson/lesson35/page116.webp", "pageNo": 116 },
+    { "section": "application", "path": "course-assets/by-lesson/lesson35/page121.webp", "pageNo": 121 }
+  ],
+  "basicText": {
+    "title": "基本课文",
+    "basicSentences": [
+      { "id": "l35-basic-s001", "order": 1, "text": "明日雨が降ったら、マラソン大会は中止です。", "translationZh": "如果明天下雨，马拉松大会就取消。", "confidence": "high", "rawText": "1. 明日雨が降ったら、マラソン大会は中止です。" },
+      { "id": "l35-basic-s002", "order": 2, "text": "日本へ帰っても、中国語の勉強を続けてください。", "translationZh": "即使回到日本，也请继续学习汉语。", "confidence": "high", "rawText": "2. 日本へ帰っても、中国語の勉強を続けてください。" },
+      { "id": "l35-basic-s003", "order": 3, "text": "今年の夏休みは３日だけです。", "translationZh": "今年暑假只有三天。", "confidence": "high", "rawText": "3. 今年の夏休みは３日だけです。" },
+      { "id": "l35-basic-s004", "order": 4, "text": "会議室には李さんしかいません。", "translationZh": "会议室里只有小李一个人。", "confidence": "high", "rawText": "4. 会議室には李さんしかいません。" }
+    ],
+    "dialogues": [
+      {
+        "id": "l35-basic-dialogue-001", "label": "A", "lines": [
+          { "id": "l35-basic-dialogue-001-line-001", "speaker": "甲", "text": "大学を卒業したらどうしますか。", "translationZh": "大学毕业后你打算做什么？", "confidence": "high", "rawText": "甲：大学を卒業したらどうしますか。" },
+          { "id": "l35-basic-dialogue-001-line-002", "speaker": "乙", "text": "外国で働きたいです。", "translationZh": "我想在国外工作。", "confidence": "high", "rawText": "乙：外国で働きたいです。" }
+        ]
+      },
+      {
+        "id": "l35-basic-dialogue-002", "label": "B", "lines": [
+          { "id": "l35-basic-dialogue-002-line-001", "speaker": "甲", "text": "馬さんは元気がないね。何かあったのかな。", "translationZh": "马先生没什么精神啊。是不是发生什么事了？", "confidence": "high", "rawText": "甲：馬さんは元気がないね。何かあったのかな。" },
+          { "id": "l35-basic-dialogue-002-line-002", "speaker": "乙", "text": "いくら聞いても何も言わないんだよ。", "translationZh": "怎么问他他也什么都不说。", "confidence": "high", "rawText": "乙：いくら聞いても何も言わないんだよ。" }
+        ]
+      },
+      {
+        "id": "l35-basic-dialogue-003", "label": "C", "lines": [
+          { "id": "l35-basic-dialogue-003-line-001", "speaker": "甲", "text": "李さん、資料はまだできませんか。", "translationZh": "小李，资料还没做好吗？", "confidence": "high", "rawText": "甲：李さん、資料はまだできませんか。" },
+          { "id": "l35-basic-dialogue-003-line-002", "speaker": "乙", "text": "すみません、あと少しだけ待ってください。", "translationZh": "对不起，请再稍等一会儿。", "confidence": "high", "rawText": "乙：すみません、あと少しだけ待ってください。" }
+        ]
+      },
+      {
+        "id": "l35-basic-dialogue-004", "label": "D", "lines": [
+          { "id": "l35-basic-dialogue-004-line-001", "speaker": "甲", "text": "このゴーカートは大人でも乗ることができますか。", "translationZh": "这辆卡丁车大人也能坐吗？", "confidence": "high", "rawText": "甲：このゴーカートは大人でも乗ることができますか。" },
+          { "id": "l35-basic-dialogue-004-line-002", "speaker": "乙", "text": "いいえ、子供しか乗ることができません。", "translationZh": "不，只有孩子能坐。", "confidence": "high", "rawText": "乙：いいえ、子供しか乗ることができません。" }
+        ]
+      }
+    ]
+  },
+  "applicationText": {
+    "title": "ホームパーティー",
+    "blocks": [
+      { "id": "l35-app-block-001", "type": "narration", "text": "太田先生和夫人住在天坛公园附近的公寓里。小李、森和小野一起去太田夫妇家拜访，一起包饺子。", "translationZh": "太田老师和夫人住在天坛公园附近的公寓里。小李、森和小野一起去拜访太田夫妇，并一起包饺子。", "confidence": "high", "rawText": "太田先生和夫人住在天坛公园附近的公寓里。小李、森和小野一起去太田夫妇家拜访，一起包饺子。" },
+      { "id": "l35-app-block-002", "type": "scene", "text": "小野和太田夫人帮忙打下手，饺子主要由小李来做。小李正在擀饺子皮儿。", "translationZh": "小野和太田夫人帮忙打下手，饺子主要由小李来做；小李正在擀饺子皮。", "confidence": "high", "rawText": "（小野和太田夫人帮忙打下手，饺子主要由小李来做。小李正在擀饺子皮儿）" },
+      { "id": "l35-app-block-003", "type": "dialogue", "lines": [
+        { "id": "l35-app-block-003-line-001", "speaker": "李", "text": "あのう、お酒があったら、少し入れてくれませんか。", "translationZh": "那个，如果有酒，能放一点吗？", "confidence": "high", "rawText": "李：あのう、お酒があったら、少し入れてくれませんか。" }
+      ] },
+      { "id": "l35-app-block-004", "type": "scene", "text": "太田夫人倒了一勺绍兴酒。", "translationZh": "太田夫人倒了一勺绍兴酒。", "confidence": "high", "rawText": "（太田夫人倒了一勺绍兴酒）" },
+      { "id": "l35-app-block-005", "type": "dialogue", "lines": [
+        { "id": "l35-app-block-005-line-001", "speaker": "夫人", "text": "１杯だけでいいですか。", "translationZh": "一勺就可以吗？", "confidence": "high", "rawText": "夫人：１杯だけでいいですか。" },
+        { "id": "l35-app-block-005-line-002", "speaker": "李", "text": "いいえ、３杯ぐらい入れてください。", "translationZh": "不，请放三勺左右。", "confidence": "high", "rawText": "李：いいえ、３杯ぐらい入れてください。" },
+        { "id": "l35-app-block-005-line-003", "speaker": "夫人", "text": "李さん、餃子を作るのが上手ですね。", "translationZh": "小李，你很会包饺子啊。", "confidence": "high", "rawText": "夫人：李さん、餃子を作るのが上手ですね。" },
+        { "id": "l35-app-block-005-line-004", "speaker": "李", "text": "ええ。北京では、餃子はどの家でも、自分たちで作って食べます。小さな子供も上手ですよ。", "translationZh": "是的。在北京，家家都自己包饺子吃。小孩子也很会包。", "confidence": "high", "rawText": "李：ええ。北京では、餃子はどの家でも、自分たちで作って食べます。小さな子供も上手ですよ。" },
+        { "id": "l35-app-block-005-line-005", "speaker": "夫人", "text": "わたし、本のとおりに作っても、なかなかうまくできないんですが、どうやったらおいしくなるんでしょうか。", "translationZh": "我即使照着书做，也总是做不好，怎样做才会好吃呢？", "confidence": "high", "rawText": "夫人：わたし、本のとおりに作っても、なかなかうまくできないんですが、どうやったらおいしくなるんでしょうか。" },
+        { "id": "l35-app-block-005-line-006", "speaker": "小野", "text": "何度も作ると、だんだん上手になりますよ。", "translationZh": "多做几次，就会渐渐做得好了。", "confidence": "high", "rawText": "小野：何度も作ると、だんだん上手になりますよ。" },
+        { "id": "l35-app-block-005-line-007", "speaker": "李", "text": "もし時間があったら、またいっしょに作りましょう。", "translationZh": "如果有时间，我们再一起包吧。", "confidence": "high", "rawText": "李：もし時間があったら、またいっしょに作りましょう。" }
+      ] },
+      { "id": "l35-app-block-006", "type": "scene", "text": "不一会儿，饺子做好了。", "translationZh": "不一会儿，饺子做好了。", "confidence": "high", "rawText": "（不一会儿，饺子做好了）" },
+      { "id": "l35-app-block-007", "type": "dialogue", "lines": [
+        { "id": "l35-app-block-007-line-001", "speaker": "太田", "text": "準備ができたら、乾杯しますよ。", "translationZh": "准备好了就干杯。", "confidence": "high", "rawText": "太田：準備ができたら、乾杯しますよ。" }
+      ] },
+      { "id": "l35-app-block-008", "type": "scene", "text": "酒斟好后，太田提议干杯。", "translationZh": "酒斟好后，太田提议干杯。", "confidence": "high", "rawText": "（酒斟好后，太田提议干杯）" },
+      { "id": "l35-app-block-009", "type": "dialogue", "lines": [
+        { "id": "l35-app-block-009-line-001", "speaker": "太田", "text": "皆さんの健康を祝って、カンパーイ！", "translationZh": "祝大家健康，干杯！", "confidence": "high", "rawText": "太田：皆さんの健康を祝って、カンパーイ！" }
+      ] },
+      { "id": "l35-app-block-010", "type": "scene", "text": "大家吃着饺子。", "translationZh": "大家吃着饺子。", "confidence": "high", "rawText": "（大家吃着饺子）" },
+      { "id": "l35-app-block-011", "type": "dialogue", "lines": [
+        { "id": "l35-app-block-011-line-001", "speaker": "小野", "text": "森さん、たくさん食べますね。わたしはいくら頑張っても、20個ぐらいしか食べることができません。", "translationZh": "森先生，你真能吃啊。我无论怎么努力，也只能吃二十个左右。", "confidence": "high", "rawText": "小野：森さん、たくさん食べますね。わたしはいくら頑張っても、20個ぐらいしか食べることができません。" },
+        { "id": "l35-app-block-011-line-002", "speaker": "森", "text": "ぼくは、小野さんが作った餃子だったら、30個は大丈夫ですよ。", "translationZh": "如果是小野女士包的饺子，我吃三十个也没问题。", "confidence": "high", "rawText": "森：ぼくは、小野さんが作った餃子だったら、30個は大丈夫ですよ。" }
+      ] }
+    ]
+  },
+  "warnings": [
+    "扫描页中的假名标注不适合可靠地逐句切分，未生成 kana 或 segments 字段。",
+    "应用课文的开场旁白和场景说明在教材中以中文排印，按原文保留在 text 字段中。"
+  ]
+}

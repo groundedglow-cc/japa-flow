@@ -1,0 +1,20 @@
+{
+  "lesson18": {
+    "l18-p2-a4-q3": {
+      "answer": [
+        {
+          "answer": "テレビの 音を大きくしてください。",
+          "normalizedAnswer": "テレビの音を大きくしてください",
+          "expectedAnswers": [
+            "テレビの 音を 大きく します。"
+          ],
+          "reason": "用户答案与参考答案意思一致，均为请求将电视机声音调大，语法功能相同，只是表达方式不同（使用请求形式），符合采纳标准。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "テレビの 音を大きくしてください。",
+          "addedAt": "2026-08-05T06:13:12.729Z"
+        }
+      ]
+    }
+  }
+}

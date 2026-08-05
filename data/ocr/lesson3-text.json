@@ -1,0 +1,261 @@
+{
+  "lessonId": "lesson3",
+  "sourceImages": [
+    {
+      "section": "basic",
+      "path": "course-assets/by-lesson/lesson3/page42.webp",
+      "pageNo": 42
+    },
+    {
+      "section": "application",
+      "path": "course-assets/by-lesson/lesson3/page47.webp",
+      "pageNo": 47
+    }
+  ],
+  "basicText": {
+    "title": "基本课文",
+    "basicSentences": [
+      {
+        "id": "l3-basic-s001",
+        "order": 1,
+        "text": "ここは デパートです。",
+        "kana": "ここは デパートです。",
+        "segments": [
+          { "text": "ここは デパートです。" }
+        ],
+        "translationZh": "这里是百货商店。",
+        "confidence": "high",
+        "rawText": "1. ここは デパートです。"
+      },
+      {
+        "id": "l3-basic-s002",
+        "order": 2,
+        "text": "食堂は デパートの 7階です。",
+        "kana": "しょくどうは デパートの ななかいです。",
+        "segments": [
+          { "text": "食堂", "ruby": "しょくどう" },
+          { "text": "は デパートの 7" },
+          { "text": "階", "ruby": "かい" },
+          { "text": "です。" }
+        ],
+        "translationZh": "食堂在百货商店的7层。",
+        "confidence": "high",
+        "rawText": "2. 食堂は デパートの 7階です。"
+      },
+      {
+        "id": "l3-basic-s003",
+        "order": 3,
+        "text": "あそこも JC企画の ビルです。",
+        "kana": "あそこも ジェーシーきかくの ビルです。",
+        "segments": [
+          { "text": "あそこも JC" },
+          { "text": "企画", "ruby": "きかく" },
+          { "text": "の ビルです。" }
+        ],
+        "translationZh": "那里也是JC策划公司的大楼。",
+        "confidence": "high",
+        "rawText": "3. あそこも JC企画の ビルです。"
+      },
+      {
+        "id": "l3-basic-s004",
+        "order": 4,
+        "text": "かばん売り場は 1階ですか、2階ですか。",
+        "kana": "かばんうりばは いっかいですか、にかいですか。",
+        "segments": [
+          { "text": "かばん" },
+          { "text": "売り場", "ruby": "うりば" },
+          { "text": "は 1" },
+          { "text": "階", "ruby": "かい" },
+          { "text": "ですか、2" },
+          { "text": "階", "ruby": "かい" },
+          { "text": "ですか。" }
+        ],
+        "translationZh": "卖包的柜台在1层还是2层？",
+        "confidence": "high",
+        "rawText": "4. かばん売り場は 1階ですか、2階ですか。"
+      }
+    ],
+    "dialogues": [
+      {
+        "id": "l3-basic-dialogue-001",
+        "label": "A",
+        "lines": [
+          {
+            "id": "l3-basic-dialogue-001-line-001",
+            "speaker": "甲",
+            "text": "トイレは どこですか。",
+            "kana": "トイレは どこですか。",
+            "translationZh": "厕所在哪里？",
+            "confidence": "high",
+            "rawText": "甲：トイレは どこですか。"
+          },
+          {
+            "id": "l3-basic-dialogue-001-line-002",
+            "speaker": "乙",
+            "text": "あちらです。",
+            "kana": "あちらです。",
+            "translationZh": "在那里。",
+            "confidence": "high",
+            "rawText": "乙：あちらです。"
+          }
+        ]
+      },
+      {
+        "id": "l3-basic-dialogue-002",
+        "label": "B",
+        "lines": [
+          {
+            "id": "l3-basic-dialogue-002-line-001",
+            "speaker": "甲",
+            "text": "ここは 郵便局ですか、銀行ですか。",
+            "kana": "ここは ゆうびんきょくですか、ぎんこうですか。",
+            "translationZh": "这里是邮局还是银行？",
+            "confidence": "high",
+            "rawText": "甲：ここは 郵便局ですか、銀行ですか。"
+          },
+          {
+            "id": "l3-basic-dialogue-002-line-002",
+            "speaker": "乙",
+            "text": "銀行です。",
+            "kana": "ぎんこうです。",
+            "translationZh": "是银行。",
+            "confidence": "high",
+            "rawText": "乙：銀行です。"
+          }
+        ]
+      },
+      {
+        "id": "l3-basic-dialogue-003",
+        "label": "C",
+        "lines": [
+          {
+            "id": "l3-basic-dialogue-003-line-001",
+            "speaker": "甲",
+            "text": "これは いくらですか。",
+            "kana": "これは いくらですか。",
+            "translationZh": "这个多少钱？",
+            "confidence": "high",
+            "rawText": "甲：これは いくらですか。"
+          },
+          {
+            "id": "l3-basic-dialogue-003-line-002",
+            "speaker": "乙",
+            "text": "それは 5,800円です。",
+            "kana": "それは ごせんはっぴゃくえんです。",
+            "translationZh": "那个5800日元。",
+            "confidence": "high",
+            "rawText": "乙：それは 5,800円です。"
+          },
+          {
+            "id": "l3-basic-dialogue-003-line-003",
+            "speaker": "甲",
+            "text": "あれは？",
+            "kana": "あれは？",
+            "translationZh": "那个呢？",
+            "confidence": "high",
+            "rawText": "甲：あれは？"
+          },
+          {
+            "id": "l3-basic-dialogue-003-line-004",
+            "speaker": "乙",
+            "text": "あれも 5,800円です。",
+            "kana": "あれも ごせんはっぴゃくえんです。",
+            "translationZh": "那个也是5800日元。",
+            "confidence": "high",
+            "rawText": "乙：あれも 5,800円です。"
+          }
+        ]
+      }
+    ]
+  },
+  "applicationText": {
+    "title": "ホテルの 周辺",
+    "blocks": [
+      {
+        "id": "l3-app-block-001",
+        "type": "narration",
+        "text": "小李请小野带自己熟悉宾馆的周边环境。宾馆附近有各种店铺，非常方便。",
+        "kana": null,
+        "translationZh": "小李请小野带自己熟悉宾馆的周边环境。宾馆附近有各种店铺，非常方便。",
+        "confidence": "high",
+        "rawText": "小李请小野带自己熟悉宾馆的周边环境。宾馆附近有各种店铺，非常方便。"
+      },
+      {
+        "id": "l3-app-block-002",
+        "type": "scene",
+        "text": "（她们走到宾馆附近的便利店前）",
+        "kana": null,
+        "translationZh": "她们走到宾馆附近的便利店前。",
+        "confidence": "high",
+        "rawText": "（她们走到宾馆附近的便利店前）"
+      },
+      {
+        "id": "l3-app-block-003",
+        "type": "dialogue",
+        "lines": [
+          { "id": "l3-app-block-003-line-001", "speaker": "小野", "text": "ここは コンビニです。隣は 喫茶店です。", "kana": "ここは コンビニです。となりは きっさてんです。", "translationZh": "这里是便利店。旁边是咖啡馆。", "confidence": "high", "rawText": "小野：ここは コンビニです。隣は 喫茶店です。" },
+          { "id": "l3-app-block-003-line-002", "speaker": "李", "text": "あの 建物は ホテルですか、マンションですか。", "kana": "あの たてものは ホテルですか、マンションですか。", "translationZh": "那栋楼是宾馆还是公寓？", "confidence": "high", "rawText": "李：（指着前方的建筑物）あの 建物は ホテルですか、マンションですか。" },
+          { "id": "l3-app-block-003-line-003", "speaker": "小野", "text": "あそこは マンションです。", "kana": "あそこは マンションです。", "translationZh": "那里是公寓。", "confidence": "high", "rawText": "小野：あそこは マンションです。" },
+          { "id": "l3-app-block-003-line-004", "speaker": "李", "text": "あの 建物は 何ですか。", "kana": "あの たてものは なんですか。", "translationZh": "那栋楼是什么？", "confidence": "high", "rawText": "李：（指着远处的高楼）あの 建物は 何ですか。" },
+          { "id": "l3-app-block-003-line-005", "speaker": "小野", "text": "あそこも マンションです。", "kana": "あそこも マンションです。", "translationZh": "那里也是公寓。", "confidence": "high", "rawText": "小野：あそこも マンションです。" },
+          { "id": "l3-app-block-003-line-006", "speaker": "李", "text": "マンションの 隣は？", "kana": "マンションの となりは？", "translationZh": "公寓旁边呢？", "confidence": "high", "rawText": "李：マンションの 隣は？" },
+          { "id": "l3-app-block-003-line-007", "speaker": "小野", "text": "マンションの 隣は 病院です。", "kana": "マンションの となりは びょういんです。", "translationZh": "公寓旁边是医院。", "confidence": "high", "rawText": "小野：マンションの 隣は 病院です。" }
+        ]
+      },
+      {
+        "id": "l3-app-block-004",
+        "type": "scene",
+        "text": "（走了一会儿）",
+        "kana": null,
+        "translationZh": "走了一会儿。",
+        "confidence": "high",
+        "rawText": "（走了一会儿）"
+      },
+      {
+        "id": "l3-app-block-005",
+        "type": "dialogue",
+        "lines": [
+          { "id": "l3-app-block-005-line-001", "speaker": "李", "text": "本屋は どこですか。", "kana": "ほんやは どこですか。", "translationZh": "书店在哪里？", "confidence": "high", "rawText": "李：本屋は どこですか。" },
+          { "id": "l3-app-block-005-line-002", "speaker": "小野", "text": "そこです。その ビルの 2階です。", "kana": "そこです。その ビルの にかいです。", "translationZh": "在那里。在那栋楼的2层。", "confidence": "high", "rawText": "小野：（指着前方不远处）そこです。その ビルの 2階です。" }
+        ]
+      },
+      {
+        "id": "l3-app-block-006",
+        "type": "scene",
+        "text": "（书店的收款台前）",
+        "kana": null,
+        "translationZh": "在书店的收款台前。",
+        "confidence": "high",
+        "rawText": "（书店的收款台前）"
+      },
+      {
+        "id": "l3-app-block-007",
+        "type": "dialogue",
+        "lines": [
+          { "id": "l3-app-block-007-line-001", "speaker": "李", "text": "あのう、東京の 地図は どこですか。", "kana": "あのう、とうきょうの ちずは どこですか。", "translationZh": "请问，东京的地图在哪里？", "confidence": "high", "rawText": "李：あのう、東京の 地図は どこですか。" },
+          { "id": "l3-app-block-007-line-002", "speaker": "店員", "text": "地図ですか。そちらです。", "kana": "ちずですか。そちらです。", "translationZh": "地图吗？在那边。", "confidence": "high", "rawText": "店員：地図ですか。（指着小李身后）そちらです。" }
+        ]
+      },
+      {
+        "id": "l3-app-block-008",
+        "type": "scene",
+        "text": "（小李将地图拿到收款台）",
+        "kana": null,
+        "translationZh": "小李将地图拿到收款台。",
+        "confidence": "high",
+        "rawText": "（小李将地图拿到收款台）"
+      },
+      {
+        "id": "l3-app-block-009",
+        "type": "dialogue",
+        "lines": [
+          { "id": "l3-app-block-009-line-001", "speaker": "李", "text": "いくらですか。", "kana": "いくらですか。", "translationZh": "多少钱？", "confidence": "high", "rawText": "李：いくらですか。" },
+          { "id": "l3-app-block-009-line-002", "speaker": "店員", "text": "500円です。", "kana": "ごひゃくえんです。", "translationZh": "500日元。", "confidence": "high", "rawText": "店員：500円です。" }
+        ]
+      }
+    ]
+  },
+  "warnings": [
+    "应用课文中的旁白和场景说明在教材页中以中文呈现，因此对应 block 的 text 与 translationZh 均保留中文原文，kana 为 null。"
+  ]
+}

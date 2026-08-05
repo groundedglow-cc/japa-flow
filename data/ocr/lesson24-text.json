@@ -1,0 +1,288 @@
+{
+  "lessonId": "lesson24",
+  "sourceImages": [
+    {
+      "section": "basic",
+      "path": "course-assets/by-lesson/lesson24/page282.webp",
+      "pageNo": 282
+    },
+    {
+      "section": "application",
+      "path": "course-assets/by-lesson/lesson24/page287.webp",
+      "pageNo": 287
+    }
+  ],
+  "basicText": {
+    "title": "基本课文",
+    "basicSentences": [
+      {
+        "id": "l24-basic-s001",
+        "order": 1,
+        "text": "李さんは もう すぐ 来ると 思います。",
+        "translationZh": "我想小李马上就来。",
+        "confidence": "high",
+        "rawText": "1. 李さんは もう すぐ 来ると 思います。"
+      },
+      {
+        "id": "l24-basic-s002",
+        "order": 2,
+        "text": "陳さんは パーティーに 行くと 言いました。",
+        "translationZh": "小陈说要去参加聚会。",
+        "confidence": "high",
+        "rawText": "2. 陳さんは パーティーに 行くと 言いました。"
+      },
+      {
+        "id": "l24-basic-s003",
+        "order": 3,
+        "text": "すみません、頭が 痛いんです。",
+        "translationZh": "不好意思，我头疼。",
+        "confidence": "high",
+        "rawText": "3. すみません、頭が 痛いんです。"
+      },
+      {
+        "id": "l24-basic-s004",
+        "order": 4,
+        "text": "東京タワーへ 行きたいんですが、どうやって 行きますか。",
+        "translationZh": "我想去东京塔，怎么去呢？",
+        "confidence": "high",
+        "rawText": "4. 東京タワーへ 行きたいんですが、どうやって 行きますか。"
+      }
+    ],
+    "dialogues": [
+      {
+        "id": "l24-basic-dialogue-001",
+        "label": "A",
+        "lines": [
+          {
+            "id": "l24-basic-dialogue-001-line-001",
+            "speaker": "甲",
+            "text": "日本の 音楽に ついて どう 思いますか。",
+            "translationZh": "你觉得日本音乐怎么样？",
+            "confidence": "high",
+            "rawText": "甲：日本の 音楽に ついて どう 思いますか。"
+          },
+          {
+            "id": "l24-basic-dialogue-001-line-002",
+            "speaker": "乙",
+            "text": "すばらしいと 思います。",
+            "translationZh": "我觉得很棒。",
+            "confidence": "high",
+            "rawText": "乙：すばらしいと 思います。"
+          }
+        ]
+      },
+      {
+        "id": "l24-basic-dialogue-002",
+        "label": "B",
+        "lines": [
+          {
+            "id": "l24-basic-dialogue-002-line-001",
+            "speaker": "甲",
+            "text": "課長は 何と 言いましたか。",
+            "translationZh": "科长说什么了？",
+            "confidence": "high",
+            "rawText": "甲：課長は 何と 言いましたか。"
+          },
+          {
+            "id": "l24-basic-dialogue-002-line-002",
+            "speaker": "乙",
+            "text": "午後から 出かけると 言いました。",
+            "translationZh": "他说下午出去。",
+            "confidence": "high",
+            "rawText": "乙：午後から 出かけると 言いました。"
+          }
+        ]
+      },
+      {
+        "id": "l24-basic-dialogue-003",
+        "label": "C",
+        "lines": [
+          {
+            "id": "l24-basic-dialogue-003-line-001",
+            "speaker": "甲",
+            "text": "どうして 食べないんですか。",
+            "translationZh": "为什么不吃呢？",
+            "confidence": "high",
+            "rawText": "甲：どうして 食べないんですか。"
+          },
+          {
+            "id": "l24-basic-dialogue-003-line-002",
+            "speaker": "乙",
+            "text": "もう おなかが いっぱいなんです。",
+            "translationZh": "我已经吃饱了。",
+            "confidence": "high",
+            "rawText": "乙：もう おなかが いっぱいなんです。"
+          }
+        ]
+      },
+      {
+        "id": "l24-basic-dialogue-004",
+        "label": "D",
+        "lines": [
+          {
+            "id": "l24-basic-dialogue-004-line-001",
+            "speaker": "甲",
+            "text": "李さんを 探して いるんですが、どこに いますか。",
+            "translationZh": "我在找小李，他在哪里？",
+            "confidence": "high",
+            "rawText": "甲：李さんを 探して いるんですが、どこに いますか。"
+          },
+          {
+            "id": "l24-basic-dialogue-004-line-002",
+            "speaker": "乙",
+            "text": "会議室に いると 思います。",
+            "translationZh": "我想在会议室。",
+            "confidence": "high",
+            "rawText": "乙：会議室に いると 思います。"
+          }
+        ]
+      }
+    ]
+  },
+  "applicationText": {
+    "title": "見送り",
+    "blocks": [
+      {
+        "id": "l24-app-block-001",
+        "type": "scene",
+        "text": "在候机大厅。",
+        "translationZh": "在候机大厅。",
+        "confidence": "high",
+        "rawText": "在候机大厅。"
+      },
+      {
+        "id": "l24-app-block-002",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l24-app-block-002-line-001",
+            "speaker": "小野",
+            "text": "とうとう お別れですね。",
+            "translationZh": "终于要分别了。",
+            "confidence": "high",
+            "rawText": "小野：とうとう お別れですね。"
+          },
+          {
+            "id": "l24-app-block-002-line-002",
+            "speaker": "李",
+            "text": "ありがとう ございました。本当に お世話に なりました。",
+            "translationZh": "谢谢。真的承蒙照顾了。",
+            "confidence": "high",
+            "rawText": "李：ありがとう ございました。本当に お世話に なりました。"
+          },
+          {
+            "id": "l24-app-block-002-line-003",
+            "speaker": "小野",
+            "text": "こちらこそ。短い 間でしたが、とても 楽しかったですよ。",
+            "translationZh": "我才要感谢你。虽然时间很短，但非常愉快。",
+            "confidence": "high",
+            "rawText": "小野：こちらこそ。短い 間でしたが、とても 楽しかったですよ。"
+          },
+          {
+            "id": "l24-app-block-002-line-004",
+            "speaker": "森",
+            "text": "課長は 出張中ですが、李さんに よろしくと 言って いましたよ。",
+            "translationZh": "科长在出差，他让我向你问好。",
+            "confidence": "high",
+            "rawText": "森：課長は 出張中ですが、李さんに よろしくと 言って いましたよ。"
+          },
+          {
+            "id": "l24-app-block-002-line-005",
+            "speaker": "李",
+            "text": "そうですか。どうぞ 吉田課長に よろしく お伝え ください。",
+            "translationZh": "是吗？请代我向吉田科长问好。",
+            "confidence": "high",
+            "rawText": "李：そうですか。どうぞ 吉田課長に よろしく お伝え ください。"
+          },
+          {
+            "id": "l24-app-block-002-line-006",
+            "speaker": "森",
+            "text": "ええ、必ず 伝えます。",
+            "translationZh": "好的，一定转达。",
+            "confidence": "high",
+            "rawText": "森：ええ、必ず 伝えます。"
+          }
+        ]
+      },
+      {
+        "id": "l24-app-block-003",
+        "type": "scene",
+        "text": "小野赠送礼品。",
+        "translationZh": "小野赠送礼品。",
+        "confidence": "high",
+        "rawText": "小野赠送礼品。"
+      },
+      {
+        "id": "l24-app-block-004",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l24-app-block-004-line-001",
+            "speaker": "小野",
+            "text": "これ、浴衣です。わたしが 作ったんですが、どうぞ。",
+            "translationZh": "这是浴衣。我做的，请收下。",
+            "confidence": "high",
+            "rawText": "小野：これ、浴衣です。わたしが 作ったんですが、どうぞ。"
+          },
+          {
+            "id": "l24-app-block-004-line-002",
+            "speaker": "李",
+            "text": "小野さんが 作ったんですか。すごいですね。ありがとう ございます。",
+            "translationZh": "是小野做的吗？真厉害。谢谢。",
+            "confidence": "high",
+            "rawText": "李：小野さんが 作ったんですか。すごいですね。ありがとう ございます。"
+          }
+        ]
+      },
+      {
+        "id": "l24-app-block-005",
+        "type": "scene",
+        "text": "分别的时间到了。",
+        "translationZh": "分别的时间到了。",
+        "confidence": "high",
+        "rawText": "分别的时间到了。"
+      },
+      {
+        "id": "l24-app-block-006",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l24-app-block-006-line-001",
+            "speaker": "李",
+            "text": "小野さん、森さん、いつか 北京へ 来て ください。",
+            "translationZh": "小野、森先生，以后请来北京。",
+            "confidence": "high",
+            "rawText": "李：小野さん、森さん、いつか 北京へ 来て ください。"
+          },
+          {
+            "id": "l24-app-block-006-line-002",
+            "speaker": "小野",
+            "text": "ええ、必ず 行きます。今度は 京劇を 見ましょう。李さん、お元気で。",
+            "translationZh": "好，一定去。下次看京剧吧。小李，请保重。",
+            "confidence": "high",
+            "rawText": "小野：ええ、必ず 行きます。今度は 京劇を 見ましょう。李さん、お元気で。"
+          },
+          {
+            "id": "l24-app-block-006-line-003",
+            "speaker": "森",
+            "text": "ぼくも いつか 北京へ 行きたいと 思います。李さん、どうぞ お気を つけて。",
+            "translationZh": "我也想什么时候去北京。小李，请一路小心。",
+            "confidence": "high",
+            "rawText": "森：ぼくも いつか 北京へ 行きたいと 思います。李さん、どうぞ お気を つけて。"
+          },
+          {
+            "id": "l24-app-block-006-line-004",
+            "speaker": "李",
+            "text": "さようなら。今度は 北京で 会いましょう。",
+            "translationZh": "再见。下次在北京见吧。",
+            "confidence": "high",
+            "rawText": "李：さようなら。今度は 北京で 会いましょう。"
+          }
+        ]
+      }
+    ]
+  },
+  "warnings": [
+    "segments/ruby 未批量生成；保留 text 与 translationZh，后续可单独补充 ruby 切片。"
+  ]
+}

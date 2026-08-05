@@ -1,0 +1,686 @@
+{
+  "lessonId": "lesson42",
+  "sourceImages": [
+    {
+      "section": "basic",
+      "path": "course-assets/by-lesson/lesson42/page198.webp",
+      "pageNo": 198
+    },
+    {
+      "section": "application",
+      "path": "course-assets/by-lesson/lesson42/page203.webp",
+      "pageNo": 203
+    }
+  ],
+  "basicText": {
+    "title": "テレビをつけたまま、出かけてしまいました",
+    "basicSentences": [
+      {
+        "id": "l42-basic-s001",
+        "order": 1,
+        "text": "テレビをつけたまま、出かけてしまいました。",
+        "translationZh": "我开着电视就出门了。",
+        "confidence": "high",
+        "rawText": "1. テレビをつけたまま、出かけてしまいました。",
+        "audioSegment": {
+          "id": "l42-basic-s001",
+          "trackId": "lesson_basic",
+          "sourceUrl": "/data/ocr/audio-clips/lesson42/l42-basic-s001.mp3",
+          "start": 0,
+          "end": 2.74,
+          "duration": 2.74,
+          "method": "approved-asr-alignment",
+          "confidence": "approved",
+          "reviewedAt": "2026-08-05T10:26:40.220Z",
+          "sourceAudioSha256": "dea4da14bad38f49c93766151e400485220b538d4ea29ecfef668cbc10acd3d6"
+        }
+      },
+      {
+        "id": "l42-basic-s002",
+        "order": 2,
+        "text": "目覚ましをかけておいたのに、今朝は起きられませんでした。",
+        "translationZh": "我明明设好了闹钟，今天早上却还是没能起床。",
+        "confidence": "high",
+        "rawText": "2. 目覚ましをかけておいたのに、今朝は起きられませんでした。",
+        "audioSegment": {
+          "id": "l42-basic-s002",
+          "trackId": "lesson_basic",
+          "sourceUrl": "/data/ocr/audio-clips/lesson42/l42-basic-s002.mp3",
+          "start": 0,
+          "end": 4.3,
+          "duration": 4.3,
+          "method": "approved-asr-alignment",
+          "confidence": "approved",
+          "reviewedAt": "2026-08-05T10:26:40.221Z",
+          "sourceAudioSha256": "dea4da14bad38f49c93766151e400485220b538d4ea29ecfef668cbc10acd3d6"
+        }
+      },
+      {
+        "id": "l42-basic-s003",
+        "order": 3,
+        "text": "会議は５時までですから、もうすぐ終わるはずです。",
+        "translationZh": "会议到5点为止，所以应该很快就结束了。",
+        "confidence": "high",
+        "rawText": "3. 会議は５時までですから、もうすぐ終わるはずです。",
+        "audioSegment": {
+          "id": "l42-basic-s003",
+          "trackId": "lesson_basic",
+          "sourceUrl": "/data/ocr/audio-clips/lesson42/l42-basic-s003.mp3",
+          "start": 0,
+          "end": 3.42,
+          "duration": 3.42,
+          "method": "approved-asr-alignment",
+          "confidence": "approved",
+          "reviewedAt": "2026-08-05T10:26:40.221Z",
+          "sourceAudioSha256": "dea4da14bad38f49c93766151e400485220b538d4ea29ecfef668cbc10acd3d6"
+        }
+      },
+      {
+        "id": "l42-basic-s004",
+        "order": 4,
+        "text": "張さんは入院中ですから、旅行に行くはずがありません。",
+        "translationZh": "张先生正在住院，所以不可能去旅行。",
+        "confidence": "high",
+        "rawText": "4. 張さんは入院中ですから、旅行に行くはずがありません。",
+        "audioSegment": {
+          "id": "l42-basic-s004",
+          "trackId": "lesson_basic",
+          "sourceUrl": "/data/ocr/audio-clips/lesson42/l42-basic-s004.mp3",
+          "start": 0,
+          "end": 4.62,
+          "duration": 4.62,
+          "method": "approved-asr-alignment",
+          "confidence": "approved",
+          "reviewedAt": "2026-08-05T10:26:40.221Z",
+          "sourceAudioSha256": "dea4da14bad38f49c93766151e400485220b538d4ea29ecfef668cbc10acd3d6"
+        }
+      }
+    ],
+    "dialogues": [
+      {
+        "id": "l42-basic-dialogue-001",
+        "label": "A",
+        "lines": [
+          {
+            "id": "l42-basic-dialogue-001-line-001",
+            "speaker": "甲",
+            "text": "昨日、窓を開けたまま寝たので、風邪を引いてしまいました。",
+            "translationZh": "昨天我开着窗户睡觉，所以感冒了。",
+            "confidence": "high",
+            "rawText": "甲：昨日、窓を開けたまま寝たので、風邪を引いてしまいました。",
+            "audioSegment": {
+              "id": "l42-basic-dialogue-001-line-001",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson42/l42-basic-dialogue-001-line-001.mp3",
+              "start": 0,
+              "end": 3.86,
+              "duration": 3.86,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:26:40.221Z",
+              "sourceAudioSha256": "dea4da14bad38f49c93766151e400485220b538d4ea29ecfef668cbc10acd3d6"
+            }
+          },
+          {
+            "id": "l42-basic-dialogue-001-line-002",
+            "speaker": "乙",
+            "text": "それはいけませんね。お大事に。",
+            "translationZh": "那可不行。请多保重。",
+            "confidence": "high",
+            "rawText": "乙：それはいけませんね。お大事に。",
+            "audioSegment": {
+              "id": "l42-basic-dialogue-001-line-002",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson42/l42-basic-dialogue-001-line-002.mp3",
+              "start": 0,
+              "end": 2.34,
+              "duration": 2.34,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:26:40.221Z",
+              "sourceAudioSha256": "dea4da14bad38f49c93766151e400485220b538d4ea29ecfef668cbc10acd3d6"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l42-basic-dialogue-002",
+        "label": "B",
+        "lines": [
+          {
+            "id": "l42-basic-dialogue-002-line-001",
+            "speaker": "甲",
+            "text": "すみません、このパソコン、電源を入れたのに動かないんですが・・・。",
+            "translationZh": "不好意思，这台电脑明明已经通电了却还是不工作……",
+            "confidence": "high",
+            "rawText": "甲：すみません、このパソコン、電源を入れたのに動かないんですが・・・。",
+            "audioSegment": {
+              "id": "l42-basic-dialogue-002-line-001",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson42/l42-basic-dialogue-002-line-001.mp3",
+              "start": 0,
+              "end": 5.02,
+              "duration": 5.02,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:26:40.221Z",
+              "sourceAudioSha256": "dea4da14bad38f49c93766151e400485220b538d4ea29ecfef668cbc10acd3d6"
+            }
+          },
+          {
+            "id": "l42-basic-dialogue-002-line-002",
+            "speaker": "乙",
+            "text": "ああ、そのパソコンは壊れているんです。",
+            "translationZh": "啊，那台电脑坏了。",
+            "confidence": "high",
+            "rawText": "乙：ああ、そのパソコンは壊れているんです。",
+            "audioSegment": {
+              "id": "l42-basic-dialogue-002-line-002",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson42/l42-basic-dialogue-002-line-002.mp3",
+              "start": 0,
+              "end": 2.74,
+              "duration": 2.74,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:26:40.221Z",
+              "sourceAudioSha256": "dea4da14bad38f49c93766151e400485220b538d4ea29ecfef668cbc10acd3d6"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l42-basic-dialogue-003",
+        "label": "C",
+        "lines": [
+          {
+            "id": "l42-basic-dialogue-003-line-001",
+            "speaker": "甲",
+            "text": "森さんはどこですか。",
+            "translationZh": "森先生在哪里？",
+            "confidence": "high",
+            "rawText": "甲：森さんはどこですか。",
+            "audioSegment": {
+              "id": "l42-basic-dialogue-003-line-001",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson42/l42-basic-dialogue-003-line-001.mp3",
+              "start": 0,
+              "end": 1.54,
+              "duration": 1.54,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:26:40.221Z",
+              "sourceAudioSha256": "dea4da14bad38f49c93766151e400485220b538d4ea29ecfef668cbc10acd3d6"
+            }
+          },
+          {
+            "id": "l42-basic-dialogue-003-line-002",
+            "speaker": "乙",
+            "text": "１時間ほど前に会社を出ましたから、もう家に着いているはずです。",
+            "translationZh": "他大约一小时前离开公司了，所以应该已经到家了。",
+            "confidence": "high",
+            "rawText": "乙：１時間ほど前に会社を出ましたから、もう家に着いているはずです。",
+            "audioSegment": {
+              "id": "l42-basic-dialogue-003-line-002",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson42/l42-basic-dialogue-003-line-002.mp3",
+              "start": 0,
+              "end": 4.62,
+              "duration": 4.62,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:26:40.221Z",
+              "sourceAudioSha256": "dea4da14bad38f49c93766151e400485220b538d4ea29ecfef668cbc10acd3d6"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l42-basic-dialogue-004",
+        "label": "D",
+        "lines": [
+          {
+            "id": "l42-basic-dialogue-004-line-001",
+            "speaker": "甲",
+            "text": "太田さん、遅いですね。",
+            "translationZh": "太田先生来得真晚啊。",
+            "confidence": "high",
+            "rawText": "甲：太田さん、遅いですね。",
+            "audioSegment": {
+              "id": "l42-basic-dialogue-004-line-001",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson42/l42-basic-dialogue-004-line-001.mp3",
+              "start": 0,
+              "end": 2.1,
+              "duration": 2.1,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:26:40.221Z",
+              "sourceAudioSha256": "dea4da14bad38f49c93766151e400485220b538d4ea29ecfef668cbc10acd3d6"
+            }
+          },
+          {
+            "id": "l42-basic-dialogue-004-line-002",
+            "speaker": "乙",
+            "text": "ええ。でも、太田さんは責任者ですから、遅れるはずはないんですが・・・。",
+            "translationZh": "是啊。不过太田先生是负责人，所以不应该会迟到才对……",
+            "confidence": "high",
+            "rawText": "乙：ええ。でも、太田さんは責任者ですから、遅れるはずはないんですが・・・。",
+            "audioSegment": {
+              "id": "l42-basic-dialogue-004-line-002",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson42/l42-basic-dialogue-004-line-002.mp3",
+              "start": 0,
+              "end": 5.94,
+              "duration": 5.94,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:26:40.221Z",
+              "sourceAudioSha256": "dea4da14bad38f49c93766151e400485220b538d4ea29ecfef668cbc10acd3d6"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "applicationText": {
+    "title": "企画案",
+    "blocks": [
+      {
+        "id": "l42-app-block-001",
+        "type": "narration",
+        "text": "JC策划北京分公司，以森和小李为主，制定了CS公司委托的新商品宣传策划方案。在策划方案说明会之前，为了征求意见，森把策划方案送到了CS公司。",
+        "kana": null,
+        "translationZh": "JC策划北京分公司，以森和小李为主，制定了CS公司委托的新商品宣传策划方案。在策划方案说明会之前，为了征求意见，森把策划方案送到了CS公司。",
+        "confidence": "high",
+        "rawText": "JC策划北京分公司，以森和小李为主，制定了CS公司委托的新商品宣传策划方案。在策划方案说明会之前，为了征求意见，森把策划方案送到了CS公司。"
+      },
+      {
+        "id": "l42-app-block-002",
+        "type": "scene",
+        "text": "加藤经理接到CS公司太田先生的电话后，向小李确认",
+        "kana": null,
+        "translationZh": "加藤经理接到CS公司太田先生的电话后，向小李确认。",
+        "confidence": "high",
+        "rawText": "（加藤经理接到CS公司太田先生的电话后，向小李确认）"
+      },
+      {
+        "id": "l42-app-block-003",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l42-app-block-003-line-001",
+            "speaker": "加藤",
+            "text": "今、太田さんから電話があったんだけど、まだ企画案が届いていないそうだよ。",
+            "kana": null,
+            "translationZh": "刚才太田先生来电话了，说策划方案还没有收到。",
+            "confidence": "high",
+            "rawText": "加藤：今、太田さんから電話があったんだけど、まだ企画案が届いていないそうだよ。",
+            "audioSegment": {
+              "id": "l42-app-block-003-line-001",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson42/l42-app-block-003-line-001.mp3",
+              "start": 0,
+              "end": 4.22,
+              "duration": 4.22,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:27:30.524Z",
+              "sourceAudioSha256": "3cd1334b0d88a515088c81505ba14f9f1d781e7adfb02e948f9bf41712edeea7"
+            }
+          },
+          {
+            "id": "l42-app-block-003-line-002",
+            "speaker": "李",
+            "text": "変ですね。森さんがおととい送ったはずですが。",
+            "kana": null,
+            "translationZh": "真奇怪。森先生应该是前天寄出的。",
+            "confidence": "high",
+            "rawText": "李：変ですね。森さんがおととい送ったはずですが。",
+            "audioSegment": {
+              "id": "l42-app-block-003-line-002",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson42/l42-app-block-003-line-002.mp3",
+              "start": 0,
+              "end": 2.9,
+              "duration": 2.9,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:27:30.524Z",
+              "sourceAudioSha256": "3cd1334b0d88a515088c81505ba14f9f1d781e7adfb02e948f9bf41712edeea7"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l42-app-block-004",
+        "type": "scene",
+        "text": "小李向森确认",
+        "kana": null,
+        "translationZh": "小李向森确认。",
+        "confidence": "high",
+        "rawText": "（小李向森确认）"
+      },
+      {
+        "id": "l42-app-block-005",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l42-app-block-005-line-001",
+            "speaker": "森",
+            "text": "ええ？　おかしいな。そんなはずはないですよ。",
+            "kana": null,
+            "translationZh": "咦？奇怪，不可能啊。",
+            "confidence": "high",
+            "rawText": "森：ええ？　おかしいな。そんなはずはないですよ。",
+            "audioSegment": {
+              "id": "l42-app-block-005-line-001",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson42/l42-app-block-005-line-001.mp3",
+              "start": 0,
+              "end": 3.94,
+              "duration": 3.94,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:27:30.524Z",
+              "sourceAudioSha256": "3cd1334b0d88a515088c81505ba14f9f1d781e7adfb02e948f9bf41712edeea7"
+            }
+          },
+          {
+            "id": "l42-app-block-005-line-002",
+            "speaker": "李",
+            "text": "そうですよね。おととい送ったんですものね。",
+            "kana": null,
+            "translationZh": "是啊，您前天就寄出了嘛。",
+            "confidence": "high",
+            "rawText": "李：そうですよね。おととい送ったんですものね。",
+            "audioSegment": {
+              "id": "l42-app-block-005-line-002",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson42/l42-app-block-005-line-002.mp3",
+              "start": 0,
+              "end": 3.26,
+              "duration": 3.26,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:27:30.524Z",
+              "sourceAudioSha256": "3cd1334b0d88a515088c81505ba14f9f1d781e7adfb02e948f9bf41712edeea7"
+            }
+          },
+          {
+            "id": "l42-app-block-005-line-003",
+            "speaker": "森",
+            "text": "いえ、自分で届けたんです。西長安街の方へ行く用事があったので。",
+            "kana": null,
+            "translationZh": "不是，是我亲自送去的。因为我正好要去西长安街那边办事。",
+            "confidence": "high",
+            "rawText": "森：いえ、自分で届けたんです。西長安街の方へ行く用事があったので。",
+            "audioSegment": {
+              "id": "l42-app-block-005-line-003",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson42/l42-app-block-005-line-003.mp3",
+              "start": 0,
+              "end": 4.45,
+              "duration": 4.45,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:27:30.524Z",
+              "sourceAudioSha256": "3cd1334b0d88a515088c81505ba14f9f1d781e7adfb02e948f9bf41712edeea7"
+            }
+          },
+          {
+            "id": "l42-app-block-005-line-004",
+            "speaker": "李",
+            "text": "じゃあ、太田さんに直接渡したんですか。",
+            "kana": null,
+            "translationZh": "那您是直接交给太田先生了吗？",
+            "confidence": "high",
+            "rawText": "李：じゃあ、太田さんに直接渡したんですか。",
+            "audioSegment": {
+              "id": "l42-app-block-005-line-004",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson42/l42-app-block-005-line-004.mp3",
+              "start": 0,
+              "end": 2.82,
+              "duration": 2.82,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:27:30.524Z",
+              "sourceAudioSha256": "3cd1334b0d88a515088c81505ba14f9f1d781e7adfb02e948f9bf41712edeea7"
+            }
+          },
+          {
+            "id": "l42-app-block-005-line-005",
+            "speaker": "森",
+            "text": "いいえ、太田さんは外出中でしたから、会社の人に預けてきました。",
+            "kana": null,
+            "translationZh": "没有，因为太田先生外出了，所以我交给了公司的人。",
+            "confidence": "high",
+            "rawText": "森：いいえ、太田さんは外出中でしたから、会社の人に預けてきました。",
+            "audioSegment": {
+              "id": "l42-app-block-005-line-005",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson42/l42-app-block-005-line-005.mp3",
+              "start": 0,
+              "end": 4.46,
+              "duration": 4.46,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:27:30.524Z",
+              "sourceAudioSha256": "3cd1334b0d88a515088c81505ba14f9f1d781e7adfb02e948f9bf41712edeea7"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l42-app-block-006",
+        "type": "scene",
+        "text": "不久太田先生给森打来电话",
+        "kana": null,
+        "translationZh": "不久太田先生给森打来电话。",
+        "confidence": "high",
+        "rawText": "（不久太田先生给森打来电话）"
+      },
+      {
+        "id": "l42-app-block-007",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l42-app-block-007-line-001",
+            "speaker": "太田",
+            "text": "すみません。企画案、届いていました。",
+            "kana": null,
+            "translationZh": "不好意思，策划方案已经收到了。",
+            "confidence": "high",
+            "rawText": "太田：すみません。企画案、届いていました。",
+            "audioSegment": {
+              "id": "l42-app-block-007-line-001",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson42/l42-app-block-007-line-001.mp3",
+              "start": 0,
+              "end": 2.42,
+              "duration": 2.42,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:27:30.524Z",
+              "sourceAudioSha256": "3cd1334b0d88a515088c81505ba14f9f1d781e7adfb02e948f9bf41712edeea7"
+            }
+          },
+          {
+            "id": "l42-app-block-007-line-002",
+            "speaker": "太田",
+            "text": "同僚が預かったままだったんです。",
+            "kana": null,
+            "translationZh": "原来是同事一直帮我收着。",
+            "confidence": "high",
+            "rawText": "同僚が預かったままだったんです。",
+            "audioSegment": {
+              "id": "l42-app-block-007-line-002",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson42/l42-app-block-007-line-002.mp3",
+              "start": 0,
+              "end": 1.7,
+              "duration": 1.7,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:27:30.524Z",
+              "sourceAudioSha256": "3cd1334b0d88a515088c81505ba14f9f1d781e7adfb02e948f9bf41712edeea7"
+            }
+          },
+          {
+            "id": "l42-app-block-007-line-003",
+            "speaker": "森",
+            "text": "そうだったんですか。よかったです。",
+            "kana": null,
+            "translationZh": "原来如此。太好了。",
+            "confidence": "high",
+            "rawText": "森：そうだったんですか。よかったです。",
+            "audioSegment": {
+              "id": "l42-app-block-007-line-003",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson42/l42-app-block-007-line-003.mp3",
+              "start": 0,
+              "end": 2.38,
+              "duration": 2.38,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:27:30.524Z",
+              "sourceAudioSha256": "3cd1334b0d88a515088c81505ba14f9f1d781e7adfb02e948f9bf41712edeea7"
+            }
+          },
+          {
+            "id": "l42-app-block-007-line-004",
+            "speaker": "太田",
+            "text": "せっかく来てくれたのに、留守にして、すみませんでした。",
+            "kana": null,
+            "translationZh": "您特意来一趟，我却不在家，实在抱歉。",
+            "confidence": "high",
+            "rawText": "太田：せっかく来てくれたのに、留守にして、すみませんでした。",
+            "audioSegment": {
+              "id": "l42-app-block-007-line-004",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson42/l42-app-block-007-line-004.mp3",
+              "start": 0,
+              "end": 2.86,
+              "duration": 2.86,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:27:30.524Z",
+              "sourceAudioSha256": "3cd1334b0d88a515088c81505ba14f9f1d781e7adfb02e948f9bf41712edeea7"
+            }
+          },
+          {
+            "id": "l42-app-block-007-line-005",
+            "speaker": "森",
+            "text": "いいえ、こちらこそ。連絡もせずに、訪ねてしまって。",
+            "kana": null,
+            "translationZh": "哪里哪里，反倒是我这边，没联系就冒昧来访了。",
+            "confidence": "high",
+            "rawText": "森：いいえ、こちらこそ。連絡もせずに、訪ねてしまって。",
+            "audioSegment": {
+              "id": "l42-app-block-007-line-005",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson42/l42-app-block-007-line-005.mp3",
+              "start": 0,
+              "end": 4.02,
+              "duration": 4.02,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:27:30.524Z",
+              "sourceAudioSha256": "3cd1334b0d88a515088c81505ba14f9f1d781e7adfb02e948f9bf41712edeea7"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l42-app-block-008",
+        "type": "scene",
+        "text": "通话结束前",
+        "kana": null,
+        "translationZh": "通话结束前。",
+        "confidence": "high",
+        "rawText": "（通话结束前）"
+      },
+      {
+        "id": "l42-app-block-009",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l42-app-block-009-line-001",
+            "speaker": "太田",
+            "text": "早速、企画案を検討してみます。",
+            "kana": null,
+            "translationZh": "我马上就来研究这份策划方案。",
+            "confidence": "high",
+            "rawText": "太田：早速、企画案を検討してみます。",
+            "audioSegment": {
+              "id": "l42-app-block-009-line-001",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson42/l42-app-block-009-line-001.mp3",
+              "start": 0,
+              "end": 2.74,
+              "duration": 2.74,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:27:30.524Z",
+              "sourceAudioSha256": "3cd1334b0d88a515088c81505ba14f9f1d781e7adfb02e948f9bf41712edeea7"
+            }
+          },
+          {
+            "id": "l42-app-block-009-line-002",
+            "speaker": "太田",
+            "text": "来週中には、お返事できるはずです。",
+            "kana": null,
+            "translationZh": "下周之内应该可以给您回复。",
+            "confidence": "high",
+            "rawText": "来週中には、お返事できるはずです。",
+            "audioSegment": {
+              "id": "l42-app-block-009-line-002",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson42/l42-app-block-009-line-002.mp3",
+              "start": 0,
+              "end": 1.66,
+              "duration": 1.66,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:27:30.524Z",
+              "sourceAudioSha256": "3cd1334b0d88a515088c81505ba14f9f1d781e7adfb02e948f9bf41712edeea7"
+            }
+          },
+          {
+            "id": "l42-app-block-009-line-003",
+            "speaker": "森",
+            "text": "よろしくお願いします。",
+            "kana": null,
+            "translationZh": "那就拜托了。",
+            "confidence": "high",
+            "rawText": "森：よろしくお願いします。",
+            "audioSegment": {
+              "id": "l42-app-block-009-line-003",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson42/l42-app-block-009-line-003.mp3",
+              "start": 0,
+              "end": 0.54,
+              "duration": 0.54,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:27:30.524Z",
+              "sourceAudioSha256": "3cd1334b0d88a515088c81505ba14f9f1d781e7adfb02e948f9bf41712edeea7"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "warnings": [
+    "课文页保留了原始正文与中文释义，未逐句补写 kana 或 segments 字段。",
+    "应用课文开头与分段提示本身为教材中的中文说明，按原文作为 narration/scene 保留。"
+  ],
+  "audioAlignment": {
+    "schemaVersion": 1,
+    "method": "approved-asr-alignment",
+    "sourceAlignment": "data/ocr/lesson42-text-audio-alignment.json",
+    "publishedAt": "2026-08-05T10:27:34.858Z",
+    "approvedSegments": 27
+  }
+}

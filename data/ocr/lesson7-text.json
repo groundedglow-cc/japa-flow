@@ -1,0 +1,104 @@
+{
+  "lessonId": "lesson7",
+  "sourceImages": [
+    {
+      "section": "basic",
+      "path": "course-assets/by-lesson/lesson7/page88.webp",
+      "pageNo": 88
+    },
+    {
+      "section": "application",
+      "path": "course-assets/by-lesson/lesson7/page93.webp",
+      "pageNo": 93
+    }
+  ],
+  "basicText": {
+    "title": "基本课文",
+    "basicSentences": [
+      { "id": "l7-basic-s001", "order": 1, "text": "李さんは 毎日 コーヒーを 飲みます。", "kana": "りさんは まいにち コーヒーを のみます。", "translationZh": "小李每天喝咖啡。", "confidence": "high", "rawText": "1. 李さんは 毎日 コーヒーを 飲みます。" },
+      { "id": "l7-basic-s002", "order": 2, "text": "李さんは 図書館で 勉強します。", "kana": "りさんは としょかんで べんきょうします。", "translationZh": "小李在图书馆学习。", "confidence": "high", "rawText": "2. 李さんは 図書館で 勉強します。" },
+      { "id": "l7-basic-s003", "order": 3, "text": "わたしは 毎朝 パンか お粥を 食べます。", "kana": "わたしは まいあさ パンか おかゆを たべます。", "translationZh": "我每天早上吃面包或粥。", "confidence": "high", "rawText": "3. わたしは 毎朝 パンか お粥を 食べます。" },
+      { "id": "l7-basic-s004", "order": 4, "text": "コーラと ケーキを ください。", "kana": "コーラと ケーキを ください。", "translationZh": "请给我可乐和蛋糕。", "confidence": "high", "rawText": "4. コーラと ケーキを ください。" }
+    ],
+    "dialogues": [
+      {
+        "id": "l7-basic-dialogue-001",
+        "label": "A",
+        "lines": [
+          { "id": "l7-basic-dialogue-001-line-001", "speaker": "甲", "text": "李さん、今朝 うちで 新聞を 読みましたか。", "kana": "りさん、けさ うちで しんぶんを よみましたか。", "translationZh": "小李，今天早上在家看报了吗？", "confidence": "high", "rawText": "甲：李さん、今朝 うちで 新聞を 読みましたか。" },
+          { "id": "l7-basic-dialogue-001-line-002", "speaker": "乙", "text": "いいえ、読みませんでした。", "kana": "いいえ、よみませんでした。", "translationZh": "没有，没看。", "confidence": "high", "rawText": "乙：いいえ、読みませんでした。" }
+        ]
+      },
+      {
+        "id": "l7-basic-dialogue-002",
+        "label": "B",
+        "lines": [
+          { "id": "l7-basic-dialogue-002-line-001", "speaker": "甲", "text": "今朝 何を 食べましたか。", "kana": "けさ なにを たべましたか。", "translationZh": "今天早上吃了什么？", "confidence": "high", "rawText": "甲：今朝 何を 食べましたか。" },
+          { "id": "l7-basic-dialogue-002-line-002", "speaker": "乙", "text": "何も 食べませんでした。", "kana": "なにも たべませんでした。", "translationZh": "什么也没吃。", "confidence": "high", "rawText": "乙：何も 食べませんでした。" }
+        ]
+      },
+      {
+        "id": "l7-basic-dialogue-003",
+        "label": "C",
+        "lines": [
+          { "id": "l7-basic-dialogue-003-line-001", "speaker": "甲", "text": "吉田さん、日曜日 何を しますか。", "kana": "よしださん、にちようび なにを しますか。", "translationZh": "吉田先生，星期天做什么？", "confidence": "high", "rawText": "甲：吉田さん、日曜日 何を しますか。" },
+          { "id": "l7-basic-dialogue-003-line-002", "speaker": "乙", "text": "テニスか ジョギングを します。", "kana": "テニスか ジョギングを します。", "translationZh": "打网球或者慢跑。", "confidence": "high", "rawText": "乙：テニスか ジョギングを します。" }
+        ]
+      },
+      {
+        "id": "l7-basic-dialogue-004",
+        "label": "D",
+        "lines": [
+          { "id": "l7-basic-dialogue-004-line-001", "speaker": "甲", "text": "いらっしゃいませ。", "kana": "いらっしゃいませ。", "translationZh": "欢迎光临。", "confidence": "high", "rawText": "甲：いらっしゃいませ。" },
+          { "id": "l7-basic-dialogue-004-line-002", "speaker": "乙", "text": "この ノートと 鉛筆を ください。", "kana": "この ノートと えんぴつを ください。", "translationZh": "请给我这个笔记本和铅笔。", "confidence": "high", "rawText": "乙：この ノートと 鉛筆を ください。" }
+        ]
+      }
+    ]
+  },
+  "applicationText": {
+    "title": "昼ご飯",
+    "blocks": [
+      { "id": "l7-app-block-001", "type": "narration", "text": "一天中午，小李和小野一起到外面去吃午饭。", "kana": null, "translationZh": "一天中午，小李和小野一起到外面去吃午饭。", "confidence": "high", "rawText": "一天中午，小李和小野一起到外面去吃午饭。" },
+      { "id": "l7-app-block-002", "type": "scene", "text": "（路上，她们遇见手提便利店袋子的吉田科长）", "kana": null, "translationZh": "路上，她们遇见手提便利店袋子的吉田科长。", "confidence": "high", "rawText": "（路上，她们遇见手提便利店袋子的吉田科长）" },
+      {
+        "id": "l7-app-block-003",
+        "type": "dialogue",
+        "lines": [
+          { "id": "l7-app-block-003-line-001", "speaker": "吉田", "text": "李さん、これから 昼ご飯ですか。", "kana": "りさん、これから ひるごはんですか。", "translationZh": "小李，现在去吃午饭吗？", "confidence": "high", "rawText": "吉田：李さん、これから 昼ご飯ですか。" },
+          { "id": "l7-app-block-003-line-002", "speaker": "李", "text": "はい、小野さんと いっしょに 行きます。", "kana": "はい、おのさんと いっしょに いきます。", "translationZh": "是的，和小野女士一起去。", "confidence": "high", "rawText": "李：はい、小野さんと いっしょに 行きます。" },
+          { "id": "l7-app-block-003-line-003", "speaker": "小野", "text": "課長は？", "kana": "かちょうは？", "translationZh": "科长呢？", "confidence": "high", "rawText": "小野：課長は？" },
+          { "id": "l7-app-block-003-line-004", "speaker": "吉田", "text": "コンビニで お弁当と お茶を 買いました。", "kana": "コンビニで おべんとうと おちゃを かいました。", "translationZh": "我在便利店买了盒饭和茶。", "confidence": "high", "rawText": "吉田：コンビニで お弁当と お茶を 買いました。" },
+          { "id": "l7-app-block-003-line-005", "speaker": "李", "text": "いつも コンビニですか。", "kana": "いつも コンビニですか。", "translationZh": "总是在便利店买吗？", "confidence": "high", "rawText": "李：いつも コンビニですか。" },
+          { "id": "l7-app-block-003-line-006", "speaker": "吉田", "text": "いいえ。いつもは そば屋で そばか うどんを 食べます。", "kana": "いいえ。いつもは そばやで そばか うどんを たべます。", "translationZh": "不。平时在荞麦面馆吃荞麦面或乌冬面。", "confidence": "high", "rawText": "吉田：いいえ。いつもは そば屋で そばか うどんを 食べます。" },
+          { "id": "l7-app-block-003-line-007", "speaker": "李", "text": "そうですか。", "kana": "そうですか。", "translationZh": "是吗。", "confidence": "high", "rawText": "李：そうですか。" },
+          { "id": "l7-app-block-003-line-008", "speaker": "小野", "text": "李さん、今日は そば屋へ 行きますか。", "kana": "りさん、きょうは そばやへ いきますか。", "translationZh": "小李，今天去荞麦面馆吗？", "confidence": "high", "rawText": "小野：李さん、今日は そば屋へ 行きますか。" },
+          { "id": "l7-app-block-003-line-009", "speaker": "李", "text": "そうですね。", "kana": "そうですね。", "translationZh": "好啊。", "confidence": "high", "rawText": "李：そうですね。" },
+          { "id": "l7-app-block-003-line-010", "speaker": "小野", "text": "じゃあ、課長、失礼します。", "kana": "じゃあ、かちょう、しつれいします。", "translationZh": "那么，科长，我们先告辞了。", "confidence": "high", "rawText": "小野：じゃあ、課長、失礼します。" },
+          { "id": "l7-app-block-003-line-011", "speaker": "吉田", "text": "いってらっしゃい。", "kana": "いってらっしゃい。", "translationZh": "你们走好。", "confidence": "high", "rawText": "吉田：いってらっしゃい。" }
+        ]
+      },
+      { "id": "l7-app-block-004", "type": "scene", "text": "（在面馆里）", "kana": null, "translationZh": "在面馆里。", "confidence": "high", "rawText": "（在面馆里）" },
+      {
+        "id": "l7-app-block-005",
+        "type": "dialogue",
+        "lines": [
+          { "id": "l7-app-block-005-line-001", "speaker": "店員", "text": "いらっしゃいませ。", "kana": "いらっしゃいませ。", "translationZh": "欢迎光临。", "confidence": "high", "rawText": "店員：いらっしゃいませ。" }
+        ]
+      },
+      { "id": "l7-app-block-006", "type": "scene", "text": "（看完菜单后叫店员）", "kana": null, "translationZh": "看完菜单后叫店员。", "confidence": "high", "rawText": "（看完菜单后叫店员）" },
+      {
+        "id": "l7-app-block-007",
+        "type": "dialogue",
+        "lines": [
+          { "id": "l7-app-block-007-line-001", "speaker": "小野", "text": "すみません、親子丼を ください。李さんは？", "kana": "すみません、おやこどんを ください。りさんは？", "translationZh": "劳驾，请给我鸡肉鸡蛋盖饭。小李呢？", "confidence": "high", "rawText": "小野：すみません、親子丼を ください。李さんは？" },
+          { "id": "l7-app-block-007-line-002", "speaker": "李", "text": "わたしも それを ください。", "kana": "わたしも それを ください。", "translationZh": "我也要那个。", "confidence": "high", "rawText": "李：わたしも それを ください。" },
+          { "id": "l7-app-block-007-line-003", "speaker": "店員", "text": "かしこまりました。", "kana": "かしこまりました。", "translationZh": "好的，知道了。", "confidence": "high", "rawText": "店員：かしこまりました。" }
+        ]
+      }
+    ]
+  },
+  "warnings": [
+    "课文页中的旁白和场景说明以中文呈现，因此对应 block 的 text 与 translationZh 均保留中文原文，kana 为 null。",
+    "未输出 segments；已保留可可靠识别的整句 kana。"
+  ]
+}

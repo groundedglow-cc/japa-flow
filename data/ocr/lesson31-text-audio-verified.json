@@ -1,0 +1,672 @@
+{
+  "lessonId": "lesson31",
+  "sourceImages": [
+    {
+      "section": "basic",
+      "path": "course-assets/by-lesson/lesson31/page70.webp",
+      "pageNo": 70
+    },
+    {
+      "section": "application",
+      "path": "course-assets/by-lesson/lesson31/page75.webp",
+      "pageNo": 75
+    }
+  ],
+  "basicText": {
+    "title": "基本课文",
+    "basicSentences": [
+      {
+        "id": "l31-basic-s001",
+        "order": 1,
+        "text": "このボタンを押すと、電源が入ります。",
+        "translationZh": "按这个按钮，电源就会接通。",
+        "confidence": "high",
+        "rawText": "1. このボタンを押すと、電源が入ります。",
+        "audioSegment": {
+          "id": "l31-basic-s001",
+          "trackId": "lesson_basic",
+          "sourceUrl": "/data/ocr/audio-clips/lesson31/l31-basic-s001.mp3",
+          "start": 0,
+          "end": 2.82,
+          "duration": 2.82,
+          "method": "approved-asr-alignment",
+          "confidence": "approved",
+          "reviewedAt": "2026-08-05T10:10:17.883Z",
+          "sourceAudioSha256": "5ca7aea2d6ffc6fea6f77a2a5b5ba9d1ebd13c7cfa2f0420e508c44d6ae08776"
+        }
+      },
+      {
+        "id": "l31-basic-s002",
+        "order": 2,
+        "text": "そのパソコンは、たまにフリーズすることがあります。",
+        "translationZh": "那台电脑有时会死机。",
+        "confidence": "high",
+        "rawText": "2. そのパソコンは、たまにフリーズすることがあります。",
+        "audioSegment": {
+          "id": "l31-basic-s002",
+          "trackId": "lesson_basic",
+          "sourceUrl": "/data/ocr/audio-clips/lesson31/l31-basic-s002.mp3",
+          "start": 0,
+          "end": 3.94,
+          "duration": 3.94,
+          "method": "approved-asr-alignment",
+          "confidence": "approved",
+          "reviewedAt": "2026-08-05T10:10:17.883Z",
+          "sourceAudioSha256": "5ca7aea2d6ffc6fea6f77a2a5b5ba9d1ebd13c7cfa2f0420e508c44d6ae08776"
+        }
+      },
+      {
+        "id": "l31-basic-s003",
+        "order": 3,
+        "text": "馬さんはとても上手にレポートをまとめました。",
+        "translationZh": "小马把报告整理得非常好。",
+        "confidence": "high",
+        "rawText": "3. 馬さんはとても上手にレポートをまとめました。",
+        "audioSegment": {
+          "id": "l31-basic-s003",
+          "trackId": "lesson_basic",
+          "sourceUrl": "/data/ocr/audio-clips/lesson31/l31-basic-s003.mp3",
+          "start": 0,
+          "end": 3.58,
+          "duration": 3.58,
+          "method": "approved-asr-alignment",
+          "confidence": "approved",
+          "reviewedAt": "2026-08-05T10:10:17.883Z",
+          "sourceAudioSha256": "5ca7aea2d6ffc6fea6f77a2a5b5ba9d1ebd13c7cfa2f0420e508c44d6ae08776"
+        }
+      },
+      {
+        "id": "l31-basic-s004",
+        "order": 4,
+        "text": "李さんは来るでしょうか。",
+        "translationZh": "小李会来吗？",
+        "confidence": "high",
+        "rawText": "4. 李さんは来るでしょうか。",
+        "audioSegment": {
+          "id": "l31-basic-s004",
+          "trackId": "lesson_basic",
+          "sourceUrl": "/data/ocr/audio-clips/lesson31/l31-basic-s004.mp3",
+          "start": 0,
+          "end": 1.7,
+          "duration": 1.7,
+          "method": "approved-asr-alignment",
+          "confidence": "approved",
+          "reviewedAt": "2026-08-05T10:10:17.883Z",
+          "sourceAudioSha256": "5ca7aea2d6ffc6fea6f77a2a5b5ba9d1ebd13c7cfa2f0420e508c44d6ae08776"
+        }
+      }
+    ],
+    "dialogues": [
+      {
+        "id": "l31-basic-dialogue-001",
+        "label": "A",
+        "lines": [
+          {
+            "id": "l31-basic-dialogue-001-line-001",
+            "speaker": "甲",
+            "text": "すみません。市役所へはどう行くんですか。",
+            "translationZh": "请问，去市政府怎么走？",
+            "confidence": "high",
+            "rawText": "甲：すみません。市役所へはどう行くんですか。",
+            "audioSegment": {
+              "id": "l31-basic-dialogue-001-line-001",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson31/l31-basic-dialogue-001-line-001.mp3",
+              "start": 0,
+              "end": 3.5,
+              "duration": 3.5,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:10:17.883Z",
+              "sourceAudioSha256": "5ca7aea2d6ffc6fea6f77a2a5b5ba9d1ebd13c7cfa2f0420e508c44d6ae08776"
+            }
+          },
+          {
+            "id": "l31-basic-dialogue-001-line-002",
+            "speaker": "乙",
+            "text": "この道をまっすぐ行くと、デパートがあります。市役所はその隣ですよ。",
+            "translationZh": "沿这条路一直走有一家百货商店。市政府就在它旁边。",
+            "confidence": "high",
+            "rawText": "乙：この道をまっすぐ行くと、デパートがあります。市役所はその隣ですよ。",
+            "audioSegment": {
+              "id": "l31-basic-dialogue-001-line-002",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson31/l31-basic-dialogue-001-line-002.mp3",
+              "start": 0,
+              "end": 6.3,
+              "duration": 6.3,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:10:17.883Z",
+              "sourceAudioSha256": "5ca7aea2d6ffc6fea6f77a2a5b5ba9d1ebd13c7cfa2f0420e508c44d6ae08776"
+            }
+          },
+          {
+            "id": "l31-basic-dialogue-001-line-003",
+            "speaker": "甲",
+            "text": "ありがとうございます。",
+            "translationZh": "谢谢。",
+            "confidence": "high",
+            "rawText": "甲：ありがとうございます。",
+            "audioSegment": {
+              "id": "l31-basic-dialogue-001-line-003",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson31/l31-basic-dialogue-001-line-003.mp3",
+              "start": 0,
+              "end": 1.38,
+              "duration": 1.38,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:10:17.883Z",
+              "sourceAudioSha256": "5ca7aea2d6ffc6fea6f77a2a5b5ba9d1ebd13c7cfa2f0420e508c44d6ae08776"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l31-basic-dialogue-002",
+        "label": "B",
+        "lines": [
+          {
+            "id": "l31-basic-dialogue-002-line-001",
+            "speaker": "甲",
+            "text": "朝ご飯は毎日きちんと食べますか。",
+            "translationZh": "你每天都好好吃早饭吗？",
+            "confidence": "high",
+            "rawText": "甲：朝ご飯は毎日きちんと食べますか。",
+            "audioSegment": {
+              "id": "l31-basic-dialogue-002-line-001",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson31/l31-basic-dialogue-002-line-001.mp3",
+              "start": 0,
+              "end": 3.3,
+              "duration": 3.3,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:10:17.883Z",
+              "sourceAudioSha256": "5ca7aea2d6ffc6fea6f77a2a5b5ba9d1ebd13c7cfa2f0420e508c44d6ae08776"
+            }
+          },
+          {
+            "id": "l31-basic-dialogue-002-line-002",
+            "speaker": "乙",
+            "text": "ええ。でも、たまに食べないことがあります。",
+            "translationZh": "是的。不过，有时也不吃。",
+            "confidence": "high",
+            "rawText": "乙：ええ。でも、たまに食べないことがあります。",
+            "audioSegment": {
+              "id": "l31-basic-dialogue-002-line-002",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson31/l31-basic-dialogue-002-line-002.mp3",
+              "start": 0,
+              "end": 4.06,
+              "duration": 4.06,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:10:17.883Z",
+              "sourceAudioSha256": "5ca7aea2d6ffc6fea6f77a2a5b5ba9d1ebd13c7cfa2f0420e508c44d6ae08776"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l31-basic-dialogue-003",
+        "label": "C",
+        "lines": [
+          {
+            "id": "l31-basic-dialogue-003-line-001",
+            "speaker": "甲",
+            "text": "あっ、雨ですよ。",
+            "translationZh": "啊，下雨了。",
+            "confidence": "high",
+            "rawText": "甲：あっ、雨ですよ。",
+            "audioSegment": {
+              "id": "l31-basic-dialogue-003-line-001",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson31/l31-basic-dialogue-003-line-001.mp3",
+              "start": 0,
+              "end": 1.66,
+              "duration": 1.66,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:10:17.883Z",
+              "sourceAudioSha256": "5ca7aea2d6ffc6fea6f77a2a5b5ba9d1ebd13c7cfa2f0420e508c44d6ae08776"
+            }
+          },
+          {
+            "id": "l31-basic-dialogue-003-line-002",
+            "speaker": "乙",
+            "text": "本当ですね。早く家に帰りましょう。",
+            "translationZh": "真的呢。我们快回家吧。",
+            "confidence": "high",
+            "rawText": "乙：本当ですね。早く家に帰りましょう。",
+            "audioSegment": {
+              "id": "l31-basic-dialogue-003-line-002",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson31/l31-basic-dialogue-003-line-002.mp3",
+              "start": 0,
+              "end": 3.78,
+              "duration": 3.78,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:10:17.883Z",
+              "sourceAudioSha256": "5ca7aea2d6ffc6fea6f77a2a5b5ba9d1ebd13c7cfa2f0420e508c44d6ae08776"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l31-basic-dialogue-004",
+        "label": "D",
+        "lines": [
+          {
+            "id": "l31-basic-dialogue-004-line-001",
+            "speaker": "甲",
+            "text": "すみません、馬さんはどちらでしょうか。",
+            "translationZh": "请问，小马在哪里？",
+            "confidence": "high",
+            "rawText": "甲：すみません、馬さんはどちらでしょうか。",
+            "audioSegment": {
+              "id": "l31-basic-dialogue-004-line-001",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson31/l31-basic-dialogue-004-line-001.mp3",
+              "start": 0,
+              "end": 2.9,
+              "duration": 2.9,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:10:17.883Z",
+              "sourceAudioSha256": "5ca7aea2d6ffc6fea6f77a2a5b5ba9d1ebd13c7cfa2f0420e508c44d6ae08776"
+            }
+          },
+          {
+            "id": "l31-basic-dialogue-004-line-002",
+            "speaker": "乙",
+            "text": "馬さんはさっき出かけましたよ。",
+            "translationZh": "小马刚才出去了。",
+            "confidence": "high",
+            "rawText": "乙：馬さんはさっき出かけましたよ。",
+            "audioSegment": {
+              "id": "l31-basic-dialogue-004-line-002",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson31/l31-basic-dialogue-004-line-002.mp3",
+              "start": 0,
+              "end": 2.62,
+              "duration": 2.62,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:10:17.883Z",
+              "sourceAudioSha256": "5ca7aea2d6ffc6fea6f77a2a5b5ba9d1ebd13c7cfa2f0420e508c44d6ae08776"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "applicationText": {
+    "title": "散歩",
+    "blocks": [
+      {
+        "id": "l31-app-block-001",
+        "type": "narration",
+        "text": "北京分公司附近有大小不一的各类公园，有的公园里，还有用混凝土做的乒乓球台。一天，吃完午饭后，森和小马在公司附近散步。",
+        "translationZh": "北京分公司附近有各种大小不同的公园，有些公园还有混凝土做的乒乓球台。一天午饭后，森和小马在公司附近散步。",
+        "confidence": "high",
+        "rawText": "北京分公司附近有大小不一的各类公园，有的公园里，还有用混凝土做的乒乓球台。一天，吃完午饭后，森和小马在公司附近散步。"
+      },
+      {
+        "id": "l31-app-block-002",
+        "type": "scene",
+        "text": "两人走到了一个公园附近",
+        "translationZh": "两人走到了一个公园附近。",
+        "confidence": "high",
+        "rawText": "（两人走到了一个公园附近）"
+      },
+      {
+        "id": "l31-app-block-003",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l31-app-block-003-line-001",
+            "speaker": "馬",
+            "text": "ここを曲がると小さな公園があって、子供たちがよく卓球をしているんですよ。",
+            "translationZh": "在这里拐弯有一个小公园，孩子们常常在那里打乒乓球。",
+            "confidence": "high",
+            "rawText": "馬：ここを曲がると小さな公園があって、子供たちがよく卓球をしているんですよ。",
+            "audioSegment": {
+              "id": "l31-app-block-003-line-001",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson31/l31-app-block-003-line-001.mp3",
+              "start": 0,
+              "end": 5.58,
+              "duration": 5.58,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:11:21.193Z",
+              "sourceAudioSha256": "812e92d2eb85144ca2cf86ba1318db6303dd8fcfc9441022339ec2b67d7b497b"
+            }
+          },
+          {
+            "id": "l31-app-block-003-line-002",
+            "speaker": "森",
+            "text": "卓球ですか？ 公園で？",
+            "translationZh": "乒乓球？在公园里？",
+            "confidence": "high",
+            "rawText": "森：卓球ですか？ 公園で？",
+            "audioSegment": {
+              "id": "l31-app-block-003-line-002",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson31/l31-app-block-003-line-002.mp3",
+              "start": 0,
+              "end": 2.34,
+              "duration": 2.34,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:11:21.193Z",
+              "sourceAudioSha256": "812e92d2eb85144ca2cf86ba1318db6303dd8fcfc9441022339ec2b67d7b497b"
+            }
+          },
+          {
+            "id": "l31-app-block-003-line-003",
+            "speaker": "馬",
+            "text": "そうです。その公園にはコンクリートでできた卓球台があるんです。",
+            "translationZh": "是的。那个公园里有用混凝土做的乒乓球台。",
+            "confidence": "high",
+            "rawText": "馬：そうです。その公園にはコンクリートでできた卓球台があるんです。",
+            "audioSegment": {
+              "id": "l31-app-block-003-line-003",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson31/l31-app-block-003-line-003.mp3",
+              "start": 0,
+              "end": 4.46,
+              "duration": 4.46,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:11:21.193Z",
+              "sourceAudioSha256": "812e92d2eb85144ca2cf86ba1318db6303dd8fcfc9441022339ec2b67d7b497b"
+            }
+          },
+          {
+            "id": "l31-app-block-003-line-004",
+            "speaker": "森",
+            "text": "コンクリートの卓球台？ へえ、おもしろいですね。",
+            "translationZh": "混凝土的乒乓球台？哦，很有意思啊。",
+            "confidence": "high",
+            "rawText": "森：コンクリートの卓球台？ へえ、おもしろいですね。",
+            "audioSegment": {
+              "id": "l31-app-block-003-line-004",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson31/l31-app-block-003-line-004.mp3",
+              "start": 0,
+              "end": 4.02,
+              "duration": 4.02,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:11:21.193Z",
+              "sourceAudioSha256": "812e92d2eb85144ca2cf86ba1318db6303dd8fcfc9441022339ec2b67d7b497b"
+            }
+          },
+          {
+            "id": "l31-app-block-003-line-005",
+            "speaker": "馬",
+            "text": "ええ、卓球をしたい時にいつでもできるんです。たまに公園のそばを通ることがあるんですが、必ずだれかがやっていますね。",
+            "translationZh": "是的，想打乒乓球时随时都能打。我有时经过公园旁边，总会看到有人在打。",
+            "confidence": "high",
+            "rawText": "馬：ええ、卓球をしたい時にいつでもできるんです。たまに公園のそばを通ることがあるんですが、必ずだれかがやっていますね。",
+            "audioSegment": {
+              "id": "l31-app-block-003-line-005",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson31/l31-app-block-003-line-005.mp3",
+              "start": 0,
+              "end": 8.5,
+              "duration": 8.5,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:11:21.193Z",
+              "sourceAudioSha256": "812e92d2eb85144ca2cf86ba1318db6303dd8fcfc9441022339ec2b67d7b497b"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l31-app-block-004",
+        "type": "scene",
+        "text": "看着前方",
+        "translationZh": "看着前方。",
+        "confidence": "high",
+        "rawText": "（看着前方）"
+      },
+      {
+        "id": "l31-app-block-005",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l31-app-block-005-line-001",
+            "speaker": "馬",
+            "text": "ここから300メートルほど行くと、スポーツセンターがあります。",
+            "translationZh": "从这里走大约300米，有一个体育中心。",
+            "confidence": "high",
+            "rawText": "馬：ここから300メートルほど行くと、スポーツセンターがあります。",
+            "audioSegment": {
+              "id": "l31-app-block-005-line-001",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson31/l31-app-block-005-line-001.mp3",
+              "start": 0,
+              "end": 3.78,
+              "duration": 3.78,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:11:21.193Z",
+              "sourceAudioSha256": "812e92d2eb85144ca2cf86ba1318db6303dd8fcfc9441022339ec2b67d7b497b"
+            }
+          },
+          {
+            "id": "l31-app-block-005-line-002",
+            "speaker": "森",
+            "text": "スポーツセンター？ だれでも自由に利用することができるんでしょうか。",
+            "translationZh": "体育中心？谁都可以自由使用吗？",
+            "confidence": "high",
+            "rawText": "森：スポーツセンター？ だれでも自由に利用することができるんでしょうか。",
+            "audioSegment": {
+              "id": "l31-app-block-005-line-002",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson31/l31-app-block-005-line-002.mp3",
+              "start": 0,
+              "end": 4.5,
+              "duration": 4.5,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:11:21.193Z",
+              "sourceAudioSha256": "812e92d2eb85144ca2cf86ba1318db6303dd8fcfc9441022339ec2b67d7b497b"
+            }
+          },
+          {
+            "id": "l31-app-block-005-line-003",
+            "speaker": "馬",
+            "text": "ええ、だれでも利用することができます。ただし、有料ですが。",
+            "translationZh": "是的，谁都可以使用。不过，是收费的。",
+            "confidence": "high",
+            "rawText": "馬：ええ、だれでも利用することができます。ただし、有料ですが。",
+            "audioSegment": {
+              "id": "l31-app-block-005-line-003",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson31/l31-app-block-005-line-003.mp3",
+              "start": 0,
+              "end": 3.66,
+              "duration": 3.66,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:11:21.193Z",
+              "sourceAudioSha256": "812e92d2eb85144ca2cf86ba1318db6303dd8fcfc9441022339ec2b67d7b497b"
+            }
+          },
+          {
+            "id": "l31-app-block-005-line-004",
+            "speaker": "森",
+            "text": "馬さんもよく利用するんですか。",
+            "translationZh": "小马你也经常使用吗？",
+            "confidence": "high",
+            "rawText": "森：馬さんもよく利用するんですか。",
+            "audioSegment": {
+              "id": "l31-app-block-005-line-004",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson31/l31-app-block-005-line-004.mp3",
+              "start": 0,
+              "end": 1.98,
+              "duration": 1.98,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:11:21.193Z",
+              "sourceAudioSha256": "812e92d2eb85144ca2cf86ba1318db6303dd8fcfc9441022339ec2b67d7b497b"
+            }
+          },
+          {
+            "id": "l31-app-block-005-line-005",
+            "speaker": "馬",
+            "text": "たまにプールで泳ぐことがあります。でも、会員じゃないと夜8時以降は利用することができないんです。だから会員になろうと思っているんです。",
+            "translationZh": "我有时会在游泳池游泳。不过，不是会员的话晚上8点以后就不能使用。所以我想成为会员。",
+            "confidence": "high",
+            "rawText": "馬：たまにプールで泳ぐことがあります。でも、会員じゃないと夜8時以降は利用することができないんです。だから会員になろうと思っているんです。",
+            "audioSegment": {
+              "id": "l31-app-block-005-line-005",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson31/l31-app-block-005-line-005.mp3",
+              "start": 0,
+              "end": 9.25,
+              "duration": 9.25,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:11:21.193Z",
+              "sourceAudioSha256": "812e92d2eb85144ca2cf86ba1318db6303dd8fcfc9441022339ec2b67d7b497b"
+            }
+          },
+          {
+            "id": "l31-app-block-005-line-006",
+            "speaker": "森",
+            "text": "会員になると、何かほかにも特典があるんですか。",
+            "translationZh": "成为会员还有别的优惠吗？",
+            "confidence": "high",
+            "rawText": "森：会員になると、何かほかにも特典があるんですか。",
+            "audioSegment": {
+              "id": "l31-app-block-005-line-006",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson31/l31-app-block-005-line-006.mp3",
+              "start": 0,
+              "end": 3.58,
+              "duration": 3.58,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:11:21.193Z",
+              "sourceAudioSha256": "812e92d2eb85144ca2cf86ba1318db6303dd8fcfc9441022339ec2b67d7b497b"
+            }
+          },
+          {
+            "id": "l31-app-block-005-line-007",
+            "speaker": "馬",
+            "text": "会員の家族も安く利用することができるんです。",
+            "translationZh": "会员的家属也可以便宜地使用。",
+            "confidence": "high",
+            "rawText": "馬：会員の家族も安く利用することができるんです。",
+            "audioSegment": {
+              "id": "l31-app-block-005-line-007",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson31/l31-app-block-005-line-007.mp3",
+              "start": 0,
+              "end": 3.18,
+              "duration": 3.18,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:11:21.193Z",
+              "sourceAudioSha256": "812e92d2eb85144ca2cf86ba1318db6303dd8fcfc9441022339ec2b67d7b497b"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l31-app-block-006",
+        "type": "scene",
+        "text": "走了一会儿",
+        "translationZh": "走了一会儿。",
+        "confidence": "high",
+        "rawText": "（走了一会儿）"
+      },
+      {
+        "id": "l31-app-block-007",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l31-app-block-007-line-001",
+            "speaker": "森",
+            "text": "今何時でしょうか。",
+            "translationZh": "现在几点了？",
+            "confidence": "high",
+            "rawText": "森：今何時でしょうか。",
+            "audioSegment": {
+              "id": "l31-app-block-007-line-001",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson31/l31-app-block-007-line-001.mp3",
+              "start": 0,
+              "end": 1.5,
+              "duration": 1.5,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:11:21.193Z",
+              "sourceAudioSha256": "812e92d2eb85144ca2cf86ba1318db6303dd8fcfc9441022339ec2b67d7b497b"
+            }
+          },
+          {
+            "id": "l31-app-block-007-line-002",
+            "speaker": "馬",
+            "text": "もうすぐ1時15分になります。",
+            "translationZh": "马上就一点十五分了。",
+            "confidence": "high",
+            "rawText": "馬：もうすぐ1時15分になります。",
+            "audioSegment": {
+              "id": "l31-app-block-007-line-002",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson31/l31-app-block-007-line-002.mp3",
+              "start": 0,
+              "end": 2.74,
+              "duration": 2.74,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:11:21.193Z",
+              "sourceAudioSha256": "812e92d2eb85144ca2cf86ba1318db6303dd8fcfc9441022339ec2b67d7b497b"
+            }
+          },
+          {
+            "id": "l31-app-block-007-line-003",
+            "speaker": "森",
+            "text": "じゃあ、早く帰らないと、午後の会議が始まりますね。",
+            "translationZh": "那么不快点回去，下午的会议就要开始了。",
+            "confidence": "high",
+            "rawText": "森：じゃあ、早く帰らないと、午後の会議が始まりますね。",
+            "audioSegment": {
+              "id": "l31-app-block-007-line-003",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson31/l31-app-block-007-line-003.mp3",
+              "start": 0,
+              "end": 3.74,
+              "duration": 3.74,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T10:11:21.193Z",
+              "sourceAudioSha256": "812e92d2eb85144ca2cf86ba1318db6303dd8fcfc9441022339ec2b67d7b497b"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "warnings": [
+    "扫描页中的假名标注不适合可靠地逐句切分，未生成 kana 或 segments 字段。",
+    "应用课文的开场旁白和场景说明在教材中以中文排印，按原文保留在 text 字段中。"
+  ],
+  "audioAlignment": {
+    "schemaVersion": 1,
+    "method": "approved-asr-alignment",
+    "sourceAlignment": "data/ocr/lesson31-text-audio-alignment.json",
+    "publishedAt": "2026-08-05T10:11:27.326Z",
+    "approvedSegments": 28
+  }
+}

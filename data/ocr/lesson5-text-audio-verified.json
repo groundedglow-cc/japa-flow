@@ -1,0 +1,683 @@
+{
+  "lessonId": "lesson5",
+  "sourceImages": [
+    {
+      "section": "basic",
+      "path": "course-assets/by-lesson/lesson5/page68.webp",
+      "pageNo": 68
+    },
+    {
+      "section": "application",
+      "path": "course-assets/by-lesson/lesson5/page73.webp",
+      "pageNo": 73
+    }
+  ],
+  "basicText": {
+    "title": "基本课文",
+    "basicSentences": [
+      {
+        "id": "l5-basic-s001",
+        "order": 1,
+        "text": "今 4時です。",
+        "kana": "いま よじです。",
+        "translationZh": "现在4点。",
+        "confidence": "high",
+        "rawText": "1. 今 4時です。",
+        "audioSegment": {
+          "id": "l5-basic-s001",
+          "trackId": "lesson_basic",
+          "sourceUrl": "/data/ocr/audio-clips/lesson5/l5-basic-s001.mp3",
+          "start": 0,
+          "end": 1.5,
+          "duration": 1.5,
+          "method": "approved-asr-alignment",
+          "confidence": "approved",
+          "reviewedAt": "2026-08-05T08:26:28.063Z",
+          "sourceAudioSha256": "912d8e507821136651fc72195b7cd468537835e48d506923742dc5a224c5ffaa"
+        }
+      },
+      {
+        "id": "l5-basic-s002",
+        "order": 2,
+        "text": "森さんは 7時に 起きます。",
+        "kana": "もりさんは しちじに おきます。",
+        "translationZh": "森先生7点起床。",
+        "confidence": "high",
+        "rawText": "2. 森さんは 7時に 起きます。",
+        "audioSegment": {
+          "id": "l5-basic-s002",
+          "trackId": "lesson_basic",
+          "sourceUrl": "/data/ocr/audio-clips/lesson5/l5-basic-s002.mp3",
+          "start": 0,
+          "end": 2.5,
+          "duration": 2.5,
+          "method": "approved-asr-alignment",
+          "confidence": "approved",
+          "reviewedAt": "2026-08-05T08:26:28.063Z",
+          "sourceAudioSha256": "912d8e507821136651fc72195b7cd468537835e48d506923742dc5a224c5ffaa"
+        }
+      },
+      {
+        "id": "l5-basic-s003",
+        "order": 3,
+        "text": "森さんは 先週 休みました。",
+        "kana": "もりさんは せんしゅう やすみました。",
+        "translationZh": "森先生上周休息了。",
+        "confidence": "high",
+        "rawText": "3. 森さんは 先週 休みました。",
+        "audioSegment": {
+          "id": "l5-basic-s003",
+          "trackId": "lesson_basic",
+          "sourceUrl": "/data/ocr/audio-clips/lesson5/l5-basic-s003.mp3",
+          "start": 0,
+          "end": 2.78,
+          "duration": 2.78,
+          "method": "approved-asr-alignment",
+          "confidence": "approved",
+          "reviewedAt": "2026-08-05T08:26:28.063Z",
+          "sourceAudioSha256": "912d8e507821136651fc72195b7cd468537835e48d506923742dc5a224c5ffaa"
+        }
+      },
+      {
+        "id": "l5-basic-s004",
+        "order": 4,
+        "text": "わたしは 昨日 働きませんでした。",
+        "kana": "わたしは きのう はたらきませんでした。",
+        "translationZh": "我昨天没有工作。",
+        "confidence": "high",
+        "rawText": "4. わたしは 昨日 働きませんでした。",
+        "audioSegment": {
+          "id": "l5-basic-s004",
+          "trackId": "lesson_basic",
+          "sourceUrl": "/data/ocr/audio-clips/lesson5/l5-basic-s004.mp3",
+          "start": 0,
+          "end": 3.22,
+          "duration": 3.22,
+          "method": "approved-asr-alignment",
+          "confidence": "approved",
+          "reviewedAt": "2026-08-05T08:26:28.063Z",
+          "sourceAudioSha256": "912d8e507821136651fc72195b7cd468537835e48d506923742dc5a224c5ffaa"
+        }
+      }
+    ],
+    "dialogues": [
+      {
+        "id": "l5-basic-dialogue-001",
+        "label": "A",
+        "lines": [
+          {
+            "id": "l5-basic-dialogue-001-line-001",
+            "speaker": "甲",
+            "text": "毎日、何時に 寝ますか。",
+            "kana": "まいにち、なんじに ねますか。",
+            "translationZh": "每天几点睡觉？",
+            "confidence": "high",
+            "rawText": "甲：毎日、何時に 寝ますか。",
+            "audioSegment": {
+              "id": "l5-basic-dialogue-001-line-001",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson5/l5-basic-dialogue-001-line-001.mp3",
+              "start": 0,
+              "end": 2.38,
+              "duration": 2.38,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:26:28.063Z",
+              "sourceAudioSha256": "912d8e507821136651fc72195b7cd468537835e48d506923742dc5a224c5ffaa"
+            }
+          },
+          {
+            "id": "l5-basic-dialogue-001-line-002",
+            "speaker": "乙",
+            "text": "11時30分に 寝ます。",
+            "kana": "じゅういちじさんじゅっぷんに ねます。",
+            "translationZh": "11点30分睡觉。",
+            "confidence": "high",
+            "rawText": "乙：11時30分に 寝ます。",
+            "audioSegment": {
+              "id": "l5-basic-dialogue-001-line-002",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson5/l5-basic-dialogue-001-line-002.mp3",
+              "start": 0,
+              "end": 2.58,
+              "duration": 2.58,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:26:28.063Z",
+              "sourceAudioSha256": "912d8e507821136651fc72195b7cd468537835e48d506923742dc5a224c5ffaa"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l5-basic-dialogue-002",
+        "label": "B",
+        "lines": [
+          {
+            "id": "l5-basic-dialogue-002-line-001",
+            "speaker": "甲",
+            "text": "昨日、何時から 何時まで 働きましたか。",
+            "kana": "きのう、なんじから なんじまで はたらきましたか。",
+            "translationZh": "昨天从几点工作到几点？",
+            "confidence": "high",
+            "rawText": "甲：昨日、何時から 何時まで 働きましたか。",
+            "audioSegment": {
+              "id": "l5-basic-dialogue-002-line-001",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson5/l5-basic-dialogue-002-line-001.mp3",
+              "start": 0,
+              "end": 3.7,
+              "duration": 3.7,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:26:28.063Z",
+              "sourceAudioSha256": "912d8e507821136651fc72195b7cd468537835e48d506923742dc5a224c5ffaa"
+            }
+          },
+          {
+            "id": "l5-basic-dialogue-002-line-002",
+            "speaker": "乙",
+            "text": "9時から 6時まで 働きました。",
+            "kana": "くじから ろくじまで はたらきました。",
+            "translationZh": "从9点工作到6点。",
+            "confidence": "high",
+            "rawText": "乙：9時から 6時まで 働きました。",
+            "audioSegment": {
+              "id": "l5-basic-dialogue-002-line-002",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson5/l5-basic-dialogue-002-line-002.mp3",
+              "start": 0,
+              "end": 2.86,
+              "duration": 2.86,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:26:28.063Z",
+              "sourceAudioSha256": "912d8e507821136651fc72195b7cd468537835e48d506923742dc5a224c5ffaa"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l5-basic-dialogue-003",
+        "label": "C",
+        "lines": [
+          {
+            "id": "l5-basic-dialogue-003-line-001",
+            "speaker": "甲",
+            "text": "先週 休みましたか。",
+            "kana": "せんしゅう やすみましたか。",
+            "translationZh": "上周休息了吗？",
+            "confidence": "high",
+            "rawText": "甲：先週 休みましたか。",
+            "audioSegment": {
+              "id": "l5-basic-dialogue-003-line-001",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson5/l5-basic-dialogue-003-line-001.mp3",
+              "start": 0,
+              "end": 2.42,
+              "duration": 2.42,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:26:28.063Z",
+              "sourceAudioSha256": "912d8e507821136651fc72195b7cd468537835e48d506923742dc5a224c5ffaa"
+            }
+          },
+          {
+            "id": "l5-basic-dialogue-003-line-002",
+            "speaker": "乙",
+            "text": "いいえ、休みませんでした。",
+            "kana": "いいえ、やすみませんでした。",
+            "translationZh": "没有，没休息。",
+            "confidence": "high",
+            "rawText": "乙：いいえ、休みませんでした。",
+            "audioSegment": {
+              "id": "l5-basic-dialogue-003-line-002",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson5/l5-basic-dialogue-003-line-002.mp3",
+              "start": 0,
+              "end": 1.34,
+              "duration": 1.34,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:26:28.063Z",
+              "sourceAudioSha256": "912d8e507821136651fc72195b7cd468537835e48d506923742dc5a224c5ffaa"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l5-basic-dialogue-004",
+        "label": "D",
+        "lines": [
+          {
+            "id": "l5-basic-dialogue-004-line-001",
+            "speaker": "甲",
+            "text": "試験は いつ 始まりますか。",
+            "kana": "しけんは いつ はじまりますか。",
+            "translationZh": "考试什么时候开始？",
+            "confidence": "high",
+            "rawText": "甲：試験は いつ 始まりますか。",
+            "audioSegment": {
+              "id": "l5-basic-dialogue-004-line-001",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson5/l5-basic-dialogue-004-line-001.mp3",
+              "start": 0,
+              "end": 2.78,
+              "duration": 2.78,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:26:28.063Z",
+              "sourceAudioSha256": "912d8e507821136651fc72195b7cd468537835e48d506923742dc5a224c5ffaa"
+            }
+          },
+          {
+            "id": "l5-basic-dialogue-004-line-002",
+            "speaker": "乙",
+            "text": "来週の 木曜日です。",
+            "kana": "らいしゅうの もくようびです。",
+            "translationZh": "下周四。",
+            "confidence": "high",
+            "rawText": "乙：来週の 木曜日です。",
+            "audioSegment": {
+              "id": "l5-basic-dialogue-004-line-002",
+              "trackId": "lesson_basic",
+              "sourceUrl": "/data/ocr/audio-clips/lesson5/l5-basic-dialogue-004-line-002.mp3",
+              "start": 0,
+              "end": 2.1,
+              "duration": 2.1,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:26:28.063Z",
+              "sourceAudioSha256": "912d8e507821136651fc72195b7cd468537835e48d506923742dc5a224c5ffaa"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "applicationText": {
+    "title": "遅刻",
+    "blocks": [
+      {
+        "id": "l5-app-block-001",
+        "type": "narration",
+        "text": "小李开始在东京总公司上班。9点的铃声响了，大家开始工作。可是，过了一阵儿还不见森露面。",
+        "kana": null,
+        "translationZh": "小李开始在东京总公司上班。9点的铃声响了，大家开始工作。可是，过了一阵儿还不见森露面。",
+        "confidence": "high",
+        "rawText": "小李开始在东京总公司上班。9点的铃声响了，大家开始工作。可是，过了一阵儿还不见森露面。"
+      },
+      {
+        "id": "l5-app-block-002",
+        "type": "scene",
+        "text": "（10点已过，吉田问小野）",
+        "kana": null,
+        "translationZh": "10点已过，吉田问小野。",
+        "confidence": "high",
+        "rawText": "（10点已过，吉田问小野）"
+      },
+      {
+        "id": "l5-app-block-003",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l5-app-block-003-line-001",
+            "speaker": "吉田",
+            "text": "小野さん，李さんの 歓迎会は いつですか。",
+            "kana": "おのさん，りさんの かんげいかいは いつですか。",
+            "translationZh": "小野，小李的欢迎会是什么时候？",
+            "confidence": "high",
+            "rawText": "吉田：小野さん，李さんの 歓迎会は いつですか。",
+            "audioSegment": {
+              "id": "l5-app-block-003-line-001",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson5/l5-app-block-003-line-001.mp3",
+              "start": 0,
+              "end": 3.5,
+              "duration": 3.5,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:27:06.292Z",
+              "sourceAudioSha256": "1b18464739daf35c056992f751a753c9eb575fe3a51cd99f403658779dbd072d"
+            }
+          },
+          {
+            "id": "l5-app-block-003-line-002",
+            "speaker": "小野",
+            "text": "あさっての 夜です。",
+            "kana": "あさっての よるです。",
+            "translationZh": "后天晚上。",
+            "confidence": "high",
+            "rawText": "小野：あさっての 夜です。",
+            "audioSegment": {
+              "id": "l5-app-block-003-line-002",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson5/l5-app-block-003-line-002.mp3",
+              "start": 0,
+              "end": 1.66,
+              "duration": 1.66,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:27:06.292Z",
+              "sourceAudioSha256": "1b18464739daf35c056992f751a753c9eb575fe3a51cd99f403658779dbd072d"
+            }
+          },
+          {
+            "id": "l5-app-block-003-line-003",
+            "speaker": "吉田",
+            "text": "何時からですか。",
+            "kana": "なんじからですか。",
+            "translationZh": "从几点开始？",
+            "confidence": "high",
+            "rawText": "吉田：何時からですか。",
+            "audioSegment": {
+              "id": "l5-app-block-003-line-003",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson5/l5-app-block-003-line-003.mp3",
+              "start": 0,
+              "end": 1.22,
+              "duration": 1.22,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:27:06.292Z",
+              "sourceAudioSha256": "1b18464739daf35c056992f751a753c9eb575fe3a51cd99f403658779dbd072d"
+            }
+          },
+          {
+            "id": "l5-app-block-003-line-004",
+            "speaker": "小野",
+            "text": "6時からです。",
+            "kana": "ろくじからです。",
+            "translationZh": "从6点开始。",
+            "confidence": "high",
+            "rawText": "小野：6時からです。",
+            "audioSegment": {
+              "id": "l5-app-block-003-line-004",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson5/l5-app-block-003-line-004.mp3",
+              "start": 0,
+              "end": 1.18,
+              "duration": 1.18,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:27:06.292Z",
+              "sourceAudioSha256": "1b18464739daf35c056992f751a753c9eb575fe3a51cd99f403658779dbd072d"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l5-app-block-004",
+        "type": "scene",
+        "text": "（森悄悄走进办公室）",
+        "kana": null,
+        "translationZh": "森悄悄走进办公室。",
+        "confidence": "high",
+        "rawText": "（森悄悄走进办公室）"
+      },
+      {
+        "id": "l5-app-block-005",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l5-app-block-005-line-001",
+            "speaker": "吉田",
+            "text": "森君，おはよう。今 何時ですか。",
+            "kana": "もりくん，おはよう。いま なんじですか。",
+            "translationZh": "森，早上好。现在几点了？",
+            "confidence": "high",
+            "rawText": "吉田：森君，おはよう。今 何時ですか。",
+            "audioSegment": {
+              "id": "l5-app-block-005-line-001",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson5/l5-app-block-005-line-001.mp3",
+              "start": 0,
+              "end": 4.23,
+              "duration": 4.23,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:27:06.292Z",
+              "sourceAudioSha256": "1b18464739daf35c056992f751a753c9eb575fe3a51cd99f403658779dbd072d"
+            }
+          },
+          {
+            "id": "l5-app-block-005-line-002",
+            "speaker": "森",
+            "text": "10時15分です。",
+            "kana": "じゅうじじゅうごふんです。",
+            "translationZh": "10点15分。",
+            "confidence": "high",
+            "rawText": "森：10時15分です。",
+            "audioSegment": {
+              "id": "l5-app-block-005-line-002",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson5/l5-app-block-005-line-002.mp3",
+              "start": 0,
+              "end": 1.66,
+              "duration": 1.66,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:27:06.292Z",
+              "sourceAudioSha256": "1b18464739daf35c056992f751a753c9eb575fe3a51cd99f403658779dbd072d"
+            }
+          },
+          {
+            "id": "l5-app-block-005-line-003",
+            "speaker": "吉田",
+            "text": "遅刻ですね。",
+            "kana": "ちこくですね。",
+            "translationZh": "迟到了吧。",
+            "confidence": "high",
+            "rawText": "吉田：遅刻ですね。",
+            "audioSegment": {
+              "id": "l5-app-block-005-line-003",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson5/l5-app-block-005-line-003.mp3",
+              "start": 0,
+              "end": 1.02,
+              "duration": 1.02,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:27:06.292Z",
+              "sourceAudioSha256": "1b18464739daf35c056992f751a753c9eb575fe3a51cd99f403658779dbd072d"
+            }
+          },
+          {
+            "id": "l5-app-block-005-line-004",
+            "speaker": "森",
+            "text": "すみません，課長。今朝 9時に 起きました。",
+            "kana": "すみません，かちょう。けさ くじに おきました。",
+            "translationZh": "对不起，科长。今天早上9点才起床。",
+            "confidence": "high",
+            "rawText": "森：すみません，課長。今朝 9時に 起きました。",
+            "audioSegment": {
+              "id": "l5-app-block-005-line-004",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson5/l5-app-block-005-line-004.mp3",
+              "start": 0,
+              "end": 3.82,
+              "duration": 3.82,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:27:06.292Z",
+              "sourceAudioSha256": "1b18464739daf35c056992f751a753c9eb575fe3a51cd99f403658779dbd072d"
+            }
+          }
+        ]
+      },
+      {
+        "id": "l5-app-block-006",
+        "type": "scene",
+        "text": "（当天中午，大家在吃午饭）",
+        "kana": null,
+        "translationZh": "当天中午，大家在吃午饭。",
+        "confidence": "high",
+        "rawText": "（当天中午，大家在吃午饭）"
+      },
+      {
+        "id": "l5-app-block-007",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l5-app-block-007-line-001",
+            "speaker": "李",
+            "text": "森さんは 毎朝 何時に 起きますか。",
+            "kana": "もりさんは まいあさ なんじに おきますか。",
+            "translationZh": "森先生每天早上几点起床？",
+            "confidence": "high",
+            "rawText": "李：森さんは 毎朝 何時に 起きますか。",
+            "audioSegment": {
+              "id": "l5-app-block-007-line-001",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson5/l5-app-block-007-line-001.mp3",
+              "start": 0,
+              "end": 3.14,
+              "duration": 3.14,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:27:06.292Z",
+              "sourceAudioSha256": "1b18464739daf35c056992f751a753c9eb575fe3a51cd99f403658779dbd072d"
+            }
+          },
+          {
+            "id": "l5-app-block-007-line-002",
+            "speaker": "森",
+            "text": "いつもは 7時ごろです。李さんは？",
+            "kana": "いつもは しちじごろです。りさんは？",
+            "translationZh": "通常7点左右。小李呢？",
+            "confidence": "high",
+            "rawText": "森：いつもは 7時ごろです。李さんは？",
+            "audioSegment": {
+              "id": "l5-app-block-007-line-002",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson5/l5-app-block-007-line-002.mp3",
+              "start": 0,
+              "end": 3.02,
+              "duration": 3.02,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:27:06.292Z",
+              "sourceAudioSha256": "1b18464739daf35c056992f751a753c9eb575fe3a51cd99f403658779dbd072d"
+            }
+          },
+          {
+            "id": "l5-app-block-007-line-003",
+            "speaker": "李",
+            "text": "わたしは 6時ごろです。",
+            "kana": "わたしは ろくじごろです。",
+            "translationZh": "我6点左右。",
+            "confidence": "high",
+            "rawText": "李：わたしは 6時ごろです。",
+            "audioSegment": {
+              "id": "l5-app-block-007-line-003",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson5/l5-app-block-007-line-003.mp3",
+              "start": 0,
+              "end": 1.86,
+              "duration": 1.86,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:27:06.292Z",
+              "sourceAudioSha256": "1b18464739daf35c056992f751a753c9eb575fe3a51cd99f403658779dbd072d"
+            }
+          },
+          {
+            "id": "l5-app-block-007-line-004",
+            "speaker": "森",
+            "text": "北京支社は 何時に 始まりますか。",
+            "kana": "ペキンししゃは なんじに はじまりますか。",
+            "translationZh": "北京分公司几点开始上班？",
+            "confidence": "high",
+            "rawText": "森：北京支社は 何時に 始まりますか。",
+            "audioSegment": {
+              "id": "l5-app-block-007-line-004",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson5/l5-app-block-007-line-004.mp3",
+              "start": 0,
+              "end": 2.66,
+              "duration": 2.66,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:27:06.292Z",
+              "sourceAudioSha256": "1b18464739daf35c056992f751a753c9eb575fe3a51cd99f403658779dbd072d"
+            }
+          },
+          {
+            "id": "l5-app-block-007-line-005",
+            "speaker": "李",
+            "text": "8時です。午前 8時から 午後 5時まで 働きます。",
+            "kana": "はちじです。ごぜん はちじから ごご ごじまで はたらきます。",
+            "translationZh": "8点。从上午8点工作到下午5点。",
+            "confidence": "high",
+            "rawText": "李：8時です。午前 8時から 午後 5時まで 働きます。",
+            "audioSegment": {
+              "id": "l5-app-block-007-line-005",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson5/l5-app-block-007-line-005.mp3",
+              "start": 0,
+              "end": 4.54,
+              "duration": 4.54,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:27:06.292Z",
+              "sourceAudioSha256": "1b18464739daf35c056992f751a753c9eb575fe3a51cd99f403658779dbd072d"
+            }
+          },
+          {
+            "id": "l5-app-block-007-line-006",
+            "speaker": "森",
+            "text": "土曜日は？",
+            "kana": "どようびは？",
+            "translationZh": "星期六呢？",
+            "confidence": "high",
+            "rawText": "森：土曜日は？",
+            "audioSegment": {
+              "id": "l5-app-block-007-line-006",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson5/l5-app-block-007-line-006.mp3",
+              "start": 0,
+              "end": 1.02,
+              "duration": 1.02,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:27:06.292Z",
+              "sourceAudioSha256": "1b18464739daf35c056992f751a753c9eb575fe3a51cd99f403658779dbd072d"
+            }
+          },
+          {
+            "id": "l5-app-block-007-line-007",
+            "speaker": "李",
+            "text": "土曜日は 働きません。土曜日と 日曜日は 休みです。",
+            "kana": "どようびは はたらきません。どようびと にちようびは やすみです。",
+            "translationZh": "星期六不工作。星期六和星期日休息。",
+            "confidence": "high",
+            "rawText": "李：土曜日は 働きません。土曜日と 日曜日は 休みです。",
+            "audioSegment": {
+              "id": "l5-app-block-007-line-007",
+              "trackId": "lesson_apps",
+              "sourceUrl": "/data/ocr/audio-clips/lesson5/l5-app-block-007-line-007.mp3",
+              "start": 0,
+              "end": 4.62,
+              "duration": 4.62,
+              "method": "approved-asr-alignment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-05T08:27:06.292Z",
+              "sourceAudioSha256": "1b18464739daf35c056992f751a753c9eb575fe3a51cd99f403658779dbd072d"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "warnings": [
+    "应用课文中的旁白和场景说明在教材页中以中文呈现，因此对应 block 的 text 与 translationZh 均保留中文原文，kana 为 null。",
+    "未输出 segments；已保留可可靠识别的整句 kana。"
+  ],
+  "audioAlignment": {
+    "schemaVersion": 1,
+    "method": "approved-asr-alignment",
+    "sourceAlignment": "data/ocr/lesson5-text-audio-alignment.json",
+    "publishedAt": "2026-08-05T08:27:10.017Z",
+    "approvedSegments": 27
+  }
+}

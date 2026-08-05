@@ -1759,6 +1759,8 @@ let lastAutoSpokenSentence = null;
 let lastAutoSpokenWord = null;
 let pendingAutoSpeakWordId = "";
 let autoWordPlaybackToken = 0;
+const ocrVocabularyAudioCache = {};
+const ocrVocabularyAudioLoading = {};
 let speechPrimed = false;
 let lastHoverSpeech = { text: "", at: 0 };
 let lastKeyAction = { key: "", at: 0 };
@@ -3109,6 +3111,131 @@ function audioUrl(type, id) {
   return relative;
 }
 
+async function loadOcrVocabularyAudio(lessonIdValue = routeRuntimeLessonId() || lesson.id) {
+  const lessonKey = String(lessonIdValue || lesson.id);
+  if (Object.prototype.hasOwnProperty.call(ocrVocabularyAudioCache, lessonKey)) return ocrVocabularyAudioCache[lessonKey];
+  if (ocrVocabularyAudioLoading[lessonKey]) return ocrVocabularyAudioLoading[lessonKey];
+  const promise = fetch(`/data/ocr/lesson${lessonKey}-vocabulary-audio.json`, { cache: "no-store" })
+    .then((response) => {
+      if (!response.ok) throw new Error(`Missing OCR vocabulary audio for lesson${lessonKey}`);
+      return response.json();
+    })
+    .then((data) => {
+      ocrVocabularyAudioCache[lessonKey] = data;
+      return data;
+    })
+    .catch(() => {
+      ocrVocabularyAudioCache[lessonKey] = null;
+      return null;
+    })
+    .finally(() => {
+      delete ocrVocabularyAudioLoading[lessonKey];
+    });
+  ocrVocabularyAudioLoading[lessonKey] = promise;
+  return promise;
+}
+
+async function ocrVocabularyAudioSegment(word) {
+  if (!word) return null;
+  const data = await loadOcrVocabularyAudio();
+  const words = Array.isArray(data?.vocabulary) ? data.vocabulary : [];
+  if (!words.length) return null;
+  const matched = words.find((item) => ocrVocabularyWordMatches(word, item));
+  if (matched?.audioSegment) return matched.audioSegment;
+  const wordIndex = lesson.vocabulary.findIndex((item) => item.id === word.id);
+  return words[wordIndex]?.audioSegment || null;
+}
+
+function normalizeOcrVocabularyText(value) {
+  return String(value || "")
+    .replace(/[〜~]/g, "")
+    .replace(/[（）()[\]【】・、。，.\s]/g, "")
+    .toLowerCase();
+}
+
+function ocrVocabularyWordMatches(word, ocrWord) {
+  const targets = [word.jp, word.kana]
+    .map(normalizeOcrVocabularyText)
+    .filter(Boolean);
+  const sources = [ocrWord.writing, ocrWord.kana, ocrWord.rawText]
+    .map(normalizeOcrVocabularyText)
+    .filter(Boolean);
+  if (!targets.length || !sources.length) return false;
+  if (targets.some((target) => sources.includes(target))) return true;
+  return targets.some((target) => sources.some((source) => source.includes(target)));
+}
+
+function audioSegmentSource(segment) {
+  if (!segment) return "";
+  if (segment.sourceUrl) return segment.sourceUrl;
+  if (segment.localAudioPath) return `/${String(segment.localAudioPath).replace(/^\/+/, "")}`;
+  return "";
+}
+
+function playAudioSegment(text, segment, onEnded = null) {
+  const source = audioSegmentSource(segment);
+  if (!source) {
+    playAudio(text, "", onEnded);
+    return;
+  }
+  stopCurrentAudio();
+  if ("speechSynthesis" in window) speechSynthesis.cancel();
+  currentSpeechText = "";
+  currentSpeechOnEnded = null;
+  const token = ++audioPlaybackToken;
+  const audioEl = new Audio(sanitizeAudioPath(source));
+  const startAt = Math.max(0, Number(segment.start) || 0);
+  const endAt = Math.max(startAt, Number(segment.end) || 0);
+  activeAudio = audioEl;
+  audioEl.preload = "auto";
+  audioEl.playbackRate = state.playbackRate;
+  const stopAtEnd = () => {
+    if (activeAudio !== audioEl || token !== audioPlaybackToken) return;
+    if (endAt && audioEl.currentTime >= endAt) {
+      audioEl.pause();
+      activeAudio = null;
+      audioEl.removeEventListener("timeupdate", stopAtEnd);
+      if (onEnded) onEnded();
+    }
+  };
+  const start = () => {
+    if (activeAudio !== audioEl || token !== audioPlaybackToken) return;
+    audioEl.currentTime = startAt;
+    audioEl.addEventListener("timeupdate", stopAtEnd);
+    audioEl.play().catch(() => {
+      if (activeAudio === audioEl) activeAudio = null;
+      audioEl.removeEventListener("timeupdate", stopAtEnd);
+      playAudio(text, "", onEnded);
+    });
+  };
+  audioEl.addEventListener("ended", () => {
+    if (activeAudio !== audioEl || token !== audioPlaybackToken) return;
+    activeAudio = null;
+    audioEl.removeEventListener("timeupdate", stopAtEnd);
+    if (onEnded) onEnded();
+  }, { once: true });
+  audioEl.addEventListener("error", () => {
+    if (activeAudio === audioEl) activeAudio = null;
+    audioEl.removeEventListener("timeupdate", stopAtEnd);
+    playAudio(text, "", onEnded);
+  }, { once: true });
+  if (audioEl.readyState >= 1) start();
+  else {
+    audioEl.addEventListener("loadedmetadata", start, { once: true });
+    audioEl.load();
+  }
+}
+
+async function playWordStandardAudio(word, onEnded = null) {
+  if (!word) return;
+  const segment = await ocrVocabularyAudioSegment(word);
+  if (segment) {
+    playAudioSegment(word.jp, segment, onEnded);
+    return;
+  }
+  playAudio(word.jp, audioUrl("word", word.id), onEnded);
+}
+
 function managedAudioUrl(voiceId, type, id) {
   let relative;
   if (voiceId === defaultVoiceId && String(lesson.id) === String(bundledLessonRuntime.lesson.id)) {
@@ -3261,16 +3388,24 @@ function scheduleAutoWordAudio(word, delayMs = 90) {
   const wordId = word?.id || "";
   const text = word?.jp || "";
   if (!wordId || !text) return;
-  const audio = audioUrl("word", wordId);
   window.requestAnimationFrame(() => {
     window.requestAnimationFrame(() => {
-      window.setTimeout(() => {
+      window.setTimeout(async () => {
         if (token !== autoWordPlaybackToken) return;
         if (route().page !== "vocab") return;
         if (state.vocabPhase !== "pronunciation" && state.vocabPhase !== "test") return;
         if (state.vocabPhase === "pronunciation" && vocabStudyWords()[state.currentWord]?.id !== wordId) return;
         if (state.recordingWordId || state.recordingPreparingWordId || state.recordingStoppingWordId) return;
-        playAudioAfterSilentPreroll(text, audio, null, 120);
+        const segment = await ocrVocabularyAudioSegment(word);
+        if (token !== autoWordPlaybackToken) return;
+        if (route().page !== "vocab") return;
+        if (state.vocabPhase === "pronunciation" && vocabStudyWords()[state.currentWord]?.id !== wordId) return;
+        if (state.recordingWordId || state.recordingPreparingWordId || state.recordingStoppingWordId) return;
+        if (segment) {
+          playAudioSegment(text, segment);
+          return;
+        }
+        playAudioAfterSilentPreroll(text, audioUrl("word", wordId), null, 120);
       }, delayMs);
     });
   });
@@ -5019,7 +5154,7 @@ function pronunciationPanel(word) {
       <span class="label">发音评价</span>
       <p class="hint">先听标准音，再点击开始录音跟读，说完后点击结束录音并评价。</p>
       <div class="button-row">
-        <button class="secondary" data-speak="${word.jp}" data-audio="${audioUrl("word", word.id)}">听标准音</button>
+        <button class="secondary" data-word-standard-audio="${word.id}">听标准音</button>
         <button
           type="button"
           class="hold-record-button ${preparing ? "preparing" : ""} ${recording ? "recording" : ""} ${stopping ? "stopping" : ""}"
@@ -5077,7 +5212,7 @@ function vocabTestPanel(task) {
       <div class="word-count">${state.currentVocabTest + 1}/${state.vocabTestQueue.length}</div>
       <h3>${task.type === "audioToWord" ? "听音频，选择对应日文" : word.jp}</h3>
       <div class="button-row">
-        ${task.type === "audioToWord" ? `<button class="secondary" data-speak="${word.jp}" data-audio="${audioUrl("word", word.id)}">播放题目音频</button>` : ""}
+        ${task.type === "audioToWord" ? `<button class="secondary" data-word-standard-audio="${word.id}">播放题目音频</button>` : ""}
         <button class="danger" data-slash-word="${word.id}" ${state.vocabReveal ? "disabled" : ""}>斩</button>
       </div>
       ${state.vocabReveal && state.vocabReveal.wordId === word.id ? `
@@ -7224,7 +7359,7 @@ function revealAndAdvanceTest(word, selectedWordId, correct, mode) {
   };
   vocabTestAdvanceTimer = window.setTimeout(maybeAdvance, delayMs);
   if (mode === "wordToMeaning") {
-    playAudio(word.jp, audioUrl("word", word.id), () => {
+    playWordStandardAudio(word, () => {
       audioEnded = true;
       maybeAdvance();
     });
@@ -7240,7 +7375,7 @@ function advanceVocabTest() {
     const task = currentVocabTestTask();
     if (task?.type === "audioToWord") {
       const word = wordById(task.wordId);
-      window.setTimeout(() => playAudio(word.jp, audioUrl("word", word.id)), 80);
+      window.setTimeout(() => playWordStandardAudio(word), 80);
     }
   }, 80);
 }
@@ -8616,6 +8751,12 @@ function bind() {
   app.querySelector("[data-header-logout]")?.addEventListener("click", logoutUser);
   app.querySelectorAll("[data-speak]").forEach((button) => {
     button.addEventListener("click", () => playAudio(button.dataset.speak, button.dataset.audio));
+  });
+  app.querySelectorAll("[data-word-standard-audio]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const word = wordById(button.dataset.wordStandardAudio);
+      playWordStandardAudio(word);
+    });
   });
   app.querySelectorAll(".voice-main[data-voice-id]").forEach((button) => button.addEventListener("click", () => {
     state.currentVoiceId = button.dataset.voiceId;
