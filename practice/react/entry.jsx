@@ -20,6 +20,7 @@ import { lesson15Practice } from "../lesson15-practice-data.ts";
 import { lesson16Practice } from "../lesson16-practice-data.ts";
 import { lesson17Practice } from "../lesson17-practice-data.ts";
 import { lesson18Practice } from "../lesson18-practice-data.ts";
+import { lesson19Practice } from "../lesson19-practice-data.ts";
 
 const practices = {
   lesson1: lesson1Practice,
@@ -39,7 +40,8 @@ const practices = {
   lesson15: lesson15Practice,
   lesson16: lesson16Practice,
   lesson17: lesson17Practice,
-  lesson18: lesson18Practice
+  lesson18: lesson18Practice,
+  lesson19: lesson19Practice
 };
 
 function lessonIdFromPage() {
