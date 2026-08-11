@@ -106,9 +106,9 @@
         "itemIndex": 3,
         "text": "ごみ",
         "label": "ごみ",
-        "start": 4.03,
-        "end": 4.57,
-        "duration": 0.54,
+        "start": 3.73,
+        "end": 4.67,
+        "duration": 0.94,
         "speechUnitCount": 1,
         "wordCount": 1,
         "matchScore": 0,
@@ -116,15 +116,16 @@
         "wordIndexes": [
           6
         ],
-        "method": "azure-speech-word-alignment",
-        "confidence": "needs-review",
+        "method": "manual-admin-adjustment",
+        "confidence": "approved",
         "review": {
           "status": "approved",
           "reviewedAt": "2026-08-05T11:39:55.980Z",
           "note": "Automatically approved by the vocabulary ASR alignment workflow.",
           "matchScore": 0,
           "asrText": "ミ"
-        }
+        },
+        "reviewedAt": "2026-08-10T00:02:15.143Z"
       }
     },
     {
@@ -266,9 +267,9 @@
         "itemIndex": 7,
         "text": "じょうきゅうクラス",
         "label": "上級クラス",
-        "start": 11.35,
+        "start": 10.35,
         "end": 12.21,
-        "duration": 0.86,
+        "duration": 1.86,
         "speechUnitCount": 3,
         "wordCount": 3,
         "matchScore": 0.6,
@@ -278,15 +279,16 @@
           18,
           19
         ],
-        "method": "azure-speech-word-alignment",
-        "confidence": "needs-review",
+        "method": "manual-admin-adjustment",
+        "confidence": "approved",
         "review": {
           "status": "approved",
           "reviewedAt": "2026-08-05T11:39:55.980Z",
           "note": "Automatically approved by the vocabulary ASR alignment workflow.",
           "matchScore": 0.6,
           "asrText": "ク ラ ス"
-        }
+        },
+        "reviewedAt": "2026-08-10T00:02:32.275Z"
       }
     },
     {
@@ -349,9 +351,9 @@
         "itemIndex": 9,
         "text": "コース",
         "label": "コース",
-        "start": 15.39,
+        "start": 15.19,
         "end": 16.25,
-        "duration": 0.86,
+        "duration": 1.06,
         "speechUnitCount": 2,
         "wordCount": 2,
         "matchScore": 0.667,
@@ -360,15 +362,16 @@
           24,
           25
         ],
-        "method": "azure-speech-word-alignment",
-        "confidence": "needs-review",
+        "method": "manual-admin-adjustment",
+        "confidence": "approved",
         "review": {
           "status": "approved",
           "reviewedAt": "2026-08-05T11:39:55.980Z",
           "note": "Automatically approved by the vocabulary ASR alignment workflow.",
           "matchScore": 0.667,
           "asrText": "ー ス"
-        }
+        },
+        "reviewedAt": "2026-08-10T00:02:44.457Z"
       }
     },
     {
@@ -597,9 +600,9 @@
         "itemIndex": 15,
         "text": "ぬぎます",
         "label": "脱ぎます",
-        "start": 26.03,
+        "start": 25.53,
         "end": 26.89,
-        "duration": 0.86,
+        "duration": 1.36,
         "speechUnitCount": 2,
         "wordCount": 2,
         "matchScore": 0.5,
@@ -608,15 +611,16 @@
           44,
           45
         ],
-        "method": "azure-speech-word-alignment",
-        "confidence": "needs-review",
+        "method": "manual-admin-adjustment",
+        "confidence": "approved",
         "review": {
           "status": "approved",
           "reviewedAt": "2026-08-05T11:39:55.980Z",
           "note": "Automatically approved by the vocabulary ASR alignment workflow.",
           "matchScore": 0.5,
           "asrText": "ま す"
-        }
+        },
+        "reviewedAt": "2026-08-10T00:02:59.886Z"
       }
     },
     {
@@ -639,9 +643,9 @@
         "itemIndex": 16,
         "text": "ころびます",
         "label": "転びます",
-        "start": 27.59,
+        "start": 27.09,
         "end": 28.45,
-        "duration": 0.86,
+        "duration": 1.36,
         "speechUnitCount": 3,
         "wordCount": 3,
         "matchScore": 0.75,
@@ -651,15 +655,16 @@
           48,
           49
         ],
-        "method": "azure-speech-word-alignment",
-        "confidence": "medium",
+        "method": "manual-admin-adjustment",
+        "confidence": "approved",
         "review": {
           "status": "approved",
           "reviewedAt": "2026-08-05T11:39:55.980Z",
           "note": "Automatically approved by the vocabulary ASR alignment workflow.",
           "matchScore": 0.75,
           "asrText": "び ま す"
-        }
+        },
+        "reviewedAt": "2026-08-10T00:03:08.404Z"
       }
     },
     {
@@ -849,9 +854,9 @@
         "itemIndex": 21,
         "text": "かえします",
         "label": "返します",
-        "start": 35.15,
+        "start": 34.55,
         "end": 36.33,
-        "duration": 1.18,
+        "duration": 1.78,
         "speechUnitCount": 4,
         "wordCount": 4,
         "matchScore": 1,
@@ -862,15 +867,16 @@
           68,
           69
         ],
-        "method": "azure-speech-word-alignment",
-        "confidence": "high",
+        "method": "manual-admin-adjustment",
+        "confidence": "approved",
         "review": {
           "status": "approved",
           "reviewedAt": "2026-08-05T11:39:55.980Z",
           "note": "Automatically approved by the vocabulary ASR alignment workflow.",
           "matchScore": 1,
           "asrText": "返 し ま す"
-        }
+        },
+        "reviewedAt": "2026-08-10T00:03:22.483Z"
       }
     },
     {
@@ -891,9 +897,9 @@
         "itemIndex": 22,
         "text": "てつだいます",
         "label": "手伝います",
-        "start": 36.95,
+        "start": 36.55,
         "end": 38.25,
-        "duration": 1.3,
+        "duration": 1.7,
         "speechUnitCount": 5,
         "wordCount": 5,
         "matchScore": 1,
@@ -905,15 +911,16 @@
           73,
           74
         ],
-        "method": "azure-speech-word-alignment",
-        "confidence": "high",
+        "method": "manual-admin-adjustment",
+        "confidence": "approved",
         "review": {
           "status": "approved",
           "reviewedAt": "2026-08-05T11:39:55.980Z",
           "note": "Automatically approved by the vocabulary ASR alignment workflow.",
           "matchScore": 1,
           "asrText": "手 伝 い ま す"
-        }
+        },
+        "reviewedAt": "2026-08-10T00:03:30.281Z"
       }
     },
     {
@@ -1191,9 +1198,9 @@
         "itemIndex": 29,
         "text": "わすれます",
         "label": "忘れます",
-        "start": 49.27,
+        "start": 48.87,
         "end": 50.29,
-        "duration": 1.02,
+        "duration": 1.42,
         "speechUnitCount": 4,
         "wordCount": 4,
         "matchScore": 1,
@@ -1204,15 +1211,16 @@
           103,
           104
         ],
-        "method": "azure-speech-word-alignment",
-        "confidence": "high",
+        "method": "manual-admin-adjustment",
+        "confidence": "approved",
         "review": {
           "status": "approved",
           "reviewedAt": "2026-08-05T11:39:55.980Z",
           "note": "Automatically approved by the vocabulary ASR alignment workflow.",
           "matchScore": 1,
           "asrText": "忘 れ ま す"
-        }
+        },
+        "reviewedAt": "2026-08-10T00:03:58.500Z"
       }
     },
     {
@@ -5161,5 +5169,6 @@
         ]
       }
     ]
-  }
+  },
+  "updatedAt": "2026-08-10T00:03:58.502Z"
 }

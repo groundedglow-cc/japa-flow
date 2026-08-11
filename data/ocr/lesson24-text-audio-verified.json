@@ -33,7 +33,31 @@
           "confidence": "approved",
           "reviewedAt": "2026-08-05T08:49:21.254Z",
           "sourceAudioSha256": "52736821d329bb4ace4d3c56656089e5b765b8a19c33f2d45aca4d3a9e6b31e2"
-        }
+        },
+        "kana": "りさんは もう すぐ くると おもいます。",
+        "segments": [
+          {
+            "text": "李",
+            "ruby": "り"
+          },
+          {
+            "text": "さんは もう すぐ "
+          },
+          {
+            "text": "来",
+            "ruby": "く"
+          },
+          {
+            "text": "ると "
+          },
+          {
+            "text": "思",
+            "ruby": "おも"
+          },
+          {
+            "text": "います。"
+          }
+        ]
       },
       {
         "id": "l24-basic-s002",
@@ -53,7 +77,31 @@
           "confidence": "approved",
           "reviewedAt": "2026-08-05T08:49:21.254Z",
           "sourceAudioSha256": "52736821d329bb4ace4d3c56656089e5b765b8a19c33f2d45aca4d3a9e6b31e2"
-        }
+        },
+        "kana": "ちんさんは パーティーに いくと いいました。",
+        "segments": [
+          {
+            "text": "陳",
+            "ruby": "ちん"
+          },
+          {
+            "text": "さんは パーティーに "
+          },
+          {
+            "text": "行",
+            "ruby": "い"
+          },
+          {
+            "text": "くと "
+          },
+          {
+            "text": "言",
+            "ruby": "い"
+          },
+          {
+            "text": "いました。"
+          }
+        ]
       },
       {
         "id": "l24-basic-s003",
@@ -73,7 +121,27 @@
           "confidence": "approved",
           "reviewedAt": "2026-08-05T08:49:21.254Z",
           "sourceAudioSha256": "52736821d329bb4ace4d3c56656089e5b765b8a19c33f2d45aca4d3a9e6b31e2"
-        }
+        },
+        "kana": "すみません、あたまが いたいんです。",
+        "segments": [
+          {
+            "text": "すみません、"
+          },
+          {
+            "text": "頭",
+            "ruby": "あたま"
+          },
+          {
+            "text": "が "
+          },
+          {
+            "text": "痛",
+            "ruby": "いた"
+          },
+          {
+            "text": "いんです。"
+          }
+        ]
       },
       {
         "id": "l24-basic-s004",
@@ -93,7 +161,31 @@
           "confidence": "approved",
           "reviewedAt": "2026-08-05T08:49:21.254Z",
           "sourceAudioSha256": "52736821d329bb4ace4d3c56656089e5b765b8a19c33f2d45aca4d3a9e6b31e2"
-        }
+        },
+        "kana": "とうきょうタワーへ いきたいんですが、どうやって いきますか。",
+        "segments": [
+          {
+            "text": "東京",
+            "ruby": "とうきょう"
+          },
+          {
+            "text": "タワーへ "
+          },
+          {
+            "text": "行",
+            "ruby": "い"
+          },
+          {
+            "text": "きたいんですが、どうやって "
+          },
+          {
+            "text": "行",
+            "ruby": "い"
+          },
+          {
+            "text": "きますか。"
+          }
+        ]
       }
     ],
     "dialogues": [
@@ -119,7 +211,31 @@
               "confidence": "approved",
               "reviewedAt": "2026-08-05T08:49:21.254Z",
               "sourceAudioSha256": "52736821d329bb4ace4d3c56656089e5b765b8a19c33f2d45aca4d3a9e6b31e2"
-            }
+            },
+            "kana": "にほんの おんがくに ついて どう おもいますか。",
+            "segments": [
+              {
+                "text": "日本",
+                "ruby": "にほん"
+              },
+              {
+                "text": "の "
+              },
+              {
+                "text": "音楽",
+                "ruby": "おんがく"
+              },
+              {
+                "text": "に ついて どう "
+              },
+              {
+                "text": "思",
+                "ruby": "おも"
+              },
+              {
+                "text": "いますか。"
+              }
+            ]
           },
           {
             "id": "l24-basic-dialogue-001-line-002",
@@ -139,7 +255,20 @@
               "confidence": "approved",
               "reviewedAt": "2026-08-05T08:49:21.254Z",
               "sourceAudioSha256": "52736821d329bb4ace4d3c56656089e5b765b8a19c33f2d45aca4d3a9e6b31e2"
-            }
+            },
+            "kana": "すばらしいと おもいます。",
+            "segments": [
+              {
+                "text": "すばらしいと "
+              },
+              {
+                "text": "思",
+                "ruby": "おも"
+              },
+              {
+                "text": "います。"
+              }
+            ]
           }
         ]
       },
@@ -165,7 +294,31 @@
               "confidence": "approved",
               "reviewedAt": "2026-08-05T08:49:21.254Z",
               "sourceAudioSha256": "52736821d329bb4ace4d3c56656089e5b765b8a19c33f2d45aca4d3a9e6b31e2"
-            }
+            },
+            "kana": "かちょうは なんと いいましたか。",
+            "segments": [
+              {
+                "text": "課長",
+                "ruby": "かちょう"
+              },
+              {
+                "text": "は "
+              },
+              {
+                "text": "何と",
+                "ruby": "なんと"
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "言",
+                "ruby": "い"
+              },
+              {
+                "text": "いましたか。"
+              }
+            ]
           },
           {
             "id": "l24-basic-dialogue-002-line-002",
@@ -185,7 +338,31 @@
               "confidence": "approved",
               "reviewedAt": "2026-08-05T08:49:21.254Z",
               "sourceAudioSha256": "52736821d329bb4ace4d3c56656089e5b765b8a19c33f2d45aca4d3a9e6b31e2"
-            }
+            },
+            "kana": "ごごから でかけると いいました。",
+            "segments": [
+              {
+                "text": "午後",
+                "ruby": "ごご"
+              },
+              {
+                "text": "から "
+              },
+              {
+                "text": "出",
+                "ruby": "で"
+              },
+              {
+                "text": "かけると "
+              },
+              {
+                "text": "言",
+                "ruby": "い"
+              },
+              {
+                "text": "いました。"
+              }
+            ]
           }
         ]
       },
@@ -211,7 +388,20 @@
               "confidence": "approved",
               "reviewedAt": "2026-08-05T08:49:21.254Z",
               "sourceAudioSha256": "52736821d329bb4ace4d3c56656089e5b765b8a19c33f2d45aca4d3a9e6b31e2"
-            }
+            },
+            "kana": "どうして たべないんですか。",
+            "segments": [
+              {
+                "text": "どうして "
+              },
+              {
+                "text": "食",
+                "ruby": "た"
+              },
+              {
+                "text": "べないんですか。"
+              }
+            ]
           },
           {
             "id": "l24-basic-dialogue-003-line-002",
@@ -257,7 +447,24 @@
               "confidence": "approved",
               "reviewedAt": "2026-08-05T08:49:21.254Z",
               "sourceAudioSha256": "52736821d329bb4ace4d3c56656089e5b765b8a19c33f2d45aca4d3a9e6b31e2"
-            }
+            },
+            "kana": "りさんを さがして いるんですが、どこに いますか。",
+            "segments": [
+              {
+                "text": "李",
+                "ruby": "り"
+              },
+              {
+                "text": "さんを "
+              },
+              {
+                "text": "探",
+                "ruby": "さが"
+              },
+              {
+                "text": "して いるんですが、どこに いますか。"
+              }
+            ]
           },
           {
             "id": "l24-basic-dialogue-004-line-002",
@@ -277,7 +484,24 @@
               "confidence": "approved",
               "reviewedAt": "2026-08-05T08:49:21.254Z",
               "sourceAudioSha256": "52736821d329bb4ace4d3c56656089e5b765b8a19c33f2d45aca4d3a9e6b31e2"
-            }
+            },
+            "kana": "かいぎしつに いると おもいます。",
+            "segments": [
+              {
+                "text": "会議室",
+                "ruby": "かいぎしつ"
+              },
+              {
+                "text": "に いると "
+              },
+              {
+                "text": "思",
+                "ruby": "おも"
+              },
+              {
+                "text": "います。"
+              }
+            ]
           }
         ]
       }
@@ -316,7 +540,20 @@
               "confidence": "approved",
               "reviewedAt": "2026-08-05T08:50:04.328Z",
               "sourceAudioSha256": "fccccf9545f628f371563423e2ca0cb37b4ad6e2b6398232356b23a2e761f71a"
-            }
+            },
+            "kana": "とうとう おわかれですね。",
+            "segments": [
+              {
+                "text": "とうとう お"
+              },
+              {
+                "text": "別",
+                "ruby": "わか"
+              },
+              {
+                "text": "れですね。"
+              }
+            ]
           },
           {
             "id": "l24-app-block-002-line-002",
@@ -336,7 +573,20 @@
               "confidence": "approved",
               "reviewedAt": "2026-08-05T08:50:04.328Z",
               "sourceAudioSha256": "fccccf9545f628f371563423e2ca0cb37b4ad6e2b6398232356b23a2e761f71a"
-            }
+            },
+            "kana": "ありがとう ございました。本当に おせわに なりました。",
+            "segments": [
+              {
+                "text": "ありがとう ございました。本当に お"
+              },
+              {
+                "text": "世話",
+                "ruby": "せわ"
+              },
+              {
+                "text": "に なりました。"
+              }
+            ]
           },
           {
             "id": "l24-app-block-002-line-003",
@@ -356,7 +606,34 @@
               "confidence": "approved",
               "reviewedAt": "2026-08-05T08:50:04.328Z",
               "sourceAudioSha256": "fccccf9545f628f371563423e2ca0cb37b4ad6e2b6398232356b23a2e761f71a"
-            }
+            },
+            "kana": "こちらこそ。みじかい あいだでしたが、とても たのしかったですよ。",
+            "segments": [
+              {
+                "text": "こちらこそ。"
+              },
+              {
+                "text": "短",
+                "ruby": "みじか"
+              },
+              {
+                "text": "い "
+              },
+              {
+                "text": "間",
+                "ruby": "あいだ"
+              },
+              {
+                "text": "でしたが、とても "
+              },
+              {
+                "text": "楽",
+                "ruby": "たの"
+              },
+              {
+                "text": "しかったですよ。"
+              }
+            ]
           },
           {
             "id": "l24-app-block-002-line-004",
@@ -376,7 +653,38 @@
               "confidence": "approved",
               "reviewedAt": "2026-08-05T08:50:04.328Z",
               "sourceAudioSha256": "fccccf9545f628f371563423e2ca0cb37b4ad6e2b6398232356b23a2e761f71a"
-            }
+            },
+            "kana": "かちょうは しゅっちょうちゅうですが、りさんに よろしくと いって いましたよ。",
+            "segments": [
+              {
+                "text": "課長",
+                "ruby": "かちょう"
+              },
+              {
+                "text": "は "
+              },
+              {
+                "text": "出張中",
+                "ruby": "しゅっちょうちゅう"
+              },
+              {
+                "text": "ですが、"
+              },
+              {
+                "text": "李",
+                "ruby": "り"
+              },
+              {
+                "text": "さんに よろしくと "
+              },
+              {
+                "text": "言",
+                "ruby": "い"
+              },
+              {
+                "text": "って いましたよ。"
+              }
+            ]
           },
           {
             "id": "l24-app-block-002-line-005",
@@ -396,7 +704,31 @@
               "confidence": "approved",
               "reviewedAt": "2026-08-05T08:50:04.328Z",
               "sourceAudioSha256": "fccccf9545f628f371563423e2ca0cb37b4ad6e2b6398232356b23a2e761f71a"
-            }
+            },
+            "kana": "そうですか。どうぞ よしだかちょうに よろしく おつたえ ください。",
+            "segments": [
+              {
+                "text": "そうですか。どうぞ "
+              },
+              {
+                "text": "吉田",
+                "ruby": "よしだ"
+              },
+              {
+                "text": "課長",
+                "ruby": "かちょう"
+              },
+              {
+                "text": "に よろしく お"
+              },
+              {
+                "text": "伝",
+                "ruby": "つた"
+              },
+              {
+                "text": "え ください。"
+              }
+            ]
           },
           {
             "id": "l24-app-block-002-line-006",
@@ -416,7 +748,27 @@
               "confidence": "approved",
               "reviewedAt": "2026-08-05T08:50:04.328Z",
               "sourceAudioSha256": "fccccf9545f628f371563423e2ca0cb37b4ad6e2b6398232356b23a2e761f71a"
-            }
+            },
+            "kana": "ええ、かならず つたえます。",
+            "segments": [
+              {
+                "text": "ええ、"
+              },
+              {
+                "text": "必",
+                "ruby": "かなら"
+              },
+              {
+                "text": "ず "
+              },
+              {
+                "text": "伝",
+                "ruby": "つた"
+              },
+              {
+                "text": "えます。"
+              }
+            ]
           }
         ]
       },
@@ -450,7 +802,27 @@
               "confidence": "approved",
               "reviewedAt": "2026-08-05T08:50:04.328Z",
               "sourceAudioSha256": "fccccf9545f628f371563423e2ca0cb37b4ad6e2b6398232356b23a2e761f71a"
-            }
+            },
+            "kana": "これ、ゆかたです。わたしが つくったんですが、どうぞ。",
+            "segments": [
+              {
+                "text": "これ、"
+              },
+              {
+                "text": "浴衣",
+                "ruby": "ゆかた"
+              },
+              {
+                "text": "です。わたしが "
+              },
+              {
+                "text": "作",
+                "ruby": "つく"
+              },
+              {
+                "text": "ったんですが、どうぞ。"
+              }
+            ]
           },
           {
             "id": "l24-app-block-004-line-002",
@@ -470,7 +842,24 @@
               "confidence": "approved",
               "reviewedAt": "2026-08-05T08:50:04.328Z",
               "sourceAudioSha256": "fccccf9545f628f371563423e2ca0cb37b4ad6e2b6398232356b23a2e761f71a"
-            }
+            },
+            "kana": "おのさんが つくったんですか。すごいですね。ありがとう ございます。",
+            "segments": [
+              {
+                "text": "小野",
+                "ruby": "おの"
+              },
+              {
+                "text": "さんが "
+              },
+              {
+                "text": "作",
+                "ruby": "つく"
+              },
+              {
+                "text": "ったんですか。すごいですね。ありがとう ございます。"
+              }
+            ]
           }
         ]
       },
@@ -504,7 +893,38 @@
               "confidence": "approved",
               "reviewedAt": "2026-08-05T08:50:04.328Z",
               "sourceAudioSha256": "fccccf9545f628f371563423e2ca0cb37b4ad6e2b6398232356b23a2e761f71a"
-            }
+            },
+            "kana": "おのさん、もりさん、いつか ペキンへ くて ください。",
+            "segments": [
+              {
+                "text": "小野",
+                "ruby": "おの"
+              },
+              {
+                "text": "さん、"
+              },
+              {
+                "text": "森",
+                "ruby": "もり"
+              },
+              {
+                "text": "さん、いつか "
+              },
+              {
+                "text": "北京",
+                "ruby": "ペキン"
+              },
+              {
+                "text": "へ "
+              },
+              {
+                "text": "来",
+                "ruby": "く"
+              },
+              {
+                "text": "て ください。"
+              }
+            ]
           },
           {
             "id": "l24-app-block-006-line-002",
@@ -524,7 +944,62 @@
               "confidence": "approved",
               "reviewedAt": "2026-08-05T08:50:04.328Z",
               "sourceAudioSha256": "fccccf9545f628f371563423e2ca0cb37b4ad6e2b6398232356b23a2e761f71a"
-            }
+            },
+            "kana": "ええ、かならず いきます。こんどは きょうげきを みましょう。りさん、おげんきで。",
+            "segments": [
+              {
+                "text": "ええ、"
+              },
+              {
+                "text": "必",
+                "ruby": "かなら"
+              },
+              {
+                "text": "ず "
+              },
+              {
+                "text": "行",
+                "ruby": "い"
+              },
+              {
+                "text": "きます。"
+              },
+              {
+                "text": "今度",
+                "ruby": "こんど"
+              },
+              {
+                "text": "は "
+              },
+              {
+                "text": "京劇",
+                "ruby": "きょうげき"
+              },
+              {
+                "text": "を "
+              },
+              {
+                "text": "見",
+                "ruby": "み"
+              },
+              {
+                "text": "ましょう。"
+              },
+              {
+                "text": "李",
+                "ruby": "り"
+              },
+              {
+                "text": "さん、お"
+              },
+              {
+                "text": "元気",
+                "ruby": "げんき"
+              },
+              {
+                "text": "で。"
+              }
+            ]
           },
           {
             "id": "l24-app-block-006-line-003",
@@ -544,7 +1019,48 @@
               "confidence": "approved",
               "reviewedAt": "2026-08-05T08:50:04.328Z",
               "sourceAudioSha256": "fccccf9545f628f371563423e2ca0cb37b4ad6e2b6398232356b23a2e761f71a"
-            }
+            },
+            "kana": "ぼくも いつか ペキンへ いきたいと おもいます。りさん、どうぞ おきを つけて。",
+            "segments": [
+              {
+                "text": "ぼくも いつか "
+              },
+              {
+                "text": "北京",
+                "ruby": "ペキン"
+              },
+              {
+                "text": "へ "
+              },
+              {
+                "text": "行",
+                "ruby": "い"
+              },
+              {
+                "text": "きたいと "
+              },
+              {
+                "text": "思",
+                "ruby": "おも"
+              },
+              {
+                "text": "います。"
+              },
+              {
+                "text": "李",
+                "ruby": "り"
+              },
+              {
+                "text": "さん、どうぞ お"
+              },
+              {
+                "text": "気",
+                "ruby": "き"
+              },
+              {
+                "text": "を つけて。"
+              }
+            ]
           },
           {
             "id": "l24-app-block-006-line-004",
@@ -564,14 +1080,41 @@
               "confidence": "approved",
               "reviewedAt": "2026-08-05T08:50:04.328Z",
               "sourceAudioSha256": "fccccf9545f628f371563423e2ca0cb37b4ad6e2b6398232356b23a2e761f71a"
-            }
+            },
+            "kana": "さようなら。こんどは ペキンで あいましょう。",
+            "segments": [
+              {
+                "text": "さようなら。"
+              },
+              {
+                "text": "今度",
+                "ruby": "こんど"
+              },
+              {
+                "text": "は "
+              },
+              {
+                "text": "北京",
+                "ruby": "ペキン"
+              },
+              {
+                "text": "で "
+              },
+              {
+                "text": "会",
+                "ruby": "あ"
+              },
+              {
+                "text": "いましょう。"
+              }
+            ]
           }
         ]
       }
     ]
   },
   "warnings": [
-    "segments/ruby 未批量生成；保留 text 与 translationZh，后续可单独补充 ruby 切片。"
+    "第 24 课课文 ruby/segments 已按课程词汇和课文常用读音补充；建议后续与教材图片抽查校对。"
   ],
   "audioAlignment": {
     "schemaVersion": 1,

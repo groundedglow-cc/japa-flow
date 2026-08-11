@@ -244,6 +244,19 @@ function flattenActivityItems(activity) {
     : activity.items || [];
 }
 
+function practiceItemCount(practice) {
+  return (practice?.activities || []).reduce((total, activity) => total + flattenActivityItems(activity).length, 0);
+}
+
+function shouldPreferLocalPractice(backendPracticeSet, fallbackPractice) {
+  if (typeof window === "undefined") return false;
+  const host = window.location.hostname;
+  if (host !== "localhost" && host !== "127.0.0.1") return false;
+  const backendPractice = backendPracticeSet?.contentJson;
+  if (!backendPractice?.activities?.length || !fallbackPractice?.activities?.length) return false;
+  return practiceItemCount(fallbackPractice) > practiceItemCount(backendPractice);
+}
+
 function backendSessionToRecord(lessonId, backendSession) {
   const session = backendSession?.session;
   const record = {
@@ -328,6 +341,13 @@ export const practiceSessionApi = {
         practice: fallbackPractice,
         practiceSetId: fallbackPractice.practiceSetId || null,
         source: "local"
+      };
+    }
+    if (shouldPreferLocalPractice(backendPracticeSet, fallbackPractice)) {
+      return {
+        practice: fallbackPractice,
+        practiceSetId: fallbackPractice.practiceSetId || null,
+        source: "local-newer"
       };
     }
     return {

@@ -25,12 +25,13 @@
         "itemIndex": 1,
         "text": "ことば",
         "label": "言葉",
-        "start": 0.786,
+        "start": 0.5,
         "end": 1.475,
-        "duration": 0.689,
+        "duration": 0.975,
         "speechUnitCount": 1,
-        "method": "ffmpeg-silencedetect-order",
-        "confidence": "needs-review"
+        "method": "manual-admin-adjustment",
+        "confidence": "approved",
+        "reviewedAt": "2026-08-08T01:45:37.738Z"
       }
     },
     {
@@ -1147,5 +1148,6 @@
         ]
       }
     }
-  }
+  },
+  "updatedAt": "2026-08-08T01:45:37.739Z"
 }

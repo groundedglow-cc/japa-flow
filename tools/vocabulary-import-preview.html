@@ -223,7 +223,7 @@
         display: flex;
         align-items: baseline;
         flex-wrap: wrap;
-        gap: 10px;
+        gap: 12px;
         min-width: 0;
       }
 
@@ -231,11 +231,27 @@
         font-size: 42px;
         font-weight: 700;
         letter-spacing: 0;
+        line-height: 1.25;
       }
 
-      .kana {
-        font-size: 18px;
+      .writing ruby {
+        ruby-position: over;
+        ruby-align: center;
+      }
+
+      .writing rt {
         color: var(--muted);
+        font-size: 0.36em;
+        font-weight: 500;
+        line-height: 1;
+        user-select: none;
+      }
+
+      .meaning-inline {
+        color: var(--muted);
+        font-size: 15px;
+        font-weight: 500;
+        line-height: 1.4;
       }
 
       .meta {
@@ -261,11 +277,6 @@
       .tag.warn {
         background: var(--warn-soft);
         color: var(--warn);
-      }
-
-      .meaning {
-        font-size: 18px;
-        margin: 8px 0 14px;
       }
 
       .raw {
@@ -295,6 +306,98 @@
         background: var(--accent-soft);
         font-size: 14px;
         line-height: 1;
+      }
+
+      .segment-settings {
+        display: inline-flex;
+      }
+
+      .modal-backdrop {
+        position: fixed;
+        inset: 0;
+        z-index: 100;
+        display: none;
+        place-items: center;
+        padding: 20px;
+        background: rgba(23, 32, 42, 0.38);
+      }
+
+      .modal-backdrop.open {
+        display: grid;
+      }
+
+      .modal {
+        width: min(100%, 460px);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--panel);
+        box-shadow: 0 18px 56px rgba(23, 32, 42, 0.22);
+      }
+
+      .modal-head,
+      .modal-actions {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        padding: 12px 14px;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .modal-actions {
+        justify-content: flex-end;
+        border-top: 1px solid var(--line);
+        border-bottom: 0;
+      }
+
+      .modal-body {
+        padding: 14px;
+      }
+
+      .modal-title {
+        font-size: 15px;
+        font-weight: 700;
+      }
+
+      .modal-text {
+        margin: 0 0 12px;
+        color: var(--muted);
+        line-height: 1.5;
+      }
+
+      .time-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        margin-bottom: 10px;
+      }
+
+      .time-grid label {
+        display: grid;
+        gap: 5px;
+        color: var(--muted);
+        font-size: 12px;
+      }
+
+      .time-grid input {
+        width: 100%;
+        height: 36px;
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        padding: 0 9px;
+        color: var(--text);
+        font: inherit;
+        font-variant-numeric: tabular-nums;
+      }
+
+      .modal-status {
+        min-height: 20px;
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      .modal-status.error {
+        color: #b42318;
       }
 
       .word-list {
@@ -442,8 +545,33 @@
       </aside>
     </main>
 
+    <div class="modal-backdrop" id="segmentModal" aria-hidden="true">
+      <div class="modal" role="dialog" aria-modal="true" aria-labelledby="segmentModalTitle">
+        <div class="modal-head">
+          <div class="modal-title" id="segmentModalTitle">设置音频区间</div>
+          <button id="closeSegmentModal" type="button" aria-label="关闭">×</button>
+        </div>
+        <div class="modal-body">
+          <p class="modal-text" id="segmentModalText"></p>
+          <div class="time-grid">
+            <label>开始时间（秒）<input id="segmentStart" type="number" min="0" step="0.001" /></label>
+            <label>结束时间（秒）<input id="segmentEnd" type="number" min="0" step="0.001" /></label>
+          </div>
+          <div class="modal-status" id="segmentModalStatus"></div>
+        </div>
+        <div class="modal-actions">
+          <button id="testSegmentPlay" type="button">测试播放</button>
+          <button class="primary" id="saveSegment" type="button">保存</button>
+        </div>
+      </div>
+    </div>
+
     <script type="module">
-      const state = { data: null, index: 0, audio: new Audio(), stopTimer: 0, samples: [], selectedSample: null, autoPlayToken: 0 };
+      if (new URLSearchParams(location.search).get("admin") === "1") {
+        document.documentElement.classList.add("admin");
+      }
+
+      const state = { data: null, index: 0, audio: new Audio(), stopTimer: 0, samples: [], selectedSample: null, autoPlayToken: 0, editing: null };
 
       const $ = (selector) => document.querySelector(selector);
       const escapeHtml = (value) => String(value ?? "")
@@ -600,6 +728,7 @@
           return;
         }
         const meanings = Array.isArray(word.meaningZh) ? word.meaningZh : [word.meaningZh].filter(Boolean);
+        const meaningText = meanings.length ? meanings.map(escapeHtml).join(" / ") : "暂无中文释义";
         $("#wordCard").innerHTML = `
           <article class="word-card">
             <div class="word-nav">
@@ -610,8 +739,8 @@
             <div class="word-body">
               <div class="word-main">
                 <div class="jp">
-                  <strong class="writing">${escapeHtml(word.writing || word.kana)}</strong>
-                  <span class="kana">${escapeHtml(word.kana || "")}</span>
+                  <strong class="writing">${renderWordWriting(word)}</strong>
+                  <span class="meaning-inline">${meaningText}</span>
                 </div>
                 <div class="meta">
                   <span class="tag">${escapeHtml(word.id || "")}</span>
@@ -619,10 +748,10 @@
                   <span class="tag ${word.confidence === "low" ? "warn" : ""}">${escapeHtml(word.confidence || "unknown")}</span>
                 </div>
               </div>
-              <div class="meaning">${meanings.length ? meanings.map(escapeHtml).join(" / ") : "暂无中文释义"}</div>
               ${word.audioSegment ? `
                 <div class="audio-row">
                   <button class="audio-button" id="playWordAudio" type="button" title="播放音频片段" aria-label="播放音频片段">▶</button>
+                  <button class="audio-button segment-settings" id="editWordAudio" type="button" title="设置音频区间" aria-label="设置音频区间">⚙</button>
                   <span>${escapeHtml(formatSegmentTime(word.audioSegment))}</span>
                 </div>
               ` : ""}
@@ -632,6 +761,71 @@
         $("#prevWord")?.addEventListener("click", () => move(-1));
         $("#nextWord")?.addEventListener("click", () => move(1));
         $("#playWordAudio")?.addEventListener("click", () => playSegment(word.audioSegment));
+        $("#editWordAudio")?.addEventListener("click", () => openSegmentModal(word.id).catch((error) => setStatus(error.message, true)));
+      }
+
+      function renderWordWriting(word) {
+        const writing = String(word?.writing || word?.kana || "");
+        const kana = String(word?.kana || "");
+        if (!writing || !kana || writing === kana || !hasKanji(writing)) return escapeHtml(writing);
+        return wordRubySegments(writing, kana).map((segment) => {
+          if (!segment.ruby) return escapeHtml(segment.text);
+          return `<ruby><rb>${escapeHtml(segment.text)}</rb><rt aria-hidden="true">${escapeHtml(segment.ruby)}</rt></ruby>`;
+        }).join("");
+      }
+
+      function hasKanji(value) {
+        return /[\u3400-\u9fff々〆ヵヶ]/.test(value);
+      }
+
+      function isKanjiChar(char) {
+        return /[\u3400-\u9fff々〆ヵヶ]/.test(char);
+      }
+
+      function toHiragana(value) {
+        return String(value || "").replace(/[\u30a1-\u30f6]/g, (char) =>
+          String.fromCharCode(char.charCodeAt(0) - 0x60)
+        );
+      }
+
+      function wordRubySegments(writing, kana) {
+        const chars = [...writing];
+        const tokens = [];
+        for (const char of chars) {
+          const kind = isKanjiChar(char) ? "kanji" : "plain";
+          const last = tokens[tokens.length - 1];
+          if (last?.kind === kind) last.text += char;
+          else tokens.push({ kind, text: char });
+        }
+        if (tokens.every((token) => token.kind === "kanji")) {
+          return [{ text: writing, ruby: kana }];
+        }
+
+        const segments = [];
+        let kanaCursor = 0;
+        const normalizedKana = toHiragana(kana);
+
+        tokens.forEach((token, index) => {
+          if (token.kind === "plain") {
+            const reading = toHiragana(token.text);
+            if (normalizedKana.slice(kanaCursor).startsWith(reading)) kanaCursor += reading.length;
+            segments.push({ text: token.text });
+            return;
+          }
+
+          const nextPlain = tokens.slice(index + 1).find((item) => item.kind === "plain");
+          let rubyEnd = kana.length;
+          if (nextPlain) {
+            const nextReading = toHiragana(nextPlain.text);
+            const found = normalizedKana.indexOf(nextReading, kanaCursor + 1);
+            if (found >= 0) rubyEnd = found;
+          }
+          const ruby = kana.slice(kanaCursor, rubyEnd);
+          kanaCursor = rubyEnd;
+          segments.push(ruby ? { text: token.text, ruby } : { text: token.text });
+        });
+
+        return segments;
       }
 
       function renderWordList(words) {
@@ -696,6 +890,93 @@
         }
       }
 
+      function modalStatus(message, isError = false) {
+        $("#segmentModalStatus").textContent = message || "";
+        $("#segmentModalStatus").classList.toggle("error", Boolean(isError));
+      }
+
+      async function loadEditableSegment(wordId) {
+        const word = (state.data?.vocabulary || []).find((item) => item?.id === wordId);
+        const lessonNo = state.selectedSample?.lessonNo || lessonNoFromData() || lessonNoFromLocation();
+        const editableSegment = word?.audioSegment || null;
+        if (!word || !editableSegment) throw new Error("当前单词没有可编辑的音频区间。");
+        return { word, lessonNo, segment: editableSegment };
+      }
+
+      async function openSegmentModal(wordId) {
+        const editing = await loadEditableSegment(wordId);
+        state.editing = editing;
+        const label = editing.word.writing && editing.word.writing !== editing.word.kana
+          ? `${editing.word.writing}（${editing.word.kana || ""}）`
+          : editing.word.kana || editing.word.writing || editing.word.id;
+        $("#segmentModalText").textContent = label;
+        $("#segmentStart").value = Number(editing.segment.start || 0).toFixed(3);
+        $("#segmentEnd").value = Number(editing.segment.end || 0).toFixed(3);
+        modalStatus(`当前区间：${formatSegmentTime(editing.segment)}`);
+        $("#segmentModal").classList.add("open");
+        $("#segmentModal").setAttribute("aria-hidden", "false");
+        $("#segmentStart").focus();
+      }
+
+      function closeSegmentModal() {
+        state.editing = null;
+        $("#segmentModal").classList.remove("open");
+        $("#segmentModal").setAttribute("aria-hidden", "true");
+      }
+
+      function editedRange() {
+        const start = Number($("#segmentStart").value);
+        const end = Number($("#segmentEnd").value);
+        if (!Number.isFinite(start) || !Number.isFinite(end) || start < 0 || end <= start) {
+          throw new Error("请填写有效的开始和结束时间。");
+        }
+        return {
+          start: Math.round(start * 1000) / 1000,
+          end: Math.round(end * 1000) / 1000
+        };
+      }
+
+      async function testEditedSegment() {
+        if (!state.editing) return;
+        try {
+          const range = editedRange();
+          await playSegment({ ...state.editing.segment, ...range });
+          modalStatus(`测试播放：${range.start.toFixed(3)}s - ${range.end.toFixed(3)}s`);
+        } catch (error) {
+          modalStatus(error.message, true);
+        }
+      }
+
+      async function saveEditedSegment() {
+        if (!state.editing) return;
+        try {
+          const range = editedRange();
+          modalStatus("正在保存...");
+          $("#saveSegment").disabled = true;
+          const response = await fetch("/api/ocr/vocabulary-audio-segment", {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              lessonId: state.editing.lessonNo,
+              itemId: state.editing.word.id,
+              start: range.start,
+              end: range.end
+            })
+          });
+          const result = await response.json();
+          if (!response.ok) throw new Error(result.error || `保存失败：${response.status}`);
+          state.editing.word.audioSegment = result.audioSegment;
+          $("#jsonInput").value = JSON.stringify(state.data, null, 2);
+          render();
+          closeSegmentModal();
+          setStatus(`音频区间已保存：${result.updatedFiles.join("，")}`);
+        } catch (error) {
+          modalStatus(error.message, true);
+        } finally {
+          $("#saveSegment").disabled = false;
+        }
+      }
+
       function waitForAudioMetadata() {
         if (state.audio.readyState >= 1) return Promise.resolve();
         state.audio.load();
@@ -735,6 +1016,12 @@
           setStatus(error.message, true);
         }
       });
+      $("#closeSegmentModal").addEventListener("click", closeSegmentModal);
+      $("#segmentModal").addEventListener("click", (event) => {
+        if (event.target.id === "segmentModal") closeSegmentModal();
+      });
+      $("#testSegmentPlay").addEventListener("click", testEditedSegment);
+      $("#saveSegment").addEventListener("click", saveEditedSegment);
 
       initSamples().catch((error) => setStatus(error.message, true));
     </script>

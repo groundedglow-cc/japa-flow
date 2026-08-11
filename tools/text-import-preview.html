@@ -210,13 +210,45 @@
         justify-content: space-between;
         gap: 12px;
         background: #fbfcfd;
-        border-bottom: 1px solid var(--line);
         padding: 12px 14px;
+        cursor: pointer;
+        user-select: none;
+        transition: background 0.16s ease, color 0.16s ease;
+      }
+
+      .section-head:hover {
+        background: var(--accent-soft);
+      }
+
+      .text-section.expanded .section-head {
+        border-bottom: 1px solid var(--line);
+        background: var(--accent-soft);
+        color: var(--accent);
       }
 
       .section-label {
         color: var(--muted);
         font-size: 13px;
+      }
+
+      .section-toggle {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        min-width: 64px;
+        justify-content: center;
+        padding: 3px 8px;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        background: #fff;
+        color: var(--muted);
+        font-size: 13px;
+        font-weight: 700;
+      }
+
+      .text-section.expanded .section-toggle {
+        border-color: var(--accent);
+        color: var(--accent);
       }
 
       .basic-sentences,
@@ -245,7 +277,7 @@
       }
 
       .jp {
-        font-size: 20px;
+        font-size: 18px;
         font-weight: 650;
         line-height: 1.45;
       }
@@ -264,6 +296,7 @@
       }
 
       .jp .base-text {
+        font-size: 18px;
         white-space: pre-wrap;
       }
 
@@ -343,9 +376,107 @@
         line-height: 1;
       }
 
+      .segment-actions {
+        display: flex;
+        gap: 6px;
+        align-items: center;
+      }
+
+      .segment-settings {
+        display: inline-flex;
+      }
+
       .audio-placeholder {
         width: 34px;
         height: 34px;
+      }
+
+      .modal-backdrop {
+        position: fixed;
+        inset: 0;
+        z-index: 100;
+        display: none;
+        place-items: center;
+        padding: 20px;
+        background: rgba(23, 32, 42, 0.38);
+      }
+
+      .modal-backdrop.open {
+        display: grid;
+      }
+
+      .modal {
+        width: min(100%, 460px);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--panel);
+        box-shadow: 0 18px 56px rgba(23, 32, 42, 0.22);
+      }
+
+      .modal-head,
+      .modal-actions {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        padding: 12px 14px;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .modal-actions {
+        justify-content: flex-end;
+        border-top: 1px solid var(--line);
+        border-bottom: 0;
+      }
+
+      .modal-body {
+        padding: 14px;
+      }
+
+      .modal-title {
+        font-size: 15px;
+        font-weight: 700;
+      }
+
+      .modal-text {
+        margin: 0 0 12px;
+        color: var(--muted);
+        line-height: 1.5;
+      }
+
+      .time-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        margin-bottom: 10px;
+      }
+
+      .time-grid label {
+        display: grid;
+        gap: 5px;
+        color: var(--muted);
+        font-size: 12px;
+      }
+
+      .time-grid input {
+        width: 100%;
+        height: 36px;
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        padding: 0 9px;
+        color: var(--text);
+        font: inherit;
+        font-variant-numeric: tabular-nums;
+      }
+
+      .modal-status {
+        min-height: 20px;
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      .modal-status.error {
+        color: #b42318;
       }
 
       .image-panel {
@@ -450,8 +581,44 @@
       <aside class="panel image-panel" id="imagePanel"></aside>
     </main>
 
+    <div class="modal-backdrop" id="segmentModal" aria-hidden="true">
+      <div class="modal" role="dialog" aria-modal="true" aria-labelledby="segmentModalTitle">
+        <div class="modal-head">
+          <div class="modal-title" id="segmentModalTitle">设置音频区间</div>
+          <button id="closeSegmentModal" type="button" aria-label="关闭">×</button>
+        </div>
+        <div class="modal-body">
+          <p class="modal-text" id="segmentModalText"></p>
+          <div class="time-grid">
+            <label>开始时间（秒）<input id="segmentStart" type="number" min="0" step="0.001" /></label>
+            <label>结束时间（秒）<input id="segmentEnd" type="number" min="0" step="0.001" /></label>
+          </div>
+          <div class="modal-status" id="segmentModalStatus"></div>
+        </div>
+        <div class="modal-actions">
+          <button id="testSegmentPlay" type="button">测试播放</button>
+          <button class="primary" id="saveSegment" type="button">保存</button>
+        </div>
+      </div>
+    </div>
+
     <script type="module">
-      const state = { data: null, audio: new Audio(), stopTimer: 0, segmentMap: new Map(), segmentSeq: 0, samples: [], selectedSample: null };
+      if (new URLSearchParams(location.search).get("admin") === "1") {
+        document.documentElement.classList.add("admin");
+      }
+
+      const state = {
+        data: null,
+        audio: new Audio(),
+        stopTimer: 0,
+        segmentMap: new Map(),
+        itemMap: new Map(),
+        segmentSeq: 0,
+        samples: [],
+        selectedSample: null,
+        editing: null,
+        expandedTextSection: "basic"
+      };
 
       const $ = (selector) => document.querySelector(selector);
       const escapeHtml = (value) => String(value ?? "")
@@ -481,6 +648,7 @@
 
       function setData(payload, sourceLabel = "导入数据") {
         state.data = normalizePayload(payload);
+        state.expandedTextSection = "basic";
         $("#jsonInput").value = JSON.stringify(state.data, null, 2);
         setStatus(`${sourceLabel} 已加载。`);
         render();
@@ -587,6 +755,7 @@
         const basicDialogueLines = (data?.basicText?.dialogues || []).reduce((sum, dialogue) => sum + (dialogue.lines || []).length, 0);
         const appLines = (data?.applicationText?.blocks || []).reduce((sum, block) => sum + (block.lines || []).length, 0);
         state.segmentMap = new Map();
+        state.itemMap = new Map();
         state.segmentSeq = 0;
         $("#summary").textContent = data ? `${data.lessonId || "unknown"} · 基本句 ${sentenceCount} · 对话 ${basicDialogueLines + appLines} 行` : "未加载";
         $("#textPreview").innerHTML = data ? `${renderBasic(data.basicText)}${renderApplication(data.applicationText)}` : "";
@@ -603,14 +772,15 @@
         if (!basicText) return "";
         const sentences = (basicText.basicSentences || []).map((sentence) => {
           const segmentId = registerSegment(sentence.audioSegment);
+          registerItem(sentence);
           return `
-            <div class="sentence${segmentId ? " has-audio" : ""}" ${segmentId ? `data-play-segment-id="${escapeHtml(segmentId)}"` : ""}>
+            <div class="sentence${segmentId ? " has-audio" : ""}" data-item-id="${escapeHtml(sentence.id || "")}" ${segmentId ? `data-play-segment-id="${escapeHtml(segmentId)}"` : ""}>
               <div class="num">${escapeHtml(sentence.order || "")}</div>
               <div>
                 <div class="jp" data-copy-text="${escapeHtml(copyTextForJapanese(sentence))}">${renderJapanese(sentence)}</div>
                 <div class="cn">${escapeHtml(sentence.translationZh || "")}</div>
               </div>
-              <div>${segmentButton(segmentId, sentence.audioSegment)}</div>
+              <div>${segmentActions(sentence, segmentId, sentence.audioSegment)}</div>
             </div>
           `;
         }).join("");
@@ -622,14 +792,14 @@
           </div>
         `).join("");
 
+        const expanded = state.expandedTextSection === "basic";
         return `
-          <section class="text-section">
-            <div class="section-head">
+          <section class="text-section ${expanded ? "expanded" : "collapsed"}" data-text-section="basic">
+            <div class="section-head" role="button" tabindex="0" aria-expanded="${expanded ? "true" : "false"}">
               <h2>${escapeHtml(basicText.title || "基本课文")}</h2>
-              <span class="section-label">基本句 + 甲乙对话</span>
+              <span class="section-label">基本句 + 甲乙对话 <span class="section-toggle">${expanded ? "▾ 收起" : "▸ 展开"}</span></span>
             </div>
-            <div class="basic-sentences">${sentences}</div>
-            ${dialogues}
+            ${expanded ? `<div class="basic-sentences">${sentences}</div>${dialogues}` : ""}
           </section>
         `;
       }
@@ -649,27 +819,38 @@
           `;
         }).join("");
 
+        const expanded = state.expandedTextSection === "application";
         return `
-          <section class="text-section">
-            <div class="section-head">
+          <section class="text-section ${expanded ? "expanded" : "collapsed"}" data-text-section="application">
+            <div class="section-head" role="button" tabindex="0" aria-expanded="${expanded ? "true" : "false"}">
               <h2>${escapeHtml(applicationText.title || "应用课文")}</h2>
-              <span class="section-label">旁白 / 场景 / 多人对话</span>
+              <span class="section-label">旁白 / 场景 / 多人对话 <span class="section-toggle">${expanded ? "▾ 收起" : "▸ 展开"}</span></span>
             </div>
-            ${blocks}
+            ${expanded ? blocks : ""}
           </section>
         `;
       }
 
       function renderLine(line) {
         const segmentId = registerSegment(line.audioSegment);
+        registerItem(line);
         return `
-          <div class="line${segmentId ? " has-audio" : ""}" ${segmentId ? `data-play-segment-id="${escapeHtml(segmentId)}"` : ""}>
+          <div class="line${segmentId ? " has-audio" : ""}" data-item-id="${escapeHtml(line.id || "")}" ${segmentId ? `data-play-segment-id="${escapeHtml(segmentId)}"` : ""}>
             <div><span class="speaker">${escapeHtml(line.speaker || "?")}</span></div>
             <div>
               <div class="jp" data-copy-text="${escapeHtml(copyTextForJapanese(line))}">${renderJapanese(line)}</div>
               <div class="cn">${escapeHtml(line.translationZh || "")}</div>
             </div>
-            <div>${segmentButton(segmentId, line.audioSegment)}</div>
+            <div>${segmentActions(line, segmentId, line.audioSegment)}</div>
+          </div>
+        `;
+      }
+
+      function segmentActions(item, segmentId, segment) {
+        return `
+          <div class="segment-actions">
+            ${segmentButton(segmentId, segment)}
+            ${item?.id && segment ? `<button class="audio-button segment-settings" type="button" data-edit-item-id="${escapeHtml(item.id)}" title="设置音频区间" aria-label="设置音频区间">⚙</button>` : ""}
           </div>
         `;
       }
@@ -677,6 +858,10 @@
       function segmentButton(segmentId, segment) {
         if (!segmentId || !segment) return `<span class="audio-placeholder"></span>`;
         return `<button class="audio-button" type="button" data-segment-id="${escapeHtml(segmentId)}" title="${escapeHtml(formatSegmentTime(segment))}" aria-label="播放音频片段">▶</button>`;
+      }
+
+      function registerItem(item) {
+        if (item?.id) state.itemMap.set(item.id, item);
       }
 
       function registerSegment(segment) {
@@ -703,6 +888,20 @@
       }
 
       function bindSegmentButtons() {
+        $("#textPreview").querySelectorAll(".section-head").forEach((head) => {
+          const toggle = () => {
+            const section = head.closest("[data-text-section]")?.dataset.textSection;
+            if (!section) return;
+            state.expandedTextSection = state.expandedTextSection === section ? "" : section;
+            render();
+          };
+          head.addEventListener("click", toggle);
+          head.addEventListener("keydown", (event) => {
+            if (event.key !== "Enter" && event.key !== " ") return;
+            event.preventDefault();
+            toggle();
+          });
+        });
         $("#textPreview").querySelectorAll(".sentence[data-play-segment-id], .line[data-play-segment-id]").forEach((row) => {
           row.addEventListener("click", (event) => {
             if (event.target.closest("button[data-segment-id]")) return;
@@ -715,6 +914,12 @@
           button.addEventListener("click", (event) => {
             event.stopPropagation();
             playSegment(state.segmentMap.get(button.dataset.segmentId));
+          });
+        });
+        $("#textPreview").querySelectorAll("[data-edit-item-id]").forEach((button) => {
+          button.addEventListener("click", (event) => {
+            event.stopPropagation();
+            openSegmentModal(button.dataset.editItemId).catch((error) => setStatus(error.message, true));
           });
         });
       }
@@ -764,6 +969,89 @@
         } catch (error) {
           clearInterval(state.stopTimer);
           setStatus(`播放失败：${error.message}`, true);
+        }
+      }
+
+      function modalStatus(message, isError = false) {
+        $("#segmentModalStatus").textContent = message || "";
+        $("#segmentModalStatus").classList.toggle("error", Boolean(isError));
+      }
+
+      async function loadEditableSegment(itemId) {
+        const item = state.itemMap.get(itemId);
+        const lessonNo = state.selectedSample?.lessonNo || lessonNoFromData() || lessonNoFromLocation();
+        const editableSegment = item?.audioSegment || null;
+        if (!item || !editableSegment) throw new Error("当前句子没有可编辑的音频区间。");
+        return { item, lessonNo, segment: editableSegment };
+      }
+
+      async function openSegmentModal(itemId) {
+        const editing = await loadEditableSegment(itemId);
+        state.editing = editing;
+        $("#segmentModalText").textContent = editing.item.text || "";
+        $("#segmentStart").value = Number(editing.segment.start || 0).toFixed(3);
+        $("#segmentEnd").value = Number(editing.segment.end || 0).toFixed(3);
+        modalStatus(`当前区间：${formatSegmentTime(editing.segment)}`);
+        $("#segmentModal").classList.add("open");
+        $("#segmentModal").setAttribute("aria-hidden", "false");
+        $("#segmentStart").focus();
+      }
+
+      function closeSegmentModal() {
+        state.editing = null;
+        $("#segmentModal").classList.remove("open");
+        $("#segmentModal").setAttribute("aria-hidden", "true");
+      }
+
+      function editedRange() {
+        const start = Number($("#segmentStart").value);
+        const end = Number($("#segmentEnd").value);
+        if (!Number.isFinite(start) || !Number.isFinite(end) || start < 0 || end <= start) {
+          throw new Error("请填写有效的开始和结束时间。");
+        }
+        return {
+          start: Math.round(start * 1000) / 1000,
+          end: Math.round(end * 1000) / 1000
+        };
+      }
+
+      async function testEditedSegment() {
+        if (!state.editing) return;
+        try {
+          const range = editedRange();
+          await playSegment({ ...state.editing.segment, ...range });
+          modalStatus(`测试播放：${range.start.toFixed(3)}s - ${range.end.toFixed(3)}s`);
+        } catch (error) {
+          modalStatus(error.message, true);
+        }
+      }
+
+      async function saveEditedSegment() {
+        if (!state.editing) return;
+        try {
+          const range = editedRange();
+          modalStatus("正在保存...");
+          $("#saveSegment").disabled = true;
+          const response = await fetch("/api/ocr/text-audio-segment", {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              lessonId: state.editing.lessonNo,
+              itemId: state.editing.item.id,
+              start: range.start,
+              end: range.end
+            })
+          });
+          const result = await response.json();
+          if (!response.ok) throw new Error(result.error || `保存失败：${response.status}`);
+          state.editing.item.audioSegment = result.audioSegment;
+          render();
+          closeSegmentModal();
+          setStatus(`音频区间已保存：${result.updatedFiles.join("，")}`);
+        } catch (error) {
+          modalStatus(error.message, true);
+        } finally {
+          $("#saveSegment").disabled = false;
         }
       }
 
@@ -822,6 +1110,12 @@
           setStatus(error.message, true);
         }
       });
+      $("#closeSegmentModal").addEventListener("click", closeSegmentModal);
+      $("#segmentModal").addEventListener("click", (event) => {
+        if (event.target.id === "segmentModal") closeSegmentModal();
+      });
+      $("#testSegmentPlay").addEventListener("click", testEditedSegment);
+      $("#saveSegment").addEventListener("click", saveEditedSegment);
 
       bindCopyBehavior();
       initSamples().catch((error) => setStatus(error.message, true));

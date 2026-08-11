@@ -33,7 +33,31 @@
           "confidence": "approved",
           "reviewedAt": "2026-08-05T08:46:56.720Z",
           "sourceAudioSha256": "578ed57897a4c0420baa17a4c0ff97ba7fc70852c02ebc1b0eb8758188769db6"
-        }
+        },
+        "kana": "もりさんは まいばん テレビを みる。",
+        "segments": [
+          {
+            "text": "森",
+            "ruby": "もり"
+          },
+          {
+            "text": "さんは "
+          },
+          {
+            "text": "毎晩",
+            "ruby": "まいばん"
+          },
+          {
+            "text": " テレビを "
+          },
+          {
+            "text": "見",
+            "ruby": "み"
+          },
+          {
+            "text": "る。"
+          }
+        ]
       },
       {
         "id": "l22-basic-s002",
@@ -53,7 +77,24 @@
           "confidence": "approved",
           "reviewedAt": "2026-08-05T08:46:56.720Z",
           "sourceAudioSha256": "578ed57897a4c0420baa17a4c0ff97ba7fc70852c02ebc1b0eb8758188769db6"
-        }
+        },
+        "kana": "きのうは とても いそがしかった。",
+        "segments": [
+          {
+            "text": "昨日",
+            "ruby": "きのう"
+          },
+          {
+            "text": "は とても "
+          },
+          {
+            "text": "忙",
+            "ruby": "いそが"
+          },
+          {
+            "text": "しかった。"
+          }
+        ]
       },
       {
         "id": "l22-basic-s003",
@@ -73,7 +114,20 @@
           "confidence": "approved",
           "reviewedAt": "2026-08-05T08:46:56.720Z",
           "sourceAudioSha256": "578ed57897a4c0420baa17a4c0ff97ba7fc70852c02ebc1b0eb8758188769db6"
-        }
+        },
+        "kana": "コンピュータは かんたんでは ない。",
+        "segments": [
+          {
+            "text": "コンピュータは "
+          },
+          {
+            "text": "簡単",
+            "ruby": "かんたん"
+          },
+          {
+            "text": "では ない。"
+          }
+        ]
       },
       {
         "id": "l22-basic-s004",
@@ -93,7 +147,24 @@
           "confidence": "approved",
           "reviewedAt": "2026-08-05T08:46:56.720Z",
           "sourceAudioSha256": "578ed57897a4c0420baa17a4c0ff97ba7fc70852c02ebc1b0eb8758188769db6"
-        }
+        },
+        "kana": "きょうは くもりだ。",
+        "segments": [
+          {
+            "text": "今日",
+            "ruby": "きょう"
+          },
+          {
+            "text": "は "
+          },
+          {
+            "text": "曇",
+            "ruby": "くも"
+          },
+          {
+            "text": "りだ。"
+          }
+        ]
       }
     ],
     "dialogues": [
@@ -119,7 +190,24 @@
               "confidence": "approved",
               "reviewedAt": "2026-08-05T08:46:56.720Z",
               "sourceAudioSha256": "578ed57897a4c0420baa17a4c0ff97ba7fc70852c02ebc1b0eb8758188769db6"
-            }
+            },
+            "kana": "あした ボーリングに いかない？",
+            "segments": [
+              {
+                "text": "明日",
+                "ruby": "あした"
+              },
+              {
+                "text": " ボーリングに "
+              },
+              {
+                "text": "行",
+                "ruby": "い"
+              },
+              {
+                "text": "かない？"
+              }
+            ]
           },
           {
             "id": "l22-basic-dialogue-001-line-002",
@@ -139,7 +227,27 @@
               "confidence": "approved",
               "reviewedAt": "2026-08-05T08:46:56.720Z",
               "sourceAudioSha256": "578ed57897a4c0420baa17a4c0ff97ba7fc70852c02ebc1b0eb8758188769db6"
-            }
+            },
+            "kana": "ごめん。あしたは しごとが あるから…。",
+            "segments": [
+              {
+                "text": "ごめん。"
+              },
+              {
+                "text": "明日",
+                "ruby": "あした"
+              },
+              {
+                "text": "は "
+              },
+              {
+                "text": "仕事",
+                "ruby": "しごと"
+              },
+              {
+                "text": "が あるから…。"
+              }
+            ]
           }
         ]
       },
@@ -165,7 +273,24 @@
               "confidence": "approved",
               "reviewedAt": "2026-08-05T08:46:56.720Z",
               "sourceAudioSha256": "578ed57897a4c0420baa17a4c0ff97ba7fc70852c02ebc1b0eb8758188769db6"
-            }
+            },
+            "kana": "きのうの しけん、どうだった？",
+            "segments": [
+              {
+                "text": "昨日",
+                "ruby": "きのう"
+              },
+              {
+                "text": "の "
+              },
+              {
+                "text": "試験",
+                "ruby": "しけん"
+              },
+              {
+                "text": "、どうだった？"
+              }
+            ]
           },
           {
             "id": "l22-basic-dialogue-002-line-002",
@@ -185,7 +310,20 @@
               "confidence": "approved",
               "reviewedAt": "2026-08-05T08:46:56.720Z",
               "sourceAudioSha256": "578ed57897a4c0420baa17a4c0ff97ba7fc70852c02ebc1b0eb8758188769db6"
-            }
+            },
+            "kana": "ちょっと むずかしかったけど、まあまあ できたよ。",
+            "segments": [
+              {
+                "text": "ちょっと "
+              },
+              {
+                "text": "難",
+                "ruby": "むずか"
+              },
+              {
+                "text": "しかったけど、まあまあ できたよ。"
+              }
+            ]
           }
         ]
       },
@@ -211,7 +349,20 @@
               "confidence": "approved",
               "reviewedAt": "2026-08-05T08:46:56.720Z",
               "sourceAudioSha256": "578ed57897a4c0420baa17a4c0ff97ba7fc70852c02ebc1b0eb8758188769db6"
-            }
+            },
+            "kana": "この ネクタイ、はで？",
+            "segments": [
+              {
+                "text": "この ネクタイ、"
+              },
+              {
+                "text": "派手",
+                "ruby": "はで"
+              },
+              {
+                "text": "？"
+              }
+            ]
           },
           {
             "id": "l22-basic-dialogue-003-line-002",
@@ -231,7 +382,27 @@
               "confidence": "approved",
               "reviewedAt": "2026-08-05T08:46:56.720Z",
               "sourceAudioSha256": "578ed57897a4c0420baa17a4c0ff97ba7fc70852c02ebc1b0eb8758188769db6"
-            }
+            },
+            "kana": "ううん、ぜんぜん はでじゃないわ。",
+            "segments": [
+              {
+                "text": "ううん、"
+              },
+              {
+                "text": "全然",
+                "ruby": "ぜんぜん"
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "派手",
+                "ruby": "はで"
+              },
+              {
+                "text": "じゃないわ。"
+              }
+            ]
           }
         ]
       },
@@ -257,7 +428,31 @@
               "confidence": "approved",
               "reviewedAt": "2026-08-05T08:46:56.720Z",
               "sourceAudioSha256": "578ed57897a4c0420baa17a4c0ff97ba7fc70852c02ebc1b0eb8758188769db6"
-            }
+            },
+            "kana": "もりさんの でんわばんごう、しってる？",
+            "segments": [
+              {
+                "text": "森",
+                "ruby": "もり"
+              },
+              {
+                "text": "さんの "
+              },
+              {
+                "text": "電話番号",
+                "ruby": "でんわばんごう"
+              },
+              {
+                "text": "、"
+              },
+              {
+                "text": "知",
+                "ruby": "し"
+              },
+              {
+                "text": "ってる？"
+              }
+            ]
           },
           {
             "id": "l22-basic-dialogue-004-line-002",
@@ -277,7 +472,20 @@
               "confidence": "approved",
               "reviewedAt": "2026-08-05T08:46:56.720Z",
               "sourceAudioSha256": "578ed57897a4c0420baa17a4c0ff97ba7fc70852c02ebc1b0eb8758188769db6"
-            }
+            },
+            "kana": "うん、しってる。3493-3945だよ。",
+            "segments": [
+              {
+                "text": "うん、"
+              },
+              {
+                "text": "知",
+                "ruby": "し"
+              },
+              {
+                "text": "ってる。3493-3945だよ。"
+              }
+            ]
           }
         ]
       }
@@ -316,7 +524,20 @@
               "confidence": "approved",
               "reviewedAt": "2026-08-05T08:47:34.343Z",
               "sourceAudioSha256": "e9f6a661d70ec83fa057deb3bd128fd68fa6bf43dd8c3f8e99e211a507795c58"
-            }
+            },
+            "kana": "もしもし、おのです。",
+            "segments": [
+              {
+                "text": "もしもし、"
+              },
+              {
+                "text": "小野",
+                "ruby": "おの"
+              },
+              {
+                "text": "です。"
+              }
+            ]
           },
           {
             "id": "l22-app-block-002-line-002",
@@ -336,7 +557,24 @@
               "confidence": "approved",
               "reviewedAt": "2026-08-05T08:47:34.343Z",
               "sourceAudioSha256": "e9f6a661d70ec83fa057deb3bd128fd68fa6bf43dd8c3f8e99e211a507795c58"
-            }
+            },
+            "kana": "おのさん？しみずだけど。",
+            "segments": [
+              {
+                "text": "小野",
+                "ruby": "おの"
+              },
+              {
+                "text": "さん？"
+              },
+              {
+                "text": "清水",
+                "ruby": "しみず"
+              },
+              {
+                "text": "だけど。"
+              }
+            ]
           },
           {
             "id": "l22-app-block-002-line-003",
@@ -356,7 +594,20 @@
               "confidence": "approved",
               "reviewedAt": "2026-08-05T08:47:34.343Z",
               "sourceAudioSha256": "e9f6a661d70ec83fa057deb3bd128fd68fa6bf43dd8c3f8e99e211a507795c58"
-            }
+            },
+            "kana": "ああ、しみずくん、どうしたの？",
+            "segments": [
+              {
+                "text": "ああ、"
+              },
+              {
+                "text": "清水君",
+                "ruby": "しみずくん"
+              },
+              {
+                "text": "、どうしたの？"
+              }
+            ]
           },
           {
             "id": "l22-app-block-002-line-004",
@@ -376,7 +627,31 @@
               "confidence": "approved",
               "reviewedAt": "2026-08-05T08:47:34.343Z",
               "sourceAudioSha256": "e9f6a661d70ec83fa057deb3bd128fd68fa6bf43dd8c3f8e99e211a507795c58"
-            }
+            },
+            "kana": "さいきん おおたから れんらく あった？",
+            "segments": [
+              {
+                "text": "最近",
+                "ruby": "さいきん"
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "太田",
+                "ruby": "おおた"
+              },
+              {
+                "text": "から "
+              },
+              {
+                "text": "連絡",
+                "ruby": "れんらく"
+              },
+              {
+                "text": " あった？"
+              }
+            ]
           },
           {
             "id": "l22-app-block-002-line-005",
@@ -396,7 +671,17 @@
               "confidence": "approved",
               "reviewedAt": "2026-08-05T08:47:34.343Z",
               "sourceAudioSha256": "e9f6a661d70ec83fa057deb3bd128fd68fa6bf43dd8c3f8e99e211a507795c58"
-            }
+            },
+            "kana": "おおたくんから？ううん、ないわよ。どうして？",
+            "segments": [
+              {
+                "text": "太田君",
+                "ruby": "おおたくん"
+              },
+              {
+                "text": "から？ううん、ないわよ。どうして？"
+              }
+            ]
           },
           {
             "id": "l22-app-block-002-line-006",
@@ -416,7 +701,38 @@
               "confidence": "approved",
               "reviewedAt": "2026-08-05T08:47:34.343Z",
               "sourceAudioSha256": "e9f6a661d70ec83fa057deb3bd128fd68fa6bf43dd8c3f8e99e211a507795c58"
-            }
+            },
+            "kana": "おおた、こんど ちゅうごくへ てんきんだって。",
+            "segments": [
+              {
+                "text": "太田",
+                "ruby": "おおた"
+              },
+              {
+                "text": "、"
+              },
+              {
+                "text": "今度",
+                "ruby": "こんど"
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "中国",
+                "ruby": "ちゅうごく"
+              },
+              {
+                "text": "へ "
+              },
+              {
+                "text": "転勤",
+                "ruby": "てんきん"
+              },
+              {
+                "text": "だって。"
+              }
+            ]
           },
           {
             "id": "l22-app-block-002-line-007",
@@ -436,7 +752,24 @@
               "confidence": "approved",
               "reviewedAt": "2026-08-05T08:47:34.343Z",
               "sourceAudioSha256": "e9f6a661d70ec83fa057deb3bd128fd68fa6bf43dd8c3f8e99e211a507795c58"
-            }
+            },
+            "kana": "ほんとうに？いつ いくの？",
+            "segments": [
+              {
+                "text": "本当",
+                "ruby": "ほんとう"
+              },
+              {
+                "text": "に？いつ "
+              },
+              {
+                "text": "行",
+                "ruby": "い"
+              },
+              {
+                "text": "くの？"
+              }
+            ]
           },
           {
             "id": "l22-app-block-002-line-008",
@@ -456,7 +789,20 @@
               "confidence": "approved",
               "reviewedAt": "2026-08-05T08:47:34.343Z",
               "sourceAudioSha256": "e9f6a661d70ec83fa057deb3bd128fd68fa6bf43dd8c3f8e99e211a507795c58"
-            }
+            },
+            "kana": "たしか らいげつだよ。",
+            "segments": [
+              {
+                "text": "たしか "
+              },
+              {
+                "text": "来月",
+                "ruby": "らいげつ"
+              },
+              {
+                "text": "だよ。"
+              }
+            ]
           },
           {
             "id": "l22-app-block-002-line-009",
@@ -476,7 +822,31 @@
               "confidence": "approved",
               "reviewedAt": "2026-08-05T08:47:34.343Z",
               "sourceAudioSha256": "e9f6a661d70ec83fa057deb3bd128fd68fa6bf43dd8c3f8e99e211a507795c58"
-            }
+            },
+            "kana": "きゅうね。ちゅうごくの どこ？きかんは どのぐらい？",
+            "segments": [
+              {
+                "text": "急",
+                "ruby": "きゅう"
+              },
+              {
+                "text": "ね。"
+              },
+              {
+                "text": "中国",
+                "ruby": "ちゅうごく"
+              },
+              {
+                "text": "の どこ？"
+              },
+              {
+                "text": "期間",
+                "ruby": "きかん"
+              },
+              {
+                "text": "は どのぐらい？"
+              }
+            ]
           },
           {
             "id": "l22-app-block-002-line-010",
@@ -496,7 +866,38 @@
               "confidence": "approved",
               "reviewedAt": "2026-08-05T08:47:34.343Z",
               "sourceAudioSha256": "e9f6a661d70ec83fa057deb3bd128fd68fa6bf43dd8c3f8e99e211a507795c58"
-            }
+            },
+            "kana": "ペキンだって。きかんは よねんか ごねんかな。",
+            "segments": [
+              {
+                "text": "北京",
+                "ruby": "ペキン"
+              },
+              {
+                "text": "だって。"
+              },
+              {
+                "text": "期間",
+                "ruby": "きかん"
+              },
+              {
+                "text": "は "
+              },
+              {
+                "text": "4年",
+                "ruby": "よねん"
+              },
+              {
+                "text": "か "
+              },
+              {
+                "text": "5年",
+                "ruby": "ごねん"
+              },
+              {
+                "text": "かな。"
+              }
+            ]
           },
           {
             "id": "l22-app-block-002-line-011",
@@ -516,7 +917,41 @@
               "confidence": "approved",
               "reviewedAt": "2026-08-05T08:47:34.343Z",
               "sourceAudioSha256": "e9f6a661d70ec83fa057deb3bd128fd68fa6bf43dd8c3f8e99e211a507795c58"
-            }
+            },
+            "kana": "ずいぶん ながいわね。おおたくん ひとりで いくの？",
+            "segments": [
+              {
+                "text": "ずいぶん "
+              },
+              {
+                "text": "長",
+                "ruby": "なが"
+              },
+              {
+                "text": "いわね。"
+              },
+              {
+                "text": "太田君",
+                "ruby": "おおたくん"
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "1人",
+                "ruby": "ひとり"
+              },
+              {
+                "text": "で "
+              },
+              {
+                "text": "行",
+                "ruby": "い"
+              },
+              {
+                "text": "くの？"
+              }
+            ]
           },
           {
             "id": "l22-app-block-002-line-012",
@@ -536,7 +971,41 @@
               "confidence": "approved",
               "reviewedAt": "2026-08-05T08:47:34.343Z",
               "sourceAudioSha256": "e9f6a661d70ec83fa057deb3bd128fd68fa6bf43dd8c3f8e99e211a507795c58"
-            }
+            },
+            "kana": "いや、おくさんも いっしょだよ。らいしゅう そうべつかいを するけど、つごうは どうかな？",
+            "segments": [
+              {
+                "text": "いや、"
+              },
+              {
+                "text": "奥",
+                "ruby": "おく"
+              },
+              {
+                "text": "さんも いっしょだよ。"
+              },
+              {
+                "text": "来週",
+                "ruby": "らいしゅう"
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "送別会",
+                "ruby": "そうべつかい"
+              },
+              {
+                "text": "を するけど、"
+              },
+              {
+                "text": "都合",
+                "ruby": "つごう"
+              },
+              {
+                "text": "は どうかな？"
+              }
+            ]
           },
           {
             "id": "l22-app-block-002-line-013",
@@ -556,7 +1025,41 @@
               "confidence": "approved",
               "reviewedAt": "2026-08-05T08:47:34.343Z",
               "sourceAudioSha256": "e9f6a661d70ec83fa057deb3bd128fd68fa6bf43dd8c3f8e99e211a507795c58"
-            }
+            },
+            "kana": "ええと、かようびは よていが あるけど、それいがいは だいじょうぶよ。",
+            "segments": [
+              {
+                "text": "ええと、"
+              },
+              {
+                "text": "火曜日",
+                "ruby": "かようび"
+              },
+              {
+                "text": "は "
+              },
+              {
+                "text": "予定",
+                "ruby": "よてい"
+              },
+              {
+                "text": "が あるけど、それ"
+              },
+              {
+                "text": "以外",
+                "ruby": "いがい"
+              },
+              {
+                "text": "は "
+              },
+              {
+                "text": "大丈夫",
+                "ruby": "だいじょうぶ"
+              },
+              {
+                "text": "よ。"
+              }
+            ]
           },
           {
             "id": "l22-app-block-002-line-014",
@@ -576,7 +1079,24 @@
               "confidence": "approved",
               "reviewedAt": "2026-08-05T08:47:34.343Z",
               "sourceAudioSha256": "e9f6a661d70ec83fa057deb3bd128fd68fa6bf43dd8c3f8e99e211a507795c58"
-            }
+            },
+            "kana": "わかった。じゃあ、また れんらくするよ。",
+            "segments": [
+              {
+                "text": "分",
+                "ruby": "わ"
+              },
+              {
+                "text": "かった。じゃあ、また "
+              },
+              {
+                "text": "連絡",
+                "ruby": "れんらく"
+              },
+              {
+                "text": "するよ。"
+              }
+            ]
           }
         ]
       },
@@ -610,7 +1130,27 @@
               "confidence": "approved",
               "reviewedAt": "2026-08-05T08:47:34.343Z",
               "sourceAudioSha256": "e9f6a661d70ec83fa057deb3bd128fd68fa6bf43dd8c3f8e99e211a507795c58"
-            }
+            },
+            "kana": "おともだちからですか、おのさん？",
+            "segments": [
+              {
+                "text": "お"
+              },
+              {
+                "text": "友達",
+                "ruby": "ともだち"
+              },
+              {
+                "text": "からですか、"
+              },
+              {
+                "text": "小野",
+                "ruby": "おの"
+              },
+              {
+                "text": "さん？"
+              }
+            ]
           },
           {
             "id": "l22-app-block-004-line-002",
@@ -630,7 +1170,20 @@
               "confidence": "approved",
               "reviewedAt": "2026-08-05T08:47:34.343Z",
               "sourceAudioSha256": "e9f6a661d70ec83fa057deb3bd128fd68fa6bf43dd8c3f8e99e211a507795c58"
-            }
+            },
+            "kana": "あっ、わかりました？",
+            "segments": [
+              {
+                "text": "あっ、"
+              },
+              {
+                "text": "分",
+                "ruby": "わ"
+              },
+              {
+                "text": "かりました？"
+              }
+            ]
           },
           {
             "id": "l22-app-block-004-line-003",
@@ -650,20 +1203,32 @@
               "confidence": "approved",
               "reviewedAt": "2026-08-05T08:47:34.343Z",
               "sourceAudioSha256": "e9f6a661d70ec83fa057deb3bd128fd68fa6bf43dd8c3f8e99e211a507795c58"
-            }
+            },
+            "kana": "ええ。いつもの はなしかたじゃ ありませんでしたから。",
+            "segments": [
+              {
+                "text": "ええ。いつもの "
+              },
+              {
+                "text": "話し方",
+                "ruby": "はなしかた"
+              },
+              {
+                "text": "じゃ ありませんでしたから。"
+              }
+            ]
           }
         ]
       }
     ]
   },
-  "warnings": [
-    "segments/ruby 未批量生成；保留 text 与 translationZh，后续可单独补充 ruby 切片。"
-  ],
+  "warnings": [],
   "audioAlignment": {
     "schemaVersion": 1,
     "method": "approved-asr-alignment",
     "sourceAlignment": "data/ocr/lesson22-text-audio-alignment.json",
     "publishedAt": "2026-08-05T08:47:38.642Z",
     "approvedSegments": 29
-  }
+  },
+  "updatedAt": "2026-08-10T00:28:17.935Z"
 }

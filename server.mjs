@@ -1574,7 +1574,9 @@ async function listOcrSampleLessons(type) {
 
   const result = [];
   for (const lesson of [...lessons.values()].sort((a, b) => a.lessonNo - b.lessonNo)) {
-    const fileName = lesson.verifiedAudioFile || lesson.audioFile || lesson.baseFile;
+    const fileName = sampleType === "text"
+      ? lesson.audioFile || lesson.verifiedAudioFile || lesson.baseFile
+      : lesson.verifiedAudioFile || lesson.audioFile || lesson.baseFile;
     if (!fileName) continue;
     const filePath = join(dir, fileName);
     const data = await readJsonFile(filePath, null);
@@ -1738,6 +1740,124 @@ function updateOcrTextAudioReviews(alignment, changes) {
   return alignment;
 }
 
+function ocrTextDataPaths(lessonId) {
+  return [
+    join(root, "data", "ocr", `lesson${lessonId}-text-audio.json`)
+  ];
+}
+
+function ocrVocabularyDataPaths(lessonId) {
+  return [
+    join(root, "data", "ocr", `lesson${lessonId}-vocabulary-audio-verified.json`)
+  ];
+}
+
+function findOcrTextItem(data, itemId) {
+  const basicText = data?.basicText || {};
+  for (const item of basicText.basicSentences || []) {
+    if (item?.id === itemId) return item;
+  }
+  for (const dialogue of basicText.dialogues || []) {
+    for (const item of dialogue.lines || []) {
+      if (item?.id === itemId) return item;
+    }
+  }
+  for (const block of data?.applicationText?.blocks || []) {
+    for (const item of block.lines || []) {
+      if (item?.id === itemId) return item;
+    }
+  }
+  return null;
+}
+
+function findOcrVocabularyItem(data, itemId) {
+  return (data?.vocabulary || []).find((item) => item?.id === itemId) || null;
+}
+
+async function updateOcrTextAudioSegment({ lessonId, itemId, start, end }) {
+  const normalizedStart = Math.round(Number(start) * 1000) / 1000;
+  const normalizedEnd = Math.round(Number(end) * 1000) / 1000;
+  if (!itemId) throw new Error("Missing text item id.");
+  if (!Number.isFinite(normalizedStart) || !Number.isFinite(normalizedEnd) || normalizedStart < 0 || normalizedEnd <= normalizedStart) {
+    throw new Error("Invalid audio segment range.");
+  }
+
+  const paths = ocrTextDataPaths(lessonId);
+  const sourceData = await readJsonFile(paths[0], null);
+  const sourceItem = findOcrTextItem(sourceData, itemId);
+  const sourceSegment = sourceItem?.audioSegment;
+  if (!sourceSegment?.sourceUrl && !sourceSegment?.localAudioPath) {
+    throw new Error(`No editable audio segment exists for ${itemId}.`);
+  }
+
+  const updatedSegment = {
+    ...sourceSegment,
+    start: normalizedStart,
+    end: normalizedEnd,
+    duration: Math.round((normalizedEnd - normalizedStart) * 1000) / 1000,
+    method: "manual-admin-adjustment",
+    confidence: "approved",
+    reviewedAt: new Date().toISOString()
+  };
+
+  const updatedFiles = [];
+  for (const filePath of paths) {
+    const data = await readJsonFile(filePath, null);
+    if (!data) continue;
+    const item = findOcrTextItem(data, itemId);
+    if (!item) continue;
+    item.audioSegment = { ...updatedSegment };
+    data.updatedAt = new Date().toISOString();
+    await writeJsonFile(filePath, data);
+    updatedFiles.push(filePath.replace(`${root}/`, ""));
+  }
+
+  if (!updatedFiles.length) throw new Error(`No OCR text data file contains ${itemId}.`);
+  return { lessonId, itemId, audioSegment: updatedSegment, updatedFiles };
+}
+
+async function updateOcrVocabularyAudioSegment({ lessonId, itemId, start, end }) {
+  const normalizedStart = Math.round(Number(start) * 1000) / 1000;
+  const normalizedEnd = Math.round(Number(end) * 1000) / 1000;
+  if (!itemId) throw new Error("Missing vocabulary item id.");
+  if (!Number.isFinite(normalizedStart) || !Number.isFinite(normalizedEnd) || normalizedStart < 0 || normalizedEnd <= normalizedStart) {
+    throw new Error("Invalid audio segment range.");
+  }
+
+  const paths = ocrVocabularyDataPaths(lessonId);
+  const sourceData = await readJsonFile(paths[0], null);
+  const sourceItem = findOcrVocabularyItem(sourceData, itemId);
+  const sourceSegment = sourceItem?.audioSegment;
+  if (!sourceSegment?.sourceUrl && !sourceSegment?.localAudioPath) {
+    throw new Error(`No editable audio segment exists for ${itemId}.`);
+  }
+
+  const updatedSegment = {
+    ...sourceSegment,
+    start: normalizedStart,
+    end: normalizedEnd,
+    duration: Math.round((normalizedEnd - normalizedStart) * 1000) / 1000,
+    method: "manual-admin-adjustment",
+    confidence: "approved",
+    reviewedAt: new Date().toISOString()
+  };
+
+  const updatedFiles = [];
+  for (const filePath of paths) {
+    const data = await readJsonFile(filePath, null);
+    if (!data) continue;
+    const item = findOcrVocabularyItem(data, itemId);
+    if (!item) continue;
+    item.audioSegment = { ...updatedSegment };
+    data.updatedAt = new Date().toISOString();
+    await writeJsonFile(filePath, data);
+    updatedFiles.push(filePath.replace(`${root}/`, ""));
+  }
+
+  if (!updatedFiles.length) throw new Error(`No OCR vocabulary data file contains ${itemId}.`);
+  return { lessonId, itemId, audioSegment: updatedSegment, updatedFiles };
+}
+
 async function handleApi(req, res, url) {
   try {
     // ============ STUDENT RUNTIME APIs ============
@@ -1793,6 +1913,30 @@ async function handleApi(req, res, url) {
       const body = await readJson(req);
       const requestedLessonId = safeLessonId(body.lessonId || 1);
       const result = await runOcrTextAudioPublish(requestedLessonId);
+      sendJson(res, 200, result);
+      return true;
+    }
+    if (url.pathname === "/api/ocr/text-audio-segment" && req.method === "PUT") {
+      const body = await readJson(req);
+      const requestedLessonId = safeLessonId(body.lessonId || 1);
+      const result = await updateOcrTextAudioSegment({
+        lessonId: requestedLessonId,
+        itemId: String(body.itemId || ""),
+        start: body.start,
+        end: body.end
+      });
+      sendJson(res, 200, result);
+      return true;
+    }
+    if (url.pathname === "/api/ocr/vocabulary-audio-segment" && req.method === "PUT") {
+      const body = await readJson(req);
+      const requestedLessonId = safeLessonId(body.lessonId || 1);
+      const result = await updateOcrVocabularyAudioSegment({
+        lessonId: requestedLessonId,
+        itemId: String(body.itemId || ""),
+        start: body.start,
+        end: body.end
+      });
       sendJson(res, 200, result);
       return true;
     }

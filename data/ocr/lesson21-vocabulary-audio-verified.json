@@ -25,26 +25,13 @@
         "itemIndex": 1,
         "text": "ことば",
         "label": "言葉",
-        "start": 1,
-        "end": 1.7,
-        "duration": 0.7,
-        "speechUnitCount": 2,
-        "wordCount": 2,
-        "matchScore": 1,
-        "asrText": "言 葉",
-        "wordIndexes": [
-          1,
-          2
-        ],
-        "method": "azure-speech-word-alignment",
-        "confidence": "high",
-        "review": {
-          "status": "approved",
-          "reviewedAt": "2026-08-05T11:40:52.510Z",
-          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
-          "matchScore": 1,
-          "asrText": "言 葉"
-        }
+        "start": 0.5,
+        "end": 1.475,
+        "duration": 0.975,
+        "speechUnitCount": 1,
+        "method": "manual-admin-adjustment",
+        "confidence": "approved",
+        "reviewedAt": "2026-08-08T01:54:04.466Z"
       }
     },
     {
@@ -110,9 +97,9 @@
         "itemIndex": 3,
         "text": "れんきゅう",
         "label": "連休",
-        "start": 5.56,
+        "start": 4.36,
         "end": 5.98,
-        "duration": 0.42,
+        "duration": 1.62,
         "speechUnitCount": 2,
         "wordCount": 2,
         "matchScore": 1,
@@ -121,15 +108,16 @@
           10,
           11
         ],
-        "method": "azure-speech-word-alignment",
-        "confidence": "high",
+        "method": "manual-admin-adjustment",
+        "confidence": "approved",
         "review": {
           "status": "approved",
           "reviewedAt": "2026-08-05T11:40:52.510Z",
           "note": "Automatically approved by the vocabulary ASR alignment workflow.",
           "matchScore": 1,
           "asrText": "連 休"
-        }
+        },
+        "reviewedAt": "2026-08-08T01:57:16.581Z"
       }
     },
     {
@@ -196,9 +184,9 @@
         "itemIndex": 5,
         "text": "おわり",
         "label": "終わり",
-        "start": 7.88,
+        "start": 7.68,
         "end": 8.7,
-        "duration": 0.82,
+        "duration": 1.02,
         "speechUnitCount": 3,
         "wordCount": 3,
         "matchScore": 1,
@@ -208,15 +196,16 @@
           22,
           23
         ],
-        "method": "azure-speech-word-alignment",
-        "confidence": "high",
+        "method": "manual-admin-adjustment",
+        "confidence": "approved",
         "review": {
           "status": "approved",
           "reviewedAt": "2026-08-05T11:40:52.510Z",
           "note": "Automatically approved by the vocabulary ASR alignment workflow.",
           "matchScore": 1,
           "asrText": "終 わ り"
-        }
+        },
+        "reviewedAt": "2026-08-08T02:04:05.119Z"
       }
     },
     {
@@ -279,9 +268,9 @@
         "itemIndex": 7,
         "text": "きょうげき",
         "label": "京劇",
-        "start": 12.68,
+        "start": 11.68,
         "end": 12.9,
-        "duration": 0.22,
+        "duration": 1.22,
         "speechUnitCount": 2,
         "wordCount": 2,
         "matchScore": 1,
@@ -290,15 +279,16 @@
           28,
           29
         ],
-        "method": "azure-speech-word-alignment",
-        "confidence": "high",
+        "method": "manual-admin-adjustment",
+        "confidence": "approved",
         "review": {
           "status": "approved",
           "reviewedAt": "2026-08-05T11:40:52.510Z",
           "note": "Automatically approved by the vocabulary ASR alignment workflow.",
           "matchScore": 1,
           "asrText": "京 劇"
-        }
+        },
+        "reviewedAt": "2026-08-08T01:57:35.064Z"
       }
     },
     {
@@ -481,8 +471,8 @@
         "text": "ちゅうしゃじょう",
         "label": "駐車場",
         "start": 19.51,
-        "end": 21.65,
-        "duration": 2.14,
+        "end": 20.65,
+        "duration": 1.14,
         "speechUnitCount": 3,
         "wordCount": 3,
         "matchScore": 1,
@@ -492,15 +482,16 @@
           38,
           39
         ],
-        "method": "azure-speech-word-alignment",
-        "confidence": "high",
+        "method": "manual-admin-adjustment",
+        "confidence": "approved",
         "review": {
           "status": "approved",
           "reviewedAt": "2026-08-05T11:40:52.510Z",
           "note": "Automatically approved by the vocabulary ASR alignment workflow.",
           "matchScore": 1,
           "asrText": "駐 車 場"
-        }
+        },
+        "reviewedAt": "2026-08-08T01:58:05.106Z"
       }
     },
     {
@@ -521,9 +512,9 @@
         "itemIndex": 13,
         "text": "わたします",
         "label": "渡します",
-        "start": 21.55,
+        "start": 20.85,
         "end": 22.49,
-        "duration": 0.94,
+        "duration": 1.64,
         "speechUnitCount": 4,
         "wordCount": 4,
         "matchScore": 1,
@@ -534,15 +525,16 @@
           42,
           43
         ],
-        "method": "azure-speech-word-alignment",
-        "confidence": "high",
+        "method": "manual-admin-adjustment",
+        "confidence": "approved",
         "review": {
           "status": "approved",
           "reviewedAt": "2026-08-05T11:40:52.510Z",
           "note": "Automatically approved by the vocabulary ASR alignment workflow.",
           "matchScore": 1,
           "asrText": "渡 し ま す"
-        }
+        },
+        "reviewedAt": "2026-08-08T01:58:41.485Z"
       }
     },
     {
@@ -563,9 +555,9 @@
         "itemIndex": 14,
         "text": "おくれます",
         "label": "遅れます",
-        "start": 23.19,
+        "start": 22.59,
         "end": 24.29,
-        "duration": 1.1,
+        "duration": 1.7,
         "speechUnitCount": 4,
         "wordCount": 4,
         "matchScore": 1,
@@ -576,15 +568,16 @@
           46,
           47
         ],
-        "method": "azure-speech-word-alignment",
-        "confidence": "high",
+        "method": "manual-admin-adjustment",
+        "confidence": "approved",
         "review": {
           "status": "approved",
           "reviewedAt": "2026-08-05T11:40:52.510Z",
           "note": "Automatically approved by the vocabulary ASR alignment workflow.",
           "matchScore": 1,
           "asrText": "遅 れ ま す"
-        }
+        },
+        "reviewedAt": "2026-08-08T02:00:56.958Z"
       }
     },
     {
@@ -647,9 +640,9 @@
         "itemIndex": 16,
         "text": "しらべます",
         "label": "調べます",
-        "start": 26.31,
+        "start": 26.01,
         "end": 27.21,
-        "duration": 0.9,
+        "duration": 1.2,
         "speechUnitCount": 4,
         "wordCount": 4,
         "matchScore": 1,
@@ -660,15 +653,16 @@
           54,
           55
         ],
-        "method": "azure-speech-word-alignment",
-        "confidence": "high",
+        "method": "manual-admin-adjustment",
+        "confidence": "approved",
         "review": {
           "status": "approved",
           "reviewedAt": "2026-08-05T11:40:52.510Z",
           "note": "Automatically approved by the vocabulary ASR alignment workflow.",
           "matchScore": 1,
           "asrText": "調 べ ま す"
-        }
+        },
+        "reviewedAt": "2026-08-08T02:01:35.414Z"
       }
     },
     {
@@ -689,9 +683,9 @@
         "itemIndex": 17,
         "text": "きます",
         "label": "着ます",
-        "start": 27.95,
+        "start": 27.25,
         "end": 28.81,
-        "duration": 0.86,
+        "duration": 1.56,
         "speechUnitCount": 3,
         "wordCount": 3,
         "matchScore": 1,
@@ -701,15 +695,16 @@
           57,
           58
         ],
-        "method": "azure-speech-word-alignment",
-        "confidence": "high",
+        "method": "manual-admin-adjustment",
+        "confidence": "approved",
         "review": {
           "status": "approved",
           "reviewedAt": "2026-08-05T11:40:52.510Z",
           "note": "Automatically approved by the vocabulary ASR alignment workflow.",
           "matchScore": 1,
           "asrText": "き ま す"
-        }
+        },
+        "reviewedAt": "2026-08-08T02:02:07.593Z"
       }
     },
     {
@@ -862,9 +857,9 @@
         "itemIndex": 21,
         "text": "せんたくします",
         "label": "洗濯します",
-        "start": 36.19,
+        "start": 35.19,
         "end": 37.01,
-        "duration": 0.82,
+        "duration": 1.82,
         "speechUnitCount": 3,
         "wordCount": 3,
         "matchScore": 0.6,
@@ -874,15 +869,16 @@
           78,
           79
         ],
-        "method": "azure-speech-word-alignment",
-        "confidence": "needs-review",
+        "method": "manual-admin-adjustment",
+        "confidence": "approved",
         "review": {
           "status": "approved",
           "reviewedAt": "2026-08-05T11:40:52.510Z",
           "note": "Automatically approved by the vocabulary ASR alignment workflow.",
           "matchScore": 0.6,
           "asrText": "し ま す"
-        }
+        },
+        "reviewedAt": "2026-08-08T02:02:22.911Z"
       }
     },
     {
@@ -3658,5 +3654,6 @@
         ]
       }
     ]
-  }
+  },
+  "updatedAt": "2026-08-08T02:04:05.123Z"
 }

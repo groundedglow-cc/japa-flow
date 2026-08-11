@@ -3452,15 +3452,15 @@ var require_react_dom_client_development = __commonJS({
         );
         return false;
       }
-      function setTextContent(node, text20) {
-        if (text20) {
+      function setTextContent(node, text24) {
+        if (text24) {
           var firstChild = node.firstChild;
           if (firstChild && firstChild === node.lastChild && 3 === firstChild.nodeType) {
-            firstChild.nodeValue = text20;
+            firstChild.nodeValue = text24;
             return;
           }
         }
-        node.textContent = text20;
+        node.textContent = text24;
       }
       function camelize(string) {
         return string.replace(hyphenPattern, function(_, character) {
@@ -17247,8 +17247,8 @@ var require_react_dom_client_development = __commonJS({
         props = void 0 !== props && null !== props && props.hasOwnProperty("display") ? props.display : null;
         instance.style.display = null == props || "boolean" === typeof props ? "" : ("" + props).trim();
       }
-      function unhideTextInstance(textInstance, text20) {
-        textInstance.nodeValue = text20;
+      function unhideTextInstance(textInstance, text24) {
+        textInstance.nodeValue = text24;
       }
       function clearContainerSparingly(container) {
         var nextNode = container.firstChild;
@@ -17313,8 +17313,8 @@ var require_react_dom_client_development = __commonJS({
         }
         return null;
       }
-      function canHydrateTextInstance(instance, text20, inRootOrSingleton) {
-        if ("" === text20) return null;
+      function canHydrateTextInstance(instance, text24, inRootOrSingleton) {
+        if ("" === text24) return null;
         for (; 3 !== instance.nodeType; ) {
           if ((1 !== instance.nodeType || "INPUT" !== instance.nodeName || "hidden" !== instance.type) && !inRootOrSingleton)
             return null;
@@ -17377,8 +17377,8 @@ var require_react_dom_client_development = __commonJS({
         }
         return 8 === instance.nodeType ? instance.data === ACTIVITY_START_DATA ? { type: "Activity", props: {} } : { type: "Suspense", props: {} } : instance.nodeValue;
       }
-      function diffHydratedTextForDevWarnings(textInstance, text20, parentProps) {
-        return null === parentProps || true !== parentProps[SUPPRESS_HYDRATION_WARNING] ? (textInstance.nodeValue === text20 ? textInstance = null : (text20 = normalizeMarkupForTextOrAttribute(text20), textInstance = normalizeMarkupForTextOrAttribute(textInstance.nodeValue) === text20 ? null : textInstance.nodeValue), textInstance) : null;
+      function diffHydratedTextForDevWarnings(textInstance, text24, parentProps) {
+        return null === parentProps || true !== parentProps[SUPPRESS_HYDRATION_WARNING] ? (textInstance.nodeValue === text24 ? textInstance = null : (text24 = normalizeMarkupForTextOrAttribute(text24), textInstance = normalizeMarkupForTextOrAttribute(textInstance.nodeValue) === text24 ? null : textInstance.nodeValue), textInstance) : null;
       }
       function getNextHydratableInstanceAfterHydrationBoundary(hydrationInstance) {
         hydrationInstance = hydrationInstance.nextSibling;
@@ -21887,8 +21887,8 @@ function mergeLegacyLessonRecords(lessonId2, record) {
     const key = window.localStorage.key(index);
     if (!key || key === currentKey || !mightContainLegacyPracticeRecord(key, lessonId2)) continue;
     const value = safeJsonParse(window.localStorage.getItem(key), null);
-    const activities19 = extractLegacyActivities(value, lessonId2, activityIdPattern, key, activityIdInKeyPattern);
-    Object.entries(activities19).forEach(([activityId, legacyRecord]) => {
+    const activities23 = extractLegacyActivities(value, lessonId2, activityIdPattern, key, activityIdInKeyPattern);
+    Object.entries(activities23).forEach(([activityId, legacyRecord]) => {
       if (!activityIdPattern?.test(activityId) || !legacyRecord || typeof legacyRecord !== "object") return;
       const currentRecord = merged.activities[activityId] || {};
       merged.activities[activityId] = {
@@ -21914,11 +21914,11 @@ function extractLegacyActivities(value, lessonId2, activityIdPattern, storageKey
   if (value.lessonId === lessonId2 && value.activityId) return { [value.activityId]: value };
   const activityIdFromKey = storageKeyName.match(activityIdInKeyPattern || /$^/)?.[0];
   if (activityIdFromKey) return { [activityIdFromKey]: value };
-  const activities19 = {};
+  const activities23 = {};
   Object.entries(value).forEach(([key, entry]) => {
-    if (activityIdPattern?.test(key)) activities19[key] = entry;
+    if (activityIdPattern?.test(key)) activities23[key] = entry;
   });
-  return activities19;
+  return activities23;
 }
 function lessonNumber(lessonId2) {
   const match = String(lessonId2).match(/lesson(\d+)/i);
@@ -21938,6 +21938,17 @@ function createClientAttemptId() {
 function flattenActivityItems(activity) {
   if (!activity) return [];
   return activity.itemGroups?.length ? activity.itemGroups.flatMap((group) => group.items) : activity.items || [];
+}
+function practiceItemCount(practice) {
+  return (practice?.activities || []).reduce((total, activity) => total + flattenActivityItems(activity).length, 0);
+}
+function shouldPreferLocalPractice(backendPracticeSet, fallbackPractice2) {
+  if (typeof window === "undefined") return false;
+  const host = window.location.hostname;
+  if (host !== "localhost" && host !== "127.0.0.1") return false;
+  const backendPractice = backendPracticeSet?.contentJson;
+  if (!backendPractice?.activities?.length || !fallbackPractice2?.activities?.length) return false;
+  return practiceItemCount(fallbackPractice2) > practiceItemCount(backendPractice);
 }
 function backendSessionToRecord(lessonId2, backendSession) {
   const session = backendSession?.session;
@@ -22017,6 +22028,13 @@ var practiceSessionApi = {
         practice: fallbackPractice2,
         practiceSetId: fallbackPractice2.practiceSetId || null,
         source: "local"
+      };
+    }
+    if (shouldPreferLocalPractice(backendPracticeSet, fallbackPractice2)) {
+      return {
+        practice: fallbackPractice2,
+        practiceSetId: fallbackPractice2.practiceSetId || null,
+        source: "local-newer"
       };
     }
     return {
@@ -22169,13 +22187,13 @@ var sortedAnswerLexicalVariantGroups = [...answerLexicalVariantGroups].map((grou
 function PracticePreview({ practice, localPractice: localPractice2 = null }) {
   const search = typeof window === "undefined" ? "" : window.location.search;
   const admin = new URLSearchParams(search).get("admin") === "1";
-  const activities19 = practice.activities;
+  const activities23 = practice.activities;
   const practiceSetId = practice.practiceSetId || null;
   const [session, setSession] = (0, import_react.useState)({ lessonId: practice.lessonId, activities: {} });
   const [sessionLoadKey, setSessionLoadKey] = (0, import_react.useState)(0);
   const [isReady, setIsReady] = (0, import_react.useState)(false);
   const [answerAlternatives, setAnswerAlternatives] = (0, import_react.useState)({});
-  const [currentActivityId, setCurrentActivityId] = (0, import_react.useState)(() => activityIdFromHash(window.location.hash, activities19[0]?.id));
+  const [currentActivityId, setCurrentActivityId] = (0, import_react.useState)(() => activityIdFromHash(window.location.hash, activities23[0]?.id));
   (0, import_react.useEffect)(() => {
     let mounted = true;
     setIsReady(false);
@@ -22203,7 +22221,7 @@ function PracticePreview({ practice, localPractice: localPractice2 = null }) {
     else delete document.body.dataset.admin;
   }, [admin]);
   (0, import_react.useEffect)(() => {
-    const fallbackId = activities19[0]?.id;
+    const fallbackId = activities23[0]?.id;
     const syncFromHash = () => {
       const nextId = activityIdFromHash(window.location.hash, fallbackId);
       setCurrentActivityId(nextId);
@@ -22211,17 +22229,17 @@ function PracticePreview({ practice, localPractice: localPractice2 = null }) {
     syncFromHash();
     window.addEventListener("hashchange", syncFromHash);
     return () => window.removeEventListener("hashchange", syncFromHash);
-  }, [activities19]);
+  }, [activities23]);
   (0, import_react.useEffect)(() => {
-    if (!activities19.some((activity) => activity.id === currentActivityId) && activities19[0]?.id) {
-      setCurrentActivityId(activities19[0].id);
-      if (typeof window !== "undefined") window.location.hash = activities19[0].id;
+    if (!activities23.some((activity) => activity.id === currentActivityId) && activities23[0]?.id) {
+      setCurrentActivityId(activities23[0].id);
+      if (typeof window !== "undefined") window.location.hash = activities23[0].id;
     }
-  }, [activities19, currentActivityId]);
-  const currentIndex = Math.max(0, activities19.findIndex((activity) => activity.id === currentActivityId));
-  const currentActivity = activities19[currentIndex] || activities19[0];
-  const previousActivity = currentIndex > 0 ? activities19[currentIndex - 1] : null;
-  const nextActivity = currentIndex < activities19.length - 1 ? activities19[currentIndex + 1] : null;
+  }, [activities23, currentActivityId]);
+  const currentIndex = Math.max(0, activities23.findIndex((activity) => activity.id === currentActivityId));
+  const currentActivity = activities23[currentIndex] || activities23[0];
+  const previousActivity = currentIndex > 0 ? activities23[currentIndex - 1] : null;
+  const nextActivity = currentIndex < activities23.length - 1 ? activities23[currentIndex + 1] : null;
   const currentRecord = normalizeActivityRecord(currentActivity, session.activities?.[currentActivity?.id]);
   const isPublished = Boolean(practiceSetId);
   (0, import_react.useEffect)(() => {
@@ -22269,7 +22287,7 @@ function PracticePreview({ practice, localPractice: localPractice2 = null }) {
         /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "\u7DF4" }),
         /* @__PURE__ */ (0, import_jsx_runtime.jsx)("strong", { children: practice.title })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("nav", { className: "activity-nav", "aria-label": "\u7EC3\u4E60\u6D3B\u52A8", children: activities19.map((activity) => {
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("nav", { className: "activity-nav", "aria-label": "\u7EC3\u4E60\u6D3B\u52A8", children: activities23.map((activity) => {
         const record = normalizeActivityRecord(activity, session.activities?.[activity.id]);
         const progress = activityProgressSummary(activity, record);
         return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
@@ -22759,7 +22777,7 @@ function IncorrectAnswerDetails({ item: item2, answer: answer3, result, classNam
       ". ",
       /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Prompt, { parts: item2.prompt, kana: item2.promptKana })
     ] }) : null,
-    /* @__PURE__ */ (0, import_jsx_runtime.jsx)(AnswerComparison, { item: item2, answer: answer3 }),
+    /* @__PURE__ */ (0, import_jsx_runtime.jsx)(AnswerComparison, { item: item2, answer: answer3, result }),
     result?.status === "incorrect" && item2.evaluationMode === "acceptable_answers" ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("small", { children: "\u672C\u9898\u652F\u6301\u591A\u4E2A\u53EF\u63A5\u53D7\u7B54\u6848\uFF0C\u5DF2\u5728\u201C\u6B63\u786E\u7B54\u6848\u201D\u4E2D\u5408\u5E76\u5C55\u793A\u3002" }) : null
   ] });
 }
@@ -22782,8 +22800,8 @@ function renderAnswerDiffParts(parts = []) {
     return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("mark", { "data-diff": part.type, children: part.text }, index);
   });
 }
-function AnswerComparison({ item: item2, answer: answer3 }) {
-  const comparison = buildAnswerComparison(item2, answer3);
+function AnswerComparison({ item: item2, answer: answer3, result }) {
+  const comparison = buildAnswerComparison(item2, answer3, result);
   if (!comparison) return null;
   if (comparison.kind === "choice") {
     return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "answer-diff answer-comparison", "aria-label": "\u7B54\u6848\u5BF9\u6BD4", children: [
@@ -22920,13 +22938,13 @@ function MissingAssetNotice({ id }) {
 }
 function ImageAssetView({ asset: asset2 }) {
   if (asset2.crop && asset2.imagePath) {
-    const crop19 = asset2.crop;
-    const posX = crop19.width >= 100 ? 0 : crop19.x / (100 - crop19.width) * 100;
-    const posY = crop19.height >= 100 ? 0 : crop19.y / (100 - crop19.height) * 100;
+    const crop23 = asset2.crop;
+    const posX = crop23.width >= 100 ? 0 : crop23.x / (100 - crop23.width) * 100;
+    const posY = crop23.height >= 100 ? 0 : crop23.y / (100 - crop23.height) * 100;
     const style = {
-      "--crop-ratio": crop19.aspectRatio || crop19.width / crop19.height,
-      "--crop-size-x": `${1e4 / crop19.width}%`,
-      "--crop-size-y": `${1e4 / crop19.height}%`,
+      "--crop-ratio": crop23.aspectRatio || crop23.width / crop23.height,
+      "--crop-size-x": `${1e4 / crop23.width}%`,
+      "--crop-size-y": `${1e4 / crop23.height}%`,
       "--crop-pos-x": `${posX}%`,
       "--crop-pos-y": `${posY}%`,
       backgroundImage: `url('${asset2.imagePath}')`
@@ -22959,9 +22977,9 @@ function RichText({ part }) {
   const content = /* @__PURE__ */ (0, import_jsx_runtime.jsx)(RubyText, { text: part.text, kana: part.kana });
   return part.underline ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "underlined", "data-substitution-key": part.substitutionKey || void 0, children: content }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(import_jsx_runtime.Fragment, { children: content });
 }
-function RubyText({ text: text20, kana }) {
-  if (!kana) return text20;
-  const segments = splitRubySegments(text20, kana);
+function RubyText({ text: text24, kana }) {
+  if (!kana) return text24;
+  const segments = splitRubySegments(text24, kana);
   return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(import_jsx_runtime.Fragment, { children: segments.map((segment, index) => {
     if (segment.type === "ruby") {
       return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("ruby", { children: [
@@ -23144,7 +23162,7 @@ async function reviewIncorrectTextAnswers({ practice, activity, answers, grading
         promptText: promptPartsPlainText(item2.prompt),
         promptKana: item2.promptKana || "",
         userAnswer,
-        expectedAnswers: expectedAnswerCandidates(item2),
+        expectedAnswers: answerValuesForSlot(item2, slot.id),
         answerUnit: slot.expectedUnit || activity.answerUnit,
         responseScope: item2.responseScope || activity.responseScope || "",
         responseScopeHint: item2.responseScopeHint || activity.responseScopeHint || "",
@@ -23204,8 +23222,8 @@ function writeLocalAcceptedAnswerAlternatives(lessonId2, alternatives) {
 }
 function mergeAnswerAlternativeIndexes(left = {}, right = {}) {
   let merged = left || {};
-  Object.entries(right || {}).forEach(([itemId, slots]) => {
-    Object.entries(slots || {}).forEach(([slotId, values]) => {
+  Object.entries(right || {}).forEach(([itemId, slots4]) => {
+    Object.entries(slots4 || {}).forEach(([slotId, values]) => {
       (Array.isArray(values) ? values : []).forEach((value) => {
         merged = mergeAcceptedAnswerAlternative(merged, itemId, slotId, value);
       });
@@ -23231,7 +23249,7 @@ function buildAcceptedAnswerAlternativeSyncPlan(practice, alternatives = {}) {
   let answerCount = 0;
   const itemIds = /* @__PURE__ */ new Set();
   const details = [];
-  const activities19 = (practice.activities || []).map((activity) => {
+  const activities23 = (practice.activities || []).map((activity) => {
     let activityChanged = false;
     const mergeItem = (item2) => {
       const result = mergePracticeItemAcceptedAlternatives(item2, alternatives?.[item2.id]);
@@ -23270,7 +23288,7 @@ function buildAcceptedAnswerAlternativeSyncPlan(practice, alternatives = {}) {
     return activity;
   });
   return {
-    practice: answerCount > 0 ? { ...practice, activities: activities19 } : practice,
+    practice: answerCount > 0 ? { ...practice, activities: activities23 } : practice,
     itemCount: itemIds.size,
     answerCount,
     details
@@ -23578,7 +23596,7 @@ function formatExpectedAnswerSummary(item2) {
   }
   return Array.from(new Set(answers)).join(" / ") || "\u6682\u65E0";
 }
-function buildAnswerComparison(item2, answer3) {
+function buildAnswerComparison(item2, answer3, result) {
   if (item2.choices?.length) {
     return {
       kind: "choice",
@@ -23587,23 +23605,27 @@ function buildAnswerComparison(item2, answer3) {
     };
   }
   if (!item2.inputSlots?.length) return null;
-  const actual = formatAttemptSummary(item2, answer3);
-  const candidates = expectedAnswerCandidates(item2);
-  if (!actual || !candidates.length) return null;
-  const expected = closestExpectedAnswer(actual, candidates);
-  const diffLines = gitLikeAnswerDiff(actual === "\u672A\u4F5C\u7B54" ? "" : actual, expected);
-  return { kind: "text", actual, expected, diffLines };
+  const targetSlots = result?.fieldResults ? item2.inputSlots.filter((slot) => result.fieldResults?.[slot.id] === "incorrect") : [];
+  const slots4 = targetSlots.length ? targetSlots : item2.inputSlots;
+  const diffLines = slots4.flatMap((slot) => {
+    const actual = formatSlotAttemptSummary(item2, answer3, slot.id);
+    const candidates = answerValuesForSlot(item2, slot.id);
+    if (!actual || !candidates.length) return [];
+    const expected = closestExpectedAnswer(actual, candidates);
+    return gitLikeAnswerDiff(actual === "\u672A\u4F5C\u7B54" ? "" : actual, expected);
+  });
+  if (!diffLines.length) return null;
+  return { kind: "text", diffLines };
 }
-function expectedAnswerCandidates(item2) {
-  const answers = [];
-  if (item2.inputSlots?.length) {
-    item2.inputSlots.forEach((slot) => {
-      answerValuesForSlot(item2, slot.id).forEach((value) => {
-        if (String(value || "").trim()) answers.push(String(value).trim());
-      });
-    });
+function formatSlotAttemptSummary(item2, answer3, slotId) {
+  if (!answer3) return "\u672A\u4F5C\u7B54";
+  const value = String(answer3.slotValues?.[slotId] || "").trim();
+  if (value) return value;
+  if (item2.inputSlots?.length === 1) {
+    const legacyValue = firstStoredSlotValue(answer3.slotValues).trim();
+    if (legacyValue) return legacyValue;
   }
-  return Array.from(new Set(answers));
+  return "\u672A\u4F5C\u7B54";
 }
 function closestExpectedAnswer(actual, candidates) {
   const actualNormalized = normalizeAnswerText(actual);
@@ -23746,19 +23768,19 @@ function diffText(actual, expected) {
   }
   return { actualParts, expectedParts };
 }
-function pushDiffPart(parts, type, text20) {
+function pushDiffPart(parts, type, text24) {
   const last = parts[parts.length - 1];
   if (last?.type === type) {
-    last.text += text20;
+    last.text += text24;
     return;
   }
-  parts.push({ type, text: text20 });
+  parts.push({ type, text: text24 });
 }
 function exampleDialogueLines(parts, kana) {
   if (!parts?.length || parts.some((part) => part.type !== "text" || part.kana || part.underline || part.substitutionKey)) return null;
-  const text20 = parts.map((part) => part.text).join("").trim();
-  if (!/甲：|乙/.test(text20)) return null;
-  const textLines = splitDialogueContent(text20);
+  const text24 = parts.map((part) => part.text).join("").trim();
+  if (!/甲：|乙/.test(text24)) return null;
+  const textLines = splitDialogueContent(text24);
   const kanaLines = kana ? splitDialogueContent(kana) : [];
   if (!textLines.length) return null;
   return textLines.map((line2, index) => ({
@@ -23773,8 +23795,8 @@ function splitDialogueContent(value) {
     return matched ? { speaker: matched[1], body: matched[2] } : null;
   }).filter(Boolean);
 }
-function splitRubySegments(text20, kana) {
-  const sourceText = String(text20 || "");
+function splitRubySegments(text24, kana) {
+  const sourceText = String(text24 || "");
   const sourceKana = String(kana || "");
   if (!sourceText || !sourceKana || sourceText === sourceKana || isKanaOnly(sourceText)) {
     return [{ type: "text", text: sourceText }];
@@ -27439,7 +27461,7 @@ var blankItem4 = (id, number, prompt, answers, promptKana) => ({
   inputSlots: shortSlots2(Object.keys(answers)),
   answer: { slotValues: answers }
 });
-var slotItem = (id, number, prompt, slots, answers, options = {}) => ({
+var slotItem = (id, number, prompt, slots4, answers, options = {}) => ({
   id,
   number,
   prompt: typeof prompt === "string" ? [text7(prompt)] : prompt,
@@ -27448,7 +27470,7 @@ var slotItem = (id, number, prompt, slots, answers, options = {}) => ({
   answerSource: options.answerSource || "prompt",
   responseScope: options.responseScope || "custom",
   responseScopeHint: options.responseScopeHint,
-  inputSlots: slots,
+  inputSlots: slots4,
   answer: { slotValues: answers, note: options.note }
 });
 var choiceItem5 = (id, number, prompt, choices, answerChoiceId, promptKana) => ({
@@ -28036,7 +28058,7 @@ var blankItem5 = (id, number, prompt, answers, promptKana) => ({
   inputSlots: shortSlots3(Object.keys(answers)),
   answer: { slotValues: answers }
 });
-var slotItem2 = (id, number, prompt, slots, answers, options = {}) => ({
+var slotItem2 = (id, number, prompt, slots4, answers, options = {}) => ({
   id,
   number,
   prompt: typeof prompt === "string" ? [text8(prompt)] : prompt,
@@ -28045,7 +28067,7 @@ var slotItem2 = (id, number, prompt, slots, answers, options = {}) => ({
   answerSource: options.answerSource || "prompt",
   responseScope: options.responseScope || "custom",
   responseScopeHint: options.responseScopeHint,
-  inputSlots: slots,
+  inputSlots: slots4,
   answer: { slotValues: answers }
 });
 var choiceItem6 = (id, number, prompt, answerChoiceId, promptKana) => ({
@@ -28638,7 +28660,7 @@ var blankItem6 = (id, number, prompt, answers, options = {}) => ({
   inputSlots: shortSlots4(Object.keys(answers)),
   answer: { slotValues: answers }
 });
-var slotItem3 = (id, number, prompt, slots, answers, options = {}) => ({
+var slotItem3 = (id, number, prompt, slots4, answers, options = {}) => ({
   id,
   number,
   prompt: typeof prompt === "string" ? [text9(prompt)] : prompt,
@@ -28647,7 +28669,7 @@ var slotItem3 = (id, number, prompt, slots, answers, options = {}) => ({
   answerSource: options.answerSource || "prompt",
   responseScope: options.responseScope || "custom",
   responseScopeHint: options.responseScopeHint,
-  inputSlots: slots,
+  inputSlots: slots4,
   answer: { slotValues: answers }
 });
 var trueFalseItem2 = (id, number, prompt, value, promptKana) => ({
@@ -29303,7 +29325,7 @@ var blankItem7 = (id, number, prompt, answers, options = {}) => ({
   inputSlots: shortSlots5(Object.keys(answers)),
   answer: { slotValues: answers }
 });
-var slotItem4 = (id, number, prompt, slots, answers, options = {}) => ({
+var slotItem4 = (id, number, prompt, slots4, answers, options = {}) => ({
   id,
   number,
   prompt: typeof prompt === "string" ? [text10(prompt)] : prompt,
@@ -29312,7 +29334,7 @@ var slotItem4 = (id, number, prompt, slots, answers, options = {}) => ({
   answerSource: options.answerSource || "prompt",
   responseScope: options.responseScope || "custom",
   responseScopeHint: options.responseScopeHint,
-  inputSlots: slots,
+  inputSlots: slots4,
   answer: { slotValues: answers }
 });
 var choiceItem7 = (id, number, prompt, choices, answerIndex, promptKana) => ({
@@ -29973,7 +29995,7 @@ var blankItem8 = (id, number, prompt, answers, options = {}) => ({
   inputSlots: shortSlots6(Object.keys(answers)),
   answer: { slotValues: answers }
 });
-var slotItem5 = (id, number, prompt, slots, answers, options = {}) => ({
+var slotItem5 = (id, number, prompt, slots4, answers, options = {}) => ({
   id,
   number,
   prompt: typeof prompt === "string" ? [text11(prompt)] : prompt,
@@ -29982,7 +30004,7 @@ var slotItem5 = (id, number, prompt, slots, answers, options = {}) => ({
   answerSource: options.answerSource || "prompt",
   responseScope: options.responseScope || "custom",
   responseScopeHint: options.responseScopeHint,
-  inputSlots: slots,
+  inputSlots: slots4,
   answer: { slotValues: answers }
 });
 var trueFalseItem3 = (id, number, prompt, value, promptKana) => ({
@@ -30655,7 +30677,7 @@ var blankItem9 = (id, number, prompt, answers, options = {}) => ({
   inputSlots: shortSlots7(Object.keys(answers)),
   answer: { slotValues: answers }
 });
-var slotItem6 = (id, number, prompt, slots, answers, options = {}) => ({
+var slotItem6 = (id, number, prompt, slots4, answers, options = {}) => ({
   id,
   number,
   prompt: typeof prompt === "string" ? [text12(prompt)] : prompt,
@@ -30664,7 +30686,7 @@ var slotItem6 = (id, number, prompt, slots, answers, options = {}) => ({
   answerSource: options.answerSource || "prompt",
   responseScope: options.responseScope || "custom",
   responseScopeHint: options.responseScopeHint,
-  inputSlots: slots,
+  inputSlots: slots4,
   answer: { slotValues: answers }
 });
 var personalItem2 = (id, number, prompt, promptKana) => ({
@@ -34579,19 +34601,35 @@ var page37 = (pageNo) => `../course-assets/by-lesson/lesson19/page${pageNo}.webp
 var lesson19ImageCrops = {
   lessonId: "lesson19",
   sourceDir: "../course-assets/by-lesson/lesson19",
-  selectedImages: ["page232.webp", "page233.webp", "page234.webp", "page235.webp"],
+  selectedImages: ["page232.webp", "page233.webp", "page234.webp"],
   pages: [
     {
       pageNo: 232,
       imagePath: page37(232),
       assets: [
         {
-          id: "l19-page232-full",
+          id: "l19-p1-a1-masu-nai-table",
           kind: "source_crop",
           imagePath: page37(232),
-          label: "\u7B2C19\u8BFE \u7EC3\u4E60I \u9875\u9762232",
-          crop: { unit: "percent", x: 0, y: 0, width: 100, height: 100, aspectRatio: 0.6619 },
-          meta: { pageNo: 232, pixelX: 0, pixelY: 0, pixelWidth: 1059, pixelHeight: 1600 }
+          label: "\u7EC3\u4E60 I 1 \u307E\u3059\u5F62/\u306A\u3044\u5F62\u8868",
+          crop: { unit: "percent", x: 8.88, y: 16.38, width: 86.5, height: 24.25, aspectRatio: 2.3605 },
+          meta: { pageNo: 232, pixelX: 94, pixelY: 262, pixelWidth: 916, pixelHeight: 388 }
+        },
+        {
+          id: "l19-p1-a2-prohibition-picture-strip",
+          kind: "source_crop",
+          imagePath: page37(232),
+          label: "\u7EC3\u4E60 I 2 \u7981\u6B62\u4E8B\u9879\u56FE\u7247",
+          crop: { unit: "percent", x: 8.88, y: 45.5, width: 86.5, height: 15, aspectRatio: 3.8167 },
+          meta: { pageNo: 232, pixelX: 94, pixelY: 728, pixelWidth: 916, pixelHeight: 240 }
+        },
+        {
+          id: "l19-p1-a3-page232",
+          kind: "source_crop",
+          imagePath: page37(232),
+          label: "\u7EC3\u4E60 I 3 \u524D\u534A",
+          crop: { unit: "percent", x: 8.5, y: 68, width: 88, height: 22, aspectRatio: 2.6477 },
+          meta: { pageNo: 232, pixelX: 90, pixelY: 1088, pixelWidth: 932, pixelHeight: 352 }
         }
       ]
     },
@@ -34600,12 +34638,28 @@ var lesson19ImageCrops = {
       imagePath: page37(233),
       assets: [
         {
-          id: "l19-page233-full",
+          id: "l19-p1-a3-page233",
           kind: "source_crop",
           imagePath: page37(233),
-          label: "\u7B2C19\u8BFE \u7EC3\u4E60I \u9875\u9762233",
-          crop: { unit: "percent", x: 0, y: 0, width: 100, height: 100, aspectRatio: 0.6619 },
-          meta: { pageNo: 233, pixelX: 0, pixelY: 0, pixelWidth: 1059, pixelHeight: 1600 }
+          label: "\u7EC3\u4E60 I 3 \u540E\u534A",
+          crop: { unit: "percent", x: 3.5, y: 5.25, width: 92, height: 14.5, aspectRatio: 4.2032 },
+          meta: { pageNo: 233, pixelX: 37, pixelY: 84, pixelWidth: 974, pixelHeight: 232 }
+        },
+        {
+          id: "l19-p1-a4-dialogue",
+          kind: "source_crop",
+          imagePath: page37(233),
+          label: "\u7EC3\u4E60 I 4 \u4F1A\u8BDD\u66FF\u6362",
+          crop: { unit: "percent", x: 3.5, y: 21, width: 92, height: 31.5, aspectRatio: 1.9321 },
+          meta: { pageNo: 233, pixelX: 37, pixelY: 336, pixelWidth: 974, pixelHeight: 504 }
+        },
+        {
+          id: "l19-p1-a5-dialogue",
+          kind: "source_crop",
+          imagePath: page37(233),
+          label: "\u7EC3\u4E60 I 5 \u4F1A\u8BDD\u66FF\u6362",
+          crop: { unit: "percent", x: 3.5, y: 55.5, width: 92, height: 32, aspectRatio: 1.9039 },
+          meta: { pageNo: 233, pixelX: 37, pixelY: 888, pixelWidth: 974, pixelHeight: 512 }
         }
       ]
     },
@@ -34614,26 +34668,36 @@ var lesson19ImageCrops = {
       imagePath: page37(234),
       assets: [
         {
-          id: "l19-page234-full",
+          id: "l19-p2-a1-schedule",
           kind: "source_crop",
           imagePath: page37(234),
-          label: "\u7B2C19\u8BFE \u7EC3\u4E60II \u9875\u9762234",
-          crop: { unit: "percent", x: 0, y: 0, width: 100, height: 100, aspectRatio: 0.6619 },
-          meta: { pageNo: 234, pixelX: 0, pixelY: 0, pixelWidth: 1059, pixelHeight: 1600 }
-        }
-      ]
-    },
-    {
-      pageNo: 235,
-      imagePath: page37(235),
-      assets: [
+          label: "\u7EC3\u4E60 II 1 \u65E5\u7A0B\u8868",
+          crop: { unit: "percent", x: 8.78, y: 12.25, width: 87.35, height: 26.75, aspectRatio: 2.1637 },
+          meta: { pageNo: 234, pixelX: 93, pixelY: 196, pixelWidth: 925, pixelHeight: 428 }
+        },
         {
-          id: "l19-page235-full",
+          id: "l19-p2-a2-word-bank",
           kind: "source_crop",
-          imagePath: page37(235),
-          label: "\u7B2C19\u8BFE \u751F\u8BCD\u8868 \u9875\u9762235",
-          crop: { unit: "percent", x: 0, y: 0, width: 100, height: 100, aspectRatio: 0.6619 },
-          meta: { pageNo: 235, pixelX: 0, pixelY: 0, pixelWidth: 1059, pixelHeight: 1600 }
+          imagePath: page37(234),
+          label: "\u7EC3\u4E60 II 2 \u8BCD\u8BED\u9009\u62E9",
+          crop: { unit: "percent", x: 8.5, y: 42.5, width: 87, height: 20.5, aspectRatio: 2.8095 },
+          meta: { pageNo: 234, pixelX: 90, pixelY: 680, pixelWidth: 921, pixelHeight: 328 }
+        },
+        {
+          id: "l19-p2-a3-listening-cloze",
+          kind: "source_crop",
+          imagePath: page37(234),
+          label: "\u7EC3\u4E60 II 3 \u542C\u5F55\u97F3\u586B\u7A7A",
+          crop: { unit: "percent", x: 8.5, y: 66, width: 86.5, height: 17.5, aspectRatio: 3.2716 },
+          meta: { pageNo: 234, pixelX: 90, pixelY: 1056, pixelWidth: 916, pixelHeight: 280 }
+        },
+        {
+          id: "l19-p2-a4-translation",
+          kind: "source_crop",
+          imagePath: page37(234),
+          label: "\u7EC3\u4E60 II 4 \u7FFB\u8BD1",
+          crop: { unit: "percent", x: 8.5, y: 87.5, width: 86.5, height: 8, aspectRatio: 7.2031 },
+          meta: { pageNo: 234, pixelX: 90, pixelY: 1400, pixelWidth: 916, pixelHeight: 128 }
         }
       ]
     }
@@ -34644,11 +34708,15 @@ lesson19ImageCrops.assets = lesson19ImageCrops.pages.flatMap((sourcePage) => sou
 
 // practice/lesson19-practice-data.ts
 var page38 = (pageNo) => `../course-assets/by-lesson/lesson19/page${pageNo}.webp`;
+var audio18 = (exerciseNo, order) => `https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson19/Exe${exerciseNo}_${order}.mp3`;
 var text19 = (value, options = {}) => ({ type: "text", text: value, ...options });
 var blank16 = (slotId) => ({ type: "blank", slotId });
 var crop18 = (id) => lesson19ImageCrops.assets.find((asset2) => asset2.id === id);
 var completionHint7 = "\u53EA\u8865\u5168\u9898\u76EE\u4E2D\u7A7A\u683C\u5904\u9700\u8981\u586B\u5199\u7684\u90E8\u5206\u3002";
 var sentenceSlot18 = (placeholder = "\u8F93\u5165\u5B8C\u6574\u56DE\u7B54") => [{ id: "answer", expectedUnit: "sentence", width: "long", placeholder }];
+var multilineSentenceSlot10 = (placeholder = "\u8F93\u5165\u5B8C\u6574\u56DE\u7B54", rows = 4) => [
+  { id: "answer", expectedUnit: "sentence", width: "long", multiline: true, rows, placeholder }
+];
 var dialogueSlot15 = (placeholder = "\u8F93\u5165\u5B8C\u6574\u95EE\u7B54", rows = 4) => [
   { id: "answer", expectedUnit: "dialogue", width: "long", multiline: true, rows, placeholder }
 ];
@@ -34659,8 +34727,8 @@ var verbFormItem = (id, number, prompt, answer3, promptKana) => ({
   prompt: [text19(prompt), text19(" \u2192 "), blank16("answer")],
   promptKana,
   instruction: "",
-  answerSource: "prompt",
-  responseScope: "phrase_only",
+  answerSource: "audio",
+  responseScope: "word_only",
   responseScopeHint: completionHint7,
   inputSlots: shortSlots14(["answer"], "conjugated_form"),
   answer: { slotValues: { answer: answer3 } }
@@ -34674,8 +34742,20 @@ var answerItem17 = (id, number, prompt, answer3, options = {}) => ({
   answerSource: options.answerSource || "example_transform",
   responseScope: options.responseScope || "sentence_only",
   responseScopeHint: options.responseScopeHint,
-  inputSlots: sentenceSlot18(options.placeholder || "\u8F93\u5165\u5B8C\u6574\u56DE\u7B54"),
+  inputSlots: options.multiline ? multilineSentenceSlot10("\u8F93\u5165\u5B8C\u6574\u56DE\u7B54", options.rows || 3) : sentenceSlot18("\u8F93\u5165\u5B8C\u6574\u56DE\u7B54"),
   answer: { slotValues: { answer: answer3 }, acceptableAlternatives: options.acceptableAlternatives }
+});
+var blankItem16 = (id, number, prompt, answers, options = {}) => ({
+  id,
+  number,
+  prompt: typeof prompt === "string" ? [text19(prompt)] : prompt,
+  promptKana: options.promptKana,
+  instruction: "",
+  answerSource: options.answerSource || "prompt",
+  responseScope: options.responseScope || "phrase_only",
+  responseScopeHint: options.responseScopeHint || completionHint7,
+  inputSlots: shortSlots14(Object.keys(answers), options.expectedUnit),
+  answer: { slotValues: answers }
 });
 var dialogueItem15 = (id, number, prompt, answer3, options = {}) => ({
   id,
@@ -34690,19 +34770,44 @@ var dialogueItem15 = (id, number, prompt, answer3, options = {}) => ({
   answer: { slotValues: { answer: answer3 } },
   renderHint: "dialogue"
 });
+var trueFalseItem8 = (id, number, prompt, value, promptKana, answerSource = "prompt") => ({
+  id,
+  number,
+  prompt: [text19(prompt)],
+  promptKana,
+  instruction: "",
+  answerSource,
+  responseScope: "boolean_only",
+  choices: [
+    { id: "true", label: "\u25CB" },
+    { id: "false", label: "\xD7" }
+  ],
+  answer: { boolean: value, choiceIds: [value ? "true" : "false"] }
+});
 var activities18 = [
   {
     id: "l19-p1-a1",
     section: "practice_1",
     order: 1,
-    title: "\u5C06\u201C\u307E\u3059\u5F62\u201D\u53D8\u4E3A\u201C\u306A\u3044\u5F62\u201D\u3002",
+    title: "\u542C\u5F55\u97F3\uFF0C\u5C06\u201C\u307E\u3059\u5F62\u201D\u53D8\u4E3A\u201C\u306A\u3044\u5F62\u201D\u3002",
     instruction: "",
     interaction: "fill_blank",
-    answerUnit: "phrase",
-    responseScope: "phrase_only",
+    answerUnit: "word",
+    responseScope: "word_only",
     responseScopeHint: completionHint7,
-    assets: [crop18("l19-page232-full")],
-    displayAssets: ["l19-page232-full"],
+    requiresAudio: true,
+    audio: {
+      source: "textbook_exercise",
+      url: audio18(1, 1),
+      label: "\u7B2C19\u8BFE \u7EC3\u4E60I-1",
+      transcript: {
+        text: "\u884C\u304D\u307E\u3059\u3001\u884C\u304B\u306A\u3044\u3002\u6CF3\u304E\u307E\u3059\u3001\u6CF3\u304C\u306A\u3044\u3002\u8AAD\u307F\u307E\u3059\u3001\u8AAD\u307E\u306A\u3044\u3002\u547C\u3073\u307E\u3059\u3001\u547C\u3070\u306A\u3044\u3002\u5E30\u308A\u307E\u3059\u3001\u5E30\u3089\u306A\u3044\u3002\u8CB7\u3044\u307E\u3059\u3001\u8CB7\u308F\u306A\u3044\u3002\u5F85\u3061\u307E\u3059\u3001\u5F85\u305F\u306A\u3044\u3002\u8CB8\u3057\u307E\u3059\u3001\u8CB8\u3055\u306A\u3044\u3002\u98DF\u3079\u307E\u3059\u3001\u98DF\u3079\u306A\u3044\u3002\u898B\u307E\u3059\u3001\u898B\u306A\u3044\u3002\u8D77\u304D\u307E\u3059\u3001\u8D77\u304D\u306A\u3044\u3002\u3044\u307E\u3059\u3001\u3044\u306A\u3044\u3002\u7D50\u5A5A\u3057\u307E\u3059\u3001\u7D50\u5A5A\u3057\u306A\u3044\u3002\u6765\u307E\u3059\u3001\u6765\u306A\u3044\u3002",
+        source: "manual",
+        confidenceNote: "\u6309\u6559\u6750\u8868\u683C\u987A\u5E8F\u6574\u7406\u3002"
+      }
+    },
+    assets: [crop18("l19-p1-a1-masu-nai-table")],
+    displayAssets: ["l19-p1-a1-masu-nai-table"],
     layout: [
       {
         type: "example",
@@ -34741,8 +34846,8 @@ var activities18 = [
     interaction: "pattern_substitution",
     answerUnit: "sentence",
     responseScope: "sentence_only",
-    assets: [crop18("l19-page232-full")],
-    displayAssets: ["l19-page232-full"],
+    assets: [crop18("l19-p1-a2-prohibition-picture-strip")],
+    displayAssets: ["l19-p1-a2-prohibition-picture-strip"],
     layout: [
       {
         type: "example",
@@ -34756,26 +34861,10 @@ var activities18 = [
       }
     ],
     items: [
-      answerItem17("l19-p1-a2-q1", "1", "\u3053\u3053\u3067 \u5199\u771F\u3092 \u64AE\u308A\u307E\u3059", "\u3053\u3053\u3067 \u5199\u771F\u3092 \u64AE\u3089\u306A\u3044\u3067 \u304F\u3060\u3055\u3044\u3002", {
-        answerSource: "prompt",
-        responseScope: "sentence_only",
-        promptKana: "\u3053\u3053\u3067 \u3057\u3083\u3057\u3093\u3092 \u3068\u308A\u307E\u3059"
-      }),
-      answerItem17("l19-p1-a2-q2", "2", "\u99C5\u3067 \u30BF\u30D0\u30B3\u3092 \u5438\u3044\u307E\u3059", "\u99C5\u3067 \u30BF\u30D0\u30B3\u3092 \u5438\u308F\u306A\u3044\u3067 \u304F\u3060\u3055\u3044\u3002", {
-        answerSource: "prompt",
-        responseScope: "sentence_only",
-        promptKana: "\u3048\u304D\u3067 \u30BF\u30D0\u30B3\u3092 \u3059\u3044\u307E\u3059"
-      }),
-      answerItem17("l19-p1-a2-q3", "3", "\u3053\u306E \u90E8\u5C4B\u306B \u5165\u308A\u307E\u3059", "\u3053\u306E \u90E8\u5C4B\u306B \u5165\u3089\u306A\u3044\u3067 \u304F\u3060\u3055\u3044\u3002", {
-        answerSource: "prompt",
-        responseScope: "sentence_only",
-        promptKana: "\u3053\u306E \u3078\u3084\u306B \u306F\u3044\u308A\u307E\u3059"
-      }),
-      answerItem17("l19-p1-a2-q4", "4", "\u3053\u3053\u306B \u8ECA\u3092 \u6B62\u3081\u307E\u3059", "\u3053\u3053\u306B \u8ECA\u3092 \u6B62\u3081\u306A\u3044\u3067 \u304F\u3060\u3055\u3044\u3002", {
-        answerSource: "prompt",
-        responseScope: "sentence_only",
-        promptKana: "\u3053\u3053\u306B \u304F\u308B\u307E\u3092 \u3068\u3081\u307E\u3059"
-      })
+      answerItem17("l19-p1-a2-q1", "1", "\u3053\u3053\u3067 \u5199\u771F\u3092 \u64AE\u308A\u307E\u3059", "\u3053\u3053\u3067 \u5199\u771F\u3092 \u64AE\u3089\u306A\u3044\u3067 \u304F\u3060\u3055\u3044\u3002", { promptKana: "\u3053\u3053\u3067 \u3057\u3083\u3057\u3093\u3092 \u3068\u308A\u307E\u3059" }),
+      answerItem17("l19-p1-a2-q2", "2", "\u99C5\u3067 \u30BF\u30D0\u30B3\u3092 \u5438\u3044\u307E\u3059", "\u99C5\u3067 \u30BF\u30D0\u30B3\u3092 \u5438\u308F\u306A\u3044\u3067 \u304F\u3060\u3055\u3044\u3002", { promptKana: "\u3048\u304D\u3067 \u30BF\u30D0\u30B3\u3092 \u3059\u3044\u307E\u3059" }),
+      answerItem17("l19-p1-a2-q3", "3", "\u3053\u306E \u90E8\u5C4B\u306B \u5165\u308A\u307E\u3059", "\u3053\u306E \u90E8\u5C4B\u306B \u5165\u3089\u306A\u3044\u3067 \u304F\u3060\u3055\u3044\u3002", { promptKana: "\u3053\u306E \u3078\u3084\u306B \u306F\u3044\u308A\u307E\u3059" }),
+      answerItem17("l19-p1-a2-q4", "4", "\u3053\u3053\u306B \u8ECA\u3092 \u6B62\u3081\u307E\u3059", "\u3053\u3053\u306B \u8ECA\u3092 \u6B62\u3081\u306A\u3044\u3067 \u304F\u3060\u3055\u3044\u3002", { promptKana: "\u3053\u3053\u306B \u304F\u308B\u307E\u3092 \u3068\u3081\u307E\u3059" })
     ]
   },
   {
@@ -34784,171 +34873,106 @@ var activities18 = [
     order: 3,
     title: "\u4EFF\u7167\u4F8B\u53E5\u66FF\u6362\u753B\u7EBF\u90E8\u5206\u8FDB\u884C\u7EC3\u4E60\u3002",
     instruction: "",
-    interaction: "fill_blank",
+    interaction: "pattern_substitution",
     answerUnit: "sentence",
     responseScope: "sentence_only",
     responseScopeHint: "\u5199\u51FA\u5B8C\u6574\u53E5\u5B50\u3002",
-    assets: [crop18("l19-page232-full"), crop18("l19-page233-full")],
-    displayAssets: ["l19-page232-full", "l19-page233-full"],
-    layout: [
+    assets: [crop18("l19-p1-a3-page232"), crop18("l19-p1-a3-page233")],
+    displayAssets: ["l19-p1-a3-page232", "l19-p1-a3-page233"],
+    layout: [],
+    itemGroups: [
       {
-        type: "example",
-        content: {
+        id: "l19-p1-a3-g1",
+        title: "[\u4F8B1]",
+        example: {
           label: "[\u4F8B1]",
           before: "\u4ECA\u65E5 \u65E9\u304F \u5E30\u308A\u307E\u3059",
           beforeKana: "\u304D\u3087\u3046 \u306F\u3084\u304F \u304B\u3048\u308A\u307E\u3059",
           after: [text19("\u4ECA\u65E5 \u65E9\u304F \u5E30\u3089\u306A\u3051\u308C\u3070 \u306A\u308A\u307E\u305B\u3093\u3002")],
           afterKana: "\u304D\u3087\u3046 \u306F\u3084\u304F \u304B\u3048\u3089\u306A\u3051\u308C\u3070 \u306A\u308A\u307E\u305B\u3093\u3002"
-        }
+        },
+        items: [
+          answerItem17("l19-p1-a3-q1", "1", "\u4E2D\u56FD\u3078 \u96FB\u8A71\u3092 \u304B\u3051\u307E\u3059", "\u4E2D\u56FD\u3078 \u96FB\u8A71\u3092 \u304B\u3051\u306A\u3051\u308C\u3070 \u306A\u308A\u307E\u305B\u3093\u3002", { promptKana: "\u3061\u3085\u3046\u3054\u304F\u3078 \u3067\u3093\u308F\u3092 \u304B\u3051\u307E\u3059" }),
+          answerItem17("l19-p1-a3-q2", "2", "\u56F3\u66F8\u9928\u306E \u672C\u3092 \u8FD4\u3057\u307E\u3059", "\u56F3\u66F8\u9928\u306E \u672C\u3092 \u8FD4\u3055\u306A\u3051\u308C\u3070 \u306A\u308A\u307E\u305B\u3093\u3002", { promptKana: "\u3068\u3057\u3087\u304B\u3093\u306E \u307B\u3093\u3092 \u304B\u3048\u3057\u307E\u3059" }),
+          answerItem17("l19-p1-a3-q3", "3", "\u90E8\u5C4B\u3092 \u304D\u308C\u3044\u306B \u3057\u307E\u3059", "\u90E8\u5C4B\u3092 \u304D\u308C\u3044\u306B \u3057\u306A\u3051\u308C\u3070 \u306A\u308A\u307E\u305B\u3093\u3002", { promptKana: "\u3078\u3084\u3092 \u304D\u308C\u3044\u306B \u3057\u307E\u3059" }),
+          answerItem17("l19-p1-a3-q4", "4", "\u30D1\u30B9\u30DD\u30FC\u30C8\u3092 \u898B\u305B\u307E\u3059", "\u30D1\u30B9\u30DD\u30FC\u30C8\u3092 \u898B\u305B\u306A\u3051\u308C\u3070 \u306A\u308A\u307E\u305B\u3093\u3002", { promptKana: "\u30D1\u30B9\u30DD\u30FC\u30C8\u3092 \u307F\u305B\u307E\u3059" }),
+          answerItem17("l19-p1-a3-q5", "5", "\u4F1A\u793E\u3092 \u5927\u304D\u304F \u3057\u307E\u3059", "\u4F1A\u793E\u3092 \u5927\u304D\u304F \u3057\u306A\u3051\u308C\u3070 \u306A\u308A\u307E\u305B\u3093\u3002", { promptKana: "\u304B\u3044\u3057\u3083\u3092 \u304A\u304A\u304D\u304F \u3057\u307E\u3059" }),
+          answerItem17("l19-p1-a3-q6", "6", "1\u65E5\u306B 3\u56DE \u85AC\u3092 \u98F2\u307F\u307E\u3059", "1\u65E5\u306B 3\u56DE \u85AC\u3092 \u98F2\u307E\u306A\u3051\u308C\u3070 \u306A\u308A\u307E\u305B\u3093\u3002", { promptKana: "\u3044\u3061\u306B\u3061\u306B \u3055\u3093\u304B\u3044 \u304F\u3059\u308A\u3092 \u306E\u307F\u307E\u3059" })
+        ]
       },
       {
-        type: "example",
-        content: {
+        id: "l19-p1-a3-g2",
+        title: "[\u4F8B2]",
+        example: {
           label: "[\u4F8B2]",
           before: "\u30EC\u30DD\u30FC\u30C8\u3092 \u66F8\u304D\u307E\u3059",
           beforeKana: "\u30EC\u30DD\u30FC\u30C8\u3092 \u304B\u304D\u307E\u3059",
           after: [text19("\u30EC\u30DD\u30FC\u30C8\u3092 \u66F8\u304B\u306A\u304F\u3066\u3082 \u3044\u3044\u3067\u3059\u3002")],
           afterKana: "\u30EC\u30DD\u30FC\u30C8\u3092 \u304B\u304B\u306A\u304F\u3066\u3082 \u3044\u3044\u3067\u3059\u3002"
-        }
+        },
+        items: [
+          answerItem17("l19-p1-a3-q7", "7", "\u304A\u76BF\u3092 \u6D17\u3044\u307E\u3059", "\u304A\u76BF\u3092 \u6D17\u308F\u306A\u304F\u3066\u3082 \u3044\u3044\u3067\u3059\u3002", { promptKana: "\u304A\u3055\u3089\u3092 \u3042\u3089\u3044\u307E\u3059" }),
+          answerItem17("l19-p1-a3-q8", "8", "\u4ED5\u4E8B\u3092 \u624B\u4F1D\u3044\u307E\u3059", "\u4ED5\u4E8B\u3092 \u624B\u4F1D\u308F\u306A\u304F\u3066\u3082 \u3044\u3044\u3067\u3059\u3002", { promptKana: "\u3057\u3054\u3068\u3092 \u3066\u3064\u3060\u3044\u307E\u3059" }),
+          answerItem17("l19-p1-a3-q9", "9", "\u30C6\u30EC\u30D3\u3092 \u6D88\u3057\u307E\u3059", "\u30C6\u30EC\u30D3\u3092 \u6D88\u3055\u306A\u304F\u3066\u3082 \u3044\u3044\u3067\u3059\u3002", { promptKana: "\u30C6\u30EC\u30D3\u3092 \u3051\u3057\u307E\u3059" }),
+          answerItem17("l19-p1-a3-q10", "10", "\u8377\u7269\u3092 \u904B\u3073\u307E\u3059", "\u8377\u7269\u3092 \u904B\u3070\u306A\u304F\u3066\u3082 \u3044\u3044\u3067\u3059\u3002", { promptKana: "\u306B\u3082\u3064\u3092 \u306F\u3053\u3073\u307E\u3059" }),
+          answerItem17("l19-p1-a3-q11", "11", "\u540D\u524D\u3092 \u66F8\u304D\u307E\u3059", "\u540D\u524D\u3092 \u66F8\u304B\u306A\u304F\u3066\u3082 \u3044\u3044\u3067\u3059\u3002", { promptKana: "\u306A\u307E\u3048\u3092 \u304B\u304D\u307E\u3059" }),
+          answerItem17("l19-p1-a3-q12", "12", "\u6025\u304E\u307E\u3059", "\u6025\u304C\u306A\u304F\u3066\u3082 \u3044\u3044\u3067\u3059\u3002", { promptKana: "\u3044\u305D\u304E\u307E\u3059" })
+        ]
+      },
+      {
+        id: "l19-p1-a3-g3",
+        title: "[\u4F8B3]",
+        example: {
+          label: "[\u4F8B3]",
+          before: "\u305D\u306E \u54C1\u7269\u306B \u89E6\u308A\u307E\u3059",
+          beforeKana: "\u305D\u306E \u3057\u306A\u3082\u306E\u306B \u3055\u308F\u308A\u307E\u3059",
+          after: [text19("\u305D\u306E \u54C1\u7269\u306B \u89E6\u3089\u306A\u3044\u3067 \u304F\u3060\u3055\u3044\u3002")],
+          afterKana: "\u305D\u306E \u3057\u306A\u3082\u306E\u306B \u3055\u308F\u3089\u306A\u3044\u3067 \u304F\u3060\u3055\u3044\u3002"
+        },
+        items: [
+          answerItem17("l19-p1-a3-q13", "13", "\u30D1\u30B9\u30DD\u30FC\u30C8\u3092 \u306A\u304F\u3057\u307E\u3059", "\u30D1\u30B9\u30DD\u30FC\u30C8\u3092 \u306A\u304F\u3055\u306A\u3044\u3067 \u304F\u3060\u3055\u3044\u3002"),
+          answerItem17("l19-p1-a3-q14", "14", "\u305D\u3053\u306B \u3054\u307F\u3092 \u6368\u3066\u307E\u3059", "\u305D\u3053\u306B \u3054\u307F\u3092 \u6368\u3066\u306A\u3044\u3067 \u304F\u3060\u3055\u3044\u3002", { promptKana: "\u305D\u3053\u306B \u3054\u307F\u3092 \u3059\u3066\u307E\u3059" }),
+          answerItem17("l19-p1-a3-q15", "15", "\u304A\u91D1\u3092 \u843D\u3068\u3057\u307E\u3059", "\u304A\u91D1\u3092 \u843D\u3068\u3055\u306A\u3044\u3067 \u304F\u3060\u3055\u3044\u3002", { promptKana: "\u304A\u304B\u306D\u3092 \u304A\u3068\u3057\u307E\u3059" }),
+          answerItem17("l19-p1-a3-q16", "16", "\u7A93\u3092 \u958B\u3051\u307E\u3059", "\u7A93\u3092 \u958B\u3051\u306A\u3044\u3067 \u304F\u3060\u3055\u3044\u3002", { promptKana: "\u307E\u3069\u3092 \u3042\u3051\u307E\u3059" }),
+          answerItem17("l19-p1-a3-q17", "17", "\u305D\u306E \u66F8\u985E\u3092 \u898B\u307E\u3059", "\u305D\u306E \u66F8\u985E\u3092 \u898B\u306A\u3044\u3067 \u304F\u3060\u3055\u3044\u3002", { promptKana: "\u305D\u306E \u3057\u3087\u308B\u3044\u3092 \u307F\u307E\u3059" }),
+          answerItem17("l19-p1-a3-q18", "18", "\u673A\u306E \u4E0A\u306B \u8377\u7269\u3092 \u7F6E\u304D\u307E\u3059", "\u673A\u306E \u4E0A\u306B \u8377\u7269\u3092 \u7F6E\u304B\u306A\u3044\u3067 \u304F\u3060\u3055\u3044\u3002", { promptKana: "\u3064\u304F\u3048\u306E \u3046\u3048\u306B \u306B\u3082\u3064\u3092 \u304A\u304D\u307E\u3059" })
+        ]
       }
     ],
-    items: [
-      answerItem17("l19-p1-a3-q1", "1", "\u4E2D\u56FD\u3078 \u96FB\u8A71\u3092 \u304B\u3051\u307E\u3059", "\u4E2D\u56FD\u3078 \u96FB\u8A71\u3092 \u304B\u3051\u306A\u3051\u308C\u3070 \u306A\u308A\u307E\u305B\u3093\u3002", {
-        answerSource: "prompt",
-        responseScope: "sentence_only",
-        promptKana: "\u3061\u3085\u3046\u3054\u304F\u3078 \u3067\u3093\u308F\u3092 \u304B\u3051\u307E\u3059"
-      }),
-      answerItem17("l19-p1-a3-q2", "2", "\u56F3\u66F8\u9928\u306E \u672C\u3092 \u8FD4\u3057\u307E\u3059", "\u56F3\u66F8\u9928\u306E \u672C\u3092 \u8FD4\u3055\u306A\u3051\u308C\u3070 \u306A\u308A\u307E\u305B\u3093\u3002", {
-        answerSource: "prompt",
-        responseScope: "sentence_only",
-        promptKana: "\u3068\u3057\u3087\u304B\u3093\u306E \u307B\u3093\u3092 \u304B\u3048\u3057\u307E\u3059"
-      }),
-      answerItem17("l19-p1-a3-q3", "3", "\u90E8\u5C4B\u3092 \u304D\u308C\u3044\u306B \u3057\u307E\u3059", "\u90E8\u5C4B\u3092 \u304D\u308C\u3044\u306B \u3057\u306A\u3051\u308C\u3070 \u306A\u308A\u307E\u305B\u3093\u3002", {
-        answerSource: "prompt",
-        responseScope: "sentence_only",
-        promptKana: "\u3078\u3084\u3092 \u304D\u308C\u3044\u306B \u3057\u307E\u3059"
-      }),
-      answerItem17("l19-p1-a3-q4", "4", "\u30D1\u30B9\u30DD\u30FC\u30C8\u3092 \u898B\u305B\u307E\u3059", "\u30D1\u30B9\u30DD\u30FC\u30C8\u3092 \u898B\u305B\u306A\u3051\u308C\u3070 \u306A\u308A\u307E\u305B\u3093\u3002", {
-        answerSource: "prompt",
-        responseScope: "sentence_only",
-        promptKana: "\u30D1\u30B9\u30DD\u30FC\u30C8\u3092 \u307F\u305B\u307E\u3059"
-      }),
-      answerItem17("l19-p1-a3-q5", "5", "\u4F1A\u793E\u3092 \u5927\u304D\u304F \u3057\u307E\u3059", "\u4F1A\u793E\u3092 \u5927\u304D\u304F \u3057\u306A\u3051\u308C\u3070 \u306A\u308A\u307E\u305B\u3093\u3002", {
-        answerSource: "prompt",
-        responseScope: "sentence_only",
-        promptKana: "\u304B\u3044\u3057\u3083\u3092 \u304A\u304A\u304D\u304F \u3057\u307E\u3059"
-      }),
-      answerItem17("l19-p1-a3-q6", "6", "1\u65E5\u306B 3\u56DE \u85AC\u3092 \u98F2\u307F\u307E\u3059", "1\u65E5\u306B 3\u56DE \u85AC\u3092 \u98F2\u307E\u306A\u3051\u308C\u3070 \u306A\u308A\u307E\u305B\u3093\u3002", {
-        answerSource: "prompt",
-        responseScope: "sentence_only",
-        promptKana: "\u3044\u3061\u306B\u3061\u306B \u3055\u3093\u304B\u3044 \u304F\u3059\u308A\u3092 \u306E\u307F\u307E\u3059"
-      }),
-      answerItem17("l19-p1-a3-q7", "7", "\u304A\u76BF\u3092 \u6D17\u3044\u307E\u3059", "\u304A\u76BF\u3092 \u6D17\u308F\u306A\u304F\u3066\u3082 \u3044\u3044\u3067\u3059\u3002", {
-        answerSource: "prompt",
-        responseScope: "sentence_only",
-        promptKana: "\u304A\u3055\u3089\u3092 \u3042\u3089\u3044\u307E\u3059"
-      }),
-      answerItem17("l19-p1-a3-q8", "8", "\u4ED5\u4E8B\u3092 \u3057\u307E\u3059", "\u4ED5\u4E8B\u3092 \u3057\u306A\u304F\u3066\u3082 \u3044\u3044\u3067\u3059\u3002", {
-        answerSource: "prompt",
-        responseScope: "sentence_only",
-        promptKana: "\u3057\u3054\u3068\u3092 \u3057\u307E\u3059"
-      }),
-      answerItem17("l19-p1-a3-q9", "9", "\u30C6\u30EC\u30D3\u3092 \u6D88\u3057\u307E\u3059", "\u30C6\u30EC\u30D3\u3092 \u6D88\u3055\u306A\u304F\u3066\u3082 \u3044\u3044\u3067\u3059\u3002", {
-        answerSource: "prompt",
-        responseScope: "sentence_only",
-        promptKana: "\u30C6\u30EC\u30D3\u3092 \u3051\u3057\u307E\u3059"
-      }),
-      answerItem17("l19-p1-a3-q10", "10", "\u8377\u7269\u3092 \u904B\u3073\u307E\u3059", "\u8377\u7269\u3092 \u904B\u3070\u306A\u304F\u3066\u3082 \u3044\u3044\u3067\u3059\u3002", {
-        answerSource: "prompt",
-        responseScope: "sentence_only",
-        promptKana: "\u306B\u3082\u3064\u3092 \u306F\u3053\u3073\u307E\u3059"
-      }),
-      answerItem17("l19-p1-a3-q11", "11", "\u4ECA\u65E5 \u6B8B\u696D\u3057\u307E\u3059", "\u4ECA\u65E5 \u6B8B\u696D\u3057\u306A\u304F\u3066\u3082 \u3044\u3044\u3067\u3059\u3002", {
-        answerSource: "prompt",
-        responseScope: "sentence_only",
-        promptKana: "\u304D\u3087\u3046 \u3056\u3093\u304E\u3087\u3046\u3057\u307E\u3059"
-      }),
-      answerItem17("l19-p1-a3-q12", "12", "\u6B4C\u3092 \u6B4C\u3044\u307E\u3059", "\u6B4C\u3092 \u6B4C\u308F\u306A\u304F\u3066\u3082 \u3044\u3044\u3067\u3059\u3002", {
-        answerSource: "prompt",
-        responseScope: "sentence_only",
-        promptKana: "\u3046\u305F\u3092 \u3046\u305F\u3044\u307E\u3059"
-      }),
-      answerItem17("l19-p1-a3-q13", "13", "\u9774\u3092 \u8131\u304E\u307E\u3059", "\u9774\u3092 \u8131\u304C\u306A\u304F\u3066\u3082 \u3044\u3044\u3067\u3059\u3002", {
-        answerSource: "prompt",
-        responseScope: "sentence_only",
-        promptKana: "\u304F\u3064\u3092 \u306C\u304E\u307E\u3059"
-      }),
-      answerItem17("l19-p1-a3-q14", "14", "\u90E8\u9577\u3092 \u5F85\u3061\u307E\u3059", "\u90E8\u9577\u3092 \u5F85\u305F\u306A\u304F\u3066\u3082 \u3044\u3044\u3067\u3059\u3002", {
-        answerSource: "prompt",
-        responseScope: "sentence_only",
-        promptKana: "\u3076\u3061\u3087\u3046\u3092 \u307E\u3061\u307E\u3059"
-      }),
-      answerItem17("l19-p1-a3-q15", "15", "\u660E\u65E5 \u5B66\u6821\u306B \u6765\u307E\u3059", "\u660E\u65E5 \u5B66\u6821\u306B \u6765\u306A\u304F\u3066\u3082 \u3044\u3044\u3067\u3059\u3002", {
-        answerSource: "prompt",
-        responseScope: "sentence_only",
-        promptKana: "\u3042\u3057\u305F \u304C\u3063\u3053\u3046\u306B \u304D\u307E\u3059"
-      })
-    ]
+    items: []
   },
   {
     id: "l19-p1-a4",
     section: "practice_1",
     order: 4,
-    title: "\u4EFF\u7167\u4F8B\u53E5\u66FF\u6362\u753B\u7EBF\u90E8\u5206\u7EC3\u4E60\u4F1A\u8BDD\u3002",
+    title: "\u542C\u5F55\u97F3\uFF0C\u4EFF\u7167\u4F8B\u53E5\u66FF\u6362\u753B\u7EBF\u90E8\u5206\u7EC3\u4E60\u4F1A\u8BDD\u3002",
     instruction: "",
     interaction: "dialogue_practice",
     answerUnit: "dialogue",
     responseScope: "question_and_answer",
     responseScopeHint: "\u5199\u51FA\u5B8C\u6574\u95EE\u7B54\u3002",
-    assets: [crop18("l19-page233-full")],
-    displayAssets: ["l19-page233-full"],
-    layout: [
-      {
-        type: "example",
-        content: {
-          label: "[\u4F8B1]",
-          before: "\u3053\u3053\u3067 \u8D70\u308A\u307E\u3059",
-          beforeKana: "\u3053\u3053\u3067 \u306F\u3057\u308A\u307E\u3059",
-          after: [text19("\u7532\uFF1A\u3042\u306E\u3046\u3001\u3061\u3087\u3063\u3068\u2026\u3002\n\u4E59\uFF1A\u4F55\u3067\u3059\u304B\u3002\n\u7532\uFF1A\u3059\u307F\u307E\u305B\u3093\u304C\u3001\u3053\u3053\u3067 \u8D70\u3089\u306A\u3044\u3067 \u304F\u3060\u3055\u3044\u3002\n\u4E59\uFF1A\u306F\u3044\u3002")],
-          afterKana: "\u3042\u306E\u3046\u3001\u3061\u3087\u3063\u3068\u2026\u3002\n\u306A\u3093\u3067\u3059\u304B\u3002\n\u3059\u307F\u307E\u305B\u3093\u304C\u3001\u3053\u3053\u3067 \u306F\u3057\u3089\u306A\u3044\u3067 \u304F\u3060\u3055\u3044\u3002\n\u306F\u3044\u3002"
-        }
-      },
-      {
-        type: "example",
-        content: {
-          label: "[\u4F8B2]",
-          before: "\u98DF\u4E8B\uFF0F\u30EC\u30DD\u30FC\u30C8\u3092 \u66F8\u304D\u307E\u3059",
-          beforeKana: "\u3057\u3087\u304F\u3058\uFF0F\u30EC\u30DD\u30FC\u30C8\u3092 \u304B\u304D\u307E\u3059",
-          after: [text19("\u7532\uFF1A\u3044\u3063\u3057\u3087\u306B \u98DF\u4E8B\u306B \u884C\u304D\u307E\u305B\u3093\u304B\u3002\n\u4E59\uFF1A\u3059\u307F\u307E\u305B\u3093\u3002\u4ECA\u65E5\u306F \u3061\u3087\u3063\u3068\u2026 \u30EC\u30DD\u30FC\u30C8\u3092 \u66F8\u304B\u306A\u3051\u308C\u3070 \u306A\u308A\u307E\u305B\u3093\u3002\n\u7532\uFF1A\u305D\u3046\u3067\u3059\u304B\u3002\u3058\u3083\u3042\u3001\u307E\u305F \u4ECA\u5EA6\u3002")],
-          afterKana: "\u3044\u3063\u3057\u3087\u306B \u3057\u3087\u304F\u3058\u306B \u3044\u304D\u307E\u305B\u3093\u304B\u3002\n\u3059\u307F\u307E\u305B\u3093\u3002\u304D\u3087\u3046\u306F \u3061\u3087\u3063\u3068\u2026 \u30EC\u30DD\u30FC\u30C8\u3092 \u304B\u304B\u306A\u3051\u308C\u3070 \u306A\u308A\u307E\u305B\u3093\u3002\n\u305D\u3046\u3067\u3059\u304B\u3002\u3058\u3083\u3042\u3001\u307E\u305F \u3053\u3093\u3069\u3002"
-        }
-      },
-      {
-        type: "example",
-        content: {
-          label: "[\u4F8B3]",
-          before: "\u5409\u7530\u3055\u3093\uFF0F\u7537\u306E \u4EBA",
-          beforeKana: "\u3088\u3057\u3060\u3055\u3093\uFF0F\u304A\u3068\u3053\u306E \u3072\u3068",
-          after: [text19("\u7532\uFF1A\u3042\u306E\u3046\u3001\u5409\u7530\u3055\u3093\u306F \u3069\u306E \u4EBA\u3067\u3059\u304B\u3002\n\u4E59\uFF1A\u3042\u306E \u7537\u306E \u4EBA\u304C \u5409\u7530\u3055\u3093\u3067\u3059\u3002")],
-          afterKana: "\u3042\u306E\u3046\u3001\u3088\u3057\u3060\u3055\u3093\u306F \u3069\u306E \u3072\u3068\u3067\u3059\u304B\u3002\n\u3042\u306E \u304A\u3068\u3053\u306E \u3072\u3068\u304C \u3088\u3057\u3060\u3055\u3093\u3067\u3059\u3002"
-        }
-      }
-    ],
+    requiresAudio: true,
+    audio: { source: "textbook_exercise", url: audio18(1, 4), label: "\u7B2C19\u8BFE \u7EC3\u4E60I-4" },
+    assets: [crop18("l19-p1-a4-dialogue")],
+    displayAssets: ["l19-p1-a4-dialogue"],
+    layout: [],
     itemGroups: [
       {
         id: "l19-p1-a4-g1",
         title: "[\u4F8B1]",
         example: {
           label: "[\u4F8B1]",
-          before: "\u3053\u3053\u3067 \u8D70\u308A\u307E\u3059",
-          beforeKana: "\u3053\u3053\u3067 \u306F\u3057\u308A\u307E\u3059",
-          after: [text19("\u7532\uFF1A\u3042\u306E\u3046\u3001\u3061\u3087\u3063\u3068\u2026\u3002\u4E59\uFF1A\u4F55\u3067\u3059\u304B\u3002\u7532\uFF1A\u3059\u307F\u307E\u305B\u3093\u304C\u3001\u3053\u3053\u3067 \u8D70\u3089\u306A\u3044\u3067 \u304F\u3060\u3055\u3044\u3002\u4E59\uFF1A\u306F\u3044\u3002")],
-          afterKana: "\u3042\u306E\u3046\u3001\u3061\u3087\u3063\u3068\u2026\u3002 \u306A\u3093\u3067\u3059\u304B\u3002 \u3059\u307F\u307E\u305B\u3093\u304C\u3001\u3053\u3053\u3067 \u306F\u3057\u3089\u306A\u3044\u3067 \u304F\u3060\u3055\u3044\u3002 \u306F\u3044\u3002"
+          before: "\u5E30\u308A\u307E\u3059",
+          beforeKana: "\u304B\u3048\u308A\u307E\u3059",
+          after: [text19("\u7532\uFF1A\u3082\u3046 \u5E30\u3063\u3066\u3082 \u3044\u3044\u3067\u3059\u304B\u3002\n\u4E59\uFF1A\u3044\u3044\u3048\u3001\u307E\u3060 \u5E30\u3089\u306A\u3044\u3067 \u304F\u3060\u3055\u3044\u3002")],
+          afterKana: "\u3082\u3046 \u304B\u3048\u3063\u3066\u3082 \u3044\u3044\u3067\u3059\u304B\u3002\n\u3044\u3044\u3048\u3001\u307E\u3060 \u304B\u3048\u3089\u306A\u3044\u3067 \u304F\u3060\u3055\u3044\u3002"
         },
         items: [
-          dialogueItem15("l19-p1-a4-q1", "1", "\u305D\u3053\u306B \u7ACB\u3061\u307E\u3059", "\u7532\uFF1A\u3042\u306E\u3046\u3001\u3061\u3087\u3063\u3068\u2026\u3002\n\u4E59\uFF1A\u4F55\u3067\u3059\u304B\u3002\n\u7532\uFF1A\u3059\u307F\u307E\u305B\u3093\u304C\u3001\u305D\u3053\u306B \u7ACB\u305F\u306A\u3044\u3067 \u304F\u3060\u3055\u3044\u3002\n\u4E59\uFF1A\u306F\u3044\u3002", { promptKana: "\u305D\u3053\u306B \u305F\u3061\u307E\u3059" }),
-          dialogueItem15("l19-p1-a4-q2", "2", "\u305D\u306E \u30D1\u30BD\u30B3\u30F3\u3092 \u4F7F\u3044\u307E\u3059", "\u7532\uFF1A\u3042\u306E\u3046\u3001\u3061\u3087\u3063\u3068\u2026\u3002\n\u4E59\uFF1A\u4F55\u3067\u3059\u304B\u3002\n\u7532\uFF1A\u3059\u307F\u307E\u305B\u3093\u304C\u3001\u305D\u306E \u30D1\u30BD\u30B3\u30F3\u3092 \u4F7F\u308F\u306A\u3044\u3067 \u304F\u3060\u3055\u3044\u3002\n\u4E59\uFF1A\u306F\u3044\u3002", { promptKana: "\u305D\u306E \u30D1\u30BD\u30B3\u30F3\u3092 \u3064\u304B\u3044\u307E\u3059" }),
-          dialogueItem15("l19-p1-a4-q3", "3", "\u5927\u304D\u3044 \u58F0\u3067 \u8A71\u3057\u307E\u3059", "\u7532\uFF1A\u3042\u306E\u3046\u3001\u3061\u3087\u3063\u3068\u2026\u3002\n\u4E59\uFF1A\u4F55\u3067\u3059\u304B\u3002\n\u7532\uFF1A\u3059\u307F\u307E\u305B\u3093\u304C\u3001\u5927\u304D\u3044 \u58F0\u3067 \u8A71\u3055\u306A\u3044\u3067 \u304F\u3060\u3055\u3044\u3002\n\u4E59\uFF1A\u306F\u3044\u3002", { promptKana: "\u304A\u304A\u304D\u3044 \u3053\u3048\u3067 \u306F\u306A\u3057\u307E\u3059" })
+          dialogueItem15("l19-p1-a4-q1", "1", "\u98DF\u3079\u307E\u3059", "\u7532\uFF1A\u3082\u3046 \u98DF\u3079\u3066\u3082 \u3044\u3044\u3067\u3059\u304B\u3002\n\u4E59\uFF1A\u3044\u3044\u3048\u3001\u307E\u3060 \u98DF\u3079\u306A\u3044\u3067 \u304F\u3060\u3055\u3044\u3002", { promptKana: "\u305F\u3079\u307E\u3059", answerSource: "audio" }),
+          dialogueItem15("l19-p1-a4-q2", "2", "\u98F2\u307F\u307E\u3059", "\u7532\uFF1A\u3082\u3046 \u98F2\u3093\u3067\u3082 \u3044\u3044\u3067\u3059\u304B\u3002\n\u4E59\uFF1A\u3044\u3044\u3048\u3001\u307E\u3060 \u98F2\u307E\u306A\u3044\u3067 \u304F\u3060\u3055\u3044\u3002", { promptKana: "\u306E\u307F\u307E\u3059", answerSource: "audio" }),
+          dialogueItem15("l19-p1-a4-q3", "3", "\u6B69\u304D\u307E\u3059", "\u7532\uFF1A\u3082\u3046 \u6B69\u3044\u3066\u3082 \u3044\u3044\u3067\u3059\u304B\u3002\n\u4E59\uFF1A\u3044\u3044\u3048\u3001\u307E\u3060 \u6B69\u304B\u306A\u3044\u3067 \u304F\u3060\u3055\u3044\u3002", { promptKana: "\u3042\u308B\u304D\u307E\u3059", answerSource: "audio" }),
+          dialogueItem15("l19-p1-a4-q4", "4", "\u898B\u307E\u3059", "\u7532\uFF1A\u3082\u3046 \u898B\u3066\u3082 \u3044\u3044\u3067\u3059\u304B\u3002\n\u4E59\uFF1A\u3044\u3044\u3048\u3001\u307E\u3060 \u898B\u306A\u3044\u3067 \u304F\u3060\u3055\u3044\u3002", { promptKana: "\u307F\u307E\u3059", answerSource: "audio" }),
+          dialogueItem15("l19-p1-a4-q5", "5", "\u8A71\u3057\u307E\u3059", "\u7532\uFF1A\u3082\u3046 \u8A71\u3057\u3066\u3082 \u3044\u3044\u3067\u3059\u304B\u3002\n\u4E59\uFF1A\u3044\u3044\u3048\u3001\u307E\u3060 \u8A71\u3055\u306A\u3044\u3067 \u304F\u3060\u3055\u3044\u3002", { promptKana: "\u306F\u306A\u3057\u307E\u3059", answerSource: "audio" })
         ]
       },
       {
@@ -34956,15 +34980,17 @@ var activities18 = [
         title: "[\u4F8B2]",
         example: {
           label: "[\u4F8B2]",
-          before: "\u98DF\u4E8B\uFF0F\u30EC\u30DD\u30FC\u30C8\u3092 \u66F8\u304D\u307E\u3059",
-          beforeKana: "\u3057\u3087\u304F\u3058\uFF0F\u30EC\u30DD\u30FC\u30C8\u3092 \u304B\u304D\u307E\u3059",
-          after: [text19("\u7532\uFF1A\u3044\u3063\u3057\u3087\u306B \u98DF\u4E8B\u306B \u884C\u304D\u307E\u305B\u3093\u304B\u3002\n\u4E59\uFF1A\u3059\u307F\u307E\u305B\u3093\u3002\u4ECA\u65E5\u306F \u3061\u3087\u3063\u3068\u2026 \u30EC\u30DD\u30FC\u30C8\u3092 \u66F8\u304B\u306A\u3051\u308C\u3070 \u306A\u308A\u307E\u305B\u3093\u3002\n\u7532\uFF1A\u305D\u3046\u3067\u3059\u304B\u3002\u3058\u3083\u3042\u3001\u307E\u305F \u4ECA\u5EA6\u3002")],
-          afterKana: "\u3044\u3063\u3057\u3087\u306B \u3057\u3087\u304F\u3058\u306B \u3044\u304D\u307E\u305B\u3093\u304B\u3002 \u3059\u307F\u307E\u305B\u3093\u3002 \u304D\u3087\u3046\u306F \u3061\u3087\u3063\u3068\u2026 \u30EC\u30DD\u30FC\u30C8\u3092 \u304B\u304B\u306A\u3051\u308C\u3070 \u306A\u308A\u307E\u305B\u3093\u3002 \u305D\u3046\u3067\u3059\u304B\u3002 \u3058\u3083\u3042\u3001\u307E\u305F \u3053\u3093\u3069\u3002"
+          before: "\u85AC\u3092 \u98F2\u307F\u307E\u3059",
+          beforeKana: "\u304F\u3059\u308A\u3092 \u306E\u307F\u307E\u3059",
+          after: [text19("\u7532\uFF1A\u3082\u3046 \u85AC\u3092 \u98F2\u307E\u306A\u304F\u3066\u3082 \u3044\u3044\u3067\u3059\u304B\u3002\n\u4E59\uFF1A\u3044\u3044\u3048\u3001\u307E\u3060 \u98F2\u307E\u306A\u3044\u3068 \u3044\u3051\u307E\u305B\u3093\u3002")],
+          afterKana: "\u3082\u3046 \u304F\u3059\u308A\u3092 \u306E\u307E\u306A\u304F\u3066\u3082 \u3044\u3044\u3067\u3059\u304B\u3002\n\u3044\u3044\u3048\u3001\u307E\u3060 \u306E\u307E\u306A\u3044\u3068 \u3044\u3051\u307E\u305B\u3093\u3002"
         },
         items: [
-          dialogueItem15("l19-p1-a4-q4", "4", "\u6620\u753B\uFF0F\u75C5\u9662\u3078 \u884C\u304D\u307E\u3059", "\u7532\uFF1A\u3044\u3063\u3057\u3087\u306B \u6620\u753B\u3092 \u898B\u306B \u884C\u304D\u307E\u305B\u3093\u304B\u3002\n\u4E59\uFF1A\u3059\u307F\u307E\u305B\u3093\u3002\u4ECA\u65E5\u306F \u3061\u3087\u3063\u3068\u2026 \u75C5\u9662\u3078 \u884C\u304B\u306A\u3051\u308C\u3070 \u306A\u308A\u307E\u305B\u3093\u3002\n\u7532\uFF1A\u305D\u3046\u3067\u3059\u304B\u3002\u3058\u3083\u3042\u3001\u307E\u305F \u4ECA\u5EA6\u3002", { promptKana: "\u3048\u3044\u304C\uFF0F\u3073\u3087\u3046\u3044\u3093\u3078 \u3044\u304D\u307E\u3059" }),
-          dialogueItem15("l19-p1-a4-q5", "5", "\u30B3\u30F3\u30B5\u30FC\u30C8\uFF0F\u6B8B\u696D\u3057\u307E\u3059", "\u7532\uFF1A\u3044\u3063\u3057\u3087\u306B \u30B3\u30F3\u30B5\u30FC\u30C8\u3078 \u884C\u304D\u307E\u305B\u3093\u304B\u3002\n\u4E59\uFF1A\u3059\u307F\u307E\u305B\u3093\u3002\u4ECA\u65E5\u306F \u3061\u3087\u3063\u3068\u2026 \u6B8B\u696D\u3057\u306A\u3051\u308C\u3070 \u306A\u308A\u307E\u305B\u3093\u3002\n\u7532\uFF1A\u305D\u3046\u3067\u3059\u304B\u3002\u3058\u3083\u3042\u3001\u307E\u305F \u4ECA\u5EA6\u3002", { promptKana: "\u30B3\u30F3\u30B5\u30FC\u30C8\uFF0F\u3056\u3093\u304E\u3087\u3046\u3057\u307E\u3059" }),
-          dialogueItem15("l19-p1-a4-q6", "6", "\u30AB\u30E9\u30AA\u30B1\uFF0F\u660E\u65E5 \u8A66\u9A13\u304C \u3042\u308A\u307E\u3059\u304B\u3089\u3001\u4ECA\u6669 \u52C9\u5F37\u3057\u307E\u3059", "\u7532\uFF1A\u3044\u3063\u3057\u3087\u306B \u30AB\u30E9\u30AA\u30B1\u3078 \u884C\u304D\u307E\u305B\u3093\u304B\u3002\n\u4E59\uFF1A\u3059\u307F\u307E\u305B\u3093\u3002\u660E\u65E5 \u8A66\u9A13\u304C \u3042\u308A\u307E\u3059\u304B\u3089\u3001\u4ECA\u6669 \u52C9\u5F37\u3057\u306A\u3051\u308C\u3070 \u306A\u308A\u307E\u305B\u3093\u3002\n\u7532\uFF1A\u305D\u3046\u3067\u3059\u304B\u3002\u3058\u3083\u3042\u3001\u307E\u305F \u4ECA\u5EA6\u3002", { promptKana: "\u30AB\u30E9\u30AA\u30B1\uFF0F\u3042\u3057\u305F \u3057\u3051\u3093\u304C \u3042\u308A\u307E\u3059\u304B\u3089\u3001\u3053\u3093\u3070\u3093 \u3079\u3093\u304D\u3087\u3046\u3057\u307E\u3059" })
+          dialogueItem15("l19-p1-a4-q6", "6", "\u7DF4\u7FD2\u3057\u307E\u3059", "\u7532\uFF1A\u3082\u3046 \u7DF4\u7FD2\u3057\u306A\u304F\u3066\u3082 \u3044\u3044\u3067\u3059\u304B\u3002\n\u4E59\uFF1A\u3044\u3044\u3048\u3001\u307E\u3060 \u7DF4\u7FD2\u3057\u306A\u3044\u3068 \u3044\u3051\u307E\u305B\u3093\u3002", { promptKana: "\u308C\u3093\u3057\u3085\u3046\u3057\u307E\u3059", answerSource: "audio" }),
+          dialogueItem15("l19-p1-a4-q7", "7", "\u6765\u307E\u3059", "\u7532\uFF1A\u3082\u3046 \u6765\u306A\u304F\u3066\u3082 \u3044\u3044\u3067\u3059\u304B\u3002\n\u4E59\uFF1A\u3044\u3044\u3048\u3001\u307E\u3060 \u6765\u306A\u3044\u3068 \u3044\u3051\u307E\u305B\u3093\u3002", { promptKana: "\u304D\u307E\u3059", answerSource: "audio" }),
+          dialogueItem15("l19-p1-a4-q8", "8", "\u75C5\u9662\u3078 \u884C\u304D\u307E\u3059", "\u7532\uFF1A\u3082\u3046 \u75C5\u9662\u3078 \u884C\u304B\u306A\u304F\u3066\u3082 \u3044\u3044\u3067\u3059\u304B\u3002\n\u4E59\uFF1A\u3044\u3044\u3048\u3001\u307E\u3060 \u884C\u304B\u306A\u3044\u3068 \u3044\u3051\u307E\u305B\u3093\u3002", { promptKana: "\u3073\u3087\u3046\u3044\u3093\u3078 \u3044\u304D\u307E\u3059", answerSource: "audio" }),
+          dialogueItem15("l19-p1-a4-q9", "9", "\u3053\u3053\u306B \u3044\u307E\u3059", "\u7532\uFF1A\u3082\u3046 \u3053\u3053\u306B \u3044\u306A\u304F\u3066\u3082 \u3044\u3044\u3067\u3059\u304B\u3002\n\u4E59\uFF1A\u3044\u3044\u3048\u3001\u307E\u3060 \u3044\u306A\u3044\u3068 \u3044\u3051\u307E\u305B\u3093\u3002", { answerSource: "audio" }),
+          dialogueItem15("l19-p1-a4-q10", "10", "\u6BCE\u65E5 \u30EC\u30DD\u30FC\u30C8\u3092 \u66F8\u304D\u307E\u3059", "\u7532\uFF1A\u3082\u3046 \u6BCE\u65E5 \u30EC\u30DD\u30FC\u30C8\u3092 \u66F8\u304B\u306A\u304F\u3066\u3082 \u3044\u3044\u3067\u3059\u304B\u3002\n\u4E59\uFF1A\u3044\u3044\u3048\u3001\u307E\u3060 \u66F8\u304B\u306A\u3044\u3068 \u3044\u3051\u307E\u305B\u3093\u3002", { promptKana: "\u307E\u3044\u306B\u3061 \u30EC\u30DD\u30FC\u30C8\u3092 \u304B\u304D\u307E\u3059", answerSource: "audio" })
         ]
       },
       {
@@ -34972,14 +34998,83 @@ var activities18 = [
         title: "[\u4F8B3]",
         example: {
           label: "[\u4F8B3]",
+          before: "\u4ECA \u304A\u91D1\u3092 \u6255\u3044\u307E\u3059",
+          beforeKana: "\u3044\u307E \u304A\u304B\u306D\u3092 \u306F\u3089\u3044\u307E\u3059",
+          after: [text19("\u7532\uFF1A\u4ECA \u304A\u91D1\u3092 \u6255\u308F\u306A\u3051\u308C\u3070 \u306A\u308A\u307E\u305B\u3093\u304B\u3002\n\u4E59\uFF1A\u3044\u3044\u3048\u3001\u6255\u308F\u306A\u304F\u3066\u3082 \u3044\u3044\u3067\u3059\u3088\u3002")],
+          afterKana: "\u3044\u307E \u304A\u304B\u306D\u3092 \u306F\u3089\u308F\u306A\u3051\u308C\u3070 \u306A\u308A\u307E\u305B\u3093\u304B\u3002\n\u3044\u3044\u3048\u3001\u306F\u3089\u308F\u306A\u304F\u3066\u3082 \u3044\u3044\u3067\u3059\u3088\u3002"
+        },
+        items: [
+          dialogueItem15("l19-p1-a4-q11", "11", "\u4ECA\u65E5 \u6B8B\u696D\u3057\u307E\u3059", "\u7532\uFF1A\u4ECA\u65E5 \u6B8B\u696D\u3057\u306A\u3051\u308C\u3070 \u306A\u308A\u307E\u305B\u3093\u304B\u3002\n\u4E59\uFF1A\u3044\u3044\u3048\u3001\u6B8B\u696D\u3057\u306A\u304F\u3066\u3082 \u3044\u3044\u3067\u3059\u3088\u3002", { promptKana: "\u304D\u3087\u3046 \u3056\u3093\u304E\u3087\u3046\u3057\u307E\u3059", answerSource: "audio" }),
+          dialogueItem15("l19-p1-a4-q12", "12", "\u6B4C\u3092 \u6B4C\u3044\u307E\u3059", "\u7532\uFF1A\u6B4C\u3092 \u6B4C\u308F\u306A\u3051\u308C\u3070 \u306A\u308A\u307E\u305B\u3093\u304B\u3002\n\u4E59\uFF1A\u3044\u3044\u3048\u3001\u6B4C\u308F\u306A\u304F\u3066\u3082 \u3044\u3044\u3067\u3059\u3088\u3002", { promptKana: "\u3046\u305F\u3092 \u3046\u305F\u3044\u307E\u3059", answerSource: "audio" }),
+          dialogueItem15("l19-p1-a4-q13", "13", "\u9774\u3092 \u8131\u304E\u307E\u3059", "\u7532\uFF1A\u9774\u3092 \u8131\u304C\u306A\u3051\u308C\u3070 \u306A\u308A\u307E\u305B\u3093\u304B\u3002\n\u4E59\uFF1A\u3044\u3044\u3048\u3001\u8131\u304C\u306A\u304F\u3066\u3082 \u3044\u3044\u3067\u3059\u3088\u3002", { promptKana: "\u304F\u3064\u3092 \u306C\u304E\u307E\u3059", answerSource: "audio" }),
+          dialogueItem15("l19-p1-a4-q14", "14", "\u90E8\u9577\u3092 \u5F85\u3061\u307E\u3059", "\u7532\uFF1A\u90E8\u9577\u3092 \u5F85\u305F\u306A\u3051\u308C\u3070 \u306A\u308A\u307E\u305B\u3093\u304B\u3002\n\u4E59\uFF1A\u3044\u3044\u3048\u3001\u5F85\u305F\u306A\u304F\u3066\u3082 \u3044\u3044\u3067\u3059\u3088\u3002", { promptKana: "\u3076\u3061\u3087\u3046\u3092 \u307E\u3061\u307E\u3059", answerSource: "audio" }),
+          dialogueItem15("l19-p1-a4-q15", "15", "\u660E\u65E5 \u5B66\u6821\u306B \u6765\u307E\u3059", "\u7532\uFF1A\u660E\u65E5 \u5B66\u6821\u306B \u6765\u306A\u3051\u308C\u3070 \u306A\u308A\u307E\u305B\u3093\u304B\u3002\n\u4E59\uFF1A\u3044\u3044\u3048\u3001\u6765\u306A\u304F\u3066\u3082 \u3044\u3044\u3067\u3059\u3088\u3002", { promptKana: "\u3042\u3057\u305F \u304C\u3063\u3053\u3046\u306B \u304D\u307E\u3059", answerSource: "audio" })
+        ]
+      }
+    ],
+    items: []
+  },
+  {
+    id: "l19-p1-a5",
+    section: "practice_1",
+    order: 5,
+    title: "\u542C\u5F55\u97F3\uFF0C\u4EFF\u7167\u4F8B\u53E5\u66FF\u6362\u753B\u7EBF\u90E8\u5206\u7EC3\u4E60\u4F1A\u8BDD\u3002",
+    instruction: "",
+    interaction: "dialogue_practice",
+    answerUnit: "dialogue",
+    responseScope: "question_and_answer",
+    responseScopeHint: "\u5199\u51FA\u5B8C\u6574\u95EE\u7B54\u3002",
+    requiresAudio: true,
+    audio: { source: "textbook_exercise", url: audio18(1, 5), label: "\u7B2C19\u8BFE \u7EC3\u4E60I-5" },
+    assets: [crop18("l19-p1-a5-dialogue")],
+    displayAssets: ["l19-p1-a5-dialogue"],
+    layout: [],
+    itemGroups: [
+      {
+        id: "l19-p1-a5-g1",
+        title: "[\u4F8B1]",
+        example: {
+          label: "[\u4F8B1]",
+          before: "\u3053\u3053\u3067 \u8D70\u308A\u307E\u3059",
+          beforeKana: "\u3053\u3053\u3067 \u306F\u3057\u308A\u307E\u3059",
+          after: [text19("\u7532\uFF1A\u3042\u306E\u3046\u3001\u3061\u3087\u3063\u3068\u2026\u3002\n\u4E59\uFF1A\u4F55\u3067\u3059\u304B\u3002\n\u7532\uFF1A\u3059\u307F\u307E\u305B\u3093\u304C\u3001\u3053\u3053\u3067 \u8D70\u3089\u306A\u3044\u3067 \u304F\u3060\u3055\u3044\u3002\n\u4E59\uFF1A\u306F\u3044\u3002")],
+          afterKana: "\u3042\u306E\u3046\u3001\u3061\u3087\u3063\u3068\u2026\u3002\n\u306A\u3093\u3067\u3059\u304B\u3002\n\u3059\u307F\u307E\u305B\u3093\u304C\u3001\u3053\u3053\u3067 \u306F\u3057\u3089\u306A\u3044\u3067 \u304F\u3060\u3055\u3044\u3002\n\u306F\u3044\u3002"
+        },
+        items: [
+          dialogueItem15("l19-p1-a5-q1", "1", "\u305D\u3053\u306B \u7ACB\u3061\u307E\u3059", "\u7532\uFF1A\u3042\u306E\u3046\u3001\u3061\u3087\u3063\u3068\u2026\u3002\n\u4E59\uFF1A\u4F55\u3067\u3059\u304B\u3002\n\u7532\uFF1A\u3059\u307F\u307E\u305B\u3093\u304C\u3001\u305D\u3053\u306B \u7ACB\u305F\u306A\u3044\u3067 \u304F\u3060\u3055\u3044\u3002\n\u4E59\uFF1A\u306F\u3044\u3002", { promptKana: "\u305D\u3053\u306B \u305F\u3061\u307E\u3059", answerSource: "audio" }),
+          dialogueItem15("l19-p1-a5-q2", "2", "\u305D\u306E \u30D1\u30BD\u30B3\u30F3\u3092 \u4F7F\u3044\u307E\u3059", "\u7532\uFF1A\u3042\u306E\u3046\u3001\u3061\u3087\u3063\u3068\u2026\u3002\n\u4E59\uFF1A\u4F55\u3067\u3059\u304B\u3002\n\u7532\uFF1A\u3059\u307F\u307E\u305B\u3093\u304C\u3001\u305D\u306E \u30D1\u30BD\u30B3\u30F3\u3092 \u4F7F\u308F\u306A\u3044\u3067 \u304F\u3060\u3055\u3044\u3002\n\u4E59\uFF1A\u306F\u3044\u3002", { promptKana: "\u305D\u306E \u30D1\u30BD\u30B3\u30F3\u3092 \u3064\u304B\u3044\u307E\u3059", answerSource: "audio" }),
+          dialogueItem15("l19-p1-a5-q3", "3", "\u5927\u304D\u3044 \u58F0\u3067 \u8A71\u3057\u307E\u3059", "\u7532\uFF1A\u3042\u306E\u3046\u3001\u3061\u3087\u3063\u3068\u2026\u3002\n\u4E59\uFF1A\u4F55\u3067\u3059\u304B\u3002\n\u7532\uFF1A\u3059\u307F\u307E\u305B\u3093\u304C\u3001\u5927\u304D\u3044 \u58F0\u3067 \u8A71\u3055\u306A\u3044\u3067 \u304F\u3060\u3055\u3044\u3002\n\u4E59\uFF1A\u306F\u3044\u3002", { promptKana: "\u304A\u304A\u304D\u3044 \u3053\u3048\u3067 \u306F\u306A\u3057\u307E\u3059", answerSource: "audio" })
+        ]
+      },
+      {
+        id: "l19-p1-a5-g2",
+        title: "[\u4F8B2]",
+        example: {
+          label: "[\u4F8B2]",
+          before: "\u98DF\u4E8B\uFF0F\u30EC\u30DD\u30FC\u30C8\u3092 \u66F8\u304D\u307E\u3059",
+          beforeKana: "\u3057\u3087\u304F\u3058\uFF0F\u30EC\u30DD\u30FC\u30C8\u3092 \u304B\u304D\u307E\u3059",
+          after: [text19("\u7532\uFF1A\u3044\u3063\u3057\u3087\u306B \u98DF\u4E8B\u306B \u884C\u304D\u307E\u305B\u3093\u304B\u3002\n\u4E59\uFF1A\u3059\u307F\u307E\u305B\u3093\u3002\u4ECA\u65E5\u306F \u3061\u3087\u3063\u3068\u2026\u3002\u30EC\u30DD\u30FC\u30C8\u3092 \u66F8\u304B\u306A\u3051\u308C\u3070 \u306A\u308A\u307E\u305B\u3093\u3002\n\u7532\uFF1A\u305D\u3046\u3067\u3059\u304B\u3002\u3058\u3083\u3042\u3001\u307E\u305F \u4ECA\u5EA6\u3002")],
+          afterKana: "\u3044\u3063\u3057\u3087\u306B \u3057\u3087\u304F\u3058\u306B \u3044\u304D\u307E\u305B\u3093\u304B\u3002\n\u3059\u307F\u307E\u305B\u3093\u3002\u304D\u3087\u3046\u306F \u3061\u3087\u3063\u3068\u2026\u3002\u30EC\u30DD\u30FC\u30C8\u3092 \u304B\u304B\u306A\u3051\u308C\u3070 \u306A\u308A\u307E\u305B\u3093\u3002\n\u305D\u3046\u3067\u3059\u304B\u3002\u3058\u3083\u3042\u3001\u307E\u305F \u3053\u3093\u3069\u3002"
+        },
+        items: [
+          dialogueItem15("l19-p1-a5-q4", "4", "\u6620\u753B\uFF0F\u75C5\u9662\u3078 \u884C\u304D\u307E\u3059", "\u7532\uFF1A\u3044\u3063\u3057\u3087\u306B \u6620\u753B\u3092 \u898B\u306B \u884C\u304D\u307E\u305B\u3093\u304B\u3002\n\u4E59\uFF1A\u3059\u307F\u307E\u305B\u3093\u3002\u4ECA\u65E5\u306F \u3061\u3087\u3063\u3068\u2026\u3002\u75C5\u9662\u3078 \u884C\u304B\u306A\u3051\u308C\u3070 \u306A\u308A\u307E\u305B\u3093\u3002\n\u7532\uFF1A\u305D\u3046\u3067\u3059\u304B\u3002\u3058\u3083\u3042\u3001\u307E\u305F \u4ECA\u5EA6\u3002", { promptKana: "\u3048\u3044\u304C\uFF0F\u3073\u3087\u3046\u3044\u3093\u3078 \u3044\u304D\u307E\u3059", answerSource: "audio" }),
+          dialogueItem15("l19-p1-a5-q5", "5", "\u30B3\u30F3\u30B5\u30FC\u30C8\uFF0F\u6B8B\u696D\u3057\u307E\u3059", "\u7532\uFF1A\u3044\u3063\u3057\u3087\u306B \u30B3\u30F3\u30B5\u30FC\u30C8\u3078 \u884C\u304D\u307E\u305B\u3093\u304B\u3002\n\u4E59\uFF1A\u3059\u307F\u307E\u305B\u3093\u3002\u4ECA\u65E5\u306F \u3061\u3087\u3063\u3068\u2026\u3002\u6B8B\u696D\u3057\u306A\u3051\u308C\u3070 \u306A\u308A\u307E\u305B\u3093\u3002\n\u7532\uFF1A\u305D\u3046\u3067\u3059\u304B\u3002\u3058\u3083\u3042\u3001\u307E\u305F \u4ECA\u5EA6\u3002", { promptKana: "\u30B3\u30F3\u30B5\u30FC\u30C8\uFF0F\u3056\u3093\u304E\u3087\u3046\u3057\u307E\u3059", answerSource: "audio" }),
+          dialogueItem15("l19-p1-a5-q6", "6", "\u30AB\u30E9\u30AA\u30B1\uFF0F\u660E\u65E5 \u8A66\u9A13\u304C \u3042\u308A\u307E\u3059\u304B\u3089\u3001\u4ECA\u6669 \u52C9\u5F37\u3057\u307E\u3059", "\u7532\uFF1A\u3044\u3063\u3057\u3087\u306B \u30AB\u30E9\u30AA\u30B1\u3078 \u884C\u304D\u307E\u305B\u3093\u304B\u3002\n\u4E59\uFF1A\u3059\u307F\u307E\u305B\u3093\u3002\u660E\u65E5 \u8A66\u9A13\u304C \u3042\u308A\u307E\u3059\u304B\u3089\u3001\u4ECA\u6669 \u52C9\u5F37\u3057\u306A\u3051\u308C\u3070 \u306A\u308A\u307E\u305B\u3093\u3002\n\u7532\uFF1A\u305D\u3046\u3067\u3059\u304B\u3002\u3058\u3083\u3042\u3001\u307E\u305F \u4ECA\u5EA6\u3002", { promptKana: "\u30AB\u30E9\u30AA\u30B1\uFF0F\u3042\u3057\u305F \u3057\u3051\u3093\u304C \u3042\u308A\u307E\u3059\u304B\u3089\u3001\u3053\u3093\u3070\u3093 \u3079\u3093\u304D\u3087\u3046\u3057\u307E\u3059", answerSource: "audio" })
+        ]
+      },
+      {
+        id: "l19-p1-a5-g3",
+        title: "[\u4F8B3]",
+        example: {
+          label: "[\u4F8B3]",
           before: "\u5409\u7530\u3055\u3093\uFF0F\u7537\u306E \u4EBA",
           beforeKana: "\u3088\u3057\u3060\u3055\u3093\uFF0F\u304A\u3068\u3053\u306E \u3072\u3068",
           after: [text19("\u7532\uFF1A\u3042\u306E\u3046\u3001\u5409\u7530\u3055\u3093\u306F \u3069\u306E \u4EBA\u3067\u3059\u304B\u3002\n\u4E59\uFF1A\u3042\u306E \u7537\u306E \u4EBA\u304C \u5409\u7530\u3055\u3093\u3067\u3059\u3002")],
-          afterKana: "\u3042\u306E\u3046\u3001\u3088\u3057\u3060\u3055\u3093\u306F \u3069\u306E \u3072\u3068\u3067\u3059\u304B\u3002 \u3042\u306E \u304A\u3068\u3053\u306E \u3072\u3068\u304C \u3088\u3057\u3060\u3055\u3093\u3067\u3059\u3002"
+          afterKana: "\u3042\u306E\u3046\u3001\u3088\u3057\u3060\u3055\u3093\u306F \u3069\u306E \u3072\u3068\u3067\u3059\u304B\u3002\n\u3042\u306E \u304A\u3068\u3053\u306E \u3072\u3068\u304C \u3088\u3057\u3060\u3055\u3093\u3067\u3059\u3002"
         },
         items: [
-          dialogueItem15("l19-p1-a4-q7", "7", "\u30B9\u30DF\u30B9\u3055\u3093\uFF0F\u82E5\u3044 \u7537\u306E \u4EBA", "\u7532\uFF1A\u3042\u306E\u3046\u3001\u30B9\u30DF\u30B9\u3055\u3093\u306F \u3069\u306E \u4EBA\u3067\u3059\u304B\u3002\n\u4E59\uFF1A\u3042\u306E \u82E5\u3044 \u7537\u306E \u4EBA\u304C \u30B9\u30DF\u30B9\u3055\u3093\u3067\u3059\u3002", { promptKana: "\u30B9\u30DF\u30B9\u3055\u3093\uFF0F\u308F\u304B\u3044 \u304A\u3068\u3053\u306E \u3072\u3068" }),
-          dialogueItem15("l19-p1-a4-q8", "8", "\u674E\u3055\u3093\uFF0F\u5973\u306E \u4EBA", "\u7532\uFF1A\u3042\u306E\u3046\u3001\u674E\u3055\u3093\u306F \u3069\u306E \u4EBA\u3067\u3059\u304B\u3002\n\u4E59\uFF1A\u3042\u306E \u5973\u306E \u4EBA\u304C \u674E\u3055\u3093\u3067\u3059\u3002", { promptKana: "\u308A\u3055\u3093\uFF0F\u304A\u3093\u306A\u306E \u3072\u3068" })
+          dialogueItem15("l19-p1-a5-q7", "7", "\u30B9\u30DF\u30B9\u3055\u3093\uFF0F\u82E5\u3044 \u7537\u306E \u4EBA", "\u7532\uFF1A\u3042\u306E\u3046\u3001\u30B9\u30DF\u30B9\u3055\u3093\u306F \u3069\u306E \u4EBA\u3067\u3059\u304B\u3002\n\u4E59\uFF1A\u3042\u306E \u82E5\u3044 \u7537\u306E \u4EBA\u304C \u30B9\u30DF\u30B9\u3055\u3093\u3067\u3059\u3002", { promptKana: "\u30B9\u30DF\u30B9\u3055\u3093\uFF0F\u308F\u304B\u3044 \u304A\u3068\u3053\u306E \u3072\u3068", answerSource: "audio" }),
+          dialogueItem15("l19-p1-a5-q8", "8", "\u674E\u3055\u3093\uFF0F\u5973\u306E \u4EBA", "\u7532\uFF1A\u3042\u306E\u3046\u3001\u674E\u3055\u3093\u306F \u3069\u306E \u4EBA\u3067\u3059\u304B\u3002\n\u4E59\uFF1A\u3042\u306E \u5973\u306E \u4EBA\u304C \u674E\u3055\u3093\u3067\u3059\u3002", { promptKana: "\u308A\u3055\u3093\uFF0F\u304A\u3093\u306A\u306E \u3072\u3068", answerSource: "audio" })
         ]
       }
     ],
@@ -34989,34 +35084,137 @@ var activities18 = [
     id: "l19-p2-a1",
     section: "practice_2",
     order: 1,
+    title: "\u4E0B\u9762\u662F\u5C0F\u91CE\u67D0\u4E2A\u661F\u671F\u7684\u65E5\u7A0B\u8868\u3002\uFF081\uFF09\uFF5E\uFF084\uFF09\u53E5\u4E0E\u65E5\u7A0B\u8868\u4E00\u81F4\u7684\u5728\uFF08\u3000\uFF09\u4E2D\u753B\u25CB\uFF0C\u4E0D\u4E00\u81F4\u7684\u753B\xD7\u3002",
+    instruction: "",
+    interaction: "true_false",
+    answerUnit: "boolean",
+    responseScope: "boolean_only",
+    assets: [crop18("l19-p2-a1-schedule")],
+    displayAssets: ["l19-p2-a1-schedule"],
+    layout: [
+      {
+        type: "example",
+        content: {
+          label: "[\u4F8B]",
+          before: "\u5C0F\u91CE\u3055\u3093\u306F \u6708\u66DC\u65E5\u306B \u4F1A\u793E\u3078 \u884C\u304B\u306A\u304F\u3066\u3082 \u3044\u3044\u3067\u3059\u3002",
+          beforeKana: "\u304A\u306E\u3055\u3093\u306F \u3052\u3064\u3088\u3046\u3073\u306B \u304B\u3044\u3057\u3083\u3078 \u3044\u304B\u306A\u304F\u3066\u3082 \u3044\u3044\u3067\u3059\u3002",
+          after: [text19("\xD7")]
+        }
+      }
+    ],
+    items: [
+      trueFalseItem8("l19-p2-a1-q1", "1", "\u5C0F\u91CE\u3055\u3093\u306F \u65E5\u66DC\u65E5\u306B \u4F1A\u793E\u3078 \u884C\u304B\u306A\u3051\u308C\u3070 \u306A\u308A\u307E\u305B\u3093\u3002", false, "\u304A\u306E\u3055\u3093\u306F \u306B\u3061\u3088\u3046\u3073\u306B \u304B\u3044\u3057\u3083\u3078 \u3044\u304B\u306A\u3051\u308C\u3070 \u306A\u308A\u307E\u305B\u3093\u3002"),
+      trueFalseItem8("l19-p2-a1-q2", "2", "\u5C0F\u91CE\u3055\u3093\u306F \u6C34\u66DC\u65E5\u306B \u5927\u962A\u3078 \u51FA\u5F35\u3057\u306A\u3051\u308C\u3070 \u306A\u308A\u307E\u305B\u3093\u3002", true, "\u304A\u306E\u3055\u3093\u306F \u3059\u3044\u3088\u3046\u3073\u306B \u304A\u304A\u3055\u304B\u3078 \u3057\u3085\u3063\u3061\u3087\u3046\u3057\u306A\u3051\u308C\u3070 \u306A\u308A\u307E\u305B\u3093\u3002"),
+      trueFalseItem8("l19-p2-a1-q3", "3", "\u6728\u66DC\u65E5\u306F \u4F1A\u793E\u3078 \u884C\u304B\u306A\u304F\u3066\u3082 \u3044\u3044\u3067\u3059\u3002", true, "\u3082\u304F\u3088\u3046\u3073\u306F \u304B\u3044\u3057\u3083\u3078 \u3044\u304B\u306A\u304F\u3066\u3082 \u3044\u3044\u3067\u3059\u3002"),
+      trueFalseItem8("l19-p2-a1-q4", "4", "\u4ECA\u9031\u306F \u6B8B\u696D\u3057\u306A\u304F\u3066\u3082 \u3044\u3044\u3067\u3059\u3002", false, "\u3053\u3093\u3057\u3085\u3046\u306F \u3056\u3093\u304E\u3087\u3046\u3057\u306A\u304F\u3066\u3082 \u3044\u3044\u3067\u3059\u3002")
+    ]
+  },
+  {
+    id: "l19-p2-a2",
+    section: "practice_2",
+    order: 2,
+    title: "\u4ECE\u25A1\u4E2D\u9009\u62E9\u9002\u5F53\u7684\u8BCD\u8BED\u586B\u5165\uFF08\u3000\uFF09\u4E2D\u3002",
+    instruction: "",
+    interaction: "fill_blank",
+    answerUnit: "word",
+    responseScope: "word_only",
+    responseScopeHint: completionHint7,
+    assets: [crop18("l19-p2-a2-word-bank")],
+    displayAssets: ["l19-p2-a2-word-bank"],
+    layout: [
+      { type: "word_bank", words: [text19("\u3060\u3044\u305F\u3044"), text19("\u3061\u3087\u3063\u3068"), text19("\u3082\u3046 \u4E00\u5EA6"), text19("\u3061\u3083\u3093\u3068"), text19("\u3061\u3087\u3046\u3069")] },
+      {
+        type: "example",
+        content: {
+          label: "[\u4F8B]",
+          beforeParts: [text19("\u3088\u304F \u5206\u304B\u308A\u307E\u305B\u3093\u3002\uFF08"), blank16("example"), text19("\uFF09\u8A00\u3063\u3066 \u304F\u3060\u3055\u3044\u3002")],
+          beforeKana: "\u3088\u304F \u308F\u304B\u308A\u307E\u305B\u3093\u3002\uFF08______\uFF09\u3044\u3063\u3066 \u304F\u3060\u3055\u3044\u3002",
+          after: [text19("\u3082\u3046 \u4E00\u5EA6")],
+          afterKana: "\u3082\u3046 \u3044\u3061\u3069"
+        }
+      }
+    ],
+    items: [
+      blankItem16(
+        "l19-p2-a2-q1",
+        "1",
+        [text19("\u305D\u306E \u9774\u306F\uFF08"), blank16("shoe"), text19("\uFF09\u5C0F\u3055\u3044\u3067\u3059\u3002\u3053\u306E \u30B9\u30AB\u30FC\u30C8\u306F\uFF08"), blank16("skirt"), text19("\uFF09\u3044\u3044\u3067\u3059\u3002")],
+        { shoe: "\u3061\u3087\u3063\u3068", skirt: "\u3061\u3087\u3046\u3069" },
+        { promptKana: "\u305D\u306E \u304F\u3064\u306F\uFF08______\uFF09\u3061\u3044\u3055\u3044\u3067\u3059\u3002\u3053\u306E \u30B9\u30AB\u30FC\u30C8\u306F\uFF08______\uFF09\u3044\u3044\u3067\u3059\u3002", expectedUnit: "word" }
+      ),
+      blankItem16("l19-p2-a2-q2", "2", [text19("\u68EE\u3055\u3093\u3001\u30D1\u30B9\u30DD\u30FC\u30C8\u306F \u3042\u308A\u307E\u3059\u304B\u3002\u2014\u2014\u306F\u3044\u3001\u5FC3\u914D\u3057\u306A\u3044\u3067 \u304F\u3060\u3055\u3044\u3002\uFF08"), blank16("answer"), text19("\uFF09\u6301\u3063\u3066 \u3044\u307E\u3059\u3088\u3002")], { answer: "\u3061\u3083\u3093\u3068" }, { promptKana: "\u3082\u308A\u3055\u3093\u3001\u30D1\u30B9\u30DD\u30FC\u30C8\u306F \u3042\u308A\u307E\u3059\u304B\u3002\u2014\u2014\u306F\u3044\u3001\u3057\u3093\u3071\u3044\u3057\u306A\u3044\u3067 \u304F\u3060\u3055\u3044\u3002\uFF08______\uFF09\u3082\u3063\u3066 \u3044\u307E\u3059\u3088\u3002", expectedUnit: "word" }),
+      blankItem16("l19-p2-a2-q3", "3", [text19("\u751F\u30D3\u30FC\u30EB\u306F \u3044\u304F\u3089\u3050\u3089\u3044\u3067\u3059\u304B\u3002\u2014\u2014\u305D\u3046\u3067\u3059\u306D\u3002\uFF08"), blank16("answer"), text19("\uFF091\u676F 400\u5186\u3050\u3089\u3044\u3067\u3059\u3002")], { answer: "\u3060\u3044\u305F\u3044" }, { promptKana: "\u306A\u307E\u30D3\u30FC\u30EB\u306F \u3044\u304F\u3089\u3050\u3089\u3044\u3067\u3059\u304B\u3002\u2014\u2014\u305D\u3046\u3067\u3059\u306D\u3002\uFF08______\uFF09\u3044\u3063\u3071\u3044 \u3088\u3093\u3072\u3083\u304F\u3048\u3093\u3050\u3089\u3044\u3067\u3059\u3002", expectedUnit: "word" })
+    ]
+  },
+  {
+    id: "l19-p2-a3",
+    section: "practice_2",
+    order: 3,
+    title: "\u542C\u5F55\u97F3\uFF0C\u5728\uFF08\u3000\uFF09\u4E2D\u586B\u5165\u9002\u5F53\u7684\u8BCD\u8BED\u3002",
+    instruction: "",
+    interaction: "fill_blank",
+    answerUnit: "sentence",
+    responseScope: "custom",
+    responseScopeHint: "\u6309\u9898\u4E2D\u62EC\u53F7\u4F4D\u7F6E\u8865\u5168\u8BCD\u8BED\u6216\u53E5\u5B50\u3002",
+    requiresAudio: true,
+    audio: {
+      source: "textbook_exercise",
+      url: audio18(2, 3),
+      label: "\u7B2C19\u8BFE \u7EC3\u4E60II-3",
+      transcript: {
+        text: "\u5BD2\u3044\u3067\u3059\u304B\u3089\u3001\u7A93\u3092 \u958B\u3051\u306A\u3044\u3067 \u304F\u3060\u3055\u3044\u3002\u307E\u3060 \u71B1\u304C \u3042\u308A\u307E\u3059\u304B\u3089\u3001\u304A\u98A8\u5442\u306B \u5165\u3089\u306A\u3044\u3067 \u304F\u3060\u3055\u3044\u3002\u3053\u308C\u306F \u56F3\u66F8\u9928\u306E \u672C\u3067\u3059\u304B\u3089\u3001\u8FD4\u3055\u306A\u3051\u308C\u3070 \u306A\u308A\u307E\u305B\u3093\u3002\u4E2D\u56FD\u306E \u9673\u3055\u3093\u306B \u66F8\u985E\u3092 \u9001\u3089\u306A\u3051\u308C\u3070 \u306A\u308A\u307E\u305B\u3093\u304C\u3001\u4F4F\u6240\u304C \u5206\u304B\u308A\u307E\u305B\u3093\u3002\u99D0\u8ECA\u7981\u6B62\u3067\u3059\u304B\u3089\u3001\u3053\u3053\u306B \u8ECA\u3092 \u6B62\u3081\u306A\u3044\u3067 \u304F\u3060\u3055\u3044\u3002\u85AC\u3092 \u98F2\u307E\u306A\u304F\u3066\u3082 \u3044\u3044\u3067\u3059\u3002\u3082\u3046 \u5143\u6C17\u306B \u306A\u308A\u307E\u3057\u305F\u304B\u3089\u3002",
+        source: "manual",
+        confidenceNote: "\u6309\u9898\u9762\u7A7A\u683C\u548C\u7B2C19\u8BFE\u53E5\u578B\u6574\u7406\u3002"
+      }
+    },
+    assets: [crop18("l19-p2-a3-listening-cloze")],
+    displayAssets: ["l19-p2-a3-listening-cloze"],
+    layout: [
+      {
+        type: "example",
+        content: {
+          label: "[\u4F8B]",
+          beforeParts: [text19("\u5BD2\u3044\u3067\u3059\u304B\u3089\u3001\uFF08"), blank16("example"), text19("\uFF09\u3002")],
+          beforeKana: "\u3055\u3080\u3044\u3067\u3059\u304B\u3089\u3001\uFF08______\uFF09\u3002",
+          after: [text19("\u7A93\u3092 \u958B\u3051\u306A\u3044\u3067 \u304F\u3060\u3055\u3044")],
+          afterKana: "\u307E\u3069\u3092 \u3042\u3051\u306A\u3044\u3067 \u304F\u3060\u3055\u3044"
+        }
+      }
+    ],
+    items: [
+      blankItem16("l19-p2-a3-q1", "1", [text19("\u307E\u3060 \u71B1\u304C \u3042\u308A\u307E\u3059\u304B\u3089\u3001\uFF08"), blank16("answer"), text19("\uFF09\u3002")], { answer: "\u304A\u98A8\u5442\u306B \u5165\u3089\u306A\u3044\u3067 \u304F\u3060\u3055\u3044" }, { answerSource: "audio", promptKana: "\u307E\u3060 \u306D\u3064\u304C \u3042\u308A\u307E\u3059\u304B\u3089\u3001\uFF08______\uFF09\u3002", responseScope: "sentence_only", expectedUnit: "sentence" }),
+      blankItem16("l19-p2-a3-q2", "2", [text19("\u3053\u308C\u306F \u56F3\u66F8\u9928\u306E \u672C\u3067\u3059\u304B\u3089\u3001\uFF08"), blank16("answer"), text19("\uFF09\u3002")], { answer: "\u8FD4\u3055\u306A\u3051\u308C\u3070 \u306A\u308A\u307E\u305B\u3093" }, { answerSource: "audio", promptKana: "\u3053\u308C\u306F \u3068\u3057\u3087\u304B\u3093\u306E \u307B\u3093\u3067\u3059\u304B\u3089\u3001\uFF08______\uFF09\u3002", responseScope: "sentence_only", expectedUnit: "sentence" }),
+      blankItem16("l19-p2-a3-q3", "3", [text19("\u4E2D\u56FD\u306E \u9673\u3055\u3093\u306B \u66F8\u985E\u3092\uFF08"), blank16("answer"), text19("\uFF09\u304C\u3001\u4F4F\u6240\u304C \u5206\u304B\u308A\u307E\u305B\u3093\u3002")], { answer: "\u9001\u3089\u306A\u3051\u308C\u3070 \u306A\u308A\u307E\u305B\u3093" }, { answerSource: "audio", promptKana: "\u3061\u3085\u3046\u3054\u304F\u306E \u3061\u3093\u3055\u3093\u306B \u3057\u3087\u308B\u3044\u3092\uFF08______\uFF09\u304C\u3001\u3058\u3085\u3046\u3057\u3087\u304C \u308F\u304B\u308A\u307E\u305B\u3093\u3002", responseScope: "phrase_only" }),
+      blankItem16("l19-p2-a3-q4", "4", [text19("\u99D0\u8ECA\u7981\u6B62\u3067\u3059\u304B\u3089\u3001\u3053\u3053\u306B\uFF08"), blank16("answer"), text19("\uFF09\u3002")], { answer: "\u8ECA\u3092 \u6B62\u3081\u306A\u3044\u3067 \u304F\u3060\u3055\u3044" }, { answerSource: "audio", promptKana: "\u3061\u3085\u3046\u3057\u3083\u304D\u3093\u3057\u3067\u3059\u304B\u3089\u3001\u3053\u3053\u306B\uFF08______\uFF09\u3002", responseScope: "sentence_only", expectedUnit: "sentence" }),
+      blankItem16("l19-p2-a3-q5", "5", [text19("\uFF08"), blank16("answer"), text19("\uFF09\u3002\u3082\u3046 \u5143\u6C17\u306B \u306A\u308A\u307E\u3057\u305F\u304B\u3089\u3002")], { answer: "\u85AC\u3092 \u98F2\u307E\u306A\u304F\u3066\u3082 \u3044\u3044\u3067\u3059" }, { answerSource: "audio", promptKana: "\uFF08______\uFF09\u3002\u3082\u3046 \u3052\u3093\u304D\u306B \u306A\u308A\u307E\u3057\u305F\u304B\u3089\u3002", responseScope: "sentence_only", expectedUnit: "sentence" })
+    ]
+  },
+  {
+    id: "l19-p2-a4",
+    section: "practice_2",
+    order: 4,
     title: "\u5C06\u4E0B\u9762\u7684\u53E5\u5B50\u8BD1\u6210\u65E5\u8BED\u3002",
     instruction: "",
     interaction: "translation",
     answerUnit: "sentence",
     responseScope: "sentence_only",
-    assets: [crop18("l19-page234-full")],
-    displayAssets: ["l19-page234-full"],
+    assets: [crop18("l19-p2-a4-translation")],
+    displayAssets: ["l19-p2-a4-translation"],
     layout: [],
     items: [
-      answerItem17("l19-p2-a1-q1", "1", "\u8BF7\u522B\u5FD8\u4E86\u623F\u95F4\u94A5\u5319\u3002", "\u90E8\u5C4B\u306E \u304B\u304E\u3092 \u5FD8\u308C\u306A\u3044\u3067 \u304F\u3060\u3055\u3044\u3002", {
+      answerItem17("l19-p2-a4-q1", "1", "\u8BF7\u522B\u5FD8\u4E86\u623F\u95F4\u94A5\u5319\u3002", "\u90E8\u5C4B\u306E \u304B\u304E\u3092 \u5FD8\u308C\u306A\u3044\u3067 \u304F\u3060\u3055\u3044\u3002", {
         answerSource: "prompt",
-        responseScope: "sentence_only",
         acceptableAlternatives: ["\u90E8\u5C4B\u306E\u304B\u304E\u3092 \u5FD8\u308C\u306A\u3044\u3067\u304F\u3060\u3055\u3044\u3002", "\u90E8\u5C4B\u306E \u304B\u304E\u3092\u5FD8\u308C\u306A\u3044\u3067\u304F\u3060\u3055\u3044\u3002"]
       }),
-      answerItem17("l19-p2-a1-q2", "2", "\u674E\u5148\u751F\u4ECA\u5929\u5FC5\u987B\u65E9\u70B9\u513F\u56DE\u5BB6\u3002", "\u674E\u3055\u3093\u306F \u4ECA\u65E5 \u65E9\u304F \u5E30\u3089\u306A\u3051\u308C\u3070 \u306A\u308A\u307E\u305B\u3093\u3002", {
+      answerItem17("l19-p2-a4-q2", "2", "\u5C0F\u674E\u4ECA\u5929\u5FC5\u987B\u65E9\u70B9\u513F\u56DE\u5BB6\u3002", "\u674E\u3055\u3093\u306F \u4ECA\u65E5 \u65E9\u304F \u5E30\u3089\u306A\u3051\u308C\u3070 \u306A\u308A\u307E\u305B\u3093\u3002", {
         answerSource: "prompt",
-        responseScope: "sentence_only",
         acceptableAlternatives: ["\u674E\u3055\u3093\u306F\u4ECA\u65E5 \u65E9\u304F \u5E30\u3089\u306A\u3051\u308C\u3070\u306A\u308A\u307E\u305B\u3093\u3002", "\u674E\u3055\u3093\u306F \u4ECA\u65E5 \u65E9\u304F\u5E30\u3089\u306A\u3051\u308C\u3070\u306A\u308A\u307E\u305B\u3093\u3002"]
       }),
-      answerItem17("l19-p2-a1-q3", "3", "\u660E\u5929\u4E0D\u52A0\u73ED\u4E5F\u53EF\u4EE5\u3002", "\u660E\u65E5\u306F \u6B8B\u696D\u3057\u306A\u304F\u3066\u3082 \u3044\u3044\u3067\u3059\u3088\u3002", {
+      answerItem17("l19-p2-a4-q3", "3", "\u5927\u592B\uFF0C\uFF08\u6211\uFF09\u53EF\u4EE5\u4E0D\u5403\u836F\u4E86\u5417\uFF1F\u2014\u2014\u55EF\uFF0C\u53EF\u4EE5\u4E86\u3002", "\u5148\u751F\u3001\u3082\u3046 \u85AC\u3092 \u98F2\u307E\u306A\u304F\u3066\u3082 \u3044\u3044\u3067\u3059\u304B\u3002\n\u306F\u3044\u3001\u3044\u3044\u3067\u3059\u3088\u3002", {
         answerSource: "prompt",
-        responseScope: "sentence_only",
-        acceptableAlternatives: ["\u660E\u65E5\u306F\u6B8B\u696D\u3057\u306A\u304F\u3066\u3082\u3044\u3044\u3067\u3059\u3088\u3002", "\u660E\u65E5\u306F \u6B8B\u696D\u3057\u306A\u304F\u3066\u3082\u3044\u3044\u3067\u3059\u3002"]
-      }),
-      answerItem17("l19-p2-a1-q4", "4", "\u90A3\u4E2A\u4EBA\u5C31\u662F\u5409\u7530\u79D1\u957F\u3002", "\u3042\u306E \u4EBA\u304C \u5409\u7530\u8AB2\u9577\u3067\u3059\u3088\u3002", {
-        answerSource: "prompt",
-        responseScope: "sentence_only",
-        acceptableAlternatives: ["\u3042\u306E\u4EBA\u304C \u5409\u7530\u8AB2\u9577\u3067\u3059\u3088\u3002", "\u3042\u306E \u4EBA\u304C\u5409\u7530\u8AB2\u9577\u3067\u3059\u3088\u3002"]
+        multiline: true,
+        rows: 3,
+        acceptableAlternatives: ["\u5148\u751F\u3001\u3082\u3046 \u85AC\u3092 \u98F2\u307E\u306A\u304F\u3066\u3082 \u3044\u3044\u3067\u3059\u304B\u3002\n\u306F\u3044\u3001\u3044\u3044\u3067\u3059\u3002"]
       })
     ]
   }
@@ -35030,6 +35228,2019 @@ var lesson19Practice = {
     { pageNo: 234, imagePath: page38(234) }
   ],
   activities: activities18
+};
+
+// practice/lesson20-image-crops.ts
+var page39 = (pageNo) => `../course-assets/by-lesson/lesson20/page${pageNo}.webp`;
+var lesson20ImageCrops = {
+  lessonId: "lesson20",
+  sourceDir: "../course-assets/by-lesson/lesson20",
+  selectedImages: ["page242.webp", "page243.webp", "page244.webp"],
+  pages: [
+    {
+      pageNo: 242,
+      imagePath: page39(242),
+      assets: [
+        {
+          id: "l20-p1-a1-picture-grid",
+          kind: "source_crop",
+          imagePath: page39(242),
+          label: "\u7EC3\u4E60 I 1 \u80FD\u529B\u56FE\u7247\u8868",
+          crop: { unit: "percent", x: 7.84, y: 15.25, width: 87.82, height: 30.88, aspectRatio: 1.8818 },
+          meta: { pageNo: 242, pixelX: 83, pixelY: 244, pixelWidth: 930, pixelHeight: 494 }
+        },
+        {
+          id: "l20-p1-a2-dialogue",
+          kind: "source_crop",
+          imagePath: page39(242),
+          label: "\u7EC3\u4E60 I 2 \u80FD\u529B\u4F1A\u8BDD",
+          crop: { unit: "percent", x: 7.84, y: 50, width: 87.82, height: 15.5, aspectRatio: 3.748 },
+          meta: { pageNo: 242, pixelX: 83, pixelY: 800, pixelWidth: 930, pixelHeight: 248 }
+        },
+        {
+          id: "l20-p1-a3-dialogue",
+          kind: "source_crop",
+          imagePath: page39(242),
+          label: "\u7EC3\u4E60 I 3 \u8BB8\u53EF\u4E0E\u5174\u8DA3",
+          crop: { unit: "percent", x: 7.84, y: 68, width: 87.82, height: 22, aspectRatio: 2.6477 },
+          meta: { pageNo: 242, pixelX: 83, pixelY: 1088, pixelWidth: 930, pixelHeight: 352 }
+        }
+      ]
+    },
+    {
+      pageNo: 243,
+      imagePath: page39(243),
+      assets: [
+        {
+          id: "l20-p1-a4-basic-form-table",
+          kind: "source_crop",
+          imagePath: page39(243),
+          label: "\u7EC3\u4E60 I 4 \u307E\u3059\u5F62/\u57FA\u672C\u5F62\u8868",
+          crop: { unit: "percent", x: 5.67, y: 8.5, width: 82.15, height: 37, aspectRatio: 1.4697 },
+          meta: { pageNo: 243, pixelX: 60, pixelY: 136, pixelWidth: 870, pixelHeight: 592 }
+        },
+        {
+          id: "l20-p1-a5-dialogue",
+          kind: "source_crop",
+          imagePath: page39(243),
+          label: "\u7EC3\u4E60 I 5 \u5174\u8DA3\u4F1A\u8BDD",
+          crop: { unit: "percent", x: 5.67, y: 48, width: 86.4, height: 22.75, aspectRatio: 2.5144 },
+          meta: { pageNo: 243, pixelX: 60, pixelY: 768, pixelWidth: 915, pixelHeight: 364 }
+        },
+        {
+          id: "l20-p1-a6-dialogue",
+          kind: "source_crop",
+          imagePath: page39(243),
+          label: "\u7EC3\u4E60 I 6 \u524D\u306B\u4F1A\u8BDD",
+          crop: { unit: "percent", x: 5.67, y: 74, width: 86.4, height: 15, aspectRatio: 3.6 },
+          meta: { pageNo: 243, pixelX: 60, pixelY: 1184, pixelWidth: 915, pixelHeight: 240 }
+        }
+      ]
+    },
+    {
+      pageNo: 244,
+      imagePath: page39(244),
+      assets: [
+        {
+          id: "l20-p2-a1-form-change",
+          kind: "source_crop",
+          imagePath: page39(244),
+          label: "\u7EC3\u4E60 II 1 \u5F62\u5F0F\u53D8\u6362",
+          crop: { unit: "percent", x: 7.84, y: 8.5, width: 88, height: 22.75, aspectRatio: 2.5618 },
+          meta: { pageNo: 244, pixelX: 83, pixelY: 136, pixelWidth: 932, pixelHeight: 364 }
+        },
+        {
+          id: "l20-p2-a2-before-picture-grid",
+          kind: "source_crop",
+          imagePath: page39(244),
+          label: "\u7EC3\u4E60 II 2 \u524D\u306B\u770B\u56FE\u9020\u53E5",
+          crop: { unit: "percent", x: 7.84, y: 34, width: 88, height: 32.5, aspectRatio: 1.7923 },
+          meta: { pageNo: 244, pixelX: 83, pixelY: 544, pixelWidth: 932, pixelHeight: 520 }
+        },
+        {
+          id: "l20-p2-a3-listening",
+          kind: "source_crop",
+          imagePath: page39(244),
+          label: "\u7EC3\u4E60 II 3 \u542C\u5F55\u97F3\u56DE\u7B54",
+          crop: { unit: "percent", x: 7.84, y: 69.5, width: 88, height: 14, aspectRatio: 4.1607 },
+          meta: { pageNo: 244, pixelX: 83, pixelY: 1112, pixelWidth: 932, pixelHeight: 224 }
+        },
+        {
+          id: "l20-p2-a4-translation",
+          kind: "source_crop",
+          imagePath: page39(244),
+          label: "\u7EC3\u4E60 II 4 \u7FFB\u8BD1",
+          crop: { unit: "percent", x: 7.84, y: 86.5, width: 88, height: 9.5, aspectRatio: 6.1316 },
+          meta: { pageNo: 244, pixelX: 83, pixelY: 1384, pixelWidth: 932, pixelHeight: 152 }
+        }
+      ]
+    }
+  ],
+  assets: []
+};
+lesson20ImageCrops.assets = lesson20ImageCrops.pages.flatMap((sourcePage) => sourcePage.assets);
+
+// practice/lesson20-practice-data.ts
+var page40 = (pageNo) => `../course-assets/by-lesson/lesson20/page${pageNo}.webp`;
+var audio19 = (exerciseNo, order) => `https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson20/Exe${exerciseNo}_${order}.mp3`;
+var text20 = (value, options = {}) => ({ type: "text", text: value, ...options });
+var blank17 = (slotId) => ({ type: "blank", slotId });
+var crop19 = (id) => lesson20ImageCrops.assets.find((asset2) => asset2.id === id);
+var completionHint8 = "\u53EA\u8865\u5168\u9898\u76EE\u4E2D\u7A7A\u683C\u5904\u9700\u8981\u586B\u5199\u7684\u90E8\u5206\u3002";
+var answerOnlyHint15 = "\u53EA\u586B\u5199\u63D0\u95EE\u540E\u7684\u56DE\u7B54\u90E8\u5206\uFF0C\u4E0D\u9700\u8981\u91CD\u5199\u95EE\u9898\u3002";
+var sentenceSlot19 = (placeholder = "\u8F93\u5165\u5B8C\u6574\u56DE\u7B54") => [{ id: "answer", expectedUnit: "sentence", width: "long", placeholder }];
+var multilineSentenceSlot11 = (placeholder = "\u8F93\u5165\u5B8C\u6574\u56DE\u7B54", rows = 4) => [
+  { id: "answer", expectedUnit: "sentence", width: "long", multiline: true, rows, placeholder }
+];
+var dialogueSlot16 = (placeholder = "\u8F93\u5165\u5B8C\u6574\u95EE\u7B54", rows = 4) => [
+  { id: "answer", expectedUnit: "dialogue", width: "long", multiline: true, rows, placeholder }
+];
+var shortSlots15 = (slotIds, expectedUnit = "phrase") => slotIds.map((slotId) => ({ id: slotId, expectedUnit, width: expectedUnit === "number" || expectedUnit === "particle" ? "short" : "medium", placeholder: "\u8F93\u5165\u8BCD\u8BED" }));
+var answerItem18 = (id, number, prompt, answer3, options = {}) => ({
+  id,
+  number,
+  prompt: typeof prompt === "string" ? [text20(prompt)] : prompt,
+  promptKana: options.promptKana,
+  instruction: "",
+  answerSource: options.answerSource || "example_transform",
+  responseScope: options.responseScope || "sentence_only",
+  responseScopeHint: options.responseScopeHint,
+  inputSlots: options.multiline ? multilineSentenceSlot11("\u8F93\u5165\u5B8C\u6574\u56DE\u7B54", options.rows || 3) : sentenceSlot19("\u8F93\u5165\u5B8C\u6574\u56DE\u7B54"),
+  answer: { slotValues: { answer: answer3 }, acceptableAlternatives: options.acceptableAlternatives }
+});
+var blankItem17 = (id, number, prompt, answers, options = {}) => ({
+  id,
+  number,
+  prompt: typeof prompt === "string" ? [text20(prompt)] : prompt,
+  promptKana: options.promptKana,
+  instruction: "",
+  answerSource: options.answerSource || "prompt",
+  responseScope: options.responseScope || "phrase_only",
+  responseScopeHint: options.responseScopeHint || completionHint8,
+  inputSlots: shortSlots15(Object.keys(answers), options.expectedUnit),
+  answer: { slotValues: answers }
+});
+var dialogueItem16 = (id, number, prompt, answer3, options = {}) => ({
+  id,
+  number,
+  prompt: [text20(prompt)],
+  promptKana: options.promptKana,
+  instruction: "",
+  answerSource: options.answerSource || "example_transform",
+  responseScope: "question_and_answer",
+  responseScopeHint: options.responseScopeHint || "\u5199\u51FA\u5B8C\u6574\u95EE\u7B54\u3002",
+  inputSlots: dialogueSlot16("\u8F93\u5165\u5B8C\u6574\u95EE\u7B54", options.rows || 4),
+  answer: { slotValues: { answer: answer3 } },
+  renderHint: "dialogue"
+});
+var baseFormItem = (id, number, prompt, answer3, promptKana) => blankItem17(
+  id,
+  number,
+  [text20(prompt), text20(" \u2192 "), blank17("answer")],
+  { answer: answer3 },
+  { promptKana, answerSource: "audio", responseScope: "word_only", responseScopeHint: completionHint8, expectedUnit: "conjugated_form" }
+);
+var activities19 = [
+  {
+    id: "l20-p1-a1",
+    section: "practice_1",
+    order: 1,
+    title: "\u770B\u56FE\uFF0C\u4EFF\u7167\u4F8B\u53E5\u66FF\u6362\u753B\u7EBF\u90E8\u5206\u8FDB\u884C\u7EC3\u4E60\u3002",
+    instruction: "",
+    interaction: "pattern_substitution",
+    answerUnit: "sentence",
+    responseScope: "sentence_only",
+    assets: [crop19("l20-p1-a1-picture-grid")],
+    displayAssets: ["l20-p1-a1-picture-grid"],
+    layout: [
+      {
+        type: "example",
+        content: {
+          label: "[\u4F8B]",
+          before: "\u674E\u3055\u3093\u3000\u30D4\u30A2\u30CE\uFF0F\u5F3E\u304D\u307E\u3059\n\u68EE\u3055\u3093\u3000\u30D4\u30A2\u30CE\uFF0F\u5F3E\u304D\u307E\u305B\u3093",
+          beforeKana: "\u308A\u3055\u3093\u3000\u30D4\u30A2\u30CE\uFF0F\u3072\u304D\u307E\u3059\n\u3082\u308A\u3055\u3093\u3000\u30D4\u30A2\u30CE\uFF0F\u3072\u304D\u307E\u305B\u3093",
+          after: [text20("\u674E\u3055\u3093\u306F \u30D4\u30A2\u30CE\u3092 \u5F3E\u304F \u3053\u3068\u304C \u3067\u304D\u307E\u3059\u3002\n\u68EE\u3055\u3093\u306F \u30D4\u30A2\u30CE\u3092 \u5F3E\u304F \u3053\u3068\u304C \u3067\u304D\u307E\u305B\u3093\u3002")],
+          afterKana: "\u308A\u3055\u3093\u306F \u30D4\u30A2\u30CE\u3092 \u3072\u304F \u3053\u3068\u304C \u3067\u304D\u307E\u3059\u3002\n\u3082\u308A\u3055\u3093\u306F \u30D4\u30A2\u30CE\u3092 \u3072\u304F \u3053\u3068\u304C \u3067\u304D\u307E\u305B\u3093\u3002"
+        }
+      }
+    ],
+    items: [
+      answerItem18("l20-p1-a1-q1", "1", "\u5F35\u3055\u3093\u3000\u65E5\u672C\u306E \u6B4C\uFF0F\u6B4C\u3044\u307E\u3059", "\u5F35\u3055\u3093\u306F \u65E5\u672C\u306E \u6B4C\u3092 \u6B4C\u3046 \u3053\u3068\u304C \u3067\u304D\u307E\u3059\u3002", { promptKana: "\u3061\u3087\u3046\u3055\u3093\u3000\u306B\u307B\u3093\u306E \u3046\u305F\uFF0F\u3046\u305F\u3044\u307E\u3059" }),
+      answerItem18("l20-p1-a1-q2", "2", "\u5C0F\u91CE\u3055\u3093\u3000\u81EA\u8EE2\u8ECA\uFF0F\u4E57\u308A\u307E\u305B\u3093", "\u5C0F\u91CE\u3055\u3093\u306F \u81EA\u8EE2\u8ECA\u306B \u4E57\u308B \u3053\u3068\u304C \u3067\u304D\u307E\u305B\u3093\u3002", { promptKana: "\u304A\u306E\u3055\u3093\u3000\u3058\u3066\u3093\u3057\u3083\uFF0F\u306E\u308A\u307E\u305B\u3093" }),
+      answerItem18("l20-p1-a1-q3", "3", "\u68EE\u3055\u3093\u3000\u30AE\u30BF\u30FC\uFF0F\u5F3E\u304D\u307E\u3059", "\u68EE\u3055\u3093\u306F \u30AE\u30BF\u30FC\u3092 \u5F3E\u304F \u3053\u3068\u304C \u3067\u304D\u307E\u3059\u3002", { promptKana: "\u3082\u308A\u3055\u3093\u3000\u30AE\u30BF\u30FC\uFF0F\u3072\u304D\u307E\u3059" }),
+      answerItem18("l20-p1-a1-q4", "4", "\u5F35\u3055\u3093\u3000\u8ECA\uFF0F\u904B\u8EE2\u3057\u307E\u305B\u3093", "\u5F35\u3055\u3093\u306F \u8ECA\u3092 \u904B\u8EE2\u3059\u308B \u3053\u3068\u304C \u3067\u304D\u307E\u305B\u3093\u3002", { promptKana: "\u3061\u3087\u3046\u3055\u3093\u3000\u304F\u308B\u307E\uFF0F\u3046\u3093\u3066\u3093\u3057\u307E\u305B\u3093" }),
+      answerItem18("l20-p1-a1-q5", "5", "\u674E\u3055\u3093\u3000\u30D1\u30BD\u30B3\u30F3\uFF0F\u4F7F\u3044\u307E\u3059", "\u674E\u3055\u3093\u306F \u30D1\u30BD\u30B3\u30F3\u3092 \u4F7F\u3046 \u3053\u3068\u304C \u3067\u304D\u307E\u3059\u3002", { promptKana: "\u308A\u3055\u3093\u3000\u30D1\u30BD\u30B3\u30F3\uFF0F\u3064\u304B\u3044\u307E\u3059" }),
+      answerItem18("l20-p1-a1-q6", "6", "\u5C0F\u91CE\u3055\u3093\u3000\u82F1\u8A9E\uFF0F\u8A71\u3057\u307E\u3059", "\u5C0F\u91CE\u3055\u3093\u306F \u82F1\u8A9E\u3092 \u8A71\u3059 \u3053\u3068\u304C \u3067\u304D\u307E\u3059\u3002", { promptKana: "\u304A\u306E\u3055\u3093\u3000\u3048\u3044\u3054\uFF0F\u306F\u306A\u3057\u307E\u3059" })
+    ]
+  },
+  {
+    id: "l20-p1-a2",
+    section: "practice_1",
+    order: 2,
+    title: "\u4EFF\u7167\u4F8B\u53E5\u66FF\u6362\u753B\u7EBF\u90E8\u5206\u7EC3\u4E60\u4F1A\u8BDD\u3002",
+    instruction: "",
+    interaction: "dialogue_practice",
+    answerUnit: "dialogue",
+    responseScope: "question_and_answer",
+    responseScopeHint: "\u5199\u51FA\u5B8C\u6574\u95EE\u7B54\u3002",
+    assets: [crop19("l20-p1-a2-dialogue")],
+    displayAssets: ["l20-p1-a2-dialogue"],
+    layout: [
+      {
+        type: "example",
+        content: {
+          label: "[\u4F8B]",
+          before: "\u4E2D\u56FD\u8A9E\u3092 \u8A71\u3057\u307E\u3059\uFF08\u306F\u3044\uFF0F\u3044\u3044\u3048\uFF09",
+          beforeKana: "\u3061\u3085\u3046\u3054\u304F\u3054\u3092 \u306F\u306A\u3057\u307E\u3059\uFF08\u306F\u3044\uFF0F\u3044\u3044\u3048\uFF09",
+          after: [text20("\u7532\uFF1A\u9577\u5CF6\u3055\u3093\u306F \u4E2D\u56FD\u8A9E\u3092 \u8A71\u3059 \u3053\u3068\u304C \u3067\u304D\u307E\u3059\u304B\u3002\n\u4E59\uFF1A\u306F\u3044\u3001\u3067\u304D\u307E\u3059\u3002\uFF0F\u3044\u3044\u3048\u3001\u5168\u7136 \u3067\u304D\u307E\u305B\u3093\u3002")],
+          afterKana: "\u306A\u304C\u3057\u307E\u3055\u3093\u306F \u3061\u3085\u3046\u3054\u304F\u3054\u3092 \u306F\u306A\u3059 \u3053\u3068\u304C \u3067\u304D\u307E\u3059\u304B\u3002\n\u306F\u3044\u3001\u3067\u304D\u307E\u3059\u3002\uFF0F\u3044\u3044\u3048\u3001\u305C\u3093\u305C\u3093 \u3067\u304D\u307E\u305B\u3093\u3002"
+        }
+      }
+    ],
+    items: [
+      dialogueItem16("l20-p1-a2-q1", "1", "\u81EA\u8EE2\u8ECA\u3092 \u4FEE\u7406\u3057\u307E\u3059\uFF08\u306F\u3044\uFF09", "\u7532\uFF1A\u9577\u5CF6\u3055\u3093\u306F \u81EA\u8EE2\u8ECA\u3092 \u4FEE\u7406\u3059\u308B \u3053\u3068\u304C \u3067\u304D\u307E\u3059\u304B\u3002\n\u4E59\uFF1A\u306F\u3044\u3001\u3067\u304D\u307E\u3059\u3002", { promptKana: "\u3058\u3066\u3093\u3057\u3083\u3092 \u3057\u3085\u3046\u308A\u3057\u307E\u3059\uFF08\u306F\u3044\uFF09" }),
+      dialogueItem16("l20-p1-a2-q2", "2", "\u30D5\u30E9\u30F3\u30B9\u8A9E\u3092 \u6559\u3048\u307E\u3059\uFF08\u3044\u3044\u3048\uFF09", "\u7532\uFF1A\u9577\u5CF6\u3055\u3093\u306F \u30D5\u30E9\u30F3\u30B9\u8A9E\u3092 \u6559\u3048\u308B \u3053\u3068\u304C \u3067\u304D\u307E\u3059\u304B\u3002\n\u4E59\uFF1A\u3044\u3044\u3048\u3001\u5168\u7136 \u3067\u304D\u307E\u305B\u3093\u3002", { promptKana: "\u30D5\u30E9\u30F3\u30B9\u3054\u3092 \u304A\u3057\u3048\u307E\u3059\uFF08\u3044\u3044\u3048\uFF09" }),
+      dialogueItem16("l20-p1-a2-q3", "3", "\u30D1\u30BD\u30B3\u30F3\u3092 \u4F7F\u3044\u307E\u3059\uFF08\u3044\u3044\u3048\uFF09", "\u7532\uFF1A\u9577\u5CF6\u3055\u3093\u306F \u30D1\u30BD\u30B3\u30F3\u3092 \u4F7F\u3046 \u3053\u3068\u304C \u3067\u304D\u307E\u3059\u304B\u3002\n\u4E59\uFF1A\u3044\u3044\u3048\u3001\u5168\u7136 \u3067\u304D\u307E\u305B\u3093\u3002", { promptKana: "\u30D1\u30BD\u30B3\u30F3\u3092 \u3064\u304B\u3044\u307E\u3059\uFF08\u3044\u3044\u3048\uFF09" }),
+      dialogueItem16("l20-p1-a2-q4", "4", "\u8ECA\u3092 \u904B\u8EE2\u3057\u307E\u3059\uFF08\u306F\u3044\uFF09", "\u7532\uFF1A\u9577\u5CF6\u3055\u3093\u306F \u8ECA\u3092 \u904B\u8EE2\u3059\u308B \u3053\u3068\u304C \u3067\u304D\u307E\u3059\u304B\u3002\n\u4E59\uFF1A\u306F\u3044\u3001\u3067\u304D\u307E\u3059\u3002", { promptKana: "\u304F\u308B\u307E\u3092 \u3046\u3093\u3066\u3093\u3057\u307E\u3059\uFF08\u306F\u3044\uFF09" })
+    ]
+  },
+  {
+    id: "l20-p1-a3",
+    section: "practice_1",
+    order: 3,
+    title: "\u4EFF\u7167\u4F8B\u53E5\u66FF\u6362\u753B\u7EBF\u90E8\u5206\u8FDB\u884C\u7EC3\u4E60\u3002",
+    instruction: "",
+    interaction: "dialogue_practice",
+    answerUnit: "dialogue",
+    responseScope: "question_and_answer",
+    responseScopeHint: "\u5199\u51FA\u5B8C\u6574\u95EE\u7B54\u3002",
+    assets: [crop19("l20-p1-a3-dialogue")],
+    displayAssets: ["l20-p1-a3-dialogue"],
+    layout: [],
+    itemGroups: [
+      {
+        id: "l20-p1-a3-g1",
+        title: "[\u4F8B1]",
+        example: {
+          label: "[\u4F8B1]",
+          before: "\u3053\u3053\u3067 \u5199\u771F\u3092 \u64AE\u308A\u307E\u3059",
+          beforeKana: "\u3053\u3053\u3067 \u3057\u3083\u3057\u3093\u3092 \u3068\u308A\u307E\u3059",
+          after: [text20("\u7532\uFF1A\u3053\u3053\u3067 \u5199\u771F\u3092 \u64AE\u3063\u3066\u3082 \u3044\u3044\u3067\u3059\u304B\u3002\n\u4E59\uFF1A\u3044\u3044\u3048\u3001\u3053\u3053\u3067\u306F \u5199\u771F\u3092 \u64AE\u308B \u3053\u3068\u304C \u3067\u304D\u307E\u305B\u3093\u3002")],
+          afterKana: "\u3053\u3053\u3067 \u3057\u3083\u3057\u3093\u3092 \u3068\u3063\u3066\u3082 \u3044\u3044\u3067\u3059\u304B\u3002\n\u3044\u3044\u3048\u3001\u3053\u3053\u3067\u306F \u3057\u3083\u3057\u3093\u3092 \u3068\u308B \u3053\u3068\u304C \u3067\u304D\u307E\u305B\u3093\u3002"
+        },
+        items: [
+          dialogueItem16("l20-p1-a3-q1", "1", "\u3053\u3053\u3067 \u643A\u5E2F\u96FB\u8A71\u3092 \u4F7F\u3044\u307E\u3059", "\u7532\uFF1A\u3053\u3053\u3067 \u643A\u5E2F\u96FB\u8A71\u3092 \u4F7F\u3063\u3066\u3082 \u3044\u3044\u3067\u3059\u304B\u3002\n\u4E59\uFF1A\u3044\u3044\u3048\u3001\u3053\u3053\u3067\u306F \u643A\u5E2F\u96FB\u8A71\u3092 \u4F7F\u3046 \u3053\u3068\u304C \u3067\u304D\u307E\u305B\u3093\u3002", { promptKana: "\u3053\u3053\u3067 \u3051\u3044\u305F\u3044\u3067\u3093\u308F\u3092 \u3064\u304B\u3044\u307E\u3059" }),
+          dialogueItem16("l20-p1-a3-q2", "2", "\u3053\u3053\u306B \u8ECA\u3092 \u6B62\u3081\u307E\u3059", "\u7532\uFF1A\u3053\u3053\u306B \u8ECA\u3092 \u6B62\u3081\u3066\u3082 \u3044\u3044\u3067\u3059\u304B\u3002\n\u4E59\uFF1A\u3044\u3044\u3048\u3001\u3053\u3053\u306B\u306F \u8ECA\u3092 \u6B62\u3081\u308B \u3053\u3068\u304C \u3067\u304D\u307E\u305B\u3093\u3002", { promptKana: "\u3053\u3053\u306B \u304F\u308B\u307E\u3092 \u3068\u3081\u307E\u3059" }),
+          dialogueItem16("l20-p1-a3-q3", "3", "\u3053\u3053\u3067 \u98DF\u4E8B\u3057\u307E\u3059", "\u7532\uFF1A\u3053\u3053\u3067 \u98DF\u4E8B\u3057\u3066\u3082 \u3044\u3044\u3067\u3059\u304B\u3002\n\u4E59\uFF1A\u3044\u3044\u3048\u3001\u3053\u3053\u3067\u306F \u98DF\u4E8B\u3059\u308B \u3053\u3068\u304C \u3067\u304D\u307E\u305B\u3093\u3002", { promptKana: "\u3053\u3053\u3067 \u3057\u3087\u304F\u3058\u3057\u307E\u3059" }),
+          dialogueItem16("l20-p1-a3-q4", "4", "\u3042\u305D\u3053\u306B \u8377\u7269\u3092 \u7F6E\u304D\u307E\u3059", "\u7532\uFF1A\u3042\u305D\u3053\u306B \u8377\u7269\u3092 \u7F6E\u3044\u3066\u3082 \u3044\u3044\u3067\u3059\u304B\u3002\n\u4E59\uFF1A\u3044\u3044\u3048\u3001\u3042\u305D\u3053\u306B\u306F \u8377\u7269\u3092 \u7F6E\u304F \u3053\u3068\u304C \u3067\u304D\u307E\u305B\u3093\u3002", { promptKana: "\u3042\u305D\u3053\u306B \u306B\u3082\u3064\u3092 \u304A\u304D\u307E\u3059" })
+        ]
+      },
+      {
+        id: "l20-p1-a3-g2",
+        title: "[\u4F8B2]",
+        example: {
+          label: "[\u4F8B2]",
+          before: "\u5207\u624B\u3092 \u96C6\u3081\u307E\u3059",
+          beforeKana: "\u304D\u3063\u3066\u3092 \u3042\u3064\u3081\u307E\u3059",
+          after: [text20("\u308F\u305F\u3057\u306E \u8DA3\u5473\u306F \u5207\u624B\u3092 \u96C6\u3081\u308B \u3053\u3068\u3067\u3059\u3002")],
+          afterKana: "\u308F\u305F\u3057\u306E \u3057\u3085\u307F\u306F \u304D\u3063\u3066\u3092 \u3042\u3064\u3081\u308B \u3053\u3068\u3067\u3059\u3002"
+        },
+        items: [
+          answerItem18("l20-p1-a3-q5", "5", "\u91E3\u308A\u3092 \u3057\u307E\u3059", "\u308F\u305F\u3057\u306E \u8DA3\u5473\u306F \u91E3\u308A\u3092 \u3059\u308B \u3053\u3068\u3067\u3059\u3002", { promptKana: "\u3064\u308A\u3092 \u3057\u307E\u3059" }),
+          answerItem18("l20-p1-a3-q6", "6", "\u5C0F\u8AAC\u3092 \u8AAD\u307F\u307E\u3059", "\u308F\u305F\u3057\u306E \u8DA3\u5473\u306F \u5C0F\u8AAC\u3092 \u8AAD\u3080 \u3053\u3068\u3067\u3059\u3002", { promptKana: "\u3057\u3087\u3046\u305B\u3064\u3092 \u3088\u307F\u307E\u3059" }),
+          answerItem18("l20-p1-a3-q7", "7", "\u6D77\u5CB8\u3092 \u30C9\u30E9\u30A4\u30D6\u3057\u307E\u3059", "\u308F\u305F\u3057\u306E \u8DA3\u5473\u306F \u6D77\u5CB8\u3092 \u30C9\u30E9\u30A4\u30D6\u3059\u308B \u3053\u3068\u3067\u3059\u3002", { promptKana: "\u304B\u3044\u304C\u3093\u3092 \u30C9\u30E9\u30A4\u30D6\u3057\u307E\u3059" }),
+          answerItem18("l20-p1-a3-q8", "8", "\u5916\u56FD\u3078 \u65C5\u884C\u306B \u884C\u304D\u307E\u3059", "\u308F\u305F\u3057\u306E \u8DA3\u5473\u306F \u5916\u56FD\u3078 \u65C5\u884C\u306B \u884C\u304F \u3053\u3068\u3067\u3059\u3002", { promptKana: "\u304C\u3044\u3053\u304F\u3078 \u308A\u3087\u3053\u3046\u306B \u3044\u304D\u307E\u3059" })
+        ]
+      }
+    ],
+    items: []
+  },
+  {
+    id: "l20-p1-a4",
+    section: "practice_1",
+    order: 4,
+    title: "\u542C\u5F55\u97F3\uFF0C\u5C06\u201C\u307E\u3059\u5F62\u201D\u53D8\u4E3A\u201C\u57FA\u672C\u5F62\u201D\u3002",
+    instruction: "",
+    interaction: "fill_blank",
+    answerUnit: "word",
+    responseScope: "word_only",
+    responseScopeHint: completionHint8,
+    requiresAudio: true,
+    audio: {
+      source: "textbook_exercise",
+      url: audio19(1, 4),
+      label: "\u7B2C20\u8BFE \u7EC3\u4E60I-4",
+      transcript: {
+        text: "\u66F8\u304D\u307E\u3059\u3001\u66F8\u304F\u3002\u6025\u304E\u307E\u3059\u3001\u6025\u3050\u3002\u6CF3\u304E\u307E\u3059\u3001\u6CF3\u3050\u3002\u4F11\u307F\u307E\u3059\u3001\u4F11\u3080\u3002\u547C\u3073\u307E\u3059\u3001\u547C\u3076\u3002\u64AE\u308A\u307E\u3059\u3001\u64AE\u308B\u3002\u4F1A\u3044\u307E\u3059\u3001\u4F1A\u3046\u3002\u6301\u3061\u307E\u3059\u3001\u6301\u3064\u3002\u8A71\u3057\u307E\u3059\u3001\u8A71\u3059\u3002\u51FA\u3057\u307E\u3059\u3001\u51FA\u3059\u3002\u8D77\u304D\u307E\u3059\u3001\u8D77\u304D\u308B\u3002\u898B\u307E\u3059\u3001\u898B\u308B\u3002\u98DF\u3079\u307E\u3059\u3001\u98DF\u3079\u308B\u3002\u3064\u3051\u307E\u3059\u3001\u3064\u3051\u308B\u3002\u9589\u3081\u307E\u3059\u3001\u9589\u3081\u308B\u3002\u5BDD\u307E\u3059\u3001\u5BDD\u308B\u3002\u3057\u307E\u3059\u3001\u3059\u308B\u3002\u7D50\u5A5A\u3057\u307E\u3059\u3001\u7D50\u5A5A\u3059\u308B\u3002\u52C9\u5F37\u3057\u307E\u3059\u3001\u52C9\u5F37\u3059\u308B\u3002\u6765\u307E\u3059\u3001\u6765\u308B\u3002",
+        source: "manual",
+        confidenceNote: "\u6309\u6559\u6750\u8868\u683C\u987A\u5E8F\u6574\u7406\u3002"
+      }
+    },
+    assets: [crop19("l20-p1-a4-basic-form-table")],
+    displayAssets: ["l20-p1-a4-basic-form-table"],
+    layout: [
+      {
+        type: "example",
+        content: {
+          label: "[\u4F8B]",
+          before: "\u66F8\u304D\u307E\u3059",
+          beforeKana: "\u304B\u304D\u307E\u3059",
+          after: [text20("\u66F8\u304F")],
+          afterKana: "\u304B\u304F"
+        }
+      }
+    ],
+    items: [
+      baseFormItem("l20-p1-a4-q1", "1", "\u66F8\u304D\u307E\u3059", "\u66F8\u304F", "\u304B\u304D\u307E\u3059"),
+      baseFormItem("l20-p1-a4-q2", "2", "\u6025\u304E\u307E\u3059", "\u6025\u3050", "\u3044\u305D\u304E\u307E\u3059"),
+      baseFormItem("l20-p1-a4-q3", "3", "\u6CF3\u304E\u307E\u3059", "\u6CF3\u3050", "\u304A\u3088\u304E\u307E\u3059"),
+      baseFormItem("l20-p1-a4-q4", "4", "\u4F11\u307F\u307E\u3059", "\u4F11\u3080", "\u3084\u3059\u307F\u307E\u3059"),
+      baseFormItem("l20-p1-a4-q5", "5", "\u547C\u3073\u307E\u3059", "\u547C\u3076", "\u3088\u3073\u307E\u3059"),
+      baseFormItem("l20-p1-a4-q6", "6", "\u64AE\u308A\u307E\u3059", "\u64AE\u308B", "\u3068\u308A\u307E\u3059"),
+      baseFormItem("l20-p1-a4-q7", "7", "\u4F1A\u3044\u307E\u3059", "\u4F1A\u3046", "\u3042\u3044\u307E\u3059"),
+      baseFormItem("l20-p1-a4-q8", "8", "\u6301\u3061\u307E\u3059", "\u6301\u3064", "\u3082\u3061\u307E\u3059"),
+      baseFormItem("l20-p1-a4-q9", "9", "\u8A71\u3057\u307E\u3059", "\u8A71\u3059", "\u306F\u306A\u3057\u307E\u3059"),
+      baseFormItem("l20-p1-a4-q10", "10", "\u51FA\u3057\u307E\u3059", "\u51FA\u3059", "\u3060\u3057\u307E\u3059"),
+      baseFormItem("l20-p1-a4-q11", "11", "\u8D77\u304D\u307E\u3059", "\u8D77\u304D\u308B", "\u304A\u304D\u307E\u3059"),
+      baseFormItem("l20-p1-a4-q12", "12", "\u898B\u307E\u3059", "\u898B\u308B", "\u307F\u307E\u3059"),
+      baseFormItem("l20-p1-a4-q13", "13", "\u98DF\u3079\u307E\u3059", "\u98DF\u3079\u308B", "\u305F\u3079\u307E\u3059"),
+      baseFormItem("l20-p1-a4-q14", "14", "\u3064\u3051\u307E\u3059", "\u3064\u3051\u308B"),
+      baseFormItem("l20-p1-a4-q15", "15", "\u9589\u3081\u307E\u3059", "\u9589\u3081\u308B", "\u3057\u3081\u307E\u3059"),
+      baseFormItem("l20-p1-a4-q16", "16", "\u5BDD\u307E\u3059", "\u5BDD\u308B", "\u306D\u307E\u3059"),
+      baseFormItem("l20-p1-a4-q17", "17", "\u3057\u307E\u3059", "\u3059\u308B"),
+      baseFormItem("l20-p1-a4-q18", "18", "\u7D50\u5A5A\u3057\u307E\u3059", "\u7D50\u5A5A\u3059\u308B", "\u3051\u3063\u3053\u3093\u3057\u307E\u3059"),
+      baseFormItem("l20-p1-a4-q19", "19", "\u52C9\u5F37\u3057\u307E\u3059", "\u52C9\u5F37\u3059\u308B", "\u3079\u3093\u304D\u3087\u3046\u3057\u307E\u3059"),
+      baseFormItem("l20-p1-a4-q20", "20", "\u6765\u307E\u3059", "\u6765\u308B", "\u304D\u307E\u3059")
+    ]
+  },
+  {
+    id: "l20-p1-a5",
+    section: "practice_1",
+    order: 5,
+    title: "\u542C\u5F55\u97F3\uFF0C\u4EFF\u7167\u4F8B\u53E5\u7EC3\u4E60\u4F1A\u8BDD\u3002",
+    instruction: "",
+    interaction: "dialogue_practice",
+    answerUnit: "dialogue",
+    responseScope: "question_and_answer",
+    responseScopeHint: "\u5199\u51FA\u5B8C\u6574\u95EE\u7B54\u3002",
+    requiresAudio: true,
+    audio: { source: "textbook_exercise", url: audio19(1, 5), label: "\u7B2C20\u8BFE \u7EC3\u4E60I-5" },
+    assets: [crop19("l20-p1-a5-dialogue")],
+    displayAssets: ["l20-p1-a5-dialogue"],
+    layout: [
+      {
+        type: "example",
+        content: {
+          label: "[\u4F8B]",
+          before: "\u97F3\u697D\u3092 \u805E\u304D\u307E\u3059\uFF0F\u30B3\u30F3\u30B5\u30FC\u30C8\u306B \u884C\u304D\u307E\u3059",
+          beforeKana: "\u304A\u3093\u304C\u304F\u3092 \u304D\u304D\u307E\u3059\uFF0F\u30B3\u30F3\u30B5\u30FC\u30C8\u306B \u3044\u304D\u307E\u3059",
+          after: [text20("\u7532\uFF1A\u4F55\u304B \u8DA3\u5473\u304C \u3042\u308A\u307E\u3059\u304B\u3002\n\u4E59\uFF1A\u3048\u3048\u3001\u97F3\u697D\u3092 \u805E\u304F \u3053\u3068\u3067\u3059\u3002\n\u7532\uFF1A\u3044\u3044\u3067\u3059\u306D\u3002\u308F\u305F\u3057\u3082 \u97F3\u697D\u3092 \u805E\u304F \u3053\u3068\u304C \u5927\u597D\u304D\u3067\u3059\u3002\n\u4E59\uFF1A\u3058\u3083\u3042\u3001\u4ECA\u5EA6 \u3044\u3063\u3057\u3087\u306B \u30B3\u30F3\u30B5\u30FC\u30C8\u306B \u884C\u304D\u307E\u305B\u3093\u304B\u3002")],
+          afterKana: "\u306A\u306B\u304B \u3057\u3085\u307F\u304C \u3042\u308A\u307E\u3059\u304B\u3002\n\u3048\u3048\u3001\u304A\u3093\u304C\u304F\u3092 \u304D\u304F \u3053\u3068\u3067\u3059\u3002\n\u3044\u3044\u3067\u3059\u306D\u3002\u308F\u305F\u3057\u3082 \u304A\u3093\u304C\u304F\u3092 \u304D\u304F \u3053\u3068\u304C \u3060\u3044\u3059\u304D\u3067\u3059\u3002\n\u3058\u3083\u3042\u3001\u3053\u3093\u3069 \u3044\u3063\u3057\u3087\u306B \u30B3\u30F3\u30B5\u30FC\u30C8\u306B \u3044\u304D\u307E\u305B\u3093\u304B\u3002"
+        }
+      }
+    ],
+    items: [
+      dialogueItem16("l20-p1-a5-q1", "1", "\u5199\u771F\u3092 \u64AE\u308A\u307E\u3059\uFF0F\u82B1\u306E \u5199\u771F\u3092 \u64AE\u308A\u306B \u884C\u304D\u307E\u3059", "\u7532\uFF1A\u4F55\u304B \u8DA3\u5473\u304C \u3042\u308A\u307E\u3059\u304B\u3002\n\u4E59\uFF1A\u3048\u3048\u3001\u5199\u771F\u3092 \u64AE\u308B \u3053\u3068\u3067\u3059\u3002\n\u7532\uFF1A\u3044\u3044\u3067\u3059\u306D\u3002\u308F\u305F\u3057\u3082 \u5199\u771F\u3092 \u64AE\u308B \u3053\u3068\u304C \u5927\u597D\u304D\u3067\u3059\u3002\n\u4E59\uFF1A\u3058\u3083\u3042\u3001\u4ECA\u5EA6 \u3044\u3063\u3057\u3087\u306B \u82B1\u306E \u5199\u771F\u3092 \u64AE\u308A\u306B \u884C\u304D\u307E\u305B\u3093\u304B\u3002", { promptKana: "\u3057\u3083\u3057\u3093\u3092 \u3068\u308A\u307E\u3059\uFF0F\u306F\u306A\u306E \u3057\u3083\u3057\u3093\u3092 \u3068\u308A\u306B \u3044\u304D\u307E\u3059", answerSource: "audio", rows: 5 }),
+      dialogueItem16("l20-p1-a5-q2", "2", "\u5C71\u306B \u767B\u308A\u307E\u3059\uFF0F\u5BCC\u58EB\u5C71\u306B \u767B\u308A\u307E\u3059", "\u7532\uFF1A\u4F55\u304B \u8DA3\u5473\u304C \u3042\u308A\u307E\u3059\u304B\u3002\n\u4E59\uFF1A\u3048\u3048\u3001\u5C71\u306B \u767B\u308B \u3053\u3068\u3067\u3059\u3002\n\u7532\uFF1A\u3044\u3044\u3067\u3059\u306D\u3002\u308F\u305F\u3057\u3082 \u5C71\u306B \u767B\u308B \u3053\u3068\u304C \u5927\u597D\u304D\u3067\u3059\u3002\n\u4E59\uFF1A\u3058\u3083\u3042\u3001\u4ECA\u5EA6 \u3044\u3063\u3057\u3087\u306B \u5BCC\u58EB\u5C71\u306B \u767B\u308A\u307E\u305B\u3093\u304B\u3002", { promptKana: "\u3084\u307E\u306B \u306E\u307C\u308A\u307E\u3059\uFF0F\u3075\u3058\u3055\u3093\u306B \u306E\u307C\u308A\u307E\u3059", answerSource: "audio", rows: 5 }),
+      dialogueItem16("l20-p1-a5-q3", "3", "\u30C9\u30E9\u30A4\u30D6\u3092 \u3057\u307E\u3059\uFF0F\u6D77\u5CB8\u3092 \u30C9\u30E9\u30A4\u30D6\u3057\u307E\u3059", "\u7532\uFF1A\u4F55\u304B \u8DA3\u5473\u304C \u3042\u308A\u307E\u3059\u304B\u3002\n\u4E59\uFF1A\u3048\u3048\u3001\u30C9\u30E9\u30A4\u30D6\u3092 \u3059\u308B \u3053\u3068\u3067\u3059\u3002\n\u7532\uFF1A\u3044\u3044\u3067\u3059\u306D\u3002\u308F\u305F\u3057\u3082 \u30C9\u30E9\u30A4\u30D6\u3092 \u3059\u308B \u3053\u3068\u304C \u5927\u597D\u304D\u3067\u3059\u3002\n\u4E59\uFF1A\u3058\u3083\u3042\u3001\u4ECA\u5EA6 \u3044\u3063\u3057\u3087\u306B \u6D77\u5CB8\u3092 \u30C9\u30E9\u30A4\u30D6\u3057\u307E\u305B\u3093\u304B\u3002", { promptKana: "\u30C9\u30E9\u30A4\u30D6\u3092 \u3057\u307E\u3059\uFF0F\u304B\u3044\u304C\u3093\u3092 \u30C9\u30E9\u30A4\u30D6\u3057\u307E\u3059", answerSource: "audio", rows: 5 }),
+      dialogueItem16("l20-p1-a5-q4", "4", "\u91E3\u308A\u3092 \u3057\u307E\u3059\uFF0F\u6D77\u3078 \u91E3\u308A\u306B \u884C\u304D\u307E\u3059", "\u7532\uFF1A\u4F55\u304B \u8DA3\u5473\u304C \u3042\u308A\u307E\u3059\u304B\u3002\n\u4E59\uFF1A\u3048\u3048\u3001\u91E3\u308A\u3092 \u3059\u308B \u3053\u3068\u3067\u3059\u3002\n\u7532\uFF1A\u3044\u3044\u3067\u3059\u306D\u3002\u308F\u305F\u3057\u3082 \u91E3\u308A\u3092 \u3059\u308B \u3053\u3068\u304C \u5927\u597D\u304D\u3067\u3059\u3002\n\u4E59\uFF1A\u3058\u3083\u3042\u3001\u4ECA\u5EA6 \u3044\u3063\u3057\u3087\u306B \u6D77\u3078 \u91E3\u308A\u306B \u884C\u304D\u307E\u305B\u3093\u304B\u3002", { promptKana: "\u3064\u308A\u3092 \u3057\u307E\u3059\uFF0F\u3046\u307F\u3078 \u3064\u308A\u306B \u3044\u304D\u307E\u3059", answerSource: "audio", rows: 5 }),
+      dialogueItem16("l20-p1-a5-q5", "5", "\u7D75\u3092 \u304B\u304D\u307E\u3059\uFF0F\u7F8E\u8853\u9928\u306B \u7D75\u3092 \u898B\u306B \u884C\u304D\u307E\u3059", "\u7532\uFF1A\u4F55\u304B \u8DA3\u5473\u304C \u3042\u308A\u307E\u3059\u304B\u3002\n\u4E59\uFF1A\u3048\u3048\u3001\u7D75\u3092 \u304B\u304F \u3053\u3068\u3067\u3059\u3002\n\u7532\uFF1A\u3044\u3044\u3067\u3059\u306D\u3002\u308F\u305F\u3057\u3082 \u7D75\u3092 \u304B\u304F \u3053\u3068\u304C \u5927\u597D\u304D\u3067\u3059\u3002\n\u4E59\uFF1A\u3058\u3083\u3042\u3001\u4ECA\u5EA6 \u3044\u3063\u3057\u3087\u306B \u7F8E\u8853\u9928\u306B \u7D75\u3092 \u898B\u306B \u884C\u304D\u307E\u305B\u3093\u304B\u3002", { promptKana: "\u3048\u3092 \u304B\u304D\u307E\u3059\uFF0F\u3073\u3058\u3085\u3064\u304B\u3093\u306B \u3048\u3092 \u307F\u306B \u3044\u304D\u307E\u3059", answerSource: "audio", rows: 5 })
+    ]
+  },
+  {
+    id: "l20-p1-a6",
+    section: "practice_1",
+    order: 6,
+    title: "\u4EFF\u7167\u4F8B\u53E5\u66FF\u6362\u753B\u7EBF\u90E8\u5206\u8FDB\u884C\u7EC3\u4E60\u3002",
+    instruction: "",
+    interaction: "dialogue_practice",
+    answerUnit: "dialogue",
+    responseScope: "question_and_answer",
+    responseScopeHint: "\u5199\u51FA\u5B8C\u6574\u95EE\u7B54\u3002",
+    assets: [crop19("l20-p1-a6-dialogue")],
+    displayAssets: ["l20-p1-a6-dialogue"],
+    layout: [
+      {
+        type: "example",
+        content: {
+          label: "[\u4F8B]",
+          before: "\u65E5\u672C\u3078 \u6765\u307E\u3059\uFF0F\u52C9\u5F37\u3057\u307E\u3057\u305F\uFF0F\u65E5\u672C\u8A9E\u3068 \u82F1\u8A9E",
+          beforeKana: "\u306B\u307B\u3093\u3078 \u304D\u307E\u3059\uFF0F\u3079\u3093\u304D\u3087\u3046\u3057\u307E\u3057\u305F\uFF0F\u306B\u307B\u3093\u3054\u3068 \u3048\u3044\u3054",
+          after: [text20("\u7532\uFF1A\u65E5\u672C\u3078 \u6765\u308B \u524D\u306B\u3001\u4F55\u304B \u52C9\u5F37\u3057\u307E\u3057\u305F\u304B\u3002\n\u4E59\uFF1A\u3048\u3048\u3001\u65E5\u672C\u8A9E\u3068 \u82F1\u8A9E\u3092 \u52C9\u5F37\u3057\u307E\u3057\u305F\u3002")],
+          afterKana: "\u306B\u307B\u3093\u3078 \u304F\u308B \u307E\u3048\u306B\u3001\u306A\u306B\u304B \u3079\u3093\u304D\u3087\u3046\u3057\u307E\u3057\u305F\u304B\u3002\n\u3048\u3048\u3001\u306B\u307B\u3093\u3054\u3068 \u3048\u3044\u3054\u3092 \u3079\u3093\u304D\u3087\u3046\u3057\u307E\u3057\u305F\u3002"
+        }
+      }
+    ],
+    items: [
+      dialogueItem16("l20-p1-a6-q1", "1", "\u4F1A\u793E\u306B \u5165\u308A\u307E\u3059\uFF0F\u7FD2\u3044\u307E\u3057\u305F\uFF0F\u30D1\u30BD\u30B3\u30F3\u3068 \u8ECA\u306E \u904B\u8EE2", "\u7532\uFF1A\u4F1A\u793E\u306B \u5165\u308B \u524D\u306B\u3001\u4F55\u304B \u7FD2\u3044\u307E\u3057\u305F\u304B\u3002\n\u4E59\uFF1A\u3048\u3048\u3001\u30D1\u30BD\u30B3\u30F3\u3068 \u8ECA\u306E \u904B\u8EE2\u3092 \u7FD2\u3044\u307E\u3057\u305F\u3002", { promptKana: "\u304B\u3044\u3057\u3083\u306B \u306F\u3044\u308A\u307E\u3059\uFF0F\u306A\u3089\u3044\u307E\u3057\u305F\uFF0F\u30D1\u30BD\u30B3\u30F3\u3068 \u304F\u308B\u307E\u306E \u3046\u3093\u3066\u3093" }),
+      dialogueItem16("l20-p1-a6-q2", "2", "\u7D50\u5A5A\u3057\u307E\u3059\uFF0F\u7FD2\u3044\u305F\u3044\u3067\u3059\uFF0F\u3044\u308D\u3044\u308D\u306A \u6599\u7406\u3084 \u7DE8\u307F\u7269\u306A\u3069", "\u7532\uFF1A\u7D50\u5A5A\u3059\u308B \u524D\u306B\u3001\u4F55\u304B \u7FD2\u3044\u305F\u3044\u3067\u3059\u304B\u3002\n\u4E59\uFF1A\u3048\u3048\u3001\u3044\u308D\u3044\u308D\u306A \u6599\u7406\u3084 \u7DE8\u307F\u7269\u306A\u3069\u3092 \u7FD2\u3044\u305F\u3044\u3067\u3059\u3002", { promptKana: "\u3051\u3063\u3053\u3093\u3057\u307E\u3059\uFF0F\u306A\u3089\u3044\u305F\u3044\u3067\u3059\uFF0F\u3044\u308D\u3044\u308D\u306A \u308A\u3087\u3046\u308A\u3084 \u3042\u307F\u3082\u306E\u306A\u3069" })
+    ]
+  },
+  {
+    id: "l20-p2-a1",
+    section: "practice_2",
+    order: 1,
+    title: "\u5C06\uFF08\u3000\uFF09\u4E2D\u7684\u8BCD\u8BED\u53D8\u6210\u9002\u5F53\u7684\u5F62\u5F0F\u3002",
+    instruction: "",
+    interaction: "fill_blank",
+    answerUnit: "phrase",
+    responseScope: "phrase_only",
+    responseScopeHint: completionHint8,
+    assets: [crop19("l20-p2-a1-form-change")],
+    displayAssets: ["l20-p2-a1-form-change"],
+    layout: [
+      {
+        type: "example",
+        content: {
+          label: "[\u4F8B]",
+          beforeParts: [text20("\u3053\u3061\u3089\u3078\uFF08\u6765\u307E\u3059 \u2192 "), blank17("example"), text20("\uFF09\u524D\u306B\u3001\u96FB\u8A71\u3092 \u304B\u3051\u3066 \u304F\u3060\u3055\u3044\u3002")],
+          beforeKana: "\u3053\u3061\u3089\u3078\uFF08\u304D\u307E\u3059 \u2192 ______\uFF09\u307E\u3048\u306B\u3001\u3067\u3093\u308F\u3092 \u304B\u3051\u3066 \u304F\u3060\u3055\u3044\u3002",
+          after: [text20("\u6765\u308B")],
+          afterKana: "\u304F\u308B"
+        }
+      }
+    ],
+    items: [
+      blankItem17("l20-p2-a1-q1", "1", [text20("\u30B9\u30DA\u30A4\u30F3\u8A9E\u3092\uFF08\u8A71\u3057\u307E\u3059 \u2192 "), blank17("answer"), text20("\uFF09\u3053\u3068\u304C \u3067\u304D\u307E\u3059\u304B\u3002")], { answer: "\u8A71\u3059" }, { promptKana: "\u30B9\u30DA\u30A4\u30F3\u3054\u3092\uFF08\u306F\u306A\u3057\u307E\u3059 \u2192 ______\uFF09\u3053\u3068\u304C \u3067\u304D\u307E\u3059\u304B\u3002", expectedUnit: "conjugated_form" }),
+      blankItem17("l20-p2-a1-q2", "2", [text20("\u308F\u305F\u3057\u306E \u8DA3\u5473\u306F \u30AF\u30E9\u30B7\u30C3\u30AF\u3092\uFF08\u805E\u304D\u307E\u3059 \u2192 "), blank17("answer"), text20("\uFF09\u3053\u3068\u3067\u3059\u3002")], { answer: "\u805E\u304F" }, { promptKana: "\u308F\u305F\u3057\u306E \u3057\u3085\u307F\u306F \u30AF\u30E9\u30B7\u30C3\u30AF\u3092\uFF08\u304D\u304D\u307E\u3059 \u2192 ______\uFF09\u3053\u3068\u3067\u3059\u3002", expectedUnit: "conjugated_form" }),
+      blankItem17("l20-p2-a1-q3", "3", [text20("\u660E\u65E5 \u9280\u884C\u306B \u304A\u91D1\u3092\uFF08\u8FD4\u3057\u307E\u3059 \u2192 "), blank17("answer"), text20("\uFF09\u306A\u3051\u308C\u3070 \u306A\u308A\u307E\u305B\u3093\u3002")], { answer: "\u8FD4\u3055" }, { promptKana: "\u3042\u3057\u305F \u304E\u3093\u3053\u3046\u306B \u304A\u304B\u306D\u3092\uFF08\u304B\u3048\u3057\u307E\u3059 \u2192 ______\uFF09\u306A\u3051\u308C\u3070 \u306A\u308A\u307E\u305B\u3093\u3002", expectedUnit: "conjugated_form" }),
+      blankItem17("l20-p2-a1-q4", "4", [text20("\u65E9\u304F\uFF08\u5927\u304D\u3044\u3067\u3059 \u2192 "), blank17("big"), text20("\uFF09\u306A\u3063\u3066\u3001\u5916\u56FD\u3067\uFF08\u50CD\u304D\u307E\u3059 \u2192 "), blank17("work"), text20("\uFF09\u305F\u3044\u3067\u3059\u3002")], { big: "\u5927\u304D\u304F", work: "\u50CD\u304D" }, { promptKana: "\u306F\u3084\u304F\uFF08\u304A\u304A\u304D\u3044\u3067\u3059 \u2192 ______\uFF09\u306A\u3063\u3066\u3001\u304C\u3044\u3053\u304F\u3067\uFF08\u306F\u305F\u3089\u304D\u307E\u3059 \u2192 ______\uFF09\u305F\u3044\u3067\u3059\u3002", expectedUnit: "conjugated_form" }),
+      blankItem17("l20-p2-a1-q5", "5", [text20("\u3082\u3046\uFF08\u3044\u3044 \u2192 "), blank17("good"), text20("\uFF09\u306A\u308A\u307E\u3057\u305F\u304B\u3089\u3001\u85AC\u3092\uFF08\u98F2\u307F\u307E\u3059 \u2192 "), blank17("drink"), text20("\uFF09\u3066\u3082 \u3044\u3044\u3067\u3059\u3088\u3002")], { good: "\u3088\u304F", drink: "\u98F2\u307E\u306A\u304F" }, { promptKana: "\u3082\u3046\uFF08\u3044\u3044 \u2192 ______\uFF09\u306A\u308A\u307E\u3057\u305F\u304B\u3089\u3001\u304F\u3059\u308A\u3092\uFF08\u306E\u307F\u307E\u3059 \u2192 ______\uFF09\u3066\u3082 \u3044\u3044\u3067\u3059\u3088\u3002", expectedUnit: "conjugated_form" })
+    ]
+  },
+  {
+    id: "l20-p2-a2",
+    section: "practice_2",
+    order: 2,
+    title: "\u770B\u56FE\uFF0C\u4F7F\u7528\u201C\uFF5E\u524D\u306B\u201D\u9020\u53E5\u3002",
+    instruction: "",
+    interaction: "pattern_substitution",
+    answerUnit: "sentence",
+    responseScope: "sentence_only",
+    assets: [crop19("l20-p2-a2-before-picture-grid")],
+    displayAssets: ["l20-p2-a2-before-picture-grid"],
+    layout: [
+      {
+        type: "example",
+        content: {
+          label: "[\u4F8B]",
+          before: "\u5BDD\u308B\uFF0F\u30B7\u30E3\u30EF\u30FC\u3092 \u6D74\u3073\u307E\u3059",
+          beforeKana: "\u306D\u308B\uFF0F\u30B7\u30E3\u30EF\u30FC\u3092 \u3042\u3073\u307E\u3059",
+          after: [text20("\u5BDD\u308B \u524D\u306B\u3001\u30B7\u30E3\u30EF\u30FC\u3092 \u6D74\u3073\u307E\u3059\u3002")],
+          afterKana: "\u306D\u308B \u307E\u3048\u306B\u3001\u30B7\u30E3\u30EF\u30FC\u3092 \u3042\u3073\u307E\u3059\u3002"
+        }
+      }
+    ],
+    items: [
+      answerItem18("l20-p2-a2-q1", "1", "\u671D\u3054\u98EF\u3092 \u98DF\u3079\u307E\u3059\uFF0F\u30B8\u30E7\u30AE\u30F3\u30B0\u3092 \u3057\u307E\u3059", "\u671D\u3054\u98EF\u3092 \u98DF\u3079\u308B \u524D\u306B\u3001\u30B8\u30E7\u30AE\u30F3\u30B0\u3092 \u3057\u307E\u3059\u3002", { promptKana: "\u3042\u3055\u3054\u306F\u3093\u3092 \u305F\u3079\u307E\u3059\uFF0F\u30B8\u30E7\u30AE\u30F3\u30B0\u3092 \u3057\u307E\u3059" }),
+      answerItem18("l20-p2-a2-q2", "2", "\u53CB\u9054\u306B \u4F1A\u3044\u307E\u3059\uFF0F\u96FB\u8A71\u3092 \u304B\u3051\u307E\u3059", "\u53CB\u9054\u306B \u4F1A\u3046 \u524D\u306B\u3001\u96FB\u8A71\u3092 \u304B\u3051\u307E\u3059\u3002", { promptKana: "\u3068\u3082\u3060\u3061\u306B \u3042\u3044\u307E\u3059\uFF0F\u3067\u3093\u308F\u3092 \u304B\u3051\u307E\u3059" }),
+      answerItem18("l20-p2-a2-q3", "3", "\u4F1A\u793E\u3078 \u884C\u304D\u307E\u3059\uFF0F\u65B0\u805E\u3092 \u8AAD\u307F\u307E\u3059", "\u4F1A\u793E\u3078 \u884C\u304F \u524D\u306B\u3001\u65B0\u805E\u3092 \u8AAD\u307F\u307E\u3059\u3002", { promptKana: "\u304B\u3044\u3057\u3083\u3078 \u3044\u304D\u307E\u3059\uFF0F\u3057\u3093\u3076\u3093\u3092 \u3088\u307F\u307E\u3059" }),
+      answerItem18("l20-p2-a2-q4", "4", "\u30C6\u30EC\u30D3\u3092 \u898B\u307E\u3059\uFF0F\u65E5\u672C\u8A9E\u3092 \u52C9\u5F37\u3057\u307E\u3059", "\u30C6\u30EC\u30D3\u3092 \u898B\u308B \u524D\u306B\u3001\u65E5\u672C\u8A9E\u3092 \u52C9\u5F37\u3057\u307E\u3059\u3002", { promptKana: "\u30C6\u30EC\u30D3\u3092 \u307F\u307E\u3059\uFF0F\u306B\u307B\u3093\u3054\u3092 \u3079\u3093\u304D\u3087\u3046\u3057\u307E\u3059" })
+    ]
+  },
+  {
+    id: "l20-p2-a3",
+    section: "practice_2",
+    order: 3,
+    title: "\u542C\u5F55\u97F3\u56DE\u7B54\u63D0\u95EE\u3002",
+    instruction: "",
+    interaction: "listening_answer",
+    answerUnit: "sentence",
+    responseScope: "answer_only",
+    responseScopeHint: answerOnlyHint15,
+    requiresAudio: true,
+    audio: {
+      source: "textbook_exercise",
+      url: audio19(2, 3),
+      label: "\u7B2C20\u8BFE \u7EC3\u4E60II-3"
+    },
+    assets: [crop19("l20-p2-a3-listening")],
+    displayAssets: ["l20-p2-a3-listening"],
+    layout: [
+      {
+        type: "example",
+        content: {
+          label: "[\u4F8B]",
+          before: "\u68EE\u3055\u3093\u306E \u8DA3\u5473\u306F \u4F55\u3067\u3059\u304B\u3002",
+          beforeKana: "\u3082\u308A\u3055\u3093\u306E \u3057\u3085\u307F\u306F \u306A\u3093\u3067\u3059\u304B\u3002",
+          after: [text20("\u91CE\u7403\u3092 \u3059\u308B \u3053\u3068\u3067\u3059\u3002")],
+          afterKana: "\u3084\u304D\u3085\u3046\u3092 \u3059\u308B \u3053\u3068\u3067\u3059\u3002"
+        }
+      }
+    ],
+    items: [
+      answerItem18("l20-p2-a3-q1", "1", "\u3044\u3064 \u91CE\u7403\u3092 \u3057\u307E\u3059\u304B\u3002", "\u65E5\u66DC\u65E5\u306B \u3057\u307E\u3059\u3002", { answerSource: "audio", responseScope: "answer_only", responseScopeHint: answerOnlyHint15, promptKana: "\u3044\u3064 \u3084\u304D\u3085\u3046\u3092 \u3057\u307E\u3059\u304B\u3002" }),
+      answerItem18("l20-p2-a3-q2", "2", "\u3060\u308C\u3068 \u3057\u307E\u3059\u304B\u3002", "\u53CB\u9054\u3068 \u3057\u307E\u3059\u3002", { answerSource: "audio", responseScope: "answer_only", responseScopeHint: answerOnlyHint15, promptKana: "\u3060\u308C\u3068 \u3057\u307E\u3059\u304B\u3002" }),
+      answerItem18("l20-p2-a3-q3", "3", "\u3069\u3046\u3057\u3066 \u5BB6\u306E \u8FD1\u304F\u3067 \u91CE\u7403\u3092 \u3059\u308B \u3053\u3068\u304C \u3067\u304D\u307E\u305B\u3093\u304B\u3002", "\u5BB6\u306E \u8FD1\u304F\u306B\u306F \u5E83\u3044 \u516C\u5712\u304C \u3042\u308A\u307E\u305B\u3093\u304B\u3089\u3002", { answerSource: "audio", responseScope: "answer_only", responseScopeHint: answerOnlyHint15, promptKana: "\u3069\u3046\u3057\u3066 \u3044\u3048\u306E \u3061\u304B\u304F\u3067 \u3084\u304D\u3085\u3046\u3092 \u3059\u308B \u3053\u3068\u304C \u3067\u304D\u307E\u305B\u3093\u304B\u3002" }),
+      answerItem18("l20-p2-a3-q4", "4", "\u516C\u5712\u307E\u3067 \u30D0\u30B9\u3067 \u3069\u306E\u3050\u3089\u3044 \u304B\u304B\u308A\u307E\u3059\u304B\u3002", "20\u5206\u3050\u3089\u3044 \u304B\u304B\u308A\u307E\u3059\u3002", { answerSource: "audio", responseScope: "answer_only", responseScopeHint: answerOnlyHint15, promptKana: "\u3053\u3046\u3048\u3093\u307E\u3067 \u30D0\u30B9\u3067 \u3069\u306E\u3050\u3089\u3044 \u304B\u304B\u308A\u307E\u3059\u304B\u3002" }),
+      answerItem18("l20-p2-a3-q5", "5", "\u91CE\u7403\u3092 \u3057\u3066\u304B\u3089\u3001\u516C\u5712\u3092 \u6383\u9664\u3057\u307E\u3059\u304B\u3002", "\u306F\u3044\u3001\u6383\u9664\u3057\u307E\u3059\u3002", { answerSource: "audio", responseScope: "answer_only", responseScopeHint: answerOnlyHint15, promptKana: "\u3084\u304D\u3085\u3046\u3092 \u3057\u3066\u304B\u3089\u3001\u3053\u3046\u3048\u3093\u3092 \u305D\u3046\u3058\u3057\u307E\u3059\u304B\u3002" })
+    ]
+  },
+  {
+    id: "l20-p2-a4",
+    section: "practice_2",
+    order: 4,
+    title: "\u5C06\u4E0B\u9762\u7684\u53E5\u5B50\u8BD1\u6210\u65E5\u8BED\u3002",
+    instruction: "",
+    interaction: "translation",
+    answerUnit: "sentence",
+    responseScope: "sentence_only",
+    assets: [crop19("l20-p2-a4-translation")],
+    displayAssets: ["l20-p2-a4-translation"],
+    layout: [],
+    items: [
+      answerItem18("l20-p2-a4-q1", "1", "\u5C0F\u674E\u4F1A\u5F00\u8F66\u3002", "\u674E\u3055\u3093\u306F \u8ECA\u3092 \u904B\u8EE2\u3059\u308B \u3053\u3068\u304C \u3067\u304D\u307E\u3059\u3002", { answerSource: "prompt", acceptableAlternatives: ["\u674E\u3055\u3093\u306F \u8ECA\u306E \u904B\u8EE2\u304C \u3067\u304D\u307E\u3059\u3002"] }),
+      answerItem18("l20-p2-a4-q2", "2", "\u4F60\u6709\u4EC0\u4E48\u7231\u597D\u5417\uFF1F\u2014\u2014\u6709\u554A\u3002\u6211\u559C\u6B22\u542C\u97F3\u4E50\u3002", "\u4F55\u304B \u8DA3\u5473\u304C \u3042\u308A\u307E\u3059\u304B\u3002\n\u3048\u3048\u3001\u97F3\u697D\u3092 \u805E\u304F \u3053\u3068\u304C \u597D\u304D\u3067\u3059\u3002", { answerSource: "prompt", multiline: true, rows: 3, acceptableAlternatives: ["\u4F55\u304B \u8DA3\u5473\u304C \u3042\u308A\u307E\u3059\u304B\u3002\n\u3048\u3048\u3001\u97F3\u697D\u3092 \u805E\u304F \u3053\u3068\u3067\u3059\u3002"] }),
+      answerItem18("l20-p2-a4-q3", "3", "\uFF08\u4F60\uFF09\u6765\u8FD9\u513F\u4E4B\u524D\u8BF7\u6253\u4E2A\u7535\u8BDD\u3002", "\u3053\u3061\u3089\u3078 \u6765\u308B \u524D\u306B\u3001\u96FB\u8A71\u3092 \u304B\u3051\u3066 \u304F\u3060\u3055\u3044\u3002", { answerSource: "prompt" })
+    ]
+  }
+];
+var lesson20Practice = {
+  lessonId: "lesson20",
+  title: "\u7B2C20\u8AB2 \u30B9\u30DF\u30B9\u3055\u3093\u306F \u30D4\u30A2\u30CE\u3092 \u5F3E\u304F \u3053\u3068\u304C \u3067\u304D\u307E\u3059",
+  sourcePages: [
+    { pageNo: 242, imagePath: page40(242) },
+    { pageNo: 243, imagePath: page40(243) },
+    { pageNo: 244, imagePath: page40(244) }
+  ],
+  activities: activities19
+};
+
+// practice/lesson21-image-crops.ts
+var page41 = (pageNo) => `../course-assets/by-lesson/lesson21/page${pageNo}.webp`;
+var lesson21ImageCrops = {
+  lessonId: "lesson21",
+  sourceDir: "../course-assets/by-lesson/lesson21",
+  selectedImages: ["page258.webp", "page259.webp", "page260.webp"],
+  pages: [
+    {
+      pageNo: 258,
+      imagePath: page41(258),
+      assets: [
+        {
+          id: "l21-p1-a1-ta-form-table",
+          kind: "source_crop",
+          imagePath: page41(258),
+          label: "\u7EC3\u4E60 I 1 \u307E\u3059\u5F62/\u305F\u5F62\u8868",
+          crop: { unit: "percent", x: 6.8, y: 13.3, width: 89.6, height: 32, aspectRatio: 1.852 },
+          meta: { pageNo: 258, pixelX: 72, pixelY: 213, pixelWidth: 949, pixelHeight: 512 }
+        },
+        {
+          id: "l21-p1-a2-picture-sequence",
+          kind: "source_crop",
+          imagePath: page41(258),
+          label: "\u7EC3\u4E60 I 2 \u524D\u540E\u987A\u5E8F\u56FE\u7247",
+          crop: { unit: "percent", x: 6.8, y: 48.2, width: 89.6, height: 36, aspectRatio: 1.647 },
+          meta: { pageNo: 258, pixelX: 72, pixelY: 771, pixelWidth: 949, pixelHeight: 576 }
+        }
+      ]
+    },
+    {
+      pageNo: 259,
+      imagePath: page41(259),
+      assets: [
+        {
+          id: "l21-p1-a3-experience-after",
+          kind: "source_crop",
+          imagePath: page41(259),
+          label: "\u7EC3\u4E60 I 3 \u7ECF\u9A8C/\u540E\u3067\u66FF\u6362",
+          crop: { unit: "percent", x: 6.6, y: 6.7, width: 86.8, height: 20.5, aspectRatio: 2.803 },
+          meta: { pageNo: 259, pixelX: 70, pixelY: 107, pixelWidth: 919, pixelHeight: 328 }
+        },
+        {
+          id: "l21-p1-a4-advice-offer",
+          kind: "source_crop",
+          imagePath: page41(259),
+          label: "\u7EC3\u4E60 I 4 \u307B\u3046\u304C\u3044\u3044/\u307E\u3057\u3087\u3046\u304B",
+          crop: { unit: "percent", x: 6.6, y: 28, width: 86.8, height: 22.7, aspectRatio: 2.53 },
+          meta: { pageNo: 259, pixelX: 70, pixelY: 448, pixelWidth: 919, pixelHeight: 363 }
+        },
+        {
+          id: "l21-p1-a5-experience-dialogue",
+          kind: "source_crop",
+          imagePath: page41(259),
+          label: "\u7EC3\u4E60 I 5 \u7ECF\u9A8C\u4F1A\u8BDD",
+          crop: { unit: "percent", x: 6.6, y: 53, width: 86.8, height: 18.8, aspectRatio: 3.08 },
+          meta: { pageNo: 259, pixelX: 70, pixelY: 848, pixelWidth: 919, pixelHeight: 301 }
+        },
+        {
+          id: "l21-p1-a6-reason-advice",
+          kind: "source_crop",
+          imagePath: page41(259),
+          label: "\u7EC3\u4E60 I 6 \u539F\u56E0\u4E0E\u5EFA\u8BAE",
+          crop: { unit: "percent", x: 6.6, y: 75, width: 86.8, height: 16.5, aspectRatio: 3.497 },
+          meta: { pageNo: 259, pixelX: 70, pixelY: 1200, pixelWidth: 919, pixelHeight: 264 }
+        }
+      ]
+    },
+    {
+      pageNo: 260,
+      imagePath: page41(260),
+      assets: [
+        {
+          id: "l21-p2-a1-cloze",
+          kind: "source_crop",
+          imagePath: page41(260),
+          label: "\u7EC3\u4E60 II 1 \u8BCD\u5F62\u586B\u7A7A",
+          crop: { unit: "percent", x: 6.8, y: 9.4, width: 86.7, height: 20.8, aspectRatio: 2.754 },
+          meta: { pageNo: 260, pixelX: 72, pixelY: 150, pixelWidth: 918, pixelHeight: 333 }
+        },
+        {
+          id: "l21-p2-a2-advice-cloze",
+          kind: "source_crop",
+          imagePath: page41(260),
+          label: "\u7EC3\u4E60 II 2 \u5EFA\u8BAE\u586B\u7A7A",
+          crop: { unit: "percent", x: 6.8, y: 33, width: 86.7, height: 24.5, aspectRatio: 2.212 },
+          meta: { pageNo: 260, pixelX: 72, pixelY: 528, pixelWidth: 918, pixelHeight: 392 }
+        },
+        {
+          id: "l21-p2-a3-true-false",
+          kind: "source_crop",
+          imagePath: page41(260),
+          label: "\u7EC3\u4E60 II 3 \u542C\u5F55\u97F3\u5224\u65AD",
+          crop: { unit: "percent", x: 6.8, y: 60.5, width: 86.7, height: 22.5, aspectRatio: 2.55 },
+          meta: { pageNo: 260, pixelX: 72, pixelY: 968, pixelWidth: 918, pixelHeight: 360 }
+        },
+        {
+          id: "l21-p2-a4-translation",
+          kind: "source_crop",
+          imagePath: page41(260),
+          label: "\u7EC3\u4E60 II 4 \u7FFB\u8BD1",
+          crop: { unit: "percent", x: 6.8, y: 86, width: 72, height: 9, aspectRatio: 5.294 },
+          meta: { pageNo: 260, pixelX: 72, pixelY: 1376, pixelWidth: 762, pixelHeight: 144 }
+        }
+      ]
+    }
+  ],
+  assets: []
+};
+lesson21ImageCrops.assets = lesson21ImageCrops.pages.flatMap((sourcePage) => sourcePage.assets);
+
+// practice/lesson21-practice-data.ts
+var page42 = (pageNo) => `../course-assets/by-lesson/lesson21/page${pageNo}.webp`;
+var audio20 = (exerciseNo, order) => `https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit6/lesson21/Exe${exerciseNo}_${order}.mp3`;
+var text21 = (value, options = {}) => ({ type: "text", text: value, ...options });
+var blank18 = (slotId) => ({ type: "blank", slotId });
+var crop20 = (id) => lesson21ImageCrops.assets.find((asset2) => asset2.id === id);
+var completionHint9 = "\u53EA\u8865\u5168\u9898\u76EE\u4E2D\u7A7A\u683C\u5904\u9700\u8981\u586B\u5199\u7684\u90E8\u5206\u3002";
+var sentenceSlot20 = (placeholder = "\u8F93\u5165\u5B8C\u6574\u56DE\u7B54") => [{ id: "answer", expectedUnit: "sentence", width: "long", placeholder }];
+var multilineSlot = (placeholder = "\u8F93\u5165\u5B8C\u6574\u56DE\u7B54", rows = 4) => [
+  { id: "answer", expectedUnit: "sentence", width: "long", multiline: true, rows, placeholder }
+];
+var dialogueSlot17 = (placeholder = "\u8F93\u5165\u5B8C\u6574\u95EE\u7B54", rows = 4) => [
+  { id: "answer", expectedUnit: "dialogue", width: "long", multiline: true, rows, placeholder }
+];
+var slots = (slotIds, expectedUnit = "phrase") => slotIds.map((slotId) => ({ id: slotId, expectedUnit, width: expectedUnit === "conjugated_form" ? "medium" : "short", placeholder: "\u8F93\u5165\u8BCD\u8BED" }));
+var answerItem19 = (id, number, prompt, answer3, options = {}) => ({
+  id,
+  number,
+  prompt: typeof prompt === "string" ? [text21(prompt)] : prompt,
+  promptKana: options.promptKana,
+  instruction: "",
+  answerSource: options.answerSource || "example_transform",
+  responseScope: options.responseScope || "sentence_only",
+  responseScopeHint: options.responseScopeHint,
+  inputSlots: options.multiline ? multilineSlot("\u8F93\u5165\u5B8C\u6574\u56DE\u7B54", options.rows || 4) : sentenceSlot20("\u8F93\u5165\u5B8C\u6574\u56DE\u7B54"),
+  answer: { slotValues: { answer: answer3 }, acceptableAlternatives: options.acceptableAlternatives }
+});
+var blankItem18 = (id, number, prompt, answers, options = {}) => ({
+  id,
+  number,
+  prompt: typeof prompt === "string" ? [text21(prompt)] : prompt,
+  promptKana: options.promptKana,
+  instruction: "",
+  answerSource: options.answerSource || "prompt",
+  responseScope: options.responseScope || "phrase_only",
+  responseScopeHint: options.responseScopeHint || completionHint9,
+  inputSlots: slots(Object.keys(answers), options.expectedUnit),
+  answer: { slotValues: answers }
+});
+var dialogueItem17 = (id, number, prompt, answer3, promptKana) => ({
+  id,
+  number,
+  prompt: [text21(prompt)],
+  promptKana,
+  instruction: "",
+  answerSource: "example_transform",
+  responseScope: "question_and_answer",
+  responseScopeHint: "\u5199\u51FA\u5B8C\u6574\u95EE\u7B54\u3002",
+  inputSlots: dialogueSlot17("\u8F93\u5165\u5B8C\u6574\u95EE\u7B54", 4),
+  answer: { slotValues: { answer: answer3 } },
+  renderHint: "dialogue"
+});
+var trueFalseItem9 = (id, number, prompt, value) => ({
+  id,
+  number,
+  prompt: [text21(prompt)],
+  instruction: "",
+  answerSource: "audio",
+  responseScope: "boolean_only",
+  choices: [
+    { id: "true", label: "\u25CB" },
+    { id: "false", label: "\xD7" }
+  ],
+  answer: { boolean: value, choiceIds: [value ? "true" : "false"] }
+});
+var taFormItem = (id, number, prompt, answer3, promptKana) => blankItem18(id, number, [text21(prompt), text21(" \u2192 "), blank18("answer")], { answer: answer3 }, {
+  promptKana,
+  answerSource: "audio",
+  responseScope: "word_only",
+  expectedUnit: "conjugated_form"
+});
+var activities20 = [
+  {
+    id: "l21-p1-a1",
+    section: "practice_1",
+    order: 1,
+    title: "\u542C\u5F55\u97F3\uFF0C\u5C06\u201C\u307E\u3059\u5F62\u201D\u53D8\u4E3A\u201C\u305F\u5F62\u201D\u3002",
+    instruction: "",
+    interaction: "fill_blank",
+    answerUnit: "word",
+    responseScope: "word_only",
+    responseScopeHint: completionHint9,
+    requiresAudio: true,
+    audio: {
+      source: "textbook_exercise",
+      url: audio20(1, 1),
+      label: "\u7B2C21\u8BFE \u7EC3\u4E60I-1",
+      transcript: {
+        text: "\u6B69\u304D\u307E\u3059\u3001\u6B69\u3044\u305F\u3002\u8131\u304E\u307E\u3059\u3001\u8131\u3044\u3060\u3002\u6025\u304E\u307E\u3059\u3001\u6025\u3044\u3060\u3002\u98F2\u307F\u307E\u3059\u3001\u98F2\u3093\u3060\u3002\u4F11\u307F\u307E\u3059\u3001\u4F11\u3093\u3060\u3002\u4E57\u308A\u307E\u3059\u3001\u4E57\u3063\u305F\u3002\u6B4C\u3044\u307E\u3059\u3001\u6B4C\u3063\u305F\u3002\u7ACB\u3061\u307E\u3059\u3001\u7ACB\u3063\u305F\u3002\u6D88\u3057\u307E\u3059\u3001\u6D88\u3057\u305F\u3002\u8A71\u3057\u307E\u3059\u3001\u8A71\u3057\u305F\u3002\u6D74\u3073\u307E\u3059\u3001\u6D74\u3073\u305F\u3002\u898B\u307E\u3059\u3001\u898B\u305F\u3002\u8003\u3048\u307E\u3059\u3001\u8003\u3048\u305F\u3002\u5BDD\u307E\u3059\u3001\u5BDD\u305F\u3002\u5FD8\u308C\u307E\u3059\u3001\u5FD8\u308C\u305F\u3002\u59CB\u3081\u307E\u3059\u3001\u59CB\u3081\u305F\u3002\u3057\u307E\u3059\u3001\u3057\u305F\u3002\u5B89\u5FC3\u3057\u307E\u3059\u3001\u5B89\u5FC3\u3057\u305F\u3002\u904B\u52D5\u3057\u307E\u3059\u3001\u904B\u52D5\u3057\u305F\u3002\u6765\u307E\u3059\u3001\u6765\u305F\u3002",
+        source: "manual",
+        confidenceNote: "ASR \u8F6C\u5199\u7ED3\u5408\u6559\u6750\u8868\u683C\u6821\u5BF9\u6574\u7406\u3002"
+      }
+    },
+    assets: [crop20("l21-p1-a1-ta-form-table")],
+    displayAssets: ["l21-p1-a1-ta-form-table"],
+    layout: [
+      { type: "example", content: { label: "[\u4F8B]", before: "\u6B69\u304D\u307E\u3059", beforeKana: "\u3042\u308B\u304D\u307E\u3059", after: [text21("\u6B69\u3044\u305F")], afterKana: "\u3042\u308B\u3044\u305F" } }
+    ],
+    items: [
+      taFormItem("l21-p1-a1-q2", "2", "\u8131\u304E\u307E\u3059", "\u8131\u3044\u3060", "\u306C\u304E\u307E\u3059"),
+      taFormItem("l21-p1-a1-q3", "3", "\u6025\u304E\u307E\u3059", "\u6025\u3044\u3060", "\u3044\u305D\u304E\u307E\u3059"),
+      taFormItem("l21-p1-a1-q4", "4", "\u98F2\u307F\u307E\u3059", "\u98F2\u3093\u3060", "\u306E\u307F\u307E\u3059"),
+      taFormItem("l21-p1-a1-q5", "5", "\u4F11\u307F\u307E\u3059", "\u4F11\u3093\u3060", "\u3084\u3059\u307F\u307E\u3059"),
+      taFormItem("l21-p1-a1-q6", "6", "\u4E57\u308A\u307E\u3059", "\u4E57\u3063\u305F", "\u306E\u308A\u307E\u3059"),
+      taFormItem("l21-p1-a1-q7", "7", "\u6B4C\u3044\u307E\u3059", "\u6B4C\u3063\u305F", "\u3046\u305F\u3044\u307E\u3059"),
+      taFormItem("l21-p1-a1-q8", "8", "\u7ACB\u3061\u307E\u3059", "\u7ACB\u3063\u305F", "\u305F\u3061\u307E\u3059"),
+      taFormItem("l21-p1-a1-q9", "9", "\u6D88\u3057\u307E\u3059", "\u6D88\u3057\u305F", "\u3051\u3057\u307E\u3059"),
+      taFormItem("l21-p1-a1-q10", "10", "\u8A71\u3057\u307E\u3059", "\u8A71\u3057\u305F", "\u306F\u306A\u3057\u307E\u3059"),
+      taFormItem("l21-p1-a1-q11", "11", "\u6D74\u3073\u307E\u3059", "\u6D74\u3073\u305F", "\u3042\u3073\u307E\u3059"),
+      taFormItem("l21-p1-a1-q12", "12", "\u898B\u307E\u3059", "\u898B\u305F", "\u307F\u307E\u3059"),
+      taFormItem("l21-p1-a1-q13", "13", "\u8003\u3048\u307E\u3059", "\u8003\u3048\u305F", "\u304B\u3093\u304C\u3048\u307E\u3059"),
+      taFormItem("l21-p1-a1-q14", "14", "\u5BDD\u307E\u3059", "\u5BDD\u305F", "\u306D\u307E\u3059"),
+      taFormItem("l21-p1-a1-q15", "15", "\u5FD8\u308C\u307E\u3059", "\u5FD8\u308C\u305F", "\u308F\u3059\u308C\u307E\u3059"),
+      taFormItem("l21-p1-a1-q16", "16", "\u59CB\u3081\u307E\u3059", "\u59CB\u3081\u305F", "\u306F\u3058\u3081\u307E\u3059"),
+      taFormItem("l21-p1-a1-q17", "17", "\u3057\u307E\u3059", "\u3057\u305F"),
+      taFormItem("l21-p1-a1-q18", "18", "\u5B89\u5FC3\u3057\u307E\u3059", "\u5B89\u5FC3\u3057\u305F", "\u3042\u3093\u3057\u3093\u3057\u307E\u3059"),
+      taFormItem("l21-p1-a1-q19", "19", "\u904B\u52D5\u3057\u307E\u3059", "\u904B\u52D5\u3057\u305F", "\u3046\u3093\u3069\u3046\u3057\u307E\u3059"),
+      taFormItem("l21-p1-a1-q20", "20", "\u6765\u307E\u3059", "\u6765\u305F", "\u304D\u307E\u3059")
+    ]
+  },
+  {
+    id: "l21-p1-a2",
+    section: "practice_1",
+    order: 2,
+    title: "\u8FB9\u770B\u56FE\u8FB9\u542C\u5F55\u97F3\uFF0C\u4EFF\u7167\u4F8B\u53E5\u56DE\u7B54\u63D0\u95EE\u3002",
+    instruction: "",
+    interaction: "listening_answer",
+    answerUnit: "sentence",
+    responseScope: "answer_only",
+    responseScopeHint: "\u6BCF\u9898\u586B\u5199\u4E24\u4E2A\u56DE\u7B54\uFF0C\u4E0D\u9700\u8981\u91CD\u5199\u95EE\u9898\u3002",
+    requiresAudio: true,
+    audio: {
+      source: "textbook_exercise",
+      url: audio20(1, 2),
+      label: "\u7B2C21\u8BFE \u7EC3\u4E60I-2",
+      transcript: {
+        text: "\u6669\u3054\u98EF\u3092\u98DF\u3079\u305F\u5F8C\u3067\u4F55\u3092\u3057\u307E\u3059\u304B\u3002\u30C6\u30EC\u30D3\u3092\u898B\u307E\u3059\u3002\u30C6\u30EC\u30D3\u3092\u898B\u308B\u524D\u306B\u4F55\u3092\u3057\u307E\u3059\u304B\u3002\u6669\u3054\u98EF\u3092\u98DF\u3079\u307E\u3059\u3002\u30B8\u30E7\u30AE\u30F3\u30B0\u3092\u3057\u305F\u5F8C\u3067\u4F55\u3092\u3057\u307E\u3059\u304B\u3002\u30B7\u30E3\u30EF\u30FC\u3092\u6D74\u3073\u307E\u3059\u3002\u30B7\u30E3\u30EF\u30FC\u3092\u6D74\u3073\u308B\u524D\u306B\u4F55\u3092\u3057\u307E\u3059\u304B\u3002\u30B8\u30E7\u30AE\u30F3\u30B0\u3092\u3057\u307E\u3059\u3002\u6383\u9664\u3057\u305F\u5F8C\u3067\u4F55\u3092\u3057\u307E\u3059\u304B\u3002\u6D17\u6FEF\u3057\u307E\u3059\u3002\u6D17\u6FEF\u3059\u308B\u524D\u306B\u4F55\u3092\u3057\u307E\u3059\u304B\u3002\u6383\u9664\u3057\u307E\u3059\u3002\u52C9\u5F37\u3057\u305F\u5F8C\u3067\u4F55\u3092\u3057\u307E\u3059\u304B\u3002\u97F3\u697D\u3092\u805E\u304D\u307E\u3059\u3002\u97F3\u697D\u3092\u805E\u304F\u524D\u306B\u4F55\u3092\u3057\u307E\u3059\u304B\u3002\u52C9\u5F37\u3057\u307E\u3059\u3002",
+        source: "manual",
+        confidenceNote: "ASR \u8F6C\u5199\u7ED3\u5408\u56FE\u7247\u987A\u5E8F\u6821\u5BF9\u6574\u7406\u3002"
+      }
+    },
+    assets: [crop20("l21-p1-a2-picture-sequence")],
+    displayAssets: ["l21-p1-a2-picture-sequence"],
+    layout: [
+      {
+        type: "example",
+        content: {
+          label: "[\u4F8B]",
+          before: "\u30B7\u30E3\u30EF\u30FC\u3092 \u6D74\u3073\u307E\u3059 \u2192 \u5BDD\u307E\u3059",
+          beforeKana: "\u30B7\u30E3\u30EF\u30FC\u3092 \u3042\u3073\u307E\u3059 \u2192 \u306D\u307E\u3059",
+          after: [text21("\u30B7\u30E3\u30EF\u30FC\u3092 \u6D74\u3073\u305F \u5F8C\u3067\u3001\u4F55\u3092 \u3057\u307E\u3059\u304B\u3002\u2014\u2014\u5BDD\u307E\u3059\u3002\n\u5BDD\u308B \u524D\u306B\u3001\u4F55\u3092 \u3057\u307E\u3059\u304B\u3002\u2014\u2014\u30B7\u30E3\u30EF\u30FC\u3092 \u6D74\u3073\u307E\u3059\u3002")],
+          afterKana: "\u30B7\u30E3\u30EF\u30FC\u3092 \u3042\u3073\u305F \u3042\u3068\u3067\u3001\u306A\u306B\u3092 \u3057\u307E\u3059\u304B\u3002\u2014\u2014\u306D\u307E\u3059\u3002\n\u306D\u308B \u307E\u3048\u306B\u3001\u306A\u306B\u3092 \u3057\u307E\u3059\u304B\u3002\u2014\u2014\u30B7\u30E3\u30EF\u30FC\u3092 \u3042\u3073\u307E\u3059\u3002"
+        }
+      }
+    ],
+    items: [
+      answerItem19("l21-p1-a2-q1", "1", "\u6669\u3054\u98EF\u3092 \u98DF\u3079\u307E\u3059 \u2192 \u30C6\u30EC\u30D3\u3092 \u898B\u307E\u3059", "\u30C6\u30EC\u30D3\u3092 \u898B\u307E\u3059\u3002\n\u6669\u3054\u98EF\u3092 \u98DF\u3079\u307E\u3059\u3002", { answerSource: "audio", responseScope: "answer_only", responseScopeHint: "\u6309\u5F55\u97F3\u4E2D\u7684\u4E24\u4E2A\u95EE\u9898\uFF0C\u4F9D\u6B21\u586B\u5199\u4E24\u4E2A\u56DE\u7B54\u3002", multiline: true, rows: 3, promptKana: "\u3070\u3093\u3054\u306F\u3093\u3092 \u305F\u3079\u307E\u3059 \u2192 \u30C6\u30EC\u30D3\u3092 \u307F\u307E\u3059" }),
+      answerItem19("l21-p1-a2-q2", "2", "\u30B8\u30E7\u30AE\u30F3\u30B0\u3092 \u3057\u307E\u3059 \u2192 \u30B7\u30E3\u30EF\u30FC\u3092 \u6D74\u3073\u307E\u3059", "\u30B7\u30E3\u30EF\u30FC\u3092 \u6D74\u3073\u307E\u3059\u3002\n\u30B8\u30E7\u30AE\u30F3\u30B0\u3092 \u3057\u307E\u3059\u3002", { answerSource: "audio", responseScope: "answer_only", responseScopeHint: "\u6309\u5F55\u97F3\u4E2D\u7684\u4E24\u4E2A\u95EE\u9898\uFF0C\u4F9D\u6B21\u586B\u5199\u4E24\u4E2A\u56DE\u7B54\u3002", multiline: true, rows: 3, promptKana: "\u30B8\u30E7\u30AE\u30F3\u30B0\u3092 \u3057\u307E\u3059 \u2192 \u30B7\u30E3\u30EF\u30FC\u3092 \u3042\u3073\u307E\u3059" }),
+      answerItem19("l21-p1-a2-q3", "3", "\u6383\u9664\u3057\u307E\u3059 \u2192 \u6D17\u6FEF\u3057\u307E\u3059", "\u6D17\u6FEF\u3057\u307E\u3059\u3002\n\u6383\u9664\u3057\u307E\u3059\u3002", { answerSource: "audio", responseScope: "answer_only", responseScopeHint: "\u6309\u5F55\u97F3\u4E2D\u7684\u4E24\u4E2A\u95EE\u9898\uFF0C\u4F9D\u6B21\u586B\u5199\u4E24\u4E2A\u56DE\u7B54\u3002", multiline: true, rows: 3, promptKana: "\u305D\u3046\u3058\u3057\u307E\u3059 \u2192 \u305B\u3093\u305F\u304F\u3057\u307E\u3059" }),
+      answerItem19("l21-p1-a2-q4", "4", "\u52C9\u5F37\u3057\u307E\u3059 \u2192 \u97F3\u697D\u3092 \u805E\u304D\u307E\u3059", "\u97F3\u697D\u3092 \u805E\u304D\u307E\u3059\u3002\n\u52C9\u5F37\u3057\u307E\u3059\u3002", { answerSource: "audio", responseScope: "answer_only", responseScopeHint: "\u6309\u5F55\u97F3\u4E2D\u7684\u4E24\u4E2A\u95EE\u9898\uFF0C\u4F9D\u6B21\u586B\u5199\u4E24\u4E2A\u56DE\u7B54\u3002", multiline: true, rows: 3, promptKana: "\u3079\u3093\u304D\u3087\u3046\u3057\u307E\u3059 \u2192 \u304A\u3093\u304C\u304F\u3092 \u304D\u304D\u307E\u3059" })
+    ]
+  },
+  {
+    id: "l21-p1-a3",
+    section: "practice_1",
+    order: 3,
+    title: "\u4EFF\u7167\u4F8B\u53E5\u66FF\u6362\u753B\u7EBF\u90E8\u5206\u8FDB\u884C\u7EC3\u4E60\u3002",
+    instruction: "",
+    interaction: "pattern_substitution",
+    answerUnit: "sentence",
+    responseScope: "sentence_only",
+    assets: [crop20("l21-p1-a3-experience-after")],
+    displayAssets: ["l21-p1-a3-experience-after"],
+    layout: [],
+    itemGroups: [
+      {
+        id: "l21-p1-a3-g1",
+        example: {
+          label: "[\u4F8B1]",
+          before: "\u3059\u304D\u713C\u304D\u3092 \u98DF\u3079\u307E\u3059",
+          beforeKana: "\u3059\u304D\u3084\u304D\u3092 \u305F\u3079\u307E\u3059",
+          after: [text21("\u308F\u305F\u3057\u306F \u3059\u304D\u713C\u304D\u3092 \u98DF\u3079\u305F \u3053\u3068\u304C \u3042\u308A\u307E\u3059\u3002")],
+          afterKana: "\u308F\u305F\u3057\u306F \u3059\u304D\u3084\u304D\u3092 \u305F\u3079\u305F \u3053\u3068\u304C \u3042\u308A\u307E\u3059\u3002"
+        },
+        items: [
+          answerItem19("l21-p1-a3-q1", "1", "\u4E2D\u56FD\u8A9E\u3092 \u6559\u3048\u307E\u3059", "\u308F\u305F\u3057\u306F \u4E2D\u56FD\u8A9E\u3092 \u6559\u3048\u305F \u3053\u3068\u304C \u3042\u308A\u307E\u3059\u3002", { promptKana: "\u3061\u3085\u3046\u3054\u304F\u3054\u3092 \u304A\u3057\u3048\u307E\u3059" }),
+          answerItem19("l21-p1-a3-q2", "2", "\u30B4\u30EB\u30D5\u3092 \u3057\u307E\u3059", "\u308F\u305F\u3057\u306F \u30B4\u30EB\u30D5\u3092 \u3057\u305F \u3053\u3068\u304C \u3042\u308A\u307E\u3059\u3002"),
+          answerItem19("l21-p1-a3-q3", "3", "\u3053\u3053\u306B \u6765\u307E\u3059", "\u308F\u305F\u3057\u306F \u3053\u3053\u306B \u6765\u305F \u3053\u3068\u304C \u3042\u308A\u307E\u3059\u3002", { promptKana: "\u3053\u3053\u306B \u304D\u307E\u3059" }),
+          answerItem19("l21-p1-a3-q4", "4", "\u6771\u4EAC\u30BF\u30EF\u30FC\u3078 \u884C\u304D\u307E\u3059", "\u308F\u305F\u3057\u306F \u6771\u4EAC\u30BF\u30EF\u30FC\u3078 \u884C\u3063\u305F \u3053\u3068\u304C \u3042\u308A\u307E\u3059\u3002", { promptKana: "\u3068\u3046\u304D\u3087\u3046\u30BF\u30EF\u30FC\u3078 \u3044\u304D\u307E\u3059" }),
+          answerItem19("l21-p1-a3-q5", "5", "\u6771\u4EAC\u304B\u3089 \u6A2A\u6D5C\u307E\u3067 \u6B69\u304D\u307E\u3059", "\u308F\u305F\u3057\u306F \u6771\u4EAC\u304B\u3089 \u6A2A\u6D5C\u307E\u3067 \u6B69\u3044\u305F \u3053\u3068\u304C \u3042\u308A\u307E\u3059\u3002", { promptKana: "\u3068\u3046\u304D\u3087\u3046\u304B\u3089 \u3088\u3053\u306F\u307E\u307E\u3067 \u3042\u308B\u304D\u307E\u3059" })
+        ]
+      },
+      {
+        id: "l21-p1-a3-g2",
+        example: {
+          label: "[\u4F8B2]",
+          before: "\u4F1A\u793E\u304C \u7D42\u308F\u308A\u307E\u3059\uFF0F\u98F2\u307F\u306B \u884C\u304D\u307E\u3059",
+          beforeKana: "\u304B\u3044\u3057\u3083\u304C \u304A\u308F\u308A\u307E\u3059\uFF0F\u306E\u307F\u306B \u3044\u304D\u307E\u3059",
+          after: [text21("\u4F1A\u793E\u304C \u7D42\u308F\u3063\u305F \u5F8C\u3067\u3001\u98F2\u307F\u306B \u884C\u304D\u307E\u3059\u3002")],
+          afterKana: "\u304B\u3044\u3057\u3083\u304C \u304A\u308F\u3063\u305F \u3042\u3068\u3067\u3001\u306E\u307F\u306B \u3044\u304D\u307E\u3059\u3002"
+        },
+        items: [
+          answerItem19("l21-p1-a3-q6", "6", "\u8ABF\u3079\u307E\u3059\uFF0F\u5831\u544A\u3057\u307E\u3059", "\u8ABF\u3079\u305F \u5F8C\u3067\u3001\u5831\u544A\u3057\u307E\u3059\u3002", { promptKana: "\u3057\u3089\u3079\u307E\u3059\uFF0F\u307B\u3046\u3053\u304F\u3057\u307E\u3059" }),
+          answerItem19("l21-p1-a3-q7", "7", "\u5BB6\u3078 \u5E30\u308A\u307E\u3059\uFF0F\u96FB\u8A71\u3057\u307E\u3059", "\u5BB6\u3078 \u5E30\u3063\u305F \u5F8C\u3067\u3001\u96FB\u8A71\u3057\u307E\u3059\u3002", { promptKana: "\u3044\u3048\u3078 \u304B\u3048\u308A\u307E\u3059\uFF0F\u3067\u3093\u308F\u3057\u307E\u3059" }),
+          answerItem19("l21-p1-a3-q8", "8", "\u5B50\u4F9B\u304C \u5BDD\u307E\u3057\u305F\uFF0F\u30EF\u30A4\u30F3\u3092 \u98F2\u307F\u307E\u3057\u305F", "\u5B50\u4F9B\u304C \u5BDD\u305F \u5F8C\u3067\u3001\u30EF\u30A4\u30F3\u3092 \u98F2\u307F\u307E\u3057\u305F\u3002", { promptKana: "\u3053\u3069\u3082\u304C \u306D\u307E\u3057\u305F\uFF0F\u30EF\u30A4\u30F3\u3092 \u306E\u307F\u307E\u3057\u305F" }),
+          answerItem19("l21-p1-a3-q9", "9", "\u6620\u753B\u3092 \u898B\u307E\u3057\u305F\uFF0F\u98DF\u4E8B\u3057\u307E\u3057\u305F", "\u6620\u753B\u3092 \u898B\u305F \u5F8C\u3067\u3001\u98DF\u4E8B\u3057\u307E\u3057\u305F\u3002", { promptKana: "\u3048\u3044\u304C\u3092 \u307F\u307E\u3057\u305F\uFF0F\u3057\u3087\u304F\u3058\u3057\u307E\u3057\u305F" })
+        ]
+      }
+    ],
+    items: []
+  },
+  {
+    id: "l21-p1-a4",
+    section: "practice_1",
+    order: 4,
+    title: "\u4EFF\u7167\u4F8B\u53E5\u8FDB\u884C\u7EC3\u4E60\u3002",
+    instruction: "",
+    interaction: "pattern_substitution",
+    answerUnit: "sentence",
+    responseScope: "sentence_only",
+    assets: [crop20("l21-p1-a4-advice-offer")],
+    displayAssets: ["l21-p1-a4-advice-offer"],
+    layout: [],
+    itemGroups: [
+      {
+        id: "l21-p1-a4-g1",
+        example: {
+          label: "[\u4F8B1]",
+          before: "\u4E88\u7D04\u3057\u307E\u3059 \u2192 \u4E88\u7D04\u3057\u305F \u307B\u3046\u304C \u3044\u3044\u3067\u3059\u3088\u3002\n\u98DF\u3079\u307E\u305B\u3093 \u2192 \u98DF\u3079\u306A\u3044 \u307B\u3046\u304C \u3044\u3044\u3067\u3059\u3088\u3002",
+          beforeKana: "\u3088\u3084\u304F\u3057\u307E\u3059 \u2192 \u3088\u3084\u304F\u3057\u305F \u307B\u3046\u304C \u3044\u3044\u3067\u3059\u3088\u3002\n\u305F\u3079\u307E\u305B\u3093 \u2192 \u305F\u3079\u306A\u3044 \u307B\u3046\u304C \u3044\u3044\u3067\u3059\u3088\u3002",
+          after: [text21("\u4E88\u7D04\u3057\u305F \u307B\u3046\u304C \u3044\u3044\u3067\u3059\u3088\u3002\n\u98DF\u3079\u306A\u3044 \u307B\u3046\u304C \u3044\u3044\u3067\u3059\u3088\u3002")],
+          afterKana: "\u3088\u3084\u304F\u3057\u305F \u307B\u3046\u304C \u3044\u3044\u3067\u3059\u3088\u3002\n\u305F\u3079\u306A\u3044 \u307B\u3046\u304C \u3044\u3044\u3067\u3059\u3088\u3002"
+        },
+        items: [
+          answerItem19("l21-p1-a4-q1", "1", "\u5F8C\u3067 \u96FB\u8A71\u3057\u307E\u3059", "\u5F8C\u3067 \u96FB\u8A71\u3057\u305F \u307B\u3046\u304C \u3044\u3044\u3067\u3059\u3088\u3002", { promptKana: "\u3042\u3068\u3067 \u3067\u3093\u308F\u3057\u307E\u3059" }),
+          answerItem19("l21-p1-a4-q2", "2", "\u5409\u7530\u3055\u3093\u306B \u8A71\u3057\u307E\u3059", "\u5409\u7530\u3055\u3093\u306B \u8A71\u3057\u305F \u307B\u3046\u304C \u3044\u3044\u3067\u3059\u3088\u3002", { promptKana: "\u3088\u3057\u3060\u3055\u3093\u306B \u306F\u306A\u3057\u307E\u3059" }),
+          answerItem19("l21-p1-a4-q3", "3", "\u6BCE\u6669 \u304A\u9152\u3092 \u98F2\u307F\u307E\u305B\u3093", "\u6BCE\u6669 \u304A\u9152\u3092 \u98F2\u307E\u306A\u3044 \u307B\u3046\u304C \u3044\u3044\u3067\u3059\u3088\u3002", { promptKana: "\u307E\u3044\u3070\u3093 \u304A\u3055\u3051\u3092 \u306E\u307F\u307E\u305B\u3093" }),
+          answerItem19("l21-p1-a4-q4", "4", "\u304A\u98A8\u5442\u306B \u5165\u308A\u307E\u305B\u3093", "\u304A\u98A8\u5442\u306B \u5165\u3089\u306A\u3044 \u307B\u3046\u304C \u3044\u3044\u3067\u3059\u3088\u3002", { promptKana: "\u304A\u3075\u308D\u306B \u306F\u3044\u308A\u307E\u305B\u3093" })
+        ]
+      },
+      {
+        id: "l21-p1-a4-g2",
+        example: {
+          label: "[\u4F8B2]",
+          before: "\u7A93\u3092 \u9589\u3081\u307E\u3059",
+          beforeKana: "\u307E\u3069\u3092 \u3057\u3081\u307E\u3059",
+          after: [text21("\u7A93\u3092 \u9589\u3081\u307E\u3057\u3087\u3046\u304B\u3002")],
+          afterKana: "\u307E\u3069\u3092 \u3057\u3081\u307E\u3057\u3087\u3046\u304B\u3002"
+        },
+        items: [
+          answerItem19("l21-p1-a4-q5", "5", "\u96FB\u6C17\u3092 \u3064\u3051\u307E\u3059", "\u96FB\u6C17\u3092 \u3064\u3051\u307E\u3057\u3087\u3046\u304B\u3002", { promptKana: "\u3067\u3093\u304D\u3092 \u3064\u3051\u307E\u3059" }),
+          answerItem19("l21-p1-a4-q6", "6", "\u30C6\u30EC\u30D3\u3092 \u6D88\u3057\u307E\u3059", "\u30C6\u30EC\u30D3\u3092 \u6D88\u3057\u307E\u3057\u3087\u3046\u304B\u3002", { promptKana: "\u30C6\u30EC\u30D3\u3092 \u3051\u3057\u307E\u3059" }),
+          answerItem19("l21-p1-a4-q7", "7", "\u30E1\u30FC\u30EB\u30A2\u30C9\u30EC\u30B9\u3092 \u66F8\u304D\u307E\u3059", "\u30E1\u30FC\u30EB\u30A2\u30C9\u30EC\u30B9\u3092 \u66F8\u304D\u307E\u3057\u3087\u3046\u304B\u3002", { promptKana: "\u30E1\u30FC\u30EB\u30A2\u30C9\u30EC\u30B9\u3092 \u304B\u304D\u307E\u3059" }),
+          answerItem19("l21-p1-a4-q8", "8", "\u30C9\u30A2\u3092 \u958B\u3051\u307E\u3059", "\u30C9\u30A2\u3092 \u958B\u3051\u307E\u3057\u3087\u3046\u304B\u3002", { promptKana: "\u30C9\u30A2\u3092 \u3042\u3051\u307E\u3059" }),
+          answerItem19("l21-p1-a4-q9", "9", "\u5207\u7B26\u3092 \u8CB7\u3044\u307E\u3059", "\u5207\u7B26\u3092 \u8CB7\u3044\u307E\u3057\u3087\u3046\u304B\u3002", { promptKana: "\u304D\u3063\u3077\u3092 \u304B\u3044\u307E\u3059" }),
+          answerItem19("l21-p1-a4-q10", "10", "\u30B9\u30DF\u30B9\u3055\u3093\u306B \u9023\u7D61\u3057\u307E\u3059", "\u30B9\u30DF\u30B9\u3055\u3093\u306B \u9023\u7D61\u3057\u307E\u3057\u3087\u3046\u304B\u3002", { promptKana: "\u30B9\u30DF\u30B9\u3055\u3093\u306B \u308C\u3093\u3089\u304F\u3057\u307E\u3059" })
+        ]
+      }
+    ],
+    items: []
+  },
+  {
+    id: "l21-p1-a5",
+    section: "practice_1",
+    order: 5,
+    title: "\u4EFF\u7167\u4F8B\u53E5\u66FF\u6362\u753B\u7EBF\u90E8\u5206\u7EC3\u4E60\u4F1A\u8BDD\u3002",
+    instruction: "",
+    interaction: "dialogue_practice",
+    answerUnit: "dialogue",
+    responseScope: "question_and_answer",
+    responseScopeHint: "\u5199\u51FA\u5B8C\u6574\u95EE\u7B54\u3002",
+    assets: [crop20("l21-p1-a5-experience-dialogue")],
+    displayAssets: ["l21-p1-a5-experience-dialogue"],
+    layout: [
+      {
+        type: "example",
+        content: {
+          label: "[\u4F8B]",
+          before: "\u5927\u962A\u3078 \u884C\u304D\u307E\u3059\uFF08\u306F\u3044\uFF0F\u3044\u3044\u3048\uFF09",
+          beforeKana: "\u304A\u304A\u3055\u304B\u3078 \u3044\u304D\u307E\u3059\uFF08\u306F\u3044\uFF0F\u3044\u3044\u3048\uFF09",
+          after: [text21("\u7532\uFF1A\u5927\u962A\u3078 \u884C\u3063\u305F \u3053\u3068\u304C \u3042\u308A\u307E\u3059\u304B\u3002\n\u4E59\uFF1A\u306F\u3044\u3001\u3042\u308A\u307E\u3059\u3002\uFF0F\u3044\u3044\u3048\u3001\u3042\u308A\u307E\u305B\u3093\u3002")],
+          afterKana: "\u304A\u304A\u3055\u304B\u3078 \u3044\u3063\u305F \u3053\u3068\u304C \u3042\u308A\u307E\u3059\u304B\u3002\n\u306F\u3044\u3001\u3042\u308A\u307E\u3059\u3002\uFF0F\u3044\u3044\u3048\u3001\u3042\u308A\u307E\u305B\u3093\u3002"
+        }
+      }
+    ],
+    items: [
+      dialogueItem17("l21-p1-a5-q1", "1", "\u592A\u6975\u62F3\u3092 \u7FD2\u3044\u307E\u3059\uFF08\u3044\u3044\u3048\uFF09", "\u7532\uFF1A\u592A\u6975\u62F3\u3092 \u7FD2\u3063\u305F \u3053\u3068\u304C \u3042\u308A\u307E\u3059\u304B\u3002\n\u4E59\uFF1A\u3044\u3044\u3048\u3001\u3042\u308A\u307E\u305B\u3093\u3002", "\u305F\u3044\u304D\u3087\u304F\u3051\u3093\u3092 \u306A\u3089\u3044\u307E\u3059\uFF08\u3044\u3044\u3048\uFF09"),
+      dialogueItem17("l21-p1-a5-q2", "2", "\u6D77\u3067 \u6CF3\u304E\u307E\u3059\uFF08\u3044\u3044\u3048\uFF09", "\u7532\uFF1A\u6D77\u3067 \u6CF3\u3044\u3060 \u3053\u3068\u304C \u3042\u308A\u307E\u3059\u304B\u3002\n\u4E59\uFF1A\u3044\u3044\u3048\u3001\u3042\u308A\u307E\u305B\u3093\u3002", "\u3046\u307F\u3067 \u304A\u3088\u304E\u307E\u3059\uFF08\u3044\u3044\u3048\uFF09"),
+      dialogueItem17("l21-p1-a5-q3", "3", "\u6D74\u8863\u3092 \u7740\u307E\u3059\uFF08\u306F\u3044\uFF09", "\u7532\uFF1A\u6D74\u8863\u3092 \u7740\u305F \u3053\u3068\u304C \u3042\u308A\u307E\u3059\u304B\u3002\n\u4E59\uFF1A\u306F\u3044\u3001\u3042\u308A\u307E\u3059\u3002", "\u3086\u304B\u305F\u3092 \u304D\u307E\u3059\uFF08\u306F\u3044\uFF09"),
+      dialogueItem17("l21-p1-a5-q4", "4", "\u5BCC\u58EB\u5C71\u306B \u767B\u308A\u307E\u3059\uFF08\u306F\u3044\uFF09", "\u7532\uFF1A\u5BCC\u58EB\u5C71\u306B \u767B\u3063\u305F \u3053\u3068\u304C \u3042\u308A\u307E\u3059\u304B\u3002\n\u4E59\uFF1A\u306F\u3044\u3001\u3042\u308A\u307E\u3059\u3002", "\u3075\u3058\u3055\u3093\u306B \u306E\u307C\u308A\u307E\u3059\uFF08\u306F\u3044\uFF09")
+    ]
+  },
+  {
+    id: "l21-p1-a6",
+    section: "practice_1",
+    order: 6,
+    title: "\u4EFF\u7167\u4F8B\u53E5\u66FF\u6362\u753B\u7EBF\u90E8\u5206\u8FDB\u884C\u7EC3\u4E60\u3002",
+    instruction: "",
+    interaction: "pattern_substitution",
+    answerUnit: "sentence",
+    responseScope: "sentence_only",
+    assets: [crop20("l21-p1-a6-reason-advice")],
+    displayAssets: ["l21-p1-a6-reason-advice"],
+    layout: [
+      {
+        type: "example",
+        content: {
+          label: "[\u4F8B]",
+          before: "\u9023\u4F11\u3067\u3059\uFF0F\u4E88\u7D04\u3057\u307E\u3059\n\u4F53\u306B \u3088\u304F \u306A\u3044\u3067\u3059\uFF0F\u30BF\u30D0\u30B3\u3092 \u5438\u3044\u307E\u305B\u3093",
+          beforeKana: "\u308C\u3093\u304D\u3085\u3046\u3067\u3059\uFF0F\u3088\u3084\u304F\u3057\u307E\u3059\n\u304B\u3089\u3060\u306B \u3088\u304F \u306A\u3044\u3067\u3059\uFF0F\u30BF\u30D0\u30B3\u3092 \u3059\u3044\u307E\u305B\u3093",
+          after: [text21("\u9023\u4F11\u3067\u3059\u304B\u3089\u3001\u4E88\u7D04\u3057\u305F \u307B\u3046\u304C \u3044\u3044\u3067\u3059\u3002\n\u4F53\u306B \u3088\u304F \u306A\u3044\u3067\u3059\u304B\u3089\u3001\u30BF\u30D0\u30B3\u3092 \u5438\u308F\u306A\u3044 \u307B\u3046\u304C \u3044\u3044\u3067\u3059\u3002")],
+          afterKana: "\u308C\u3093\u304D\u3085\u3046\u3067\u3059\u304B\u3089\u3001\u3088\u3084\u304F\u3057\u305F \u307B\u3046\u304C \u3044\u3044\u3067\u3059\u3002\n\u304B\u3089\u3060\u306B \u3088\u304F \u306A\u3044\u3067\u3059\u304B\u3089\u3001\u30BF\u30D0\u30B3\u3092 \u3059\u308F\u306A\u3044 \u307B\u3046\u304C \u3044\u3044\u3067\u3059\u3002"
+        }
+      }
+    ],
+    items: [
+      answerItem19("l21-p1-a6-q1", "1", "\u4FBF\u5229\u3067\u3059\uFF0F\u5730\u56F3\u3092 \u8CB7\u3044\u307E\u3059", "\u4FBF\u5229\u3067\u3059\u304B\u3089\u3001\u5730\u56F3\u3092 \u8CB7\u3063\u305F \u307B\u3046\u304C \u3044\u3044\u3067\u3059\u3002", { promptKana: "\u3079\u3093\u308A\u3067\u3059\uFF0F\u3061\u305A\u3092 \u304B\u3044\u307E\u3059" }),
+      answerItem19("l21-p1-a6-q2", "2", "\u6697\u3044\u3067\u3059\uFF0F\u96FB\u6C17\u3092 \u3064\u3051\u307E\u3059", "\u6697\u3044\u3067\u3059\u304B\u3089\u3001\u96FB\u6C17\u3092 \u3064\u3051\u305F \u307B\u3046\u304C \u3044\u3044\u3067\u3059\u3002", { promptKana: "\u304F\u3089\u3044\u3067\u3059\uFF0F\u3067\u3093\u304D\u3092 \u3064\u3051\u307E\u3059" }),
+      answerItem19("l21-p1-a6-q3", "3", "\u99D0\u8ECA\u5834\u304C \u3042\u308A\u307E\u305B\u3093\uFF0F\u8ECA\u3067 \u884C\u304D\u307E\u305B\u3093", "\u99D0\u8ECA\u5834\u304C \u3042\u308A\u307E\u305B\u3093\u304B\u3089\u3001\u8ECA\u3067 \u884C\u304B\u306A\u3044 \u307B\u3046\u304C \u3044\u3044\u3067\u3059\u3002", { promptKana: "\u3061\u3085\u3046\u3057\u3083\u3058\u3087\u3046\u304C \u3042\u308A\u307E\u305B\u3093\uFF0F\u304F\u308B\u307E\u3067 \u3044\u304D\u307E\u305B\u3093" }),
+      answerItem19("l21-p1-a6-q4", "4", "\u5371\u306A\u3044\u3067\u3059\uFF0F\u305D\u3053\u3092 \u6E21\u308A\u307E\u305B\u3093", "\u5371\u306A\u3044\u3067\u3059\u304B\u3089\u3001\u305D\u3053\u3092 \u6E21\u3089\u306A\u3044 \u307B\u3046\u304C \u3044\u3044\u3067\u3059\u3002", { promptKana: "\u3042\u3076\u306A\u3044\u3067\u3059\uFF0F\u305D\u3053\u3092 \u308F\u305F\u308A\u307E\u305B\u3093" })
+    ]
+  },
+  {
+    id: "l21-p2-a1",
+    section: "practice_2",
+    order: 1,
+    title: "\u4ECE\u25A1\u4E2D\u9009\u62E9\u9002\u5F53\u7684\u8BCD\u8BED\uFF0C\u53D8\u6210\u9002\u5F53\u7684\u5F62\u5F0F\u586B\u5165\uFF08\u3000\uFF09\u4E2D\u3002",
+    instruction: "",
+    interaction: "fill_blank",
+    answerUnit: "word",
+    responseScope: "word_only",
+    responseScopeHint: completionHint9,
+    assets: [crop20("l21-p2-a1-cloze")],
+    displayAssets: ["l21-p2-a1-cloze"],
+    layout: [
+      { type: "example", content: { label: "[\u4F8B]", beforeParts: [text21("\u30E9\u30B8\u30AA\u3092\uFF08"), blank18("example"), text21("\uFF09\u304F\u3060\u3055\u3044\u3002")], beforeKana: "\u30E9\u30B8\u30AA\u3092\uFF08______\uFF09\u304F\u3060\u3055\u3044\u3002", after: [text21("\u805E\u3044\u3066")], afterKana: "\u304D\u3044\u3066" } },
+      { type: "word_bank", words: [text21("\u805E\u304D\u307E\u3059"), text21("\u3064\u3051\u307E\u3059"), text21("\u98DF\u3079\u307E\u3059"), text21("\u98F2\u307F\u307E\u3059"), text21("\u898B\u307E\u3059"), text21("\u6D74\u3073\u307E\u3059")] }
+    ],
+    items: [
+      blankItem18("l21-p2-a1-q1", "1", [text21("\u6B4C\u821E\u4F0E\u3092\uFF08"), blank18("answer"), text21("\uFF09\u3053\u3068\u304C \u3042\u308A\u307E\u3059\u304B\u3002")], { answer: "\u898B\u305F" }, { promptKana: "\u304B\u3076\u304D\u3092\uFF08______\uFF09\u3053\u3068\u304C \u3042\u308A\u307E\u3059\u304B\u3002", expectedUnit: "conjugated_form" }),
+      blankItem18("l21-p2-a1-q2", "2", [text21("\u30B7\u30E3\u30EF\u30FC\u3092\uFF08"), blank18("answer"), text21("\uFF09\u304B\u3089\u3001\u30D7\u30FC\u30EB\u306B \u5165\u3063\u3066 \u304F\u3060\u3055\u3044\u3002")], { answer: "\u6D74\u3073\u3066" }, { promptKana: "\u30B7\u30E3\u30EF\u30FC\u3092\uFF08______\uFF09\u304B\u3089\u3001\u30D7\u30FC\u30EB\u306B \u306F\u3044\u3063\u3066 \u304F\u3060\u3055\u3044\u3002", expectedUnit: "conjugated_form" }),
+      blankItem18("l21-p2-a1-q3", "3", [text21("\u6697\u3044\u3067\u3059\u306D\u3002\u96FB\u6C17\u3092\uFF08"), blank18("answer"), text21("\uFF09\u307E\u3057\u3087\u3046\u304B\u3002")], { answer: "\u3064\u3051" }, { promptKana: "\u304F\u3089\u3044\u3067\u3059\u306D\u3002\u3067\u3093\u304D\u3092\uFF08______\uFF09\u307E\u3057\u3087\u3046\u304B\u3002", expectedUnit: "conjugated_form" }),
+      blankItem18("l21-p2-a1-q4", "4", [text21("\u304A\u9152\u306F \u305F\u304F\u3055\u3093\uFF08"), blank18("answer"), text21("\uFF09\u306A\u3044 \u307B\u3046\u304C \u3044\u3044\u3067\u3059\u3002")], { answer: "\u98F2\u307E" }, { promptKana: "\u304A\u3055\u3051\u306F \u305F\u304F\u3055\u3093\uFF08______\uFF09\u306A\u3044 \u307B\u3046\u304C \u3044\u3044\u3067\u3059\u3002", expectedUnit: "conjugated_form" }),
+      blankItem18("l21-p2-a1-q5", "5", [text21("\u3054\u98EF\u3092\uFF08"), blank18("answer"), text21("\uFF09\u5F8C\u3067\u3001\u90E8\u5C4B\u3092 \u6383\u9664\u3057\u307E\u3059\u3002")], { answer: "\u98DF\u3079\u305F" }, { promptKana: "\u3054\u306F\u3093\u3092\uFF08______\uFF09\u3042\u3068\u3067\u3001\u3078\u3084\u3092 \u305D\u3046\u3058\u3057\u307E\u3059\u3002", expectedUnit: "conjugated_form" })
+    ]
+  },
+  {
+    id: "l21-p2-a2",
+    section: "practice_2",
+    order: 2,
+    title: "\u4ECE\u25A1\u4E2D\u9009\u62E9\u9002\u5F53\u7684\u8BCD\u8BED\uFF0C\u53D8\u6210\u9002\u5F53\u7684\u5F62\u5F0F\u586B\u5165\uFF08\u3000\uFF09\u4E2D\u3002",
+    instruction: "",
+    interaction: "fill_blank",
+    answerUnit: "word",
+    responseScope: "word_only",
+    responseScopeHint: completionHint9,
+    assets: [crop20("l21-p2-a2-advice-cloze")],
+    displayAssets: ["l21-p2-a2-advice-cloze"],
+    layout: [
+      { type: "example", content: { label: "[\u4F8B]", beforeParts: [text21("\u9023\u4F11\u3067\u3059\u304B\u3089\u3001\u30DB\u30C6\u30EB\u3092 \u4E88\u7D04\uFF08"), blank18("example"), text21("\uFF09\u307B\u3046\u304C \u3044\u3044\u3067\u3059\u3002")], beforeKana: "\u308C\u3093\u304D\u3085\u3046\u3067\u3059\u304B\u3089\u3001\u30DB\u30C6\u30EB\u3092 \u3088\u3084\u304F\uFF08______\uFF09\u307B\u3046\u304C \u3044\u3044\u3067\u3059\u3002", after: [text21("\u3057\u305F")], afterKana: "\u3057\u305F" } },
+      { type: "word_bank", words: [text21("\u3057\u307E\u3059"), text21("\u6B4C\u3044\u307E\u3059"), text21("\u6B62\u3081\u307E\u3059"), text21("\u8A71\u3057\u307E\u3059"), text21("\u5165\u308A\u307E\u3059"), text21("\u9589\u3081\u307E\u3059")] }
+    ],
+    items: [
+      blankItem18("l21-p2-a2-q1", "1", [text21("\u5916\u306E \u97F3\u304C \u3046\u308B\u3055\u3044\u3067\u3059\u304B\u3089\u3001\u7A93\u3092\uFF08"), blank18("answer"), text21("\uFF09\u307B\u3046\u304C \u3044\u3044\u3067\u3059\u306D\u3002")], { answer: "\u9589\u3081\u305F" }, { promptKana: "\u305D\u3068\u306E \u304A\u3068\u304C \u3046\u308B\u3055\u3044\u3067\u3059\u304B\u3089\u3001\u307E\u3069\u3092\uFF08______\uFF09\u307B\u3046\u304C \u3044\u3044\u3067\u3059\u306D\u3002", expectedUnit: "conjugated_form" }),
+      blankItem18("l21-p2-a2-q2", "2", [text21("\u306E\u3069\u304C \u75DB\u3044\u3067\u3059\u3002\u2014\u2014\u3058\u3083\u3042\u3001\u6B4C\u3092\uFF08"), blank18("answer"), text21("\uFF09\u307B\u3046\u304C \u3044\u3044\u3067\u3059\u3088\u3002")], { answer: "\u6B4C\u308F\u306A\u3044" }, { promptKana: "\u306E\u3069\u304C \u3044\u305F\u3044\u3067\u3059\u3002\u2014\u2014\u3058\u3083\u3042\u3001\u3046\u305F\u3092\uFF08______\uFF09\u307B\u3046\u304C \u3044\u3044\u3067\u3059\u3088\u3002", expectedUnit: "conjugated_form" }),
+      blankItem18("l21-p2-a2-q3", "3", [text21("\u4EA4\u5DEE\u70B9\u306E \u8FD1\u304F\u3067\u3059\u304B\u3089\u3001\u3053\u3053\u306B \u8ECA\u3092\uFF08"), blank18("answer"), text21("\uFF09\u307B\u3046\u304C \u3044\u3044\u3067\u3059\u3002")], { answer: "\u6B62\u3081\u306A\u3044" }, { promptKana: "\u3053\u3046\u3055\u3066\u3093\u306E \u3061\u304B\u304F\u3067\u3059\u304B\u3089\u3001\u3053\u3053\u306B \u304F\u308B\u307E\u3092\uFF08______\uFF09\u307B\u3046\u304C \u3044\u3044\u3067\u3059\u3002", expectedUnit: "conjugated_form" }),
+      blankItem18("l21-p2-a2-q4", "4", [text21("\u6BCE\u65E5 \u904B\u52D5\u3092\uFF08"), blank18("answer"), text21("\uFF09\u307B\u3046\u304C \u3044\u3044\u3067\u3059\u3002")], { answer: "\u3057\u305F" }, { promptKana: "\u307E\u3044\u306B\u3061 \u3046\u3093\u3069\u3046\u3092\uFF08______\uFF09\u307B\u3046\u304C \u3044\u3044\u3067\u3059\u3002", expectedUnit: "conjugated_form" }),
+      blankItem18("l21-p2-a2-q5", "5", [text21("\u304A\u9152\u3092 \u98F2\u3093\u3067\u304B\u3089\u3001\u304A\u98A8\u5442\u306B\uFF08"), blank18("answer"), text21("\uFF09\u307B\u3046\u304C \u3044\u3044\u3067\u3059\u3002")], { answer: "\u5165\u3089\u306A\u3044" }, { promptKana: "\u304A\u3055\u3051\u3092 \u306E\u3093\u3067\u304B\u3089\u3001\u304A\u3075\u308D\u306B\uFF08______\uFF09\u307B\u3046\u304C \u3044\u3044\u3067\u3059\u3002", expectedUnit: "conjugated_form" }),
+      blankItem18("l21-p2-a2-q6", "6", [text21("\u7530\u4E2D\u3055\u3093\u306F \u4E2D\u56FD\u8A9E\u304C \u3088\u304F \u5206\u304B\u308A\u307E\u305B\u3093\u304B\u3089\u3001\u3086\u3063\u304F\u308A\uFF08"), blank18("answer"), text21("\uFF09\u307B\u3046\u304C \u3044\u3044\u3067\u3059\u3002")], { answer: "\u8A71\u3057\u305F" }, { promptKana: "\u305F\u306A\u304B\u3055\u3093\u306F \u3061\u3085\u3046\u3054\u304F\u3054\u304C \u3088\u304F \u308F\u304B\u308A\u307E\u305B\u3093\u304B\u3089\u3001\u3086\u3063\u304F\u308A\uFF08______\uFF09\u307B\u3046\u304C \u3044\u3044\u3067\u3059\u3002", expectedUnit: "conjugated_form" })
+    ]
+  },
+  {
+    id: "l21-p2-a3",
+    section: "practice_2",
+    order: 3,
+    title: "\u542C\u5F55\u97F3\uFF0C\u4E0E\u5F55\u97F3\u5185\u5BB9\u4E00\u81F4\u7684\u5728\uFF08\u3000\uFF09\u4E2D\u753B\u25CB\uFF0C\u4E0D\u4E00\u81F4\u7684\u753B\xD7\u3002",
+    instruction: "",
+    interaction: "true_false",
+    answerUnit: "boolean",
+    responseScope: "boolean_only",
+    requiresAudio: true,
+    audio: {
+      source: "textbook_exercise",
+      url: audio20(2, 3),
+      label: "\u7B2C21\u8BFE \u7EC3\u4E60II-3",
+      transcript: {
+        text: "\u30C6\u30CB\u30B9\u3092\u3057\u305F\u5F8C\u3067\u3001\u30D3\u30FC\u30EB\u3092\u98F2\u307F\u307E\u3059\u3002\u30D7\u30FC\u30EB\u3078\u884C\u3063\u3066\u3001\u6CF3\u3050\u524D\u306B\u30D1\u30F3\u3092\u98DF\u3079\u307E\u3059\u3002\u5BDD\u308B\u524D\u306B\u53CB\u9054\u306B\u96FB\u8A71\u3092\u304B\u3051\u307E\u3059\u3002\u671D\u8D77\u304D\u3066\u304B\u3089\u304A\u98A8\u5442\u306B\u5165\u308A\u307E\u3059\u3002",
+        source: "manual",
+        confidenceNote: "ASR \u8F6C\u5199\u7ED3\u5408\u9898\u56FE\u6574\u7406\u3002"
+      }
+    },
+    assets: [crop20("l21-p2-a3-true-false")],
+    displayAssets: ["l21-p2-a3-true-false"],
+    layout: [
+      { type: "example", content: { label: "[\u4F8B]", before: "\u30C6\u30CB\u30B9\u3092 \u3057\u305F \u5F8C\u3067\u3001\u30D3\u30FC\u30EB\u3092 \u98F2\u307F\u307E\u3059\u3002", beforeKana: "\u30C6\u30CB\u30B9\u3092 \u3057\u305F \u3042\u3068\u3067\u3001\u30D3\u30FC\u30EB\u3092 \u306E\u307F\u307E\u3059\u3002", after: [text21("\u25CB")], afterKana: "\u25CB" } }
+    ],
+    items: [
+      trueFalseItem9("l21-p2-a3-q1", "1", "\uFF081\uFF09", false),
+      trueFalseItem9("l21-p2-a3-q2", "2", "\uFF082\uFF09", false)
+    ]
+  },
+  {
+    id: "l21-p2-a4",
+    section: "practice_2",
+    order: 4,
+    title: "\u5C06\u4E0B\u9762\u7684\u53E5\u5B50\u8BD1\u6210\u65E5\u8BED\u3002",
+    instruction: "",
+    interaction: "translation",
+    answerUnit: "sentence",
+    responseScope: "sentence_only",
+    assets: [crop20("l21-p2-a4-translation")],
+    displayAssets: ["l21-p2-a4-translation"],
+    layout: [],
+    items: [
+      answerItem19("l21-p2-a4-q1", "1", "\uFF08\u6211\uFF09\u628A\u7A97\u6237\u5173\u4E0A\u5427\u3002", "\u7A93\u3092 \u9589\u3081\u307E\u3057\u3087\u3046\u304B\u3002", { answerSource: "prompt", acceptableAlternatives: ["\u7A93\u3092 \u9589\u3081\u307E\u3057\u3087\u3046\u3002"] }),
+      answerItem19("l21-p2-a4-q2", "2", "\u6211\u5403\u8FC7\u65E5\u5F0F\u725B\u8089\u706B\u9505\u3002", "\u308F\u305F\u3057\u306F \u3059\u304D\u713C\u304D\u3092 \u98DF\u3079\u305F \u3053\u3068\u304C \u3042\u308A\u307E\u3059\u3002", { answerSource: "prompt" }),
+      answerItem19("l21-p2-a4-q3", "3", "\u8FD8\u662F\u591A\u5403\u70B9\u852C\u83DC\u7684\u597D\u554A\u3002", "\u3082\u3063\u3068 \u91CE\u83DC\u3092 \u98DF\u3079\u305F \u307B\u3046\u304C \u3044\u3044\u3067\u3059\u3088\u3002", { answerSource: "prompt", acceptableAlternatives: ["\u3082\u3063\u3068 \u91CE\u83DC\u3092 \u98DF\u3079\u305F \u307B\u3046\u304C \u3044\u3044\u3067\u3059\u3002"] })
+    ]
+  }
+];
+var lesson21Practice = {
+  lessonId: "lesson21",
+  title: "\u7B2C21\u8BFE \u7EC3\u4E60",
+  sourcePages: [
+    { pageNo: 258, imagePath: page42(258) },
+    { pageNo: 259, imagePath: page42(259) },
+    { pageNo: 260, imagePath: page42(260) }
+  ],
+  activities: activities20
+};
+
+// practice/lesson22-image-crops.ts
+var page43 = (pageNo) => `../course-assets/by-lesson/lesson22/page${pageNo}.webp`;
+var lesson22ImageCrops = {
+  lessonId: "lesson22",
+  sourceDir: "../course-assets/by-lesson/lesson22",
+  selectedImages: ["page268.webp", "page269.webp", "page270.webp"],
+  pages: [
+    {
+      pageNo: 268,
+      imagePath: page43(268),
+      assets: [
+        {
+          id: "l22-p1-a1-conjugation",
+          kind: "source_crop",
+          imagePath: page43(268),
+          label: "\u7EC3\u4E60 I 1 \u5F62\u5BB9\u8BCD/\u52A8\u8BCD\u53D8\u5F62",
+          crop: { unit: "percent", x: 6.3, y: 12.4, width: 88.4, height: 40.8, aspectRatio: 1.435 },
+          meta: { pageNo: 268 }
+        },
+        {
+          id: "l22-p1-a2-plain-form",
+          kind: "source_crop",
+          imagePath: page43(268),
+          label: "\u7EC3\u4E60 I 2 \u666E\u901A\u5F62\u66FF\u6362",
+          crop: { unit: "percent", x: 6.3, y: 54.5, width: 88.4, height: 36.4, aspectRatio: 1.519 },
+          meta: { pageNo: 268 }
+        }
+      ]
+    },
+    {
+      pageNo: 269,
+      imagePath: page43(269),
+      assets: [
+        {
+          id: "l22-p1-a3-dialogue",
+          kind: "source_crop",
+          imagePath: page43(269),
+          label: "\u7EC3\u4E60 I 3 \u3051\u3069\u4F1A\u8BDD",
+          crop: { unit: "percent", x: 6.1, y: 7, width: 87.8, height: 18.5, aspectRatio: 2.967 },
+          meta: { pageNo: 269 }
+        },
+        {
+          id: "l22-p1-a4-table",
+          kind: "source_crop",
+          imagePath: page43(269),
+          label: "\u7EC3\u4E60 I 4 \u6D3B\u7528\u8868",
+          crop: { unit: "percent", x: 6.1, y: 27, width: 87.8, height: 41, aspectRatio: 1.338 },
+          meta: { pageNo: 269 }
+        },
+        {
+          id: "l22-p1-a5-dialogue",
+          kind: "source_crop",
+          imagePath: page43(269),
+          label: "\u7EC3\u4E60 I 5 \u8BF1\u7EA6\u4F1A\u8BDD",
+          crop: { unit: "percent", x: 6.1, y: 70, width: 87.8, height: 17.6, aspectRatio: 3.117 },
+          meta: { pageNo: 269 }
+        }
+      ]
+    },
+    {
+      pageNo: 270,
+      imagePath: page43(270),
+      assets: [
+        {
+          id: "l22-p2-a1-cloze",
+          kind: "source_crop",
+          imagePath: page43(270),
+          label: "\u7EC3\u4E60 II 1 \u5BF9\u8BDD\u586B\u7A7A",
+          crop: { unit: "percent", x: 6.2, y: 8.5, width: 88.2, height: 25, aspectRatio: 2.205 },
+          meta: { pageNo: 270 }
+        },
+        {
+          id: "l22-p2-a2-word-bank",
+          kind: "source_crop",
+          imagePath: page43(270),
+          label: "\u7EC3\u4E60 II 2 \u526F\u8BCD\u586B\u7A7A",
+          crop: { unit: "percent", x: 6.2, y: 35.2, width: 88.2, height: 19.2, aspectRatio: 2.871 },
+          meta: { pageNo: 270 }
+        },
+        {
+          id: "l22-p2-a3-reading",
+          kind: "source_crop",
+          imagePath: page43(270),
+          label: "\u7EC3\u4E60 II 3 \u65E5\u8BB0\u9605\u8BFB",
+          crop: { unit: "percent", x: 6.2, y: 55.8, width: 88.2, height: 28.4, aspectRatio: 1.941 },
+          meta: { pageNo: 270 }
+        },
+        {
+          id: "l22-p2-a4-translation",
+          kind: "source_crop",
+          imagePath: page43(270),
+          label: "\u7EC3\u4E60 II 4 \u7FFB\u8BD1",
+          crop: { unit: "percent", x: 6.2, y: 84.4, width: 80, height: 9.8, aspectRatio: 5.102 },
+          meta: { pageNo: 270 }
+        }
+      ]
+    }
+  ],
+  assets: []
+};
+lesson22ImageCrops.assets = lesson22ImageCrops.pages.flatMap((sourcePage) => sourcePage.assets);
+
+// practice/lesson22-practice-data.ts
+var page44 = (pageNo) => `../course-assets/by-lesson/lesson22/page${pageNo}.webp`;
+var audio21 = (exerciseNo, order) => `https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit6/lesson22/Exe${exerciseNo}_${order}.mp3`;
+var text22 = (value, options = {}) => ({ type: "text", text: value, ...options });
+var blank19 = (slotId) => ({ type: "blank", slotId });
+var crop21 = (id) => lesson22ImageCrops.assets.find((asset2) => asset2.id === id);
+var completionHint10 = "\u53EA\u8865\u5168\u9898\u76EE\u4E2D\u7A7A\u683C\u5904\u9700\u8981\u586B\u5199\u7684\u90E8\u5206\u3002";
+var answerOnlyHint16 = "\u53EA\u586B\u5199\u63D0\u95EE\u540E\u7684\u56DE\u7B54\u90E8\u5206\uFF0C\u4E0D\u9700\u8981\u91CD\u5199\u95EE\u9898\u3002";
+var sentenceSlot21 = (placeholder = "\u8F93\u5165\u5B8C\u6574\u56DE\u7B54") => [{ id: "answer", expectedUnit: "sentence", width: "long", placeholder }];
+var phraseSlot2 = (placeholder = "\u8F93\u5165\u8BCD\u8BED") => [{ id: "answer", expectedUnit: "phrase", width: "long", placeholder }];
+var dialogueSlot18 = (placeholder = "\u8F93\u5165\u5B8C\u6574\u95EE\u7B54", rows = 4) => [
+  { id: "answer", expectedUnit: "dialogue", width: "long", multiline: true, rows, placeholder }
+];
+var slots2 = (slotIds, expectedUnit = "phrase") => slotIds.map((slotId) => ({ id: slotId, expectedUnit, width: "medium", placeholder: "\u8F93\u5165\u8BCD\u8BED" }));
+var answerItem20 = (id, number, prompt, answer3, options = {}) => ({
+  id,
+  number,
+  prompt: typeof prompt === "string" ? [text22(prompt)] : prompt,
+  promptKana: options.promptKana,
+  instruction: "",
+  answerSource: options.answerSource || "example_transform",
+  responseScope: options.responseScope || "sentence_only",
+  responseScopeHint: options.responseScopeHint,
+  inputSlots: options.multiline ? dialogueSlot18("\u8F93\u5165\u5B8C\u6574\u56DE\u7B54", options.rows || 4) : sentenceSlot21("\u8F93\u5165\u5B8C\u6574\u56DE\u7B54"),
+  answer: { slotValues: { answer: answer3 }, acceptableAlternatives: options.acceptableAlternatives }
+});
+var phraseItem = (id, number, prompt, answer3, options = {}) => ({
+  id,
+  number,
+  prompt: typeof prompt === "string" ? [text22(prompt)] : prompt,
+  promptKana: options.promptKana,
+  instruction: "",
+  answerSource: options.answerSource || "example_transform",
+  responseScope: "phrase_only",
+  responseScopeHint: options.responseScopeHint || completionHint10,
+  inputSlots: phraseSlot2("\u8F93\u5165\u8BCD\u8BED"),
+  answer: { slotValues: { answer: answer3 }, acceptableAlternatives: options.acceptableAlternatives }
+});
+var blankItem19 = (id, number, prompt, answers, options = {}) => ({
+  id,
+  number,
+  prompt: typeof prompt === "string" ? [text22(prompt)] : prompt,
+  promptKana: options.promptKana,
+  instruction: "",
+  answerSource: options.answerSource || "prompt",
+  responseScope: options.responseScope || "phrase_only",
+  responseScopeHint: completionHint10,
+  inputSlots: slots2(Object.keys(answers), options.expectedUnit),
+  answer: { slotValues: answers }
+});
+var dialogueItem18 = (id, number, prompt, answer3, promptKana) => ({
+  id,
+  number,
+  prompt: [text22(prompt)],
+  promptKana,
+  instruction: "",
+  answerSource: "example_transform",
+  responseScope: "question_and_answer",
+  responseScopeHint: "\u5199\u51FA\u5B8C\u6574\u95EE\u7B54\u3002",
+  inputSlots: dialogueSlot18("\u8F93\u5165\u5B8C\u6574\u95EE\u7B54", 4),
+  answer: { slotValues: { answer: answer3 } },
+  renderHint: "dialogue"
+});
+var activities21 = [
+  {
+    id: "l22-p1-a1",
+    section: "practice_1",
+    order: 1,
+    title: "\u4EFF\u7167\u4F8B\u53E5\u8FDB\u884C\u7EC3\u4E60\u3002",
+    instruction: "",
+    interaction: "fill_blank",
+    answerUnit: "phrase",
+    responseScope: "phrase_only",
+    responseScopeHint: "\u586B\u5199\u7BAD\u5934\u53F3\u4FA7\u7684\u666E\u901A\u5F62\u80AF\u5B9A/\u5426\u5B9A\u5F62\u5F0F\u3002",
+    assets: [crop21("l22-p1-a1-conjugation")],
+    displayAssets: ["l22-p1-a1-conjugation"],
+    layout: [
+      { type: "example", content: { label: "[\u4F8B1]", before: "\u98DF\u3079\u307E\u3059", beforeKana: "\u305F\u3079\u307E\u3059", after: [text22("\u98DF\u3079\u308B\uFF0F\u98DF\u3079\u306A\u3044")], afterKana: "\u305F\u3079\u308B\uFF0F\u305F\u3079\u306A\u3044" } },
+      { type: "example", content: { label: "[\u4F8B2]", before: "\u5927\u304D\u3044\u3067\u3059", beforeKana: "\u304A\u304A\u304D\u3044\u3067\u3059", after: [text22("\u5927\u304D\u3044\uFF0F\u5927\u304D\u304F \u306A\u3044")], afterKana: "\u304A\u304A\u304D\u3044\uFF0F\u304A\u304A\u304D\u304F \u306A\u3044" } },
+      { type: "example", content: { label: "[\u4F8B3]", before: "\u5143\u6C17\u3067\u3059", beforeKana: "\u3052\u3093\u304D\u3067\u3059", after: [text22("\u5143\u6C17\u3060\uFF0F\u5143\u6C17\u3067\u306F \u306A\u3044")], afterKana: "\u3052\u3093\u304D\u3060\uFF0F\u3052\u3093\u304D\u3067\u306F \u306A\u3044" } },
+      { type: "example", content: { label: "[\u4F8B4]", before: "\u66C7\u308A\u3067\u3059", beforeKana: "\u304F\u3082\u308A\u3067\u3059", after: [text22("\u66C7\u308A\u3060\uFF0F\u66C7\u308A\u3067\u306F \u306A\u3044")], afterKana: "\u304F\u3082\u308A\u3060\uFF0F\u304F\u3082\u308A\u3067\u306F \u306A\u3044" } }
+    ],
+    items: [
+      phraseItem("l22-p1-a1-q1", "1", "\u5FD8\u308C\u307E\u3059", "\u5FD8\u308C\u308B\uFF0F\u5FD8\u308C\u306A\u3044", { promptKana: "\u308F\u3059\u308C\u307E\u3059" }),
+      phraseItem("l22-p1-a1-q2", "2", "\u6559\u3048\u307E\u3059", "\u6559\u3048\u308B\uFF0F\u6559\u3048\u306A\u3044", { promptKana: "\u304A\u3057\u3048\u307E\u3059" }),
+      phraseItem("l22-p1-a1-q3", "3", "\u3042\u3052\u307E\u3059", "\u3042\u3052\u308B\uFF0F\u3042\u3052\u306A\u3044"),
+      phraseItem("l22-p1-a1-q4", "4", "\u6025\u304E\u307E\u3059", "\u6025\u3050\uFF0F\u6025\u304C\u306A\u3044", { promptKana: "\u3044\u305D\u304E\u307E\u3059" }),
+      phraseItem("l22-p1-a1-q5", "5", "\u6D88\u3057\u307E\u3059", "\u6D88\u3059\uFF0F\u6D88\u3055\u306A\u3044", { promptKana: "\u3051\u3057\u307E\u3059" }),
+      phraseItem("l22-p1-a1-q6", "6", "\u98DB\u3073\u307E\u3059", "\u98DB\u3076\uFF0F\u98DB\u3070\u306A\u3044", { promptKana: "\u3068\u3073\u307E\u3059" }),
+      phraseItem("l22-p1-a1-q7", "7", "\u66F8\u304D\u307E\u3059", "\u66F8\u304F\uFF0F\u66F8\u304B\u306A\u3044", { promptKana: "\u304B\u304D\u307E\u3059" }),
+      phraseItem("l22-p1-a1-q8", "8", "\u5F85\u3061\u307E\u3059", "\u5F85\u3064\uFF0F\u5F85\u305F\u306A\u3044", { promptKana: "\u307E\u3061\u307E\u3059" }),
+      phraseItem("l22-p1-a1-q9", "9", "\u8CB7\u3044\u307E\u3059", "\u8CB7\u3046\uFF0F\u8CB7\u308F\u306A\u3044", { promptKana: "\u304B\u3044\u307E\u3059" }),
+      phraseItem("l22-p1-a1-q10", "10", "\u4F7F\u3044\u307E\u3059", "\u4F7F\u3046\uFF0F\u4F7F\u308F\u306A\u3044", { promptKana: "\u3064\u304B\u3044\u307E\u3059" }),
+      phraseItem("l22-p1-a1-q11", "11", "\u6765\u307E\u3059", "\u6765\u308B\uFF0F\u6765\u306A\u3044", { promptKana: "\u304D\u307E\u3059", acceptableAlternatives: ["\u304F\u308B\uFF0F\u3053\u306A\u3044"] }),
+      phraseItem("l22-p1-a1-q12", "12", "\u30D0\u30C9\u30DF\u30F3\u30C8\u30F3\u3092 \u3057\u307E\u3059", "\u30D0\u30C9\u30DF\u30F3\u30C8\u30F3\u3092 \u3059\u308B\uFF0F\u30D0\u30C9\u30DF\u30F3\u30C8\u30F3\u3092 \u3057\u306A\u3044"),
+      phraseItem("l22-p1-a1-q13", "13", "\u3046\u308C\u3057\u3044\u3067\u3059", "\u3046\u308C\u3057\u3044\uFF0F\u3046\u308C\u3057\u304F \u306A\u3044"),
+      phraseItem("l22-p1-a1-q14", "14", "\u7720\u3044\u3067\u3059", "\u7720\u3044\uFF0F\u7720\u304F \u306A\u3044", { promptKana: "\u306D\u3080\u3044\u3067\u3059" }),
+      phraseItem("l22-p1-a1-q15", "15", "\u304A\u3082\u3057\u308D\u3044\u3067\u3059", "\u304A\u3082\u3057\u308D\u3044\uFF0F\u304A\u3082\u3057\u308D\u304F \u306A\u3044"),
+      phraseItem("l22-p1-a1-q16", "16", "\u3064\u307E\u3089\u306A\u3044\u3067\u3059", "\u3064\u307E\u3089\u306A\u3044\uFF0F\u3064\u307E\u3089\u306A\u304F \u306A\u3044"),
+      phraseItem("l22-p1-a1-q17", "17", "\u6613\u3057\u3044\u3067\u3059", "\u6613\u3057\u3044\uFF0F\u6613\u3057\u304F \u306A\u3044", { promptKana: "\u3084\u3055\u3057\u3044\u3067\u3059" }),
+      phraseItem("l22-p1-a1-q18", "18", "\u96E3\u3057\u3044\u3067\u3059", "\u96E3\u3057\u3044\uFF0F\u96E3\u3057\u304F \u306A\u3044", { promptKana: "\u3080\u305A\u304B\u3057\u3044\u3067\u3059" }),
+      phraseItem("l22-p1-a1-q19", "19", "\u8EFD\u3044\u3067\u3059", "\u8EFD\u3044\uFF0F\u8EFD\u304F \u306A\u3044", { promptKana: "\u304B\u308B\u3044\u3067\u3059" }),
+      phraseItem("l22-p1-a1-q20", "20", "\u91CD\u3044\u3067\u3059", "\u91CD\u3044\uFF0F\u91CD\u304F \u306A\u3044", { promptKana: "\u304A\u3082\u3044\u3067\u3059" }),
+      phraseItem("l22-p1-a1-q21", "21", "\u6687\u3067\u3059", "\u6687\u3060\uFF0F\u6687\u3067\u306F \u306A\u3044", { promptKana: "\u3072\u307E\u3067\u3059" }),
+      phraseItem("l22-p1-a1-q22", "22", "\u597D\u304D\u3067\u3059", "\u597D\u304D\u3060\uFF0F\u597D\u304D\u3067\u306F \u306A\u3044", { promptKana: "\u3059\u304D\u3067\u3059" }),
+      phraseItem("l22-p1-a1-q23", "23", "\u5ACC\u3044\u3067\u3059", "\u5ACC\u3044\u3060\uFF0F\u5ACC\u3044\u3067\u306F \u306A\u3044", { promptKana: "\u304D\u3089\u3044\u3067\u3059" }),
+      phraseItem("l22-p1-a1-q24", "24", "\u4E0A\u624B\u3067\u3059", "\u4E0A\u624B\u3060\uFF0F\u4E0A\u624B\u3067\u306F \u306A\u3044", { promptKana: "\u3058\u3087\u3046\u305A\u3067\u3059" }),
+      phraseItem("l22-p1-a1-q25", "25", "\u7ACB\u6D3E\u3067\u3059", "\u7ACB\u6D3E\u3060\uFF0F\u7ACB\u6D3E\u3067\u306F \u306A\u3044", { promptKana: "\u308A\u3063\u3071\u3067\u3059" }),
+      phraseItem("l22-p1-a1-q26", "26", "\u304D\u308C\u3044\u3067\u3059", "\u304D\u308C\u3044\u3060\uFF0F\u304D\u308C\u3044\u3067\u306F \u306A\u3044"),
+      phraseItem("l22-p1-a1-q27", "27", "\u6D3E\u624B\u3067\u3059", "\u6D3E\u624B\u3060\uFF0F\u6D3E\u624B\u3067\u306F \u306A\u3044", { promptKana: "\u306F\u3067\u3067\u3059" }),
+      phraseItem("l22-p1-a1-q28", "28", "\u5927\u5909\u3067\u3059", "\u5927\u5909\u3060\uFF0F\u5927\u5909\u3067\u306F \u306A\u3044", { promptKana: "\u305F\u3044\u3078\u3093\u3067\u3059" }),
+      phraseItem("l22-p1-a1-q29", "29", "\u6674\u308C\u3067\u3059", "\u6674\u308C\u3060\uFF0F\u6674\u308C\u3067\u306F \u306A\u3044", { promptKana: "\u306F\u308C\u3067\u3059" }),
+      phraseItem("l22-p1-a1-q30", "30", "\u96E8\u3067\u3059", "\u96E8\u3060\uFF0F\u96E8\u3067\u306F \u306A\u3044", { promptKana: "\u3042\u3081\u3067\u3059" }),
+      phraseItem("l22-p1-a1-q31", "31", "29\u6B73\u3067\u3059", "29\u6B73\u3060\uFF0F29\u6B73\u3067\u306F \u306A\u3044", { promptKana: "\u306B\u3058\u3085\u3046\u304D\u3085\u3046\u3055\u3044\u3067\u3059" }),
+      phraseItem("l22-p1-a1-q32", "32", "5\u679A\u3067\u3059", "5\u679A\u3060\uFF0F5\u679A\u3067\u306F \u306A\u3044", { promptKana: "\u3054\u307E\u3044\u3067\u3059" }),
+      phraseItem("l22-p1-a1-q33", "33", "\u75C5\u6C17\u3067\u3059", "\u75C5\u6C17\u3060\uFF0F\u75C5\u6C17\u3067\u306F \u306A\u3044", { promptKana: "\u3073\u3087\u3046\u304D\u3067\u3059" }),
+      phraseItem("l22-p1-a1-q34", "34", "\u706B\u66DC\u65E5\u3067\u3059", "\u706B\u66DC\u65E5\u3060\uFF0F\u706B\u66DC\u65E5\u3067\u306F \u306A\u3044", { promptKana: "\u304B\u3088\u3046\u3073\u3067\u3059" }),
+      phraseItem("l22-p1-a1-q35", "35", "4\u6642\u3067\u3059", "4\u6642\u3060\uFF0F4\u6642\u3067\u306F \u306A\u3044", { promptKana: "\u3088\u3058\u3067\u3059" }),
+      phraseItem("l22-p1-a1-q36", "36", "\u5348\u524D\u4E2D\u3067\u3059", "\u5348\u524D\u4E2D\u3060\uFF0F\u5348\u524D\u4E2D\u3067\u306F \u306A\u3044", { promptKana: "\u3054\u305C\u3093\u3061\u3085\u3046\u3067\u3059" })
+    ]
+  },
+  {
+    id: "l22-p1-a2",
+    section: "practice_1",
+    order: 2,
+    title: "\u4EFF\u7167\u4F8B\u53E5\u8FDB\u884C\u7EC3\u4E60\u3002",
+    instruction: "",
+    interaction: "pattern_substitution",
+    answerUnit: "sentence",
+    responseScope: "sentence_only",
+    assets: [crop21("l22-p1-a2-plain-form")],
+    displayAssets: ["l22-p1-a2-plain-form"],
+    layout: [
+      { type: "example", content: { label: "[\u4F8B1]", before: "\u671D 7\u6642\u306B \u8D77\u304D\u307E\u3059\u3002\n\u6628\u65E5\u306F \u6691\u304B\u3063\u305F\u3067\u3059\u3002\n\u68EE\u3055\u3093\u306F \u91CE\u83DC\u304C \u5ACC\u3044\u3067\u3059\u3002", beforeKana: "\u3042\u3055 \u3057\u3061\u3058\u306B \u304A\u304D\u307E\u3059\u3002\n\u304D\u306E\u3046\u306F \u3042\u3064\u304B\u3063\u305F\u3067\u3059\u3002\n\u3082\u308A\u3055\u3093\u306F \u3084\u3055\u3044\u304C \u304D\u3089\u3044\u3067\u3059\u3002", after: [text22("\u671D 7\u6642\u306B \u8D77\u304D\u308B\u3002\n\u6628\u65E5\u306F \u6691\u304B\u3063\u305F\u3002\n\u68EE\u3055\u3093\u306F \u91CE\u83DC\u304C \u5ACC\u3044\u3060\u3002")], afterKana: "\u3042\u3055 \u3057\u3061\u3058\u306B \u304A\u304D\u308B\u3002\n\u304D\u306E\u3046\u306F \u3042\u3064\u304B\u3063\u305F\u3002\n\u3082\u308A\u3055\u3093\u306F \u3084\u3055\u3044\u304C \u304D\u3089\u3044\u3060\u3002" } },
+      { type: "example", content: { label: "[\u4F8B2]", before: "\u52C9\u5F37\u3057\u3066 \u3044\u307E\u3059\u3002\n\u82F1\u8A9E\u304C \u3067\u304D\u307E\u3059\u3002\n\u5165\u3063\u3066\u306F \u3044\u3051\u307E\u305B\u3093\u3002", beforeKana: "\u3079\u3093\u304D\u3087\u3046\u3057\u3066 \u3044\u307E\u3059\u3002\n\u3048\u3044\u3054\u304C \u3067\u304D\u307E\u3059\u3002\n\u306F\u3044\u3063\u3066\u306F \u3044\u3051\u307E\u305B\u3093\u3002", after: [text22("\u52C9\u5F37\u3057\u3066 \u3044\u308B\u3002\n\u82F1\u8A9E\u304C \u3067\u304D\u308B\u3002\n\u5165\u3063\u3066\u306F \u3044\u3051\u306A\u3044\u3002")], afterKana: "\u3079\u3093\u304D\u3087\u3046\u3057\u3066 \u3044\u308B\u3002\n\u3048\u3044\u3054\u304C \u3067\u304D\u308B\u3002\n\u306F\u3044\u3063\u3066\u306F \u3044\u3051\u306A\u3044\u3002" } }
+    ],
+    items: [
+      answerItem20("l22-p1-a2-q1", "1", "\u6BCE\u671D \u592A\u6975\u62F3\u3092 \u3057\u307E\u3059\u3002", "\u6BCE\u671D \u592A\u6975\u62F3\u3092 \u3059\u308B\u3002", { promptKana: "\u307E\u3044\u3042\u3055 \u305F\u3044\u304D\u3087\u304F\u3051\u3093\u3092 \u3057\u307E\u3059\u3002" }),
+      answerItem20("l22-p1-a2-q2", "2", "\u30BF\u30D0\u30B3\u3092 \u5438\u3044\u307E\u305B\u3093\u3002", "\u30BF\u30D0\u30B3\u3092 \u5438\u308F\u306A\u3044\u3002", { promptKana: "\u30BF\u30D0\u30B3\u3092 \u3059\u3044\u307E\u305B\u3093\u3002" }),
+      answerItem20("l22-p1-a2-q3", "3", "\u306E\u3069\u304C \u6E07\u304D\u307E\u3057\u305F\u3002", "\u306E\u3069\u304C \u6E07\u3044\u305F\u3002", { promptKana: "\u306E\u3069\u304C \u304B\u308F\u304D\u307E\u3057\u305F\u3002" }),
+      answerItem20("l22-p1-a2-q4", "4", "\u5EAD\u306B \u72AC\u304C \u3044\u307E\u3059\u3002", "\u5EAD\u306B \u72AC\u304C \u3044\u308B\u3002", { promptKana: "\u306B\u308F\u306B \u3044\u306C\u304C \u3044\u307E\u3059\u3002" }),
+      answerItem20("l22-p1-a2-q5", "5", "\u30AD\u30E0\u3055\u3093\u306F \u5144\u5F1F\u304C \u3044\u307E\u305B\u3093\u3002", "\u30AD\u30E0\u3055\u3093\u306F \u5144\u5F1F\u304C \u3044\u306A\u3044\u3002", { promptKana: "\u30AD\u30E0\u3055\u3093\u306F \u304D\u3087\u3046\u3060\u3044\u304C \u3044\u307E\u305B\u3093\u3002" }),
+      answerItem20("l22-p1-a2-q6", "6", "\u6628\u65E5\u306F \u5BD2\u304F \u306A\u304B\u3063\u305F\u3067\u3059\u3002", "\u6628\u65E5\u306F \u5BD2\u304F \u306A\u304B\u3063\u305F\u3002", { promptKana: "\u304D\u306E\u3046\u306F \u3055\u3080\u304F \u306A\u304B\u3063\u305F\u3067\u3059\u3002" }),
+      answerItem20("l22-p1-a2-q7", "7", "\u305D\u306E \u6620\u753B\u306F \u304A\u3082\u3057\u308D\u304F \u306A\u3044\u3067\u3059\u3002", "\u305D\u306E \u6620\u753B\u306F \u304A\u3082\u3057\u308D\u304F \u306A\u3044\u3002", { promptKana: "\u305D\u306E \u3048\u3044\u304C\u306F \u304A\u3082\u3057\u308D\u304F \u306A\u3044\u3067\u3059\u3002" }),
+      answerItem20("l22-p1-a2-q8", "8", "\u30C1\u30E7\u30B3\u30EC\u30FC\u30C8\u304C \u597D\u304D\u3067\u3059\u3002", "\u30C1\u30E7\u30B3\u30EC\u30FC\u30C8\u304C \u597D\u304D\u3060\u3002", { promptKana: "\u30C1\u30E7\u30B3\u30EC\u30FC\u30C8\u304C \u3059\u304D\u3067\u3059\u3002" }),
+      answerItem20("l22-p1-a2-q9", "9", "\u660E\u65E5 \u6687\u3067\u306F \u3042\u308A\u307E\u305B\u3093\u3002", "\u660E\u65E5 \u6687\u3067\u306F \u306A\u3044\u3002", { promptKana: "\u3042\u3057\u305F \u3072\u307E\u3067\u306F \u3042\u308A\u307E\u305B\u3093\u3002" }),
+      answerItem20("l22-p1-a2-q10", "10", "\u3042\u305D\u3053\u306B \u96FB\u8A71\u304C \u3042\u308A\u307E\u3059\u3002", "\u3042\u305D\u3053\u306B \u96FB\u8A71\u304C \u3042\u308B\u3002", { promptKana: "\u3042\u305D\u3053\u306B \u3067\u3093\u308F\u304C \u3042\u308A\u307E\u3059\u3002" }),
+      answerItem20("l22-p1-a2-q11", "11", "\u30C6\u30EC\u30D3\u3067 \u6B4C\u624B\u304C \u6B4C\u3063\u3066 \u3044\u307E\u3059\u3002", "\u30C6\u30EC\u30D3\u3067 \u6B4C\u624B\u304C \u6B4C\u3063\u3066 \u3044\u308B\u3002", { promptKana: "\u30C6\u30EC\u30D3\u3067 \u304B\u3057\u3085\u304C \u3046\u305F\u3063\u3066 \u3044\u307E\u3059\u3002" }),
+      answerItem20("l22-p1-a2-q12", "12", "\u30D4\u30A2\u30CE\u3092 \u5F3E\u304F \u3053\u3068\u304C \u3067\u304D\u307E\u3059\u3002", "\u30D4\u30A2\u30CE\u3092 \u5F3E\u304F \u3053\u3068\u304C \u3067\u304D\u308B\u3002", { promptKana: "\u30D4\u30A2\u30CE\u3092 \u3072\u304F \u3053\u3068\u304C \u3067\u304D\u307E\u3059\u3002" }),
+      answerItem20("l22-p1-a2-q13", "13", "\u3053\u3053\u3067 \u5199\u771F\u3092 \u64AE\u3063\u3066\u306F \u3044\u3051\u307E\u305B\u3093\u3002", "\u3053\u3053\u3067 \u5199\u771F\u3092 \u64AE\u3063\u3066\u306F \u3044\u3051\u306A\u3044\u3002", { promptKana: "\u3053\u3053\u3067 \u3057\u3083\u3057\u3093\u3092 \u3068\u3063\u3066\u306F \u3044\u3051\u307E\u305B\u3093\u3002" }),
+      answerItem20("l22-p1-a2-q14", "14", "\u85AC\u3092 \u98F2\u307E\u306A\u304F\u3066\u3082 \u3044\u3044\u3067\u3059\u3002", "\u85AC\u3092 \u98F2\u307E\u306A\u304F\u3066\u3082 \u3044\u3044\u3002", { promptKana: "\u304F\u3059\u308A\u3092 \u306E\u307E\u306A\u304F\u3066\u3082 \u3044\u3044\u3067\u3059\u3002" }),
+      answerItem20("l22-p1-a2-q15", "15", "\u5927\u7D71\u9818\u306B \u4F1A\u3063\u305F \u3053\u3068\u304C \u3042\u308A\u307E\u305B\u3093\u3002", "\u5927\u7D71\u9818\u306B \u4F1A\u3063\u305F \u3053\u3068\u304C \u306A\u3044\u3002", { promptKana: "\u3060\u3044\u3068\u3046\u308A\u3087\u3046\u306B \u3042\u3063\u305F \u3053\u3068\u304C \u3042\u308A\u307E\u305B\u3093\u3002" }),
+      answerItem20("l22-p1-a2-q16", "16", "\u307E\u3060 \u7D50\u5A5A\u3057\u3066 \u3044\u307E\u305B\u3093\u3002", "\u307E\u3060 \u7D50\u5A5A\u3057\u3066 \u3044\u306A\u3044\u3002", { promptKana: "\u307E\u3060 \u3051\u3063\u3053\u3093\u3057\u3066 \u3044\u307E\u305B\u3093\u3002" })
+    ]
+  },
+  {
+    id: "l22-p1-a3",
+    section: "practice_1",
+    order: 3,
+    title: "\u4EFF\u7167\u4F8B\u53E5\u66FF\u6362\u753B\u7EBF\u90E8\u5206\u8FDB\u884C\u7EC3\u4E60\u3002",
+    instruction: "",
+    interaction: "dialogue_practice",
+    answerUnit: "dialogue",
+    responseScope: "question_and_answer",
+    responseScopeHint: "\u5199\u51FA\u5B8C\u6574\u95EE\u7B54\u3002",
+    assets: [crop21("l22-p1-a3-dialogue")],
+    displayAssets: ["l22-p1-a3-dialogue"],
+    layout: [
+      { type: "example", content: { label: "[\u4F8B]", before: "\u6628\u65E5\u306E \u8A66\u9A13\uFF0F\u96E3\u3057\u3044\uFF0F\u3067\u304D\u308B", beforeKana: "\u304D\u306E\u3046\u306E \u3057\u3051\u3093\uFF0F\u3080\u305A\u304B\u3057\u3044\uFF0F\u3067\u304D\u308B", after: [text22("\u7532\uFF1A\u6628\u65E5\u306E \u8A66\u9A13\u3001\u3069\u3046\u3060\u3063\u305F\uFF1F\n\u4E59\uFF1A\u96E3\u3057\u304B\u3063\u305F\u3051\u3069\u3001\u307E\u3042\u307E\u3042 \u3067\u304D\u305F\u3088\u3002")], afterKana: "\u304D\u306E\u3046\u306E \u3057\u3051\u3093\u3001\u3069\u3046\u3060\u3063\u305F\uFF1F\n\u3080\u305A\u304B\u3057\u304B\u3063\u305F\u3051\u3069\u3001\u307E\u3042\u307E\u3042 \u3067\u304D\u305F\u3088\u3002" } }
+    ],
+    items: [
+      dialogueItem18("l22-p1-a3-q1", "1", "\u3042\u306E \u5E97\uFF0F\u9AD8\u3044\uFF0F\u304A\u3044\u3057\u3044", "\u7532\uFF1A\u3042\u306E \u5E97\u3001\u3069\u3046\u3060\u3063\u305F\uFF1F\n\u4E59\uFF1A\u9AD8\u304B\u3063\u305F\u3051\u3069\u3001\u304A\u3044\u3057\u304B\u3063\u305F\u3088\u3002", "\u3042\u306E \u307F\u305B\uFF0F\u305F\u304B\u3044\uFF0F\u304A\u3044\u3057\u3044"),
+      dialogueItem18("l22-p1-a3-q2", "2", "\u65C5\u884C\uFF0F\u5FD9\u3057\u3044\uFF0F\u697D\u3057\u3044", "\u7532\uFF1A\u65C5\u884C\u3001\u3069\u3046\u3060\u3063\u305F\uFF1F\n\u4E59\uFF1A\u5FD9\u3057\u304B\u3063\u305F\u3051\u3069\u3001\u697D\u3057\u304B\u3063\u305F\u3088\u3002", "\u308A\u3087\u3053\u3046\uFF0F\u3044\u305D\u304C\u3057\u3044\uFF0F\u305F\u306E\u3057\u3044"),
+      dialogueItem18("l22-p1-a3-q3", "3", "\u6620\u753B\uFF0F\u9577\u3044\uFF0F\u304A\u3082\u3057\u308D\u3044", "\u7532\uFF1A\u6620\u753B\u3001\u3069\u3046\u3060\u3063\u305F\uFF1F\n\u4E59\uFF1A\u9577\u304B\u3063\u305F\u3051\u3069\u3001\u304A\u3082\u3057\u308D\u304B\u3063\u305F\u3088\u3002", "\u3048\u3044\u304C\uFF0F\u306A\u304C\u3044\uFF0F\u304A\u3082\u3057\u308D\u3044"),
+      dialogueItem18("l22-p1-a3-q4", "4", "\u30C7\u30A3\u30BA\u30CB\u30FC\u30E9\u30F3\u30C9\uFF0F\u4EBA\u304C \u591A\u3044\uFF0F\u3044\u3044", "\u7532\uFF1A\u30C7\u30A3\u30BA\u30CB\u30FC\u30E9\u30F3\u30C9\u3001\u3069\u3046\u3060\u3063\u305F\uFF1F\n\u4E59\uFF1A\u4EBA\u304C \u591A\u304B\u3063\u305F\u3051\u3069\u3001\u3088\u304B\u3063\u305F\u3088\u3002", "\u30C7\u30A3\u30BA\u30CB\u30FC\u30E9\u30F3\u30C9\uFF0F\u3072\u3068\u304C \u304A\u304A\u3044\uFF0F\u3044\u3044")
+    ]
+  },
+  {
+    id: "l22-p1-a4",
+    section: "practice_1",
+    order: 4,
+    title: "\u5148\u586B\u8865\u7A7A\u680F\uFF0C\u7136\u540E\u542C\u5F55\u97F3\u786E\u8BA4\u3002",
+    instruction: "",
+    interaction: "fill_blank",
+    answerUnit: "phrase",
+    responseScope: "phrase_only",
+    responseScopeHint: "\u6309\u8868\u683C\u987A\u5E8F\u586B\u5199\u8BE5\u884C\u7F3A\u5C11\u7684\u5F62\u5F0F\u3002",
+    requiresAudio: true,
+    audio: {
+      source: "textbook_exercise",
+      url: audio21(1, 4),
+      label: "\u7B2C22\u8BFE \u7EC3\u4E60I-4",
+      transcript: { text: "\u666E\u901A\u5F62\u6D3B\u7528\u8868\u3002", source: "manual", confidenceNote: "\u8868\u683C\u9898\u7B54\u6848\u4F9D\u636E\u6559\u6750\u7A7A\u680F\u548C\u666E\u901A\u5F62\u6D3B\u7528\u89C4\u5219\u6574\u7406\u3002" }
+    },
+    assets: [crop21("l22-p1-a4-table")],
+    displayAssets: ["l22-p1-a4-table"],
+    layout: [
+      { type: "text", text: [text22("\u6309\u300C\u307E\u3059\u5F62\uFF0F\u8F9E\u4E66\u5F62\uFF0F\u306A\u3044\u5F62\uFF0F\u305F\u5F62\uFF0F\u306A\u304B\u3063\u305F\u5F62\u300D\u7684\u987A\u5E8F\u8865\u5168\u7A7A\u680F\u3002")] }
+    ],
+    items: [
+      phraseItem("l22-p1-a4-q1", "1", "\u3067\u304D\u307E\u3059", "\u3067\u304D\u307E\u3059\uFF0F\u3067\u304D\u308B\uFF0F\u3067\u304D\u306A\u3044\uFF0F\u3067\u304D\u305F\uFF0F\u3067\u304D\u306A\u304B\u3063\u305F", { answerSource: "prompt" }),
+      phraseItem("l22-p1-a4-q2", "2", "\u98F2\u307F\u307E\u3059", "\u98F2\u307F\u307E\u3059\uFF0F\u98F2\u3080\uFF0F\u98F2\u307E\u306A\u3044\uFF0F\u98F2\u3093\u3060\uFF0F\u98F2\u307E\u306A\u304B\u3063\u305F", { promptKana: "\u306E\u307F\u307E\u3059", answerSource: "prompt" }),
+      phraseItem("l22-p1-a4-q3", "3", "\u3042\u308A\u307E\u3059", "\u3042\u308A\u307E\u3059\uFF0F\u3042\u308B\uFF0F\u306A\u3044\uFF0F\u3042\u3063\u305F\uFF0F\u306A\u304B\u3063\u305F", { answerSource: "prompt" }),
+      phraseItem("l22-p1-a4-q4", "4", "\u306A\u308A\u307E\u3059", "\u306A\u308A\u307E\u3059\uFF0F\u306A\u308B\uFF0F\u306A\u3089\u306A\u3044\uFF0F\u306A\u3063\u305F\uFF0F\u306A\u3089\u306A\u304B\u3063\u305F", { answerSource: "prompt" }),
+      phraseItem("l22-p1-a4-q5", "5", "\u4F1A\u3044\u307E\u3059", "\u4F1A\u3044\u307E\u3059\uFF0F\u4F1A\u3046\uFF0F\u4F1A\u308F\u306A\u3044\uFF0F\u4F1A\u3063\u305F\uFF0F\u4F1A\u308F\u306A\u304B\u3063\u305F", { promptKana: "\u3042\u3044\u307E\u3059", answerSource: "prompt" }),
+      phraseItem("l22-p1-a4-q6", "6", "\u6B7B\u306B\u307E\u3059", "\u6B7B\u306B\u307E\u3059\uFF0F\u6B7B\u306C\uFF0F\u6B7B\u306A\u306A\u3044\uFF0F\u6B7B\u3093\u3060\uFF0F\u6B7B\u306A\u306A\u304B\u3063\u305F", { promptKana: "\u3057\u306B\u307E\u3059", answerSource: "prompt" }),
+      phraseItem("l22-p1-a4-q7", "7", "\u6D74\u3073\u307E\u3059", "\u6D74\u3073\u307E\u3059\uFF0F\u6D74\u3073\u308B\uFF0F\u6D74\u3073\u306A\u3044\uFF0F\u6D74\u3073\u305F\uFF0F\u6D74\u3073\u306A\u304B\u3063\u305F", { promptKana: "\u3042\u3073\u307E\u3059", answerSource: "prompt" }),
+      phraseItem("l22-p1-a4-q8", "8", "\u6765\u307E\u3059", "\u6765\u307E\u3059\uFF0F\u6765\u308B\uFF0F\u6765\u306A\u3044\uFF0F\u6765\u305F\uFF0F\u6765\u306A\u304B\u3063\u305F", { promptKana: "\u304D\u307E\u3059", answerSource: "prompt" }),
+      phraseItem("l22-p1-a4-q9", "9", "\u3057\u307E\u3059", "\u3057\u307E\u3059\uFF0F\u3059\u308B\uFF0F\u3057\u306A\u3044\uFF0F\u3057\u305F\uFF0F\u3057\u306A\u304B\u3063\u305F", { answerSource: "prompt" }),
+      phraseItem("l22-p1-a4-q10", "10", "\u5BD2\u3044\u3067\u3059", "\u5BD2\u3044\u3067\u3059\uFF0F\u5BD2\u3044\uFF0F\u5BD2\u304F \u306A\u3044\uFF0F\u5BD2\u304B\u3063\u305F\uFF0F\u5BD2\u304F \u306A\u304B\u3063\u305F", { promptKana: "\u3055\u3080\u3044\u3067\u3059", answerSource: "prompt" }),
+      phraseItem("l22-p1-a4-q11", "11", "\u7C21\u5358\u3067\u3059", "\u7C21\u5358\u3067\u3059\uFF0F\u7C21\u5358\u3060\uFF0F\u7C21\u5358\u3067\u306F \u306A\u3044\uFF0F\u7C21\u5358\u3060\u3063\u305F\uFF0F\u7C21\u5358\u3067\u306F \u306A\u304B\u3063\u305F", { promptKana: "\u304B\u3093\u305F\u3093\u3067\u3059", answerSource: "prompt" }),
+      phraseItem("l22-p1-a4-q12", "12", "\u65E5\u66DC\u65E5\u3067\u3059", "\u65E5\u66DC\u65E5\u3067\u3059\uFF0F\u65E5\u66DC\u65E5\u3060\uFF0F\u65E5\u66DC\u65E5\u3067\u306F \u306A\u3044\uFF0F\u65E5\u66DC\u65E5\u3060\u3063\u305F\uFF0F\u65E5\u66DC\u65E5\u3067\u306F \u306A\u304B\u3063\u305F", { promptKana: "\u306B\u3061\u3088\u3046\u3073\u3067\u3059", answerSource: "prompt" })
+    ]
+  },
+  {
+    id: "l22-p1-a5",
+    section: "practice_1",
+    order: 5,
+    title: "\u542C\u5F55\u97F3\uFF0C\u4EFF\u7167\u4F8B\u53E5\u66FF\u6362\u753B\u7EBF\u90E8\u5206\u7EC3\u4E60\u4F1A\u8BDD\u3002",
+    instruction: "",
+    interaction: "dialogue_practice",
+    answerUnit: "dialogue",
+    responseScope: "question_and_answer",
+    responseScopeHint: "\u5199\u51FA\u5B8C\u6574\u4F1A\u8BDD\u3002",
+    requiresAudio: true,
+    audio: {
+      source: "textbook_exercise",
+      url: audio21(1, 5),
+      label: "\u7B2C22\u8BFE \u7EC3\u4E60I-5",
+      transcript: { text: "\u30B5\u30C3\u30AB\u30FC\u3001\u597D\u304D\uFF1F\u3046\u3093\u3002\u30C1\u30B1\u30C3\u30C8 \u3042\u308B\u3051\u3069\u3001\u884C\u304B\u306A\u3044\uFF1F\u3046\u3093\u3001\u884C\u304F\u3002", source: "manual", confidenceNote: "\u4F8B\u53E5\u7ED3\u5408\u9898\u9762\u6574\u7406\u3002" }
+    },
+    assets: [crop21("l22-p1-a5-dialogue")],
+    displayAssets: ["l22-p1-a5-dialogue"],
+    layout: [
+      { type: "example", content: { label: "[\u4F8B]", before: "\u30B5\u30C3\u30AB\u30FC\uFF0F\u30C1\u30B1\u30C3\u30C8\uFF0F\u884C\u304D\u307E\u3059", after: [text22("\u7532\uFF1A\u30B5\u30C3\u30AB\u30FC\u3001\u597D\u304D\uFF1F\n\u4E59\uFF1A\u3046\u3093\u3002\n\u7532\uFF1A\u30C1\u30B1\u30C3\u30C8 \u3042\u308B\u3051\u3069\u3001\u884C\u304B\u306A\u3044\uFF1F\n\u4E59\uFF1A\u3046\u3093\u3001\u884C\u304F\u3002")], afterKana: "\u30B5\u30C3\u30AB\u30FC\u3001\u3059\u304D\uFF1F\n\u3046\u3093\u3002\n\u30C1\u30B1\u30C3\u30C8 \u3042\u308B\u3051\u3069\u3001\u3044\u304B\u306A\u3044\uFF1F\n\u3046\u3093\u3001\u3044\u304F\u3002" } }
+    ],
+    items: [
+      dialogueItem18("l22-p1-a5-q1", "1", "\u30AF\u30E9\u30B7\u30C3\u30AF\uFF0F\u30E2\u30FC\u30C4\u30A1\u30EB\u30C8\u306E CD\uFF0F\u805E\u304D\u307E\u3059", "\u7532\uFF1A\u30AF\u30E9\u30B7\u30C3\u30AF\u3001\u597D\u304D\uFF1F\n\u4E59\uFF1A\u3046\u3093\u3002\n\u7532\uFF1A\u30E2\u30FC\u30C4\u30A1\u30EB\u30C8\u306E CD \u3042\u308B\u3051\u3069\u3001\u805E\u304B\u306A\u3044\uFF1F\n\u4E59\uFF1A\u3046\u3093\u3001\u805E\u304F\u3002", "\u30AF\u30E9\u30B7\u30C3\u30AF\uFF0F\u30E2\u30FC\u30C4\u30A1\u30EB\u30C8\u306E \u30B7\u30FC\u30C7\u30A3\u30FC\uFF0F\u304D\u304D\u307E\u3059"),
+      dialogueItem18("l22-p1-a5-q2", "2", "\u305D\u3070\uFF0F\u3053\u306E \u8FD1\u304F\u306B \u304A\u3044\u3057\u3044 \u304A\u5E97\uFF0F\u884C\u304D\u307E\u3059", "\u7532\uFF1A\u305D\u3070\u3001\u597D\u304D\uFF1F\n\u4E59\uFF1A\u3046\u3093\u3002\n\u7532\uFF1A\u3053\u306E \u8FD1\u304F\u306B \u304A\u3044\u3057\u3044 \u304A\u5E97 \u3042\u308B\u3051\u3069\u3001\u884C\u304B\u306A\u3044\uFF1F\n\u4E59\uFF1A\u3046\u3093\u3001\u884C\u304F\u3002", "\u305D\u3070\uFF0F\u3053\u306E \u3061\u304B\u304F\u306B \u304A\u3044\u3057\u3044 \u304A\u307F\u305B\uFF0F\u3044\u304D\u307E\u3059"),
+      dialogueItem18("l22-p1-a5-q3", "3", "\u30D0\u30C9\u30DF\u30F3\u30C8\u30F3\uFF0F\u30E9\u30B1\u30C3\u30C8\uFF0F\u3057\u307E\u3059", "\u7532\uFF1A\u30D0\u30C9\u30DF\u30F3\u30C8\u30F3\u3001\u597D\u304D\uFF1F\n\u4E59\uFF1A\u3046\u3093\u3002\n\u7532\uFF1A\u30E9\u30B1\u30C3\u30C8 \u3042\u308B\u3051\u3069\u3001\u3057\u306A\u3044\uFF1F\n\u4E59\uFF1A\u3046\u3093\u3001\u3059\u308B\u3002")
+    ]
+  },
+  {
+    id: "l22-p2-a1",
+    section: "practice_2",
+    order: 1,
+    title: "\u5728\uFF08\u3000\uFF09\u4E2D\u586B\u5165\u9002\u5F53\u7684\u8BCD\u8BED\uFF0C\u5B8C\u6210\u53E5\u5B50\u3002",
+    instruction: "",
+    interaction: "fill_blank",
+    answerUnit: "phrase",
+    responseScope: "phrase_only",
+    responseScopeHint: completionHint10,
+    assets: [crop21("l22-p2-a1-cloze")],
+    displayAssets: ["l22-p2-a1-cloze"],
+    layout: [
+      { type: "example", content: { label: "[\u4F8B]", before: "\u7532\uFF1A\u8A66\u9A13\u3001\u96E3\u3057\u304B\u3063\u305F\uFF1F\n\u4E59\uFF1A\u3046\u3046\u3093\u3001\uFF08\u3000\u3000\u3000\uFF09\u3002", beforeKana: "\u3057\u3051\u3093\u3001\u3080\u305A\u304B\u3057\u304B\u3063\u305F\uFF1F\n\u3046\u3046\u3093\u3001\uFF08\u3000\u3000\u3000\uFF09\u3002", after: [text22("\u96E3\u3057\u304F \u306A\u304B\u3063\u305F")], afterKana: "\u3080\u305A\u304B\u3057\u304F \u306A\u304B\u3063\u305F" } }
+    ],
+    items: [
+      blankItem19("l22-p2-a1-q1", "1", [text22("\u7532\uFF1A\u4EAC\u90FD\u3078 \u884C\u3063\u305F \u3053\u3068 \u3042\u308B\uFF1F\n\u4E59\uFF1A\u3046\u3046\u3093\u3001\uFF08"), blank19("answer"), text22("\uFF09\u3002")], { answer: "\u884C\u3063\u305F \u3053\u3068\u304C \u306A\u3044" }, { promptKana: "\u304D\u3087\u3046\u3068\u3078 \u3044\u3063\u305F \u3053\u3068 \u3042\u308B\uFF1F" }),
+      blankItem19("l22-p2-a1-q2", "2", [text22("\u7532\uFF1A\u592A\u7530\u541B\u3001\u4F55\u6642\u306B\uFF08"), blank19("answer"), text22("\uFF09\u306E\uFF1F\n\u4E59\uFF1A7\u6642\u306B \u6765\u308B\u3088\u3002")], { answer: "\u6765\u308B" }, { promptKana: "\u304A\u304A\u305F\u304F\u3093\u3001\u306A\u3093\u3058\u306B\uFF08\u3000\uFF09\u306E\uFF1F" }),
+      blankItem19("l22-p2-a1-q3", "3", [text22("\u7532\uFF1A\u5148\u751F\u306E \u4F4F\u6240 \u5206\u304B\u3063\u305F\uFF1F\n\u4E59\uFF1A\u3046\u3046\u3093\u3001\uFF08"), blank19("answer"), text22("\uFF09\u3002")], { answer: "\u5206\u304B\u3089\u306A\u304B\u3063\u305F" }, { promptKana: "\u305B\u3093\u305B\u3044\u306E \u3058\u3085\u3046\u3057\u3087 \u308F\u304B\u3063\u305F\uFF1F" }),
+      blankItem19("l22-p2-a1-q4", "4", [text22("\u7532\uFF1A\u3082\u3046 \u3042\u306E \u6620\u753B \u898B\u305F\uFF1F\n\u4E59\uFF1A\uFF08"), blank19("a"), text22("\uFF09\u3001\u307E\u3060\u3002\u592A\u90CE\u541B\u306F\uFF1F\n\u7532\uFF1A\u3046\u3093\u3001\u3082\u3046\uFF08"), blank19("b"), text22("\uFF09\u3002\n\u4E59\uFF1A\u304A\u3082\u3057\u308D\u304B\u3063\u305F\uFF1F\n\u7532\uFF1A\u3046\u3046\u3093\u3001\u3042\u307E\u308A\uFF08"), blank19("c"), text22("\uFF09\u3002")], { a: "\u3046\u3046\u3093", b: "\u898B\u305F", c: "\u304A\u3082\u3057\u308D\u304F \u306A\u304B\u3063\u305F" }, { promptKana: "\u3082\u3046 \u3042\u306E \u3048\u3044\u304C \u307F\u305F\uFF1F", responseScope: "phrase_only" })
+    ]
+  },
+  {
+    id: "l22-p2-a2",
+    section: "practice_2",
+    order: 2,
+    title: "\u4ECE\u25A1\u4E2D\u9009\u62E9\u9002\u5F53\u7684\u8BCD\u8BED\u586B\u5165\uFF08\u3000\uFF09\u4E2D\u3002",
+    instruction: "",
+    interaction: "fill_blank",
+    answerUnit: "word",
+    responseScope: "word_only",
+    responseScopeHint: completionHint10,
+    assets: [crop21("l22-p2-a2-word-bank")],
+    displayAssets: ["l22-p2-a2-word-bank"],
+    layout: [{ type: "word_bank", words: ["\u5148\u306B", "\u3055\u3089\u306B", "\u7279\u306B", "\u305C\u3072", "\u307E\u3060", "\u3082\u3046\u3059\u3050"].map((word) => text22(word)) }],
+    items: [
+      blankItem19("l22-p2-a2-q1", "1", [text22("\uFF08"), blank19("answer"), text22("\uFF093\u6708\u3060\u3002\u6696\u304B\u304F \u306A\u308B\u306D\u3002")], { answer: "\u3082\u3046\u3059\u3050" }, { promptKana: "\u3055\u3093\u304C\u3064\u3060\u3002\u3042\u305F\u305F\u304B\u304F \u306A\u308B\u306D\u3002", expectedUnit: "word" }),
+      blankItem19("l22-p2-a2-q2", "2", [text22("\u307F\u3093\u306A \u3088\u304B\u3063\u305F\u3051\u3069\u3001\uFF08"), blank19("answer"), text22("\uFF09\u7530\u4E2D\u541B\u304C \u3088\u304B\u3063\u305F\u3088\u3002")], { answer: "\u7279\u306B" }, { promptKana: "\u307F\u3093\u306A \u3088\u304B\u3063\u305F\u3051\u3069\u3001\u305F\u306A\u304B\u304F\u3093\u304C \u3088\u304B\u3063\u305F\u3088\u3002", expectedUnit: "word" }),
+      blankItem19("l22-p2-a2-q3", "3", [text22("\u4E2D\u56FD\u3088\u308A\uFF08"), blank19("answer"), text22("\uFF09\u5E83\u3044 \u56FD\u306F \u3069\u3053\uFF1F")], { answer: "\u3055\u3089\u306B" }, { promptKana: "\u3061\u3085\u3046\u3054\u304F\u3088\u308A \u3072\u308D\u3044 \u304F\u306B\u306F \u3069\u3053\uFF1F", expectedUnit: "word" }),
+      blankItem19("l22-p2-a2-q4", "4", [text22("\u4ECA\u5E74\u4E2D\u306B\uFF08"), blank19("answer"), text22("\uFF09\u8ECA\u3092 \u8CB7\u3044\u305F\u3044\u3002")], { answer: "\u305C\u3072" }, { promptKana: "\u3053\u3068\u3057\u3058\u3085\u3046\u306B \u304F\u308B\u307E\u3092 \u304B\u3044\u305F\u3044\u3002", expectedUnit: "word" }),
+      blankItem19("l22-p2-a2-q5", "5", [text22("\uFF08"), blank19("answer"), text22("\uFF09\u5E30\u3063\u3066\u3082 \u3044\u3044\uFF1F")], { answer: "\u5148\u306B" }, { promptKana: "\u304B\u3048\u3063\u3066\u3082 \u3044\u3044\uFF1F", expectedUnit: "word" })
+    ]
+  },
+  {
+    id: "l22-p2-a3",
+    section: "practice_2",
+    order: 3,
+    title: "\u8BFB\u4E0B\u9762\u7684\u65E5\u8BB0\uFF0C\u56DE\u7B54\u5F55\u97F3\u4E2D\u7684\u63D0\u95EE\u3002",
+    instruction: "",
+    interaction: "listening_answer",
+    answerUnit: "sentence",
+    responseScope: "answer_only",
+    responseScopeHint: answerOnlyHint16,
+    requiresAudio: true,
+    audio: {
+      source: "textbook_exercise",
+      url: audio21(2, 3),
+      label: "\u7B2C22\u8BFE \u7EC3\u4E60II-3",
+      transcript: {
+        text: "2\u67084\u65E5\u306F\u4F55\u66DC\u65E5\u3067\u3057\u305F\u304B\u30022\u67084\u65E5\u306E\u5929\u6C17\u306F\u3069\u3046\u3067\u3057\u305F\u304B\u30022\u67084\u65E5\u306F\u4F55\u3092\u3057\u307E\u3057\u305F\u304B\u30022\u67085\u65E5\u306F\u4F55\u6642\u306B\u8D77\u304D\u307E\u3057\u305F\u304B\u30022\u67085\u65E5\u306F\u3069\u3046\u3084\u3063\u3066\u5BB6\u3092\u51FA\u307E\u3057\u305F\u304B\u3002",
+        source: "manual",
+        confidenceNote: "\u6839\u636E\u6559\u6750\u65E5\u8BB0\u548C\u4F8B\u9898\u6574\u7406\u7684\u63D0\u95EE\u6587\u672C\u3002"
+      }
+    },
+    assets: [crop21("l22-p2-a3-reading")],
+    displayAssets: ["l22-p2-a3-reading"],
+    layout: [
+      {
+        type: "passage",
+        title: "2\u67084\u65E5\uFF08\u65E5\uFF09",
+        lines: [text22("\u4ECA\u65E5 \u96EA\u304C \u964D\u3063\u305F\u3002\u9053\u3082 \u5EAD\u3082 \u767D\u304F \u306A\u3063\u3066\u3001\u304D\u308C\u3044\u3060\u3063\u305F\u3002\u65E5\u66DC\u65E5\u3067 \u6687\u3060\u3063\u305F\u304B\u3089\u30011\u65E5 \u5BB6\u306B \u3044\u3066\u3001\u672C\u3092 \u8AAD\u3093\u3060\u3002\u5BDD\u308B \u524D\u306B\u3001\u5916\u3092 \u898B\u305F\u3002\u3082\u3046 \u96EA\u306F \u964D\u3063\u3066 \u3044\u306A\u304B\u3063\u305F\u3002")]
+      },
+      {
+        type: "passage",
+        title: "2\u67085\u65E5\uFF08\u6708\uFF09",
+        lines: [text22("\u671D 6\u6642\u534A\u306B \u8D77\u304D\u3066\u3001\u30C6\u30EC\u30D3\u3092 \u3064\u3051\u3066\u3001\u671D\u3054\u98EF\u3092 \u98DF\u3079\u305F\u3002\u3044\u3064\u3082\u306F 7\u664250\u5206\u306B \u5BB6\u3092 \u51FA\u308B\u3051\u3069\u3001\u65E9\u304F \u51FA\u305F \u307B\u3046\u304C \u3044\u3044\u304B\u3089\u30017\u6642\u534A\u306B \u51FA\u305F\u3002\u3044\u3064\u3082\u306F \u81EA\u8EE2\u8ECA\u3067 \u884C\u304F\u3051\u3069\u3001\u4ECA\u65E5\u306F \u6B69\u3044\u305F\u3002")]
+      },
+      { type: "example", content: { label: "[\u4F8B]", before: "2\u67084\u65E5\u306F \u4F55\u66DC\u65E5\u3067\u3057\u305F\u304B\u3002", beforeKana: "\u306B\u304C\u3064 \u3088\u3063\u304B\u306F \u306A\u3093\u3088\u3046\u3073\u3067\u3057\u305F\u304B\u3002", after: [text22("\u65E5\u66DC\u65E5\u3067\u3057\u305F\u3002")], afterKana: "\u306B\u3061\u3088\u3046\u3073\u3067\u3057\u305F\u3002" } }
+    ],
+    items: [
+      answerItem20("l22-p2-a3-q1", "1", "2\u67084\u65E5\u306E\u5929\u6C17\u306F\u3069\u3046\u3067\u3057\u305F\u304B\u3002", "\u96EA\u304C \u964D\u308A\u307E\u3057\u305F\u3002", { answerSource: "audio", responseScope: "answer_only", responseScopeHint: answerOnlyHint16, promptKana: "\u306B\u304C\u3064 \u3088\u3063\u304B\u306E \u3066\u3093\u304D\u306F \u3069\u3046\u3067\u3057\u305F\u304B\u3002" }),
+      answerItem20("l22-p2-a3-q2", "2", "2\u67084\u65E5\u306F\u4F55\u3092\u3057\u307E\u3057\u305F\u304B\u3002", "1\u65E5 \u5BB6\u306B \u3044\u3066\u3001\u672C\u3092 \u8AAD\u307F\u307E\u3057\u305F\u3002", { answerSource: "audio", responseScope: "answer_only", responseScopeHint: answerOnlyHint16, promptKana: "\u306B\u304C\u3064 \u3088\u3063\u304B\u306F \u306A\u306B\u3092 \u3057\u307E\u3057\u305F\u304B\u3002" }),
+      answerItem20("l22-p2-a3-q3", "3", "\u5BDD\u308B\u524D\u306B\u4F55\u3092\u898B\u307E\u3057\u305F\u304B\u3002", "\u5916\u3092 \u898B\u307E\u3057\u305F\u3002", { answerSource: "audio", responseScope: "answer_only", responseScopeHint: answerOnlyHint16, promptKana: "\u306D\u308B \u307E\u3048\u306B \u306A\u306B\u3092 \u307F\u307E\u3057\u305F\u304B\u3002" }),
+      answerItem20("l22-p2-a3-q4", "4", "2\u67085\u65E5\u306F\u4F55\u6642\u306B\u8D77\u304D\u307E\u3057\u305F\u304B\u3002", "\u671D 6\u6642\u534A\u306B \u8D77\u304D\u307E\u3057\u305F\u3002", { answerSource: "audio", responseScope: "answer_only", responseScopeHint: answerOnlyHint16, promptKana: "\u306B\u304C\u3064 \u3044\u3064\u304B\u306F \u306A\u3093\u3058\u306B \u304A\u304D\u307E\u3057\u305F\u304B\u3002" }),
+      answerItem20("l22-p2-a3-q5", "5", "2\u67085\u65E5\u306F\u3069\u3046\u3084\u3063\u3066\u884C\u304D\u307E\u3057\u305F\u304B\u3002", "\u6B69\u3044\u3066 \u884C\u304D\u307E\u3057\u305F\u3002", { answerSource: "audio", responseScope: "answer_only", responseScopeHint: answerOnlyHint16, promptKana: "\u306B\u304C\u3064 \u3044\u3064\u304B\u306F \u3069\u3046\u3084\u3063\u3066 \u3044\u304D\u307E\u3057\u305F\u304B\u3002" })
+    ]
+  },
+  {
+    id: "l22-p2-a4",
+    section: "practice_2",
+    order: 4,
+    title: "\u5C06\u4E0B\u9762\u7684\u53E5\u5B50\u8BD1\u6210\u65E5\u8BED\u3002",
+    instruction: "",
+    interaction: "translation",
+    answerUnit: "sentence",
+    responseScope: "sentence_only",
+    assets: [crop21("l22-p2-a4-translation")],
+    displayAssets: ["l22-p2-a4-translation"],
+    layout: [],
+    items: [
+      answerItem20("l22-p2-a4-q1", "1", "\u6628\u5929\u7684\u8003\u8BD5\u600E\u4E48\u6837\u554A\uFF1F\u2014\u2014\u6709\u70B9\u96BE\uFF0C\u4E0D\u8FC7\u5927\u6982\u90FD\u505A\u51FA\u6765\u4E86\u3002", "\u6628\u65E5\u306E \u8A66\u9A13\u3001\u3069\u3046\u3060\u3063\u305F\uFF1F\n\u5C11\u3057 \u96E3\u3057\u304B\u3063\u305F\u3051\u3069\u3001\u3060\u3044\u305F\u3044 \u3067\u304D\u305F\u3002", { multiline: true, rows: 3, acceptableAlternatives: ["\u6628\u65E5\u306E \u8A66\u9A13\u306F \u3069\u3046\u3060\u3063\u305F\uFF1F\n\u5C11\u3057 \u96E3\u3057\u304B\u3063\u305F\u3051\u3069\u3001\u3060\u3044\u305F\u3044 \u3067\u304D\u305F\u3002"] }),
+      answerItem20("l22-p2-a4-q2", "2", "\u8FD9\u4E2A\u9886\u5E26\u592A\u82B1\u54E8\u5417\uFF1F\u2014\u2014\u4E0D\uFF0C\u4E00\u70B9\u513F\u4E5F\u4E0D\u82B1\u54E8\u3002", "\u3053\u306E \u30CD\u30AF\u30BF\u30A4\u3001\u6D3E\u624B\uFF1F\n\u3046\u3046\u3093\u3001\u5168\u7136 \u6D3E\u624B\u3067\u306F \u306A\u3044\u3002", { multiline: true, rows: 3, acceptableAlternatives: ["\u3053\u306E \u30CD\u30AF\u30BF\u30A4\u306F \u6D3E\u624B\uFF1F\n\u3046\u3046\u3093\u3001\u5168\u7136 \u6D3E\u624B\u3067\u306F \u306A\u3044\u3002", "\u3053\u306E \u30CD\u30AF\u30BF\u30A4\u3001\u6D3E\u624B\u3067\u3059\u304B\u3002\n\u3044\u3044\u3048\u3001\u5168\u7136 \u6D3E\u624B\u3067\u306F \u3042\u308A\u307E\u305B\u3093\u3002"] }),
+      answerItem20("l22-p2-a4-q3", "3", "\u68EE\u5148\u751F\u6BCF\u5929\u665A\u4E0A\u770B\u7535\u89C6\u3002", "\u68EE\u3055\u3093\u306F \u6BCE\u6669 \u30C6\u30EC\u30D3\u3092 \u898B\u308B\u3002", { acceptableAlternatives: ["\u68EE\u3055\u3093\u306F \u6BCE\u6669 \u30C6\u30EC\u30D3\u3092 \u898B\u307E\u3059\u3002"] })
+    ]
+  }
+];
+var lesson22Practice = {
+  lessonId: "lesson22",
+  title: "\u7B2C22\u8BFE \u68EE\u3055\u3093\u306F \u6BCE\u6669 \u30C6\u30EC\u30D3\u3092 \u898B\u308B",
+  sourcePages: [
+    { pageNo: 268, imagePath: page44(268) },
+    { pageNo: 269, imagePath: page44(269) },
+    { pageNo: 270, imagePath: page44(270) }
+  ],
+  activities: activities21
+};
+
+// practice/lesson23-image-crops.ts
+var page45 = (pageNo) => `../course-assets/by-lesson/lesson23/page${pageNo}.webp`;
+var lesson23ImageCrops = {
+  lessonId: "lesson23",
+  sourceDir: "../course-assets/by-lesson/lesson23",
+  selectedImages: ["page278.webp", "page279.webp", "page280.webp"],
+  pages: [
+    {
+      pageNo: 278,
+      imagePath: page45(278),
+      assets: [
+        {
+          id: "l23-p1-a1-picture-substitution",
+          kind: "source_crop",
+          imagePath: page45(278),
+          label: "\u7EC3\u4E60 I 1 \u770B\u56FE\u66FF\u6362",
+          crop: { unit: "percent", x: 6, y: 12, width: 88.4, height: 42.6, aspectRatio: 1.373 },
+          meta: { pageNo: 278 }
+        },
+        {
+          id: "l23-p1-a2-tari-substitution",
+          kind: "source_crop",
+          imagePath: page45(278),
+          label: "\u7EC3\u4E60 I 2 \u305F\u308A\u66FF\u6362",
+          crop: { unit: "percent", x: 6, y: 55, width: 88.4, height: 17.7, aspectRatio: 3.306 },
+          meta: { pageNo: 278 }
+        },
+        {
+          id: "l23-p1-a3-answer-question",
+          kind: "source_crop",
+          imagePath: page45(278),
+          label: "\u7EC3\u4E60 I 3 \u56DE\u7B54\u63D0\u95EE",
+          crop: { unit: "percent", x: 6, y: 74, width: 88.4, height: 16.8, aspectRatio: 3.483 },
+          meta: { pageNo: 278 }
+        }
+      ]
+    },
+    {
+      pageNo: 279,
+      imagePath: page45(279),
+      assets: [
+        {
+          id: "l23-p1-a4-listening-transform",
+          kind: "source_crop",
+          imagePath: page45(279),
+          label: "\u7EC3\u4E60 I 4 \u542C\u5F55\u97F3\u66FF\u6362",
+          crop: { unit: "percent", x: 6, y: 4.8, width: 88.4, height: 31.5, aspectRatio: 1.857 },
+          meta: { pageNo: 279 }
+        },
+        {
+          id: "l23-p1-a5-transform",
+          kind: "source_crop",
+          imagePath: page45(279),
+          label: "\u7EC3\u4E60 I 5 \u304B\u3069\u3046\u304B\u8F6C\u6362",
+          crop: { unit: "percent", x: 6, y: 37.4, width: 88.4, height: 24.8, aspectRatio: 2.359 },
+          meta: { pageNo: 279 }
+        },
+        {
+          id: "l23-p1-a6-listening-picture",
+          kind: "source_crop",
+          imagePath: page45(279),
+          label: "\u7EC3\u4E60 I 6 \u8FB9\u770B\u56FE\u8FB9\u542C\u5F55\u97F3",
+          crop: { unit: "percent", x: 6, y: 66, width: 88.4, height: 25, aspectRatio: 2.34 },
+          meta: { pageNo: 279 }
+        }
+      ]
+    },
+    {
+      pageNo: 280,
+      imagePath: page45(280),
+      assets: [
+        {
+          id: "l23-p2-a1-connect",
+          kind: "source_crop",
+          imagePath: page45(280),
+          label: "\u7EC3\u4E60 II 1 \u8FDE\u63A5\u6B63\u786E\u7B54\u6848",
+          crop: { unit: "percent", x: 6, y: 8, width: 88.4, height: 18.7, aspectRatio: 3.129 },
+          meta: { pageNo: 280 }
+        },
+        {
+          id: "l23-p2-a2-listening-table",
+          kind: "source_crop",
+          imagePath: page45(280),
+          label: "\u7EC3\u4E60 II 2 \u542C\u5F55\u97F3\u753B\u25CB",
+          crop: { unit: "percent", x: 6, y: 28, width: 88.4, height: 23.9, aspectRatio: 2.448 },
+          meta: { pageNo: 280 }
+        },
+        {
+          id: "l23-p2-a3-fill",
+          kind: "source_crop",
+          imagePath: page45(280),
+          label: "\u7EC3\u4E60 II 3 \u586B\u5165\u9002\u5F53\u8BCD\u8BED",
+          crop: { unit: "percent", x: 6, y: 53, width: 88.4, height: 14.2, aspectRatio: 4.12 },
+          meta: { pageNo: 280 }
+        },
+        {
+          id: "l23-p2-a4-word-bank",
+          kind: "source_crop",
+          imagePath: page45(280),
+          label: "\u7EC3\u4E60 II 4 \u8BCD\u6846\u9009\u62E9",
+          crop: { unit: "percent", x: 6, y: 70, width: 88.4, height: 13, aspectRatio: 4.501 },
+          meta: { pageNo: 280 }
+        },
+        {
+          id: "l23-p2-a5-translation",
+          kind: "source_crop",
+          imagePath: page45(280),
+          label: "\u7EC3\u4E60 II 5 \u7FFB\u8BD1",
+          crop: { unit: "percent", x: 6, y: 85, width: 88.4, height: 9.4, aspectRatio: 6.224 },
+          meta: { pageNo: 280 }
+        }
+      ]
+    }
+  ],
+  assets: []
+};
+lesson23ImageCrops.assets = lesson23ImageCrops.pages.flatMap((sourcePage) => sourcePage.assets);
+
+// practice/lesson23-practice-data.ts
+var page46 = (pageNo) => `../course-assets/by-lesson/lesson23/page${pageNo}.webp`;
+var audio22 = (exerciseNo, order) => `https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit6/lesson23/Exe${exerciseNo}_${order}.mp3`;
+var text23 = (value, options = {}) => ({ type: "text", text: value, ...options });
+var blank20 = (slotId) => ({ type: "blank", slotId });
+var crop22 = (id) => lesson23ImageCrops.assets.find((asset2) => asset2.id === id);
+var completionHint11 = "\u53EA\u8865\u5168\u9898\u76EE\u4E2D\u7A7A\u683C\u5904\u9700\u8981\u586B\u5199\u7684\u90E8\u5206\u3002";
+var answerOnlyHint17 = "\u53EA\u586B\u5199\u63D0\u95EE\u540E\u7684\u56DE\u7B54\u90E8\u5206\uFF0C\u4E0D\u9700\u8981\u91CD\u5199\u95EE\u9898\u3002";
+var sentenceSlot22 = (placeholder = "\u8F93\u5165\u5B8C\u6574\u53E5\u5B50") => [{ id: "answer", expectedUnit: "sentence", width: "long", placeholder }];
+var dialogueSlot19 = (placeholder = "\u8F93\u5165\u5B8C\u6574\u95EE\u7B54", rows = 4) => [
+  { id: "answer", expectedUnit: "dialogue", width: "long", multiline: true, rows, placeholder }
+];
+var slots3 = (slotIds, expectedUnit = "phrase") => slotIds.map((slotId) => ({ id: slotId, expectedUnit, width: "medium", placeholder: "\u8F93\u5165\u8BCD\u8BED" }));
+var answerItem21 = (id, number, prompt, answer3, options = {}) => ({
+  id,
+  number,
+  prompt: typeof prompt === "string" ? [text23(prompt)] : prompt,
+  promptKana: options.promptKana,
+  instruction: "",
+  answerSource: options.answerSource || "example_transform",
+  responseScope: options.responseScope || "sentence_only",
+  responseScopeHint: options.responseScopeHint,
+  inputSlots: options.multiline ? dialogueSlot19("\u8F93\u5165\u5B8C\u6574\u95EE\u7B54", options.rows || 4) : sentenceSlot22("\u8F93\u5165\u5B8C\u6574\u53E5\u5B50"),
+  answer: { slotValues: { answer: answer3 }, acceptableAlternatives: options.acceptableAlternatives }
+});
+var blankItem20 = (id, number, prompt, answers, options = {}) => ({
+  id,
+  number,
+  prompt: typeof prompt === "string" ? [text23(prompt)] : prompt,
+  promptKana: options.promptKana,
+  instruction: "",
+  answerSource: options.answerSource || "prompt",
+  responseScope: options.responseScope || "phrase_only",
+  responseScopeHint: completionHint11,
+  inputSlots: slots3(Object.keys(answers), options.expectedUnit),
+  answer: { slotValues: answers }
+});
+var dialogueItem19 = (id, number, prompt, answer3, promptKana) => ({
+  id,
+  number,
+  prompt: [text23(prompt)],
+  promptKana,
+  instruction: "",
+  answerSource: "example_transform",
+  responseScope: "question_and_answer",
+  responseScopeHint: "\u5199\u51FA\u5B8C\u6574\u95EE\u7B54\u3002",
+  inputSlots: dialogueSlot19("\u8F93\u5165\u5B8C\u6574\u95EE\u7B54", 4),
+  answer: { slotValues: { answer: answer3 } },
+  renderHint: "dialogue"
+});
+var choiceItem11 = (id, number, prompt, choiceIds, options = {}) => ({
+  id,
+  number,
+  prompt: [text23(prompt)],
+  promptKana: options.promptKana,
+  instruction: "",
+  answerSource: options.answerSource || "audio",
+  responseScope: "choice_only",
+  choices: options.choices,
+  answer: { choiceIds },
+  renderHint: options.multi ? "table_row" : "inline"
+});
+var tableChoices = [
+  { id: "beer", label: "\u30D3\u30FC\u30EB" },
+  { id: "karaoke", label: "\u30AB\u30E9\u30AA\u30B1" },
+  { id: "yakitori", label: "\u713C\u304D\u9CE5" }
+];
+var connectChoices = [
+  { id: "douka", label: "\u3069\u3046\u304B \u5206\u304B\u308A\u307E\u305B\u3093\u3002" },
+  { id: "wakari", label: "\u5206\u304B\u308A\u307E\u305B\u3093\u3002" }
+];
+var activities22 = [
+  {
+    id: "l23-p1-a1",
+    section: "practice_1",
+    order: 1,
+    title: "\u770B\u56FE\uFF0C\u4EFF\u7167\u4F8B\u53E5\u66FF\u6362\u753B\u7EBF\u90E8\u5206\u8FDB\u884C\u7EC3\u4E60\u3002",
+    instruction: "",
+    interaction: "pattern_substitution",
+    answerUnit: "sentence",
+    responseScope: "sentence_only",
+    assets: [crop22("l23-p1-a1-picture-substitution")],
+    displayAssets: ["l23-p1-a1-picture-substitution"],
+    layout: [
+      { type: "example", content: { label: "[\u4F8B]", before: "\u4F11\u307F\u306E \u65E5 \u2192 \u4F11\u307F\u306E \u65E5\u3001\u6563\u6B69\u306B \u884C\u3063\u305F\u308A \u8CB7\u3044\u7269\u306B \u884C\u3063\u305F\u308A \u3057\u307E\u3059\u3002", beforeKana: "\u3084\u3059\u307F\u306E \u3072 \u2192 \u3084\u3059\u307F\u306E \u3072\u3001\u3055\u3093\u307D\u306B \u3044\u3063\u305F\u308A \u304B\u3044\u3082\u306E\u306B \u3044\u3063\u305F\u308A \u3057\u307E\u3059\u3002", after: [text23("\u4F11\u307F\u306E \u65E5\u3001\u6563\u6B69\u306B \u884C\u3063\u305F\u308A \u8CB7\u3044\u7269\u306B \u884C\u3063\u305F\u308A \u3057\u307E\u3059\u3002", { kana: "\u3084\u3059\u307F\u306E \u3072\u3001\u3055\u3093\u307D\u306B \u3044\u3063\u305F\u308A \u304B\u3044\u3082\u306E\u306B \u3044\u3063\u305F\u308A \u3057\u307E\u3059\u3002" })] } }
+    ],
+    items: [
+      answerItem21("l23-p1-a1-q1", "1", "\u6BCE\u6669\uFF0F\u672C\u3092 \u8AAD\u307F\u307E\u3059\uFF0F\u30C6\u30EC\u30D3\u3092 \u898B\u307E\u3059", "\u6BCE\u6669\u3001\u672C\u3092 \u8AAD\u3093\u3060\u308A \u30C6\u30EC\u30D3\u3092 \u898B\u305F\u308A \u3057\u307E\u3059\u3002", { promptKana: "\u307E\u3044\u3070\u3093\uFF0F\u307B\u3093\u3092 \u3088\u307F\u307E\u3059\uFF0F\u30C6\u30EC\u30D3\u3092 \u307F\u307E\u3059" }),
+      answerItem21("l23-p1-a1-q2", "2", "\u6628\u65E5\uFF0F\u90E8\u5C4B\u3092 \u6383\u9664\u3057\u307E\u3057\u305F\uFF0F\u8ECA\u3092 \u6D17\u3044\u307E\u3057\u305F", "\u6628\u65E5\u3001\u90E8\u5C4B\u3092 \u6383\u9664\u3057\u305F\u308A \u8ECA\u3092 \u6D17\u3063\u305F\u308A \u3057\u307E\u3057\u305F\u3002", { promptKana: "\u304D\u306E\u3046\uFF0F\u3078\u3084\u3092 \u305D\u3046\u3058\u3057\u307E\u3057\u305F\uFF0F\u304F\u308B\u307E\u3092 \u3042\u3089\u3044\u307E\u3057\u305F" }),
+      answerItem21("l23-p1-a1-q3", "3", "\u91D1\u66DC\u65E5\u306E \u6669\uFF0F\u98F2\u307F\u306B \u884C\u304D\u307E\u3059\uFF0F\u30AB\u30E9\u30AA\u30B1\u306B \u884C\u304D\u307E\u3059", "\u91D1\u66DC\u65E5\u306E \u6669\u3001\u98F2\u307F\u306B \u884C\u3063\u305F\u308A \u30AB\u30E9\u30AA\u30B1\u306B \u884C\u3063\u305F\u308A \u3057\u307E\u3059\u3002", { promptKana: "\u304D\u3093\u3088\u3046\u3073\u306E \u3070\u3093\uFF0F\u306E\u307F\u306B \u3044\u304D\u307E\u3059\uFF0F\u30AB\u30E9\u30AA\u30B1\u306B \u3044\u304D\u307E\u3059" })
+    ]
+  },
+  {
+    id: "l23-p1-a2",
+    section: "practice_1",
+    order: 2,
+    title: "\u4EFF\u7167\u4F8B\u53E5\u66FF\u6362\u753B\u7EBF\u90E8\u5206\u8FDB\u884C\u7EC3\u4E60\u3002",
+    instruction: "",
+    interaction: "pattern_substitution",
+    answerUnit: "sentence",
+    responseScope: "sentence_only",
+    assets: [crop22("l23-p1-a2-tari-substitution")],
+    displayAssets: ["l23-p1-a2-tari-substitution"],
+    layout: [
+      { type: "example", content: { label: "[\u4F8B]", before: "\u30C1\u30B1\u30C3\u30C8\uFF0F\u9AD8\u3044\uFF0F\u5B89\u3044\n\u516C\u5712\uFF0F\u9759\u304B\uFF0F\u306B\u304E\u3084\u304B\n\u5148\u751F\uFF0F\u4E2D\u56FD\u4EBA\uFF0F\u65E5\u672C\u4EBA", beforeKana: "\u30C1\u30B1\u30C3\u30C8\uFF0F\u305F\u304B\u3044\uFF0F\u3084\u3059\u3044\n\u3053\u3046\u3048\u3093\uFF0F\u3057\u305A\u304B\uFF0F\u306B\u304E\u3084\u304B\n\u305B\u3093\u305B\u3044\uFF0F\u3061\u3085\u3046\u3054\u304F\u3058\u3093\uFF0F\u306B\u307B\u3093\u3058\u3093", after: [text23("\u30C1\u30B1\u30C3\u30C8\u306F \u9AD8\u304B\u3063\u305F\u308A \u5B89\u304B\u3063\u305F\u308A\u3067\u3059\u3002\n\u516C\u5712\u306F \u9759\u304B\u3060\u3063\u305F\u308A \u306B\u304E\u3084\u304B\u3060\u3063\u305F\u308A\u3067\u3059\u3002\n\u5148\u751F\u306F \u4E2D\u56FD\u4EBA\u3060\u3063\u305F\u308A \u65E5\u672C\u4EBA\u3060\u3063\u305F\u308A\u3067\u3059\u3002")], afterKana: "\u30C1\u30B1\u30C3\u30C8\u306F \u305F\u304B\u304B\u3063\u305F\u308A \u3084\u3059\u304B\u3063\u305F\u308A\u3067\u3059\u3002\n\u3053\u3046\u3048\u3093\u306F \u3057\u305A\u304B\u3060\u3063\u305F\u308A \u306B\u304E\u3084\u304B\u3060\u3063\u305F\u308A\u3067\u3059\u3002\n\u305B\u3093\u305B\u3044\u306F \u3061\u3085\u3046\u3054\u304F\u3058\u3093\u3060\u3063\u305F\u308A \u306B\u307B\u3093\u3058\u3093\u3060\u3063\u305F\u308A\u3067\u3059\u3002" } }
+    ],
+    items: [
+      answerItem21("l23-p1-a2-q1", "1", "\u4F11\u307F\uFF0F\u91D1\u66DC\u65E5\uFF0F\u6708\u66DC\u65E5", "\u4F11\u307F\u306F \u91D1\u66DC\u65E5\u3060\u3063\u305F\u308A \u6708\u66DC\u65E5\u3060\u3063\u305F\u308A\u3067\u3059\u3002", { promptKana: "\u3084\u3059\u307F\uFF0F\u304D\u3093\u3088\u3046\u3073\uFF0F\u3052\u3064\u3088\u3046\u3073" }),
+      answerItem21("l23-p1-a2-q2", "2", "\u8A66\u9A13\uFF0F\u6613\u3057\u3044\uFF0F\u96E3\u3057\u3044", "\u8A66\u9A13\u306F \u6613\u3057\u304B\u3063\u305F\u308A \u96E3\u3057\u304B\u3063\u305F\u308A\u3067\u3059\u3002", { promptKana: "\u3057\u3051\u3093\uFF0F\u3084\u3055\u3057\u3044\uFF0F\u3080\u305A\u304B\u3057\u3044" }),
+      answerItem21("l23-p1-a2-q3", "3", "\u9589\u5E97\u6642\u523B\uFF0F\u65E9\u3044\uFF0F\u9045\u3044", "\u9589\u5E97\u6642\u523B\u306F \u65E9\u304B\u3063\u305F\u308A \u9045\u304B\u3063\u305F\u308A\u3067\u3059\u3002", { promptKana: "\u3078\u3044\u3066\u3093\u3058\u3053\u304F\uFF0F\u306F\u3084\u3044\uFF0F\u304A\u305D\u3044" }),
+      answerItem21("l23-p1-a2-q4", "4", "\u4ED5\u4E8B\uFF0F\u6687\uFF0F\u5FD9\u3057\u3044", "\u4ED5\u4E8B\u306F \u6687\u3060\u3063\u305F\u308A \u5FD9\u3057\u304B\u3063\u305F\u308A\u3067\u3059\u3002", { promptKana: "\u3057\u3054\u3068\uFF0F\u3072\u307E\uFF0F\u3044\u305D\u304C\u3057\u3044" })
+    ]
+  },
+  {
+    id: "l23-p1-a3",
+    section: "practice_1",
+    order: 3,
+    title: "\u4EFF\u7167\u4F8B\u53E5\u56DE\u7B54\u63D0\u95EE\u3002",
+    instruction: "",
+    interaction: "pattern_substitution",
+    answerUnit: "sentence",
+    responseScope: "answer_only",
+    responseScopeHint: answerOnlyHint17,
+    assets: [crop22("l23-p1-a3-answer-question")],
+    displayAssets: ["l23-p1-a3-answer-question"],
+    layout: [
+      { type: "example", content: { label: "[\u4F8B]", before: "\u6BCE\u6669 \u4F55\u3092 \u3057\u307E\u3059\u304B\u3002\uFF08\u30C6\u30EC\u30D3\u3092 \u898B\u307E\u3059\uFF0F\u96D1\u8A8C\u3092 \u8AAD\u307F\u307E\u3059\uFF09", beforeKana: "\u307E\u3044\u3070\u3093 \u306A\u306B\u3092 \u3057\u307E\u3059\u304B\u3002\uFF08\u30C6\u30EC\u30D3\u3092 \u307F\u307E\u3059\uFF0F\u3056\u3063\u3057\u3092 \u3088\u307F\u307E\u3059\uFF09", after: [text23("\u30C6\u30EC\u30D3\u3092 \u898B\u305F\u308A \u96D1\u8A8C\u3092 \u8AAD\u3093\u3060\u308A \u3057\u307E\u3059\u3002", { kana: "\u30C6\u30EC\u30D3\u3092 \u307F\u305F\u308A \u3056\u3063\u3057\u3092 \u3088\u3093\u3060\u308A \u3057\u307E\u3059\u3002" })] } }
+    ],
+    items: [
+      answerItem21("l23-p1-a3-q1", "1", "\u4F11\u307F\u306E \u65E5\u306B \u4F55\u3092 \u3057\u307E\u3059\u304B\u3002\uFF08\u6383\u9664\u3092 \u3057\u307E\u3059\uFF0F\u6D17\u6FEF\u3092 \u3057\u307E\u3059\uFF09", "\u6383\u9664\u3092 \u3057\u305F\u308A \u6D17\u6FEF\u3092 \u3057\u305F\u308A \u3057\u307E\u3059\u3002", { promptKana: "\u3084\u3059\u307F\u306E \u3072\u306B \u306A\u306B\u3092 \u3057\u307E\u3059\u304B\u3002\uFF08\u305D\u3046\u3058\u3092 \u3057\u307E\u3059\uFF0F\u305B\u3093\u305F\u304F\u3092 \u3057\u307E\u3059\uFF09", responseScope: "answer_only", responseScopeHint: answerOnlyHint17 }),
+      answerItem21("l23-p1-a3-q2", "2", "\u7BB1\u6839\u306B \u884C\u3063\u3066\u3001\u4F55\u3092 \u3057\u307E\u3059\u304B\u3002\uFF08\u5C71\u306B \u767B\u308A\u307E\u3059\uFF0F\u8239\u306B \u4E57\u308A\u307E\u3059\uFF09", "\u5C71\u306B \u767B\u3063\u305F\u308A \u8239\u306B \u4E57\u3063\u305F\u308A \u3057\u307E\u3059\u3002", { promptKana: "\u306F\u3053\u306D\u306B \u3044\u3063\u3066\u3001\u306A\u306B\u3092 \u3057\u307E\u3059\u304B\u3002\uFF08\u3084\u307E\u306B \u306E\u307C\u308A\u307E\u3059\uFF0F\u3075\u306D\u306B \u306E\u308A\u307E\u3059\uFF09", responseScope: "answer_only", responseScopeHint: answerOnlyHint17 }),
+      answerItem21("l23-p1-a3-q3", "3", "\u590F\u4F11\u307F\u3001\u6D77\u3067 \u4F55\u3092 \u3057\u307E\u3059\u304B\u3002\uFF08\u6CF3\u304E\u307E\u3059\uFF0F\u91E3\u308A\u3092 \u3057\u307E\u3059\uFF09", "\u6CF3\u3044\u3060\u308A \u91E3\u308A\u3092 \u3057\u305F\u308A \u3057\u307E\u3059\u3002", { promptKana: "\u306A\u3064\u3084\u3059\u307F\u3001\u3046\u307F\u3067 \u306A\u306B\u3092 \u3057\u307E\u3059\u304B\u3002\uFF08\u304A\u3088\u304E\u307E\u3059\uFF0F\u3064\u308A\u3092 \u3057\u307E\u3059\uFF09", responseScope: "answer_only", responseScopeHint: answerOnlyHint17 })
+    ]
+  },
+  {
+    id: "l23-p1-a4",
+    section: "practice_1",
+    order: 4,
+    title: "\u5148\u4EFF\u7167\u4F8B\u53E5\u66FF\u6362\u753B\u7EBF\u90E8\u5206\u8FDB\u884C\u7EC3\u4E60\uFF0C\u7136\u540E\u542C\u5F55\u97F3\u786E\u8BA4\u3002",
+    instruction: "",
+    interaction: "dialogue_practice",
+    answerUnit: "dialogue",
+    responseScope: "question_and_answer",
+    responseScopeHint: "\u5199\u51FA\u5B8C\u6574\u8F6C\u6362\u53E5\u6216\u5B8C\u6574\u95EE\u7B54\u3002",
+    requiresAudio: true,
+    audio: {
+      source: "textbook_exercise",
+      url: audio22(1, 4),
+      label: "\u7B2C23\u8BFE \u7EC3\u4E60I-4",
+      transcript: {
+        text: "\u68EE\u3055\u3093\u306F\u4F55\u6642\u3054\u308D\u6765\u307E\u3059\u304B\u3002\u68EE\u3055\u3093\u304C\u4F55\u6642\u3054\u308D\u6765\u308B\u304B\u77E5\u3063\u3066\u3044\u307E\u3059\u304B\u3002\u5352\u696D\u5F0F\u306F\u4F55\u6642\u306B\u59CB\u307E\u308A\u307E\u3059\u304B\u3002\u5352\u696D\u5F0F\u304C\u4F55\u6642\u306B\u59CB\u307E\u308B\u304B\u77E5\u3063\u3066\u3044\u307E\u3059\u304B\u3002\u3060\u308C\u304C\u4ECA\u4F1A\u793E\u306E\u8ECA\u3092\u904B\u8EE2\u3057\u3066\u3044\u307E\u3059\u304B\u3002\u3060\u308C\u304C\u4ECA\u4F1A\u793E\u306E\u8ECA\u3092\u904B\u8EE2\u3057\u3066\u3044\u308B\u304B\u77E5\u3063\u3066\u3044\u307E\u3059\u304B\u3002\u3053\u306E\u7BB1\u306E\u4E2D\u306B\u4F55\u304C\u3042\u308A\u307E\u3059\u304B\u3002\u3053\u306E\u7BB1\u306E\u4E2D\u306B\u4F55\u304C\u3042\u308B\u304B\u77E5\u3063\u3066\u3044\u307E\u3059\u304B\u3002\u68EE\u3055\u3093\u306F\u3069\u3053\u3078\u51FA\u304B\u3051\u307E\u3057\u305F\u304B\u3002\u68EE\u3055\u3093\u304C\u3069\u3053\u3078\u51FA\u304B\u3051\u305F\u304B\u77E5\u3063\u3066\u3044\u307E\u3059\u304B\u3002\u4ECA\u65E5\u68EE\u3055\u3093\u306F\u6765\u307E\u3059\u304B\u3002\u3055\u3042\u3001\u6765\u308B\u304B\u6765\u306A\u3044\u304B\u5206\u304B\u308A\u307E\u305B\u3093\u3002\u6765\u308B\u304B\u3069\u3046\u304B\u5206\u304B\u308A\u307E\u305B\u3093\u3002",
+        source: "asr",
+        confidenceNote: "ASR \u5B8C\u6574\u8986\u76D6\u4F8B1\u548C\u6B63\u5F0F\u9898 1-4\uFF0C\u5E76\u8BC6\u522B\u5230\u4F8B2\uFF1B\u6B63\u5F0F\u9898 5-8 \u7684\u7B54\u6848\u6309\u6559\u6750\u5370\u5237\u9898\u5E72\u548C\u4F8B2\u53E5\u578B\u8865\u5168\u3002"
+      }
+    },
+    assets: [crop22("l23-p1-a4-listening-transform")],
+    displayAssets: ["l23-p1-a4-listening-transform"],
+    layout: [
+      { type: "example", content: { label: "[\u4F8B1]", before: "\u68EE\u3055\u3093\u306F \u4F55\u6642\u3054\u308D \u6765\u307E\u3059\u304B\u3002", beforeKana: "\u3082\u308A\u3055\u3093\u306F \u306A\u3093\u3058\u3054\u308D \u304D\u307E\u3059\u304B\u3002", after: [text23("\u68EE\u3055\u3093\u304C \u4F55\u6642\u3054\u308D \u6765\u308B\u304B \u77E5\u3063\u3066 \u3044\u307E\u3059\u304B\u3002")], afterKana: "\u3082\u308A\u3055\u3093\u304C \u306A\u3093\u3058\u3054\u308D \u304F\u308B\u304B \u3057\u3063\u3066 \u3044\u307E\u3059\u304B\u3002" } },
+      { type: "example", content: { label: "[\u4F8B2]", before: "\u4ECA\u65E5 \u68EE\u3055\u3093\u306F \u6765\u307E\u3059\u3002", beforeKana: "\u304D\u3087\u3046 \u3082\u308A\u3055\u3093\u306F \u304D\u307E\u3059\u3002", after: [text23("\u7532\uFF1A\u4ECA\u65E5 \u68EE\u3055\u3093\u306F \u6765\u307E\u3059\u304B\u3002\n\u4E591\uFF1A\u3055\u3042\u3001\u6765\u308B\u304B \u6765\u306A\u3044\u304B \u5206\u304B\u308A\u307E\u305B\u3093\u3002\n\u4E592\uFF1A\u6765\u308B\u304B \u3069\u3046\u304B \u5206\u304B\u308A\u307E\u305B\u3093\u3002")], afterKana: "\u304D\u3087\u3046 \u3082\u308A\u3055\u3093\u306F \u304D\u307E\u3059\u304B\u3002\n\u3055\u3042\u3001\u304F\u308B\u304B \u3053\u306A\u3044\u304B \u308F\u304B\u308A\u307E\u305B\u3093\u3002\n\u304F\u308B\u304B \u3069\u3046\u304B \u308F\u304B\u308A\u307E\u305B\u3093\u3002" } }
+    ],
+    items: [
+      answerItem21("l23-p1-a4-q1", "1", "\u5352\u696D\u5F0F\u306F \u4F55\u6642\u306B \u59CB\u307E\u308A\u307E\u3059\u304B\u3002", "\u5352\u696D\u5F0F\u304C \u4F55\u6642\u306B \u59CB\u307E\u308B\u304B \u77E5\u3063\u3066 \u3044\u307E\u3059\u304B\u3002", { promptKana: "\u305D\u3064\u304E\u3087\u3046\u3057\u304D\u306F \u306A\u3093\u3058\u306B \u306F\u3058\u307E\u308A\u307E\u3059\u304B\u3002", answerSource: "audio" }),
+      answerItem21("l23-p1-a4-q2", "2", "\u3060\u308C\u304C \u4ECA \u4F1A\u793E\u306E \u8ECA\u3092 \u904B\u8EE2\u3057\u3066 \u3044\u307E\u3059\u304B\u3002", "\u3060\u308C\u304C \u4ECA \u4F1A\u793E\u306E \u8ECA\u3092 \u904B\u8EE2\u3057\u3066 \u3044\u308B\u304B \u77E5\u3063\u3066 \u3044\u307E\u3059\u304B\u3002", { promptKana: "\u3060\u308C\u304C \u3044\u307E \u304B\u3044\u3057\u3083\u306E \u304F\u308B\u307E\u3092 \u3046\u3093\u3066\u3093\u3057\u3066 \u3044\u307E\u3059\u304B\u3002", answerSource: "audio" }),
+      answerItem21("l23-p1-a4-q3", "3", "\u3053\u306E \u7BB1\u306E \u4E2D\u306B \u4F55\u304C \u3042\u308A\u307E\u3059\u304B\u3002", "\u3053\u306E \u7BB1\u306E \u4E2D\u306B \u4F55\u304C \u3042\u308B\u304B \u77E5\u3063\u3066 \u3044\u307E\u3059\u304B\u3002", { promptKana: "\u3053\u306E \u306F\u3053\u306E \u306A\u304B\u306B \u306A\u306B\u304C \u3042\u308A\u307E\u3059\u304B\u3002", answerSource: "audio" }),
+      answerItem21("l23-p1-a4-q4", "4", "\u68EE\u3055\u3093\u306F \u3069\u3053\u3078 \u51FA\u304B\u3051\u307E\u3057\u305F\u304B\u3002", "\u68EE\u3055\u3093\u304C \u3069\u3053\u3078 \u51FA\u304B\u3051\u305F\u304B \u77E5\u3063\u3066 \u3044\u307E\u3059\u304B\u3002", { promptKana: "\u3082\u308A\u3055\u3093\u306F \u3069\u3053\u3078 \u3067\u304B\u3051\u307E\u3057\u305F\u304B\u3002", answerSource: "audio" }),
+      dialogueItem19("l23-p1-a4-q5", "5", "\u660E\u65E5 \u96EA\u304C \u964D\u308A\u307E\u3059\u3002", "\u7532\uFF1A\u660E\u65E5 \u96EA\u304C \u964D\u308A\u307E\u3059\u304B\u3002\n\u4E591\uFF1A\u3055\u3042\u3001\u964D\u308B\u304B \u964D\u3089\u306A\u3044\u304B \u5206\u304B\u308A\u307E\u305B\u3093\u3002\n\u4E592\uFF1A\u964D\u308B\u304B \u3069\u3046\u304B \u5206\u304B\u308A\u307E\u305B\u3093\u3002", "\u3042\u3057\u305F \u3086\u304D\u304C \u3075\u308A\u307E\u3059\u3002"),
+      dialogueItem19("l23-p1-a4-q6", "6", "\u30AD\u30E0\u3055\u3093\u306F \u304A\u9152\u3092 \u98F2\u307F\u307E\u3059\u3002", "\u7532\uFF1A\u30AD\u30E0\u3055\u3093\u306F \u304A\u9152\u3092 \u98F2\u307F\u307E\u3059\u304B\u3002\n\u4E591\uFF1A\u3055\u3042\u3001\u98F2\u3080\u304B \u98F2\u307E\u306A\u3044\u304B \u5206\u304B\u308A\u307E\u305B\u3093\u3002\n\u4E592\uFF1A\u98F2\u3080\u304B \u3069\u3046\u304B \u5206\u304B\u308A\u307E\u305B\u3093\u3002", "\u30AD\u30E0\u3055\u3093\u306F \u304A\u3055\u3051\u3092 \u306E\u307F\u307E\u3059\u3002"),
+      dialogueItem19("l23-p1-a4-q7", "7", "\u674E\u3055\u3093\u306F \u307E\u3060 \u4F1A\u793E\u306B \u3044\u307E\u3059\u3002", "\u7532\uFF1A\u674E\u3055\u3093\u306F \u307E\u3060 \u4F1A\u793E\u306B \u3044\u307E\u3059\u304B\u3002\n\u4E591\uFF1A\u3055\u3042\u3001\u3044\u308B\u304B \u3044\u306A\u3044\u304B \u5206\u304B\u308A\u307E\u305B\u3093\u3002\n\u4E592\uFF1A\u3044\u308B\u304B \u3069\u3046\u304B \u5206\u304B\u308A\u307E\u305B\u3093\u3002", "\u308A\u3055\u3093\u306F \u307E\u3060 \u304B\u3044\u3057\u3083\u306B \u3044\u307E\u3059\u3002"),
+      dialogueItem19("l23-p1-a4-q8", "8", "\u6765\u9031 \u6687\u3067\u3059\u3002", "\u7532\uFF1A\u6765\u9031 \u6687\u3067\u3059\u304B\u3002\n\u4E591\uFF1A\u3055\u3042\u3001\u6687\u304B \u6687\u3067\u306F \u306A\u3044\u304B \u5206\u304B\u308A\u307E\u305B\u3093\u3002\n\u4E592\uFF1A\u6687\u304B \u3069\u3046\u304B \u5206\u304B\u308A\u307E\u305B\u3093\u3002", "\u3089\u3044\u3057\u3085\u3046 \u3072\u307E\u3067\u3059\u3002")
+    ]
+  },
+  {
+    id: "l23-p1-a5",
+    section: "practice_1",
+    order: 5,
+    title: "\u4EFF\u7167\u4F8B\u53E5\u8FDB\u884C\u7EC3\u4E60\u3002",
+    instruction: "",
+    interaction: "pattern_substitution",
+    answerUnit: "sentence",
+    responseScope: "sentence_only",
+    assets: [crop22("l23-p1-a5-transform")],
+    displayAssets: ["l23-p1-a5-transform"],
+    layout: [
+      { type: "example", content: { label: "[\u4F8B1]", before: "\u3053\u306E \u4ED5\u4E8B\u306F \u3044\u3064 \u7D42\u308F\u308A\u307E\u3059\u304B\uFF0F\u5206\u304B\u308A\u307E\u305B\u3093", beforeKana: "\u3053\u306E \u3057\u3054\u3068\u306F \u3044\u3064 \u304A\u308F\u308A\u307E\u3059\u304B\uFF0F\u308F\u304B\u308A\u307E\u305B\u3093", after: [text23("\u3053\u306E \u4ED5\u4E8B\u304C \u3044\u3064 \u7D42\u308F\u308B\u304B \u5206\u304B\u308A\u307E\u305B\u3093\u3002")], afterKana: "\u3053\u306E \u3057\u3054\u3068\u304C \u3044\u3064 \u304A\u308F\u308B\u304B \u308F\u304B\u308A\u307E\u305B\u3093\u3002" } },
+      { type: "example", content: { label: "[\u4F8B2]", before: "\u5317\u4EAC\u3078 \u5E30\u308A\u307E\u3059\u304B\uFF0F\u5206\u304B\u308A\u307E\u305B\u3093", beforeKana: "\u30DA\u30AD\u30F3\u3078 \u304B\u3048\u308A\u307E\u3059\u304B\uFF0F\u308F\u304B\u308A\u307E\u305B\u3093", after: [text23("\u5317\u4EAC\u3078 \u5E30\u308B\u304B \u3069\u3046\u304B \u5206\u304B\u308A\u307E\u305B\u3093\u3002")], afterKana: "\u30DA\u30AD\u30F3\u3078 \u304B\u3048\u308B\u304B \u3069\u3046\u304B \u308F\u304B\u308A\u307E\u305B\u3093\u3002" } }
+    ],
+    items: [
+      answerItem21("l23-p1-a5-q1", "1", "\u6771\u4EAC\u99C5\u307E\u3067 \u4F55\u3067 \u884C\u304D\u307E\u3059\u304B\uFF0F\u5206\u304B\u308A\u307E\u305B\u3093", "\u6771\u4EAC\u99C5\u307E\u3067 \u4F55\u3067 \u884C\u304F\u304B \u5206\u304B\u308A\u307E\u305B\u3093\u3002", { promptKana: "\u3068\u3046\u304D\u3087\u3046\u3048\u304D\u307E\u3067 \u306A\u3093\u3067 \u3044\u304D\u307E\u3059\u304B\uFF0F\u308F\u304B\u308A\u307E\u305B\u3093" }),
+      answerItem21("l23-p1-a5-q2", "2", "\u66F8\u985E\u3092 \u3069\u3053\u306B \u7F6E\u304D\u307E\u3057\u305F\u304B\uFF0F\u5FD8\u308C\u307E\u3057\u305F", "\u66F8\u985E\u3092 \u3069\u3053\u306B \u7F6E\u3044\u305F\u304B \u5FD8\u308C\u307E\u3057\u305F\u3002", { promptKana: "\u3057\u3087\u308B\u3044\u3092 \u3069\u3053\u306B \u304A\u304D\u307E\u3057\u305F\u304B\uFF0F\u308F\u3059\u308C\u307E\u3057\u305F" }),
+      answerItem21("l23-p1-a5-q3", "3", "\u674E\u3055\u3093\u306F \u3044\u3064 \u4E2D\u56FD\u3078 \u5E30\u308A\u307E\u3059\u304B\uFF0F\u77E5\u3063\u3066 \u3044\u307E\u3059\u304B", "\u674E\u3055\u3093\u304C \u3044\u3064 \u4E2D\u56FD\u3078 \u5E30\u308B\u304B \u77E5\u3063\u3066 \u3044\u307E\u3059\u304B\u3002", { promptKana: "\u308A\u3055\u3093\u306F \u3044\u3064 \u3061\u3085\u3046\u3054\u304F\u3078 \u304B\u3048\u308A\u307E\u3059\u304B\uFF0F\u3057\u3063\u3066 \u3044\u307E\u3059\u304B" }),
+      answerItem21("l23-p1-a5-q4", "4", "\u9593\u9055\u3044\u304C \u3042\u308A\u307E\u305B\u3093\u304B\uFF0F\u3082\u3046 \u4E00\u5EA6 \u898B\u3066 \u304F\u3060\u3055\u3044", "\u9593\u9055\u3044\u304C \u3042\u308B\u304B \u3069\u3046\u304B\u3001\u3082\u3046 \u4E00\u5EA6 \u898B\u3066 \u304F\u3060\u3055\u3044\u3002", { promptKana: "\u307E\u3061\u304C\u3044\u304C \u3042\u308A\u307E\u305B\u3093\u304B\uFF0F\u3082\u3046 \u3044\u3061\u3069 \u307F\u3066 \u304F\u3060\u3055\u3044" }),
+      answerItem21("l23-p1-a5-q5", "5", "\u7A93\u3092 \u9589\u3081\u307E\u3057\u305F\u304B\uFF0F\u78BA\u304B\u3081\u3066 \u304F\u3060\u3055\u3044", "\u7A93\u3092 \u9589\u3081\u305F\u304B \u3069\u3046\u304B \u78BA\u304B\u3081\u3066 \u304F\u3060\u3055\u3044\u3002", { promptKana: "\u307E\u3069\u3092 \u3057\u3081\u307E\u3057\u305F\u304B\uFF0F\u305F\u3057\u304B\u3081\u3066 \u304F\u3060\u3055\u3044" }),
+      answerItem21("l23-p1-a5-q6", "6", "\u4ED5\u4E8B\u304C \u7D42\u308F\u308A\u307E\u3057\u305F\u304B\uFF0F\u5C0F\u91CE\u3055\u3093\u306B \u805E\u3044\u3066 \u304F\u3060\u3055\u3044", "\u4ED5\u4E8B\u304C \u7D42\u308F\u3063\u305F\u304B \u3069\u3046\u304B \u5C0F\u91CE\u3055\u3093\u306B \u805E\u3044\u3066 \u304F\u3060\u3055\u3044\u3002", { promptKana: "\u3057\u3054\u3068\u304C \u304A\u308F\u308A\u307E\u3057\u305F\u304B\uFF0F\u304A\u306E\u3055\u3093\u306B \u304D\u3044\u3066 \u304F\u3060\u3055\u3044" })
+    ]
+  },
+  {
+    id: "l23-p1-a6",
+    section: "practice_1",
+    order: 6,
+    title: "\u8FB9\u770B\u56FE\u8FB9\u542C\u5F55\u97F3\uFF0C\u4EFF\u7167\u4F8B\u53E5\u56DE\u7B54\u63D0\u95EE\u3002",
+    instruction: "",
+    interaction: "listening_answer",
+    answerUnit: "sentence",
+    responseScope: "answer_only",
+    responseScopeHint: answerOnlyHint17,
+    requiresAudio: true,
+    audio: {
+      source: "textbook_exercise",
+      url: audio22(1, 6),
+      label: "\u7B2C23\u8BFE \u7EC3\u4E60I-6",
+      transcript: {
+        text: "\u5C0F\u91CE\u3055\u3093\u304C\u4F55\u6642\u306B\u6765\u308B\u304B\u77E5\u3063\u3066\u3044\u307E\u3059\u304B\u3002\u306F\u3044\u30018\u6642\u306B\u6765\u307E\u3059\u3002\u5C0F\u91CE\u3055\u3093\u306E\u5BB6\u304C\u3069\u3053\u306B\u3042\u308B\u304B\u77E5\u3063\u3066\u3044\u307E\u3059\u304B\u3002\u306F\u3044\u3001\u6A2A\u6D5C\u306B\u3042\u308A\u307E\u3059\u3002\u5409\u7530\u3055\u3093\u304C\u6628\u65E5\u306E\u663C\u3001\u4F55\u3092\u98DF\u3079\u305F\u304B\u77E5\u3063\u3066\u3044\u307E\u3059\u304B\u3002\u306F\u3044\u3001\u305D\u3070\u3092\u98DF\u3079\u307E\u3057\u305F\u3002\u7530\u4E2D\u3055\u3093\u306E\u8ECA\u304C\u3044\u304F\u3089\u3060\u3063\u305F\u304B\u77E5\u3063\u3066\u3044\u307E\u3059\u304B\u3002\u306F\u3044\u300110\u4E07\u5186\u3067\u3057\u305F\u3002",
+        source: "asr",
+        segments: [
+          { itemNumber: "1", text: "\u5C0F\u91CE\u3055\u3093\u306E\u5BB6\u304C\u3069\u3053\u306B\u3042\u308B\u304B\u77E5\u3063\u3066\u3044\u307E\u3059\u304B\u3002\u306F\u3044\u3001\u6A2A\u6D5C\u306B\u3042\u308A\u307E\u3059\u3002" },
+          { itemNumber: "2", text: "\u5409\u7530\u3055\u3093\u304C\u6628\u65E5\u306E\u663C\u3001\u4F55\u3092\u98DF\u3079\u305F\u304B\u77E5\u3063\u3066\u3044\u307E\u3059\u304B\u3002\u306F\u3044\u3001\u305D\u3070\u3092\u98DF\u3079\u307E\u3057\u305F\u3002" },
+          { itemNumber: "3", text: "\u7530\u4E2D\u3055\u3093\u306E\u8ECA\u304C\u3044\u304F\u3089\u3060\u3063\u305F\u304B\u77E5\u3063\u3066\u3044\u307E\u3059\u304B\u3002\u306F\u3044\u300110\u4E07\u5186\u3067\u3057\u305F\u3002" }
+        ]
+      }
+    },
+    assets: [crop22("l23-p1-a6-listening-picture")],
+    displayAssets: ["l23-p1-a6-listening-picture"],
+    layout: [
+      { type: "example", content: { label: "[\u4F8B]", before: "\u5C0F\u91CE\u3055\u3093\u304C \u4F55\u6642\u306B \u6765\u308B\u304B \u77E5\u3063\u3066 \u3044\u307E\u3059\u304B\u3002", beforeKana: "\u304A\u306E\u3055\u3093\u304C \u306A\u3093\u3058\u306B \u304F\u308B\u304B \u3057\u3063\u3066 \u3044\u307E\u3059\u304B\u3002", after: [text23("\u306F\u3044\u30018\u6642\u306B \u6765\u307E\u3059\u3002")], afterKana: "\u306F\u3044\u3001\u306F\u3061\u3058\u306B \u304D\u307E\u3059\u3002" } }
+    ],
+    items: [
+      answerItem21("l23-p1-a6-q1", "1", "\u542C\u5F55\u97F3\uFF0C\u56DE\u7B54\u5BF9\u5E94\u95EE\u9898\u3002", "\u306F\u3044\u3001\u6A2A\u6D5C\u306B \u3042\u308A\u307E\u3059\u3002", { answerSource: "audio", responseScope: "answer_only", responseScopeHint: answerOnlyHint17 }),
+      answerItem21("l23-p1-a6-q2", "2", "\u542C\u5F55\u97F3\uFF0C\u56DE\u7B54\u5BF9\u5E94\u95EE\u9898\u3002", "\u306F\u3044\u3001\u305D\u3070\u3092 \u98DF\u3079\u307E\u3057\u305F\u3002", { answerSource: "audio", responseScope: "answer_only", responseScopeHint: answerOnlyHint17 }),
+      answerItem21("l23-p1-a6-q3", "3", "\u542C\u5F55\u97F3\uFF0C\u56DE\u7B54\u5BF9\u5E94\u95EE\u9898\u3002", "\u306F\u3044\u300110\u4E07\u5186\u3067\u3057\u305F\u3002", { answerSource: "audio", responseScope: "answer_only", responseScopeHint: answerOnlyHint17 })
+    ]
+  },
+  {
+    id: "l23-p2-a1",
+    section: "practice_2",
+    order: 1,
+    title: "\u4EFF\u7167\u4F8B\u53E5\uFF0C\u8FDE\u63A5\u6B63\u786E\u7B54\u6848\u3002",
+    instruction: "",
+    interaction: "single_choice",
+    answerUnit: "choice",
+    responseScope: "choice_only",
+    assets: [crop22("l23-p2-a1-connect")],
+    displayAssets: ["l23-p2-a1-connect"],
+    layout: [{ type: "example", content: { label: "[\u4F8B]", before: "\u3044\u3064 \u884C\u304F\u304B", beforeKana: "\u3044\u3064 \u3044\u304F\u304B", after: [text23("\u3069\u3046\u304B \u5206\u304B\u308A\u307E\u305B\u3093\u3002", { kana: "\u3069\u3046\u304B \u308F\u304B\u308A\u307E\u305B\u3093\u3002" })] } }],
+    items: [
+      choiceItem11("l23-p2-a1-q1", "1", "\u571F\u66DC\u65E5\u306B \u884C\u304F \u3053\u3068\u304C \u3067\u304D\u308B\u304B", ["douka"], { promptKana: "\u3069\u3088\u3046\u3073\u306B \u3044\u304F \u3053\u3068\u304C \u3067\u304D\u308B\u304B", choices: connectChoices, answerSource: "prompt" }),
+      choiceItem11("l23-p2-a1-q2", "2", "\u3053\u306E \u672C\u304C \u56F3\u66F8\u9928\u306B \u3042\u308B\u304B", ["douka"], { promptKana: "\u3053\u306E \u307B\u3093\u304C \u3068\u3057\u3087\u304B\u3093\u306B \u3042\u308B\u304B", choices: connectChoices, answerSource: "prompt" }),
+      choiceItem11("l23-p2-a1-q3", "3", "\u6765\u9031 \u51FA\u5F35\u3059\u308B\u304B", ["douka"], { promptKana: "\u3089\u3044\u3057\u3085\u3046 \u3057\u3085\u3063\u3061\u3087\u3046\u3059\u308B\u304B", choices: connectChoices, answerSource: "prompt" }),
+      choiceItem11("l23-p2-a1-q4", "4", "\u3060\u308C\u304C \u6765\u308B\u304B", ["wakari"], { promptKana: "\u3060\u308C\u304C \u304F\u308B\u304B", choices: connectChoices, answerSource: "prompt" })
+    ]
+  },
+  {
+    id: "l23-p2-a2",
+    section: "practice_2",
+    order: 2,
+    title: "\u542C\u5F55\u97F3\uFF0C\u5728\u6B63\u786E\u7684\u7B54\u6848\u4E0A\u753B\u25CB\u3002",
+    instruction: "",
+    interaction: "multi_choice",
+    answerUnit: "choice",
+    responseScope: "choice_only",
+    requiresAudio: true,
+    audio: {
+      source: "textbook_exercise",
+      url: audio22(2, 2),
+      label: "\u7B2C23\u8BFE \u7EC3\u4E60II-2",
+      transcript: {
+        text: "\u5C0F\u91CE\u3055\u3093\u306F\u30D3\u30FC\u30EB\u3092\u98F2\u3093\u3060\u308A\u3001\u6B4C\u3092\u6B4C\u3063\u305F\u308A\u3057\u307E\u3057\u305F\u3002\u713C\u304D\u9CE5\u3092\u5168\u7136\u98DF\u3079\u307E\u305B\u3093\u3067\u3057\u305F\u3002\u674E\u3055\u3093\u306F\u6B4C\u304C\u597D\u304D\u3067\u3059\u304C\u3001\u6B4C\u3044\u307E\u305B\u3093\u3067\u3057\u305F\u3002\u713C\u304D\u9CE5\u3092\u98DF\u3079\u305F\u308A\u3001\u30D3\u30FC\u30EB\u3092\u98F2\u3093\u3060\u308A\u3057\u3066\u3044\u307E\u3057\u305F\u3002\u9577\u5CF6\u3055\u3093\u306F\u5168\u7136\u30D3\u30FC\u30EB\u3092\u98F2\u307F\u307E\u305B\u3093\u3067\u3057\u305F\u3002\u713C\u304D\u9CE5\u3092\u98DF\u3079\u3066\u304B\u3089\u3001\u3059\u3050\u5E30\u308A\u307E\u3057\u305F\u3002\u68EE\u3055\u3093\u306F\u30D3\u30FC\u30EB\u3092\u98F2\u3093\u3060\u308A\u3001\u713C\u304D\u9CE5\u3092\u98DF\u3079\u305F\u308A\u3001\u6B4C\u3092\u6B4C\u3063\u305F\u308A\u3057\u307E\u3057\u305F\u3002\u3068\u3066\u3082\u306B\u304E\u3084\u304B\u3067\u3057\u305F\u3002",
+        source: "asr",
+        segments: [
+          { itemNumber: "1", speaker: "\u68EE", text: "\u30D3\u30FC\u30EB\u3092\u98F2\u3093\u3060\u308A\u3001\u713C\u304D\u9CE5\u3092\u98DF\u3079\u305F\u308A\u3001\u6B4C\u3092\u6B4C\u3063\u305F\u308A\u3057\u307E\u3057\u305F\u3002" },
+          { itemNumber: "2", speaker: "\u674E", text: "\u713C\u304D\u9CE5\u3092\u98DF\u3079\u305F\u308A\u3001\u30D3\u30FC\u30EB\u3092\u98F2\u3093\u3060\u308A\u3057\u3066\u3044\u307E\u3057\u305F\u3002\u6B4C\u3044\u307E\u305B\u3093\u3067\u3057\u305F\u3002" },
+          { itemNumber: "3", speaker: "\u9577\u5CF6", text: "\u5168\u7136\u30D3\u30FC\u30EB\u3092\u98F2\u307F\u307E\u305B\u3093\u3067\u3057\u305F\u3002\u713C\u304D\u9CE5\u3092\u98DF\u3079\u3066\u304B\u3089\u3001\u3059\u3050\u5E30\u308A\u307E\u3057\u305F\u3002" }
+        ],
+        confidenceNote: "ASR \u4E2D\u300C\u713C\u304D\u9CE5\u3092\u5168\u7136\u305F\u3081\u307E\u305B\u3093\u3067\u3057\u305F\u300D\u306F\u7ED3\u5408\u8868\u683C\u9009\u9879\u6821\u6B63\u4E3A\u300C\u713C\u304D\u9CE5\u3092\u5168\u7136\u98DF\u3079\u307E\u305B\u3093\u3067\u3057\u305F\u300D\u3002"
+      }
+    },
+    assets: [crop22("l23-p2-a2-listening-table")],
+    displayAssets: ["l23-p2-a2-listening-table"],
+    layout: [
+      { type: "example", content: { label: "[\u4F8B]", before: "\u5C0F\u91CE", beforeKana: "\u304A\u306E", after: [text23("\u30D3\u30FC\u30EB\u3001\u30AB\u30E9\u30AA\u30B1")], afterKana: "\u30D3\u30FC\u30EB\u3001\u30AB\u30E9\u30AA\u30B1" } }
+    ],
+    items: [
+      choiceItem11("l23-p2-a2-q1", "1", "\u68EE", ["beer", "karaoke", "yakitori"], { promptKana: "\u3082\u308A", choices: tableChoices, multi: true }),
+      choiceItem11("l23-p2-a2-q2", "2", "\u674E", ["beer", "yakitori"], { promptKana: "\u308A", choices: tableChoices, multi: true }),
+      choiceItem11("l23-p2-a2-q3", "3", "\u9577\u5CF6", ["yakitori"], { promptKana: "\u306A\u304C\u3057\u307E", choices: tableChoices, multi: true })
+    ]
+  },
+  {
+    id: "l23-p2-a3",
+    section: "practice_2",
+    order: 3,
+    title: "\u5728\uFF08\u3000\uFF09\u4E2D\u586B\u5165\u9002\u5F53\u7684\u8BCD\u8BED\u3002",
+    instruction: "",
+    interaction: "fill_blank",
+    answerUnit: "phrase",
+    responseScope: "phrase_only",
+    responseScopeHint: completionHint11,
+    assets: [crop22("l23-p2-a3-fill")],
+    displayAssets: ["l23-p2-a3-fill"],
+    layout: [
+      { type: "example", content: { label: "[\u4F8B]", before: "\u4F11\u307F\u306E \u65E5\u306F\u3001\u5348\u5F8C\u3001\u6563\u6B69\uFF08\u3057\u305F\u308A\uFF09\u8CB7\u3044\u7269\u306B\uFF08\u884C\u3063\u305F\u308A\uFF09\u3057\u307E\u3059\u3002", beforeKana: "\u3084\u3059\u307F\u306E \u3072\u306F\u3001\u3054\u3054\u3001\u3055\u3093\u307D\uFF08\u3057\u305F\u308A\uFF09\u304B\u3044\u3082\u306E\u306B\uFF08\u3044\u3063\u305F\u308A\uFF09\u3057\u307E\u3059\u3002", after: [text23("\u3057\u305F\u308A\uFF0F\u884C\u3063\u305F\u308A")], afterKana: "\u3057\u305F\u308A\uFF0F\u3044\u3063\u305F\u308A" } }
+    ],
+    items: [
+      blankItem20("l23-p2-a3-q1", "1", [text23("\u793E\u9577\u306F \u4F55\u6642\u3054\u308D \u4F1A\u793E\u306B \u6765\u307E\u3059\u304B\u3002\n\u4E00\u65E5\u306B \u3088\u3063\u3066\uFF08"), blank20("answer"), text23("\uFF09\u9045\u304B\u3063\u305F\u308A\u3067\u3059\u3002")], { answer: "\u65E9\u304B\u3063\u305F\u308A" }, { promptKana: "\u3057\u3083\u3061\u3087\u3046\u306F \u306A\u3093\u3058\u3054\u308D \u304B\u3044\u3057\u3083\u306B \u304D\u307E\u3059\u304B\u3002\n\u3072\u306B \u3088\u3063\u3066\uFF08\u3000\uFF09\u304A\u305D\u304B\u3063\u305F\u308A\u3067\u3059\u3002" }),
+      blankItem20("l23-p2-a3-q2", "2", [text23("\u671D\u3054\u98EF\u306F \u30D1\u30F3\u3067\u3059\u304B\u3001\u3054\u98EF\u3067\u3059\u304B\u3002\n\u30D1\u30F3\u3060\u3063\u305F\u308A\uFF08"), blank20("answer"), text23("\uFF09\u3067\u3059\u3002")], { answer: "\u3054\u98EF\u3060\u3063\u305F\u308A" }, { promptKana: "\u3042\u3055\u3054\u306F\u3093\u306F \u30D1\u30F3\u3067\u3059\u304B\u3001\u3054\u306F\u3093\u3067\u3059\u304B\u3002\n\u30D1\u30F3\u3060\u3063\u305F\u308A\uFF08\u3000\uFF09\u3067\u3059\u3002" }),
+      blankItem20("l23-p2-a3-q3", "3", [text23("\u5024\u6BB5\u306F \u5B63\u7BC0\u306B \u3088\u3063\u3066 \u9AD8\u304B\u3063\u305F\u308A\uFF08"), blank20("answer"), text23("\uFF09\u3067\u3059\u3002")], { answer: "\u5B89\u304B\u3063\u305F\u308A" }, { promptKana: "\u306D\u3060\u3093\u306F \u304D\u305B\u3064\u306B \u3088\u3063\u3066 \u305F\u304B\u304B\u3063\u305F\u308A\uFF08\u3000\uFF09\u3067\u3059\u3002" })
+    ]
+  },
+  {
+    id: "l23-p2-a4",
+    section: "practice_2",
+    order: 4,
+    title: "\u4ECE\u25A1\u4E2D\u9009\u62E9\u9002\u5F53\u7684\u8BCD\u8BED\uFF0C\u53D8\u6210\u9002\u5F53\u7684\u5F62\u5F0F\u586B\u5165\uFF08\u3000\uFF09\u4E2D\u3002",
+    instruction: "",
+    interaction: "fill_blank",
+    answerUnit: "word",
+    responseScope: "word_only",
+    responseScopeHint: completionHint11,
+    assets: [crop22("l23-p2-a4-word-bank")],
+    displayAssets: ["l23-p2-a4-word-bank"],
+    layout: [{ type: "word_bank", words: ["\u6765\u307E\u3059", "\u3044\u307E\u3059", "\u3042\u308A\u307E\u305B\u3093", "\u59CB\u307E\u308A\u307E\u3059"].map((word) => text23(word)) }],
+    items: [
+      blankItem20("l23-p2-a4-q1", "1", [text23("\u5C55\u89A7\u4F1A\u304C \u3044\u3064\u304B\u3089\uFF08"), blank20("answer"), text23("\uFF09\u304B \u5206\u304B\u308A\u307E\u305B\u3093\u3002")], { answer: "\u59CB\u307E\u308B" }, { promptKana: "\u3066\u3093\u3089\u3093\u304B\u3044\u304C \u3044\u3064\u304B\u3089\uFF08\u3000\uFF09\u304B \u308F\u304B\u308A\u307E\u305B\u3093\u3002", expectedUnit: "word" }),
+      blankItem20("l23-p2-a4-q2", "2", [text23("\u3053\u306E \u66F8\u985E\u306B \u9593\u9055\u3044\u304C \u3042\u308B\u304B\uFF08"), blank20("answer"), text23("\uFF09\u304B \u78BA\u304B\u3081\u3066 \u304F\u3060\u3055\u3044\u3002")], { answer: "\u306A\u3044" }, { promptKana: "\u3053\u306E \u3057\u3087\u308B\u3044\u306B \u307E\u3061\u304C\u3044\u304C \u3042\u308B\u304B\uFF08\u3000\uFF09\u304B \u305F\u3057\u304B\u3081\u3066 \u304F\u3060\u3055\u3044\u3002", expectedUnit: "word" }),
+      blankItem20("l23-p2-a4-q3", "3", [text23("\u674E\u3055\u3093\u306F \u3069\u3053\u306B \u3044\u307E\u3059\u304B\u3002\u2014\u2014\u3055\u3042\u3001\u3069\u3053\u306B\uFF08"), blank20("answer"), text23("\uFF09\u304B \u5206\u304B\u308A\u307E\u305B\u3093\u3002")], { answer: "\u3044\u308B" }, { promptKana: "\u308A\u3055\u3093\u306F \u3069\u3053\u306B \u3044\u307E\u3059\u304B\u3002\u3055\u3042\u3001\u3069\u3053\u306B\uFF08\u3000\uFF09\u304B \u308F\u304B\u308A\u307E\u305B\u3093\u3002", expectedUnit: "word" })
+    ]
+  },
+  {
+    id: "l23-p2-a5",
+    section: "practice_2",
+    order: 5,
+    title: "\u5C06\u4E0B\u9762\u7684\u53E5\u5B50\u8BD1\u6210\u65E5\u8BED\u3002",
+    instruction: "",
+    interaction: "translation",
+    answerUnit: "sentence",
+    responseScope: "sentence_only",
+    assets: [crop22("l23-p2-a5-translation")],
+    displayAssets: ["l23-p2-a5-translation"],
+    layout: [],
+    items: [
+      answerItem21("l23-p2-a5-q1", "1", "\u8BF7\u544A\u8BC9\u6211\u94A5\u5319\u5728\u54EA\u513F\u3002", "\u304B\u304E\u304C \u3069\u3053\u306B \u3042\u308B\u304B \u6559\u3048\u3066 \u304F\u3060\u3055\u3044\u3002", { acceptableAlternatives: ["\u304B\u304E\u304C \u3069\u3053\u306B \u3042\u308B\u304B\u3092 \u6559\u3048\u3066 \u304F\u3060\u3055\u3044\u3002"] }),
+      answerItem21("l23-p2-a5-q2", "2", "\u6211\u4ECA\u5E74\u590F\u5929\u53BB\u4E0D\u53BB\u5317\u4EAC\uFF0C\u8FD8\u4E0D\u77E5\u9053\u3002", "\u308F\u305F\u3057\u306F \u4ECA\u5E74\u306E \u590F\u3001\u5317\u4EAC\u3078 \u884C\u304F\u304B \u3069\u3046\u304B \u5206\u304B\u308A\u307E\u305B\u3093\u3002", { acceptableAlternatives: ["\u4ECA\u5E74\u306E \u590F\u3001\u5317\u4EAC\u3078 \u884C\u304F\u304B \u3069\u3046\u304B \u5206\u304B\u308A\u307E\u305B\u3093\u3002"] }),
+      answerItem21("l23-p2-a5-q3", "3", "\u5468\u672B\u6ED1\u4E86\u6ED1\u51B0\uFF0C\u6253\u4E86\u6253\u4FDD\u9F84\u7403\u3002", "\u9031\u672B\u3001\u30B9\u30B1\u30FC\u30C8\u3092 \u3057\u305F\u308A\u3001\u30DC\u30FC\u30EA\u30F3\u30B0\u3092 \u3057\u305F\u308A \u3057\u307E\u3057\u305F\u3002", { acceptableAlternatives: ["\u9031\u672B\u306B \u30B9\u30B1\u30FC\u30C8\u3092 \u3057\u305F\u308A\u3001\u30DC\u30FC\u30EA\u30F3\u30B0\u3092 \u3057\u305F\u308A \u3057\u307E\u3057\u305F\u3002"] })
+    ]
+  }
+];
+var lesson23Practice = {
+  lessonId: "lesson23",
+  title: "\u7B2C23\u8BFE \u4F11\u307F\u306E \u65E5\u3001\u6563\u6B69\u3057\u305F\u308A \u8CB7\u3044\u7269\u306B \u884C\u3063\u305F\u308A \u3057\u307E\u3059",
+  sourcePages: [
+    { pageNo: 278, imagePath: page46(278) },
+    { pageNo: 279, imagePath: page46(279) },
+    { pageNo: 280, imagePath: page46(280) }
+  ],
+  activities: activities22
 };
 
 // practice/react/entry.jsx
@@ -35053,7 +37264,11 @@ var practices = {
   lesson16: lesson16Practice,
   lesson17: lesson17Practice,
   lesson18: lesson18Practice,
-  lesson19: lesson19Practice
+  lesson19: lesson19Practice,
+  lesson20: lesson20Practice,
+  lesson21: lesson21Practice,
+  lesson22: lesson22Practice,
+  lesson23: lesson23Practice
 };
 function lessonIdFromPage() {
   const explicit = document.body.dataset.lessonId;

@@ -128,6 +128,12 @@
   function setStatus(status, message, tone = "") {
     status.textContent = message;
     status.dataset.tone = tone;
+    const wrapper = status.__speechInputWrapper;
+    if (message) {
+      if (wrapper && !status.isConnected) wrapper.append(status);
+      return;
+    }
+    if (status.isConnected) status.remove();
   }
 
   function normalizeFormattedText(value) {
@@ -416,6 +422,7 @@
     const status = document.createElement("span");
     status.className = "speech-input-status";
     status.setAttribute("aria-live", "polite");
+    status.__speechInputWrapper = wrapper;
 
     const recordButton = document.createElement("button");
     recordButton.type = "button";
@@ -425,7 +432,7 @@
     recordButton.title = isDialogueField(field) ? "录音后自动转写并整理为对话格式" : "录音后自动转写到输入框";
 
     recordButton.addEventListener("click", () => startSpeechInput(field, status, recordButton));
-    wrapper.append(recordButton, status);
+    wrapper.append(recordButton);
   }
 
   function initPracticeAnswerFormatter() {

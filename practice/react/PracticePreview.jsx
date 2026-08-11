@@ -781,7 +781,7 @@ function IncorrectAnswerDetails({ item, answer, result, className = "incorrect-a
   return (
     <article className={className}>
       {showPrompt ? <h4>{item.number}. <Prompt parts={item.prompt} kana={item.promptKana} /></h4> : null}
-      <AnswerComparison item={item} answer={answer} />
+      <AnswerComparison item={item} answer={answer} result={result} />
       {result?.status === "incorrect" && item.evaluationMode === "acceptable_answers" ? (
         <small>本题支持多个可接受答案，已在“正确答案”中合并展示。</small>
       ) : null}
@@ -819,8 +819,8 @@ function renderAnswerDiffParts(parts = []) {
   });
 }
 
-function AnswerComparison({ item, answer }) {
-  const comparison = buildAnswerComparison(item, answer);
+function AnswerComparison({ item, answer, result }) {
+  const comparison = buildAnswerComparison(item, answer, result);
   if (!comparison) return null;
   if (comparison.kind === "choice") {
     return (
@@ -1256,7 +1256,7 @@ async function reviewIncorrectTextAnswers({ practice, activity, answers, grading
         promptText: promptPartsPlainText(item.prompt),
         promptKana: item.promptKana || "",
         userAnswer,
-        expectedAnswers: expectedAnswerCandidates(item),
+        expectedAnswers: answerValuesForSlot(item, slot.id),
         answerUnit: slot.expectedUnit || activity.answerUnit,
         responseScope: item.responseScope || activity.responseScope || "",
         responseScopeHint: item.responseScopeHint || activity.responseScopeHint || "",
@@ -1776,7 +1776,7 @@ function formatExpectedAnswerSummary(item) {
   return Array.from(new Set(answers)).join(" / ") || "暂无";
 }
 
-function buildAnswerComparison(item, answer) {
+function buildAnswerComparison(item, answer, result) {
   if (item.choices?.length) {
     return {
       kind: "choice",
@@ -1786,24 +1786,30 @@ function buildAnswerComparison(item, answer) {
   }
 
   if (!item.inputSlots?.length) return null;
-  const actual = formatAttemptSummary(item, answer);
-  const candidates = expectedAnswerCandidates(item);
-  if (!actual || !candidates.length) return null;
-  const expected = closestExpectedAnswer(actual, candidates);
-  const diffLines = gitLikeAnswerDiff(actual === "未作答" ? "" : actual, expected);
-  return { kind: "text", actual, expected, diffLines };
+  const targetSlots = result?.fieldResults
+    ? item.inputSlots.filter((slot) => result.fieldResults?.[slot.id] === "incorrect")
+    : [];
+  const slots = targetSlots.length ? targetSlots : item.inputSlots;
+  const diffLines = slots.flatMap((slot) => {
+    const actual = formatSlotAttemptSummary(item, answer, slot.id);
+    const candidates = answerValuesForSlot(item, slot.id);
+    if (!actual || !candidates.length) return [];
+    const expected = closestExpectedAnswer(actual, candidates);
+    return gitLikeAnswerDiff(actual === "未作答" ? "" : actual, expected);
+  });
+  if (!diffLines.length) return null;
+  return { kind: "text", diffLines };
 }
 
-function expectedAnswerCandidates(item) {
-  const answers = [];
-  if (item.inputSlots?.length) {
-    item.inputSlots.forEach((slot) => {
-      answerValuesForSlot(item, slot.id).forEach((value) => {
-        if (String(value || "").trim()) answers.push(String(value).trim());
-      });
-    });
+function formatSlotAttemptSummary(item, answer, slotId) {
+  if (!answer) return "未作答";
+  const value = String(answer.slotValues?.[slotId] || "").trim();
+  if (value) return value;
+  if (item.inputSlots?.length === 1) {
+    const legacyValue = firstStoredSlotValue(answer.slotValues).trim();
+    if (legacyValue) return legacyValue;
   }
-  return Array.from(new Set(answers));
+  return "未作答";
 }
 
 function closestExpectedAnswer(actual, candidates) {

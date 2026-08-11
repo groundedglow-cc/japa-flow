@@ -33,7 +33,59 @@
           "confidence": "approved",
           "reviewedAt": "2026-08-05T08:48:09.654Z",
           "sourceAudioSha256": "ff0f91f23d88d62f4ac6dbd2301e18327a6a38b74136c0364f07837f94582c8a"
-        }
+        },
+        "kana": "おのさんは やすみの ひ、さんぽしたり かいものに いったり します。",
+        "segments": [
+          {
+            "text": "小野",
+            "ruby": "おの"
+          },
+          {
+            "text": "さんは "
+          },
+          {
+            "text": "休",
+            "ruby": "やす"
+          },
+          {
+            "text": "みの "
+          },
+          {
+            "text": "日",
+            "ruby": "ひ"
+          },
+          {
+            "text": "、"
+          },
+          {
+            "text": "散歩",
+            "ruby": "さんぽ"
+          },
+          {
+            "text": "したり "
+          },
+          {
+            "text": "買",
+            "ruby": "か"
+          },
+          {
+            "text": "い"
+          },
+          {
+            "text": "物",
+            "ruby": "もの"
+          },
+          {
+            "text": "に "
+          },
+          {
+            "text": "行",
+            "ruby": "い"
+          },
+          {
+            "text": "ったり します。"
+          }
+        ]
       },
       {
         "id": "l23-basic-s002",
@@ -53,7 +105,38 @@
           "confidence": "approved",
           "reviewedAt": "2026-08-05T08:48:09.654Z",
           "sourceAudioSha256": "ff0f91f23d88d62f4ac6dbd2301e18327a6a38b74136c0364f07837f94582c8a"
-        }
+        },
+        "kana": "にほんごの せんせいは ちゅうごくじんだったり にほんじんだったりです。",
+        "segments": [
+          {
+            "text": "日本語",
+            "ruby": "にほんご"
+          },
+          {
+            "text": "の "
+          },
+          {
+            "text": "先生",
+            "ruby": "せんせい"
+          },
+          {
+            "text": "は "
+          },
+          {
+            "text": "中国人",
+            "ruby": "ちゅうごくじん"
+          },
+          {
+            "text": "だったり "
+          },
+          {
+            "text": "日本人",
+            "ruby": "にほんじん"
+          },
+          {
+            "text": "だったりです。"
+          }
+        ]
       },
       {
         "id": "l23-basic-s003",
@@ -73,7 +156,48 @@
           "confidence": "approved",
           "reviewedAt": "2026-08-05T08:48:09.654Z",
           "sourceAudioSha256": "ff0f91f23d88d62f4ac6dbd2301e18327a6a38b74136c0364f07837f94582c8a"
-        }
+        },
+        "kana": "わたしは ことしの なつ、ペキンへ いくか どうか わかりません。",
+        "segments": [
+          {
+            "text": "わたしは "
+          },
+          {
+            "text": "今年",
+            "ruby": "ことし"
+          },
+          {
+            "text": "の "
+          },
+          {
+            "text": "夏",
+            "ruby": "なつ"
+          },
+          {
+            "text": "、"
+          },
+          {
+            "text": "北京",
+            "ruby": "ペキン"
+          },
+          {
+            "text": "へ "
+          },
+          {
+            "text": "行",
+            "ruby": "い"
+          },
+          {
+            "text": "くか どうか "
+          },
+          {
+            "text": "分",
+            "ruby": "わ"
+          },
+          {
+            "text": "かりません。"
+          }
+        ]
       },
       {
         "id": "l23-basic-s004",
@@ -93,7 +217,20 @@
           "confidence": "approved",
           "reviewedAt": "2026-08-05T08:48:09.654Z",
           "sourceAudioSha256": "ff0f91f23d88d62f4ac6dbd2301e18327a6a38b74136c0364f07837f94582c8a"
-        }
+        },
+        "kana": "かぎが どこに あるか おしえて ください。",
+        "segments": [
+          {
+            "text": "かぎが どこに あるか "
+          },
+          {
+            "text": "教",
+            "ruby": "おし"
+          },
+          {
+            "text": "えて ください。"
+          }
+        ]
       }
     ],
     "dialogues": [
@@ -119,7 +256,24 @@
               "confidence": "approved",
               "reviewedAt": "2026-08-05T08:48:09.654Z",
               "sourceAudioSha256": "ff0f91f23d88d62f4ac6dbd2301e18327a6a38b74136c0364f07837f94582c8a"
-            }
+            },
+            "kana": "しゅうまつに なにを しましたか。",
+            "segments": [
+              {
+                "text": "週末",
+                "ruby": "しゅうまつ"
+              },
+              {
+                "text": "に "
+              },
+              {
+                "text": "何",
+                "ruby": "なに"
+              },
+              {
+                "text": "を しましたか。"
+              }
+            ]
           },
           {
             "id": "l23-basic-dialogue-001-line-002",
@@ -165,7 +319,24 @@
               "confidence": "approved",
               "reviewedAt": "2026-08-05T08:48:09.654Z",
               "sourceAudioSha256": "ff0f91f23d88d62f4ac6dbd2301e18327a6a38b74136c0364f07837f94582c8a"
-            }
+            },
+            "kana": "ペキンまで、ひこうきの チケットは いくらぐらいですか。",
+            "segments": [
+              {
+                "text": "北京",
+                "ruby": "ペキン"
+              },
+              {
+                "text": "まで、"
+              },
+              {
+                "text": "飛行機",
+                "ruby": "ひこうき"
+              },
+              {
+                "text": "の チケットは いくらぐらいですか。"
+              }
+            ]
           },
           {
             "id": "l23-basic-dialogue-002-line-002",
@@ -185,7 +356,31 @@
               "confidence": "approved",
               "reviewedAt": "2026-08-05T08:48:09.654Z",
               "sourceAudioSha256": "ff0f91f23d88d62f4ac6dbd2301e18327a6a38b74136c0364f07837f94582c8a"
-            }
+            },
+            "kana": "きせつに よって たかかったり やすかったりです。",
+            "segments": [
+              {
+                "text": "季節",
+                "ruby": "きせつ"
+              },
+              {
+                "text": "に よって "
+              },
+              {
+                "text": "高",
+                "ruby": "たか"
+              },
+              {
+                "text": "かったり "
+              },
+              {
+                "text": "安",
+                "ruby": "やす"
+              },
+              {
+                "text": "かったりです。"
+              }
+            ]
           }
         ]
       },
@@ -211,7 +406,31 @@
               "confidence": "approved",
               "reviewedAt": "2026-08-05T08:48:09.654Z",
               "sourceAudioSha256": "ff0f91f23d88d62f4ac6dbd2301e18327a6a38b74136c0364f07837f94582c8a"
-            }
+            },
+            "kana": "りさん、しごとは いそがしいですか。",
+            "segments": [
+              {
+                "text": "李",
+                "ruby": "り"
+              },
+              {
+                "text": "さん、"
+              },
+              {
+                "text": "仕事",
+                "ruby": "しごと"
+              },
+              {
+                "text": "は "
+              },
+              {
+                "text": "忙",
+                "ruby": "いそが"
+              },
+              {
+                "text": "しいですか。"
+              }
+            ]
           },
           {
             "id": "l23-basic-dialogue-003-line-002",
@@ -231,7 +450,34 @@
               "confidence": "approved",
               "reviewedAt": "2026-08-05T08:48:09.654Z",
               "sourceAudioSha256": "ff0f91f23d88d62f4ac6dbd2301e18327a6a38b74136c0364f07837f94582c8a"
-            }
+            },
+            "kana": "ええ、ひに よって ひまだったり いそがしかったりです。",
+            "segments": [
+              {
+                "text": "ええ、"
+              },
+              {
+                "text": "日",
+                "ruby": "ひ"
+              },
+              {
+                "text": "に よって "
+              },
+              {
+                "text": "暇",
+                "ruby": "ひま"
+              },
+              {
+                "text": "だったり "
+              },
+              {
+                "text": "忙",
+                "ruby": "いそが"
+              },
+              {
+                "text": "しかったりです。"
+              }
+            ]
           }
         ]
       },
@@ -257,7 +503,38 @@
               "confidence": "approved",
               "reviewedAt": "2026-08-05T08:48:09.654Z",
               "sourceAudioSha256": "ff0f91f23d88d62f4ac6dbd2301e18327a6a38b74136c0364f07837f94582c8a"
-            }
+            },
+            "kana": "もりさんが なんじごろ くるか しって いますか。",
+            "segments": [
+              {
+                "text": "森",
+                "ruby": "もり"
+              },
+              {
+                "text": "さんが "
+              },
+              {
+                "text": "何時",
+                "ruby": "なんじ"
+              },
+              {
+                "text": "ごろ "
+              },
+              {
+                "text": "来",
+                "ruby": "く"
+              },
+              {
+                "text": "るか "
+              },
+              {
+                "text": "知",
+                "ruby": "し"
+              },
+              {
+                "text": "って いますか。"
+              }
+            ]
           },
           {
             "id": "l23-basic-dialogue-004-line-002",
@@ -277,7 +554,34 @@
               "confidence": "approved",
               "reviewedAt": "2026-08-05T08:48:09.654Z",
               "sourceAudioSha256": "ff0f91f23d88d62f4ac6dbd2301e18327a6a38b74136c0364f07837f94582c8a"
-            }
+            },
+            "kana": "いいえ。きょうは くるか どうか わかりません。",
+            "segments": [
+              {
+                "text": "いいえ。"
+              },
+              {
+                "text": "今日",
+                "ruby": "きょう"
+              },
+              {
+                "text": "は "
+              },
+              {
+                "text": "来",
+                "ruby": "く"
+              },
+              {
+                "text": "るか どうか "
+              },
+              {
+                "text": "分",
+                "ruby": "わ"
+              },
+              {
+                "text": "かりません。"
+              }
+            ]
           }
         ]
       }
@@ -316,7 +620,38 @@
               "confidence": "approved",
               "reviewedAt": "2026-08-05T08:48:53.066Z",
               "sourceAudioSha256": "66aa43f7567d4afa1f437ea1d68ede04bf3e08f090ccaf32136d093a9d2c12ae"
-            }
+            },
+            "kana": "おのさん、なにを かうか きまりましたか。",
+            "segments": [
+              {
+                "text": "小野",
+                "ruby": "おの"
+              },
+              {
+                "text": "さん、"
+              },
+              {
+                "text": "何",
+                "ruby": "なに"
+              },
+              {
+                "text": "を "
+              },
+              {
+                "text": "買",
+                "ruby": "か"
+              },
+              {
+                "text": "うか "
+              },
+              {
+                "text": "決",
+                "ruby": "き"
+              },
+              {
+                "text": "まりましたか。"
+              }
+            ]
           },
           {
             "id": "l23-app-block-002-line-002",
@@ -336,7 +671,17 @@
               "confidence": "approved",
               "reviewedAt": "2026-08-05T08:48:53.066Z",
               "sourceAudioSha256": "66aa43f7567d4afa1f437ea1d68ede04bf3e08f090ccaf32136d093a9d2c12ae"
-            }
+            },
+            "kana": "ゆかたは どうですか。",
+            "segments": [
+              {
+                "text": "浴衣",
+                "ruby": "ゆかた"
+              },
+              {
+                "text": "は どうですか。"
+              }
+            ]
           },
           {
             "id": "l23-app-block-002-line-003",
@@ -356,7 +701,20 @@
               "confidence": "approved",
               "reviewedAt": "2026-08-05T08:48:53.066Z",
               "sourceAudioSha256": "66aa43f7567d4afa1f437ea1d68ede04bf3e08f090ccaf32136d093a9d2c12ae"
-            }
+            },
+            "kana": "いいですね。でも、たかく ないですか。",
+            "segments": [
+              {
+                "text": "いいですね。でも、"
+              },
+              {
+                "text": "高",
+                "ruby": "たか"
+              },
+              {
+                "text": "く ないですか。"
+              }
+            ]
           },
           {
             "id": "l23-app-block-002-line-004",
@@ -376,7 +734,45 @@
               "confidence": "approved",
               "reviewedAt": "2026-08-05T08:48:53.066Z",
               "sourceAudioSha256": "66aa43f7567d4afa1f437ea1d68ede04bf3e08f090ccaf32136d093a9d2c12ae"
-            }
+            },
+            "kana": "たかかったり やすかったり、いろいろ あります。あっ、そうだ。きじを かって、わたしが つくりますよ。",
+            "segments": [
+              {
+                "text": "高",
+                "ruby": "たか"
+              },
+              {
+                "text": "かったり "
+              },
+              {
+                "text": "安",
+                "ruby": "やす"
+              },
+              {
+                "text": "かったり、いろいろ あります。あっ、そうだ。"
+              },
+              {
+                "text": "生地",
+                "ruby": "きじ"
+              },
+              {
+                "text": "を "
+              },
+              {
+                "text": "買",
+                "ruby": "か"
+              },
+              {
+                "text": "って、わたしが "
+              },
+              {
+                "text": "作",
+                "ruby": "つく"
+              },
+              {
+                "text": "りますよ。"
+              }
+            ]
           }
         ]
       },
@@ -410,7 +806,24 @@
               "confidence": "approved",
               "reviewedAt": "2026-08-05T08:48:53.066Z",
               "sourceAudioSha256": "66aa43f7567d4afa1f437ea1d68ede04bf3e08f090ccaf32136d093a9d2c12ae"
-            }
+            },
+            "kana": "にほんの せいかつは どうでしたか。",
+            "segments": [
+              {
+                "text": "日本",
+                "ruby": "にほん"
+              },
+              {
+                "text": "の "
+              },
+              {
+                "text": "生活",
+                "ruby": "せいかつ"
+              },
+              {
+                "text": "は どうでしたか。"
+              }
+            ]
           },
           {
             "id": "l23-app-block-004-line-002",
@@ -430,7 +843,45 @@
               "confidence": "approved",
               "reviewedAt": "2026-08-05T08:48:53.066Z",
               "sourceAudioSha256": "66aa43f7567d4afa1f437ea1d68ede04bf3e08f090ccaf32136d093a9d2c12ae"
-            }
+            },
+            "kana": "おんせんに はいったり かぶきを みたり して、とても たのしかったです。",
+            "segments": [
+              {
+                "text": "温泉",
+                "ruby": "おんせん"
+              },
+              {
+                "text": "に "
+              },
+              {
+                "text": "入",
+                "ruby": "はい"
+              },
+              {
+                "text": "ったり "
+              },
+              {
+                "text": "歌舞伎",
+                "ruby": "かぶき"
+              },
+              {
+                "text": "を "
+              },
+              {
+                "text": "見",
+                "ruby": "み"
+              },
+              {
+                "text": "たり して、とても "
+              },
+              {
+                "text": "楽",
+                "ruby": "たの"
+              },
+              {
+                "text": "しかったです。"
+              }
+            ]
           },
           {
             "id": "l23-app-block-004-line-003",
@@ -450,7 +901,34 @@
               "confidence": "approved",
               "reviewedAt": "2026-08-05T08:48:53.066Z",
               "sourceAudioSha256": "66aa43f7567d4afa1f437ea1d68ede04bf3e08f090ccaf32136d093a9d2c12ae"
-            }
+            },
+            "kana": "ごりょうしんに いつ かえるか しらせましたか。",
+            "segments": [
+              {
+                "text": "ご"
+              },
+              {
+                "text": "両親",
+                "ruby": "りょうしん"
+              },
+              {
+                "text": "に いつ "
+              },
+              {
+                "text": "帰",
+                "ruby": "かえ"
+              },
+              {
+                "text": "るか "
+              },
+              {
+                "text": "知らせ",
+                "ruby": "しらせ"
+              },
+              {
+                "text": "ましたか。"
+              }
+            ]
           },
           {
             "id": "l23-app-block-004-line-004",
@@ -470,7 +948,34 @@
               "confidence": "approved",
               "reviewedAt": "2026-08-05T08:48:53.066Z",
               "sourceAudioSha256": "66aa43f7567d4afa1f437ea1d68ede04bf3e08f090ccaf32136d093a9d2c12ae"
-            }
+            },
+            "kana": "はい、きのう ははに メールで しらせました。",
+            "segments": [
+              {
+                "text": "はい、"
+              },
+              {
+                "text": "昨日",
+                "ruby": "きのう"
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "母",
+                "ruby": "はは"
+              },
+              {
+                "text": "に メールで "
+              },
+              {
+                "text": "知らせ",
+                "ruby": "しらせ"
+              },
+              {
+                "text": "ました。"
+              }
+            ]
           },
           {
             "id": "l23-app-block-004-line-005",
@@ -490,7 +995,20 @@
               "confidence": "approved",
               "reviewedAt": "2026-08-05T08:48:53.066Z",
               "sourceAudioSha256": "66aa43f7567d4afa1f437ea1d68ede04bf3e08f090ccaf32136d093a9d2c12ae"
-            }
+            },
+            "kana": "ごりょうしんは メールが できますか。",
+            "segments": [
+              {
+                "text": "ご"
+              },
+              {
+                "text": "両親",
+                "ruby": "りょうしん"
+              },
+              {
+                "text": "は メールが できますか。"
+              }
+            ]
           },
           {
             "id": "l23-app-block-004-line-006",
@@ -510,7 +1028,38 @@
               "confidence": "approved",
               "reviewedAt": "2026-08-05T08:48:53.066Z",
               "sourceAudioSha256": "66aa43f7567d4afa1f437ea1d68ede04bf3e08f090ccaf32136d093a9d2c12ae"
-            }
+            },
+            "kana": "ははは できますが、ちちは でんわか てがみですね。",
+            "segments": [
+              {
+                "text": "母",
+                "ruby": "はは"
+              },
+              {
+                "text": "は できますが、"
+              },
+              {
+                "text": "父",
+                "ruby": "ちち"
+              },
+              {
+                "text": "は "
+              },
+              {
+                "text": "電話",
+                "ruby": "でんわ"
+              },
+              {
+                "text": "か "
+              },
+              {
+                "text": "手紙",
+                "ruby": "てがみ"
+              },
+              {
+                "text": "ですね。"
+              }
+            ]
           },
           {
             "id": "l23-app-block-004-line-007",
@@ -530,7 +1079,31 @@
               "confidence": "approved",
               "reviewedAt": "2026-08-05T08:48:53.066Z",
               "sourceAudioSha256": "66aa43f7567d4afa1f437ea1d68ede04bf3e08f090ccaf32136d093a9d2c12ae"
-            }
+            },
+            "kana": "ペキンへ かえった あと、どうしますか。",
+            "segments": [
+              {
+                "text": "北京",
+                "ruby": "ペキン"
+              },
+              {
+                "text": "へ "
+              },
+              {
+                "text": "帰",
+                "ruby": "かえ"
+              },
+              {
+                "text": "った "
+              },
+              {
+                "text": "後",
+                "ruby": "あと"
+              },
+              {
+                "text": "、どうしますか。"
+              }
+            ]
           },
           {
             "id": "l23-app-block-004-line-008",
@@ -550,7 +1123,41 @@
               "confidence": "approved",
               "reviewedAt": "2026-08-05T08:48:53.066Z",
               "sourceAudioSha256": "66aa43f7567d4afa1f437ea1d68ede04bf3e08f090ccaf32136d093a9d2c12ae"
-            }
+            },
+            "kana": "1しゅうかんぐらい やすみたいですね。しゅんせつに やすみが なかったですから。",
+            "segments": [
+              {
+                "text": "1"
+              },
+              {
+                "text": "週間",
+                "ruby": "しゅうかん"
+              },
+              {
+                "text": "ぐらい "
+              },
+              {
+                "text": "休",
+                "ruby": "やす"
+              },
+              {
+                "text": "みたいですね。"
+              },
+              {
+                "text": "春節",
+                "ruby": "しゅんせつ"
+              },
+              {
+                "text": "に "
+              },
+              {
+                "text": "休",
+                "ruby": "やす"
+              },
+              {
+                "text": "みが なかったですから。"
+              }
+            ]
           },
           {
             "id": "l23-app-block-004-line-009",
@@ -570,7 +1177,38 @@
               "confidence": "approved",
               "reviewedAt": "2026-08-05T08:48:53.066Z",
               "sourceAudioSha256": "66aa43f7567d4afa1f437ea1d68ede04bf3e08f090ccaf32136d093a9d2c12ae"
-            }
+            },
+            "kana": "やすみに なにを しますか。りょこうに いきますか。",
+            "segments": [
+              {
+                "text": "休",
+                "ruby": "やす"
+              },
+              {
+                "text": "みに "
+              },
+              {
+                "text": "何",
+                "ruby": "なに"
+              },
+              {
+                "text": "を しますか。"
+              },
+              {
+                "text": "旅行",
+                "ruby": "りょこう"
+              },
+              {
+                "text": "に "
+              },
+              {
+                "text": "行",
+                "ruby": "い"
+              },
+              {
+                "text": "きますか。"
+              }
+            ]
           },
           {
             "id": "l23-app-block-004-line-010",
@@ -590,14 +1228,66 @@
               "confidence": "approved",
               "reviewedAt": "2026-08-05T08:48:53.066Z",
               "sourceAudioSha256": "66aa43f7567d4afa1f437ea1d68ede04bf3e08f090ccaf32136d093a9d2c12ae"
-            }
+            },
+            "kana": "りょこうに いくか どうか、わかりません。たぶん ともだちに あったり、しょくじに いったり します。",
+            "segments": [
+              {
+                "text": "旅行",
+                "ruby": "りょこう"
+              },
+              {
+                "text": "に "
+              },
+              {
+                "text": "行",
+                "ruby": "い"
+              },
+              {
+                "text": "くか どうか、"
+              },
+              {
+                "text": "分",
+                "ruby": "わ"
+              },
+              {
+                "text": "かりません。たぶん "
+              },
+              {
+                "text": "友達",
+                "ruby": "ともだち"
+              },
+              {
+                "text": "に "
+              },
+              {
+                "text": "会",
+                "ruby": "あ"
+              },
+              {
+                "text": "ったり、"
+              },
+              {
+                "text": "食事",
+                "ruby": "しょくじ"
+              },
+              {
+                "text": "に "
+              },
+              {
+                "text": "行",
+                "ruby": "い"
+              },
+              {
+                "text": "ったり します。"
+              }
+            ]
           }
         ]
       }
     ]
   },
   "warnings": [
-    "segments/ruby 未批量生成；保留 text 与 translationZh，后续可单独补充 ruby 切片。"
+    "第 23 课课文 ruby/segments 已按课程词汇和课文常用读音补充；建议后续与教材图片抽查校对。"
   ],
   "audioAlignment": {
     "schemaVersion": 1,

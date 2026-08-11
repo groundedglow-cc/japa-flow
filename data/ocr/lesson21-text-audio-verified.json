@@ -33,7 +33,27 @@
           "confidence": "approved",
           "reviewedAt": "2026-08-05T08:45:36.419Z",
           "sourceAudioSha256": "1e3d0633586d4a5744de3c78ec106a8fc12a2aae654699236b03e2612d96ec4e"
-        }
+        },
+        "segments": [
+          {
+            "text": "わたしは すき"
+          },
+          {
+            "text": "焼",
+            "ruby": "や"
+          },
+          {
+            "text": "きを "
+          },
+          {
+            "text": "食",
+            "ruby": "た"
+          },
+          {
+            "text": "べた ことが あります。"
+          }
+        ],
+        "kana": "わたしは すきやきを たべた ことが あります。"
       },
       {
         "id": "l21-basic-s002",
@@ -53,7 +73,52 @@
           "confidence": "approved",
           "reviewedAt": "2026-08-05T08:45:36.419Z",
           "sourceAudioSha256": "1e3d0633586d4a5744de3c78ec106a8fc12a2aae654699236b03e2612d96ec4e"
-        }
+        },
+        "segments": [
+          {
+            "text": "李",
+            "ruby": "り"
+          },
+          {
+            "text": "さんは "
+          },
+          {
+            "text": "会社",
+            "ruby": "かいしゃ"
+          },
+          {
+            "text": "が "
+          },
+          {
+            "text": "終",
+            "ruby": "お"
+          },
+          {
+            "text": "わった "
+          },
+          {
+            "text": "後",
+            "ruby": "あと"
+          },
+          {
+            "text": "で、"
+          },
+          {
+            "text": "飲",
+            "ruby": "の"
+          },
+          {
+            "text": "みに "
+          },
+          {
+            "text": "行",
+            "ruby": "い"
+          },
+          {
+            "text": "きます。"
+          }
+        ],
+        "kana": "りさんは かいしゃが おわった あとで、のみに いきます。"
       },
       {
         "id": "l21-basic-s003",
@@ -73,7 +138,27 @@
           "confidence": "approved",
           "reviewedAt": "2026-08-05T08:45:36.419Z",
           "sourceAudioSha256": "1e3d0633586d4a5744de3c78ec106a8fc12a2aae654699236b03e2612d96ec4e"
-        }
+        },
+        "segments": [
+          {
+            "text": "もっと "
+          },
+          {
+            "text": "野菜",
+            "ruby": "やさい"
+          },
+          {
+            "text": "を "
+          },
+          {
+            "text": "食",
+            "ruby": "た"
+          },
+          {
+            "text": "べた ほうが いいですよ。"
+          }
+        ],
+        "kana": "もっと やさいを たべた ほうが いいですよ。"
       },
       {
         "id": "l21-basic-s004",
@@ -93,7 +178,24 @@
           "confidence": "approved",
           "reviewedAt": "2026-08-05T08:45:36.419Z",
           "sourceAudioSha256": "1e3d0633586d4a5744de3c78ec106a8fc12a2aae654699236b03e2612d96ec4e"
-        }
+        },
+        "segments": [
+          {
+            "text": "窓",
+            "ruby": "まど"
+          },
+          {
+            "text": "を "
+          },
+          {
+            "text": "閉",
+            "ruby": "し"
+          },
+          {
+            "text": "めましょうか。"
+          }
+        ],
+        "kana": "まどを しめましょうか。"
       }
     ],
     "dialogues": [
@@ -119,7 +221,27 @@
               "confidence": "approved",
               "reviewedAt": "2026-08-05T08:45:36.419Z",
               "sourceAudioSha256": "1e3d0633586d4a5744de3c78ec106a8fc12a2aae654699236b03e2612d96ec4e"
-            }
+            },
+            "segments": [
+              {
+                "text": "お"
+              },
+              {
+                "text": "寿司",
+                "ruby": "すし"
+              },
+              {
+                "text": "を "
+              },
+              {
+                "text": "食",
+                "ruby": "た"
+              },
+              {
+                "text": "べた ことが ありますか。"
+              }
+            ],
+            "kana": "おすしを たべた ことが ありますか。"
           },
           {
             "id": "l21-basic-dialogue-001-line-002",
@@ -139,7 +261,27 @@
               "confidence": "approved",
               "reviewedAt": "2026-08-05T08:45:36.419Z",
               "sourceAudioSha256": "1e3d0633586d4a5744de3c78ec106a8fc12a2aae654699236b03e2612d96ec4e"
-            }
+            },
+            "segments": [
+              {
+                "text": "いいえ、"
+              },
+              {
+                "text": "一度",
+                "ruby": "いちど"
+              },
+              {
+                "text": "も ありません。天ぷらは "
+              },
+              {
+                "text": "食",
+                "ruby": "た"
+              },
+              {
+                "text": "べた ことが あります。"
+              }
+            ],
+            "kana": "いいえ、いちども ありません。天ぷらは たべた ことが あります。"
           }
         ]
       },
@@ -165,7 +307,27 @@
               "confidence": "approved",
               "reviewedAt": "2026-08-05T08:45:36.419Z",
               "sourceAudioSha256": "1e3d0633586d4a5744de3c78ec106a8fc12a2aae654699236b03e2612d96ec4e"
-            }
+            },
+            "segments": [
+              {
+                "text": "この "
+              },
+              {
+                "text": "資料",
+                "ruby": "しりょう"
+              },
+              {
+                "text": "を "
+              },
+              {
+                "text": "見",
+                "ruby": "み"
+              },
+              {
+                "text": "ても いいですか。"
+              }
+            ],
+            "kana": "この しりょうを みても いいですか。"
           },
           {
             "id": "l21-basic-dialogue-002-line-002",
@@ -185,7 +347,41 @@
               "confidence": "approved",
               "reviewedAt": "2026-08-05T08:45:36.419Z",
               "sourceAudioSha256": "1e3d0633586d4a5744de3c78ec106a8fc12a2aae654699236b03e2612d96ec4e"
-            }
+            },
+            "segments": [
+              {
+                "text": "はい。"
+              },
+              {
+                "text": "読",
+                "ruby": "よ"
+              },
+              {
+                "text": "んだ "
+              },
+              {
+                "text": "後",
+                "ruby": "あと"
+              },
+              {
+                "text": "で、"
+              },
+              {
+                "text": "森",
+                "ruby": "もり"
+              },
+              {
+                "text": "さんに "
+              },
+              {
+                "text": "渡",
+                "ruby": "わた"
+              },
+              {
+                "text": "して ください。"
+              }
+            ],
+            "kana": "はい。よんだ あとで、もりさんに わたして ください。"
           }
         ]
       },
@@ -211,7 +407,20 @@
               "confidence": "approved",
               "reviewedAt": "2026-08-05T08:45:36.419Z",
               "sourceAudioSha256": "1e3d0633586d4a5744de3c78ec106a8fc12a2aae654699236b03e2612d96ec4e"
-            }
+            },
+            "segments": [
+              {
+                "text": "ホテルを "
+              },
+              {
+                "text": "予約",
+                "ruby": "よやく"
+              },
+              {
+                "text": "した ほうが いいですか。"
+              }
+            ],
+            "kana": "ホテルを よやくした ほうが いいですか。"
           },
           {
             "id": "l21-basic-dialogue-003-line-002",
@@ -231,7 +440,20 @@
               "confidence": "approved",
               "reviewedAt": "2026-08-05T08:45:36.419Z",
               "sourceAudioSha256": "1e3d0633586d4a5744de3c78ec106a8fc12a2aae654699236b03e2612d96ec4e"
-            }
+            },
+            "segments": [
+              {
+                "text": "そうですね。"
+              },
+              {
+                "text": "連休",
+                "ruby": "れんきゅう"
+              },
+              {
+                "text": "ですから、その ほうが いいですね。"
+              }
+            ],
+            "kana": "そうですね。れんきゅうですから、その ほうが いいですね。"
           }
         ]
       },
@@ -257,7 +479,24 @@
               "confidence": "approved",
               "reviewedAt": "2026-08-05T08:45:36.419Z",
               "sourceAudioSha256": "1e3d0633586d4a5744de3c78ec106a8fc12a2aae654699236b03e2612d96ec4e"
-            }
+            },
+            "segments": [
+              {
+                "text": "何",
+                "ruby": "なに"
+              },
+              {
+                "text": "か "
+              },
+              {
+                "text": "食",
+                "ruby": "た"
+              },
+              {
+                "text": "べましょうか。"
+              }
+            ],
+            "kana": "なにか たべましょうか。"
           },
           {
             "id": "l21-basic-dialogue-004-line-002",
@@ -277,7 +516,34 @@
               "confidence": "approved",
               "reviewedAt": "2026-08-05T08:45:36.419Z",
               "sourceAudioSha256": "1e3d0633586d4a5744de3c78ec106a8fc12a2aae654699236b03e2612d96ec4e"
-            }
+            },
+            "segments": [
+              {
+                "text": "いいえ。"
+              },
+              {
+                "text": "寝",
+                "ruby": "ね"
+              },
+              {
+                "text": "る "
+              },
+              {
+                "text": "前",
+                "ruby": "まえ"
+              },
+              {
+                "text": "に "
+              },
+              {
+                "text": "食",
+                "ruby": "た"
+              },
+              {
+                "text": "べない ほうが いいですよ。"
+              }
+            ],
+            "kana": "いいえ。ねる まえに たべない ほうが いいですよ。"
           }
         ]
       }
@@ -316,7 +582,31 @@
               "confidence": "approved",
               "reviewedAt": "2026-08-05T08:46:26.551Z",
               "sourceAudioSha256": "f1bacaf343ff40dcae76ac2862d2ca7b3db70a13b6d1a68913ab7f11f0be0119"
-            }
+            },
+            "segments": [
+              {
+                "text": "少",
+                "ruby": "すこ"
+              },
+              {
+                "text": "し "
+              },
+              {
+                "text": "急",
+                "ruby": "いそ"
+              },
+              {
+                "text": "ぎましょうか。"
+              },
+              {
+                "text": "遅",
+                "ruby": "おく"
+              },
+              {
+                "text": "れない ほうが いいですから。"
+              }
+            ],
+            "kana": "すこし いそぎましょうか。おくれない ほうが いいですから。"
           },
           {
             "id": "l21-app-block-002-line-002",
@@ -336,7 +626,34 @@
               "confidence": "approved",
               "reviewedAt": "2026-08-05T08:46:26.551Z",
               "sourceAudioSha256": "f1bacaf343ff40dcae76ac2862d2ca7b3db70a13b6d1a68913ab7f11f0be0119"
-            }
+            },
+            "segments": [
+              {
+                "text": "そうしましょう。ところで、"
+              },
+              {
+                "text": "小野",
+                "ruby": "おの"
+              },
+              {
+                "text": "さんは よく "
+              },
+              {
+                "text": "歌舞伎",
+                "ruby": "かぶき"
+              },
+              {
+                "text": "を "
+              },
+              {
+                "text": "見",
+                "ruby": "み"
+              },
+              {
+                "text": "ますか。"
+              }
+            ],
+            "kana": "そうしましょう。ところで、おのさんは よく かぶきを みますか。"
           },
           {
             "id": "l21-app-block-002-line-003",
@@ -356,7 +673,70 @@
               "confidence": "approved",
               "reviewedAt": "2026-08-05T08:46:26.551Z",
               "sourceAudioSha256": "f1bacaf343ff40dcae76ac2862d2ca7b3db70a13b6d1a68913ab7f11f0be0119"
-            }
+            },
+            "segments": [
+              {
+                "text": "仕事",
+                "ruby": "しごと"
+              },
+              {
+                "text": "の "
+              },
+              {
+                "text": "後",
+                "ruby": "あと"
+              },
+              {
+                "text": "で、"
+              },
+              {
+                "text": "何度",
+                "ruby": "なんど"
+              },
+              {
+                "text": "か "
+              },
+              {
+                "text": "見",
+                "ruby": "み"
+              },
+              {
+                "text": "に "
+              },
+              {
+                "text": "行",
+                "ruby": "い"
+              },
+              {
+                "text": "った ことが あります。"
+              },
+              {
+                "text": "終",
+                "ruby": "お"
+              },
+              {
+                "text": "わりは 9"
+              },
+              {
+                "text": "時",
+                "ruby": "じ"
+              },
+              {
+                "text": "過",
+                "ruby": "す"
+              },
+              {
+                "text": "ぎですね。"
+              },
+              {
+                "text": "食事",
+                "ruby": "しょくじ"
+              },
+              {
+                "text": "は どうしますか。"
+              }
+            ],
+            "kana": "しごとの あとで、なんどか みに いった ことが あります。おわりは 9じすぎですね。しょくじは どうしますか。"
           },
           {
             "id": "l21-app-block-002-line-004",
@@ -376,7 +756,66 @@
               "confidence": "approved",
               "reviewedAt": "2026-08-05T08:46:26.551Z",
               "sourceAudioSha256": "f1bacaf343ff40dcae76ac2862d2ca7b3db70a13b6d1a68913ab7f11f0be0119"
-            }
+            },
+            "segments": [
+              {
+                "text": "歌舞伎",
+                "ruby": "かぶき"
+              },
+              {
+                "text": "を "
+              },
+              {
+                "text": "見",
+                "ruby": "み"
+              },
+              {
+                "text": "た "
+              },
+              {
+                "text": "後",
+                "ruby": "あと"
+              },
+              {
+                "text": "で、"
+              },
+              {
+                "text": "食",
+                "ruby": "た"
+              },
+              {
+                "text": "べますか。それとも、"
+              },
+              {
+                "text": "見",
+                "ruby": "み"
+              },
+              {
+                "text": "る "
+              },
+              {
+                "text": "前",
+                "ruby": "まえ"
+              },
+              {
+                "text": "に "
+              },
+              {
+                "text": "何",
+                "ruby": "なに"
+              },
+              {
+                "text": "か "
+              },
+              {
+                "text": "食",
+                "ruby": "た"
+              },
+              {
+                "text": "べますか。"
+              }
+            ],
+            "kana": "かぶきを みた あとで、たべますか。それとも、みる まえに なにか たべますか。"
           },
           {
             "id": "l21-app-block-002-line-005",
@@ -396,7 +835,27 @@
               "confidence": "approved",
               "reviewedAt": "2026-08-05T08:46:26.551Z",
               "sourceAudioSha256": "f1bacaf343ff40dcae76ac2862d2ca7b3db70a13b6d1a68913ab7f11f0be0119"
-            }
+            },
+            "segments": [
+              {
+                "text": "そうですね…、"
+              },
+              {
+                "text": "休憩時間",
+                "ruby": "きゅうけいじかん"
+              },
+              {
+                "text": "に "
+              },
+              {
+                "text": "食事",
+                "ruby": "しょくじ"
+              },
+              {
+                "text": "を しましょうか。"
+              }
+            ],
+            "kana": "そうですね…、きゅうけいじかんに しょくじを しましょうか。"
           },
           {
             "id": "l21-app-block-002-line-006",
@@ -416,7 +875,13 @@
               "confidence": "approved",
               "reviewedAt": "2026-08-05T08:46:26.551Z",
               "sourceAudioSha256": "f1bacaf343ff40dcae76ac2862d2ca7b3db70a13b6d1a68913ab7f11f0be0119"
-            }
+            },
+            "segments": [
+              {
+                "text": "ええ、いいですよ。"
+              }
+            ],
+            "kana": "ええ、いいですよ。"
           },
           {
             "id": "l21-app-block-002-line-007",
@@ -436,7 +901,41 @@
               "confidence": "approved",
               "reviewedAt": "2026-08-05T08:46:26.551Z",
               "sourceAudioSha256": "f1bacaf343ff40dcae76ac2862d2ca7b3db70a13b6d1a68913ab7f11f0be0119"
-            }
+            },
+            "segments": [
+              {
+                "text": "じゃあ、"
+              },
+              {
+                "text": "早",
+                "ruby": "はや"
+              },
+              {
+                "text": "く "
+              },
+              {
+                "text": "行",
+                "ruby": "い"
+              },
+              {
+                "text": "って お"
+              },
+              {
+                "text": "弁当",
+                "ruby": "べんとう"
+              },
+              {
+                "text": "を "
+              },
+              {
+                "text": "買",
+                "ruby": "か"
+              },
+              {
+                "text": "った ほうが いいですね。"
+              }
+            ],
+            "kana": "じゃあ、はやく いって おべんとうを かった ほうが いいですね。"
           }
         ]
       },
@@ -470,7 +969,24 @@
               "confidence": "approved",
               "reviewedAt": "2026-08-05T08:46:26.551Z",
               "sourceAudioSha256": "f1bacaf343ff40dcae76ac2862d2ca7b3db70a13b6d1a68913ab7f11f0be0119"
-            }
+            },
+            "segments": [
+              {
+                "text": "言葉",
+                "ruby": "ことば"
+              },
+              {
+                "text": "は "
+              },
+              {
+                "text": "分",
+                "ruby": "わ"
+              },
+              {
+                "text": "かりませんでしたが、とても よかったです。"
+              }
+            ],
+            "kana": "ことばは わかりませんでしたが、とても よかったです。"
           },
           {
             "id": "l21-app-block-004-line-002",
@@ -490,7 +1006,27 @@
               "confidence": "approved",
               "reviewedAt": "2026-08-05T08:46:26.551Z",
               "sourceAudioSha256": "f1bacaf343ff40dcae76ac2862d2ca7b3db70a13b6d1a68913ab7f11f0be0119"
-            }
+            },
+            "segments": [
+              {
+                "text": "そうですね。"
+              },
+              {
+                "text": "課長",
+                "ruby": "かちょう"
+              },
+              {
+                "text": "に "
+              },
+              {
+                "text": "感謝",
+                "ruby": "かんしゃ"
+              },
+              {
+                "text": "しましょう。"
+              }
+            ],
+            "kana": "そうですね。かちょうに かんしゃしましょう。"
           },
           {
             "id": "l21-app-block-004-line-003",
@@ -510,7 +1046,48 @@
               "confidence": "approved",
               "reviewedAt": "2026-08-05T08:46:26.551Z",
               "sourceAudioSha256": "f1bacaf343ff40dcae76ac2862d2ca7b3db70a13b6d1a68913ab7f11f0be0119"
-            }
+            },
+            "segments": [
+              {
+                "text": "ええ。"
+              },
+              {
+                "text": "京劇",
+                "ruby": "きょうげき"
+              },
+              {
+                "text": "も いいですが、"
+              },
+              {
+                "text": "歌舞伎",
+                "ruby": "かぶき"
+              },
+              {
+                "text": "も すばらしいですね。"
+              },
+              {
+                "text": "小野",
+                "ruby": "おの"
+              },
+              {
+                "text": "さんは "
+              },
+              {
+                "text": "京劇",
+                "ruby": "きょうげき"
+              },
+              {
+                "text": "を "
+              },
+              {
+                "text": "見",
+                "ruby": "み"
+              },
+              {
+                "text": "た ことが ありますか。"
+              }
+            ],
+            "kana": "ええ。きょうげきも いいですが、かぶきも すばらしいですね。おのさんは きょうげきを みた ことが ありますか。"
           },
           {
             "id": "l21-app-block-004-line-004",
@@ -530,7 +1107,27 @@
               "confidence": "approved",
               "reviewedAt": "2026-08-05T08:46:26.551Z",
               "sourceAudioSha256": "f1bacaf343ff40dcae76ac2862d2ca7b3db70a13b6d1a68913ab7f11f0be0119"
-            }
+            },
+            "segments": [
+              {
+                "text": "いいえ、"
+              },
+              {
+                "text": "一度",
+                "ruby": "いちど"
+              },
+              {
+                "text": "も ありません。いつか "
+              },
+              {
+                "text": "見",
+                "ruby": "み"
+              },
+              {
+                "text": "たいですね。"
+              }
+            ],
+            "kana": "いいえ、いちども ありません。いつか みたいですね。"
           },
           {
             "id": "l21-app-block-004-line-005",
@@ -550,7 +1147,41 @@
               "confidence": "approved",
               "reviewedAt": "2026-08-05T08:46:26.551Z",
               "sourceAudioSha256": "f1bacaf343ff40dcae76ac2862d2ca7b3db70a13b6d1a68913ab7f11f0be0119"
-            }
+            },
+            "segments": [
+              {
+                "text": "じゃあ、ぜひ "
+              },
+              {
+                "text": "北京",
+                "ruby": "ペキン"
+              },
+              {
+                "text": "へ "
+              },
+              {
+                "text": "京劇",
+                "ruby": "きょうげき"
+              },
+              {
+                "text": "を "
+              },
+              {
+                "text": "見",
+                "ruby": "み"
+              },
+              {
+                "text": "に "
+              },
+              {
+                "text": "来",
+                "ruby": "き"
+              },
+              {
+                "text": "て ください。"
+              }
+            ],
+            "kana": "じゃあ、ぜひ ペキンへ きょうげきを みに きて ください。"
           }
         ]
       }
@@ -565,5 +1196,6 @@
     "sourceAlignment": "data/ocr/lesson21-text-audio-alignment.json",
     "publishedAt": "2026-08-05T08:46:31.801Z",
     "approvedSegments": 24
-  }
+  },
+  "updatedAt": "2026-08-08T02:28:33.590Z"
 }

@@ -225,9 +225,9 @@
         "itemIndex": 6,
         "text": "こきゅう",
         "label": "胡弓",
-        "start": 9.95,
+        "start": 9.25,
         "end": 10.45,
-        "duration": 0.5,
+        "duration": 1.2,
         "speechUnitCount": 1,
         "wordCount": 1,
         "matchScore": 0,
@@ -235,15 +235,16 @@
         "wordIndexes": [
           11
         ],
-        "method": "azure-speech-word-alignment",
-        "confidence": "needs-review",
+        "method": "manual-admin-adjustment",
+        "confidence": "approved",
         "review": {
           "status": "approved",
           "reviewedAt": "2026-08-05T11:40:29.564Z",
           "note": "Automatically approved by the vocabulary ASR alignment workflow.",
           "matchScore": 0,
           "asrText": "宮"
-        }
+        },
+        "reviewedAt": "2026-08-09T23:55:19.440Z"
       }
     },
     {
@@ -431,9 +432,9 @@
         "itemIndex": 11,
         "text": "てづくり",
         "label": "手作り",
-        "start": 17.31,
-        "end": 17.49,
-        "duration": 0.18,
+        "start": 17.01,
+        "end": 17.99,
+        "duration": 0.98,
         "speechUnitCount": 1,
         "wordCount": 1,
         "matchScore": 0.333,
@@ -441,15 +442,16 @@
         "wordIndexes": [
           23
         ],
-        "method": "azure-speech-word-alignment",
-        "confidence": "needs-review",
+        "method": "manual-admin-adjustment",
+        "confidence": "approved",
         "review": {
           "status": "approved",
           "reviewedAt": "2026-08-05T11:40:29.564Z",
           "note": "Automatically approved by the vocabulary ASR alignment workflow.",
           "matchScore": 0.333,
           "asrText": "手"
-        }
+        },
+        "reviewedAt": "2026-08-09T23:55:37.269Z"
       }
     },
     {
@@ -713,9 +715,9 @@
         "itemIndex": 18,
         "text": "りょう",
         "label": "寮",
-        "start": 29.67,
+        "start": 29.27,
         "end": 29.97,
-        "duration": 0.3,
+        "duration": 0.7,
         "speechUnitCount": 1,
         "wordCount": 1,
         "matchScore": 0,
@@ -723,15 +725,16 @@
         "wordIndexes": [
           40
         ],
-        "method": "azure-speech-word-alignment",
-        "confidence": "needs-review",
+        "method": "manual-admin-adjustment",
+        "confidence": "approved",
         "review": {
           "status": "approved",
           "reviewedAt": "2026-08-05T11:40:29.564Z",
           "note": "Automatically approved by the vocabulary ASR alignment workflow.",
           "matchScore": 0,
           "asrText": "量"
-        }
+        },
+        "reviewedAt": "2026-08-09T23:55:52.328Z"
       }
     },
     {
@@ -1281,9 +1284,9 @@
         "itemIndex": 32,
         "text": "ひきます",
         "label": "弾きます",
-        "start": 51.39,
-        "end": 51.73,
-        "duration": 0.34,
+        "start": 51.09,
+        "end": 52.53,
+        "duration": 1.44,
         "speechUnitCount": 1,
         "wordCount": 1,
         "matchScore": 0.25,
@@ -1291,15 +1294,16 @@
         "wordIndexes": [
           77
         ],
-        "method": "azure-speech-word-alignment",
-        "confidence": "needs-review",
+        "method": "manual-admin-adjustment",
+        "confidence": "approved",
         "review": {
           "status": "approved",
           "reviewedAt": "2026-08-05T11:40:29.564Z",
           "note": "Automatically approved by the vocabulary ASR alignment workflow.",
           "matchScore": 0.25,
           "asrText": "き"
-        }
+        },
+        "reviewedAt": "2026-08-09T23:56:19.162Z"
       }
     },
     {
@@ -1321,9 +1325,9 @@
         "itemIndex": 33,
         "text": "すきます",
         "label": "すきます",
-        "start": 51.63,
+        "start": 51.03,
         "end": 52.33,
-        "duration": 0.7,
+        "duration": 1.3,
         "speechUnitCount": 2,
         "wordCount": 2,
         "matchScore": 0.5,
@@ -1332,15 +1336,16 @@
           78,
           79
         ],
-        "method": "azure-speech-word-alignment",
-        "confidence": "needs-review",
+        "method": "manual-admin-adjustment",
+        "confidence": "approved",
         "review": {
           "status": "approved",
           "reviewedAt": "2026-08-05T11:40:29.564Z",
           "note": "Automatically approved by the vocabulary ASR alignment workflow.",
           "matchScore": 0.5,
           "asrText": "ま す"
-        }
+        },
+        "reviewedAt": "2026-08-09T23:56:32.914Z"
       }
     },
     {
@@ -1362,9 +1367,9 @@
         "itemIndex": 34,
         "text": "のぼります",
         "label": "登ります",
-        "start": 54.95,
+        "start": 53.95,
         "end": 55.57,
-        "duration": 0.62,
+        "duration": 1.62,
         "speechUnitCount": 3,
         "wordCount": 3,
         "matchScore": 0.75,
@@ -1374,15 +1379,16 @@
           84,
           85
         ],
-        "method": "azure-speech-word-alignment",
-        "confidence": "medium",
+        "method": "manual-admin-adjustment",
+        "confidence": "approved",
         "review": {
           "status": "approved",
           "reviewedAt": "2026-08-05T11:40:29.564Z",
           "note": "Automatically approved by the vocabulary ASR alignment workflow.",
           "matchScore": 0.75,
           "asrText": "り ま す"
-        }
+        },
+        "reviewedAt": "2026-08-09T23:56:44.223Z"
       }
     },
     {
@@ -1403,9 +1409,9 @@
         "itemIndex": 35,
         "text": "あつめます",
         "label": "集めます",
-        "start": 57,
+        "start": 56,
         "end": 57.74,
-        "duration": 0.74,
+        "duration": 1.74,
         "speechUnitCount": 4,
         "wordCount": 4,
         "matchScore": 1,
@@ -1416,15 +1422,16 @@
           88,
           89
         ],
-        "method": "azure-speech-word-alignment",
-        "confidence": "high",
+        "method": "manual-admin-adjustment",
+        "confidence": "approved",
         "review": {
           "status": "approved",
           "reviewedAt": "2026-08-05T11:40:29.564Z",
           "note": "Automatically approved by the vocabulary ASR alignment workflow.",
           "matchScore": 1,
           "asrText": "集 め ま す"
-        }
+        },
+        "reviewedAt": "2026-08-09T23:56:59.585Z"
       }
     },
     {
@@ -1577,9 +1584,9 @@
         "itemIndex": 39,
         "text": "とくに",
         "label": "特に",
-        "start": 64.88,
+        "start": 63.88,
         "end": 65.3,
-        "duration": 0.42,
+        "duration": 1.42,
         "speechUnitCount": 2,
         "wordCount": 2,
         "matchScore": 1,
@@ -1588,15 +1595,16 @@
           106,
           107
         ],
-        "method": "azure-speech-word-alignment",
-        "confidence": "high",
+        "method": "manual-admin-adjustment",
+        "confidence": "approved",
         "review": {
           "status": "approved",
           "reviewedAt": "2026-08-05T11:40:29.564Z",
           "note": "Automatically approved by the vocabulary ASR alignment workflow.",
           "matchScore": 1,
           "asrText": "特 に"
-        }
+        },
+        "reviewedAt": "2026-08-09T23:57:28.863Z"
       }
     },
     {
@@ -4841,5 +4849,6 @@
         ]
       }
     ]
-  }
+  },
+  "updatedAt": "2026-08-09T23:57:28.865Z"
 }

@@ -67,9 +67,9 @@
         "itemIndex": 2,
         "text": "そうべつかい",
         "label": "送別会",
-        "start": 3.15,
+        "start": 2.55,
         "end": 4.21,
-        "duration": 1.06,
+        "duration": 1.66,
         "speechUnitCount": 2,
         "wordCount": 2,
         "matchScore": 0.667,
@@ -78,15 +78,16 @@
           6,
           7
         ],
-        "method": "azure-speech-word-alignment",
-        "confidence": "needs-review",
+        "method": "manual-admin-adjustment",
+        "confidence": "approved",
         "review": {
           "status": "approved",
           "reviewedAt": "2026-08-05T11:41:19.234Z",
           "note": "Automatically approved by the vocabulary ASR alignment workflow.",
           "matchScore": 0.667,
           "asrText": "別 会"
-        }
+        },
+        "reviewedAt": "2026-08-10T00:08:24.518Z"
       }
     },
     {
@@ -231,9 +232,9 @@
         "itemIndex": 6,
         "text": "かじ",
         "label": "火事",
-        "start": 10.91,
-        "end": 11.25,
-        "duration": 0.34,
+        "start": 9.51,
+        "end": 10.25,
+        "duration": 0.74,
         "speechUnitCount": 1,
         "wordCount": 1,
         "matchScore": 0,
@@ -241,15 +242,16 @@
         "wordIndexes": [
           18
         ],
-        "method": "azure-speech-word-alignment",
-        "confidence": "needs-review",
+        "method": "manual-admin-adjustment",
+        "confidence": "approved",
         "review": {
           "status": "approved",
           "reviewedAt": "2026-08-05T11:41:19.234Z",
           "note": "Automatically approved by the vocabulary ASR alignment workflow.",
           "matchScore": 0,
           "asrText": "機"
-        }
+        },
+        "reviewedAt": "2026-08-10T00:09:06.633Z"
       }
     },
     {
@@ -271,9 +273,9 @@
         "itemIndex": 7,
         "text": "きかん",
         "label": "期間",
-        "start": 11.15,
+        "start": 10.85,
         "end": 11.69,
-        "duration": 0.54,
+        "duration": 0.84,
         "speechUnitCount": 1,
         "wordCount": 1,
         "matchScore": 0,
@@ -281,15 +283,16 @@
         "wordIndexes": [
           19
         ],
-        "method": "azure-speech-word-alignment",
-        "confidence": "needs-review",
+        "method": "manual-admin-adjustment",
+        "confidence": "approved",
         "review": {
           "status": "approved",
           "reviewedAt": "2026-08-05T11:41:19.234Z",
           "note": "Automatically approved by the vocabulary ASR alignment workflow.",
           "matchScore": 0,
           "asrText": "関"
-        }
+        },
+        "reviewedAt": "2026-08-10T00:09:16.110Z"
       }
     },
     {
@@ -434,9 +437,9 @@
         "itemIndex": 11,
         "text": "ラケット",
         "label": "ラケット",
-        "start": 19.12,
-        "end": 19.58,
-        "duration": 0.46,
+        "start": 18.12,
+        "end": 19.08,
+        "duration": 0.96,
         "speechUnitCount": 4,
         "wordCount": 4,
         "matchScore": 1,
@@ -447,15 +450,16 @@
           32,
           33
         ],
-        "method": "azure-speech-word-alignment",
-        "confidence": "high",
+        "method": "manual-admin-adjustment",
+        "confidence": "approved",
         "review": {
           "status": "approved",
           "reviewedAt": "2026-08-05T11:41:19.234Z",
           "note": "Automatically approved by the vocabulary ASR alignment workflow.",
           "matchScore": 1,
           "asrText": "ラ ケ ッ ト"
-        }
+        },
+        "reviewedAt": "2026-08-10T00:09:45.781Z"
       }
     },
     {
@@ -599,9 +603,9 @@
         "itemIndex": 15,
         "text": "やります",
         "label": "やります",
-        "start": 26.32,
-        "end": 26.78,
-        "duration": 0.46,
+        "start": 25.32,
+        "end": 26.08,
+        "duration": 0.76,
         "speechUnitCount": 4,
         "wordCount": 4,
         "matchScore": 1,
@@ -612,15 +616,16 @@
           44,
           45
         ],
-        "method": "azure-speech-word-alignment",
-        "confidence": "high",
+        "method": "manual-admin-adjustment",
+        "confidence": "approved",
         "review": {
           "status": "approved",
           "reviewedAt": "2026-08-05T11:41:19.234Z",
           "note": "Automatically approved by the vocabulary ASR alignment workflow.",
           "matchScore": 1,
           "asrText": "や り ま す"
-        }
+        },
+        "reviewedAt": "2026-08-10T00:10:03.239Z"
       }
     },
     {
@@ -3693,5 +3698,6 @@
         ]
       }
     ]
-  }
+  },
+  "updatedAt": "2026-08-10T00:10:03.241Z"
 }
