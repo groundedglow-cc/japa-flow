@@ -1574,9 +1574,7 @@ async function listOcrSampleLessons(type) {
 
   const result = [];
   for (const lesson of [...lessons.values()].sort((a, b) => a.lessonNo - b.lessonNo)) {
-    const fileName = sampleType === "text"
-      ? lesson.audioFile || lesson.verifiedAudioFile || lesson.baseFile
-      : lesson.verifiedAudioFile || lesson.audioFile || lesson.baseFile;
+    const fileName = lesson.verifiedAudioFile || lesson.audioFile || lesson.baseFile;
     if (!fileName) continue;
     const filePath = join(dir, fileName);
     const data = await readJsonFile(filePath, null);

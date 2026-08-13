@@ -895,19 +895,33 @@ function IncorrectReasonPopover({ item, answer, result }) {
         ?
       </button>
       {isOpen ? (
-        <div className="incorrect-reason-panel" id={popoverId} role="dialog" aria-label={`第 ${item.number} 题错误原因`}>
-          <div className="incorrect-reason-head">
-            <strong>错误原因</strong>
-            <button type="button" onClick={() => setIsOpen(false)} aria-label="关闭错误原因">×</button>
-          </div>
-          <IncorrectAnswerDetails
-            item={item}
-            answer={answer}
-            result={result}
-            className="incorrect-answer-details compact"
-            showPrompt={false}
+        <>
+          <button
+            type="button"
+            className="incorrect-reason-backdrop"
+            aria-label="关闭错误原因"
+            onClick={() => setIsOpen(false)}
           />
-        </div>
+          <div
+            className="incorrect-reason-panel"
+            id={popoverId}
+            role="dialog"
+            aria-label={`第 ${item.number} 题错误原因`}
+            onClick={(event) => event.stopPropagation()}
+          >
+            <div className="incorrect-reason-head">
+              <strong>错误原因</strong>
+              <button type="button" onClick={() => setIsOpen(false)} aria-label="关闭错误原因">×</button>
+            </div>
+            <IncorrectAnswerDetails
+              item={item}
+              answer={answer}
+              result={result}
+              className="incorrect-answer-details compact"
+              showPrompt={false}
+            />
+          </div>
+        </>
       ) : null}
     </div>
   );
@@ -917,13 +931,14 @@ function Choices({ choices, item, admin, storedAnswer, gradingResult }) {
   const storedChoiceIds = resolveStoredChoiceIds(item, storedAnswer?.choiceIds || []);
   const currentChoiceIds = storedAnswer ? storedChoiceIds : (admin ? item.answer?.choiceIds || [] : []);
   const currentChoiceIdSet = new Set(currentChoiceIds);
+  const isMultiChoice = (item.answer?.choiceIds || []).length > 1;
   const choiceResult = gradingResult?.fieldResults?.[CHOICE_RESULT_KEY] || gradingResult?.status;
   return (
     <div className="choice-row">
       {choices.map((choice) => (
         <label key={choice.id} data-result={currentChoiceIdSet.has(choice.id) ? choiceResult || undefined : undefined}>
           <input
-            type="radio"
+            type={isMultiChoice ? "checkbox" : "radio"}
             name={item.id}
             value={choice.id}
             defaultChecked={currentChoiceIdSet.has(choice.id)}
@@ -1121,8 +1136,8 @@ function collectActivityAnswers(form, activity) {
     }
 
     if (item.choices?.length) {
-      const selected = form.querySelector(`input[name="${item.id}"]:checked`);
-      itemAnswer.choiceIds = selected ? [selected.value] : [];
+      const selected = [...form.querySelectorAll(`input[name="${item.id}"]:checked`)];
+      itemAnswer.choiceIds = selected.map((field) => field.value);
     }
 
     answers[item.id] = itemAnswer;

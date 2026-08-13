@@ -151,9 +151,9 @@
         "itemIndex": 4,
         "text": "みおくり",
         "label": "見送り",
-        "start": 6.35,
+        "start": 6.05,
         "end": 7.41,
-        "duration": 1.06,
+        "duration": 1.36,
         "speechUnitCount": 3,
         "wordCount": 3,
         "matchScore": 1,
@@ -163,15 +163,16 @@
           11,
           12
         ],
-        "method": "azure-speech-word-alignment",
-        "confidence": "high",
+        "method": "manual-admin-adjustment",
+        "confidence": "approved",
         "review": {
           "status": "approved",
           "reviewedAt": "2026-08-05T11:42:06.069Z",
           "note": "Automatically approved by the vocabulary ASR alignment workflow.",
           "matchScore": 1,
           "asrText": "見 送 り"
-        }
+        },
+        "reviewedAt": "2026-08-12T11:49:29.884Z"
       }
     },
     {
@@ -193,9 +194,9 @@
         "itemIndex": 5,
         "text": "あいだ",
         "label": "間",
-        "start": 8.51,
-        "end": 8.81,
-        "duration": 0.3,
+        "start": 7.7,
+        "end": 8.51,
+        "duration": 0.81,
         "speechUnitCount": 1,
         "wordCount": 1,
         "matchScore": 0,
@@ -203,15 +204,16 @@
         "wordIndexes": [
           14
         ],
-        "method": "azure-speech-word-alignment",
-        "confidence": "needs-review",
+        "method": "manual-admin-adjustment",
+        "confidence": "approved",
         "review": {
           "status": "approved",
           "reviewedAt": "2026-08-05T11:42:06.069Z",
           "note": "Automatically approved by the vocabulary ASR alignment workflow.",
           "matchScore": 0,
           "asrText": "田"
-        }
+        },
+        "reviewedAt": "2026-08-12T11:49:52.479Z"
       }
     },
     {
@@ -402,9 +404,9 @@
         "itemIndex": 10,
         "text": "わらいます",
         "label": "笑います",
-        "start": 15.83,
+        "start": 15.53,
         "end": 16.97,
-        "duration": 1.14,
+        "duration": 1.44,
         "speechUnitCount": 4,
         "wordCount": 4,
         "matchScore": 1,
@@ -415,15 +417,16 @@
           31,
           32
         ],
-        "method": "azure-speech-word-alignment",
-        "confidence": "high",
+        "method": "manual-admin-adjustment",
+        "confidence": "approved",
         "review": {
           "status": "approved",
           "reviewedAt": "2026-08-05T11:42:06.069Z",
           "note": "Automatically approved by the vocabulary ASR alignment workflow.",
           "matchScore": 1,
           "asrText": "笑 い ま す"
-        }
+        },
+        "reviewedAt": "2026-08-12T11:50:12.429Z"
       }
     },
     {
@@ -617,9 +620,9 @@
         "itemIndex": 15,
         "text": "けんきゅうします",
         "label": "研究します",
-        "start": 25.4,
+        "start": 24.4,
         "end": 26.14,
-        "duration": 0.74,
+        "duration": 1.74,
         "speechUnitCount": 5,
         "wordCount": 5,
         "matchScore": 1,
@@ -631,15 +634,16 @@
           54,
           55
         ],
-        "method": "azure-speech-word-alignment",
-        "confidence": "high",
+        "method": "manual-admin-adjustment",
+        "confidence": "approved",
         "review": {
           "status": "approved",
           "reviewedAt": "2026-08-05T11:42:06.069Z",
           "note": "Automatically approved by the vocabulary ASR alignment workflow.",
           "matchScore": 1,
           "asrText": "研 究 し ま す"
-        }
+        },
+        "reviewedAt": "2026-08-12T11:50:27.075Z"
       }
     },
     {
@@ -832,9 +836,9 @@
         "itemIndex": 20,
         "text": "かならず",
         "label": "必ず",
-        "start": 32.87,
+        "start": 32.07,
         "end": 33.45,
-        "duration": 0.58,
+        "duration": 1.38,
         "speechUnitCount": 2,
         "wordCount": 2,
         "matchScore": 1,
@@ -843,15 +847,16 @@
           71,
           72
         ],
-        "method": "azure-speech-word-alignment",
-        "confidence": "high",
+        "method": "manual-admin-adjustment",
+        "confidence": "approved",
         "review": {
           "status": "approved",
           "reviewedAt": "2026-08-05T11:42:06.069Z",
           "note": "Automatically approved by the vocabulary ASR alignment workflow.",
           "matchScore": 1,
           "asrText": "必 ず"
-        }
+        },
+        "reviewedAt": "2026-08-12T11:50:47.663Z"
       }
     },
     {
@@ -872,9 +877,9 @@
         "itemIndex": 21,
         "text": "ぜったいに",
         "label": "絶対に",
-        "start": 34.96,
+        "start": 34.06,
         "end": 35.46,
-        "duration": 0.5,
+        "duration": 1.4,
         "speechUnitCount": 3,
         "wordCount": 3,
         "matchScore": 1,
@@ -884,15 +889,16 @@
           74,
           75
         ],
-        "method": "azure-speech-word-alignment",
-        "confidence": "high",
+        "method": "manual-admin-adjustment",
+        "confidence": "approved",
         "review": {
           "status": "approved",
           "reviewedAt": "2026-08-05T11:42:06.069Z",
           "note": "Automatically approved by the vocabulary ASR alignment workflow.",
           "matchScore": 1,
           "asrText": "絶 対 に"
-        }
+        },
+        "reviewedAt": "2026-08-12T11:50:57.958Z"
       }
     },
     {
@@ -913,9 +919,9 @@
         "itemIndex": 22,
         "text": "ば",
         "label": "馬",
-        "start": 38.19,
-        "end": 38.41,
-        "duration": 0.22,
+        "start": 35.5,
+        "end": 36.41,
+        "duration": 0.91,
         "speechUnitCount": 1,
         "wordCount": 1,
         "matchScore": 0,
@@ -923,15 +929,16 @@
         "wordIndexes": [
           77
         ],
-        "method": "azure-speech-word-alignment",
-        "confidence": "needs-review",
+        "method": "manual-admin-adjustment",
+        "confidence": "approved",
         "review": {
           "status": "approved",
           "reviewedAt": "2026-08-05T11:42:06.069Z",
           "note": "Automatically approved by the vocabulary ASR alignment workflow.",
           "matchScore": 0,
           "asrText": "お"
-        }
+        },
+        "reviewedAt": "2026-08-12T11:51:11.287Z"
       }
     },
     {
@@ -952,9 +959,9 @@
         "itemIndex": 23,
         "text": "おせわになりました",
         "label": "お世話になりました",
-        "start": 38.31,
+        "start": 37.61,
         "end": 39.37,
-        "duration": 1.06,
+        "duration": 1.76,
         "speechUnitCount": 8,
         "wordCount": 8,
         "matchScore": 0.889,
@@ -969,15 +976,16 @@
           84,
           85
         ],
-        "method": "azure-speech-word-alignment",
-        "confidence": "high",
+        "method": "manual-admin-adjustment",
+        "confidence": "approved",
         "review": {
           "status": "approved",
           "reviewedAt": "2026-08-05T11:42:06.069Z",
           "note": "Automatically approved by the vocabulary ASR alignment workflow.",
           "matchScore": 0.889,
           "asrText": "世 話 に な り ま し た"
-        }
+        },
+        "reviewedAt": "2026-08-12T11:51:21.155Z"
       }
     },
     {
@@ -999,8 +1007,8 @@
         "text": "よろしくおつたえください",
         "label": "よろしくお伝えください",
         "start": 41.44,
-        "end": 42.86,
-        "duration": 1.42,
+        "end": 43.86,
+        "duration": 2.42,
         "speechUnitCount": 8,
         "wordCount": 8,
         "matchScore": 0.727,
@@ -1015,15 +1023,16 @@
           92,
           93
         ],
-        "method": "azure-speech-word-alignment",
-        "confidence": "medium",
+        "method": "manual-admin-adjustment",
+        "confidence": "approved",
         "review": {
           "status": "approved",
           "reviewedAt": "2026-08-05T11:42:06.069Z",
           "note": "Automatically approved by the vocabulary ASR alignment workflow.",
           "matchScore": 0.727,
           "asrText": "よ ろ し く お 伝 え く"
-        }
+        },
+        "reviewedAt": "2026-08-12T11:51:37.898Z"
       }
     },
     {
@@ -4589,5 +4598,6 @@
         ]
       }
     ]
-  }
+  },
+  "updatedAt": "2026-08-12T11:51:37.904Z"
 }

@@ -211,13 +211,8 @@
         gap: 12px;
         background: #fbfcfd;
         padding: 12px 14px;
-        cursor: pointer;
         user-select: none;
         transition: background 0.16s ease, color 0.16s ease;
-      }
-
-      .section-head:hover {
-        background: var(--accent-soft);
       }
 
       .text-section.expanded .section-head {
@@ -231,7 +226,16 @@
         font-size: 13px;
       }
 
-      .section-toggle {
+      .section-actions {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+      }
+
+      .section-toggle,
+      .section-display-toggle {
         display: inline-flex;
         align-items: center;
         gap: 5px;
@@ -246,9 +250,19 @@
         font-weight: 700;
       }
 
+      .section-toggle:hover,
+      .section-display-toggle:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+      }
+
       .text-section.expanded .section-toggle {
         border-color: var(--accent);
         color: var(--accent);
+      }
+
+      .section-display-toggle {
+        min-width: 54px;
       }
 
       .basic-sentences,
@@ -617,8 +631,12 @@
         samples: [],
         selectedSample: null,
         editing: null,
-        expandedTextSection: "basic"
+        expandedTextSection: "basic",
+        textDisplayModes: { basic: "both", application: "both" }
       };
+
+      const textDisplayModeLabels = { both: "中日", zh: "中文", ja: "日语" };
+      const textDisplayModeOrder = ["both", "zh", "ja"];
 
       const $ = (selector) => document.querySelector(selector);
       const escapeHtml = (value) => String(value ?? "")
@@ -649,6 +667,7 @@
       function setData(payload, sourceLabel = "导入数据") {
         state.data = normalizePayload(payload);
         state.expandedTextSection = "basic";
+        state.textDisplayModes = { basic: "both", application: "both" };
         $("#jsonInput").value = JSON.stringify(state.data, null, 2);
         setStatus(`${sourceLabel} 已加载。`);
         render();
@@ -770,16 +789,14 @@
 
       function renderBasic(basicText) {
         if (!basicText) return "";
+        const mode = state.textDisplayModes.basic || "both";
         const sentences = (basicText.basicSentences || []).map((sentence) => {
           const segmentId = registerSegment(sentence.audioSegment);
           registerItem(sentence);
           return `
             <div class="sentence${segmentId ? " has-audio" : ""}" data-item-id="${escapeHtml(sentence.id || "")}" ${segmentId ? `data-play-segment-id="${escapeHtml(segmentId)}"` : ""}>
               <div class="num">${escapeHtml(sentence.order || "")}</div>
-              <div>
-                <div class="jp" data-copy-text="${escapeHtml(copyTextForJapanese(sentence))}">${renderJapanese(sentence)}</div>
-                <div class="cn">${escapeHtml(sentence.translationZh || "")}</div>
-              </div>
+              <div>${renderTextContent(sentence, mode)}</div>
               <div>${segmentActions(sentence, segmentId, sentence.audioSegment)}</div>
             </div>
           `;
@@ -788,16 +805,20 @@
         const dialogues = (basicText.dialogues || []).map((dialogue) => `
           <div class="dialogue">
             <h3 class="dialogue-title">对话 ${escapeHtml(dialogue.label || "")}</h3>
-            ${(dialogue.lines || []).map(renderLine).join("")}
+            ${(dialogue.lines || []).map((line) => renderLine(line, mode)).join("")}
           </div>
         `).join("");
 
         const expanded = state.expandedTextSection === "basic";
         return `
           <section class="text-section ${expanded ? "expanded" : "collapsed"}" data-text-section="basic">
-            <div class="section-head" role="button" tabindex="0" aria-expanded="${expanded ? "true" : "false"}">
+            <div class="section-head">
               <h2>${escapeHtml(basicText.title || "基本课文")}</h2>
-              <span class="section-label">基本句 + 甲乙对话 <span class="section-toggle">${expanded ? "▾ 收起" : "▸ 展开"}</span></span>
+              <span class="section-actions">
+                <span class="section-label">基本句 + 甲乙对话</span>
+                <button class="section-display-toggle" type="button" data-display-section="basic">${textDisplayModeLabels[mode]}</button>
+                <button class="section-toggle" type="button" data-toggle-section="basic" aria-expanded="${expanded ? "true" : "false"}">${expanded ? "▾ 收起" : "▸ 展开"}</button>
+              </span>
             </div>
             ${expanded ? `<div class="basic-sentences">${sentences}</div>${dialogues}` : ""}
           </section>
@@ -806,10 +827,12 @@
 
       function renderApplication(applicationText) {
         if (!applicationText) return "";
+        const mode = state.textDisplayModes.application || "both";
         const blocks = (applicationText.blocks || []).map((block) => {
           if (block.type === "dialogue") {
-            return `<div class="dialogue">${(block.lines || []).map(renderLine).join("")}</div>`;
+            return `<div class="dialogue">${(block.lines || []).map((line) => renderLine(line, mode)).join("")}</div>`;
           }
+          if (mode === "ja") return "";
           return `
             <div class="block ${escapeHtml(block.type || "narration")}">
               <div class="block-title">${escapeHtml(block.type || "narration")}</div>
@@ -822,25 +845,26 @@
         const expanded = state.expandedTextSection === "application";
         return `
           <section class="text-section ${expanded ? "expanded" : "collapsed"}" data-text-section="application">
-            <div class="section-head" role="button" tabindex="0" aria-expanded="${expanded ? "true" : "false"}">
+            <div class="section-head">
               <h2>${escapeHtml(applicationText.title || "应用课文")}</h2>
-              <span class="section-label">旁白 / 场景 / 多人对话 <span class="section-toggle">${expanded ? "▾ 收起" : "▸ 展开"}</span></span>
+              <span class="section-actions">
+                <span class="section-label">旁白 / 场景 / 多人对话</span>
+                <button class="section-display-toggle" type="button" data-display-section="application">${textDisplayModeLabels[mode]}</button>
+                <button class="section-toggle" type="button" data-toggle-section="application" aria-expanded="${expanded ? "true" : "false"}">${expanded ? "▾ 收起" : "▸ 展开"}</button>
+              </span>
             </div>
             ${expanded ? blocks : ""}
           </section>
         `;
       }
 
-      function renderLine(line) {
+      function renderLine(line, mode = "both") {
         const segmentId = registerSegment(line.audioSegment);
         registerItem(line);
         return `
           <div class="line${segmentId ? " has-audio" : ""}" data-item-id="${escapeHtml(line.id || "")}" ${segmentId ? `data-play-segment-id="${escapeHtml(segmentId)}"` : ""}>
             <div><span class="speaker">${escapeHtml(line.speaker || "?")}</span></div>
-            <div>
-              <div class="jp" data-copy-text="${escapeHtml(copyTextForJapanese(line))}">${renderJapanese(line)}</div>
-              <div class="cn">${escapeHtml(line.translationZh || "")}</div>
-            </div>
+            <div>${renderTextContent(line, mode)}</div>
             <div>${segmentActions(line, segmentId, line.audioSegment)}</div>
           </div>
         `;
@@ -882,24 +906,39 @@
         }).join("");
       }
 
+      function renderTextContent(item, mode = "both") {
+        const parts = [];
+        if (mode !== "zh") {
+          parts.push(`<div class="jp" data-copy-text="${escapeHtml(copyTextForJapanese(item))}">${renderJapanese(item)}</div>`);
+        }
+        if (mode !== "ja") {
+          parts.push(`<div class="cn">${escapeHtml(item?.translationZh || "")}</div>`);
+        }
+        return parts.join("");
+      }
+
       function copyTextForJapanese(item) {
         const segments = Array.isArray(item?.segments) ? item.segments : [];
         return segments.length ? segments.map((segment) => segment?.text || "").join("") : item?.text || "";
       }
 
       function bindSegmentButtons() {
-        $("#textPreview").querySelectorAll(".section-head").forEach((head) => {
-          const toggle = () => {
-            const section = head.closest("[data-text-section]")?.dataset.textSection;
+        $("#textPreview").querySelectorAll("[data-toggle-section]").forEach((button) => {
+          button.addEventListener("click", () => {
+            const section = button.dataset.toggleSection;
             if (!section) return;
             state.expandedTextSection = state.expandedTextSection === section ? "" : section;
             render();
-          };
-          head.addEventListener("click", toggle);
-          head.addEventListener("keydown", (event) => {
-            if (event.key !== "Enter" && event.key !== " ") return;
-            event.preventDefault();
-            toggle();
+          });
+        });
+        $("#textPreview").querySelectorAll("[data-display-section]").forEach((button) => {
+          button.addEventListener("click", () => {
+            const section = button.dataset.displaySection;
+            if (!section) return;
+            const current = state.textDisplayModes[section] || "both";
+            const next = textDisplayModeOrder[(textDisplayModeOrder.indexOf(current) + 1) % textDisplayModeOrder.length];
+            state.textDisplayModes = { ...state.textDisplayModes, [section]: next };
+            render();
           });
         });
         $("#textPreview").querySelectorAll(".sentence[data-play-segment-id], .line[data-play-segment-id]").forEach((row) => {

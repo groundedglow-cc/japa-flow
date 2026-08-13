@@ -21,6 +21,7 @@
         --accent-soft: #e7f3ee;
         --warn: #9b5b00;
         --warn-soft: #fff4dc;
+        --vocab-left-panel: 48%;
       }
 
       * {
@@ -82,8 +83,8 @@
 
       .workspace {
         display: grid;
-        grid-template-columns: minmax(440px, 0.95fr) minmax(360px, 1.05fr);
-        gap: 16px;
+        grid-template-columns: minmax(360px, var(--vocab-left-panel)) 8px minmax(320px, 1fr);
+        gap: 12px;
         padding: 16px;
         align-items: start;
       }
@@ -228,7 +229,7 @@
       }
 
       .writing {
-        font-size: 42px;
+        font-size: 36px;
         font-weight: 700;
         letter-spacing: 0;
         line-height: 1.25;
@@ -249,7 +250,7 @@
 
       .meaning-inline {
         color: var(--muted);
-        font-size: 15px;
+        font-size: 18px;
         font-weight: 500;
         line-height: 1.4;
       }
@@ -304,12 +305,29 @@
         border-color: var(--accent);
         color: var(--accent);
         background: var(--accent-soft);
-        font-size: 14px;
+        font-size: 18px;
         line-height: 1;
       }
 
       .segment-settings {
         display: inline-flex;
+        font-size: 18px;
+      }
+
+      .panel-resizer {
+        position: sticky;
+        top: 72px;
+        width: 8px;
+        min-height: calc(100vh - 104px);
+        border: 0;
+        border-radius: 999px;
+        background: linear-gradient(to right, transparent 0 2px, var(--line) 2px 6px, transparent 6px 8px);
+        cursor: col-resize;
+      }
+
+      .panel-resizer:hover,
+      .panel-resizer.dragging {
+        background: linear-gradient(to right, transparent 0 2px, var(--accent) 2px 6px, transparent 6px 8px);
       }
 
       .modal-backdrop {
@@ -489,6 +507,10 @@
           grid-template-columns: 1fr;
         }
 
+        .panel-resizer {
+          display: none;
+        }
+
         .image-panel {
           position: static;
         }
@@ -536,6 +558,8 @@
         <div class="word-list" id="wordList"></div>
       </section>
 
+      <button class="panel-resizer" id="panelResizer" type="button" aria-label="调整左右面板宽度"></button>
+
       <aside class="panel image-panel">
         <p class="image-title">
           <span id="imageLabel">教材图片</span>
@@ -571,6 +595,7 @@
         document.documentElement.classList.add("admin");
       }
 
+      const PANEL_RATIO_STORAGE_KEY = "japaflow.tools.vocabularyPreview.panelRatio.v1";
       const state = { data: null, index: 0, audio: new Audio(), stopTimer: 0, samples: [], selectedSample: null, autoPlayToken: 0, editing: null };
 
       const $ = (selector) => document.querySelector(selector);
@@ -586,6 +611,53 @@
         if (/^(?:https?:)?\/\//.test(path) || path.startsWith("/")) return path;
         return `../${path}`;
       };
+
+      function clamp(value, min, max) {
+        return Math.max(min, Math.min(max, value));
+      }
+
+      function setPanelRatio(percent, persist = true) {
+        const ratio = clamp(Number(percent) || 48, 32, 68);
+        document.documentElement.style.setProperty("--vocab-left-panel", `${ratio.toFixed(2)}%`);
+        if (persist) localStorage.setItem(PANEL_RATIO_STORAGE_KEY, String(ratio));
+      }
+
+      function initPanelResizer() {
+        const saved = Number(localStorage.getItem(PANEL_RATIO_STORAGE_KEY));
+        if (Number.isFinite(saved)) setPanelRatio(saved, false);
+
+        const resizer = $("#panelResizer");
+        const workspace = $(".workspace");
+        if (!resizer || !workspace) return;
+
+        const updateFromClientX = (clientX) => {
+          const rect = workspace.getBoundingClientRect();
+          if (!rect.width) return;
+          const ratio = ((clientX - rect.left) / rect.width) * 100;
+          setPanelRatio(ratio);
+        };
+
+        resizer.addEventListener("pointerdown", (event) => {
+          if (window.matchMedia("(max-width: 920px)").matches) return;
+          event.preventDefault();
+          resizer.classList.add("dragging");
+          resizer.setPointerCapture(event.pointerId);
+          updateFromClientX(event.clientX);
+        });
+
+        resizer.addEventListener("pointermove", (event) => {
+          if (!resizer.classList.contains("dragging")) return;
+          updateFromClientX(event.clientX);
+        });
+
+        const stopDragging = (event) => {
+          if (!resizer.classList.contains("dragging")) return;
+          resizer.classList.remove("dragging");
+          if (resizer.hasPointerCapture(event.pointerId)) resizer.releasePointerCapture(event.pointerId);
+        };
+        resizer.addEventListener("pointerup", stopDragging);
+        resizer.addEventListener("pointercancel", stopDragging);
+      }
 
       function normalizePayload(payload) {
         if (!payload || !Array.isArray(payload.vocabulary)) {
@@ -1023,6 +1095,7 @@
       $("#testSegmentPlay").addEventListener("click", testEditedSegment);
       $("#saveSegment").addEventListener("click", saveEditedSegment);
 
+      initPanelResizer();
       initSamples().catch((error) => setStatus(error.message, true));
     </script>
   </body>

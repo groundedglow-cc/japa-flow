@@ -377,12 +377,13 @@
               "itemIndex": 8,
               "text": "季節に よって 高かったり 安かったりです。",
               "label": "乙: 季節に よって 高かったり 安かったりです。",
-              "start": 36.508,
+              "start": 36.208,
               "end": 39.862,
-              "duration": 3.354,
+              "duration": 3.654,
               "speechUnitCount": 1,
-              "method": "ffmpeg-silencedetect-order",
-              "confidence": "needs-review"
+              "method": "manual-admin-adjustment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-12T01:27:55.279Z"
             },
             "kana": "きせつに よって たかかったり やすかったりです。",
             "segments": [
@@ -1823,5 +1824,5 @@
       }
     }
   },
-  "updatedAt": "2026-08-11T12:37:38.888Z"
+  "updatedAt": "2026-08-12T01:27:55.279Z"
 }

@@ -1125,10 +1125,21 @@ rt {
   background: #fff1ed;
 }
 
+.incorrect-reason-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: default;
+}
+
 .incorrect-reason-panel {
   position: absolute;
   top: 38px;
   right: 0;
+  z-index: 2;
   width: min(520px, calc(100vw - 44px));
   padding: 14px;
   border: 1px solid rgba(185, 67, 46, 0.22);

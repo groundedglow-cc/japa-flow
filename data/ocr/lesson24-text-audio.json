@@ -30,12 +30,13 @@
           "itemIndex": 1,
           "text": "李さんは もう すぐ 来ると 思います。",
           "label": "李さんは もう すぐ 来ると 思います。",
-          "start": 1.344,
-          "end": 4.919,
-          "duration": 3.576,
+          "start": 0.2,
+          "end": 4.519,
+          "duration": 4.319,
           "speechUnitCount": 2,
-          "method": "ffmpeg-silencedetect-order",
-          "confidence": "needs-review"
+          "method": "manual-admin-adjustment",
+          "confidence": "approved",
+          "reviewedAt": "2026-08-13T12:57:18.256Z"
         },
         "kana": "りさんは もう すぐ くると おもいます。",
         "segments": [
@@ -77,12 +78,13 @@
           "itemIndex": 2,
           "text": "陳さんは パーティーに 行くと 言いました。",
           "label": "陳さんは パーティーに 行くと 言いました。",
-          "start": 6.795,
-          "end": 9.449,
-          "duration": 2.654,
+          "start": 4.65,
+          "end": 8.8,
+          "duration": 4.15,
           "speechUnitCount": 2,
-          "method": "ffmpeg-silencedetect-order",
-          "confidence": "needs-review"
+          "method": "manual-admin-adjustment",
+          "confidence": "approved",
+          "reviewedAt": "2026-08-13T12:57:33.767Z"
         },
         "kana": "ちんさんは パーティーに いくと いいました。",
         "segments": [
@@ -124,12 +126,13 @@
           "itemIndex": 3,
           "text": "すみません、頭が 痛いんです。",
           "label": "すみません、頭が 痛いんです。",
-          "start": 10.859,
-          "end": 13.326,
-          "duration": 2.468,
+          "start": 9,
+          "end": 12.326,
+          "duration": 3.326,
           "speechUnitCount": 2,
-          "method": "ffmpeg-silencedetect-order",
-          "confidence": "needs-review"
+          "method": "manual-admin-adjustment",
+          "confidence": "approved",
+          "reviewedAt": "2026-08-12T12:11:49.210Z"
         },
         "kana": "すみません、あたまが いたいんです。",
         "segments": [
@@ -167,12 +170,13 @@
           "itemIndex": 4,
           "text": "東京タワーへ 行きたいんですが、どうやって 行きますか。",
           "label": "東京タワーへ 行きたいんですが、どうやって 行きますか。",
-          "start": 16.196,
-          "end": 19.192,
-          "duration": 2.996,
+          "start": 12.196,
+          "end": 18.492,
+          "duration": 6.296,
           "speechUnitCount": 2,
-          "method": "ffmpeg-silencedetect-order",
-          "confidence": "needs-review"
+          "method": "manual-admin-adjustment",
+          "confidence": "approved",
+          "reviewedAt": "2026-08-12T12:12:13.333Z"
         },
         "kana": "とうきょうタワーへ いきたいんですが、どうやって いきますか。",
         "segments": [
@@ -220,12 +224,13 @@
               "itemIndex": 5,
               "text": "日本の 音楽に ついて どう 思いますか。",
               "label": "甲: 日本の 音楽に ついて どう 思いますか。",
-              "start": 21.815,
+              "start": 18.815,
               "end": 22.819,
-              "duration": 1.004,
+              "duration": 4.004,
               "speechUnitCount": 1,
-              "method": "ffmpeg-silencedetect-order",
-              "confidence": "needs-review"
+              "method": "manual-admin-adjustment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-12T12:12:32.542Z"
             },
             "kana": "にほんの おんがくに ついて どう おもいますか。",
             "segments": [
@@ -573,12 +578,13 @@
               "itemIndex": 1,
               "text": "とうとう お別れですね。",
               "label": "小野: とうとう お別れですね。",
-              "start": 0.351,
-              "end": 1.069,
-              "duration": 0.719,
+              "start": 16.851,
+              "end": 20.069,
+              "duration": 3.218,
               "speechUnitCount": 1,
-              "method": "ffmpeg-silencedetect-order",
-              "confidence": "needs-review"
+              "method": "manual-admin-adjustment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-12T12:14:13.812Z"
             },
             "kana": "とうとう おわかれですね。",
             "segments": [
@@ -609,12 +615,13 @@
               "itemIndex": 2,
               "text": "ありがとう ございました。本当に お世話に なりました。",
               "label": "李: ありがとう ございました。本当に お世話に なりました。",
-              "start": 2.235,
-              "end": 4.284,
-              "duration": 2.049,
+              "start": 20.335,
+              "end": 24.84,
+              "duration": 4.505,
               "speechUnitCount": 2,
-              "method": "ffmpeg-silencedetect-order",
-              "confidence": "needs-review"
+              "method": "manual-admin-adjustment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-12T12:14:59.088Z"
             },
             "kana": "ありがとう ございました。本当に おせわに なりました。",
             "segments": [
@@ -645,12 +652,13 @@
               "itemIndex": 3,
               "text": "こちらこそ。短い 間でしたが、とても 楽しかったですよ。",
               "label": "小野: こちらこそ。短い 間でしたが、とても 楽しかったですよ。",
-              "start": 4.806,
-              "end": 8.738,
-              "duration": 3.932,
+              "start": 24.84,
+              "end": 29.538,
+              "duration": 4.698,
               "speechUnitCount": 3,
-              "method": "ffmpeg-silencedetect-order",
-              "confidence": "needs-review"
+              "method": "manual-admin-adjustment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-12T12:15:26.207Z"
             },
             "kana": "こちらこそ。みじかい あいだでしたが、とても たのしかったですよ。",
             "segments": [
@@ -695,12 +703,13 @@
               "itemIndex": 4,
               "text": "課長は 出張中ですが、李さんに よろしくと 言って いましたよ。",
               "label": "森: 課長は 出張中ですが、李さんに よろしくと 言って いましたよ。",
-              "start": 9.031,
-              "end": 22.202,
-              "duration": 13.171,
+              "start": 30,
+              "end": 34.5,
+              "duration": 4.5,
               "speechUnitCount": 2,
-              "method": "ffmpeg-silencedetect-order",
-              "confidence": "needs-review"
+              "method": "manual-admin-adjustment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-12T12:19:45.824Z"
             },
             "kana": "かちょうは しゅっちょうちゅうですが、りさんに よろしくと いって いましたよ。",
             "segments": [
@@ -749,12 +758,13 @@
               "itemIndex": 5,
               "text": "そうですか。どうぞ 吉田課長に よろしく お伝え ください。",
               "label": "李: そうですか。どうぞ 吉田課長に よろしく お伝え ください。",
-              "start": 22.313,
-              "end": 25.818,
-              "duration": 3.505,
+              "start": 34.6,
+              "end": 39.08,
+              "duration": 4.48,
               "speechUnitCount": 2,
-              "method": "ffmpeg-silencedetect-order",
-              "confidence": "needs-review"
+              "method": "manual-admin-adjustment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-12T12:16:49.296Z"
             },
             "kana": "そうですか。どうぞ よしだかちょうに よろしく おつたえ ください。",
             "segments": [
@@ -796,12 +806,13 @@
               "itemIndex": 6,
               "text": "ええ、必ず 伝えます。",
               "label": "森: ええ、必ず 伝えます。",
-              "start": 26.267,
-              "end": 29.513,
-              "duration": 3.246,
+              "start": 39.08,
+              "end": 41.48,
+              "duration": 2.4,
               "speechUnitCount": 2,
-              "method": "ffmpeg-silencedetect-order",
-              "confidence": "needs-review"
+              "method": "manual-admin-adjustment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-12T12:16:44.396Z"
             },
             "kana": "ええ、かならず つたえます。",
             "segments": [
@@ -853,12 +864,13 @@
               "itemIndex": 7,
               "text": "これ、浴衣です。わたしが 作ったんですが、どうぞ。",
               "label": "小野: これ、浴衣です。わたしが 作ったんですが、どうぞ。",
-              "start": 30.087,
-              "end": 38.914,
-              "duration": 8.826,
+              "start": 44.087,
+              "end": 50,
+              "duration": 5.913,
               "speechUnitCount": 4,
-              "method": "ffmpeg-silencedetect-order",
-              "confidence": "needs-review"
+              "method": "manual-admin-adjustment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-12T12:17:38.983Z"
             },
             "kana": "これ、ゆかたです。わたしが つくったんですが、どうぞ。",
             "segments": [
@@ -896,12 +908,13 @@
               "itemIndex": 8,
               "text": "小野さんが 作ったんですか。すごいですね。ありがとう ございます。",
               "label": "李: 小野さんが 作ったんですか。すごいですね。ありがとう ございます。",
-              "start": 39.262,
-              "end": 54.701,
-              "duration": 15.439,
+              "start": 50,
+              "end": 56,
+              "duration": 6,
               "speechUnitCount": 3,
-              "method": "ffmpeg-silencedetect-order",
-              "confidence": "needs-review"
+              "method": "manual-admin-adjustment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-12T12:17:55.185Z"
             },
             "kana": "おのさんが つくったんですか。すごいですね。ありがとう ございます。",
             "segments": [
@@ -950,12 +963,13 @@
               "itemIndex": 9,
               "text": "小野さん、森さん、いつか 北京へ 来て ください。",
               "label": "李: 小野さん、森さん、いつか 北京へ 来て ください。",
-              "start": 55.334,
-              "end": 58.639,
-              "duration": 3.306,
+              "start": 58.334,
+              "end": 63.039,
+              "duration": 4.705,
               "speechUnitCount": 3,
-              "method": "ffmpeg-silencedetect-order",
-              "confidence": "needs-review"
+              "method": "manual-admin-adjustment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-12T12:21:58.522Z"
             },
             "kana": "おのさん、もりさん、いつか ペキンへ くて ください。",
             "segments": [
@@ -1004,12 +1018,13 @@
               "itemIndex": 10,
               "text": "ええ、必ず 行きます。今度は 京劇を 見ましょう。李さん、お元気で。",
               "label": "小野: ええ、必ず 行きます。今度は 京劇を 見ましょう。李さん、お元気で。",
-              "start": 58.8,
-              "end": 67.037,
-              "duration": 8.237,
+              "start": 63,
+              "end": 69.37,
+              "duration": 6.37,
               "speechUnitCount": 5,
-              "method": "ffmpeg-silencedetect-order",
-              "confidence": "needs-review"
+              "method": "manual-admin-adjustment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-12T12:22:13.507Z"
             },
             "kana": "ええ、かならず いきます。こんどは きょうげきを みましょう。りさん、おげんきで。",
             "segments": [
@@ -1082,12 +1097,13 @@
               "itemIndex": 11,
               "text": "ぼくも いつか 北京へ 行きたいと 思います。李さん、どうぞ お気を つけて。",
               "label": "森: ぼくも いつか 北京へ 行きたいと 思います。李さん、どうぞ お気を つけて。",
-              "start": 67.74,
+              "start": 69.5,
               "end": 75.267,
-              "duration": 7.527,
+              "duration": 5.767,
               "speechUnitCount": 3,
-              "method": "ffmpeg-silencedetect-order",
-              "confidence": "needs-review"
+              "method": "manual-admin-adjustment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-12T12:18:54.405Z"
             },
             "kana": "ぼくも いつか ペキンへ いきたいと おもいます。りさん、どうぞ おきを つけて。",
             "segments": [
@@ -1146,12 +1162,13 @@
               "itemIndex": 12,
               "text": "さようなら。今度は 北京で 会いましょう。",
               "label": "李: さようなら。今度は 北京で 会いましょう。",
-              "start": 75.404,
+              "start": 76.504,
               "end": 80.45,
-              "duration": 5.046,
+              "duration": 3.946,
               "speechUnitCount": 2,
-              "method": "ffmpeg-silencedetect-order",
-              "confidence": "needs-review"
+              "method": "manual-admin-adjustment",
+              "confidence": "approved",
+              "reviewedAt": "2026-08-12T12:22:57.109Z"
             },
             "kana": "さようなら。こんどは ペキンで あいましょう。",
             "segments": [
@@ -1597,5 +1614,6 @@
         ]
       }
     }
-  }
+  },
+  "updatedAt": "2026-08-13T12:57:33.769Z"
 }

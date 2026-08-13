@@ -839,9 +839,9 @@
         "itemIndex": 21,
         "text": "わたし",
         "label": "わたし",
-        "start": 34.03,
+        "start": 33.23,
         "end": 34.65,
-        "duration": 0.62,
+        "duration": 1.42,
         "speechUnitCount": 1,
         "wordCount": 1,
         "matchScore": 0,
@@ -849,15 +849,16 @@
         "wordIndexes": [
           54
         ],
-        "method": "azure-speech-word-alignment",
-        "confidence": "needs-review",
+        "method": "manual-admin-adjustment",
+        "confidence": "approved",
         "review": {
           "status": "approved",
           "reviewedAt": "2026-08-05T11:28:34.177Z",
           "note": "Automatically approved by the vocabulary ASR alignment workflow.",
           "matchScore": 0,
           "asrText": "私"
-        }
+        },
+        "reviewedAt": "2026-08-12T12:58:02.788Z"
       }
     },
     {
@@ -7175,5 +7176,6 @@
         ]
       }
     ]
-  }
+  },
+  "updatedAt": "2026-08-12T12:58:02.791Z"
 }

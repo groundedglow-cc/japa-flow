@@ -858,5 +858,299 @@
         }
       ]
     }
+  },
+  "lesson23": {
+    "l23-p1-a2-q2": {
+      "answer": [
+        {
+          "answer": "試験易しかったり難しかったりです",
+          "normalizedAnswer": "試験易しかったり難しかったりです",
+          "expectedAnswers": [
+            "試験は 易しかったり 難しかったりです。"
+          ],
+          "reason": "用户答案省略了助词'は'，但意思和语法功能与参考答案一致，属于轻微省略，可以接受。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "試験は 易しかったり 難しかったりです。",
+          "addedAt": "2026-08-12T00:34:01.308Z"
+        }
+      ]
+    },
+    "l23-p1-a2-q3": {
+      "answer": [
+        {
+          "answer": "閉店時刻早かったり遅かったりです",
+          "normalizedAnswer": "閉店時刻早かったり遅かったりです",
+          "expectedAnswers": [
+            "閉店時刻は 早かったり 遅かったりです。"
+          ],
+          "reason": "用户答案省略了助词'は'，但意思和语法功能与参考答案一致，属于轻微省略，可以接受。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "閉店時刻は 早かったり 遅かったりです。",
+          "addedAt": "2026-08-12T00:35:04.777Z"
+        }
+      ]
+    },
+    "l23-p1-a4-q1": {
+      "answer": [
+        {
+          "answer": "卒業式は 何時に 始まるか知っていますか",
+          "normalizedAnswer": "卒業式は何時に始まるか知っていますか",
+          "expectedAnswers": [
+            "卒業式が 何時に 始まるか 知って いますか。"
+          ],
+          "reason": "用户答案与参考答案意思一致，语法功能相同，仅助词使用不同（は vs が），属于自然表达差异，可以采纳。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "卒業式は 何時に 始まるか知っていますか",
+          "addedAt": "2026-08-12T00:52:06.228Z"
+        }
+      ]
+    },
+    "l23-p1-a4-q4": {
+      "answer": [
+        {
+          "answer": "森さんは どこへ 出かけたか知っていますか",
+          "normalizedAnswer": "森さんはどこへ出かけたか知っていますか",
+          "expectedAnswers": [
+            "森さんが どこへ 出かけたか 知って いますか。"
+          ],
+          "reason": "用户答案与参考答案意思一致，仅将主语助词が换为は，语法功能相同，符合题目要求。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "森さんは どこへ 出かけたか知っていますか",
+          "addedAt": "2026-08-12T00:52:07.410Z"
+        }
+      ]
+    },
+    "l23-p1-a5-q1": {
+      "answer": [
+        {
+          "answer": "東京駅まで 何で 行くかわかりません",
+          "normalizedAnswer": "東京駅まで何で行くかわかりません",
+          "expectedAnswers": [
+            "東京駅まで 何で 行くか 分かりません。"
+          ],
+          "reason": "用户答案与参考答案意思一致，语法结构正确，仅省略了空格，属于轻微清洗范围。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "東京駅まで 何で 行くかわかりません",
+          "addedAt": "2026-08-12T00:57:24.456Z"
+        }
+      ]
+    },
+    "l23-p1-a5-q3": {
+      "answer": [
+        {
+          "answer": "李さんは いつ 中国へ 帰るか知って いますか",
+          "normalizedAnswer": "李さんはいつ中国へ帰るか知っていますか",
+          "expectedAnswers": [
+            "李さんが いつ 中国へ 帰るか 知って いますか。"
+          ],
+          "reason": "用户答案与参考答案意思一致，仅将助词が改为は，语法功能相同，符合题目要求。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "李さんは いつ 中国へ 帰るか知って いますか。",
+          "addedAt": "2026-08-12T00:57:25.790Z"
+        }
+      ]
+    },
+    "l23-p1-a5-q6": {
+      "answer": [
+        {
+          "answer": "仕事が 終ったかどうか小野さんに 聞いて ください",
+          "normalizedAnswer": "仕事が終ったかどうか小野さんに聞いてください",
+          "expectedAnswers": [
+            "仕事が 終わったか どうか 小野さんに 聞いて ください。"
+          ],
+          "reason": "用户答案与参考答案意思一致，语法结构相同，仅将'終わった'写作'終った'（送假名省略），属于轻微书写差异，不影响正确性。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "仕事が 終ったかどうか 小野さんに 聞いて ください",
+          "addedAt": "2026-08-12T00:57:28.427Z"
+        }
+      ]
+    },
+    "l23-p1-a6-q3": {
+      "answer": [
+        {
+          "answer": "100000円でした",
+          "normalizedAnswer": "100000円でした",
+          "expectedAnswers": [
+            "はい、10万円でした。"
+          ],
+          "reason": "用户答案与参考答案意思一致，均为10万日元，只是数字写法不同，符合采纳标准。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "100000円でした",
+          "addedAt": "2026-08-12T00:59:12.891Z"
+        }
+      ]
+    },
+    "l23-p2-a5-q2": {
+      "answer": [
+        {
+          "answer": "私が今年の夏北京へ行くかどうか分かりません",
+          "normalizedAnswer": "私が今年の夏北京へ行くかどうか分かりません",
+          "expectedAnswers": [
+            "わたしは 今年の 夏、北京へ 行くか どうか 分かりません。",
+            "今年の 夏、北京へ 行くか どうか 分かりません。"
+          ],
+          "reason": "意思与参考答案一致，语法正确，只是主语用「が」代替「は」，属于自然表达差异。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "私が今年の夏北京へ行くかどうか分かりません",
+          "addedAt": "2026-08-12T01:11:48.470Z"
+        }
+      ]
+    },
+    "l23-p2-a5-q3": {
+      "answer": [
+        {
+          "answer": "週末にスケートをしたり、ボーウリングをしたりしました",
+          "normalizedAnswer": "週末にスケートをしたりボーウリングをしたりしました",
+          "expectedAnswers": [
+            "週末、スケートを したり、ボーリングを したり しました。",
+            "週末に スケートを したり、ボーリングを したり しました。"
+          ],
+          "reason": "意思与参考答案一致，语法结构相同，仅ボーリング的写法略有不同（ボーウリング），属于可接受的拼写变体。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "週末にスケートをしたり、ボーウリングをしたりしました",
+          "addedAt": "2026-08-12T01:12:36.439Z"
+        }
+      ]
+    }
+  },
+  "lesson24": {
+    "l24-p1-a1-q3": {
+      "answer": [
+        {
+          "answer": "韓国語の勉強は面白いと思います。",
+          "normalizedAnswer": "韓国語の勉強は面白いと思います",
+          "expectedAnswers": [
+            "韓国語の 勉強は おもしろいと 思います。"
+          ],
+          "reason": "用户答案与参考答案意思一致，语法结构相同，仅汉字与假名写法不同，属于可接受的表达差异。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "韓国語の勉強は面白いと思います。",
+          "addedAt": "2026-08-13T00:25:27.433Z"
+        }
+      ]
+    },
+    "l24-p1-a1-q6": {
+      "answer": [
+        {
+          "answer": "昨日の方が寒かったと思います。",
+          "normalizedAnswer": "昨日の方が寒かったと思います",
+          "expectedAnswers": [
+            "昨日の ほうが 寒かったと 思います。"
+          ],
+          "reason": "用户答案与参考答案意思一致，语法功能相同，只是省略了空格，属于自然表达差异。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "昨日の方が寒かったと思います。",
+          "addedAt": "2026-08-13T00:25:28.763Z"
+        }
+      ]
+    },
+    "l24-p1-a1-q11": {
+      "answer": [
+        {
+          "answer": "毎朝6時に起きた方がいいと思います。",
+          "normalizedAnswer": "毎朝6時に起きた方がいいと思います",
+          "expectedAnswers": [
+            "毎朝 6時に 起きた ほうが いいと 思います。"
+          ],
+          "reason": "用户答案与参考答案意思一致，语法正确，仅省略空格，符合要求。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "毎朝6時に起きた方がいいと思います。",
+          "addedAt": "2026-08-13T00:25:31.529Z"
+        }
+      ]
+    },
+    "l24-p1-a2-q1": {
+      "answer": [
+        {
+          "answer": "安くて、美味しいと思います",
+          "normalizedAnswer": "安くて美味しいと思います",
+          "expectedAnswers": [
+            "安くて おいしいと 思います。"
+          ],
+          "reason": "意思与参考答案一致，只是使用了汉字'美味しい'和逗号，属于自然表达差异。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "安くて、美味しいと思います",
+          "addedAt": "2026-08-13T00:30:41.995Z"
+        }
+      ]
+    },
+    "l24-p1-a2-q4": {
+      "answer": [
+        {
+          "answer": "難しですが、役に立つと思います",
+          "normalizedAnswer": "難しですが役に立つと思います",
+          "expectedAnswers": [
+            "難しいですが、役に 立つと 思います。"
+          ],
+          "reason": "用户答案与参考答案意思一致，仅将'難しい'误写为'難し'，属于轻微书写错误，不影响语法和意义。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "難しいですが、役に立つと思います。",
+          "addedAt": "2026-08-13T00:30:43.531Z"
+        }
+      ]
+    },
+    "l24-p1-a4-q3": {
+      "answer": [
+        {
+          "answer": "長島さん焼酎が いちばん 好きといいました",
+          "normalizedAnswer": "長島さん焼酎がいちばん好きといいました",
+          "expectedAnswers": [
+            "長島さんは 焼酎が いちばん 好きだと 言いました。"
+          ],
+          "reason": "意思与参考答案一致，语法功能相同，只是省略了助词は，属于轻微表达差异。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "長島さん焼酎が いちばん 好きといいました",
+          "addedAt": "2026-08-13T00:34:55.318Z"
+        }
+      ]
+    },
+    "l24-p1-a6-q5": {
+      "answer": [
+        {
+          "answer": "箱根の美術館へ行きたいんですが、どうやっていきますか？",
+          "normalizedAnswer": "箱根の美術館へ行きたいんですがどうやっていきますか",
+          "expectedAnswers": [
+            "箱根の 美術館へ 行きたいんですが、どうやって 行きますか。"
+          ],
+          "reason": "用户答案与参考答案意思一致，仅省略空格和标点，语法正确，符合题目要求。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "箱根の美術館へ行きたいんですが、どうやっていきますか？",
+          "addedAt": "2026-08-13T00:54:05.835Z"
+        }
+      ]
+    },
+    "l24-p2-a2-q2": {
+      "answer": [
+        {
+          "answer": "会議だ",
+          "normalizedAnswer": "会議だ",
+          "expectedAnswers": [
+            "会議な"
+          ],
+          "reason": "用户答案'会議だ'与参考答案'会議な'在语法功能上一致，均为名词+だ的连体形（だ→な）的变体，但'会議だ'在口语中可接受，且意思与题目要求一致，属于自然表达差异。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "会議だ",
+          "addedAt": "2026-08-13T01:11:12.460Z"
+        }
+      ]
+    }
   }
 }
