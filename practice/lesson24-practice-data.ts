@@ -1,12 +1,12 @@
 import type { InputSlot, LessonPractice, PracticeActivity, PracticeItem, PromptPart, RichText } from "./lesson-practice-types";
-import { lesson24ImageCrops } from "./lesson24-image-crops";
+
+const exerciseImage = (fileName: string) => `../data/book1_exercise_images/${fileName}`;
 
 const page = (pageNo: number) => `../course-assets/by-lesson/lesson24/page${pageNo}.webp`;
 const audio = (exerciseNo: 1 | 2, order: number) =>
   `https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit6/lesson24/Exe${exerciseNo}_${order}.mp3`;
 const text = (value: string, options: Omit<RichText, "type" | "text"> = {}): RichText => ({ type: "text", text: value, ...options });
 const blank = (slotId: string): PromptPart => ({ type: "blank", slotId });
-const crop = (id: string) => lesson24ImageCrops.assets.find((asset) => asset.id === id)!;
 
 const completionHint = "只补全题目中空格处需要填写的部分。";
 const answerOnlyHint = "只填写提问后的回答部分，不需要重写问题。";
@@ -121,8 +121,7 @@ const activities: PracticeActivity[] = [
     interaction: "pattern_substitution",
     answerUnit: "sentence",
     responseScope: "sentence_only",
-    assets: [crop("l24-p1-a1-transform")],
-    displayAssets: ["l24-p1-a1-transform"],
+    assets: [],
     layout: [
       { type: "example", content: { label: "[例]", before: "李さんは もう すぐ 来ます。", beforeKana: "りさんは もう すぐ きます。", after: [text("李さんは もう すぐ 来ると 思います。")], afterKana: "りさんは もう すぐ くると おもいます。" } }
     ],
@@ -151,8 +150,7 @@ const activities: PracticeActivity[] = [
     answerUnit: "sentence",
     responseScope: "answer_only",
     responseScopeHint: answerOnlyHint,
-    assets: [crop("l24-p1-a2-answer-question")],
-    displayAssets: ["l24-p1-a2-answer-question"],
+    assets: [],
     layout: [
       { type: "example", content: { label: "[例1]", before: "日本料理は どうですか。（きれいです／おいしいです）", beforeKana: "にほんりょうりは どうですか。（きれいです／おいしいです）", after: [text("きれいで おいしいと 思います。")], afterKana: "きれいで おいしいと おもいます。" } },
       { type: "example", content: { label: "[例2]", before: "四川料理は どうですか。（とても おいしいです／辛いです）", beforeKana: "しせんりょうりは どうですか。（とても おいしいです／からいです）", after: [text("とても おいしいですが、辛いと 思います。")], afterKana: "とても おいしいですが、からいと おもいます。" } }
@@ -185,8 +183,7 @@ const activities: PracticeActivity[] = [
         confidenceNote: "ASR 覆盖例题和正式题 1-4，题目括号内容与教材图片一致。"
       }
     },
-    assets: [crop("l24-p1-a3-listening-answer")],
-    displayAssets: ["l24-p1-a3-listening-answer"],
+    assets: [],
     layout: [
       { type: "example", content: { label: "[例]", before: "李さんは もう すぐ 来ますか。（はい、もう すぐ 来ます）", beforeKana: "りさんは もう すぐ きますか。（はい、もう すぐ きます）", after: [text("はい、もう すぐ 来ると 思います。")], afterKana: "はい、もう すぐ くると おもいます。" } }
     ],
@@ -206,8 +203,7 @@ const activities: PracticeActivity[] = [
     interaction: "pattern_substitution",
     answerUnit: "sentence",
     responseScope: "sentence_only",
-    assets: [crop("l24-p1-a4-report-speech"), crop("l24-p1-a4-report-speech-cont")],
-    displayAssets: ["l24-p1-a4-report-speech", "l24-p1-a4-report-speech-cont"],
+    assets: [],
     layout: [
       { type: "example", content: { label: "[例]", before: "清水さん／午後から 出かけます", beforeKana: "しみずさん／ごごから でかけます", after: [text("清水さんは 午後から 出かけると 言いました。")], afterKana: "しみずさんは ごごから でかけると いいました。" } }
     ],
@@ -237,8 +233,7 @@ const activities: PracticeActivity[] = [
         confidenceNote: "ASR 清晰覆盖例题和正式题 1-9；正式题 10-15 根据教材图片和“んです”转换规则补全。"
       }
     },
-    assets: [crop("l24-p1-a5-nodesu-transform")],
-    displayAssets: ["l24-p1-a5-nodesu-transform"],
+    assets: [],
     layout: [
       { type: "example", content: { label: "[例]", before: "暑いです。\n静かです。\n晴れです。\n行きます。", beforeKana: "あついです。\nしずかです。\nはれです。\nいきます。", after: [text("暑いんです。\n静かなんです。\n晴れなんです。\n行くんです。")], afterKana: "あついんです。\nしずかなんです。\nはれなんです。\nいくんです。" } }
     ],
@@ -269,8 +264,7 @@ const activities: PracticeActivity[] = [
     interaction: "pattern_substitution",
     answerUnit: "sentence",
     responseScope: "sentence_only",
-    assets: [crop("l24-p1-a6-request-transform")],
-    displayAssets: ["l24-p1-a6-request-transform"],
+    assets: [],
     layout: [
       { type: "example", content: { label: "[例1]", before: "東京タワー", beforeKana: "とうきょうタワー", after: [text("東京タワーへ 行きたいんですが、どうやって 行きますか。")], afterKana: "とうきょうタワーへ いきたいんですが、どうやって いきますか。" } },
       { type: "example", content: { label: "[例2]", before: "使い方を 教えます", beforeKana: "つかいかたを おしえます", after: [text("すみませんが、使い方を 教えて くださいませんか。")], afterKana: "すみませんが、つかいかたを おしえて くださいませんか。" } }
@@ -309,8 +303,7 @@ const activities: PracticeActivity[] = [
         confidenceNote: "ASR 覆盖例题和正式题 1-4。"
       }
     },
-    assets: [crop("l24-p1-a7-dialogue")],
-    displayAssets: ["l24-p1-a7-dialogue"],
+    assets: [],
     layout: [
       { type: "example", content: { label: "[例]", before: "食べません／もう おなかが いっぱいです", beforeKana: "たべません／もう おなかが いっぱいです", after: [text("甲：どうして 食べないんですか。\n乙：もう おなかが いっぱいなんです。")], afterKana: "どうして たべないんですか。\nもう おなかが いっぱいなんです。" } }
     ],
@@ -331,7 +324,9 @@ const activities: PracticeActivity[] = [
     answerUnit: "phrase",
     responseScope: "phrase_only",
     responseScopeHint: completionHint,
-    assets: [crop("l24-p2-a1-word-bank")],
+    assets: [
+      { id: "l24-p2-a1-word-bank", kind: "exercise_image", imagePath: exerciseImage("book1_lesson24_2_1.png") }
+    ],
     displayAssets: ["l24-p2-a1-word-bank"],
     layout: [
       { type: "example", content: { label: "[例]", beforeParts: [text("長島さんは 焼酎が いちばん（"), blank("example"), text("）と 言いました。")], beforeKana: "ながしまさんは しょうちゅうが いちばん（　）と いいました。", after: [text("好きだ")], afterKana: "すきだ" } },
@@ -355,8 +350,7 @@ const activities: PracticeActivity[] = [
     answerUnit: "phrase",
     responseScope: "phrase_only",
     responseScopeHint: completionHint,
-    assets: [crop("l24-p2-a2-transform")],
-    displayAssets: ["l24-p2-a2-transform"],
+    assets: [],
     layout: [
       { type: "example", content: { label: "[例]", beforeParts: [text("李さんを（探して います → ", { kana: "りさんを（さがして います → " }), blank("example"), text("）んですが、どこに いますか。", { kana: "）んですが、どこに いますか。" })], after: [text("探して いる")], afterKana: "さがして いる" } }
     ],
@@ -388,7 +382,9 @@ const activities: PracticeActivity[] = [
         confidenceNote: "ASR 识别到正式题 1-5；第 5 题音频转写与选项匹配度较低，按教材选项剩余项整理为 ③。"
       }
     },
-    assets: [crop("l24-p2-a3-listening-choice")],
+    assets: [
+      { id: "l24-p2-a3-listening-choice", kind: "exercise_image", imagePath: exerciseImage("book1_lesson24_2_3.png") }
+    ],
     displayAssets: ["l24-p2-a3-listening-choice"],
     layout: [
       { type: "example", content: { label: "[例]", before: "どうして 食べないんですか。", beforeKana: "どうして たべないんですか。", after: [text("①")], afterKana: "いち" } },
@@ -398,8 +394,8 @@ const activities: PracticeActivity[] = [
       choiceItem("l24-p2-a3-q1", "1", "田中さんが いつ 来るか 知って いますか。", ["c2"], { promptKana: "たなかさんが いつ くるか しって いますか。", choices: listeningChoices }),
       choiceItem("l24-p2-a3-q2", "2", "日本に ついて どう 思いますか。", ["c5"], { promptKana: "にほんに ついて どう おもいますか。", choices: listeningChoices }),
       choiceItem("l24-p2-a3-q3", "3", "タバコに ついて どう 思いますか。", ["c6"], { promptKana: "タバコに ついて どう おもいますか。", choices: listeningChoices }),
-      choiceItem("l24-p2-a3-q4", "4", "ここまで どうやって 来たんですか。", ["c4"], { promptKana: "ここまで どうやって きたんですか。", choices: listeningChoices }),
-      choiceItem("l24-p2-a3-q5", "5", "ビールは いかがですか。", ["c3"], { promptKana: "ビールは いかがですか。", choices: listeningChoices })
+      choiceItem("l24-p2-a3-q4", "4", "ここまで どうやって 来たんですか。", ["c3"], { promptKana: "ここまで どうやって きたんですか。", choices: listeningChoices }),
+      choiceItem("l24-p2-a3-q5", "5", "ビールは いかがですか。", ["c4"], { promptKana: "ビールは いかがですか。", choices: listeningChoices })
     ]
   },
   {
@@ -411,8 +407,7 @@ const activities: PracticeActivity[] = [
     interaction: "translation",
     answerUnit: "sentence",
     responseScope: "sentence_only",
-    assets: [crop("l24-p2-a4-translation")],
-    displayAssets: ["l24-p2-a4-translation"],
+    assets: [],
     layout: [],
     items: [
       answerItem("l24-p2-a4-q1", "1", "（我想）小李马上就来。", "李さんは もう すぐ 来ると 思います。", { acceptableAlternatives: ["李さんは すぐ 来ると 思います。"] }),

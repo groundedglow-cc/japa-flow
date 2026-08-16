@@ -21,7 +21,9 @@
         "text": "ここは デパートです。",
         "kana": "ここは デパートです。",
         "segments": [
-          { "text": "ここは デパートです。" }
+          {
+            "text": "ここは デパートです。"
+          }
         ],
         "translationZh": "这里是百货商店。",
         "confidence": "high",
@@ -33,10 +35,20 @@
         "text": "食堂は デパートの 7階です。",
         "kana": "しょくどうは デパートの ななかいです。",
         "segments": [
-          { "text": "食堂", "ruby": "しょくどう" },
-          { "text": "は デパートの 7" },
-          { "text": "階", "ruby": "かい" },
-          { "text": "です。" }
+          {
+            "text": "食堂",
+            "ruby": "しょくどう"
+          },
+          {
+            "text": "は デパートの 7"
+          },
+          {
+            "text": "階",
+            "ruby": "かい"
+          },
+          {
+            "text": "です。"
+          }
         ],
         "translationZh": "食堂在百货商店的7层。",
         "confidence": "high",
@@ -48,9 +60,16 @@
         "text": "あそこも JC企画の ビルです。",
         "kana": "あそこも ジェーシーきかくの ビルです。",
         "segments": [
-          { "text": "あそこも JC" },
-          { "text": "企画", "ruby": "きかく" },
-          { "text": "の ビルです。" }
+          {
+            "text": "あそこも JC"
+          },
+          {
+            "text": "企画",
+            "ruby": "きかく"
+          },
+          {
+            "text": "の ビルです。"
+          }
         ],
         "translationZh": "那里也是JC策划公司的大楼。",
         "confidence": "high",
@@ -62,13 +81,30 @@
         "text": "かばん売り場は 1階ですか、2階ですか。",
         "kana": "かばんうりばは いっかいですか、にかいですか。",
         "segments": [
-          { "text": "かばん" },
-          { "text": "売り場", "ruby": "うりば" },
-          { "text": "は 1" },
-          { "text": "階", "ruby": "かい" },
-          { "text": "ですか、2" },
-          { "text": "階", "ruby": "かい" },
-          { "text": "ですか。" }
+          {
+            "text": "かばん"
+          },
+          {
+            "text": "売り場",
+            "ruby": "うりば"
+          },
+          {
+            "text": "は 1"
+          },
+          {
+            "text": "階",
+            "ruby": "かい"
+          },
+          {
+            "text": "ですか、2"
+          },
+          {
+            "text": "階",
+            "ruby": "かい"
+          },
+          {
+            "text": "ですか。"
+          }
         ],
         "translationZh": "卖包的柜台在1层还是2层？",
         "confidence": "high",
@@ -87,7 +123,12 @@
             "kana": "トイレは どこですか。",
             "translationZh": "厕所在哪里？",
             "confidence": "high",
-            "rawText": "甲：トイレは どこですか。"
+            "rawText": "甲：トイレは どこですか。",
+            "segments": [
+              {
+                "text": "トイレは どこですか。"
+              }
+            ]
           },
           {
             "id": "l3-basic-dialogue-001-line-002",
@@ -96,7 +137,12 @@
             "kana": "あちらです。",
             "translationZh": "在那里。",
             "confidence": "high",
-            "rawText": "乙：あちらです。"
+            "rawText": "乙：あちらです。",
+            "segments": [
+              {
+                "text": "あちらです。"
+              }
+            ]
           }
         ]
       },
@@ -111,7 +157,26 @@
             "kana": "ここは ゆうびんきょくですか、ぎんこうですか。",
             "translationZh": "这里是邮局还是银行？",
             "confidence": "high",
-            "rawText": "甲：ここは 郵便局ですか、銀行ですか。"
+            "rawText": "甲：ここは 郵便局ですか、銀行ですか。",
+            "segments": [
+              {
+                "text": "ここは "
+              },
+              {
+                "text": "郵便局",
+                "ruby": "ゆうびんきょく"
+              },
+              {
+                "text": "ですか、"
+              },
+              {
+                "text": "銀行",
+                "ruby": "ぎんこう"
+              },
+              {
+                "text": "ですか。"
+              }
+            ]
           },
           {
             "id": "l3-basic-dialogue-002-line-002",
@@ -120,7 +185,16 @@
             "kana": "ぎんこうです。",
             "translationZh": "是银行。",
             "confidence": "high",
-            "rawText": "乙：銀行です。"
+            "rawText": "乙：銀行です。",
+            "segments": [
+              {
+                "text": "銀行",
+                "ruby": "ぎんこう"
+              },
+              {
+                "text": "です。"
+              }
+            ]
           }
         ]
       },
@@ -135,7 +209,12 @@
             "kana": "これは いくらですか。",
             "translationZh": "这个多少钱？",
             "confidence": "high",
-            "rawText": "甲：これは いくらですか。"
+            "rawText": "甲：これは いくらですか。",
+            "segments": [
+              {
+                "text": "これは いくらですか。"
+              }
+            ]
           },
           {
             "id": "l3-basic-dialogue-003-line-002",
@@ -144,7 +223,19 @@
             "kana": "それは ごせんはっぴゃくえんです。",
             "translationZh": "那个5800日元。",
             "confidence": "high",
-            "rawText": "乙：それは 5,800円です。"
+            "rawText": "乙：それは 5,800円です。",
+            "segments": [
+              {
+                "text": "それは 5,800"
+              },
+              {
+                "text": "円",
+                "ruby": "えん"
+              },
+              {
+                "text": "です。"
+              }
+            ]
           },
           {
             "id": "l3-basic-dialogue-003-line-003",
@@ -153,7 +244,12 @@
             "kana": "あれは？",
             "translationZh": "那个呢？",
             "confidence": "high",
-            "rawText": "甲：あれは？"
+            "rawText": "甲：あれは？",
+            "segments": [
+              {
+                "text": "あれは？"
+              }
+            ]
           },
           {
             "id": "l3-basic-dialogue-003-line-004",
@@ -162,7 +258,19 @@
             "kana": "あれも ごせんはっぴゃくえんです。",
             "translationZh": "那个也是5800日元。",
             "confidence": "high",
-            "rawText": "乙：あれも 5,800円です。"
+            "rawText": "乙：あれも 5,800円です。",
+            "segments": [
+              {
+                "text": "あれも 5,800"
+              },
+              {
+                "text": "円",
+                "ruby": "えん"
+              },
+              {
+                "text": "です。"
+              }
+            ]
           }
         ]
       }
@@ -193,13 +301,160 @@
         "id": "l3-app-block-003",
         "type": "dialogue",
         "lines": [
-          { "id": "l3-app-block-003-line-001", "speaker": "小野", "text": "ここは コンビニです。隣は 喫茶店です。", "kana": "ここは コンビニです。となりは きっさてんです。", "translationZh": "这里是便利店。旁边是咖啡馆。", "confidence": "high", "rawText": "小野：ここは コンビニです。隣は 喫茶店です。" },
-          { "id": "l3-app-block-003-line-002", "speaker": "李", "text": "あの 建物は ホテルですか、マンションですか。", "kana": "あの たてものは ホテルですか、マンションですか。", "translationZh": "那栋楼是宾馆还是公寓？", "confidence": "high", "rawText": "李：（指着前方的建筑物）あの 建物は ホテルですか、マンションですか。" },
-          { "id": "l3-app-block-003-line-003", "speaker": "小野", "text": "あそこは マンションです。", "kana": "あそこは マンションです。", "translationZh": "那里是公寓。", "confidence": "high", "rawText": "小野：あそこは マンションです。" },
-          { "id": "l3-app-block-003-line-004", "speaker": "李", "text": "あの 建物は 何ですか。", "kana": "あの たてものは なんですか。", "translationZh": "那栋楼是什么？", "confidence": "high", "rawText": "李：（指着远处的高楼）あの 建物は 何ですか。" },
-          { "id": "l3-app-block-003-line-005", "speaker": "小野", "text": "あそこも マンションです。", "kana": "あそこも マンションです。", "translationZh": "那里也是公寓。", "confidence": "high", "rawText": "小野：あそこも マンションです。" },
-          { "id": "l3-app-block-003-line-006", "speaker": "李", "text": "マンションの 隣は？", "kana": "マンションの となりは？", "translationZh": "公寓旁边呢？", "confidence": "high", "rawText": "李：マンションの 隣は？" },
-          { "id": "l3-app-block-003-line-007", "speaker": "小野", "text": "マンションの 隣は 病院です。", "kana": "マンションの となりは びょういんです。", "translationZh": "公寓旁边是医院。", "confidence": "high", "rawText": "小野：マンションの 隣は 病院です。" }
+          {
+            "id": "l3-app-block-003-line-001",
+            "speaker": "小野",
+            "text": "ここは コンビニです。隣は 喫茶店です。",
+            "kana": "ここは コンビニです。となりは きっさてんです。",
+            "translationZh": "这里是便利店。旁边是咖啡馆。",
+            "confidence": "high",
+            "rawText": "小野：ここは コンビニです。隣は 喫茶店です。",
+            "segments": [
+              {
+                "text": "ここは コンビニです。"
+              },
+              {
+                "text": "隣",
+                "ruby": "となり"
+              },
+              {
+                "text": "は "
+              },
+              {
+                "text": "喫茶店",
+                "ruby": "きっさてん"
+              },
+              {
+                "text": "です。"
+              }
+            ]
+          },
+          {
+            "id": "l3-app-block-003-line-002",
+            "speaker": "李",
+            "text": "あの 建物は ホテルですか、マンションですか。",
+            "kana": "あの たてものは ホテルですか、マンションですか。",
+            "translationZh": "那栋楼是宾馆还是公寓？",
+            "confidence": "high",
+            "rawText": "李：（指着前方的建筑物）あの 建物は ホテルですか、マンションですか。",
+            "segments": [
+              {
+                "text": "あの "
+              },
+              {
+                "text": "建物",
+                "ruby": "たてもの"
+              },
+              {
+                "text": "は ホテルですか、マンションですか。"
+              }
+            ]
+          },
+          {
+            "id": "l3-app-block-003-line-003",
+            "speaker": "小野",
+            "text": "あそこは マンションです。",
+            "kana": "あそこは マンションです。",
+            "translationZh": "那里是公寓。",
+            "confidence": "high",
+            "rawText": "小野：あそこは マンションです。",
+            "segments": [
+              {
+                "text": "あそこは マンションです。"
+              }
+            ]
+          },
+          {
+            "id": "l3-app-block-003-line-004",
+            "speaker": "李",
+            "text": "あの 建物は 何ですか。",
+            "kana": "あの たてものは なんですか。",
+            "translationZh": "那栋楼是什么？",
+            "confidence": "high",
+            "rawText": "李：（指着远处的高楼）あの 建物は 何ですか。",
+            "segments": [
+              {
+                "text": "あの "
+              },
+              {
+                "text": "建物",
+                "ruby": "たてもの"
+              },
+              {
+                "text": "は "
+              },
+              {
+                "text": "何",
+                "ruby": "なん"
+              },
+              {
+                "text": "ですか。"
+              }
+            ]
+          },
+          {
+            "id": "l3-app-block-003-line-005",
+            "speaker": "小野",
+            "text": "あそこも マンションです。",
+            "kana": "あそこも マンションです。",
+            "translationZh": "那里也是公寓。",
+            "confidence": "high",
+            "rawText": "小野：あそこも マンションです。",
+            "segments": [
+              {
+                "text": "あそこも マンションです。"
+              }
+            ]
+          },
+          {
+            "id": "l3-app-block-003-line-006",
+            "speaker": "李",
+            "text": "マンションの 隣は？",
+            "kana": "マンションの となりは？",
+            "translationZh": "公寓旁边呢？",
+            "confidence": "high",
+            "rawText": "李：マンションの 隣は？",
+            "segments": [
+              {
+                "text": "マンションの "
+              },
+              {
+                "text": "隣",
+                "ruby": "となり"
+              },
+              {
+                "text": "は？"
+              }
+            ]
+          },
+          {
+            "id": "l3-app-block-003-line-007",
+            "speaker": "小野",
+            "text": "マンションの 隣は 病院です。",
+            "kana": "マンションの となりは びょういんです。",
+            "translationZh": "公寓旁边是医院。",
+            "confidence": "high",
+            "rawText": "小野：マンションの 隣は 病院です。",
+            "segments": [
+              {
+                "text": "マンションの "
+              },
+              {
+                "text": "隣",
+                "ruby": "となり"
+              },
+              {
+                "text": "は "
+              },
+              {
+                "text": "病院",
+                "ruby": "びょういん"
+              },
+              {
+                "text": "です。"
+              }
+            ]
+          }
         ]
       },
       {
@@ -215,8 +470,45 @@
         "id": "l3-app-block-005",
         "type": "dialogue",
         "lines": [
-          { "id": "l3-app-block-005-line-001", "speaker": "李", "text": "本屋は どこですか。", "kana": "ほんやは どこですか。", "translationZh": "书店在哪里？", "confidence": "high", "rawText": "李：本屋は どこですか。" },
-          { "id": "l3-app-block-005-line-002", "speaker": "小野", "text": "そこです。その ビルの 2階です。", "kana": "そこです。その ビルの にかいです。", "translationZh": "在那里。在那栋楼的2层。", "confidence": "high", "rawText": "小野：（指着前方不远处）そこです。その ビルの 2階です。" }
+          {
+            "id": "l3-app-block-005-line-001",
+            "speaker": "李",
+            "text": "本屋は どこですか。",
+            "kana": "ほんやは どこですか。",
+            "translationZh": "书店在哪里？",
+            "confidence": "high",
+            "rawText": "李：本屋は どこですか。",
+            "segments": [
+              {
+                "text": "本屋",
+                "ruby": "ほんや"
+              },
+              {
+                "text": "は どこですか。"
+              }
+            ]
+          },
+          {
+            "id": "l3-app-block-005-line-002",
+            "speaker": "小野",
+            "text": "そこです。その ビルの 2階です。",
+            "kana": "そこです。その ビルの にかいです。",
+            "translationZh": "在那里。在那栋楼的2层。",
+            "confidence": "high",
+            "rawText": "小野：（指着前方不远处）そこです。その ビルの 2階です。",
+            "segments": [
+              {
+                "text": "そこです。その ビルの 2"
+              },
+              {
+                "text": "階",
+                "ruby": "かい"
+              },
+              {
+                "text": "です。"
+              }
+            ]
+          }
         ]
       },
       {
@@ -232,8 +524,52 @@
         "id": "l3-app-block-007",
         "type": "dialogue",
         "lines": [
-          { "id": "l3-app-block-007-line-001", "speaker": "李", "text": "あのう、東京の 地図は どこですか。", "kana": "あのう、とうきょうの ちずは どこですか。", "translationZh": "请问，东京的地图在哪里？", "confidence": "high", "rawText": "李：あのう、東京の 地図は どこですか。" },
-          { "id": "l3-app-block-007-line-002", "speaker": "店員", "text": "地図ですか。そちらです。", "kana": "ちずですか。そちらです。", "translationZh": "地图吗？在那边。", "confidence": "high", "rawText": "店員：地図ですか。（指着小李身后）そちらです。" }
+          {
+            "id": "l3-app-block-007-line-001",
+            "speaker": "李",
+            "text": "あのう、東京の 地図は どこですか。",
+            "kana": "あのう、とうきょうの ちずは どこですか。",
+            "translationZh": "请问，东京的地图在哪里？",
+            "confidence": "high",
+            "rawText": "李：あのう、東京の 地図は どこですか。",
+            "segments": [
+              {
+                "text": "あのう、"
+              },
+              {
+                "text": "東京",
+                "ruby": "とうきょう"
+              },
+              {
+                "text": "の "
+              },
+              {
+                "text": "地図",
+                "ruby": "ちず"
+              },
+              {
+                "text": "は どこですか。"
+              }
+            ]
+          },
+          {
+            "id": "l3-app-block-007-line-002",
+            "speaker": "店員",
+            "text": "地図ですか。そちらです。",
+            "kana": "ちずですか。そちらです。",
+            "translationZh": "地图吗？在那边。",
+            "confidence": "high",
+            "rawText": "店員：地図ですか。（指着小李身后）そちらです。",
+            "segments": [
+              {
+                "text": "地図",
+                "ruby": "ちず"
+              },
+              {
+                "text": "ですか。そちらです。"
+              }
+            ]
+          }
         ]
       },
       {
@@ -249,8 +585,41 @@
         "id": "l3-app-block-009",
         "type": "dialogue",
         "lines": [
-          { "id": "l3-app-block-009-line-001", "speaker": "李", "text": "いくらですか。", "kana": "いくらですか。", "translationZh": "多少钱？", "confidence": "high", "rawText": "李：いくらですか。" },
-          { "id": "l3-app-block-009-line-002", "speaker": "店員", "text": "500円です。", "kana": "ごひゃくえんです。", "translationZh": "500日元。", "confidence": "high", "rawText": "店員：500円です。" }
+          {
+            "id": "l3-app-block-009-line-001",
+            "speaker": "李",
+            "text": "いくらですか。",
+            "kana": "いくらですか。",
+            "translationZh": "多少钱？",
+            "confidence": "high",
+            "rawText": "李：いくらですか。",
+            "segments": [
+              {
+                "text": "いくらですか。"
+              }
+            ]
+          },
+          {
+            "id": "l3-app-block-009-line-002",
+            "speaker": "店員",
+            "text": "500円です。",
+            "kana": "ごひゃくえんです。",
+            "translationZh": "500日元。",
+            "confidence": "high",
+            "rawText": "店員：500円です。",
+            "segments": [
+              {
+                "text": "500"
+              },
+              {
+                "text": "円",
+                "ruby": "えん"
+              },
+              {
+                "text": "です。"
+              }
+            ]
+          }
         ]
       }
     ]

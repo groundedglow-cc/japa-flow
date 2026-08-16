@@ -1,5 +1,6 @@
 import type { InputSlot, LessonPractice, PracticeActivity, PracticeItem, PromptPart, RichText } from "./lesson-practice-types";
-import { lesson12ImageCrops } from "./lesson12-image-crops";
+
+const exerciseImage = (fileName: string) => `../data/book1_exercise_images/${fileName}`;
 
 const page = (pageNo: number) => `../course-assets/by-lesson/lesson12/page${pageNo}.webp`;
 const audio = (exerciseNo: 1 | 2, order: number) =>
@@ -8,7 +9,6 @@ const text = (value: string, options: Omit<RichText, "type" | "text"> = {}): Ric
 const repl = (value: string, substitutionKey: string, options: Omit<RichText, "type" | "text" | "underline" | "substitutionKey"> = {}): RichText =>
   text(value, { ...options, underline: true, substitutionKey });
 const blank = (slotId: string): PromptPart => ({ type: "blank", slotId });
-const crop = (id: string) => lesson12ImageCrops.assets.find((asset) => asset.id === id)!;
 
 const answerOnlyHint = "只填写提问后的回答部分，不需要重写问题。";
 const sentenceSlot = (placeholder = "输入完整回答"): InputSlot[] => [{ id: "answer", expectedUnit: "sentence", width: "long", placeholder }];
@@ -195,7 +195,10 @@ const activities: PracticeActivity[] = [
         ]
       }
     },
-    assets: [crop("l12-p1-a2-comparison-pictures-group1"), crop("l12-p1-a2-comparison-pictures-group2")],
+    assets: [
+      { id: "l12-p1-a2-comparison-pictures-group1", kind: "exercise_image", imagePath: exerciseImage("book1_lesson12_1_1_a.png") },
+      { id: "l12-p1-a2-comparison-pictures-group2", kind: "exercise_image", imagePath: exerciseImage("book1_lesson12_1_1_b.png") }
+    ],
     layout: [],
     itemGroups: [
       {
@@ -482,7 +485,9 @@ const activities: PracticeActivity[] = [
     interaction: "fill_blank",
     answerUnit: "word",
     responseScope: "word_only",
-    assets: [crop("l12-p2-a2-tokyo-temperature-chart")],
+    assets: [
+      { id: "l12-p2-a2-tokyo-temperature-chart", kind: "exercise_image", imagePath: exerciseImage("book1_lesson12_2_2.png") }
+    ],
     displayAssets: ["l12-p2-a2-tokyo-temperature-chart"],
     layout: [
       {

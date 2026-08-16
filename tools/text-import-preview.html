@@ -396,6 +396,26 @@
         align-items: center;
       }
 
+      .audio-review-status {
+        max-width: 92px;
+        overflow: hidden;
+        border: 1px solid #5e9f77;
+        border-radius: 4px;
+        padding: 3px 5px;
+        color: #23653f;
+        background: #edf8f1;
+        font-size: 11px;
+        line-height: 1.15;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+
+      .audio-review-status.pending {
+        border-color: #d5962a;
+        color: #8b5800;
+        background: #fff7e7;
+      }
+
       .segment-settings {
         display: inline-flex;
       }
@@ -570,7 +590,7 @@
       <section class="panel data-panel">
         <div class="toolbar">
           <button class="primary" id="loadDefault" type="button">重新加载当前课次</button>
-          <button id="generateAudio" type="button">生成音频切片</button>
+          <button id="generateAudio" type="button">生成音频区间标注</button>
           <input id="fileInput" type="file" accept="application/json,.json" />
           <span class="summary" id="summary">未加载</span>
         </div>
@@ -714,7 +734,7 @@
         renderLessonList();
         const response = await fetch(sample.url, { cache: "no-store" });
         if (!response.ok) throw new Error(`读取 ${sample.label} JSON 失败：${response.status}`);
-        setData(await response.json(), `${sample.label}${sample.hasAudio ? "切片样例" : "样例"}`);
+        setData(await response.json(), `${sample.label}${sample.hasAudio ? "音频标注样例" : "样例"}`);
       }
 
       async function loadDefault() {
@@ -733,7 +753,7 @@
             <button class="lesson-chip ${sample.lessonNo === state.selectedSample?.lessonNo ? "active" : ""}" type="button" data-lesson-no="${sample.lessonNo}">
               <span>${escapeHtml(sample.label)}</span>
               <span class="count">${escapeHtml(totalLines)}</span>
-              ${sample.hasAudio ? "<span aria-label=\"有音频切片\">▶</span>" : ""}
+              ${sample.hasAudio ? "<span aria-label=\"有音频区间标注\">▶</span>" : ""}
             </button>
           `;
         }).join("") : `<span class="status">暂无样例</span>`;
@@ -746,7 +766,7 @@
 
       async function generateAudioAlignment() {
         const lessonNo = state.selectedSample?.lessonNo || lessonNoFromData() || 1;
-        setStatus("正在生成音频切片...");
+        setStatus("正在生成音频区间标注...");
         $("#generateAudio").disabled = true;
         try {
           const response = await fetch("/api/ocr/audio-align", {
@@ -756,11 +776,11 @@
           });
           const result = await response.json();
           if (!response.ok) throw new Error(result.error || `生成失败：${response.status}`);
-          setData(result.textData, "音频切片数据");
           await refreshSamples(lessonNo);
-          const mapped = (result.summaries || []).reduce((sum, item) => sum + (item.mappedSegments || 0), 0);
-          const expected = (result.summaries || []).reduce((sum, item) => sum + (item.expectedItems || 0), 0);
-          setStatus(expected ? `音频切片已生成：${mapped}/${expected}。` : "音频切片已生成。");
+          await selectSample(lessonNo);
+          const textOutput = (result.outputs || []).find((item) => item.outputPath?.includes("-text-audio-verified.json"));
+          const mapped = (textOutput?.tracks || []).reduce((sum, item) => sum + (item.items || 0), 0);
+          setStatus(mapped ? `音频区间标注已生成：${mapped} 条。` : "音频区间标注已生成。");
         } catch (error) {
           setStatus(error.message, true);
         } finally {
@@ -776,7 +796,9 @@
         state.segmentMap = new Map();
         state.itemMap = new Map();
         state.segmentSeq = 0;
-        $("#summary").textContent = data ? `${data.lessonId || "unknown"} · 基本句 ${sentenceCount} · 对话 ${basicDialogueLines + appLines} 行` : "未加载";
+        const audioSegments = collectAudioSegments(data);
+        const pendingCount = audioSegments.filter((segment) => segment.review?.status !== "approved").length;
+        $("#summary").textContent = data ? `${data.lessonId || "unknown"} · 基本句 ${sentenceCount} · 对话 ${basicDialogueLines + appLines} 行${audioSegments.length ? ` · 已通过 ${audioSegments.length - pendingCount} · 待核对 ${pendingCount}` : ""}` : "未加载";
         $("#textPreview").innerHTML = data ? `${renderBasic(data.basicText)}${renderApplication(data.applicationText)}` : "";
         bindSegmentButtons();
         renderImages(data);
@@ -874,9 +896,25 @@
         return `
           <div class="segment-actions">
             ${segmentButton(segmentId, segment)}
+            ${segmentReviewStatus(segment)}
             ${item?.id && segment ? `<button class="audio-button segment-settings" type="button" data-edit-item-id="${escapeHtml(item.id)}" title="设置音频区间" aria-label="设置音频区间">⚙</button>` : ""}
           </div>
         `;
+      }
+
+      function segmentReviewStatus(segment) {
+        if (!segment) return "";
+        const pending = segment.review?.status !== "approved";
+        const score = Number(segment.matchScore);
+        const status = pending ? "待核对" : "已通过";
+        const source = segment.timingSource === "azure-speech-word-timestamp-with-boundary-padding" ? "Azure 句界" : "旧标注";
+        const diagnostics = [
+          source,
+          Number.isFinite(score) ? `匹配 ${(score * 100).toFixed(0)}%` : "",
+          ...(segment.alignmentIssues || []),
+          segment.review?.note || ""
+        ].filter(Boolean).join(" · ");
+        return `<span class="audio-review-status ${pending ? "pending" : ""}" title="${escapeHtml(diagnostics)}">${status}${Number.isFinite(score) ? ` ${(score * 100).toFixed(0)}%` : ""}</span>`;
       }
 
       function segmentButton(segmentId, segment) {
@@ -893,6 +931,14 @@
         const id = `segment-${state.segmentSeq += 1}`;
         state.segmentMap.set(id, segment);
         return id;
+      }
+
+      function collectAudioSegments(data) {
+        return [
+          ...(data?.basicText?.basicSentences || []),
+          ...(data?.basicText?.dialogues || []).flatMap((dialogue) => dialogue.lines || []),
+          ...(data?.applicationText?.blocks || []).flatMap((block) => block.lines || [])
+        ].map((item) => item.audioSegment).filter(Boolean);
       }
 
       function renderJapanese(item) {
@@ -987,14 +1033,13 @@
       }
 
       async function playSegment(segment) {
-        if (!segment?.sourceUrl && !segment?.localAudioPath) {
+        if (!segment?.sourceUrl) {
           setStatus("当前句子没有音频片段。", true);
           return;
         }
-        const source = segment.sourceUrl || assetSrc(segment.localAudioPath);
         clearInterval(state.stopTimer);
         state.audio.pause();
-        state.audio.src = source;
+        state.audio.src = segment.sourceUrl;
         try {
           await waitForAudioMetadata();
           state.audio.currentTime = Math.max(0, Number(segment.start) || 0);

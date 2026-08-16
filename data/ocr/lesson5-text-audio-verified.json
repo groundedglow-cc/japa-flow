@@ -23,17 +23,61 @@
         "translationZh": "现在4点。",
         "confidence": "high",
         "rawText": "1. 今 4時です。",
+        "segments": [
+          {
+            "text": "今",
+            "ruby": "いま"
+          },
+          {
+            "text": " "
+          },
+          {
+            "text": "4"
+          },
+          {
+            "text": "時",
+            "ruby": "じ"
+          },
+          {
+            "text": "です。"
+          }
+        ],
         "audioSegment": {
           "id": "l5-basic-s001",
           "trackId": "lesson_basic",
-          "sourceUrl": "/data/ocr/audio-clips/lesson5/l5-basic-s001.mp3",
-          "start": 0,
-          "end": 1.5,
-          "duration": 1.5,
-          "method": "approved-asr-alignment",
-          "confidence": "approved",
-          "reviewedAt": "2026-08-05T08:26:28.063Z",
-          "sourceAudioSha256": "912d8e507821136651fc72195b7cd468537835e48d506923742dc5a224c5ffaa"
+          "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson5/lesson_basic.mp3",
+          "itemIndex": 1,
+          "speaker": "",
+          "text": "今 4時です。",
+          "start": 1.18,
+          "end": 2.91,
+          "duration": 1.73,
+          "rawAzureTiming": {
+            "start": 1.43,
+            "end": 2.79,
+            "duration": 1.36
+          },
+          "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+          "speechActivity": null,
+          "speechUnitCount": 1,
+          "matchScore": 0.8,
+          "asrConfidence": 0.774,
+          "asrText": "今 四 時 で す",
+          "phraseIndexes": [
+            0
+          ],
+          "method": "azure-speech-sentence-alignment-with-boundary-padding",
+          "confidence": "medium",
+          "alignmentIssues": [
+            "Moderate ASR text similarity."
+          ],
+          "review": {
+            "status": "pending",
+            "reviewedAt": null,
+            "note": "Moderate ASR text similarity.",
+            "matchScore": 0.8,
+            "asrText": "今 四 時 で す"
+          }
         }
       },
       {
@@ -44,17 +88,66 @@
         "translationZh": "森先生7点起床。",
         "confidence": "high",
         "rawText": "2. 森さんは 7時に 起きます。",
+        "segments": [
+          {
+            "text": "森",
+            "ruby": "もり"
+          },
+          {
+            "text": "さんは "
+          },
+          {
+            "text": "7"
+          },
+          {
+            "text": "時",
+            "ruby": "じ"
+          },
+          {
+            "text": "に "
+          },
+          {
+            "text": "起",
+            "ruby": "お"
+          },
+          {
+            "text": "きます。"
+          }
+        ],
         "audioSegment": {
           "id": "l5-basic-s002",
           "trackId": "lesson_basic",
-          "sourceUrl": "/data/ocr/audio-clips/lesson5/l5-basic-s002.mp3",
-          "start": 0,
-          "end": 2.5,
-          "duration": 2.5,
-          "method": "approved-asr-alignment",
-          "confidence": "approved",
-          "reviewedAt": "2026-08-05T08:26:28.063Z",
-          "sourceAudioSha256": "912d8e507821136651fc72195b7cd468537835e48d506923742dc5a224c5ffaa"
+          "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson5/lesson_basic.mp3",
+          "itemIndex": 2,
+          "speaker": "",
+          "text": "森さんは 7時に 起きます。",
+          "start": 4.34,
+          "end": 7.07,
+          "duration": 2.73,
+          "rawAzureTiming": {
+            "start": 4.59,
+            "end": 6.95,
+            "duration": 2.36
+          },
+          "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+          "speechActivity": null,
+          "speechUnitCount": 1,
+          "matchScore": 0.909,
+          "asrConfidence": 0.83,
+          "asrText": "森 さ ん は 七 時 に 起 き ま す",
+          "phraseIndexes": [
+            1
+          ],
+          "method": "azure-speech-sentence-alignment-with-boundary-padding",
+          "confidence": "high",
+          "alignmentIssues": [],
+          "review": {
+            "status": "approved",
+            "reviewedAt": "2026-08-16T11:01:07.023Z",
+            "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+            "matchScore": 0.909,
+            "asrText": "森 さ ん は 七 時 に 起 き ま す"
+          }
         }
       },
       {
@@ -65,17 +158,63 @@
         "translationZh": "森先生上周休息了。",
         "confidence": "high",
         "rawText": "3. 森さんは 先週 休みました。",
+        "segments": [
+          {
+            "text": "森",
+            "ruby": "もり"
+          },
+          {
+            "text": "さんは "
+          },
+          {
+            "text": "先週",
+            "ruby": "せんしゅう"
+          },
+          {
+            "text": " "
+          },
+          {
+            "text": "休",
+            "ruby": "やす"
+          },
+          {
+            "text": "みました。"
+          }
+        ],
         "audioSegment": {
           "id": "l5-basic-s003",
           "trackId": "lesson_basic",
-          "sourceUrl": "/data/ocr/audio-clips/lesson5/l5-basic-s003.mp3",
-          "start": 0,
-          "end": 2.78,
-          "duration": 2.78,
-          "method": "approved-asr-alignment",
-          "confidence": "approved",
-          "reviewedAt": "2026-08-05T08:26:28.063Z",
-          "sourceAudioSha256": "912d8e507821136651fc72195b7cd468537835e48d506923742dc5a224c5ffaa"
+          "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson5/lesson_basic.mp3",
+          "itemIndex": 3,
+          "speaker": "",
+          "text": "森さんは 先週 休みました。",
+          "start": 8.78,
+          "end": 11.79,
+          "duration": 3.01,
+          "rawAzureTiming": {
+            "start": 9.03,
+            "end": 11.67,
+            "duration": 2.64
+          },
+          "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+          "speechActivity": null,
+          "speechUnitCount": 1,
+          "matchScore": 1,
+          "asrConfidence": 0.936,
+          "asrText": "森 さ ん は 先 週 休 み ま し た 。",
+          "phraseIndexes": [
+            2
+          ],
+          "method": "azure-speech-sentence-alignment-with-boundary-padding",
+          "confidence": "high",
+          "alignmentIssues": [],
+          "review": {
+            "status": "approved",
+            "reviewedAt": "2026-08-16T11:01:07.023Z",
+            "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+            "matchScore": 1,
+            "asrText": "森 さ ん は 先 週 休 み ま し た 。"
+          }
         }
       },
       {
@@ -86,17 +225,59 @@
         "translationZh": "我昨天没有工作。",
         "confidence": "high",
         "rawText": "4. わたしは 昨日 働きませんでした。",
+        "segments": [
+          {
+            "text": "わたしは "
+          },
+          {
+            "text": "昨日",
+            "ruby": "きのう"
+          },
+          {
+            "text": " "
+          },
+          {
+            "text": "働",
+            "ruby": "はたら"
+          },
+          {
+            "text": "きませんでした。"
+          }
+        ],
         "audioSegment": {
           "id": "l5-basic-s004",
           "trackId": "lesson_basic",
-          "sourceUrl": "/data/ocr/audio-clips/lesson5/l5-basic-s004.mp3",
-          "start": 0,
-          "end": 3.22,
-          "duration": 3.22,
-          "method": "approved-asr-alignment",
-          "confidence": "approved",
-          "reviewedAt": "2026-08-05T08:26:28.063Z",
-          "sourceAudioSha256": "912d8e507821136651fc72195b7cd468537835e48d506923742dc5a224c5ffaa"
+          "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson5/lesson_basic.mp3",
+          "itemIndex": 4,
+          "speaker": "",
+          "text": "わたしは 昨日 働きませんでした。",
+          "start": 13.15,
+          "end": 16.64,
+          "duration": 3.49,
+          "rawAzureTiming": {
+            "start": 13.4,
+            "end": 16.52,
+            "duration": 3.12
+          },
+          "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+          "speechActivity": null,
+          "speechUnitCount": 1,
+          "matchScore": 1,
+          "asrConfidence": 0.863,
+          "asrText": "わ た し は 昨 日 働 き ま せ ん で し た 。",
+          "phraseIndexes": [
+            3
+          ],
+          "method": "azure-speech-sentence-alignment-with-boundary-padding",
+          "confidence": "high",
+          "alignmentIssues": [],
+          "review": {
+            "status": "approved",
+            "reviewedAt": "2026-08-16T11:01:07.023Z",
+            "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+            "matchScore": 1,
+            "asrText": "わ た し は 昨 日 働 き ま せ ん で し た 。"
+          }
         }
       }
     ],
@@ -113,17 +294,63 @@
             "translationZh": "每天几点睡觉？",
             "confidence": "high",
             "rawText": "甲：毎日、何時に 寝ますか。",
+            "segments": [
+              {
+                "text": "毎日",
+                "ruby": "まいにち"
+              },
+              {
+                "text": "、"
+              },
+              {
+                "text": "何時",
+                "ruby": "なんじ"
+              },
+              {
+                "text": "に "
+              },
+              {
+                "text": "寝",
+                "ruby": "ね"
+              },
+              {
+                "text": "ますか。"
+              }
+            ],
             "audioSegment": {
               "id": "l5-basic-dialogue-001-line-001",
               "trackId": "lesson_basic",
-              "sourceUrl": "/data/ocr/audio-clips/lesson5/l5-basic-dialogue-001-line-001.mp3",
-              "start": 0,
-              "end": 2.38,
-              "duration": 2.38,
-              "method": "approved-asr-alignment",
-              "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:26:28.063Z",
-              "sourceAudioSha256": "912d8e507821136651fc72195b7cd468537835e48d506923742dc5a224c5ffaa"
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson5/lesson_basic.mp3",
+              "itemIndex": 5,
+              "speaker": "甲",
+              "text": "毎日、何時に 寝ますか。",
+              "start": 18.66,
+              "end": 20.85,
+              "duration": 2.19,
+              "rawAzureTiming": {
+                "start": 18.91,
+                "end": 20.87,
+                "duration": 1.96
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrConfidence": 0.923,
+              "asrText": "毎 日 、 何 時 に 寝 ま す か",
+              "phraseIndexes": [
+                4
+              ],
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [],
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-16T11:01:07.023Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "matchScore": 1,
+                "asrText": "毎 日 、 何 時 に 寝 ま す か"
+              }
             }
           },
           {
@@ -134,17 +361,69 @@
             "translationZh": "11点30分睡觉。",
             "confidence": "high",
             "rawText": "乙：11時30分に 寝ます。",
+            "segments": [
+              {
+                "text": "11"
+              },
+              {
+                "text": "時",
+                "ruby": "じ"
+              },
+              {
+                "text": "30"
+              },
+              {
+                "text": "分",
+                "ruby": "ぷん"
+              },
+              {
+                "text": "に "
+              },
+              {
+                "text": "寝",
+                "ruby": "ね"
+              },
+              {
+                "text": "ます。"
+              }
+            ],
             "audioSegment": {
               "id": "l5-basic-dialogue-001-line-002",
               "trackId": "lesson_basic",
-              "sourceUrl": "/data/ocr/audio-clips/lesson5/l5-basic-dialogue-001-line-002.mp3",
-              "start": 0,
-              "end": 2.58,
-              "duration": 2.58,
-              "method": "approved-asr-alignment",
-              "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:26:28.063Z",
-              "sourceAudioSha256": "912d8e507821136651fc72195b7cd468537835e48d506923742dc5a224c5ffaa"
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson5/lesson_basic.mp3",
+              "itemIndex": 6,
+              "speaker": "乙",
+              "text": "11時30分に 寝ます。",
+              "start": 20.89,
+              "end": 24.63,
+              "duration": 3.74,
+              "rawAzureTiming": {
+                "start": 20.87,
+                "end": 24.51,
+                "duration": 3.64
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
+              "speechUnitCount": 2,
+              "matchScore": 0.6,
+              "asrConfidence": 0.95,
+              "asrText": "。 十 一 時 三 十 分 に 寝 ま す",
+              "phraseIndexes": [
+                4,
+                5
+              ],
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "needs-review",
+              "alignmentIssues": [
+                "Low ASR text similarity."
+              ],
+              "review": {
+                "status": "pending",
+                "reviewedAt": null,
+                "note": "Low ASR text similarity.",
+                "matchScore": 0.6,
+                "asrText": "。 十 一 時 三 十 分 に 寝 ま す"
+              }
             }
           }
         ]
@@ -161,17 +440,70 @@
             "translationZh": "昨天从几点工作到几点？",
             "confidence": "high",
             "rawText": "甲：昨日、何時から 何時まで 働きましたか。",
+            "segments": [
+              {
+                "text": "昨日",
+                "ruby": "きのう"
+              },
+              {
+                "text": "、"
+              },
+              {
+                "text": "何時",
+                "ruby": "なんじ"
+              },
+              {
+                "text": "から "
+              },
+              {
+                "text": "何時",
+                "ruby": "なんじ"
+              },
+              {
+                "text": "まで "
+              },
+              {
+                "text": "働",
+                "ruby": "はたら"
+              },
+              {
+                "text": "きましたか。"
+              }
+            ],
             "audioSegment": {
               "id": "l5-basic-dialogue-002-line-001",
               "trackId": "lesson_basic",
-              "sourceUrl": "/data/ocr/audio-clips/lesson5/l5-basic-dialogue-002-line-001.mp3",
-              "start": 0,
-              "end": 3.7,
-              "duration": 3.7,
-              "method": "approved-asr-alignment",
-              "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:26:28.063Z",
-              "sourceAudioSha256": "912d8e507821136651fc72195b7cd468537835e48d506923742dc5a224c5ffaa"
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson5/lesson_basic.mp3",
+              "itemIndex": 7,
+              "speaker": "甲",
+              "text": "昨日、何時から 何時まで 働きましたか。",
+              "start": 26.22,
+              "end": 29.69,
+              "duration": 3.47,
+              "rawAzureTiming": {
+                "start": 26.47,
+                "end": 29.71,
+                "duration": 3.24
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrConfidence": 0.898,
+              "asrText": "昨 日 、 何 時 か ら 何 時 ま で 働 き ま し た か",
+              "phraseIndexes": [
+                6
+              ],
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [],
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-16T11:01:07.023Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "matchScore": 1,
+                "asrText": "昨 日 、 何 時 か ら 何 時 ま で 働 き ま し た か"
+              }
             }
           },
           {
@@ -182,17 +514,70 @@
             "translationZh": "从9点工作到6点。",
             "confidence": "high",
             "rawText": "乙：9時から 6時まで 働きました。",
+            "segments": [
+              {
+                "text": "9"
+              },
+              {
+                "text": "時",
+                "ruby": "じ"
+              },
+              {
+                "text": "から "
+              },
+              {
+                "text": "6"
+              },
+              {
+                "text": "時",
+                "ruby": "じ"
+              },
+              {
+                "text": "まで "
+              },
+              {
+                "text": "働",
+                "ruby": "はたら"
+              },
+              {
+                "text": "きました。"
+              }
+            ],
             "audioSegment": {
               "id": "l5-basic-dialogue-002-line-002",
               "trackId": "lesson_basic",
-              "sourceUrl": "/data/ocr/audio-clips/lesson5/l5-basic-dialogue-002-line-002.mp3",
-              "start": 0,
-              "end": 2.86,
-              "duration": 2.86,
-              "method": "approved-asr-alignment",
-              "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:26:28.063Z",
-              "sourceAudioSha256": "912d8e507821136651fc72195b7cd468537835e48d506923742dc5a224c5ffaa"
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson5/lesson_basic.mp3",
+              "itemIndex": 8,
+              "speaker": "乙",
+              "text": "9時から 6時まで 働きました。",
+              "start": 29.73,
+              "end": 33.67,
+              "duration": 3.94,
+              "rawAzureTiming": {
+                "start": 29.71,
+                "end": 33.55,
+                "duration": 3.84
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
+              "speechUnitCount": 2,
+              "matchScore": 0.846,
+              "asrConfidence": 0.926,
+              "asrText": "。 九 時 か ら 六 時 ま で 働 き ま し た",
+              "phraseIndexes": [
+                6,
+                7
+              ],
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [],
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-16T11:01:07.023Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "matchScore": 0.846,
+                "asrText": "。 九 時 か ら 六 時 ま で 働 き ま し た"
+              }
             }
           }
         ]
@@ -209,17 +594,56 @@
             "translationZh": "上周休息了吗？",
             "confidence": "high",
             "rawText": "甲：先週 休みましたか。",
+            "segments": [
+              {
+                "text": "先週",
+                "ruby": "せんしゅう"
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "休",
+                "ruby": "やす"
+              },
+              {
+                "text": "みましたか。"
+              }
+            ],
             "audioSegment": {
               "id": "l5-basic-dialogue-003-line-001",
               "trackId": "lesson_basic",
-              "sourceUrl": "/data/ocr/audio-clips/lesson5/l5-basic-dialogue-003-line-001.mp3",
-              "start": 0,
-              "end": 2.42,
-              "duration": 2.42,
-              "method": "approved-asr-alignment",
-              "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:26:28.063Z",
-              "sourceAudioSha256": "912d8e507821136651fc72195b7cd468537835e48d506923742dc5a224c5ffaa"
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson5/lesson_basic.mp3",
+              "itemIndex": 9,
+              "speaker": "甲",
+              "text": "先週 休みましたか。",
+              "start": 35.58,
+              "end": 37.85,
+              "duration": 2.27,
+              "rawAzureTiming": {
+                "start": 35.83,
+                "end": 37.87,
+                "duration": 2.04
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrConfidence": 0.916,
+              "asrText": "先 週 休 み ま し た か",
+              "phraseIndexes": [
+                8
+              ],
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [],
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-16T11:01:07.023Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "matchScore": 1,
+                "asrText": "先 週 休 み ま し た か"
+              }
             }
           },
           {
@@ -230,17 +654,53 @@
             "translationZh": "没有，没休息。",
             "confidence": "high",
             "rawText": "乙：いいえ、休みませんでした。",
+            "segments": [
+              {
+                "text": "いいえ、"
+              },
+              {
+                "text": "休",
+                "ruby": "やす"
+              },
+              {
+                "text": "みませんでした。"
+              }
+            ],
             "audioSegment": {
               "id": "l5-basic-dialogue-003-line-002",
               "trackId": "lesson_basic",
-              "sourceUrl": "/data/ocr/audio-clips/lesson5/l5-basic-dialogue-003-line-002.mp3",
-              "start": 0,
-              "end": 1.34,
-              "duration": 1.34,
-              "method": "approved-asr-alignment",
-              "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:26:28.063Z",
-              "sourceAudioSha256": "912d8e507821136651fc72195b7cd468537835e48d506923742dc5a224c5ffaa"
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson5/lesson_basic.mp3",
+              "itemIndex": 10,
+              "speaker": "乙",
+              "text": "いいえ、休みませんでした。",
+              "start": 37.89,
+              "end": 41.04,
+              "duration": 3.15,
+              "rawAzureTiming": {
+                "start": 37.87,
+                "end": 40.92,
+                "duration": 3.05
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
+              "speechUnitCount": 2,
+              "matchScore": 1,
+              "asrConfidence": 0.915,
+              "asrText": "。 い い え 、 休 み ま せ ん で し た 。",
+              "phraseIndexes": [
+                8,
+                9
+              ],
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [],
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-16T11:01:07.023Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "matchScore": 1,
+                "asrText": "。 い い え 、 休 み ま せ ん で し た 。"
+              }
             }
           }
         ]
@@ -257,17 +717,56 @@
             "translationZh": "考试什么时候开始？",
             "confidence": "high",
             "rawText": "甲：試験は いつ 始まりますか。",
+            "segments": [
+              {
+                "text": "試験",
+                "ruby": "しけん"
+              },
+              {
+                "text": "は いつ "
+              },
+              {
+                "text": "始",
+                "ruby": "はじ"
+              },
+              {
+                "text": "まりますか。"
+              }
+            ],
             "audioSegment": {
               "id": "l5-basic-dialogue-004-line-001",
               "trackId": "lesson_basic",
-              "sourceUrl": "/data/ocr/audio-clips/lesson5/l5-basic-dialogue-004-line-001.mp3",
-              "start": 0,
-              "end": 2.78,
-              "duration": 2.78,
-              "method": "approved-asr-alignment",
-              "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:26:28.063Z",
-              "sourceAudioSha256": "912d8e507821136651fc72195b7cd468537835e48d506923742dc5a224c5ffaa"
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson5/lesson_basic.mp3",
+              "itemIndex": 11,
+              "speaker": "甲",
+              "text": "試験は いつ 始まりますか。",
+              "start": 42.3,
+              "end": 45.01,
+              "duration": 2.71,
+              "rawAzureTiming": {
+                "start": 42.55,
+                "end": 45.03,
+                "duration": 2.48
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrConfidence": 0.858,
+              "asrText": "試 験 は い つ 始 ま り ま す か",
+              "phraseIndexes": [
+                10
+              ],
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [],
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-16T11:01:07.023Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "matchScore": 1,
+                "asrText": "試 験 は い つ 始 ま り ま す か"
+              }
             }
           },
           {
@@ -278,17 +777,57 @@
             "translationZh": "下周四。",
             "confidence": "high",
             "rawText": "乙：来週の 木曜日です。",
+            "segments": [
+              {
+                "text": "来週",
+                "ruby": "らいしゅう"
+              },
+              {
+                "text": "の "
+              },
+              {
+                "text": "木曜日",
+                "ruby": "もくようび"
+              },
+              {
+                "text": "です。"
+              }
+            ],
             "audioSegment": {
               "id": "l5-basic-dialogue-004-line-002",
               "trackId": "lesson_basic",
-              "sourceUrl": "/data/ocr/audio-clips/lesson5/l5-basic-dialogue-004-line-002.mp3",
-              "start": 0,
-              "end": 2.1,
-              "duration": 2.1,
-              "method": "approved-asr-alignment",
-              "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:26:28.063Z",
-              "sourceAudioSha256": "912d8e507821136651fc72195b7cd468537835e48d506923742dc5a224c5ffaa"
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson5/lesson_basic.mp3",
+              "itemIndex": 12,
+              "speaker": "乙",
+              "text": "来週の 木曜日です。",
+              "start": 45.05,
+              "end": 48.03,
+              "duration": 2.98,
+              "rawAzureTiming": {
+                "start": 45.03,
+                "end": 47.91,
+                "duration": 2.88
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
+              "speechUnitCount": 2,
+              "matchScore": 1,
+              "asrConfidence": 0.934,
+              "asrText": "。 来 週 の 木 曜 日 で す",
+              "phraseIndexes": [
+                10,
+                11
+              ],
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [],
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-16T11:01:07.023Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "matchScore": 1,
+                "asrText": "。 来 週 の 木 曜 日 で す"
+              }
             }
           }
         ]
@@ -328,17 +867,63 @@
             "translationZh": "小野，小李的欢迎会是什么时候？",
             "confidence": "high",
             "rawText": "吉田：小野さん，李さんの 歓迎会は いつですか。",
+            "segments": [
+              {
+                "text": "小野",
+                "ruby": "おの"
+              },
+              {
+                "text": "さん，"
+              },
+              {
+                "text": "李",
+                "ruby": "り"
+              },
+              {
+                "text": "さんの "
+              },
+              {
+                "text": "歓迎会",
+                "ruby": "かんげいかい"
+              },
+              {
+                "text": "は いつですか。"
+              }
+            ],
             "audioSegment": {
               "id": "l5-app-block-003-line-001",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson5/l5-app-block-003-line-001.mp3",
-              "start": 0,
-              "end": 3.5,
-              "duration": 3.5,
-              "method": "approved-asr-alignment",
-              "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:27:06.292Z",
-              "sourceAudioSha256": "1b18464739daf35c056992f751a753c9eb575fe3a51cd99f403658779dbd072d"
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson5/lesson_apps.mp3",
+              "itemIndex": 1,
+              "speaker": "吉田",
+              "text": "小野さん，李さんの 歓迎会は いつですか。",
+              "start": 14.98,
+              "end": 18.33,
+              "duration": 3.35,
+              "rawAzureTiming": {
+                "start": 15.23,
+                "end": 18.35,
+                "duration": 3.12
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrConfidence": 0.883,
+              "asrText": "小 野 さ ん ， 李 さ ん の 歓 迎 会 は い つ で す か",
+              "phraseIndexes": [
+                3
+              ],
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [],
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-16T11:01:07.023Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "matchScore": 1,
+                "asrText": "小 野 さ ん ， 李 さ ん の 歓 迎 会 は い つ で す か"
+              }
             }
           },
           {
@@ -349,17 +934,53 @@
             "translationZh": "后天晚上。",
             "confidence": "high",
             "rawText": "小野：あさっての 夜です。",
+            "segments": [
+              {
+                "text": "あさっての "
+              },
+              {
+                "text": "夜",
+                "ruby": "よる"
+              },
+              {
+                "text": "です。"
+              }
+            ],
             "audioSegment": {
               "id": "l5-app-block-003-line-002",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson5/l5-app-block-003-line-002.mp3",
-              "start": 0,
-              "end": 1.66,
-              "duration": 1.66,
-              "method": "approved-asr-alignment",
-              "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:27:06.292Z",
-              "sourceAudioSha256": "1b18464739daf35c056992f751a753c9eb575fe3a51cd99f403658779dbd072d"
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson5/lesson_apps.mp3",
+              "itemIndex": 2,
+              "speaker": "小野",
+              "text": "あさっての 夜です。",
+              "start": 18.37,
+              "end": 21.43,
+              "duration": 3.06,
+              "rawAzureTiming": {
+                "start": 18.35,
+                "end": 21.31,
+                "duration": 2.96
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
+              "speechUnitCount": 2,
+              "matchScore": 1,
+              "asrConfidence": 0.889,
+              "asrText": "。 あ さ っ て の 夜 で す",
+              "phraseIndexes": [
+                3,
+                4
+              ],
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [],
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-16T11:01:07.023Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "matchScore": 1,
+                "asrText": "。 あ さ っ て の 夜 で す"
+              }
             }
           },
           {
@@ -370,17 +991,49 @@
             "translationZh": "从几点开始？",
             "confidence": "high",
             "rawText": "吉田：何時からですか。",
+            "segments": [
+              {
+                "text": "何時",
+                "ruby": "なんじ"
+              },
+              {
+                "text": "からですか。"
+              }
+            ],
             "audioSegment": {
               "id": "l5-app-block-003-line-003",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson5/l5-app-block-003-line-003.mp3",
-              "start": 0,
-              "end": 1.22,
-              "duration": 1.22,
-              "method": "approved-asr-alignment",
-              "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:27:06.292Z",
-              "sourceAudioSha256": "1b18464739daf35c056992f751a753c9eb575fe3a51cd99f403658779dbd072d"
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson5/lesson_apps.mp3",
+              "itemIndex": 3,
+              "speaker": "吉田",
+              "text": "何時からですか。",
+              "start": 21.54,
+              "end": 23.45,
+              "duration": 1.91,
+              "rawAzureTiming": {
+                "start": 21.79,
+                "end": 23.47,
+                "duration": 1.68
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrConfidence": 0.89,
+              "asrText": "。 何 時 か ら で す か 。",
+              "phraseIndexes": [
+                4
+              ],
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [],
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-16T11:01:07.023Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "matchScore": 1,
+                "asrText": "。 何 時 か ら で す か 。"
+              }
             }
           },
           {
@@ -391,17 +1044,52 @@
             "translationZh": "从6点开始。",
             "confidence": "high",
             "rawText": "小野：6時からです。",
+            "segments": [
+              {
+                "text": "6"
+              },
+              {
+                "text": "時",
+                "ruby": "じ"
+              },
+              {
+                "text": "からです。"
+              }
+            ],
             "audioSegment": {
               "id": "l5-app-block-003-line-004",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson5/l5-app-block-003-line-004.mp3",
-              "start": 0,
-              "end": 1.18,
-              "duration": 1.18,
-              "method": "approved-asr-alignment",
-              "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:27:06.292Z",
-              "sourceAudioSha256": "1b18464739daf35c056992f751a753c9eb575fe3a51cd99f403658779dbd072d"
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson5/lesson_apps.mp3",
+              "itemIndex": 4,
+              "speaker": "小野",
+              "text": "6時からです。",
+              "start": 23.49,
+              "end": 24.51,
+              "duration": 1.02,
+              "rawAzureTiming": {
+                "start": 23.47,
+                "end": 24.39,
+                "duration": 0.92
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
+              "speechUnitCount": 1,
+              "matchScore": 0.833,
+              "asrConfidence": 0.89,
+              "asrText": "六 時 か ら で す",
+              "phraseIndexes": [
+                4
+              ],
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [],
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-16T11:01:07.023Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "matchScore": 0.833,
+                "asrText": "六 時 か ら で す"
+              }
             }
           }
         ]
@@ -427,17 +1115,68 @@
             "translationZh": "森，早上好。现在几点了？",
             "confidence": "high",
             "rawText": "吉田：森君，おはよう。今 何時ですか。",
+            "segments": [
+              {
+                "text": "森",
+                "ruby": "もり"
+              },
+              {
+                "text": "君",
+                "ruby": "くん"
+              },
+              {
+                "text": "，おはよう。"
+              },
+              {
+                "text": "今",
+                "ruby": "いま"
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "何時",
+                "ruby": "なんじ"
+              },
+              {
+                "text": "ですか。"
+              }
+            ],
             "audioSegment": {
               "id": "l5-app-block-005-line-001",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson5/l5-app-block-005-line-001.mp3",
-              "start": 0,
-              "end": 4.23,
-              "duration": 4.23,
-              "method": "approved-asr-alignment",
-              "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:27:06.292Z",
-              "sourceAudioSha256": "1b18464739daf35c056992f751a753c9eb575fe3a51cd99f403658779dbd072d"
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson5/lesson_apps.mp3",
+              "itemIndex": 5,
+              "speaker": "吉田",
+              "text": "森君，おはよう。今 何時ですか。",
+              "start": 26.41,
+              "end": 30.87,
+              "duration": 4.46,
+              "rawAzureTiming": {
+                "start": 26.66,
+                "end": 30.75,
+                "duration": 4.09
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
+              "speechUnitCount": 2,
+              "matchScore": 1,
+              "asrConfidence": 0.856,
+              "asrText": "森 君 お は よ う 今 何 時 で す か",
+              "phraseIndexes": [
+                5,
+                6
+              ],
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [],
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-16T11:01:07.023Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "matchScore": 1,
+                "asrText": "森 君 お は よ う 今 何 時 で す か"
+              }
             }
           },
           {
@@ -448,17 +1187,61 @@
             "translationZh": "10点15分。",
             "confidence": "high",
             "rawText": "森：10時15分です。",
+            "segments": [
+              {
+                "text": "10"
+              },
+              {
+                "text": "時",
+                "ruby": "じ"
+              },
+              {
+                "text": "15"
+              },
+              {
+                "text": "分",
+                "ruby": "ふん"
+              },
+              {
+                "text": "です。"
+              }
+            ],
             "audioSegment": {
               "id": "l5-app-block-005-line-002",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson5/l5-app-block-005-line-002.mp3",
-              "start": 0,
-              "end": 1.66,
-              "duration": 1.66,
-              "method": "approved-asr-alignment",
-              "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:27:06.292Z",
-              "sourceAudioSha256": "1b18464739daf35c056992f751a753c9eb575fe3a51cd99f403658779dbd072d"
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson5/lesson_apps.mp3",
+              "itemIndex": 6,
+              "speaker": "森",
+              "text": "10時15分です。",
+              "start": 31.54,
+              "end": 33.43,
+              "duration": 1.89,
+              "rawAzureTiming": {
+                "start": 31.79,
+                "end": 33.31,
+                "duration": 1.52
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
+              "speechUnitCount": 1,
+              "matchScore": 0.5,
+              "asrConfidence": 0.842,
+              "asrText": "十 時 十 五 分 で す",
+              "phraseIndexes": [
+                7
+              ],
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "needs-review",
+              "alignmentIssues": [
+                "Low ASR text similarity."
+              ],
+              "review": {
+                "status": "pending",
+                "reviewedAt": null,
+                "note": "Low ASR text similarity.",
+                "matchScore": 0.5,
+                "asrText": "十 時 十 五 分 で す"
+              }
             }
           },
           {
@@ -469,17 +1252,49 @@
             "translationZh": "迟到了吧。",
             "confidence": "high",
             "rawText": "吉田：遅刻ですね。",
+            "segments": [
+              {
+                "text": "遅刻",
+                "ruby": "ちこく"
+              },
+              {
+                "text": "ですね。"
+              }
+            ],
             "audioSegment": {
               "id": "l5-app-block-005-line-003",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson5/l5-app-block-005-line-003.mp3",
-              "start": 0,
-              "end": 1.02,
-              "duration": 1.02,
-              "method": "approved-asr-alignment",
-              "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:27:06.292Z",
-              "sourceAudioSha256": "1b18464739daf35c056992f751a753c9eb575fe3a51cd99f403658779dbd072d"
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson5/lesson_apps.mp3",
+              "itemIndex": 7,
+              "speaker": "吉田",
+              "text": "遅刻ですね。",
+              "start": 33.58,
+              "end": 34.45,
+              "duration": 0.87,
+              "rawAzureTiming": {
+                "start": 33.83,
+                "end": 34.47,
+                "duration": 0.64
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrConfidence": 0.842,
+              "asrText": "遅 刻 で す ね",
+              "phraseIndexes": [
+                7
+              ],
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [],
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-16T11:01:07.023Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "matchScore": 1,
+                "asrText": "遅 刻 で す ね"
+              }
             }
           },
           {
@@ -490,17 +1305,78 @@
             "translationZh": "对不起，科长。今天早上9点才起床。",
             "confidence": "high",
             "rawText": "森：すみません，課長。今朝 9時に 起きました。",
+            "segments": [
+              {
+                "text": "すみません，"
+              },
+              {
+                "text": "課長",
+                "ruby": "かちょう"
+              },
+              {
+                "text": "。"
+              },
+              {
+                "text": "今朝",
+                "ruby": "けさ"
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "9"
+              },
+              {
+                "text": "時",
+                "ruby": "じ"
+              },
+              {
+                "text": "に "
+              },
+              {
+                "text": "起",
+                "ruby": "お"
+              },
+              {
+                "text": "きました。"
+              }
+            ],
             "audioSegment": {
               "id": "l5-app-block-005-line-004",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson5/l5-app-block-005-line-004.mp3",
-              "start": 0,
-              "end": 3.82,
-              "duration": 3.82,
-              "method": "approved-asr-alignment",
-              "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:27:06.292Z",
-              "sourceAudioSha256": "1b18464739daf35c056992f751a753c9eb575fe3a51cd99f403658779dbd072d"
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson5/lesson_apps.mp3",
+              "itemIndex": 8,
+              "speaker": "森",
+              "text": "すみません，課長。今朝 9時に 起きました。",
+              "start": 34.49,
+              "end": 39.39,
+              "duration": 4.9,
+              "rawAzureTiming": {
+                "start": 34.47,
+                "end": 39.27,
+                "duration": 4.8
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
+              "speechUnitCount": 3,
+              "matchScore": 0.941,
+              "asrConfidence": 0.888,
+              "asrText": "。 す み ま せ ん 課 長 今 朝 九 時 に 起 き ま し た",
+              "phraseIndexes": [
+                7,
+                8,
+                9
+              ],
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [],
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-16T11:01:07.023Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "matchScore": 0.941,
+                "asrText": "。 す み ま せ ん 課 長 今 朝 九 時 に 起 き ま し た"
+              }
             }
           }
         ]
@@ -526,17 +1402,70 @@
             "translationZh": "森先生每天早上几点起床？",
             "confidence": "high",
             "rawText": "李：森さんは 毎朝 何時に 起きますか。",
+            "segments": [
+              {
+                "text": "森",
+                "ruby": "もり"
+              },
+              {
+                "text": "さんは "
+              },
+              {
+                "text": "毎朝",
+                "ruby": "まいあさ"
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "何時",
+                "ruby": "なんじ"
+              },
+              {
+                "text": "に "
+              },
+              {
+                "text": "起",
+                "ruby": "お"
+              },
+              {
+                "text": "きますか。"
+              }
+            ],
             "audioSegment": {
               "id": "l5-app-block-007-line-001",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson5/l5-app-block-007-line-001.mp3",
-              "start": 0,
-              "end": 3.14,
-              "duration": 3.14,
-              "method": "approved-asr-alignment",
-              "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:27:06.292Z",
-              "sourceAudioSha256": "1b18464739daf35c056992f751a753c9eb575fe3a51cd99f403658779dbd072d"
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson5/lesson_apps.mp3",
+              "itemIndex": 9,
+              "speaker": "李",
+              "text": "森さんは 毎朝 何時に 起きますか。",
+              "start": 43.42,
+              "end": 46.53,
+              "duration": 3.11,
+              "rawAzureTiming": {
+                "start": 43.67,
+                "end": 46.55,
+                "duration": 2.88
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrConfidence": 0.893,
+              "asrText": "森 さ ん は 毎 朝 何 時 に 起 き ま す か",
+              "phraseIndexes": [
+                10
+              ],
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [],
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-16T11:01:07.023Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "matchScore": 1,
+                "asrText": "森 さ ん は 毎 朝 何 時 に 起 き ま す か"
+              }
             }
           },
           {
@@ -547,17 +1476,64 @@
             "translationZh": "通常7点左右。小李呢？",
             "confidence": "high",
             "rawText": "森：いつもは 7時ごろです。李さんは？",
+            "segments": [
+              {
+                "text": "いつもは "
+              },
+              {
+                "text": "7"
+              },
+              {
+                "text": "時",
+                "ruby": "じ"
+              },
+              {
+                "text": "ごろです。"
+              },
+              {
+                "text": "李",
+                "ruby": "り"
+              },
+              {
+                "text": "さんは？"
+              }
+            ],
             "audioSegment": {
               "id": "l5-app-block-007-line-002",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson5/l5-app-block-007-line-002.mp3",
-              "start": 0,
-              "end": 3.02,
-              "duration": 3.02,
-              "method": "approved-asr-alignment",
-              "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:27:06.292Z",
-              "sourceAudioSha256": "1b18464739daf35c056992f751a753c9eb575fe3a51cd99f403658779dbd072d"
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson5/lesson_apps.mp3",
+              "itemIndex": 10,
+              "speaker": "森",
+              "text": "いつもは 7時ごろです。李さんは？",
+              "start": 46.57,
+              "end": 50.27,
+              "duration": 3.7,
+              "rawAzureTiming": {
+                "start": 46.55,
+                "end": 50.15,
+                "duration": 3.6
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
+              "speechUnitCount": 1,
+              "matchScore": 0.786,
+              "asrConfidence": 0.893,
+              "asrText": "。 い つ も は 七 時 頃 で す 李 さ ん は",
+              "phraseIndexes": [
+                10
+              ],
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "medium",
+              "alignmentIssues": [
+                "Moderate ASR text similarity."
+              ],
+              "review": {
+                "status": "pending",
+                "reviewedAt": null,
+                "note": "Moderate ASR text similarity.",
+                "matchScore": 0.786,
+                "asrText": "。 い つ も は 七 時 頃 で す 李 さ ん は"
+              }
             }
           },
           {
@@ -568,17 +1544,57 @@
             "translationZh": "我6点左右。",
             "confidence": "high",
             "rawText": "李：わたしは 6時ごろです。",
+            "segments": [
+              {
+                "text": "わたしは "
+              },
+              {
+                "text": "6"
+              },
+              {
+                "text": "時",
+                "ruby": "じ"
+              },
+              {
+                "text": "ごろです。"
+              }
+            ],
             "audioSegment": {
               "id": "l5-app-block-007-line-003",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson5/l5-app-block-007-line-003.mp3",
-              "start": 0,
-              "end": 1.86,
-              "duration": 1.86,
-              "method": "approved-asr-alignment",
-              "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:27:06.292Z",
-              "sourceAudioSha256": "1b18464739daf35c056992f751a753c9eb575fe3a51cd99f403658779dbd072d"
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson5/lesson_apps.mp3",
+              "itemIndex": 11,
+              "speaker": "李",
+              "text": "わたしは 6時ごろです。",
+              "start": 50.46,
+              "end": 52.55,
+              "duration": 2.09,
+              "rawAzureTiming": {
+                "start": 50.71,
+                "end": 52.43,
+                "duration": 1.72
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
+              "speechUnitCount": 1,
+              "matchScore": 0.3,
+              "asrConfidence": 0.893,
+              "asrText": "は シ ッ ク ス 時 頃 で す",
+              "phraseIndexes": [
+                10
+              ],
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "needs-review",
+              "alignmentIssues": [
+                "Low ASR text similarity."
+              ],
+              "review": {
+                "status": "pending",
+                "reviewedAt": null,
+                "note": "Low ASR text similarity.",
+                "matchScore": 0.3,
+                "asrText": "は シ ッ ク ス 時 頃 で す"
+              }
             }
           },
           {
@@ -589,17 +1605,63 @@
             "translationZh": "北京分公司几点开始上班？",
             "confidence": "high",
             "rawText": "森：北京支社は 何時に 始まりますか。",
+            "segments": [
+              {
+                "text": "北京支社",
+                "ruby": "ペキンししゃ"
+              },
+              {
+                "text": "は "
+              },
+              {
+                "text": "何時",
+                "ruby": "なんじ"
+              },
+              {
+                "text": "に "
+              },
+              {
+                "text": "始",
+                "ruby": "はじ"
+              },
+              {
+                "text": "まりますか。"
+              }
+            ],
             "audioSegment": {
               "id": "l5-app-block-007-line-004",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson5/l5-app-block-007-line-004.mp3",
-              "start": 0,
-              "end": 2.66,
-              "duration": 2.66,
-              "method": "approved-asr-alignment",
-              "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:27:06.292Z",
-              "sourceAudioSha256": "1b18464739daf35c056992f751a753c9eb575fe3a51cd99f403658779dbd072d"
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson5/lesson_apps.mp3",
+              "itemIndex": 12,
+              "speaker": "森",
+              "text": "北京支社は 何時に 始まりますか。",
+              "start": 52.7,
+              "end": 55.33,
+              "duration": 2.63,
+              "rawAzureTiming": {
+                "start": 52.95,
+                "end": 55.35,
+                "duration": 2.4
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrConfidence": 0.893,
+              "asrText": "北 京 支 社 は 何 時 に 始 ま り ま す か",
+              "phraseIndexes": [
+                10
+              ],
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [],
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-16T11:01:07.023Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "matchScore": 1,
+                "asrText": "北 京 支 社 は 何 時 に 始 ま り ま す か"
+              }
             }
           },
           {
@@ -610,17 +1672,95 @@
             "translationZh": "8点。从上午8点工作到下午5点。",
             "confidence": "high",
             "rawText": "李：8時です。午前 8時から 午後 5時まで 働きます。",
+            "segments": [
+              {
+                "text": "8"
+              },
+              {
+                "text": "時",
+                "ruby": "じ"
+              },
+              {
+                "text": "です。"
+              },
+              {
+                "text": "午前",
+                "ruby": "ごぜん"
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "8"
+              },
+              {
+                "text": "時",
+                "ruby": "じ"
+              },
+              {
+                "text": "から "
+              },
+              {
+                "text": "午後",
+                "ruby": "ごご"
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "5"
+              },
+              {
+                "text": "時",
+                "ruby": "じ"
+              },
+              {
+                "text": "まで "
+              },
+              {
+                "text": "働",
+                "ruby": "はたら"
+              },
+              {
+                "text": "きます。"
+              }
+            ],
             "audioSegment": {
               "id": "l5-app-block-007-line-005",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson5/l5-app-block-007-line-005.mp3",
-              "start": 0,
-              "end": 4.54,
-              "duration": 4.54,
-              "method": "approved-asr-alignment",
-              "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:27:06.292Z",
-              "sourceAudioSha256": "1b18464739daf35c056992f751a753c9eb575fe3a51cd99f403658779dbd072d"
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson5/lesson_apps.mp3",
+              "itemIndex": 13,
+              "speaker": "李",
+              "text": "8時です。午前 8時から 午後 5時まで 働きます。",
+              "start": 55.37,
+              "end": 60.51,
+              "duration": 5.14,
+              "rawAzureTiming": {
+                "start": 55.35,
+                "end": 60.39,
+                "duration": 5.04
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
+              "speechUnitCount": 1,
+              "matchScore": 0.739,
+              "asrConfidence": 0.893,
+              "asrText": "。 八 時 で す 午 前 八 時 か ら 午 後 フ ァ イ ブ 時 ま で 働 き ま す",
+              "phraseIndexes": [
+                10
+              ],
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "medium",
+              "alignmentIssues": [
+                "Moderate ASR text similarity."
+              ],
+              "review": {
+                "status": "pending",
+                "reviewedAt": null,
+                "note": "Moderate ASR text similarity.",
+                "matchScore": 0.739,
+                "asrText": "。 八 時 で す 午 前 八 時 か ら 午 後 フ ァ イ ブ 時 ま で 働 き ま す"
+              }
             }
           },
           {
@@ -631,17 +1771,49 @@
             "translationZh": "星期六呢？",
             "confidence": "high",
             "rawText": "森：土曜日は？",
+            "segments": [
+              {
+                "text": "土曜日",
+                "ruby": "どようび"
+              },
+              {
+                "text": "は？"
+              }
+            ],
             "audioSegment": {
               "id": "l5-app-block-007-line-006",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson5/l5-app-block-007-line-006.mp3",
-              "start": 0,
-              "end": 1.02,
-              "duration": 1.02,
-              "method": "approved-asr-alignment",
-              "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:27:06.292Z",
-              "sourceAudioSha256": "1b18464739daf35c056992f751a753c9eb575fe3a51cd99f403658779dbd072d"
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson5/lesson_apps.mp3",
+              "itemIndex": 14,
+              "speaker": "森",
+              "text": "土曜日は？",
+              "start": 60.5,
+              "end": 61.75,
+              "duration": 1.25,
+              "rawAzureTiming": {
+                "start": 60.75,
+                "end": 61.63,
+                "duration": 0.88
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrConfidence": 0.893,
+              "asrText": "土 曜 日 は",
+              "phraseIndexes": [
+                10
+              ],
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [],
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-16T11:01:07.023Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "matchScore": 1,
+                "asrText": "土 曜 日 は"
+              }
             }
           },
           {
@@ -652,17 +1824,77 @@
             "translationZh": "星期六不工作。星期六和星期日休息。",
             "confidence": "high",
             "rawText": "李：土曜日は 働きません。土曜日と 日曜日は 休みです。",
+            "segments": [
+              {
+                "text": "土曜日",
+                "ruby": "どようび"
+              },
+              {
+                "text": "は "
+              },
+              {
+                "text": "働",
+                "ruby": "はたら"
+              },
+              {
+                "text": "きません。"
+              },
+              {
+                "text": "土曜日",
+                "ruby": "どようび"
+              },
+              {
+                "text": "と "
+              },
+              {
+                "text": "日曜日",
+                "ruby": "にちようび"
+              },
+              {
+                "text": "は "
+              },
+              {
+                "text": "休",
+                "ruby": "やす"
+              },
+              {
+                "text": "みです。"
+              }
+            ],
             "audioSegment": {
               "id": "l5-app-block-007-line-007",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson5/l5-app-block-007-line-007.mp3",
-              "start": 0,
-              "end": 4.62,
-              "duration": 4.62,
-              "method": "approved-asr-alignment",
-              "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:27:06.292Z",
-              "sourceAudioSha256": "1b18464739daf35c056992f751a753c9eb575fe3a51cd99f403658779dbd072d"
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson5/lesson_apps.mp3",
+              "itemIndex": 15,
+              "speaker": "李",
+              "text": "土曜日は 働きません。土曜日と 日曜日は 休みです。",
+              "start": 61.65,
+              "end": 66.39,
+              "duration": 4.74,
+              "rawAzureTiming": {
+                "start": 61.83,
+                "end": 66.27,
+                "duration": 4.44
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrConfidence": 0.893,
+              "asrText": "？ 土 曜 日 は 働 き ま せ ん 。 土 曜 日 と 日 曜 日 は 休 み で す",
+              "phraseIndexes": [
+                10
+              ],
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [],
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-16T11:01:07.023Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "matchScore": 1,
+                "asrText": "？ 土 曜 日 は 働 き ま せ ん 。 土 曜 日 と 日 曜 日 は 休 み で す"
+              }
             }
           }
         ]
@@ -674,10 +1906,36 @@
     "未输出 segments；已保留可可靠识别的整句 kana。"
   ],
   "audioAlignment": {
-    "schemaVersion": 1,
-    "method": "approved-asr-alignment",
-    "sourceAlignment": "data/ocr/lesson5-text-audio-alignment.json",
-    "publishedAt": "2026-08-05T08:27:10.017Z",
-    "approvedSegments": 27
+    "schemaVersion": 2,
+    "lessonId": "lesson5",
+    "generatedAt": "2026-08-16T11:01:07.023Z",
+    "method": "azure-speech-sentence-alignment-with-boundary-padding",
+    "reviewStatus": "pending",
+    "tracks": [
+      {
+        "id": "lesson_basic",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson5/lesson_basic.mp3",
+        "sourceAudioSha256": "912d8e507821136651fc72195b7cd468537835e48d506923742dc5a224c5ffaa",
+        "expectedItems": 12,
+        "alignedItems": 12,
+        "detectedUnitCount": 16,
+        "warnings": [
+          "2 item(s) require manual verification.",
+          "Reused prior Azure timings; no Azure request was made."
+        ]
+      },
+      {
+        "id": "lesson_apps",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson5/lesson_apps.mp3",
+        "sourceAudioSha256": "1b18464739daf35c056992f751a753c9eb575fe3a51cd99f403658779dbd072d",
+        "expectedItems": 15,
+        "alignedItems": 15,
+        "detectedUnitCount": 19,
+        "warnings": [
+          "4 item(s) require manual verification.",
+          "Reused prior Azure timings; no Azure request was made."
+        ]
+      }
+    ]
   }
 }

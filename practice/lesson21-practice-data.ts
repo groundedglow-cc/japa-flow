@@ -1,12 +1,12 @@
 import type { InputSlot, LessonPractice, PracticeActivity, PracticeItem, PromptPart, RichText } from "./lesson-practice-types";
-import { lesson21ImageCrops } from "./lesson21-image-crops";
+
+const exerciseImage = (fileName: string) => `../data/book1_exercise_images/${fileName}`;
 
 const page = (pageNo: number) => `../course-assets/by-lesson/lesson21/page${pageNo}.webp`;
 const audio = (exerciseNo: 1 | 2, order: number) =>
   `https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit6/lesson21/Exe${exerciseNo}_${order}.mp3`;
 const text = (value: string, options: Omit<RichText, "type" | "text"> = {}): RichText => ({ type: "text", text: value, ...options });
 const blank = (slotId: string): PromptPart => ({ type: "blank", slotId });
-const crop = (id: string) => lesson21ImageCrops.assets.find((asset) => asset.id === id)!;
 
 const completionHint = "只补全题目中空格处需要填写的部分。";
 const answerOnlyHint = "只填写提问后的回答部分，不需要重写问题。";
@@ -130,8 +130,7 @@ const activities: PracticeActivity[] = [
         confidenceNote: "ASR 转写结合教材表格校对整理。"
       }
     },
-    assets: [crop("l21-p1-a1-ta-form-table")],
-    displayAssets: ["l21-p1-a1-ta-form-table"],
+    assets: [],
     layout: [
       { type: "example", content: { label: "[例]", before: "歩きます", beforeKana: "あるきます", after: [text("歩いた")], afterKana: "あるいた" } }
     ],
@@ -178,7 +177,9 @@ const activities: PracticeActivity[] = [
         confidenceNote: "ASR 转写结合图片顺序校对整理。"
       }
     },
-    assets: [crop("l21-p1-a2-picture-sequence")],
+    assets: [
+      { id: "l21-p1-a2-picture-sequence", kind: "exercise_image", imagePath: exerciseImage("book1_lesson21_1_2.png") }
+    ],
     displayAssets: ["l21-p1-a2-picture-sequence"],
     layout: [
       {
@@ -208,8 +209,7 @@ const activities: PracticeActivity[] = [
     interaction: "pattern_substitution",
     answerUnit: "sentence",
     responseScope: "sentence_only",
-    assets: [crop("l21-p1-a3-experience-after")],
-    displayAssets: ["l21-p1-a3-experience-after"],
+    assets: [],
     layout: [],
     itemGroups: [
       {
@@ -257,8 +257,7 @@ const activities: PracticeActivity[] = [
     interaction: "pattern_substitution",
     answerUnit: "sentence",
     responseScope: "sentence_only",
-    assets: [crop("l21-p1-a4-advice-offer")],
-    displayAssets: ["l21-p1-a4-advice-offer"],
+    assets: [],
     layout: [],
     itemGroups: [
       {
@@ -308,8 +307,7 @@ const activities: PracticeActivity[] = [
     answerUnit: "dialogue",
     responseScope: "question_and_answer",
     responseScopeHint: "写出完整问答。",
-    assets: [crop("l21-p1-a5-experience-dialogue")],
-    displayAssets: ["l21-p1-a5-experience-dialogue"],
+    assets: [],
     layout: [
       {
         type: "example",
@@ -338,8 +336,7 @@ const activities: PracticeActivity[] = [
     interaction: "pattern_substitution",
     answerUnit: "sentence",
     responseScope: "sentence_only",
-    assets: [crop("l21-p1-a6-reason-advice")],
-    displayAssets: ["l21-p1-a6-reason-advice"],
+    assets: [],
     layout: [
       {
         type: "example",
@@ -369,7 +366,9 @@ const activities: PracticeActivity[] = [
     answerUnit: "word",
     responseScope: "word_only",
     responseScopeHint: completionHint,
-    assets: [crop("l21-p2-a1-cloze")],
+    assets: [
+      { id: "l21-p2-a1-cloze", kind: "exercise_image", imagePath: exerciseImage("book1_lesson21_2_1.png") }
+    ],
     displayAssets: ["l21-p2-a1-cloze"],
     layout: [
       { type: "example", content: { label: "[例]", beforeParts: [text("ラジオを（"), blank("example"), text("）ください。")], beforeKana: "ラジオを（______）ください。", after: [text("聞いて")], afterKana: "きいて" } },
@@ -393,8 +392,7 @@ const activities: PracticeActivity[] = [
     answerUnit: "word",
     responseScope: "word_only",
     responseScopeHint: completionHint,
-    assets: [crop("l21-p2-a2-advice-cloze")],
-    displayAssets: ["l21-p2-a2-advice-cloze"],
+    assets: [],
     layout: [
       { type: "example", content: { label: "[例]", beforeParts: [text("連休ですから、ホテルを 予約（"), blank("example"), text("）ほうが いいです。")], beforeKana: "れんきゅうですから、ホテルを よやく（______）ほうが いいです。", after: [text("した")], afterKana: "した" } },
       { type: "word_bank", words: [text("します"), text("歌います"), text("止めます"), text("話します"), text("入ります"), text("閉めます")] }
@@ -428,7 +426,9 @@ const activities: PracticeActivity[] = [
         confidenceNote: "ASR 转写结合题图整理。"
       }
     },
-    assets: [crop("l21-p2-a3-true-false")],
+    assets: [
+      { id: "l21-p2-a3-true-false", kind: "exercise_image", imagePath: exerciseImage("book1_lesson21_2_3.png") }
+    ],
     displayAssets: ["l21-p2-a3-true-false"],
     layout: [
       { type: "example", content: { label: "[例]", before: "テニスを した 後で、ビールを 飲みます。", beforeKana: "テニスを した あとで、ビールを のみます。", after: [text("○")], afterKana: "○" } }
@@ -447,8 +447,7 @@ const activities: PracticeActivity[] = [
     interaction: "translation",
     answerUnit: "sentence",
     responseScope: "sentence_only",
-    assets: [crop("l21-p2-a4-translation")],
-    displayAssets: ["l21-p2-a4-translation"],
+    assets: [],
     layout: [],
     items: [
       answerItem("l21-p2-a4-q1", "1", "（我）把窗户关上吧。", "窓を 閉めましょうか。", { answerSource: "prompt", acceptableAlternatives: ["窓を 閉めましょう。"] }),

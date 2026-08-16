@@ -1,12 +1,12 @@
 import type { InputSlot, LessonPractice, PracticeActivity, PracticeItem, PromptPart, RichText } from "./lesson-practice-types";
-import { lesson17ImageCrops } from "./lesson17-image-crops";
+
+const exerciseImage = (fileName: string) => `../data/book1_exercise_images/${fileName}`;
 
 const page = (pageNo: number) => `../course-assets/by-lesson/lesson17/page${pageNo}.webp`;
 const audio = (exerciseNo: 1 | 2, order: number) =>
   `https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson17/Exe${exerciseNo}_${order}.mp3`;
 const text = (value: string, options: Omit<RichText, "type" | "text"> = {}): RichText => ({ type: "text", text: value, ...options });
 const blank = (slotId: string): PromptPart => ({ type: "blank", slotId });
-const crop = (id: string) => lesson17ImageCrops.assets.find((asset) => asset.id === id)!;
 
 const answerOnlyHint = "只填写提问后的回答部分，不需要重写问题。";
 const completionHint = "只补全题目中空格处需要填写的部分。";
@@ -175,7 +175,9 @@ const activities: PracticeActivity[] = [
     answerUnit: "dialogue",
     responseScope: "question_and_answer",
     responseScopeHint: "写出完整问答。",
-    assets: [crop("l17-p1-a2-desire-word-bubbles")],
+    assets: [
+      { id: "l17-p1-a2-desire-word-bubbles", kind: "exercise_image", imagePath: exerciseImage("book1_lesson17_1_2.png") }
+    ],
     displayAssets: ["l17-p1-a2-desire-word-bubbles"],
     layout: [
       {
@@ -218,7 +220,9 @@ const activities: PracticeActivity[] = [
         confidenceNote: "Azure STT 识别后按题面和表格顺序人工整理，末两项按题面表格补全。"
       }
     },
-    assets: [crop("l17-p1-a3-tai-form-table")],
+    assets: [
+      { id: "l17-p1-a3-tai-form-table", kind: "exercise_image", imagePath: exerciseImage("book1_lesson17_1_3.png") }
+    ],
     displayAssets: ["l17-p1-a3-tai-form-table"],
     layout: [
       {

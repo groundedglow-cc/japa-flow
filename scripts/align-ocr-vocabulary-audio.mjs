@@ -11,15 +11,34 @@ loadEnv();
 const args = parseArgs(process.argv.slice(2));
 const lessonNo = positiveInteger(args.lesson || args.lessonId || "", "lesson");
 const autoApprove = args.autoApprove === true || args["auto-approve"] === true;
+const reuseExistingAsr = args.reuseExistingAsr === true || args["reuse-existing-asr"] === true;
 const root = process.cwd();
 const inputPath = join(root, "data", "ocr", `lesson${lessonNo}-vocabulary.json`);
 const outputPath = join(root, "data", "ocr", `lesson${lessonNo}-vocabulary-audio-verified.json`);
 const cacheDir = join(root, "data", "ocr", "audio-cache", `lesson${lessonNo}`);
 const sourceData = readJson(inputPath);
+const existingOutput = reuseExistingAsr ? readExistingOutput(outputPath) : null;
 const speechKey = process.env.AZURE_SPEECH_KEY;
 const speechRegion = normalizeRegion(process.env.AZURE_SPEECH_REGION);
+const lowMatchScoreThreshold = 0.65;
+const autoApproveScoreThreshold = 0.82;
+const neighborSilence = 0.02;
+const shortHighScoreBackfillGap = 0.16;
+const maxAutoApproveExpansion = 0.18;
+const vadNoiseThreshold = "-35dB";
+const vadMinimumSilence = 0.18;
+const vadInternalPause = 0.3;
+const vadStartPadding = 0.25;
+const vadEndPadding = 0.12;
+const vadBoundaryGap = 0.02;
+const vadMinimumAnchorRatio = 0.65;
+const vadSkipRegionCost = 0.7;
+const vadMaximumExtraRegions = 3;
+const vadAnchorDistanceScale = 0.55;
 
-if (!speechKey || !speechRegion) throw new Error("Missing AZURE_SPEECH_KEY or AZURE_SPEECH_REGION.");
+if (!reuseExistingAsr && (!speechKey || !speechRegion)) {
+  throw new Error("Missing AZURE_SPEECH_KEY or AZURE_SPEECH_REGION.");
+}
 
 const track = vocabularyItems(sourceData);
 
@@ -31,76 +50,57 @@ const output = {
   schemaVersion: 1,
   lessonId: `lesson${lessonNo}`,
   generatedAt: new Date().toISOString(),
-  method: "azure-speech-word-alignment",
-  reviewStatus: autoApprove ? "approved" : "pending",
+  method: "audio-vad-sequential-alignment-with-azure-verification",
+  reviewStatus: "pending",
   tracks: []
 };
 
 const audioPath = await cachedAudioPath(`lesson${lessonNo}`, "lesson_words.mp3");
-const transcription = await transcribe(audioPath, speechKey, speechRegion);
-const words = normalizeWords(transcription.phrases || []);
-const assignments = alignItems(track, words);
+const transcription = reuseExistingAsr ? null : await transcribe(audioPath, speechKey, speechRegion, track);
+const words = normalizeWords(transcription?.phrases || []);
+const assignments = reuseExistingAsr
+  ? reuseAssignments(track, existingOutput)
+  : alignItems(track, words);
+const speechTimingPlan = detectSequentialSpeechTiming(audioPath, track, assignments);
 const reviewAt = new Date().toISOString();
 
-const segments = assignments.map((assignment, index) => ({
-  id: assignment.item.id,
-  trackId: "lesson_words",
-  sourceUrl: textbookAudioUrl(lessonNo, "lesson_words.mp3"),
-  localAudioPath: relativeToRoot(audioPath),
-  itemIndex: index + 1,
-  text: assignment.item.kana || assignment.item.writing || assignment.item.rawText || "",
-  label: assignment.item.writing || assignment.item.kana || assignment.item.id || "",
-  start: round(Math.max(0, assignment.start - 0.04)),
-  end: round(assignment.end + 0.06),
-  duration: round(Math.max(0, assignment.end - assignment.start + 0.1)),
-  speechUnitCount: assignment.words.length,
-  wordCount: assignment.words.length,
-  matchScore: round(assignment.score),
-  asrText: assignment.words.map((word) => word.text).join(" "),
-  wordIndexes: assignment.words.map((word) => word.index),
-  method: "azure-speech-word-alignment",
-  confidence: scoreToConfidence(assignment.score),
-  review: {
-    status: autoApprove ? "approved" : "pending",
-    reviewedAt: autoApprove ? reviewAt : null,
-    note: autoApprove ? "Automatically approved by the vocabulary ASR alignment workflow." : "",
-    matchScore: round(assignment.score),
-    asrText: assignment.words.map((word) => word.text).join(" ")
-  }
-}));
+const segments = assignments.map((assignment, index) => segmentFromAssignment(
+  assignment,
+  index,
+  assignments,
+  speechTimingPlan.items[index] || null,
+  reviewAt
+));
+output.reviewStatus = reviewStatusForSegments(segments);
 
 segments.forEach((segment, index) => {
   track[index].audioSegment = segment;
 });
 
 const warnings = [];
-const lowConfidence = segments.filter((segment) => segment.matchScore < 0.65);
+const lowConfidence = segments.filter((segment) => segment.matchScore < lowMatchScoreThreshold);
+const pendingReview = segments.filter((segment) => segment.review?.status !== "approved");
 if (lowConfidence.length) {
   warnings.push(`${lowConfidence.length} item(s) aligned with low ASR similarity.`);
 }
-if (words.length !== segments.length) {
-  warnings.push(`Detected ${words.length} word token(s) for ${segments.length} vocabulary item(s).`);
+if (pendingReview.length) {
+  warnings.push(`${pendingReview.length} item(s) require manual verification before they should be treated as verified.`);
 }
+warnings.push(speechTimingPlan.note);
 
 output.tracks.push({
   trackId: "lesson_words",
   sourceUrl: textbookAudioUrl(lessonNo, "lesson_words.mp3"),
-  localAudioPath: relativeToRoot(audioPath),
   outputPath: relativeToRoot(outputPath),
   sourceAudioSha256: sha256(audioPath),
-  duration: round(words.at(-1)?.end || 0),
+  duration: round(speechTimingPlan.duration || words.at(-1)?.end || 0),
   expectedItems: track.length,
-  detectedWordCount: words.length,
+  detectedWordCount: reuseExistingAsr
+    ? Number(existingOutput.audioAlignment?.tracks?.[0]?.detectedWordCount || assignments.reduce((total, assignment) => total + assignment.words.length, 0))
+    : words.length,
   alignedItems: segments.length,
   warnings,
-  transcription: {
-    provider: "azure-speech-sdk-continuous-recognition",
-    locale: "ja-JP",
-    text: transcription.combinedText,
-    phrases: transcription.phrases,
-    words
-  },
-  segments
+  provider: "azure-speech-sdk-continuous-recognition"
 });
 
 const verified = { ...sourceData, vocabulary: sourceData.vocabulary.map((word, index) => ({ ...word, audioSegment: segments[index] })) };
@@ -122,6 +122,421 @@ function vocabularyItems(data) {
     rawText: word.rawText || "",
     label: word.writing || word.kana || word.id || ""
   }));
+}
+
+function readExistingOutput(filePath) {
+  if (!existsSync(filePath)) {
+    throw new Error(`Cannot reuse ASR: missing existing alignment output ${relativeToRoot(filePath)}.`);
+  }
+  return readJson(filePath);
+}
+
+function reuseAssignments(items, existing) {
+  const existingWords = existing?.vocabulary || [];
+  if (existingWords.length !== items.length) {
+    throw new Error(`Cannot reuse ASR: existing output has ${existingWords.length} item(s), expected ${items.length}.`);
+  }
+  return items.map((item, itemIndex) => {
+    const segment = existingWords[itemIndex]?.audioSegment;
+    const rawTiming = segment?.rawAzureTiming;
+    const start = Number(rawTiming?.start ?? segment?.start);
+    const end = Number(rawTiming?.end ?? segment?.end);
+    if (!Number.isFinite(start) || !Number.isFinite(end) || end <= start) {
+      throw new Error(`Cannot reuse ASR: ${item.id} has no valid Azure timing.`);
+    }
+    const indexes = Array.isArray(segment.wordIndexes) ? segment.wordIndexes : [];
+    const words = String(segment.asrText || "").split(/\s+/).filter(Boolean).map((text, index) => ({
+      text,
+      index: Number(indexes[index] || index + 1)
+    }));
+    return {
+      item,
+      words,
+      start,
+      end,
+      score: Number(segment.matchScore || 0)
+    };
+  });
+}
+
+function segmentFromAssignment(assignment, index, allAssignments, speechTiming, reviewAt) {
+  const previous = allAssignments[index - 1] || null;
+  const next = allAssignments[index + 1] || null;
+  const rawStart = assignment.start;
+  const rawEnd = assignment.end;
+  const rawDuration = Math.max(0, rawEnd - rawStart);
+  const minDuration = minimumSegmentDuration(assignment.item);
+  const issues = [];
+  const warnings = [];
+  let start;
+  let end;
+
+  if (speechTiming) {
+    start = speechTiming.paddedStart;
+    end = speechTiming.paddedEnd;
+    const overlap = intervalOverlap(rawStart, rawEnd, speechTiming.start, speechTiming.end);
+    if (overlap <= 0) warnings.push("azure-timing-does-not-overlap-vad");
+    if (assignment.score < lowMatchScoreThreshold) warnings.push(`low-asr-text-match:${round(assignment.score)}`);
+  } else {
+    start = Math.max(0, rawStart - 0.04);
+    end = rawEnd + 0.06;
+
+    if (assignment.score >= autoApproveScoreThreshold && rawDuration < minDuration) {
+      const backfilledStart = Math.max(
+        0,
+        previous ? previous.end + shortHighScoreBackfillGap : 0,
+        rawEnd - minDuration
+      );
+      if (backfilledStart < start) {
+        start = backfilledStart;
+        issues.push(`expanded-start:${round(rawStart - backfilledStart)}s`);
+      }
+    }
+
+    if (previous) start = Math.max(start, previous.end + neighborSilence);
+    if (next) end = Math.min(end, next.start - neighborSilence);
+  }
+  if (end <= start) {
+    end = Math.max(start + 0.12, rawEnd);
+    issues.push("neighbor-boundary-too-tight");
+  }
+
+  const roundedStart = round(Math.max(0, start));
+  const roundedEnd = round(Math.max(roundedStart, end));
+  const duration = round(Math.max(0, roundedEnd - roundedStart));
+  const matchScore = round(assignment.score);
+  const asrText = assignment.words.map((word) => word.text).join(" ");
+  const review = reviewForSegment({
+    autoApprove,
+    reviewAt,
+    matchScore,
+    rawDuration,
+    duration,
+    minDuration,
+    issues,
+    asrText,
+    reliableTiming: Boolean(speechTiming)
+  });
+
+  return {
+    id: assignment.item.id,
+    trackId: "lesson_words",
+    sourceUrl: textbookAudioUrl(lessonNo, "lesson_words.mp3"),
+    itemIndex: index + 1,
+    text: assignment.item.kana || assignment.item.writing || assignment.item.rawText || "",
+    label: assignment.item.writing || assignment.item.kana || assignment.item.id || "",
+    start: roundedStart,
+    end: roundedEnd,
+    duration,
+    speechUnitCount: assignment.words.length,
+    wordCount: assignment.words.length,
+    matchScore,
+    asrText,
+    wordIndexes: assignment.words.map((word) => word.index),
+    method: speechTiming
+      ? "audio-vad-sequential-alignment-with-azure-verification"
+      : issues.length ? "azure-speech-word-alignment-adjusted" : "azure-speech-word-alignment",
+    timingSource: speechTiming ? "audio-silence-detection" : "azure-speech-word-timestamp",
+    timingConfidence: speechTiming ? "high" : review.status === "approved" ? scoreToConfidence(assignment.score) : "needs-review",
+    confidence: review.status === "approved" ? (speechTiming ? "high" : scoreToConfidence(assignment.score)) : "needs-review",
+    alignmentIssues: issues,
+    alignmentWarnings: warnings,
+    speechActivity: speechTiming ? {
+      start: round(speechTiming.start),
+      end: round(speechTiming.end),
+      activeDuration: round(speechTiming.activeDuration),
+      regionCount: speechTiming.regions.length
+    } : null,
+    rawAzureTiming: {
+      start: round(rawStart),
+      end: round(rawEnd),
+      duration: round(rawDuration)
+    },
+    review
+  };
+}
+
+function reviewForSegment({ autoApprove, reviewAt, matchScore, rawDuration, duration, minDuration, issues, asrText, reliableTiming }) {
+  const reviewIssues = [...issues];
+  if (!reliableTiming) {
+    if (matchScore < lowMatchScoreThreshold) reviewIssues.push(`low-match-score:${matchScore}`);
+    if (duration < 0.35) reviewIssues.push(`very-short-duration:${duration}s`);
+    if (rawDuration < Math.min(minDuration, 0.6)) reviewIssues.push(`short-azure-timing:${round(rawDuration)}s`);
+  }
+
+  const expanded = issues.some((issue) => issue.startsWith("expanded-start:"));
+  const expandedBy = expanded ? Number(issues.find((issue) => issue.startsWith("expanded-start:"))?.match(/:([0-9.]+)s/)?.[1] || 0) : 0;
+  if (expandedBy > maxAutoApproveExpansion) reviewIssues.push(`large-heuristic-expansion:${round(expandedBy)}s`);
+
+  const approved = autoApprove
+    && reviewIssues.length === 0
+    && (reliableTiming || matchScore >= autoApproveScoreThreshold);
+  return {
+    status: approved ? "approved" : "pending",
+    severity: reviewIssues.length ? "risk" : approved ? "ok" : "pending",
+    reviewedAt: approved ? reviewAt : null,
+    note: approved
+      ? "Automatically approved by the audio-boundary alignment workflow."
+      : `Pending manual verification: ${reviewIssues.join("; ") || "auto-approval-disabled"}.`,
+    matchScore,
+    asrText
+  };
+}
+
+function detectSequentialSpeechTiming(audioPath, items, assignments) {
+  const detected = detectSpeechRegions(audioPath);
+  const expectedCount = items.reduce((total, item) => total + expectedUtteranceCount(item), 0);
+  const regions = mergeInternalSpeechPauses(detected.regions, expectedCount);
+  const slots = speechSlots(items);
+
+  if (regions.length < expectedCount || regions.length - expectedCount > vadMaximumExtraRegions) {
+    return {
+      items: Array(items.length).fill(null),
+      duration: detected.duration,
+      note: `Audio VAD found ${regions.length} speech region(s) for ${expectedCount} expected utterance(s); Azure timestamps were used as a fallback.`
+    };
+  }
+
+  const alignment = regions.length === expectedCount
+    ? directSpeechRegionAlignment(slots, regions)
+    : alignSpeechRegionsToSlots(slots, regions, assignments);
+  if (!alignment) {
+    return {
+      items: Array(items.length).fill(null),
+      duration: detected.duration,
+      note: `Audio VAD could not safely align ${regions.length} speech region(s) to ${expectedCount} expected utterance(s); Azure timestamps were used as a fallback.`
+    };
+  }
+
+  const timings = withSpeechPlaybackBounds(
+    itemTimingsFromSpeechSlots(items, slots, alignment.regionIndexes, regions)
+  );
+
+  const anchorMatches = timings.filter((timing, index) => {
+    const assignment = assignments[index];
+    return assignment && intervalOverlap(assignment.start, assignment.end, timing.start, timing.end) > 0;
+  }).length;
+  const anchorRatio = items.length ? anchorMatches / items.length : 0;
+  if (anchorRatio < vadMinimumAnchorRatio) {
+    return {
+      items: Array(items.length).fill(null),
+      duration: detected.duration,
+      note: `Audio VAD sequence matched only ${anchorMatches}/${items.length} Azure timing anchors; Azure timestamps were used as a fallback.`
+    };
+  }
+
+  return {
+    items: timings,
+    duration: detected.duration,
+    note: `Audio VAD mapped ${regions.length} speech region(s) to ${items.length} vocabulary item(s)${alignment.skippedRegionIndexes.length ? ` after skipping ${alignment.skippedRegionIndexes.length} unmatched region(s)` : ""}, confirmed by ${anchorMatches}/${items.length} Azure timing anchors.`
+  };
+}
+
+function speechSlots(items) {
+  return items.flatMap((item, itemIndex) => Array.from(
+    { length: expectedUtteranceCount(item) },
+    () => ({ itemIndex })
+  ));
+}
+
+function directSpeechRegionAlignment(slots, regions) {
+  return {
+    regionIndexes: slots.map((_slot, index) => index),
+    skippedRegionIndexes: []
+  };
+}
+
+function alignSpeechRegionsToSlots(slots, regions, assignments) {
+  const rows = slots.length + 1;
+  const columns = regions.length + 1;
+  const costs = Array.from({ length: rows }, () => Array(columns).fill(Infinity));
+  const back = Array.from({ length: rows }, () => Array(columns).fill(null));
+  costs[0][0] = 0;
+
+  for (let regionIndex = 1; regionIndex < columns; regionIndex += 1) {
+    costs[0][regionIndex] = costs[0][regionIndex - 1] + vadSkipRegionCost;
+    back[0][regionIndex] = { kind: "skip-region" };
+  }
+
+  for (let slotIndex = 1; slotIndex < rows; slotIndex += 1) {
+    for (let regionIndex = 1; regionIndex < columns; regionIndex += 1) {
+      const matchCost = costs[slotIndex - 1][regionIndex - 1]
+        + speechSlotMatchCost(slots[slotIndex - 1], regions[regionIndex - 1], assignments);
+      if (matchCost < costs[slotIndex][regionIndex]) {
+        costs[slotIndex][regionIndex] = matchCost;
+        back[slotIndex][regionIndex] = { kind: "match" };
+      }
+
+      const skipCost = costs[slotIndex][regionIndex - 1] + vadSkipRegionCost;
+      if (skipCost < costs[slotIndex][regionIndex]) {
+        costs[slotIndex][regionIndex] = skipCost;
+        back[slotIndex][regionIndex] = { kind: "skip-region" };
+      }
+    }
+  }
+
+  if (!Number.isFinite(costs.at(-1).at(-1))) return null;
+  const regionIndexes = Array(slots.length).fill(-1);
+  const skippedRegionIndexes = [];
+  let slotIndex = slots.length;
+  let regionIndex = regions.length;
+  while (slotIndex > 0 || regionIndex > 0) {
+    const step = back[slotIndex][regionIndex];
+    if (step?.kind === "match") {
+      regionIndexes[slotIndex - 1] = regionIndex - 1;
+      slotIndex -= 1;
+      regionIndex -= 1;
+      continue;
+    }
+    if (step?.kind === "skip-region") {
+      skippedRegionIndexes.push(regionIndex - 1);
+      regionIndex -= 1;
+      continue;
+    }
+    return null;
+  }
+
+  return { regionIndexes, skippedRegionIndexes: skippedRegionIndexes.reverse() };
+}
+
+function speechSlotMatchCost(slot, region, assignments) {
+  const assignment = assignments[slot.itemIndex];
+  if (!assignment) return 0.5;
+  const overlap = intervalOverlap(assignment.start, assignment.end, region.start, region.end);
+  if (overlap > 0) return 0;
+  const gap = Math.max(assignment.start - region.end, region.start - assignment.end, 0);
+  return Math.min(4, gap / vadAnchorDistanceScale);
+}
+
+function itemTimingsFromSpeechSlots(items, slots, regionIndexes, regions) {
+  const itemRegions = Array.from({ length: items.length }, () => []);
+  slots.forEach((slot, slotIndex) => {
+    const region = regions[regionIndexes[slotIndex]];
+    if (region) itemRegions[slot.itemIndex].push(region);
+  });
+  return itemRegions.map((regionsForItem) => ({
+    start: regionsForItem[0].start,
+    end: regionsForItem.at(-1).end,
+    activeDuration: regionsForItem.reduce((total, region) => total + region.duration, 0),
+    regions: regionsForItem
+  }));
+}
+
+function withSpeechPlaybackBounds(timings) {
+  return timings.map((timing, index) => {
+    const previous = timings[index - 1] || null;
+    const next = timings[index + 1] || null;
+    const paddedStart = Math.max(
+      0,
+      timing.start - vadStartPadding,
+      previous ? previous.end + vadBoundaryGap : 0
+    );
+    const paddedEnd = Math.min(
+      timing.end + vadEndPadding,
+      next ? next.start - vadBoundaryGap : Infinity
+    );
+    return {
+      ...timing,
+      paddedStart: round(paddedStart),
+      paddedEnd: round(Math.max(paddedStart, paddedEnd))
+    };
+  });
+}
+
+function detectSpeechRegions(audioPath) {
+  const result = spawnSync(ffmpeg, [
+    "-hide_banner",
+    "-i", audioPath,
+    "-af", `silencedetect=noise=${vadNoiseThreshold}:d=${vadMinimumSilence}`,
+    "-f", "null",
+    "-"
+  ], { encoding: "utf8" });
+  if (result.status !== 0) throw new Error(`ffmpeg silence detection failed: ${result.stderr}`);
+
+  const duration = mediaDurationFromFfmpeg(result.stderr);
+  const silences = [];
+  let silenceStart = null;
+  for (const line of result.stderr.split(/\r?\n/)) {
+    const startMatch = line.match(/silence_start:\s*([0-9.]+)/);
+    if (startMatch) silenceStart = Number(startMatch[1]);
+    const endMatch = line.match(/silence_end:\s*([0-9.]+)/);
+    if (endMatch) {
+      silences.push({ start: silenceStart ?? 0, end: Number(endMatch[1]) });
+      silenceStart = null;
+    }
+  }
+  if (silenceStart !== null) silences.push({ start: silenceStart, end: duration });
+
+  const regions = [];
+  let cursor = 0;
+  for (const silence of silences) {
+    if (silence.start - cursor >= 0.12) regions.push(makeSpeechRegion(cursor, silence.start));
+    cursor = Math.max(cursor, silence.end);
+  }
+  if (duration - cursor >= 0.12) regions.push(makeSpeechRegion(cursor, duration));
+  return { duration, regions };
+}
+
+function mergeInternalSpeechPauses(inputRegions, expectedCount) {
+  const regions = inputRegions.map((region) => ({ ...region }));
+  while (regions.length > expectedCount) {
+    let bestIndex = -1;
+    let bestGap = Infinity;
+    for (let index = 0; index < regions.length - 1; index += 1) {
+      const gap = regions[index + 1].start - regions[index].end;
+      if (gap < bestGap) {
+        bestGap = gap;
+        bestIndex = index;
+      }
+    }
+    if (bestIndex < 0 || bestGap > vadInternalPause) break;
+    const left = regions[bestIndex];
+    const right = regions[bestIndex + 1];
+    regions.splice(bestIndex, 2, {
+      start: left.start,
+      end: right.end,
+      duration: left.duration + right.duration,
+      parts: [...(left.parts || [left]), ...(right.parts || [right])]
+    });
+  }
+  return regions;
+}
+
+function expectedUtteranceCount(item) {
+  const value = String(item.kana || item.writing || "");
+  return Math.max(1, value.split(/[\/／]/u).map((part) => normalizeWordText(part)).filter(Boolean).length);
+}
+
+function makeSpeechRegion(start, end) {
+  return { start, end, duration: end - start };
+}
+
+function mediaDurationFromFfmpeg(output) {
+  const match = String(output || "").match(/Duration:\s*(\d+):(\d+):([0-9.]+)/);
+  if (!match) throw new Error("Could not read audio duration from ffmpeg output.");
+  return Number(match[1]) * 3600 + Number(match[2]) * 60 + Number(match[3]);
+}
+
+function intervalOverlap(leftStart, leftEnd, rightStart, rightEnd) {
+  return Math.max(0, Math.min(leftEnd, rightEnd) - Math.max(leftStart, rightStart));
+}
+
+function minimumSegmentDuration(item) {
+  const units = pronunciationUnitCount(item.kana || item.writing || item.rawText || "");
+  return round(Math.min(1.5, Math.max(0.45, units * 0.28)));
+}
+
+function pronunciationUnitCount(value) {
+  const normalized = normalizeWordText(value);
+  if (!normalized) return 1;
+  const withoutSmallKana = normalized.replace(/[ゃゅょぁぃぅぇぉャュョァィゥェォ]/gu, "");
+  return Math.max(1, [...withoutSmallKana].length);
+}
+
+function reviewStatusForSegments(segments) {
+  if (segments.length && segments.every((segment) => segment.review?.status === "approved")) return "approved";
+  if (segments.some((segment) => segment.review?.status === "approved")) return "in-review";
+  return "pending";
 }
 
 function alignItems(items, words) {
@@ -234,7 +649,7 @@ function normalizeWords(phrases) {
   }).filter((word) => word.end > word.start);
 }
 
-async function transcribe(audioPath, key, region) {
+async function transcribe(audioPath, key, region, vocabulary) {
   const wavPath = toWav(audioPath);
   const config = speechsdk.SpeechConfig.fromSubscription(key, region);
   config.speechRecognitionLanguage = "ja-JP";
@@ -242,6 +657,10 @@ async function transcribe(audioPath, key, region) {
   config.requestWordLevelTimestamps();
   const audio = speechsdk.AudioConfig.fromWavFileInput(readFileSync(wavPath), basename(wavPath));
   const recognizer = new speechsdk.SpeechRecognizer(config, audio);
+  const phraseList = speechsdk.PhraseListGrammar.fromRecognizer(recognizer);
+  for (const item of vocabulary) {
+    for (const phrase of [item.kana, item.writing].filter(Boolean)) phraseList.addPhrase(phrase);
+  }
   const phrases = [];
 
   return new Promise((resolve, reject) => {

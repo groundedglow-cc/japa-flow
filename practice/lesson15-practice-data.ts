@@ -1,5 +1,6 @@
 import type { InputSlot, LessonPractice, PracticeActivity, PracticeItem, PromptPart, RichText } from "./lesson-practice-types";
-import { lesson15ImageCrops } from "./lesson15-image-crops";
+
+const exerciseImage = (fileName: string) => `../data/book1_exercise_images/${fileName}`;
 
 const page = (pageNo: number) => `../course-assets/by-lesson/lesson15/page${pageNo}.webp`;
 const audio = (exerciseNo: 1 | 2, order: number) =>
@@ -8,7 +9,6 @@ const text = (value: string, options: Omit<RichText, "type" | "text"> = {}): Ric
 const repl = (value: string, substitutionKey: string, options: Omit<RichText, "type" | "text" | "underline" | "substitutionKey"> = {}): RichText =>
   text(value, { ...options, underline: true, substitutionKey });
 const blank = (slotId: string): PromptPart => ({ type: "blank", slotId });
-const crop = (id: string) => lesson15ImageCrops.assets.find((asset) => asset.id === id)!;
 
 const answerOnlyHint = "只填写提问后的回答部分，不需要重写问题。";
 const completionHint = "只补全题目中空格处需要填写的部分。";
@@ -166,7 +166,9 @@ const activities: PracticeActivity[] = [
     answerUnit: "sentence",
     responseScope: "answer_only",
     responseScopeHint: answerOnlyHint,
-    assets: [crop("l15-p1-a1-current-action-picture")],
+    assets: [
+      { id: "l15-p1-a1-current-action-picture", kind: "exercise_image", imagePath: exerciseImage("book1_lesson15_1_1.png") }
+    ],
     displayAssets: ["l15-p1-a1-current-action-picture"],
     layout: [
       {
@@ -198,7 +200,9 @@ const activities: PracticeActivity[] = [
     interaction: "single_choice",
     answerUnit: "choice",
     responseScope: "choice_only",
-    assets: [crop("l15-p1-a2-te-form-classification-chart")],
+    assets: [
+      { id: "l15-p1-a2-te-form-classification-chart", kind: "exercise_image", imagePath: exerciseImage("book1_lesson15_1_2.png") }
+    ],
     displayAssets: ["l15-p1-a2-te-form-classification-chart"],
     layout: [
       {
@@ -365,7 +369,9 @@ const activities: PracticeActivity[] = [
         ]
       }
     },
-    assets: [crop("l15-p1-a1-current-action-picture")],
+    assets: [
+      { id: "l15-p1-a1-current-action-picture", kind: "exercise_image", imagePath: exerciseImage("book1_lesson15_1_5.png") }
+    ],
     displayAssets: ["l15-p1-a1-current-action-picture"],
     layout: [
       {

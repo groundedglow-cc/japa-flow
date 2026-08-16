@@ -25,14 +25,27 @@
         "audioSegment": {
           "id": "l48-basic-s001",
           "trackId": "lesson_basic",
-          "sourceUrl": "/data/ocr/audio-clips/lesson48/l48-basic-s001.mp3",
-          "start": 0,
-          "end": 2.86,
+          "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit12/lesson48/lesson_basic.mp3",
+          "speaker": "",
+          "text": "お荷物は私がお持ちします。",
+          "start": 1.97,
+          "end": 4.83,
           "duration": 2.86,
-          "method": "approved-asr-alignment",
+          "speechUnitCount": 1,
+          "matchScore": 1,
+          "asrText": "お 荷 物 は 私 が お 持 ち し ま す",
+          "phraseIndexes": [
+            1
+          ],
+          "method": "legacy-asr-alignment-range-converted",
           "confidence": "approved",
-          "reviewedAt": "2026-08-05T10:35:51.152Z",
-          "sourceAudioSha256": "13237107ec5d11222155ee55f29660f8556b798116a93bcabd82a8600f9bc9b7"
+          "review": {
+            "status": "approved",
+            "reviewedAt": "2026-08-05T10:35:51.152Z",
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "matchScore": 1,
+            "asrText": "お 荷 物 は 私 が お 持 ち し ま す"
+          }
         }
       },
       {
@@ -45,14 +58,27 @@
         "audioSegment": {
           "id": "l48-basic-s002",
           "trackId": "lesson_basic",
-          "sourceUrl": "/data/ocr/audio-clips/lesson48/l48-basic-s002.mp3",
-          "start": 0,
-          "end": 3.78,
+          "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit12/lesson48/lesson_basic.mp3",
+          "speaker": "",
+          "text": "明日、私がそちらへ伺います。",
+          "start": 7.05,
+          "end": 10.83,
           "duration": 3.78,
-          "method": "approved-asr-alignment",
+          "speechUnitCount": 1,
+          "matchScore": 1,
+          "asrText": "明 日 私 が そ ち ら へ 伺 い ま す",
+          "phraseIndexes": [
+            2
+          ],
+          "method": "legacy-asr-alignment-range-converted",
           "confidence": "approved",
-          "reviewedAt": "2026-08-05T10:35:51.152Z",
-          "sourceAudioSha256": "13237107ec5d11222155ee55f29660f8556b798116a93bcabd82a8600f9bc9b7"
+          "review": {
+            "status": "approved",
+            "reviewedAt": "2026-08-05T10:35:51.152Z",
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "matchScore": 1,
+            "asrText": "明 日 私 が そ ち ら へ 伺 い ま す"
+          }
         }
       },
       {
@@ -65,14 +91,27 @@
         "audioSegment": {
           "id": "l48-basic-s003",
           "trackId": "lesson_basic",
-          "sourceUrl": "/data/ocr/audio-clips/lesson48/l48-basic-s003.mp3",
-          "start": 0,
-          "end": 2.54,
+          "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit12/lesson48/lesson_basic.mp3",
+          "speaker": "",
+          "text": "コピーは私がいたします。",
+          "start": 13.69,
+          "end": 16.23,
           "duration": 2.54,
-          "method": "approved-asr-alignment",
+          "speechUnitCount": 1,
+          "matchScore": 1,
+          "asrText": "コ ピ ー は 私 が い た し ま す",
+          "phraseIndexes": [
+            3
+          ],
+          "method": "legacy-asr-alignment-range-converted",
           "confidence": "approved",
-          "reviewedAt": "2026-08-05T10:35:51.152Z",
-          "sourceAudioSha256": "13237107ec5d11222155ee55f29660f8556b798116a93bcabd82a8600f9bc9b7"
+          "review": {
+            "status": "approved",
+            "reviewedAt": "2026-08-05T10:35:51.152Z",
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "matchScore": 1,
+            "asrText": "コ ピ ー は 私 が い た し ま す"
+          }
         }
       },
       {
@@ -85,14 +124,27 @@
         "audioSegment": {
           "id": "l48-basic-s004",
           "trackId": "lesson_basic",
-          "sourceUrl": "/data/ocr/audio-clips/lesson48/l48-basic-s004.mp3",
-          "start": 0,
-          "end": 4.18,
+          "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit12/lesson48/lesson_basic.mp3",
+          "speaker": "",
+          "text": "黄教授に論文を見ていただきました。",
+          "start": 17.71,
+          "end": 21.89,
           "duration": 4.18,
-          "method": "approved-asr-alignment",
+          "speechUnitCount": 1,
+          "matchScore": 0.938,
+          "asrText": "洪 教 授 に 論 文 を 見 て い た だ き ま し た",
+          "phraseIndexes": [
+            4
+          ],
+          "method": "legacy-asr-alignment-range-converted",
           "confidence": "approved",
-          "reviewedAt": "2026-08-05T10:35:51.152Z",
-          "sourceAudioSha256": "13237107ec5d11222155ee55f29660f8556b798116a93bcabd82a8600f9bc9b7"
+          "review": {
+            "status": "approved",
+            "reviewedAt": "2026-08-05T10:35:51.152Z",
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "matchScore": 0.938,
+            "asrText": "洪 教 授 に 論 文 を 見 て い た だ き ま し た"
+          }
         }
       }
     ],
@@ -111,14 +163,27 @@
             "audioSegment": {
               "id": "l48-basic-dialogue-001-line-001",
               "trackId": "lesson_basic",
-              "sourceUrl": "/data/ocr/audio-clips/lesson48/l48-basic-dialogue-001-line-001.mp3",
-              "start": 0,
-              "end": 2.78,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit12/lesson48/lesson_basic.mp3",
+              "speaker": "甲",
+              "text": "昨日、メールをお送りしたんですが…。",
+              "start": 24.49,
+              "end": 27.27,
               "duration": 2.78,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrText": "昨 日 メ ー ル を お 送 り し た ん で す が",
+              "phraseIndexes": [
+                5
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T10:35:51.152Z",
-              "sourceAudioSha256": "13237107ec5d11222155ee55f29660f8556b798116a93bcabd82a8600f9bc9b7"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T10:35:51.152Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 1,
+                "asrText": "昨 日 メ ー ル を お 送 り し た ん で す が"
+              }
             }
           },
           {
@@ -131,14 +196,28 @@
             "audioSegment": {
               "id": "l48-basic-dialogue-001-line-002",
               "trackId": "lesson_basic",
-              "sourceUrl": "/data/ocr/audio-clips/lesson48/l48-basic-dialogue-001-line-002.mp3",
-              "start": 0,
-              "end": 4.62,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit12/lesson48/lesson_basic.mp3",
+              "speaker": "乙",
+              "text": "ええ、拝見しました。先ほど返事をお出ししました。",
+              "start": 27.89,
+              "end": 32.51,
               "duration": 4.62,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 2,
+              "matchScore": 1,
+              "asrText": "え え 拝 見 し ま し た 先 ほ ど 返 事 を お 出 し し ま し た",
+              "phraseIndexes": [
+                6,
+                7
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T10:35:51.152Z",
-              "sourceAudioSha256": "13237107ec5d11222155ee55f29660f8556b798116a93bcabd82a8600f9bc9b7"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T10:35:51.152Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 1,
+                "asrText": "え え 拝 見 し ま し た 先 ほ ど 返 事 を お 出 し し ま し た"
+              }
             }
           }
         ]
@@ -157,14 +236,27 @@
             "audioSegment": {
               "id": "l48-basic-dialogue-002-line-001",
               "trackId": "lesson_basic",
-              "sourceUrl": "/data/ocr/audio-clips/lesson48/l48-basic-dialogue-002-line-001.mp3",
-              "start": 0,
-              "end": 1.9,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit12/lesson48/lesson_basic.mp3",
+              "speaker": "甲",
+              "text": "どちらからいらっしゃったんですか。",
+              "start": 35.34,
+              "end": 37.24,
               "duration": 1.9,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrText": "ど ち ら か ら い ら っ し ゃ っ た ん で す か",
+              "phraseIndexes": [
+                8
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T10:35:51.152Z",
-              "sourceAudioSha256": "13237107ec5d11222155ee55f29660f8556b798116a93bcabd82a8600f9bc9b7"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T10:35:51.152Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 1,
+                "asrText": "ど ち ら か ら い ら っ し ゃ っ た ん で す か"
+              }
             }
           },
           {
@@ -177,14 +269,27 @@
             "audioSegment": {
               "id": "l48-basic-dialogue-002-line-002",
               "trackId": "lesson_basic",
-              "sourceUrl": "/data/ocr/audio-clips/lesson48/l48-basic-dialogue-002-line-002.mp3",
-              "start": 0,
-              "end": 2.34,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit12/lesson48/lesson_basic.mp3",
+              "speaker": "乙",
+              "text": "中国の北京から参りました。",
+              "start": 38.45,
+              "end": 40.79,
               "duration": 2.34,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrText": "中 国 の 北 京 か ら 参 り ま し た",
+              "phraseIndexes": [
+                9
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T10:35:51.152Z",
-              "sourceAudioSha256": "13237107ec5d11222155ee55f29660f8556b798116a93bcabd82a8600f9bc9b7"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T10:35:51.152Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 1,
+                "asrText": "中 国 の 北 京 か ら 参 り ま し た"
+              }
             }
           }
         ]
@@ -203,14 +308,27 @@
             "audioSegment": {
               "id": "l48-basic-dialogue-003-line-001",
               "trackId": "lesson_basic",
-              "sourceUrl": "/data/ocr/audio-clips/lesson48/l48-basic-dialogue-003-line-001.mp3",
-              "start": 0,
-              "end": 1.78,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit12/lesson48/lesson_basic.mp3",
+              "speaker": "甲",
+              "text": "そろそろ失礼いたします。",
+              "start": 43.71,
+              "end": 45.49,
               "duration": 1.78,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 1,
+              "matchScore": 0.818,
+              "asrText": "そ ろ そ ろ す る い た し ま す",
+              "phraseIndexes": [
+                10
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T10:35:51.152Z",
-              "sourceAudioSha256": "13237107ec5d11222155ee55f29660f8556b798116a93bcabd82a8600f9bc9b7"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T10:35:51.152Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 0.818,
+                "asrText": "そ ろ そ ろ す る い た し ま す"
+              }
             }
           },
           {
@@ -223,14 +341,27 @@
             "audioSegment": {
               "id": "l48-basic-dialogue-003-line-002",
               "trackId": "lesson_basic",
-              "sourceUrl": "/data/ocr/audio-clips/lesson48/l48-basic-dialogue-003-line-002.mp3",
-              "start": 0,
-              "end": 1.58,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit12/lesson48/lesson_basic.mp3",
+              "speaker": "甲",
+              "text": "どうもお邪魔いたしました。",
+              "start": 45.35,
+              "end": 46.93,
               "duration": 1.58,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrText": "ど う も お 邪 魔 い た し ま し た",
+              "phraseIndexes": [
+                10
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T10:35:51.152Z",
-              "sourceAudioSha256": "13237107ec5d11222155ee55f29660f8556b798116a93bcabd82a8600f9bc9b7"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T10:35:51.152Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 1,
+                "asrText": "ど う も お 邪 魔 い た し ま し た"
+              }
             }
           },
           {
@@ -243,14 +374,27 @@
             "audioSegment": {
               "id": "l48-basic-dialogue-003-line-003",
               "trackId": "lesson_basic",
-              "sourceUrl": "/data/ocr/audio-clips/lesson48/l48-basic-dialogue-003-line-003.mp3",
-              "start": 0,
-              "end": 1.74,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit12/lesson48/lesson_basic.mp3",
+              "speaker": "乙",
+              "text": "何のお構いもしませんで。",
+              "start": 48.21,
+              "end": 49.95,
               "duration": 1.74,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrText": "何 の お 構 い も し ま せ ん で",
+              "phraseIndexes": [
+                11
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T10:35:51.152Z",
-              "sourceAudioSha256": "13237107ec5d11222155ee55f29660f8556b798116a93bcabd82a8600f9bc9b7"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T10:35:51.152Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 1,
+                "asrText": "何 の お 構 い も し ま せ ん で"
+              }
             }
           }
         ]
@@ -269,14 +413,27 @@
             "audioSegment": {
               "id": "l48-basic-dialogue-004-line-001",
               "trackId": "lesson_basic",
-              "sourceUrl": "/data/ocr/audio-clips/lesson48/l48-basic-dialogue-004-line-001.mp3",
-              "start": 0,
-              "end": 4.3,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit12/lesson48/lesson_basic.mp3",
+              "speaker": "甲",
+              "text": "この服、ちょっと小さいので、取り替えていただけますか。",
+              "start": 52.25,
+              "end": 56.55,
               "duration": 4.3,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrText": "こ の 服 ち ょ っ と 小 さ い の で 取 り 替 え て い た だ け ま す か",
+              "phraseIndexes": [
+                12
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T10:35:51.152Z",
-              "sourceAudioSha256": "13237107ec5d11222155ee55f29660f8556b798116a93bcabd82a8600f9bc9b7"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T10:35:51.152Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 1,
+                "asrText": "こ の 服 ち ょ っ と 小 さ い の で 取 り 替 え て い た だ け ま す か"
+              }
             }
           },
           {
@@ -289,14 +446,28 @@
             "audioSegment": {
               "id": "l48-basic-dialogue-004-line-002",
               "trackId": "lesson_basic",
-              "sourceUrl": "/data/ocr/audio-clips/lesson48/l48-basic-dialogue-004-line-002.mp3",
-              "start": 0,
-              "end": 3.7,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit12/lesson48/lesson_basic.mp3",
+              "speaker": "乙",
+              "text": "承知いたしました。少々お待ちください。",
+              "start": 57.57,
+              "end": 61.27,
               "duration": 3.7,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 2,
+              "matchScore": 1,
+              "asrText": "承 知 い た し ま し た 少 々 お 待 ち く だ さ い",
+              "phraseIndexes": [
+                13,
+                14
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T10:35:51.152Z",
-              "sourceAudioSha256": "13237107ec5d11222155ee55f29660f8556b798116a93bcabd82a8600f9bc9b7"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T10:35:51.152Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 1,
+                "asrText": "承 知 い た し ま し た 少 々 お 待 ち く だ さ い"
+              }
             }
           }
         ]
@@ -336,14 +507,27 @@
             "audioSegment": {
               "id": "l48-app-block-003-line-001",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson48/l48-app-block-003-line-001.mp3",
-              "start": 0,
-              "end": 11.94,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit12/lesson48/lesson_apps.mp3",
+              "speaker": "山田",
+              "text": "おはようございます。山田です。今日からお世話になります。大学を卒業したばかりで、右も左も分かりませんが、一生懸命頑張りますので、ご指導よろしくお願いいたします。",
+              "start": 25.33,
+              "end": 37.27,
               "duration": 11.94,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 1,
+              "matchScore": 0.863,
+              "asrText": "は よ う ご ざ い ま す 山 田 で す 今 日 か ら お 世 話 に な り ま す 大 学 を 卒 業 し た ば か り で 右 も 左 も わ か り ま せ ん が 一 生 懸 命 頑 張 り ま す の で ご 指 導 よ ろ し く",
+              "phraseIndexes": [
+                3
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T10:36:50.277Z",
-              "sourceAudioSha256": "71d6937e283cfb1f4a01c6c124adf3e027d8fd6ec110d6c03786101c86e1503e"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T10:36:50.277Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 0.863,
+                "asrText": "は よ う ご ざ い ま す 山 田 で す 今 日 か ら お 世 話 に な り ま す 大 学 を 卒 業 し た ば か り で 右 も 左 も わ か り ま せ ん が 一 生 懸 命 頑 張 り ま す の で ご 指 導 よ ろ し く"
+              }
             }
           },
           {
@@ -356,14 +540,28 @@
             "audioSegment": {
               "id": "l48-app-block-003-line-002",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson48/l48-app-block-003-line-002.mp3",
-              "start": 0,
-              "end": 3.38,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit12/lesson48/lesson_apps.mp3",
+              "speaker": "陈",
+              "text": "期待していますよ。こちらこそよろしく。",
+              "start": 38.89,
+              "end": 42.27,
               "duration": 3.38,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 2,
+              "matchScore": 1,
+              "asrText": "期 待 し て い ま す よ こ ち ら こ そ よ ろ し く",
+              "phraseIndexes": [
+                4,
+                5
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T10:36:50.277Z",
-              "sourceAudioSha256": "71d6937e283cfb1f4a01c6c124adf3e027d8fd6ec110d6c03786101c86e1503e"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T10:36:50.277Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 1,
+                "asrText": "期 待 し て い ま す よ こ ち ら こ そ よ ろ し く"
+              }
             }
           },
           {
@@ -376,14 +574,27 @@
             "audioSegment": {
               "id": "l48-app-block-003-line-003",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson48/l48-app-block-003-line-003.mp3",
-              "start": 0,
-              "end": 2.94,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit12/lesson48/lesson_apps.mp3",
+              "speaker": "李",
+              "text": "よろしくお願いします。いっしょに頑張りましょう。",
+              "start": 42.97,
+              "end": 45.91,
               "duration": 2.94,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 1,
+              "matchScore": 0.818,
+              "asrText": "よ ろ し く お 願 い し ま す 一 緒 に 頑 張 り ま し ょ う",
+              "phraseIndexes": [
+                6
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T10:36:50.277Z",
-              "sourceAudioSha256": "71d6937e283cfb1f4a01c6c124adf3e027d8fd6ec110d6c03786101c86e1503e"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T10:36:50.277Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 0.818,
+                "asrText": "よ ろ し く お 願 い し ま す 一 緒 に 頑 張 り ま し ょ う"
+              }
             }
           }
         ]
@@ -410,14 +621,27 @@
             "audioSegment": {
               "id": "l48-app-block-005-line-001",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson48/l48-app-block-005-line-001.mp3",
-              "start": 0,
-              "end": 3.22,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit12/lesson48/lesson_apps.mp3",
+              "speaker": "李",
+              "text": "はい、ＪＣ企画上海事務所でございます。",
+              "start": 52.01,
+              "end": 55.23,
               "duration": 3.22,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrText": "は い jc 企 画 上 海 事 務 所 で ご ざ い ま す",
+              "phraseIndexes": [
+                7
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T10:36:50.277Z",
-              "sourceAudioSha256": "71d6937e283cfb1f4a01c6c124adf3e027d8fd6ec110d6c03786101c86e1503e"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T10:36:50.277Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 1,
+                "asrText": "は い jc 企 画 上 海 事 務 所 で ご ざ い ま す"
+              }
             }
           },
           {
@@ -430,14 +654,27 @@
             "audioSegment": {
               "id": "l48-app-block-005-line-002",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson48/l48-app-block-005-line-002.mp3",
-              "start": 0,
-              "end": 5.66,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit12/lesson48/lesson_apps.mp3",
+              "speaker": "佐藤",
+              "text": "私、日中商事の佐藤と申します。お送りいただいた案内状、拝見しました。",
+              "start": 56.21,
+              "end": 61.87,
               "duration": 5.66,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrText": "私 日 中 商 事 の 佐 藤 と 申 し ま す お 送 り い た だ い た 案 内 状 拝 見 し ま し た",
+              "phraseIndexes": [
+                8
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T10:36:50.277Z",
-              "sourceAudioSha256": "71d6937e283cfb1f4a01c6c124adf3e027d8fd6ec110d6c03786101c86e1503e"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T10:36:50.277Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 1,
+                "asrText": "私 日 中 商 事 の 佐 藤 と 申 し ま す お 送 り い た だ い た 案 内 状 拝 見 し ま し た"
+              }
             }
           },
           {
@@ -450,14 +687,27 @@
             "audioSegment": {
               "id": "l48-app-block-005-line-003",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson48/l48-app-block-005-line-003.mp3",
-              "start": 0,
-              "end": 5.26,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit12/lesson48/lesson_apps.mp3",
+              "speaker": "李",
+              "text": "いつもお世話になっております。また、この度は、突然お手紙を差し上げ、失礼いたしました。",
+              "start": 63.26,
+              "end": 68.52,
               "duration": 5.26,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrText": "い つ も お 世 話 に な っ て お り ま す ま た こ の 度 は 突 然 お 手 紙 を 差 し 上 げ 失 礼 い た し ま し た",
+              "phraseIndexes": [
+                9
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T10:36:50.277Z",
-              "sourceAudioSha256": "71d6937e283cfb1f4a01c6c124adf3e027d8fd6ec110d6c03786101c86e1503e"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T10:36:50.277Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 1,
+                "asrText": "い つ も お 世 話 に な っ て お り ま す ま た こ の 度 は 突 然 お 手 紙 を 差 し 上 げ 失 礼 い た し ま し た"
+              }
             }
           },
           {
@@ -470,14 +720,27 @@
             "audioSegment": {
               "id": "l48-app-block-005-line-004",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson48/l48-app-block-005-line-004.mp3",
-              "start": 0,
-              "end": 9.22,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit12/lesson48/lesson_apps.mp3",
+              "speaker": "佐藤",
+              "text": "いえ。実は、私どもでは、これから新商品の開発を進めていく予定なんです。そこで、ぜひ、詳しいお話を伺いたいのですが。",
+              "start": 70.18,
+              "end": 79.4,
               "duration": 9.22,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 1,
+              "matchScore": 0.96,
+              "asrText": "い え 実 は 私 共 で は こ れ か ら 新 商 品 の 開 発 を 進 め て い く 予 定 な ん で す そ こ で ぜ ひ 詳 し い お 話 を 伺 い た い の で す が",
+              "phraseIndexes": [
+                10
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T10:36:50.277Z",
-              "sourceAudioSha256": "71d6937e283cfb1f4a01c6c124adf3e027d8fd6ec110d6c03786101c86e1503e"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T10:36:50.277Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 0.96,
+                "asrText": "い え 実 は 私 共 で は こ れ か ら 新 商 品 の 開 発 を 進 め て い く 予 定 な ん で す そ こ で ぜ ひ 詳 し い お 話 を 伺 い た い の で す が"
+              }
             }
           },
           {
@@ -490,14 +753,27 @@
             "audioSegment": {
               "id": "l48-app-block-005-line-005",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson48/l48-app-block-005-line-005.mp3",
-              "start": 0,
-              "end": 4.46,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit12/lesson48/lesson_apps.mp3",
+              "speaker": "李",
+              "text": "ありがとうございます。早速、資料を届けさせていただきます。",
+              "start": 79.5,
+              "end": 83.96,
               "duration": 4.46,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrText": "あ り が と う ご ざ い ま す 早 速 資 料 を 届 け さ せ て い た だ き ま す",
+              "phraseIndexes": [
+                10
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T10:36:50.277Z",
-              "sourceAudioSha256": "71d6937e283cfb1f4a01c6c124adf3e027d8fd6ec110d6c03786101c86e1503e"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T10:36:50.277Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 1,
+                "asrText": "あ り が と う ご ざ い ま す 早 速 資 料 を 届 け さ せ て い た だ き ま す"
+              }
             }
           },
           {
@@ -510,14 +786,28 @@
             "audioSegment": {
               "id": "l48-app-block-005-line-006",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson48/l48-app-block-005-line-006.mp3",
-              "start": 0,
-              "end": 6.93,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit12/lesson48/lesson_apps.mp3",
+              "speaker": "佐藤",
+              "text": "そうですか。では、一度社の方においでいただけますか。明日なら午後はずっと社におりますが…。",
+              "start": 84.14,
+              "end": 91.07,
               "duration": 6.93,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 2,
+              "matchScore": 0.95,
+              "asrText": "そ う で す か で は 一 度 車 の 方 に お い で い た だ け ま す か 明 日 な ら 午 後 は ず っ と 車 に お り ま す が",
+              "phraseIndexes": [
+                10,
+                11
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T10:36:50.277Z",
-              "sourceAudioSha256": "71d6937e283cfb1f4a01c6c124adf3e027d8fd6ec110d6c03786101c86e1503e"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T10:36:50.277Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 0.95,
+                "asrText": "そ う で す か で は 一 度 車 の 方 に お い で い た だ け ま す か 明 日 な ら 午 後 は ず っ と 車 に お り ま す が"
+              }
             }
           },
           {
@@ -530,14 +820,27 @@
             "audioSegment": {
               "id": "l48-app-block-005-line-007",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson48/l48-app-block-005-line-007.mp3",
-              "start": 0,
-              "end": 6.66,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit12/lesson48/lesson_apps.mp3",
+              "speaker": "李",
+              "text": "承知いたしました。私、李秀麗と申します。では、明日の午後、お伺いします。",
+              "start": 91.45,
+              "end": 98.11,
               "duration": 6.66,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 1,
+              "matchScore": 0.967,
+              "asrText": "承 知 い た し ま し た 私 李 秀 嶺 と 申 し ま す で は 明 日 の 午 後 お 伺 い し ま す",
+              "phraseIndexes": [
+                11
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T10:36:50.277Z",
-              "sourceAudioSha256": "71d6937e283cfb1f4a01c6c124adf3e027d8fd6ec110d6c03786101c86e1503e"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T10:36:50.277Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 0.967,
+                "asrText": "承 知 い た し ま し た 私 李 秀 嶺 と 申 し ま す で は 明 日 の 午 後 お 伺 い し ま す"
+              }
             }
           }
         ]
@@ -555,9 +858,25 @@
   "warnings": [],
   "audioAlignment": {
     "schemaVersion": 1,
-    "method": "approved-asr-alignment",
-    "sourceAlignment": "data/ocr/lesson48-text-audio-alignment.json",
-    "publishedAt": "2026-08-05T10:36:54.349Z",
-    "approvedSegments": 23
-  }
+    "lessonId": "lesson48",
+    "convertedAt": "2026-08-14T00:17:08.173Z",
+    "method": "legacy-asr-alignment-range-converted",
+    "tracks": [
+      {
+        "id": "lesson_basic",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit12/lesson48/lesson_basic.mp3",
+        "sourceAudioSha256": "13237107ec5d11222155ee55f29660f8556b798116a93bcabd82a8600f9bc9b7",
+        "expectedItems": 13,
+        "alignedItems": 13
+      },
+      {
+        "id": "lesson_apps",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit12/lesson48/lesson_apps.mp3",
+        "sourceAudioSha256": "71d6937e283cfb1f4a01c6c124adf3e027d8fd6ec110d6c03786101c86e1503e",
+        "expectedItems": 10,
+        "alignedItems": 10
+      }
+    ]
+  },
+  "updatedAt": "2026-08-14T00:17:08.173Z"
 }

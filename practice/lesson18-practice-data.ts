@@ -1,12 +1,12 @@
 import type { InputSlot, LessonPractice, PracticeActivity, PracticeItem, PromptPart, RichText } from "./lesson-practice-types";
-import { lesson18ImageCrops } from "./lesson18-image-crops";
+
+const exerciseImage = (fileName: string) => `../data/book1_exercise_images/${fileName}`;
 
 const page = (pageNo: number) => `../course-assets/by-lesson/lesson18/page${pageNo}.webp`;
 const audio = (exerciseNo: 1 | 2, order: number) =>
   `https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson18/Exe${exerciseNo}_${order}.mp3`;
 const text = (value: string, options: Omit<RichText, "type" | "text"> = {}): RichText => ({ type: "text", text: value, ...options });
 const blank = (slotId: string): PromptPart => ({ type: "blank", slotId });
-const crop = (id: string) => lesson18ImageCrops.assets.find((asset) => asset.id === id)!;
 
 const completionHint = "只补全题目中空格处需要填写的部分。";
 const sentenceSlot = (placeholder = "输入完整回答"): InputSlot[] => [{ id: "answer", expectedUnit: "sentence", width: "long", placeholder }];
@@ -177,7 +177,9 @@ const activities: PracticeActivity[] = [
     answerUnit: "sentence",
     responseScope: "custom",
     responseScopeHint: "写出原因/动作句和结果句。",
-    assets: [crop("l18-p1-a2-change-result-picture-table")],
+    assets: [
+      { id: "l18-p1-a2-change-result-picture-table", kind: "exercise_image", imagePath: exerciseImage("book1_lesson18_1_2.png") }
+    ],
     displayAssets: ["l18-p1-a2-change-result-picture-table"],
     layout: [
       {
@@ -459,7 +461,9 @@ const activities: PracticeActivity[] = [
         ]
       }
     },
-    assets: [crop("l18-p2-a3-diary-cloze-box")],
+    assets: [
+      { id: "l18-p2-a3-diary-cloze-box", kind: "exercise_image", imagePath: exerciseImage("book1_lesson18_2_3.png") }
+    ],
     displayAssets: ["l18-p2-a3-diary-cloze-box"],
     layout: [
       {

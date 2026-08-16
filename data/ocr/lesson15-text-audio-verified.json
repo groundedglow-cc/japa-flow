@@ -26,14 +26,27 @@
         "audioSegment": {
           "id": "l15-basic-s001",
           "trackId": "lesson_basic",
-          "sourceUrl": "/data/ocr/audio-clips/lesson15/l15-basic-s001.mp3",
-          "start": 0,
-          "end": 3.02,
+          "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit4/lesson15/lesson_basic.mp3",
+          "speaker": "",
+          "text": "小野さんは 今 新聞を 読んで います。",
+          "start": 1.37,
+          "end": 4.39,
           "duration": 3.02,
-          "method": "approved-asr-alignment",
+          "speechUnitCount": 1,
+          "matchScore": 1,
+          "asrText": "小 野 さ ん は 今 新 聞 を 読 ん で い ま す",
+          "phraseIndexes": [
+            0
+          ],
+          "method": "legacy-asr-alignment-range-converted",
           "confidence": "approved",
-          "reviewedAt": "2026-08-05T08:38:09.278Z",
-          "sourceAudioSha256": "8c0041f5d4ad7017f1cb4b16432fdf3c7c594797c9bcad3ac3b1ddf2fa138f78"
+          "review": {
+            "status": "approved",
+            "reviewedAt": "2026-08-05T08:38:09.278Z",
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "matchScore": 1,
+            "asrText": "小 野 さ ん は 今 新 聞 を 読 ん で い ま す"
+          }
         }
       },
       {
@@ -47,14 +60,27 @@
         "audioSegment": {
           "id": "l15-basic-s002",
           "trackId": "lesson_basic",
-          "sourceUrl": "/data/ocr/audio-clips/lesson15/l15-basic-s002.mp3",
-          "start": 0,
-          "end": 2.5,
+          "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit4/lesson15/lesson_basic.mp3",
+          "speaker": "",
+          "text": "ここで 写真を 撮っても いいですか。",
+          "start": 5.93,
+          "end": 8.43,
           "duration": 2.5,
-          "method": "approved-asr-alignment",
+          "speechUnitCount": 1,
+          "matchScore": 1,
+          "asrText": "こ こ で 写 真 を 撮 っ て も い い で す か",
+          "phraseIndexes": [
+            1
+          ],
+          "method": "legacy-asr-alignment-range-converted",
           "confidence": "approved",
-          "reviewedAt": "2026-08-05T08:38:09.278Z",
-          "sourceAudioSha256": "8c0041f5d4ad7017f1cb4b16432fdf3c7c594797c9bcad3ac3b1ddf2fa138f78"
+          "review": {
+            "status": "approved",
+            "reviewedAt": "2026-08-05T08:38:09.278Z",
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "matchScore": 1,
+            "asrText": "こ こ で 写 真 を 撮 っ て も い い で す か"
+          }
         }
       },
       {
@@ -68,14 +94,27 @@
         "audioSegment": {
           "id": "l15-basic-s003",
           "trackId": "lesson_basic",
-          "sourceUrl": "/data/ocr/audio-clips/lesson15/l15-basic-s003.mp3",
-          "start": 0,
-          "end": 3.02,
+          "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit4/lesson15/lesson_basic.mp3",
+          "speaker": "",
+          "text": "飛行機の 中で タバコを 吸っては いけません。",
+          "start": 10.29,
+          "end": 13.31,
           "duration": 3.02,
-          "method": "approved-asr-alignment",
+          "speechUnitCount": 1,
+          "matchScore": 1,
+          "asrText": "飛 行 機 の 中 で タ バ コ を 吸 っ て は い け ま せ ん",
+          "phraseIndexes": [
+            2
+          ],
+          "method": "legacy-asr-alignment-range-converted",
           "confidence": "approved",
-          "reviewedAt": "2026-08-05T08:38:09.278Z",
-          "sourceAudioSha256": "8c0041f5d4ad7017f1cb4b16432fdf3c7c594797c9bcad3ac3b1ddf2fa138f78"
+          "review": {
+            "status": "approved",
+            "reviewedAt": "2026-08-05T08:38:09.278Z",
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "matchScore": 1,
+            "asrText": "飛 行 機 の 中 で タ バ コ を 吸 っ て は い け ま せ ん"
+          }
         }
       },
       {
@@ -89,14 +128,27 @@
         "audioSegment": {
           "id": "l15-basic-s004",
           "trackId": "lesson_basic",
-          "sourceUrl": "/data/ocr/audio-clips/lesson15/l15-basic-s004.mp3",
-          "start": 0,
-          "end": 4.34,
+          "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit4/lesson15/lesson_basic.mp3",
+          "speaker": "",
+          "text": "日曜日、小野さんは 公園で ボートに 乗りました。",
+          "start": 15.37,
+          "end": 19.71,
           "duration": 4.34,
-          "method": "approved-asr-alignment",
+          "speechUnitCount": 1,
+          "matchScore": 1,
+          "asrText": "日 曜 日 小 野 さ ん は 公 園 で ボ ー ト に 乗 り ま し た",
+          "phraseIndexes": [
+            3
+          ],
+          "method": "legacy-asr-alignment-range-converted",
           "confidence": "approved",
-          "reviewedAt": "2026-08-05T08:38:09.278Z",
-          "sourceAudioSha256": "8c0041f5d4ad7017f1cb4b16432fdf3c7c594797c9bcad3ac3b1ddf2fa138f78"
+          "review": {
+            "status": "approved",
+            "reviewedAt": "2026-08-05T08:38:09.278Z",
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "matchScore": 1,
+            "asrText": "日 曜 日 小 野 さ ん は 公 園 で ボ ー ト に 乗 り ま し た"
+          }
         }
       }
     ],
@@ -116,14 +168,27 @@
             "audioSegment": {
               "id": "l15-basic-dialogue-001-line-001",
               "trackId": "lesson_basic",
-              "sourceUrl": "/data/ocr/audio-clips/lesson15/l15-basic-dialogue-001-line-001.mp3",
-              "start": 0,
-              "end": 2.7,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit4/lesson15/lesson_basic.mp3",
+              "speaker": "甲",
+              "text": "もしもし、森さん？ 今 どこですか。",
+              "start": 21.85,
+              "end": 24.55,
               "duration": 2.7,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrText": "も し も し 森 さ ん 今 ど こ で す か",
+              "phraseIndexes": [
+                4
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:38:09.278Z",
-              "sourceAudioSha256": "8c0041f5d4ad7017f1cb4b16432fdf3c7c594797c9bcad3ac3b1ddf2fa138f78"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T08:38:09.278Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 1,
+                "asrText": "も し も し 森 さ ん 今 ど こ で す か"
+              }
             }
           },
           {
@@ -137,14 +202,27 @@
             "audioSegment": {
               "id": "l15-basic-dialogue-001-line-002",
               "trackId": "lesson_basic",
-              "sourceUrl": "/data/ocr/audio-clips/lesson15/l15-basic-dialogue-001-line-002.mp3",
-              "start": 0,
-              "end": 2.06,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit4/lesson15/lesson_basic.mp3",
+              "speaker": "乙",
+              "text": "今 市役所の 前を 歩いて います。",
+              "start": 25.94,
+              "end": 28,
               "duration": 2.06,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrText": "今 市 役 所 の 前 を 歩 い て い ま す",
+              "phraseIndexes": [
+                5
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:38:09.278Z",
-              "sourceAudioSha256": "8c0041f5d4ad7017f1cb4b16432fdf3c7c594797c9bcad3ac3b1ddf2fa138f78"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T08:38:09.278Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 1,
+                "asrText": "今 市 役 所 の 前 を 歩 い て い ま す"
+              }
             }
           }
         ]
@@ -164,14 +242,27 @@
             "audioSegment": {
               "id": "l15-basic-dialogue-002-line-001",
               "trackId": "lesson_basic",
-              "sourceUrl": "/data/ocr/audio-clips/lesson15/l15-basic-dialogue-002-line-001.mp3",
-              "start": 0,
-              "end": 3.18,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit4/lesson15/lesson_basic.mp3",
+              "speaker": "甲",
+              "text": "すみません、この 辞書を 借りても いいですか。",
+              "start": 29.65,
+              "end": 32.83,
               "duration": 3.18,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrText": "す み ま せ ん こ の 辞 書 を 借 り て も い い で す か",
+              "phraseIndexes": [
+                6
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:38:09.278Z",
-              "sourceAudioSha256": "8c0041f5d4ad7017f1cb4b16432fdf3c7c594797c9bcad3ac3b1ddf2fa138f78"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T08:38:09.278Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 1,
+                "asrText": "す み ま せ ん こ の 辞 書 を 借 り て も い い で す か"
+              }
             }
           },
           {
@@ -185,14 +276,27 @@
             "audioSegment": {
               "id": "l15-basic-dialogue-002-line-002",
               "trackId": "lesson_basic",
-              "sourceUrl": "/data/ocr/audio-clips/lesson15/l15-basic-dialogue-002-line-002.mp3",
-              "start": 0,
-              "end": 1.62,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit4/lesson15/lesson_basic.mp3",
+              "speaker": "乙",
+              "text": "いえ、ちょっと…。今 使って います。",
+              "start": 35.06,
+              "end": 36.68,
               "duration": 1.62,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrText": "い え ち ょ っ と 今 使 っ て い ま す",
+              "phraseIndexes": [
+                7
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:38:09.278Z",
-              "sourceAudioSha256": "8c0041f5d4ad7017f1cb4b16432fdf3c7c594797c9bcad3ac3b1ddf2fa138f78"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T08:38:09.278Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 1,
+                "asrText": "い え ち ょ っ と 今 使 っ て い ま す"
+              }
             }
           }
         ]
@@ -212,14 +316,27 @@
             "audioSegment": {
               "id": "l15-basic-dialogue-003-line-001",
               "trackId": "lesson_basic",
-              "sourceUrl": "/data/ocr/audio-clips/lesson15/l15-basic-dialogue-003-line-001.mp3",
-              "start": 0,
-              "end": 3.1,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit4/lesson15/lesson_basic.mp3",
+              "speaker": "甲",
+              "text": "すみません、ここに 座っても いいですか。",
+              "start": 38.89,
+              "end": 41.99,
               "duration": 3.1,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrText": "す み ま せ ん こ こ に 座 っ て も い い で す か",
+              "phraseIndexes": [
+                8
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:38:09.278Z",
-              "sourceAudioSha256": "8c0041f5d4ad7017f1cb4b16432fdf3c7c594797c9bcad3ac3b1ddf2fa138f78"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T08:38:09.278Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 1,
+                "asrText": "す み ま せ ん こ こ に 座 っ て も い い で す か"
+              }
             }
           },
           {
@@ -233,14 +350,27 @@
             "audioSegment": {
               "id": "l15-basic-dialogue-003-line-002",
               "trackId": "lesson_basic",
-              "sourceUrl": "/data/ocr/audio-clips/lesson15/l15-basic-dialogue-003-line-002.mp3",
-              "start": 0,
-              "end": 0.7,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit4/lesson15/lesson_basic.mp3",
+              "speaker": "乙",
+              "text": "ええ、どうぞ。",
+              "start": 43.38,
+              "end": 44.08,
               "duration": 0.7,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrText": "え え ど う ぞ",
+              "phraseIndexes": [
+                9
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:38:09.278Z",
-              "sourceAudioSha256": "8c0041f5d4ad7017f1cb4b16432fdf3c7c594797c9bcad3ac3b1ddf2fa138f78"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T08:38:09.278Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 1,
+                "asrText": "え え ど う ぞ"
+              }
             }
           }
         ]
@@ -260,14 +390,27 @@
             "audioSegment": {
               "id": "l15-basic-dialogue-004-line-001",
               "trackId": "lesson_basic",
-              "sourceUrl": "/data/ocr/audio-clips/lesson15/l15-basic-dialogue-004-line-001.mp3",
-              "start": 0,
-              "end": 3.54,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit4/lesson15/lesson_basic.mp3",
+              "speaker": "甲",
+              "text": "あっ、ここで 携帯電話を 使っては いけませんよ。",
+              "start": 45.45,
+              "end": 48.99,
               "duration": 3.54,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 1,
+              "matchScore": 0.95,
+              "asrText": "あ こ こ で 携 帯 電 話 を 使 っ て は い け ま せ ん よ",
+              "phraseIndexes": [
+                10
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:38:09.278Z",
-              "sourceAudioSha256": "8c0041f5d4ad7017f1cb4b16432fdf3c7c594797c9bcad3ac3b1ddf2fa138f78"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T08:38:09.278Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 0.95,
+                "asrText": "あ こ こ で 携 帯 電 話 を 使 っ て は い け ま せ ん よ"
+              }
             }
           },
           {
@@ -281,14 +424,27 @@
             "audioSegment": {
               "id": "l15-basic-dialogue-004-line-002",
               "trackId": "lesson_basic",
-              "sourceUrl": "/data/ocr/audio-clips/lesson15/l15-basic-dialogue-004-line-002.mp3",
-              "start": 0,
-              "end": 2.78,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit4/lesson15/lesson_basic.mp3",
+              "speaker": "乙",
+              "text": "すみません。これから 気を つけます。",
+              "start": 49.29,
+              "end": 52.07,
               "duration": 2.78,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrText": "す み ま せ ん こ れ か ら 気 を つ け ま す",
+              "phraseIndexes": [
+                10
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:38:09.278Z",
-              "sourceAudioSha256": "8c0041f5d4ad7017f1cb4b16432fdf3c7c594797c9bcad3ac3b1ddf2fa138f78"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T08:38:09.278Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 1,
+                "asrText": "す み ま せ ん こ れ か ら 気 を つ け ま す"
+              }
             }
           }
         ]
@@ -331,14 +487,27 @@
             "audioSegment": {
               "id": "l15-app-block-003-line-001",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson15/l15-app-block-003-line-001.mp3",
-              "start": 0,
-              "end": 2.18,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit4/lesson15/lesson_apps.mp3",
+              "speaker": "小野",
+              "text": "もしもし、小野です。どうしました？",
+              "start": 16.53,
+              "end": 18.71,
               "duration": 2.18,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrText": "も し も し 小 野 で す ど う し ま し た",
+              "phraseIndexes": [
+                1
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:38:51.814Z",
-              "sourceAudioSha256": "02277fc8846d6e3af3897c16a1155cad044f6db72ed21a994550b8b46154c14e"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T08:38:51.814Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 1,
+                "asrText": "も し も し 小 野 で す ど う し ま し た"
+              }
             }
           },
           {
@@ -352,14 +521,27 @@
             "audioSegment": {
               "id": "l15-app-block-003-line-002",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson15/l15-app-block-003-line-002.mp3",
-              "start": 0,
-              "end": 4.86,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit4/lesson15/lesson_apps.mp3",
+              "speaker": "李",
+              "text": "ちょっと 熱が あります。今日 会社を 休んでも いいですか。",
+              "start": 19.61,
+              "end": 24.47,
               "duration": 4.86,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrText": "ち ょ っ と 熱 が あ り ま す 今 日 会 社 を 休 ん で も い い で す か",
+              "phraseIndexes": [
+                2
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:38:51.814Z",
-              "sourceAudioSha256": "02277fc8846d6e3af3897c16a1155cad044f6db72ed21a994550b8b46154c14e"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T08:38:51.814Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 1,
+                "asrText": "ち ょ っ と 熱 が あ り ま す 今 日 会 社 を 休 ん で も い い で す か"
+              }
             }
           },
           {
@@ -373,14 +555,27 @@
             "audioSegment": {
               "id": "l15-app-block-003-line-003",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson15/l15-app-block-003-line-003.mp3",
-              "start": 0,
-              "end": 3.66,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit4/lesson15/lesson_apps.mp3",
+              "speaker": "小野",
+              "text": "ええ、もちろんです。あまり 無理を しては いけませんよ。",
+              "start": 25.17,
+              "end": 28.83,
               "duration": 3.66,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrText": "え え も ち ろ ん で す あ ま り 無 理 を し て は い け ま せ ん よ",
+              "phraseIndexes": [
+                3
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:38:51.814Z",
-              "sourceAudioSha256": "02277fc8846d6e3af3897c16a1155cad044f6db72ed21a994550b8b46154c14e"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T08:38:51.814Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 1,
+                "asrText": "え え も ち ろ ん で す あ ま り 無 理 を し て は い け ま せ ん よ"
+              }
             }
           },
           {
@@ -394,14 +589,28 @@
             "audioSegment": {
               "id": "l15-app-block-003-line-004",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson15/l15-app-block-003-line-004.mp3",
-              "start": 0,
-              "end": 4.38,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit4/lesson15/lesson_apps.mp3",
+              "speaker": "李",
+              "text": "はい、分かりました。あのう、吉田課長は？",
+              "start": 29.29,
+              "end": 33.67,
               "duration": 4.38,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 2,
+              "matchScore": 0.875,
+              "asrText": "は い わ か り ま し た あ の 吉 田 課 長 は",
+              "phraseIndexes": [
+                3,
+                4
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:38:51.814Z",
-              "sourceAudioSha256": "02277fc8846d6e3af3897c16a1155cad044f6db72ed21a994550b8b46154c14e"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T08:38:51.814Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 0.875,
+                "asrText": "は い わ か り ま し た あ の 吉 田 課 長 は"
+              }
             }
           },
           {
@@ -415,14 +624,27 @@
             "audioSegment": {
               "id": "l15-app-block-003-line-005",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson15/l15-app-block-003-line-005.mp3",
-              "start": 0,
-              "end": 4.22,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit4/lesson15/lesson_apps.mp3",
+              "speaker": "小野",
+              "text": "今 会議室で 打ち合わせを して います。後で 伝えます。",
+              "start": 34.25,
+              "end": 38.47,
               "duration": 4.22,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrText": "今 会 議 室 で 打 ち 合 わ せ を し て い ま す 後 で 伝 え ま す",
+              "phraseIndexes": [
+                5
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:38:51.814Z",
-              "sourceAudioSha256": "02277fc8846d6e3af3897c16a1155cad044f6db72ed21a994550b8b46154c14e"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T08:38:51.814Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 1,
+                "asrText": "今 会 議 室 で 打 ち 合 わ せ を し て い ま す 後 で 伝 え ま す"
+              }
             }
           },
           {
@@ -436,14 +658,27 @@
             "audioSegment": {
               "id": "l15-app-block-003-line-006",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson15/l15-app-block-003-line-006.mp3",
-              "start": 0,
-              "end": 1.1,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit4/lesson15/lesson_apps.mp3",
+              "speaker": "李",
+              "text": "お願いします。",
+              "start": 38.65,
+              "end": 39.75,
               "duration": 1.1,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrText": "お 願 い し ま す",
+              "phraseIndexes": [
+                5
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:38:51.814Z",
-              "sourceAudioSha256": "02277fc8846d6e3af3897c16a1155cad044f6db72ed21a994550b8b46154c14e"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T08:38:51.814Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 1,
+                "asrText": "お 願 い し ま す"
+              }
             }
           },
           {
@@ -457,14 +692,27 @@
             "audioSegment": {
               "id": "l15-app-block-003-line-007",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson15/l15-app-block-003-line-007.mp3",
-              "start": 0,
-              "end": 2.02,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit4/lesson15/lesson_apps.mp3",
+              "speaker": "小野",
+              "text": "もう 病院に 行きましたか。",
+              "start": 40.53,
+              "end": 42.55,
               "duration": 2.02,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrText": "も う 病 院 に 行 き ま し た か",
+              "phraseIndexes": [
+                6
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:38:51.814Z",
-              "sourceAudioSha256": "02277fc8846d6e3af3897c16a1155cad044f6db72ed21a994550b8b46154c14e"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T08:38:51.814Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 1,
+                "asrText": "も う 病 院 に 行 き ま し た か"
+              }
             }
           },
           {
@@ -478,14 +726,27 @@
             "audioSegment": {
               "id": "l15-app-block-003-line-008",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson15/l15-app-block-003-line-008.mp3",
-              "start": 0,
-              "end": 1.5,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit4/lesson15/lesson_apps.mp3",
+              "speaker": "李",
+              "text": "いいえ、まだです。",
+              "start": 42.85,
+              "end": 44.35,
               "duration": 1.5,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrText": "い い え ま だ で す",
+              "phraseIndexes": [
+                6
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:38:51.814Z",
-              "sourceAudioSha256": "02277fc8846d6e3af3897c16a1155cad044f6db72ed21a994550b8b46154c14e"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T08:38:51.814Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 1,
+                "asrText": "い い え ま だ で す"
+              }
             }
           },
           {
@@ -499,14 +760,27 @@
             "audioSegment": {
               "id": "l15-app-block-003-line-009",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson15/l15-app-block-003-line-009.mp3",
-              "start": 0,
-              "end": 3.34,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit4/lesson15/lesson_apps.mp3",
+              "speaker": "小野",
+              "text": "じゃあ、病院に 行ってから、ゆっくり 休んで ください。",
+              "start": 44.85,
+              "end": 48.19,
               "duration": 3.34,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrText": "じ ゃ あ 病 院 に 行 っ て か ら ゆ っ く り 休 ん で く だ さ い",
+              "phraseIndexes": [
+                6
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:38:51.814Z",
-              "sourceAudioSha256": "02277fc8846d6e3af3897c16a1155cad044f6db72ed21a994550b8b46154c14e"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T08:38:51.814Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 1,
+                "asrText": "じ ゃ あ 病 院 に 行 っ て か ら ゆ っ く り 休 ん で く だ さ い"
+              }
             }
           },
           {
@@ -520,14 +794,27 @@
             "audioSegment": {
               "id": "l15-app-block-003-line-010",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson15/l15-app-block-003-line-010.mp3",
-              "start": 0,
-              "end": 1.98,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit4/lesson15/lesson_apps.mp3",
+              "speaker": "李",
+              "text": "はい、ありがとう ございます。",
+              "start": 48.49,
+              "end": 50.47,
               "duration": 1.98,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrText": "は い あ り が と う ご ざ い ま す",
+              "phraseIndexes": [
+                6
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:38:51.814Z",
-              "sourceAudioSha256": "02277fc8846d6e3af3897c16a1155cad044f6db72ed21a994550b8b46154c14e"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T08:38:51.814Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 1,
+                "asrText": "は い あ り が と う ご ざ い ま す"
+              }
             }
           }
         ]
@@ -556,14 +843,27 @@
             "audioSegment": {
               "id": "l15-app-block-005-line-001",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson15/l15-app-block-005-line-001.mp3",
-              "start": 0,
-              "end": 7.66,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit4/lesson15/lesson_apps.mp3",
+              "speaker": "医者",
+              "text": "風邪ですね。温かい 物を 食べて、十分 睡眠を とって ください。それから 今晩 お風呂に 入っては いけませんよ。",
+              "start": 52.93,
+              "end": 60.59,
               "duration": 7.66,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 1,
+              "matchScore": 0.911,
+              "asrText": "風 で す ね 暖 か い も の を 食 べ て 十 分 睡 眠 を と っ て く だ さ い そ れ か ら 今 晩 お 風 呂 に 入 っ て は い け ま せ ん よ",
+              "phraseIndexes": [
+                7
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:38:51.814Z",
-              "sourceAudioSha256": "02277fc8846d6e3af3897c16a1155cad044f6db72ed21a994550b8b46154c14e"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T08:38:51.814Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 0.911,
+                "asrText": "風 で す ね 暖 か い も の を 食 べ て 十 分 睡 眠 を と っ て く だ さ い そ れ か ら 今 晩 お 風 呂 に 入 っ て は い け ま せ ん よ"
+              }
             }
           },
           {
@@ -577,14 +877,27 @@
             "audioSegment": {
               "id": "l15-app-block-005-line-002",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson15/l15-app-block-005-line-002.mp3",
-              "start": 0,
-              "end": 0.58,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit4/lesson15/lesson_apps.mp3",
+              "speaker": "李",
+              "text": "分かりました。",
+              "start": 61.98,
+              "end": 62.56,
               "duration": 0.58,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrText": "わ か り ま し た",
+              "phraseIndexes": [
+                8
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:38:51.814Z",
-              "sourceAudioSha256": "02277fc8846d6e3af3897c16a1155cad044f6db72ed21a994550b8b46154c14e"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T08:38:51.814Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 1,
+                "asrText": "わ か り ま し た"
+              }
             }
           },
           {
@@ -598,14 +911,27 @@
             "audioSegment": {
               "id": "l15-app-block-005-line-003",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson15/l15-app-block-005-line-003.mp3",
-              "start": 0,
-              "end": 3.22,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit4/lesson15/lesson_apps.mp3",
+              "speaker": "医者",
+              "text": "では、薬を 出します。薬局に 行って、もらって ください。",
+              "start": 62.77,
+              "end": 65.99,
               "duration": 3.22,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrText": "で は 薬 を 出 し ま す 薬 局 に 行 っ て も ら っ て く だ さ い",
+              "phraseIndexes": [
+                9
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:38:51.814Z",
-              "sourceAudioSha256": "02277fc8846d6e3af3897c16a1155cad044f6db72ed21a994550b8b46154c14e"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T08:38:51.814Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 1,
+                "asrText": "で は 薬 を 出 し ま す 薬 局 に 行 っ て も ら っ て く だ さ い"
+              }
             }
           },
           {
@@ -619,14 +945,27 @@
             "audioSegment": {
               "id": "l15-app-block-005-line-004",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson15/l15-app-block-005-line-004.mp3",
-              "start": 0,
-              "end": 1.66,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit4/lesson15/lesson_apps.mp3",
+              "speaker": "李",
+              "text": "ありがとう ございました。",
+              "start": 66.77,
+              "end": 68.43,
               "duration": 1.66,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrText": "あ り が と う ご ざ い ま し た",
+              "phraseIndexes": [
+                10
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:38:51.814Z",
-              "sourceAudioSha256": "02277fc8846d6e3af3897c16a1155cad044f6db72ed21a994550b8b46154c14e"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T08:38:51.814Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 1,
+                "asrText": "あ り が と う ご ざ い ま し た"
+              }
             }
           },
           {
@@ -640,14 +979,27 @@
             "audioSegment": {
               "id": "l15-app-block-005-line-005",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson15/l15-app-block-005-line-005.mp3",
-              "start": 0,
-              "end": 0.82,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit4/lesson15/lesson_apps.mp3",
+              "speaker": "医者",
+              "text": "お大事に。",
+              "start": 68.53,
+              "end": 69.35,
               "duration": 0.82,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrText": "お 大 事 に",
+              "phraseIndexes": [
+                10
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:38:51.814Z",
-              "sourceAudioSha256": "02277fc8846d6e3af3897c16a1155cad044f6db72ed21a994550b8b46154c14e"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T08:38:51.814Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 1,
+                "asrText": "お 大 事 に"
+              }
             }
           }
         ]
@@ -657,9 +1009,25 @@
   "warnings": [],
   "audioAlignment": {
     "schemaVersion": 1,
-    "method": "approved-asr-alignment",
-    "sourceAlignment": "data/ocr/lesson15-text-audio-alignment.json",
-    "publishedAt": "2026-08-05T08:38:56.208Z",
-    "approvedSegments": 27
-  }
+    "lessonId": "lesson15",
+    "convertedAt": "2026-08-14T00:17:06.481Z",
+    "method": "legacy-asr-alignment-range-converted",
+    "tracks": [
+      {
+        "id": "lesson_basic",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit4/lesson15/lesson_basic.mp3",
+        "sourceAudioSha256": "8c0041f5d4ad7017f1cb4b16432fdf3c7c594797c9bcad3ac3b1ddf2fa138f78",
+        "expectedItems": 12,
+        "alignedItems": 12
+      },
+      {
+        "id": "lesson_apps",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit4/lesson15/lesson_apps.mp3",
+        "sourceAudioSha256": "02277fc8846d6e3af3897c16a1155cad044f6db72ed21a994550b8b46154c14e",
+        "expectedItems": 15,
+        "alignedItems": 15
+      }
+    ]
+  },
+  "updatedAt": "2026-08-14T00:17:06.481Z"
 }

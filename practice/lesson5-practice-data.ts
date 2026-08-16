@@ -1,5 +1,6 @@
 import type { InputSlot, LessonPractice, PracticeActivity, PracticeItem, PromptPart, RichText } from "./lesson-practice-types";
-import { lesson5ImageCrops } from "./lesson5-image-crops";
+
+const exerciseImage = (fileName: string) => `../data/book1_exercise_images/${fileName}`;
 
 const page = (pageNo: number) => `../course-assets/by-lesson/lesson5/page${pageNo}.webp`;
 const audio = (exerciseNo: 1 | 2, order: number) =>
@@ -8,7 +9,6 @@ const text = (value: string, options: Omit<RichText, "type" | "text"> = {}): Ric
 const repl = (value: string, substitutionKey: string, options: Omit<RichText, "type" | "text" | "underline" | "substitutionKey"> = {}): RichText =>
   text(value, { ...options, underline: true, substitutionKey });
 const blank = (slotId: string): PromptPart => ({ type: "blank", slotId });
-const crop = (id: string) => lesson5ImageCrops.assets.find((asset) => asset.id === id)!;
 
 const sentenceSlot = (placeholder = "输入完整回答"): InputSlot[] => [{ id: "answer", expectedUnit: "sentence", width: "long", placeholder }];
 const shortSlot = (id: string, placeholder = "输入 1 个假名"): InputSlot => ({ id, expectedUnit: "word", width: "short", placeholder });
@@ -103,7 +103,10 @@ const activities: PracticeActivity[] = [
     interaction: "pattern_substitution",
     answerUnit: "sentence",
     responseScope: "sentence_only",
-    assets: [crop("l5-p1-a1-clock-set"), crop("l5-p1-a1-digital-set")],
+    assets: [
+      { id: "l5-p1-a1-clock-set", kind: "exercise_image", imagePath: exerciseImage("book1_lesson5_1_1_a.png") },
+      { id: "l5-p1-a1-digital-set", kind: "exercise_image", imagePath: exerciseImage("book1_lesson5_1_1_b.png") }
+    ],
     layout: [],
     itemGroups: [
       {
@@ -447,7 +450,9 @@ const activities: PracticeActivity[] = [
         ]
       }
     },
-    assets: [crop("l5-p2-a2-calendar")],
+    assets: [
+      { id: "l5-p2-a2-calendar", kind: "exercise_image", imagePath: exerciseImage("book1_lesson5_2_2.png") }
+    ],
     displayAssets: ["l5-p2-a2-calendar"],
     layout: [
       {

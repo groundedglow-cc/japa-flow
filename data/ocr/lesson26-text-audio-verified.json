@@ -22,17 +22,75 @@
         "translationZh": "两人同骑一辆自行车很危险。",
         "confidence": "high",
         "rawText": "1. 自転車に 2人で 乗るのは 危ないです。",
+        "kana": "じてんしゃに ふたりで のるのは あぶないです。",
+        "segments": [
+          {
+            "text": "自転車",
+            "ruby": "じてんしゃ"
+          },
+          {
+            "text": "に 2",
+            "ruby": ""
+          },
+          {
+            "text": "人",
+            "ruby": "ふたり"
+          },
+          {
+            "text": "で ",
+            "ruby": ""
+          },
+          {
+            "text": "乗",
+            "ruby": "の"
+          },
+          {
+            "text": "るのは ",
+            "ruby": ""
+          },
+          {
+            "text": "危",
+            "ruby": "あぶ"
+          },
+          {
+            "text": "ないです。",
+            "ruby": ""
+          }
+        ],
         "audioSegment": {
           "id": "l26-basic-s001",
           "trackId": "lesson_basic",
-          "sourceUrl": "/data/ocr/audio-clips/lesson26/l26-basic-s001.mp3",
-          "start": 0,
-          "end": 2.7,
-          "duration": 2.7,
-          "method": "approved-asr-alignment",
-          "confidence": "approved",
-          "reviewedAt": "2026-08-05T10:03:09.363Z",
-          "sourceAudioSha256": "881698b5053a913039aefad993c16a98e5af4a1a946ec1d11852b54cfcec0b5b"
+          "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit7/lesson26/lesson_basic.mp3",
+          "itemIndex": 1,
+          "speaker": "",
+          "text": "自転車に 2人で 乗るのは 危ないです。",
+          "start": 2.3,
+          "end": 5.23,
+          "duration": 2.93,
+          "rawAzureTiming": {
+            "start": 2.55,
+            "end": 5.11,
+            "duration": 2.56
+          },
+          "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+          "speechActivity": null,
+          "speechUnitCount": 1,
+          "matchScore": 0.938,
+          "asrConfidence": 0,
+          "asrText": "自 転 車 に 二 人 で 乗 る の は 危 な い で す",
+          "phraseIndexes": [
+            1
+          ],
+          "method": "azure-speech-sentence-alignment-with-boundary-padding",
+          "confidence": "high",
+          "alignmentIssues": [],
+          "review": {
+            "status": "approved",
+            "reviewedAt": "2026-08-16T11:01:08.737Z",
+            "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+            "matchScore": 0.938,
+            "asrText": "自 転 車 に 二 人 で 乗 る の は 危 な い で す"
+          }
         }
       },
       {
@@ -42,17 +100,67 @@
         "translationZh": "我忘了寄信。",
         "confidence": "high",
         "rawText": "2. 手紙を 出すのを 忘れました。",
+        "kana": "てがみを だすのを わすれました。",
+        "segments": [
+          {
+            "text": "手紙",
+            "ruby": "てがみ"
+          },
+          {
+            "text": "を ",
+            "ruby": ""
+          },
+          {
+            "text": "出",
+            "ruby": "だ"
+          },
+          {
+            "text": "すのを ",
+            "ruby": ""
+          },
+          {
+            "text": "忘",
+            "ruby": "わす"
+          },
+          {
+            "text": "れました。",
+            "ruby": ""
+          }
+        ],
         "audioSegment": {
           "id": "l26-basic-s002",
           "trackId": "lesson_basic",
-          "sourceUrl": "/data/ocr/audio-clips/lesson26/l26-basic-s002.mp3",
-          "start": 0,
-          "end": 1.78,
-          "duration": 1.78,
-          "method": "approved-asr-alignment",
-          "confidence": "approved",
-          "reviewedAt": "2026-08-05T10:03:09.363Z",
-          "sourceAudioSha256": "881698b5053a913039aefad993c16a98e5af4a1a946ec1d11852b54cfcec0b5b"
+          "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit7/lesson26/lesson_basic.mp3",
+          "itemIndex": 2,
+          "speaker": "",
+          "text": "手紙を 出すのを 忘れました。",
+          "start": 7.02,
+          "end": 9.03,
+          "duration": 2.01,
+          "rawAzureTiming": {
+            "start": 7.27,
+            "end": 8.91,
+            "duration": 1.64
+          },
+          "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+          "speechActivity": null,
+          "speechUnitCount": 1,
+          "matchScore": 1,
+          "asrConfidence": 0,
+          "asrText": "手 紙 を 出 す の を 忘 れ ま し た",
+          "phraseIndexes": [
+            2
+          ],
+          "method": "azure-speech-sentence-alignment-with-boundary-padding",
+          "confidence": "high",
+          "alignmentIssues": [],
+          "review": {
+            "status": "approved",
+            "reviewedAt": "2026-08-16T11:01:08.737Z",
+            "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+            "matchScore": 1,
+            "asrText": "手 紙 を 出 す の を 忘 れ ま し た"
+          }
         }
       },
       {
@@ -62,17 +170,67 @@
         "translationZh": "明天早晨大概会下大雨。",
         "confidence": "high",
         "rawText": "3. 明日の 朝は 大雨に なるでしょう。",
+        "kana": "あしたの あさは おおあめに なるでしょう。",
+        "segments": [
+          {
+            "text": "明日",
+            "ruby": "あした"
+          },
+          {
+            "text": "の ",
+            "ruby": ""
+          },
+          {
+            "text": "朝",
+            "ruby": "あさ"
+          },
+          {
+            "text": "は ",
+            "ruby": ""
+          },
+          {
+            "text": "大雨",
+            "ruby": "おおあめ"
+          },
+          {
+            "text": "に なるでしょう。",
+            "ruby": ""
+          }
+        ],
         "audioSegment": {
           "id": "l26-basic-s003",
           "trackId": "lesson_basic",
-          "sourceUrl": "/data/ocr/audio-clips/lesson26/l26-basic-s003.mp3",
-          "start": 0,
-          "end": 2.74,
-          "duration": 2.74,
-          "method": "approved-asr-alignment",
-          "confidence": "approved",
-          "reviewedAt": "2026-08-05T10:03:09.363Z",
-          "sourceAudioSha256": "881698b5053a913039aefad993c16a98e5af4a1a946ec1d11852b54cfcec0b5b"
+          "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit7/lesson26/lesson_basic.mp3",
+          "itemIndex": 3,
+          "speaker": "",
+          "text": "明日の 朝は 大雨に なるでしょう。",
+          "start": 11.22,
+          "end": 14.19,
+          "duration": 2.97,
+          "rawAzureTiming": {
+            "start": 11.47,
+            "end": 14.07,
+            "duration": 2.6
+          },
+          "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+          "speechActivity": null,
+          "speechUnitCount": 1,
+          "matchScore": 1,
+          "asrConfidence": 0,
+          "asrText": "明 日 の 朝 は 大 雨 に な る で し ょ う",
+          "phraseIndexes": [
+            3
+          ],
+          "method": "azure-speech-sentence-alignment-with-boundary-padding",
+          "confidence": "high",
+          "alignmentIssues": [],
+          "review": {
+            "status": "approved",
+            "reviewedAt": "2026-08-16T11:01:08.737Z",
+            "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+            "matchScore": 1,
+            "asrText": "明 日 の 朝 は 大 雨 に な る で し ょ う"
+          }
         }
       },
       {
@@ -82,17 +240,75 @@
         "translationZh": "森先生今天可能不来公司上班。",
         "confidence": "high",
         "rawText": "4. 森さんは 今日 会社を 休むかも しれません。",
+        "kana": "もりさんは きょう かいしゃを やすむかも しれません。",
+        "segments": [
+          {
+            "text": "森",
+            "ruby": "もり"
+          },
+          {
+            "text": "さんは ",
+            "ruby": ""
+          },
+          {
+            "text": "今日",
+            "ruby": "きょう"
+          },
+          {
+            "text": " ",
+            "ruby": ""
+          },
+          {
+            "text": "会社",
+            "ruby": "かいしゃ"
+          },
+          {
+            "text": "を ",
+            "ruby": ""
+          },
+          {
+            "text": "休",
+            "ruby": "やす"
+          },
+          {
+            "text": "むかも しれません。",
+            "ruby": ""
+          }
+        ],
         "audioSegment": {
           "id": "l26-basic-s004",
           "trackId": "lesson_basic",
-          "sourceUrl": "/data/ocr/audio-clips/lesson26/l26-basic-s004.mp3",
-          "start": 0,
-          "end": 3.38,
-          "duration": 3.38,
-          "method": "approved-asr-alignment",
-          "confidence": "approved",
-          "reviewedAt": "2026-08-05T10:03:09.363Z",
-          "sourceAudioSha256": "881698b5053a913039aefad993c16a98e5af4a1a946ec1d11852b54cfcec0b5b"
+          "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit7/lesson26/lesson_basic.mp3",
+          "itemIndex": 4,
+          "speaker": "",
+          "text": "森さんは 今日 会社を 休むかも しれません。",
+          "start": 16.38,
+          "end": 19.99,
+          "duration": 3.61,
+          "rawAzureTiming": {
+            "start": 16.63,
+            "end": 19.87,
+            "duration": 3.24
+          },
+          "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+          "speechActivity": null,
+          "speechUnitCount": 1,
+          "matchScore": 1,
+          "asrConfidence": 0,
+          "asrText": "森 さ ん は 今 日 会 社 を 休 む か も し れ ま せ ん",
+          "phraseIndexes": [
+            5
+          ],
+          "method": "azure-speech-sentence-alignment-with-boundary-padding",
+          "confidence": "high",
+          "alignmentIssues": [],
+          "review": {
+            "status": "approved",
+            "reviewedAt": "2026-08-16T11:01:08.737Z",
+            "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+            "matchScore": 1,
+            "asrText": "森 さ ん は 今 日 会 社 を 休 む か も し れ ま せ ん"
+          }
         }
       }
     ],
@@ -108,17 +324,67 @@
             "translationZh": "小李喜欢画画吧。",
             "confidence": "high",
             "rawText": "甲：李さんは 絵を かくのが 好きですね。",
+            "kana": "りさんは えを かくのが すきですね。",
+            "segments": [
+              {
+                "text": "李",
+                "ruby": "り"
+              },
+              {
+                "text": "さんは ",
+                "ruby": ""
+              },
+              {
+                "text": "絵",
+                "ruby": "え"
+              },
+              {
+                "text": "を かくのが ",
+                "ruby": ""
+              },
+              {
+                "text": "好",
+                "ruby": "す"
+              },
+              {
+                "text": "きですね。",
+                "ruby": ""
+              }
+            ],
             "audioSegment": {
               "id": "l26-basic-dialogue-001-line-001",
               "trackId": "lesson_basic",
-              "sourceUrl": "/data/ocr/audio-clips/lesson26/l26-basic-dialogue-001-line-001.mp3",
-              "start": 0,
-              "end": 2.54,
-              "duration": 2.54,
-              "method": "approved-asr-alignment",
-              "confidence": "approved",
-              "reviewedAt": "2026-08-05T10:03:09.363Z",
-              "sourceAudioSha256": "881698b5053a913039aefad993c16a98e5af4a1a946ec1d11852b54cfcec0b5b"
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit7/lesson26/lesson_basic.mp3",
+              "itemIndex": 5,
+              "speaker": "甲",
+              "text": "李さんは 絵を かくのが 好きですね。",
+              "start": 22.39,
+              "end": 25.16,
+              "duration": 2.77,
+              "rawAzureTiming": {
+                "start": 22.64,
+                "end": 25.04,
+                "duration": 2.4
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
+              "speechUnitCount": 1,
+              "matchScore": 0.933,
+              "asrConfidence": 0,
+              "asrText": "李 さ ん は 絵 を 描 く の が 好 き で す ね",
+              "phraseIndexes": [
+                6
+              ],
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [],
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-16T11:01:08.737Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "matchScore": 0.933,
+                "asrText": "李 さ ん は 絵 を 描 く の が 好 き で す ね"
+              }
             }
           },
           {
@@ -128,17 +394,63 @@
             "translationZh": "是的，非常喜欢。不过画得不太好。",
             "confidence": "high",
             "rawText": "乙：ええ、大好きです。でも、あまり 上手では ありませんよ。",
+            "kana": "ええ、だいすきです。でも、あまり じょうずでは ありませんよ。",
+            "segments": [
+              {
+                "text": "ええ、",
+                "ruby": ""
+              },
+              {
+                "text": "大好",
+                "ruby": "だいす"
+              },
+              {
+                "text": "きです。でも、あまり ",
+                "ruby": ""
+              },
+              {
+                "text": "上手",
+                "ruby": "じょうず"
+              },
+              {
+                "text": "では ありませんよ。",
+                "ruby": ""
+              }
+            ],
             "audioSegment": {
               "id": "l26-basic-dialogue-001-line-002",
               "trackId": "lesson_basic",
-              "sourceUrl": "/data/ocr/audio-clips/lesson26/l26-basic-dialogue-001-line-002.mp3",
-              "start": 0,
-              "end": 3.42,
-              "duration": 3.42,
-              "method": "approved-asr-alignment",
-              "confidence": "approved",
-              "reviewedAt": "2026-08-05T10:03:09.363Z",
-              "sourceAudioSha256": "881698b5053a913039aefad993c16a98e5af4a1a946ec1d11852b54cfcec0b5b"
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit7/lesson26/lesson_basic.mp3",
+              "itemIndex": 6,
+              "speaker": "乙",
+              "text": "ええ、大好きです。でも、あまり 上手では ありませんよ。",
+              "start": 26.35,
+              "end": 30,
+              "duration": 3.65,
+              "rawAzureTiming": {
+                "start": 26.6,
+                "end": 29.88,
+                "duration": 3.28
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrConfidence": 0,
+              "asrText": "え え 大 好 き で す で も あ ま り 上 手 で は あ り ま せ ん よ",
+              "phraseIndexes": [
+                7
+              ],
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [],
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-16T11:01:08.737Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "matchScore": 1,
+                "asrText": "え え 大 好 き で す で も あ ま り 上 手 で は あ り ま せ ん よ"
+              }
             }
           }
         ]
@@ -154,17 +466,67 @@
             "translationZh": "你知道吉田先生调动工作了吗？",
             "confidence": "high",
             "rawText": "甲：吉田さんが 転勤したのを 知って いますか。",
+            "kana": "よしださんが てんきんしたのを しって いますか。",
+            "segments": [
+              {
+                "text": "吉田",
+                "ruby": "よしだ"
+              },
+              {
+                "text": "さんが ",
+                "ruby": ""
+              },
+              {
+                "text": "転勤",
+                "ruby": "てんきん"
+              },
+              {
+                "text": "したのを ",
+                "ruby": ""
+              },
+              {
+                "text": "知",
+                "ruby": "し"
+              },
+              {
+                "text": "って いますか。",
+                "ruby": ""
+              }
+            ],
             "audioSegment": {
               "id": "l26-basic-dialogue-002-line-001",
               "trackId": "lesson_basic",
-              "sourceUrl": "/data/ocr/audio-clips/lesson26/l26-basic-dialogue-002-line-001.mp3",
-              "start": 0,
-              "end": 2.9,
-              "duration": 2.9,
-              "method": "approved-asr-alignment",
-              "confidence": "approved",
-              "reviewedAt": "2026-08-05T10:03:09.363Z",
-              "sourceAudioSha256": "881698b5053a913039aefad993c16a98e5af4a1a946ec1d11852b54cfcec0b5b"
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit7/lesson26/lesson_basic.mp3",
+              "itemIndex": 7,
+              "speaker": "甲",
+              "text": "吉田さんが 転勤したのを 知って いますか。",
+              "start": 31.78,
+              "end": 34.91,
+              "duration": 3.13,
+              "rawAzureTiming": {
+                "start": 32.03,
+                "end": 34.79,
+                "duration": 2.76
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrConfidence": 0,
+              "asrText": "吉 田 さ ん が 転 勤 し た の を 知 っ て い ま す か",
+              "phraseIndexes": [
+                8
+              ],
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [],
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-16T11:01:08.737Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "matchScore": 1,
+                "asrText": "吉 田 さ ん が 転 勤 し た の を 知 っ て い ま す か"
+              }
             }
           },
           {
@@ -174,17 +536,63 @@
             "translationZh": "啊，真的吗？我不知道。",
             "confidence": "high",
             "rawText": "乙：えっ、本当ですか。知りませんでした。",
+            "kana": "えっ、ほんとうですか。しりませんでした。",
+            "segments": [
+              {
+                "text": "えっ、",
+                "ruby": ""
+              },
+              {
+                "text": "本当",
+                "ruby": "ほんとう"
+              },
+              {
+                "text": "ですか。",
+                "ruby": ""
+              },
+              {
+                "text": "知",
+                "ruby": "し"
+              },
+              {
+                "text": "りませんでした。",
+                "ruby": ""
+              }
+            ],
             "audioSegment": {
               "id": "l26-basic-dialogue-002-line-002",
               "trackId": "lesson_basic",
-              "sourceUrl": "/data/ocr/audio-clips/lesson26/l26-basic-dialogue-002-line-002.mp3",
-              "start": 0,
-              "end": 2.22,
-              "duration": 2.22,
-              "method": "approved-asr-alignment",
-              "confidence": "approved",
-              "reviewedAt": "2026-08-05T10:03:09.363Z",
-              "sourceAudioSha256": "881698b5053a913039aefad993c16a98e5af4a1a946ec1d11852b54cfcec0b5b"
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit7/lesson26/lesson_basic.mp3",
+              "itemIndex": 8,
+              "speaker": "乙",
+              "text": "えっ、本当ですか。知りませんでした。",
+              "start": 36.11,
+              "end": 38.56,
+              "duration": 2.45,
+              "rawAzureTiming": {
+                "start": 36.36,
+                "end": 38.44,
+                "duration": 2.08
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
+              "speechUnitCount": 1,
+              "matchScore": 0.933,
+              "asrConfidence": 0,
+              "asrText": "え 本 当 で す か 知 り ま せ ん で し た",
+              "phraseIndexes": [
+                9
+              ],
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [],
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-16T11:01:08.737Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "matchScore": 0.933,
+                "asrText": "え 本 当 で す か 知 り ま せ ん で し た"
+              }
             }
           }
         ]
@@ -200,17 +608,67 @@
             "translationZh": "会议几点结束？",
             "confidence": "high",
             "rawText": "甲：会議は 何時に 終わりますか。",
+            "kana": "かいぎは なんじに おわりますか。",
+            "segments": [
+              {
+                "text": "会議",
+                "ruby": "かいぎ"
+              },
+              {
+                "text": "は ",
+                "ruby": ""
+              },
+              {
+                "text": "何時",
+                "ruby": "なんじ"
+              },
+              {
+                "text": "に ",
+                "ruby": ""
+              },
+              {
+                "text": "終",
+                "ruby": "お"
+              },
+              {
+                "text": "わりますか。",
+                "ruby": ""
+              }
+            ],
             "audioSegment": {
               "id": "l26-basic-dialogue-003-line-001",
               "trackId": "lesson_basic",
-              "sourceUrl": "/data/ocr/audio-clips/lesson26/l26-basic-dialogue-003-line-001.mp3",
-              "start": 0,
-              "end": 2.18,
-              "duration": 2.18,
-              "method": "approved-asr-alignment",
-              "confidence": "approved",
-              "reviewedAt": "2026-08-05T10:03:09.363Z",
-              "sourceAudioSha256": "881698b5053a913039aefad993c16a98e5af4a1a946ec1d11852b54cfcec0b5b"
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit7/lesson26/lesson_basic.mp3",
+              "itemIndex": 9,
+              "speaker": "甲",
+              "text": "会議は 何時に 終わりますか。",
+              "start": 41.13,
+              "end": 43.54,
+              "duration": 2.41,
+              "rawAzureTiming": {
+                "start": 41.38,
+                "end": 43.42,
+                "duration": 2.04
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrConfidence": 0,
+              "asrText": "会 議 は 何 時 に 終 わ り ま す か",
+              "phraseIndexes": [
+                10
+              ],
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [],
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-16T11:01:08.737Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "matchScore": 1,
+                "asrText": "会 議 は 何 時 に 終 わ り ま す か"
+              }
             }
           },
           {
@@ -220,17 +678,63 @@
             "translationZh": "大概两点结束。",
             "confidence": "high",
             "rawText": "乙：2時には 終わるでしょう。",
+            "kana": "にじには おわるでしょう。",
+            "segments": [
+              {
+                "text": "2",
+                "ruby": ""
+              },
+              {
+                "text": "時",
+                "ruby": "じ"
+              },
+              {
+                "text": "には ",
+                "ruby": ""
+              },
+              {
+                "text": "終",
+                "ruby": "お"
+              },
+              {
+                "text": "わるでしょう。",
+                "ruby": ""
+              }
+            ],
             "audioSegment": {
               "id": "l26-basic-dialogue-003-line-002",
               "trackId": "lesson_basic",
-              "sourceUrl": "/data/ocr/audio-clips/lesson26/l26-basic-dialogue-003-line-002.mp3",
-              "start": 0,
-              "end": 1.66,
-              "duration": 1.66,
-              "method": "approved-asr-alignment",
-              "confidence": "approved",
-              "reviewedAt": "2026-08-05T10:03:09.363Z",
-              "sourceAudioSha256": "881698b5053a913039aefad993c16a98e5af4a1a946ec1d11852b54cfcec0b5b"
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit7/lesson26/lesson_basic.mp3",
+              "itemIndex": 10,
+              "speaker": "乙",
+              "text": "2時には 終わるでしょう。",
+              "start": 44.1,
+              "end": 45.99,
+              "duration": 1.89,
+              "rawAzureTiming": {
+                "start": 44.35,
+                "end": 45.87,
+                "duration": 1.52
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
+              "speechUnitCount": 1,
+              "matchScore": 0.909,
+              "asrConfidence": 0,
+              "asrText": "二 時 に は 終 わ る で し ょ う",
+              "phraseIndexes": [
+                11
+              ],
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [],
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-16T11:01:08.737Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "matchScore": 0.909,
+                "asrText": "二 時 に は 終 わ る で し ょ う"
+              }
             }
           }
         ]
@@ -246,17 +750,59 @@
             "translationZh": "马先生还没来啊。",
             "confidence": "high",
             "rawText": "甲：馬さんは まだ 来ませんね。",
+            "kana": "まさんは まだ きませんね。",
+            "segments": [
+              {
+                "text": "馬",
+                "ruby": "ま"
+              },
+              {
+                "text": "さんは まだ ",
+                "ruby": ""
+              },
+              {
+                "text": "来",
+                "ruby": "き"
+              },
+              {
+                "text": "ませんね。",
+                "ruby": ""
+              }
+            ],
             "audioSegment": {
               "id": "l26-basic-dialogue-004-line-001",
               "trackId": "lesson_basic",
-              "sourceUrl": "/data/ocr/audio-clips/lesson26/l26-basic-dialogue-004-line-001.mp3",
-              "start": 0,
-              "end": 1.94,
-              "duration": 1.94,
-              "method": "approved-asr-alignment",
-              "confidence": "approved",
-              "reviewedAt": "2026-08-05T10:03:09.363Z",
-              "sourceAudioSha256": "881698b5053a913039aefad993c16a98e5af4a1a946ec1d11852b54cfcec0b5b"
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit7/lesson26/lesson_basic.mp3",
+              "itemIndex": 11,
+              "speaker": "甲",
+              "text": "馬さんは まだ 来ませんね。",
+              "start": 49.22,
+              "end": 51.39,
+              "duration": 2.17,
+              "rawAzureTiming": {
+                "start": 49.47,
+                "end": 51.27,
+                "duration": 1.8
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
+              "speechUnitCount": 1,
+              "matchScore": 0.909,
+              "asrConfidence": 0,
+              "asrText": "あ さ ん は ま だ 来 ま せ ん ね",
+              "phraseIndexes": [
+                13
+              ],
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [],
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-16T11:01:08.737Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "matchScore": 0.909,
+                "asrText": "あ さ ん は ま だ 来 ま せ ん ね"
+              }
             }
           },
           {
@@ -266,17 +812,64 @@
             "translationZh": "他今天可能不来了。",
             "confidence": "high",
             "rawText": "乙：もしかしたら、今日は 来ないかも しれませんよ。",
+            "kana": "もしかしたら、きょうは こないかも しれませんよ。",
+            "segments": [
+              {
+                "text": "もしかしたら、",
+                "ruby": ""
+              },
+              {
+                "text": "今日",
+                "ruby": "きょう"
+              },
+              {
+                "text": "は ",
+                "ruby": ""
+              },
+              {
+                "text": "来",
+                "ruby": "こ"
+              },
+              {
+                "text": "ないかも しれませんよ。",
+                "ruby": ""
+              }
+            ],
             "audioSegment": {
               "id": "l26-basic-dialogue-004-line-002",
               "trackId": "lesson_basic",
-              "sourceUrl": "/data/ocr/audio-clips/lesson26/l26-basic-dialogue-004-line-002.mp3",
-              "start": 0,
-              "end": 3.66,
-              "duration": 3.66,
-              "method": "approved-asr-alignment",
-              "confidence": "approved",
-              "reviewedAt": "2026-08-05T10:03:09.363Z",
-              "sourceAudioSha256": "881698b5053a913039aefad993c16a98e5af4a1a946ec1d11852b54cfcec0b5b"
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit7/lesson26/lesson_basic.mp3",
+              "itemIndex": 12,
+              "speaker": "乙",
+              "text": "もしかしたら、今日は 来ないかも しれませんよ。",
+              "start": 51.86,
+              "end": 55.75,
+              "duration": 3.89,
+              "rawAzureTiming": {
+                "start": 52.11,
+                "end": 55.63,
+                "duration": 3.52
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
+              "speechUnitCount": 2,
+              "matchScore": 0.857,
+              "asrConfidence": 0,
+              "asrText": "も し か し た ら き ょ う は 来 な い か も し れ ま せ ん よ",
+              "phraseIndexes": [
+                14,
+                15
+              ],
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [],
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-16T11:01:08.737Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "matchScore": 0.857,
+                "asrText": "も し か し た ら き ょ う は 来 な い か も し れ ま せ ん よ"
+              }
             }
           }
         ]
@@ -305,17 +898,55 @@
             "translationZh": "初次见面，我姓杨。",
             "confidence": "high",
             "rawText": "楊：はじめまして、楊です。",
+            "kana": "はじめまして、ようです。",
+            "segments": [
+              {
+                "text": "はじめまして、",
+                "ruby": ""
+              },
+              {
+                "text": "楊",
+                "ruby": "よう"
+              },
+              {
+                "text": "です。",
+                "ruby": ""
+              }
+            ],
             "audioSegment": {
               "id": "l26-app-block-002-line-001",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson26/l26-app-block-002-line-001.mp3",
-              "start": 0,
-              "end": 1.9,
-              "duration": 1.9,
-              "method": "approved-asr-alignment",
-              "confidence": "approved",
-              "reviewedAt": "2026-08-05T10:03:55.376Z",
-              "sourceAudioSha256": "9a2290d1136830077fc065f1d9de4348d33006e4970c2b1477b641519713f117"
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit7/lesson26/lesson_apps.mp3",
+              "itemIndex": 1,
+              "speaker": "楊",
+              "text": "はじめまして、楊です。",
+              "start": 25.86,
+              "end": 27.99,
+              "duration": 2.13,
+              "rawAzureTiming": {
+                "start": 26.11,
+                "end": 27.87,
+                "duration": 1.76
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
+              "speechUnitCount": 1,
+              "matchScore": 0.889,
+              "asrConfidence": 0,
+              "asrText": "は じ め ま し て 陽 で す",
+              "phraseIndexes": [
+                5
+              ],
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [],
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-16T11:01:08.737Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "matchScore": 0.889,
+                "asrText": "は じ め ま し て 陽 で す"
+              }
             }
           }
         ]
@@ -339,17 +970,63 @@
             "translationZh": "初次见面，我姓森。请多关照。",
             "confidence": "high",
             "rawText": "森：はじめまして。森です。よろしく お願いします。",
+            "kana": "はじめまして。もりです。よろしく おねがいします。",
+            "segments": [
+              {
+                "text": "はじめまして。",
+                "ruby": ""
+              },
+              {
+                "text": "森",
+                "ruby": "もり"
+              },
+              {
+                "text": "です。よろしく ",
+                "ruby": ""
+              },
+              {
+                "text": "お願い",
+                "ruby": "おねがい"
+              },
+              {
+                "text": "します。",
+                "ruby": ""
+              }
+            ],
             "audioSegment": {
               "id": "l26-app-block-004-line-001",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson26/l26-app-block-004-line-001.mp3",
-              "start": 0,
-              "end": 3.18,
-              "duration": 3.18,
-              "method": "approved-asr-alignment",
-              "confidence": "approved",
-              "reviewedAt": "2026-08-05T10:03:55.376Z",
-              "sourceAudioSha256": "9a2290d1136830077fc065f1d9de4348d33006e4970c2b1477b641519713f117"
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit7/lesson26/lesson_apps.mp3",
+              "itemIndex": 2,
+              "speaker": "森",
+              "text": "はじめまして。森です。よろしく お願いします。",
+              "start": 28.3,
+              "end": 31.71,
+              "duration": 3.41,
+              "rawAzureTiming": {
+                "start": 28.55,
+                "end": 31.59,
+                "duration": 3.04
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrConfidence": 0,
+              "asrText": "は じ め ま し て 森 で す よ ろ し く お 願 い し ま す",
+              "phraseIndexes": [
+                6
+              ],
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [],
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-16T11:01:08.737Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "matchScore": 1,
+                "asrText": "は じ め ま し て 森 で す よ ろ し く お 願 い し ま す"
+              }
             }
           }
         ]
@@ -381,17 +1058,67 @@
             "translationZh": "日本没有握手的习惯啊。",
             "confidence": "high",
             "rawText": "陳：日本には 握手の 習慣が ないんですね。",
+            "kana": "にほんには あくしゅの しゅうかんが ないんですね。",
+            "segments": [
+              {
+                "text": "日本",
+                "ruby": "にほん"
+              },
+              {
+                "text": "には ",
+                "ruby": ""
+              },
+              {
+                "text": "握手",
+                "ruby": "あくしゅ"
+              },
+              {
+                "text": "の ",
+                "ruby": ""
+              },
+              {
+                "text": "習慣",
+                "ruby": "しゅうかん"
+              },
+              {
+                "text": "が ないんですね。",
+                "ruby": ""
+              }
+            ],
             "audioSegment": {
               "id": "l26-app-block-007-line-001",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson26/l26-app-block-007-line-001.mp3",
-              "start": 0,
-              "end": 2.86,
-              "duration": 2.86,
-              "method": "approved-asr-alignment",
-              "confidence": "approved",
-              "reviewedAt": "2026-08-05T10:03:55.376Z",
-              "sourceAudioSha256": "9a2290d1136830077fc065f1d9de4348d33006e4970c2b1477b641519713f117"
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit7/lesson26/lesson_apps.mp3",
+              "itemIndex": 3,
+              "speaker": "陳",
+              "text": "日本には 握手の 習慣が ないんですね。",
+              "start": 33.79,
+              "end": 36.88,
+              "duration": 3.09,
+              "rawAzureTiming": {
+                "start": 34.04,
+                "end": 36.76,
+                "duration": 2.72
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrConfidence": 0,
+              "asrText": "日 本 に は 握 手 の 習 慣 が な い ん で す ね",
+              "phraseIndexes": [
+                7
+              ],
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [],
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-16T11:01:08.737Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "matchScore": 1,
+                "asrText": "日 本 に は 握 手 の 習 慣 が な い ん で す ね"
+              }
             }
           },
           {
@@ -401,17 +1128,63 @@
             "translationZh": "是的，就是这样。因此常常不知不觉就忘了握手。",
             "confidence": "high",
             "rawText": "森：ええ、そうなんです。それで、つい 握手するのを 忘れます。",
+            "kana": "ええ、そうなんです。それで、つい あくしゅするのを わすれます。",
+            "segments": [
+              {
+                "text": "ええ、そうなんです。それで、つい ",
+                "ruby": ""
+              },
+              {
+                "text": "握手",
+                "ruby": "あくしゅ"
+              },
+              {
+                "text": "するのを ",
+                "ruby": ""
+              },
+              {
+                "text": "忘",
+                "ruby": "わす"
+              },
+              {
+                "text": "れます。",
+                "ruby": ""
+              }
+            ],
             "audioSegment": {
               "id": "l26-app-block-007-line-002",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson26/l26-app-block-007-line-002.mp3",
-              "start": 0,
-              "end": 3.9,
-              "duration": 3.9,
-              "method": "approved-asr-alignment",
-              "confidence": "approved",
-              "reviewedAt": "2026-08-05T10:03:55.376Z",
-              "sourceAudioSha256": "9a2290d1136830077fc065f1d9de4348d33006e4970c2b1477b641519713f117"
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit7/lesson26/lesson_apps.mp3",
+              "itemIndex": 4,
+              "speaker": "森",
+              "text": "ええ、そうなんです。それで、つい 握手するのを 忘れます。",
+              "start": 38.07,
+              "end": 42.2,
+              "duration": 4.13,
+              "rawAzureTiming": {
+                "start": 38.32,
+                "end": 42.08,
+                "duration": 3.76
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrConfidence": 0,
+              "asrText": "え え そ う な ん で す そ れ で つ い 握 手 す る の を 忘 れ ま す",
+              "phraseIndexes": [
+                8
+              ],
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [],
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-16T11:01:08.737Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "matchScore": 1,
+                "asrText": "え え そ う な ん で す そ れ で つ い 握 手 す る の を 忘 れ ま す"
+              }
             }
           }
         ]
@@ -435,17 +1208,67 @@
             "translationZh": "在中国，握手是很普通的吗？",
             "confidence": "high",
             "rawText": "森：中国では 握手するのが 普通なんですか。",
+            "kana": "ちゅうごくでは あくしゅするのが ふつうなんですか。",
+            "segments": [
+              {
+                "text": "中国",
+                "ruby": "ちゅうごく"
+              },
+              {
+                "text": "では ",
+                "ruby": ""
+              },
+              {
+                "text": "握手",
+                "ruby": "あくしゅ"
+              },
+              {
+                "text": "するのが ",
+                "ruby": ""
+              },
+              {
+                "text": "普通",
+                "ruby": "ふつう"
+              },
+              {
+                "text": "なんですか。",
+                "ruby": ""
+              }
+            ],
             "audioSegment": {
               "id": "l26-app-block-009-line-001",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson26/l26-app-block-009-line-001.mp3",
-              "start": 0,
-              "end": 3.06,
-              "duration": 3.06,
-              "method": "approved-asr-alignment",
-              "confidence": "approved",
-              "reviewedAt": "2026-08-05T10:03:55.376Z",
-              "sourceAudioSha256": "9a2290d1136830077fc065f1d9de4348d33006e4970c2b1477b641519713f117"
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit7/lesson26/lesson_apps.mp3",
+              "itemIndex": 5,
+              "speaker": "森",
+              "text": "中国では 握手するのが 普通なんですか。",
+              "start": 43.95,
+              "end": 47.24,
+              "duration": 3.29,
+              "rawAzureTiming": {
+                "start": 44.2,
+                "end": 47.12,
+                "duration": 2.92
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrConfidence": 0,
+              "asrText": "中 国 で は 握 手 す る の が 普 通 な ん で す か",
+              "phraseIndexes": [
+                9
+              ],
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [],
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-16T11:01:08.737Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "matchScore": 1,
+                "asrText": "中 国 で は 握 手 す る の が 普 通 な ん で す か"
+              }
             }
           },
           {
@@ -455,17 +1278,66 @@
             "translationZh": "是的。在日本，除了鞠躬之外没有别的寒暄方式吗？",
             "confidence": "high",
             "rawText": "陳：ええ、そうですよ。日本には お辞儀の ほかの あいさつは ないんですか。",
+            "kana": "ええ、そうですよ。にほんには おじぎの ほかの あいさつは ないんですか。",
+            "segments": [
+              {
+                "text": "ええ、そうですよ。",
+                "ruby": ""
+              },
+              {
+                "text": "日本",
+                "ruby": "にほん"
+              },
+              {
+                "text": "には ",
+                "ruby": ""
+              },
+              {
+                "text": "お辞儀",
+                "ruby": "おじぎ"
+              },
+              {
+                "text": "の ほかの あいさつは ないんですか。",
+                "ruby": ""
+              }
+            ],
             "audioSegment": {
               "id": "l26-app-block-009-line-002",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson26/l26-app-block-009-line-002.mp3",
-              "start": 0,
-              "end": 5.34,
-              "duration": 5.34,
-              "method": "approved-asr-alignment",
-              "confidence": "approved",
-              "reviewedAt": "2026-08-05T10:03:55.376Z",
-              "sourceAudioSha256": "9a2290d1136830077fc065f1d9de4348d33006e4970c2b1477b641519713f117"
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit7/lesson26/lesson_apps.mp3",
+              "itemIndex": 6,
+              "speaker": "陳",
+              "text": "ええ、そうですよ。日本には お辞儀の ほかの あいさつは ないんですか。",
+              "start": 47.7,
+              "end": 53.27,
+              "duration": 5.57,
+              "rawAzureTiming": {
+                "start": 47.95,
+                "end": 53.15,
+                "duration": 5.2
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
+              "speechUnitCount": 2,
+              "matchScore": 0.793,
+              "asrConfidence": 0,
+              "asrText": "え え そ う で す よ 日 本 に は お 辞 儀 の 他 の 挨 拶 は な い ん で す か",
+              "phraseIndexes": [
+                10,
+                11
+              ],
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "medium",
+              "alignmentIssues": [
+                "Moderate ASR text similarity."
+              ],
+              "review": {
+                "status": "pending",
+                "reviewedAt": null,
+                "note": "Moderate ASR text similarity.",
+                "matchScore": 0.793,
+                "asrText": "え え そ う で す よ 日 本 に は お 辞 儀 の 他 の 挨 拶 は な い ん で す か"
+              }
             }
           },
           {
@@ -475,17 +1347,87 @@
             "translationZh": "这个嘛……也有人会举手或握手，不过大部分还是鞠躬。",
             "confidence": "high",
             "rawText": "森：そうですね…。手を 挙げたり、握手したり する 人も いますが、ほとんど お辞儀ですね。",
+            "kana": "そうですね…。てを あげたり、あくしゅしたり する ひとも いますが、ほとんど おじぎですね。",
+            "segments": [
+              {
+                "text": "そうですね…。",
+                "ruby": ""
+              },
+              {
+                "text": "手",
+                "ruby": "て"
+              },
+              {
+                "text": "を ",
+                "ruby": ""
+              },
+              {
+                "text": "挙",
+                "ruby": "あ"
+              },
+              {
+                "text": "げたり、",
+                "ruby": ""
+              },
+              {
+                "text": "握手",
+                "ruby": "あくしゅ"
+              },
+              {
+                "text": "したり する ",
+                "ruby": ""
+              },
+              {
+                "text": "人",
+                "ruby": "ひと"
+              },
+              {
+                "text": "も いますが、ほとんど ",
+                "ruby": ""
+              },
+              {
+                "text": "お辞儀",
+                "ruby": "おじぎ"
+              },
+              {
+                "text": "ですね。",
+                "ruby": ""
+              }
+            ],
             "audioSegment": {
               "id": "l26-app-block-009-line-003",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson26/l26-app-block-009-line-003.mp3",
-              "start": 0,
-              "end": 6.62,
-              "duration": 6.62,
-              "method": "approved-asr-alignment",
-              "confidence": "approved",
-              "reviewedAt": "2026-08-05T10:03:55.376Z",
-              "sourceAudioSha256": "9a2290d1136830077fc065f1d9de4348d33006e4970c2b1477b641519713f117"
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit7/lesson26/lesson_apps.mp3",
+              "itemIndex": 7,
+              "speaker": "森",
+              "text": "そうですね…。手を 挙げたり、握手したり する 人も いますが、ほとんど お辞儀ですね。",
+              "start": 53.54,
+              "end": 60.39,
+              "duration": 6.85,
+              "rawAzureTiming": {
+                "start": 53.79,
+                "end": 60.27,
+                "duration": 6.48
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
+              "speechUnitCount": 1,
+              "matchScore": 0.941,
+              "asrConfidence": 0,
+              "asrText": "そ う で す ね 手 を 挙 げ た り 握 手 し た り す る 人 も い ま す が ほ と ん ど お ち ぎ で す ね",
+              "phraseIndexes": [
+                11
+              ],
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [],
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-16T11:01:08.737Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "matchScore": 0.941,
+                "asrText": "そ う で す ね 手 を 挙 げ た り 握 手 し た り す る 人 も い ま す が ほ と ん ど お ち ぎ で す ね"
+              }
             }
           }
         ]
@@ -509,17 +1451,85 @@
             "translationZh": "小陈、森先生，你们下午的安排是去拜访客户吧。",
             "confidence": "high",
             "rawText": "戴：陳さん、森さんの 午後の 予定は あいさつ回りですね。",
+            "kana": "ちんさん、もりさんの ごごの よていは あいさつまわりですね。",
+            "segments": [
+              {
+                "text": "陳",
+                "ruby": "ちん"
+              },
+              {
+                "text": "さん、",
+                "ruby": ""
+              },
+              {
+                "text": "森",
+                "ruby": "もり"
+              },
+              {
+                "text": "さんの ",
+                "ruby": ""
+              },
+              {
+                "text": "午後",
+                "ruby": "ごご"
+              },
+              {
+                "text": "の ",
+                "ruby": ""
+              },
+              {
+                "text": "予定",
+                "ruby": "よてい"
+              },
+              {
+                "text": "は あいさつ",
+                "ruby": ""
+              },
+              {
+                "text": "回",
+                "ruby": "まわ"
+              },
+              {
+                "text": "りですね。",
+                "ruby": ""
+              }
+            ],
             "audioSegment": {
               "id": "l26-app-block-011-line-001",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson26/l26-app-block-011-line-001.mp3",
-              "start": 0,
-              "end": 4.26,
-              "duration": 4.26,
-              "method": "approved-asr-alignment",
-              "confidence": "approved",
-              "reviewedAt": "2026-08-05T10:03:55.376Z",
-              "sourceAudioSha256": "9a2290d1136830077fc065f1d9de4348d33006e4970c2b1477b641519713f117"
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit7/lesson26/lesson_apps.mp3",
+              "itemIndex": 8,
+              "speaker": "戴",
+              "text": "陳さん、森さんの 午後の 予定は あいさつ回りですね。",
+              "start": 61.75,
+              "end": 66.24,
+              "duration": 4.49,
+              "rawAzureTiming": {
+                "start": 62,
+                "end": 66.12,
+                "duration": 4.12
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
+              "speechUnitCount": 1,
+              "matchScore": 0.773,
+              "asrConfidence": 0,
+              "asrText": "ン さ ん 森 さ ん の 午 後 の 予 定 は 挨 拶 回 り で す ね",
+              "phraseIndexes": [
+                12
+              ],
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "medium",
+              "alignmentIssues": [
+                "Moderate ASR text similarity."
+              ],
+              "review": {
+                "status": "pending",
+                "reviewedAt": null,
+                "note": "Moderate ASR text similarity.",
+                "matchScore": 0.773,
+                "asrText": "ン さ ん 森 さ ん の 午 後 の 予 定 は 挨 拶 回 り で す ね"
+              }
             }
           },
           {
@@ -529,17 +1539,79 @@
             "translationZh": "是的。现在一点半，从现在起大概能拜访四家公司吧。",
             "confidence": "high",
             "rawText": "陳：ええ。今 1時半ですから、これから 4社ぐらい 回ることが できるでしょう。",
+            "kana": "ええ。いま いちじはんですから、これから よんしゃぐらい まわることが できるでしょう。",
+            "segments": [
+              {
+                "text": "ええ。",
+                "ruby": ""
+              },
+              {
+                "text": "今",
+                "ruby": "いま"
+              },
+              {
+                "text": " 1",
+                "ruby": ""
+              },
+              {
+                "text": "時半",
+                "ruby": "じはん"
+              },
+              {
+                "text": "ですから、これから 4",
+                "ruby": ""
+              },
+              {
+                "text": "社",
+                "ruby": "しゃ"
+              },
+              {
+                "text": "ぐらい ",
+                "ruby": ""
+              },
+              {
+                "text": "回",
+                "ruby": "まわ"
+              },
+              {
+                "text": "ることが できるでしょう。",
+                "ruby": ""
+              }
+            ],
             "audioSegment": {
               "id": "l26-app-block-011-line-002",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson26/l26-app-block-011-line-002.mp3",
-              "start": 0,
-              "end": 5.62,
-              "duration": 5.62,
-              "method": "approved-asr-alignment",
-              "confidence": "approved",
-              "reviewedAt": "2026-08-05T10:03:55.376Z",
-              "sourceAudioSha256": "9a2290d1136830077fc065f1d9de4348d33006e4970c2b1477b641519713f117"
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit7/lesson26/lesson_apps.mp3",
+              "itemIndex": 9,
+              "speaker": "陳",
+              "text": "ええ。今 1時半ですから、これから 4社ぐらい 回ることが できるでしょう。",
+              "start": 66.82,
+              "end": 72.67,
+              "duration": 5.85,
+              "rawAzureTiming": {
+                "start": 67.07,
+                "end": 72.55,
+                "duration": 5.48
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
+              "speechUnitCount": 1,
+              "matchScore": 0.935,
+              "asrConfidence": 0,
+              "asrText": "え え 今 一 時 半 で す か ら こ れ か ら 四 社 ぐ ら い 回 る こ と が で き る で し ょ う",
+              "phraseIndexes": [
+                13
+              ],
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [],
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-16T11:01:08.737Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "matchScore": 0.935,
+                "asrText": "え え 今 一 時 半 で す か ら こ れ か ら 四 社 ぐ ら い 回 る こ と が で き る で し ょ う"
+              }
             }
           },
           {
@@ -549,17 +1621,64 @@
             "translationZh": "是啊。也许能去五家公司呢。",
             "confidence": "high",
             "rawText": "戴：そうですね。5社 行くことが できるかも しれませんよ。",
+            "kana": "そうですね。ごしゃ いくことが できるかも しれませんよ。",
+            "segments": [
+              {
+                "text": "そうですね。5",
+                "ruby": ""
+              },
+              {
+                "text": "社",
+                "ruby": "しゃ"
+              },
+              {
+                "text": " ",
+                "ruby": ""
+              },
+              {
+                "text": "行",
+                "ruby": "い"
+              },
+              {
+                "text": "くことが できるかも しれませんよ。",
+                "ruby": ""
+              }
+            ],
             "audioSegment": {
               "id": "l26-app-block-011-line-003",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson26/l26-app-block-011-line-003.mp3",
-              "start": 0,
-              "end": 4.42,
-              "duration": 4.42,
-              "method": "approved-asr-alignment",
-              "confidence": "approved",
-              "reviewedAt": "2026-08-05T10:03:55.376Z",
-              "sourceAudioSha256": "9a2290d1136830077fc065f1d9de4348d33006e4970c2b1477b641519713f117"
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit7/lesson26/lesson_apps.mp3",
+              "itemIndex": 10,
+              "speaker": "戴",
+              "text": "そうですね。5社 行くことが できるかも しれませんよ。",
+              "start": 73.26,
+              "end": 77.91,
+              "duration": 4.65,
+              "rawAzureTiming": {
+                "start": 73.51,
+                "end": 77.79,
+                "duration": 4.28
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
+              "speechUnitCount": 2,
+              "matchScore": 0.957,
+              "asrConfidence": 0,
+              "asrText": "そ う で す ね 五 社 行 く こ と が で き る か も し れ ま せ ん よ",
+              "phraseIndexes": [
+                14,
+                15
+              ],
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [],
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-16T11:01:08.737Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "matchScore": 0.957,
+                "asrText": "そ う で す ね 五 社 行 く こ と が で き る か も し れ ま せ ん よ"
+              }
             }
           }
         ]
@@ -583,17 +1702,76 @@
             "translationZh": "森先生，下次请别忘了握手哦。",
             "confidence": "high",
             "rawText": "森さん、次は 握手するのを 忘れないで くださいね。",
+            "kana": "もりさん、つぎは あくしゅするのを わすれないで くださいね。",
+            "segments": [
+              {
+                "text": "森",
+                "ruby": "もり"
+              },
+              {
+                "text": "さん、",
+                "ruby": ""
+              },
+              {
+                "text": "次",
+                "ruby": "つぎ"
+              },
+              {
+                "text": "は ",
+                "ruby": ""
+              },
+              {
+                "text": "握手",
+                "ruby": "あくしゅ"
+              },
+              {
+                "text": "するのを ",
+                "ruby": ""
+              },
+              {
+                "text": "忘",
+                "ruby": "わす"
+              },
+              {
+                "text": "れないで くださいね。",
+                "ruby": ""
+              }
+            ],
             "audioSegment": {
               "id": "l26-app-block-013-line-001",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson26/l26-app-block-013-line-001.mp3",
-              "start": 0,
-              "end": 4.1,
-              "duration": 4.1,
-              "method": "approved-asr-alignment",
-              "confidence": "approved",
-              "reviewedAt": "2026-08-05T10:03:55.376Z",
-              "sourceAudioSha256": "9a2290d1136830077fc065f1d9de4348d33006e4970c2b1477b641519713f117"
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit7/lesson26/lesson_apps.mp3",
+              "itemIndex": 11,
+              "speaker": "戴",
+              "text": "森さん、次は 握手するのを 忘れないで くださいね。",
+              "start": 78.7,
+              "end": 83.03,
+              "duration": 4.33,
+              "rawAzureTiming": {
+                "start": 78.95,
+                "end": 82.91,
+                "duration": 3.96
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
+              "speechUnitCount": 2,
+              "matchScore": 1,
+              "asrConfidence": 0,
+              "asrText": "森 さ ん 次 は 握 手 す る の を 忘 れ な い で く だ さ い ね",
+              "phraseIndexes": [
+                16,
+                17
+              ],
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [],
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-16T11:01:08.737Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "matchScore": 1,
+                "asrText": "森 さ ん 次 は 握 手 す る の を 忘 れ な い で く だ さ い ね"
+              }
             }
           }
         ]
@@ -604,10 +1782,35 @@
     "扫描页中的假名标注不适合可靠地逐句切分，未生成 kana 或 segments/ruby 字段。"
   ],
   "audioAlignment": {
-    "schemaVersion": 1,
-    "method": "approved-asr-alignment",
-    "sourceAlignment": "data/ocr/lesson26-text-audio-alignment.json",
-    "publishedAt": "2026-08-05T10:03:59.338Z",
-    "approvedSegments": 23
+    "schemaVersion": 2,
+    "lessonId": "lesson26",
+    "generatedAt": "2026-08-16T11:01:08.737Z",
+    "method": "azure-speech-sentence-alignment-with-boundary-padding",
+    "reviewStatus": "pending",
+    "tracks": [
+      {
+        "id": "lesson_basic",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit7/lesson26/lesson_basic.mp3",
+        "sourceAudioSha256": "881698b5053a913039aefad993c16a98e5af4a1a946ec1d11852b54cfcec0b5b",
+        "expectedItems": 12,
+        "alignedItems": 12,
+        "detectedUnitCount": 13,
+        "warnings": [
+          "Reused prior Azure timings; no Azure request was made."
+        ]
+      },
+      {
+        "id": "lesson_apps",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit7/lesson26/lesson_apps.mp3",
+        "sourceAudioSha256": "9a2290d1136830077fc065f1d9de4348d33006e4970c2b1477b641519713f117",
+        "expectedItems": 11,
+        "alignedItems": 11,
+        "detectedUnitCount": 14,
+        "warnings": [
+          "2 item(s) require manual verification.",
+          "Reused prior Azure timings; no Azure request was made."
+        ]
+      }
+    ]
   }
 }

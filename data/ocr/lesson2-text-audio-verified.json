@@ -20,20 +20,55 @@
         "order": 1,
         "text": "これは 本です。",
         "kana": "これは ほんです。",
+        "segments": [
+          {
+            "text": "これは "
+          },
+          {
+            "text": "本",
+            "ruby": "ほん"
+          },
+          {
+            "text": "です。"
+          }
+        ],
         "translationZh": "这是书。",
         "confidence": "high",
         "rawText": "1. これは 本です。",
         "audioSegment": {
           "id": "l2-basic-s001",
           "trackId": "lesson_basic",
-          "sourceUrl": "/data/ocr/audio-clips/lesson2/l2-basic-s001.mp3",
-          "start": 0,
-          "end": 1.7,
-          "duration": 1.7,
-          "method": "approved-asr-alignment",
-          "confidence": "approved",
-          "reviewedAt": "2026-08-05T08:15:52.090Z",
-          "sourceAudioSha256": "780f1dd3937e9bdbdd64bbf28d3dd1ce109c9d0bd425786a2e57cdfa1a12d49e"
+          "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit1/lesson2/lesson_basic.mp3",
+          "itemIndex": 1,
+          "speaker": "",
+          "text": "これは 本です。",
+          "start": 1.06,
+          "end": 2.99,
+          "duration": 1.93,
+          "rawAzureTiming": {
+            "start": 1.31,
+            "end": 2.87,
+            "duration": 1.56
+          },
+          "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+          "speechActivity": null,
+          "speechUnitCount": 1,
+          "matchScore": 1,
+          "asrConfidence": 0,
+          "asrText": "こ れ は 本 で す",
+          "phraseIndexes": [
+            0
+          ],
+          "method": "azure-speech-sentence-alignment-with-boundary-padding",
+          "confidence": "high",
+          "alignmentIssues": [],
+          "review": {
+            "status": "approved",
+            "reviewedAt": "2026-08-16T10:30:37.897Z",
+            "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+            "matchScore": 1,
+            "asrText": "こ れ は 本 で す"
+          }
         }
       },
       {
@@ -41,20 +76,55 @@
         "order": 2,
         "text": "それは 何ですか。",
         "kana": "それは なんですか。",
+        "segments": [
+          {
+            "text": "それは "
+          },
+          {
+            "text": "何",
+            "ruby": "なん"
+          },
+          {
+            "text": "ですか。"
+          }
+        ],
         "translationZh": "那是什么？",
         "confidence": "high",
         "rawText": "2. それは 何ですか。",
         "audioSegment": {
           "id": "l2-basic-s002",
           "trackId": "lesson_basic",
-          "sourceUrl": "/data/ocr/audio-clips/lesson2/l2-basic-s002.mp3",
-          "start": 0,
-          "end": 1.94,
-          "duration": 1.94,
-          "method": "approved-asr-alignment",
-          "confidence": "approved",
-          "reviewedAt": "2026-08-05T08:15:52.090Z",
-          "sourceAudioSha256": "780f1dd3937e9bdbdd64bbf28d3dd1ce109c9d0bd425786a2e57cdfa1a12d49e"
+          "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit1/lesson2/lesson_basic.mp3",
+          "itemIndex": 2,
+          "speaker": "",
+          "text": "それは 何ですか。",
+          "start": 4.82,
+          "end": 6.99,
+          "duration": 2.17,
+          "rawAzureTiming": {
+            "start": 5.07,
+            "end": 6.87,
+            "duration": 1.8
+          },
+          "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+          "speechActivity": null,
+          "speechUnitCount": 1,
+          "matchScore": 1,
+          "asrConfidence": 0,
+          "asrText": "そ れ は 何 で す か",
+          "phraseIndexes": [
+            1
+          ],
+          "method": "azure-speech-sentence-alignment-with-boundary-padding",
+          "confidence": "high",
+          "alignmentIssues": [],
+          "review": {
+            "status": "approved",
+            "reviewedAt": "2026-08-16T10:30:37.897Z",
+            "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+            "matchScore": 1,
+            "asrText": "そ れ は 何 で す か"
+          }
         }
       },
       {
@@ -62,20 +132,57 @@
         "order": 3,
         "text": "あれは だれの 傘ですか。",
         "kana": "あれは だれの かさですか。",
+        "segments": [
+          {
+            "text": "あれは だれの "
+          },
+          {
+            "text": "傘",
+            "ruby": "かさ"
+          },
+          {
+            "text": "ですか。"
+          }
+        ],
         "translationZh": "那是谁的伞？",
         "confidence": "high",
         "rawText": "3. あれは だれの 傘ですか。",
         "audioSegment": {
           "id": "l2-basic-s003",
           "trackId": "lesson_basic",
-          "sourceUrl": "/data/ocr/audio-clips/lesson2/l2-basic-s003.mp3",
-          "start": 0,
-          "end": 2.5,
-          "duration": 2.5,
-          "method": "approved-asr-alignment",
-          "confidence": "approved",
-          "reviewedAt": "2026-08-05T08:15:52.090Z",
-          "sourceAudioSha256": "780f1dd3937e9bdbdd64bbf28d3dd1ce109c9d0bd425786a2e57cdfa1a12d49e"
+          "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit1/lesson2/lesson_basic.mp3",
+          "itemIndex": 3,
+          "speaker": "",
+          "text": "あれは だれの 傘ですか。",
+          "start": 8.66,
+          "end": 11.39,
+          "duration": 2.73,
+          "rawAzureTiming": {
+            "start": 8.91,
+            "end": 11.27,
+            "duration": 2.36
+          },
+          "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+          "speechActivity": null,
+          "speechUnitCount": 1,
+          "matchScore": 0.8,
+          "asrConfidence": 0,
+          "asrText": "あ れ は 誰 の 傘 で す か",
+          "phraseIndexes": [
+            2
+          ],
+          "method": "azure-speech-sentence-alignment-with-boundary-padding",
+          "confidence": "medium",
+          "alignmentIssues": [
+            "Moderate ASR text similarity."
+          ],
+          "review": {
+            "status": "pending",
+            "reviewedAt": null,
+            "note": "Moderate ASR text similarity.",
+            "matchScore": 0.8,
+            "asrText": "あ れ は 誰 の 傘 で す か"
+          }
         }
       },
       {
@@ -83,20 +190,48 @@
         "order": 4,
         "text": "この カメラは スミスさんのです。",
         "kana": "この カメラは スミスさんのです。",
+        "segments": [
+          {
+            "text": "この カメラは スミスさんのです。"
+          }
+        ],
         "translationZh": "这个照相机是史密斯先生的。",
         "confidence": "high",
         "rawText": "4. この カメラは スミスさんのです。",
         "audioSegment": {
           "id": "l2-basic-s004",
           "trackId": "lesson_basic",
-          "sourceUrl": "/data/ocr/audio-clips/lesson2/l2-basic-s004.mp3",
-          "start": 0,
-          "end": 2.78,
-          "duration": 2.78,
-          "method": "approved-asr-alignment",
-          "confidence": "approved",
-          "reviewedAt": "2026-08-05T08:15:52.090Z",
-          "sourceAudioSha256": "780f1dd3937e9bdbdd64bbf28d3dd1ce109c9d0bd425786a2e57cdfa1a12d49e"
+          "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit1/lesson2/lesson_basic.mp3",
+          "itemIndex": 4,
+          "speaker": "",
+          "text": "この カメラは スミスさんのです。",
+          "start": 13.61,
+          "end": 16.62,
+          "duration": 3.01,
+          "rawAzureTiming": {
+            "start": 13.86,
+            "end": 16.5,
+            "duration": 2.64
+          },
+          "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+          "speechActivity": null,
+          "speechUnitCount": 1,
+          "matchScore": 1,
+          "asrConfidence": 0,
+          "asrText": "こ の カ メ ラ は ス ミ ス さ ん の で す",
+          "phraseIndexes": [
+            3
+          ],
+          "method": "azure-speech-sentence-alignment-with-boundary-padding",
+          "confidence": "high",
+          "alignmentIssues": [],
+          "review": {
+            "status": "approved",
+            "reviewedAt": "2026-08-16T10:30:37.897Z",
+            "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+            "matchScore": 1,
+            "asrText": "こ の カ メ ラ は ス ミ ス さ ん の で す"
+          }
         }
       }
     ],
@@ -110,20 +245,48 @@
             "speaker": "甲",
             "text": "これは テレビですか。",
             "kana": "これは テレビですか。",
+            "segments": [
+              {
+                "text": "これは テレビですか。"
+              }
+            ],
             "translationZh": "这是电视机吗？",
             "confidence": "high",
             "rawText": "甲：これは テレビですか。",
             "audioSegment": {
               "id": "l2-basic-dialogue-001-line-001",
               "trackId": "lesson_basic",
-              "sourceUrl": "/data/ocr/audio-clips/lesson2/l2-basic-dialogue-001-line-001.mp3",
-              "start": 0,
-              "end": 1.9,
-              "duration": 1.9,
-              "method": "approved-asr-alignment",
-              "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:15:52.090Z",
-              "sourceAudioSha256": "780f1dd3937e9bdbdd64bbf28d3dd1ce109c9d0bd425786a2e57cdfa1a12d49e"
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit1/lesson2/lesson_basic.mp3",
+              "itemIndex": 5,
+              "speaker": "甲",
+              "text": "これは テレビですか。",
+              "start": 19.26,
+              "end": 21.39,
+              "duration": 2.13,
+              "rawAzureTiming": {
+                "start": 19.51,
+                "end": 21.27,
+                "duration": 1.76
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrConfidence": 0,
+              "asrText": "こ れ は テ レ ビ で す か",
+              "phraseIndexes": [
+                4
+              ],
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [],
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-16T10:30:37.897Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "matchScore": 1,
+                "asrText": "こ れ は テ レ ビ で す か"
+              }
             }
           },
           {
@@ -131,20 +294,48 @@
             "speaker": "乙",
             "text": "いいえ、それは テレビでは ありません。パソコンです。",
             "kana": "いいえ、それは テレビでは ありません。パソコンです。",
+            "segments": [
+              {
+                "text": "いいえ、それは テレビでは ありません。パソコンです。"
+              }
+            ],
             "translationZh": "不，那不是电视机。是个人电脑。",
             "confidence": "high",
             "rawText": "乙：いいえ、それは テレビでは ありません。パソコンです。",
             "audioSegment": {
               "id": "l2-basic-dialogue-001-line-002",
               "trackId": "lesson_basic",
-              "sourceUrl": "/data/ocr/audio-clips/lesson2/l2-basic-dialogue-001-line-002.mp3",
-              "start": 0,
-              "end": 4.46,
-              "duration": 4.46,
-              "method": "approved-asr-alignment",
-              "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:15:52.090Z",
-              "sourceAudioSha256": "780f1dd3937e9bdbdd64bbf28d3dd1ce109c9d0bd425786a2e57cdfa1a12d49e"
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit1/lesson2/lesson_basic.mp3",
+              "itemIndex": 6,
+              "speaker": "乙",
+              "text": "いいえ、それは テレビでは ありません。パソコンです。",
+              "start": 21.66,
+              "end": 26.35,
+              "duration": 4.69,
+              "rawAzureTiming": {
+                "start": 21.91,
+                "end": 26.23,
+                "duration": 4.32
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrConfidence": 0,
+              "asrText": "い い え そ れ は テ レ ビ で は あ り ま せ ん パ ソ コ ン で す",
+              "phraseIndexes": [
+                5
+              ],
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [],
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-16T10:30:37.897Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "matchScore": 1,
+                "asrText": "い い え そ れ は テ レ ビ で は あ り ま せ ん パ ソ コ ン で す"
+              }
             }
           }
         ]
@@ -158,20 +349,55 @@
             "speaker": "甲",
             "text": "それは 何ですか。",
             "kana": "それは なんですか。",
+            "segments": [
+              {
+                "text": "それは "
+              },
+              {
+                "text": "何",
+                "ruby": "なん"
+              },
+              {
+                "text": "ですか。"
+              }
+            ],
             "translationZh": "那是什么？",
             "confidence": "high",
             "rawText": "甲：それは 何ですか。",
             "audioSegment": {
               "id": "l2-basic-dialogue-002-line-001",
               "trackId": "lesson_basic",
-              "sourceUrl": "/data/ocr/audio-clips/lesson2/l2-basic-dialogue-002-line-001.mp3",
-              "start": 0,
-              "end": 1.54,
-              "duration": 1.54,
-              "method": "approved-asr-alignment",
-              "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:15:52.090Z",
-              "sourceAudioSha256": "780f1dd3937e9bdbdd64bbf28d3dd1ce109c9d0bd425786a2e57cdfa1a12d49e"
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit1/lesson2/lesson_basic.mp3",
+              "itemIndex": 7,
+              "speaker": "甲",
+              "text": "それは 何ですか。",
+              "start": 27.63,
+              "end": 29.4,
+              "duration": 1.77,
+              "rawAzureTiming": {
+                "start": 27.88,
+                "end": 29.28,
+                "duration": 1.4
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrConfidence": 0,
+              "asrText": "そ れ は 何 で す か",
+              "phraseIndexes": [
+                6
+              ],
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [],
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-16T10:30:37.897Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "matchScore": 1,
+                "asrText": "そ れ は 何 で す か"
+              }
             }
           },
           {
@@ -179,20 +405,62 @@
             "speaker": "乙",
             "text": "これは 日本語の 本です。",
             "kana": "これは にほんごの ほんです。",
+            "segments": [
+              {
+                "text": "これは "
+              },
+              {
+                "text": "日本語",
+                "ruby": "にほんご"
+              },
+              {
+                "text": "の "
+              },
+              {
+                "text": "本",
+                "ruby": "ほん"
+              },
+              {
+                "text": "です。"
+              }
+            ],
             "translationZh": "这是日语书。",
             "confidence": "high",
             "rawText": "乙：これは 日本語の 本です。",
             "audioSegment": {
               "id": "l2-basic-dialogue-002-line-002",
               "trackId": "lesson_basic",
-              "sourceUrl": "/data/ocr/audio-clips/lesson2/l2-basic-dialogue-002-line-002.mp3",
-              "start": 0,
-              "end": 2.34,
-              "duration": 2.34,
-              "method": "approved-asr-alignment",
-              "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:15:52.090Z",
-              "sourceAudioSha256": "780f1dd3937e9bdbdd64bbf28d3dd1ce109c9d0bd425786a2e57cdfa1a12d49e"
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit1/lesson2/lesson_basic.mp3",
+              "itemIndex": 8,
+              "speaker": "乙",
+              "text": "これは 日本語の 本です。",
+              "start": 29.98,
+              "end": 32.55,
+              "duration": 2.57,
+              "rawAzureTiming": {
+                "start": 30.23,
+                "end": 32.43,
+                "duration": 2.2
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrConfidence": 0,
+              "asrText": "こ れ は 日 本 語 の 本 で す",
+              "phraseIndexes": [
+                7
+              ],
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [],
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-16T10:30:37.897Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "matchScore": 1,
+                "asrText": "こ れ は 日 本 語 の 本 で す"
+              }
             }
           }
         ]
@@ -206,20 +474,52 @@
             "speaker": "甲",
             "text": "森さんの かばんは どれですか。",
             "kana": "もりさんの かばんは どれですか。",
+            "segments": [
+              {
+                "text": "森",
+                "ruby": "もり"
+              },
+              {
+                "text": "さんの かばんは どれですか。"
+              }
+            ],
             "translationZh": "森先生的包是哪一个？",
             "confidence": "high",
             "rawText": "甲：森さんの かばんは どれですか。",
             "audioSegment": {
               "id": "l2-basic-dialogue-003-line-001",
               "trackId": "lesson_basic",
-              "sourceUrl": "/data/ocr/audio-clips/lesson2/l2-basic-dialogue-003-line-001.mp3",
-              "start": 0,
-              "end": 2.46,
-              "duration": 2.46,
-              "method": "approved-asr-alignment",
-              "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:15:52.090Z",
-              "sourceAudioSha256": "780f1dd3937e9bdbdd64bbf28d3dd1ce109c9d0bd425786a2e57cdfa1a12d49e"
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit1/lesson2/lesson_basic.mp3",
+              "itemIndex": 9,
+              "speaker": "甲",
+              "text": "森さんの かばんは どれですか。",
+              "start": 33.82,
+              "end": 36.51,
+              "duration": 2.69,
+              "rawAzureTiming": {
+                "start": 34.07,
+                "end": 36.39,
+                "duration": 2.32
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrConfidence": 0,
+              "asrText": "森 さ ん の か ば ん は ど れ で す か",
+              "phraseIndexes": [
+                8
+              ],
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [],
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-16T10:30:37.897Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "matchScore": 1,
+                "asrText": "森 さ ん の か ば ん は ど れ で す か"
+              }
             }
           },
           {
@@ -227,20 +527,48 @@
             "speaker": "乙",
             "text": "あの かばんです。",
             "kana": "あの かばんです。",
+            "segments": [
+              {
+                "text": "あの かばんです。"
+              }
+            ],
             "translationZh": "是那个包。",
             "confidence": "high",
             "rawText": "乙：あの かばんです。",
             "audioSegment": {
               "id": "l2-basic-dialogue-003-line-002",
               "trackId": "lesson_basic",
-              "sourceUrl": "/data/ocr/audio-clips/lesson2/l2-basic-dialogue-003-line-002.mp3",
-              "start": 0,
-              "end": 1.3,
-              "duration": 1.3,
-              "method": "approved-asr-alignment",
-              "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:15:52.090Z",
-              "sourceAudioSha256": "780f1dd3937e9bdbdd64bbf28d3dd1ce109c9d0bd425786a2e57cdfa1a12d49e"
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit1/lesson2/lesson_basic.mp3",
+              "itemIndex": 10,
+              "speaker": "乙",
+              "text": "あの かばんです。",
+              "start": 36.82,
+              "end": 38.35,
+              "duration": 1.53,
+              "rawAzureTiming": {
+                "start": 37.07,
+                "end": 38.23,
+                "duration": 1.16
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrConfidence": 0,
+              "asrText": "あ の か ば ん で す",
+              "phraseIndexes": [
+                9
+              ],
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [],
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-16T10:30:37.897Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "matchScore": 1,
+                "asrText": "あ の か ば ん で す"
+              }
             }
           }
         ]
@@ -254,20 +582,48 @@
             "speaker": "甲",
             "text": "その ノートは だれのですか。",
             "kana": "その ノートは だれのですか。",
+            "segments": [
+              {
+                "text": "その ノートは だれのですか。"
+              }
+            ],
             "translationZh": "那个笔记本是谁的？",
             "confidence": "high",
             "rawText": "甲：その ノートは だれのですか。",
             "audioSegment": {
               "id": "l2-basic-dialogue-004-line-001",
               "trackId": "lesson_basic",
-              "sourceUrl": "/data/ocr/audio-clips/lesson2/l2-basic-dialogue-004-line-001.mp3",
-              "start": 0,
-              "end": 2.98,
-              "duration": 2.98,
-              "method": "approved-asr-alignment",
-              "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:15:52.090Z",
-              "sourceAudioSha256": "780f1dd3937e9bdbdd64bbf28d3dd1ce109c9d0bd425786a2e57cdfa1a12d49e"
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit1/lesson2/lesson_basic.mp3",
+              "itemIndex": 11,
+              "speaker": "甲",
+              "text": "その ノートは だれのですか。",
+              "start": 39.66,
+              "end": 42.73,
+              "duration": 3.07,
+              "rawAzureTiming": {
+                "start": 39.91,
+                "end": 42.75,
+                "duration": 2.84
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
+              "speechUnitCount": 1,
+              "matchScore": 0.833,
+              "asrConfidence": 0,
+              "asrText": "そ の ノ ー ト は 誰 の で す か",
+              "phraseIndexes": [
+                10
+              ],
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [],
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-16T10:30:37.897Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "matchScore": 0.833,
+                "asrText": "そ の ノ ー ト は 誰 の で す か"
+              }
             }
           },
           {
@@ -275,20 +631,50 @@
             "speaker": "乙",
             "text": "わたしのです。",
             "kana": "わたしのです。",
+            "segments": [
+              {
+                "text": "わたしのです。"
+              }
+            ],
             "translationZh": "是我的。",
             "confidence": "high",
             "rawText": "乙：わたしのです。",
             "audioSegment": {
               "id": "l2-basic-dialogue-004-line-002",
               "trackId": "lesson_basic",
-              "sourceUrl": "/data/ocr/audio-clips/lesson2/l2-basic-dialogue-004-line-002.mp3",
-              "start": 0,
-              "end": 0.86,
-              "duration": 0.86,
-              "method": "approved-asr-alignment",
-              "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:15:52.090Z",
-              "sourceAudioSha256": "780f1dd3937e9bdbdd64bbf28d3dd1ce109c9d0bd425786a2e57cdfa1a12d49e"
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit1/lesson2/lesson_basic.mp3",
+              "itemIndex": 12,
+              "speaker": "乙",
+              "text": "わたしのです。",
+              "start": 42.77,
+              "end": 43.59,
+              "duration": 0.82,
+              "rawAzureTiming": {
+                "start": 42.75,
+                "end": 43.47,
+                "duration": 0.72
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
+              "speechUnitCount": 1,
+              "matchScore": 0.5,
+              "asrConfidence": 0,
+              "asrText": "私 の で す",
+              "phraseIndexes": [
+                10
+              ],
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "needs-review",
+              "alignmentIssues": [
+                "Low ASR text similarity."
+              ],
+              "review": {
+                "status": "pending",
+                "reviewedAt": null,
+                "note": "Low ASR text similarity.",
+                "matchScore": 0.5,
+                "asrText": "私 の で す"
+              }
             }
           }
         ]
@@ -325,20 +711,59 @@
             "speaker": "小野",
             "text": "李さん、それは 何ですか。",
             "kana": "りさん、それは なんですか。",
+            "segments": [
+              {
+                "text": "李",
+                "ruby": "り"
+              },
+              {
+                "text": "さん、それは "
+              },
+              {
+                "text": "何",
+                "ruby": "なん"
+              },
+              {
+                "text": "ですか。"
+              }
+            ],
             "translationZh": "小李，那是什么？",
             "confidence": "high",
             "rawText": "小野：李さん、それは 何ですか。",
             "audioSegment": {
               "id": "l2-app-block-003-line-001",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson2/l2-app-block-003-line-001.mp3",
-              "start": 0,
-              "end": 2.38,
-              "duration": 2.38,
-              "method": "approved-asr-alignment",
-              "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:16:24.170Z",
-              "sourceAudioSha256": "dd1cd75132289b4458be0a68664eed872b5987e14db289d05c9480db0b742502"
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit1/lesson2/lesson_apps.mp3",
+              "itemIndex": 1,
+              "speaker": "小野",
+              "text": "李さん、それは 何ですか。",
+              "start": 17.94,
+              "end": 20.55,
+              "duration": 2.61,
+              "rawAzureTiming": {
+                "start": 18.19,
+                "end": 20.43,
+                "duration": 2.24
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
+              "speechUnitCount": 1,
+              "matchScore": 0.9,
+              "asrConfidence": 0,
+              "asrText": "リ さ ん そ れ は 何 で す か",
+              "phraseIndexes": [
+                4
+              ],
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [],
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-16T10:30:37.897Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "matchScore": 0.9,
+                "asrText": "リ さ ん そ れ は 何 で す か"
+              }
             }
           },
           {
@@ -346,20 +771,62 @@
             "speaker": "李",
             "text": "これですか。家族の 写真です。",
             "kana": "これですか。かぞくの しゃしんです。",
+            "segments": [
+              {
+                "text": "これですか。"
+              },
+              {
+                "text": "家族",
+                "ruby": "かぞく"
+              },
+              {
+                "text": "の "
+              },
+              {
+                "text": "写真",
+                "ruby": "しゃしん"
+              },
+              {
+                "text": "です。"
+              }
+            ],
             "translationZh": "这个吗？是家人的照片。",
             "confidence": "high",
             "rawText": "李：これですか。家族の 写真です。",
             "audioSegment": {
               "id": "l2-app-block-003-line-002",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson2/l2-app-block-003-line-002.mp3",
-              "start": 0,
-              "end": 2.86,
-              "duration": 2.86,
-              "method": "approved-asr-alignment",
-              "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:16:24.170Z",
-              "sourceAudioSha256": "dd1cd75132289b4458be0a68664eed872b5987e14db289d05c9480db0b742502"
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit1/lesson2/lesson_apps.mp3",
+              "itemIndex": 2,
+              "speaker": "李",
+              "text": "これですか。家族の 写真です。",
+              "start": 21.1,
+              "end": 24.19,
+              "duration": 3.09,
+              "rawAzureTiming": {
+                "start": 21.35,
+                "end": 24.07,
+                "duration": 2.72
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrConfidence": 0,
+              "asrText": "こ れ で す か 家 族 の 写 真 で す",
+              "phraseIndexes": [
+                5
+              ],
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [],
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-16T10:30:37.897Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "matchScore": 1,
+                "asrText": "こ れ で す か 家 族 の 写 真 で す"
+              }
             }
           },
           {
@@ -367,20 +834,55 @@
             "speaker": "小野",
             "text": "この 方は どなたですか。",
             "kana": "この かたは どなたですか。",
+            "segments": [
+              {
+                "text": "この "
+              },
+              {
+                "text": "方",
+                "ruby": "かた"
+              },
+              {
+                "text": "は どなたですか。"
+              }
+            ],
             "translationZh": "这位是谁？",
             "confidence": "high",
             "rawText": "小野：（指着其中一个人）この 方は どなたですか。",
             "audioSegment": {
               "id": "l2-app-block-003-line-003",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson2/l2-app-block-003-line-003.mp3",
-              "start": 0,
-              "end": 2.18,
-              "duration": 2.18,
-              "method": "approved-asr-alignment",
-              "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:16:24.170Z",
-              "sourceAudioSha256": "dd1cd75132289b4458be0a68664eed872b5987e14db289d05c9480db0b742502"
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit1/lesson2/lesson_apps.mp3",
+              "itemIndex": 3,
+              "speaker": "小野",
+              "text": "この 方は どなたですか。",
+              "start": 24.66,
+              "end": 27.07,
+              "duration": 2.41,
+              "rawAzureTiming": {
+                "start": 24.91,
+                "end": 26.95,
+                "duration": 2.04
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrConfidence": 0,
+              "asrText": "こ の 方 は ど な た で す か",
+              "phraseIndexes": [
+                6
+              ],
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [],
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-16T10:30:37.897Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "matchScore": 1,
+                "asrText": "こ の 方 は ど な た で す か"
+              }
             }
           },
           {
@@ -388,20 +890,57 @@
             "speaker": "李",
             "text": "わたしの 母です。",
             "kana": "わたしの ははです。",
+            "segments": [
+              {
+                "text": "わたしの "
+              },
+              {
+                "text": "母",
+                "ruby": "はは"
+              },
+              {
+                "text": "です。"
+              }
+            ],
             "translationZh": "是我母亲。",
             "confidence": "high",
             "rawText": "李：わたしの 母です。",
             "audioSegment": {
               "id": "l2-app-block-003-line-004",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson2/l2-app-block-003-line-004.mp3",
-              "start": 0,
-              "end": 1.22,
-              "duration": 1.22,
-              "method": "approved-asr-alignment",
-              "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:16:24.170Z",
-              "sourceAudioSha256": "dd1cd75132289b4458be0a68664eed872b5987e14db289d05c9480db0b742502"
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit1/lesson2/lesson_apps.mp3",
+              "itemIndex": 4,
+              "speaker": "李",
+              "text": "わたしの 母です。",
+              "start": 27.46,
+              "end": 28.91,
+              "duration": 1.45,
+              "rawAzureTiming": {
+                "start": 27.71,
+                "end": 28.79,
+                "duration": 1.08
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
+              "speechUnitCount": 1,
+              "matchScore": 0.571,
+              "asrConfidence": 0,
+              "asrText": "私 の 母 で す",
+              "phraseIndexes": [
+                6
+              ],
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "needs-review",
+              "alignmentIssues": [
+                "Low ASR text similarity."
+              ],
+              "review": {
+                "status": "pending",
+                "reviewedAt": null,
+                "note": "Low ASR text similarity.",
+                "matchScore": 0.571,
+                "asrText": "私 の 母 で す"
+              }
             }
           },
           {
@@ -409,20 +948,52 @@
             "speaker": "小野",
             "text": "お母さんは おいくつですか。",
             "kana": "おかあさんは おいくつですか。",
+            "segments": [
+              {
+                "text": "お母",
+                "ruby": "おかあ"
+              },
+              {
+                "text": "さんは おいくつですか。"
+              }
+            ],
             "translationZh": "您母亲多大年纪？",
             "confidence": "high",
             "rawText": "小野：お母さんは おいくつですか。",
             "audioSegment": {
               "id": "l2-app-block-003-line-005",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson2/l2-app-block-003-line-005.mp3",
-              "start": 0,
-              "end": 2.38,
-              "duration": 2.38,
-              "method": "approved-asr-alignment",
-              "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:16:24.170Z",
-              "sourceAudioSha256": "dd1cd75132289b4458be0a68664eed872b5987e14db289d05c9480db0b742502"
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit1/lesson2/lesson_apps.mp3",
+              "itemIndex": 5,
+              "speaker": "小野",
+              "text": "お母さんは おいくつですか。",
+              "start": 29.3,
+              "end": 31.91,
+              "duration": 2.61,
+              "rawAzureTiming": {
+                "start": 29.55,
+                "end": 31.79,
+                "duration": 2.24
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrConfidence": 0,
+              "asrText": "お 母 さ ん は お い く つ で す か",
+              "phraseIndexes": [
+                7
+              ],
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [],
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-16T10:30:37.897Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "matchScore": 1,
+                "asrText": "お 母 さ ん は お い く つ で す か"
+              }
             }
           },
           {
@@ -430,20 +1001,57 @@
             "speaker": "李",
             "text": "52 歳です。",
             "kana": "ごじゅうに さいです。",
+            "segments": [
+              {
+                "text": "52 "
+              },
+              {
+                "text": "歳",
+                "ruby": "さい"
+              },
+              {
+                "text": "です。"
+              }
+            ],
             "translationZh": "52岁。",
             "confidence": "high",
             "rawText": "李：52 歳です。",
             "audioSegment": {
               "id": "l2-app-block-003-line-006",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson2/l2-app-block-003-line-006.mp3",
-              "start": 0,
-              "end": 1.14,
-              "duration": 1.14,
-              "method": "approved-asr-alignment",
-              "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:16:24.170Z",
-              "sourceAudioSha256": "dd1cd75132289b4458be0a68664eed872b5987e14db289d05c9480db0b742502"
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit1/lesson2/lesson_apps.mp3",
+              "itemIndex": 6,
+              "speaker": "李",
+              "text": "52 歳です。",
+              "start": 32.3,
+              "end": 33.67,
+              "duration": 1.37,
+              "rawAzureTiming": {
+                "start": 32.55,
+                "end": 33.55,
+                "duration": 1
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
+              "speechUnitCount": 1,
+              "matchScore": 0.6,
+              "asrConfidence": 0,
+              "asrText": "十 二 歳 で す",
+              "phraseIndexes": [
+                7
+              ],
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "needs-review",
+              "alignmentIssues": [
+                "Low ASR text similarity."
+              ],
+              "review": {
+                "status": "pending",
+                "reviewedAt": null,
+                "note": "Low ASR text similarity.",
+                "matchScore": 0.6,
+                "asrText": "十 二 歳 で す"
+              }
             }
           }
         ]
@@ -466,20 +1074,52 @@
             "speaker": "李",
             "text": "小野さん、これ、どうぞ。",
             "kana": "おのさん、これ、どうぞ。",
+            "segments": [
+              {
+                "text": "小野",
+                "ruby": "おの"
+              },
+              {
+                "text": "さん、これ、どうぞ。"
+              }
+            ],
             "translationZh": "小野女士，这个，请收下。",
             "confidence": "high",
             "rawText": "李：小野さん、これ、どうぞ。",
             "audioSegment": {
               "id": "l2-app-block-005-line-001",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson2/l2-app-block-005-line-001.mp3",
-              "start": 0,
-              "end": 2.18,
-              "duration": 2.18,
-              "method": "approved-asr-alignment",
-              "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:16:24.170Z",
-              "sourceAudioSha256": "dd1cd75132289b4458be0a68664eed872b5987e14db289d05c9480db0b742502"
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit1/lesson2/lesson_apps.mp3",
+              "itemIndex": 7,
+              "speaker": "李",
+              "text": "小野さん、これ、どうぞ。",
+              "start": 38.11,
+              "end": 40.52,
+              "duration": 2.41,
+              "rawAzureTiming": {
+                "start": 38.36,
+                "end": 40.4,
+                "duration": 2.04
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrConfidence": 0,
+              "asrText": "小 野 さ ん こ れ ど う ぞ",
+              "phraseIndexes": [
+                8
+              ],
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [],
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-16T10:30:37.897Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "matchScore": 1,
+                "asrText": "小 野 さ ん こ れ ど う ぞ"
+              }
             }
           },
           {
@@ -487,20 +1127,55 @@
             "speaker": "小野",
             "text": "えっ、何ですか。",
             "kana": "えっ、なんですか。",
+            "segments": [
+              {
+                "text": "えっ、"
+              },
+              {
+                "text": "何",
+                "ruby": "なん"
+              },
+              {
+                "text": "ですか。"
+              }
+            ],
             "translationZh": "啊，是什么？",
             "confidence": "high",
             "rawText": "小野：えっ、何ですか。",
             "audioSegment": {
               "id": "l2-app-block-005-line-002",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson2/l2-app-block-005-line-002.mp3",
-              "start": 0,
-              "end": 1.1,
-              "duration": 1.1,
-              "method": "approved-asr-alignment",
-              "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:16:24.170Z",
-              "sourceAudioSha256": "dd1cd75132289b4458be0a68664eed872b5987e14db289d05c9480db0b742502"
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit1/lesson2/lesson_apps.mp3",
+              "itemIndex": 8,
+              "speaker": "小野",
+              "text": "えっ、何ですか。",
+              "start": 41.71,
+              "end": 42.9,
+              "duration": 1.19,
+              "rawAzureTiming": {
+                "start": 41.96,
+                "end": 42.92,
+                "duration": 0.96
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
+              "speechUnitCount": 1,
+              "matchScore": 0.857,
+              "asrConfidence": 0,
+              "asrText": "え な ん で す か",
+              "phraseIndexes": [
+                9
+              ],
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [],
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-16T10:30:37.897Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "matchScore": 0.857,
+                "asrText": "え な ん で す か"
+              }
             }
           },
           {
@@ -508,20 +1183,52 @@
             "speaker": "李",
             "text": "お土産です。",
             "kana": "おみやげです。",
+            "segments": [
+              {
+                "text": "お土産",
+                "ruby": "おみやげ"
+              },
+              {
+                "text": "です。"
+              }
+            ],
             "translationZh": "是礼物。",
             "confidence": "high",
             "rawText": "李：お土産です。",
             "audioSegment": {
               "id": "l2-app-block-005-line-003",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson2/l2-app-block-005-line-003.mp3",
-              "start": 0,
-              "end": 0.9,
-              "duration": 0.9,
-              "method": "approved-asr-alignment",
-              "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:16:24.170Z",
-              "sourceAudioSha256": "dd1cd75132289b4458be0a68664eed872b5987e14db289d05c9480db0b742502"
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit1/lesson2/lesson_apps.mp3",
+              "itemIndex": 9,
+              "speaker": "李",
+              "text": "お土産です。",
+              "start": 42.94,
+              "end": 43.8,
+              "duration": 0.86,
+              "rawAzureTiming": {
+                "start": 42.92,
+                "end": 43.68,
+                "duration": 0.76
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrConfidence": 0,
+              "asrText": "お 土 産 で す",
+              "phraseIndexes": [
+                9
+              ],
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [],
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-16T10:30:37.897Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "matchScore": 1,
+                "asrText": "お 土 産 で す"
+              }
             }
           }
         ]
@@ -544,20 +1251,48 @@
             "speaker": "小野",
             "text": "わあ、シルクの ハンカチですか。",
             "kana": "わあ、シルクの ハンカチですか。",
+            "segments": [
+              {
+                "text": "わあ、シルクの ハンカチですか。"
+              }
+            ],
             "translationZh": "哇，是丝绸手绢吗？",
             "confidence": "high",
             "rawText": "小野：わあ、シルクの ハンカチですか。",
             "audioSegment": {
               "id": "l2-app-block-007-line-001",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson2/l2-app-block-007-line-001.mp3",
-              "start": 0,
-              "end": 2.66,
-              "duration": 2.66,
-              "method": "approved-asr-alignment",
-              "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:16:24.170Z",
-              "sourceAudioSha256": "dd1cd75132289b4458be0a68664eed872b5987e14db289d05c9480db0b742502"
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit1/lesson2/lesson_apps.mp3",
+              "itemIndex": 10,
+              "speaker": "小野",
+              "text": "わあ、シルクの ハンカチですか。",
+              "start": 47.52,
+              "end": 50.41,
+              "duration": 2.89,
+              "rawAzureTiming": {
+                "start": 47.77,
+                "end": 50.29,
+                "duration": 2.52
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrConfidence": 0,
+              "asrText": "わ あ シ ル ク の ハ ン カ チ で す か",
+              "phraseIndexes": [
+                10
+              ],
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [],
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-16T10:30:37.897Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "matchScore": 1,
+                "asrText": "わ あ シ ル ク の ハ ン カ チ で す か"
+              }
             }
           },
           {
@@ -565,20 +1300,62 @@
             "speaker": "李",
             "text": "ええ。スワトウの ハンカチです。中国の 名産品です。",
             "kana": "ええ。スワトウの ハンカチです。ちゅうごくの めいさんひんです。",
+            "segments": [
+              {
+                "text": "ええ。スワトウの ハンカチです。"
+              },
+              {
+                "text": "中国",
+                "ruby": "ちゅうごく"
+              },
+              {
+                "text": "の "
+              },
+              {
+                "text": "名産品",
+                "ruby": "めいさんひん"
+              },
+              {
+                "text": "です。"
+              }
+            ],
             "translationZh": "嗯，是汕头的手绢。是中国的名产。",
             "confidence": "high",
             "rawText": "李：ええ。スワトウの ハンカチです。中国の 名産品です。",
             "audioSegment": {
               "id": "l2-app-block-007-line-002",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson2/l2-app-block-007-line-002.mp3",
-              "start": 0,
-              "end": 4.5,
-              "duration": 4.5,
-              "method": "approved-asr-alignment",
-              "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:16:24.170Z",
-              "sourceAudioSha256": "dd1cd75132289b4458be0a68664eed872b5987e14db289d05c9480db0b742502"
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit1/lesson2/lesson_apps.mp3",
+              "itemIndex": 11,
+              "speaker": "李",
+              "text": "ええ。スワトウの ハンカチです。中国の 名産品です。",
+              "start": 50.48,
+              "end": 55.21,
+              "duration": 4.73,
+              "rawAzureTiming": {
+                "start": 50.73,
+                "end": 55.09,
+                "duration": 4.36
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrConfidence": 0,
+              "asrText": "え え ス ワ ト ウ の ハ ン カ チ で す 中 国 の 名 産 品 で す",
+              "phraseIndexes": [
+                10
+              ],
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [],
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-16T10:30:37.897Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "matchScore": 1,
+                "asrText": "え え ス ワ ト ウ の ハ ン カ チ で す 中 国 の 名 産 品 で す"
+              }
             }
           },
           {
@@ -586,20 +1363,48 @@
             "speaker": "小野",
             "text": "どうも ありがとう ございます。",
             "kana": "どうも ありがとう ございます。",
+            "segments": [
+              {
+                "text": "どうも ありがとう ございます。"
+              }
+            ],
             "translationZh": "非常感谢。",
             "confidence": "high",
             "rawText": "小野：どうも ありがとう ございます。",
             "audioSegment": {
               "id": "l2-app-block-007-line-003",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson2/l2-app-block-007-line-003.mp3",
-              "start": 0,
-              "end": 1.78,
-              "duration": 1.78,
-              "method": "approved-asr-alignment",
-              "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:16:24.170Z",
-              "sourceAudioSha256": "dd1cd75132289b4458be0a68664eed872b5987e14db289d05c9480db0b742502"
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit1/lesson2/lesson_apps.mp3",
+              "itemIndex": 12,
+              "speaker": "小野",
+              "text": "どうも ありがとう ございます。",
+              "start": 55.66,
+              "end": 57.67,
+              "duration": 2.01,
+              "rawAzureTiming": {
+                "start": 55.91,
+                "end": 57.55,
+                "duration": 1.64
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrConfidence": 0,
+              "asrText": "ど う も あ り が と う ご ざ い ま す",
+              "phraseIndexes": [
+                11
+              ],
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [],
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-16T10:30:37.897Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "matchScore": 1,
+                "asrText": "ど う も あ り が と う ご ざ い ま す"
+              }
             }
           }
         ]
@@ -610,10 +1415,36 @@
     "应用课文中的旁白和场景说明在教材页中以中文呈现，因此对应 block 的 text 与 translationZh 均保留中文原文，kana 为 null。"
   ],
   "audioAlignment": {
-    "schemaVersion": 1,
-    "method": "approved-asr-alignment",
-    "sourceAlignment": "data/ocr/lesson2-text-audio-alignment.json",
-    "publishedAt": "2026-08-05T08:16:27.362Z",
-    "approvedSegments": 24
+    "schemaVersion": 2,
+    "lessonId": "lesson2",
+    "generatedAt": "2026-08-16T10:30:37.897Z",
+    "method": "azure-speech-sentence-alignment-with-boundary-padding",
+    "reviewStatus": "pending",
+    "tracks": [
+      {
+        "id": "lesson_basic",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit1/lesson2/lesson_basic.mp3",
+        "sourceAudioSha256": "780f1dd3937e9bdbdd64bbf28d3dd1ce109c9d0bd425786a2e57cdfa1a12d49e",
+        "expectedItems": 12,
+        "alignedItems": 12,
+        "detectedUnitCount": 12,
+        "warnings": [
+          "2 item(s) require manual verification.",
+          "Reused prior Azure timings; no Azure request was made."
+        ]
+      },
+      {
+        "id": "lesson_apps",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit1/lesson2/lesson_apps.mp3",
+        "sourceAudioSha256": "dd1cd75132289b4458be0a68664eed872b5987e14db289d05c9480db0b742502",
+        "expectedItems": 12,
+        "alignedItems": 12,
+        "detectedUnitCount": 12,
+        "warnings": [
+          "2 item(s) require manual verification.",
+          "Reused prior Azure timings; no Azure request was made."
+        ]
+      }
+    ]
   }
 }

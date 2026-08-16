@@ -91,6 +91,7 @@ export function PracticePreview({ practice, localPractice = null }) {
   const admin = new URLSearchParams(search).get("admin") === "1";
   const activities = practice.activities;
   const practiceSetId = practice.practiceSetId || null;
+  const preview = Boolean(practice.preview);
   const [session, setSession] = useState({ lessonId: practice.lessonId, activities: {} });
   const [sessionLoadKey, setSessionLoadKey] = useState(0);
   const [isReady, setIsReady] = useState(false);
@@ -212,6 +213,7 @@ export function PracticePreview({ practice, localPractice = null }) {
                 key={activity.id}
                 href={`#${activity.id}`}
                 className={activity.id === currentActivity?.id ? "active" : ""}
+                title={activity.title}
               >
                 <small>{sectionLabel[activity.section]} · {activity.order}</small>
                 <span>{activity.title}</span>
@@ -248,7 +250,7 @@ export function PracticePreview({ practice, localPractice = null }) {
             answerAlternatives={answerAlternatives}
           />
         ) : null}
-        {!admin && !isPublished ? (
+        {!admin && !isPublished && !preview ? (
           <UnpublishedPracticeNotice />
         ) : currentActivity ? (
           <PracticeActivity
@@ -430,6 +432,7 @@ function PracticeAlternativeSyncPanel({ lessonId, practice, answerAlternatives }
 }
 
 function PracticeActivity({ activity, practice, admin, record, isReady, answerAlternatives, onAnswerAlternativesChange, onSave, previousActivity, nextActivity, onNavigate }) {
+  const layout = activity.layout || [];
   const assetMap = useMemo(() => activityAssetMap(activity), [activity]);
   const audioUrl = resolveActivityAudioUrl(practice, activity);
   const formRef = useRef(null);
@@ -486,9 +489,9 @@ function PracticeActivity({ activity, practice, admin, record, isReady, answerAl
       <ActivityResources activity={activity} assetMap={assetMap} audioUrl={audioUrl} />
 
       <form ref={formRef} className="activity-form" onSubmit={(event) => event.preventDefault()}>
-        {activity.layout.length ? (
+        {layout.length ? (
           <div className="layout-blocks">
-            {activity.layout.map((block, index) => <LayoutBlockView key={index} block={block} />)}
+            {layout.map((block, index) => <LayoutBlockView key={index} block={block} />)}
           </div>
         ) : null}
 
@@ -1102,7 +1105,7 @@ function activityAssetMap(activity) {
     if (asset) map.set(asset.id, asset);
   };
   activity.assets?.forEach(add);
-  activity.layout.forEach((block) => {
+  (activity.layout || []).forEach((block) => {
     if (block.type === "image_grid") block.assets.forEach(add);
     if (block.type === "map") add(block.image);
   });
@@ -1287,18 +1290,19 @@ async function reviewIncorrectTextAnswers({ practice, activity, answers, grading
 }
 
 async function requestAnswerReview(payload) {
-  try {
-    const response = await fetch("/api/practice/review-answer", {
+  const response = await fetch("/api/practice/review-answer", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("light_blog_token") || ""}`
+      },
       body: JSON.stringify(payload)
-    });
-    const data = await response.json().catch(() => ({}));
-    if (!response.ok) return null;
-    return data;
-  } catch {
-    return null;
+  });
+  const data = await response.json().catch(() => ({}));
+  if (!response.ok) {
+    throw new Error(data.error || data.message || (data.code === "AI_DAILY_QUOTA_EXCEEDED" ? "今日 AI 调用额度已用完。" : `答案复核失败（HTTP ${response.status}）`));
   }
+  return data;
 }
 
 async function loadAcceptedAnswerAlternatives(lessonId) {

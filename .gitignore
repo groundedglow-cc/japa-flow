@@ -10,6 +10,12 @@ debug-recordings/
 
 # Audio files — stored on Alibaba Cloud OSS, local copy as cache only
 audio/
+data/ocr/audio-cache/
+data/ocr/audio-clips/
+data/ocr/audio-align-logs/
+data/ocr/lesson*-vocabulary-audio.json
+data/ocr/lesson*-text-audio.json
+data/ocr/lesson*-text-audio-alignment.json
 
 # Node
 node_modules/

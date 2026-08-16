@@ -1,69 +1,968 @@
 {
   "lessonId": "lesson26",
   "sourceImages": [
-    {"section":"basic","path":"course-assets/by-lesson/lesson26/page14.webp","pageNo":14},
-    {"section":"application","path":"course-assets/by-lesson/lesson26/page19.webp","pageNo":19}
+    {
+      "section": "basic",
+      "path": "course-assets/by-lesson/lesson26/page14.webp",
+      "pageNo": 14
+    },
+    {
+      "section": "application",
+      "path": "course-assets/by-lesson/lesson26/page19.webp",
+      "pageNo": 19
+    }
   ],
   "basicText": {
     "title": "基本课文",
     "basicSentences": [
-      {"id":"l26-basic-s001","order":1,"text":"自転車に 2人で 乗るのは 危ないです。","translationZh":"两人同骑一辆自行车很危险。","confidence":"high","rawText":"1. 自転車に 2人で 乗るのは 危ないです。"},
-      {"id":"l26-basic-s002","order":2,"text":"手紙を 出すのを 忘れました。","translationZh":"我忘了寄信。","confidence":"high","rawText":"2. 手紙を 出すのを 忘れました。"},
-      {"id":"l26-basic-s003","order":3,"text":"明日の 朝は 大雨に なるでしょう。","translationZh":"明天早晨大概会下大雨。","confidence":"high","rawText":"3. 明日の 朝は 大雨に なるでしょう。"},
-      {"id":"l26-basic-s004","order":4,"text":"森さんは 今日 会社を 休むかも しれません。","translationZh":"森先生今天可能不来公司上班。","confidence":"high","rawText":"4. 森さんは 今日 会社を 休むかも しれません。"}
+      {
+        "id": "l26-basic-s001",
+        "order": 1,
+        "text": "自転車に 2人で 乗るのは 危ないです。",
+        "translationZh": "两人同骑一辆自行车很危险。",
+        "confidence": "high",
+        "rawText": "1. 自転車に 2人で 乗るのは 危ないです。",
+        "kana": "じてんしゃに ふたりで のるのは あぶないです。",
+        "segments": [
+          {
+            "text": "自転車",
+            "ruby": "じてんしゃ"
+          },
+          {
+            "text": "に 2",
+            "ruby": ""
+          },
+          {
+            "text": "人",
+            "ruby": "ふたり"
+          },
+          {
+            "text": "で ",
+            "ruby": ""
+          },
+          {
+            "text": "乗",
+            "ruby": "の"
+          },
+          {
+            "text": "るのは ",
+            "ruby": ""
+          },
+          {
+            "text": "危",
+            "ruby": "あぶ"
+          },
+          {
+            "text": "ないです。",
+            "ruby": ""
+          }
+        ]
+      },
+      {
+        "id": "l26-basic-s002",
+        "order": 2,
+        "text": "手紙を 出すのを 忘れました。",
+        "translationZh": "我忘了寄信。",
+        "confidence": "high",
+        "rawText": "2. 手紙を 出すのを 忘れました。",
+        "kana": "てがみを だすのを わすれました。",
+        "segments": [
+          {
+            "text": "手紙",
+            "ruby": "てがみ"
+          },
+          {
+            "text": "を ",
+            "ruby": ""
+          },
+          {
+            "text": "出",
+            "ruby": "だ"
+          },
+          {
+            "text": "すのを ",
+            "ruby": ""
+          },
+          {
+            "text": "忘",
+            "ruby": "わす"
+          },
+          {
+            "text": "れました。",
+            "ruby": ""
+          }
+        ]
+      },
+      {
+        "id": "l26-basic-s003",
+        "order": 3,
+        "text": "明日の 朝は 大雨に なるでしょう。",
+        "translationZh": "明天早晨大概会下大雨。",
+        "confidence": "high",
+        "rawText": "3. 明日の 朝は 大雨に なるでしょう。",
+        "kana": "あしたの あさは おおあめに なるでしょう。",
+        "segments": [
+          {
+            "text": "明日",
+            "ruby": "あした"
+          },
+          {
+            "text": "の ",
+            "ruby": ""
+          },
+          {
+            "text": "朝",
+            "ruby": "あさ"
+          },
+          {
+            "text": "は ",
+            "ruby": ""
+          },
+          {
+            "text": "大雨",
+            "ruby": "おおあめ"
+          },
+          {
+            "text": "に なるでしょう。",
+            "ruby": ""
+          }
+        ]
+      },
+      {
+        "id": "l26-basic-s004",
+        "order": 4,
+        "text": "森さんは 今日 会社を 休むかも しれません。",
+        "translationZh": "森先生今天可能不来公司上班。",
+        "confidence": "high",
+        "rawText": "4. 森さんは 今日 会社を 休むかも しれません。",
+        "kana": "もりさんは きょう かいしゃを やすむかも しれません。",
+        "segments": [
+          {
+            "text": "森",
+            "ruby": "もり"
+          },
+          {
+            "text": "さんは ",
+            "ruby": ""
+          },
+          {
+            "text": "今日",
+            "ruby": "きょう"
+          },
+          {
+            "text": " ",
+            "ruby": ""
+          },
+          {
+            "text": "会社",
+            "ruby": "かいしゃ"
+          },
+          {
+            "text": "を ",
+            "ruby": ""
+          },
+          {
+            "text": "休",
+            "ruby": "やす"
+          },
+          {
+            "text": "むかも しれません。",
+            "ruby": ""
+          }
+        ]
+      }
     ],
     "dialogues": [
-      {"id":"l26-basic-dialogue-001","label":"A","lines":[
-        {"id":"l26-basic-dialogue-001-line-001","speaker":"甲","text":"李さんは 絵を かくのが 好きですね。","translationZh":"小李喜欢画画吧。","confidence":"high","rawText":"甲：李さんは 絵を かくのが 好きですね。"},
-        {"id":"l26-basic-dialogue-001-line-002","speaker":"乙","text":"ええ、大好きです。でも、あまり 上手では ありませんよ。","translationZh":"是的，非常喜欢。不过画得不太好。","confidence":"high","rawText":"乙：ええ、大好きです。でも、あまり 上手では ありませんよ。"}
-      ]},
-      {"id":"l26-basic-dialogue-002","label":"B","lines":[
-        {"id":"l26-basic-dialogue-002-line-001","speaker":"甲","text":"吉田さんが 転勤したのを 知って いますか。","translationZh":"你知道吉田先生调动工作了吗？","confidence":"high","rawText":"甲：吉田さんが 転勤したのを 知って いますか。"},
-        {"id":"l26-basic-dialogue-002-line-002","speaker":"乙","text":"えっ、本当ですか。知りませんでした。","translationZh":"啊，真的吗？我不知道。","confidence":"high","rawText":"乙：えっ、本当ですか。知りませんでした。"}
-      ]},
-      {"id":"l26-basic-dialogue-003","label":"C","lines":[
-        {"id":"l26-basic-dialogue-003-line-001","speaker":"甲","text":"会議は 何時に 終わりますか。","translationZh":"会议几点结束？","confidence":"high","rawText":"甲：会議は 何時に 終わりますか。"},
-        {"id":"l26-basic-dialogue-003-line-002","speaker":"乙","text":"2時には 終わるでしょう。","translationZh":"大概两点结束。","confidence":"high","rawText":"乙：2時には 終わるでしょう。"}
-      ]},
-      {"id":"l26-basic-dialogue-004","label":"D","lines":[
-        {"id":"l26-basic-dialogue-004-line-001","speaker":"甲","text":"馬さんは まだ 来ませんね。","translationZh":"马先生还没来啊。","confidence":"high","rawText":"甲：馬さんは まだ 来ませんね。"},
-        {"id":"l26-basic-dialogue-004-line-002","speaker":"乙","text":"もしかしたら、今日は 来ないかも しれませんよ。","translationZh":"他今天可能不来了。","confidence":"high","rawText":"乙：もしかしたら、今日は 来ないかも しれませんよ。"}
-      ]}
+      {
+        "id": "l26-basic-dialogue-001",
+        "label": "A",
+        "lines": [
+          {
+            "id": "l26-basic-dialogue-001-line-001",
+            "speaker": "甲",
+            "text": "李さんは 絵を かくのが 好きですね。",
+            "translationZh": "小李喜欢画画吧。",
+            "confidence": "high",
+            "rawText": "甲：李さんは 絵を かくのが 好きですね。",
+            "kana": "りさんは えを かくのが すきですね。",
+            "segments": [
+              {
+                "text": "李",
+                "ruby": "り"
+              },
+              {
+                "text": "さんは ",
+                "ruby": ""
+              },
+              {
+                "text": "絵",
+                "ruby": "え"
+              },
+              {
+                "text": "を かくのが ",
+                "ruby": ""
+              },
+              {
+                "text": "好",
+                "ruby": "す"
+              },
+              {
+                "text": "きですね。",
+                "ruby": ""
+              }
+            ]
+          },
+          {
+            "id": "l26-basic-dialogue-001-line-002",
+            "speaker": "乙",
+            "text": "ええ、大好きです。でも、あまり 上手では ありませんよ。",
+            "translationZh": "是的，非常喜欢。不过画得不太好。",
+            "confidence": "high",
+            "rawText": "乙：ええ、大好きです。でも、あまり 上手では ありませんよ。",
+            "kana": "ええ、だいすきです。でも、あまり じょうずでは ありませんよ。",
+            "segments": [
+              {
+                "text": "ええ、",
+                "ruby": ""
+              },
+              {
+                "text": "大好",
+                "ruby": "だいす"
+              },
+              {
+                "text": "きです。でも、あまり ",
+                "ruby": ""
+              },
+              {
+                "text": "上手",
+                "ruby": "じょうず"
+              },
+              {
+                "text": "では ありませんよ。",
+                "ruby": ""
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "l26-basic-dialogue-002",
+        "label": "B",
+        "lines": [
+          {
+            "id": "l26-basic-dialogue-002-line-001",
+            "speaker": "甲",
+            "text": "吉田さんが 転勤したのを 知って いますか。",
+            "translationZh": "你知道吉田先生调动工作了吗？",
+            "confidence": "high",
+            "rawText": "甲：吉田さんが 転勤したのを 知って いますか。",
+            "kana": "よしださんが てんきんしたのを しって いますか。",
+            "segments": [
+              {
+                "text": "吉田",
+                "ruby": "よしだ"
+              },
+              {
+                "text": "さんが ",
+                "ruby": ""
+              },
+              {
+                "text": "転勤",
+                "ruby": "てんきん"
+              },
+              {
+                "text": "したのを ",
+                "ruby": ""
+              },
+              {
+                "text": "知",
+                "ruby": "し"
+              },
+              {
+                "text": "って いますか。",
+                "ruby": ""
+              }
+            ]
+          },
+          {
+            "id": "l26-basic-dialogue-002-line-002",
+            "speaker": "乙",
+            "text": "えっ、本当ですか。知りませんでした。",
+            "translationZh": "啊，真的吗？我不知道。",
+            "confidence": "high",
+            "rawText": "乙：えっ、本当ですか。知りませんでした。",
+            "kana": "えっ、ほんとうですか。しりませんでした。",
+            "segments": [
+              {
+                "text": "えっ、",
+                "ruby": ""
+              },
+              {
+                "text": "本当",
+                "ruby": "ほんとう"
+              },
+              {
+                "text": "ですか。",
+                "ruby": ""
+              },
+              {
+                "text": "知",
+                "ruby": "し"
+              },
+              {
+                "text": "りませんでした。",
+                "ruby": ""
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "l26-basic-dialogue-003",
+        "label": "C",
+        "lines": [
+          {
+            "id": "l26-basic-dialogue-003-line-001",
+            "speaker": "甲",
+            "text": "会議は 何時に 終わりますか。",
+            "translationZh": "会议几点结束？",
+            "confidence": "high",
+            "rawText": "甲：会議は 何時に 終わりますか。",
+            "kana": "かいぎは なんじに おわりますか。",
+            "segments": [
+              {
+                "text": "会議",
+                "ruby": "かいぎ"
+              },
+              {
+                "text": "は ",
+                "ruby": ""
+              },
+              {
+                "text": "何時",
+                "ruby": "なんじ"
+              },
+              {
+                "text": "に ",
+                "ruby": ""
+              },
+              {
+                "text": "終",
+                "ruby": "お"
+              },
+              {
+                "text": "わりますか。",
+                "ruby": ""
+              }
+            ]
+          },
+          {
+            "id": "l26-basic-dialogue-003-line-002",
+            "speaker": "乙",
+            "text": "2時には 終わるでしょう。",
+            "translationZh": "大概两点结束。",
+            "confidence": "high",
+            "rawText": "乙：2時には 終わるでしょう。",
+            "kana": "にじには おわるでしょう。",
+            "segments": [
+              {
+                "text": "2",
+                "ruby": ""
+              },
+              {
+                "text": "時",
+                "ruby": "じ"
+              },
+              {
+                "text": "には ",
+                "ruby": ""
+              },
+              {
+                "text": "終",
+                "ruby": "お"
+              },
+              {
+                "text": "わるでしょう。",
+                "ruby": ""
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "l26-basic-dialogue-004",
+        "label": "D",
+        "lines": [
+          {
+            "id": "l26-basic-dialogue-004-line-001",
+            "speaker": "甲",
+            "text": "馬さんは まだ 来ませんね。",
+            "translationZh": "马先生还没来啊。",
+            "confidence": "high",
+            "rawText": "甲：馬さんは まだ 来ませんね。",
+            "kana": "まさんは まだ きませんね。",
+            "segments": [
+              {
+                "text": "馬",
+                "ruby": "ま"
+              },
+              {
+                "text": "さんは まだ ",
+                "ruby": ""
+              },
+              {
+                "text": "来",
+                "ruby": "き"
+              },
+              {
+                "text": "ませんね。",
+                "ruby": ""
+              }
+            ]
+          },
+          {
+            "id": "l26-basic-dialogue-004-line-002",
+            "speaker": "乙",
+            "text": "もしかしたら、今日は 来ないかも しれませんよ。",
+            "translationZh": "他今天可能不来了。",
+            "confidence": "high",
+            "rawText": "乙：もしかしたら、今日は 来ないかも しれませんよ。",
+            "kana": "もしかしたら、きょうは こないかも しれませんよ。",
+            "segments": [
+              {
+                "text": "もしかしたら、",
+                "ruby": ""
+              },
+              {
+                "text": "今日",
+                "ruby": "きょう"
+              },
+              {
+                "text": "は ",
+                "ruby": ""
+              },
+              {
+                "text": "来",
+                "ruby": "こ"
+              },
+              {
+                "text": "ないかも しれませんよ。",
+                "ruby": ""
+              }
+            ]
+          }
+        ]
+      }
     ]
   },
   "applicationText": {
     "title": "握手とお辞儀",
     "blocks": [
-      {"id":"l26-app-block-001","type":"scene","text":"杨先生被介绍后，做自我介绍。","translationZh":"杨先生被介绍后，做自我介绍。","confidence":"high","rawText":"（杨先生被介绍后，做自我介绍）"},
-      {"id":"l26-app-block-002","type":"dialogue","lines":[
-        {"id":"l26-app-block-002-line-001","speaker":"楊","text":"はじめまして、楊です。","translationZh":"初次见面，我姓杨。","confidence":"high","rawText":"楊：はじめまして、楊です。"}
-      ]},
-      {"id":"l26-app-block-003","type":"scene","text":"说着，伸出了手。","translationZh":"说着，伸出了手。","confidence":"high","rawText":"（说着，伸出了手）"},
-      {"id":"l26-app-block-004","type":"dialogue","lines":[
-        {"id":"l26-app-block-004-line-001","speaker":"森","text":"はじめまして。森です。よろしく お願いします。","translationZh":"初次见面，我姓森。请多关照。","confidence":"high","rawText":"森：はじめまして。森です。よろしく お願いします。"}
-      ]},
-      {"id":"l26-app-block-005","type":"scene","text":"一边说，一边开始鞠躬，转而慌慌张张地伸出了手。","translationZh":"一边说，一边开始鞠躬，转而慌慌张张地伸出了手。","confidence":"high","rawText":"（一边说，一边开始鞠躬，转而慌慌张张地伸出了手）"},
-      {"id":"l26-app-block-006","type":"scene","text":"杨先生回去后。","translationZh":"杨先生回去后。","confidence":"high","rawText":"（杨先生回去后）"},
-      {"id":"l26-app-block-007","type":"dialogue","lines":[
-        {"id":"l26-app-block-007-line-001","speaker":"陳","text":"日本には 握手の 習慣が ないんですね。","translationZh":"日本没有握手的习惯啊。","confidence":"high","rawText":"陳：日本には 握手の 習慣が ないんですね。"},
-        {"id":"l26-app-block-007-line-002","speaker":"森","text":"ええ、そうなんです。それで、つい 握手するのを 忘れます。","translationZh":"是的，就是这样。因此常常不知不觉就忘了握手。","confidence":"high","rawText":"森：ええ、そうなんです。それで、つい 握手するのを 忘れます。"}
-      ]},
-      {"id":"l26-app-block-008","type":"scene","text":"说起中日两国的寒暄习惯。","translationZh":"说起中日两国的寒暄习惯。","confidence":"high","rawText":"（说起中日两国的寒暄习惯）"},
-      {"id":"l26-app-block-009","type":"dialogue","lines":[
-        {"id":"l26-app-block-009-line-001","speaker":"森","text":"中国では 握手するのが 普通なんですか。","translationZh":"在中国，握手是很普通的吗？","confidence":"high","rawText":"森：中国では 握手するのが 普通なんですか。"},
-        {"id":"l26-app-block-009-line-002","speaker":"陳","text":"ええ、そうですよ。日本には お辞儀の ほかの あいさつは ないんですか。","translationZh":"是的。在日本，除了鞠躬之外没有别的寒暄方式吗？","confidence":"high","rawText":"陳：ええ、そうですよ。日本には お辞儀の ほかの あいさつは ないんですか。"},
-        {"id":"l26-app-block-009-line-003","speaker":"森","text":"そうですね…。手を 挙げたり、握手したり する 人も いますが、ほとんど お辞儀ですね。","translationZh":"这个嘛……也有人会举手或握手，不过大部分还是鞠躬。","confidence":"high","rawText":"森：そうですね…。手を 挙げたり、握手したり する 人も いますが、ほとんど お辞儀ですね。"}
-      ]},
-      {"id":"l26-app-block-010","type":"scene","text":"听到他们谈话的小戴插话了。","translationZh":"听到他们谈话的小戴插话了。","confidence":"high","rawText":"（听到他们谈话的小戴插话了）"},
-      {"id":"l26-app-block-011","type":"dialogue","lines":[
-        {"id":"l26-app-block-011-line-001","speaker":"戴","text":"陳さん、森さんの 午後の 予定は あいさつ回りですね。","translationZh":"小陈、森先生，你们下午的安排是去拜访客户吧。","confidence":"high","rawText":"戴：陳さん、森さんの 午後の 予定は あいさつ回りですね。"},
-        {"id":"l26-app-block-011-line-002","speaker":"陳","text":"ええ。今 1時半ですから、これから 4社ぐらい 回ることが できるでしょう。","translationZh":"是的。现在一点半，从现在起大概能拜访四家公司吧。","confidence":"high","rawText":"陳：ええ。今 1時半ですから、これから 4社ぐらい 回ることが できるでしょう。"},
-        {"id":"l26-app-block-011-line-003","speaker":"戴","text":"そうですね。5社 行くことが できるかも しれませんよ。","translationZh":"是啊。也许能去五家公司呢。","confidence":"high","rawText":"戴：そうですね。5社 行くことが できるかも しれませんよ。"}
-      ]},
-      {"id":"l26-app-block-012","type":"scene","text":"面向森。","translationZh":"面向森。","confidence":"high","rawText":"（面向森）"},
-      {"id":"l26-app-block-013","type":"dialogue","lines":[
-        {"id":"l26-app-block-013-line-001","speaker":"戴","text":"森さん、次は 握手するのを 忘れないで くださいね。","translationZh":"森先生，下次请别忘了握手哦。","confidence":"high","rawText":"森さん、次は 握手するのを 忘れないで くださいね。"}
-      ]}
+      {
+        "id": "l26-app-block-001",
+        "type": "scene",
+        "text": "杨先生被介绍后，做自我介绍。",
+        "translationZh": "杨先生被介绍后，做自我介绍。",
+        "confidence": "high",
+        "rawText": "（杨先生被介绍后，做自我介绍）"
+      },
+      {
+        "id": "l26-app-block-002",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l26-app-block-002-line-001",
+            "speaker": "楊",
+            "text": "はじめまして、楊です。",
+            "translationZh": "初次见面，我姓杨。",
+            "confidence": "high",
+            "rawText": "楊：はじめまして、楊です。",
+            "kana": "はじめまして、ようです。",
+            "segments": [
+              {
+                "text": "はじめまして、",
+                "ruby": ""
+              },
+              {
+                "text": "楊",
+                "ruby": "よう"
+              },
+              {
+                "text": "です。",
+                "ruby": ""
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "l26-app-block-003",
+        "type": "scene",
+        "text": "说着，伸出了手。",
+        "translationZh": "说着，伸出了手。",
+        "confidence": "high",
+        "rawText": "（说着，伸出了手）"
+      },
+      {
+        "id": "l26-app-block-004",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l26-app-block-004-line-001",
+            "speaker": "森",
+            "text": "はじめまして。森です。よろしく お願いします。",
+            "translationZh": "初次见面，我姓森。请多关照。",
+            "confidence": "high",
+            "rawText": "森：はじめまして。森です。よろしく お願いします。",
+            "kana": "はじめまして。もりです。よろしく おねがいします。",
+            "segments": [
+              {
+                "text": "はじめまして。",
+                "ruby": ""
+              },
+              {
+                "text": "森",
+                "ruby": "もり"
+              },
+              {
+                "text": "です。よろしく ",
+                "ruby": ""
+              },
+              {
+                "text": "お願い",
+                "ruby": "おねがい"
+              },
+              {
+                "text": "します。",
+                "ruby": ""
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "l26-app-block-005",
+        "type": "scene",
+        "text": "一边说，一边开始鞠躬，转而慌慌张张地伸出了手。",
+        "translationZh": "一边说，一边开始鞠躬，转而慌慌张张地伸出了手。",
+        "confidence": "high",
+        "rawText": "（一边说，一边开始鞠躬，转而慌慌张张地伸出了手）"
+      },
+      {
+        "id": "l26-app-block-006",
+        "type": "scene",
+        "text": "杨先生回去后。",
+        "translationZh": "杨先生回去后。",
+        "confidence": "high",
+        "rawText": "（杨先生回去后）"
+      },
+      {
+        "id": "l26-app-block-007",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l26-app-block-007-line-001",
+            "speaker": "陳",
+            "text": "日本には 握手の 習慣が ないんですね。",
+            "translationZh": "日本没有握手的习惯啊。",
+            "confidence": "high",
+            "rawText": "陳：日本には 握手の 習慣が ないんですね。",
+            "kana": "にほんには あくしゅの しゅうかんが ないんですね。",
+            "segments": [
+              {
+                "text": "日本",
+                "ruby": "にほん"
+              },
+              {
+                "text": "には ",
+                "ruby": ""
+              },
+              {
+                "text": "握手",
+                "ruby": "あくしゅ"
+              },
+              {
+                "text": "の ",
+                "ruby": ""
+              },
+              {
+                "text": "習慣",
+                "ruby": "しゅうかん"
+              },
+              {
+                "text": "が ないんですね。",
+                "ruby": ""
+              }
+            ]
+          },
+          {
+            "id": "l26-app-block-007-line-002",
+            "speaker": "森",
+            "text": "ええ、そうなんです。それで、つい 握手するのを 忘れます。",
+            "translationZh": "是的，就是这样。因此常常不知不觉就忘了握手。",
+            "confidence": "high",
+            "rawText": "森：ええ、そうなんです。それで、つい 握手するのを 忘れます。",
+            "kana": "ええ、そうなんです。それで、つい あくしゅするのを わすれます。",
+            "segments": [
+              {
+                "text": "ええ、そうなんです。それで、つい ",
+                "ruby": ""
+              },
+              {
+                "text": "握手",
+                "ruby": "あくしゅ"
+              },
+              {
+                "text": "するのを ",
+                "ruby": ""
+              },
+              {
+                "text": "忘",
+                "ruby": "わす"
+              },
+              {
+                "text": "れます。",
+                "ruby": ""
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "l26-app-block-008",
+        "type": "scene",
+        "text": "说起中日两国的寒暄习惯。",
+        "translationZh": "说起中日两国的寒暄习惯。",
+        "confidence": "high",
+        "rawText": "（说起中日两国的寒暄习惯）"
+      },
+      {
+        "id": "l26-app-block-009",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l26-app-block-009-line-001",
+            "speaker": "森",
+            "text": "中国では 握手するのが 普通なんですか。",
+            "translationZh": "在中国，握手是很普通的吗？",
+            "confidence": "high",
+            "rawText": "森：中国では 握手するのが 普通なんですか。",
+            "kana": "ちゅうごくでは あくしゅするのが ふつうなんですか。",
+            "segments": [
+              {
+                "text": "中国",
+                "ruby": "ちゅうごく"
+              },
+              {
+                "text": "では ",
+                "ruby": ""
+              },
+              {
+                "text": "握手",
+                "ruby": "あくしゅ"
+              },
+              {
+                "text": "するのが ",
+                "ruby": ""
+              },
+              {
+                "text": "普通",
+                "ruby": "ふつう"
+              },
+              {
+                "text": "なんですか。",
+                "ruby": ""
+              }
+            ]
+          },
+          {
+            "id": "l26-app-block-009-line-002",
+            "speaker": "陳",
+            "text": "ええ、そうですよ。日本には お辞儀の ほかの あいさつは ないんですか。",
+            "translationZh": "是的。在日本，除了鞠躬之外没有别的寒暄方式吗？",
+            "confidence": "high",
+            "rawText": "陳：ええ、そうですよ。日本には お辞儀の ほかの あいさつは ないんですか。",
+            "kana": "ええ、そうですよ。にほんには おじぎの ほかの あいさつは ないんですか。",
+            "segments": [
+              {
+                "text": "ええ、そうですよ。",
+                "ruby": ""
+              },
+              {
+                "text": "日本",
+                "ruby": "にほん"
+              },
+              {
+                "text": "には ",
+                "ruby": ""
+              },
+              {
+                "text": "お辞儀",
+                "ruby": "おじぎ"
+              },
+              {
+                "text": "の ほかの あいさつは ないんですか。",
+                "ruby": ""
+              }
+            ]
+          },
+          {
+            "id": "l26-app-block-009-line-003",
+            "speaker": "森",
+            "text": "そうですね…。手を 挙げたり、握手したり する 人も いますが、ほとんど お辞儀ですね。",
+            "translationZh": "这个嘛……也有人会举手或握手，不过大部分还是鞠躬。",
+            "confidence": "high",
+            "rawText": "森：そうですね…。手を 挙げたり、握手したり する 人も いますが、ほとんど お辞儀ですね。",
+            "kana": "そうですね…。てを あげたり、あくしゅしたり する ひとも いますが、ほとんど おじぎですね。",
+            "segments": [
+              {
+                "text": "そうですね…。",
+                "ruby": ""
+              },
+              {
+                "text": "手",
+                "ruby": "て"
+              },
+              {
+                "text": "を ",
+                "ruby": ""
+              },
+              {
+                "text": "挙",
+                "ruby": "あ"
+              },
+              {
+                "text": "げたり、",
+                "ruby": ""
+              },
+              {
+                "text": "握手",
+                "ruby": "あくしゅ"
+              },
+              {
+                "text": "したり する ",
+                "ruby": ""
+              },
+              {
+                "text": "人",
+                "ruby": "ひと"
+              },
+              {
+                "text": "も いますが、ほとんど ",
+                "ruby": ""
+              },
+              {
+                "text": "お辞儀",
+                "ruby": "おじぎ"
+              },
+              {
+                "text": "ですね。",
+                "ruby": ""
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "l26-app-block-010",
+        "type": "scene",
+        "text": "听到他们谈话的小戴插话了。",
+        "translationZh": "听到他们谈话的小戴插话了。",
+        "confidence": "high",
+        "rawText": "（听到他们谈话的小戴插话了）"
+      },
+      {
+        "id": "l26-app-block-011",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l26-app-block-011-line-001",
+            "speaker": "戴",
+            "text": "陳さん、森さんの 午後の 予定は あいさつ回りですね。",
+            "translationZh": "小陈、森先生，你们下午的安排是去拜访客户吧。",
+            "confidence": "high",
+            "rawText": "戴：陳さん、森さんの 午後の 予定は あいさつ回りですね。",
+            "kana": "ちんさん、もりさんの ごごの よていは あいさつまわりですね。",
+            "segments": [
+              {
+                "text": "陳",
+                "ruby": "ちん"
+              },
+              {
+                "text": "さん、",
+                "ruby": ""
+              },
+              {
+                "text": "森",
+                "ruby": "もり"
+              },
+              {
+                "text": "さんの ",
+                "ruby": ""
+              },
+              {
+                "text": "午後",
+                "ruby": "ごご"
+              },
+              {
+                "text": "の ",
+                "ruby": ""
+              },
+              {
+                "text": "予定",
+                "ruby": "よてい"
+              },
+              {
+                "text": "は あいさつ",
+                "ruby": ""
+              },
+              {
+                "text": "回",
+                "ruby": "まわ"
+              },
+              {
+                "text": "りですね。",
+                "ruby": ""
+              }
+            ]
+          },
+          {
+            "id": "l26-app-block-011-line-002",
+            "speaker": "陳",
+            "text": "ええ。今 1時半ですから、これから 4社ぐらい 回ることが できるでしょう。",
+            "translationZh": "是的。现在一点半，从现在起大概能拜访四家公司吧。",
+            "confidence": "high",
+            "rawText": "陳：ええ。今 1時半ですから、これから 4社ぐらい 回ることが できるでしょう。",
+            "kana": "ええ。いま いちじはんですから、これから よんしゃぐらい まわることが できるでしょう。",
+            "segments": [
+              {
+                "text": "ええ。",
+                "ruby": ""
+              },
+              {
+                "text": "今",
+                "ruby": "いま"
+              },
+              {
+                "text": " 1",
+                "ruby": ""
+              },
+              {
+                "text": "時半",
+                "ruby": "じはん"
+              },
+              {
+                "text": "ですから、これから 4",
+                "ruby": ""
+              },
+              {
+                "text": "社",
+                "ruby": "しゃ"
+              },
+              {
+                "text": "ぐらい ",
+                "ruby": ""
+              },
+              {
+                "text": "回",
+                "ruby": "まわ"
+              },
+              {
+                "text": "ることが できるでしょう。",
+                "ruby": ""
+              }
+            ]
+          },
+          {
+            "id": "l26-app-block-011-line-003",
+            "speaker": "戴",
+            "text": "そうですね。5社 行くことが できるかも しれませんよ。",
+            "translationZh": "是啊。也许能去五家公司呢。",
+            "confidence": "high",
+            "rawText": "戴：そうですね。5社 行くことが できるかも しれませんよ。",
+            "kana": "そうですね。ごしゃ いくことが できるかも しれませんよ。",
+            "segments": [
+              {
+                "text": "そうですね。5",
+                "ruby": ""
+              },
+              {
+                "text": "社",
+                "ruby": "しゃ"
+              },
+              {
+                "text": " ",
+                "ruby": ""
+              },
+              {
+                "text": "行",
+                "ruby": "い"
+              },
+              {
+                "text": "くことが できるかも しれませんよ。",
+                "ruby": ""
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "l26-app-block-012",
+        "type": "scene",
+        "text": "面向森。",
+        "translationZh": "面向森。",
+        "confidence": "high",
+        "rawText": "（面向森）"
+      },
+      {
+        "id": "l26-app-block-013",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l26-app-block-013-line-001",
+            "speaker": "戴",
+            "text": "森さん、次は 握手するのを 忘れないで くださいね。",
+            "translationZh": "森先生，下次请别忘了握手哦。",
+            "confidence": "high",
+            "rawText": "森さん、次は 握手するのを 忘れないで くださいね。",
+            "kana": "もりさん、つぎは あくしゅするのを わすれないで くださいね。",
+            "segments": [
+              {
+                "text": "森",
+                "ruby": "もり"
+              },
+              {
+                "text": "さん、",
+                "ruby": ""
+              },
+              {
+                "text": "次",
+                "ruby": "つぎ"
+              },
+              {
+                "text": "は ",
+                "ruby": ""
+              },
+              {
+                "text": "握手",
+                "ruby": "あくしゅ"
+              },
+              {
+                "text": "するのを ",
+                "ruby": ""
+              },
+              {
+                "text": "忘",
+                "ruby": "わす"
+              },
+              {
+                "text": "れないで くださいね。",
+                "ruby": ""
+              }
+            ]
+          }
+        ]
+      }
     ]
   },
   "warnings": [

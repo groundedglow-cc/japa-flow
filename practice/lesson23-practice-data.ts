@@ -1,12 +1,12 @@
 import type { InputSlot, LessonPractice, PracticeActivity, PracticeItem, PromptPart, RichText } from "./lesson-practice-types";
-import { lesson23ImageCrops } from "./lesson23-image-crops";
+
+const exerciseImage = (fileName: string) => `../data/book1_exercise_images/${fileName}`;
 
 const page = (pageNo: number) => `../course-assets/by-lesson/lesson23/page${pageNo}.webp`;
 const audio = (exerciseNo: 1 | 2, order: number) =>
   `https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit6/lesson23/Exe${exerciseNo}_${order}.mp3`;
 const text = (value: string, options: Omit<RichText, "type" | "text"> = {}): RichText => ({ type: "text", text: value, ...options });
 const blank = (slotId: string): PromptPart => ({ type: "blank", slotId });
-const crop = (id: string) => lesson23ImageCrops.assets.find((asset) => asset.id === id)!;
 
 const completionHint = "只补全题目中空格处需要填写的部分。";
 const answerOnlyHint = "只填写提问后的回答部分，不需要重写问题。";
@@ -137,7 +137,9 @@ const activities: PracticeActivity[] = [
     interaction: "pattern_substitution",
     answerUnit: "sentence",
     responseScope: "sentence_only",
-    assets: [crop("l23-p1-a1-picture-substitution")],
+    assets: [
+      { id: "l23-p1-a1-picture-substitution", kind: "exercise_image", imagePath: exerciseImage("book1_lesson23_1_1.png") }
+    ],
     displayAssets: ["l23-p1-a1-picture-substitution"],
     layout: [
       { type: "example", content: { label: "[例]", before: "休みの 日 → 休みの 日、散歩に 行ったり 買い物に 行ったり します。", beforeKana: "やすみの ひ → やすみの ひ、さんぽに いったり かいものに いったり します。", after: [text("休みの 日、散歩に 行ったり 買い物に 行ったり します。", { kana: "やすみの ひ、さんぽに いったり かいものに いったり します。" })] } }
@@ -157,8 +159,7 @@ const activities: PracticeActivity[] = [
     interaction: "pattern_substitution",
     answerUnit: "sentence",
     responseScope: "sentence_only",
-    assets: [crop("l23-p1-a2-tari-substitution")],
-    displayAssets: ["l23-p1-a2-tari-substitution"],
+    assets: [],
     layout: [
       { type: "example", content: { label: "[例]", before: "チケット／高い／安い\n公園／静か／にぎやか\n先生／中国人／日本人", beforeKana: "チケット／たかい／やすい\nこうえん／しずか／にぎやか\nせんせい／ちゅうごくじん／にほんじん", after: [text("チケットは 高かったり 安かったりです。\n公園は 静かだったり にぎやかだったりです。\n先生は 中国人だったり 日本人だったりです。")], afterKana: "チケットは たかかったり やすかったりです。\nこうえんは しずかだったり にぎやかだったりです。\nせんせいは ちゅうごくじんだったり にほんじんだったりです。" } }
     ],
@@ -179,8 +180,7 @@ const activities: PracticeActivity[] = [
     answerUnit: "sentence",
     responseScope: "answer_only",
     responseScopeHint: answerOnlyHint,
-    assets: [crop("l23-p1-a3-answer-question")],
-    displayAssets: ["l23-p1-a3-answer-question"],
+    assets: [],
     layout: [
       { type: "example", content: { label: "[例]", before: "毎晩 何を しますか。（テレビを 見ます／雑誌を 読みます）", beforeKana: "まいばん なにを しますか。（テレビを みます／ざっしを よみます）", after: [text("テレビを 見たり 雑誌を 読んだり します。", { kana: "テレビを みたり ざっしを よんだり します。" })] } }
     ],
@@ -211,8 +211,7 @@ const activities: PracticeActivity[] = [
         confidenceNote: "ASR 完整覆盖例1和正式题 1-4，并识别到例2；正式题 5-8 的答案按教材印刷题干和例2句型补全。"
       }
     },
-    assets: [crop("l23-p1-a4-listening-transform")],
-    displayAssets: ["l23-p1-a4-listening-transform"],
+    assets: [],
     layout: [
       { type: "example", content: { label: "[例1]", before: "森さんは 何時ごろ 来ますか。", beforeKana: "もりさんは なんじごろ きますか。", after: [text("森さんが 何時ごろ 来るか 知って いますか。")], afterKana: "もりさんが なんじごろ くるか しって いますか。" } },
       { type: "example", content: { label: "[例2]", before: "今日 森さんは 来ます。", beforeKana: "きょう もりさんは きます。", after: [text("甲：今日 森さんは 来ますか。\n乙1：さあ、来るか 来ないか 分かりません。\n乙2：来るか どうか 分かりません。")], afterKana: "きょう もりさんは きますか。\nさあ、くるか こないか わかりません。\nくるか どうか わかりません。" } }
@@ -237,8 +236,7 @@ const activities: PracticeActivity[] = [
     interaction: "pattern_substitution",
     answerUnit: "sentence",
     responseScope: "sentence_only",
-    assets: [crop("l23-p1-a5-transform")],
-    displayAssets: ["l23-p1-a5-transform"],
+    assets: [],
     layout: [
       { type: "example", content: { label: "[例1]", before: "この 仕事は いつ 終わりますか／分かりません", beforeKana: "この しごとは いつ おわりますか／わかりません", after: [text("この 仕事が いつ 終わるか 分かりません。")], afterKana: "この しごとが いつ おわるか わかりません。" } },
       { type: "example", content: { label: "[例2]", before: "北京へ 帰りますか／分かりません", beforeKana: "ペキンへ かえりますか／わかりません", after: [text("北京へ 帰るか どうか 分かりません。")], afterKana: "ペキンへ かえるか どうか わかりません。" } }
@@ -277,7 +275,9 @@ const activities: PracticeActivity[] = [
         ]
       }
     },
-    assets: [crop("l23-p1-a6-listening-picture")],
+    assets: [
+      { id: "l23-p1-a6-listening-picture", kind: "exercise_image", imagePath: exerciseImage("book1_lesson23_1_6.png") }
+    ],
     displayAssets: ["l23-p1-a6-listening-picture"],
     layout: [
       { type: "example", content: { label: "[例]", before: "小野さんが 何時に 来るか 知って いますか。", beforeKana: "おのさんが なんじに くるか しって いますか。", after: [text("はい、8時に 来ます。")], afterKana: "はい、はちじに きます。" } }
@@ -297,8 +297,7 @@ const activities: PracticeActivity[] = [
     interaction: "single_choice",
     answerUnit: "choice",
     responseScope: "choice_only",
-    assets: [crop("l23-p2-a1-connect")],
-    displayAssets: ["l23-p2-a1-connect"],
+    assets: [],
     layout: [{ type: "example", content: { label: "[例]", before: "いつ 行くか", beforeKana: "いつ いくか", after: [text("どうか 分かりません。", { kana: "どうか わかりません。" })] } }],
     items: [
       choiceItem("l23-p2-a1-q1", "1", "土曜日に 行く ことが できるか", ["douka"], { promptKana: "どようびに いく ことが できるか", choices: connectChoices, answerSource: "prompt" }),
@@ -332,7 +331,9 @@ const activities: PracticeActivity[] = [
         confidenceNote: "ASR 中「焼き鳥を全然ためませんでした」は结合表格选项校正为「焼き鳥を全然食べませんでした」。"
       }
     },
-    assets: [crop("l23-p2-a2-listening-table")],
+    assets: [
+      { id: "l23-p2-a2-listening-table", kind: "exercise_image", imagePath: exerciseImage("book1_lesson23_2_2.png") }
+    ],
     displayAssets: ["l23-p2-a2-listening-table"],
     layout: [
       { type: "example", content: { label: "[例]", before: "小野", beforeKana: "おの", after: [text("ビール、カラオケ")], afterKana: "ビール、カラオケ" } }
@@ -353,8 +354,7 @@ const activities: PracticeActivity[] = [
     answerUnit: "phrase",
     responseScope: "phrase_only",
     responseScopeHint: completionHint,
-    assets: [crop("l23-p2-a3-fill")],
-    displayAssets: ["l23-p2-a3-fill"],
+    assets: [],
     layout: [
       { type: "example", content: { label: "[例]", before: "休みの 日は、午後、散歩（したり）買い物に（行ったり）します。", beforeKana: "やすみの ひは、ごご、さんぽ（したり）かいものに（いったり）します。", after: [text("したり／行ったり")], afterKana: "したり／いったり" } }
     ],
@@ -374,7 +374,9 @@ const activities: PracticeActivity[] = [
     answerUnit: "word",
     responseScope: "word_only",
     responseScopeHint: completionHint,
-    assets: [crop("l23-p2-a4-word-bank")],
+    assets: [
+      { id: "l23-p2-a4-word-bank", kind: "exercise_image", imagePath: exerciseImage("book1_lesson23_2_4.png") }
+    ],
     displayAssets: ["l23-p2-a4-word-bank"],
     layout: [{ type: "word_bank", words: ["来ます", "います", "ありません", "始まります"].map((word) => text(word)) }],
     items: [
@@ -392,8 +394,7 @@ const activities: PracticeActivity[] = [
     interaction: "translation",
     answerUnit: "sentence",
     responseScope: "sentence_only",
-    assets: [crop("l23-p2-a5-translation")],
-    displayAssets: ["l23-p2-a5-translation"],
+    assets: [],
     layout: [],
     items: [
       answerItem("l23-p2-a5-q1", "1", "请告诉我钥匙在哪儿。", "かぎが どこに あるか 教えて ください。", { acceptableAlternatives: ["かぎが どこに あるかを 教えて ください。"] }),

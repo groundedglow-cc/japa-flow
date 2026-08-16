@@ -1445,6 +1445,30 @@ const standardExercises = [
 lesson.exercises = standardExercises;
 
 const lessonCatalogMetadata = {
+  1: "李さんは中国人です",
+  2: "これは本です",
+  3: "ここはデパートです",
+  4: "部屋に机といすがあります",
+  5: "森さんは7時に起きます",
+  6: "吉田さんは来月中国へ行きます",
+  7: "李さんは毎日コーヒーを飲みます",
+  8: "李さんは日本語で手紙を書きます",
+  9: "四川料理は辛いです",
+  10: "京都の紅葉は有名です",
+  11: "小野さんは歌が好きです",
+  12: "李さんは森さんより若いです",
+  13: "机の上に本が3冊あります",
+  14: "昨日デパートへ行きました",
+  15: "小野さんは今新聞を読んでいます",
+  16: "ホテルの部屋は広くて明るいです",
+  17: "わたしは新しい洋服が欲しいです",
+  18: "携帯電話はとても小さくなりました",
+  19: "部屋の鍵を忘れないでください",
+  20: "スミスさんはピアノを弾くことができます",
+  21: "わたしはすき焼きを食べたことがあります",
+  22: "森さんは毎晩テレビを見る",
+  23: "休みの日、散歩したり買い物に行ったりします",
+  24: "李さんはもうすぐ来ると思います",
   25: "これは明日会議で使う資料です",
   26: "自転車に2人で乗るのは危ないです",
   27: "子供の時、大きな地震がありました",
@@ -1608,6 +1632,10 @@ const state = {
   lessonCatalogStatus: null,
   lessonCatalogLoading: false,
   lessonCatalogMessage: "",
+  courseAvailability: null,
+  courseAvailabilityLoading: false,
+  intermediateCatalog: null,
+  intermediateCatalogLoading: false,
   lessonProgressByLesson: {},
   lessonPracticeProgressByLesson: {},
   lessonProgressLoaded: false,
@@ -1694,7 +1722,7 @@ const IS_NATIVE_APP = typeof window !== "undefined" && Boolean(window.Capacitor?
 // 调用方传入 FormData（字段：referenceText / wordId / audio），返回评分对象。
 async function evaluatePronunciation(form) {
   if (IS_NATIVE_APP) return evaluatePronunciationViaAzure(form);
-  const response = await fetch("/api/pronunciation/evaluate", { method: "POST", body: form });
+  const response = await fetch("/api/pronunciation/evaluate", { method: "POST", headers: { Authorization: `Bearer ${getAuthToken()}` }, body: form });
   const data = await response.json();
   if (!response.ok || data.error) throw new Error(data.error || "发音评价失败");
   return data;
@@ -1779,6 +1807,7 @@ let audioVersions = {};
 let runtimeLessonLoadingId = "";
 let runtimeLessonErrorId = "";
 let runtimeLessonError = "";
+const DEFAULT_OPEN_LESSON_IDS = Array.from({ length: 24 }, (_, index) => index + 1);
 const TEXT_VERSION_KEY = "textVersion";
 const TEXT_VERSION_NEW = "new";
 const TEXT_VERSION_OLD = "old";
@@ -2740,10 +2769,13 @@ function resetTextLearningData() {
 function navigate(path) {
   history.pushState({}, "", lessonPath(path));
   render();
+  const hash = String(path).split("#")[1];
+  if (hash) requestAnimationFrame(() => document.getElementById(hash)?.scrollIntoView({ block: "start" }));
 }
 
 function route() {
   const pathname = decodeURIComponent(location.pathname).replace(/[\s\u3000/]+$/u, "");
+  if (pathname === "/articles") return { page: "articles" };
   if (pathname === "/favorites") return { page: "favorites" };
   const lessonMatch = pathname.match(/^\/lesson\/(\d+)$/);
   if (lessonMatch) return { lessonId: lessonMatch[1], page: "lesson" };
@@ -2752,12 +2784,14 @@ function route() {
 }
 
 function lessonPath(path) {
-  const [pathname, search = ""] = String(path).split("?");
+  const [pathAndSearch, hash = ""] = String(path).split("#");
+  const [pathname, search = ""] = pathAndSearch.split("?");
   const params = new URLSearchParams(search);
   const currentLimit = new URLSearchParams(location.search).get("limit");
   if (currentLimit && !params.has("limit")) params.set("limit", currentLimit);
   const query = params.toString();
-  return query ? `${pathname}?${query}` : pathname;
+  const destination = query ? `${pathname}?${query}` : pathname;
+  return hash ? `${destination}#${hash}` : destination;
 }
 
 function currentVocabularyLimit() {
@@ -3502,7 +3536,7 @@ async function formatRecognizedAnswer(targetInput, recognizedText) {
   try {
     const response = await fetch("/api/practice/format-answer", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json", Authorization: `Bearer ${getAuthToken()}` },
       body: JSON.stringify({
         inputText,
         answerUnit: "dialogue",
@@ -4333,7 +4367,7 @@ function layout(content) {
   const currentRoute = route();
   const current = currentRoute.page;
   const runtimeLessonId = routeRuntimeLessonId();
-  const inLesson = Boolean(runtimeLessonId);
+  const inLesson = Boolean(runtimeLessonId) && isLessonOpen(runtimeLessonId);
   const showLessonSubnav = inLesson && ["lesson", "vocab", "grammar", "text", "exercises"].includes(current);
   const storedUser = getStoredUser() || {};
   const storedUsername = storedUser.username || "已登录";
@@ -4345,6 +4379,11 @@ function layout(content) {
           <span class="brand-mark">日</span>
           <span>JapaFlow</span>
         </div>
+        <nav class="nav" aria-label="主导航">
+          ${navLink("/", "首页", current === "home")}
+          ${navLink("/articles", "文章", current === "articles")}
+          ${navLink("/favorites", "收藏", current === "favorites")}
+        </nav>
         <div class="topbar-actions">
           ${isLoggedIn() ? `
             <div class="manage-menu user-menu">
@@ -4400,24 +4439,43 @@ function lessonSubnav(lessonId, current) {
 }
 
 function home() {
-  const catalog = courseCatalogItems();
-  const pageSize = 12;
-  const pageCount = Math.max(1, Math.ceil(catalog.length / pageSize));
-  const currentPage = currentHomePage(pageCount);
-  const start = (currentPage - 1) * pageSize;
-  const pageItems = catalog.slice(start, start + pageSize);
+  const catalog = courseCatalogItemsByLesson();
+  const params = new URLSearchParams(location.search);
+  const activeVolume = params.get("volume") === "lower" ? "lower" : "upper";
+  const activeIntermediateVolume = params.get("intermediateVolume") === "lower" ? "lower" : "upper";
+  const units = courseUnits(catalog).filter((unit) => unit.volumeKey === activeVolume);
+  const intermediateBook = state.intermediateCatalog?.books?.find((book) => book.id === activeIntermediateVolume);
   return layout(`
     <section class="course-home">
-      <div class="page-head">
-        <div>
-          <p class="eyebrow">JapaFlow · 课程列表</p>
-          <h1>标准日本语初级</h1>
+      <div class="course-home-hero">
+        <h1>标准日本语 <span class="course-home-kicker">* 在线学习</span></h1>
+        <div class="course-home-intro">
+          <p>我试过不少学日语的方法：买线上课程、安装多邻国、使用背词 App，也在线下报班跟着老师学。现在每天会规律投入 2-3 小时；刚考完 N5（初级上册），计划 10 月前完成 N4（初级下册）、今年 12 月初完成 N3（中级上册）。一路试下来，还是觉得标准教材最靠谱。培训机构大多也是按教材顺序教，因为词汇、语法、课文和练习本来就该连在一起学。☕</p>
+          <p>很多 App 用来入门当然不错，但不少是为非汉语背景学习者设计的，对中文母语者来说节奏往往太慢；试用没多久也常会进入按月收费。这里保留标日初级 48 课的学习路线，再加上自动判题、跟读录音和进度记录。后面还想慢慢补上收藏、复习和错题功能（｀・ω・´）。项目免费开放，不过判题和音频会用到 DeepSeek 与 Azure，会造成一定费用，每人每天最多 100 次。遇到问题，或想聊聊学习体验，欢迎写邮件到 <a href="mailto:tyfccsu@gmail.com">tyfccsu@gmail.com</a>。只靠课文里的练习，磨耳朵的时间其实很有限；我自己也会把《大家的日本語》和生活日语教材一起学，给同一批语法和单词多一些反复见面的机会。</p>
         </div>
-        ${homePagination(currentPage, pageCount)}
       </div>
-      <div class="course-grid">
-        ${pageItems.map((item) => courseCard(item)).join("")}
-      </div>
+      <section class="course-level-section" aria-labelledby="beginner-title">
+        <h2 id="beginner-title">初级</h2>
+        <div class="course-volume-tabs" role="tablist" aria-label="初级教材册别">
+          <button class="course-volume-tab ${activeVolume === "upper" ? "active" : ""}" type="button" role="tab" aria-selected="${activeVolume === "upper"}" data-nav="/?volume=upper&intermediateVolume=${activeIntermediateVolume}">上册 <small>第 1-24 课</small></button>
+          <button class="course-volume-tab ${activeVolume === "lower" ? "active" : ""}" type="button" role="tab" aria-selected="${activeVolume === "lower"}" data-nav="/?volume=lower&intermediateVolume=${activeIntermediateVolume}">下册 <small>第 25-48 课</small></button>
+        </div>
+        <div class="course-unit-list">
+          ${units.map((unit, index) => courseUnit(unit, index === 0)).join("")}
+        </div>
+      </section>
+      <section class="course-level-section course-intermediate-section" aria-labelledby="intermediate-title">
+        <h2 id="intermediate-title">中级</h2>
+        <div class="course-volume-tabs" role="tablist" aria-label="中级教材册别">
+          <button class="course-volume-tab ${activeIntermediateVolume === "upper" ? "active" : ""}" type="button" role="tab" aria-selected="${activeIntermediateVolume === "upper"}" data-nav="/?volume=${activeVolume}&intermediateVolume=upper#intermediate-title">上册 <small>第 1-16 课</small></button>
+          <button class="course-volume-tab ${activeIntermediateVolume === "lower" ? "active" : ""}" type="button" role="tab" aria-selected="${activeIntermediateVolume === "lower"}" data-nav="/?volume=${activeVolume}&intermediateVolume=lower#intermediate-title">下册 <small>第 17-32 课</small></button>
+        </div>
+        <div class="course-unit-list">
+          ${intermediateBook
+            ? intermediateBook.units.map((unit, index) => courseUnit(unit, index === 0, intermediateCourseUnitLesson)).join("")
+            : `<p class="course-catalog-loading">${state.intermediateCatalog ? "中级课程目录暂时无法读取。" : "正在加载中级课程目录..."}</p>`}
+        </div>
+      </section>
       ${state.lessonCatalogMessage ? `<p class="form-error">${escapeHtml(state.lessonCatalogMessage)}</p>` : ""}
     </section>
   `);
@@ -4475,6 +4533,29 @@ function runtimeErrorPage(lessonId) {
   `);
 }
 
+function courseConstructionPage(lessonId) {
+  const item = courseCatalogItems().find((entry) => String(entry.id) === String(lessonId));
+  return layout(`
+    <section class="panel pending-lesson">
+      <p class="eyebrow">第${lessonId}课 · 建设中</p>
+      <h1>${escapeHtml(item?.subtitle || `第${lessonId}课`)} 正在建设中</h1>
+      <p class="lead">本课内容尚未对用户开放。课程资料、练习与音频准备完成后会在首页开放。</p>
+      <div class="button-row">
+        <button class="primary" data-nav="/">返回课程目录</button>
+      </div>
+    </section>
+  `);
+}
+
+function courseAvailabilityLoadingPage(lessonId) {
+  return layout(`
+    <section class="panel pending-lesson">
+      <p class="eyebrow">第${lessonId}课 · 加载中</p>
+      <h1>正在确认课程开放状态</h1>
+    </section>
+  `);
+}
+
 function courseCatalogItems() {
   const base = state.lessonCatalogStatus?.length
     ? lessonCatalog.map((item) => ({
@@ -4483,6 +4564,87 @@ function courseCatalogItems() {
       }))
     : lessonCatalog;
   return [...base].sort(courseCatalogSort);
+}
+
+function courseCatalogItemsByLesson() {
+  return [...courseCatalogItems()].sort((a, b) => Number(a.id) - Number(b.id));
+}
+
+function courseUnits(catalog) {
+  const unitTitles = [
+    "小李赴日",
+    "小李的公司生活—①",
+    "小李在箱根",
+    "小李的公司生活—②",
+    "小李在日本迎新春",
+    "再见！日本",
+    "森赴北京",
+    "余暇",
+    "小野赴北京",
+    "游览北京",
+    "在北京的工作情况",
+    "新的拓展"
+  ];
+  const units = [];
+  for (let unitIndex = 0; unitIndex < 12; unitIndex += 1) {
+    const startLesson = unitIndex * 4 + 1;
+    const lessons = catalog.filter((item) => Number(item.id) >= startLesson && Number(item.id) < startLesson + 4);
+    const volume = unitIndex < 6 ? "上册" : "下册";
+    const volumeUnitNo = unitIndex % 6 + 1;
+    units.push({
+      id: unitIndex + 1,
+      volume,
+      volumeKey: unitIndex < 6 ? "upper" : "lower",
+      title: `${volume} 第${volumeUnitNo}单元 · ${unitTitles[unitIndex]}`,
+      range: `第${startLesson}-${startLesson + 3}课`,
+      lessons
+    });
+  }
+  return units;
+}
+
+function courseUnit(unit, open = false, lessonRenderer = courseUnitLesson) {
+  return `
+    <details class="course-unit" ${open ? "open" : ""}>
+      <summary>
+        <span>${unit.title}</span>
+        <em>${unit.range}</em>
+      </summary>
+      <div class="course-lesson-list">
+        ${unit.lessons.map((item) => lessonRenderer(item)).join("")}
+      </div>
+    </details>
+  `;
+}
+
+function intermediateCourseUnitLesson(item) {
+  return `
+    <div class="course-lesson-row is-building" aria-label="中级第${item.id}课正在建设中">
+      <span class="course-lesson-no">第${item.id}课</span>
+      <span class="course-lesson-title">${escapeHtml(item.title)}</span>
+      <span class="course-building-tag">建设中</span>
+    </div>
+  `;
+}
+
+function courseUnitLesson(item) {
+  const lessonNo = Number(item.id);
+  const title = item.subtitle && item.subtitle !== "待初始化" ? item.subtitle : "课程内容待补充";
+  if (!isLessonOpen(lessonNo)) {
+    return `
+      <div class="course-lesson-row is-building" aria-label="第${lessonNo}课正在建设中">
+        <span class="course-lesson-no">第${lessonNo}课</span>
+        <span class="course-lesson-title">${escapeHtml(title)}</span>
+        <span class="course-building-tag">建设中</span>
+      </div>
+    `;
+  }
+  return `
+    <a class="course-lesson-row" href="/tools/course-detail-preview.html?lesson=${lessonNo}&part=vocabulary" target="_blank" rel="noreferrer">
+      <span class="course-lesson-no">第${lessonNo}课</span>
+      <span class="course-lesson-title">${escapeHtml(title)}</span>
+    </a>
+  `;
 }
 
 function courseCatalogSort(a, b) {
@@ -4592,6 +4754,26 @@ function lessonDashboard() {
 }
 
 function favoritesPage() {
+  return layout(`
+    <section class="panel pending-lesson">
+      <p class="eyebrow">JapaFlow · 收藏</p>
+      <h1>收藏功能建设中</h1>
+      <p class="lead">收藏、分类复习与回顾功能正在整理中，后续会在这里开放。</p>
+    </section>
+  `);
+}
+
+function articlesPage() {
+  return layout(`
+    <section class="panel pending-lesson">
+      <p class="eyebrow">JapaFlow · 文章</p>
+      <h1>暂无文章</h1>
+      <p class="lead">这里会陆续记录日语学习过程、课程整理和产品更新。</p>
+    </section>
+  `);
+}
+
+function legacyFavoritesPage() {
   const params = new URLSearchParams(location.search);
   const activeTab = params.get("tab") === "sentences" ? "sentences" : "words";
   const currentRoute = route();
@@ -8275,6 +8457,49 @@ async function loadCourseCatalog(force = false) {
   if (route().page === "home") render();
 }
 
+function normalizeOpenLessonIds(value) {
+  const ids = Array.isArray(value) ? value : [];
+  return [...new Set(ids.map((id) => Number(id)).filter((id) => Number.isInteger(id) && id >= 1 && id <= 48))];
+}
+
+function isLessonOpen(lessonId) {
+  const openLessonIds = state.courseAvailability?.openLessonIds || DEFAULT_OPEN_LESSON_IDS;
+  return openLessonIds.includes(Number(lessonId));
+}
+
+async function loadCourseAvailability() {
+  if (state.courseAvailabilityLoading || state.courseAvailability) return;
+  state.courseAvailabilityLoading = true;
+  try {
+    const response = await fetch("/data/course-availability.json", { cache: "no-store" });
+    if (!response.ok) throw new Error(`读取课程开放配置失败 (${response.status})`);
+    const data = await response.json();
+    state.courseAvailability = { openLessonIds: normalizeOpenLessonIds(data.openLessonIds) };
+  } catch (error) {
+    console.warn("Failed to load course availability; using local default.", error);
+    state.courseAvailability = { openLessonIds: DEFAULT_OPEN_LESSON_IDS };
+  } finally {
+    state.courseAvailabilityLoading = false;
+  }
+  render();
+}
+
+async function loadIntermediateCatalog() {
+  if (state.intermediateCatalogLoading || state.intermediateCatalog) return;
+  state.intermediateCatalogLoading = true;
+  try {
+    const response = await fetch("/data/intermediate-catalog.json", { cache: "no-store" });
+    if (!response.ok) throw new Error(`读取中级课程目录失败 (${response.status})`);
+    state.intermediateCatalog = await response.json();
+  } catch (error) {
+    console.warn("Failed to load intermediate course catalog.", error);
+    state.intermediateCatalog = { books: [] };
+  } finally {
+    state.intermediateCatalogLoading = false;
+  }
+  if (route().page === "home") render();
+}
+
 async function loadCatalogLearningProgress(force = false) {
   if (!shouldSync()) {
     state.lessonProgressByLesson = {};
@@ -8330,12 +8555,12 @@ async function ensureRuntimeLesson(lessonId) {
 async function postAudioApi(path, body) {
   const response = await fetch(path, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: { "Content-Type": "application/json", Authorization: `Bearer ${getAuthToken()}` },
     body: JSON.stringify(body)
   });
   const data = await response.json();
-  if (!response.ok) throw new Error(data.error || "音频操作失败");
-  if (data.error) throw new Error(data.error);
+  if (!response.ok) throw new Error(data.error || data.message || (data.code === "AI_DAILY_QUOTA_EXCEEDED" ? "今日 AI 调用额度已用完。" : "音频操作失败"));
+  if (data.error) throw new Error(data.error || data.message);
   return data;
 }
 
@@ -8660,8 +8885,24 @@ function render() {
     history.replaceState({}, "", currentRoute.lessonId ? `/lesson/${currentRoute.lessonId}` : "/");
     return render();
   }
-  const views = { home, lesson: lessonDashboard, init: initPage, vocab, text: textPage, grammar: grammarPage, exercises: exercisesPage, wrongbook: wrongBookPage, favorites: favoritesPage, audio: audioManagePage, result: resultPage };
+  const views = { home, articles: articlesPage, lesson: lessonDashboard, init: initPage, vocab, text: textPage, grammar: grammarPage, exercises: exercisesPage, wrongbook: wrongBookPage, favorites: favoritesPage, audio: audioManagePage, result: resultPage };
   hideSelectionBubble();
+  const requestedLessonId = route().lessonId;
+  if (requestedLessonId && !ADMIN_MODE) {
+    if (!state.courseAvailability) {
+      loadCourseAvailability();
+      app.innerHTML = courseAvailabilityLoadingPage(requestedLessonId);
+      ensurePageFocus();
+      bind();
+      return;
+    }
+    if (!isLessonOpen(requestedLessonId)) {
+      app.innerHTML = courseConstructionPage(requestedLessonId);
+      ensurePageFocus();
+      bind();
+      return;
+    }
+  }
   const runtimeLessonId = routeRuntimeLessonId();
   if (runtimeLessonId && String(lesson.id) !== runtimeLessonId) {
     if (runtimeLessonErrorId !== runtimeLessonId) ensureRuntimeLesson(runtimeLessonId);
@@ -8688,6 +8929,10 @@ function render() {
   focusNewTextReadingControl();
   scrollCurrentVocabStatusIntoView();
   if (current === "home" || current === "favorites") loadCourseCatalog();
+  if (current === "home") {
+    loadCourseAvailability();
+    loadIntermediateCatalog();
+  }
   if (current === "audio") loadAudioStatus();
   if (current === "init") loadInitStatus();
   if (current === "vocab" && state.vocabPhase === "pronunciation" && !state.modal) {

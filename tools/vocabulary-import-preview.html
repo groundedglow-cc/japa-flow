@@ -280,6 +280,16 @@
         color: var(--warn);
       }
 
+      .tag.danger {
+        background: #fee4e2;
+        color: #b42318;
+      }
+
+      .tag.neutral {
+        background: #eef2f6;
+        color: #465466;
+      }
+
       .raw {
         color: var(--muted);
         font-size: 13px;
@@ -289,10 +299,42 @@
       .audio-row {
         display: flex;
         align-items: center;
+        flex-wrap: wrap;
         gap: 10px;
         margin: 12px 0 4px;
         color: var(--muted);
         font-size: 13px;
+      }
+
+      .audio-review {
+        display: grid;
+        gap: 6px;
+        margin: 10px 0 0;
+        padding: 10px 12px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: #fbfcfd;
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.5;
+      }
+
+      .audio-review.warn {
+        border-color: #f6c76c;
+        background: var(--warn-soft);
+        color: var(--warn);
+      }
+
+      .audio-review.danger {
+        border-color: #fda29b;
+        background: #fff0ee;
+        color: #b42318;
+      }
+
+      .audio-review-line {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px 12px;
       }
 
       .audio-button {
@@ -423,8 +465,6 @@
         grid-template-columns: repeat(auto-fill, minmax(96px, 1fr));
         gap: 8px;
         margin-top: 14px;
-        max-height: 360px;
-        overflow: auto;
       }
 
       .word-list button {
@@ -433,6 +473,50 @@
         align-items: center;
         text-align: left;
         padding: 7px 9px;
+      }
+
+      .word-list button.review-pending {
+        border-color: #f6c76c;
+        background: var(--warn-soft);
+      }
+
+      .word-list button.review-risk {
+        border-color: #fda29b;
+        background: #fff0ee;
+      }
+
+      .word-list-main {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+        width: 100%;
+        min-width: 0;
+      }
+
+      .review-dot {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        flex: 0 0 auto;
+        min-width: 20px;
+        height: 20px;
+        border-radius: 999px;
+        padding: 0 6px;
+        font-size: 11px;
+        font-weight: 700;
+        background: #eef2f6;
+        color: #465466;
+      }
+
+      .review-dot.pending {
+        background: var(--warn-soft);
+        color: var(--warn);
+      }
+
+      .review-dot.risk {
+        background: #fee4e2;
+        color: #b42318;
       }
 
       .word-list strong {
@@ -535,7 +619,7 @@
       <section class="panel data-panel">
         <div class="toolbar">
           <button class="primary" id="loadDefault" type="button">重新加载当前课次</button>
-          <button id="generateAudio" type="button">生成音频切片</button>
+          <button id="generateAudio" type="button">生成音频区间标注</button>
           <input id="fileInput" type="file" accept="application/json,.json" />
           <span class="summary" id="summary">未加载</span>
         </div>
@@ -720,7 +804,7 @@
         renderLessonList();
         const response = await fetch(sample.url, { cache: "no-store" });
         if (!response.ok) throw new Error(`读取 ${sample.label} JSON 失败：${response.status}`);
-        setData(await response.json(), `${sample.label}${sample.hasAudio ? "切片样例" : "样例"}`);
+        setData(await response.json(), `${sample.label}${sample.hasAudio ? "音频标注样例" : "样例"}`);
       }
 
       async function loadDefault() {
@@ -737,7 +821,7 @@
           <button class="lesson-chip ${sample.lessonNo === state.selectedSample?.lessonNo ? "active" : ""}" type="button" data-lesson-no="${sample.lessonNo}">
             <span>${escapeHtml(sample.label)}</span>
             <span class="count">${escapeHtml(sample.counts?.vocabulary || 0)}</span>
-            ${sample.hasAudio ? "<span aria-label=\"有音频切片\">▶</span>" : ""}
+            ${sample.hasAudio ? "<span aria-label=\"有音频区间标注\">▶</span>" : ""}
           </button>
         `).join("") : `<span class="status">暂无样例</span>`;
         $("#lessonList").querySelectorAll("button[data-lesson-no]").forEach((button) => {
@@ -749,7 +833,7 @@
 
       async function generateAudioAlignment() {
         const lessonNo = state.selectedSample?.lessonNo || lessonNoFromData() || 1;
-        setStatus("正在生成音频切片...");
+        setStatus("正在生成音频区间标注...");
         $("#generateAudio").disabled = true;
         try {
           const response = await fetch("/api/ocr/audio-align", {
@@ -759,10 +843,11 @@
           });
           const result = await response.json();
           if (!response.ok) throw new Error(result.error || `生成失败：${response.status}`);
-          setData(result.vocabularyData, "音频切片数据");
           await refreshSamples(lessonNo);
-          const summary = result.summaries?.find((item) => item.trackId === "lesson_words");
-          setStatus(summary ? `音频切片已生成：${summary.mappedSegments}/${summary.expectedItems}。` : "音频切片已生成。");
+          await selectSample(lessonNo);
+          const vocabularyOutput = (result.outputs || []).find((item) => item.outputPath?.includes("-vocabulary-audio-verified.json"));
+          const summary = vocabularyOutput?.track;
+          setStatus(summary ? `音频区间标注已生成：${summary.alignedItems || summary.expectedItems || 0} 条。` : "音频区间标注已生成。");
         } catch (error) {
           setStatus(error.message, true);
         } finally {
@@ -773,11 +858,23 @@
       function render() {
         const data = state.data;
         const words = data?.vocabulary || [];
-        $("#summary").textContent = data ? `${data.lessonId || "unknown"} · ${words.length} 个词` : "未加载";
+        $("#summary").textContent = data ? summaryText(data, words) : "未加载";
         renderImage(data);
         renderWord(words[state.index], words.length);
         renderWordList(words);
         scheduleCurrentWordPlayback(words[state.index]);
+      }
+
+      function summaryText(data, words) {
+        const stats = words.reduce((acc, word) => {
+          const review = audioReviewState(word);
+          if (review.status === "approved") acc.approved += 1;
+          else acc.pending += 1;
+          if (review.severity === "risk") acc.risk += 1;
+          return acc;
+        }, { approved: 0, pending: 0, risk: 0 });
+        const reviewStatus = data.audioAlignment?.reviewStatus || "unknown";
+        return `${data.lessonId || "unknown"} · ${words.length} 个词 · ${stats.approved} approved · ${stats.pending} pending · ${stats.risk} 高风险 · ${reviewStatus}`;
       }
 
       function lessonNoFromData() {
@@ -801,6 +898,7 @@
         }
         const meanings = Array.isArray(word.meaningZh) ? word.meaningZh : [word.meaningZh].filter(Boolean);
         const meaningText = meanings.length ? meanings.map(escapeHtml).join(" / ") : "暂无中文释义";
+        const audioReview = audioReviewState(word);
         $("#wordCard").innerHTML = `
           <article class="word-card">
             <div class="word-nav">
@@ -818,6 +916,7 @@
                   <span class="tag">${escapeHtml(word.id || "")}</span>
                   <span class="tag">${escapeHtml(word.partOfSpeech || "无词性")}</span>
                   <span class="tag ${word.confidence === "low" ? "warn" : ""}">${escapeHtml(word.confidence || "unknown")}</span>
+                  <span class="tag ${audioReview.tagClass}">${escapeHtml(audioReview.label)}</span>
                 </div>
               </div>
               ${word.audioSegment ? `
@@ -826,6 +925,7 @@
                   <button class="audio-button segment-settings" id="editWordAudio" type="button" title="设置音频区间" aria-label="设置音频区间">⚙</button>
                   <span>${escapeHtml(formatSegmentTime(word.audioSegment))}</span>
                 </div>
+                ${renderAudioReview(word.audioSegment, audioReview)}
               ` : ""}
             </div>
           </article>
@@ -902,8 +1002,11 @@
 
       function renderWordList(words) {
         $("#wordList").innerHTML = words.map((word, index) => `
-          <button type="button" class="${index === state.index ? "active" : ""}" data-index="${index}">
-            <strong>${escapeHtml(word.writing || word.kana)}</strong>
+          <button type="button" class="${wordListClass(word, index)}" data-index="${index}">
+            <span class="word-list-main">
+              <strong>${escapeHtml(word.writing || word.kana)}</strong>
+              ${renderReviewDot(word)}
+            </span>
           </button>
         `).join("");
         $("#wordList").querySelectorAll("button").forEach((button) => {
@@ -937,15 +1040,125 @@
         return `${Number(segment.start || 0).toFixed(3)}s - ${Number(segment.end || 0).toFixed(3)}s`;
       }
 
+      function renderAudioReview(segment, review) {
+        const raw = segment.rawAzureTiming;
+        const timingLabel = segment.timingSource === "audio-silence-detection" ? "静音边界" : "Azure 时间戳";
+        return `
+          <div class="audio-review ${review.severity === "risk" ? "danger" : review.status === "pending" ? "warn" : ""}">
+            <div class="audio-review-line">
+              <span>状态：${escapeHtml(review.label)}</span>
+              <span>边界：${escapeHtml(timingLabel)}</span>
+              <span>分数：${escapeHtml(formatOptionalNumber(segment.matchScore))}</span>
+              <span>时长：${escapeHtml(formatOptionalNumber(segment.duration))}s</span>
+              ${raw ? `<span>Azure：${escapeHtml(formatSegmentTime(raw))}</span>` : ""}
+            </div>
+            ${segment.asrText ? `<div>ASR：${escapeHtml(segment.asrText)}</div>` : ""}
+            ${review.reasons.length ? `<div>原因：${review.reasons.map(escapeHtml).join("；")}</div>` : ""}
+            ${Array.isArray(segment.alignmentWarnings) && segment.alignmentWarnings.length
+              ? `<div>诊断：${segment.alignmentWarnings.map((warning) => escapeHtml(readableAlignmentWarning(warning))).join("；")}</div>`
+              : ""}
+          </div>
+        `;
+      }
+
+      function wordListClass(word, index) {
+        const review = audioReviewState(word);
+        return [
+          index === state.index ? "active" : "",
+          review.severity === "risk" ? "review-risk" : review.status === "pending" ? "review-pending" : ""
+        ].filter(Boolean).join(" ");
+      }
+
+      function renderReviewDot(word) {
+        const review = audioReviewState(word);
+        if (!word.audioSegment) return "";
+        if (review.severity === "risk") return `<span class="review-dot risk" title="${escapeHtml(review.reasons.join("；"))}">!</span>`;
+        if (review.status === "pending") return `<span class="review-dot pending" title="${escapeHtml(review.reasons.join("；"))}">待</span>`;
+        return `<span class="review-dot" title="approved">✓</span>`;
+      }
+
+      function audioReviewState(word) {
+        const segment = word?.audioSegment;
+        if (!segment) {
+          return { status: "pending", severity: "risk", label: "无音频", tagClass: "danger", reasons: ["没有音频区间"] };
+        }
+        const status = segment.review?.status || "pending";
+        const reasons = audioRiskReasons(word, segment);
+        const severity = reasons.some((reason) => /低匹配|极短|重叠|无效|边界过近/.test(reason))
+          || segment.review?.severity === "risk"
+          ? "risk"
+          : status === "pending" || reasons.length ? "pending" : "ok";
+        const label = status === "approved" && severity === "ok" ? "approved" : status === "approved" ? "approved · 可疑" : "pending";
+        return {
+          status: status === "approved" && severity === "ok" ? "approved" : "pending",
+          severity,
+          label,
+          tagClass: severity === "risk" ? "danger" : status === "approved" && severity === "ok" ? "" : "warn",
+          reasons
+        };
+      }
+
+      function audioRiskReasons(word, segment) {
+        const reasons = [];
+        const score = Number(segment.matchScore);
+        const duration = Number(segment.duration);
+        const start = Number(segment.start);
+        const end = Number(segment.end);
+        const minDuration = expectedMinimumDuration(word);
+        const hasReliableAudioBoundary = segment.timingSource === "audio-silence-detection"
+          && segment.timingConfidence === "high";
+        if (!Number.isFinite(start) || !Number.isFinite(end) || end <= start) reasons.push("无效时间区间");
+        if (!hasReliableAudioBoundary) {
+          if (Number.isFinite(score) && score < 0.65) reasons.push(`低匹配分 ${score.toFixed(3)}`);
+          if (Number.isFinite(duration) && duration < 0.35) reasons.push(`极短时长 ${duration.toFixed(3)}s`);
+          if (Number.isFinite(duration) && duration < minDuration * 0.55) reasons.push(`短于预估 ${duration.toFixed(3)}s / ${minDuration.toFixed(3)}s`);
+        }
+        if (Array.isArray(segment.alignmentIssues) && segment.alignmentIssues.length) reasons.push(...segment.alignmentIssues.map(readableAlignmentIssue));
+        if (segment.review?.status && segment.review.status !== "approved") reasons.push(`未人工确认 ${segment.review.status}`);
+        if (segment.review?.note && /Pending manual verification/i.test(segment.review.note)) reasons.push("脚本要求人工验证");
+        return [...new Set(reasons.filter(Boolean))];
+      }
+
+      function expectedMinimumDuration(word) {
+        const text = String(word?.kana || word?.writing || "");
+        const normalized = normalizeWordTextForReview(text);
+        const units = Math.max(1, [...normalized.replace(/[ゃゅょぁぃぅぇぉャュョァィゥェォ]/gu, "")].length);
+        return Math.min(1.5, Math.max(0.45, units * 0.28));
+      }
+
+      function normalizeWordTextForReview(value) {
+        return String(value || "").normalize("NFKC").replace(/[\s\p{P}\p{S}]/gu, "").toLowerCase();
+      }
+
+      function readableAlignmentIssue(issue) {
+        const text = String(issue || "");
+        if (text.startsWith("expanded-start:")) return `自动前扩 ${text.replace("expanded-start:", "")}`;
+        if (text.startsWith("short-azure-timing:")) return `Azure 原始时间过短 ${text.replace("short-azure-timing:", "")}`;
+        if (text.startsWith("large-heuristic-expansion:")) return `大幅启发式扩展 ${text.replace("large-heuristic-expansion:", "")}`;
+        if (text === "neighbor-boundary-too-tight") return "相邻词边界过近";
+        return text;
+      }
+
+      function readableAlignmentWarning(warning) {
+        const text = String(warning || "");
+        if (text === "azure-timing-does-not-overlap-vad") return "Azure 时间与静音边界不重合，已采用静音边界";
+        if (text.startsWith("low-asr-text-match:")) return `ASR 文字匹配较低 ${text.replace("low-asr-text-match:", "")}`;
+        return text;
+      }
+
+      function formatOptionalNumber(value) {
+        const number = Number(value);
+        return Number.isFinite(number) ? number.toFixed(3) : "unknown";
+      }
+
       async function playSegment(segment) {
-        if (!segment?.sourceUrl && !segment?.localAudioPath) {
+        if (!segment?.sourceUrl) {
           setStatus("当前条目没有音频片段。", true);
           return;
         }
-        const source = segment.sourceUrl || assetSrc(segment.localAudioPath);
         clearInterval(state.stopTimer);
         state.audio.pause();
-        state.audio.src = source;
+        state.audio.src = segment.sourceUrl;
         try {
           await waitForAudioMetadata();
           state.audio.currentTime = Math.max(0, Number(segment.start) || 0);

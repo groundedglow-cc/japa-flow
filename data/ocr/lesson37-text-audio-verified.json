@@ -25,14 +25,27 @@
         "audioSegment": {
           "id": "l37-basic-s001",
           "trackId": "lesson_basic",
-          "sourceUrl": "/data/ocr/audio-clips/lesson37/l37-basic-s001.mp3",
-          "start": 0,
-          "end": 4.38,
+          "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson37/lesson_basic.mp3",
+          "speaker": "",
+          "text": "優勝すれば、オリンピックに出場することができます。",
+          "start": 2.49,
+          "end": 6.87,
           "duration": 4.38,
-          "method": "approved-asr-alignment",
+          "speechUnitCount": 1,
+          "matchScore": 1,
+          "asrText": "優 勝 す れ ば オ リ ン ピ ッ ク に 出 場 す る こ と が で き ま す",
+          "phraseIndexes": [
+            1
+          ],
+          "method": "legacy-asr-alignment-range-converted",
           "confidence": "approved",
-          "reviewedAt": "2026-08-05T10:19:01.708Z",
-          "sourceAudioSha256": "65db4c30a21c097aa2cc2c6698b2170a43a00b938e6ae188679403a8ca5db5d5"
+          "review": {
+            "status": "approved",
+            "reviewedAt": "2026-08-05T10:19:01.708Z",
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "matchScore": 1,
+            "asrText": "優 勝 す れ ば オ リ ン ピ ッ ク に 出 場 す る こ と が で き ま す"
+          }
         }
       },
       {
@@ -45,14 +58,27 @@
         "audioSegment": {
           "id": "l37-basic-s002",
           "trackId": "lesson_basic",
-          "sourceUrl": "/data/ocr/audio-clips/lesson37/l37-basic-s002.mp3",
-          "start": 0,
-          "end": 3.58,
+          "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson37/lesson_basic.mp3",
+          "speaker": "",
+          "text": "天安門へ行くなら、地下鉄が便利ですよ。",
+          "start": 9.09,
+          "end": 12.67,
           "duration": 3.58,
-          "method": "approved-asr-alignment",
+          "speechUnitCount": 1,
+          "matchScore": 1,
+          "asrText": "天 安 門 へ 行 く な ら 地 下 鉄 が 便 利 で す よ",
+          "phraseIndexes": [
+            2
+          ],
+          "method": "legacy-asr-alignment-range-converted",
           "confidence": "approved",
-          "reviewedAt": "2026-08-05T10:19:01.708Z",
-          "sourceAudioSha256": "65db4c30a21c097aa2cc2c6698b2170a43a00b938e6ae188679403a8ca5db5d5"
+          "review": {
+            "status": "approved",
+            "reviewedAt": "2026-08-05T10:19:01.708Z",
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "matchScore": 1,
+            "asrText": "天 安 門 へ 行 く な ら 地 下 鉄 が 便 利 で す よ"
+          }
         }
       },
       {
@@ -65,14 +91,27 @@
         "audioSegment": {
           "id": "l37-basic-s003",
           "trackId": "lesson_basic",
-          "sourceUrl": "/data/ocr/audio-clips/lesson37/l37-basic-s003.mp3",
-          "start": 0,
-          "end": 1.58,
+          "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson37/lesson_basic.mp3",
+          "speaker": "",
+          "text": "映画でも見に行きませんか。",
+          "start": 15.89,
+          "end": 17.47,
           "duration": 1.58,
-          "method": "approved-asr-alignment",
+          "speechUnitCount": 1,
+          "matchScore": 1,
+          "asrText": "映 画 で も 見 に 行 き ま せ ん か",
+          "phraseIndexes": [
+            3
+          ],
+          "method": "legacy-asr-alignment-range-converted",
           "confidence": "approved",
-          "reviewedAt": "2026-08-05T10:19:01.708Z",
-          "sourceAudioSha256": "65db4c30a21c097aa2cc2c6698b2170a43a00b938e6ae188679403a8ca5db5d5"
+          "review": {
+            "status": "approved",
+            "reviewedAt": "2026-08-05T10:19:01.708Z",
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "matchScore": 1,
+            "asrText": "映 画 で も 見 に 行 き ま せ ん か"
+          }
         }
       },
       {
@@ -85,14 +124,27 @@
         "audioSegment": {
           "id": "l37-basic-s004",
           "trackId": "lesson_basic",
-          "sourceUrl": "/data/ocr/audio-clips/lesson37/l37-basic-s004.mp3",
-          "start": 0,
-          "end": 6.82,
+          "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson37/lesson_basic.mp3",
+          "speaker": "",
+          "text": "パーティーで、戴さんとか楊さんとか、いろいろな人に会いました。",
+          "start": 18.65,
+          "end": 25.47,
           "duration": 6.82,
-          "method": "approved-asr-alignment",
+          "speechUnitCount": 1,
+          "matchScore": 0.786,
+          "asrText": "パ ー テ ィ ー で タ イ さ ん と か 楊 さ ん と か 色 々 な 人 に 会 い ま し た",
+          "phraseIndexes": [
+            4
+          ],
+          "method": "legacy-asr-alignment-range-converted",
           "confidence": "approved",
-          "reviewedAt": "2026-08-05T10:19:01.708Z",
-          "sourceAudioSha256": "65db4c30a21c097aa2cc2c6698b2170a43a00b938e6ae188679403a8ca5db5d5"
+          "review": {
+            "status": "approved",
+            "reviewedAt": "2026-08-05T10:19:01.708Z",
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "matchScore": 0.786,
+            "asrText": "パ ー テ ィ ー で タ イ さ ん と か 楊 さ ん と か 色 々 な 人 に 会 い ま し た"
+          }
         }
       }
     ],
@@ -111,14 +163,27 @@
             "audioSegment": {
               "id": "l37-basic-dialogue-001-line-001",
               "trackId": "lesson_basic",
-              "sourceUrl": "/data/ocr/audio-clips/lesson37/l37-basic-dialogue-001-line-001.mp3",
-              "start": 0,
-              "end": 3.02,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson37/lesson_basic.mp3",
+              "speaker": "甲",
+              "text": "陳さんの携帯電話の番号が分からないんですが…。",
+              "start": 29.06,
+              "end": 32.08,
               "duration": 3.02,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 1,
+              "matchScore": 0.905,
+              "asrText": "沈 さ ん の 携 帯 電 話 の 番 号 が わ か ら な い ん で す が",
+              "phraseIndexes": [
+                5
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T10:19:01.708Z",
-              "sourceAudioSha256": "65db4c30a21c097aa2cc2c6698b2170a43a00b938e6ae188679403a8ca5db5d5"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T10:19:01.708Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 0.905,
+                "asrText": "沈 さ ん の 携 帯 電 話 の 番 号 が わ か ら な い ん で す が"
+              }
             }
           },
           {
@@ -131,14 +196,27 @@
             "audioSegment": {
               "id": "l37-basic-dialogue-001-line-002",
               "trackId": "lesson_basic",
-              "sourceUrl": "/data/ocr/audio-clips/lesson37/l37-basic-dialogue-001-line-002.mp3",
-              "start": 0,
-              "end": 2.22,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson37/lesson_basic.mp3",
+              "speaker": "乙",
+              "text": "李さんに聞けば、分かりますよ。",
+              "start": 32.85,
+              "end": 35.07,
               "duration": 2.22,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 1,
+              "matchScore": 0.923,
+              "asrText": "李 さ ん に 聞 け ば わ か り ま す よ",
+              "phraseIndexes": [
+                6
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T10:19:01.708Z",
-              "sourceAudioSha256": "65db4c30a21c097aa2cc2c6698b2170a43a00b938e6ae188679403a8ca5db5d5"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T10:19:01.708Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 0.923,
+                "asrText": "李 さ ん に 聞 け ば わ か り ま す よ"
+              }
             }
           }
         ]
@@ -157,14 +235,27 @@
             "audioSegment": {
               "id": "l37-basic-dialogue-002-line-001",
               "trackId": "lesson_basic",
-              "sourceUrl": "/data/ocr/audio-clips/lesson37/l37-basic-dialogue-002-line-001.mp3",
-              "start": 0,
-              "end": 1.26,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson37/lesson_basic.mp3",
+              "speaker": "甲",
+              "text": "李さん、プールに行きませんか。",
+              "start": 39.41,
+              "end": 40.67,
               "duration": 1.26,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 1,
+              "matchScore": 0.769,
+              "asrText": "プ ー ル に 行 き ま せ ん か",
+              "phraseIndexes": [
+                8
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T10:19:01.708Z",
-              "sourceAudioSha256": "65db4c30a21c097aa2cc2c6698b2170a43a00b938e6ae188679403a8ca5db5d5"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T10:19:01.708Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 0.769,
+                "asrText": "プ ー ル に 行 き ま せ ん か"
+              }
             }
           },
           {
@@ -177,14 +268,27 @@
             "audioSegment": {
               "id": "l37-basic-dialogue-002-line-002",
               "trackId": "lesson_basic",
-              "sourceUrl": "/data/ocr/audio-clips/lesson37/l37-basic-dialogue-002-line-002.mp3",
-              "start": 0,
-              "end": 4.46,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson37/lesson_basic.mp3",
+              "speaker": "乙",
+              "text": "今日はちょっと用事があるんです。明日なら暇ですが…。",
+              "start": 41.33,
+              "end": 45.79,
               "duration": 4.46,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrText": "今 日 は ち ょ っ と 用 事 が あ る ん で す 明 日 な ら 暇 で す が",
+              "phraseIndexes": [
+                9
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T10:19:01.708Z",
-              "sourceAudioSha256": "65db4c30a21c097aa2cc2c6698b2170a43a00b938e6ae188679403a8ca5db5d5"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T10:19:01.708Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 1,
+                "asrText": "今 日 は ち ょ っ と 用 事 が あ る ん で す 明 日 な ら 暇 で す が"
+              }
             }
           }
         ]
@@ -203,14 +307,27 @@
             "audioSegment": {
               "id": "l37-basic-dialogue-003-line-001",
               "trackId": "lesson_basic",
-              "sourceUrl": "/data/ocr/audio-clips/lesson37/l37-basic-dialogue-003-line-001.mp3",
-              "start": 0,
-              "end": 2.18,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson37/lesson_basic.mp3",
+              "speaker": "甲",
+              "text": "最近、ちょっと太りました。",
+              "start": 48.99,
+              "end": 51.17,
               "duration": 2.18,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrText": "最 近 ち ょ っ と 太 り ま し た",
+              "phraseIndexes": [
+                10
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T10:19:01.708Z",
-              "sourceAudioSha256": "65db4c30a21c097aa2cc2c6698b2170a43a00b938e6ae188679403a8ca5db5d5"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T10:19:01.708Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 1,
+                "asrText": "最 近 ち ょ っ と 太 り ま し た"
+              }
             }
           },
           {
@@ -223,14 +340,27 @@
             "audioSegment": {
               "id": "l37-basic-dialogue-003-line-002",
               "trackId": "lesson_basic",
-              "sourceUrl": "/data/ocr/audio-clips/lesson37/l37-basic-dialogue-003-line-002.mp3",
-              "start": 0,
-              "end": 2.26,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson37/lesson_basic.mp3",
+              "speaker": "乙",
+              "text": "じゃあ、運動でもしたらどうですか。",
+              "start": 51.77,
+              "end": 54.03,
               "duration": 2.26,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrText": "じ ゃ あ 運 動 で も し た ら ど う で す か",
+              "phraseIndexes": [
+                11
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T10:19:01.708Z",
-              "sourceAudioSha256": "65db4c30a21c097aa2cc2c6698b2170a43a00b938e6ae188679403a8ca5db5d5"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T10:19:01.708Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 1,
+                "asrText": "じ ゃ あ 運 動 で も し た ら ど う で す か"
+              }
             }
           }
         ]
@@ -249,14 +379,27 @@
             "audioSegment": {
               "id": "l37-basic-dialogue-004-line-001",
               "trackId": "lesson_basic",
-              "sourceUrl": "/data/ocr/audio-clips/lesson37/l37-basic-dialogue-004-line-001.mp3",
-              "start": 0,
-              "end": 3.5,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson37/lesson_basic.mp3",
+              "speaker": "甲",
+              "text": "葉子さん、昨日バーゲンに行ったの？",
+              "start": 57.79,
+              "end": 61.29,
               "duration": 3.5,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 1,
+              "matchScore": 0.933,
+              "asrText": "陽 子 さ ん 昨 日 バ ー ゲ ン に 行 っ た の",
+              "phraseIndexes": [
+                12
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T10:19:01.708Z",
-              "sourceAudioSha256": "65db4c30a21c097aa2cc2c6698b2170a43a00b938e6ae188679403a8ca5db5d5"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T10:19:01.708Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 0.933,
+                "asrText": "陽 子 さ ん 昨 日 バ ー ゲ ン に 行 っ た の"
+              }
             }
           },
           {
@@ -269,14 +412,27 @@
             "audioSegment": {
               "id": "l37-basic-dialogue-004-line-002",
               "trackId": "lesson_basic",
-              "sourceUrl": "/data/ocr/audio-clips/lesson37/l37-basic-dialogue-004-line-002.mp3",
-              "start": 0,
-              "end": 2.66,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson37/lesson_basic.mp3",
+              "speaker": "乙",
+              "text": "うん、コートとか靴とか、いっぱい買っちゃった。",
+              "start": 62.7,
+              "end": 65.36,
               "duration": 2.66,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrText": "う ん コ ー ト と か 靴 と か い っ ぱ い 買 っ ち ゃ っ た",
+              "phraseIndexes": [
+                13
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T10:19:01.708Z",
-              "sourceAudioSha256": "65db4c30a21c097aa2cc2c6698b2170a43a00b938e6ae188679403a8ca5db5d5"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T10:19:01.708Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 1,
+                "asrText": "う ん コ ー ト と か 靴 と か い っ ぱ い 買 っ ち ゃ っ た"
+              }
             }
           }
         ]
@@ -308,14 +464,27 @@
             "audioSegment": {
               "id": "l37-app-block-002-line-001",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson37/l37-app-block-002-line-001.mp3",
-              "start": 0,
-              "end": 10.1,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson37/lesson_apps.mp3",
+              "speaker": "小野",
+              "text": "「八達嶺」までどのぐらいですか。",
+              "start": 3.78,
+              "end": 13.88,
               "duration": 10.1,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 1,
+              "matchScore": 0.846,
+              "asrText": "発 達 令 ま で ど の ぐ ら い で す か",
+              "phraseIndexes": [
+                1
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T10:19:59.998Z",
-              "sourceAudioSha256": "a131b0ef1446727599d9779fdfd3041b7b20bd83c1bfd79fa26c90c9a433822c"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T10:19:59.998Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 0.846,
+                "asrText": "発 達 令 ま で ど の ぐ ら い で す か"
+              }
             }
           },
           {
@@ -328,14 +497,27 @@
             "audioSegment": {
               "id": "l37-app-block-002-line-002",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson37/l37-app-block-002-line-002.mp3",
-              "start": 0,
-              "end": 5.5,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson37/lesson_apps.mp3",
+              "speaker": "李",
+              "text": "高速道路を利用すれば、だいたい１時間ぐらいです。鉄道なら２時間ちょっとですね。",
+              "start": 15.3,
+              "end": 20.8,
               "duration": 5.5,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 1,
+              "matchScore": 0.944,
+              "asrText": "高 速 道 路 を 利 用 す れ ば だ い た い 一 時 間 ぐ ら い で す 鉄 道 な ら 二 時 間 ち ょ っ と で す ね",
+              "phraseIndexes": [
+                2
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T10:19:59.998Z",
-              "sourceAudioSha256": "a131b0ef1446727599d9779fdfd3041b7b20bd83c1bfd79fa26c90c9a433822c"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T10:19:59.998Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 0.944,
+                "asrText": "高 速 道 路 を 利 用 す れ ば だ い た い 一 時 間 ぐ ら い で す 鉄 道 な ら 二 時 間 ち ょ っ と で す ね"
+              }
             }
           },
           {
@@ -348,14 +530,27 @@
             "audioSegment": {
               "id": "l37-app-block-002-line-003",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson37/l37-app-block-002-line-003.mp3",
-              "start": 0,
-              "end": 1.5,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson37/lesson_apps.mp3",
+              "speaker": "小野",
+              "text": "鉄道でも行くことができるんですか。",
+              "start": 22.34,
+              "end": 23.84,
               "duration": 1.5,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrText": "鉄 道 で も 行 く こ と が で き る ん で す か",
+              "phraseIndexes": [
+                3
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T10:19:59.998Z",
-              "sourceAudioSha256": "a131b0ef1446727599d9779fdfd3041b7b20bd83c1bfd79fa26c90c9a433822c"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T10:19:59.998Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 1,
+                "asrText": "鉄 道 で も 行 く こ と が で き る ん で す か"
+              }
             }
           },
           {
@@ -368,14 +563,27 @@
             "audioSegment": {
               "id": "l37-app-block-002-line-004",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson37/l37-app-block-002-line-004.mp3",
-              "start": 0,
-              "end": 5.62,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson37/lesson_apps.mp3",
+              "speaker": "李",
+              "text": "ええ。鉄道で行くなら、北京北駅が便利です。直通列車が出ていますから。",
+              "start": 24.89,
+              "end": 30.51,
               "duration": 5.62,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrText": "え え 鉄 道 で 行 く な ら 北 京 北 駅 が 便 利 で す 直 通 列 車 が 出 て い ま す か ら",
+              "phraseIndexes": [
+                4
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T10:19:59.998Z",
-              "sourceAudioSha256": "a131b0ef1446727599d9779fdfd3041b7b20bd83c1bfd79fa26c90c9a433822c"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T10:19:59.998Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 1,
+                "asrText": "え え 鉄 道 で 行 く な ら 北 京 北 駅 が 便 利 で す 直 通 列 車 が 出 て い ま す か ら"
+              }
             }
           }
         ]
@@ -402,14 +610,27 @@
             "audioSegment": {
               "id": "l37-app-block-004-line-001",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson37/l37-app-block-004-line-001.mp3",
-              "start": 0,
-              "end": 7.38,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson37/lesson_apps.mp3",
+              "speaker": "李",
+              "text": "八達嶺は万里の長城の観光スポットの１つです。北京から近くて、いちばん有名な場所です。",
+              "start": 39.16,
+              "end": 46.54,
               "duration": 7.38,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 1,
+              "matchScore": 0.795,
+              "asrText": "発 達 令 は 万 里 の 長 城 の 観 光 ス ポ ッ ト の ひ と つ で す 北 京 か ら 近 く て 一 番 有 名 な 場 所 で す",
+              "phraseIndexes": [
+                5
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T10:19:59.998Z",
-              "sourceAudioSha256": "a131b0ef1446727599d9779fdfd3041b7b20bd83c1bfd79fa26c90c9a433822c"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T10:19:59.998Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 0.795,
+                "asrText": "発 達 令 は 万 里 の 長 城 の 観 光 ス ポ ッ ト の ひ と つ で す 北 京 か ら 近 く て 一 番 有 名 な 場 所 で す"
+              }
             }
           },
           {
@@ -422,14 +643,28 @@
             "audioSegment": {
               "id": "l37-app-block-004-line-002",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson37/l37-app-block-004-line-002.mp3",
-              "start": 0,
-              "end": 9.54,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson37/lesson_apps.mp3",
+              "speaker": "小野",
+              "text": "テレビとか写真集とかで見たことがありますが、実際に見ると、本当に規模が大きいですね。さすが「世界遺産」です。",
+              "start": 48.01,
+              "end": 57.55,
               "duration": 9.54,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 2,
+              "matchScore": 1,
+              "asrText": "テ レ ビ と か 写 真 集 と か で 見 た こ と が あ り ま す が 実 際 に 見 る と 本 当 に 規 模 が 大 き い で す ね さ す が 世 界 遺 産 で す",
+              "phraseIndexes": [
+                6,
+                7
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T10:19:59.998Z",
-              "sourceAudioSha256": "a131b0ef1446727599d9779fdfd3041b7b20bd83c1bfd79fa26c90c9a433822c"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T10:19:59.998Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 1,
+                "asrText": "テ レ ビ と か 写 真 集 と か で 見 た こ と が あ り ま す が 実 際 に 見 る と 本 当 に 規 模 が 大 き い で す ね さ す が 世 界 遺 産 で す"
+              }
             }
           }
         ]
@@ -456,14 +691,27 @@
             "audioSegment": {
               "id": "l37-app-block-006-line-001",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson37/l37-app-block-006-line-001.mp3",
-              "start": 0,
-              "end": 2.86,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson37/lesson_apps.mp3",
+              "speaker": "小野",
+              "text": "どうして「万里の長城」と言うんですか。",
+              "start": 64.53,
+              "end": 67.39,
               "duration": 2.86,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 1,
+              "matchScore": 0.938,
+              "asrText": "ど う し て 万 里 の 長 城 と い う ん で す か",
+              "phraseIndexes": [
+                8
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T10:19:59.998Z",
-              "sourceAudioSha256": "a131b0ef1446727599d9779fdfd3041b7b20bd83c1bfd79fa26c90c9a433822c"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T10:19:59.998Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 0.938,
+                "asrText": "ど う し て 万 里 の 長 城 と い う ん で す か"
+              }
             }
           },
           {
@@ -476,14 +724,28 @@
             "audioSegment": {
               "id": "l37-app-block-006-line-002",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson37/l37-app-block-006-line-002.mp3",
-              "start": 0,
-              "end": 12.22,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson37/lesson_apps.mp3",
+              "speaker": "李",
+              "text": "長城の全長は５，０００キロメートル以上あります。中国では「１里」は0.5キロメートルですから、中国の単位に換算すれば、１万里を超えるんですよ。",
+              "start": 68.25,
+              "end": 80.47,
               "duration": 12.22,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 2,
+              "matchScore": 0.81,
+              "asrText": "頂 上 の 全 長 は 五 千 キ ロ メ ー ト ル 以 上 あ り ま す 中 国 で は 一 利 は 零 点 五 キ ロ メ ー ト ル で す か ら 中 国 の 単 位 に 換 算 す れ ば 一 万 里 を 超 え る ん で す よ",
+              "phraseIndexes": [
+                9,
+                10
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T10:19:59.998Z",
-              "sourceAudioSha256": "a131b0ef1446727599d9779fdfd3041b7b20bd83c1bfd79fa26c90c9a433822c"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T10:19:59.998Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 0.81,
+                "asrText": "頂 上 の 全 長 は 五 千 キ ロ メ ー ト ル 以 上 あ り ま す 中 国 で は 一 利 は 零 点 五 キ ロ メ ー ト ル で す か ら 中 国 の 単 位 に 換 算 す れ ば 一 万 里 を 超 え る ん で す よ"
+              }
             }
           }
         ]
@@ -510,14 +772,27 @@
             "audioSegment": {
               "id": "l37-app-block-008-line-001",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson37/l37-app-block-008-line-001.mp3",
-              "start": 0,
-              "end": 3.02,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson37/lesson_apps.mp3",
+              "speaker": "小野",
+              "text": "何かお土産を買おうと思うんですが…。",
+              "start": 85.17,
+              "end": 88.19,
               "duration": 3.02,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrText": "何 か お 土 産 を 買 お う と 思 う ん で す が",
+              "phraseIndexes": [
+                11
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T10:19:59.998Z",
-              "sourceAudioSha256": "a131b0ef1446727599d9779fdfd3041b7b20bd83c1bfd79fa26c90c9a433822c"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T10:19:59.998Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 1,
+                "asrText": "何 か お 土 産 を 買 お う と 思 う ん で す が"
+              }
             }
           },
           {
@@ -530,14 +805,27 @@
             "audioSegment": {
               "id": "l37-app-block-008-line-002",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson37/l37-app-block-008-line-002.mp3",
-              "start": 0,
-              "end": 4.34,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson37/lesson_apps.mp3",
+              "speaker": "李",
+              "text": "お土産なら、Ｔシャツとかメダルとか、いろいろありますよ。",
+              "start": 88.81,
+              "end": 93.15,
               "duration": 4.34,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrText": "お 土 産 な ら t シ ャ ツ と か メ ダ ル と か い ろ い ろ あ り ま す よ",
+              "phraseIndexes": [
+                12
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T10:19:59.998Z",
-              "sourceAudioSha256": "a131b0ef1446727599d9779fdfd3041b7b20bd83c1bfd79fa26c90c9a433822c"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T10:19:59.998Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 1,
+                "asrText": "お 土 産 な ら t シ ャ ツ と か メ ダ ル と か い ろ い ろ あ り ま す よ"
+              }
             }
           },
           {
@@ -550,14 +838,27 @@
             "audioSegment": {
               "id": "l37-app-block-008-line-003",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson37/l37-app-block-008-line-003.mp3",
-              "start": 0,
-              "end": 3.14,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson37/lesson_apps.mp3",
+              "speaker": "小野",
+              "text": "そうですか。じゃあ、メダルでも買おうかな。",
+              "start": 93.57,
+              "end": 96.71,
               "duration": 3.14,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrText": "そ う で す か じ ゃ あ メ ダ ル で も 買 お う か な",
+              "phraseIndexes": [
+                12
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T10:19:59.998Z",
-              "sourceAudioSha256": "a131b0ef1446727599d9779fdfd3041b7b20bd83c1bfd79fa26c90c9a433822c"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T10:19:59.998Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 1,
+                "asrText": "そ う で す か じ ゃ あ メ ダ ル で も 買 お う か な"
+              }
             }
           },
           {
@@ -570,14 +871,27 @@
             "audioSegment": {
               "id": "l37-app-block-008-line-004",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson37/l37-app-block-008-line-004.mp3",
-              "start": 0,
-              "end": 3.18,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson37/lesson_apps.mp3",
+              "speaker": "李",
+              "text": "ゆっくり探せば、ほかにもいいお土産があると思いますよ。",
+              "start": 98.1,
+              "end": 101.28,
               "duration": 3.18,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 1,
+              "matchScore": 0.92,
+              "asrText": "ゆ っ く り 探 せ ば 他 に も い い お 土 産 が あ る と 思 い ま す よ",
+              "phraseIndexes": [
+                13
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T10:19:59.998Z",
-              "sourceAudioSha256": "a131b0ef1446727599d9779fdfd3041b7b20bd83c1bfd79fa26c90c9a433822c"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T10:19:59.998Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 0.92,
+                "asrText": "ゆ っ く り 探 せ ば 他 に も い い お 土 産 が あ る と 思 い ま す よ"
+              }
             }
           }
         ]
@@ -590,9 +904,25 @@
   ],
   "audioAlignment": {
     "schemaVersion": 1,
-    "method": "approved-asr-alignment",
-    "sourceAlignment": "data/ocr/lesson37-text-audio-alignment.json",
-    "publishedAt": "2026-08-05T10:20:04.466Z",
-    "approvedSegments": 24
-  }
+    "lessonId": "lesson37",
+    "convertedAt": "2026-08-14T00:17:07.650Z",
+    "method": "legacy-asr-alignment-range-converted",
+    "tracks": [
+      {
+        "id": "lesson_basic",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson37/lesson_basic.mp3",
+        "sourceAudioSha256": "65db4c30a21c097aa2cc2c6698b2170a43a00b938e6ae188679403a8ca5db5d5",
+        "expectedItems": 12,
+        "alignedItems": 12
+      },
+      {
+        "id": "lesson_apps",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson37/lesson_apps.mp3",
+        "sourceAudioSha256": "a131b0ef1446727599d9779fdfd3041b7b20bd83c1bfd79fa26c90c9a433822c",
+        "expectedItems": 12,
+        "alignedItems": 12
+      }
+    ]
+  },
+  "updatedAt": "2026-08-14T00:17:07.650Z"
 }

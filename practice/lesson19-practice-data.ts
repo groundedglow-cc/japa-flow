@@ -1,12 +1,12 @@
 import type { InputSlot, LessonPractice, PracticeActivity, PracticeItem, PromptPart, RichText } from "./lesson-practice-types";
-import { lesson19ImageCrops } from "./lesson19-image-crops";
+
+const exerciseImage = (fileName: string) => `../data/book1_exercise_images/${fileName}`;
 
 const page = (pageNo: number) => `../course-assets/by-lesson/lesson19/page${pageNo}.webp`;
 const audio = (exerciseNo: 1 | 2, order: number) =>
   `https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson19/Exe${exerciseNo}_${order}.mp3`;
 const text = (value: string, options: Omit<RichText, "type" | "text"> = {}): RichText => ({ type: "text", text: value, ...options });
 const blank = (slotId: string): PromptPart => ({ type: "blank", slotId });
-const crop = (id: string) => lesson19ImageCrops.assets.find((asset) => asset.id === id)!;
 
 const completionHint = "只补全题目中空格处需要填写的部分。";
 const sentenceSlot = (placeholder = "输入完整回答"): InputSlot[] => [{ id: "answer", expectedUnit: "sentence", width: "long", placeholder }];
@@ -146,7 +146,9 @@ const activities: PracticeActivity[] = [
         confidenceNote: "按教材表格顺序整理。"
       }
     },
-    assets: [crop("l19-p1-a1-masu-nai-table")],
+    assets: [
+      { id: "l19-p1-a1-masu-nai-table", kind: "exercise_image", imagePath: exerciseImage("book1_lesson19_1_1.png") }
+    ],
     displayAssets: ["l19-p1-a1-masu-nai-table"],
     layout: [
       {
@@ -186,8 +188,7 @@ const activities: PracticeActivity[] = [
     interaction: "pattern_substitution",
     answerUnit: "sentence",
     responseScope: "sentence_only",
-    assets: [crop("l19-p1-a2-prohibition-picture-strip")],
-    displayAssets: ["l19-p1-a2-prohibition-picture-strip"],
+    assets: [],
     layout: [
       {
         type: "example",
@@ -217,8 +218,7 @@ const activities: PracticeActivity[] = [
     answerUnit: "sentence",
     responseScope: "sentence_only",
     responseScopeHint: "写出完整句子。",
-    assets: [crop("l19-p1-a3-page232"), crop("l19-p1-a3-page233")],
-    displayAssets: ["l19-p1-a3-page232", "l19-p1-a3-page233"],
+    assets: [],
     layout: [],
     itemGroups: [
       {
@@ -293,8 +293,7 @@ const activities: PracticeActivity[] = [
     responseScopeHint: "写出完整问答。",
     requiresAudio: true,
     audio: { source: "textbook_exercise", url: audio(1, 4), label: "第19课 练习I-4" },
-    assets: [crop("l19-p1-a4-dialogue")],
-    displayAssets: ["l19-p1-a4-dialogue"],
+    assets: [],
     layout: [],
     itemGroups: [
       {
@@ -366,8 +365,7 @@ const activities: PracticeActivity[] = [
     responseScopeHint: "写出完整问答。",
     requiresAudio: true,
     audio: { source: "textbook_exercise", url: audio(1, 5), label: "第19课 练习I-5" },
-    assets: [crop("l19-p1-a5-dialogue")],
-    displayAssets: ["l19-p1-a5-dialogue"],
+    assets: [],
     layout: [],
     itemGroups: [
       {
@@ -429,7 +427,9 @@ const activities: PracticeActivity[] = [
     interaction: "true_false",
     answerUnit: "boolean",
     responseScope: "boolean_only",
-    assets: [crop("l19-p2-a1-schedule")],
+    assets: [
+      { id: "l19-p2-a1-schedule", kind: "exercise_image", imagePath: exerciseImage("book1_lesson19_2_1.png") }
+    ],
     displayAssets: ["l19-p2-a1-schedule"],
     layout: [
       {
@@ -459,7 +459,9 @@ const activities: PracticeActivity[] = [
     answerUnit: "word",
     responseScope: "word_only",
     responseScopeHint: completionHint,
-    assets: [crop("l19-p2-a2-word-bank")],
+    assets: [
+      { id: "l19-p2-a2-word-bank", kind: "exercise_image", imagePath: exerciseImage("book1_lesson19_2_2.png") }
+    ],
     displayAssets: ["l19-p2-a2-word-bank"],
     layout: [
       { type: "word_bank", words: [text("だいたい"), text("ちょっと"), text("もう 一度"), text("ちゃんと"), text("ちょうど")] },
@@ -507,8 +509,7 @@ const activities: PracticeActivity[] = [
         confidenceNote: "按题面空格和第19课句型整理。"
       }
     },
-    assets: [crop("l19-p2-a3-listening-cloze")],
-    displayAssets: ["l19-p2-a3-listening-cloze"],
+    assets: [],
     layout: [
       {
         type: "example",
@@ -538,8 +539,7 @@ const activities: PracticeActivity[] = [
     interaction: "translation",
     answerUnit: "sentence",
     responseScope: "sentence_only",
-    assets: [crop("l19-p2-a4-translation")],
-    displayAssets: ["l19-p2-a4-translation"],
+    assets: [],
     layout: [],
     items: [
       answerItem("l19-p2-a4-q1", "1", "请别忘了房间钥匙。", "部屋の かぎを 忘れないで ください。", {

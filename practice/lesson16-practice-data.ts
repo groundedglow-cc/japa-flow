@@ -1,12 +1,12 @@
 import type { InputSlot, LessonPractice, PracticeActivity, PracticeItem, PromptPart, RichText } from "./lesson-practice-types";
-import { lesson16ImageCrops } from "./lesson16-image-crops";
+
+const exerciseImage = (fileName: string) => `../data/book1_exercise_images/${fileName}`;
 
 const page = (pageNo: number) => `../course-assets/by-lesson/lesson16/page${pageNo}.webp`;
 const audio = (exerciseNo: 1 | 2, order: number) =>
   `https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit4/lesson16/Exe${exerciseNo}_${order}.mp3`;
 const text = (value: string, options: Omit<RichText, "type" | "text"> = {}): RichText => ({ type: "text", text: value, ...options });
 const blank = (slotId: string): PromptPart => ({ type: "blank", slotId });
-const crop = (id: string) => lesson16ImageCrops.assets.find((asset) => asset.id === id)!;
 
 const answerOnlyHint = "只填写提问后的回答部分，不需要重写问题。";
 const completionHint = "只补全题目中空格处需要填写的部分。";
@@ -318,7 +318,9 @@ const activities: PracticeActivity[] = [
     answerUnit: "dialogue",
     responseScope: "question_and_answer",
     responseScopeHint: "写出完整问答。",
-    assets: [crop("l16-p1-a6-wallet-bag-picture-prompts")],
+    assets: [
+      { id: "l16-p1-a6-wallet-bag-picture-prompts", kind: "exercise_image", imagePath: exerciseImage("book1_lesson16_1_6.png") }
+    ],
     displayAssets: ["l16-p1-a6-wallet-bag-picture-prompts"],
     layout: [
       {
@@ -539,7 +541,9 @@ const activities: PracticeActivity[] = [
         ]
       }
     },
-    assets: [crop("l16-p2-a4-necktie-shop-picture")],
+    assets: [
+      { id: "l16-p2-a4-necktie-shop-picture", kind: "exercise_image", imagePath: exerciseImage("book1_lesson16_2_4.png") }
+    ],
     displayAssets: ["l16-p2-a4-necktie-shop-picture"],
     layout: [
       {

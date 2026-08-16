@@ -25,14 +25,27 @@
         "audioSegment": {
           "id": "l41-basic-s001",
           "trackId": "lesson_basic",
-          "sourceUrl": "/data/ocr/audio-clips/lesson41/l41-basic-s001.mp3",
-          "start": 0,
-          "end": 1.86,
+          "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit11/lesson41/lesson_basic.mp3",
+          "speaker": "",
+          "text": "李さんは部長にほめられました。",
+          "start": 2.21,
+          "end": 4.07,
           "duration": 1.86,
-          "method": "approved-asr-alignment",
+          "speechUnitCount": 1,
+          "matchScore": 0.929,
+          "asrText": "李 さ ん は 部 長 に 褒 め ら れ ま し た",
+          "phraseIndexes": [
+            0
+          ],
+          "method": "legacy-asr-alignment-range-converted",
           "confidence": "approved",
-          "reviewedAt": "2026-08-05T10:24:59.931Z",
-          "sourceAudioSha256": "241ddc96714b0867e5104c22a1c7278e2bd3fcd19612627d2057d6492fef877d"
+          "review": {
+            "status": "approved",
+            "reviewedAt": "2026-08-05T10:24:59.931Z",
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "matchScore": 0.929,
+            "asrText": "李 さ ん は 部 長 に 褒 め ら れ ま し た"
+          }
         }
       },
       {
@@ -45,14 +58,27 @@
         "audioSegment": {
           "id": "l41-basic-s002",
           "trackId": "lesson_basic",
-          "sourceUrl": "/data/ocr/audio-clips/lesson41/l41-basic-s002.mp3",
-          "start": 0,
-          "end": 3.5,
+          "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit11/lesson41/lesson_basic.mp3",
+          "speaker": "",
+          "text": "馬さんは森さんにカメラを壊されました。",
+          "start": 6.41,
+          "end": 9.91,
           "duration": 3.5,
-          "method": "approved-asr-alignment",
+          "speechUnitCount": 1,
+          "matchScore": 1,
+          "asrText": "馬 さ ん は 森 さ ん に カ メ ラ を 壊 さ れ ま し た",
+          "phraseIndexes": [
+            1
+          ],
+          "method": "legacy-asr-alignment-range-converted",
           "confidence": "approved",
-          "reviewedAt": "2026-08-05T10:24:59.931Z",
-          "sourceAudioSha256": "241ddc96714b0867e5104c22a1c7278e2bd3fcd19612627d2057d6492fef877d"
+          "review": {
+            "status": "approved",
+            "reviewedAt": "2026-08-05T10:24:59.931Z",
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "matchScore": 1,
+            "asrText": "馬 さ ん は 森 さ ん に カ メ ラ を 壊 さ れ ま し た"
+          }
         }
       },
       {
@@ -65,14 +91,27 @@
         "audioSegment": {
           "id": "l41-basic-s003",
           "trackId": "lesson_basic",
-          "sourceUrl": "/data/ocr/audio-clips/lesson41/l41-basic-s003.mp3",
-          "start": 0,
-          "end": 3.1,
+          "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit11/lesson41/lesson_basic.mp3",
+          "speaker": "",
+          "text": "陳さんは飼っていた小鳥に逃げられました。",
+          "start": 12.89,
+          "end": 15.99,
           "duration": 3.1,
-          "method": "approved-asr-alignment",
+          "speechUnitCount": 1,
+          "matchScore": 0.947,
+          "asrText": "ン さ ん は 飼 っ て い た 小 鳥 に 逃 げ ら れ ま し た",
+          "phraseIndexes": [
+            2
+          ],
+          "method": "legacy-asr-alignment-range-converted",
           "confidence": "approved",
-          "reviewedAt": "2026-08-05T10:24:59.931Z",
-          "sourceAudioSha256": "241ddc96714b0867e5104c22a1c7278e2bd3fcd19612627d2057d6492fef877d"
+          "review": {
+            "status": "approved",
+            "reviewedAt": "2026-08-05T10:24:59.931Z",
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "matchScore": 0.947,
+            "asrText": "ン さ ん は 飼 っ て い た 小 鳥 に 逃 げ ら れ ま し た"
+          }
         }
       },
       {
@@ -85,14 +124,27 @@
         "audioSegment": {
           "id": "l41-basic-s004",
           "trackId": "lesson_basic",
-          "sourceUrl": "/data/ocr/audio-clips/lesson41/l41-basic-s004.mp3",
-          "start": 0,
-          "end": 5.66,
+          "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit11/lesson41/lesson_basic.mp3",
+          "speaker": "",
+          "text": "2010年に上海で万博が開かれます。",
+          "start": 17.33,
+          "end": 22.99,
           "duration": 5.66,
-          "method": "approved-asr-alignment",
+          "speechUnitCount": 1,
+          "matchScore": 0.765,
+          "asrText": "四 二 千 十 年 に 上 海 で 万 博 が 開 か れ ま す",
+          "phraseIndexes": [
+            3
+          ],
+          "method": "legacy-asr-alignment-range-converted",
           "confidence": "approved",
-          "reviewedAt": "2026-08-05T10:24:59.931Z",
-          "sourceAudioSha256": "241ddc96714b0867e5104c22a1c7278e2bd3fcd19612627d2057d6492fef877d"
+          "review": {
+            "status": "approved",
+            "reviewedAt": "2026-08-05T10:24:59.931Z",
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "matchScore": 0.765,
+            "asrText": "四 二 千 十 年 に 上 海 で 万 博 が 開 か れ ま す"
+          }
         }
       }
     ],
@@ -111,14 +163,28 @@
             "audioSegment": {
               "id": "l41-basic-dialogue-001-line-001",
               "trackId": "lesson_basic",
-              "sourceUrl": "/data/ocr/audio-clips/lesson41/l41-basic-dialogue-001-line-001.mp3",
-              "start": 0,
-              "end": 3.26,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit11/lesson41/lesson_basic.mp3",
+              "speaker": "甲",
+              "text": "太田君、どうしたんだ。元気がないね。",
+              "start": 25.49,
+              "end": 28.75,
               "duration": 3.26,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 2,
+              "matchScore": 1,
+              "asrText": "太 田 君 ど う し た ん だ 元 気 が な い ね",
+              "phraseIndexes": [
+                4,
+                5
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T10:24:59.931Z",
-              "sourceAudioSha256": "241ddc96714b0867e5104c22a1c7278e2bd3fcd19612627d2057d6492fef877d"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T10:24:59.931Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 1,
+                "asrText": "太 田 君 ど う し た ん だ 元 気 が な い ね"
+              }
             }
           },
           {
@@ -131,14 +197,27 @@
             "audioSegment": {
               "id": "l41-basic-dialogue-001-line-002",
               "trackId": "lesson_basic",
-              "sourceUrl": "/data/ocr/audio-clips/lesson41/l41-basic-dialogue-001-line-002.mp3",
-              "start": 0,
-              "end": 2.34,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit11/lesson41/lesson_basic.mp3",
+              "speaker": "乙",
+              "text": "ええ。部長にしかられたんです。",
+              "start": 30.13,
+              "end": 32.47,
               "duration": 2.34,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 1,
+              "matchScore": 0.846,
+              "asrText": "え え 部 長 に 叱 ら れ た ん で す",
+              "phraseIndexes": [
+                6
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T10:24:59.931Z",
-              "sourceAudioSha256": "241ddc96714b0867e5104c22a1c7278e2bd3fcd19612627d2057d6492fef877d"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T10:24:59.931Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 0.846,
+                "asrText": "え え 部 長 に 叱 ら れ た ん で す"
+              }
             }
           }
         ]
@@ -157,14 +236,28 @@
             "audioSegment": {
               "id": "l41-basic-dialogue-002-line-001",
               "trackId": "lesson_basic",
-              "sourceUrl": "/data/ocr/audio-clips/lesson41/l41-basic-dialogue-002-line-001.mp3",
-              "start": 0,
-              "end": 3.87,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit11/lesson41/lesson_basic.mp3",
+              "speaker": "甲",
+              "text": "李さん、どうしたんですか。",
+              "start": 34.16,
+              "end": 38.03,
               "duration": 3.87,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 2,
+              "matchScore": 0.727,
+              "asrText": "b リ サ ど う し た ん で す か",
+              "phraseIndexes": [
+                7,
+                8
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T10:24:59.931Z",
-              "sourceAudioSha256": "241ddc96714b0867e5104c22a1c7278e2bd3fcd19612627d2057d6492fef877d"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T10:24:59.931Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 0.727,
+                "asrText": "b リ サ ど う し た ん で す か"
+              }
             }
           },
           {
@@ -177,14 +270,27 @@
             "audioSegment": {
               "id": "l41-basic-dialogue-002-line-002",
               "trackId": "lesson_basic",
-              "sourceUrl": "/data/ocr/audio-clips/lesson41/l41-basic-dialogue-002-line-002.mp3",
-              "start": 0,
-              "end": 2.54,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit11/lesson41/lesson_basic.mp3",
+              "speaker": "乙",
+              "text": "昨日犬に手をかまれたんです。",
+              "start": 38.81,
+              "end": 41.35,
               "duration": 2.54,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 1,
+              "matchScore": 0.923,
+              "asrText": "昨 日 犬 に 手 を 噛 ま れ た ん で す",
+              "phraseIndexes": [
+                9
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T10:24:59.931Z",
-              "sourceAudioSha256": "241ddc96714b0867e5104c22a1c7278e2bd3fcd19612627d2057d6492fef877d"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T10:24:59.931Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 0.923,
+                "asrText": "昨 日 犬 に 手 を 噛 ま れ た ん で す"
+              }
             }
           }
         ]
@@ -203,14 +309,27 @@
             "audioSegment": {
               "id": "l41-basic-dialogue-003-line-001",
               "trackId": "lesson_basic",
-              "sourceUrl": "/data/ocr/audio-clips/lesson41/l41-basic-dialogue-003-line-001.mp3",
-              "start": 0,
-              "end": 2.46,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit11/lesson41/lesson_basic.mp3",
+              "speaker": "甲",
+              "text": "週末にキャンプに行きました。",
+              "start": 44.43,
+              "end": 46.89,
               "duration": 2.46,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrText": "週 末 に キ ャ ン プ に 行 き ま し た",
+              "phraseIndexes": [
+                10
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T10:24:59.931Z",
-              "sourceAudioSha256": "241ddc96714b0867e5104c22a1c7278e2bd3fcd19612627d2057d6492fef877d"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T10:24:59.931Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 1,
+                "asrText": "週 末 に キ ャ ン プ に 行 き ま し た"
+              }
             }
           },
           {
@@ -223,14 +342,27 @@
             "audioSegment": {
               "id": "l41-basic-dialogue-003-line-002",
               "trackId": "lesson_basic",
-              "sourceUrl": "/data/ocr/audio-clips/lesson41/l41-basic-dialogue-003-line-002.mp3",
-              "start": 0,
-              "end": 1.38,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit11/lesson41/lesson_basic.mp3",
+              "speaker": "乙",
+              "text": "へえ。楽しかったですか。",
+              "start": 48.3,
+              "end": 49.68,
               "duration": 1.38,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrText": "へ え 楽 し か っ た で す か",
+              "phraseIndexes": [
+                11
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T10:24:59.931Z",
-              "sourceAudioSha256": "241ddc96714b0867e5104c22a1c7278e2bd3fcd19612627d2057d6492fef877d"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T10:24:59.931Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 1,
+                "asrText": "へ え 楽 し か っ た で す か"
+              }
             }
           },
           {
@@ -243,14 +375,27 @@
             "audioSegment": {
               "id": "l41-basic-dialogue-003-line-003",
               "trackId": "lesson_basic",
-              "sourceUrl": "/data/ocr/audio-clips/lesson41/l41-basic-dialogue-003-line-003.mp3",
-              "start": 0,
-              "end": 3.1,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit11/lesson41/lesson_basic.mp3",
+              "speaker": "甲",
+              "text": "２日とも雨に降られて、大変でしたよ。",
+              "start": 50.21,
+              "end": 53.31,
               "duration": 3.1,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 1,
+              "matchScore": 0.938,
+              "asrText": "二 日 と も 雨 に 降 ら れ て 大 変 で し た よ",
+              "phraseIndexes": [
+                12
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T10:24:59.931Z",
-              "sourceAudioSha256": "241ddc96714b0867e5104c22a1c7278e2bd3fcd19612627d2057d6492fef877d"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T10:24:59.931Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 0.938,
+                "asrText": "二 日 と も 雨 に 降 ら れ て 大 変 で し た よ"
+              }
             }
           }
         ]
@@ -269,14 +414,27 @@
             "audioSegment": {
               "id": "l41-basic-dialogue-004-line-001",
               "trackId": "lesson_basic",
-              "sourceUrl": "/data/ocr/audio-clips/lesson41/l41-basic-dialogue-004-line-001.mp3",
-              "start": 0,
-              "end": 2.86,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit11/lesson41/lesson_basic.mp3",
+              "speaker": "甲",
+              "text": "この車のデザインはとてもいいですね。",
+              "start": 56.27,
+              "end": 59.13,
               "duration": 2.86,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrText": "こ の 車 の デ ザ イ ン は と て も い い で す ね",
+              "phraseIndexes": [
+                13
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T10:24:59.931Z",
-              "sourceAudioSha256": "241ddc96714b0867e5104c22a1c7278e2bd3fcd19612627d2057d6492fef877d"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T10:24:59.931Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 1,
+                "asrText": "こ の 車 の デ ザ イ ン は と て も い い で す ね"
+              }
             }
           },
           {
@@ -289,14 +447,27 @@
             "audioSegment": {
               "id": "l41-basic-dialogue-004-line-002",
               "trackId": "lesson_basic",
-              "sourceUrl": "/data/ocr/audio-clips/lesson41/l41-basic-dialogue-004-line-002.mp3",
-              "start": 0,
-              "end": 3.66,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit11/lesson41/lesson_basic.mp3",
+              "speaker": "乙",
+              "text": "ええ。日本の有名なデザイナーによって設計されました。",
+              "start": 60.54,
+              "end": 64.2,
               "duration": 3.66,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrText": "え え 日 本 の 有 名 な デ ザ イ ナ ー に よ っ て 設 計 さ れ ま し た",
+              "phraseIndexes": [
+                14
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T10:24:59.931Z",
-              "sourceAudioSha256": "241ddc96714b0867e5104c22a1c7278e2bd3fcd19612627d2057d6492fef877d"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T10:24:59.931Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 1,
+                "asrText": "え え 日 本 の 有 名 な デ ザ イ ナ ー に よ っ て 設 計 さ れ ま し た"
+              }
             }
           }
         ]
@@ -336,14 +507,27 @@
             "audioSegment": {
               "id": "l41-app-block-003-line-001",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson41/l41-app-block-003-line-001.mp3",
-              "start": 0,
-              "end": 4.38,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit11/lesson41/lesson_apps.mp3",
+              "speaker": "李",
+              "text": "あっ、森さん、お疲れ様でした。遅かったですね。",
+              "start": 10.14,
+              "end": 14.52,
               "duration": 4.38,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 1,
+              "matchScore": 0.947,
+              "asrText": "あ 森 さ ん お 疲 れ 様 で し た 遅 か っ た で す ね",
+              "phraseIndexes": [
+                2
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T10:26:01.157Z",
-              "sourceAudioSha256": "7cef1ab86d7e5b824d22ceceec647231f67a2babcd5ae29fc1ce6bb4003a6fa6"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T10:26:01.157Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 0.947,
+                "asrText": "あ 森 さ ん お 疲 れ 様 で し た 遅 か っ た で す ね"
+              }
             }
           },
           {
@@ -356,14 +540,28 @@
             "audioSegment": {
               "id": "l41-app-block-003-line-002",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson41/l41-app-block-003-line-002.mp3",
-              "start": 0,
-              "end": 8.37,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit11/lesson41/lesson_apps.mp3",
+              "speaker": "森",
+              "text": "いやあ、参りましたよ。タクシーで帰ってきたんですが、渋滞に巻き込まれて。北京の交通事情は大変ですね。",
+              "start": 14.7,
+              "end": 23.07,
               "duration": 8.37,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 2,
+              "matchScore": 0.956,
+              "asrText": "い や ま い り ま し た よ タ ク シ ー で 帰 っ て き た ん で す が 渋 滞 に 巻 き 込 ま れ て 北 京 の 交 通 事 情 は 大 変 で す ね",
+              "phraseIndexes": [
+                2,
+                3
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T10:26:01.157Z",
-              "sourceAudioSha256": "7cef1ab86d7e5b824d22ceceec647231f67a2babcd5ae29fc1ce6bb4003a6fa6"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T10:26:01.157Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 0.956,
+                "asrText": "い や ま い り ま し た よ タ ク シ ー で 帰 っ て き た ん で す が 渋 滞 に 巻 き 込 ま れ て 北 京 の 交 通 事 情 は 大 変 で す ね"
+              }
             }
           },
           {
@@ -376,14 +574,27 @@
             "audioSegment": {
               "id": "l41-app-block-003-line-003",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson41/l41-app-block-003-line-003.mp3",
-              "start": 0,
-              "end": 4.18,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit11/lesson41/lesson_apps.mp3",
+              "speaker": "李",
+              "text": "ええ、そうなんです。わたしも毎日、バスの中で足を踏まれていますよ。",
+              "start": 24.7,
+              "end": 28.88,
               "duration": 4.18,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 1,
+              "matchScore": 0.897,
+              "asrText": "え え そ う な ん で す 私 も 毎 日 バ ス の 中 で 足 を 踏 ま れ て い ま す よ",
+              "phraseIndexes": [
+                4
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T10:26:01.157Z",
-              "sourceAudioSha256": "7cef1ab86d7e5b824d22ceceec647231f67a2babcd5ae29fc1ce6bb4003a6fa6"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T10:26:01.157Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 0.897,
+                "asrText": "え え そ う な ん で す 私 も 毎 日 バ ス の 中 で 足 を 踏 ま れ て い ま す よ"
+              }
             }
           }
         ]
@@ -410,14 +621,27 @@
             "audioSegment": {
               "id": "l41-app-block-005-line-001",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson41/l41-app-block-005-line-001.mp3",
-              "start": 0,
-              "end": 3.94,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit11/lesson41/lesson_apps.mp3",
+              "speaker": "李",
+              "text": "森さん、支社長に呼ばれて何か言われたんですか。",
+              "start": 34.78,
+              "end": 38.72,
               "duration": 3.94,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrText": "森 さ ん 支 社 長 に 呼 ば れ て 何 か 言 わ れ た ん で す か",
+              "phraseIndexes": [
+                5
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T10:26:01.157Z",
-              "sourceAudioSha256": "7cef1ab86d7e5b824d22ceceec647231f67a2babcd5ae29fc1ce6bb4003a6fa6"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T10:26:01.157Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 1,
+                "asrText": "森 さ ん 支 社 長 に 呼 ば れ て 何 か 言 わ れ た ん で す か"
+              }
             }
           },
           {
@@ -430,14 +654,27 @@
             "audioSegment": {
               "id": "l41-app-block-005-line-002",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson41/l41-app-block-005-line-002.mp3",
-              "start": 0,
-              "end": 4.7,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit11/lesson41/lesson_apps.mp3",
+              "speaker": "森",
+              "text": "ええ。CS会社から依頼された調査のレポートが遅いって、しかられました。",
+              "start": 40.34,
+              "end": 45.04,
               "duration": 4.7,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 1,
+              "matchScore": 0.844,
+              "asrText": "え え cs コ ン ス か ら 依 頼 さ れ た 調 査 の レ ポ ー ト が 遅 い っ て 叱 ら れ ま し た",
+              "phraseIndexes": [
+                6
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T10:26:01.157Z",
-              "sourceAudioSha256": "7cef1ab86d7e5b824d22ceceec647231f67a2babcd5ae29fc1ce6bb4003a6fa6"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T10:26:01.157Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 0.844,
+                "asrText": "え え cs コ ン ス か ら 依 頼 さ れ た 調 査 の レ ポ ー ト が 遅 い っ て 叱 ら れ ま し た"
+              }
             }
           }
         ]
@@ -466,9 +703,25 @@
   ],
   "audioAlignment": {
     "schemaVersion": 1,
-    "method": "approved-asr-alignment",
-    "sourceAlignment": "data/ocr/lesson41-text-audio-alignment.json",
-    "publishedAt": "2026-08-05T10:26:03.928Z",
-    "approvedSegments": 18
-  }
+    "lessonId": "lesson41",
+    "convertedAt": "2026-08-14T00:17:07.868Z",
+    "method": "legacy-asr-alignment-range-converted",
+    "tracks": [
+      {
+        "id": "lesson_basic",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit11/lesson41/lesson_basic.mp3",
+        "sourceAudioSha256": "241ddc96714b0867e5104c22a1c7278e2bd3fcd19612627d2057d6492fef877d",
+        "expectedItems": 13,
+        "alignedItems": 13
+      },
+      {
+        "id": "lesson_apps",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit11/lesson41/lesson_apps.mp3",
+        "sourceAudioSha256": "7cef1ab86d7e5b824d22ceceec647231f67a2babcd5ae29fc1ce6bb4003a6fa6",
+        "expectedItems": 5,
+        "alignedItems": 5
+      }
+    ]
+  },
+  "updatedAt": "2026-08-14T00:17:07.868Z"
 }

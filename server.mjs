@@ -34,6 +34,41 @@ const lessonId = 27;
 const defaultVoiceId = "Japanese_IntellectualSenior";
 const sampleText = "子供の時、大きな地震がありました。";
 const generationDelayMs = Number(process.env.MINIMAX_DELAY_MS || 200);
+const quotaApiBaseUrl = String(process.env.JAPAFLOW_QUOTA_API_URL || `http://127.0.0.1:${japaflowApiPort}`).replace(/\/+$/, "");
+
+async function reserveAiQuota(authHeader, capability) {
+  if (!authHeader) {
+    const error = new Error("请先登录后再使用 AI 功能。");
+    error.status = 401;
+    error.payload = { code: "AUTH_REQUIRED", message: error.message };
+    throw error;
+  }
+  const response = await fetch(`${quotaApiBaseUrl}/api/japaflow/ai-quota/reserve`, {
+    method: "POST",
+    headers: { Authorization: authHeader, "Content-Type": "application/json" },
+    body: JSON.stringify({ capability })
+  });
+  const body = await response.json().catch(() => ({}));
+  if (!response.ok) {
+    const error = new Error(body.message || "今日 AI 调用次数已用完。");
+    error.status = response.status;
+    error.payload = body;
+    throw error;
+  }
+  return body;
+}
+
+async function completeAiQuota(authHeader, requestId, success) {
+  if (!authHeader || !requestId) return;
+  try {
+    await fetch(`${quotaApiBaseUrl}/api/japaflow/ai-quota/complete/${encodeURIComponent(requestId)}?success=${success ? "true" : "false"}`, {
+      method: "POST",
+      headers: { Authorization: authHeader }
+    });
+  } catch (error) {
+    console.error("AI quota completion failed:", error.message || error);
+  }
+}
 
 const voices = [
   { no: 81, id: "Japanese_IntellectualSenior", name: "Intellectual Senior" },
@@ -69,6 +104,30 @@ const types = {
 
 const initBuckets = ["text", "grammar", "vocabulary", "exercises"];
 const lessonCatalogMetadata = {
+  1: "李さんは中国人です",
+  2: "これは本です",
+  3: "ここはデパートです",
+  4: "部屋に机といすがあります",
+  5: "森さんは7時に起きます",
+  6: "吉田さんは来月中国へ行きます",
+  7: "李さんは毎日コーヒーを飲みます",
+  8: "李さんは日本語で手紙を書きます",
+  9: "四川料理は辛いです",
+  10: "京都の紅葉は有名です",
+  11: "小野さんは歌が好きです",
+  12: "李さんは森さんより若いです",
+  13: "机の上に本が3冊あります",
+  14: "昨日デパートへ行きました",
+  15: "小野さんは今新聞を読んでいます",
+  16: "ホテルの部屋は広くて明るいです",
+  17: "わたしは新しい洋服が欲しいです",
+  18: "携帯電話はとても小さくなりました",
+  19: "部屋の鍵を忘れないでください",
+  20: "スミスさんはピアノを弾くことができます",
+  21: "わたしはすき焼きを食べたことがあります",
+  22: "森さんは毎晩テレビを見る",
+  23: "休みの日、散歩したり買い物に行ったりします",
+  24: "李さんはもうすぐ来ると思います",
   25: "これは明日会議で使う資料です",
   26: "自転車に2人で乗るのは危ないです",
   27: "子供の時、大きな地震がありました",
@@ -916,16 +975,17 @@ function pronunciationReasons(scores) {
   return reasons;
 }
 
-async function transcribeSpeech({ audioBuffer, language = "ja-JP" }) {
+async function transcribeSpeech({ audioBuffer, language = "ja-JP", sampleRate = 16000 }) {
   const key = process.env.AZURE_SPEECH_KEY;
   const region = normalizeAzureRegion(process.env.AZURE_SPEECH_REGION);
   if (!key || !region) throw new Error("Missing AZURE_SPEECH_KEY or AZURE_SPEECH_REGION.");
   const endpoint = `https://${region}.stt.speech.microsoft.com/speech/recognition/conversation/cognitiveservices/v1?language=${encodeURIComponent(language)}&format=detailed`;
+  const normalizedSampleRate = Math.max(8000, Math.min(48000, Number(sampleRate) || 16000));
   const response = await fetch(endpoint, {
     method: "POST",
     headers: {
       "Ocp-Apim-Subscription-Key": key,
-      "Content-Type": "audio/wav; codecs=audio/pcm; samplerate=16000",
+      "Content-Type": `audio/wav; codecs=audio/pcm; samplerate=${normalizedSampleRate}`,
       "Accept": "application/json"
     },
     body: audioBuffer
@@ -940,7 +1000,7 @@ async function transcribeSpeech({ audioBuffer, language = "ja-JP" }) {
   };
 }
 
-async function evaluatePronunciation({ referenceText, audioBuffer }) {
+async function evaluatePronunciation({ referenceText, audioBuffer, authHeader }) {
   const key = process.env.AZURE_SPEECH_KEY;
   const region = normalizeAzureRegion(process.env.AZURE_SPEECH_REGION);
   if (!key || !region) throw new Error("Missing AZURE_SPEECH_KEY or AZURE_SPEECH_REGION.");
@@ -952,17 +1012,25 @@ async function evaluatePronunciation({ referenceText, audioBuffer }) {
     EnableMiscue: true
   })).toString("base64");
   const endpoint = `https://${region}.stt.speech.microsoft.com/speech/recognition/conversation/cognitiveservices/v1?language=ja-JP`;
-  const response = await fetch(endpoint, {
-    method: "POST",
-    headers: {
-      "Ocp-Apim-Subscription-Key": key,
-      "Content-Type": "audio/wav; codecs=audio/pcm; samplerate=16000",
-      "Accept": "application/json",
-      "Pronunciation-Assessment": assessment
-    },
-    body: audioBuffer
-  });
+  const quota = await reserveAiQuota(authHeader, "azure_pronunciation");
+  let response;
+  try {
+    response = await fetch(endpoint, {
+      method: "POST",
+      headers: {
+        "Ocp-Apim-Subscription-Key": key,
+        "Content-Type": "audio/wav; codecs=audio/pcm; samplerate=16000",
+        "Accept": "application/json",
+        "Pronunciation-Assessment": assessment
+      },
+      body: audioBuffer
+    });
+  } catch (error) {
+    await completeAiQuota(authHeader, quota.requestId, false);
+    throw error;
+  }
   const text = await response.text();
+  await completeAiQuota(authHeader, quota.requestId, response.ok);
   if (!response.ok) throw new Error(`Azure Speech HTTP ${response.status} (region=${region}): ${text}`);
   const raw = JSON.parse(text);
   const best = raw.NBest?.[0] || {};
@@ -1240,7 +1308,7 @@ function hasSamePracticeAnswerContent(inputText, formattedText) {
   return Boolean(inputFingerprint) && inputFingerprint === formattedFingerprint;
 }
 
-async function formatPracticeAnswer({ inputText, examples = "", formatHints = {}, answerUnit = "" }) {
+async function formatPracticeAnswer({ inputText, examples = "", formatHints = {}, answerUnit = "", authHeader }) {
   const key = process.env.DEEPSEEK_API_KEY;
   const baseUrl = (process.env.DEEPSEEK_BASE_URL || "https://api.deepseek.com").replace(/\/+$/, "");
   const model = process.env.DEEPSEEK_MODEL || "deepseek-v4-flash";
@@ -1258,13 +1326,16 @@ async function formatPracticeAnswer({ inputText, examples = "", formatHints = {}
 
   if (!key) return fallbackResult("未配置模型服务，已仅按本地规则整理格式。");
 
-  const response = await fetch(`${baseUrl}/chat/completions`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "Authorization": `Bearer ${key}`
-    },
-    body: JSON.stringify({
+  const quota = await reserveAiQuota(authHeader, "deepseek_format");
+  let response;
+  try {
+    response = await fetch(`${baseUrl}/chat/completions`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${key}`
+      },
+      body: JSON.stringify({
       model,
       messages: [
         {
@@ -1304,9 +1375,14 @@ async function formatPracticeAnswer({ inputText, examples = "", formatHints = {}
       thinking: { type: "disabled" },
       response_format: { type: "json_object" },
       stream: false
-    })
-  });
+      })
+    });
+  } catch (error) {
+    await completeAiQuota(authHeader, quota.requestId, false);
+    throw error;
+  }
   const bodyText = await response.text();
+  await completeAiQuota(authHeader, quota.requestId, response.ok);
   if (!response.ok) return fallbackResult(`格式化服务 HTTP ${response.status}，已保留原始转写。`);
   let raw;
   try {
@@ -1462,7 +1538,10 @@ async function reviewPracticeAnswer(payload) {
   const model = process.env.DEEPSEEK_MODEL || "deepseek-v4-flash";
   if (!key) return { accepted: false, reason: "未配置模型服务。", provider: "local_fallback" };
 
-  const response = await fetch(`${baseUrl}/chat/completions`, {
+  const quota = await reserveAiQuota(payload.authHeader, "deepseek_review");
+  let response;
+  try {
+    response = await fetch(`${baseUrl}/chat/completions`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -1510,9 +1589,13 @@ async function reviewPracticeAnswer(payload) {
       response_format: { type: "json_object" },
       stream: false
     })
-  });
-
+    });
+  } catch (error) {
+    await completeAiQuota(payload.authHeader, quota.requestId, false);
+    throw error;
+  }
   const bodyText = await response.text();
+  await completeAiQuota(payload.authHeader, quota.requestId, response.ok);
   if (!response.ok) {
     return { accepted: false, reason: `模型服务 HTTP ${response.status}。`, provider: "deepseek", model };
   }
@@ -1562,12 +1645,11 @@ async function listOcrSampleLessons(type) {
   const lessons = new Map();
   for (const entry of entries) {
     if (!entry.isFile()) continue;
-    const match = entry.name.match(/^lesson(\d+)-(vocabulary|text)(-audio(?:-verified)?)?\.json$/);
+    const match = entry.name.match(/^lesson(\d+)-(vocabulary|text)(-audio-verified)?\.json$/);
     if (!match || match[2] !== sampleType) continue;
     const lessonNo = Number(match[1]);
     const current = lessons.get(lessonNo) || { lessonNo };
     if (match[3] === "-audio-verified") current.verifiedAudioFile = entry.name;
-    else if (match[3]) current.audioFile = entry.name;
     else current.baseFile = entry.name;
     lessons.set(lessonNo, current);
   }
@@ -1586,7 +1668,7 @@ async function listOcrSampleLessons(type) {
       type: sampleType,
       url: `/data/ocr/${fileName}`,
       path: `data/ocr/${fileName}`,
-      hasAudio: Boolean(lesson.verifiedAudioFile || lesson.audioFile),
+      hasAudio: Boolean(lesson.verifiedAudioFile),
       counts: ocrSampleCounts(sampleType, data)
     });
   }
@@ -1617,63 +1699,16 @@ function ocrSampleCounts(type, data) {
   };
 }
 
-function runOcrAudioAlignment({ lessonId: requestedLessonId, target = "all", force = false }) {
-  return new Promise((resolve, reject) => {
-    const scriptArgs = [
-      join(root, target === "vocabulary" ? "scripts/align-ocr-vocabulary-audio.mjs" : "scripts/generate-ocr-audio-segments.mjs"),
-      "--lesson", String(requestedLessonId),
-      "--target", target
-    ];
-    if (force) scriptArgs.push("--force");
-    if (target === "vocabulary") scriptArgs.push("--auto-approve");
-
-    const child = spawn(process.execPath, scriptArgs, {
-      cwd: root,
-      env: process.env,
-      stdio: ["ignore", "pipe", "pipe"]
-    });
-    let stdout = "";
-    let stderr = "";
-    const timeout = setTimeout(() => {
-      child.kill("SIGTERM");
-      reject(new Error("OCR audio alignment timed out."));
-    }, 120000);
-
-    child.stdout.on("data", (chunk) => {
-      stdout += chunk.toString("utf8");
-    });
-    child.stderr.on("data", (chunk) => {
-      stderr += chunk.toString("utf8");
-    });
-    child.on("error", (error) => {
-      clearTimeout(timeout);
-      reject(error);
-    });
-    child.on("close", (code) => {
-      clearTimeout(timeout);
-      if (code !== 0) {
-        reject(new Error(stderr || stdout || `OCR audio alignment exited with code ${code}.`));
-        return;
-      }
-      try {
-        resolve(JSON.parse(stdout));
-      } catch (error) {
-        reject(new Error(`OCR audio alignment returned invalid JSON: ${error.message}`));
-      }
-    });
-  });
-}
-
-function ocrTextAudioAlignmentPath(lessonId) {
-  return join(root, "data", "ocr", `lesson${lessonId}-text-audio-alignment.json`);
-}
-
-function runOcrTextAudioAlignment(lessonId) {
-  return runNodeScript(join(root, "scripts", "align-ocr-text-audio.mjs"), ["--lesson", String(lessonId)], "OCR text audio alignment", 300000);
-}
-
-function runOcrTextAudioPublish(lessonId) {
-  return runNodeScript(join(root, "scripts", "publish-ocr-text-audio-alignment.mjs"), [String(lessonId)], "OCR text audio publish", 180000);
+async function runOcrAudioAlignment({ lessonId: requestedLessonId, target = "all" }) {
+  const tasks = [];
+  if (target === "all" || target === "vocabulary") {
+    tasks.push(runNodeScript(join(root, "scripts", "align-ocr-vocabulary-audio.mjs"), ["--lesson", String(requestedLessonId), "--auto-approve"], "OCR vocabulary audio alignment", 300000));
+  }
+  if (target === "all" || target === "text") {
+    tasks.push(runNodeScript(join(root, "scripts", "align-ocr-text-audio.mjs"), ["--lesson", String(requestedLessonId), "--auto-approve"], "OCR text audio alignment", 300000));
+  }
+  const outputs = await Promise.all(tasks);
+  return { lessonId: `lesson${requestedLessonId}`, target, outputs };
 }
 
 function runNodeScript(scriptPath, scriptArgs, label, timeoutMs) {
@@ -1708,39 +1743,9 @@ function runNodeScript(scriptPath, scriptArgs, label, timeoutMs) {
   });
 }
 
-function updateOcrTextAudioReviews(alignment, changes) {
-  if (!Array.isArray(changes)) throw new Error("Review changes must be an array.");
-  const byId = new Map(changes.map((change) => [String(change.id || ""), change]));
-  const allowedStatuses = new Set(["pending", "approved", "needs-adjustment"]);
-  for (const track of alignment.tracks || []) {
-    for (const item of track.items || []) {
-      const change = byId.get(item.id);
-      if (!change) continue;
-      const status = String(change.status || "pending");
-      const start = Number(change.start);
-      const end = Number(change.end);
-      if (!allowedStatuses.has(status)) throw new Error(`Invalid review status for ${item.id}.`);
-      if (!Number.isFinite(start) || !Number.isFinite(end) || start < 0 || end <= start) throw new Error(`Invalid review range for ${item.id}.`);
-      item.review = {
-        status,
-        start: Math.round(start * 1000) / 1000,
-        end: Math.round(end * 1000) / 1000,
-        note: String(change.note || "").slice(0, 1000),
-        reviewedAt: status === "approved" ? new Date().toISOString() : item.review?.reviewedAt || null
-      };
-    }
-  }
-  const reviews = (alignment.tracks || []).flatMap((track) => track.items || []).map((item) => item.review?.status || "pending");
-  alignment.reviewStatus = reviews.length && reviews.every((status) => status === "approved")
-    ? "approved"
-    : reviews.some((status) => status !== "pending") ? "in-review" : "pending";
-  alignment.updatedAt = new Date().toISOString();
-  return alignment;
-}
-
 function ocrTextDataPaths(lessonId) {
   return [
-    join(root, "data", "ocr", `lesson${lessonId}-text-audio.json`)
+    join(root, "data", "ocr", `lesson${lessonId}-text-audio-verified.json`)
   ];
 }
 
@@ -1772,6 +1777,14 @@ function findOcrVocabularyItem(data, itemId) {
   return (data?.vocabulary || []).find((item) => item?.id === itemId) || null;
 }
 
+function updateOcrAudioAlignmentSegment(data, itemId, updatedSegment) {
+  for (const track of data?.audioAlignment?.tracks || []) {
+    const segment = (track.segments || []).find((item) => item?.id === itemId);
+    if (!segment) continue;
+    Object.assign(segment, updatedSegment);
+  }
+}
+
 async function updateOcrTextAudioSegment({ lessonId, itemId, start, end }) {
   const normalizedStart = Math.round(Number(start) * 1000) / 1000;
   const normalizedEnd = Math.round(Number(end) * 1000) / 1000;
@@ -1784,7 +1797,7 @@ async function updateOcrTextAudioSegment({ lessonId, itemId, start, end }) {
   const sourceData = await readJsonFile(paths[0], null);
   const sourceItem = findOcrTextItem(sourceData, itemId);
   const sourceSegment = sourceItem?.audioSegment;
-  if (!sourceSegment?.sourceUrl && !sourceSegment?.localAudioPath) {
+  if (!sourceSegment?.sourceUrl) {
     throw new Error(`No editable audio segment exists for ${itemId}.`);
   }
 
@@ -1795,7 +1808,13 @@ async function updateOcrTextAudioSegment({ lessonId, itemId, start, end }) {
     duration: Math.round((normalizedEnd - normalizedStart) * 1000) / 1000,
     method: "manual-admin-adjustment",
     confidence: "approved",
-    reviewedAt: new Date().toISOString()
+    reviewedAt: new Date().toISOString(),
+    review: {
+      ...(sourceSegment.review || {}),
+      status: "approved",
+      reviewedAt: new Date().toISOString(),
+      note: "Manually verified and adjusted in the text audio preview."
+    }
   };
 
   const updatedFiles = [];
@@ -1805,6 +1824,7 @@ async function updateOcrTextAudioSegment({ lessonId, itemId, start, end }) {
     const item = findOcrTextItem(data, itemId);
     if (!item) continue;
     item.audioSegment = { ...updatedSegment };
+    updateOcrAudioAlignmentSegment(data, itemId, updatedSegment);
     data.updatedAt = new Date().toISOString();
     await writeJsonFile(filePath, data);
     updatedFiles.push(filePath.replace(`${root}/`, ""));
@@ -1826,7 +1846,7 @@ async function updateOcrVocabularyAudioSegment({ lessonId, itemId, start, end })
   const sourceData = await readJsonFile(paths[0], null);
   const sourceItem = findOcrVocabularyItem(sourceData, itemId);
   const sourceSegment = sourceItem?.audioSegment;
-  if (!sourceSegment?.sourceUrl && !sourceSegment?.localAudioPath) {
+  if (!sourceSegment?.sourceUrl) {
     throw new Error(`No editable audio segment exists for ${itemId}.`);
   }
 
@@ -1847,6 +1867,7 @@ async function updateOcrVocabularyAudioSegment({ lessonId, itemId, start, end })
     const item = findOcrVocabularyItem(data, itemId);
     if (!item) continue;
     item.audioSegment = { ...updatedSegment };
+    updateOcrAudioAlignmentSegment(data, itemId, updatedSegment);
     data.updatedAt = new Date().toISOString();
     await writeJsonFile(filePath, data);
     updatedFiles.push(filePath.replace(`${root}/`, ""));
@@ -1881,36 +1902,6 @@ async function handleApi(req, res, url) {
         target,
         force: Boolean(body.force)
       });
-      sendJson(res, 200, result);
-      return true;
-    }
-    if (url.pathname === "/api/ocr/text-audio-alignment" && req.method === "GET") {
-      const requestedLessonId = safeLessonId(url.searchParams.get("lessonId") || 1);
-      const alignment = await readJsonFile(ocrTextAudioAlignmentPath(requestedLessonId), null);
-      if (!alignment) throw new Error(`No text audio alignment exists for lesson ${requestedLessonId}. Generate candidates first.`);
-      sendJson(res, 200, alignment);
-      return true;
-    }
-    if (url.pathname === "/api/ocr/text-audio-alignment/generate" && req.method === "POST") {
-      const body = await readJson(req);
-      const requestedLessonId = safeLessonId(body.lessonId || 1);
-      const result = await runOcrTextAudioAlignment(requestedLessonId);
-      sendJson(res, 200, result);
-      return true;
-    }
-    if (url.pathname === "/api/ocr/text-audio-alignment" && req.method === "PUT") {
-      const body = await readJson(req);
-      const requestedLessonId = safeLessonId(body.lessonId || 1);
-      const alignment = await readJsonFile(ocrTextAudioAlignmentPath(requestedLessonId), null);
-      if (!alignment) throw new Error(`No text audio alignment exists for lesson ${requestedLessonId}. Generate candidates first.`);
-      await writeJsonFile(ocrTextAudioAlignmentPath(requestedLessonId), updateOcrTextAudioReviews(alignment, body.changes));
-      sendJson(res, 200, alignment);
-      return true;
-    }
-    if (url.pathname === "/api/ocr/text-audio-alignment/publish" && req.method === "POST") {
-      const body = await readJson(req);
-      const requestedLessonId = safeLessonId(body.lessonId || 1);
-      const result = await runOcrTextAudioPublish(requestedLessonId);
       sendJson(res, 200, result);
       return true;
     }
@@ -2062,8 +2053,16 @@ async function handleApi(req, res, url) {
       const items = [];
       for (const [index, job] of targets.entries()) {
         try {
-          items.push(await generateInitAudioJob(requestedLessonId, targetVoiceId, job));
+          const quota = await reserveAiQuota(req.headers.authorization, "minimax_tts");
+          try {
+            items.push(await generateInitAudioJob(requestedLessonId, targetVoiceId, job));
+            await completeAiQuota(req.headers.authorization, quota.requestId, true);
+          } catch (error) {
+            await completeAiQuota(req.headers.authorization, quota.requestId, false);
+            throw error;
+          }
         } catch (error) {
+          if (error.status === 401 || error.status === 429) throw error;
           items.push({ ...job, exists: false, generated: false, error: String(error.message || error), url: audioUrlForLesson(requestedLessonId, targetVoiceId, job.type, job.id) });
         }
         if (index < targets.length - 1) await wait(generationDelayMs);
@@ -2153,10 +2152,18 @@ async function handleApi(req, res, url) {
       const items = [];
       for (const [index, job] of targets.entries()) {
         try {
-          items.push(requestedLessonId === lessonId
-            ? { id: job.id, type: job.type, ...(await generateAudio(voiceId, job.type, job.id, job.text)) }
-            : await generateInitAudioJob(requestedLessonId, voiceId, job));
+          const quota = await reserveAiQuota(req.headers.authorization, "minimax_tts");
+          try {
+            items.push(requestedLessonId === lessonId
+              ? { id: job.id, type: job.type, ...(await generateAudio(voiceId, job.type, job.id, job.text)) }
+              : await generateInitAudioJob(requestedLessonId, voiceId, job));
+            await completeAiQuota(req.headers.authorization, quota.requestId, true);
+          } catch (error) {
+            await completeAiQuota(req.headers.authorization, quota.requestId, false);
+            throw error;
+          }
         } catch (error) {
+          if (error.status === 401 || error.status === 429) throw error;
           items.push({
             id: job.id,
             type: job.type,
@@ -2176,7 +2183,14 @@ async function handleApi(req, res, url) {
     }
     if (url.pathname === "/api/audio/sample" && req.method === "POST") {
       const { voiceId = defaultVoiceId } = await readJson(req);
-      const result = await generateAudio(voiceId, "sentence", "sample", sampleText);
+      const existing = audioStatus(voiceId, "sentence", "sample");
+      let result;
+      if (existing.exists) result = { ...existing, generated: false };
+      else {
+        const quota = await reserveAiQuota(req.headers.authorization, "minimax_tts");
+        try { result = await generateAudio(voiceId, "sentence", "sample", sampleText); await completeAiQuota(req.headers.authorization, quota.requestId, true); }
+        catch (error) { await completeAiQuota(req.headers.authorization, quota.requestId, false); throw error; }
+      }
       sendJson(res, 200, { voiceId, text: sampleText, ...result });
       return true;
     }
@@ -2195,7 +2209,7 @@ async function handleApi(req, res, url) {
       const audioFile = firstFile(files.audio);
       if (!audioFile?.buffer?.length) throw new Error("Missing audio file.");
       const debugAudio = await savePronunciationDebugAudio({ lessonId, wordId: fields.wordId || "unknown", audioBuffer: audioFile.buffer });
-      const result = await evaluatePronunciation({ referenceText, audioBuffer: audioFile.buffer });
+      const result = await evaluatePronunciation({ referenceText, audioBuffer: audioFile.buffer, authHeader: req.headers.authorization });
       sendJson(res, 200, { wordId: fields.wordId || "", referenceText, ...debugAudio, ...result });
       return true;
     }
@@ -2204,13 +2218,17 @@ async function handleApi(req, res, url) {
       const audioFile = firstFile(files.audio);
       if (!audioFile?.buffer?.length) throw new Error("Missing audio file.");
       const language = fields.language || "ja-JP";
-      const result = await transcribeSpeech({ audioBuffer: audioFile.buffer, language });
-      sendJson(res, 200, { recognizedText: result.recognizedText });
+      const sampleRate = fields.sampleRate || "16000";
+      const quota = await reserveAiQuota(req.headers.authorization, "azure_transcribe");
+      let result;
+      try { result = await transcribeSpeech({ audioBuffer: audioFile.buffer, language, sampleRate }); await completeAiQuota(req.headers.authorization, quota.requestId, true); }
+      catch (error) { await completeAiQuota(req.headers.authorization, quota.requestId, false); throw error; }
+      sendJson(res, 200, { recognizedText: result.recognizedText, recognitionStatus: result.raw?.RecognitionStatus || "" });
       return true;
     }
     if (url.pathname === "/api/practice/format-answer" && req.method === "POST") {
       const body = await readJson(req);
-      const result = await formatPracticeAnswer(body);
+      const result = await formatPracticeAnswer({ ...body, authHeader: req.headers.authorization });
       sendJson(res, 200, result);
       return true;
     }
@@ -2222,12 +2240,12 @@ async function handleApi(req, res, url) {
     }
     if (url.pathname === "/api/practice/review-answer" && req.method === "POST") {
       const body = await readJson(req);
-      const result = await reviewPracticeAnswer(body);
+      const result = await reviewPracticeAnswer({ ...body, authHeader: req.headers.authorization });
       sendJson(res, 200, result);
       return true;
     }
   } catch (error) {
-    sendJson(res, 500, { error: String(error.message || error) });
+    sendJson(res, Number(error.status || 500), error.payload || { error: String(error.message || error) });
     return true;
   }
   return false;

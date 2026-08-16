@@ -23,17 +23,70 @@
         "translationZh": "吉田先生下个月去中国。",
         "confidence": "high",
         "rawText": "1. 吉田さんは 来月 中国へ 行きます。",
+        "segments": [
+          {
+            "text": "吉田",
+            "ruby": "よしだ"
+          },
+          {
+            "text": "さんは "
+          },
+          {
+            "text": "来月",
+            "ruby": "らいげつ"
+          },
+          {
+            "text": " "
+          },
+          {
+            "text": "中国",
+            "ruby": "ちゅうごく"
+          },
+          {
+            "text": "へ "
+          },
+          {
+            "text": "行",
+            "ruby": "い"
+          },
+          {
+            "text": "きます。"
+          }
+        ],
         "audioSegment": {
           "id": "l6-basic-s001",
           "trackId": "lesson_basic",
-          "sourceUrl": "/data/ocr/audio-clips/lesson6/l6-basic-s001.mp3",
-          "start": 0,
-          "end": 3.5,
-          "duration": 3.5,
-          "method": "approved-asr-alignment",
-          "confidence": "approved",
-          "reviewedAt": "2026-08-05T08:27:36.086Z",
-          "sourceAudioSha256": "29ef73de64fdcf6a0a354785b6d72bd06fe2b567226a23e46ac6861fee45da16"
+          "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_basic.mp3",
+          "itemIndex": 1,
+          "speaker": "",
+          "text": "吉田さんは 来月 中国へ 行きます。",
+          "start": 1.7,
+          "end": 5.19,
+          "duration": 3.49,
+          "rawAzureTiming": {
+            "start": 1.95,
+            "end": 5.07,
+            "duration": 3.12
+          },
+          "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+          "speechActivity": null,
+          "speechUnitCount": 1,
+          "matchScore": 1,
+          "asrConfidence": 0.861,
+          "asrText": "吉 田 さ ん は 来 月 中 国 へ 行 き ま す 。",
+          "phraseIndexes": [
+            0
+          ],
+          "method": "azure-speech-sentence-alignment-with-boundary-padding",
+          "confidence": "high",
+          "alignmentIssues": [],
+          "review": {
+            "status": "approved",
+            "reviewedAt": "2026-08-16T11:01:07.890Z",
+            "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+            "matchScore": 1,
+            "asrText": "吉 田 さ ん は 来 月 中 国 へ 行 き ま す 。"
+          }
         }
       },
       {
@@ -44,17 +97,70 @@
         "translationZh": "小李上个月从北京来。",
         "confidence": "high",
         "rawText": "2. 李さんは 先月 北京から 来ました。",
+        "segments": [
+          {
+            "text": "李",
+            "ruby": "り"
+          },
+          {
+            "text": "さんは "
+          },
+          {
+            "text": "先月",
+            "ruby": "せんげつ"
+          },
+          {
+            "text": " "
+          },
+          {
+            "text": "北京",
+            "ruby": "ペキン"
+          },
+          {
+            "text": "から "
+          },
+          {
+            "text": "来",
+            "ruby": "き"
+          },
+          {
+            "text": "ました。"
+          }
+        ],
         "audioSegment": {
           "id": "l6-basic-s002",
           "trackId": "lesson_basic",
-          "sourceUrl": "/data/ocr/audio-clips/lesson6/l6-basic-s002.mp3",
-          "start": 0,
-          "end": 3.18,
-          "duration": 3.18,
-          "method": "approved-asr-alignment",
-          "confidence": "approved",
-          "reviewedAt": "2026-08-05T08:27:36.086Z",
-          "sourceAudioSha256": "29ef73de64fdcf6a0a354785b6d72bd06fe2b567226a23e46ac6861fee45da16"
+          "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_basic.mp3",
+          "itemIndex": 2,
+          "speaker": "",
+          "text": "李さんは 先月 北京から 来ました。",
+          "start": 7.18,
+          "end": 10.51,
+          "duration": 3.33,
+          "rawAzureTiming": {
+            "start": 7.43,
+            "end": 10.39,
+            "duration": 2.96
+          },
+          "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+          "speechActivity": null,
+          "speechUnitCount": 1,
+          "matchScore": 1,
+          "asrConfidence": 0.917,
+          "asrText": "李 さ ん は 先 月 北 京 か ら 来 ま し た 。",
+          "phraseIndexes": [
+            1
+          ],
+          "method": "azure-speech-sentence-alignment-with-boundary-padding",
+          "confidence": "high",
+          "alignmentIssues": [],
+          "review": {
+            "status": "approved",
+            "reviewedAt": "2026-08-16T11:01:07.890Z",
+            "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+            "matchScore": 1,
+            "asrText": "李 さ ん は 先 月 北 京 か ら 来 ま し た 。"
+          }
         }
       },
       {
@@ -65,17 +171,63 @@
         "translationZh": "小野女士和朋友一起回去了。",
         "confidence": "high",
         "rawText": "3. 小野さんは 友達と 帰りました。",
+        "segments": [
+          {
+            "text": "小野",
+            "ruby": "おの"
+          },
+          {
+            "text": "さんは "
+          },
+          {
+            "text": "友達",
+            "ruby": "ともだち"
+          },
+          {
+            "text": "と "
+          },
+          {
+            "text": "帰",
+            "ruby": "かえ"
+          },
+          {
+            "text": "りました。"
+          }
+        ],
         "audioSegment": {
           "id": "l6-basic-s003",
           "trackId": "lesson_basic",
-          "sourceUrl": "/data/ocr/audio-clips/lesson6/l6-basic-s003.mp3",
-          "start": 0,
-          "end": 2.98,
-          "duration": 2.98,
-          "method": "approved-asr-alignment",
-          "confidence": "approved",
-          "reviewedAt": "2026-08-05T08:27:36.086Z",
-          "sourceAudioSha256": "29ef73de64fdcf6a0a354785b6d72bd06fe2b567226a23e46ac6861fee45da16"
+          "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_basic.mp3",
+          "itemIndex": 3,
+          "speaker": "",
+          "text": "小野さんは 友達と 帰りました。",
+          "start": 12.42,
+          "end": 15.47,
+          "duration": 3.05,
+          "rawAzureTiming": {
+            "start": 12.67,
+            "end": 15.35,
+            "duration": 2.68
+          },
+          "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+          "speechActivity": null,
+          "speechUnitCount": 1,
+          "matchScore": 1,
+          "asrConfidence": 0.859,
+          "asrText": "小 野 さ ん は 友 達 と 帰 り ま し た 。",
+          "phraseIndexes": [
+            2
+          ],
+          "method": "azure-speech-sentence-alignment-with-boundary-padding",
+          "confidence": "high",
+          "alignmentIssues": [],
+          "review": {
+            "status": "approved",
+            "reviewedAt": "2026-08-16T11:01:07.890Z",
+            "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+            "matchScore": 1,
+            "asrText": "小 野 さ ん は 友 達 と 帰 り ま し た 。"
+          }
         }
       },
       {
@@ -86,17 +238,77 @@
         "translationZh": "森先生从东京到广岛坐新干线去。",
         "confidence": "high",
         "rawText": "4. 森さんは 東京から 広島まで 新幹線で 行きます。",
+        "segments": [
+          {
+            "text": "森",
+            "ruby": "もり"
+          },
+          {
+            "text": "さんは "
+          },
+          {
+            "text": "東京",
+            "ruby": "とうきょう"
+          },
+          {
+            "text": "から "
+          },
+          {
+            "text": "広島",
+            "ruby": "ひろしま"
+          },
+          {
+            "text": "まで "
+          },
+          {
+            "text": "新幹線",
+            "ruby": "しんかんせん"
+          },
+          {
+            "text": "で "
+          },
+          {
+            "text": "行",
+            "ruby": "い"
+          },
+          {
+            "text": "きます。"
+          }
+        ],
         "audioSegment": {
           "id": "l6-basic-s004",
           "trackId": "lesson_basic",
-          "sourceUrl": "/data/ocr/audio-clips/lesson6/l6-basic-s004.mp3",
-          "start": 0,
-          "end": 5.26,
-          "duration": 5.26,
-          "method": "approved-asr-alignment",
-          "confidence": "approved",
-          "reviewedAt": "2026-08-05T08:27:36.086Z",
-          "sourceAudioSha256": "29ef73de64fdcf6a0a354785b6d72bd06fe2b567226a23e46ac6861fee45da16"
+          "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_basic.mp3",
+          "itemIndex": 4,
+          "speaker": "",
+          "text": "森さんは 東京から 広島まで 新幹線で 行きます。",
+          "start": 17.38,
+          "end": 22.67,
+          "duration": 5.29,
+          "rawAzureTiming": {
+            "start": 17.63,
+            "end": 22.55,
+            "duration": 4.92
+          },
+          "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+          "speechActivity": null,
+          "speechUnitCount": 1,
+          "matchScore": 1,
+          "asrConfidence": 0.909,
+          "asrText": "森 さ ん は 東 京 か ら 広 島 ま で 新 幹 線 で 行 き ま す 。",
+          "phraseIndexes": [
+            3
+          ],
+          "method": "azure-speech-sentence-alignment-with-boundary-padding",
+          "confidence": "high",
+          "alignmentIssues": [],
+          "review": {
+            "status": "approved",
+            "reviewedAt": "2026-08-16T11:01:07.890Z",
+            "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+            "matchScore": 1,
+            "asrText": "森 さ ん は 東 京 か ら 広 島 ま で 新 幹 線 で 行 き ま す 。"
+          }
         }
       }
     ],
@@ -113,17 +325,52 @@
             "translationZh": "什么时候去美国？",
             "confidence": "high",
             "rawText": "甲：いつ アメリカへ 行きますか。",
+            "segments": [
+              {
+                "text": "いつ アメリカへ "
+              },
+              {
+                "text": "行",
+                "ruby": "い"
+              },
+              {
+                "text": "きますか。"
+              }
+            ],
             "audioSegment": {
               "id": "l6-basic-dialogue-001-line-001",
               "trackId": "lesson_basic",
-              "sourceUrl": "/data/ocr/audio-clips/lesson6/l6-basic-dialogue-001-line-001.mp3",
-              "start": 0,
-              "end": 2.1,
-              "duration": 2.1,
-              "method": "approved-asr-alignment",
-              "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:27:36.086Z",
-              "sourceAudioSha256": "29ef73de64fdcf6a0a354785b6d72bd06fe2b567226a23e46ac6861fee45da16"
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_basic.mp3",
+              "itemIndex": 5,
+              "speaker": "甲",
+              "text": "いつ アメリカへ 行きますか。",
+              "start": 24.67,
+              "end": 26.66,
+              "duration": 1.99,
+              "rawAzureTiming": {
+                "start": 24.92,
+                "end": 26.68,
+                "duration": 1.76
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrConfidence": 0.882,
+              "asrText": "い つ ア メ リ カ へ 行 き ま す か",
+              "phraseIndexes": [
+                4
+              ],
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [],
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-16T11:01:07.890Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "matchScore": 1,
+                "asrText": "い つ ア メ リ カ へ 行 き ま す か"
+              }
             }
           },
           {
@@ -134,17 +381,62 @@
             "translationZh": "10月去。",
             "confidence": "high",
             "rawText": "乙：10月に 行きます。",
+            "segments": [
+              {
+                "text": "10"
+              },
+              {
+                "text": "月",
+                "ruby": "がつ"
+              },
+              {
+                "text": "に "
+              },
+              {
+                "text": "行",
+                "ruby": "い"
+              },
+              {
+                "text": "きます。"
+              }
+            ],
             "audioSegment": {
               "id": "l6-basic-dialogue-001-line-002",
               "trackId": "lesson_basic",
-              "sourceUrl": "/data/ocr/audio-clips/lesson6/l6-basic-dialogue-001-line-002.mp3",
-              "start": 0,
-              "end": 1.26,
-              "duration": 1.26,
-              "method": "approved-asr-alignment",
-              "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:27:36.086Z",
-              "sourceAudioSha256": "29ef73de64fdcf6a0a354785b6d72bd06fe2b567226a23e46ac6861fee45da16"
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_basic.mp3",
+              "itemIndex": 6,
+              "speaker": "乙",
+              "text": "10月に 行きます。",
+              "start": 26.7,
+              "end": 28.83,
+              "duration": 2.13,
+              "rawAzureTiming": {
+                "start": 26.68,
+                "end": 28.71,
+                "duration": 2.03
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
+              "speechUnitCount": 2,
+              "matchScore": 0.75,
+              "asrConfidence": 0.915,
+              "asrText": "。 十 月 に 行 き ま す",
+              "phraseIndexes": [
+                4,
+                5
+              ],
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "medium",
+              "alignmentIssues": [
+                "Moderate ASR text similarity."
+              ],
+              "review": {
+                "status": "pending",
+                "reviewedAt": null,
+                "note": "Moderate ASR text similarity.",
+                "matchScore": 0.75,
+                "asrText": "。 十 月 に 行 き ま す"
+              }
             }
           }
         ]
@@ -161,17 +453,63 @@
             "translationZh": "去车站怎么去？",
             "confidence": "high",
             "rawText": "甲：駅へ 何で 行きますか。",
+            "segments": [
+              {
+                "text": "駅",
+                "ruby": "えき"
+              },
+              {
+                "text": "へ "
+              },
+              {
+                "text": "何",
+                "ruby": "なん"
+              },
+              {
+                "text": "で "
+              },
+              {
+                "text": "行",
+                "ruby": "い"
+              },
+              {
+                "text": "きますか。"
+              }
+            ],
             "audioSegment": {
               "id": "l6-basic-dialogue-002-line-001",
               "trackId": "lesson_basic",
-              "sourceUrl": "/data/ocr/audio-clips/lesson6/l6-basic-dialogue-002-line-001.mp3",
-              "start": 0,
-              "end": 2.18,
-              "duration": 2.18,
-              "method": "approved-asr-alignment",
-              "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:27:36.086Z",
-              "sourceAudioSha256": "29ef73de64fdcf6a0a354785b6d72bd06fe2b567226a23e46ac6861fee45da16"
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_basic.mp3",
+              "itemIndex": 7,
+              "speaker": "甲",
+              "text": "駅へ 何で 行きますか。",
+              "start": 30.42,
+              "end": 32.41,
+              "duration": 1.99,
+              "rawAzureTiming": {
+                "start": 30.67,
+                "end": 32.43,
+                "duration": 1.76
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrConfidence": 0.921,
+              "asrText": "駅 へ 何 で 行 き ま す か",
+              "phraseIndexes": [
+                6
+              ],
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [],
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-16T11:01:07.890Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "matchScore": 1,
+                "asrText": "駅 へ 何 で 行 き ま す か"
+              }
             }
           },
           {
@@ -182,17 +520,57 @@
             "translationZh": "骑自行车去。",
             "confidence": "high",
             "rawText": "乙：自転車で 行きます。",
+            "segments": [
+              {
+                "text": "自転車",
+                "ruby": "じてんしゃ"
+              },
+              {
+                "text": "で "
+              },
+              {
+                "text": "行",
+                "ruby": "い"
+              },
+              {
+                "text": "きます。"
+              }
+            ],
             "audioSegment": {
               "id": "l6-basic-dialogue-002-line-002",
               "trackId": "lesson_basic",
-              "sourceUrl": "/data/ocr/audio-clips/lesson6/l6-basic-dialogue-002-line-002.mp3",
-              "start": 0,
-              "end": 1.62,
-              "duration": 1.62,
-              "method": "approved-asr-alignment",
-              "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:27:36.086Z",
-              "sourceAudioSha256": "29ef73de64fdcf6a0a354785b6d72bd06fe2b567226a23e46ac6861fee45da16"
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_basic.mp3",
+              "itemIndex": 8,
+              "speaker": "乙",
+              "text": "自転車で 行きます。",
+              "start": 32.45,
+              "end": 34.67,
+              "duration": 2.22,
+              "rawAzureTiming": {
+                "start": 32.43,
+                "end": 34.55,
+                "duration": 2.12
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
+              "speechUnitCount": 2,
+              "matchScore": 1,
+              "asrConfidence": 0.906,
+              "asrText": "。 自 転 車 で 行 き ま す 。",
+              "phraseIndexes": [
+                6,
+                7
+              ],
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [],
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-16T11:01:07.890Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "matchScore": 1,
+                "asrText": "。 自 転 車 で 行 き ま す 。"
+              }
             }
           }
         ]
@@ -209,17 +587,59 @@
             "translationZh": "和谁去美术馆？",
             "confidence": "high",
             "rawText": "甲：だれと 美術館へ 行きますか。",
+            "segments": [
+              {
+                "text": "だれと "
+              },
+              {
+                "text": "美術館",
+                "ruby": "びじゅつかん"
+              },
+              {
+                "text": "へ "
+              },
+              {
+                "text": "行",
+                "ruby": "い"
+              },
+              {
+                "text": "きますか。"
+              }
+            ],
             "audioSegment": {
               "id": "l6-basic-dialogue-003-line-001",
               "trackId": "lesson_basic",
-              "sourceUrl": "/data/ocr/audio-clips/lesson6/l6-basic-dialogue-003-line-001.mp3",
-              "start": 0,
-              "end": 3.42,
-              "duration": 3.42,
-              "method": "approved-asr-alignment",
-              "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:27:36.086Z",
-              "sourceAudioSha256": "29ef73de64fdcf6a0a354785b6d72bd06fe2b567226a23e46ac6861fee45da16"
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_basic.mp3",
+              "itemIndex": 9,
+              "speaker": "甲",
+              "text": "だれと 美術館へ 行きますか。",
+              "start": 36.38,
+              "end": 38.61,
+              "duration": 2.23,
+              "rawAzureTiming": {
+                "start": 36.63,
+                "end": 38.63,
+                "duration": 2
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrConfidence": 0.899,
+              "asrText": "だ れ と 美 術 館 へ 行 き ま す か",
+              "phraseIndexes": [
+                8
+              ],
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [],
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-16T11:01:07.890Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "matchScore": 1,
+                "asrText": "だ れ と 美 術 館 へ 行 き ま す か"
+              }
             }
           },
           {
@@ -230,17 +650,57 @@
             "translationZh": "和朋友去。",
             "confidence": "high",
             "rawText": "乙：友達と 行きます。",
+            "segments": [
+              {
+                "text": "友達",
+                "ruby": "ともだち"
+              },
+              {
+                "text": "と "
+              },
+              {
+                "text": "行",
+                "ruby": "い"
+              },
+              {
+                "text": "きます。"
+              }
+            ],
             "audioSegment": {
               "id": "l6-basic-dialogue-003-line-002",
               "trackId": "lesson_basic",
-              "sourceUrl": "/data/ocr/audio-clips/lesson6/l6-basic-dialogue-003-line-002.mp3",
-              "start": 0,
-              "end": 1.58,
-              "duration": 1.58,
-              "method": "approved-asr-alignment",
-              "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:27:36.086Z",
-              "sourceAudioSha256": "29ef73de64fdcf6a0a354785b6d72bd06fe2b567226a23e46ac6861fee45da16"
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_basic.mp3",
+              "itemIndex": 10,
+              "speaker": "乙",
+              "text": "友達と 行きます。",
+              "start": 38.65,
+              "end": 41.11,
+              "duration": 2.46,
+              "rawAzureTiming": {
+                "start": 38.63,
+                "end": 40.99,
+                "duration": 2.36
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
+              "speechUnitCount": 2,
+              "matchScore": 1,
+              "asrConfidence": 0.909,
+              "asrText": "。 友 達 と 行 き ま す 。",
+              "phraseIndexes": [
+                8,
+                9
+              ],
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [],
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-16T11:01:07.890Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "matchScore": 1,
+                "asrText": "。 友 達 と 行 き ま す 。"
+              }
             }
           }
         ]
@@ -257,17 +717,70 @@
             "translationZh": "从大阪到上海坐飞机去吗？",
             "confidence": "high",
             "rawText": "甲：大阪から 上海まで 飛行機で 行きますか。",
+            "segments": [
+              {
+                "text": "大阪",
+                "ruby": "おおさか"
+              },
+              {
+                "text": "から "
+              },
+              {
+                "text": "上海",
+                "ruby": "シャンハイ"
+              },
+              {
+                "text": "まで "
+              },
+              {
+                "text": "飛行機",
+                "ruby": "ひこうき"
+              },
+              {
+                "text": "で "
+              },
+              {
+                "text": "行",
+                "ruby": "い"
+              },
+              {
+                "text": "きますか。"
+              }
+            ],
             "audioSegment": {
               "id": "l6-basic-dialogue-004-line-001",
               "trackId": "lesson_basic",
-              "sourceUrl": "/data/ocr/audio-clips/lesson6/l6-basic-dialogue-004-line-001.mp3",
-              "start": 0,
-              "end": 3.5,
-              "duration": 3.5,
-              "method": "approved-asr-alignment",
-              "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:27:36.086Z",
-              "sourceAudioSha256": "29ef73de64fdcf6a0a354785b6d72bd06fe2b567226a23e46ac6861fee45da16"
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_basic.mp3",
+              "itemIndex": 11,
+              "speaker": "甲",
+              "text": "大阪から 上海まで 飛行機で 行きますか。",
+              "start": 42.54,
+              "end": 45.73,
+              "duration": 3.19,
+              "rawAzureTiming": {
+                "start": 42.79,
+                "end": 45.75,
+                "duration": 2.96
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrConfidence": 0.904,
+              "asrText": "大 阪 か ら 上 海 ま で 飛 行 機 で 行 き ま す か",
+              "phraseIndexes": [
+                10
+              ],
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [],
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-16T11:01:07.890Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "matchScore": 1,
+                "asrText": "大 阪 か ら 上 海 ま で 飛 行 機 で 行 き ま す か"
+              }
             }
           },
           {
@@ -278,17 +791,53 @@
             "translationZh": "不，坐渡轮去。",
             "confidence": "high",
             "rawText": "乙：いいえ、フェリーで 行きます。",
+            "segments": [
+              {
+                "text": "いいえ、フェリーで "
+              },
+              {
+                "text": "行",
+                "ruby": "い"
+              },
+              {
+                "text": "きます。"
+              }
+            ],
             "audioSegment": {
               "id": "l6-basic-dialogue-004-line-002",
               "trackId": "lesson_basic",
-              "sourceUrl": "/data/ocr/audio-clips/lesson6/l6-basic-dialogue-004-line-002.mp3",
-              "start": 0,
-              "end": 1.3,
-              "duration": 1.3,
-              "method": "approved-asr-alignment",
-              "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:27:36.086Z",
-              "sourceAudioSha256": "29ef73de64fdcf6a0a354785b6d72bd06fe2b567226a23e46ac6861fee45da16"
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_basic.mp3",
+              "itemIndex": 12,
+              "speaker": "乙",
+              "text": "いいえ、フェリーで 行きます。",
+              "start": 45.77,
+              "end": 49.4,
+              "duration": 3.63,
+              "rawAzureTiming": {
+                "start": 45.75,
+                "end": 49.28,
+                "duration": 3.53
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
+              "speechUnitCount": 2,
+              "matchScore": 1,
+              "asrConfidence": 0.864,
+              "asrText": "。 い い え 、 フ ェ リ ー で い き ま す",
+              "phraseIndexes": [
+                10,
+                11
+              ],
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [],
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-16T11:01:07.890Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "matchScore": 1,
+                "asrText": "。 い い え 、 フ ェ リ ー で い き ま す"
+              }
             }
           }
         ]
@@ -328,17 +877,70 @@
             "translationZh": "小李，昨天几点回公寓的？",
             "confidence": "high",
             "rawText": "吉田：李さん、昨日は 何時に アパートへ 帰りましたか。",
+            "segments": [
+              {
+                "text": "李",
+                "ruby": "り"
+              },
+              {
+                "text": "さん、"
+              },
+              {
+                "text": "昨日",
+                "ruby": "きのう"
+              },
+              {
+                "text": "は "
+              },
+              {
+                "text": "何時",
+                "ruby": "なんじ"
+              },
+              {
+                "text": "に アパートへ "
+              },
+              {
+                "text": "帰",
+                "ruby": "かえ"
+              },
+              {
+                "text": "りましたか。"
+              }
+            ],
             "audioSegment": {
               "id": "l6-app-block-003-line-001",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson6/l6-app-block-003-line-001.mp3",
-              "start": 0,
-              "end": 3.86,
-              "duration": 3.86,
-              "method": "approved-asr-alignment",
-              "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:28:14.222Z",
-              "sourceAudioSha256": "0b70a3883d83a79717e620ccf788ca819ea4b2e456b7bce1c263de780a0c2dc4"
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_apps.mp3",
+              "itemIndex": 1,
+              "speaker": "吉田",
+              "text": "李さん、昨日は 何時に アパートへ 帰りましたか。",
+              "start": 16.38,
+              "end": 20.01,
+              "duration": 3.63,
+              "rawAzureTiming": {
+                "start": 16.63,
+                "end": 20.03,
+                "duration": 3.4
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrConfidence": 0.956,
+              "asrText": "李 さ ん 、 昨 日 は 何 時 に ア パ ー ト へ 帰 り ま し た か",
+              "phraseIndexes": [
+                1
+              ],
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [],
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-16T11:01:07.890Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "matchScore": 1,
+                "asrText": "李 さ ん 、 昨 日 は 何 時 に ア パ ー ト へ 帰 り ま し た か"
+              }
             }
           },
           {
@@ -349,17 +951,55 @@
             "translationZh": "嗯，大概是11点半左右。",
             "confidence": "high",
             "rawText": "李：ええと、たしか 11時半ごろです。",
+            "segments": [
+              {
+                "text": "ええと、たしか 11"
+              },
+              {
+                "text": "時半",
+                "ruby": "じはん"
+              },
+              {
+                "text": "ごろです。"
+              }
+            ],
             "audioSegment": {
               "id": "l6-app-block-003-line-002",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson6/l6-app-block-003-line-002.mp3",
-              "start": 0,
-              "end": 3.38,
-              "duration": 3.38,
-              "method": "approved-asr-alignment",
-              "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:28:14.222Z",
-              "sourceAudioSha256": "0b70a3883d83a79717e620ccf788ca819ea4b2e456b7bce1c263de780a0c2dc4"
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_apps.mp3",
+              "itemIndex": 2,
+              "speaker": "李",
+              "text": "ええと、たしか 11時半ごろです。",
+              "start": 20.05,
+              "end": 24.59,
+              "duration": 4.54,
+              "rawAzureTiming": {
+                "start": 20.03,
+                "end": 24.47,
+                "duration": 4.44
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
+              "speechUnitCount": 2,
+              "matchScore": 0.714,
+              "asrConfidence": 0.87,
+              "asrText": "。 え え と 確 か 十 一 時 半 ご ろ で す",
+              "phraseIndexes": [
+                1,
+                2
+              ],
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "medium",
+              "alignmentIssues": [
+                "Moderate ASR text similarity."
+              ],
+              "review": {
+                "status": "pending",
+                "reviewedAt": null,
+                "note": "Moderate ASR text similarity.",
+                "matchScore": 0.714,
+                "asrText": "。 え え と 確 か 十 一 時 半 ご ろ で す"
+              }
             }
           },
           {
@@ -370,17 +1010,56 @@
             "translationZh": "怎么回去的？坐出租车吗？",
             "confidence": "high",
             "rawText": "吉田：何で 帰りましたか。タクシーですか。",
+            "segments": [
+              {
+                "text": "何",
+                "ruby": "なん"
+              },
+              {
+                "text": "で "
+              },
+              {
+                "text": "帰",
+                "ruby": "かえ"
+              },
+              {
+                "text": "りましたか。タクシーですか。"
+              }
+            ],
             "audioSegment": {
               "id": "l6-app-block-003-line-003",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson6/l6-app-block-003-line-003.mp3",
-              "start": 0,
-              "end": 2.94,
-              "duration": 2.94,
-              "method": "approved-asr-alignment",
-              "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:28:14.222Z",
-              "sourceAudioSha256": "0b70a3883d83a79717e620ccf788ca819ea4b2e456b7bce1c263de780a0c2dc4"
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_apps.mp3",
+              "itemIndex": 3,
+              "speaker": "吉田",
+              "text": "何で 帰りましたか。タクシーですか。",
+              "start": 24.98,
+              "end": 27.69,
+              "duration": 2.71,
+              "rawAzureTiming": {
+                "start": 25.23,
+                "end": 27.71,
+                "duration": 2.48
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrConfidence": 0.863,
+              "asrText": "何 で 帰 り ま し た か 。 タ ク シ ー で す か",
+              "phraseIndexes": [
+                2
+              ],
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [],
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-16T11:01:07.890Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "matchScore": 1,
+                "asrText": "何 で 帰 り ま し た か 。 タ ク シ ー で す か"
+              }
             }
           },
           {
@@ -391,17 +1070,93 @@
             "translationZh": "坐电车。坐电车到了涩谷，然后从车站走回了公寓。",
             "confidence": "high",
             "rawText": "李：電車です。渋谷まで 電車で 行きました。駅から アパートまで 歩いて 帰りました。",
+            "segments": [
+              {
+                "text": "電車",
+                "ruby": "でんしゃ"
+              },
+              {
+                "text": "です。"
+              },
+              {
+                "text": "渋谷",
+                "ruby": "しぶや"
+              },
+              {
+                "text": "まで "
+              },
+              {
+                "text": "電車",
+                "ruby": "でんしゃ"
+              },
+              {
+                "text": "で "
+              },
+              {
+                "text": "行",
+                "ruby": "い"
+              },
+              {
+                "text": "きました。"
+              },
+              {
+                "text": "駅",
+                "ruby": "えき"
+              },
+              {
+                "text": "から アパートまで "
+              },
+              {
+                "text": "歩",
+                "ruby": "ある"
+              },
+              {
+                "text": "いて "
+              },
+              {
+                "text": "帰",
+                "ruby": "かえ"
+              },
+              {
+                "text": "りました。"
+              }
+            ],
             "audioSegment": {
               "id": "l6-app-block-003-line-004",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson6/l6-app-block-003-line-004.mp3",
-              "start": 0,
-              "end": 6.86,
-              "duration": 6.86,
-              "method": "approved-asr-alignment",
-              "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:28:14.222Z",
-              "sourceAudioSha256": "0b70a3883d83a79717e620ccf788ca819ea4b2e456b7bce1c263de780a0c2dc4"
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_apps.mp3",
+              "itemIndex": 4,
+              "speaker": "李",
+              "text": "電車です。渋谷まで 電車で 行きました。駅から アパートまで 歩いて 帰りました。",
+              "start": 27.73,
+              "end": 35.39,
+              "duration": 7.66,
+              "rawAzureTiming": {
+                "start": 27.71,
+                "end": 35.27,
+                "duration": 7.56
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
+              "speechUnitCount": 3,
+              "matchScore": 1,
+              "asrConfidence": 0.928,
+              "asrText": "。 電 車 で す 渋 谷 ま で 電 車 で 行 き ま し た 駅 か ら ア パ ー ト ま で 歩 い て 帰 り ま し た",
+              "phraseIndexes": [
+                2,
+                3,
+                4
+              ],
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [],
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-16T11:01:07.890Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "matchScore": 1,
+                "asrText": "。 電 車 で す 渋 谷 ま で 電 車 で 行 き ま し た 駅 か ら ア パ ー ト ま で 歩 い て 帰 り ま し た"
+              }
             }
           },
           {
@@ -412,17 +1167,49 @@
             "translationZh": "小野女士呢？",
             "confidence": "high",
             "rawText": "吉田：小野さんは？",
+            "segments": [
+              {
+                "text": "小野",
+                "ruby": "おの"
+              },
+              {
+                "text": "さんは？"
+              }
+            ],
             "audioSegment": {
               "id": "l6-app-block-003-line-005",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson6/l6-app-block-003-line-005.mp3",
-              "start": 0,
-              "end": 0.82,
-              "duration": 0.82,
-              "method": "approved-asr-alignment",
-              "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:28:14.222Z",
-              "sourceAudioSha256": "0b70a3883d83a79717e620ccf788ca819ea4b2e456b7bce1c263de780a0c2dc4"
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_apps.mp3",
+              "itemIndex": 5,
+              "speaker": "吉田",
+              "text": "小野さんは？",
+              "start": 35.86,
+              "end": 36.85,
+              "duration": 0.99,
+              "rawAzureTiming": {
+                "start": 36.11,
+                "end": 36.87,
+                "duration": 0.76
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrConfidence": 0.813,
+              "asrText": "小 野 さ ん は",
+              "phraseIndexes": [
+                5
+              ],
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [],
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-16T11:01:07.890Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "matchScore": 1,
+                "asrText": "小 野 さ ん は"
+              }
             }
           },
           {
@@ -433,17 +1220,68 @@
             "translationZh": "我也是坐电车。从车站坐出租车回了家。",
             "confidence": "high",
             "rawText": "小野：わたしも 電車です。駅からは タクシーで うちへ 帰りました。",
+            "segments": [
+              {
+                "text": "わたしも "
+              },
+              {
+                "text": "電車",
+                "ruby": "でんしゃ"
+              },
+              {
+                "text": "です。"
+              },
+              {
+                "text": "駅",
+                "ruby": "えき"
+              },
+              {
+                "text": "からは タクシーで うちへ "
+              },
+              {
+                "text": "帰",
+                "ruby": "かえ"
+              },
+              {
+                "text": "りました。"
+              }
+            ],
             "audioSegment": {
               "id": "l6-app-block-003-line-006",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson6/l6-app-block-003-line-006.mp3",
-              "start": 0,
-              "end": 4.54,
-              "duration": 4.54,
-              "method": "approved-asr-alignment",
-              "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:28:14.222Z",
-              "sourceAudioSha256": "0b70a3883d83a79717e620ccf788ca819ea4b2e456b7bce1c263de780a0c2dc4"
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_apps.mp3",
+              "itemIndex": 6,
+              "speaker": "小野",
+              "text": "わたしも 電車です。駅からは タクシーで うちへ 帰りました。",
+              "start": 36.89,
+              "end": 42.87,
+              "duration": 5.98,
+              "rawAzureTiming": {
+                "start": 36.87,
+                "end": 42.75,
+                "duration": 5.88
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
+              "speechUnitCount": 3,
+              "matchScore": 0.88,
+              "asrConfidence": 0.889,
+              "asrText": "？ 私 も 電 車 で す 駅 か ら は タ ク シ ー で う ち へ 帰 り ま し た",
+              "phraseIndexes": [
+                5,
+                6,
+                7
+              ],
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [],
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-16T11:01:07.890Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "matchScore": 0.88,
+                "asrText": "？ 私 も 電 車 で す 駅 か ら は タ ク シ ー で う ち へ 帰 り ま し た"
+              }
             }
           },
           {
@@ -454,17 +1292,56 @@
             "translationZh": "几点回去的？",
             "confidence": "high",
             "rawText": "李：何時に 帰りましたか。",
+            "segments": [
+              {
+                "text": "何時",
+                "ruby": "なんじ"
+              },
+              {
+                "text": "に "
+              },
+              {
+                "text": "帰",
+                "ruby": "かえ"
+              },
+              {
+                "text": "りましたか。"
+              }
+            ],
             "audioSegment": {
               "id": "l6-app-block-003-line-007",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson6/l6-app-block-003-line-007.mp3",
-              "start": 0,
-              "end": 1.42,
-              "duration": 1.42,
-              "method": "approved-asr-alignment",
-              "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:28:14.222Z",
-              "sourceAudioSha256": "0b70a3883d83a79717e620ccf788ca819ea4b2e456b7bce1c263de780a0c2dc4"
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_apps.mp3",
+              "itemIndex": 7,
+              "speaker": "李",
+              "text": "何時に 帰りましたか。",
+              "start": 43.3,
+              "end": 44.65,
+              "duration": 1.35,
+              "rawAzureTiming": {
+                "start": 43.55,
+                "end": 44.67,
+                "duration": 1.12
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrConfidence": 0.927,
+              "asrText": "何 時 に 帰 り ま し た か",
+              "phraseIndexes": [
+                8
+              ],
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [],
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-16T11:01:07.890Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "matchScore": 1,
+                "asrText": "何 時 に 帰 り ま し た か"
+              }
             }
           },
           {
@@ -475,17 +1352,55 @@
             "translationZh": "12点左右。",
             "confidence": "high",
             "rawText": "小野：12時ごろです。",
+            "segments": [
+              {
+                "text": "12"
+              },
+              {
+                "text": "時",
+                "ruby": "じ"
+              },
+              {
+                "text": "ごろです。"
+              }
+            ],
             "audioSegment": {
               "id": "l6-app-block-003-line-008",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson6/l6-app-block-003-line-008.mp3",
-              "start": 0,
-              "end": 1.26,
-              "duration": 1.26,
-              "method": "approved-asr-alignment",
-              "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:28:14.222Z",
-              "sourceAudioSha256": "0b70a3883d83a79717e620ccf788ca819ea4b2e456b7bce1c263de780a0c2dc4"
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_apps.mp3",
+              "itemIndex": 8,
+              "speaker": "小野",
+              "text": "12時ごろです。",
+              "start": 44.69,
+              "end": 47.23,
+              "duration": 2.54,
+              "rawAzureTiming": {
+                "start": 44.67,
+                "end": 47.11,
+                "duration": 2.44
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
+              "speechUnitCount": 2,
+              "matchScore": 0.429,
+              "asrConfidence": 0.886,
+              "asrText": "。 十 二 時 頃 で す",
+              "phraseIndexes": [
+                8,
+                9
+              ],
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "needs-review",
+              "alignmentIssues": [
+                "Low ASR text similarity."
+              ],
+              "review": {
+                "status": "pending",
+                "reviewedAt": null,
+                "note": "Low ASR text similarity.",
+                "matchScore": 0.429,
+                "asrText": "。 十 二 時 頃 で す"
+              }
             }
           }
         ]
@@ -511,17 +1426,56 @@
             "translationZh": "森先生，昨天晚上直接回去了吗？",
             "confidence": "high",
             "rawText": "小野：森さん、ゆうべは まっすぐ 帰りましたか。",
+            "segments": [
+              {
+                "text": "森",
+                "ruby": "もり"
+              },
+              {
+                "text": "さん、ゆうべは まっすぐ "
+              },
+              {
+                "text": "帰",
+                "ruby": "かえ"
+              },
+              {
+                "text": "りましたか。"
+              }
+            ],
             "audioSegment": {
               "id": "l6-app-block-005-line-001",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson6/l6-app-block-005-line-001.mp3",
-              "start": 0,
-              "end": 3.06,
-              "duration": 3.06,
-              "method": "approved-asr-alignment",
-              "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:28:14.222Z",
-              "sourceAudioSha256": "0b70a3883d83a79717e620ccf788ca819ea4b2e456b7bce1c263de780a0c2dc4"
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_apps.mp3",
+              "itemIndex": 9,
+              "speaker": "小野",
+              "text": "森さん、ゆうべは まっすぐ 帰りましたか。",
+              "start": 50.86,
+              "end": 53.37,
+              "duration": 2.51,
+              "rawAzureTiming": {
+                "start": 51.11,
+                "end": 53.39,
+                "duration": 2.28
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrConfidence": 0.899,
+              "asrText": "森 さ ん 、 ゆ う べ は ま っ す ぐ 帰 り ま し た か",
+              "phraseIndexes": [
+                10
+              ],
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [],
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-16T11:01:07.890Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "matchScore": 1,
+                "asrText": "森 さ ん 、 ゆ う べ は ま っ す ぐ 帰 り ま し た か"
+              }
             }
           },
           {
@@ -532,17 +1486,67 @@
             "translationZh": "没有，和科长一起去了银座。",
             "confidence": "high",
             "rawText": "森：いいえ、課長と いっしょに 銀座へ 行きました。",
+            "segments": [
+              {
+                "text": "いいえ、"
+              },
+              {
+                "text": "課長",
+                "ruby": "かちょう"
+              },
+              {
+                "text": "と いっしょに "
+              },
+              {
+                "text": "銀座",
+                "ruby": "ぎんざ"
+              },
+              {
+                "text": "へ "
+              },
+              {
+                "text": "行",
+                "ruby": "い"
+              },
+              {
+                "text": "きました。"
+              }
+            ],
             "audioSegment": {
               "id": "l6-app-block-005-line-002",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson6/l6-app-block-005-line-002.mp3",
-              "start": 0,
-              "end": 2.42,
-              "duration": 2.42,
-              "method": "approved-asr-alignment",
-              "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:28:14.222Z",
-              "sourceAudioSha256": "0b70a3883d83a79717e620ccf788ca819ea4b2e456b7bce1c263de780a0c2dc4"
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_apps.mp3",
+              "itemIndex": 10,
+              "speaker": "森",
+              "text": "いいえ、課長と いっしょに 銀座へ 行きました。",
+              "start": 53.41,
+              "end": 58.16,
+              "duration": 4.75,
+              "rawAzureTiming": {
+                "start": 53.39,
+                "end": 58.04,
+                "duration": 4.65
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
+              "speechUnitCount": 2,
+              "matchScore": 1,
+              "asrConfidence": 0.893,
+              "asrText": "。 い い え 、 課 長 と い っ し ょ に 銀 座 へ 行 き ま し た",
+              "phraseIndexes": [
+                10,
+                11
+              ],
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [],
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-16T11:01:07.890Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "matchScore": 1,
+                "asrText": "。 い い え 、 課 長 と い っ し ょ に 銀 座 へ 行 き ま し た"
+              }
             }
           },
           {
@@ -553,17 +1557,52 @@
             "translationZh": "啊？银座吗？",
             "confidence": "high",
             "rawText": "李：えっ、銀座ですか？",
+            "segments": [
+              {
+                "text": "えっ、"
+              },
+              {
+                "text": "銀座",
+                "ruby": "ぎんざ"
+              },
+              {
+                "text": "ですか？"
+              }
+            ],
             "audioSegment": {
               "id": "l6-app-block-005-line-003",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson6/l6-app-block-005-line-003.mp3",
-              "start": 0,
-              "end": 1.78,
-              "duration": 1.78,
-              "method": "approved-asr-alignment",
-              "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:28:14.222Z",
-              "sourceAudioSha256": "0b70a3883d83a79717e620ccf788ca819ea4b2e456b7bce1c263de780a0c2dc4"
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_apps.mp3",
+              "itemIndex": 11,
+              "speaker": "李",
+              "text": "えっ、銀座ですか？",
+              "start": 58.27,
+              "end": 60.24,
+              "duration": 1.97,
+              "rawAzureTiming": {
+                "start": 58.52,
+                "end": 60.12,
+                "duration": 1.6
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
+              "speechUnitCount": 1,
+              "matchScore": 0.857,
+              "asrConfidence": 0.892,
+              "asrText": "。 え 銀 座 で す か",
+              "phraseIndexes": [
+                11
+              ],
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [],
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-16T11:01:07.890Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "matchScore": 0.857,
+                "asrText": "。 え 銀 座 で す か"
+              }
             }
           },
           {
@@ -574,17 +1613,56 @@
             "translationZh": "几点回家的？",
             "confidence": "high",
             "rawText": "小野：何時に うちへ 帰りましたか。",
+            "segments": [
+              {
+                "text": "何時",
+                "ruby": "なんじ"
+              },
+              {
+                "text": "に うちへ "
+              },
+              {
+                "text": "帰",
+                "ruby": "かえ"
+              },
+              {
+                "text": "りましたか。"
+              }
+            ],
             "audioSegment": {
               "id": "l6-app-block-005-line-004",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson6/l6-app-block-005-line-004.mp3",
-              "start": 0,
-              "end": 2.18,
-              "duration": 2.18,
-              "method": "approved-asr-alignment",
-              "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:28:14.222Z",
-              "sourceAudioSha256": "0b70a3883d83a79717e620ccf788ca819ea4b2e456b7bce1c263de780a0c2dc4"
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_apps.mp3",
+              "itemIndex": 12,
+              "speaker": "小野",
+              "text": "何時に うちへ 帰りましたか。",
+              "start": 60.82,
+              "end": 63.01,
+              "duration": 2.19,
+              "rawAzureTiming": {
+                "start": 61.07,
+                "end": 63.03,
+                "duration": 1.96
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrConfidence": 0.882,
+              "asrText": "何 時 に う ち へ 帰 り ま し た か",
+              "phraseIndexes": [
+                12
+              ],
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [],
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-16T11:01:07.890Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "matchScore": 1,
+                "asrText": "何 時 に う ち へ 帰 り ま し た か"
+              }
             }
           },
           {
@@ -595,17 +1673,56 @@
             "translationZh": "半夜2点。",
             "confidence": "high",
             "rawText": "森：夜中の 2時です。",
+            "segments": [
+              {
+                "text": "夜中",
+                "ruby": "よなか"
+              },
+              {
+                "text": "の 2"
+              },
+              {
+                "text": "時",
+                "ruby": "じ"
+              },
+              {
+                "text": "です。"
+              }
+            ],
             "audioSegment": {
               "id": "l6-app-block-005-line-005",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson6/l6-app-block-005-line-005.mp3",
-              "start": 0,
-              "end": 1.54,
-              "duration": 1.54,
-              "method": "approved-asr-alignment",
-              "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:28:14.222Z",
-              "sourceAudioSha256": "0b70a3883d83a79717e620ccf788ca819ea4b2e456b7bce1c263de780a0c2dc4"
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_apps.mp3",
+              "itemIndex": 13,
+              "speaker": "森",
+              "text": "夜中の 2時です。",
+              "start": 63.05,
+              "end": 65.15,
+              "duration": 2.1,
+              "rawAzureTiming": {
+                "start": 63.03,
+                "end": 65.03,
+                "duration": 2
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
+              "speechUnitCount": 1,
+              "matchScore": 0.857,
+              "asrConfidence": 0.882,
+              "asrText": "。 夜 中 の 二 時 で す",
+              "phraseIndexes": [
+                12
+              ],
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [],
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-16T11:01:07.890Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "matchScore": 0.857,
+                "asrText": "。 夜 中 の 二 時 で す"
+              }
             }
           },
           {
@@ -616,17 +1733,54 @@
             "translationZh": "2点吗？",
             "confidence": "high",
             "rawText": "李：2時ですか。",
+            "segments": [
+              {
+                "text": "2"
+              },
+              {
+                "text": "時",
+                "ruby": "じ"
+              },
+              {
+                "text": "ですか。"
+              }
+            ],
             "audioSegment": {
               "id": "l6-app-block-005-line-006",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson6/l6-app-block-005-line-006.mp3",
-              "start": 0,
-              "end": 1.3,
-              "duration": 1.3,
-              "method": "approved-asr-alignment",
-              "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:28:14.222Z",
-              "sourceAudioSha256": "0b70a3883d83a79717e620ccf788ca819ea4b2e456b7bce1c263de780a0c2dc4"
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_apps.mp3",
+              "itemIndex": 14,
+              "speaker": "李",
+              "text": "2時ですか。",
+              "start": 65.34,
+              "end": 66.87,
+              "duration": 1.53,
+              "rawAzureTiming": {
+                "start": 65.59,
+                "end": 66.75,
+                "duration": 1.16
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
+              "speechUnitCount": 1,
+              "matchScore": 0.8,
+              "asrConfidence": 0.882,
+              "asrText": "二 時 で す か",
+              "phraseIndexes": [
+                12
+              ],
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "medium",
+              "alignmentIssues": [
+                "Moderate ASR text similarity."
+              ],
+              "review": {
+                "status": "pending",
+                "reviewedAt": null,
+                "note": "Moderate ASR text similarity.",
+                "matchScore": 0.8,
+                "asrText": "二 時 で す か"
+              }
             }
           },
           {
@@ -637,17 +1791,52 @@
             "translationZh": "那可真够累的。",
             "confidence": "high",
             "rawText": "それは お疲れ様でした。",
+            "segments": [
+              {
+                "text": "それは "
+              },
+              {
+                "text": "お疲れ様",
+                "ruby": "おつかれさま"
+              },
+              {
+                "text": "でした。"
+              }
+            ],
             "audioSegment": {
               "id": "l6-app-block-005-line-007",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson6/l6-app-block-005-line-007.mp3",
-              "start": 0,
-              "end": 2.06,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_apps.mp3",
+              "itemIndex": 15,
+              "speaker": "李",
+              "text": "それは お疲れ様でした。",
+              "start": 66.77,
+              "end": 68.83,
               "duration": 2.06,
-              "method": "approved-asr-alignment",
-              "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:28:14.222Z",
-              "sourceAudioSha256": "0b70a3883d83a79717e620ccf788ca819ea4b2e456b7bce1c263de780a0c2dc4"
+              "rawAzureTiming": {
+                "start": 66.99,
+                "end": 68.71,
+                "duration": 1.72
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrConfidence": 0.882,
+              "asrText": "そ れ は お 疲 れ 様 で し た",
+              "phraseIndexes": [
+                12
+              ],
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [],
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-16T11:01:07.890Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "matchScore": 1,
+                "asrText": "そ れ は お 疲 れ 様 で し た"
+              }
             }
           }
         ]
@@ -659,10 +1848,36 @@
     "未输出 segments；已保留可可靠识别的整句 kana。"
   ],
   "audioAlignment": {
-    "schemaVersion": 1,
-    "method": "approved-asr-alignment",
-    "sourceAlignment": "data/ocr/lesson6-text-audio-alignment.json",
-    "publishedAt": "2026-08-05T08:28:18.112Z",
-    "approvedSegments": 27
+    "schemaVersion": 2,
+    "lessonId": "lesson6",
+    "generatedAt": "2026-08-16T11:01:07.890Z",
+    "method": "azure-speech-sentence-alignment-with-boundary-padding",
+    "reviewStatus": "pending",
+    "tracks": [
+      {
+        "id": "lesson_basic",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_basic.mp3",
+        "sourceAudioSha256": "29ef73de64fdcf6a0a354785b6d72bd06fe2b567226a23e46ac6861fee45da16",
+        "expectedItems": 12,
+        "alignedItems": 12,
+        "detectedUnitCount": 16,
+        "warnings": [
+          "1 item(s) require manual verification.",
+          "Reused prior Azure timings; no Azure request was made."
+        ]
+      },
+      {
+        "id": "lesson_apps",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson6/lesson_apps.mp3",
+        "sourceAudioSha256": "0b70a3883d83a79717e620ccf788ca819ea4b2e456b7bce1c263de780a0c2dc4",
+        "expectedItems": 15,
+        "alignedItems": 15,
+        "detectedUnitCount": 22,
+        "warnings": [
+          "3 item(s) require manual verification.",
+          "Reused prior Azure timings; no Azure request was made."
+        ]
+      }
+    ]
   }
 }

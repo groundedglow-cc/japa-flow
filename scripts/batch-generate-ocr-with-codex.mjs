@@ -1,5 +1,5 @@
 import { spawn } from "node:child_process";
-import { existsSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import { mkdir, readdir, readFile, writeFile } from "node:fs/promises";
 import { basename, dirname, join } from "node:path";
 
@@ -32,7 +32,7 @@ for (let lessonNo = from; lessonNo <= to; lessonNo += 1) {
   }
   const taskPath = join(taskDir, `lesson${lessonNo}-ocr-task.md`);
   await writeFile(taskPath, buildTaskPrompt({ lessonNo, images, vocabularyPrompt, textPrompt, vocabularyPath, textPath }), "utf8");
-  tasks.push({ lessonNo, taskPath, images });
+  tasks.push({ lessonNo, taskPath, images, textPath });
 }
 
 console.log(`OCR tasks: ${tasks.length}`);
@@ -118,7 +118,7 @@ ${textPrompt}
 
 - 只生成 \`lesson${lessonNo}\` 的数据。
 - 两个 JSON 都必须是合法 JSON。
-- 如果无法可靠提取 ruby/segments，可以省略对应字段，并在 warnings 中说明。
+- 每个日语句子都必须输出非空 \`kana\` 和 \`segments\`；每个含汉字的 segment 都必须有非空 \`ruby\`。无法从图片确认时可依据句子补全读音，并在 \`warnings\` 中记录需要复核的句子 ID，但不得省略字段。
 - 完成后只用一句话报告两个文件是否已写入和数量统计。
 `;
 }
@@ -172,12 +172,45 @@ async function runCodexTask(task) {
     child.on("error", reject);
     child.on("close", (code) => {
       if (code === 0) {
-        console.log(`lesson${task.lessonNo}: done`);
-        resolve();
+        try {
+          validateTextAnnotations(task.textPath);
+          console.log(`lesson${task.lessonNo}: done`);
+          resolve();
+        } catch (error) {
+          reject(error);
+        }
       } else {
         reject(new Error(stderr || stdout || `codex exited with code ${code}`));
       }
     });
     child.stdin.end(`Read ${task.taskPath} and write the requested JSON files.`);
   });
+}
+
+function validateTextAnnotations(filePath) {
+  if (!existsSync(filePath)) throw new Error(`Text OCR output was not written: ${filePath}`);
+  const data = JSON.parse(readFileSync(filePath, "utf8"));
+  const items = [
+    ...(data.basicText?.basicSentences || []),
+    ...(data.basicText?.dialogues || []).flatMap((dialogue) => dialogue.lines || []),
+    ...(data.applicationText?.blocks || []).flatMap((block) => block.type === "dialogue" ? block.lines || [] : [block])
+  ].filter((item) => containsKanaOrJapaneseText(item.text));
+  const failures = [];
+  for (const item of items) {
+    const id = item.id || "unknown";
+    if (!String(item.kana || "").trim()) failures.push(`${id}: missing kana`);
+    if (!Array.isArray(item.segments) || !item.segments.length) {
+      failures.push(`${id}: missing segments`);
+      continue;
+    }
+    if (item.segments.map((segment) => segment?.text || "").join("") !== item.text) failures.push(`${id}: segments do not reconstruct text`);
+    for (const segment of item.segments) {
+      if (/\p{Script=Han}/u.test(String(segment?.text || "")) && !String(segment?.ruby || "").trim()) failures.push(`${id}: kanji segment missing ruby`);
+    }
+  }
+  if (failures.length) throw new Error(`Text kana/ruby validation failed: ${failures.slice(0, 12).join("; ")}${failures.length > 12 ? `; and ${failures.length - 12} more` : ""}`);
+}
+
+function containsKanaOrJapaneseText(value) {
+  return /[\p{Script=Hiragana}\p{Script=Katakana}]/u.test(String(value || ""));
 }

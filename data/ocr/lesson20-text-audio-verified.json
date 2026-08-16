@@ -25,14 +25,27 @@
         "audioSegment": {
           "id": "l20-basic-s001",
           "trackId": "lesson_basic",
-          "sourceUrl": "/data/ocr/audio-clips/lesson20/l20-basic-s001.mp3",
-          "start": 0,
-          "end": 3.06,
+          "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson20/lesson_basic.mp3",
+          "speaker": "",
+          "text": "スミスさんは ピアノを 弾く ことが できます。",
+          "start": 1.09,
+          "end": 4.15,
           "duration": 3.06,
-          "method": "approved-asr-alignment",
+          "speechUnitCount": 1,
+          "matchScore": 1,
+          "asrText": "ス ミ ス さ ん は ピ ア ノ を 弾 く こ と が で き ま す",
+          "phraseIndexes": [
+            0
+          ],
+          "method": "legacy-asr-alignment-range-converted",
           "confidence": "approved",
-          "reviewedAt": "2026-08-05T08:44:23.445Z",
-          "sourceAudioSha256": "df86ad501a3d3bc320f8c6906d56ff61046c39c8981dc41089130442f733e849"
+          "review": {
+            "status": "approved",
+            "reviewedAt": "2026-08-05T08:44:23.445Z",
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "matchScore": 1,
+            "asrText": "ス ミ ス さ ん は ピ ア ノ を 弾 く こ と が で き ま す"
+          }
         }
       },
       {
@@ -45,14 +58,27 @@
         "audioSegment": {
           "id": "l20-basic-s002",
           "trackId": "lesson_basic",
-          "sourceUrl": "/data/ocr/audio-clips/lesson20/l20-basic-s002.mp3",
-          "start": 0,
-          "end": 4.1,
+          "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson20/lesson_basic.mp3",
+          "speaker": "",
+          "text": "わたしの 趣味は 切手を 集める ことです。",
+          "start": 5.17,
+          "end": 9.27,
           "duration": 4.1,
-          "method": "approved-asr-alignment",
+          "speechUnitCount": 1,
+          "matchScore": 0.824,
+          "asrText": "r 私 の 趣 味 は 切 手 を 集 め る こ と で す",
+          "phraseIndexes": [
+            1
+          ],
+          "method": "legacy-asr-alignment-range-converted",
           "confidence": "approved",
-          "reviewedAt": "2026-08-05T08:44:23.445Z",
-          "sourceAudioSha256": "df86ad501a3d3bc320f8c6906d56ff61046c39c8981dc41089130442f733e849"
+          "review": {
+            "status": "approved",
+            "reviewedAt": "2026-08-05T08:44:23.445Z",
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "matchScore": 0.824,
+            "asrText": "r 私 の 趣 味 は 切 手 を 集 め る こ と で す"
+          }
         }
       },
       {
@@ -65,14 +91,27 @@
         "audioSegment": {
           "id": "l20-basic-s003",
           "trackId": "lesson_basic",
-          "sourceUrl": "/data/ocr/audio-clips/lesson20/l20-basic-s003.mp3",
-          "start": 0,
-          "end": 3.18,
+          "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson20/lesson_basic.mp3",
+          "speaker": "",
+          "text": "こちらへ 来る 前に、電話を かけて ください。",
+          "start": 11.57,
+          "end": 14.75,
           "duration": 3.18,
-          "method": "approved-asr-alignment",
+          "speechUnitCount": 1,
+          "matchScore": 1,
+          "asrText": "こ ち ら へ 来 る 前 に 電 話 を か け て く だ さ い",
+          "phraseIndexes": [
+            2
+          ],
+          "method": "legacy-asr-alignment-range-converted",
           "confidence": "approved",
-          "reviewedAt": "2026-08-05T08:44:23.445Z",
-          "sourceAudioSha256": "df86ad501a3d3bc320f8c6906d56ff61046c39c8981dc41089130442f733e849"
+          "review": {
+            "status": "approved",
+            "reviewedAt": "2026-08-05T08:44:23.445Z",
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "matchScore": 1,
+            "asrText": "こ ち ら へ 来 る 前 に 電 話 を か け て く だ さ い"
+          }
         }
       },
       {
@@ -85,14 +124,27 @@
         "audioSegment": {
           "id": "l20-basic-s004",
           "trackId": "lesson_basic",
-          "sourceUrl": "/data/ocr/audio-clips/lesson20/l20-basic-s004.mp3",
-          "start": 0,
-          "end": 2.5,
+          "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson20/lesson_basic.mp3",
+          "speaker": "",
+          "text": "冬休み、どこかへ 行きたいです。",
+          "start": 17.01,
+          "end": 19.51,
           "duration": 2.5,
-          "method": "approved-asr-alignment",
+          "speechUnitCount": 1,
+          "matchScore": 1,
+          "asrText": "冬 休 み ど こ か へ 行 き た い で す",
+          "phraseIndexes": [
+            3
+          ],
+          "method": "legacy-asr-alignment-range-converted",
           "confidence": "approved",
-          "reviewedAt": "2026-08-05T08:44:23.445Z",
-          "sourceAudioSha256": "df86ad501a3d3bc320f8c6906d56ff61046c39c8981dc41089130442f733e849"
+          "review": {
+            "status": "approved",
+            "reviewedAt": "2026-08-05T08:44:23.445Z",
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "matchScore": 1,
+            "asrText": "冬 休 み ど こ か へ 行 き た い で す"
+          }
         }
       }
     ],
@@ -111,14 +163,27 @@
             "audioSegment": {
               "id": "l20-basic-dialogue-001-line-001",
               "trackId": "lesson_basic",
-              "sourceUrl": "/data/ocr/audio-clips/lesson20/l20-basic-dialogue-001-line-001.mp3",
-              "start": 0,
-              "end": 2.9,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson20/lesson_basic.mp3",
+              "speaker": "甲",
+              "text": "李さんは 車を 運転する ことが できますか。",
+              "start": 22.31,
+              "end": 25.21,
               "duration": 2.9,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrText": "李 さ ん は 車 を 運 転 す る こ と が で き ま す か",
+              "phraseIndexes": [
+                4
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:44:23.445Z",
-              "sourceAudioSha256": "df86ad501a3d3bc320f8c6906d56ff61046c39c8981dc41089130442f733e849"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T08:44:23.445Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 1,
+                "asrText": "李 さ ん は 車 を 運 転 す る こ と が で き ま す か"
+              }
             }
           },
           {
@@ -132,17 +197,26 @@
               "id": "l20-basic-dialogue-001-line-002",
               "trackId": "lesson_basic",
               "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson20/lesson_basic.mp3",
-              "localAudioPath": "data/ocr/audio-cache/lesson20/lesson_basic.mp3",
-              "itemIndex": 6,
+              "speaker": "乙",
               "text": "はい、できます。",
-              "label": "乙: はい、できます。",
-              "start": 26.012,
-              "end": 27.116,
-              "duration": 1.104,
-              "speechUnitCount": 2,
-              "method": "manual-admin-adjustment",
+              "start": 25.93,
+              "end": 27.15,
+              "duration": 1.22,
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrText": "は い で き ま す",
+              "phraseIndexes": [
+                5
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-07T14:14:01.611Z"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T08:44:23.445Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 1,
+                "asrText": "は い で き ま す"
+              }
             }
           }
         ]
@@ -161,14 +235,27 @@
             "audioSegment": {
               "id": "l20-basic-dialogue-002-line-001",
               "trackId": "lesson_basic",
-              "sourceUrl": "/data/ocr/audio-clips/lesson20/l20-basic-dialogue-002-line-001.mp3",
-              "start": 0,
-              "end": 2.54,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson20/lesson_basic.mp3",
+              "speaker": "甲",
+              "text": "ここで 写真を 撮っても いいですか。",
+              "start": 29.73,
+              "end": 32.27,
               "duration": 2.54,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrText": "こ こ で 写 真 を 撮 っ て も い い で す か",
+              "phraseIndexes": [
+                6
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:44:23.445Z",
-              "sourceAudioSha256": "df86ad501a3d3bc320f8c6906d56ff61046c39c8981dc41089130442f733e849"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T08:44:23.445Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 1,
+                "asrText": "こ こ で 写 真 を 撮 っ て も い い で す か"
+              }
             }
           },
           {
@@ -181,14 +268,27 @@
             "audioSegment": {
               "id": "l20-basic-dialogue-002-line-002",
               "trackId": "lesson_basic",
-              "sourceUrl": "/data/ocr/audio-clips/lesson20/l20-basic-dialogue-002-line-002.mp3",
-              "start": 0,
-              "end": 2.86,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson20/lesson_basic.mp3",
+              "speaker": "乙",
+              "text": "いいえ、ここでは 撮る ことが できません。",
+              "start": 33.21,
+              "end": 36.07,
               "duration": 2.86,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 1,
+              "matchScore": 0.941,
+              "asrText": "い い え こ こ で は 取 る こ と が で き ま せ ん",
+              "phraseIndexes": [
+                7
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:44:23.445Z",
-              "sourceAudioSha256": "df86ad501a3d3bc320f8c6906d56ff61046c39c8981dc41089130442f733e849"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T08:44:23.445Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 0.941,
+                "asrText": "い い え こ こ で は 取 る こ と が で き ま せ ん"
+              }
             }
           }
         ]
@@ -207,14 +307,27 @@
             "audioSegment": {
               "id": "l20-basic-dialogue-003-line-001",
               "trackId": "lesson_basic",
-              "sourceUrl": "/data/ocr/audio-clips/lesson20/l20-basic-dialogue-003-line-001.mp3",
-              "start": 0,
-              "end": 2.1,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson20/lesson_basic.mp3",
+              "speaker": "甲",
+              "text": "何か 趣味が ありますか。",
+              "start": 38.89,
+              "end": 40.99,
               "duration": 2.1,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrText": "何 か 趣 味 が あ り ま す か",
+              "phraseIndexes": [
+                8
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:44:23.445Z",
-              "sourceAudioSha256": "df86ad501a3d3bc320f8c6906d56ff61046c39c8981dc41089130442f733e849"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T08:44:23.445Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 1,
+                "asrText": "何 か 趣 味 が あ り ま す か"
+              }
             }
           },
           {
@@ -227,14 +340,27 @@
             "audioSegment": {
               "id": "l20-basic-dialogue-003-line-002",
               "trackId": "lesson_basic",
-              "sourceUrl": "/data/ocr/audio-clips/lesson20/l20-basic-dialogue-003-line-002.mp3",
-              "start": 0,
-              "end": 2.22,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson20/lesson_basic.mp3",
+              "speaker": "乙",
+              "text": "ええ。音楽を 聞く ことです。",
+              "start": 41.53,
+              "end": 43.75,
               "duration": 2.22,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 1,
+              "matchScore": 0.909,
+              "asrText": "え え 音 楽 を 聴 く こ と で す",
+              "phraseIndexes": [
+                9
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:44:23.445Z",
-              "sourceAudioSha256": "df86ad501a3d3bc320f8c6906d56ff61046c39c8981dc41089130442f733e849"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T08:44:23.445Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 0.909,
+                "asrText": "え え 音 楽 を 聴 く こ と で す"
+              }
             }
           }
         ]
@@ -253,14 +379,27 @@
             "audioSegment": {
               "id": "l20-basic-dialogue-004-line-001",
               "trackId": "lesson_basic",
-              "sourceUrl": "/data/ocr/audio-clips/lesson20/l20-basic-dialogue-004-line-001.mp3",
-              "start": 0,
-              "end": 3.14,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson20/lesson_basic.mp3",
+              "speaker": "甲",
+              "text": "森さんは いつ ギターを 練習しますか。",
+              "start": 46.13,
+              "end": 49.27,
               "duration": 3.14,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrText": "森 さ ん は い つ ギ タ ー を 練 習 し ま す か",
+              "phraseIndexes": [
+                10
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:44:23.445Z",
-              "sourceAudioSha256": "df86ad501a3d3bc320f8c6906d56ff61046c39c8981dc41089130442f733e849"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T08:44:23.445Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 1,
+                "asrText": "森 さ ん は い つ ギ タ ー を 練 習 し ま す か"
+              }
             }
           },
           {
@@ -273,14 +412,27 @@
             "audioSegment": {
               "id": "l20-basic-dialogue-004-line-002",
               "trackId": "lesson_basic",
-              "sourceUrl": "/data/ocr/audio-clips/lesson20/l20-basic-dialogue-004-line-002.mp3",
-              "start": 0,
-              "end": 2.22,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson20/lesson_basic.mp3",
+              "speaker": "乙",
+              "text": "毎晩、寝る 前に 練習します。",
+              "start": 49.89,
+              "end": 52.11,
               "duration": 2.22,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrText": "毎 晩 寝 る 前 に 練 習 し ま す",
+              "phraseIndexes": [
+                11
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:44:23.445Z",
-              "sourceAudioSha256": "df86ad501a3d3bc320f8c6906d56ff61046c39c8981dc41089130442f733e849"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T08:44:23.445Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 1,
+                "asrText": "毎 晩 寝 る 前 に 練 習 し ま す"
+              }
             }
           }
         ]
@@ -312,14 +464,27 @@
             "audioSegment": {
               "id": "l20-app-block-002-line-001",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson20/l20-app-block-002-line-001.mp3",
-              "start": 0,
-              "end": 2.14,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson20/lesson_apps.mp3",
+              "speaker": "小野",
+              "text": "李さん、春節は 中国へ 帰りますか。",
+              "start": 17.46,
+              "end": 19.6,
               "duration": 2.14,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrText": "李 さ ん 春 節 は 中 国 へ 帰 り ま す か",
+              "phraseIndexes": [
+                3
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:45:03.611Z",
-              "sourceAudioSha256": "11d2e0cc2548954dbf3362919ee729e1fae648dec261bd26c561398f004b9a38"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T08:45:03.611Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 1,
+                "asrText": "李 さ ん 春 節 は 中 国 へ 帰 り ま す か"
+              }
             }
           },
           {
@@ -332,14 +497,27 @@
             "audioSegment": {
               "id": "l20-app-block-002-line-002",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson20/l20-app-block-002-line-002.mp3",
-              "start": 0,
-              "end": 3.3,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson20/lesson_apps.mp3",
+              "speaker": "李",
+              "text": "いいえ、今 日本の 仕事が 忙しいですから、帰りません。",
+              "start": 21.06,
+              "end": 24.36,
               "duration": 3.3,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrText": "い い え 今 日 本 の 仕 事 が 忙 し い で す か ら 帰 り ま せ ん",
+              "phraseIndexes": [
+                4
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:45:03.611Z",
-              "sourceAudioSha256": "11d2e0cc2548954dbf3362919ee729e1fae648dec261bd26c561398f004b9a38"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T08:45:03.611Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 1,
+                "asrText": "い い え 今 日 本 の 仕 事 が 忙 し い で す か ら 帰 り ま せ ん"
+              }
             }
           },
           {
@@ -352,14 +530,27 @@
             "audioSegment": {
               "id": "l20-app-block-002-line-003",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson20/l20-app-block-002-line-003.mp3",
-              "start": 0,
-              "end": 2.9,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson20/lesson_apps.mp3",
+              "speaker": "森",
+              "text": "じゃあ、いっしょに どこかへ 行きませんか。",
+              "start": 24.62,
+              "end": 27.52,
               "duration": 2.9,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 1,
+              "matchScore": 0.778,
+              "asrText": "じ ゃ あ 一 緒 に ど こ か へ 行 き ま せ ん か",
+              "phraseIndexes": [
+                4
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:45:03.611Z",
-              "sourceAudioSha256": "11d2e0cc2548954dbf3362919ee729e1fae648dec261bd26c561398f004b9a38"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T08:45:03.611Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 0.778,
+                "asrText": "じ ゃ あ 一 緒 に ど こ か へ 行 き ま せ ん か"
+              }
             }
           },
           {
@@ -372,14 +563,27 @@
             "audioSegment": {
               "id": "l20-app-block-002-line-004",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson20/l20-app-block-002-line-004.mp3",
-              "start": 0,
-              "end": 5.02,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson20/lesson_apps.mp3",
+              "speaker": "小野",
+              "text": "横浜の 中華街へ 行きましょうよ。中国の 獅子舞を 見る ことが できますよ。",
+              "start": 28.21,
+              "end": 33.23,
               "duration": 5.02,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrText": "横 浜 の 中 華 街 へ 行 き ま し ょ う よ 中 国 の 獅 子 舞 を 見 る こ と が で き ま す よ",
+              "phraseIndexes": [
+                5
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:45:03.611Z",
-              "sourceAudioSha256": "11d2e0cc2548954dbf3362919ee729e1fae648dec261bd26c561398f004b9a38"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T08:45:03.611Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 1,
+                "asrText": "横 浜 の 中 華 街 へ 行 き ま し ょ う よ 中 国 の 獅 子 舞 を 見 る こ と が で き ま す よ"
+              }
             }
           }
         ]
@@ -406,14 +610,27 @@
             "audioSegment": {
               "id": "l20-app-block-004-line-001",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson20/l20-app-block-004-line-001.mp3",
-              "start": 0,
-              "end": 1.58,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson20/lesson_apps.mp3",
+              "speaker": "小野",
+              "text": "料理は どうでしたか。",
+              "start": 36.87,
+              "end": 38.45,
               "duration": 1.58,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrText": "料 理 は ど う で し た か",
+              "phraseIndexes": [
+                6
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:45:03.611Z",
-              "sourceAudioSha256": "11d2e0cc2548954dbf3362919ee729e1fae648dec261bd26c561398f004b9a38"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T08:45:03.611Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 1,
+                "asrText": "料 理 は ど う で し た か"
+              }
             }
           },
           {
@@ -426,14 +643,27 @@
             "audioSegment": {
               "id": "l20-app-block-004-line-002",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson20/l20-app-block-004-line-002.mp3",
-              "start": 0,
-              "end": 3.14,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson20/lesson_apps.mp3",
+              "speaker": "李",
+              "text": "とても おいしかったですよ。特に 餃子は。",
+              "start": 39.05,
+              "end": 42.19,
               "duration": 3.14,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 1,
+              "matchScore": 0.882,
+              "asrText": "と て も 美 味 し か っ た で す よ 特 に 餃 子 は",
+              "phraseIndexes": [
+                7
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:45:03.611Z",
-              "sourceAudioSha256": "11d2e0cc2548954dbf3362919ee729e1fae648dec261bd26c561398f004b9a38"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T08:45:03.611Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 0.882,
+                "asrText": "と て も 美 味 し か っ た で す よ 特 に 餃 子 は"
+              }
             }
           },
           {
@@ -446,14 +676,27 @@
             "audioSegment": {
               "id": "l20-app-block-004-line-003",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson20/l20-app-block-004-line-003.mp3",
-              "start": 0,
-              "end": 2.7,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson20/lesson_apps.mp3",
+              "speaker": "森",
+              "text": "李さんは 餃子を 作る ことが できますか。",
+              "start": 43.17,
+              "end": 45.87,
               "duration": 2.7,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrText": "李 さ ん は 餃 子 を 作 る こ と が で き ま す か",
+              "phraseIndexes": [
+                8
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:45:03.611Z",
-              "sourceAudioSha256": "11d2e0cc2548954dbf3362919ee729e1fae648dec261bd26c561398f004b9a38"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T08:45:03.611Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 1,
+                "asrText": "李 さ ん は 餃 子 を 作 る こ と が で き ま す か"
+              }
             }
           },
           {
@@ -466,14 +709,27 @@
             "audioSegment": {
               "id": "l20-app-block-004-line-004",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson20/l20-app-block-004-line-004.mp3",
-              "start": 0,
-              "end": 3.9,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson20/lesson_apps.mp3",
+              "speaker": "李",
+              "text": "ええ。北京では 春節の 前に、家族 みんなで 餃子を 作ります。",
+              "start": 47.3,
+              "end": 51.2,
               "duration": 3.9,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrText": "え え 北 京 で は 春 節 の 前 に 家 族 み ん な で 餃 子 を 作 り ま す",
+              "phraseIndexes": [
+                9
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:45:03.611Z",
-              "sourceAudioSha256": "11d2e0cc2548954dbf3362919ee729e1fae648dec261bd26c561398f004b9a38"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T08:45:03.611Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 1,
+                "asrText": "え え 北 京 で は 春 節 の 前 に 家 族 み ん な で 餃 子 を 作 り ま す"
+              }
             }
           },
           {
@@ -486,14 +742,27 @@
             "audioSegment": {
               "id": "l20-app-block-004-line-005",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson20/l20-app-block-004-line-005.mp3",
-              "start": 0,
-              "end": 2.42,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson20/lesson_apps.mp3",
+              "speaker": "小野",
+              "text": "手作りの 餃子は 皮が おいしいですよね。",
+              "start": 52.78,
+              "end": 55.2,
               "duration": 2.42,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 1,
+              "matchScore": 0.789,
+              "asrText": "手 作 り の ギ ョ ウ ザ は 皮 が お い し い で す よ ね",
+              "phraseIndexes": [
+                10
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:45:03.611Z",
-              "sourceAudioSha256": "11d2e0cc2548954dbf3362919ee729e1fae648dec261bd26c561398f004b9a38"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T08:45:03.611Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 0.789,
+                "asrText": "手 作 り の ギ ョ ウ ザ は 皮 が お い し い で す よ ね"
+              }
             }
           },
           {
@@ -506,14 +775,27 @@
             "audioSegment": {
               "id": "l20-app-block-004-line-006",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson20/l20-app-block-004-line-006.mp3",
-              "start": 0,
-              "end": 2.46,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson20/lesson_apps.mp3",
+              "speaker": "李",
+              "text": "小野さんも 作る ことが できますか。",
+              "start": 55.97,
+              "end": 58.43,
               "duration": 2.46,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrText": "小 野 さ ん も 作 る こ と が で き ま す か",
+              "phraseIndexes": [
+                11
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:45:03.611Z",
-              "sourceAudioSha256": "11d2e0cc2548954dbf3362919ee729e1fae648dec261bd26c561398f004b9a38"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T08:45:03.611Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 1,
+                "asrText": "小 野 さ ん も 作 る こ と が で き ま す か"
+              }
             }
           },
           {
@@ -526,14 +808,27 @@
             "audioSegment": {
               "id": "l20-app-block-004-line-007",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson20/l20-app-block-004-line-007.mp3",
-              "start": 0,
-              "end": 4.78,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson20/lesson_apps.mp3",
+              "speaker": "小野",
+              "text": "ええ、もちろん。わたしの 趣味は おいしい 物を 作る ことですから。",
+              "start": 58.65,
+              "end": 63.43,
               "duration": 4.78,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 1,
+              "matchScore": 0.741,
+              "asrText": "え え も ち ろ ん 私 の 趣 味 は 美 味 し い も の を 作 る こ と で す か ら",
+              "phraseIndexes": [
+                11
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:45:03.611Z",
-              "sourceAudioSha256": "11d2e0cc2548954dbf3362919ee729e1fae648dec261bd26c561398f004b9a38"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T08:45:03.611Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 0.741,
+                "asrText": "え え も ち ろ ん 私 の 趣 味 は 美 味 し い も の を 作 る こ と で す か ら"
+              }
             }
           },
           {
@@ -546,14 +841,27 @@
             "audioSegment": {
               "id": "l20-app-block-004-line-008",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson20/l20-app-block-004-line-008.mp3",
-              "start": 0,
-              "end": 3.82,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson20/lesson_apps.mp3",
+              "speaker": "森",
+              "text": "本当ですか？じゃあ、いつか ごちそうして ください。",
+              "start": 63.61,
+              "end": 67.43,
               "duration": 3.82,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 1,
+              "matchScore": 0.857,
+              "asrText": "本 当 で す か じ ゃ あ い つ か ご 馳 走 し て く だ さ い",
+              "phraseIndexes": [
+                11
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:45:03.611Z",
-              "sourceAudioSha256": "11d2e0cc2548954dbf3362919ee729e1fae648dec261bd26c561398f004b9a38"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T08:45:03.611Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 0.857,
+                "asrText": "本 当 で す か じ ゃ あ い つ か ご 馳 走 し て く だ さ い"
+              }
             }
           },
           {
@@ -566,14 +874,28 @@
             "audioSegment": {
               "id": "l20-app-block-004-line-009",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson20/l20-app-block-004-line-009.mp3",
-              "start": 0,
-              "end": 5.34,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson20/lesson_apps.mp3",
+              "speaker": "小野",
+              "text": "いいですよ。李さんが 帰国する 前に、ぜひ いっしょに うちに 来て ください。",
+              "start": 67.69,
+              "end": 73.03,
               "duration": 5.34,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 2,
+              "matchScore": 0.806,
+              "asrText": "い い で す よ 李 さ ん が 帰 国 す る 前 に ぜ ひ 一 緒 に 家 に 来 て く だ さ い",
+              "phraseIndexes": [
+                11,
+                12
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:45:03.611Z",
-              "sourceAudioSha256": "11d2e0cc2548954dbf3362919ee729e1fae648dec261bd26c561398f004b9a38"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T08:45:03.611Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 0.806,
+                "asrText": "い い で す よ 李 さ ん が 帰 国 す る 前 に ぜ ひ 一 緒 に 家 に 来 て く だ さ い"
+              }
             }
           }
         ]
@@ -585,10 +907,25 @@
   ],
   "audioAlignment": {
     "schemaVersion": 1,
-    "method": "approved-asr-alignment",
-    "sourceAlignment": "data/ocr/lesson20-text-audio-alignment.json",
-    "publishedAt": "2026-08-05T08:45:08.209Z",
-    "approvedSegments": 25
+    "lessonId": "lesson20",
+    "convertedAt": "2026-08-14T00:17:06.811Z",
+    "method": "legacy-asr-alignment-range-converted",
+    "tracks": [
+      {
+        "id": "lesson_basic",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson20/lesson_basic.mp3",
+        "sourceAudioSha256": "df86ad501a3d3bc320f8c6906d56ff61046c39c8981dc41089130442f733e849",
+        "expectedItems": 12,
+        "alignedItems": 12
+      },
+      {
+        "id": "lesson_apps",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson20/lesson_apps.mp3",
+        "sourceAudioSha256": "11d2e0cc2548954dbf3362919ee729e1fae648dec261bd26c561398f004b9a38",
+        "expectedItems": 13,
+        "alignedItems": 13
+      }
+    ]
   },
-  "updatedAt": "2026-08-07T14:14:01.616Z"
+  "updatedAt": "2026-08-14T00:17:06.811Z"
 }

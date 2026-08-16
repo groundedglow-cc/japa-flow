@@ -1,5 +1,6 @@
 import type { InputSlot, LessonPractice, PracticeActivity, PracticeItem, PromptPart, RichText } from "./lesson-practice-types";
-import { lesson7ImageCrops } from "./lesson7-image-crops";
+
+const exerciseImage = (fileName: string) => `../data/book1_exercise_images/${fileName}`;
 
 const page = (pageNo: number) => `../course-assets/by-lesson/lesson7/page${pageNo}.webp`;
 const audio = (exerciseNo: 1 | 2, order: number) =>
@@ -8,7 +9,6 @@ const text = (value: string, options: Omit<RichText, "type" | "text"> = {}): Ric
 const repl = (value: string, substitutionKey: string, options: Omit<RichText, "type" | "text" | "underline" | "substitutionKey"> = {}): RichText =>
   text(value, { ...options, underline: true, substitutionKey });
 const blank = (slotId: string): PromptPart => ({ type: "blank", slotId });
-const crop = (id: string) => lesson7ImageCrops.assets.find((asset) => asset.id === id)!;
 
 const answerOnlyHint = "只填写提问后的回答部分，不需要重写问题。";
 const sentenceSlot = (placeholder = "输入完整回答"): InputSlot[] => [{ id: "answer", expectedUnit: "sentence", width: "long", placeholder }];
@@ -161,7 +161,9 @@ const activities: PracticeActivity[] = [
     answerUnit: "sentence",
     responseScope: "custom",
     responseScopeHint: "按例1写肯定句，再按例2写否定句。",
-    assets: [crop("l7-p1-a1-action-cards")],
+    assets: [
+      { id: "l7-p1-a1-action-cards", kind: "exercise_image", imagePath: exerciseImage("book1_lesson7_1_1.png") }
+    ],
     displayAssets: ["l7-p1-a1-action-cards"],
     layout: [
       {
@@ -366,7 +368,9 @@ const activities: PracticeActivity[] = [
         ]
       }
     },
-    assets: [crop("l7-p1-a5-daily-schedules")],
+    assets: [
+      { id: "l7-p1-a5-daily-schedules", kind: "exercise_image", imagePath: exerciseImage("book1_lesson7_1_5.png") }
+    ],
     displayAssets: ["l7-p1-a5-daily-schedules"],
     layout: [
       {
@@ -422,7 +426,9 @@ const activities: PracticeActivity[] = [
         ]
       }
     },
-    assets: [crop("l7-p1-a6-shop-items")],
+    assets: [
+      { id: "l7-p1-a6-shop-items", kind: "exercise_image", imagePath: exerciseImage("book1_lesson7_1_6.png") }
+    ],
     displayAssets: ["l7-p1-a6-shop-items"],
     layout: [
       {
@@ -481,7 +487,9 @@ const activities: PracticeActivity[] = [
     answerUnit: "sentence",
     responseScope: "custom",
     responseScopeHint: "填写括号里的助词和横线上的词句。",
-    assets: [crop("l7-p2-a2-picture-prompts")],
+    assets: [
+      { id: "l7-p2-a2-picture-prompts", kind: "exercise_image", imagePath: exerciseImage("book1_lesson7_2_2.png") }
+    ],
     displayAssets: ["l7-p2-a2-picture-prompts"],
     layout: [
       {

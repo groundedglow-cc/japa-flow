@@ -258,13 +258,18 @@
     const formData = new FormData();
     formData.append("audio", new Blob([wav], { type: "audio/wav" }), "speech.wav");
     formData.append("language", "ja-JP");
+    formData.append("sampleRate", String(sampleRate));
     const response = await fetch("/api/speech/transcribe", {
       method: "POST",
+      headers: { Authorization: `Bearer ${localStorage.getItem("light_blog_token") || ""}` },
       body: formData
     });
     const data = await response.json();
-    if (!response.ok) throw new Error(data.error || `HTTP ${response.status}`);
-    return String(data.recognizedText || "").trim();
+    if (!response.ok) throw new Error(data.error || data.message || (data.code === "AI_DAILY_QUOTA_EXCEEDED" ? "今日 AI 调用额度已用完" : `HTTP ${response.status}`));
+    return {
+      text: String(data.recognizedText || "").trim(),
+      status: String(data.recognitionStatus || "")
+    };
   }
 
   async function formatDialogueAnswer(field, status) {
@@ -280,7 +285,10 @@
     try {
       const response = await fetch("/api/practice/format-answer", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("light_blog_token") || ""}`
+        },
         body: JSON.stringify({
           inputText,
           formatHints: collectDialogueFormatHints(activity, item),
@@ -325,11 +333,14 @@
     let source;
     let processor;
     const chunks = [];
-    const sampleRate = 16000;
+    let sampleRate = 16000;
     try {
       stream = await navigator.mediaDevices.getUserMedia({ audio: true });
       const AudioContextCtor = window.AudioContext || window.webkitAudioContext;
-      audioContext = new AudioContextCtor({ sampleRate });
+      audioContext = new AudioContextCtor({ sampleRate: 16000 });
+      // 某些浏览器会忽略 AudioContext 的目标采样率；WAV 头必须使用实际采样率，
+      // 否则 Azure 会把语速/音高解析错误，常见结果就是 NoMatch。
+      sampleRate = audioContext.sampleRate || 16000;
       source = audioContext.createMediaStreamSource(stream);
       processor = audioContext.createScriptProcessor(4096, 1, 1);
       processor.onaudioprocess = (event) => {
@@ -373,9 +384,10 @@
         setButtonsDisabled([recordButton], true);
         setStatus(status, "转写中...", "");
         try {
-          const recognizedText = await transcribeChunks(chunks, sampleRate);
+          const transcription = await transcribeChunks(chunks, sampleRate);
+          const recognizedText = transcription.text;
           if (!recognizedText) {
-            setStatus(status, "未识别到文本", "warn");
+            setStatus(status, transcription.status ? `Azure 未识别到文本（${transcription.status}）` : "未识别到文本", "warn");
             return;
           }
           field.value = recognizedText;
@@ -384,7 +396,8 @@
           else setStatus(status, "已转写", "ok");
         } catch (error) {
           console.error("[practice recorder] transcribe or format failed:", error);
-          setStatus(status, "录音处理失败", "warn");
+          const message = String(error?.message || error || "未知错误").replace(/\s+/g, " ").trim();
+          setStatus(status, `转写失败：${message}`, "warn");
         } finally {
           setFieldLocked(field, false);
           setButtonsDisabled([recordButton], false);

@@ -15,42 +15,405 @@
   "basicText": {
     "title": "基本课文",
     "basicSentences": [
-      { "id": "l6-basic-s001", "order": 1, "text": "吉田さんは 来月 中国へ 行きます。", "kana": "よしださんは らいげつ ちゅうごくへ いきます。", "translationZh": "吉田先生下个月去中国。", "confidence": "high", "rawText": "1. 吉田さんは 来月 中国へ 行きます。" },
-      { "id": "l6-basic-s002", "order": 2, "text": "李さんは 先月 北京から 来ました。", "kana": "りさんは せんげつ ペキンから きました。", "translationZh": "小李上个月从北京来。", "confidence": "high", "rawText": "2. 李さんは 先月 北京から 来ました。" },
-      { "id": "l6-basic-s003", "order": 3, "text": "小野さんは 友達と 帰りました。", "kana": "おのさんは ともだちと かえりました。", "translationZh": "小野女士和朋友一起回去了。", "confidence": "high", "rawText": "3. 小野さんは 友達と 帰りました。" },
-      { "id": "l6-basic-s004", "order": 4, "text": "森さんは 東京から 広島まで 新幹線で 行きます。", "kana": "もりさんは とうきょうから ひろしままで しんかんせんで いきます。", "translationZh": "森先生从东京到广岛坐新干线去。", "confidence": "high", "rawText": "4. 森さんは 東京から 広島まで 新幹線で 行きます。" }
+      {
+        "id": "l6-basic-s001",
+        "order": 1,
+        "text": "吉田さんは 来月 中国へ 行きます。",
+        "kana": "よしださんは らいげつ ちゅうごくへ いきます。",
+        "translationZh": "吉田先生下个月去中国。",
+        "confidence": "high",
+        "rawText": "1. 吉田さんは 来月 中国へ 行きます。",
+        "segments": [
+          {
+            "text": "吉田",
+            "ruby": "よしだ"
+          },
+          {
+            "text": "さんは "
+          },
+          {
+            "text": "来月",
+            "ruby": "らいげつ"
+          },
+          {
+            "text": " "
+          },
+          {
+            "text": "中国",
+            "ruby": "ちゅうごく"
+          },
+          {
+            "text": "へ "
+          },
+          {
+            "text": "行",
+            "ruby": "い"
+          },
+          {
+            "text": "きます。"
+          }
+        ]
+      },
+      {
+        "id": "l6-basic-s002",
+        "order": 2,
+        "text": "李さんは 先月 北京から 来ました。",
+        "kana": "りさんは せんげつ ペキンから きました。",
+        "translationZh": "小李上个月从北京来。",
+        "confidence": "high",
+        "rawText": "2. 李さんは 先月 北京から 来ました。",
+        "segments": [
+          {
+            "text": "李",
+            "ruby": "り"
+          },
+          {
+            "text": "さんは "
+          },
+          {
+            "text": "先月",
+            "ruby": "せんげつ"
+          },
+          {
+            "text": " "
+          },
+          {
+            "text": "北京",
+            "ruby": "ペキン"
+          },
+          {
+            "text": "から "
+          },
+          {
+            "text": "来",
+            "ruby": "き"
+          },
+          {
+            "text": "ました。"
+          }
+        ]
+      },
+      {
+        "id": "l6-basic-s003",
+        "order": 3,
+        "text": "小野さんは 友達と 帰りました。",
+        "kana": "おのさんは ともだちと かえりました。",
+        "translationZh": "小野女士和朋友一起回去了。",
+        "confidence": "high",
+        "rawText": "3. 小野さんは 友達と 帰りました。",
+        "segments": [
+          {
+            "text": "小野",
+            "ruby": "おの"
+          },
+          {
+            "text": "さんは "
+          },
+          {
+            "text": "友達",
+            "ruby": "ともだち"
+          },
+          {
+            "text": "と "
+          },
+          {
+            "text": "帰",
+            "ruby": "かえ"
+          },
+          {
+            "text": "りました。"
+          }
+        ]
+      },
+      {
+        "id": "l6-basic-s004",
+        "order": 4,
+        "text": "森さんは 東京から 広島まで 新幹線で 行きます。",
+        "kana": "もりさんは とうきょうから ひろしままで しんかんせんで いきます。",
+        "translationZh": "森先生从东京到广岛坐新干线去。",
+        "confidence": "high",
+        "rawText": "4. 森さんは 東京から 広島まで 新幹線で 行きます。",
+        "segments": [
+          {
+            "text": "森",
+            "ruby": "もり"
+          },
+          {
+            "text": "さんは "
+          },
+          {
+            "text": "東京",
+            "ruby": "とうきょう"
+          },
+          {
+            "text": "から "
+          },
+          {
+            "text": "広島",
+            "ruby": "ひろしま"
+          },
+          {
+            "text": "まで "
+          },
+          {
+            "text": "新幹線",
+            "ruby": "しんかんせん"
+          },
+          {
+            "text": "で "
+          },
+          {
+            "text": "行",
+            "ruby": "い"
+          },
+          {
+            "text": "きます。"
+          }
+        ]
+      }
     ],
     "dialogues": [
       {
         "id": "l6-basic-dialogue-001",
         "label": "A",
         "lines": [
-          { "id": "l6-basic-dialogue-001-line-001", "speaker": "甲", "text": "いつ アメリカへ 行きますか。", "kana": "いつ アメリカへ いきますか。", "translationZh": "什么时候去美国？", "confidence": "high", "rawText": "甲：いつ アメリカへ 行きますか。" },
-          { "id": "l6-basic-dialogue-001-line-002", "speaker": "乙", "text": "10月に 行きます。", "kana": "じゅうがつに いきます。", "translationZh": "10月去。", "confidence": "high", "rawText": "乙：10月に 行きます。" }
+          {
+            "id": "l6-basic-dialogue-001-line-001",
+            "speaker": "甲",
+            "text": "いつ アメリカへ 行きますか。",
+            "kana": "いつ アメリカへ いきますか。",
+            "translationZh": "什么时候去美国？",
+            "confidence": "high",
+            "rawText": "甲：いつ アメリカへ 行きますか。",
+            "segments": [
+              {
+                "text": "いつ アメリカへ "
+              },
+              {
+                "text": "行",
+                "ruby": "い"
+              },
+              {
+                "text": "きますか。"
+              }
+            ]
+          },
+          {
+            "id": "l6-basic-dialogue-001-line-002",
+            "speaker": "乙",
+            "text": "10月に 行きます。",
+            "kana": "じゅうがつに いきます。",
+            "translationZh": "10月去。",
+            "confidence": "high",
+            "rawText": "乙：10月に 行きます。",
+            "segments": [
+              {
+                "text": "10"
+              },
+              {
+                "text": "月",
+                "ruby": "がつ"
+              },
+              {
+                "text": "に "
+              },
+              {
+                "text": "行",
+                "ruby": "い"
+              },
+              {
+                "text": "きます。"
+              }
+            ]
+          }
         ]
       },
       {
         "id": "l6-basic-dialogue-002",
         "label": "B",
         "lines": [
-          { "id": "l6-basic-dialogue-002-line-001", "speaker": "甲", "text": "駅へ 何で 行きますか。", "kana": "えきへ なんで いきますか。", "translationZh": "去车站怎么去？", "confidence": "high", "rawText": "甲：駅へ 何で 行きますか。" },
-          { "id": "l6-basic-dialogue-002-line-002", "speaker": "乙", "text": "自転車で 行きます。", "kana": "じてんしゃで いきます。", "translationZh": "骑自行车去。", "confidence": "high", "rawText": "乙：自転車で 行きます。" }
+          {
+            "id": "l6-basic-dialogue-002-line-001",
+            "speaker": "甲",
+            "text": "駅へ 何で 行きますか。",
+            "kana": "えきへ なんで いきますか。",
+            "translationZh": "去车站怎么去？",
+            "confidence": "high",
+            "rawText": "甲：駅へ 何で 行きますか。",
+            "segments": [
+              {
+                "text": "駅",
+                "ruby": "えき"
+              },
+              {
+                "text": "へ "
+              },
+              {
+                "text": "何",
+                "ruby": "なん"
+              },
+              {
+                "text": "で "
+              },
+              {
+                "text": "行",
+                "ruby": "い"
+              },
+              {
+                "text": "きますか。"
+              }
+            ]
+          },
+          {
+            "id": "l6-basic-dialogue-002-line-002",
+            "speaker": "乙",
+            "text": "自転車で 行きます。",
+            "kana": "じてんしゃで いきます。",
+            "translationZh": "骑自行车去。",
+            "confidence": "high",
+            "rawText": "乙：自転車で 行きます。",
+            "segments": [
+              {
+                "text": "自転車",
+                "ruby": "じてんしゃ"
+              },
+              {
+                "text": "で "
+              },
+              {
+                "text": "行",
+                "ruby": "い"
+              },
+              {
+                "text": "きます。"
+              }
+            ]
+          }
         ]
       },
       {
         "id": "l6-basic-dialogue-003",
         "label": "C",
         "lines": [
-          { "id": "l6-basic-dialogue-003-line-001", "speaker": "甲", "text": "だれと 美術館へ 行きますか。", "kana": "だれと びじゅつかんへ いきますか。", "translationZh": "和谁去美术馆？", "confidence": "high", "rawText": "甲：だれと 美術館へ 行きますか。" },
-          { "id": "l6-basic-dialogue-003-line-002", "speaker": "乙", "text": "友達と 行きます。", "kana": "ともだちと いきます。", "translationZh": "和朋友去。", "confidence": "high", "rawText": "乙：友達と 行きます。" }
+          {
+            "id": "l6-basic-dialogue-003-line-001",
+            "speaker": "甲",
+            "text": "だれと 美術館へ 行きますか。",
+            "kana": "だれと びじゅつかんへ いきますか。",
+            "translationZh": "和谁去美术馆？",
+            "confidence": "high",
+            "rawText": "甲：だれと 美術館へ 行きますか。",
+            "segments": [
+              {
+                "text": "だれと "
+              },
+              {
+                "text": "美術館",
+                "ruby": "びじゅつかん"
+              },
+              {
+                "text": "へ "
+              },
+              {
+                "text": "行",
+                "ruby": "い"
+              },
+              {
+                "text": "きますか。"
+              }
+            ]
+          },
+          {
+            "id": "l6-basic-dialogue-003-line-002",
+            "speaker": "乙",
+            "text": "友達と 行きます。",
+            "kana": "ともだちと いきます。",
+            "translationZh": "和朋友去。",
+            "confidence": "high",
+            "rawText": "乙：友達と 行きます。",
+            "segments": [
+              {
+                "text": "友達",
+                "ruby": "ともだち"
+              },
+              {
+                "text": "と "
+              },
+              {
+                "text": "行",
+                "ruby": "い"
+              },
+              {
+                "text": "きます。"
+              }
+            ]
+          }
         ]
       },
       {
         "id": "l6-basic-dialogue-004",
         "label": "D",
         "lines": [
-          { "id": "l6-basic-dialogue-004-line-001", "speaker": "甲", "text": "大阪から 上海まで 飛行機で 行きますか。", "kana": "おおさかから シャンハイまで ひこうきで いきますか。", "translationZh": "从大阪到上海坐飞机去吗？", "confidence": "high", "rawText": "甲：大阪から 上海まで 飛行機で 行きますか。" },
-          { "id": "l6-basic-dialogue-004-line-002", "speaker": "乙", "text": "いいえ、フェリーで 行きます。", "kana": "いいえ、フェリーで いきます。", "translationZh": "不，坐渡轮去。", "confidence": "high", "rawText": "乙：いいえ、フェリーで 行きます。" }
+          {
+            "id": "l6-basic-dialogue-004-line-001",
+            "speaker": "甲",
+            "text": "大阪から 上海まで 飛行機で 行きますか。",
+            "kana": "おおさかから シャンハイまで ひこうきで いきますか。",
+            "translationZh": "从大阪到上海坐飞机去吗？",
+            "confidence": "high",
+            "rawText": "甲：大阪から 上海まで 飛行機で 行きますか。",
+            "segments": [
+              {
+                "text": "大阪",
+                "ruby": "おおさか"
+              },
+              {
+                "text": "から "
+              },
+              {
+                "text": "上海",
+                "ruby": "シャンハイ"
+              },
+              {
+                "text": "まで "
+              },
+              {
+                "text": "飛行機",
+                "ruby": "ひこうき"
+              },
+              {
+                "text": "で "
+              },
+              {
+                "text": "行",
+                "ruby": "い"
+              },
+              {
+                "text": "きますか。"
+              }
+            ]
+          },
+          {
+            "id": "l6-basic-dialogue-004-line-002",
+            "speaker": "乙",
+            "text": "いいえ、フェリーで 行きます。",
+            "kana": "いいえ、フェリーで いきます。",
+            "translationZh": "不，坐渡轮去。",
+            "confidence": "high",
+            "rawText": "乙：いいえ、フェリーで 行きます。",
+            "segments": [
+              {
+                "text": "いいえ、フェリーで "
+              },
+              {
+                "text": "行",
+                "ruby": "い"
+              },
+              {
+                "text": "きます。"
+              }
+            ]
+          }
         ]
       }
     ]
@@ -67,33 +430,451 @@
         "confidence": "high",
         "rawText": "第二天，大家在谈论昨天给小李开完欢迎会以后的事。这会儿，小李已经从宾馆搬到了涩谷车站附近的一家公寓。"
       },
-      { "id": "l6-app-block-002", "type": "scene", "text": "（早晨，在办公室）", "kana": null, "translationZh": "早晨，在办公室。", "confidence": "high", "rawText": "（早晨，在办公室）" },
+      {
+        "id": "l6-app-block-002",
+        "type": "scene",
+        "text": "（早晨，在办公室）",
+        "kana": null,
+        "translationZh": "早晨，在办公室。",
+        "confidence": "high",
+        "rawText": "（早晨，在办公室）"
+      },
       {
         "id": "l6-app-block-003",
         "type": "dialogue",
         "lines": [
-          { "id": "l6-app-block-003-line-001", "speaker": "吉田", "text": "李さん、昨日は 何時に アパートへ 帰りましたか。", "kana": "りさん、きのうは なんじに アパートへ かえりましたか。", "translationZh": "小李，昨天几点回公寓的？", "confidence": "high", "rawText": "吉田：李さん、昨日は 何時に アパートへ 帰りましたか。" },
-          { "id": "l6-app-block-003-line-002", "speaker": "李", "text": "ええと、たしか 11時半ごろです。", "kana": "ええと、たしか じゅういちじはんごろです。", "translationZh": "嗯，大概是11点半左右。", "confidence": "high", "rawText": "李：ええと、たしか 11時半ごろです。" },
-          { "id": "l6-app-block-003-line-003", "speaker": "吉田", "text": "何で 帰りましたか。タクシーですか。", "kana": "なんで かえりましたか。タクシーですか。", "translationZh": "怎么回去的？坐出租车吗？", "confidence": "high", "rawText": "吉田：何で 帰りましたか。タクシーですか。" },
-          { "id": "l6-app-block-003-line-004", "speaker": "李", "text": "電車です。渋谷まで 電車で 行きました。駅から アパートまで 歩いて 帰りました。", "kana": "でんしゃです。しぶやまで でんしゃで いきました。えきから アパートまで あるいて かえりました。", "translationZh": "坐电车。坐电车到了涩谷，然后从车站走回了公寓。", "confidence": "high", "rawText": "李：電車です。渋谷まで 電車で 行きました。駅から アパートまで 歩いて 帰りました。" },
-          { "id": "l6-app-block-003-line-005", "speaker": "吉田", "text": "小野さんは？", "kana": "おのさんは？", "translationZh": "小野女士呢？", "confidence": "high", "rawText": "吉田：小野さんは？" },
-          { "id": "l6-app-block-003-line-006", "speaker": "小野", "text": "わたしも 電車です。駅からは タクシーで うちへ 帰りました。", "kana": "わたしも でんしゃです。えきからは タクシーで うちへ かえりました。", "translationZh": "我也是坐电车。从车站坐出租车回了家。", "confidence": "high", "rawText": "小野：わたしも 電車です。駅からは タクシーで うちへ 帰りました。" },
-          { "id": "l6-app-block-003-line-007", "speaker": "李", "text": "何時に 帰りましたか。", "kana": "なんじに かえりましたか。", "translationZh": "几点回去的？", "confidence": "high", "rawText": "李：何時に 帰りましたか。" },
-          { "id": "l6-app-block-003-line-008", "speaker": "小野", "text": "12時ごろです。", "kana": "じゅうにじごろです。", "translationZh": "12点左右。", "confidence": "high", "rawText": "小野：12時ごろです。" }
+          {
+            "id": "l6-app-block-003-line-001",
+            "speaker": "吉田",
+            "text": "李さん、昨日は 何時に アパートへ 帰りましたか。",
+            "kana": "りさん、きのうは なんじに アパートへ かえりましたか。",
+            "translationZh": "小李，昨天几点回公寓的？",
+            "confidence": "high",
+            "rawText": "吉田：李さん、昨日は 何時に アパートへ 帰りましたか。",
+            "segments": [
+              {
+                "text": "李",
+                "ruby": "り"
+              },
+              {
+                "text": "さん、"
+              },
+              {
+                "text": "昨日",
+                "ruby": "きのう"
+              },
+              {
+                "text": "は "
+              },
+              {
+                "text": "何時",
+                "ruby": "なんじ"
+              },
+              {
+                "text": "に アパートへ "
+              },
+              {
+                "text": "帰",
+                "ruby": "かえ"
+              },
+              {
+                "text": "りましたか。"
+              }
+            ]
+          },
+          {
+            "id": "l6-app-block-003-line-002",
+            "speaker": "李",
+            "text": "ええと、たしか 11時半ごろです。",
+            "kana": "ええと、たしか じゅういちじはんごろです。",
+            "translationZh": "嗯，大概是11点半左右。",
+            "confidence": "high",
+            "rawText": "李：ええと、たしか 11時半ごろです。",
+            "segments": [
+              {
+                "text": "ええと、たしか 11"
+              },
+              {
+                "text": "時半",
+                "ruby": "じはん"
+              },
+              {
+                "text": "ごろです。"
+              }
+            ]
+          },
+          {
+            "id": "l6-app-block-003-line-003",
+            "speaker": "吉田",
+            "text": "何で 帰りましたか。タクシーですか。",
+            "kana": "なんで かえりましたか。タクシーですか。",
+            "translationZh": "怎么回去的？坐出租车吗？",
+            "confidence": "high",
+            "rawText": "吉田：何で 帰りましたか。タクシーですか。",
+            "segments": [
+              {
+                "text": "何",
+                "ruby": "なん"
+              },
+              {
+                "text": "で "
+              },
+              {
+                "text": "帰",
+                "ruby": "かえ"
+              },
+              {
+                "text": "りましたか。タクシーですか。"
+              }
+            ]
+          },
+          {
+            "id": "l6-app-block-003-line-004",
+            "speaker": "李",
+            "text": "電車です。渋谷まで 電車で 行きました。駅から アパートまで 歩いて 帰りました。",
+            "kana": "でんしゃです。しぶやまで でんしゃで いきました。えきから アパートまで あるいて かえりました。",
+            "translationZh": "坐电车。坐电车到了涩谷，然后从车站走回了公寓。",
+            "confidence": "high",
+            "rawText": "李：電車です。渋谷まで 電車で 行きました。駅から アパートまで 歩いて 帰りました。",
+            "segments": [
+              {
+                "text": "電車",
+                "ruby": "でんしゃ"
+              },
+              {
+                "text": "です。"
+              },
+              {
+                "text": "渋谷",
+                "ruby": "しぶや"
+              },
+              {
+                "text": "まで "
+              },
+              {
+                "text": "電車",
+                "ruby": "でんしゃ"
+              },
+              {
+                "text": "で "
+              },
+              {
+                "text": "行",
+                "ruby": "い"
+              },
+              {
+                "text": "きました。"
+              },
+              {
+                "text": "駅",
+                "ruby": "えき"
+              },
+              {
+                "text": "から アパートまで "
+              },
+              {
+                "text": "歩",
+                "ruby": "ある"
+              },
+              {
+                "text": "いて "
+              },
+              {
+                "text": "帰",
+                "ruby": "かえ"
+              },
+              {
+                "text": "りました。"
+              }
+            ]
+          },
+          {
+            "id": "l6-app-block-003-line-005",
+            "speaker": "吉田",
+            "text": "小野さんは？",
+            "kana": "おのさんは？",
+            "translationZh": "小野女士呢？",
+            "confidence": "high",
+            "rawText": "吉田：小野さんは？",
+            "segments": [
+              {
+                "text": "小野",
+                "ruby": "おの"
+              },
+              {
+                "text": "さんは？"
+              }
+            ]
+          },
+          {
+            "id": "l6-app-block-003-line-006",
+            "speaker": "小野",
+            "text": "わたしも 電車です。駅からは タクシーで うちへ 帰りました。",
+            "kana": "わたしも でんしゃです。えきからは タクシーで うちへ かえりました。",
+            "translationZh": "我也是坐电车。从车站坐出租车回了家。",
+            "confidence": "high",
+            "rawText": "小野：わたしも 電車です。駅からは タクシーで うちへ 帰りました。",
+            "segments": [
+              {
+                "text": "わたしも "
+              },
+              {
+                "text": "電車",
+                "ruby": "でんしゃ"
+              },
+              {
+                "text": "です。"
+              },
+              {
+                "text": "駅",
+                "ruby": "えき"
+              },
+              {
+                "text": "からは タクシーで うちへ "
+              },
+              {
+                "text": "帰",
+                "ruby": "かえ"
+              },
+              {
+                "text": "りました。"
+              }
+            ]
+          },
+          {
+            "id": "l6-app-block-003-line-007",
+            "speaker": "李",
+            "text": "何時に 帰りましたか。",
+            "kana": "なんじに かえりましたか。",
+            "translationZh": "几点回去的？",
+            "confidence": "high",
+            "rawText": "李：何時に 帰りましたか。",
+            "segments": [
+              {
+                "text": "何時",
+                "ruby": "なんじ"
+              },
+              {
+                "text": "に "
+              },
+              {
+                "text": "帰",
+                "ruby": "かえ"
+              },
+              {
+                "text": "りましたか。"
+              }
+            ]
+          },
+          {
+            "id": "l6-app-block-003-line-008",
+            "speaker": "小野",
+            "text": "12時ごろです。",
+            "kana": "じゅうにじごろです。",
+            "translationZh": "12点左右。",
+            "confidence": "high",
+            "rawText": "小野：12時ごろです。",
+            "segments": [
+              {
+                "text": "12"
+              },
+              {
+                "text": "時",
+                "ruby": "じ"
+              },
+              {
+                "text": "ごろです。"
+              }
+            ]
+          }
         ]
       },
-      { "id": "l6-app-block-004", "type": "scene", "text": "（小野向正在打瞌睡的森搭话）", "kana": null, "translationZh": "小野向正在打瞌睡的森搭话。", "confidence": "high", "rawText": "（小野向正在打瞌睡的森搭话）" },
+      {
+        "id": "l6-app-block-004",
+        "type": "scene",
+        "text": "（小野向正在打瞌睡的森搭话）",
+        "kana": null,
+        "translationZh": "小野向正在打瞌睡的森搭话。",
+        "confidence": "high",
+        "rawText": "（小野向正在打瞌睡的森搭话）"
+      },
       {
         "id": "l6-app-block-005",
         "type": "dialogue",
         "lines": [
-          { "id": "l6-app-block-005-line-001", "speaker": "小野", "text": "森さん、ゆうべは まっすぐ 帰りましたか。", "kana": "もりさん、ゆうべは まっすぐ かえりましたか。", "translationZh": "森先生，昨天晚上直接回去了吗？", "confidence": "high", "rawText": "小野：森さん、ゆうべは まっすぐ 帰りましたか。" },
-          { "id": "l6-app-block-005-line-002", "speaker": "森", "text": "いいえ、課長と いっしょに 銀座へ 行きました。", "kana": "いいえ、かちょうと いっしょに ぎんざへ いきました。", "translationZh": "没有，和科长一起去了银座。", "confidence": "high", "rawText": "森：いいえ、課長と いっしょに 銀座へ 行きました。" },
-          { "id": "l6-app-block-005-line-003", "speaker": "李", "text": "えっ、銀座ですか？", "kana": "えっ、ぎんざですか？", "translationZh": "啊？银座吗？", "confidence": "high", "rawText": "李：えっ、銀座ですか？" },
-          { "id": "l6-app-block-005-line-004", "speaker": "小野", "text": "何時に うちへ 帰りましたか。", "kana": "なんじに うちへ かえりましたか。", "translationZh": "几点回家的？", "confidence": "high", "rawText": "小野：何時に うちへ 帰りましたか。" },
-          { "id": "l6-app-block-005-line-005", "speaker": "森", "text": "夜中の 2時です。", "kana": "よなかの にじです。", "translationZh": "半夜2点。", "confidence": "high", "rawText": "森：夜中の 2時です。" },
-          { "id": "l6-app-block-005-line-006", "speaker": "李", "text": "2時ですか。", "kana": "にじですか。", "translationZh": "2点吗？", "confidence": "high", "rawText": "李：2時ですか。" },
-          { "id": "l6-app-block-005-line-007", "speaker": "李", "text": "それは お疲れ様でした。", "kana": "それは おつかれさまでした。", "translationZh": "那可真够累的。", "confidence": "high", "rawText": "それは お疲れ様でした。" }
+          {
+            "id": "l6-app-block-005-line-001",
+            "speaker": "小野",
+            "text": "森さん、ゆうべは まっすぐ 帰りましたか。",
+            "kana": "もりさん、ゆうべは まっすぐ かえりましたか。",
+            "translationZh": "森先生，昨天晚上直接回去了吗？",
+            "confidence": "high",
+            "rawText": "小野：森さん、ゆうべは まっすぐ 帰りましたか。",
+            "segments": [
+              {
+                "text": "森",
+                "ruby": "もり"
+              },
+              {
+                "text": "さん、ゆうべは まっすぐ "
+              },
+              {
+                "text": "帰",
+                "ruby": "かえ"
+              },
+              {
+                "text": "りましたか。"
+              }
+            ]
+          },
+          {
+            "id": "l6-app-block-005-line-002",
+            "speaker": "森",
+            "text": "いいえ、課長と いっしょに 銀座へ 行きました。",
+            "kana": "いいえ、かちょうと いっしょに ぎんざへ いきました。",
+            "translationZh": "没有，和科长一起去了银座。",
+            "confidence": "high",
+            "rawText": "森：いいえ、課長と いっしょに 銀座へ 行きました。",
+            "segments": [
+              {
+                "text": "いいえ、"
+              },
+              {
+                "text": "課長",
+                "ruby": "かちょう"
+              },
+              {
+                "text": "と いっしょに "
+              },
+              {
+                "text": "銀座",
+                "ruby": "ぎんざ"
+              },
+              {
+                "text": "へ "
+              },
+              {
+                "text": "行",
+                "ruby": "い"
+              },
+              {
+                "text": "きました。"
+              }
+            ]
+          },
+          {
+            "id": "l6-app-block-005-line-003",
+            "speaker": "李",
+            "text": "えっ、銀座ですか？",
+            "kana": "えっ、ぎんざですか？",
+            "translationZh": "啊？银座吗？",
+            "confidence": "high",
+            "rawText": "李：えっ、銀座ですか？",
+            "segments": [
+              {
+                "text": "えっ、"
+              },
+              {
+                "text": "銀座",
+                "ruby": "ぎんざ"
+              },
+              {
+                "text": "ですか？"
+              }
+            ]
+          },
+          {
+            "id": "l6-app-block-005-line-004",
+            "speaker": "小野",
+            "text": "何時に うちへ 帰りましたか。",
+            "kana": "なんじに うちへ かえりましたか。",
+            "translationZh": "几点回家的？",
+            "confidence": "high",
+            "rawText": "小野：何時に うちへ 帰りましたか。",
+            "segments": [
+              {
+                "text": "何時",
+                "ruby": "なんじ"
+              },
+              {
+                "text": "に うちへ "
+              },
+              {
+                "text": "帰",
+                "ruby": "かえ"
+              },
+              {
+                "text": "りましたか。"
+              }
+            ]
+          },
+          {
+            "id": "l6-app-block-005-line-005",
+            "speaker": "森",
+            "text": "夜中の 2時です。",
+            "kana": "よなかの にじです。",
+            "translationZh": "半夜2点。",
+            "confidence": "high",
+            "rawText": "森：夜中の 2時です。",
+            "segments": [
+              {
+                "text": "夜中",
+                "ruby": "よなか"
+              },
+              {
+                "text": "の 2"
+              },
+              {
+                "text": "時",
+                "ruby": "じ"
+              },
+              {
+                "text": "です。"
+              }
+            ]
+          },
+          {
+            "id": "l6-app-block-005-line-006",
+            "speaker": "李",
+            "text": "2時ですか。",
+            "kana": "にじですか。",
+            "translationZh": "2点吗？",
+            "confidence": "high",
+            "rawText": "李：2時ですか。",
+            "segments": [
+              {
+                "text": "2"
+              },
+              {
+                "text": "時",
+                "ruby": "じ"
+              },
+              {
+                "text": "ですか。"
+              }
+            ]
+          },
+          {
+            "id": "l6-app-block-005-line-007",
+            "speaker": "李",
+            "text": "それは お疲れ様でした。",
+            "kana": "それは おつかれさまでした。",
+            "translationZh": "那可真够累的。",
+            "confidence": "high",
+            "rawText": "それは お疲れ様でした。",
+            "segments": [
+              {
+                "text": "それは "
+              },
+              {
+                "text": "お疲れ様",
+                "ruby": "おつかれさま"
+              },
+              {
+                "text": "でした。"
+              }
+            ]
+          }
         ]
       }
     ]

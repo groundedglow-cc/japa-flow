@@ -26,14 +26,27 @@
         "audioSegment": {
           "id": "l29-basic-s001",
           "trackId": "lesson_basic",
-          "sourceUrl": "/data/ocr/audio-clips/lesson29/l29-basic-s001.mp3",
-          "start": 0,
-          "end": 1.3,
+          "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit8/lesson29/lesson_basic.mp3",
+          "speaker": "",
+          "text": "電気を消せ。",
+          "start": 2.39,
+          "end": 3.69,
           "duration": 1.3,
-          "method": "approved-asr-alignment",
+          "speechUnitCount": 1,
+          "matchScore": 1,
+          "asrText": "電 気 を 消 せ",
+          "phraseIndexes": [
+            0
+          ],
+          "method": "legacy-asr-alignment-range-converted",
           "confidence": "approved",
-          "reviewedAt": "2026-08-05T10:07:08.875Z",
-          "sourceAudioSha256": "86e82b3e6e340b3205a1fa733f256e0f1db90defb65aeea4e7ada94ed48ca17f"
+          "review": {
+            "status": "approved",
+            "reviewedAt": "2026-08-05T10:07:08.875Z",
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "matchScore": 1,
+            "asrText": "電 気 を 消 せ"
+          }
         }
       },
       {
@@ -47,14 +60,27 @@
         "audioSegment": {
           "id": "l29-basic-s002",
           "trackId": "lesson_basic",
-          "sourceUrl": "/data/ocr/audio-clips/lesson29/l29-basic-s002.mp3",
-          "start": 0,
-          "end": 3.62,
+          "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit8/lesson29/lesson_basic.mp3",
+          "speaker": "",
+          "text": "次の文章を読んで、質問に答えなさい。",
+          "start": 5.92,
+          "end": 9.54,
           "duration": 3.62,
-          "method": "approved-asr-alignment",
+          "speechUnitCount": 1,
+          "matchScore": 1,
+          "asrText": "次 の 文 章 を 読 ん で 質 問 に 答 え な さ い",
+          "phraseIndexes": [
+            1
+          ],
+          "method": "legacy-asr-alignment-range-converted",
           "confidence": "approved",
-          "reviewedAt": "2026-08-05T10:07:08.875Z",
-          "sourceAudioSha256": "86e82b3e6e340b3205a1fa733f256e0f1db90defb65aeea4e7ada94ed48ca17f"
+          "review": {
+            "status": "approved",
+            "reviewedAt": "2026-08-05T10:07:08.875Z",
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "matchScore": 1,
+            "asrText": "次 の 文 章 を 読 ん で 質 問 に 答 え な さ い"
+          }
         }
       },
       {
@@ -68,14 +94,27 @@
         "audioSegment": {
           "id": "l29-basic-s003",
           "trackId": "lesson_basic",
-          "sourceUrl": "/data/ocr/audio-clips/lesson29/l29-basic-s003.mp3",
-          "start": 0,
-          "end": 2.14,
+          "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit8/lesson29/lesson_basic.mp3",
+          "speaker": "",
+          "text": "ここに車を止めるな。",
+          "start": 12.09,
+          "end": 14.23,
           "duration": 2.14,
-          "method": "approved-asr-alignment",
+          "speechUnitCount": 1,
+          "matchScore": 0.889,
+          "asrText": "こ こ に 車 を 停 め る な",
+          "phraseIndexes": [
+            2
+          ],
+          "method": "legacy-asr-alignment-range-converted",
           "confidence": "approved",
-          "reviewedAt": "2026-08-05T10:07:08.875Z",
-          "sourceAudioSha256": "86e82b3e6e340b3205a1fa733f256e0f1db90defb65aeea4e7ada94ed48ca17f"
+          "review": {
+            "status": "approved",
+            "reviewedAt": "2026-08-05T10:07:08.875Z",
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "matchScore": 0.889,
+            "asrText": "こ こ に 車 を 停 め る な"
+          }
         }
       },
       {
@@ -89,14 +128,27 @@
         "audioSegment": {
           "id": "l29-basic-s004",
           "trackId": "lesson_basic",
-          "sourceUrl": "/data/ocr/audio-clips/lesson29/l29-basic-s004.mp3",
-          "start": 0,
-          "end": 4.02,
+          "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit8/lesson29/lesson_basic.mp3",
+          "speaker": "",
+          "text": "このマークは「タバコを吸うな」という意味です。",
+          "start": 16.49,
+          "end": 20.51,
           "duration": 4.02,
-          "method": "approved-asr-alignment",
+          "speechUnitCount": 1,
+          "matchScore": 1,
+          "asrText": "こ の マ ー ク は タ バ コ を 吸 う な と い う 意 味 で す",
+          "phraseIndexes": [
+            4
+          ],
+          "method": "legacy-asr-alignment-range-converted",
           "confidence": "approved",
-          "reviewedAt": "2026-08-05T10:07:08.875Z",
-          "sourceAudioSha256": "86e82b3e6e340b3205a1fa733f256e0f1db90defb65aeea4e7ada94ed48ca17f"
+          "review": {
+            "status": "approved",
+            "reviewedAt": "2026-08-05T10:07:08.875Z",
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "matchScore": 1,
+            "asrText": "こ の マ ー ク は タ バ コ を 吸 う な と い う 意 味 で す"
+          }
         }
       }
     ],
@@ -116,14 +168,27 @@
             "audioSegment": {
               "id": "l29-basic-dialogue-001-line-001",
               "trackId": "lesson_basic",
-              "sourceUrl": "/data/ocr/audio-clips/lesson29/l29-basic-dialogue-001-line-001.mp3",
-              "start": 0,
-              "end": 2.86,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit8/lesson29/lesson_basic.mp3",
+              "speaker": "甲",
+              "text": "さっき部長は何と言いましたか。",
+              "start": 23.44,
+              "end": 26.3,
               "duration": 2.86,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrText": "さ っ き 部 長 は 何 と 言 い ま し た か",
+              "phraseIndexes": [
+                5
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T10:07:08.875Z",
-              "sourceAudioSha256": "86e82b3e6e340b3205a1fa733f256e0f1db90defb65aeea4e7ada94ed48ca17f"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T10:07:08.875Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 1,
+                "asrText": "さ っ き 部 長 は 何 と 言 い ま し た か"
+              }
             }
           },
           {
@@ -137,14 +202,27 @@
             "audioSegment": {
               "id": "l29-basic-dialogue-001-line-002",
               "trackId": "lesson_basic",
-              "sourceUrl": "/data/ocr/audio-clips/lesson29/l29-basic-dialogue-001-line-002.mp3",
-              "start": 0,
-              "end": 3.18,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit8/lesson29/lesson_basic.mp3",
+              "speaker": "乙",
+              "text": "「書類を早く提出しろ」と言いました。",
+              "start": 27.25,
+              "end": 30.43,
               "duration": 3.18,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrText": "書 類 を 早 く 提 出 し ろ と 言 い ま し た",
+              "phraseIndexes": [
+                6
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T10:07:08.875Z",
-              "sourceAudioSha256": "86e82b3e6e340b3205a1fa733f256e0f1db90defb65aeea4e7ada94ed48ca17f"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T10:07:08.875Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 1,
+                "asrText": "書 類 を 早 く 提 出 し ろ と 言 い ま し た"
+              }
             }
           }
         ]
@@ -164,14 +242,27 @@
             "audioSegment": {
               "id": "l29-basic-dialogue-002-line-001",
               "trackId": "lesson_basic",
-              "sourceUrl": "/data/ocr/audio-clips/lesson29/l29-basic-dialogue-002-line-001.mp3",
-              "start": 0,
-              "end": 3.06,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit8/lesson29/lesson_basic.mp3",
+              "speaker": "甲",
+              "text": "戴、早くお風呂に入りなさい。",
+              "start": 33.18,
+              "end": 36.24,
               "duration": 3.06,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 1,
+              "matchScore": 0.917,
+              "asrText": "誠 早 く お 風 呂 に 入 り な さ い",
+              "phraseIndexes": [
+                7
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T10:07:08.875Z",
-              "sourceAudioSha256": "86e82b3e6e340b3205a1fa733f256e0f1db90defb65aeea4e7ada94ed48ca17f"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T10:07:08.875Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 0.917,
+                "asrText": "誠 早 く お 風 呂 に 入 り な さ い"
+              }
             }
           },
           {
@@ -185,14 +276,27 @@
             "audioSegment": {
               "id": "l29-basic-dialogue-002-line-002",
               "trackId": "lesson_basic",
-              "sourceUrl": "/data/ocr/audio-clips/lesson29/l29-basic-dialogue-002-line-002.mp3",
-              "start": 0,
-              "end": 3.3,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit8/lesson29/lesson_basic.mp3",
+              "speaker": "乙",
+              "text": "今宿題しているんだ。お母さん先に入ってよ。",
+              "start": 37.17,
+              "end": 40.47,
               "duration": 3.3,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrText": "今 宿 題 し て い る ん だ お 母 さ ん 先 に 入 っ て よ",
+              "phraseIndexes": [
+                8
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T10:07:08.875Z",
-              "sourceAudioSha256": "86e82b3e6e340b3205a1fa733f256e0f1db90defb65aeea4e7ada94ed48ca17f"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T10:07:08.875Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 1,
+                "asrText": "今 宿 題 し て い る ん だ お 母 さ ん 先 に 入 っ て よ"
+              }
             }
           }
         ]
@@ -212,14 +316,27 @@
             "audioSegment": {
               "id": "l29-basic-dialogue-003-line-001",
               "trackId": "lesson_basic",
-              "sourceUrl": "/data/ocr/audio-clips/lesson29/l29-basic-dialogue-003-line-001.mp3",
-              "start": 0,
-              "end": 3.18,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit8/lesson29/lesson_basic.mp3",
+              "speaker": "甲",
+              "text": "すみません、これは何と読みますか。",
+              "start": 42.77,
+              "end": 45.95,
               "duration": 3.18,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrText": "す み ま せ ん こ れ は 何 と 読 み ま す か",
+              "phraseIndexes": [
+                9
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T10:07:08.875Z",
-              "sourceAudioSha256": "86e82b3e6e340b3205a1fa733f256e0f1db90defb65aeea4e7ada94ed48ca17f"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T10:07:08.875Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 1,
+                "asrText": "す み ま せ ん こ れ は 何 と 読 み ま す か"
+              }
             }
           },
           {
@@ -233,14 +350,27 @@
             "audioSegment": {
               "id": "l29-basic-dialogue-003-line-002",
               "trackId": "lesson_basic",
-              "sourceUrl": "/data/ocr/audio-clips/lesson29/l29-basic-dialogue-003-line-002.mp3",
-              "start": 0,
-              "end": 5.1,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit8/lesson29/lesson_basic.mp3",
+              "speaker": "乙",
+              "text": "「たちいりきんし（立入禁止）」と読みます。「ここに入るな」という意味ですよ。",
+              "start": 46.69,
+              "end": 51.79,
               "duration": 5.1,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 1,
+              "matchScore": 0.767,
+              "asrText": "立 ち 入 り 禁 止 と 読 み ま す こ こ に 入 る な と い う 意 味 で す よ",
+              "phraseIndexes": [
+                10
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T10:07:08.875Z",
-              "sourceAudioSha256": "86e82b3e6e340b3205a1fa733f256e0f1db90defb65aeea4e7ada94ed48ca17f"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T10:07:08.875Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 0.767,
+                "asrText": "立 ち 入 り 禁 止 と 読 み ま す こ こ に 入 る な と い う 意 味 で す よ"
+              }
             }
           }
         ]
@@ -260,14 +390,27 @@
             "audioSegment": {
               "id": "l29-basic-dialogue-004-line-001",
               "trackId": "lesson_basic",
-              "sourceUrl": "/data/ocr/audio-clips/lesson29/l29-basic-dialogue-004-line-001.mp3",
-              "start": 0,
-              "end": 1.98,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit8/lesson29/lesson_basic.mp3",
+              "speaker": "甲",
+              "text": "この花の名前を知っていますか。",
+              "start": 54.05,
+              "end": 56.03,
               "duration": 1.98,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrText": "こ の 花 の 名 前 を 知 っ て い ま す か",
+              "phraseIndexes": [
+                11
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T10:07:08.875Z",
-              "sourceAudioSha256": "86e82b3e6e340b3205a1fa733f256e0f1db90defb65aeea4e7ada94ed48ca17f"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T10:07:08.875Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 1,
+                "asrText": "こ の 花 の 名 前 を 知 っ て い ま す か"
+              }
             }
           },
           {
@@ -281,14 +424,27 @@
             "audioSegment": {
               "id": "l29-basic-dialogue-004-line-002",
               "trackId": "lesson_basic",
-              "sourceUrl": "/data/ocr/audio-clips/lesson29/l29-basic-dialogue-004-line-002.mp3",
-              "start": 0,
-              "end": 2.22,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit8/lesson29/lesson_basic.mp3",
+              "speaker": "乙",
+              "text": "ええ、それはフジという花です。",
+              "start": 57.46,
+              "end": 59.68,
               "duration": 2.22,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 1,
+              "matchScore": 0.846,
+              "asrText": "え え そ れ は 藤 と い う 花 で す",
+              "phraseIndexes": [
+                12
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T10:07:08.875Z",
-              "sourceAudioSha256": "86e82b3e6e340b3205a1fa733f256e0f1db90defb65aeea4e7ada94ed48ca17f"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T10:07:08.875Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 0.846,
+                "asrText": "え え そ れ は 藤 と い う 花 で す"
+              }
             }
           }
         ]
@@ -331,14 +487,28 @@
             "audioSegment": {
               "id": "l29-app-block-003-line-001",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson29/l29-app-block-003-line-001.mp3",
-              "start": 0,
-              "end": 35.57,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit8/lesson29/lesson_apps.mp3",
+              "speaker": "加藤",
+              "text": "森君、次、歌いなさいよ！",
+              "start": 7.66,
+              "end": 43.23,
               "duration": 35.57,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 2,
+              "matchScore": 1,
+              "asrText": " 森 君 次 歌 い な さ い よ",
+              "phraseIndexes": [
+                1,
+                2
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T10:08:17.535Z",
-              "sourceAudioSha256": "62b827c377b06cfc944cd659e570298d27d088f920d8754a5baf676ace1319d4"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T10:08:17.535Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 1,
+                "asrText": " 森 君 次 歌 い な さ い よ"
+              }
             }
           },
           {
@@ -352,14 +522,27 @@
             "audioSegment": {
               "id": "l29-app-block-003-line-002",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson29/l29-app-block-003-line-002.mp3",
-              "start": 0,
-              "end": 2.58,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit8/lesson29/lesson_apps.mp3",
+              "speaker": "戴",
+              "text": "そう、そう。森さん、歌いなさい！",
+              "start": 43.33,
+              "end": 45.91,
               "duration": 2.58,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrText": "そ う そ う 森 さ ん 歌 い な さ い",
+              "phraseIndexes": [
+                2
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T10:08:17.535Z",
-              "sourceAudioSha256": "62b827c377b06cfc944cd659e570298d27d088f920d8754a5baf676ace1319d4"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T10:08:17.535Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 1,
+                "asrText": "そ う そ う 森 さ ん 歌 い な さ い"
+              }
             }
           }
         ]
@@ -388,14 +571,27 @@
             "audioSegment": {
               "id": "l29-app-block-005-line-001",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson29/l29-app-block-005-line-001.mp3",
-              "start": 0,
-              "end": 5.34,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit8/lesson29/lesson_apps.mp3",
+              "speaker": "李",
+              "text": "戴さん、自分より年上の森さんに「歌いなさい」と言うのは失礼ですよ。",
+              "start": 47.09,
+              "end": 52.43,
               "duration": 5.34,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 1,
+              "matchScore": 0.931,
+              "asrText": "イ さ ん 自 分 よ り 年 上 の 森 さ ん に 歌 い な さ い と い う の は 失 礼 で す よ",
+              "phraseIndexes": [
+                3
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T10:08:17.535Z",
-              "sourceAudioSha256": "62b827c377b06cfc944cd659e570298d27d088f920d8754a5baf676ace1319d4"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T10:08:17.535Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 0.931,
+                "asrText": "イ さ ん 自 分 よ り 年 上 の 森 さ ん に 歌 い な さ い と い う の は 失 礼 で す よ"
+              }
             }
           },
           {
@@ -409,14 +605,27 @@
             "audioSegment": {
               "id": "l29-app-block-005-line-002",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson29/l29-app-block-005-line-002.mp3",
-              "start": 0,
-              "end": 3.94,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit8/lesson29/lesson_apps.mp3",
+              "speaker": "加藤",
+              "text": "そうだね。この場合は「歌ってください」と言わないとね。",
+              "start": 53.33,
+              "end": 57.27,
               "duration": 3.94,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrText": "そ う だ ね こ の 場 合 は 歌 っ て く だ さ い と 言 わ な い と ね",
+              "phraseIndexes": [
+                4
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T10:08:17.535Z",
-              "sourceAudioSha256": "62b827c377b06cfc944cd659e570298d27d088f920d8754a5baf676ace1319d4"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T10:08:17.535Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 1,
+                "asrText": "そ う だ ね こ の 場 合 は 歌 っ て く だ さ い と 言 わ な い と ね"
+              }
             }
           },
           {
@@ -430,14 +639,28 @@
             "audioSegment": {
               "id": "l29-app-block-005-line-003",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson29/l29-app-block-005-line-003.mp3",
-              "start": 0,
-              "end": 4.78,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit8/lesson29/lesson_apps.mp3",
+              "speaker": "戴",
+              "text": "はい、分かりました。森さん、すみませんでした。",
+              "start": 58.01,
+              "end": 62.79,
               "duration": 4.78,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 2,
+              "matchScore": 0.947,
+              "asrText": "は い わ か り ま し た 森 さ ん す み ま せ ん で し た",
+              "phraseIndexes": [
+                5,
+                6
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T10:08:17.535Z",
-              "sourceAudioSha256": "62b827c377b06cfc944cd659e570298d27d088f920d8754a5baf676ace1319d4"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T10:08:17.535Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 0.947,
+                "asrText": "は い わ か り ま し た 森 さ ん す み ま せ ん で し た"
+              }
             }
           }
         ]
@@ -466,14 +689,27 @@
             "audioSegment": {
               "id": "l29-app-block-007-line-001",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson29/l29-app-block-007-line-001.mp3",
-              "start": 0,
-              "end": 10.54,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit8/lesson29/lesson_apps.mp3",
+              "speaker": "李",
+              "text": "日本にいる時、日本人の男性が友達に、「来い」「遠慮するな」などと言っているのをよく聞きました。これは親しい人に使うんですね。",
+              "start": 63.93,
+              "end": 74.47,
               "duration": 10.54,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 1,
+              "matchScore": 0.963,
+              "asrText": "日 本 に い る 時 日 本 人 の 男 性 が 友 達 に 恋 遠 慮 す る な な ど と 言 っ て い る の を よ く 聞 き ま し た こ れ は 親 し い 人 に 使 う ん で す ね",
+              "phraseIndexes": [
+                7
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T10:08:17.535Z",
-              "sourceAudioSha256": "62b827c377b06cfc944cd659e570298d27d088f920d8754a5baf676ace1319d4"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T10:08:17.535Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 0.963,
+                "asrText": "日 本 に い る 時 日 本 人 の 男 性 が 友 達 に 恋 遠 慮 す る な な ど と 言 っ て い る の を よ く 聞 き ま し た こ れ は 親 し い 人 に 使 う ん で す ね"
+              }
             }
           },
           {
@@ -487,14 +723,28 @@
             "audioSegment": {
               "id": "l29-app-block-007-line-002",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson29/l29-app-block-007-line-002.mp3",
-              "start": 0,
-              "end": 6.89,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit8/lesson29/lesson_apps.mp3",
+              "speaker": "森",
+              "text": "ええ。でも、女性はあまり使いません。「来てください」「遠慮しないでください」と言ったほうがいいですよ。",
+              "start": 75.9,
+              "end": 82.79,
               "duration": 6.89,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 2,
+              "matchScore": 0.953,
+              "asrText": "え え で も 女 性 は あ ま り 使 い ま せ ん 来 て く だ さ い 遠 慮 し な い で く だ さ い と 言 っ た 方 が い い で す よ",
+              "phraseIndexes": [
+                8,
+                9
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T10:08:17.535Z",
-              "sourceAudioSha256": "62b827c377b06cfc944cd659e570298d27d088f920d8754a5baf676ace1319d4"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T10:08:17.535Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 0.953,
+                "asrText": "え え で も 女 性 は あ ま り 使 い ま せ ん 来 て く だ さ い 遠 慮 し な い で く だ さ い と 言 っ た 方 が い い で す よ"
+              }
             }
           },
           {
@@ -508,14 +758,27 @@
             "audioSegment": {
               "id": "l29-app-block-007-line-003",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson29/l29-app-block-007-line-003.mp3",
-              "start": 0,
-              "end": 6.42,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit8/lesson29/lesson_apps.mp3",
+              "speaker": "李",
+              "text": "「ください」を取って、「来て」「遠慮しないで」などという言い方をしている女性もいました。",
+              "start": 83.65,
+              "end": 90.07,
               "duration": 6.42,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 1,
+              "matchScore": 0.944,
+              "asrText": "く だ さ い を と っ て き て 遠 慮 し な い で な ど と い う 言 い 方 を し て い る 女 性 も い ま し た",
+              "phraseIndexes": [
+                10
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T10:08:17.535Z",
-              "sourceAudioSha256": "62b827c377b06cfc944cd659e570298d27d088f920d8754a5baf676ace1319d4"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T10:08:17.535Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 0.944,
+                "asrText": "く だ さ い を と っ て き て 遠 慮 し な い で な ど と い う 言 い 方 を し て い る 女 性 も い ま し た"
+              }
             }
           },
           {
@@ -529,14 +792,29 @@
             "audioSegment": {
               "id": "l29-app-block-007-line-004",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson29/l29-app-block-007-line-004.mp3",
-              "start": 0,
-              "end": 11.88,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit8/lesson29/lesson_apps.mp3",
+              "speaker": "戴",
+              "text": "そうですか。中国語でも親しい相手には、“来，来！”“別客气！”と言って“请”を付けませんから、同じですね。",
+              "start": 92.08,
+              "end": 103.96,
               "duration": 11.88,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 3,
+              "matchScore": 0.75,
+              "asrText": "そ う で す か 中 国 語 で も 親 し い 相 手 に は ラ ラ イ ビ エ ク ー チ と 言 っ て ち ん を つ け ま せ ん か ら 同 じ で す ね",
+              "phraseIndexes": [
+                11,
+                12,
+                13
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T10:08:17.535Z",
-              "sourceAudioSha256": "62b827c377b06cfc944cd659e570298d27d088f920d8754a5baf676ace1319d4"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T10:08:17.535Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 0.75,
+                "asrText": "そ う で す か 中 国 語 で も 親 し い 相 手 に は ラ ラ イ ビ エ ク ー チ と 言 っ て ち ん を つ け ま せ ん か ら 同 じ で す ね"
+              }
             }
           },
           {
@@ -550,14 +828,27 @@
             "audioSegment": {
               "id": "l29-app-block-007-line-005",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson29/l29-app-block-007-line-005.mp3",
-              "start": 0,
-              "end": 5.98,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit8/lesson29/lesson_apps.mp3",
+              "speaker": "李",
+              "text": "そうですね。それから、野球場で女の人が「頑張れ！」と言うのを聞きました。",
+              "start": 104.81,
+              "end": 110.79,
               "duration": 5.98,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 1,
+              "matchScore": 0.967,
+              "asrText": "そ う で す ね そ れ か ら 野 球 場 で 女 の 人 が 頑 張 れ と い う の を 聞 き ま し た",
+              "phraseIndexes": [
+                14
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T10:08:17.535Z",
-              "sourceAudioSha256": "62b827c377b06cfc944cd659e570298d27d088f920d8754a5baf676ace1319d4"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T10:08:17.535Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 0.967,
+                "asrText": "そ う で す ね そ れ か ら 野 球 場 で 女 の 人 が 頑 張 れ と い う の を 聞 き ま し た"
+              }
             }
           },
           {
@@ -571,14 +862,27 @@
             "audioSegment": {
               "id": "l29-app-block-007-line-006",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson29/l29-app-block-007-line-006.mp3",
-              "start": 0,
-              "end": 4.18,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit8/lesson29/lesson_apps.mp3",
+              "speaker": "森",
+              "text": "危険な時や丁寧に言う暇がない時は使ってもいいんです。",
+              "start": 111.53,
+              "end": 115.71,
               "duration": 4.18,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 1,
+              "matchScore": 0.852,
+              "asrText": "危 険 な と き や 丁 寧 に 言 う 暇 が な い と き は 使 っ て も い い ん で す",
+              "phraseIndexes": [
+                15
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T10:08:17.535Z",
-              "sourceAudioSha256": "62b827c377b06cfc944cd659e570298d27d088f920d8754a5baf676ace1319d4"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T10:08:17.535Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 0.852,
+                "asrText": "危 険 な と き や 丁 寧 に 言 う 暇 が な い と き は 使 っ て も い い ん で す"
+              }
             }
           }
         ]
@@ -591,9 +895,25 @@
   ],
   "audioAlignment": {
     "schemaVersion": 1,
-    "method": "approved-asr-alignment",
-    "sourceAlignment": "data/ocr/lesson29-text-audio-alignment.json",
-    "publishedAt": "2026-08-05T10:08:22.729Z",
-    "approvedSegments": 23
-  }
+    "lessonId": "lesson29",
+    "convertedAt": "2026-08-14T00:17:07.210Z",
+    "method": "legacy-asr-alignment-range-converted",
+    "tracks": [
+      {
+        "id": "lesson_basic",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit8/lesson29/lesson_basic.mp3",
+        "sourceAudioSha256": "86e82b3e6e340b3205a1fa733f256e0f1db90defb65aeea4e7ada94ed48ca17f",
+        "expectedItems": 12,
+        "alignedItems": 12
+      },
+      {
+        "id": "lesson_apps",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit8/lesson29/lesson_apps.mp3",
+        "sourceAudioSha256": "62b827c377b06cfc944cd659e570298d27d088f920d8754a5baf676ace1319d4",
+        "expectedItems": 11,
+        "alignedItems": 11
+      }
+    ]
+  },
+  "updatedAt": "2026-08-14T00:17:07.210Z"
 }

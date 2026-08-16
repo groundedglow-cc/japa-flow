@@ -1,5 +1,6 @@
 import type { InputSlot, LessonPractice, PracticeActivity, PracticeItem, PromptPart, RichText } from "./lesson-practice-types";
-import { lesson14ImageCrops } from "./lesson14-image-crops";
+
+const exerciseImage = (fileName: string) => `../data/book1_exercise_images/${fileName}`;
 
 const page = (pageNo: number) => `../course-assets/by-lesson/lesson14/page${pageNo}.webp`;
 const audio = (exerciseNo: 1 | 2, order: number) =>
@@ -8,7 +9,6 @@ const text = (value: string, options: Omit<RichText, "type" | "text"> = {}): Ric
 const repl = (value: string, substitutionKey: string, options: Omit<RichText, "type" | "text" | "underline" | "substitutionKey"> = {}): RichText =>
   text(value, { ...options, underline: true, substitutionKey });
 const blank = (slotId: string): PromptPart => ({ type: "blank", slotId });
-const crop = (id: string) => lesson14ImageCrops.assets.find((asset) => asset.id === id)!;
 
 const answerOnlyHint = "只填写提问后的回答部分，不需要重写问题。";
 const completionHint = "只补全题目中空格处需要填写的部分。";
@@ -126,7 +126,9 @@ const activities: PracticeActivity[] = [
     answerUnit: "word",
     responseScope: "word_only",
     responseScopeHint: completionHint,
-    assets: [crop("l14-p1-a1-te-form-pictures")],
+    assets: [
+      { id: "l14-p1-a1-te-form-pictures", kind: "exercise_image", imagePath: exerciseImage("book1_lesson14_1_1.png") }
+    ],
     displayAssets: ["l14-p1-a1-te-form-pictures"],
     layout: [
       {
@@ -273,7 +275,9 @@ const activities: PracticeActivity[] = [
     interaction: "pattern_substitution",
     answerUnit: "sentence",
     responseScope: "sentence_only",
-    assets: [crop("l14-p1-a4-direction-pictures")],
+    assets: [
+      { id: "l14-p1-a4-direction-pictures", kind: "exercise_image", imagePath: exerciseImage("book1_lesson14_1_4.png") }
+    ],
     displayAssets: ["l14-p1-a4-direction-pictures"],
     layout: [
       {
@@ -511,7 +515,9 @@ const activities: PracticeActivity[] = [
         ]
       }
     },
-    assets: [crop("l14-p2-a3-listening-choice-pictures")],
+    assets: [
+      { id: "l14-p2-a3-listening-choice-pictures", kind: "exercise_image", imagePath: exerciseImage("book1_lesson14_2_3.png") }
+    ],
     displayAssets: ["l14-p2-a3-listening-choice-pictures"],
     layout: [],
     items: [

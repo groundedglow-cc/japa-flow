@@ -1,12 +1,12 @@
 import type { InputSlot, LessonPractice, PracticeActivity, PracticeItem, PromptPart, RichText } from "./lesson-practice-types";
-import { lesson22ImageCrops } from "./lesson22-image-crops";
+
+const exerciseImage = (fileName: string) => `../data/book1_exercise_images/${fileName}`;
 
 const page = (pageNo: number) => `../course-assets/by-lesson/lesson22/page${pageNo}.webp`;
 const audio = (exerciseNo: 1 | 2, order: number) =>
   `https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit6/lesson22/Exe${exerciseNo}_${order}.mp3`;
 const text = (value: string, options: Omit<RichText, "type" | "text"> = {}): RichText => ({ type: "text", text: value, ...options });
 const blank = (slotId: string): PromptPart => ({ type: "blank", slotId });
-const crop = (id: string) => lesson22ImageCrops.assets.find((asset) => asset.id === id)!;
 
 const completionHint = "只补全题目中空格处需要填写的部分。";
 const answerOnlyHint = "只填写提问后的回答部分，不需要重写问题。";
@@ -108,8 +108,7 @@ const activities: PracticeActivity[] = [
     answerUnit: "phrase",
     responseScope: "phrase_only",
     responseScopeHint: "填写箭头右侧的普通形肯定/否定形式。",
-    assets: [crop("l22-p1-a1-conjugation")],
-    displayAssets: ["l22-p1-a1-conjugation"],
+    assets: [],
     layout: [
       { type: "example", content: { label: "[例1]", before: "食べます", beforeKana: "たべます", after: [text("食べる／食べない")], afterKana: "たべる／たべない" } },
       { type: "example", content: { label: "[例2]", before: "大きいです", beforeKana: "おおきいです", after: [text("大きい／大きく ない")], afterKana: "おおきい／おおきく ない" } },
@@ -164,8 +163,7 @@ const activities: PracticeActivity[] = [
     interaction: "pattern_substitution",
     answerUnit: "sentence",
     responseScope: "sentence_only",
-    assets: [crop("l22-p1-a2-plain-form")],
-    displayAssets: ["l22-p1-a2-plain-form"],
+    assets: [],
     layout: [
       { type: "example", content: { label: "[例1]", before: "朝 7時に 起きます。\n昨日は 暑かったです。\n森さんは 野菜が 嫌いです。", beforeKana: "あさ しちじに おきます。\nきのうは あつかったです。\nもりさんは やさいが きらいです。", after: [text("朝 7時に 起きる。\n昨日は 暑かった。\n森さんは 野菜が 嫌いだ。")], afterKana: "あさ しちじに おきる。\nきのうは あつかった。\nもりさんは やさいが きらいだ。" } },
       { type: "example", content: { label: "[例2]", before: "勉強して います。\n英語が できます。\n入っては いけません。", beforeKana: "べんきょうして います。\nえいごが できます。\nはいっては いけません。", after: [text("勉強して いる。\n英語が できる。\n入っては いけない。")], afterKana: "べんきょうして いる。\nえいごが できる。\nはいっては いけない。" } }
@@ -199,8 +197,7 @@ const activities: PracticeActivity[] = [
     answerUnit: "dialogue",
     responseScope: "question_and_answer",
     responseScopeHint: "写出完整问答。",
-    assets: [crop("l22-p1-a3-dialogue")],
-    displayAssets: ["l22-p1-a3-dialogue"],
+    assets: [],
     layout: [
       { type: "example", content: { label: "[例]", before: "昨日の 試験／難しい／できる", beforeKana: "きのうの しけん／むずかしい／できる", after: [text("甲：昨日の 試験、どうだった？\n乙：難しかったけど、まあまあ できたよ。")], afterKana: "きのうの しけん、どうだった？\nむずかしかったけど、まあまあ できたよ。" } }
     ],
@@ -228,8 +225,7 @@ const activities: PracticeActivity[] = [
       label: "第22课 练习I-4",
       transcript: { text: "普通形活用表。", source: "manual", confidenceNote: "表格题答案依据教材空栏和普通形活用规则整理。" }
     },
-    assets: [crop("l22-p1-a4-table")],
-    displayAssets: ["l22-p1-a4-table"],
+    assets: [],
     layout: [
       { type: "text", text: [text("按「ます形／辞书形／ない形／た形／なかった形」的顺序补全空栏。")] }
     ],
@@ -265,8 +261,7 @@ const activities: PracticeActivity[] = [
       label: "第22课 练习I-5",
       transcript: { text: "サッカー、好き？うん。チケット あるけど、行かない？うん、行く。", source: "manual", confidenceNote: "例句结合题面整理。" }
     },
-    assets: [crop("l22-p1-a5-dialogue")],
-    displayAssets: ["l22-p1-a5-dialogue"],
+    assets: [],
     layout: [
       { type: "example", content: { label: "[例]", before: "サッカー／チケット／行きます", after: [text("甲：サッカー、好き？\n乙：うん。\n甲：チケット あるけど、行かない？\n乙：うん、行く。")], afterKana: "サッカー、すき？\nうん。\nチケット あるけど、いかない？\nうん、いく。" } }
     ],
@@ -286,8 +281,7 @@ const activities: PracticeActivity[] = [
     answerUnit: "phrase",
     responseScope: "phrase_only",
     responseScopeHint: completionHint,
-    assets: [crop("l22-p2-a1-cloze")],
-    displayAssets: ["l22-p2-a1-cloze"],
+    assets: [],
     layout: [
       { type: "example", content: { label: "[例]", before: "甲：試験、難しかった？\n乙：ううん、（　　　）。", beforeKana: "しけん、むずかしかった？\nううん、（　　　）。", after: [text("難しく なかった")], afterKana: "むずかしく なかった" } }
     ],
@@ -308,7 +302,9 @@ const activities: PracticeActivity[] = [
     answerUnit: "word",
     responseScope: "word_only",
     responseScopeHint: completionHint,
-    assets: [crop("l22-p2-a2-word-bank")],
+    assets: [
+      { id: "l22-p2-a2-word-bank", kind: "exercise_image", imagePath: exerciseImage("book1_lesson22_2_2.png") }
+    ],
     displayAssets: ["l22-p2-a2-word-bank"],
     layout: [{ type: "word_bank", words: ["先に", "さらに", "特に", "ぜひ", "まだ", "もうすぐ"].map((word) => text(word)) }],
     items: [
@@ -340,8 +336,7 @@ const activities: PracticeActivity[] = [
         confidenceNote: "根据教材日记和例题整理的提问文本。"
       }
     },
-    assets: [crop("l22-p2-a3-reading")],
-    displayAssets: ["l22-p2-a3-reading"],
+    assets: [],
     layout: [
       {
         type: "passage",
@@ -372,8 +367,7 @@ const activities: PracticeActivity[] = [
     interaction: "translation",
     answerUnit: "sentence",
     responseScope: "sentence_only",
-    assets: [crop("l22-p2-a4-translation")],
-    displayAssets: ["l22-p2-a4-translation"],
+    assets: [],
     layout: [],
     items: [
       answerItem("l22-p2-a4-q1", "1", "昨天的考试怎么样啊？——有点难，不过大概都做出来了。", "昨日の 試験、どうだった？\n少し 難しかったけど、だいたい できた。", { multiline: true, rows: 3, acceptableAlternatives: ["昨日の 試験は どうだった？\n少し 難しかったけど、だいたい できた。"] }),

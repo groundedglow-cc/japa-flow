@@ -15,42 +15,42 @@
   "basicText": {
     "title": "基本课文",
     "basicSentences": [
-      { "id": "l1-basic-s001", "order": 1, "text": "李さんは 中国人です。", "kana": "りさんは ちゅうごくじんです。", "translationZh": "小李是中国人。", "confidence": "high", "rawText": "1. 李さんは 中国人です。" },
-      { "id": "l1-basic-s002", "order": 2, "text": "森さんは 学生では ありません。", "kana": "もりさんは がくせいでは ありません。", "translationZh": "森先生不是学生。", "confidence": "high", "rawText": "2. 森さんは 学生では ありません。" },
-      { "id": "l1-basic-s003", "order": 3, "text": "林さんは 日本人ですか。", "kana": "はやしさんは にほんじんですか。", "translationZh": "林先生是日本人吗？", "confidence": "high", "rawText": "3. 林さんは 日本人ですか。" },
-      { "id": "l1-basic-s004", "order": 4, "text": "李さんは JC企画の 社員です。", "kana": "りさんは ジェーシーきかくの しゃいんです。", "translationZh": "小李是JC策划公司的职员。", "confidence": "high", "rawText": "4. 李さんは JC企画の 社員です。" }
+      { "id": "l1-basic-s001", "order": 1, "text": "李さんは 中国人です。", "kana": "りさんは ちゅうごくじんです。", "segments": [{"text":"李","ruby":"り"},{"text":"さんは "},{"text":"中国人","ruby":"ちゅうごくじん"},{"text":"です。"}], "translationZh": "小李是中国人。", "confidence": "high", "rawText": "1. 李さんは 中国人です。" },
+      { "id": "l1-basic-s002", "order": 2, "text": "森さんは 学生では ありません。", "kana": "もりさんは がくせいでは ありません。", "segments": [{"text":"森","ruby":"もり"},{"text":"さんは "},{"text":"学生","ruby":"がくせい"},{"text":"では ありません。"}], "translationZh": "森先生不是学生。", "confidence": "high", "rawText": "2. 森さんは 学生では ありません。" },
+      { "id": "l1-basic-s003", "order": 3, "text": "林さんは 日本人ですか。", "kana": "はやしさんは にほんじんですか。", "segments": [{"text":"林","ruby":"はやし"},{"text":"さんは "},{"text":"日本人","ruby":"にほんじん"},{"text":"ですか。"}], "translationZh": "林先生是日本人吗？", "confidence": "high", "rawText": "3. 林さんは 日本人ですか。" },
+      { "id": "l1-basic-s004", "order": 4, "text": "李さんは JC企画の 社員です。", "kana": "りさんは ジェーシーきかくの しゃいんです。", "segments": [{"text":"李","ruby":"り"},{"text":"さんは JC"},{"text":"企画","ruby":"きかく"},{"text":"の "},{"text":"社員","ruby":"しゃいん"},{"text":"です。"}], "translationZh": "小李是JC策划公司的职员。", "confidence": "high", "rawText": "4. 李さんは JC企画の 社員です。" }
     ],
     "dialogues": [
       {
         "id": "l1-basic-dialogue-001",
         "label": "A",
         "lines": [
-          { "id": "l1-basic-dialogue-001-line-001", "speaker": "甲", "text": "わたしは 李です。小野さんですか。", "kana": "わたしは りです。おのさんですか。", "translationZh": "我姓李。您是小野女士吗？", "confidence": "high", "rawText": "甲：わたしは 李です。小野さんですか。" },
-          { "id": "l1-basic-dialogue-001-line-002", "speaker": "乙", "text": "はい、そうです。小野です。", "kana": "はい、そうです。おのです。", "translationZh": "是的，我是小野。", "confidence": "high", "rawText": "乙：はい、そうです。小野です。" }
+          { "id": "l1-basic-dialogue-001-line-001", "speaker": "甲", "text": "わたしは 李です。小野さんですか。", "kana": "わたしは りです。おのさんですか。", "segments": [{"text":"わたしは "},{"text":"李","ruby":"り"},{"text":"です。"},{"text":"小野","ruby":"おの"},{"text":"さんですか。"}], "translationZh": "我姓李。您是小野女士吗？", "confidence": "high", "rawText": "甲：わたしは 李です。小野さんですか。" },
+          { "id": "l1-basic-dialogue-001-line-002", "speaker": "乙", "text": "はい、そうです。小野です。", "kana": "はい、そうです。おのです。", "segments": [{"text":"はい、そうです。"},{"text":"小野","ruby":"おの"},{"text":"です。"}], "translationZh": "是的，我是小野。", "confidence": "high", "rawText": "乙：はい、そうです。小野です。" }
         ]
       },
       {
         "id": "l1-basic-dialogue-002",
         "label": "B",
         "lines": [
-          { "id": "l1-basic-dialogue-002-line-001", "speaker": "甲", "text": "森さんは 学生ですか。", "kana": "もりさんは がくせいですか。", "translationZh": "森先生是学生吗？", "confidence": "high", "rawText": "甲：森さんは 学生ですか。" },
-          { "id": "l1-basic-dialogue-002-line-002", "speaker": "乙", "text": "いいえ、学生では ありません。会社員です。", "kana": "いいえ、がくせいでは ありません。かいしゃいんです。", "translationZh": "不，不是学生。是公司职员。", "confidence": "high", "rawText": "乙：いいえ、学生では ありません。会社員です。" }
+          { "id": "l1-basic-dialogue-002-line-001", "speaker": "甲", "text": "森さんは 学生ですか。", "kana": "もりさんは がくせいですか。", "segments": [{"text":"森","ruby":"もり"},{"text":"さんは "},{"text":"学生","ruby":"がくせい"},{"text":"ですか。"}], "translationZh": "森先生是学生吗？", "confidence": "high", "rawText": "甲：森さんは 学生ですか。" },
+          { "id": "l1-basic-dialogue-002-line-002", "speaker": "乙", "text": "いいえ、学生では ありません。会社員です。", "kana": "いいえ、がくせいでは ありません。かいしゃいんです。", "segments": [{"text":"いいえ、"},{"text":"学生","ruby":"がくせい"},{"text":"では ありません。"},{"text":"会社員","ruby":"かいしゃいん"},{"text":"です。"}], "translationZh": "不，不是学生。是公司职员。", "confidence": "high", "rawText": "乙：いいえ、学生では ありません。会社員です。" }
         ]
       },
       {
         "id": "l1-basic-dialogue-003",
         "label": "C",
         "lines": [
-          { "id": "l1-basic-dialogue-003-line-001", "speaker": "甲", "text": "吉田さんですか。", "kana": "よしださんですか。", "translationZh": "您是吉田先生吗？", "confidence": "high", "rawText": "甲：吉田さんですか。" },
-          { "id": "l1-basic-dialogue-003-line-002", "speaker": "乙", "text": "いいえ、ちがいます。森です。", "kana": "いいえ、ちがいます。もりです。", "translationZh": "不，不是。我是森。", "confidence": "high", "rawText": "乙：いいえ、ちがいます。森です。" }
+          { "id": "l1-basic-dialogue-003-line-001", "speaker": "甲", "text": "吉田さんですか。", "kana": "よしださんですか。", "segments": [{"text":"吉田","ruby":"よしだ"},{"text":"さんですか。"}], "translationZh": "您是吉田先生吗？", "confidence": "high", "rawText": "甲：吉田さんですか。" },
+          { "id": "l1-basic-dialogue-003-line-002", "speaker": "乙", "text": "いいえ、ちがいます。森です。", "kana": "いいえ、ちがいます。もりです。", "segments": [{"text":"いいえ、ちがいます。"},{"text":"森","ruby":"もり"},{"text":"です。"}], "translationZh": "不，不是。我是森。", "confidence": "high", "rawText": "乙：いいえ、ちがいます。森です。" }
         ]
       },
       {
         "id": "l1-basic-dialogue-004",
         "label": "D",
         "lines": [
-          { "id": "l1-basic-dialogue-004-line-001", "speaker": "甲", "text": "李さんは JC企画の 社員ですか。", "kana": "りさんは ジェーシーきかくの しゃいんですか。", "translationZh": "小李是JC策划公司的职员吗？", "confidence": "high", "rawText": "甲：李さんは JC企画の 社員ですか。" },
-          { "id": "l1-basic-dialogue-004-line-002", "speaker": "乙", "text": "はい、そうです。", "kana": "はい、そうです。", "translationZh": "是的，是。", "confidence": "high", "rawText": "乙：はい、そうです。" }
+          { "id": "l1-basic-dialogue-004-line-001", "speaker": "甲", "text": "李さんは JC企画の 社員ですか。", "kana": "りさんは ジェーシーきかくの しゃいんですか。", "segments": [{"text":"李","ruby":"り"},{"text":"さんは JC"},{"text":"企画","ruby":"きかく"},{"text":"の "},{"text":"社員","ruby":"しゃいん"},{"text":"ですか。"}], "translationZh": "小李是JC策划公司的职员吗？", "confidence": "high", "rawText": "甲：李さんは JC企画の 社員ですか。" },
+          { "id": "l1-basic-dialogue-004-line-002", "speaker": "乙", "text": "はい、そうです。", "kana": "はい、そうです。", "segments": [{"text":"はい、そうです。"}], "translationZh": "是的，是。", "confidence": "high", "rawText": "乙：はい、そうです。" }
         ]
       }
     ]
@@ -72,11 +72,11 @@
         "id": "l1-app-block-003",
         "type": "dialogue",
         "lines": [
-          { "id": "l1-app-block-003-line-001", "speaker": "李", "text": "JC企画の 小野さんですか。", "kana": "ジェーシーきかくの おのさんですか。", "translationZh": "您是JC策划公司的小野女士吗？", "confidence": "high", "rawText": "李：JC企画の 小野さんですか。" },
-          { "id": "l1-app-block-003-line-002", "speaker": "小野", "text": "はい、小野です。李秀麗さんですか。", "kana": "はい、おのです。りしゅうれいさんですか。", "translationZh": "是的，我是小野。您是李秀丽女士吗？", "confidence": "high", "rawText": "小野：はい、小野です。李秀麗さんですか。" },
-          { "id": "l1-app-block-003-line-003", "speaker": "李", "text": "はい、李秀麗です。はじめまして。", "kana": "はい、りしゅうれいです。はじめまして。", "translationZh": "是的，我是李秀丽。初次见面。", "confidence": "high", "rawText": "李：はい、李秀麗です。はじめまして。" },
-          { "id": "l1-app-block-003-line-004", "speaker": "李", "text": "どうぞ よろしく お願いします。", "kana": "どうぞ よろしく おねがいします。", "translationZh": "请多关照。", "confidence": "high", "rawText": "どうぞ よろしく お願いします。" },
-          { "id": "l1-app-block-003-line-005", "speaker": "小野", "text": "はじめまして、小野緑です。", "kana": "はじめまして、おのみどりです。", "translationZh": "初次见面，我是小野绿。", "confidence": "high", "rawText": "小野：はじめまして、小野緑です。" }
+          { "id": "l1-app-block-003-line-001", "speaker": "李", "text": "JC企画の 小野さんですか。", "kana": "ジェーシーきかくの おのさんですか。", "segments": [{"text":"JC"},{"text":"企画","ruby":"きかく"},{"text":"の "},{"text":"小野","ruby":"おの"},{"text":"さんですか。"}], "translationZh": "您是JC策划公司的小野女士吗？", "confidence": "high", "rawText": "李：JC企画の 小野さんですか。" },
+          { "id": "l1-app-block-003-line-002", "speaker": "小野", "text": "はい、小野です。李秀麗さんですか。", "kana": "はい、おのです。りしゅうれいさんですか。", "segments": [{"text":"はい、"},{"text":"小野","ruby":"おの"},{"text":"です。"},{"text":"李秀麗","ruby":"りしゅうれい"},{"text":"さんですか。"}], "translationZh": "是的，我是小野。您是李秀丽女士吗？", "confidence": "high", "rawText": "小野：はい、小野です。李秀麗さんですか。" },
+          { "id": "l1-app-block-003-line-003", "speaker": "李", "text": "はい、李秀麗です。はじめまして。", "kana": "はい、りしゅうれいです。はじめまして。", "segments": [{"text":"はい、"},{"text":"李秀麗","ruby":"りしゅうれい"},{"text":"です。はじめまして。"}], "translationZh": "是的，我是李秀丽。初次见面。", "confidence": "high", "rawText": "李：はい、李秀麗です。はじめまして。" },
+          { "id": "l1-app-block-003-line-004", "speaker": "李", "text": "どうぞ よろしく お願いします。", "kana": "どうぞ よろしく おねがいします。", "segments": [{"text":"どうぞ よろしく "},{"text":"お願い","ruby":"おねがい"},{"text":"します。"}], "translationZh": "请多关照。", "confidence": "high", "rawText": "どうぞ よろしく お願いします。" },
+          { "id": "l1-app-block-003-line-005", "speaker": "小野", "text": "はじめまして、小野緑です。", "kana": "はじめまして、おのみどりです。", "segments": [{"text":"はじめまして、"},{"text":"小野緑","ruby":"おのみどり"},{"text":"です。"}], "translationZh": "初次见面，我是小野绿。", "confidence": "high", "rawText": "小野：はじめまして、小野緑です。" }
         ]
       },
       { "id": "l1-app-block-004", "type": "scene", "text": "（森在一旁插话）", "kana": null, "translationZh": "森在一旁插话。", "confidence": "high", "rawText": "（森在一旁插话）" },
@@ -84,12 +84,12 @@
         "id": "l1-app-block-005",
         "type": "dialogue",
         "lines": [
-          { "id": "l1-app-block-005-line-001", "speaker": "森", "text": "李さん、こんにちは。", "kana": "りさん、こんにちは。", "translationZh": "李女士，你好。", "confidence": "high", "rawText": "森：李さん、こんにちは。" },
-          { "id": "l1-app-block-005-line-002", "speaker": "李", "text": "吉田さんですか。", "kana": "よしださんですか。", "translationZh": "您是吉田先生吗？", "confidence": "high", "rawText": "李：吉田さんですか。" },
-          { "id": "l1-app-block-005-line-003", "speaker": "森", "text": "いいえ、わたしは 吉田じゃ ありません。森です。", "kana": "いいえ、わたしは よしだじゃ ありません。もりです。", "translationZh": "不，我不是吉田。我是森。", "confidence": "high", "rawText": "森：いいえ、わたしは 吉田じゃ ありません。森です。" },
-          { "id": "l1-app-block-005-line-004", "speaker": "李", "text": "あっ、森さんですか。どうも すみません。", "kana": "あっ、もりさんですか。どうも すみません。", "translationZh": "啊，是森先生啊。实在对不起。", "confidence": "high", "rawText": "李：あっ、森さんですか。どうも すみません。" },
-          { "id": "l1-app-block-005-line-005", "speaker": "森", "text": "いいえ。どうぞ よろしく。", "kana": "いいえ。どうぞ よろしく。", "translationZh": "没关系。请多关照。", "confidence": "high", "rawText": "森：いいえ。どうぞ よろしく。" },
-          { "id": "l1-app-block-005-line-006", "speaker": "李", "text": "李秀麗です。こちらこそ、よろしく お願いします。", "kana": "りしゅうれいです。こちらこそ、よろしく おねがいします。", "translationZh": "我是李秀丽。我才要请您多多关照。", "confidence": "high", "rawText": "李：李秀麗です。こちらこそ、よろしく お願いします。" }
+          { "id": "l1-app-block-005-line-001", "speaker": "森", "text": "李さん、こんにちは。", "kana": "りさん、こんにちは。", "segments": [{"text":"李","ruby":"り"},{"text":"さん、こんにちは。"}], "translationZh": "李女士，你好。", "confidence": "high", "rawText": "森：李さん、こんにちは。" },
+          { "id": "l1-app-block-005-line-002", "speaker": "李", "text": "吉田さんですか。", "kana": "よしださんですか。", "segments": [{"text":"吉田","ruby":"よしだ"},{"text":"さんですか。"}], "translationZh": "您是吉田先生吗？", "confidence": "high", "rawText": "李：吉田さんですか。" },
+          { "id": "l1-app-block-005-line-003", "speaker": "森", "text": "いいえ、わたしは 吉田じゃ ありません。森です。", "kana": "いいえ、わたしは よしだじゃ ありません。もりです。", "segments": [{"text":"いいえ、わたしは "},{"text":"吉田","ruby":"よしだ"},{"text":"じゃ ありません。"},{"text":"森","ruby":"もり"},{"text":"です。"}], "translationZh": "不，我不是吉田。我是森。", "confidence": "high", "rawText": "森：いいえ、わたしは 吉田じゃ ありません。森です。" },
+          { "id": "l1-app-block-005-line-004", "speaker": "李", "text": "あっ、森さんですか。どうも すみません。", "kana": "あっ、もりさんですか。どうも すみません。", "segments": [{"text":"あっ、"},{"text":"森","ruby":"もり"},{"text":"さんですか。どうも すみません。"}], "translationZh": "啊，是森先生啊。实在对不起。", "confidence": "high", "rawText": "李：あっ、森さんですか。どうも すみません。" },
+          { "id": "l1-app-block-005-line-005", "speaker": "森", "text": "いいえ。どうぞ よろしく。", "kana": "いいえ。どうぞ よろしく。", "segments": [{"text":"いいえ。どうぞ よろしく。"}], "translationZh": "没关系。请多关照。", "confidence": "high", "rawText": "森：いいえ。どうぞ よろしく。" },
+          { "id": "l1-app-block-005-line-006", "speaker": "李", "text": "李秀麗です。こちらこそ、よろしく お願いします。", "kana": "りしゅうれいです。こちらこそ、よろしく おねがいします。", "segments": [{"text":"李秀麗","ruby":"りしゅうれい"},{"text":"です。こちらこそ、よろしく "},{"text":"お願い","ruby":"おねがい"},{"text":"します。"}], "translationZh": "我是李秀丽。我才要请您多多关照。", "confidence": "high", "rawText": "李：李秀麗です。こちらこそ、よろしく お願いします。" }
         ]
       }
     ]

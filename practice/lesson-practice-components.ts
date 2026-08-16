@@ -31,7 +31,7 @@ export function renderLessonPracticePage(practice: LessonPractice): string {
         </div>
         <nav class="activity-nav" aria-label="练习活动">
           ${practice.activities.map((activity) => `
-            <a href="#${activity.id}" class="${activity.id === first?.id ? "active" : ""}">
+            <a href="#${activity.id}" class="${activity.id === first?.id ? "active" : ""}" title="${escapeHtml(activity.title)}">
               <small>${sectionLabel[activity.section]} · ${activity.order}</small>
               <span>${escapeHtml(activity.title)}</span>
             </a>

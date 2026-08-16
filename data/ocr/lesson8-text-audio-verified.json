@@ -23,17 +23,70 @@
         "translationZh": "小李用日语写信。",
         "confidence": "high",
         "rawText": "1. 李さんは 日本語で 手紙を 書きます。",
+        "segments": [
+          {
+            "text": "李",
+            "ruby": "り"
+          },
+          {
+            "text": "さんは "
+          },
+          {
+            "text": "日本語",
+            "ruby": "にほんご"
+          },
+          {
+            "text": "で "
+          },
+          {
+            "text": "手紙",
+            "ruby": "てがみ"
+          },
+          {
+            "text": "を "
+          },
+          {
+            "text": "書",
+            "ruby": "か"
+          },
+          {
+            "text": "きます。"
+          }
+        ],
         "audioSegment": {
           "id": "l8-basic-s001",
           "trackId": "lesson_basic",
-          "sourceUrl": "/data/ocr/audio-clips/lesson8/l8-basic-s001.mp3",
-          "start": 0,
-          "end": 3.18,
-          "duration": 3.18,
-          "method": "approved-asr-alignment",
-          "confidence": "approved",
-          "reviewedAt": "2026-08-05T08:29:41.833Z",
-          "sourceAudioSha256": "3ab5b0991eb412200ee74d131e2fd3dee8dd3a79d46e09fea95242c63c334258"
+          "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson8/lesson_basic.mp3",
+          "itemIndex": 1,
+          "speaker": "",
+          "text": "李さんは 日本語で 手紙を 書きます。",
+          "start": 0.82,
+          "end": 4.23,
+          "duration": 3.41,
+          "rawAzureTiming": {
+            "start": 1.07,
+            "end": 4.11,
+            "duration": 3.04
+          },
+          "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+          "speechActivity": null,
+          "speechUnitCount": 1,
+          "matchScore": 0.933,
+          "asrConfidence": 0.866,
+          "asrText": "t さ ん は 日 本 語 で 手 紙 を 書 き ま す",
+          "phraseIndexes": [
+            0
+          ],
+          "method": "azure-speech-sentence-alignment-with-boundary-padding",
+          "confidence": "high",
+          "alignmentIssues": [],
+          "review": {
+            "status": "approved",
+            "reviewedAt": "2026-08-16T11:29:25.883Z",
+            "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+            "matchScore": 0.933,
+            "asrText": "t さ ん は 日 本 語 で 手 紙 を 書 き ま す"
+          }
         }
       },
       {
@@ -44,17 +97,59 @@
         "translationZh": "我送给小野女士礼物。",
         "confidence": "high",
         "rawText": "2. わたしは 小野さんに お土産を あげます。",
+        "segments": [
+          {
+            "text": "わたしは "
+          },
+          {
+            "text": "小野",
+            "ruby": "おの"
+          },
+          {
+            "text": "さんに "
+          },
+          {
+            "text": "お土産",
+            "ruby": "おみやげ"
+          },
+          {
+            "text": "を あげます。"
+          }
+        ],
         "audioSegment": {
           "id": "l8-basic-s002",
           "trackId": "lesson_basic",
-          "sourceUrl": "/data/ocr/audio-clips/lesson8/l8-basic-s002.mp3",
-          "start": 0,
-          "end": 3.34,
-          "duration": 3.34,
-          "method": "approved-asr-alignment",
-          "confidence": "approved",
-          "reviewedAt": "2026-08-05T08:29:41.833Z",
-          "sourceAudioSha256": "3ab5b0991eb412200ee74d131e2fd3dee8dd3a79d46e09fea95242c63c334258"
+          "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson8/lesson_basic.mp3",
+          "itemIndex": 2,
+          "speaker": "",
+          "text": "わたしは 小野さんに お土産を あげます。",
+          "start": 5.59,
+          "end": 8.92,
+          "duration": 3.33,
+          "rawAzureTiming": {
+            "start": 5.84,
+            "end": 8.8,
+            "duration": 2.96
+          },
+          "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+          "speechActivity": null,
+          "speechUnitCount": 1,
+          "matchScore": 1,
+          "asrConfidence": 0.855,
+          "asrText": "わ た し は 小 野 さ ん に お 土 産 を あ げ ま す 。",
+          "phraseIndexes": [
+            1
+          ],
+          "method": "azure-speech-sentence-alignment-with-boundary-padding",
+          "confidence": "high",
+          "alignmentIssues": [],
+          "review": {
+            "status": "approved",
+            "reviewedAt": "2026-08-16T11:29:25.883Z",
+            "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+            "matchScore": 1,
+            "asrText": "わ た し は 小 野 さ ん に お 土 産 を あ げ ま す 。"
+          }
         }
       },
       {
@@ -65,17 +160,59 @@
         "translationZh": "我从小野女士那里得到了词典。",
         "confidence": "high",
         "rawText": "3. わたしは 小野さんに 辞書を もらいました。",
+        "segments": [
+          {
+            "text": "わたしは "
+          },
+          {
+            "text": "小野",
+            "ruby": "おの"
+          },
+          {
+            "text": "さんに "
+          },
+          {
+            "text": "辞書",
+            "ruby": "じしょ"
+          },
+          {
+            "text": "を もらいました。"
+          }
+        ],
         "audioSegment": {
           "id": "l8-basic-s003",
           "trackId": "lesson_basic",
-          "sourceUrl": "/data/ocr/audio-clips/lesson8/l8-basic-s003.mp3",
-          "start": 0,
-          "end": 4.3,
-          "duration": 4.3,
-          "method": "approved-asr-alignment",
-          "confidence": "approved",
-          "reviewedAt": "2026-08-05T08:29:41.833Z",
-          "sourceAudioSha256": "3ab5b0991eb412200ee74d131e2fd3dee8dd3a79d46e09fea95242c63c334258"
+          "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson8/lesson_basic.mp3",
+          "itemIndex": 3,
+          "speaker": "",
+          "text": "わたしは 小野さんに 辞書を もらいました。",
+          "start": 10.39,
+          "end": 13.52,
+          "duration": 3.13,
+          "rawAzureTiming": {
+            "start": 10.64,
+            "end": 13.4,
+            "duration": 2.76
+          },
+          "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+          "speechActivity": null,
+          "speechUnitCount": 1,
+          "matchScore": 1,
+          "asrConfidence": 0.893,
+          "asrText": "わ た し は 小 野 さ ん に 辞 書 を も ら い ま し た 。",
+          "phraseIndexes": [
+            2
+          ],
+          "method": "azure-speech-sentence-alignment-with-boundary-padding",
+          "confidence": "high",
+          "alignmentIssues": [],
+          "review": {
+            "status": "approved",
+            "reviewedAt": "2026-08-16T11:29:25.883Z",
+            "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+            "matchScore": 1,
+            "asrText": "わ た し は 小 野 さ ん に 辞 書 を も ら い ま し た 。"
+          }
         }
       },
       {
@@ -86,17 +223,67 @@
         "translationZh": "小李明天见长岛先生。",
         "confidence": "high",
         "rawText": "4. 李さんは 明日 長島さんに 会います。",
+        "segments": [
+          {
+            "text": "李",
+            "ruby": "り"
+          },
+          {
+            "text": "さんは "
+          },
+          {
+            "text": "明日",
+            "ruby": "あした"
+          },
+          {
+            "text": " "
+          },
+          {
+            "text": "長島",
+            "ruby": "ながしま"
+          },
+          {
+            "text": "さんに 会",
+            "ruby": "あ"
+          },
+          {
+            "text": "います。"
+          }
+        ],
         "audioSegment": {
           "id": "l8-basic-s004",
           "trackId": "lesson_basic",
-          "sourceUrl": "/data/ocr/audio-clips/lesson8/l8-basic-s004.mp3",
-          "start": 0,
-          "end": 3.7,
-          "duration": 3.7,
-          "method": "approved-asr-alignment",
-          "confidence": "approved",
-          "reviewedAt": "2026-08-05T08:29:41.833Z",
-          "sourceAudioSha256": "3ab5b0991eb412200ee74d131e2fd3dee8dd3a79d46e09fea95242c63c334258"
+          "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson8/lesson_basic.mp3",
+          "itemIndex": 4,
+          "speaker": "",
+          "text": "李さんは 明日 長島さんに 会います。",
+          "start": 15.06,
+          "end": 18.95,
+          "duration": 3.89,
+          "rawAzureTiming": {
+            "start": 15.31,
+            "end": 18.83,
+            "duration": 3.52
+          },
+          "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+          "speechActivity": null,
+          "speechUnitCount": 1,
+          "matchScore": 1,
+          "asrConfidence": 0.864,
+          "asrText": "李 さ ん は 明 日 長 島 さ ん に 会 い ま す 。",
+          "phraseIndexes": [
+            3
+          ],
+          "method": "azure-speech-sentence-alignment-with-boundary-padding",
+          "confidence": "high",
+          "alignmentIssues": [],
+          "review": {
+            "status": "approved",
+            "reviewedAt": "2026-08-16T11:29:25.883Z",
+            "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+            "matchScore": 1,
+            "asrText": "李 さ ん は 明 日 長 島 さ ん に 会 い ま す 。"
+          }
         }
       }
     ],
@@ -113,17 +300,70 @@
             "translationZh": "昨天我给母亲寄了生日礼物。",
             "confidence": "high",
             "rawText": "甲：昨日、母に 誕生日の プレゼントを 送りました。",
+            "segments": [
+              {
+                "text": "昨日",
+                "ruby": "きのう"
+              },
+              {
+                "text": "、"
+              },
+              {
+                "text": "母",
+                "ruby": "はは"
+              },
+              {
+                "text": "に "
+              },
+              {
+                "text": "誕生日",
+                "ruby": "たんじょうび"
+              },
+              {
+                "text": "の プレゼントを "
+              },
+              {
+                "text": "送",
+                "ruby": "おく"
+              },
+              {
+                "text": "りました。"
+              }
+            ],
             "audioSegment": {
               "id": "l8-basic-dialogue-001-line-001",
               "trackId": "lesson_basic",
-              "sourceUrl": "/data/ocr/audio-clips/lesson8/l8-basic-dialogue-001-line-001.mp3",
-              "start": 0,
-              "end": 3.5,
-              "duration": 3.5,
-              "method": "approved-asr-alignment",
-              "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:29:41.833Z",
-              "sourceAudioSha256": "3ab5b0991eb412200ee74d131e2fd3dee8dd3a79d46e09fea95242c63c334258"
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson8/lesson_basic.mp3",
+              "itemIndex": 5,
+              "speaker": "甲",
+              "text": "昨日、母に 誕生日の プレゼントを 送りました。",
+              "start": 20.9,
+              "end": 24.33,
+              "duration": 3.43,
+              "rawAzureTiming": {
+                "start": 21.15,
+                "end": 24.35,
+                "duration": 3.2
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrConfidence": 0.918,
+              "asrText": "昨 日 、 母 に 誕 生 日 の プ レ ゼ ン ト を 送 り ま し た",
+              "phraseIndexes": [
+                4
+              ],
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [],
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-16T11:29:25.883Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "matchScore": 1,
+                "asrText": "昨 日 、 母 に 誕 生 日 の プ レ ゼ ン ト を 送 り ま し た"
+              }
             }
           },
           {
@@ -134,17 +374,57 @@
             "translationZh": "用什么寄的？",
             "confidence": "high",
             "rawText": "乙：何で 送りましたか。",
+            "segments": [
+              {
+                "text": "何",
+                "ruby": "なに"
+              },
+              {
+                "text": "で "
+              },
+              {
+                "text": "送",
+                "ruby": "おく"
+              },
+              {
+                "text": "りましたか。"
+              }
+            ],
             "audioSegment": {
               "id": "l8-basic-dialogue-001-line-002",
               "trackId": "lesson_basic",
-              "sourceUrl": "/data/ocr/audio-clips/lesson8/l8-basic-dialogue-001-line-002.mp3",
-              "start": 0,
-              "end": 1.3,
-              "duration": 1.3,
-              "method": "approved-asr-alignment",
-              "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:29:41.833Z",
-              "sourceAudioSha256": "3ab5b0991eb412200ee74d131e2fd3dee8dd3a79d46e09fea95242c63c334258"
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson8/lesson_basic.mp3",
+              "itemIndex": 6,
+              "speaker": "乙",
+              "text": "何で 送りましたか。",
+              "start": 24.37,
+              "end": 26.69,
+              "duration": 2.32,
+              "rawAzureTiming": {
+                "start": 24.35,
+                "end": 26.71,
+                "duration": 2.36
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
+              "speechUnitCount": 2,
+              "matchScore": 1,
+              "asrConfidence": 0.914,
+              "asrText": "。 何 で 送 り ま し た か",
+              "phraseIndexes": [
+                4,
+                5
+              ],
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [],
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-16T11:29:25.883Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "matchScore": 1,
+                "asrText": "。 何 で 送 り ま し た か"
+              }
             }
           },
           {
@@ -155,17 +435,57 @@
             "translationZh": "用航空邮件寄的。",
             "confidence": "high",
             "rawText": "甲：航空便で 送りました。",
+            "segments": [
+              {
+                "text": "航空便",
+                "ruby": "こうくうびん"
+              },
+              {
+                "text": "で "
+              },
+              {
+                "text": "送",
+                "ruby": "おく"
+              },
+              {
+                "text": "りました。"
+              }
+            ],
             "audioSegment": {
               "id": "l8-basic-dialogue-001-line-003",
               "trackId": "lesson_basic",
-              "sourceUrl": "/data/ocr/audio-clips/lesson8/l8-basic-dialogue-001-line-003.mp3",
-              "start": 0,
-              "end": 1.18,
-              "duration": 1.18,
-              "method": "approved-asr-alignment",
-              "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:29:41.833Z",
-              "sourceAudioSha256": "3ab5b0991eb412200ee74d131e2fd3dee8dd3a79d46e09fea95242c63c334258"
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson8/lesson_basic.mp3",
+              "itemIndex": 7,
+              "speaker": "甲",
+              "text": "航空便で 送りました。",
+              "start": 26.73,
+              "end": 29.32,
+              "duration": 2.59,
+              "rawAzureTiming": {
+                "start": 26.71,
+                "end": 29.2,
+                "duration": 2.49
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
+              "speechUnitCount": 2,
+              "matchScore": 1,
+              "asrConfidence": 0.916,
+              "asrText": "。 航 空 便 で 送 り ま し た 。",
+              "phraseIndexes": [
+                5,
+                6
+              ],
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [],
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-16T11:29:25.883Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "matchScore": 1,
+                "asrText": "。 航 空 便 で 送 り ま し た 。"
+              }
             }
           }
         ]
@@ -182,17 +502,52 @@
             "translationZh": "那张电影票给谁？",
             "confidence": "high",
             "rawText": "甲：その 映画の チケットを だれに あげますか。",
+            "segments": [
+              {
+                "text": "その "
+              },
+              {
+                "text": "映画",
+                "ruby": "えいが"
+              },
+              {
+                "text": "の チケットを だれに あげますか。"
+              }
+            ],
             "audioSegment": {
               "id": "l8-basic-dialogue-002-line-001",
               "trackId": "lesson_basic",
-              "sourceUrl": "/data/ocr/audio-clips/lesson8/l8-basic-dialogue-002-line-001.mp3",
-              "start": 0,
-              "end": 3.18,
-              "duration": 3.18,
-              "method": "approved-asr-alignment",
-              "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:29:41.833Z",
-              "sourceAudioSha256": "3ab5b0991eb412200ee74d131e2fd3dee8dd3a79d46e09fea95242c63c334258"
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson8/lesson_basic.mp3",
+              "itemIndex": 8,
+              "speaker": "甲",
+              "text": "その 映画の チケットを だれに あげますか。",
+              "start": 31.22,
+              "end": 34.29,
+              "duration": 3.07,
+              "rawAzureTiming": {
+                "start": 31.47,
+                "end": 34.31,
+                "duration": 2.84
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrConfidence": 0.907,
+              "asrText": "そ の 映 画 の チ ケ ッ ト を だ れ に あ げ ま す か",
+              "phraseIndexes": [
+                7
+              ],
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [],
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-16T11:29:25.883Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "matchScore": 1,
+                "asrText": "そ の 映 画 の チ ケ ッ ト を だ れ に あ げ ま す か"
+              }
             }
           },
           {
@@ -203,17 +558,50 @@
             "translationZh": "给小李。",
             "confidence": "high",
             "rawText": "乙：李さんに あげます。",
+            "segments": [
+              {
+                "text": "李",
+                "ruby": "り"
+              },
+              {
+                "text": "さんに あげます。"
+              }
+            ],
             "audioSegment": {
               "id": "l8-basic-dialogue-002-line-002",
               "trackId": "lesson_basic",
-              "sourceUrl": "/data/ocr/audio-clips/lesson8/l8-basic-dialogue-002-line-002.mp3",
-              "start": 0,
-              "end": 1.66,
-              "duration": 1.66,
-              "method": "approved-asr-alignment",
-              "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:29:41.833Z",
-              "sourceAudioSha256": "3ab5b0991eb412200ee74d131e2fd3dee8dd3a79d46e09fea95242c63c334258"
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson8/lesson_basic.mp3",
+              "itemIndex": 9,
+              "speaker": "乙",
+              "text": "李さんに あげます。",
+              "start": 34.33,
+              "end": 36.65,
+              "duration": 2.32,
+              "rawAzureTiming": {
+                "start": 34.31,
+                "end": 36.67,
+                "duration": 2.36
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
+              "speechUnitCount": 2,
+              "matchScore": 1,
+              "asrConfidence": 0.906,
+              "asrText": "。 李 さ ん に あ げ ま す",
+              "phraseIndexes": [
+                7,
+                8
+              ],
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [],
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-16T11:29:25.883Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "matchScore": 1,
+                "asrText": "。 李 さ ん に あ げ ま す"
+              }
             }
           }
         ]
@@ -230,17 +618,46 @@
             "translationZh": "你从谁那里得到了那本小册子？",
             "confidence": "high",
             "rawText": "甲：だれに その パンフレットを もらいましたか。",
+            "segments": [
+              {
+                "text": "だれに その パンフレットを もらいましたか。"
+              }
+            ],
             "audioSegment": {
               "id": "l8-basic-dialogue-003-line-001",
               "trackId": "lesson_basic",
-              "sourceUrl": "/data/ocr/audio-clips/lesson8/l8-basic-dialogue-003-line-001.mp3",
-              "start": 0,
-              "end": 3.58,
-              "duration": 3.58,
-              "method": "approved-asr-alignment",
-              "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:29:41.833Z",
-              "sourceAudioSha256": "3ab5b0991eb412200ee74d131e2fd3dee8dd3a79d46e09fea95242c63c334258"
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson8/lesson_basic.mp3",
+              "itemIndex": 10,
+              "speaker": "甲",
+              "text": "だれに その パンフレットを もらいましたか。",
+              "start": 36.69,
+              "end": 41.14,
+              "duration": 4.45,
+              "rawAzureTiming": {
+                "start": 36.67,
+                "end": 41.04,
+                "duration": 4.37
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
+              "speechUnitCount": 2,
+              "matchScore": 0.895,
+              "asrConfidence": 0.875,
+              "asrText": "。 c 誰 に そ の パ ン フ レ ッ ト を も ら い ま し た か",
+              "phraseIndexes": [
+                8,
+                9
+              ],
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [],
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-16T11:29:25.883Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "matchScore": 0.895,
+                "asrText": "。 c 誰 に そ の パ ン フ レ ッ ト を も ら い ま し た か"
+              }
             }
           },
           {
@@ -251,17 +668,49 @@
             "translationZh": "从长岛先生那里得到的。",
             "confidence": "high",
             "rawText": "乙：長島さんに もらいました。",
+            "segments": [
+              {
+                "text": "長島",
+                "ruby": "ながしま"
+              },
+              {
+                "text": "さんに もらいました。"
+              }
+            ],
             "audioSegment": {
               "id": "l8-basic-dialogue-003-line-002",
               "trackId": "lesson_basic",
-              "sourceUrl": "/data/ocr/audio-clips/lesson8/l8-basic-dialogue-003-line-002.mp3",
-              "start": 0,
-              "end": 1.74,
-              "duration": 1.74,
-              "method": "approved-asr-alignment",
-              "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:29:41.833Z",
-              "sourceAudioSha256": "3ab5b0991eb412200ee74d131e2fd3dee8dd3a79d46e09fea95242c63c334258"
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson8/lesson_basic.mp3",
+              "itemIndex": 11,
+              "speaker": "乙",
+              "text": "長島さんに もらいました。",
+              "start": 41.06,
+              "end": 43.6,
+              "duration": 2.54,
+              "rawAzureTiming": {
+                "start": 41.16,
+                "end": 43.48,
+                "duration": 2.32
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrConfidence": 0.874,
+              "asrText": "長 島 さ ん に も ら い ま し た 。",
+              "phraseIndexes": [
+                9
+              ],
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [],
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-16T11:29:25.883Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "matchScore": 1,
+                "asrText": "長 島 さ ん に も ら い ま し た 。"
+              }
             }
           }
         ]
@@ -278,17 +727,52 @@
             "translationZh": "请问，小李在吗？",
             "confidence": "high",
             "rawText": "甲：すみません、李さんは いますか。",
+            "segments": [
+              {
+                "text": "すみません、"
+              },
+              {
+                "text": "李",
+                "ruby": "り"
+              },
+              {
+                "text": "さんは いますか。"
+              }
+            ],
             "audioSegment": {
               "id": "l8-basic-dialogue-004-line-001",
               "trackId": "lesson_basic",
-              "sourceUrl": "/data/ocr/audio-clips/lesson8/l8-basic-dialogue-004-line-001.mp3",
-              "start": 0,
-              "end": 2.66,
-              "duration": 2.66,
-              "method": "approved-asr-alignment",
-              "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:29:41.833Z",
-              "sourceAudioSha256": "3ab5b0991eb412200ee74d131e2fd3dee8dd3a79d46e09fea95242c63c334258"
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson8/lesson_basic.mp3",
+              "itemIndex": 12,
+              "speaker": "甲",
+              "text": "すみません、李さんは いますか。",
+              "start": 45.06,
+              "end": 47.81,
+              "duration": 2.75,
+              "rawAzureTiming": {
+                "start": 45.31,
+                "end": 47.83,
+                "duration": 2.52
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrConfidence": 0.861,
+              "asrText": "す み ま せ ん 、 李 さ ん は い ま す か",
+              "phraseIndexes": [
+                10
+              ],
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [],
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-16T11:29:25.883Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "matchScore": 1,
+                "asrText": "す み ま せ ん 、 李 さ ん は い ま す か"
+              }
             }
           },
           {
@@ -299,17 +783,52 @@
             "translationZh": "已经回去了。",
             "confidence": "high",
             "rawText": "乙：もう 帰りましたよ。",
+            "segments": [
+              {
+                "text": "もう "
+              },
+              {
+                "text": "帰",
+                "ruby": "かえ"
+              },
+              {
+                "text": "りましたよ。"
+              }
+            ],
             "audioSegment": {
               "id": "l8-basic-dialogue-004-line-002",
               "trackId": "lesson_basic",
-              "sourceUrl": "/data/ocr/audio-clips/lesson8/l8-basic-dialogue-004-line-002.mp3",
-              "start": 0,
-              "end": 1.5,
-              "duration": 1.5,
-              "method": "approved-asr-alignment",
-              "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:29:41.833Z",
-              "sourceAudioSha256": "3ab5b0991eb412200ee74d131e2fd3dee8dd3a79d46e09fea95242c63c334258"
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson8/lesson_basic.mp3",
+              "itemIndex": 13,
+              "speaker": "乙",
+              "text": "もう 帰りましたよ。",
+              "start": 47.85,
+              "end": 49.71,
+              "duration": 1.86,
+              "rawAzureTiming": {
+                "start": 47.83,
+                "end": 49.59,
+                "duration": 1.76
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrConfidence": 0.861,
+              "asrText": "。 も う 帰 り ま し た よ",
+              "phraseIndexes": [
+                10
+              ],
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [],
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-16T11:29:25.883Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "matchScore": 1,
+                "asrText": "。 も う 帰 り ま し た よ"
+              }
             }
           }
         ]
@@ -349,17 +868,59 @@
             "translationZh": "刚才长岛先生来电话了。",
             "confidence": "high",
             "rawText": "小野：さっき 長島さんに 電話を もらいました。",
+            "segments": [
+              {
+                "text": "さっき "
+              },
+              {
+                "text": "長島",
+                "ruby": "ながしま"
+              },
+              {
+                "text": "さんに "
+              },
+              {
+                "text": "電話",
+                "ruby": "でんわ"
+              },
+              {
+                "text": "を もらいました。"
+              }
+            ],
             "audioSegment": {
               "id": "l8-app-block-003-line-001",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson8/l8-app-block-003-line-001.mp3",
-              "start": 0,
-              "end": 2.86,
-              "duration": 2.86,
-              "method": "approved-asr-alignment",
-              "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:30:20.780Z",
-              "sourceAudioSha256": "24d3ec633a92ff3db84c4ccf2330288eb772ae0d73dcfeb1ea0a45b92468b927"
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson8/lesson_apps.mp3",
+              "itemIndex": 1,
+              "speaker": "小野",
+              "text": "さっき 長島さんに 電話を もらいました。",
+              "start": 20.06,
+              "end": 22.81,
+              "duration": 2.75,
+              "rawAzureTiming": {
+                "start": 20.31,
+                "end": 22.83,
+                "duration": 2.52
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrConfidence": 0.929,
+              "asrText": "さ っ き 長 島 さ ん に 電 話 を も ら い ま し た",
+              "phraseIndexes": [
+                4
+              ],
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [],
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-16T11:29:25.883Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "matchScore": 1,
+                "asrText": "さ っ き 長 島 さ ん に 電 話 を も ら い ま し た"
+              }
             }
           },
           {
@@ -370,17 +931,61 @@
             "translationZh": "是日程表的事吗？",
             "confidence": "high",
             "rawText": "李：スケジュール表の 件ですか。",
+            "segments": [
+              {
+                "text": "スケジュール"
+              },
+              {
+                "text": "表",
+                "ruby": "ひょう"
+              },
+              {
+                "text": "の "
+              },
+              {
+                "text": "件",
+                "ruby": "けん"
+              },
+              {
+                "text": "ですか。"
+              }
+            ],
             "audioSegment": {
               "id": "l8-app-block-003-line-002",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson8/l8-app-block-003-line-002.mp3",
-              "start": 0,
-              "end": 2.06,
-              "duration": 2.06,
-              "method": "approved-asr-alignment",
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson8/lesson_apps.mp3",
+              "itemIndex": 2,
+              "speaker": "李",
+              "text": "スケジュール表の 件ですか。",
+              "start": 23,
+              "end": 25.7,
+              "duration": 2.7,
+              "rawAzureTiming": {
+                "start": 22.83,
+                "end": 25.55,
+                "duration": 2.72
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
+              "speechUnitCount": 2,
+              "matchScore": 1,
+              "asrConfidence": 0.913,
+              "asrText": "。 ス ケ ジ ュ ー ル 表 の 件 で す か",
+              "phraseIndexes": [
+                4,
+                5
+              ],
+              "method": "manual-admin-adjustment",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:30:20.780Z",
-              "sourceAudioSha256": "24d3ec633a92ff3db84c4ccf2330288eb772ae0d73dcfeb1ea0a45b92468b927"
+              "alignmentIssues": [],
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-16T11:29:25.883Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "matchScore": 1,
+                "asrText": "。 ス ケ ジ ュ ー ル 表 の 件 で す か"
+              },
+              "reviewedAt": "2026-08-16T11:34:10.179Z"
             }
           },
           {
@@ -391,17 +996,47 @@
             "translationZh": "是的。",
             "confidence": "high",
             "rawText": "小野：はい。",
+            "segments": [
+              {
+                "text": "はい。"
+              }
+            ],
             "audioSegment": {
               "id": "l8-app-block-003-line-003",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson8/l8-app-block-003-line-003.mp3",
-              "start": 0,
-              "end": 0.5,
-              "duration": 0.5,
-              "method": "approved-asr-alignment",
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson8/lesson_apps.mp3",
+              "itemIndex": 3,
+              "speaker": "小野",
+              "text": "はい。",
+              "start": 26.1,
+              "end": 27.16,
+              "duration": 1.06,
+              "rawAzureTiming": {
+                "start": 25.55,
+                "end": 27.48,
+                "duration": 1.93
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
+              "speechUnitCount": 2,
+              "matchScore": 1,
+              "asrConfidence": 0.906,
+              "asrText": "。 は い",
+              "phraseIndexes": [
+                5,
+                6
+              ],
+              "method": "manual-admin-adjustment",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:30:20.780Z",
-              "sourceAudioSha256": "24d3ec633a92ff3db84c4ccf2330288eb772ae0d73dcfeb1ea0a45b92468b927"
+              "alignmentIssues": [],
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-16T11:29:25.883Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "matchScore": 1,
+                "asrText": "。 は い"
+              },
+              "reviewedAt": "2026-08-16T11:34:25.865Z"
             }
           },
           {
@@ -412,17 +1047,53 @@
             "translationZh": "已经用传真发过去了。",
             "confidence": "high",
             "rawText": "李：もう ファックスで 送りましたよ。",
+            "segments": [
+              {
+                "text": "もう ファックスで "
+              },
+              {
+                "text": "送",
+                "ruby": "おく"
+              },
+              {
+                "text": "りましたよ。"
+              }
+            ],
             "audioSegment": {
               "id": "l8-app-block-003-line-004",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson8/l8-app-block-003-line-004.mp3",
-              "start": 0,
-              "end": 2.3,
-              "duration": 2.3,
-              "method": "approved-asr-alignment",
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson8/lesson_apps.mp3",
+              "itemIndex": 4,
+              "speaker": "李",
+              "text": "もう ファックスで 送りましたよ。",
+              "start": 27.2,
+              "end": 29.46,
+              "duration": 2.26,
+              "rawAzureTiming": {
+                "start": 27.48,
+                "end": 29.48,
+                "duration": 2
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrConfidence": 0.903,
+              "asrText": "。 も う フ ァ ッ ク ス で 送 り ま し た よ",
+              "phraseIndexes": [
+                6
+              ],
+              "method": "manual-admin-adjustment",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:30:20.780Z",
-              "sourceAudioSha256": "24d3ec633a92ff3db84c4ccf2330288eb772ae0d73dcfeb1ea0a45b92468b927"
+              "alignmentIssues": [],
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-16T11:29:25.883Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "matchScore": 1,
+                "asrText": "。 も う フ ァ ッ ク ス で 送 り ま し た よ"
+              },
+              "reviewedAt": "2026-08-16T11:34:32.342Z"
             }
           },
           {
@@ -433,17 +1104,45 @@
             "translationZh": "什么时候？",
             "confidence": "high",
             "rawText": "小野：いつですか。",
+            "segments": [
+              {
+                "text": "いつですか。"
+              }
+            ],
             "audioSegment": {
               "id": "l8-app-block-003-line-005",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson8/l8-app-block-003-line-005.mp3",
-              "start": 0,
-              "end": 0.82,
-              "duration": 0.82,
-              "method": "approved-asr-alignment",
-              "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:30:20.780Z",
-              "sourceAudioSha256": "24d3ec633a92ff3db84c4ccf2330288eb772ae0d73dcfeb1ea0a45b92468b927"
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson8/lesson_apps.mp3",
+              "itemIndex": 5,
+              "speaker": "小野",
+              "text": "いつですか。",
+              "start": 29.5,
+              "end": 30.26,
+              "duration": 0.76,
+              "rawAzureTiming": {
+                "start": 29.48,
+                "end": 30.28,
+                "duration": 0.8
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrConfidence": 0.903,
+              "asrText": "。 い つ で す か",
+              "phraseIndexes": [
+                6
+              ],
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [],
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-16T11:29:25.883Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "matchScore": 1,
+                "asrText": "。 い つ で す か"
+              }
             }
           },
           {
@@ -454,17 +1153,73 @@
             "translationZh": "昨天傍晚。再发一次吗？",
             "confidence": "high",
             "rawText": "李：昨日の 夕方です。もう 一度 送りますか。",
+            "segments": [
+              {
+                "text": "昨日",
+                "ruby": "きのう"
+              },
+              {
+                "text": "の "
+              },
+              {
+                "text": "夕方",
+                "ruby": "ゆうがた"
+              },
+              {
+                "text": "です。もう "
+              },
+              {
+                "text": "一度",
+                "ruby": "いちど"
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "送",
+                "ruby": "おく"
+              },
+              {
+                "text": "りますか。"
+              }
+            ],
             "audioSegment": {
               "id": "l8-app-block-003-line-006",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson8/l8-app-block-003-line-006.mp3",
-              "start": 0,
-              "end": 2.93,
-              "duration": 2.93,
-              "method": "approved-asr-alignment",
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson8/lesson_apps.mp3",
+              "itemIndex": 6,
+              "speaker": "李",
+              "text": "昨日の 夕方です。もう 一度 送りますか。",
+              "start": 30.6,
+              "end": 34.91,
+              "duration": 4.31,
+              "rawAzureTiming": {
+                "start": 30.28,
+                "end": 34.79,
+                "duration": 4.51
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
+              "speechUnitCount": 3,
+              "matchScore": 1,
+              "asrConfidence": 0.91,
+              "asrText": "。 昨 日 の 夕 方 で す も う 一 度 送 り ま す か",
+              "phraseIndexes": [
+                6,
+                7,
+                8
+              ],
+              "method": "manual-admin-adjustment",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:30:20.780Z",
-              "sourceAudioSha256": "24d3ec633a92ff3db84c4ccf2330288eb772ae0d73dcfeb1ea0a45b92468b927"
+              "alignmentIssues": [],
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-16T11:29:25.883Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "matchScore": 1,
+                "asrText": "。 昨 日 の 夕 方 で す も う 一 度 送 り ま す か"
+              },
+              "reviewedAt": "2026-08-16T11:34:42.508Z"
             }
           },
           {
@@ -475,17 +1230,59 @@
             "translationZh": "嗯，拜托了。我用邮件发。",
             "confidence": "high",
             "rawText": "小野：ええ、お願いします。わたしは メールで 送ります。",
+            "segments": [
+              {
+                "text": "ええ、"
+              },
+              {
+                "text": "お願",
+                "ruby": "おねが"
+              },
+              {
+                "text": "いします。わたしは メールで "
+              },
+              {
+                "text": "送",
+                "ruby": "おく"
+              },
+              {
+                "text": "ります。"
+              }
+            ],
             "audioSegment": {
               "id": "l8-app-block-003-line-007",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson8/l8-app-block-003-line-007.mp3",
-              "start": 0,
-              "end": 4.02,
-              "duration": 4.02,
-              "method": "approved-asr-alignment",
-              "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:30:20.780Z",
-              "sourceAudioSha256": "24d3ec633a92ff3db84c4ccf2330288eb772ae0d73dcfeb1ea0a45b92468b927"
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson8/lesson_apps.mp3",
+              "itemIndex": 7,
+              "speaker": "小野",
+              "text": "ええ、お願いします。わたしは メールで 送ります。",
+              "start": 35.06,
+              "end": 39.17,
+              "duration": 4.11,
+              "rawAzureTiming": {
+                "start": 35.31,
+                "end": 39.19,
+                "duration": 3.88
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
+              "speechUnitCount": 1,
+              "matchScore": 0.85,
+              "asrConfidence": 0.906,
+              "asrText": "え え お 願 い し ま す 私 は メ ー ル で 送 り ま す",
+              "phraseIndexes": [
+                8
+              ],
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [],
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-16T11:29:25.883Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "matchScore": 0.85,
+                "asrText": "え え お 願 い し ま す 私 は メ ー ル で 送 り ま す"
+              }
             }
           },
           {
@@ -496,17 +1293,49 @@
             "translationZh": "明白了。",
             "confidence": "high",
             "rawText": "李：分かりました。",
+            "segments": [
+              {
+                "text": "分",
+                "ruby": "わ"
+              },
+              {
+                "text": "かりました。"
+              }
+            ],
             "audioSegment": {
               "id": "l8-app-block-003-line-008",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson8/l8-app-block-003-line-008.mp3",
-              "start": 0,
-              "end": 0.78,
-              "duration": 0.78,
-              "method": "approved-asr-alignment",
-              "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:30:20.780Z",
-              "sourceAudioSha256": "24d3ec633a92ff3db84c4ccf2330288eb772ae0d73dcfeb1ea0a45b92468b927"
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson8/lesson_apps.mp3",
+              "itemIndex": 8,
+              "speaker": "李",
+              "text": "分かりました。",
+              "start": 39.21,
+              "end": 40.01,
+              "duration": 0.8,
+              "rawAzureTiming": {
+                "start": 39.19,
+                "end": 40.03,
+                "duration": 0.84
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrConfidence": 0.906,
+              "asrText": "わ か り ま し た",
+              "phraseIndexes": [
+                8
+              ],
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [],
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-16T11:29:25.883Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "matchScore": 1,
+                "asrText": "わ か り ま し た"
+              }
             }
           }
         ]
@@ -532,17 +1361,67 @@
             "translationZh": "小李，刚刚收到了长岛先生的邮件。",
             "confidence": "high",
             "rawText": "小野：李さん、たった 今 長島さんに メールを もらいました。",
+            "segments": [
+              {
+                "text": "李",
+                "ruby": "り"
+              },
+              {
+                "text": "さん、たった "
+              },
+              {
+                "text": "今",
+                "ruby": "いま"
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "長島",
+                "ruby": "ながしま"
+              },
+              {
+                "text": "さんに メールを もらいました。"
+              }
+            ],
             "audioSegment": {
               "id": "l8-app-block-005-line-001",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson8/l8-app-block-005-line-001.mp3",
-              "start": 0,
-              "end": 3.86,
-              "duration": 3.86,
-              "method": "approved-asr-alignment",
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson8/lesson_apps.mp3",
+              "itemIndex": 9,
+              "speaker": "小野",
+              "text": "李さん、たった 今 長島さんに メールを もらいました。",
+              "start": 42,
+              "end": 46.22,
+              "duration": 4.22,
+              "rawAzureTiming": {
+                "start": 40.03,
+                "end": 46.1,
+                "duration": 6.07
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
+              "speechUnitCount": 2,
+              "matchScore": 0.818,
+              "asrConfidence": 0.867,
+              "asrText": "。 リ 三 た っ た 今 長 嶋 さ ん に メ ー ル を も ら い ま し た",
+              "phraseIndexes": [
+                8,
+                9
+              ],
+              "method": "manual-admin-adjustment",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:30:20.780Z",
-              "sourceAudioSha256": "24d3ec633a92ff3db84c4ccf2330288eb772ae0d73dcfeb1ea0a45b92468b927"
+              "alignmentIssues": [
+                "Moderate ASR text similarity."
+              ],
+              "review": {
+                "status": "pending",
+                "reviewedAt": null,
+                "note": "Moderate ASR text similarity.",
+                "matchScore": 0.818,
+                "asrText": "。 リ 三 た っ た 今 長 嶋 さ ん に メ ー ル を も ら い ま し た"
+              },
+              "reviewedAt": "2026-08-16T11:35:01.039Z"
             }
           },
           {
@@ -553,17 +1432,52 @@
             "translationZh": "传真收到了吗？",
             "confidence": "high",
             "rawText": "李：ファックスは 届きましたか。",
+            "segments": [
+              {
+                "text": "ファックスは "
+              },
+              {
+                "text": "届",
+                "ruby": "とど"
+              },
+              {
+                "text": "きましたか。"
+              }
+            ],
             "audioSegment": {
               "id": "l8-app-block-005-line-002",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson8/l8-app-block-005-line-002.mp3",
-              "start": 0,
-              "end": 2.14,
-              "duration": 2.14,
-              "method": "approved-asr-alignment",
-              "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:30:20.780Z",
-              "sourceAudioSha256": "24d3ec633a92ff3db84c4ccf2330288eb772ae0d73dcfeb1ea0a45b92468b927"
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson8/lesson_apps.mp3",
+              "itemIndex": 10,
+              "speaker": "李",
+              "text": "ファックスは 届きましたか。",
+              "start": 46.12,
+              "end": 48.08,
+              "duration": 1.96,
+              "rawAzureTiming": {
+                "start": 46.34,
+                "end": 48.1,
+                "duration": 1.76
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrConfidence": 0.866,
+              "asrText": "フ ァ ッ ク ス は 届 き ま し た か",
+              "phraseIndexes": [
+                9
+              ],
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [],
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-16T11:29:25.883Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "matchScore": 1,
+                "asrText": "フ ァ ッ ク ス は 届 き ま し た か"
+              }
             }
           },
           {
@@ -574,17 +1488,54 @@
             "translationZh": "嗯，传真和邮件都收到了。",
             "confidence": "high",
             "rawText": "小野：ええ、ファックスも メールも 届きましたよ。",
+            "segments": [
+              {
+                "text": "ええ、ファックスも メールも "
+              },
+              {
+                "text": "届",
+                "ruby": "とど"
+              },
+              {
+                "text": "きましたよ。"
+              }
+            ],
             "audioSegment": {
               "id": "l8-app-block-005-line-003",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson8/l8-app-block-005-line-003.mp3",
-              "start": 0,
-              "end": 2.02,
-              "duration": 2.02,
-              "method": "approved-asr-alignment",
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson8/lesson_apps.mp3",
+              "itemIndex": 11,
+              "speaker": "小野",
+              "text": "ええ、ファックスも メールも 届きましたよ。",
+              "start": 48.62,
+              "end": 52.26,
+              "duration": 3.64,
+              "rawAzureTiming": {
+                "start": 48.1,
+                "end": 52.28,
+                "duration": 4.18
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
+              "speechUnitCount": 2,
+              "matchScore": 1,
+              "asrConfidence": 0.913,
+              "asrText": "。 え え 、 フ ァ ッ ク ス も メ ー ル も 届 き ま し た よ",
+              "phraseIndexes": [
+                9,
+                10
+              ],
+              "method": "manual-admin-adjustment",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:30:20.780Z",
-              "sourceAudioSha256": "24d3ec633a92ff3db84c4ccf2330288eb772ae0d73dcfeb1ea0a45b92468b927"
+              "alignmentIssues": [],
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-16T11:29:25.883Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "matchScore": 1,
+                "asrText": "。 え え 、 フ ァ ッ ク ス も メ ー ル も 届 き ま し た よ"
+              },
+              "reviewedAt": "2026-08-16T11:35:39.931Z"
             }
           },
           {
@@ -595,17 +1546,45 @@
             "translationZh": "是吗？太好了。",
             "confidence": "high",
             "rawText": "李：そうですか。よかったです。",
+            "segments": [
+              {
+                "text": "そうですか。よかったです。"
+              }
+            ],
             "audioSegment": {
               "id": "l8-app-block-005-line-004",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson8/l8-app-block-005-line-004.mp3",
-              "start": 0,
-              "end": 2.22,
-              "duration": 2.22,
-              "method": "approved-asr-alignment",
-              "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:30:20.780Z",
-              "sourceAudioSha256": "24d3ec633a92ff3db84c4ccf2330288eb772ae0d73dcfeb1ea0a45b92468b927"
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson8/lesson_apps.mp3",
+              "itemIndex": 12,
+              "speaker": "李",
+              "text": "そうですか。よかったです。",
+              "start": 52.3,
+              "end": 53.94,
+              "duration": 1.64,
+              "rawAzureTiming": {
+                "start": 52.28,
+                "end": 53.96,
+                "duration": 1.68
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrConfidence": 0.916,
+              "asrText": "。 そ う で す か 。 よ か っ た で す",
+              "phraseIndexes": [
+                10
+              ],
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [],
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-16T11:29:25.883Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "matchScore": 1,
+                "asrText": "。 そ う で す か 。 よ か っ た で す"
+              }
             }
           }
         ]
@@ -631,17 +1610,80 @@
             "translationZh": "小李，这个给你。是箱根的影集。以前从长岛先生那里得到的。",
             "confidence": "high",
             "rawText": "小野：李さん、これ、どうぞ。箱根の 写真集です。前に 長島さんに もらいました。",
+            "segments": [
+              {
+                "text": "李",
+                "ruby": "り"
+              },
+              {
+                "text": "さん、これ、どうぞ。"
+              },
+              {
+                "text": "箱根",
+                "ruby": "はこね"
+              },
+              {
+                "text": "の "
+              },
+              {
+                "text": "写真集",
+                "ruby": "しゃしんしゅう"
+              },
+              {
+                "text": "です。"
+              },
+              {
+                "text": "前",
+                "ruby": "まえ"
+              },
+              {
+                "text": "に "
+              },
+              {
+                "text": "長島",
+                "ruby": "ながしま"
+              },
+              {
+                "text": "さんに もらいました。"
+              }
+            ],
             "audioSegment": {
               "id": "l8-app-block-007-line-001",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson8/l8-app-block-007-line-001.mp3",
-              "start": 0,
-              "end": 6.41,
-              "duration": 6.41,
-              "method": "approved-asr-alignment",
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson8/lesson_apps.mp3",
+              "itemIndex": 13,
+              "speaker": "小野",
+              "text": "李さん、これ、どうぞ。箱根の 写真集です。前に 長島さんに もらいました。",
+              "start": 58.98,
+              "end": 67.67,
+              "duration": 8.69,
+              "rawAzureTiming": {
+                "start": 53.96,
+                "end": 67.55,
+                "duration": 13.59
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
+              "speechUnitCount": 3,
+              "matchScore": 0.966,
+              "asrConfidence": 0.863,
+              "asrText": "。 リ さ ん こ れ ど う ぞ 箱 根 の 写 真 集 で す 前 に 長 島 さ ん に も ら い ま し た",
+              "phraseIndexes": [
+                10,
+                11,
+                12
+              ],
+              "method": "manual-admin-adjustment",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:30:20.780Z",
-              "sourceAudioSha256": "24d3ec633a92ff3db84c4ccf2330288eb772ae0d73dcfeb1ea0a45b92468b927"
+              "alignmentIssues": [],
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-16T11:29:25.883Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "matchScore": 0.966,
+                "asrText": "。 リ さ ん こ れ ど う ぞ 箱 根 の 写 真 集 で す 前 に 長 島 さ ん に も ら い ま し た"
+              },
+              "reviewedAt": "2026-08-16T11:36:14.662Z"
             }
           },
           {
@@ -652,17 +1694,46 @@
             "translationZh": "谢谢。",
             "confidence": "high",
             "rawText": "李：ありがとう ございます。",
+            "segments": [
+              {
+                "text": "ありがとう ございます。"
+              }
+            ],
             "audioSegment": {
               "id": "l8-app-block-007-line-002",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson8/l8-app-block-007-line-002.mp3",
-              "start": 0,
-              "end": 1.42,
-              "duration": 1.42,
-              "method": "approved-asr-alignment",
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson8/lesson_apps.mp3",
+              "itemIndex": 14,
+              "speaker": "李",
+              "text": "ありがとう ございます。",
+              "start": 68.1,
+              "end": 69.81,
+              "duration": 1.71,
+              "rawAzureTiming": {
+                "start": 68.35,
+                "end": 69.39,
+                "duration": 1.04
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrConfidence": 0.898,
+              "asrText": "あ り が と う ご ざ い ま す",
+              "phraseIndexes": [
+                13
+              ],
+              "method": "manual-admin-adjustment",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T08:30:20.780Z",
-              "sourceAudioSha256": "24d3ec633a92ff3db84c4ccf2330288eb772ae0d73dcfeb1ea0a45b92468b927"
+              "alignmentIssues": [],
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-16T11:29:25.883Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "matchScore": 1,
+                "asrText": "あ り が と う ご ざ い ま す"
+              },
+              "reviewedAt": "2026-08-16T11:36:24.146Z"
             }
           }
         ]
@@ -674,10 +1745,33 @@
     "未输出 segments；已保留可可靠识别的整句 kana。"
   ],
   "audioAlignment": {
-    "schemaVersion": 1,
-    "method": "approved-asr-alignment",
-    "sourceAlignment": "data/ocr/lesson8-text-audio-alignment.json",
-    "publishedAt": "2026-08-05T08:30:24.631Z",
-    "approvedSegments": 27
-  }
+    "schemaVersion": 2,
+    "lessonId": "lesson8",
+    "generatedAt": "2026-08-16T11:29:25.883Z",
+    "method": "azure-speech-sentence-alignment-with-boundary-padding",
+    "reviewStatus": "pending",
+    "tracks": [
+      {
+        "id": "lesson_basic",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson8/lesson_basic.mp3",
+        "sourceAudioSha256": "3ab5b0991eb412200ee74d131e2fd3dee8dd3a79d46e09fea95242c63c334258",
+        "expectedItems": 13,
+        "alignedItems": 13,
+        "detectedUnitCount": 17,
+        "warnings": []
+      },
+      {
+        "id": "lesson_apps",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit2/lesson8/lesson_apps.mp3",
+        "sourceAudioSha256": "24d3ec633a92ff3db84c4ccf2330288eb772ae0d73dcfeb1ea0a45b92468b927",
+        "expectedItems": 14,
+        "alignedItems": 14,
+        "detectedUnitCount": 22,
+        "warnings": [
+          "1 item(s) require manual verification."
+        ]
+      }
+    ]
+  },
+  "updatedAt": "2026-08-16T11:36:24.148Z"
 }

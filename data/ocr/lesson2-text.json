@@ -1,105 +1,61 @@
 {
   "lessonId": "lesson2",
   "sourceImages": [
-    {
-      "section": "basic",
-      "path": "course-assets/by-lesson/lesson2/page32.webp",
-      "pageNo": 32
-    },
-    {
-      "section": "application",
-      "path": "course-assets/by-lesson/lesson2/page37.webp",
-      "pageNo": 37
-    }
+    { "section": "basic", "path": "course-assets/by-lesson/lesson2/page32.webp", "pageNo": 32 },
+    { "section": "application", "path": "course-assets/by-lesson/lesson2/page37.webp", "pageNo": 37 }
   ],
   "basicText": {
     "title": "基本课文",
     "basicSentences": [
-      { "id": "l2-basic-s001", "order": 1, "text": "これは 本です。", "kana": "これは ほんです。", "translationZh": "这是书。", "confidence": "high", "rawText": "1. これは 本です。" },
-      { "id": "l2-basic-s002", "order": 2, "text": "それは 何ですか。", "kana": "それは なんですか。", "translationZh": "那是什么？", "confidence": "high", "rawText": "2. それは 何ですか。" },
-      { "id": "l2-basic-s003", "order": 3, "text": "あれは だれの 傘ですか。", "kana": "あれは だれの かさですか。", "translationZh": "那是谁的伞？", "confidence": "high", "rawText": "3. あれは だれの 傘ですか。" },
-      { "id": "l2-basic-s004", "order": 4, "text": "この カメラは スミスさんのです。", "kana": "この カメラは スミスさんのです。", "translationZh": "这个照相机是史密斯先生的。", "confidence": "high", "rawText": "4. この カメラは スミスさんのです。" }
+      { "id": "l2-basic-s001", "order": 1, "text": "これは 本です。", "kana": "これは ほんです。", "segments": [{ "text": "これは " }, { "text": "本", "ruby": "ほん" }, { "text": "です。" }], "translationZh": "这是书。", "confidence": "high", "rawText": "1. これは 本です。" },
+      { "id": "l2-basic-s002", "order": 2, "text": "それは 何ですか。", "kana": "それは なんですか。", "segments": [{ "text": "それは " }, { "text": "何", "ruby": "なん" }, { "text": "ですか。" }], "translationZh": "那是什么？", "confidence": "high", "rawText": "2. それは 何ですか。" },
+      { "id": "l2-basic-s003", "order": 3, "text": "あれは だれの 傘ですか。", "kana": "あれは だれの かさですか。", "segments": [{ "text": "あれは だれの " }, { "text": "傘", "ruby": "かさ" }, { "text": "ですか。" }], "translationZh": "那是谁的伞？", "confidence": "high", "rawText": "3. あれは だれの 傘ですか。" },
+      { "id": "l2-basic-s004", "order": 4, "text": "この カメラは スミスさんのです。", "kana": "この カメラは スミスさんのです。", "segments": [{ "text": "この カメラは スミスさんのです。" }], "translationZh": "这个照相机是史密斯先生的。", "confidence": "high", "rawText": "4. この カメラは スミスさんのです。" }
     ],
     "dialogues": [
-      {
-        "id": "l2-basic-dialogue-001",
-        "label": "A",
-        "lines": [
-          { "id": "l2-basic-dialogue-001-line-001", "speaker": "甲", "text": "これは テレビですか。", "kana": "これは テレビですか。", "translationZh": "这是电视机吗？", "confidence": "high", "rawText": "甲：これは テレビですか。" },
-          { "id": "l2-basic-dialogue-001-line-002", "speaker": "乙", "text": "いいえ、それは テレビでは ありません。パソコンです。", "kana": "いいえ、それは テレビでは ありません。パソコンです。", "translationZh": "不，那不是电视机。是个人电脑。", "confidence": "high", "rawText": "乙：いいえ、それは テレビでは ありません。パソコンです。" }
-        ]
-      },
-      {
-        "id": "l2-basic-dialogue-002",
-        "label": "B",
-        "lines": [
-          { "id": "l2-basic-dialogue-002-line-001", "speaker": "甲", "text": "それは 何ですか。", "kana": "それは なんですか。", "translationZh": "那是什么？", "confidence": "high", "rawText": "甲：それは 何ですか。" },
-          { "id": "l2-basic-dialogue-002-line-002", "speaker": "乙", "text": "これは 日本語の 本です。", "kana": "これは にほんごの ほんです。", "translationZh": "这是日语书。", "confidence": "high", "rawText": "乙：これは 日本語の 本です。" }
-        ]
-      },
-      {
-        "id": "l2-basic-dialogue-003",
-        "label": "C",
-        "lines": [
-          { "id": "l2-basic-dialogue-003-line-001", "speaker": "甲", "text": "森さんの かばんは どれですか。", "kana": "もりさんの かばんは どれですか。", "translationZh": "森先生的包是哪一个？", "confidence": "high", "rawText": "甲：森さんの かばんは どれですか。" },
-          { "id": "l2-basic-dialogue-003-line-002", "speaker": "乙", "text": "あの かばんです。", "kana": "あの かばんです。", "translationZh": "是那个包。", "confidence": "high", "rawText": "乙：あの かばんです。" }
-        ]
-      },
-      {
-        "id": "l2-basic-dialogue-004",
-        "label": "D",
-        "lines": [
-          { "id": "l2-basic-dialogue-004-line-001", "speaker": "甲", "text": "その ノートは だれのですか。", "kana": "その ノートは だれのですか。", "translationZh": "那个笔记本是谁的？", "confidence": "high", "rawText": "甲：その ノートは だれのですか。" },
-          { "id": "l2-basic-dialogue-004-line-002", "speaker": "乙", "text": "わたしのです。", "kana": "わたしのです。", "translationZh": "是我的。", "confidence": "high", "rawText": "乙：わたしのです。" }
-        ]
-      }
+      { "id": "l2-basic-dialogue-001", "label": "A", "lines": [
+        { "id": "l2-basic-dialogue-001-line-001", "speaker": "甲", "text": "これは テレビですか。", "kana": "これは テレビですか。", "segments": [{ "text": "これは テレビですか。" }], "translationZh": "这是电视机吗？", "confidence": "high", "rawText": "甲：これは テレビですか。" },
+        { "id": "l2-basic-dialogue-001-line-002", "speaker": "乙", "text": "いいえ、それは テレビでは ありません。パソコンです。", "kana": "いいえ、それは テレビでは ありません。パソコンです。", "segments": [{ "text": "いいえ、それは テレビでは ありません。パソコンです。" }], "translationZh": "不，那不是电视机。是个人电脑。", "confidence": "high", "rawText": "乙：いいえ、それは テレビでは ありません。パソコンです。" }
+      ] },
+      { "id": "l2-basic-dialogue-002", "label": "B", "lines": [
+        { "id": "l2-basic-dialogue-002-line-001", "speaker": "甲", "text": "それは 何ですか。", "kana": "それは なんですか。", "segments": [{ "text": "それは " }, { "text": "何", "ruby": "なん" }, { "text": "ですか。" }], "translationZh": "那是什么？", "confidence": "high", "rawText": "甲：それは 何ですか。" },
+        { "id": "l2-basic-dialogue-002-line-002", "speaker": "乙", "text": "これは 日本語の 本です。", "kana": "これは にほんごの ほんです。", "segments": [{ "text": "これは " }, { "text": "日本語", "ruby": "にほんご" }, { "text": "の " }, { "text": "本", "ruby": "ほん" }, { "text": "です。" }], "translationZh": "这是日语书。", "confidence": "high", "rawText": "乙：これは 日本語の 本です。" }
+      ] },
+      { "id": "l2-basic-dialogue-003", "label": "C", "lines": [
+        { "id": "l2-basic-dialogue-003-line-001", "speaker": "甲", "text": "森さんの かばんは どれですか。", "kana": "もりさんの かばんは どれですか。", "segments": [{ "text": "森", "ruby": "もり" }, { "text": "さんの かばんは どれですか。" }], "translationZh": "森先生的包是哪一个？", "confidence": "high", "rawText": "甲：森さんの かばんは どれですか。" },
+        { "id": "l2-basic-dialogue-003-line-002", "speaker": "乙", "text": "あの かばんです。", "kana": "あの かばんです。", "segments": [{ "text": "あの かばんです。" }], "translationZh": "是那个包。", "confidence": "high", "rawText": "乙：あの かばんです。" }
+      ] },
+      { "id": "l2-basic-dialogue-004", "label": "D", "lines": [
+        { "id": "l2-basic-dialogue-004-line-001", "speaker": "甲", "text": "その ノートは だれのですか。", "kana": "その ノートは だれのですか。", "segments": [{ "text": "その ノートは だれのですか。" }], "translationZh": "那个笔记本是谁的？", "confidence": "high", "rawText": "甲：その ノートは だれのですか。" },
+        { "id": "l2-basic-dialogue-004-line-002", "speaker": "乙", "text": "わたしのです。", "kana": "わたしのです。", "segments": [{ "text": "わたしのです。" }], "translationZh": "是我的。", "confidence": "high", "rawText": "乙：わたしのです。" }
+      ] }
     ]
   },
   "applicationText": {
     "title": "家族の 写真",
     "blocks": [
-      {
-        "id": "l2-app-block-001",
-        "type": "narration",
-        "text": "小李计划先在涩谷的某宾馆住一段时间，然后再搬到公寓里。这天，小野来宾馆看望小李。两人在大厅喝茶。",
-        "kana": null,
-        "translationZh": "小李计划先在涩谷的某宾馆住一段时间，然后再搬到公寓里。这天，小野来宾馆看望小李。两人在大厅喝茶。",
-        "confidence": "high",
-        "rawText": "小李计划先在涩谷的某宾馆住一段时间，然后再搬到公寓里。这天，小野来宾馆看望小李。两人在大厅喝茶。"
-      },
+      { "id": "l2-app-block-001", "type": "narration", "text": "小李计划先在涩谷的某宾馆住一段时间，然后再搬到公寓里。这天，小野来宾馆看望小李。两人在大厅喝茶。", "kana": null, "translationZh": "小李计划先在涩谷的某宾馆住一段时间，然后再搬到公寓里。这天，小野来宾馆看望小李。两人在大厅喝茶。", "confidence": "high", "rawText": "小李计划先在涩谷的某宾馆住一段时间，然后再搬到公寓里。这天，小野来宾馆看望小李。两人在大厅喝茶。" },
       { "id": "l2-app-block-002", "type": "scene", "text": "（小李从包里取记事本时，从记事本里掉出一张照片）", "kana": null, "translationZh": "小李从包里取记事本时，从记事本里掉出一张照片。", "confidence": "high", "rawText": "（小李从包里取记事本时，从记事本里掉出一张照片）" },
-      {
-        "id": "l2-app-block-003",
-        "type": "dialogue",
-        "lines": [
-          { "id": "l2-app-block-003-line-001", "speaker": "小野", "text": "李さん、それは 何ですか。", "kana": "りさん、それは なんですか。", "translationZh": "小李，那是什么？", "confidence": "high", "rawText": "小野：李さん、それは 何ですか。" },
-          { "id": "l2-app-block-003-line-002", "speaker": "李", "text": "これですか。家族の 写真です。", "kana": "これですか。かぞくの しゃしんです。", "translationZh": "这个吗？是家人的照片。", "confidence": "high", "rawText": "李：これですか。家族の 写真です。" },
-          { "id": "l2-app-block-003-line-003", "speaker": "小野", "text": "この 方は どなたですか。", "kana": "この かたは どなたですか。", "translationZh": "这位是谁？", "confidence": "high", "rawText": "小野：（指着其中一个人）この 方は どなたですか。" },
-          { "id": "l2-app-block-003-line-004", "speaker": "李", "text": "わたしの 母です。", "kana": "わたしの ははです。", "translationZh": "是我母亲。", "confidence": "high", "rawText": "李：わたしの 母です。" },
-          { "id": "l2-app-block-003-line-005", "speaker": "小野", "text": "お母さんは おいくつですか。", "kana": "おかあさんは おいくつですか。", "translationZh": "您母亲多大年纪？", "confidence": "high", "rawText": "小野：お母さんは おいくつですか。" },
-          { "id": "l2-app-block-003-line-006", "speaker": "李", "text": "52 歳です。", "kana": "ごじゅうに さいです。", "translationZh": "52岁。", "confidence": "high", "rawText": "李：52 歳です。" }
-        ]
-      },
+      { "id": "l2-app-block-003", "type": "dialogue", "lines": [
+        { "id": "l2-app-block-003-line-001", "speaker": "小野", "text": "李さん、それは 何ですか。", "kana": "りさん、それは なんですか。", "segments": [{ "text": "李", "ruby": "り" }, { "text": "さん、それは " }, { "text": "何", "ruby": "なん" }, { "text": "ですか。" }], "translationZh": "小李，那是什么？", "confidence": "high", "rawText": "小野：李さん、それは 何ですか。" },
+        { "id": "l2-app-block-003-line-002", "speaker": "李", "text": "これですか。家族の 写真です。", "kana": "これですか。かぞくの しゃしんです。", "segments": [{ "text": "これですか。" }, { "text": "家族", "ruby": "かぞく" }, { "text": "の " }, { "text": "写真", "ruby": "しゃしん" }, { "text": "です。" }], "translationZh": "这个吗？是家人的照片。", "confidence": "high", "rawText": "李：これですか。家族の 写真です。" },
+        { "id": "l2-app-block-003-line-003", "speaker": "小野", "text": "この 方は どなたですか。", "kana": "この かたは どなたですか。", "segments": [{ "text": "この " }, { "text": "方", "ruby": "かた" }, { "text": "は どなたですか。" }], "translationZh": "这位是谁？", "confidence": "high", "rawText": "小野：（指着其中一个人）この 方は どなたですか。" },
+        { "id": "l2-app-block-003-line-004", "speaker": "李", "text": "わたしの 母です。", "kana": "わたしの ははです。", "segments": [{ "text": "わたしの " }, { "text": "母", "ruby": "はは" }, { "text": "です。" }], "translationZh": "是我母亲。", "confidence": "high", "rawText": "李：わたしの 母です。" },
+        { "id": "l2-app-block-003-line-005", "speaker": "小野", "text": "お母さんは おいくつですか。", "kana": "おかあさんは おいくつですか。", "segments": [{ "text": "お母", "ruby": "おかあ" }, { "text": "さんは おいくつですか。" }], "translationZh": "您母亲多大年纪？", "confidence": "high", "rawText": "小野：お母さんは おいくつですか。" },
+        { "id": "l2-app-block-003-line-006", "speaker": "李", "text": "52 歳です。", "kana": "ごじゅうに さいです。", "segments": [{ "text": "52 " }, { "text": "歳", "ruby": "さい" }, { "text": "です。" }], "translationZh": "52岁。", "confidence": "high", "rawText": "李：52 歳です。" }
+      ] },
       { "id": "l2-app-block-004", "type": "scene", "text": "（小李从包里取出一个盒子）", "kana": null, "translationZh": "小李从包里取出一个盒子。", "confidence": "high", "rawText": "（小李从包里取出一个盒子）" },
-      {
-        "id": "l2-app-block-005",
-        "type": "dialogue",
-        "lines": [
-          { "id": "l2-app-block-005-line-001", "speaker": "李", "text": "小野さん、これ、どうぞ。", "kana": "おのさん、これ、どうぞ。", "translationZh": "小野女士，这个，请收下。", "confidence": "high", "rawText": "李：小野さん、これ、どうぞ。" },
-          { "id": "l2-app-block-005-line-002", "speaker": "小野", "text": "えっ、何ですか。", "kana": "えっ、なんですか。", "translationZh": "啊，是什么？", "confidence": "high", "rawText": "小野：えっ、何ですか。" },
-          { "id": "l2-app-block-005-line-003", "speaker": "李", "text": "お土産です。", "kana": "おみやげです。", "translationZh": "是礼物。", "confidence": "high", "rawText": "李：お土産です。" }
-        ]
-      },
+      { "id": "l2-app-block-005", "type": "dialogue", "lines": [
+        { "id": "l2-app-block-005-line-001", "speaker": "李", "text": "小野さん、これ、どうぞ。", "kana": "おのさん、これ、どうぞ。", "segments": [{ "text": "小野", "ruby": "おの" }, { "text": "さん、これ、どうぞ。" }], "translationZh": "小野女士，这个，请收下。", "confidence": "high", "rawText": "李：小野さん、これ、どうぞ。" },
+        { "id": "l2-app-block-005-line-002", "speaker": "小野", "text": "えっ、何ですか。", "kana": "えっ、なんですか。", "segments": [{ "text": "えっ、" }, { "text": "何", "ruby": "なん" }, { "text": "ですか。" }], "translationZh": "啊，是什么？", "confidence": "high", "rawText": "小野：えっ、何ですか。" },
+        { "id": "l2-app-block-005-line-003", "speaker": "李", "text": "お土産です。", "kana": "おみやげです。", "segments": [{ "text": "お土産", "ruby": "おみやげ" }, { "text": "です。" }], "translationZh": "是礼物。", "confidence": "high", "rawText": "李：お土産です。" }
+      ] },
       { "id": "l2-app-block-006", "type": "scene", "text": "（小野打开一看，是一块很漂亮的刺绣手绢）", "kana": null, "translationZh": "小野打开一看，是一块很漂亮的刺绣手绢。", "confidence": "high", "rawText": "（小野打开一看，是一块很漂亮的刺绣手绢）" },
-      {
-        "id": "l2-app-block-007",
-        "type": "dialogue",
-        "lines": [
-          { "id": "l2-app-block-007-line-001", "speaker": "小野", "text": "わあ、シルクの ハンカチですか。", "kana": "わあ、シルクの ハンカチですか。", "translationZh": "哇，是丝绸手绢吗？", "confidence": "high", "rawText": "小野：わあ、シルクの ハンカチですか。" },
-          { "id": "l2-app-block-007-line-002", "speaker": "李", "text": "ええ。スワトウの ハンカチです。中国の 名産品です。", "kana": "ええ。スワトウの ハンカチです。ちゅうごくの めいさんひんです。", "translationZh": "嗯，是汕头的手绢。是中国的名产。", "confidence": "high", "rawText": "李：ええ。スワトウの ハンカチです。中国の 名産品です。" },
-          { "id": "l2-app-block-007-line-003", "speaker": "小野", "text": "どうも ありがとう ございます。", "kana": "どうも ありがとう ございます。", "translationZh": "非常感谢。", "confidence": "high", "rawText": "小野：どうも ありがとう ございます。" }
-        ]
-      }
+      { "id": "l2-app-block-007", "type": "dialogue", "lines": [
+        { "id": "l2-app-block-007-line-001", "speaker": "小野", "text": "わあ、シルクの ハンカチですか。", "kana": "わあ、シルクの ハンカチですか。", "segments": [{ "text": "わあ、シルクの ハンカチですか。" }], "translationZh": "哇，是丝绸手绢吗？", "confidence": "high", "rawText": "小野：わあ、シルクの ハンカチですか。" },
+        { "id": "l2-app-block-007-line-002", "speaker": "李", "text": "ええ。スワトウの ハンカチです。中国の 名産品です。", "kana": "ええ。スワトウの ハンカチです。ちゅうごくの めいさんひんです。", "segments": [{ "text": "ええ。スワトウの ハンカチです。" }, { "text": "中国", "ruby": "ちゅうごく" }, { "text": "の " }, { "text": "名産品", "ruby": "めいさんひん" }, { "text": "です。" }], "translationZh": "嗯，是汕头的手绢。是中国的名产。", "confidence": "high", "rawText": "李：ええ。スワトウの ハンカチです。中国の 名産品です。" },
+        { "id": "l2-app-block-007-line-003", "speaker": "小野", "text": "どうも ありがとう ございます。", "kana": "どうも ありがとう ございます。", "segments": [{ "text": "どうも ありがとう ございます。" }], "translationZh": "非常感谢。", "confidence": "high", "rawText": "小野：どうも ありがとう ございます。" }
+      ] }
     ]
   },
   "warnings": [

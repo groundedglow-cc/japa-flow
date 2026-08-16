@@ -26,6 +26,8 @@ import { lesson21Practice } from "../lesson21-practice-data.ts";
 import { lesson22Practice } from "../lesson22-practice-data.ts";
 import { lesson23Practice } from "../lesson23-practice-data.ts";
 import { lesson24Practice } from "../lesson24-practice-data.ts";
+import { lesson25Practice } from "../lesson25-practice-data.ts";
+import { lesson27Practice } from "../lesson27-practice-data.ts";
 
 const practices = {
   lesson1: lesson1Practice,
@@ -51,7 +53,9 @@ const practices = {
   lesson21: lesson21Practice,
   lesson22: lesson22Practice,
   lesson23: lesson23Practice,
-  lesson24: lesson24Practice
+  lesson24: lesson24Practice,
+  lesson25: lesson25Practice,
+  lesson27: lesson27Practice
 };
 
 function lessonIdFromPage() {
@@ -70,6 +74,7 @@ const fallbackPractice = localPractice || {
   activities: []
 };
 const root = document.getElementById("practice-root");
+const embeddedPreview = new URLSearchParams(window.location.search).get("embedded") === "1";
 
 if (!root) {
   throw new Error("Missing #practice-root.");
@@ -79,6 +84,10 @@ root.textContent = "加载练习...";
 
 async function bootstrap() {
   if (!practiceSessionApi.isAuthenticated()) {
+    if (embeddedPreview) {
+      createRoot(root).render(<PracticePreview practice={{ ...fallbackPractice, preview: true }} localPractice={localPractice} />);
+      return;
+    }
     root.textContent = "请先登录后继续练习，正在跳转...";
     practiceSessionApi.redirectToLogin();
     return;

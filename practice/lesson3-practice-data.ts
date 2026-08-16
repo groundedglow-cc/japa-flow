@@ -1,5 +1,6 @@
 import type { AnswerSource, Choice, InputSlot, LessonPractice, PracticeActivity, PracticeItem, PromptPart, RichText } from "./lesson-practice-types";
-import { lesson3ImageCrops } from "./lesson3-image-crops";
+
+const exerciseImage = (fileName: string) => `../data/book1_exercise_images/${fileName}`;
 
 const page = (pageNo: number) => `../course-assets/by-lesson/lesson3/page${pageNo}.webp`;
 const audio = (exerciseNo: 1 | 2, order: number) =>
@@ -7,12 +8,7 @@ const audio = (exerciseNo: 1 | 2, order: number) =>
 const text = (value: string, options: Omit<RichText, "type" | "text"> = {}): RichText => ({ type: "text", text: value, ...options });
 const repl = (value: string, substitutionKey: string, options: Omit<RichText, "type" | "text" | "underline" | "substitutionKey"> = {}): RichText =>
   text(value, { ...options, underline: true, substitutionKey });
-const crop = (id: string) => lesson3ImageCrops.assets.find((asset) => asset.id === id);
 
-const p1a1Place = crop("l3-p1-a1-place-picture-practice");
-const p1a1Building = crop("l3-p1-a1-building-picture-practice");
-const p1a6Price = crop("l3-p1-a6-price-picture-practice");
-const p2a3Stamp = crop("l3-p2-a3-stamp-picture-practice");
 
 const sentenceSlot = (placeholder = "输入 1 个完整句子"): InputSlot[] => [
   { id: "answer", expectedUnit: "sentence", width: "long", placeholder }
@@ -183,7 +179,10 @@ const activities: PracticeActivity[] = [
     interaction: "pattern_substitution",
     answerUnit: "sentence",
     responseScope: "sentence_only",
-    assets: [...(p1a1Place ? [p1a1Place] : []), ...(p1a1Building ? [p1a1Building] : [])],
+    assets: [
+      { id: "l3-p1-a1-place-picture-practice", kind: "exercise_image", imagePath: exerciseImage("book1_lesson3_1_1_1.png") },
+      { id: "l3-p1-a1-building-picture-practice", kind: "exercise_image", imagePath: exerciseImage("book1_lesson3_1_1_2.png") }
+    ],
     layout: [],
     itemGroups: [
       {
@@ -357,7 +356,9 @@ const activities: PracticeActivity[] = [
     interaction: "dialogue_practice",
     answerUnit: "dialogue",
     responseScope: "dialogue_only",
-    assets: [...(p1a6Price ? [p1a6Price] : [])],
+    assets: [
+      { id: "l3-p1-a6-price-picture-practice", kind: "exercise_image", imagePath: exerciseImage("book1_lesson3_1_6.png") }
+    ],
     displayAssets: ["l3-p1-a6-price-picture-practice"],
     layout: [{
       type: "dialogue",
@@ -471,7 +472,9 @@ const activities: PracticeActivity[] = [
         ]
       }
     },
-    assets: [...(p2a3Stamp ? [p2a3Stamp] : [])],
+    assets: [
+      { id: "l3-p2-a3-stamp-picture-practice", kind: "exercise_image", imagePath: exerciseImage("book1_lesson3_2_3.png") }
+    ],
     displayAssets: ["l3-p2-a3-stamp-picture-practice"],
     layout: [],
     itemGroups: [

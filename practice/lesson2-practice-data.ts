@@ -1,5 +1,6 @@
 import type { Choice, InputSlot, LessonPractice, PracticeActivity, PracticeItem, PromptPart, ResponseScope, RichText } from "./lesson-practice-types";
-import { lesson2ImageCrops } from "./lesson2-image-crops";
+
+const exerciseImage = (fileName: string) => `../data/book1_exercise_images/${fileName}`;
 
 const page = (pageNo: number) => `../course-assets/by-lesson/lesson2/page${pageNo}.webp`;
 const audio = (exerciseNo: 1 | 2, order: number) =>
@@ -7,7 +8,6 @@ const audio = (exerciseNo: 1 | 2, order: number) =>
 const text = (value: string, options: Omit<RichText, "type" | "text"> = {}): RichText => ({ type: "text", text: value, ...options });
 const repl = (value: string, substitutionKey: string, options: Omit<RichText, "type" | "text" | "underline" | "substitutionKey"> = {}): RichText =>
   text(value, { ...options, underline: true, substitutionKey });
-const crop = (id: string) => lesson2ImageCrops.assets.find((asset) => asset.id === id)!;
 
 const sentenceSlot = (placeholder = "输入 1 个完整句子"): InputSlot[] => [
   { id: "answer", expectedUnit: "sentence", width: "long", placeholder }
@@ -95,9 +95,6 @@ const dialogueItem = (
   note: options.note
 });
 
-const p1a1Picture = crop("l2-p1-a1-picture-practice");
-const p1a4Picture = crop("l2-p1-a4-picture-practice");
-const p2a4Picture = crop("l2-p2-a4-picture-practice");
 
 const p1a1Items = [
   ["1", "かばん", "これは かばんです。", "かばん"],
@@ -187,7 +184,9 @@ const activities: PracticeActivity[] = [
     interaction: "pattern_substitution",
     answerUnit: "sentence",
     responseScope: "sentence_only",
-    assets: [p1a1Picture],
+    assets: [
+      { id: "l2-p1-a1-picture-practice", kind: "exercise_image", imagePath: exerciseImage("book1_lesson2_1_1.png") }
+    ],
     displayAssets: ["l2-p1-a1-picture-practice"],
     layout: [{
       type: "example",
@@ -257,7 +256,9 @@ const activities: PracticeActivity[] = [
     interaction: "dialogue_practice",
     answerUnit: "dialogue",
     responseScope: "dialogue_only",
-    assets: [p1a4Picture],
+    assets: [
+      { id: "l2-p1-a4-picture-practice", kind: "exercise_image", imagePath: exerciseImage("book1_lesson2_1_4.png") }
+    ],
     displayAssets: ["l2-p1-a4-picture-practice"],
     layout: [],
     itemGroups: [
@@ -480,7 +481,9 @@ const activities: PracticeActivity[] = [
         ]
       }
     },
-    assets: [p2a4Picture],
+    assets: [
+      { id: "l2-p2-a4-picture-practice", kind: "exercise_image", imagePath: exerciseImage("book1_lesson2_2_4.png") }
+    ],
     displayAssets: ["l2-p2-a4-picture-practice"],
     layout: [{
       type: "example",

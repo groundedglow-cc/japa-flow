@@ -25,14 +25,27 @@
         "audioSegment": {
           "id": "l43-basic-s001",
           "trackId": "lesson_basic",
-          "sourceUrl": "/data/ocr/audio-clips/lesson43/l43-basic-s001.mp3",
-          "start": 0,
-          "end": 3.58,
+          "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit11/lesson43/lesson_basic.mp3",
+          "speaker": "",
+          "text": "陳さんは、息子をアメリカに留学させます。",
+          "start": 1.85,
+          "end": 5.43,
           "duration": 3.58,
-          "method": "approved-asr-alignment",
+          "speechUnitCount": 1,
+          "matchScore": 0.944,
+          "asrText": "ン さ ん は 息 子 を ア メ リ カ に 留 学 さ せ ま す",
+          "phraseIndexes": [
+            0
+          ],
+          "method": "legacy-asr-alignment-range-converted",
           "confidence": "approved",
-          "reviewedAt": "2026-08-05T10:28:08.334Z",
-          "sourceAudioSha256": "7df826f5415a6d73d1fa3e6ea50bd77ba0a0c1c34a29ff34a7895c9c07aee202"
+          "review": {
+            "status": "approved",
+            "reviewedAt": "2026-08-05T10:28:08.334Z",
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "matchScore": 0.944,
+            "asrText": "ン さ ん は 息 子 を ア メ リ カ に 留 学 さ せ ま す"
+          }
         }
       },
       {
@@ -45,14 +58,27 @@
         "audioSegment": {
           "id": "l43-basic-s002",
           "trackId": "lesson_basic",
-          "sourceUrl": "/data/ocr/audio-clips/lesson43/l43-basic-s002.mp3",
-          "start": 0,
-          "end": 3.9,
+          "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit11/lesson43/lesson_basic.mp3",
+          "speaker": "",
+          "text": "部長は太田さんにレポートを書かせました。",
+          "start": 7.53,
+          "end": 11.43,
           "duration": 3.9,
-          "method": "approved-asr-alignment",
+          "speechUnitCount": 1,
+          "matchScore": 1,
+          "asrText": "部 長 は 太 田 さ ん に レ ポ ー ト を 書 か せ ま し た",
+          "phraseIndexes": [
+            1
+          ],
+          "method": "legacy-asr-alignment-range-converted",
           "confidence": "approved",
-          "reviewedAt": "2026-08-05T10:28:08.334Z",
-          "sourceAudioSha256": "7df826f5415a6d73d1fa3e6ea50bd77ba0a0c1c34a29ff34a7895c9c07aee202"
+          "review": {
+            "status": "approved",
+            "reviewedAt": "2026-08-05T10:28:08.334Z",
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "matchScore": 1,
+            "asrText": "部 長 は 太 田 さ ん に レ ポ ー ト を 書 か せ ま し た"
+          }
         }
       },
       {
@@ -65,14 +91,27 @@
         "audioSegment": {
           "id": "l43-basic-s003",
           "trackId": "lesson_basic",
-          "sourceUrl": "/data/ocr/audio-clips/lesson43/l43-basic-s003.mp3",
-          "start": 0,
-          "end": 3.3,
+          "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit11/lesson43/lesson_basic.mp3",
+          "speaker": "",
+          "text": "疲れました。少し休ませてください。",
+          "start": 13.49,
+          "end": 16.79,
           "duration": 3.3,
-          "method": "approved-asr-alignment",
+          "speechUnitCount": 1,
+          "matchScore": 1,
+          "asrText": "疲 れ ま し た 少 し 休 ま せ て く だ さ い",
+          "phraseIndexes": [
+            2
+          ],
+          "method": "legacy-asr-alignment-range-converted",
           "confidence": "approved",
-          "reviewedAt": "2026-08-05T10:28:08.334Z",
-          "sourceAudioSha256": "7df826f5415a6d73d1fa3e6ea50bd77ba0a0c1c34a29ff34a7895c9c07aee202"
+          "review": {
+            "status": "approved",
+            "reviewedAt": "2026-08-05T10:28:08.334Z",
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "matchScore": 1,
+            "asrText": "疲 れ ま し た 少 し 休 ま せ て く だ さ い"
+          }
         }
       },
       {
@@ -85,14 +124,27 @@
         "audioSegment": {
           "id": "l43-basic-s004",
           "trackId": "lesson_basic",
-          "sourceUrl": "/data/ocr/audio-clips/lesson43/l43-basic-s004.mp3",
-          "start": 0,
-          "end": 2.86,
+          "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit11/lesson43/lesson_basic.mp3",
+          "speaker": "",
+          "text": "このボールペンはとても書きやすいです。",
+          "start": 19.17,
+          "end": 22.03,
           "duration": 2.86,
-          "method": "approved-asr-alignment",
+          "speechUnitCount": 1,
+          "matchScore": 1,
+          "asrText": "こ の ボ ー ル ペ ン は と て も 書 き や す い で す",
+          "phraseIndexes": [
+            4
+          ],
+          "method": "legacy-asr-alignment-range-converted",
           "confidence": "approved",
-          "reviewedAt": "2026-08-05T10:28:08.334Z",
-          "sourceAudioSha256": "7df826f5415a6d73d1fa3e6ea50bd77ba0a0c1c34a29ff34a7895c9c07aee202"
+          "review": {
+            "status": "approved",
+            "reviewedAt": "2026-08-05T10:28:08.334Z",
+            "note": "Automatically approved by the bulk alignment workflow.",
+            "matchScore": 1,
+            "asrText": "こ の ボ ー ル ペ ン は と て も 書 き や す い で す"
+          }
         }
       }
     ],
@@ -111,14 +163,27 @@
             "audioSegment": {
               "id": "l43-basic-dialogue-001-line-001",
               "trackId": "lesson_basic",
-              "sourceUrl": "/data/ocr/audio-clips/lesson43/l43-basic-dialogue-001-line-001.mp3",
-              "start": 0,
-              "end": 2.9,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit11/lesson43/lesson_basic.mp3",
+              "speaker": "甲",
+              "text": "今、子供を買い物に行かせています。",
+              "start": 24.64,
+              "end": 27.54,
               "duration": 2.9,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrText": "今 子 供 を 買 い 物 に 行 か せ て い ま す",
+              "phraseIndexes": [
+                5
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T10:28:08.334Z",
-              "sourceAudioSha256": "7df826f5415a6d73d1fa3e6ea50bd77ba0a0c1c34a29ff34a7895c9c07aee202"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T10:28:08.334Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 1,
+                "asrText": "今 子 供 を 買 い 物 に 行 か せ て い ま す"
+              }
             }
           },
           {
@@ -131,14 +196,28 @@
             "audioSegment": {
               "id": "l43-basic-dialogue-001-line-002",
               "trackId": "lesson_basic",
-              "sourceUrl": "/data/ocr/audio-clips/lesson43/l43-basic-dialogue-001-line-002.mp3",
-              "start": 0,
-              "end": 5.98,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit11/lesson43/lesson_basic.mp3",
+              "speaker": "乙",
+              "text": "お手伝いですか。わたしもよく子供に家の仕事を手伝わせます。",
+              "start": 28.25,
+              "end": 34.23,
               "duration": 5.98,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 2,
+              "matchScore": 0.889,
+              "asrText": "お 手 伝 い で す か 私 も よ く 子 供 に 家 の 仕 事 を 手 伝 わ せ ま す",
+              "phraseIndexes": [
+                6,
+                7
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T10:28:08.334Z",
-              "sourceAudioSha256": "7df826f5415a6d73d1fa3e6ea50bd77ba0a0c1c34a29ff34a7895c9c07aee202"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T10:28:08.334Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 0.889,
+                "asrText": "お 手 伝 い で す か 私 も よ く 子 供 に 家 の 仕 事 を 手 伝 わ せ ま す"
+              }
             }
           }
         ]
@@ -157,14 +236,27 @@
             "audioSegment": {
               "id": "l43-basic-dialogue-002-line-001",
               "trackId": "lesson_basic",
-              "sourceUrl": "/data/ocr/audio-clips/lesson43/l43-basic-dialogue-002-line-001.mp3",
-              "start": 0,
-              "end": 3.5,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit11/lesson43/lesson_basic.mp3",
+              "speaker": "甲",
+              "text": "遠いですから、駅まで部下に送らせましょうか。",
+              "start": 36.49,
+              "end": 39.99,
               "duration": 3.5,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 1,
+              "matchScore": 0.95,
+              "asrText": "遠 い で す か ら 駅 ま で 部 下 に 遅 ら せ ま し ょ う か",
+              "phraseIndexes": [
+                8
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T10:28:08.334Z",
-              "sourceAudioSha256": "7df826f5415a6d73d1fa3e6ea50bd77ba0a0c1c34a29ff34a7895c9c07aee202"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T10:28:08.334Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 0.95,
+                "asrText": "遠 い で す か ら 駅 ま で 部 下 に 遅 ら せ ま し ょ う か"
+              }
             }
           },
           {
@@ -177,14 +269,27 @@
             "audioSegment": {
               "id": "l43-basic-dialogue-002-line-002",
               "trackId": "lesson_basic",
-              "sourceUrl": "/data/ocr/audio-clips/lesson43/l43-basic-dialogue-002-line-002.mp3",
-              "start": 0,
-              "end": 2.74,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit11/lesson43/lesson_basic.mp3",
+              "speaker": "乙",
+              "text": "大丈夫です。ありがとうございます。",
+              "start": 40.25,
+              "end": 42.99,
               "duration": 2.74,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrText": "大 丈 夫 で す あ り が と う ご ざ い ま す",
+              "phraseIndexes": [
+                8
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T10:28:08.334Z",
-              "sourceAudioSha256": "7df826f5415a6d73d1fa3e6ea50bd77ba0a0c1c34a29ff34a7895c9c07aee202"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T10:28:08.334Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 1,
+                "asrText": "大 丈 夫 で す あ り が と う ご ざ い ま す"
+              }
             }
           }
         ]
@@ -203,14 +308,27 @@
             "audioSegment": {
               "id": "l43-basic-dialogue-003-line-001",
               "trackId": "lesson_basic",
-              "sourceUrl": "/data/ocr/audio-clips/lesson43/l43-basic-dialogue-003-line-001.mp3",
-              "start": 0,
-              "end": 5.1,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit11/lesson43/lesson_basic.mp3",
+              "speaker": "甲",
+              "text": "部長、気分が悪いので、早く帰らせてください。",
+              "start": 45.65,
+              "end": 50.75,
               "duration": 5.1,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrText": "部 長 気 分 が 悪 い の で 早 く 帰 ら せ て く だ さ い",
+              "phraseIndexes": [
+                9
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T10:28:08.334Z",
-              "sourceAudioSha256": "7df826f5415a6d73d1fa3e6ea50bd77ba0a0c1c34a29ff34a7895c9c07aee202"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T10:28:08.334Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 1,
+                "asrText": "部 長 気 分 が 悪 い の で 早 く 帰 ら せ て く だ さ い"
+              }
             }
           },
           {
@@ -223,14 +341,27 @@
             "audioSegment": {
               "id": "l43-basic-dialogue-003-line-002",
               "trackId": "lesson_basic",
-              "sourceUrl": "/data/ocr/audio-clips/lesson43/l43-basic-dialogue-003-line-002.mp3",
-              "start": 0,
-              "end": 2.7,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit11/lesson43/lesson_basic.mp3",
+              "speaker": "乙",
+              "text": "ええ、いいですよ。お大事に。",
+              "start": 51.01,
+              "end": 53.71,
               "duration": 2.7,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrText": "え え い い で す よ お 大 事 に",
+              "phraseIndexes": [
+                9
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T10:28:08.334Z",
-              "sourceAudioSha256": "7df826f5415a6d73d1fa3e6ea50bd77ba0a0c1c34a29ff34a7895c9c07aee202"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T10:28:08.334Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 1,
+                "asrText": "え え い い で す よ お 大 事 に"
+              }
             }
           }
         ]
@@ -249,14 +380,27 @@
             "audioSegment": {
               "id": "l43-basic-dialogue-004-line-001",
               "trackId": "lesson_basic",
-              "sourceUrl": "/data/ocr/audio-clips/lesson43/l43-basic-dialogue-004-line-001.mp3",
-              "start": 0,
-              "end": 2.86,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit11/lesson43/lesson_basic.mp3",
+              "speaker": "甲",
+              "text": "この駅は乗り換えが分かりにくいですね。",
+              "start": 56.17,
+              "end": 59.03,
               "duration": 2.86,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrText": "こ の 駅 は 乗 り 換 え が 分 か り に く い で す ね",
+              "phraseIndexes": [
+                10
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T10:28:08.334Z",
-              "sourceAudioSha256": "7df826f5415a6d73d1fa3e6ea50bd77ba0a0c1c34a29ff34a7895c9c07aee202"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T10:28:08.334Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 1,
+                "asrText": "こ の 駅 は 乗 り 換 え が 分 か り に く い で す ね"
+              }
             }
           },
           {
@@ -269,14 +413,27 @@
             "audioSegment": {
               "id": "l43-basic-dialogue-004-line-002",
               "trackId": "lesson_basic",
-              "sourceUrl": "/data/ocr/audio-clips/lesson43/l43-basic-dialogue-004-line-002.mp3",
-              "start": 0,
-              "end": 3.18,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit11/lesson43/lesson_basic.mp3",
+              "speaker": "乙",
+              "text": "ええ、とても大きい駅ですからね。",
+              "start": 59.81,
+              "end": 62.99,
               "duration": 3.18,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrText": "え え と て も 大 き い 駅 で す か ら ね",
+              "phraseIndexes": [
+                11
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T10:28:08.334Z",
-              "sourceAudioSha256": "7df826f5415a6d73d1fa3e6ea50bd77ba0a0c1c34a29ff34a7895c9c07aee202"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T10:28:08.334Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 1,
+                "asrText": "え え と て も 大 き い 駅 で す か ら ね"
+              }
             }
           }
         ]
@@ -316,14 +473,29 @@
             "audioSegment": {
               "id": "l43-app-block-003-line-001",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson43/l43-app-block-003-line-001.mp3",
-              "start": 0,
-              "end": 15.05,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit11/lesson43/lesson_apps.mp3",
+              "speaker": "陈",
+              "text": "ＣＳ公司的プレゼン，だれに行ってもらいましょうか。",
+              "start": 1.05,
+              "end": 16.1,
               "duration": 15.05,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 3,
+              "matchScore": 0.195,
+              "asrText": "ー シ ョ ン zabe ジ ン フ ー コ ン ス ダ ー バ ン ゴ ン シ チ ャ チ ャ ー ト ン チ ン リ ー カ ン ソ ー ラ ー chen python hesioli gc i scons cs コ ー ス の プ レ ゼ ン 誰 に 行 っ て も ら い ま し ょ う か",
+              "phraseIndexes": [
+                0,
+                1,
+                2
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T10:29:05.294Z",
-              "sourceAudioSha256": "4b2ef0bc37bfdd3843e05e06774f33bbf5c2938e1c1a1fa6ea6a333a7d22aaf8"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T10:29:05.294Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 0.195,
+                "asrText": "ー シ ョ ン zabe ジ ン フ ー コ ン ス ダ ー バ ン ゴ ン シ チ ャ チ ャ ー ト ン チ ン リ ー カ ン ソ ー ラ ー chen python hesioli gc i scons cs コ ー ス の プ レ ゼ ン 誰 に 行 っ て も ら い ま し ょ う か"
+              }
             }
           },
           {
@@ -336,14 +508,27 @@
             "audioSegment": {
               "id": "l43-app-block-003-line-002",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson43/l43-app-block-003-line-002.mp3",
-              "start": 0,
-              "end": 2.42,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit11/lesson43/lesson_apps.mp3",
+              "speaker": "加藤",
+              "text": "森君と李さんを行かせるつもりです。",
+              "start": 16.89,
+              "end": 19.31,
               "duration": 2.42,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 1,
+              "matchScore": 1,
+              "asrText": "森 君 と 李 さ ん を 行 か せ る つ も り で す",
+              "phraseIndexes": [
+                3
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T10:29:05.294Z",
-              "sourceAudioSha256": "4b2ef0bc37bfdd3843e05e06774f33bbf5c2938e1c1a1fa6ea6a333a7d22aaf8"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T10:29:05.294Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 1,
+                "asrText": "森 君 と 李 さ ん を 行 か せ る つ も り で す"
+              }
             }
           }
         ]
@@ -370,14 +555,29 @@
             "audioSegment": {
               "id": "l43-app-block-005-line-001",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson43/l43-app-block-005-line-001.mp3",
-              "start": 0,
-              "end": 12.22,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit11/lesson43/lesson_apps.mp3",
+              "speaker": "森",
+              "text": "……言うまでもなく品質は重要ですが、ネーミングとデザインもとても大切です。まず、ネーミングですが、理解しやすくて単純なものがいいと考えます。しかも、多くの人に親近感を感じさせるものが理想的です。アルファベットは分かりにくいので、避けたほうがいいのではないでしょうか。",
+              "start": 30.89,
+              "end": 43.11,
               "duration": 12.22,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 3,
+              "matchScore": 0.525,
+              "asrText": "理 解 し や す く て 単 純 な も の が い い と 考 え ま す し か も 多 く の 人 に 親 近 感 を 感 じ さ せ る も の が 理 想 的 で す ア ル フ ァ ベ ッ ト は 分 か り に く い の で 避 け た",
+              "phraseIndexes": [
+                5,
+                6,
+                7
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T10:29:05.294Z",
-              "sourceAudioSha256": "4b2ef0bc37bfdd3843e05e06774f33bbf5c2938e1c1a1fa6ea6a333a7d22aaf8"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T10:29:05.294Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 0.525,
+                "asrText": "理 解 し や す く て 単 純 な も の が い い と 考 え ま す し か も 多 く の 人 に 親 近 感 を 感 じ さ せ る も の が 理 想 的 で す ア ル フ ァ ベ ッ ト は 分 か り に く い の で 避 け た"
+              }
             }
           },
           {
@@ -390,14 +590,28 @@
             "audioSegment": {
               "id": "l43-app-block-005-line-002",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson43/l43-app-block-005-line-002.mp3",
-              "start": 0,
-              "end": 11.1,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit11/lesson43/lesson_apps.mp3",
+              "speaker": "李",
+              "text": "では、ネーミングについて具体的に提案させてください。例えば、「动力」はどうでしょう？力強い感じを受けませんか。「Energy」や「Power」などの英語を使うこともできますが、英語が分からない人には商品のイメージが浮かびにくいと思います。……",
+              "start": 53.85,
+              "end": 64.95,
               "duration": 11.1,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 2,
+              "matchScore": 0.528,
+              "asrText": "い 感 じ を 受 け ま せ ん か エ ナ ジ ー や パ ワ ー な ど の 英 語 を 使 う こ と も で き ま す が 英 語 が わ か ら な い 人 に は 商 品 の イ メ ー ジ が 浮 か び に く い と 思 い ま す",
+              "phraseIndexes": [
+                9,
+                10
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T10:29:05.294Z",
-              "sourceAudioSha256": "4b2ef0bc37bfdd3843e05e06774f33bbf5c2938e1c1a1fa6ea6a333a7d22aaf8"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T10:29:05.294Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 0.528,
+                "asrText": "い 感 じ を 受 け ま せ ん か エ ナ ジ ー や パ ワ ー な ど の 英 語 を 使 う こ と も で き ま す が 英 語 が わ か ら な い 人 に は 商 品 の イ メ ー ジ が 浮 か び に く い と 思 い ま す"
+              }
             }
           },
           {
@@ -410,14 +624,29 @@
             "audioSegment": {
               "id": "l43-app-block-005-line-003",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson43/l43-app-block-005-line-003.mp3",
-              "start": 0,
-              "end": 14.82,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit11/lesson43/lesson_apps.mp3",
+              "speaker": "森",
+              "text": "次に、デザインですが、やはりインパクトのあるものが必要です。そこで、今回、赤と黄色を使った斬新なデザインを考えてみました。今、デザイナーにいくつか試作させています。……",
+              "start": 67.89,
+              "end": 82.71,
               "duration": 14.82,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 3,
+              "matchScore": 0.865,
+              "asrText": "ン で す が や は り イ ン パ ク ト の あ る も の が 必 要 で す そ こ で 今 回 赤 と 黄 色 を 使 っ た 斬 新 な デ ザ イ ン を 考 え て み ま し た 今 デ ザ イ ナ ー に い く つ か 試 作 さ",
+              "phraseIndexes": [
+                11,
+                12,
+                13
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T10:29:05.294Z",
-              "sourceAudioSha256": "4b2ef0bc37bfdd3843e05e06774f33bbf5c2938e1c1a1fa6ea6a333a7d22aaf8"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T10:29:05.294Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 0.865,
+                "asrText": "ン で す が や は り イ ン パ ク ト の あ る も の が 必 要 で す そ こ で 今 回 赤 と 黄 色 を 使 っ た 斬 新 な デ ザ イ ン を 考 え て み ま し た 今 デ ザ イ ナ ー に い く つ か 試 作 さ"
+              }
             }
           }
         ]
@@ -444,14 +673,28 @@
             "audioSegment": {
               "id": "l43-app-block-007-line-001",
               "trackId": "lesson_apps",
-              "sourceUrl": "/data/ocr/audio-clips/lesson43/l43-app-block-007-line-001.mp3",
-              "start": 0,
-              "end": 9.53,
+              "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit11/lesson43/lesson_apps.mp3",
+              "speaker": "森",
+              "text": "定価については、少し高いほうがいいと考えます。商品のイメージがぐっとよくなって、消費者が安心して買えると思います。……",
+              "start": 86.98,
+              "end": 96.51,
               "duration": 9.53,
-              "method": "approved-asr-alignment",
+              "speechUnitCount": 2,
+              "matchScore": 0.943,
+              "asrText": "定 価 に つ い て は 少 し 高 い 方 が い い と 考 え ま す 商 品 の イ メ ー ジ が ぐ っ と 良 く な っ て 消 費 者 が 安 心 し て 買 え る と 思 い ま す",
+              "phraseIndexes": [
+                14,
+                15
+              ],
+              "method": "legacy-asr-alignment-range-converted",
               "confidence": "approved",
-              "reviewedAt": "2026-08-05T10:29:05.294Z",
-              "sourceAudioSha256": "4b2ef0bc37bfdd3843e05e06774f33bbf5c2938e1c1a1fa6ea6a333a7d22aaf8"
+              "review": {
+                "status": "approved",
+                "reviewedAt": "2026-08-05T10:29:05.294Z",
+                "note": "Automatically approved by the bulk alignment workflow.",
+                "matchScore": 0.943,
+                "asrText": "定 価 に つ い て は 少 し 高 い 方 が い い と 考 え ま す 商 品 の イ メ ー ジ が ぐ っ と 良 く な っ て 消 費 者 が 安 心 し て 買 え る と 思 い ま す"
+              }
             }
           }
         ]
@@ -461,9 +704,25 @@
   "warnings": [],
   "audioAlignment": {
     "schemaVersion": 1,
-    "method": "approved-asr-alignment",
-    "sourceAlignment": "data/ocr/lesson43-text-audio-alignment.json",
-    "publishedAt": "2026-08-05T10:29:09.009Z",
-    "approvedSegments": 18
-  }
+    "lessonId": "lesson43",
+    "convertedAt": "2026-08-14T00:17:07.952Z",
+    "method": "legacy-asr-alignment-range-converted",
+    "tracks": [
+      {
+        "id": "lesson_basic",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit11/lesson43/lesson_basic.mp3",
+        "sourceAudioSha256": "7df826f5415a6d73d1fa3e6ea50bd77ba0a0c1c34a29ff34a7895c9c07aee202",
+        "expectedItems": 12,
+        "alignedItems": 12
+      },
+      {
+        "id": "lesson_apps",
+        "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit11/lesson43/lesson_apps.mp3",
+        "sourceAudioSha256": "4b2ef0bc37bfdd3843e05e06774f33bbf5c2938e1c1a1fa6ea6a333a7d22aaf8",
+        "expectedItems": 6,
+        "alignedItems": 6
+      }
+    ]
+  },
+  "updatedAt": "2026-08-14T00:17:07.952Z"
 }

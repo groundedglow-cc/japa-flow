@@ -128,7 +128,7 @@ export type Label = {
 
 export type ImageAsset = {
   id: string;
-  kind: "person_card" | "object_card" | "scene" | "map" | "table" | "source_crop";
+  kind: "person_card" | "object_card" | "scene" | "map" | "table" | "source_crop" | "exercise_image";
   imagePath?: string;
   label?: string;
   crop?: {

@@ -1,5 +1,6 @@
 import type { InputSlot, LessonPractice, PracticeActivity, PracticeItem, PromptPart, RichText } from "./lesson-practice-types";
-import { lesson11ImageCrops } from "./lesson11-image-crops";
+
+const exerciseImage = (fileName: string) => `../data/book1_exercise_images/${fileName}`;
 
 const page = (pageNo: number) => `../course-assets/by-lesson/lesson11/page${pageNo}.webp`;
 const audio = (exerciseNo: 1 | 2, order: number) =>
@@ -8,7 +9,6 @@ const text = (value: string, options: Omit<RichText, "type" | "text"> = {}): Ric
 const repl = (value: string, substitutionKey: string, options: Omit<RichText, "type" | "text" | "underline" | "substitutionKey"> = {}): RichText =>
   text(value, { ...options, underline: true, substitutionKey });
 const blank = (slotId: string): PromptPart => ({ type: "blank", slotId });
-const crop = (id: string) => lesson11ImageCrops.assets.find((asset) => asset.id === id)!;
 
 const answerOnlyHint = "只填写提问后的回答部分，不需要重写问题。";
 const sentenceSlot = (placeholder = "输入完整回答"): InputSlot[] => [{ id: "answer", expectedUnit: "sentence", width: "long", placeholder }];
@@ -241,7 +241,9 @@ const activities: PracticeActivity[] = [
     interaction: "pattern_substitution",
     answerUnit: "sentence",
     responseScope: "sentence_only",
-    assets: [crop("l11-p1-a2-ability-preference-picture-prompts")],
+    assets: [
+      { id: "l11-p1-a2-ability-preference-picture-prompts", kind: "exercise_image", imagePath: exerciseImage("book1_lesson11_1_2.png") }
+    ],
     displayAssets: ["l11-p1-a2-ability-preference-picture-prompts"],
     layout: [
       {
@@ -391,7 +393,9 @@ const activities: PracticeActivity[] = [
     interaction: "pattern_substitution",
     answerUnit: "dialogue",
     responseScope: "question_and_answer",
-    assets: [crop("l11-p1-a5-category-preference-picture-prompts")],
+    assets: [
+      { id: "l11-p1-a5-category-preference-picture-prompts", kind: "exercise_image", imagePath: exerciseImage("book1_lesson11_1_5.png") }
+    ],
     displayAssets: ["l11-p1-a5-category-preference-picture-prompts"],
     layout: [
       {
@@ -583,7 +587,9 @@ const activities: PracticeActivity[] = [
         ]
       }
     },
-    assets: [crop("l11-p2-a1-listening-true-false-pictures")],
+    assets: [
+      { id: "l11-p2-a1-listening-true-false-pictures", kind: "exercise_image", imagePath: exerciseImage("book1_lesson11_2_1.png") }
+    ],
     displayAssets: ["l11-p2-a1-listening-true-false-pictures"],
     layout: [
       {

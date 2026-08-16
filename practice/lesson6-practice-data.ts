@@ -1,5 +1,6 @@
 import type { LessonPractice, PracticeActivity, PracticeItem, PromptPart, RichText } from "./lesson-practice-types";
-import { lesson6ImageCrops } from "./lesson6-image-crops";
+
+const exerciseImage = (fileName: string) => `../data/book1_exercise_images/${fileName}`;
 
 const page = (pageNo: number) => `../course-assets/by-lesson/lesson6/page${pageNo}.webp`;
 const audio = (exerciseNo: 1 | 2, order: number) =>
@@ -8,7 +9,6 @@ const text = (value: string, options: Omit<RichText, "type" | "text"> = {}): Ric
 const repl = (value: string, substitutionKey: string, options: Omit<RichText, "type" | "text" | "underline" | "substitutionKey"> = {}): RichText =>
   text(value, { ...options, underline: true, substitutionKey });
 const blank = (slotId: string): PromptPart => ({ type: "blank", slotId });
-const crop = (id: string) => lesson6ImageCrops.assets.find((asset) => asset.id === id)!;
 
 const sentenceSlots = (placeholder = "输入完整回答") => [{ id: "answer", expectedUnit: "sentence" as const, width: "long" as const, placeholder }];
 const shortSlots = (slotIds: string[]) => slotIds.map((slotId) => ({ id: slotId, expectedUnit: "word" as const, width: "short" as const, placeholder: "输入 1 个假名" }));
@@ -330,7 +330,9 @@ const activities: PracticeActivity[] = [
         ]
       }
     },
-    assets: [crop("l6-p1-a6-trip-scenes")],
+    assets: [
+      { id: "l6-p1-a6-trip-scenes", kind: "exercise_image", imagePath: exerciseImage("book1_lesson6_1_6.png") }
+    ],
     displayAssets: ["l6-p1-a6-trip-scenes"],
     layout: [
       {
@@ -393,7 +395,9 @@ const activities: PracticeActivity[] = [
     answerUnit: "sentence",
     responseScope: "answer_only",
     responseScopeHint: answerOnlyHint,
-    assets: [crop("l6-p2-a2-bus-routes")],
+    assets: [
+      { id: "l6-p2-a2-bus-routes", kind: "exercise_image", imagePath: exerciseImage("book1_lesson6_2_2.png") }
+    ],
     displayAssets: ["l6-p2-a2-bus-routes"],
     layout: [
       {

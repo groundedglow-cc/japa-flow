@@ -1,5 +1,6 @@
 import type { AnswerSource, Choice, InputSlot, LessonPractice, PracticeActivity, PracticeItem, PromptPart, RichText } from "./lesson-practice-types";
-import { lesson4ImageCrops } from "./lesson4-image-crops";
+
+const exerciseImage = (fileName: string) => `../data/book1_exercise_images/${fileName}`;
 
 const page = (pageNo: number) => `../course-assets/by-lesson/lesson4/page${pageNo}.webp`;
 const audioUrl = (section: "practice_1" | "practice_2", order: number) => {
@@ -9,18 +10,7 @@ const audioUrl = (section: "practice_1" | "practice_2", order: number) => {
 const text = (value: string, options: Omit<RichText, "type" | "text"> = {}): RichText => ({ type: "text", text: value, ...options });
 const repl = (value: string, substitutionKey: string, options: Omit<RichText, "type" | "text" | "underline" | "substitutionKey"> = {}): RichText =>
   text(value, { ...options, underline: true, substitutionKey });
-const asset = (id: string) => {
-  const found = lesson4ImageCrops.assets.find((entry) => entry.id === id);
-  if (!found) throw new Error(`Missing lesson4 image crop: ${id}`);
-  return found;
-};
 
-const p1a3Object = asset("l4-p1-a3-object-picture-practice");
-const p1a3Person = asset("l4-p1-a3-person-picture-practice");
-const p1a5Room = asset("l4-p1-a5-room-picture-practice");
-const p1a6Picture = asset("l4-p1-a6-picture-practice");
-const p2a1Scene = asset("l4-p2-a1-scene-picture-practice");
-const p2a3Map = asset("l4-p2-a3-map-picture-practice");
 
 const sentenceSlot = (placeholder = "输入 1 个完整句子"): InputSlot[] => [
   { id: "answer", expectedUnit: "sentence", width: "long", placeholder }
@@ -287,7 +277,10 @@ const activities: PracticeActivity[] = [
     answerUnit: "sentence",
     responseScope: "answer_only",
     responseScopeHint: answerOnlyHint,
-    assets: [p1a3Object, p1a3Person],
+    assets: [
+      { id: "l4-p1-a3-object-picture-practice", kind: "exercise_image", imagePath: exerciseImage("book1_lesson4_1_3_1.png") },
+      { id: "l4-p1-a3-person-picture-practice", kind: "exercise_image", imagePath: exerciseImage("book1_lesson4_1_3_2.png") }
+    ],
     layout: [],
     itemGroups: [
       {
@@ -386,7 +379,9 @@ const activities: PracticeActivity[] = [
         ]
       }
     },
-    assets: [p1a5Room],
+    assets: [
+      { id: "l4-p1-a5-room-picture-practice", kind: "exercise_image", imagePath: exerciseImage("book1_lesson4_1_5.png") }
+    ],
     displayAssets: ["l4-p1-a5-room-picture-practice"],
     layout: [{
       type: "example",
@@ -434,7 +429,9 @@ const activities: PracticeActivity[] = [
         ]
       }
     },
-    assets: [p1a6Picture],
+    assets: [
+      { id: "l4-p1-a6-picture-practice", kind: "exercise_image", imagePath: exerciseImage("book1_lesson4_1_6.png") }
+    ],
     displayAssets: ["l4-p1-a6-picture-practice"],
     layout: [{
       type: "example",
@@ -462,7 +459,9 @@ const activities: PracticeActivity[] = [
     interaction: "true_false",
     answerUnit: "boolean",
     responseScope: "boolean_only",
-    assets: [p2a1Scene],
+    assets: [
+      { id: "l4-p2-a1-scene-picture-practice", kind: "exercise_image", imagePath: exerciseImage("book1_lesson4_2_1.png") }
+    ],
     displayAssets: ["l4-p2-a1-scene-picture-practice"],
     layout: [{
       type: "example",
@@ -526,7 +525,9 @@ const activities: PracticeActivity[] = [
         ]
       }
     },
-    assets: [p2a3Map],
+    assets: [
+      { id: "l4-p2-a3-map-picture-practice", kind: "exercise_image", imagePath: exerciseImage("book1_lesson4_2_3.png") }
+    ],
     displayAssets: ["l4-p2-a3-map-picture-practice"],
     layout: [{
       type: "example",

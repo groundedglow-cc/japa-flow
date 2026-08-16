@@ -1,12 +1,12 @@
 import type { InputSlot, LessonPractice, PracticeActivity, PracticeItem, PromptPart, RichText } from "./lesson-practice-types";
-import { lesson20ImageCrops } from "./lesson20-image-crops";
+
+const exerciseImage = (fileName: string) => `../data/book1_exercise_images/${fileName}`;
 
 const page = (pageNo: number) => `../course-assets/by-lesson/lesson20/page${pageNo}.webp`;
 const audio = (exerciseNo: 1 | 2, order: number) =>
   `https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit5/lesson20/Exe${exerciseNo}_${order}.mp3`;
 const text = (value: string, options: Omit<RichText, "type" | "text"> = {}): RichText => ({ type: "text", text: value, ...options });
 const blank = (slotId: string): PromptPart => ({ type: "blank", slotId });
-const crop = (id: string) => lesson20ImageCrops.assets.find((asset) => asset.id === id)!;
 
 const completionHint = "只补全题目中空格处需要填写的部分。";
 const answerOnlyHint = "只填写提问后的回答部分，不需要重写问题。";
@@ -116,7 +116,9 @@ const activities: PracticeActivity[] = [
     interaction: "pattern_substitution",
     answerUnit: "sentence",
     responseScope: "sentence_only",
-    assets: [crop("l20-p1-a1-picture-grid")],
+    assets: [
+      { id: "l20-p1-a1-picture-grid", kind: "exercise_image", imagePath: exerciseImage("book1_lesson20_1_1.png") }
+    ],
     displayAssets: ["l20-p1-a1-picture-grid"],
     layout: [
       {
@@ -149,8 +151,7 @@ const activities: PracticeActivity[] = [
     answerUnit: "dialogue",
     responseScope: "question_and_answer",
     responseScopeHint: "写出完整问答。",
-    assets: [crop("l20-p1-a2-dialogue")],
-    displayAssets: ["l20-p1-a2-dialogue"],
+    assets: [],
     layout: [
       {
         type: "example",
@@ -180,8 +181,7 @@ const activities: PracticeActivity[] = [
     answerUnit: "dialogue",
     responseScope: "question_and_answer",
     responseScopeHint: "写出完整问答。",
-    assets: [crop("l20-p1-a3-dialogue")],
-    displayAssets: ["l20-p1-a3-dialogue"],
+    assets: [],
     layout: [],
     itemGroups: [
       {
@@ -242,8 +242,7 @@ const activities: PracticeActivity[] = [
         confidenceNote: "按教材表格顺序整理。"
       }
     },
-    assets: [crop("l20-p1-a4-basic-form-table")],
-    displayAssets: ["l20-p1-a4-basic-form-table"],
+    assets: [],
     layout: [
       {
         type: "example",
@@ -291,8 +290,7 @@ const activities: PracticeActivity[] = [
     responseScopeHint: "写出完整问答。",
     requiresAudio: true,
     audio: { source: "textbook_exercise", url: audio(1, 5), label: "第20课 练习I-5" },
-    assets: [crop("l20-p1-a5-dialogue")],
-    displayAssets: ["l20-p1-a5-dialogue"],
+    assets: [],
     layout: [
       {
         type: "example",
@@ -323,8 +321,7 @@ const activities: PracticeActivity[] = [
     answerUnit: "dialogue",
     responseScope: "question_and_answer",
     responseScopeHint: "写出完整问答。",
-    assets: [crop("l20-p1-a6-dialogue")],
-    displayAssets: ["l20-p1-a6-dialogue"],
+    assets: [],
     layout: [
       {
         type: "example",
@@ -352,7 +349,9 @@ const activities: PracticeActivity[] = [
     answerUnit: "phrase",
     responseScope: "phrase_only",
     responseScopeHint: completionHint,
-    assets: [crop("l20-p2-a1-form-change")],
+    assets: [
+      { id: "l20-p2-a1-form-change", kind: "exercise_image", imagePath: exerciseImage("book1_lesson20_2_1.png") }
+    ],
     displayAssets: ["l20-p2-a1-form-change"],
     layout: [
       {
@@ -383,7 +382,9 @@ const activities: PracticeActivity[] = [
     interaction: "pattern_substitution",
     answerUnit: "sentence",
     responseScope: "sentence_only",
-    assets: [crop("l20-p2-a2-before-picture-grid")],
+    assets: [
+      { id: "l20-p2-a2-before-picture-grid", kind: "exercise_image", imagePath: exerciseImage("book1_lesson20_2_2.png") }
+    ],
     displayAssets: ["l20-p2-a2-before-picture-grid"],
     layout: [
       {
@@ -420,8 +421,7 @@ const activities: PracticeActivity[] = [
       url: audio(2, 3),
       label: "第20课 练习II-3"
     },
-    assets: [crop("l20-p2-a3-listening")],
-    displayAssets: ["l20-p2-a3-listening"],
+    assets: [],
     layout: [
       {
         type: "example",
@@ -451,8 +451,7 @@ const activities: PracticeActivity[] = [
     interaction: "translation",
     answerUnit: "sentence",
     responseScope: "sentence_only",
-    assets: [crop("l20-p2-a4-translation")],
-    displayAssets: ["l20-p2-a4-translation"],
+    assets: [],
     layout: [],
     items: [
       answerItem("l20-p2-a4-q1", "1", "小李会开车。", "李さんは 車を 運転する ことが できます。", { answerSource: "prompt", acceptableAlternatives: ["李さんは 車の 運転が できます。"] }),
