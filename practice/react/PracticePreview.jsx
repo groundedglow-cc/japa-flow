@@ -699,19 +699,21 @@ function ExampleBlockView({ example }) {
   const dialogueLines = exampleDialogueLines(example.after, example.afterKana);
   return (
     <div className={`example-block ${dialogueLines ? "dialogue-example" : ""}`}>
-      {example.label ? <span className="example-label">{example.label}</span> : null}
-      {example.beforeParts?.length ? (
-        <span className="example-before"><Prompt parts={example.beforeParts} kana={example.beforeKana} /></span>
-      ) : example.before ? (
-        <span className="example-before"><RubyText text={example.before} kana={example.beforeKana} /></span>
-      ) : null}
-      <span className="example-arrow">→</span>
+      <span className="example-head">
+        {example.label ? <span className="example-label">{example.label}</span> : null}
+        {example.beforeParts?.length ? (
+          <span className="example-before"><Prompt parts={example.beforeParts} kana={example.beforeKana} /></span>
+        ) : example.before ? (
+          <span className="example-before"><RubyText text={example.before} kana={example.beforeKana} /></span>
+        ) : null}
+        <span className="example-arrow">→</span>
+      </span>
       {dialogueLines ? (
         <span className="example-after dialogue-lines">
           {dialogueLines.map((line, index) => (
             <span className="dialogue-line" key={index}>
               <span>{line.speaker}</span>
-              <p><RubyText text={line.text} kana={line.kana} /></p>
+              <p><Prompt parts={line.parts} kana={line.kana} /></p>
             </span>
           ))}
         </span>
@@ -2012,31 +2014,62 @@ function pushDiffPart(parts, type, text) {
 }
 
 function exampleDialogueLines(parts, kana) {
-  if (!parts?.length || parts.some((part) => part.type !== "text" || part.kana || part.underline || part.substitutionKey)) return null;
-  const text = parts.map((part) => part.text).join("").trim();
+  if (!parts?.length) return null;
+  const text = promptPartsPlainText(parts).trim();
   if (!/甲：|乙/.test(text)) return null;
   const textLines = splitDialogueContent(text);
   const kanaLines = kana ? splitDialogueContent(kana) : [];
   if (!textLines.length) return null;
+  const partsLines = splitPromptPartsByDialogueLines(parts, textLines);
   return textLines.map((line, index) => ({
     speaker: line.speaker,
-    text: line.body,
+    parts: partsLines[index] || [],
     kana: kanaLines[index]?.body || ""
   }));
 }
 
 function splitDialogueContent(value) {
-  return String(value || "")
-    .replace(/\s+/g, " ")
-    .trim()
-    .split(/(?=(?:甲|乙|丙|丁|A|B|C|D|乙1|乙2)：)/)
-    .map((line) => line.trim())
-    .filter(Boolean)
-    .map((line) => {
-      const matched = line.match(/^([^：]+)：\s*(.*)$/);
-      return matched ? { speaker: matched[1], body: matched[2] } : null;
-    })
-    .filter(Boolean);
+  const text = String(value || "").replace(/\s+/g, " ").trim();
+  if (!text) return [];
+  const speakerPattern = /((?:甲|乙[12]?|丙|丁|A|B|C|D))：/g;
+  const matches = Array.from(text.matchAll(speakerPattern));
+  return matches.map((match, index) => {
+    const speaker = match[1];
+    const bodyStart = (match.index || 0) + match[0].length;
+    const bodyEnd = matches[index + 1]?.index ?? text.length;
+    return {
+      speaker,
+      body: text.slice(bodyStart, bodyEnd).trim(),
+      start: bodyStart,
+      end: bodyEnd
+    };
+  }).filter((line) => line.body);
+}
+
+function splitPromptPartsByDialogueLines(parts, textLines) {
+  const result = textLines.map(() => []);
+  const ranges = textLines.map((line) => ({ start: line.start, end: line.end }));
+  let cursor = 0;
+  for (const part of parts) {
+    const partText = promptPartsPlainText([part]);
+    const partStart = cursor;
+    const partEnd = cursor + partText.length;
+    ranges.forEach((range, index) => {
+      const overlapStart = Math.max(partStart, range.start);
+      const overlapEnd = Math.min(partEnd, range.end);
+      if (overlapStart >= overlapEnd) return;
+      const sliceStart = overlapStart - partStart;
+      const sliceEnd = overlapEnd - partStart;
+      result[index].push(slicePromptPart(part, partText.slice(sliceStart, sliceEnd)));
+    });
+    cursor = partEnd;
+  }
+  return result;
+}
+
+function slicePromptPart(part, text) {
+  if (part.type !== "text") return part;
+  return { ...part, text };
 }
 
 function splitRubySegments(text, kana) {

@@ -127,24 +127,25 @@
           "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit7/lesson28/lesson_basic.mp3",
           "speaker": "",
           "text": "女の人がわたしの財布を拾ってくれました。",
-          "start": 17.53,
+          "start": 18.3,
           "end": 21.71,
-          "duration": 4.18,
+          "duration": 3.41,
           "speechUnitCount": 1,
           "matchScore": 0.842,
           "asrText": "女 の 人 が 私 の 財 布 を 拾 っ て く れ ま し た",
           "phraseIndexes": [
             3
           ],
-          "method": "legacy-asr-alignment-range-converted",
+          "method": "manual-admin-adjustment",
           "confidence": "approved",
           "review": {
             "status": "approved",
-            "reviewedAt": "2026-08-05T10:05:48.082Z",
-            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-18T13:13:03.110Z",
+            "note": "Manually verified and adjusted in the text audio preview.",
             "matchScore": 0.842,
             "asrText": "女 の 人 が 私 の 財 布 を 拾 っ て く れ ま し た"
-          }
+          },
+          "reviewedAt": "2026-08-18T13:13:03.110Z"
         }
       }
     ],
@@ -958,5 +959,5 @@
       }
     ]
   },
-  "updatedAt": "2026-08-14T00:17:07.161Z"
+  "updatedAt": "2026-08-18T13:13:03.111Z"
 }

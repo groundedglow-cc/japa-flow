@@ -443,15 +443,39 @@ figcaption {
 
 .example-block.dialogue-example {
   display: grid;
-  grid-template-columns: auto auto minmax(0, 1fr);
-  column-gap: 6px;
-  align-items: start;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 8px;
+  justify-items: start;
 }
 
-.example-block.dialogue-example .example-label,
-.example-block.dialogue-example .example-before,
-.example-block.dialogue-example .example-arrow {
-  padding-top: 3px;
+.example-head {
+  display: inline-grid;
+  grid-auto-flow: column;
+  width: max-content;
+  column-gap: 6px;
+  align-items: baseline;
+  justify-self: start;
+}
+
+.example-head .example-label,
+.example-head .example-before,
+.example-head .example-arrow {
+  padding-top: 0;
+}
+
+.example-head .example-label {
+  min-height: 0;
+  padding: 2px 6px;
+  line-height: 1;
+}
+
+.example-head .example-before,
+.example-head .example-arrow {
+  white-space: nowrap;
+}
+
+.example-block.dialogue-example .example-after {
+  min-width: 0;
 }
 
 .example-block.dialogue-example .dialogue-lines {

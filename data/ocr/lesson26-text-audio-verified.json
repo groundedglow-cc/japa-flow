@@ -424,9 +424,9 @@
               "itemIndex": 6,
               "speaker": "乙",
               "text": "ええ、大好きです。でも、あまり 上手では ありませんよ。",
-              "start": 26.35,
+              "start": 25.85,
               "end": 30,
-              "duration": 3.65,
+              "duration": 4.15,
               "rawAzureTiming": {
                 "start": 26.6,
                 "end": 29.88,
@@ -441,16 +441,17 @@
               "phraseIndexes": [
                 7
               ],
-              "method": "azure-speech-sentence-alignment-with-boundary-padding",
-              "confidence": "high",
+              "method": "manual-admin-adjustment",
+              "confidence": "approved",
               "alignmentIssues": [],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-16T11:01:08.737Z",
-                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "reviewedAt": "2026-08-17T00:29:46.368Z",
+                "note": "Manually verified and adjusted in the text audio preview.",
                 "matchScore": 1,
                 "asrText": "え え 大 好 き で す で も あ ま り 上 手 で は あ り ま せ ん よ"
-              }
+              },
+              "reviewedAt": "2026-08-17T00:29:46.368Z"
             }
           }
         ]
@@ -566,9 +567,9 @@
               "itemIndex": 8,
               "speaker": "乙",
               "text": "えっ、本当ですか。知りませんでした。",
-              "start": 36.11,
+              "start": 35.41,
               "end": 38.56,
-              "duration": 2.45,
+              "duration": 3.15,
               "rawAzureTiming": {
                 "start": 36.36,
                 "end": 38.44,
@@ -583,16 +584,17 @@
               "phraseIndexes": [
                 9
               ],
-              "method": "azure-speech-sentence-alignment-with-boundary-padding",
-              "confidence": "high",
+              "method": "manual-admin-adjustment",
+              "confidence": "approved",
               "alignmentIssues": [],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-16T11:01:08.737Z",
-                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "reviewedAt": "2026-08-17T11:12:41.577Z",
+                "note": "Manually verified and adjusted in the text audio preview.",
                 "matchScore": 0.933,
                 "asrText": "え 本 当 で す か 知 り ま せ ん で し た"
-              }
+              },
+              "reviewedAt": "2026-08-17T11:12:41.577Z"
             }
           }
         ]
@@ -1158,9 +1160,9 @@
               "itemIndex": 4,
               "speaker": "森",
               "text": "ええ、そうなんです。それで、つい 握手するのを 忘れます。",
-              "start": 38.07,
+              "start": 37.27,
               "end": 42.2,
-              "duration": 4.13,
+              "duration": 4.93,
               "rawAzureTiming": {
                 "start": 38.32,
                 "end": 42.08,
@@ -1175,16 +1177,17 @@
               "phraseIndexes": [
                 8
               ],
-              "method": "azure-speech-sentence-alignment-with-boundary-padding",
-              "confidence": "high",
+              "method": "manual-admin-adjustment",
+              "confidence": "approved",
               "alignmentIssues": [],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-16T11:01:08.737Z",
-                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "reviewedAt": "2026-08-18T11:49:58.101Z",
+                "note": "Manually verified and adjusted in the text audio preview.",
                 "matchScore": 1,
                 "asrText": "え え そ う な ん で す そ れ で つ い 握 手 す る の を 忘 れ ま す"
-              }
+              },
+              "reviewedAt": "2026-08-18T11:49:58.101Z"
             }
           }
         ]
@@ -1812,5 +1815,6 @@
         ]
       }
     ]
-  }
+  },
+  "updatedAt": "2026-08-18T11:49:58.102Z"
 }

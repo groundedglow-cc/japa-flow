@@ -27,6 +27,7 @@ import { lesson22Practice } from "../lesson22-practice-data.ts";
 import { lesson23Practice } from "../lesson23-practice-data.ts";
 import { lesson24Practice } from "../lesson24-practice-data.ts";
 import { lesson25Practice } from "../lesson25-practice-data.ts";
+import { lesson26Practice } from "../lesson26-practice-data.ts";
 import { lesson27Practice } from "../lesson27-practice-data.ts";
 
 const practices = {
@@ -55,6 +56,7 @@ const practices = {
   lesson23: lesson23Practice,
   lesson24: lesson24Practice,
   lesson25: lesson25Practice,
+  lesson26: lesson26Practice,
   lesson27: lesson27Practice
 };
 

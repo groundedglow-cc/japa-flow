@@ -136,6 +136,64 @@
     if (status.isConnected) status.remove();
   }
 
+  function setStatusWithNodes(status, nodes, tone = "warn") {
+    status.textContent = "";
+    status.dataset.tone = tone;
+    nodes.forEach((node) => {
+      status.append(typeof node === "string" ? document.createTextNode(node) : node);
+    });
+    const wrapper = status.__speechInputWrapper;
+    if (wrapper && !status.isConnected) wrapper.append(status);
+  }
+
+  function microphoneSettingsLink() {
+    const ua = navigator.userAgent;
+    const origin = location.origin || `${location.protocol}//${location.host}`;
+    if (/Edg\//.test(ua)) {
+      return { text: `edge://settings/content/siteDetails?site=${encodeURIComponent(origin)}` };
+    }
+    if (/Firefox\//.test(ua)) return { text: "about:preferences#privacy" };
+    if (/Chrome\//.test(ua) && !/Edg\//.test(ua) && !/OPR\//.test(ua)) {
+      return { text: `chrome://settings/content/siteDetails?site=${encodeURIComponent(origin)}` };
+    }
+    return null;
+  }
+
+  function isLikelyVirtualMicrophone(label) {
+    const value = String(label || "").normalize("NFKC").toLowerCase();
+    if (!value) return false;
+    return [
+      /virtual/,
+      /虚拟麦克风/,
+      /虚拟话筒/,
+      /虚拟音频/,
+      /loopback/,
+      /blackhole/,
+      /soundflower/,
+      /vb[-\s]?audio/,
+      /vbcable/,
+      /voice\s*meeter/,
+      /voicemeeter/,
+      /droidcam/,
+      /obs.*virtual/,
+      /snap camera/,
+      /nvidia broadcast/,
+      /elgato wave link/,
+      /zoom.*virtual/,
+      /teams audio device/,
+      /microsoft teams/,
+      /wechat/,
+      /wecom/,
+      /企业微信/,
+      /企微/,
+      /tencent meeting/,
+      /voov/,
+      /腾讯会议/,
+      /discord.*virtual/,
+      /slack.*virtual/
+    ].some((pattern) => pattern.test(value));
+  }
+
   function normalizeFormattedText(value) {
     if (value && typeof value === "object" && typeof value.formattedText === "string") {
       return normalizeFormattedText(value.formattedText);
@@ -247,6 +305,16 @@
     return buffer;
   }
 
+  function recordedAudioStats(chunks, sampleRate) {
+    let sampleCount = 0;
+    let peak = 0;
+    for (const chunk of chunks) {
+      sampleCount += chunk.length;
+      for (const sample of chunk) peak = Math.max(peak, Math.abs(sample));
+    }
+    return { duration: sampleRate ? sampleCount / sampleRate : 0, peak };
+  }
+
   function setButtonsDisabled(buttons, disabled) {
     buttons.filter(Boolean).forEach((button) => {
       button.disabled = disabled;
@@ -334,10 +402,34 @@
     let processor;
     const chunks = [];
     let sampleRate = 16000;
+    let inputDeviceLabel = "";
     try {
-      stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      stream = await navigator.mediaDevices.getUserMedia({
+        audio: { channelCount: 1, echoCancellation: true, noiseSuppression: true, autoGainControl: true }
+      });
+      const audioTrack = stream.getAudioTracks()[0];
+      const deviceId = audioTrack?.getSettings?.().deviceId || "";
+      const devices = await navigator.mediaDevices.enumerateDevices();
+      inputDeviceLabel = devices.find((device) => device.kind === "audioinput" && device.deviceId === deviceId)?.label || audioTrack?.label || "";
+      console.info("[practice recorder] selected input device:", inputDeviceLabel || "unknown");
+      if (isLikelyVirtualMicrophone(inputDeviceLabel)) {
+        stream.getTracks().forEach((track) => track.stop());
+        const settingsLink = microphoneSettingsLink();
+        if (settingsLink) {
+          setStatusWithNodes(status, [
+            `当前选中了虚拟麦克风（${inputDeviceLabel || "未知设备"}）。请切换为实际麦克风，或 `,
+            settingsLink.text,
+            " 后重试。"
+          ]);
+        } else {
+          setStatus(status, `当前选中了虚拟麦克风（${inputDeviceLabel || "未知设备"}）。请在浏览器的麦克风设置里切换为实际麦克风后重试。`, "warn");
+        }
+        return;
+      }
       const AudioContextCtor = window.AudioContext || window.webkitAudioContext;
       audioContext = new AudioContextCtor({ sampleRate: 16000 });
+      await audioContext.resume();
+      if (audioContext.state !== "running") throw new Error(`AudioContext is ${audioContext.state}.`);
       // 某些浏览器会忽略 AudioContext 的目标采样率；WAV 头必须使用实际采样率，
       // 否则 Azure 会把语速/音高解析错误，常见结果就是 NoMatch。
       sampleRate = audioContext.sampleRate || 16000;
@@ -379,6 +471,22 @@
         if (!chunks.length) {
           setFieldLocked(field, false);
           setStatus(status, "没有录到声音", "warn");
+          return;
+        }
+        const audioStats = recordedAudioStats(chunks, sampleRate);
+        if (audioStats.duration < 0.25 || audioStats.peak < 0.01) {
+          console.warn("[practice recorder] no usable microphone signal:", { inputDeviceLabel, ...audioStats });
+          setFieldLocked(field, false);
+          const settingsLink = microphoneSettingsLink();
+          if (settingsLink) {
+            setStatusWithNodes(status, [
+              `没有采集到麦克风声音（当前设备：${inputDeviceLabel || "未知"}）。请切换为实际麦克风，或 `,
+              settingsLink.text,
+              " 后重试。"
+            ]);
+          } else {
+            setStatus(status, `没有采集到麦克风声音（当前设备：${inputDeviceLabel || "未知"}）。请切换为实际麦克风后重试。`, "warn");
+          }
           return;
         }
         setButtonsDisabled([recordButton], true);

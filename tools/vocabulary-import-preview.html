@@ -204,6 +204,42 @@
         background: #fbfcfd;
       }
 
+      .word-nav-side {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        min-width: 0;
+      }
+
+      .word-nav-side.right {
+        justify-content: flex-end;
+      }
+
+      .word-shortcut {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        color: var(--muted);
+        font-size: 12px;
+        white-space: nowrap;
+      }
+
+      .word-shortcut-key {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 18px;
+        height: 18px;
+        padding: 0 5px;
+        border: 1px solid var(--line);
+        border-bottom-width: 2px;
+        border-radius: 4px;
+        background: #fff;
+        color: var(--text);
+        font-size: 11px;
+        line-height: 1;
+      }
+
       .word-index {
         color: var(--muted);
         font-variant-numeric: tabular-nums;
@@ -606,6 +642,23 @@
         .meta {
           justify-content: flex-start;
         }
+
+        .word-nav {
+          flex-wrap: wrap;
+        }
+
+        .word-nav-side {
+          flex: 1 1 auto;
+        }
+
+        .word-nav-side.right {
+          justify-content: space-between;
+          flex-direction: row-reverse;
+        }
+
+        .word-shortcut {
+          font-size: 11px;
+        }
       }
     </style>
   </head>
@@ -902,9 +955,15 @@
         $("#wordCard").innerHTML = `
           <article class="word-card">
             <div class="word-nav">
-              <button id="prevWord" type="button" ${state.index <= 0 ? "disabled" : ""}>上一个</button>
+              <div class="word-nav-side">
+                <span class="word-shortcut" aria-hidden="true"><span class="word-shortcut-key">←</span><span>切换上一个</span></span>
+                <button id="prevWord" type="button" ${state.index <= 0 ? "disabled" : ""}>上一个</button>
+              </div>
               <span class="word-index">${state.index + 1} / ${total}</span>
-              <button id="nextWord" type="button" ${state.index >= total - 1 ? "disabled" : ""}>下一个</button>
+              <div class="word-nav-side right">
+                <button id="nextWord" type="button" ${state.index >= total - 1 ? "disabled" : ""}>下一个</button>
+                <span class="word-shortcut" aria-hidden="true"><span>切换下一个</span><span class="word-shortcut-key">→</span></span>
+              </div>
             </div>
             <div class="word-body">
               <div class="word-main">
@@ -1021,6 +1080,21 @@
         const total = state.data?.vocabulary?.length || 0;
         state.index = Math.max(0, Math.min(total - 1, state.index + offset));
         render();
+      }
+
+      function isEditableTarget(target) {
+        const element = target instanceof Element ? target : null;
+        return Boolean(element && element.closest("input, textarea, select, [contenteditable=''], [contenteditable='true']"));
+      }
+
+      function handleWordNavigationKeydown(event) {
+        if (event.defaultPrevented || event.altKey || event.ctrlKey || event.metaKey) return;
+        if (isEditableTarget(event.target)) return;
+        if ($("#segmentModal").classList.contains("open")) return;
+        if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
+        if (!state.data?.vocabulary?.length) return;
+        event.preventDefault();
+        move(event.key === "ArrowLeft" ? -1 : 1);
       }
 
       function scheduleCurrentWordPlayback(word) {
@@ -1307,6 +1381,7 @@
       });
       $("#testSegmentPlay").addEventListener("click", testEditedSegment);
       $("#saveSegment").addEventListener("click", saveEditedSegment);
+      document.addEventListener("keydown", handleWordNavigationKeydown, true);
 
       initPanelResizer();
       initSamples().catch((error) => setStatus(error.message, true));

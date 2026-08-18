@@ -1,9 +1,11 @@
 import { createServer, request as httpRequest } from "node:http";
 import { spawn } from "node:child_process";
 import { existsSync, readFileSync } from "node:fs";
-import { mkdir, readFile, readdir, writeFile } from "node:fs/promises";
+import { mkdir, mkdtemp, readFile, readdir, rm, writeFile } from "node:fs/promises";
+import { tmpdir } from "node:os";
 import { basename, dirname, extname, join, normalize } from "node:path";
 import vm from "node:vm";
+import ffmpeg from "ffmpeg-static";
 
 // Lightweight .env loader (Node 14 compatible). Populates process.env from ./.env if present.
 (() => {
@@ -975,24 +977,110 @@ function pronunciationReasons(scores) {
   return reasons;
 }
 
-async function transcribeSpeech({ audioBuffer, language = "ja-JP", sampleRate = 16000 }) {
+function runProcess(command, args) {
+  return new Promise((resolve, reject) => {
+    const child = spawn(command, args, { stdio: ["ignore", "ignore", "pipe"] });
+    let stderr = "";
+    child.stderr.on("data", (chunk) => { stderr += chunk; });
+    child.once("error", reject);
+    child.once("close", (code) => {
+      if (code === 0) resolve();
+      else reject(new Error(`ffmpeg exited with code ${code}: ${stderr}`));
+    });
+  });
+}
+
+function inspectSpeechAudio(buffer) {
+  const summary = { bytes: buffer.length, container: "unknown" };
+  if (buffer.length < 12 || buffer.toString("ascii", 0, 4) !== "RIFF" || buffer.toString("ascii", 8, 12) !== "WAVE") return summary;
+  summary.container = "wav";
+  let offset = 12;
+  let dataOffset = 0;
+  let dataLength = 0;
+  while (offset + 8 <= buffer.length) {
+    const chunkId = buffer.toString("ascii", offset, offset + 4);
+    const chunkLength = buffer.readUInt32LE(offset + 4);
+    const chunkOffset = offset + 8;
+    if (chunkId === "fmt " && chunkLength >= 16 && chunkOffset + 16 <= buffer.length) {
+      summary.audioFormat = buffer.readUInt16LE(chunkOffset);
+      summary.channels = buffer.readUInt16LE(chunkOffset + 2);
+      summary.sampleRate = buffer.readUInt32LE(chunkOffset + 4);
+      summary.bitsPerSample = buffer.readUInt16LE(chunkOffset + 14);
+    }
+    if (chunkId === "data") {
+      dataOffset = chunkOffset;
+      dataLength = Math.min(chunkLength, buffer.length - chunkOffset);
+      break;
+    }
+    offset = chunkOffset + chunkLength + (chunkLength % 2);
+  }
+  if (!dataLength) return summary;
+  summary.dataBytes = dataLength;
+  const bytesPerFrame = Number(summary.channels || 0) * Number(summary.bitsPerSample || 0) / 8;
+  if (bytesPerFrame && summary.sampleRate) summary.durationSeconds = Number((dataLength / bytesPerFrame / summary.sampleRate).toFixed(3));
+  if (summary.audioFormat === 1 && summary.bitsPerSample === 16) {
+    let peak = 0;
+    let sumSquares = 0;
+    let samples = 0;
+    for (let index = dataOffset; index + 1 < dataOffset + dataLength; index += 2) {
+      const sample = buffer.readInt16LE(index) / 32768;
+      peak = Math.max(peak, Math.abs(sample));
+      sumSquares += sample * sample;
+      samples += 1;
+    }
+    summary.peak = Number(peak.toFixed(4));
+    summary.rms = Number(Math.sqrt(sumSquares / Math.max(samples, 1)).toFixed(4));
+  }
+  return summary;
+}
+
+async function normalizeSpeechAudio(audioBuffer) {
+  if (!ffmpeg) throw new Error("Speech audio conversion is unavailable: ffmpeg-static is not installed.");
+  const tempDir = await mkdtemp(join(tmpdir(), "japaflow-speech-"));
+  const inputPath = join(tempDir, "input.wav");
+  const outputPath = join(tempDir, "normalized.wav");
+  try {
+    await writeFile(inputPath, audioBuffer);
+    await runProcess(ffmpeg, [
+      "-y", "-i", inputPath,
+      "-vn", "-map", "0:a:0",
+      "-ac", "1", "-ar", "16000", "-c:a", "pcm_s16le",
+      "-f", "wav", outputPath
+    ]);
+    return await readFile(outputPath);
+  } finally {
+    await rm(tempDir, { recursive: true, force: true });
+  }
+}
+
+async function transcribeSpeech({ audioBuffer, language = "ja-JP" }) {
   const key = process.env.AZURE_SPEECH_KEY;
   const region = normalizeAzureRegion(process.env.AZURE_SPEECH_REGION);
   if (!key || !region) throw new Error("Missing AZURE_SPEECH_KEY or AZURE_SPEECH_REGION.");
   const endpoint = `https://${region}.stt.speech.microsoft.com/speech/recognition/conversation/cognitiveservices/v1?language=${encodeURIComponent(language)}&format=detailed`;
-  const normalizedSampleRate = Math.max(8000, Math.min(48000, Number(sampleRate) || 16000));
+  // Browser AudioContext implementations can ignore the requested sample rate.
+  // Match the batch alignment pipeline by sending Azure a canonical PCM WAV.
+  console.info("[speech/transcribe] input audio", inspectSpeechAudio(audioBuffer));
+  const normalizedAudio = await normalizeSpeechAudio(audioBuffer);
+  console.info("[speech/transcribe] normalized audio", inspectSpeechAudio(normalizedAudio));
   const response = await fetch(endpoint, {
     method: "POST",
     headers: {
       "Ocp-Apim-Subscription-Key": key,
-      "Content-Type": `audio/wav; codecs=audio/pcm; samplerate=${normalizedSampleRate}`,
+      "Content-Type": "audio/wav; codecs=audio/pcm; samplerate=16000",
       "Accept": "application/json"
     },
-    body: audioBuffer
+    body: normalizedAudio
   });
   const text = await response.text();
   if (!response.ok) throw new Error(`Azure Speech HTTP ${response.status} (region=${region}): ${text}`);
   const raw = JSON.parse(text);
+  console.info("[speech/transcribe] Azure response", {
+    recognitionStatus: raw.RecognitionStatus || "",
+    displayTextLength: String(raw.DisplayText || "").length,
+    nBestCount: Array.isArray(raw.NBest) ? raw.NBest.length : 0,
+    duration: raw.Duration || 0
+  });
   const best = raw.NBest?.[0] || {};
   return {
     recognizedText: raw.DisplayText || best.Display || best.Lexical || "",
@@ -2218,10 +2306,16 @@ async function handleApi(req, res, url) {
       const audioFile = firstFile(files.audio);
       if (!audioFile?.buffer?.length) throw new Error("Missing audio file.");
       const language = fields.language || "ja-JP";
-      const sampleRate = fields.sampleRate || "16000";
+      console.info("[speech/transcribe] upload", {
+        filename: audioFile.filename || "",
+        contentType: audioFile.contentType || "",
+        bytes: audioFile.buffer.length,
+        language,
+        declaredSampleRate: fields.sampleRate || ""
+      });
       const quota = await reserveAiQuota(req.headers.authorization, "azure_transcribe");
       let result;
-      try { result = await transcribeSpeech({ audioBuffer: audioFile.buffer, language, sampleRate }); await completeAiQuota(req.headers.authorization, quota.requestId, true); }
+      try { result = await transcribeSpeech({ audioBuffer: audioFile.buffer, language }); await completeAiQuota(req.headers.authorization, quota.requestId, true); }
       catch (error) { await completeAiQuota(req.headers.authorization, quota.requestId, false); throw error; }
       sendJson(res, 200, { recognizedText: result.recognizedText, recognitionStatus: result.raw?.RecognitionStatus || "" });
       return true;

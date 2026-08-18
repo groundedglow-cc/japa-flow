@@ -2775,7 +2775,7 @@ function navigate(path) {
 
 function route() {
   const pathname = decodeURIComponent(location.pathname).replace(/[\s\u3000/]+$/u, "");
-  if (pathname === "/articles") return { page: "articles" };
+  if (pathname === "/articles" || pathname === "/help") return { page: "help" };
   if (pathname === "/favorites") return { page: "favorites" };
   const lessonMatch = pathname.match(/^\/lesson\/(\d+)$/);
   if (lessonMatch) return { lessonId: lessonMatch[1], page: "lesson" };
@@ -3563,10 +3563,12 @@ async function startSpeechRecognition(button, targetInput) {
   let source;
   let processor;
   const chunks = [];
+  let sampleRate = 16000;
   try {
     stream = await navigator.mediaDevices.getUserMedia({ audio: true });
     const AudioContextCtor = window.AudioContext || window.webkitAudioContext;
     audioContext = new AudioContextCtor({ sampleRate: 16000 });
+    sampleRate = audioContext.sampleRate || 16000;
     source = audioContext.createMediaStreamSource(stream);
     processor = audioContext.createScriptProcessor(4096, 1, 1);
     processor.onaudioprocess = (event) => {
@@ -3590,10 +3592,11 @@ async function startSpeechRecognition(button, targetInput) {
     if (!chunks.length) return;
     button.classList.add("transcribing");
     try {
-      const wav = encodeWav(chunks, 16000);
+      const wav = encodeWav(chunks, sampleRate);
       const formData = new FormData();
       formData.append("audio", new Blob([wav], { type: "audio/wav" }), "speech.wav");
       formData.append("language", "ja-JP");
+      formData.append("sampleRate", String(sampleRate));
       const res = await fetch("/api/speech/transcribe", {
         method: "POST",
         headers: { Authorization: `Bearer ${getAuthToken()}` },
@@ -4381,8 +4384,8 @@ function layout(content) {
         </div>
         <nav class="nav" aria-label="主导航">
           ${navLink("/", "首页", current === "home")}
-          ${navLink("/articles", "文章", current === "articles")}
           ${navLink("/favorites", "收藏", current === "favorites")}
+          ${navLink("/help", "帮助", current === "help")}
         </nav>
         <div class="topbar-actions">
           ${isLoggedIn() ? `
@@ -4763,12 +4766,53 @@ function favoritesPage() {
   `);
 }
 
-function articlesPage() {
+function helpFaqCard(item) {
+  return `
+    <article class="panel faq-card">
+      <p class="eyebrow">${escapeHtml(item.tag || "FAQ")}</p>
+      <h2>${escapeHtml(item.question)}</h2>
+      <p class="lead">${escapeHtml(item.answer)}</p>
+      ${item.steps?.length ? `
+        <ol class="faq-steps">
+          ${item.steps.map((step) => `<li>${escapeHtml(step)}</li>`).join("")}
+        </ol>
+      ` : ""}
+    </article>
+  `;
+}
+
+function helpPage() {
   return layout(`
-    <section class="panel pending-lesson">
-      <p class="eyebrow">JapaFlow · 文章</p>
-      <h1>暂无文章</h1>
-      <p class="lead">这里会陆续记录日语学习过程、课程整理和产品更新。</p>
+    <section class="help-page">
+      <section class="panel help-hero">
+        <p class="eyebrow">JapaFlow · 帮助</p>
+        <h1>麦克风录音问题</h1>
+        <p class="lead">当前先集中处理一个问题：浏览器已经放行权限，但页面依然录不到声音。下面按文章结构横向展开说明。</p>
+      </section>
+      <article class="help-article">
+        <section class="panel help-article-main">
+          <p class="eyebrow">问题一 · 录音转写</p>
+          <h2>为什么点了录音，却没有识别出文字？</h2>
+          <p class="lead">最常见的原因是浏览器当前选中了虚拟麦克风，比如 Teams、企业微信、Zoom、Loopback 之类的输入设备。</p>
+          <ol class="help-steps">
+            <li>确认浏览器麦克风下拉框里选的是实际麦克风，而不是虚拟话筒。</li>
+            <li>如果当前设备名称里带有“虚拟”“Virtual”“Teams”“企业微信”“Zoom”等字样，先切换掉。</li>
+            <li>切换后刷新页面，再重新录音。</li>
+          </ol>
+        </section>
+        <aside class="help-article-side">
+          <section class="help-note">
+            <p class="eyebrow">问题二 · 麦克风设置</p>
+            <h3>浏览器已经允许麦克风，为什么还是录不到声音？</h3>
+            <p>浏览器允许不等于选对了输入设备。权限只是放行，真正采集到哪一路声音，要看当前选中的麦克风。</p>
+            <ol class="help-steps compact">
+              <li>打开浏览器麦克风设置页，检查当前输入设备。</li>
+              <li>优先选 MacBook Pro Microphone、USB 麦克风或其他真实物理麦克风。</li>
+              <li>如果系统里装了会议软件，尽量不要选它们创建的虚拟输入。</li>
+            </ol>
+          </section>
+        </aside>
+      </article>
     </section>
   `);
 }
@@ -8885,7 +8929,7 @@ function render() {
     history.replaceState({}, "", currentRoute.lessonId ? `/lesson/${currentRoute.lessonId}` : "/");
     return render();
   }
-  const views = { home, articles: articlesPage, lesson: lessonDashboard, init: initPage, vocab, text: textPage, grammar: grammarPage, exercises: exercisesPage, wrongbook: wrongBookPage, favorites: favoritesPage, audio: audioManagePage, result: resultPage };
+  const views = { home, help: helpPage, lesson: lessonDashboard, init: initPage, vocab, text: textPage, grammar: grammarPage, exercises: exercisesPage, wrongbook: wrongBookPage, favorites: favoritesPage, audio: audioManagePage, result: resultPage };
   hideSelectionBubble();
   const requestedLessonId = route().lessonId;
   if (requestedLessonId && !ADMIN_MODE) {

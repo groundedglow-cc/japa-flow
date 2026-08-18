@@ -225,11 +225,13 @@ function renderLayoutBlock(block: LayoutBlock): string {
 function renderExample(example: ExampleBlock): string {
   return `
     <div class="example-block">
-      ${example.label ? `<span class="example-label">${escapeHtml(example.label)}</span>` : ""}
-      ${example.beforeParts?.length
-        ? `<span class="example-before">${renderPrompt(example.beforeParts, example.beforeKana)}</span>`
-        : example.before ? `<span class="example-before">${renderRubyText(example.before, example.beforeKana)}</span>` : ""}
-      <span class="example-arrow">→</span>
+      <span class="example-head">
+        ${example.label ? `<span class="example-label">${escapeHtml(example.label)}</span>` : ""}
+        ${example.beforeParts?.length
+          ? `<span class="example-before">${renderPrompt(example.beforeParts, example.beforeKana)}</span>`
+          : example.before ? `<span class="example-before">${renderRubyText(example.before, example.beforeKana)}</span>` : ""}
+        <span class="example-arrow">→</span>
+      </span>
       <span class="example-after">${renderPrompt(example.after, example.afterKana)}</span>
     </div>
   `;

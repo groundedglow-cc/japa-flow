@@ -646,9 +646,9 @@
               "itemIndex": 12,
               "speaker": "乙",
               "text": "わたしのです。",
-              "start": 42.77,
+              "start": 42,
               "end": 43.59,
-              "duration": 0.82,
+              "duration": 1.59,
               "rawAzureTiming": {
                 "start": 42.75,
                 "end": 43.47,
@@ -663,18 +663,19 @@
               "phraseIndexes": [
                 10
               ],
-              "method": "azure-speech-sentence-alignment-with-boundary-padding",
-              "confidence": "needs-review",
+              "method": "manual-admin-adjustment",
+              "confidence": "approved",
               "alignmentIssues": [
                 "Low ASR text similarity."
               ],
               "review": {
-                "status": "pending",
-                "reviewedAt": null,
-                "note": "Low ASR text similarity.",
+                "status": "approved",
+                "reviewedAt": "2026-08-18T13:52:31.550Z",
+                "note": "Manually verified and adjusted in the text audio preview.",
                 "matchScore": 0.5,
                 "asrText": "私 の で す"
-              }
+              },
+              "reviewedAt": "2026-08-18T13:52:31.550Z"
             }
           }
         ]
@@ -912,9 +913,9 @@
               "itemIndex": 4,
               "speaker": "李",
               "text": "わたしの 母です。",
-              "start": 27.46,
+              "start": 27.16,
               "end": 28.91,
-              "duration": 1.45,
+              "duration": 1.75,
               "rawAzureTiming": {
                 "start": 27.71,
                 "end": 28.79,
@@ -929,18 +930,19 @@
               "phraseIndexes": [
                 6
               ],
-              "method": "azure-speech-sentence-alignment-with-boundary-padding",
-              "confidence": "needs-review",
+              "method": "manual-admin-adjustment",
+              "confidence": "approved",
               "alignmentIssues": [
                 "Low ASR text similarity."
               ],
               "review": {
-                "status": "pending",
-                "reviewedAt": null,
-                "note": "Low ASR text similarity.",
+                "status": "approved",
+                "reviewedAt": "2026-08-18T13:52:52.665Z",
+                "note": "Manually verified and adjusted in the text audio preview.",
                 "matchScore": 0.571,
                 "asrText": "私 の 母 で す"
-              }
+              },
+              "reviewedAt": "2026-08-18T13:52:52.665Z"
             }
           },
           {
@@ -1446,5 +1448,6 @@
         ]
       }
     ]
-  }
+  },
+  "updatedAt": "2026-08-18T13:52:52.666Z"
 }

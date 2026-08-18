@@ -1426,5 +1426,123 @@
         }
       ]
     }
+  },
+  "lesson26": {
+    "l26-p1-a1-q9": {
+      "answer": [
+        {
+          "answer": "明日 試験が あるのが知っていますか",
+          "normalizedAnswer": "明日試験があるのが知っていますか",
+          "expectedAnswers": [
+            "明日 試験が あるのを 知って いますか。"
+          ],
+          "reason": "用户答案与参考答案意思一致，语法功能相同，只是省略了助词を，属于轻微自然表达差异，可以采纳。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "明日 試験が あるのが知っていますか",
+          "addedAt": "2026-08-17T00:52:45.708Z"
+        }
+      ]
+    },
+    "l26-p1-a1-q10": {
+      "answer": [
+        {
+          "answer": "駅前に 新しい スーパーが できたのを知っていますか",
+          "normalizedAnswer": "駅前に新しいスーパーができたのを知っていますか",
+          "expectedAnswers": [
+            "駅前に 新しい スーパーが できるのを 知って いますか。"
+          ],
+          "reason": "用户答案将动词变为过去式「できた」，与参考答案的「できる」在时态上略有不同，但题目要求是仿照例句进行「のを 知って いますか」的变换，过去式表达“已经建成”也符合语境，且语法结构正确，意思一致，因此可以采纳。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "駅前に 新しい スーパーが できたのを知っていますか",
+          "addedAt": "2026-08-17T00:52:48.062Z"
+        }
+      ]
+    },
+    "l26-p2-a4-q2": {
+      "answer": [
+        {
+          "answer": "手紙を出すのを忘れました",
+          "normalizedAnswer": "手紙を出すのを忘れました",
+          "expectedAnswers": [
+            "わたしは 手紙を 出すのを 忘れました。"
+          ],
+          "reason": "用户答案省略了主语，但意思与参考答案一致，语法正确，符合题目要求。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "手紙を出すのを忘れました",
+          "addedAt": "2026-08-17T01:52:55.363Z"
+        }
+      ]
+    },
+    "l26-p2-a4-q3": {
+      "answer": [
+        {
+          "answer": "森さんは今日は会社を休むかもしれません",
+          "normalizedAnswer": "森さんは今日は会社を休むかもしれません",
+          "expectedAnswers": [
+            "森先生は 今日 会社に 来ないかも しれません。"
+          ],
+          "reason": "用户答案表达‘森先生今天可能不上班’，与题目‘也许不来上班’意思一致，语法上使用‘かもしれません’表示推测，符合要求。虽然用‘休む’代替‘来ない’，但语义相同，且未超出回答范围。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "森さんは今日は会社を休むかもしれません",
+          "addedAt": "2026-08-17T01:52:56.694Z"
+        }
+      ]
+    }
+  },
+  "lesson1": {
+    "l1-p1-a7-q1": {
+      "answer": [
+        {
+          "answer": "甲：張さんですか？\n乙：はい。張です。どうぞよろしく。\n甲：こちらこそ、小野緑です。よろしくお願いします。",
+          "normalizedAnswer": "甲張さんですか乙はい張ですどうぞよろしく甲こちらこそ小野緑ですよろしくお願いします",
+          "expectedAnswers": [
+            "甲：張さんですか。\n乙：はい、張です。どうぞ よろしく。\n甲：こんにちは、小野緑です。よろしく お願いします。"
+          ],
+          "reason": "用户答案与参考答案意思一致，仅添加了'こちらこそ'，属于自然表达，语法和内容均符合题目要求。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "甲：張さんですか。 乙：はい、張です。どうぞ よろしく。 甲：こんにちは、小野緑です。よろしく お願いします。",
+          "addedAt": "2026-08-18T13:47:57.821Z"
+        }
+      ]
+    },
+    "l1-p1-a7-q2": {
+      "answer": [
+        {
+          "answer": "甲：スミスさんですか？\n乙：はい、スミスです。どうぞよろしく。\n甲：こちらこそ。李秀麗です。よろしくお願いします。",
+          "normalizedAnswer": "甲スミスさんですか乙はいスミスですどうぞよろしく甲こちらこそ李秀麗ですよろしくお願いします",
+          "expectedAnswers": [
+            "甲：スミスさんですか。\n乙：はい、スミスです。どうぞ よろしく。\n甲：こんにちは、李秀麗です。よろしく お願いします。"
+          ],
+          "reason": "用户答案与参考答案在意思和语法功能上一致，仅增加了'こちらこそ'，属于自然表达，不影响正确性。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "甲：スミスさんですか。 乙：はい、スミスです。どうぞ よろしく。 甲：こちらこそ。李秀麗です。よろしく お願いします。",
+          "addedAt": "2026-08-18T13:47:59.097Z"
+        }
+      ]
+    }
+  },
+  "lesson2": {
+    "l2-p2-a5-q1": {
+      "answer": [
+        {
+          "answer": "それは誰の傘ですか？",
+          "normalizedAnswer": "それは誰の傘ですか",
+          "expectedAnswers": [
+            "あれは だれの 傘ですか。"
+          ],
+          "reason": "意思与参考答案一致，只是指示词由'あれ'改为'それ'，但题目未指定具体指示对象，且语法正确，属于自然表达差异。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "それは誰の傘ですか？",
+          "addedAt": "2026-08-18T13:55:45.364Z"
+        }
+      ]
+    }
   }
 }
