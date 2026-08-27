@@ -146,17 +146,14 @@
     if (wrapper && !status.isConnected) wrapper.append(status);
   }
 
-  function microphoneSettingsLink() {
-    const ua = navigator.userAgent;
-    const origin = location.origin || `${location.protocol}//${location.host}`;
-    if (/Edg\//.test(ua)) {
-      return { text: `edge://settings/content/siteDetails?site=${encodeURIComponent(origin)}` };
-    }
-    if (/Firefox\//.test(ua)) return { text: "about:preferences#privacy" };
-    if (/Chrome\//.test(ua) && !/Edg\//.test(ua) && !/OPR\//.test(ua)) {
-      return { text: `chrome://settings/content/siteDetails?site=${encodeURIComponent(origin)}` };
-    }
-    return null;
+  function createQaLink() {
+    const link = document.createElement("a");
+    link.href = "/help";
+    link.textContent = "请参考 QA";
+    link.target = "_blank";
+    link.rel = "noreferrer";
+    link.className = "speech-input-status-link";
+    return link;
   }
 
   function isLikelyVirtualMicrophone(label) {
@@ -414,16 +411,11 @@
       console.info("[practice recorder] selected input device:", inputDeviceLabel || "unknown");
       if (isLikelyVirtualMicrophone(inputDeviceLabel)) {
         stream.getTracks().forEach((track) => track.stop());
-        const settingsLink = microphoneSettingsLink();
-        if (settingsLink) {
-          setStatusWithNodes(status, [
-            `当前选中了虚拟麦克风（${inputDeviceLabel || "未知设备"}）。请切换为实际麦克风，或 `,
-            settingsLink.text,
-            " 后重试。"
-          ]);
-        } else {
-          setStatus(status, `当前选中了虚拟麦克风（${inputDeviceLabel || "未知设备"}）。请在浏览器的麦克风设置里切换为实际麦克风后重试。`, "warn");
-        }
+        setStatusWithNodes(status, [
+          `当前选中了虚拟麦克风（${inputDeviceLabel || "未知设备"}）。请切换为实际麦克风，或 `,
+          createQaLink(),
+          " 后重试。"
+        ]);
         return;
       }
       const AudioContextCtor = window.AudioContext || window.webkitAudioContext;
@@ -477,16 +469,11 @@
         if (audioStats.duration < 0.25 || audioStats.peak < 0.01) {
           console.warn("[practice recorder] no usable microphone signal:", { inputDeviceLabel, ...audioStats });
           setFieldLocked(field, false);
-          const settingsLink = microphoneSettingsLink();
-          if (settingsLink) {
-            setStatusWithNodes(status, [
-              `没有采集到麦克风声音（当前设备：${inputDeviceLabel || "未知"}）。请切换为实际麦克风，或 `,
-              settingsLink.text,
-              " 后重试。"
-            ]);
-          } else {
-            setStatus(status, `没有采集到麦克风声音（当前设备：${inputDeviceLabel || "未知"}）。请切换为实际麦克风后重试。`, "warn");
-          }
+          setStatusWithNodes(status, [
+            `没有采集到麦克风声音（当前设备：${inputDeviceLabel || "未知"}）。请切换为实际麦克风，或 `,
+            createQaLink(),
+            " 后重试。"
+          ]);
           return;
         }
         setButtonsDisabled([recordButton], true);

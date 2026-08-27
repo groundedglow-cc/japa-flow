@@ -478,8 +478,8 @@
               "speaker": "甲",
               "text": "昨日、何時から 何時まで 働きましたか。",
               "start": 26.22,
-              "end": 29.69,
-              "duration": 3.47,
+              "end": 29.9,
+              "duration": 3.68,
               "rawAzureTiming": {
                 "start": 26.47,
                 "end": 29.71,
@@ -494,16 +494,17 @@
               "phraseIndexes": [
                 6
               ],
-              "method": "azure-speech-sentence-alignment-with-boundary-padding",
-              "confidence": "high",
+              "method": "manual-admin-adjustment",
+              "confidence": "approved",
               "alignmentIssues": [],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-16T11:01:07.023Z",
-                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "reviewedAt": "2026-08-24T06:47:36.732Z",
+                "note": "Manually verified and adjusted in the text audio preview.",
                 "matchScore": 1,
                 "asrText": "昨 日 、 何 時 か ら 何 時 ま で 働 き ま し た か"
-              }
+              },
+              "reviewedAt": "2026-08-24T06:47:36.732Z"
             }
           },
           {
@@ -550,9 +551,9 @@
               "itemIndex": 8,
               "speaker": "乙",
               "text": "9時から 6時まで 働きました。",
-              "start": 29.73,
+              "start": 30.3,
               "end": 33.67,
-              "duration": 3.94,
+              "duration": 3.37,
               "rawAzureTiming": {
                 "start": 29.71,
                 "end": 33.55,
@@ -568,16 +569,17 @@
                 6,
                 7
               ],
-              "method": "azure-speech-sentence-alignment-with-boundary-padding",
-              "confidence": "high",
+              "method": "manual-admin-adjustment",
+              "confidence": "approved",
               "alignmentIssues": [],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-16T11:01:07.023Z",
-                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "reviewedAt": "2026-08-24T06:47:50.583Z",
+                "note": "Manually verified and adjusted in the text audio preview.",
                 "matchScore": 0.846,
                 "asrText": "。 九 時 か ら 六 時 ま で 働 き ま し た"
-              }
+              },
+              "reviewedAt": "2026-08-24T06:47:50.583Z"
             }
           }
         ]
@@ -898,8 +900,8 @@
               "speaker": "吉田",
               "text": "小野さん，李さんの 歓迎会は いつですか。",
               "start": 14.98,
-              "end": 18.33,
-              "duration": 3.35,
+              "end": 18.53,
+              "duration": 3.55,
               "rawAzureTiming": {
                 "start": 15.23,
                 "end": 18.35,
@@ -914,16 +916,17 @@
               "phraseIndexes": [
                 3
               ],
-              "method": "azure-speech-sentence-alignment-with-boundary-padding",
-              "confidence": "high",
+              "method": "manual-admin-adjustment",
+              "confidence": "approved",
               "alignmentIssues": [],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-16T11:01:07.023Z",
-                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "reviewedAt": "2026-08-24T06:48:58.925Z",
+                "note": "Manually verified and adjusted in the text audio preview.",
                 "matchScore": 1,
                 "asrText": "小 野 さ ん ， 李 さ ん の 歓 迎 会 は い つ で す か"
-              }
+              },
+              "reviewedAt": "2026-08-24T06:48:58.925Z"
             }
           },
           {
@@ -953,9 +956,9 @@
               "itemIndex": 2,
               "speaker": "小野",
               "text": "あさっての 夜です。",
-              "start": 18.37,
+              "start": 19,
               "end": 21.43,
-              "duration": 3.06,
+              "duration": 2.43,
               "rawAzureTiming": {
                 "start": 18.35,
                 "end": 21.31,
@@ -971,16 +974,17 @@
                 3,
                 4
               ],
-              "method": "azure-speech-sentence-alignment-with-boundary-padding",
-              "confidence": "high",
+              "method": "manual-admin-adjustment",
+              "confidence": "approved",
               "alignmentIssues": [],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-16T11:01:07.023Z",
-                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "reviewedAt": "2026-08-24T06:49:44.702Z",
+                "note": "Manually verified and adjusted in the text audio preview.",
                 "matchScore": 1,
                 "asrText": "。 あ さ っ て の 夜 で す"
-              }
+              },
+              "reviewedAt": "2026-08-24T06:49:44.702Z"
             }
           },
           {
@@ -1008,8 +1012,8 @@
               "speaker": "吉田",
               "text": "何時からですか。",
               "start": 21.54,
-              "end": 23.45,
-              "duration": 1.91,
+              "end": 23.15,
+              "duration": 1.61,
               "rawAzureTiming": {
                 "start": 21.79,
                 "end": 23.47,
@@ -1024,16 +1028,17 @@
               "phraseIndexes": [
                 4
               ],
-              "method": "azure-speech-sentence-alignment-with-boundary-padding",
-              "confidence": "high",
+              "method": "manual-admin-adjustment",
+              "confidence": "approved",
               "alignmentIssues": [],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-16T11:01:07.023Z",
-                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "reviewedAt": "2026-08-24T06:49:22.441Z",
+                "note": "Manually verified and adjusted in the text audio preview.",
                 "matchScore": 1,
                 "asrText": "。 何 時 か ら で す か 。"
-              }
+              },
+              "reviewedAt": "2026-08-24T06:49:22.441Z"
             }
           },
           {
@@ -1063,9 +1068,9 @@
               "itemIndex": 4,
               "speaker": "小野",
               "text": "6時からです。",
-              "start": 23.49,
+              "start": 23.29,
               "end": 24.51,
-              "duration": 1.02,
+              "duration": 1.22,
               "rawAzureTiming": {
                 "start": 23.47,
                 "end": 24.39,
@@ -1080,16 +1085,17 @@
               "phraseIndexes": [
                 4
               ],
-              "method": "azure-speech-sentence-alignment-with-boundary-padding",
-              "confidence": "high",
+              "method": "manual-admin-adjustment",
+              "confidence": "approved",
               "alignmentIssues": [],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-16T11:01:07.023Z",
-                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "reviewedAt": "2026-08-24T06:49:57.816Z",
+                "note": "Manually verified and adjusted in the text audio preview.",
                 "matchScore": 0.833,
                 "asrText": "六 時 か ら で す"
-              }
+              },
+              "reviewedAt": "2026-08-24T06:49:57.816Z"
             }
           }
         ]
@@ -1269,8 +1275,8 @@
               "speaker": "吉田",
               "text": "遅刻ですね。",
               "start": 33.58,
-              "end": 34.45,
-              "duration": 0.87,
+              "end": 34.75,
+              "duration": 1.17,
               "rawAzureTiming": {
                 "start": 33.83,
                 "end": 34.47,
@@ -1285,16 +1291,17 @@
               "phraseIndexes": [
                 7
               ],
-              "method": "azure-speech-sentence-alignment-with-boundary-padding",
-              "confidence": "high",
+              "method": "manual-admin-adjustment",
+              "confidence": "approved",
               "alignmentIssues": [],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-16T11:01:07.023Z",
-                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "reviewedAt": "2026-08-24T06:50:14.620Z",
+                "note": "Manually verified and adjusted in the text audio preview.",
                 "matchScore": 1,
                 "asrText": "遅 刻 で す ね"
-              }
+              },
+              "reviewedAt": "2026-08-24T06:50:14.620Z"
             }
           },
           {
@@ -1869,8 +1876,8 @@
               "speaker": "李",
               "text": "土曜日は 働きません。土曜日と 日曜日は 休みです。",
               "start": 61.65,
-              "end": 66.39,
-              "duration": 4.74,
+              "end": 66.9,
+              "duration": 5.25,
               "rawAzureTiming": {
                 "start": 61.83,
                 "end": 66.27,
@@ -1885,16 +1892,17 @@
               "phraseIndexes": [
                 10
               ],
-              "method": "azure-speech-sentence-alignment-with-boundary-padding",
-              "confidence": "high",
+              "method": "manual-admin-adjustment",
+              "confidence": "approved",
               "alignmentIssues": [],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-16T11:01:07.023Z",
-                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "reviewedAt": "2026-08-24T06:51:00.717Z",
+                "note": "Manually verified and adjusted in the text audio preview.",
                 "matchScore": 1,
                 "asrText": "？ 土 曜 日 は 働 き ま せ ん 。 土 曜 日 と 日 曜 日 は 休 み で す"
-              }
+              },
+              "reviewedAt": "2026-08-24T06:51:00.717Z"
             }
           }
         ]
@@ -1937,5 +1945,6 @@
         ]
       }
     ]
-  }
+  },
+  "updatedAt": "2026-08-24T06:51:00.718Z"
 }

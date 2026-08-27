@@ -16,7 +16,12 @@ for (const lessonNo of lessons) {
   const sourceData = readJson(sourcePath);
   const targets = japaneseItems(sourceData).filter(needsAnnotation);
   if (!targets.length) {
-    console.log(`lesson${lessonNo}: no kana/ruby gaps`);
+    if (dryRun) {
+      console.log(`lesson${lessonNo}: no kana/ruby gaps`);
+    } else {
+      const synced = syncVerifiedRuby(lessonNo, sourceData);
+      console.log(`lesson${lessonNo}: no kana/ruby gaps; synced ${synced} verified item(s)`);
+    }
     continue;
   }
   if (dryRun) {
@@ -26,7 +31,25 @@ for (const lessonNo of lessons) {
   const patches = await requestPatches(lessonNo, sourcePath, targets);
   applyPatches(sourceData, targets, patches);
   writeFileSync(sourcePath, `${JSON.stringify(sourceData, null, 2)}\n`);
+  syncVerifiedRuby(lessonNo, sourceData);
   console.log(`lesson${lessonNo}: filled ${patches.length} kana/ruby item(s)`);
+}
+
+function syncVerifiedRuby(lessonNo, sourceData) {
+  const verifiedPath = join(root, "data", "ocr", `lesson${lessonNo}-text-audio-verified.json`);
+  if (!existsSync(verifiedPath)) return;
+  const verifiedData = readJson(verifiedPath);
+  const sourceById = new Map(japaneseItems(sourceData).map((item) => [item.id, item]));
+  let synced = 0;
+  for (const item of japaneseItems(verifiedData)) {
+    const source = sourceById.get(item.id);
+    if (!source?.kana || !Array.isArray(source.segments)) continue;
+    item.kana = source.kana;
+    item.segments = source.segments;
+    synced += 1;
+  }
+  if (synced) writeFileSync(verifiedPath, `${JSON.stringify(verifiedData, null, 2)}\n`);
+  return synced;
 }
 
 function lessonNumbers(options) {

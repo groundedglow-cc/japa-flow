@@ -1,11 +1,18 @@
-import type { InputSlot, LessonPractice, PracticeActivity, PracticeItem, PromptPart, RichText } from "./lesson-practice-types";
+import type { ExampleBlock, InputSlot, LessonPractice, PracticeActivity, PracticeItem, PromptPart, RichText } from "./lesson-practice-types";
 
 const exerciseImage = (fileName: string) => `../data/book1_exercise_images/${fileName}`;
 
 const page = (pageNo: number) => `../course-assets/by-lesson/lesson16/page${pageNo}.webp`;
 const audio = (exerciseNo: 1 | 2, order: number) =>
   `https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit4/lesson16/Exe${exerciseNo}_${order}.mp3`;
-const text = (value: string, options: Omit<RichText, "type" | "text"> = {}): RichText => ({ type: "text", text: value, ...options });
+const readings: Record<string, string> = {
+  "東京大学": "とうきょうだいがく", "旅行会社": "りょこうがいしゃ", "営業部": "えいぎょうぶ", "中国人": "ちゅうごくじん", "韓国人": "かんこくじん", "日本人": "にほんじん", "オーストラリア人": "オーストラリアじん", "フランス人": "フランスじん", "フランス製": "フランスせい", "中国製": "ちゅうごくせい", "日本語": "にほんご", "中国語": "ちゅうごくご", "結婚": "けっこん", "親切": "しんせつ", "元気": "げんき", "安全": "あんぜん", "天気": "てんき", "試験": "しけん", "問題": "もんだい", "生活": "せいかつ", "全然": "ぜんぜん", "若くて": "わかくて", "広くて": "ひろくて", "多くて": "おおくて", "明るくて": "あかるくて", "短くて": "みじかくて", "高くて": "たかくて", "新しくて": "あたらしくて", "大きかった": "おおきかった", "おいしくて": "おいしくて", "白くて": "しろくて", "黒くて": "くろくて", "小さい": "ちいさい", "大切な": "たいせつな", "よくて": "よくて", "明るい": "あかるい", "短い": "みじかい", "暖かい": "あたたかい", "便利": "べんり", "緑": "みどり", "多い": "おおい", "静か": "しずか", "狭い": "せまい", "暗い": "くらい", "若い": "わかい", "高い": "たかい", "大きい": "おおきい", "新しい": "あたらしい", "古い": "ふるい", "安い": "やすい", "難しい": "むずかしい", "楽しい": "たのしい", "忙しい": "いそがしい", "広い": "ひろい", "長い": "ながい", "白い": "しろい", "黒い": "くろい", "青い": "あおい", "赤い": "あかい", "上手": "じょうず", "社員": "しゃいん", "研修生": "けんしゅうせい", "課長": "かちょう", "学生": "がくせい", "大学": "だいがく", "先生": "せんせい", "社長": "しゃちょう", "住所": "じゅうしょ", "事務所": "じむしょ", "電話": "でんわ", "横浜": "よこはま", "昨日": "きのう", "部屋": "へや", "料理": "りょうり", "複雑": "ふくざつ", "勉強": "べんきょう", "書類": "しょるい", "大切": "たいせつ", "水筒": "すいとう", "お菓子": "おかし", "財布": "さいふ", "写真": "しゃしん", "新聞": "しんぶん", "車": "くるま", "家": "いえ", "庭": "にわ", "海": "うみ", "頭": "あたま", "背": "せ", "髪": "かみ", "脚": "あし", "窓": "まど", "革": "かわ", "布": "ぬの", "中": "なか", "何": "なに", "お金": "おかね", "3か月": "さんかげつ", "3年": "さんねん", "8歳": "はっさい", "4時": "よじ", "東京": "とうきょう", "日本": "にほん", "今": "いま", "人": "ひと", "所": "ところ", "国": "くに", "女の子": "おんなのこ", "子": "こ", "物": "もの", "森": "もり", "李": "り", "小野": "おの", "田中": "たなか", "佐藤": "さとう", "中村": "なかむら", "吉田": "よしだ", "王": "おう", "持ちます": "もちます", "持って": "もって", "知ります": "しります", "知って": "しって", "住みます": "すみます", "住んで": "すんで", "買いました": "かいました", "帰りました": "かえりました", "読みます": "よみます", "読んで": "よんで", "聞いて": "きいて", "撮って": "とって", "使って": "つかって", "借りても": "かりても", "行きました": "いきました", "行き": "いき", "来た": "きた", "来ません": "きません", "見て": "みて", "住ん": "すん", "持っ": "もっ", "知っ": "しっ", "撮っ": "とっ", "結婚し": "けっこんし", "訳して": "やくして", "案内して": "あんないして", "入って": "はいって", "送って": "おくって", "買いに": "かいに"
+};
+const kana = (value: string) => {
+  const converted = Object.keys(readings).sort((a, b) => b.length - a.length).reduce((result, key) => result.replaceAll(key, readings[key]), value);
+  return /[\u3400-\u9fff々]/.test(converted) ? undefined : converted;
+};
+const text = (value: string, options: Omit<RichText, "type" | "text"> = {}): RichText => ({ type: "text", text: value, kana: options.kana || kana(value), ...options });
 const blank = (slotId: string): PromptPart => ({ type: "blank", slotId });
 
 const answerOnlyHint = "只填写提问后的回答部分，不需要重写问题。";
@@ -39,7 +46,7 @@ const answerItem = (
   id,
   number,
   prompt: typeof prompt === "string" ? [text(prompt)] : prompt,
-  promptKana: options.promptKana,
+  promptKana: options.promptKana || (typeof prompt === "string" ? kana(prompt) : undefined),
   instruction: "",
   answerSource: options.answerSource || "example_transform",
   responseScope: options.responseScope,
@@ -65,7 +72,7 @@ const dialogueItem = (
   id,
   number,
   prompt: [text(prompt)],
-  promptKana: options.promptKana,
+  promptKana: options.promptKana || kana(prompt),
   instruction: "",
   answerSource: options.answerSource || "example_transform",
   responseScope: "question_and_answer",
@@ -91,7 +98,7 @@ const blankItem = (
   id,
   number,
   prompt: typeof prompt === "string" ? [text(prompt)] : prompt,
-  promptKana: options.promptKana,
+  promptKana: options.promptKana || (typeof prompt === "string" ? kana(prompt) : undefined),
   instruction: "",
   answerSource: options.answerSource || "prompt",
   responseScope: options.responseScope || "phrase_only",
@@ -111,7 +118,7 @@ const choiceItem = (
   id,
   number,
   prompt: [text(prompt)],
-  promptKana,
+  promptKana: promptKana || kana(prompt),
   instruction: "",
   answerSource: "prompt",
   responseScope: "choice_only",
@@ -123,7 +130,7 @@ const trueFalseItem = (id: string, number: string, prompt: string, value: boolea
   id,
   number,
   prompt: [text(prompt)],
-  promptKana,
+  promptKana: promptKana || kana(prompt),
   instruction: "",
   answerSource: "audio",
   responseScope: "boolean_only",
@@ -580,6 +587,17 @@ const activities: PracticeActivity[] = [
   }
 ];
 
+const withExampleKana = (example: ExampleBlock): ExampleBlock => ({
+  ...example,
+  beforeKana: example.beforeKana || kana(example.before || "") || undefined
+});
+
+const withPracticeKana = (activity: PracticeActivity): PracticeActivity => ({
+  ...activity,
+  layout: activity.layout.map((block) => block.type === "example" ? { ...block, content: withExampleKana(block.content) } : block),
+  itemGroups: activity.itemGroups?.map((group) => ({ ...group, example: withExampleKana(group.example) }))
+});
+
 export const lesson16Practice: LessonPractice = {
   lessonId: "lesson16",
   title: "第16課 ホテルの 部屋は 広くて 明るいです",
@@ -588,5 +606,5 @@ export const lesson16Practice: LessonPractice = {
     { pageNo: 197, imagePath: page(197) },
     { pageNo: 198, imagePath: page(198) }
   ],
-  activities
+  activities: activities.map(withPracticeKana)
 };

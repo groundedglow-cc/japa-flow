@@ -84,7 +84,8 @@ export function renderActivity(activity: PracticeActivity, practice?: LessonPrac
         </div>
       </div>
 
-      ${renderActivityResources(activity, assetMap, audioUrl)}
+      ${renderActivityAudio(activity, audioUrl)}
+      ${renderActivityResources(activity, assetMap)}
 
       ${activity.layout.length ? `<div class="layout-blocks">${activity.layout.map(renderLayoutBlock).join("")}</div>` : ""}
 
@@ -101,18 +102,23 @@ export function renderActivity(activity: PracticeActivity, practice?: LessonPrac
   `;
 }
 
-function renderActivityResources(activity: PracticeActivity, assetMap: Map<string, ImageAsset>, audioUrl?: string): string {
+function renderActivityAudio(activity: PracticeActivity, audioUrl?: string): string {
   const hasAudio = activity.requiresAudio || activity.audio !== undefined;
+  if (!hasAudio) return "";
+
+  return `
+    <div class="audio-placeholder ${audioUrl ? "ready" : "pending"}">
+      ${audioUrl ? `<audio controls src="${escapeHtml(audioUrl)}"></audio>` : "<span>录音待补充</span>"}
+    </div>
+  `;
+}
+
+function renderActivityResources(activity: PracticeActivity, assetMap: Map<string, ImageAsset>): string {
   const hasAssets = Boolean(activity.displayAssets?.length);
-  if (!hasAudio && !hasAssets) return "";
+  if (!hasAssets) return "";
 
   return `
     <div class="activity-resource-panel">
-      ${hasAudio ? `
-        <div class="audio-placeholder ${audioUrl ? "ready" : "pending"}">
-          ${audioUrl ? `<audio controls src="${escapeHtml(audioUrl)}"></audio>` : "<span>录音待补充</span>"}
-        </div>
-      ` : ""}
       ${activity.displayAssets?.length ? renderDisplayAssets(activity.displayAssets, assetMap) : ""}
     </div>
   `;
@@ -223,6 +229,28 @@ function renderLayoutBlock(block: LayoutBlock): string {
 }
 
 function renderExample(example: ExampleBlock): string {
+  const dialogueLines = exampleDialogueLines(example.after, example.afterKana);
+  if (dialogueLines) {
+    return `
+      <div class="example-block dialogue-example">
+        <span class="example-head">
+          ${example.label ? `<span class="example-label">${escapeHtml(example.label)}</span>` : ""}
+          ${example.beforeParts?.length
+            ? `<span class="example-before">${renderPrompt(example.beforeParts, example.beforeKana)}</span>`
+            : example.before ? `<span class="example-before">${renderRubyText(example.before, example.beforeKana)}</span>` : ""}
+          <span class="example-arrow">→</span>
+        </span>
+        <span class="example-after dialogue-lines">
+          ${dialogueLines.map((line) => `
+            <span class="dialogue-line">
+              <span>${escapeHtml(line.speaker)}</span>
+              <p>${renderPrompt(line.parts, line.kana)}</p>
+            </span>
+          `).join("")}
+        </span>
+      </div>
+    `;
+  }
   return `
     <div class="example-block">
       <span class="example-head">
@@ -371,6 +399,74 @@ function renderRubyText(text: string, kana?: string): string {
 
 function shouldRenderWholePrompt(parts: PromptPart[], kana?: string): parts is RichText[] {
   return Boolean(kana) && parts.every((part) => part.type === "text" && !part.underline && !part.substitutionKey && !part.kana);
+}
+
+function exampleDialogueLines(parts: PromptPart[], kana?: string) {
+  if (!parts?.length) return null;
+  const text = promptPartsPlainText(parts).trim();
+  if (!/甲：|乙|こう：|おつ：|コウ：|オツ：/.test(text)) return null;
+  const textLines = splitDialogueContent(text);
+  const kanaLines = kana ? splitDialogueContent(kana) : [];
+  if (!textLines.length) return null;
+  const partsLines = splitPromptPartsByDialogueLines(parts, textLines);
+  return textLines.map((line, index) => ({
+    speaker: line.speaker,
+    parts: partsLines[index] || [],
+    kana: kanaLines[index]?.body || ""
+  }));
+}
+
+function splitDialogueContent(value: string) {
+  const text = String(value || "").replace(/\s+/g, " ").trim();
+  if (!text) return [];
+  const speakerPattern = /((?:甲|乙[12]?|丙|丁|A|B|C|D|こう|おつ|コウ|オツ))：/g;
+  const matches = Array.from(text.matchAll(speakerPattern));
+  return matches.map((match, index) => {
+    const speaker = match[1];
+    const bodyStart = (match.index || 0) + match[0].length;
+    const bodyEnd = matches[index + 1]?.index ?? text.length;
+    return {
+      speaker,
+      body: text.slice(bodyStart, bodyEnd).trim(),
+      start: bodyStart,
+      end: bodyEnd
+    };
+  }).filter((line) => line.body);
+}
+
+function splitPromptPartsByDialogueLines(parts: PromptPart[], textLines: { start: number; end: number }[]) {
+  const result = textLines.map(() => []);
+  const ranges = textLines.map((line) => ({ start: line.start, end: line.end }));
+  let cursor = 0;
+  for (const part of parts) {
+    const partText = promptPartsPlainText([part]);
+    const partStart = cursor;
+    const partEnd = cursor + partText.length;
+    ranges.forEach((range, index) => {
+      const overlapStart = Math.max(partStart, range.start);
+      const overlapEnd = Math.min(partEnd, range.end);
+      if (overlapStart >= overlapEnd) return;
+      const sliceStart = overlapStart - partStart;
+      const sliceEnd = overlapEnd - partStart;
+      result[index].push(slicePromptPart(part, partText.slice(sliceStart, sliceEnd)));
+    });
+    cursor = partEnd;
+  }
+  return result;
+}
+
+function slicePromptPart(part: PromptPart, text: string): PromptPart {
+  if (part.type !== "text") return part;
+  return { ...part, text };
+}
+
+function promptPartsPlainText(parts: PromptPart[]): string {
+  return parts.map((part) => {
+    if (part.type === "text") return part.text;
+    if (part.type === "blank") return "";
+    if (part.type === "choice_ref") return part.choiceIds.join(" / ");
+    return part.assetId;
+  }).join("");
 }
 
 function escapeHtml(value: string | number): string {

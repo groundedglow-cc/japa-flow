@@ -1,66 +1,956 @@
 {
   "lessonId": "lesson30",
   "sourceImages": [
-    {"section":"basic","path":"course-assets/by-lesson/lesson30/page60.webp","pageNo":60},
-    {"section":"application","path":"course-assets/by-lesson/lesson30/page65.webp","pageNo":65}
+    {
+      "section": "basic",
+      "path": "course-assets/by-lesson/lesson30/page60.webp",
+      "pageNo": 60
+    },
+    {
+      "section": "application",
+      "path": "course-assets/by-lesson/lesson30/page65.webp",
+      "pageNo": 65
+    }
   ],
   "basicText": {
     "title": "基本课文",
     "basicSentences": [
-      {"id":"l30-basic-s001","order":1,"text":"もう11時だから寝よう。","translationZh":"已经11点了，睡吧。","confidence":"high","rawText":"1. もう11時だから寝よう。"},
-      {"id":"l30-basic-s002","order":2,"text":"今日、会社を休もうと思います。","translationZh":"我想今天请假不上班。","confidence":"high","rawText":"2. 今日、会社を休もうと思います。"},
-      {"id":"l30-basic-s003","order":3,"text":"明日、病院へ行こうと思っています。","translationZh":"我打算明天去医院。","confidence":"high","rawText":"3. 明日、病院へ行こうと思っています。"},
-      {"id":"l30-basic-s004","order":4,"text":"荷物が重いので、宅配便で送ります。","translationZh":"行李很重，所以用宅配便寄送。","confidence":"high","rawText":"4. 荷物が重いので、宅配便で送ります。"}
+      {
+        "id": "l30-basic-s001",
+        "order": 1,
+        "text": "もう11時だから寝よう。",
+        "translationZh": "已经11点了，睡吧。",
+        "confidence": "high",
+        "rawText": "1. もう11時だから寝よう。",
+        "kana": "もうじゅういちじだからねよう。",
+        "segments": [
+          {
+            "text": "もう11"
+          },
+          {
+            "text": "時",
+            "ruby": "じ"
+          },
+          {
+            "text": "だから"
+          },
+          {
+            "text": "寝",
+            "ruby": "ね"
+          },
+          {
+            "text": "よう。"
+          }
+        ]
+      },
+      {
+        "id": "l30-basic-s002",
+        "order": 2,
+        "text": "今日、会社を休もうと思います。",
+        "translationZh": "我想今天请假不上班。",
+        "confidence": "high",
+        "rawText": "2. 今日、会社を休もうと思います。",
+        "kana": "きょう、かいしゃをやすもうとおもいます。",
+        "segments": [
+          {
+            "text": "今日",
+            "ruby": "きょう"
+          },
+          {
+            "text": "、"
+          },
+          {
+            "text": "会社",
+            "ruby": "かいしゃ"
+          },
+          {
+            "text": "を"
+          },
+          {
+            "text": "休",
+            "ruby": "やす"
+          },
+          {
+            "text": "もうと"
+          },
+          {
+            "text": "思",
+            "ruby": "おも"
+          },
+          {
+            "text": "います。"
+          }
+        ]
+      },
+      {
+        "id": "l30-basic-s003",
+        "order": 3,
+        "text": "明日、病院へ行こうと思っています。",
+        "translationZh": "我打算明天去医院。",
+        "confidence": "high",
+        "rawText": "3. 明日、病院へ行こうと思っています。",
+        "kana": "あした、びょういんへいこうとおもっています。",
+        "segments": [
+          {
+            "text": "明日",
+            "ruby": "あした"
+          },
+          {
+            "text": "、"
+          },
+          {
+            "text": "病院",
+            "ruby": "びょういん"
+          },
+          {
+            "text": "へ"
+          },
+          {
+            "text": "行",
+            "ruby": "い"
+          },
+          {
+            "text": "こうと"
+          },
+          {
+            "text": "思",
+            "ruby": "おも"
+          },
+          {
+            "text": "っています。"
+          }
+        ]
+      },
+      {
+        "id": "l30-basic-s004",
+        "order": 4,
+        "text": "荷物が重いので、宅配便で送ります。",
+        "translationZh": "行李很重，所以用宅配便寄送。",
+        "confidence": "high",
+        "rawText": "4. 荷物が重いので、宅配便で送ります。",
+        "kana": "にもつがおもいので、たくはいびんでおくります。",
+        "segments": [
+          {
+            "text": "荷物",
+            "ruby": "にもつ"
+          },
+          {
+            "text": "が"
+          },
+          {
+            "text": "重",
+            "ruby": "おも"
+          },
+          {
+            "text": "いので、"
+          },
+          {
+            "text": "宅配便",
+            "ruby": "たくはいびん"
+          },
+          {
+            "text": "で"
+          },
+          {
+            "text": "送",
+            "ruby": "おく"
+          },
+          {
+            "text": "ります。"
+          }
+        ]
+      }
     ],
     "dialogues": [
-      {"id":"l30-basic-dialogue-001","label":"A","lines":[
-        {"id":"l30-basic-dialogue-001-line-001","speaker":"甲","text":"仕事が終わってから、飲みに行こうよ。","translationZh":"工作结束后去喝一杯吧。","confidence":"high","rawText":"甲：仕事が終わってから、飲みに行こうよ。"},
-        {"id":"l30-basic-dialogue-001-line-002","speaker":"乙","text":"ごめん。明日早いから、今日はちょっと…。","translationZh":"抱歉。明天要早起，今天就算了吧。","confidence":"high","rawText":"乙：ごめん。明日早いから、今日はちょっと…。"}
-      ]},
-      {"id":"l30-basic-dialogue-002","label":"B","lines":[
-        {"id":"l30-basic-dialogue-002-line-001","speaker":"甲","text":"もう遅いので、そろそろ帰ろうと思います。","translationZh":"已经很晚了，我想差不多该回去了。","confidence":"high","rawText":"甲：もう遅いので、そろそろ帰ろうと思います。"},
-        {"id":"l30-basic-dialogue-002-line-002","speaker":"乙","text":"お疲れ様でした。気をつけて。","translationZh":"您辛苦了。路上小心。","confidence":"high","rawText":"乙：お疲れ様でした。気をつけて。"}
-      ]},
-      {"id":"l30-basic-dialogue-003","label":"C","lines":[
-        {"id":"l30-basic-dialogue-003-line-001","speaker":"甲","text":"もうすぐゴールデンウィークですね。何か予定がありますか。","translationZh":"马上就是黄金周了。有什么计划吗？","confidence":"high","rawText":"甲：もうすぐゴールデンウィークですね。何か予定がありますか。"},
-        {"id":"l30-basic-dialogue-003-line-002","speaker":"乙","text":"長江下りをしようと思っています。","translationZh":"我打算乘船游览长江。","confidence":"high","rawText":"乙：長江下りをしようと思っています。"}
-      ]},
-      {"id":"l30-basic-dialogue-004","label":"D","lines":[
-        {"id":"l30-basic-dialogue-004-line-001","speaker":"甲","text":"土曜日も仕事ですか。","translationZh":"星期六也上班吗？","confidence":"high","rawText":"甲：土曜日も仕事ですか。"},
-        {"id":"l30-basic-dialogue-004-line-002","speaker":"乙","text":"ええ。香港からお客さんが来るので、空港へ迎えに行きます。","translationZh":"是的。因为有客户从香港来，我要去机场迎接。","confidence":"high","rawText":"乙：ええ。香港からお客さんが来るので、空港へ迎えに行きます。"}
-      ]}
+      {
+        "id": "l30-basic-dialogue-001",
+        "label": "A",
+        "lines": [
+          {
+            "id": "l30-basic-dialogue-001-line-001",
+            "speaker": "甲",
+            "text": "仕事が終わってから、飲みに行こうよ。",
+            "translationZh": "工作结束后去喝一杯吧。",
+            "confidence": "high",
+            "rawText": "甲：仕事が終わってから、飲みに行こうよ。",
+            "kana": "しごとがおわってから、のみにいこうよ。",
+            "segments": [
+              {
+                "text": "仕事",
+                "ruby": "しごと"
+              },
+              {
+                "text": "が"
+              },
+              {
+                "text": "終",
+                "ruby": "お"
+              },
+              {
+                "text": "わってから、"
+              },
+              {
+                "text": "飲",
+                "ruby": "の"
+              },
+              {
+                "text": "みに"
+              },
+              {
+                "text": "行",
+                "ruby": "い"
+              },
+              {
+                "text": "こうよ。"
+              }
+            ]
+          },
+          {
+            "id": "l30-basic-dialogue-001-line-002",
+            "speaker": "乙",
+            "text": "ごめん。明日早いから、今日はちょっと…。",
+            "translationZh": "抱歉。明天要早起，今天就算了吧。",
+            "confidence": "high",
+            "rawText": "乙：ごめん。明日早いから、今日はちょっと…。",
+            "kana": "ごめん。あしたはやいから、きょうはちょっと…。",
+            "segments": [
+              {
+                "text": "ごめん。"
+              },
+              {
+                "text": "明日",
+                "ruby": "あした"
+              },
+              {
+                "text": "早",
+                "ruby": "はや"
+              },
+              {
+                "text": "いから、"
+              },
+              {
+                "text": "今日",
+                "ruby": "きょう"
+              },
+              {
+                "text": "はちょっと…。"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "l30-basic-dialogue-002",
+        "label": "B",
+        "lines": [
+          {
+            "id": "l30-basic-dialogue-002-line-001",
+            "speaker": "甲",
+            "text": "もう遅いので、そろそろ帰ろうと思います。",
+            "translationZh": "已经很晚了，我想差不多该回去了。",
+            "confidence": "high",
+            "rawText": "甲：もう遅いので、そろそろ帰ろうと思います。",
+            "kana": "もうおそいので、そろそろかえろうとおもいます。",
+            "segments": [
+              {
+                "text": "もう"
+              },
+              {
+                "text": "遅",
+                "ruby": "おそ"
+              },
+              {
+                "text": "いので、そろそろ"
+              },
+              {
+                "text": "帰",
+                "ruby": "かえ"
+              },
+              {
+                "text": "ろうと"
+              },
+              {
+                "text": "思",
+                "ruby": "おも"
+              },
+              {
+                "text": "います。"
+              }
+            ]
+          },
+          {
+            "id": "l30-basic-dialogue-002-line-002",
+            "speaker": "乙",
+            "text": "お疲れ様でした。気をつけて。",
+            "translationZh": "您辛苦了。路上小心。",
+            "confidence": "high",
+            "rawText": "乙：お疲れ様でした。気をつけて。",
+            "kana": "おつかれさまでした。きをつけて。",
+            "segments": [
+              {
+                "text": "お疲れ様",
+                "ruby": "おつかれさま"
+              },
+              {
+                "text": "でした。"
+              },
+              {
+                "text": "気",
+                "ruby": "き"
+              },
+              {
+                "text": "をつけて。"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "l30-basic-dialogue-003",
+        "label": "C",
+        "lines": [
+          {
+            "id": "l30-basic-dialogue-003-line-001",
+            "speaker": "甲",
+            "text": "もうすぐゴールデンウィークですね。何か予定がありますか。",
+            "translationZh": "马上就是黄金周了。有什么计划吗？",
+            "confidence": "high",
+            "rawText": "甲：もうすぐゴールデンウィークですね。何か予定がありますか。",
+            "kana": "もうすぐゴールデンウィークですね。なにかよていがありますか。",
+            "segments": [
+              {
+                "text": "もうすぐゴールデンウィークですね。"
+              },
+              {
+                "text": "何",
+                "ruby": "なに"
+              },
+              {
+                "text": "か"
+              },
+              {
+                "text": "予定",
+                "ruby": "よてい"
+              },
+              {
+                "text": "がありますか。"
+              }
+            ]
+          },
+          {
+            "id": "l30-basic-dialogue-003-line-002",
+            "speaker": "乙",
+            "text": "長江下りをしようと思っています。",
+            "translationZh": "我打算乘船游览长江。",
+            "confidence": "high",
+            "rawText": "乙：長江下りをしようと思っています。",
+            "kana": "ちょうこうくだりをしようとおもっています。",
+            "segments": [
+              {
+                "text": "長江下り",
+                "ruby": "ちょうこうくだり"
+              },
+              {
+                "text": "をしようと"
+              },
+              {
+                "text": "思",
+                "ruby": "おも"
+              },
+              {
+                "text": "っています。"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "l30-basic-dialogue-004",
+        "label": "D",
+        "lines": [
+          {
+            "id": "l30-basic-dialogue-004-line-001",
+            "speaker": "甲",
+            "text": "土曜日も仕事ですか。",
+            "translationZh": "星期六也上班吗？",
+            "confidence": "high",
+            "rawText": "甲：土曜日も仕事ですか。",
+            "kana": "どようびもしごとですか。",
+            "segments": [
+              {
+                "text": "土曜日",
+                "ruby": "どようび"
+              },
+              {
+                "text": "も"
+              },
+              {
+                "text": "仕事",
+                "ruby": "しごと"
+              },
+              {
+                "text": "ですか。"
+              }
+            ]
+          },
+          {
+            "id": "l30-basic-dialogue-004-line-002",
+            "speaker": "乙",
+            "text": "ええ。香港からお客さんが来るので、空港へ迎えに行きます。",
+            "translationZh": "是的。因为有客户从香港来，我要去机场迎接。",
+            "confidence": "high",
+            "rawText": "乙：ええ。香港からお客さんが来るので、空港へ迎えに行きます。",
+            "kana": "ええ。ほんこんからおきゃくさんがくるので、くうこうへむかえにいきます。",
+            "segments": [
+              {
+                "text": "ええ。"
+              },
+              {
+                "text": "香港",
+                "ruby": "ほんこん"
+              },
+              {
+                "text": "からお"
+              },
+              {
+                "text": "客",
+                "ruby": "きゃく"
+              },
+              {
+                "text": "さんが"
+              },
+              {
+                "text": "来",
+                "ruby": "く"
+              },
+              {
+                "text": "るので、"
+              },
+              {
+                "text": "空港",
+                "ruby": "くうこう"
+              },
+              {
+                "text": "へ"
+              },
+              {
+                "text": "迎",
+                "ruby": "むか"
+              },
+              {
+                "text": "えに"
+              },
+              {
+                "text": "行",
+                "ruby": "い"
+              },
+              {
+                "text": "きます。"
+              }
+            ]
+          }
+        ]
+      }
     ]
   },
   "applicationText": {
     "title": "春のピクニック",
     "blocks": [
-      {"id":"l30-app-block-001","type":"narration","text":"4月的一个周末，小李想和北京分公司的职员一起去郊游。小李也跟森谈起这件事。","translationZh":"四月的一个周末，小李想和北京分公司的职员一起去郊游，也跟森谈起这件事。","confidence":"high","rawText":"4月的一个周末，小李想和北京分公司的职员一起去郊游。小李也跟森谈起这件事。"},
-      {"id":"l30-app-block-002","type":"scene","text":"在办公室","translationZh":"在办公室。","confidence":"high","rawText":"（在办公室）"},
-      {"id":"l30-app-block-003","type":"dialogue","lines":[
-        {"id":"l30-app-block-003-line-001","speaker":"李","text":"今度の週末、みんなでピクニックに行こうと思っているんですが…。","translationZh":"这个周末，我想大家一起去郊游……。","confidence":"high","rawText":"李：今度の週末、みんなでピクニックに行こうと思っているんですが…。"},
-        {"id":"l30-app-block-003-line-002","speaker":"森","text":"いいですね。どこへ行くんですか。","translationZh":"好啊。去哪里呢？","confidence":"high","rawText":"森：いいですね。どこへ行くんですか。"},
-        {"id":"l30-app-block-003-line-003","speaker":"李","text":"香山へ行こうと思います。","translationZh":"我想去香山。","confidence":"high","rawText":"李：香山へ行こうと思います。"}
-      ]},
-      {"id":"l30-app-block-004","type":"scene","text":"当天早晨，在分公司的楼前集合。森迟到了，跑着过来。","translationZh":"当天早晨，大家在分公司楼前集合；森迟到了，跑着过来。","confidence":"high","rawText":"（当天早晨，在分公司的楼前集合。森迟到了，跑着过来）"},
-      {"id":"l30-app-block-005","type":"dialogue","lines":[
-        {"id":"l30-app-block-005-line-001","speaker":"加藤","text":"森君、遅いよ。","translationZh":"森，你迟到了。","confidence":"high","rawText":"加藤：森君、遅いよ。"},
-        {"id":"l30-app-block-005-line-002","speaker":"森","text":"すみません。出かけようとした時に、電話があったんです。","translationZh":"对不起。正要出门时来了电话。","confidence":"high","rawText":"森：すみません。出かけようとした時に、電話があったんです。"},
-        {"id":"l30-app-block-005-line-003","speaker":"加藤","text":"そうか。それじゃ、まあ、仕方ないな。","translationZh":"是吗？那就没办法了。","confidence":"high","rawText":"加藤：そうか。それじゃ、まあ、仕方ないな。"},
-        {"id":"l30-app-block-005-line-004","speaker":"加藤","text":"馬さん、みんなそろったから、そろそろ出発しようか。","translationZh":"小马，大家都到齐了，差不多该出发了吧。","confidence":"high","rawText":"（面向小马）馬さん、みんなそろったから、そろそろ出発しようか。"},
-        {"id":"l30-app-block-005-line-005","speaker":"馬","text":"ええ、そうしましょう。","translationZh":"好，就这么办吧。","confidence":"high","rawText":"馬：ええ、そうしましょう。"}
-      ]},
-      {"id":"l30-app-block-006","type":"scene","text":"在小马驾驶的车中","translationZh":"在小马驾驶的车中。","confidence":"high","rawText":"（在小马驾驶的车中）"},
-      {"id":"l30-app-block-007","type":"dialogue","lines":[
-        {"id":"l30-app-block-007-line-001","speaker":"李","text":"近くに北京植物園があるので、帰りに寄ろうと思うんです。","translationZh":"附近有北京植物园，我想回去时顺便去看看。","confidence":"high","rawText":"李：近くに北京植物園があるので、帰りに寄ろうと思うんです。"},
-        {"id":"l30-app-block-007-line-002","speaker":"戴","text":"いいですね。わたしは花が好きなので、楽しみです。","translationZh":"好啊。我喜欢花，很期待。","confidence":"high","rawText":"戴：いいですね。わたしは花が好きなので、楽しみです。"}
-      ]},
-      {"id":"l30-app-block-008","type":"scene","text":"到了香山，看到众多游客","translationZh":"到了香山，看到许多游客。","confidence":"high","rawText":"（到了香山，看到众多游客）"},
-      {"id":"l30-app-block-009","type":"dialogue","lines":[
-        {"id":"l30-app-block-009-line-001","speaker":"森","text":"人が多いですね。","translationZh":"人真多啊。","confidence":"high","rawText":"森：人が多いですね。"},
-        {"id":"l30-app-block-009-line-002","speaker":"陳","text":"今はちょうどピクニックのシーズンですから。","translationZh":"因为现在正好是郊游的季节。","confidence":"high","rawText":"陳：今はちょうどピクニックのシーズンですから。"},
-        {"id":"l30-app-block-009-line-003","speaker":"馬","text":"この季節は、どの行楽地も人でいっぱいですよ。","translationZh":"这个季节，所有游览地都挤满了人。","confidence":"high","rawText":"馬：この季節は、どの行楽地も人でいっぱいですよ。"},
-        {"id":"l30-app-block-009-line-004","speaker":"李","text":"秋の香山もいいですよ。今度は紅葉を見に来ようと思っています。","translationZh":"秋天的香山也很好。我打算下次来赏红叶。","confidence":"high","rawText":"李：秋の香山もいいですよ。今度は紅葉を見に来ようと思っています。"}
-      ]}
+      {
+        "id": "l30-app-block-001",
+        "type": "narration",
+        "text": "4月的一个周末，小李想和北京分公司的职员一起去郊游。小李也跟森谈起这件事。",
+        "translationZh": "四月的一个周末，小李想和北京分公司的职员一起去郊游，也跟森谈起这件事。",
+        "confidence": "high",
+        "rawText": "4月的一个周末，小李想和北京分公司的职员一起去郊游。小李也跟森谈起这件事。"
+      },
+      {
+        "id": "l30-app-block-002",
+        "type": "scene",
+        "text": "在办公室",
+        "translationZh": "在办公室。",
+        "confidence": "high",
+        "rawText": "（在办公室）"
+      },
+      {
+        "id": "l30-app-block-003",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l30-app-block-003-line-001",
+            "speaker": "李",
+            "text": "今度の週末、みんなでピクニックに行こうと思っているんですが…。",
+            "translationZh": "这个周末，我想大家一起去郊游……。",
+            "confidence": "high",
+            "rawText": "李：今度の週末、みんなでピクニックに行こうと思っているんですが…。",
+            "kana": "こんどのしゅうまつ、みんなでピクニックにいこうとおもっているんですが…。",
+            "segments": [
+              {
+                "text": "今度",
+                "ruby": "こんど"
+              },
+              {
+                "text": "の"
+              },
+              {
+                "text": "週末",
+                "ruby": "しゅうまつ"
+              },
+              {
+                "text": "、みんなでピクニックに"
+              },
+              {
+                "text": "行",
+                "ruby": "い"
+              },
+              {
+                "text": "こうと"
+              },
+              {
+                "text": "思",
+                "ruby": "おも"
+              },
+              {
+                "text": "っているんですが…。"
+              }
+            ]
+          },
+          {
+            "id": "l30-app-block-003-line-002",
+            "speaker": "森",
+            "text": "いいですね。どこへ行くんですか。",
+            "translationZh": "好啊。去哪里呢？",
+            "confidence": "high",
+            "rawText": "森：いいですね。どこへ行くんですか。",
+            "kana": "いいですね。どこへいくんですか。",
+            "segments": [
+              {
+                "text": "いいですね。どこへ"
+              },
+              {
+                "text": "行",
+                "ruby": "い"
+              },
+              {
+                "text": "くんですか。"
+              }
+            ]
+          },
+          {
+            "id": "l30-app-block-003-line-003",
+            "speaker": "李",
+            "text": "香山へ行こうと思います。",
+            "translationZh": "我想去香山。",
+            "confidence": "high",
+            "rawText": "李：香山へ行こうと思います。",
+            "kana": "こうざんへいこうとおもいます。",
+            "segments": [
+              {
+                "text": "香山",
+                "ruby": "こうざん"
+              },
+              {
+                "text": "へ"
+              },
+              {
+                "text": "行",
+                "ruby": "い"
+              },
+              {
+                "text": "こうと"
+              },
+              {
+                "text": "思",
+                "ruby": "おも"
+              },
+              {
+                "text": "います。"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "l30-app-block-004",
+        "type": "scene",
+        "text": "当天早晨，在分公司的楼前集合。森迟到了，跑着过来。",
+        "translationZh": "当天早晨，大家在分公司楼前集合；森迟到了，跑着过来。",
+        "confidence": "high",
+        "rawText": "（当天早晨，在分公司的楼前集合。森迟到了，跑着过来）"
+      },
+      {
+        "id": "l30-app-block-005",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l30-app-block-005-line-001",
+            "speaker": "加藤",
+            "text": "森君、遅いよ。",
+            "translationZh": "森，你迟到了。",
+            "confidence": "high",
+            "rawText": "加藤：森君、遅いよ。",
+            "kana": "もりくん、おそいよ。",
+            "segments": [
+              {
+                "text": "森君",
+                "ruby": "もりくん"
+              },
+              {
+                "text": "、"
+              },
+              {
+                "text": "遅",
+                "ruby": "おそ"
+              },
+              {
+                "text": "いよ。"
+              }
+            ]
+          },
+          {
+            "id": "l30-app-block-005-line-002",
+            "speaker": "森",
+            "text": "すみません。出かけようとした時に、電話があったんです。",
+            "translationZh": "对不起。正要出门时来了电话。",
+            "confidence": "high",
+            "rawText": "森：すみません。出かけようとした時に、電話があったんです。",
+            "kana": "すみません。でかけようとしたときに、でんわがあったんです。",
+            "segments": [
+              {
+                "text": "すみません。"
+              },
+              {
+                "text": "出",
+                "ruby": "で"
+              },
+              {
+                "text": "かけようとした"
+              },
+              {
+                "text": "時",
+                "ruby": "とき"
+              },
+              {
+                "text": "に、"
+              },
+              {
+                "text": "電話",
+                "ruby": "でんわ"
+              },
+              {
+                "text": "があったんです。"
+              }
+            ]
+          },
+          {
+            "id": "l30-app-block-005-line-003",
+            "speaker": "加藤",
+            "text": "そうか。それじゃ、まあ、仕方ないな。",
+            "translationZh": "是吗？那就没办法了。",
+            "confidence": "high",
+            "rawText": "加藤：そうか。それじゃ、まあ、仕方ないな。",
+            "kana": "そうか。それじゃ、まあ、しかたないな。",
+            "segments": [
+              {
+                "text": "そうか。それじゃ、まあ、"
+              },
+              {
+                "text": "仕方",
+                "ruby": "しかた"
+              },
+              {
+                "text": "ないな。"
+              }
+            ]
+          },
+          {
+            "id": "l30-app-block-005-line-004",
+            "speaker": "加藤",
+            "text": "馬さん、みんなそろったから、そろそろ出発しようか。",
+            "translationZh": "小马，大家都到齐了，差不多该出发了吧。",
+            "confidence": "high",
+            "rawText": "（面向小马）馬さん、みんなそろったから、そろそろ出発しようか。",
+            "kana": "ばさん、みんなそろったから、そろそろしゅっぱつしようか。",
+            "segments": [
+              {
+                "text": "馬",
+                "ruby": "ば"
+              },
+              {
+                "text": "さん、みんなそろったから、そろそろ"
+              },
+              {
+                "text": "出発",
+                "ruby": "しゅっぱつ"
+              },
+              {
+                "text": "しようか。"
+              }
+            ]
+          },
+          {
+            "id": "l30-app-block-005-line-005",
+            "speaker": "馬",
+            "text": "ええ、そうしましょう。",
+            "translationZh": "好，就这么办吧。",
+            "confidence": "high",
+            "rawText": "馬：ええ、そうしましょう。",
+            "kana": "ええ、そうしましょう。",
+            "segments": [
+              {
+                "text": "ええ、そうしましょう。"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "l30-app-block-006",
+        "type": "scene",
+        "text": "在小马驾驶的车中",
+        "translationZh": "在小马驾驶的车中。",
+        "confidence": "high",
+        "rawText": "（在小马驾驶的车中）"
+      },
+      {
+        "id": "l30-app-block-007",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l30-app-block-007-line-001",
+            "speaker": "李",
+            "text": "近くに北京植物園があるので、帰りに寄ろうと思うんです。",
+            "translationZh": "附近有北京植物园，我想回去时顺便去看看。",
+            "confidence": "high",
+            "rawText": "李：近くに北京植物園があるので、帰りに寄ろうと思うんです。",
+            "kana": "ちかくにぺきんしょくぶつえんがあるので、かえりによろうとおもうんです。",
+            "segments": [
+              {
+                "text": "近",
+                "ruby": "ちか"
+              },
+              {
+                "text": "くに"
+              },
+              {
+                "text": "北京植物園",
+                "ruby": "ぺきんしょくぶつえん"
+              },
+              {
+                "text": "があるので、"
+              },
+              {
+                "text": "帰",
+                "ruby": "かえ"
+              },
+              {
+                "text": "りに"
+              },
+              {
+                "text": "寄",
+                "ruby": "よ"
+              },
+              {
+                "text": "ろうと"
+              },
+              {
+                "text": "思",
+                "ruby": "おも"
+              },
+              {
+                "text": "うんです。"
+              }
+            ]
+          },
+          {
+            "id": "l30-app-block-007-line-002",
+            "speaker": "戴",
+            "text": "いいですね。わたしは花が好きなので、楽しみです。",
+            "translationZh": "好啊。我喜欢花，很期待。",
+            "confidence": "high",
+            "rawText": "戴：いいですね。わたしは花が好きなので、楽しみです。",
+            "kana": "いいですね。わたしははながすきなので、たのしみです。",
+            "segments": [
+              {
+                "text": "いいですね。わたしは"
+              },
+              {
+                "text": "花",
+                "ruby": "はな"
+              },
+              {
+                "text": "が"
+              },
+              {
+                "text": "好",
+                "ruby": "す"
+              },
+              {
+                "text": "きなので、"
+              },
+              {
+                "text": "楽",
+                "ruby": "たの"
+              },
+              {
+                "text": "しみです。"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "l30-app-block-008",
+        "type": "scene",
+        "text": "到了香山，看到众多游客",
+        "translationZh": "到了香山，看到许多游客。",
+        "confidence": "high",
+        "rawText": "（到了香山，看到众多游客）"
+      },
+      {
+        "id": "l30-app-block-009",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l30-app-block-009-line-001",
+            "speaker": "森",
+            "text": "人が多いですね。",
+            "translationZh": "人真多啊。",
+            "confidence": "high",
+            "rawText": "森：人が多いですね。",
+            "kana": "ひとがおおいですね。",
+            "segments": [
+              {
+                "text": "人",
+                "ruby": "ひと"
+              },
+              {
+                "text": "が"
+              },
+              {
+                "text": "多",
+                "ruby": "おお"
+              },
+              {
+                "text": "いですね。"
+              }
+            ]
+          },
+          {
+            "id": "l30-app-block-009-line-002",
+            "speaker": "陳",
+            "text": "今はちょうどピクニックのシーズンですから。",
+            "translationZh": "因为现在正好是郊游的季节。",
+            "confidence": "high",
+            "rawText": "陳：今はちょうどピクニックのシーズンですから。",
+            "kana": "いまはちょうどピクニックのシーズンですから。",
+            "segments": [
+              {
+                "text": "今",
+                "ruby": "いま"
+              },
+              {
+                "text": "はちょうどピクニックのシーズンですから。"
+              }
+            ]
+          },
+          {
+            "id": "l30-app-block-009-line-003",
+            "speaker": "馬",
+            "text": "この季節は、どの行楽地も人でいっぱいですよ。",
+            "translationZh": "这个季节，所有游览地都挤满了人。",
+            "confidence": "high",
+            "rawText": "馬：この季節は、どの行楽地も人でいっぱいですよ。",
+            "kana": "このきせつは、どのこうらくちもひとでいっぱいですよ。",
+            "segments": [
+              {
+                "text": "この"
+              },
+              {
+                "text": "季節",
+                "ruby": "きせつ"
+              },
+              {
+                "text": "は、どの"
+              },
+              {
+                "text": "行楽地",
+                "ruby": "こうらくち"
+              },
+              {
+                "text": "も"
+              },
+              {
+                "text": "人",
+                "ruby": "ひと"
+              },
+              {
+                "text": "でいっぱいですよ。"
+              }
+            ]
+          },
+          {
+            "id": "l30-app-block-009-line-004",
+            "speaker": "李",
+            "text": "秋の香山もいいですよ。今度は紅葉を見に来ようと思っています。",
+            "translationZh": "秋天的香山也很好。我打算下次来赏红叶。",
+            "confidence": "high",
+            "rawText": "李：秋の香山もいいですよ。今度は紅葉を見に来ようと思っています。",
+            "kana": "あきのこうざんもいいですよ。こんどはこうようをみにこようとおもっています。",
+            "segments": [
+              {
+                "text": "秋",
+                "ruby": "あき"
+              },
+              {
+                "text": "の"
+              },
+              {
+                "text": "香山",
+                "ruby": "こうざん"
+              },
+              {
+                "text": "もいいですよ。"
+              },
+              {
+                "text": "今度",
+                "ruby": "こんど"
+              },
+              {
+                "text": "は"
+              },
+              {
+                "text": "紅葉",
+                "ruby": "こうよう"
+              },
+              {
+                "text": "を"
+              },
+              {
+                "text": "見",
+                "ruby": "み"
+              },
+              {
+                "text": "に"
+              },
+              {
+                "text": "来",
+                "ruby": "こ"
+              },
+              {
+                "text": "ようと"
+              },
+              {
+                "text": "思",
+                "ruby": "おも"
+              },
+              {
+                "text": "っています。"
+              }
+            ]
+          }
+        ]
+      }
     ]
   },
   "warnings": [

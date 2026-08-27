@@ -28,24 +28,25 @@
           "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit6/lesson21/lesson_basic.mp3",
           "speaker": "",
           "text": "わたしは すき焼きを 食べた ことが あります。",
-          "start": 0.33,
+          "start": 1.33,
           "end": 4.11,
-          "duration": 3.78,
+          "duration": 2.78,
           "speechUnitCount": 1,
           "matchScore": 0.842,
           "asrText": "一 私 は す き 焼 き を 食 べ た こ と が あ り ま す",
           "phraseIndexes": [
             0
           ],
-          "method": "legacy-asr-alignment-range-converted",
+          "method": "manual-admin-adjustment",
           "confidence": "approved",
           "review": {
             "status": "approved",
-            "reviewedAt": "2026-08-05T08:45:36.419Z",
-            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-26T12:33:37.333Z",
+            "note": "Manually verified and adjusted in the text audio preview.",
             "matchScore": 0.842,
             "asrText": "一 私 は す き 焼 き を 食 べ た こ と が あ り ま す"
-          }
+          },
+          "reviewedAt": "2026-08-26T12:33:37.333Z"
         },
         "segments": [
           {
@@ -268,24 +269,25 @@
               "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit6/lesson21/lesson_basic.mp3",
               "speaker": "甲",
               "text": "お寿司を 食べた ことが ありますか。",
-              "start": 20.3,
+              "start": 21,
               "end": 23.32,
-              "duration": 3.02,
+              "duration": 2.32,
               "speechUnitCount": 1,
               "matchScore": 1,
               "asrText": "お 寿 司 を 食 べ た こ と が あ り ま す か",
               "phraseIndexes": [
                 5
               ],
-              "method": "legacy-asr-alignment-range-converted",
+              "method": "manual-admin-adjustment",
               "confidence": "approved",
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-05T08:45:36.419Z",
-                "note": "Automatically approved by the bulk alignment workflow.",
+                "reviewedAt": "2026-08-26T12:34:01.562Z",
+                "note": "Manually verified and adjusted in the text audio preview.",
                 "matchScore": 1,
                 "asrText": "お 寿 司 を 食 べ た こ と が あ り ま す か"
-              }
+              },
+              "reviewedAt": "2026-08-26T12:34:01.562Z"
             },
             "segments": [
               {
@@ -791,24 +793,25 @@
               "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit6/lesson21/lesson_apps.mp3",
               "speaker": "李",
               "text": "そうしましょう。ところで、小野さんは よく 歌舞伎を 見ますか。",
-              "start": 27.41,
+              "start": 27.1,
               "end": 31.71,
-              "duration": 4.3,
+              "duration": 4.61,
               "speechUnitCount": 1,
               "matchScore": 1,
               "asrText": "そ う し ま し ょ う と こ ろ で 小 野 さ ん は よ く 歌 舞 伎 を 見 ま す か",
               "phraseIndexes": [
                 5
               ],
-              "method": "legacy-asr-alignment-range-converted",
+              "method": "manual-admin-adjustment",
               "confidence": "approved",
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-05T08:46:26.551Z",
-                "note": "Automatically approved by the bulk alignment workflow.",
+                "reviewedAt": "2026-08-26T12:34:35.917Z",
+                "note": "Manually verified and adjusted in the text audio preview.",
                 "matchScore": 1,
                 "asrText": "そ う し ま し ょ う と こ ろ で 小 野 さ ん は よ く 歌 舞 伎 を 見 ま す か"
-              }
+              },
+              "reviewedAt": "2026-08-26T12:34:35.917Z"
             },
             "segments": [
               {
@@ -1215,24 +1218,25 @@
               "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit6/lesson21/lesson_apps.mp3",
               "speaker": "李",
               "text": "言葉は 分かりませんでしたが、とても よかったです。",
-              "start": 66.87,
+              "start": 66.37,
               "end": 70.17,
-              "duration": 3.3,
+              "duration": 3.8,
               "speechUnitCount": 1,
               "matchScore": 0.909,
               "asrText": "言 葉 は わ か り ま せ ん で し た が と て も 良 か っ た で す",
               "phraseIndexes": [
                 11
               ],
-              "method": "legacy-asr-alignment-range-converted",
+              "method": "manual-admin-adjustment",
               "confidence": "approved",
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-05T08:46:26.551Z",
-                "note": "Automatically approved by the bulk alignment workflow.",
+                "reviewedAt": "2026-08-26T12:35:30.461Z",
+                "note": "Manually verified and adjusted in the text audio preview.",
                 "matchScore": 0.909,
                 "asrText": "言 葉 は わ か り ま せ ん で し た が と て も 良 か っ た で す"
-              }
+              },
+              "reviewedAt": "2026-08-26T12:35:30.461Z"
             },
             "segments": [
               {
@@ -1529,5 +1533,5 @@
       }
     ]
   },
-  "updatedAt": "2026-08-14T00:17:06.854Z"
+  "updatedAt": "2026-08-26T12:35:30.461Z"
 }

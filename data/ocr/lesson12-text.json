@@ -1,48 +1,398 @@
 {
   "lessonId": "lesson12",
   "sourceImages": [
-    { "section": "basic", "path": "course-assets/by-lesson/lesson12/page144.webp", "pageNo": 144 },
-    { "section": "application", "path": "course-assets/by-lesson/lesson12/page149.webp", "pageNo": 149 }
+    {
+      "section": "basic",
+      "path": "course-assets/by-lesson/lesson12/page144.webp",
+      "pageNo": 144
+    },
+    {
+      "section": "application",
+      "path": "course-assets/by-lesson/lesson12/page149.webp",
+      "pageNo": 149
+    }
   ],
   "basicText": {
     "title": "基本课文",
     "basicSentences": [
-      { "id": "l12-basic-s001", "order": 1, "text": "李さんは 森さんより 若いです。", "kana": "りさんは もりさんより わかいです。", "translationZh": "小李比森先生年轻。", "confidence": "high", "rawText": "1. 李さんは 森さんより 若いです。" },
-      { "id": "l12-basic-s002", "order": 2, "text": "日本より 中国の ほうが 広いです。", "kana": "にほんより ちゅうごくの ほうが ひろいです。", "translationZh": "中国比日本大。", "confidence": "high", "rawText": "2. 日本より 中国の ほうが 広いです。" },
-      { "id": "l12-basic-s003", "order": 3, "text": "神戸は 大阪ほど にぎやかでは ありません。", "kana": "こうべは おおさかほど にぎやかでは ありません。", "translationZh": "神户不像大阪那么热闹。", "confidence": "high", "rawText": "3. 神戸は 大阪ほど にぎやかでは ありません。" },
-      { "id": "l12-basic-s004", "order": 4, "text": "スポーツの 中で サッカーが いちばん おもしろいです。", "kana": "スポーツの なかで サッカーが いちばん おもしろいです。", "translationZh": "在运动中，足球最有趣。", "confidence": "high", "rawText": "4. スポーツの 中で サッカーが いちばん おもしろいです。" }
+      {
+        "id": "l12-basic-s001",
+        "order": 1,
+        "text": "李さんは 森さんより 若いです。",
+        "kana": "りさんは もりさんより わかいです。",
+        "translationZh": "小李比森先生年轻。",
+        "confidence": "high",
+        "rawText": "1. 李さんは 森さんより 若いです。",
+        "segments": [
+          {
+            "text": "李",
+            "ruby": "り"
+          },
+          {
+            "text": "さんは "
+          },
+          {
+            "text": "森",
+            "ruby": "もり"
+          },
+          {
+            "text": "さんより "
+          },
+          {
+            "text": "若",
+            "ruby": "わか"
+          },
+          {
+            "text": "いです。"
+          }
+        ]
+      },
+      {
+        "id": "l12-basic-s002",
+        "order": 2,
+        "text": "日本より 中国の ほうが 広いです。",
+        "kana": "にほんより ちゅうごくの ほうが ひろいです。",
+        "translationZh": "中国比日本大。",
+        "confidence": "high",
+        "rawText": "2. 日本より 中国の ほうが 広いです。",
+        "segments": [
+          {
+            "text": "日本",
+            "ruby": "にほん"
+          },
+          {
+            "text": "より "
+          },
+          {
+            "text": "中国",
+            "ruby": "ちゅうごく"
+          },
+          {
+            "text": "の ほうが "
+          },
+          {
+            "text": "広",
+            "ruby": "ひろ"
+          },
+          {
+            "text": "いです。"
+          }
+        ]
+      },
+      {
+        "id": "l12-basic-s003",
+        "order": 3,
+        "text": "神戸は 大阪ほど にぎやかでは ありません。",
+        "kana": "こうべは おおさかほど にぎやかでは ありません。",
+        "translationZh": "神户不像大阪那么热闹。",
+        "confidence": "high",
+        "rawText": "3. 神戸は 大阪ほど にぎやかでは ありません。",
+        "segments": [
+          {
+            "text": "神戸",
+            "ruby": "こうべ"
+          },
+          {
+            "text": "は "
+          },
+          {
+            "text": "大阪",
+            "ruby": "おおさか"
+          },
+          {
+            "text": "ほど にぎやかでは ありません。"
+          }
+        ]
+      },
+      {
+        "id": "l12-basic-s004",
+        "order": 4,
+        "text": "スポーツの 中で サッカーが いちばん おもしろいです。",
+        "kana": "スポーツの なかで サッカーが いちばん おもしろいです。",
+        "translationZh": "在运动中，足球最有趣。",
+        "confidence": "high",
+        "rawText": "4. スポーツの 中で サッカーが いちばん おもしろいです。",
+        "segments": [
+          {
+            "text": "スポーツの "
+          },
+          {
+            "text": "中",
+            "ruby": "なか"
+          },
+          {
+            "text": "で サッカーが いちばん おもしろいです。"
+          }
+        ]
+      }
     ],
     "dialogues": [
       {
         "id": "l12-basic-dialogue-001",
         "label": "A",
         "lines": [
-          { "id": "l12-basic-dialogue-001-line-001", "speaker": "甲", "text": "北京は 東京より 寒いですか。", "kana": "ペキンは とうきょうより さむいですか。", "translationZh": "北京比东京冷吗？", "confidence": "high", "rawText": "甲：北京は 東京より 寒いですか。" },
-          { "id": "l12-basic-dialogue-001-line-002", "speaker": "乙", "text": "ええ、冬の 北京は 東京より ずっと 寒いです。", "kana": "ええ、ふゆの ペキンは とうきょうより ずっと さむいです。", "translationZh": "是的，冬天的北京比东京冷得多。", "confidence": "high", "rawText": "乙：ええ、冬の 北京は 東京より ずっと 寒いです。" }
+          {
+            "id": "l12-basic-dialogue-001-line-001",
+            "speaker": "甲",
+            "text": "北京は 東京より 寒いですか。",
+            "kana": "ペキンは とうきょうより さむいですか。",
+            "translationZh": "北京比东京冷吗？",
+            "confidence": "high",
+            "rawText": "甲：北京は 東京より 寒いですか。",
+            "segments": [
+              {
+                "text": "北京",
+                "ruby": "ペキン"
+              },
+              {
+                "text": "は "
+              },
+              {
+                "text": "東京",
+                "ruby": "とうきょう"
+              },
+              {
+                "text": "より "
+              },
+              {
+                "text": "寒",
+                "ruby": "さむ"
+              },
+              {
+                "text": "いですか。"
+              }
+            ]
+          },
+          {
+            "id": "l12-basic-dialogue-001-line-002",
+            "speaker": "乙",
+            "text": "ええ、冬の 北京は 東京より ずっと 寒いです。",
+            "kana": "ええ、ふゆの ペキンは とうきょうより ずっと さむいです。",
+            "translationZh": "是的，冬天的北京比东京冷得多。",
+            "confidence": "high",
+            "rawText": "乙：ええ、冬の 北京は 東京より ずっと 寒いです。",
+            "segments": [
+              {
+                "text": "ええ、"
+              },
+              {
+                "text": "冬",
+                "ruby": "ふゆ"
+              },
+              {
+                "text": "の "
+              },
+              {
+                "text": "北京",
+                "ruby": "ペキン"
+              },
+              {
+                "text": "は "
+              },
+              {
+                "text": "東京",
+                "ruby": "とうきょう"
+              },
+              {
+                "text": "より ずっと "
+              },
+              {
+                "text": "寒",
+                "ruby": "さむ"
+              },
+              {
+                "text": "いです。"
+              }
+            ]
+          }
         ]
       },
       {
         "id": "l12-basic-dialogue-002",
         "label": "B",
         "lines": [
-          { "id": "l12-basic-dialogue-002-line-001", "speaker": "甲", "text": "日本語と 英語と どちらが 難しいですか。", "kana": "にほんごと えいごと どちらが むずかしいですか。", "translationZh": "日语和英语，哪个难？", "confidence": "high", "rawText": "甲：日本語と 英語と どちらが 難しいですか。" },
-          { "id": "l12-basic-dialogue-002-line-002", "speaker": "乙", "text": "日本語の ほうが 難しいです。", "kana": "にほんごの ほうが むずかしいです。", "translationZh": "日语更难。", "confidence": "high", "rawText": "乙：日本語の ほうが 難しいです。" }
+          {
+            "id": "l12-basic-dialogue-002-line-001",
+            "speaker": "甲",
+            "text": "日本語と 英語と どちらが 難しいですか。",
+            "kana": "にほんごと えいごと どちらが むずかしいですか。",
+            "translationZh": "日语和英语，哪个难？",
+            "confidence": "high",
+            "rawText": "甲：日本語と 英語と どちらが 難しいですか。",
+            "segments": [
+              {
+                "text": "日本語",
+                "ruby": "にほんご"
+              },
+              {
+                "text": "と "
+              },
+              {
+                "text": "英語",
+                "ruby": "えいご"
+              },
+              {
+                "text": "と どちらが "
+              },
+              {
+                "text": "難",
+                "ruby": "むずか"
+              },
+              {
+                "text": "しいですか。"
+              }
+            ]
+          },
+          {
+            "id": "l12-basic-dialogue-002-line-002",
+            "speaker": "乙",
+            "text": "日本語の ほうが 難しいです。",
+            "kana": "にほんごの ほうが むずかしいです。",
+            "translationZh": "日语更难。",
+            "confidence": "high",
+            "rawText": "乙：日本語の ほうが 難しいです。",
+            "segments": [
+              {
+                "text": "日本語",
+                "ruby": "にほんご"
+              },
+              {
+                "text": "の ほうが "
+              },
+              {
+                "text": "難",
+                "ruby": "むずか"
+              },
+              {
+                "text": "しいです。"
+              }
+            ]
+          }
         ]
       },
       {
         "id": "l12-basic-dialogue-003",
         "label": "C",
         "lines": [
-          { "id": "l12-basic-dialogue-003-line-001", "speaker": "甲", "text": "森さんは テニスが 上手ですね。", "kana": "もりさんは テニスが じょうずですね。", "translationZh": "森先生网球打得很好啊。", "confidence": "high", "rawText": "甲：森さんは テニスが 上手ですね。" },
-          { "id": "l12-basic-dialogue-003-line-002", "speaker": "乙", "text": "いいえ、長島さんほど 上手では ありません。", "kana": "いいえ、ながしまさんほど じょうずでは ありません。", "translationZh": "不，没有长岛先生打得那么好。", "confidence": "high", "rawText": "乙：いいえ、長島さんほど 上手では ありません。" }
+          {
+            "id": "l12-basic-dialogue-003-line-001",
+            "speaker": "甲",
+            "text": "森さんは テニスが 上手ですね。",
+            "kana": "もりさんは テニスが じょうずですね。",
+            "translationZh": "森先生网球打得很好啊。",
+            "confidence": "high",
+            "rawText": "甲：森さんは テニスが 上手ですね。",
+            "segments": [
+              {
+                "text": "森",
+                "ruby": "もり"
+              },
+              {
+                "text": "さんは テニスが "
+              },
+              {
+                "text": "上手",
+                "ruby": "じょうず"
+              },
+              {
+                "text": "ですね。"
+              }
+            ]
+          },
+          {
+            "id": "l12-basic-dialogue-003-line-002",
+            "speaker": "乙",
+            "text": "いいえ、長島さんほど 上手では ありません。",
+            "kana": "いいえ、ながしまさんほど じょうずでは ありません。",
+            "translationZh": "不，没有长岛先生打得那么好。",
+            "confidence": "high",
+            "rawText": "乙：いいえ、長島さんほど 上手では ありません。",
+            "segments": [
+              {
+                "text": "いいえ、"
+              },
+              {
+                "text": "長島",
+                "ruby": "ながしま"
+              },
+              {
+                "text": "さんほど "
+              },
+              {
+                "text": "上手",
+                "ruby": "じょうず"
+              },
+              {
+                "text": "では ありません。"
+              }
+            ]
+          }
         ]
       },
       {
         "id": "l12-basic-dialogue-004",
         "label": "D",
         "lines": [
-          { "id": "l12-basic-dialogue-004-line-001", "speaker": "甲", "text": "季節の 中で いつが いちばん 好きですか。", "kana": "きせつの なかで いつが いちばん すきですか。", "translationZh": "四季中你最喜欢哪个季节？", "confidence": "high", "rawText": "甲：季節の 中で いつが いちばん 好きですか。" },
-          { "id": "l12-basic-dialogue-004-line-002", "speaker": "乙", "text": "わたしは 春が いちばん 好きです。", "kana": "わたしは はるが いちばん すきです。", "translationZh": "我最喜欢春天。", "confidence": "high", "rawText": "乙：わたしは 春が いちばん 好きです。" }
+          {
+            "id": "l12-basic-dialogue-004-line-001",
+            "speaker": "甲",
+            "text": "季節の 中で いつが いちばん 好きですか。",
+            "kana": "きせつの なかで いつが いちばん すきですか。",
+            "translationZh": "四季中你最喜欢哪个季节？",
+            "confidence": "high",
+            "rawText": "甲：季節の 中で いつが いちばん 好きですか。",
+            "segments": [
+              {
+                "text": "季節",
+                "ruby": "きせつ"
+              },
+              {
+                "text": "の "
+              },
+              {
+                "text": "中",
+                "ruby": "なか"
+              },
+              {
+                "text": "で いつが いちばん "
+              },
+              {
+                "text": "好",
+                "ruby": "す"
+              },
+              {
+                "text": "きですか。"
+              }
+            ]
+          },
+          {
+            "id": "l12-basic-dialogue-004-line-002",
+            "speaker": "乙",
+            "text": "わたしは 春が いちばん 好きです。",
+            "kana": "わたしは はるが いちばん すきです。",
+            "translationZh": "我最喜欢春天。",
+            "confidence": "high",
+            "rawText": "乙：わたしは 春が いちばん 好きです。",
+            "segments": [
+              {
+                "text": "わたしは "
+              },
+              {
+                "text": "春",
+                "ruby": "はる"
+              },
+              {
+                "text": "が いちばん "
+              },
+              {
+                "text": "好",
+                "ruby": "す"
+              },
+              {
+                "text": "きです。"
+              }
+            ]
+          }
         ]
       }
     ]
@@ -50,36 +400,532 @@
   "applicationText": {
     "title": "お酒と お茶",
     "blocks": [
-      { "id": "l12-app-block-001", "type": "narration", "text": "小李等去箱根一家有名的日式饭馆采访。采访结束后，他们一边吃饭一边聊起喝酒的事儿来。", "kana": null, "translationZh": "小李等去箱根一家有名的日式饭馆采访。采访结束后，他们一边吃饭一边聊起喝酒的事儿来。", "confidence": "high", "rawText": "小李等去箱根一家有名的日式饭馆采访。采访结束后，他们一边吃饭一边聊起喝酒的事儿来。" },
-      { "id": "l12-app-block-002", "type": "scene", "text": "（一边喝酒一边说）", "kana": null, "translationZh": "一边喝酒一边说。", "confidence": "high", "rawText": "（一边喝酒一边说）" },
+      {
+        "id": "l12-app-block-001",
+        "type": "narration",
+        "text": "小李等去箱根一家有名的日式饭馆采访。采访结束后，他们一边吃饭一边聊起喝酒的事儿来。",
+        "kana": null,
+        "translationZh": "小李等去箱根一家有名的日式饭馆采访。采访结束后，他们一边吃饭一边聊起喝酒的事儿来。",
+        "confidence": "high",
+        "rawText": "小李等去箱根一家有名的日式饭馆采访。采访结束后，他们一边吃饭一边聊起喝酒的事儿来。"
+      },
+      {
+        "id": "l12-app-block-002",
+        "type": "scene",
+        "text": "（一边喝酒一边说）",
+        "kana": null,
+        "translationZh": "一边喝酒一边说。",
+        "confidence": "high",
+        "rawText": "（一边喝酒一边说）"
+      },
       {
         "id": "l12-app-block-003",
         "type": "dialogue",
         "lines": [
-          { "id": "l12-app-block-003-line-001", "speaker": "李", "text": "長島さんは よく お酒を 飲みますか。", "kana": "ながしまさんは よく おさけを のみますか。", "translationZh": "长岛先生经常喝酒吗？", "confidence": "high", "rawText": "李：長島さんは よく お酒を 飲みますか。" },
-          { "id": "l12-app-block-003-line-002", "speaker": "長島", "text": "ええ。お酒は 大好きですから、毎晩 飲みますよ。", "kana": "ええ。おさけは だいすきですから、まいばん のみますよ。", "translationZh": "是的。因为我很喜欢酒，所以每天晚上都喝。", "confidence": "high", "rawText": "長島：ええ。お酒は 大好きですから、毎晩 飲みますよ。" },
-          { "id": "l12-app-block-003-line-003", "speaker": "李", "text": "ビールと 日本酒と、どちらが 好きですか。", "kana": "ビールと にほんしゅと、どちらが すきですか。", "translationZh": "啤酒和日本酒，你喜欢哪个？", "confidence": "high", "rawText": "李：ビールと 日本酒と、どちらが 好きですか。" },
-          { "id": "l12-app-block-003-line-004", "speaker": "長島", "text": "どちらも 好きです。でも、焼酎が いちばん 好きです。", "kana": "どちらも すきです。でも、しょうちゅうが いちばん すきです。", "translationZh": "两个都喜欢。不过我最喜欢烧酒。", "confidence": "high", "rawText": "長島：どちらも 好きです。でも、焼酎が いちばん 好きです。" },
-          { "id": "l12-app-block-003-line-005", "speaker": "小野", "text": "焼酎は 最近 人気が ありますね。", "kana": "しょうちゅうは さいきん にんきが ありますね。", "translationZh": "烧酒最近很受欢迎啊。", "confidence": "high", "rawText": "小野：焼酎は 最近 人気が ありますね。" },
-          { "id": "l12-app-block-003-line-006", "speaker": "李", "text": "小野さんも 焼酎が 好きですか。", "kana": "おのさんも しょうちゅうが すきですか。", "translationZh": "小野女士也喜欢烧酒吗？", "confidence": "high", "rawText": "李：小野さんも 焼酎が 好きですか。" },
-          { "id": "l12-app-block-003-line-007", "speaker": "小野", "text": "いいえ。わたしは 焼酎より ワインの ほうが いいです。", "kana": "いいえ。わたしは しょうちゅうより ワインの ほうが いいです。", "translationZh": "不。我觉得葡萄酒比烧酒更好。", "confidence": "high", "rawText": "小野：いいえ。わたしは 焼酎より ワインの ほうが いいです。" },
-          { "id": "l12-app-block-003-line-008", "speaker": "小野", "text": "でも、ビールも よく 飲みますよ。", "kana": "でも、ビールも よく のみますよ。", "translationZh": "不过，我也经常喝啤酒。", "confidence": "high", "rawText": "小野：でも、ビールも よく 飲みますよ。" }
+          {
+            "id": "l12-app-block-003-line-001",
+            "speaker": "李",
+            "text": "長島さんは よく お酒を 飲みますか。",
+            "kana": "ながしまさんは よく おさけを のみますか。",
+            "translationZh": "长岛先生经常喝酒吗？",
+            "confidence": "high",
+            "rawText": "李：長島さんは よく お酒を 飲みますか。",
+            "segments": [
+              {
+                "text": "長島",
+                "ruby": "ながしま"
+              },
+              {
+                "text": "さんは よく お"
+              },
+              {
+                "text": "酒",
+                "ruby": "さけ"
+              },
+              {
+                "text": "を "
+              },
+              {
+                "text": "飲",
+                "ruby": "の"
+              },
+              {
+                "text": "みますか。"
+              }
+            ]
+          },
+          {
+            "id": "l12-app-block-003-line-002",
+            "speaker": "長島",
+            "text": "ええ。お酒は 大好きですから、毎晩 飲みますよ。",
+            "kana": "ええ。おさけは だいすきですから、まいばん のみますよ。",
+            "translationZh": "是的。因为我很喜欢酒，所以每天晚上都喝。",
+            "confidence": "high",
+            "rawText": "長島：ええ。お酒は 大好きですから、毎晩 飲みますよ。",
+            "segments": [
+              {
+                "text": "ええ。お"
+              },
+              {
+                "text": "酒",
+                "ruby": "さけ"
+              },
+              {
+                "text": "は "
+              },
+              {
+                "text": "大好",
+                "ruby": "だいす"
+              },
+              {
+                "text": "きですから、"
+              },
+              {
+                "text": "毎晩",
+                "ruby": "まいばん"
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "飲",
+                "ruby": "の"
+              },
+              {
+                "text": "みますよ。"
+              }
+            ]
+          },
+          {
+            "id": "l12-app-block-003-line-003",
+            "speaker": "李",
+            "text": "ビールと 日本酒と、どちらが 好きですか。",
+            "kana": "ビールと にほんしゅと、どちらが すきですか。",
+            "translationZh": "啤酒和日本酒，你喜欢哪个？",
+            "confidence": "high",
+            "rawText": "李：ビールと 日本酒と、どちらが 好きですか。",
+            "segments": [
+              {
+                "text": "ビールと "
+              },
+              {
+                "text": "日本酒",
+                "ruby": "にほんしゅ"
+              },
+              {
+                "text": "と、どちらが "
+              },
+              {
+                "text": "好",
+                "ruby": "す"
+              },
+              {
+                "text": "きですか。"
+              }
+            ]
+          },
+          {
+            "id": "l12-app-block-003-line-004",
+            "speaker": "長島",
+            "text": "どちらも 好きです。でも、焼酎が いちばん 好きです。",
+            "kana": "どちらも すきです。でも、しょうちゅうが いちばん すきです。",
+            "translationZh": "两个都喜欢。不过我最喜欢烧酒。",
+            "confidence": "high",
+            "rawText": "長島：どちらも 好きです。でも、焼酎が いちばん 好きです。",
+            "segments": [
+              {
+                "text": "どちらも "
+              },
+              {
+                "text": "好",
+                "ruby": "す"
+              },
+              {
+                "text": "きです。でも、"
+              },
+              {
+                "text": "焼酎",
+                "ruby": "しょうちゅう"
+              },
+              {
+                "text": "が いちばん "
+              },
+              {
+                "text": "好",
+                "ruby": "す"
+              },
+              {
+                "text": "きです。"
+              }
+            ]
+          },
+          {
+            "id": "l12-app-block-003-line-005",
+            "speaker": "小野",
+            "text": "焼酎は 最近 人気が ありますね。",
+            "kana": "しょうちゅうは さいきん にんきが ありますね。",
+            "translationZh": "烧酒最近很受欢迎啊。",
+            "confidence": "high",
+            "rawText": "小野：焼酎は 最近 人気が ありますね。",
+            "segments": [
+              {
+                "text": "焼酎",
+                "ruby": "しょうちゅう"
+              },
+              {
+                "text": "は "
+              },
+              {
+                "text": "最近",
+                "ruby": "さいきん"
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "人気",
+                "ruby": "にんき"
+              },
+              {
+                "text": "が ありますね。"
+              }
+            ]
+          },
+          {
+            "id": "l12-app-block-003-line-006",
+            "speaker": "李",
+            "text": "小野さんも 焼酎が 好きですか。",
+            "kana": "おのさんも しょうちゅうが すきですか。",
+            "translationZh": "小野女士也喜欢烧酒吗？",
+            "confidence": "high",
+            "rawText": "李：小野さんも 焼酎が 好きですか。",
+            "segments": [
+              {
+                "text": "小野",
+                "ruby": "おの"
+              },
+              {
+                "text": "さんも "
+              },
+              {
+                "text": "焼酎",
+                "ruby": "しょうちゅう"
+              },
+              {
+                "text": "が "
+              },
+              {
+                "text": "好",
+                "ruby": "す"
+              },
+              {
+                "text": "きですか。"
+              }
+            ]
+          },
+          {
+            "id": "l12-app-block-003-line-007",
+            "speaker": "小野",
+            "text": "いいえ。わたしは 焼酎より ワインの ほうが いいです。",
+            "kana": "いいえ。わたしは しょうちゅうより ワインの ほうが いいです。",
+            "translationZh": "不。我觉得葡萄酒比烧酒更好。",
+            "confidence": "high",
+            "rawText": "小野：いいえ。わたしは 焼酎より ワインの ほうが いいです。",
+            "segments": [
+              {
+                "text": "いいえ。わたしは "
+              },
+              {
+                "text": "焼酎",
+                "ruby": "しょうちゅう"
+              },
+              {
+                "text": "より ワインの ほうが いいです。"
+              }
+            ]
+          },
+          {
+            "id": "l12-app-block-003-line-008",
+            "speaker": "小野",
+            "text": "でも、ビールも よく 飲みますよ。",
+            "kana": "でも、ビールも よく のみますよ。",
+            "translationZh": "不过，我也经常喝啤酒。",
+            "confidence": "high",
+            "rawText": "小野：でも、ビールも よく 飲みますよ。",
+            "segments": [
+              {
+                "text": "でも、ビールも よく "
+              },
+              {
+                "text": "飲",
+                "ruby": "の"
+              },
+              {
+                "text": "みますよ。"
+              }
+            ]
+          }
         ]
       },
-      { "id": "l12-app-block-004", "type": "scene", "text": "（饭后，大家一边喝茶一边聊天儿）", "kana": null, "translationZh": "饭后，大家一边喝茶一边聊天。", "confidence": "high", "rawText": "（饭后，大家一边喝茶一边聊天儿）" },
+      {
+        "id": "l12-app-block-004",
+        "type": "scene",
+        "text": "（饭后，大家一边喝茶一边聊天儿）",
+        "kana": null,
+        "translationZh": "饭后，大家一边喝茶一边聊天。",
+        "confidence": "high",
+        "rawText": "（饭后，大家一边喝茶一边聊天儿）"
+      },
       {
         "id": "l12-app-block-005",
         "type": "dialogue",
         "lines": [
-          { "id": "l12-app-block-005-line-001", "speaker": "長島", "text": "中国は お茶の 種類が 多いですね。", "kana": "ちゅうごくは おちゃの しゅるいが おおいですね。", "translationZh": "中国的茶种类很多啊。", "confidence": "high", "rawText": "長島：中国は お茶の 種類が 多いですね。" },
-          { "id": "l12-app-block-005-line-002", "speaker": "李", "text": "ええ。ウーロン茶、ジャスミン茶、緑茶など、たくさん あります。", "kana": "ええ。ウーロンちゃ、ジャスミンちゃ、りょくちゃなど、たくさん あります。", "translationZh": "是的。有乌龙茶、茉莉花茶、绿茶等很多种。", "confidence": "high", "rawText": "李：ええ。ウーロン茶、ジャスミン茶、緑茶など、たくさん あります。" },
-          { "id": "l12-app-block-005-line-003", "speaker": "小野", "text": "どの お茶が いちばん 人気が ありますか。", "kana": "どの おちゃが いちばん にんきが ありますか。", "translationZh": "哪种茶最受欢迎？", "confidence": "high", "rawText": "小野：どの お茶が いちばん 人気が ありますか。" },
-          { "id": "l12-app-block-005-line-004", "speaker": "李", "text": "やっぱり ウーロン茶です。", "kana": "やっぱり ウーロンちゃです。", "translationZh": "还是乌龙茶。", "confidence": "high", "rawText": "李：やっぱり ウーロン茶です。" },
-          { "id": "l12-app-block-005-line-005", "speaker": "小野", "text": "李さんも よく 飲みますか。", "kana": "りさんも よく のみますか。", "translationZh": "小李也经常喝吗？", "confidence": "high", "rawText": "小野：李さんも よく 飲みますか。" },
-          { "id": "l12-app-block-005-line-006", "speaker": "李", "text": "ええ。毎日 ウーロン茶か ジャスミン茶を 飲みます。", "kana": "ええ。まいにち ウーロンちゃか ジャスミンちゃを のみます。", "translationZh": "是的。每天喝乌龙茶或茉莉花茶。", "confidence": "high", "rawText": "李：ええ。毎日 ウーロン茶か ジャスミン茶を 飲みます。" },
-          { "id": "l12-app-block-005-line-007", "speaker": "長島", "text": "どちらが おいしいですか。", "kana": "どちらが おいしいですか。", "translationZh": "哪个更好喝？", "confidence": "high", "rawText": "長島：どちらが おいしいですか。" },
-          { "id": "l12-app-block-005-line-008", "speaker": "李", "text": "どちらも おいしいですよ。", "kana": "どちらも おいしいですよ。", "translationZh": "两个都好喝。", "confidence": "high", "rawText": "李：どちらも おいしいですよ。" },
-          { "id": "l12-app-block-005-line-009", "speaker": "李", "text": "わたしは ジャスミン茶の ほうが 好きですが・・・。", "kana": "わたしは ジャスミンちゃの ほうが すきですが・・・。", "translationZh": "不过我更喜欢茉莉花茶……。", "confidence": "high", "rawText": "李：わたしは ジャスミン茶の ほうが 好きですが・・・。" }
+          {
+            "id": "l12-app-block-005-line-001",
+            "speaker": "長島",
+            "text": "中国は お茶の 種類が 多いですね。",
+            "kana": "ちゅうごくは おちゃの しゅるいが おおいですね。",
+            "translationZh": "中国的茶种类很多啊。",
+            "confidence": "high",
+            "rawText": "長島：中国は お茶の 種類が 多いですね。",
+            "segments": [
+              {
+                "text": "中国",
+                "ruby": "ちゅうごく"
+              },
+              {
+                "text": "は お"
+              },
+              {
+                "text": "茶",
+                "ruby": "ちゃ"
+              },
+              {
+                "text": "の "
+              },
+              {
+                "text": "種類",
+                "ruby": "しゅるい"
+              },
+              {
+                "text": "が "
+              },
+              {
+                "text": "多",
+                "ruby": "おお"
+              },
+              {
+                "text": "いですね。"
+              }
+            ]
+          },
+          {
+            "id": "l12-app-block-005-line-002",
+            "speaker": "李",
+            "text": "ええ。ウーロン茶、ジャスミン茶、緑茶など、たくさん あります。",
+            "kana": "ええ。ウーロンちゃ、ジャスミンちゃ、りょくちゃなど、たくさん あります。",
+            "translationZh": "是的。有乌龙茶、茉莉花茶、绿茶等很多种。",
+            "confidence": "high",
+            "rawText": "李：ええ。ウーロン茶、ジャスミン茶、緑茶など、たくさん あります。",
+            "segments": [
+              {
+                "text": "ええ。ウーロン"
+              },
+              {
+                "text": "茶",
+                "ruby": "ちゃ"
+              },
+              {
+                "text": "、ジャスミン"
+              },
+              {
+                "text": "茶",
+                "ruby": "ちゃ"
+              },
+              {
+                "text": "、"
+              },
+              {
+                "text": "緑茶",
+                "ruby": "りょくちゃ"
+              },
+              {
+                "text": "など、たくさん あります。"
+              }
+            ]
+          },
+          {
+            "id": "l12-app-block-005-line-003",
+            "speaker": "小野",
+            "text": "どの お茶が いちばん 人気が ありますか。",
+            "kana": "どの おちゃが いちばん にんきが ありますか。",
+            "translationZh": "哪种茶最受欢迎？",
+            "confidence": "high",
+            "rawText": "小野：どの お茶が いちばん 人気が ありますか。",
+            "segments": [
+              {
+                "text": "どの お"
+              },
+              {
+                "text": "茶",
+                "ruby": "ちゃ"
+              },
+              {
+                "text": "が いちばん "
+              },
+              {
+                "text": "人気",
+                "ruby": "にんき"
+              },
+              {
+                "text": "が ありますか。"
+              }
+            ]
+          },
+          {
+            "id": "l12-app-block-005-line-004",
+            "speaker": "李",
+            "text": "やっぱり ウーロン茶です。",
+            "kana": "やっぱり ウーロンちゃです。",
+            "translationZh": "还是乌龙茶。",
+            "confidence": "high",
+            "rawText": "李：やっぱり ウーロン茶です。",
+            "segments": [
+              {
+                "text": "やっぱり ウーロン"
+              },
+              {
+                "text": "茶",
+                "ruby": "ちゃ"
+              },
+              {
+                "text": "です。"
+              }
+            ]
+          },
+          {
+            "id": "l12-app-block-005-line-005",
+            "speaker": "小野",
+            "text": "李さんも よく 飲みますか。",
+            "kana": "りさんも よく のみますか。",
+            "translationZh": "小李也经常喝吗？",
+            "confidence": "high",
+            "rawText": "小野：李さんも よく 飲みますか。",
+            "segments": [
+              {
+                "text": "李",
+                "ruby": "り"
+              },
+              {
+                "text": "さんも よく "
+              },
+              {
+                "text": "飲",
+                "ruby": "の"
+              },
+              {
+                "text": "みますか。"
+              }
+            ]
+          },
+          {
+            "id": "l12-app-block-005-line-006",
+            "speaker": "李",
+            "text": "ええ。毎日 ウーロン茶か ジャスミン茶を 飲みます。",
+            "kana": "ええ。まいにち ウーロンちゃか ジャスミンちゃを のみます。",
+            "translationZh": "是的。每天喝乌龙茶或茉莉花茶。",
+            "confidence": "high",
+            "rawText": "李：ええ。毎日 ウーロン茶か ジャスミン茶を 飲みます。",
+            "segments": [
+              {
+                "text": "ええ。"
+              },
+              {
+                "text": "毎日",
+                "ruby": "まいにち"
+              },
+              {
+                "text": " ウーロン"
+              },
+              {
+                "text": "茶",
+                "ruby": "ちゃ"
+              },
+              {
+                "text": "か ジャスミン"
+              },
+              {
+                "text": "茶",
+                "ruby": "ちゃ"
+              },
+              {
+                "text": "を "
+              },
+              {
+                "text": "飲",
+                "ruby": "の"
+              },
+              {
+                "text": "みます。"
+              }
+            ]
+          },
+          {
+            "id": "l12-app-block-005-line-007",
+            "speaker": "長島",
+            "text": "どちらが おいしいですか。",
+            "kana": "どちらが おいしいですか。",
+            "translationZh": "哪个更好喝？",
+            "confidence": "high",
+            "rawText": "長島：どちらが おいしいですか。",
+            "segments": [
+              {
+                "text": "どちらが おいしいですか。"
+              }
+            ]
+          },
+          {
+            "id": "l12-app-block-005-line-008",
+            "speaker": "李",
+            "text": "どちらも おいしいですよ。",
+            "kana": "どちらも おいしいですよ。",
+            "translationZh": "两个都好喝。",
+            "confidence": "high",
+            "rawText": "李：どちらも おいしいですよ。",
+            "segments": [
+              {
+                "text": "どちらも おいしいですよ。"
+              }
+            ]
+          },
+          {
+            "id": "l12-app-block-005-line-009",
+            "speaker": "李",
+            "text": "わたしは ジャスミン茶の ほうが 好きですが・・・。",
+            "kana": "わたしは ジャスミンちゃの ほうが すきですが・・・。",
+            "translationZh": "不过我更喜欢茉莉花茶……。",
+            "confidence": "high",
+            "rawText": "李：わたしは ジャスミン茶の ほうが 好きですが・・・。",
+            "segments": [
+              {
+                "text": "わたしは ジャスミン"
+              },
+              {
+                "text": "茶",
+                "ruby": "ちゃ"
+              },
+              {
+                "text": "の ほうが "
+              },
+              {
+                "text": "好",
+                "ruby": "す"
+              },
+              {
+                "text": "きですが・・・。"
+              }
+            ]
+          }
         ]
       }
     ]

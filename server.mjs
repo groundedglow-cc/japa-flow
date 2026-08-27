@@ -1644,7 +1644,10 @@ async function reviewPracticeAnswer(payload) {
             "你是标准日本语练习的答案复核器。",
             "任务：判断用户的日语答案是否可以作为该题的正确答案被采纳。",
             "可以采纳：意思与题目要求一致、语法功能一致，只是写法、汉字/假名、礼貌程度或自然表达不同。",
+            "可以采纳：语音识别造成的明显句尾截断或轻微口误，只要结合参考答案能够唯一还原，且不改变句义、语法功能和回答范围。例如「働きませんでし」可视作「働きませんでした」。",
             "不能采纳：时态、肯否、主客体、助词、数量、专有名词、题目要求的语法变换或回答范围不一致。",
+            "如果提供了开放题规则，参考答案仅为示例句型；应按规则判断，不得要求用户复述示例中的个人事实或完整句。",
+            "如果提供了开放题规则，用户答案必须是语法完整的书面回答；不得因漏掉「です」等句尾成分而采纳不完整答案。",
             "不要把参考答案当作唯一表达，但必须严格遵守题目、例句和回答范围。",
             "normalizedAnswer 只能是用户答案的轻微清洗版本，不能替换成参考答案。",
             "只返回 JSON object：{\"accepted\":true|false,\"normalizedAnswer\":\"...\",\"reason\":\"...\"}。"
@@ -1661,6 +1664,7 @@ async function reviewPracticeAnswer(payload) {
             `题目假名：${compactPracticeText(payload.promptKana, 600)}`,
             `回答单位：${compactPracticeText(payload.answerUnit, 80)}`,
             `回答范围：${compactPracticeText(payload.responseScope, 80)} ${compactPracticeText(payload.responseScopeHint, 200)}`,
+            `开放题规则：${compactPracticeText(JSON.stringify(payload.openResponseRule || {}), 500)}`,
             `例句：${compactPracticeText(payload.examples, 1200)}`,
             "",
             "参考答案：",
@@ -1706,7 +1710,7 @@ async function reviewPracticeAnswer(payload) {
     model
   };
 
-  if (accepted) {
+  if (accepted && payload.cacheAcceptedAnswer !== false) {
     cache = await addPracticeAnswerAlternative(cache, payload, result);
     await writePracticeAnswerAlternatives(cache);
   }

@@ -9,6 +9,7 @@ const text = (value: string, options: Omit<RichText, "type" | "text"> = {}): Ric
 const repl = (value: string, substitutionKey: string, options: Omit<RichText, "type" | "text" | "underline" | "substitutionKey"> = {}): RichText =>
   text(value, { ...options, underline: true, substitutionKey });
 const blank = (slotId: string): PromptPart => ({ type: "blank", slotId });
+const kanaBlank = (slotId: string): PromptPart => ({ type: "blank", slotId, display: "parentheses" });
 
 const sentenceSlots = (placeholder = "输入完整回答") => [{ id: "answer", expectedUnit: "sentence" as const, width: "long" as const, placeholder }];
 const shortSlots = (slotIds: string[]) => slotIds.map((slotId) => ({ id: slotId, expectedUnit: "word" as const, width: "short" as const, placeholder: "输入 1 个假名" }));
@@ -74,6 +75,7 @@ const tripCompositionItem = (
   promptKana,
   instruction: "",
   answerSource: "audio",
+  renderHint: "trip_composition",
   responseScope: "custom",
   responseScopeHint: tripCompositionHint,
   inputSlots: [
@@ -339,10 +341,11 @@ const activities: PracticeActivity[] = [
         type: "example",
         content: {
           label: "[例]",
+          renderHint: "trip_composition",
           before: "李／先月／佐藤／新幹線／大阪／行きます",
           beforeKana: "り／せんげつ／さとう／しんかんせん／おおさか／いきます",
-          after: [text("①先月 行きました。 ②佐藤さんと 行きました。 ③新幹線で 行きました。 ④大阪へ 行きました。 ⇒ 李さんは 先月 佐藤さんと 新幹線で 大阪へ 行きました。")],
-          afterKana: "せんげつ いきました。 さとうさんと いきました。 しんかんせんで いきました。 おおさかへ いきました。 りさんは せんげつ さとうさんと しんかんせんで おおさかへ いきました。"
+          after: [text("①先月 行きました。\n②佐藤さんと 行きました。\n③新幹線で 行きました。\n④大阪へ 行きました。\n⇒ 李さんは 先月 佐藤さんと 新幹線で 大阪へ 行きました。")],
+          afterKana: "せんげつ いきました。\nさとうさんと いきました。\nしんかんせんで いきました。\nおおさかへ いきました。\nりさんは せんげつ さとうさんと しんかんせんで おおさかへ いきました。"
         }
       }
     ],
@@ -379,10 +382,10 @@ const activities: PracticeActivity[] = [
     responseScope: "word_only",
     layout: [],
     items: [
-      blankItem("l6-p2-a1-q1", "1", [text("昨日 友達 "), blank("a1"), text(" 図書館 "), blank("a2"), text(" 行きました。")], { a1: "と", a2: "へ" }, "きのう ともだち （  ） としょかん （  ） いきました。"),
-      blankItem("l6-p2-a1-q2", "2", [text("新宿 "), blank("a1"), blank("a2"), text(" 渋谷 "), blank("a3"), blank("a4"), text(" 150円です。")], { a1: "か", a2: "ら", a3: "ま", a4: "で" }, "しんじゅく （  ）（  ） しぶや （  ）（  ） ひゃくごじゅうえんです。"),
-      blankItem("l6-p2-a1-q3", "3", [text("11時 "), blank("a1"), text(" タクシー "), blank("a2"), text(" 家 "), blank("a3"), text(" 帰りました。")], { a1: "に", a2: "で", a3: "へ" }, "じゅういちじ （  ） タクシー （  ） いえ （  ） かえりました。"),
-      blankItem("l6-p2-a1-q4", "4", [text("明日 李さんは だれ "), blank("a1"), text(" 箱根 "), blank("a2"), text(" 行きますか。")], { a1: "と", a2: "へ" }, "あした りさんは だれ （  ） はこね （  ） いきますか。")
+      blankItem("l6-p2-a1-q1", "1", [text("昨日 友達 "), kanaBlank("a1"), text(" 図書館 "), kanaBlank("a2"), text(" 行きました。")], { a1: "と", a2: "へ" }, "きのう ともだち （  ） としょかん （  ） いきました。"),
+      blankItem("l6-p2-a1-q2", "2", [text("新宿 "), kanaBlank("a1"), kanaBlank("a2"), text(" 渋谷 "), kanaBlank("a3"), kanaBlank("a4"), text(" 150円です。")], { a1: "か", a2: "ら", a3: "ま", a4: "で" }, "しんじゅく （  ）（  ） しぶや （  ）（  ） ひゃくごじゅうえんです。"),
+      blankItem("l6-p2-a1-q3", "3", [text("11時 "), kanaBlank("a1"), text(" タクシー "), kanaBlank("a2"), text(" 家 "), kanaBlank("a3"), text(" 帰りました。")], { a1: "に", a2: "で", a3: "へ" }, "じゅういちじ （  ） タクシー （  ） いえ （  ） かえりました。"),
+      blankItem("l6-p2-a1-q4", "4", [text("明日 李さんは だれ "), kanaBlank("a1"), text(" 箱根 "), kanaBlank("a2"), text(" 行きますか。")], { a1: "と", a2: "へ" }, "あした りさんは だれ （  ） はこね （  ） いきますか。")
     ]
   },
   {

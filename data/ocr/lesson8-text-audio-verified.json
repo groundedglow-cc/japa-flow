@@ -123,9 +123,9 @@
           "itemIndex": 2,
           "speaker": "",
           "text": "わたしは 小野さんに お土産を あげます。",
-          "start": 5.59,
+          "start": 5.19,
           "end": 8.92,
-          "duration": 3.33,
+          "duration": 3.73,
           "rawAzureTiming": {
             "start": 5.84,
             "end": 8.8,
@@ -140,16 +140,17 @@
           "phraseIndexes": [
             1
           ],
-          "method": "azure-speech-sentence-alignment-with-boundary-padding",
-          "confidence": "high",
+          "method": "manual-admin-adjustment",
+          "confidence": "approved",
           "alignmentIssues": [],
           "review": {
             "status": "approved",
-            "reviewedAt": "2026-08-16T11:29:25.883Z",
-            "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+            "reviewedAt": "2026-08-24T07:03:38.840Z",
+            "note": "Manually verified and adjusted in the text audio preview.",
             "matchScore": 1,
             "asrText": "わ た し は 小 野 さ ん に お 土 産 を あ げ ま す 。"
-          }
+          },
+          "reviewedAt": "2026-08-24T07:03:38.840Z"
         }
       },
       {
@@ -186,9 +187,9 @@
           "itemIndex": 3,
           "speaker": "",
           "text": "わたしは 小野さんに 辞書を もらいました。",
-          "start": 10.39,
+          "start": 10.19,
           "end": 13.52,
-          "duration": 3.13,
+          "duration": 3.33,
           "rawAzureTiming": {
             "start": 10.64,
             "end": 13.4,
@@ -203,16 +204,17 @@
           "phraseIndexes": [
             2
           ],
-          "method": "azure-speech-sentence-alignment-with-boundary-padding",
-          "confidence": "high",
+          "method": "manual-admin-adjustment",
+          "confidence": "approved",
           "alignmentIssues": [],
           "review": {
             "status": "approved",
-            "reviewedAt": "2026-08-16T11:29:25.883Z",
-            "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+            "reviewedAt": "2026-08-24T07:03:43.871Z",
+            "note": "Manually verified and adjusted in the text audio preview.",
             "matchScore": 1,
             "asrText": "わ た し は 小 野 さ ん に 辞 書 を も ら い ま し た 。"
-          }
+          },
+          "reviewedAt": "2026-08-24T07:03:43.871Z"
         }
       },
       {
@@ -338,8 +340,8 @@
               "speaker": "甲",
               "text": "昨日、母に 誕生日の プレゼントを 送りました。",
               "start": 20.9,
-              "end": 24.33,
-              "duration": 3.43,
+              "end": 24.83,
+              "duration": 3.93,
               "rawAzureTiming": {
                 "start": 21.15,
                 "end": 24.35,
@@ -354,16 +356,17 @@
               "phraseIndexes": [
                 4
               ],
-              "method": "azure-speech-sentence-alignment-with-boundary-padding",
-              "confidence": "high",
+              "method": "manual-admin-adjustment",
+              "confidence": "approved",
               "alignmentIssues": [],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-16T11:29:25.883Z",
-                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "reviewedAt": "2026-08-24T07:04:01.186Z",
+                "note": "Manually verified and adjusted in the text audio preview.",
                 "matchScore": 1,
                 "asrText": "昨 日 、 母 に 誕 生 日 の プ レ ゼ ン ト を 送 り ま し た"
-              }
+              },
+              "reviewedAt": "2026-08-24T07:04:01.186Z"
             }
           },
           {
@@ -397,9 +400,9 @@
               "itemIndex": 6,
               "speaker": "乙",
               "text": "何で 送りましたか。",
-              "start": 24.37,
-              "end": 26.69,
-              "duration": 2.32,
+              "start": 25.37,
+              "end": 26.9,
+              "duration": 1.53,
               "rawAzureTiming": {
                 "start": 24.35,
                 "end": 26.71,
@@ -415,16 +418,17 @@
                 4,
                 5
               ],
-              "method": "azure-speech-sentence-alignment-with-boundary-padding",
-              "confidence": "high",
+              "method": "manual-admin-adjustment",
+              "confidence": "approved",
               "alignmentIssues": [],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-16T11:29:25.883Z",
-                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "reviewedAt": "2026-08-24T07:04:12.886Z",
+                "note": "Manually verified and adjusted in the text audio preview.",
                 "matchScore": 1,
                 "asrText": "。 何 で 送 り ま し た か"
-              }
+              },
+              "reviewedAt": "2026-08-24T07:04:12.886Z"
             }
           },
           {
@@ -458,9 +462,9 @@
               "itemIndex": 7,
               "speaker": "甲",
               "text": "航空便で 送りました。",
-              "start": 26.73,
+              "start": 27.3,
               "end": 29.32,
-              "duration": 2.59,
+              "duration": 2.02,
               "rawAzureTiming": {
                 "start": 26.71,
                 "end": 29.2,
@@ -476,16 +480,17 @@
                 5,
                 6
               ],
-              "method": "azure-speech-sentence-alignment-with-boundary-padding",
-              "confidence": "high",
+              "method": "manual-admin-adjustment",
+              "confidence": "approved",
               "alignmentIssues": [],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-16T11:29:25.883Z",
-                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "reviewedAt": "2026-08-24T07:04:31.149Z",
+                "note": "Manually verified and adjusted in the text audio preview.",
                 "matchScore": 1,
                 "asrText": "。 航 空 便 で 送 り ま し た 。"
-              }
+              },
+              "reviewedAt": "2026-08-24T07:04:31.149Z"
             }
           }
         ]
@@ -522,8 +527,8 @@
               "speaker": "甲",
               "text": "その 映画の チケットを だれに あげますか。",
               "start": 31.22,
-              "end": 34.29,
-              "duration": 3.07,
+              "end": 34.59,
+              "duration": 3.37,
               "rawAzureTiming": {
                 "start": 31.47,
                 "end": 34.31,
@@ -538,16 +543,17 @@
               "phraseIndexes": [
                 7
               ],
-              "method": "azure-speech-sentence-alignment-with-boundary-padding",
-              "confidence": "high",
+              "method": "manual-admin-adjustment",
+              "confidence": "approved",
               "alignmentIssues": [],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-16T11:29:25.883Z",
-                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "reviewedAt": "2026-08-24T07:04:43.651Z",
+                "note": "Manually verified and adjusted in the text audio preview.",
                 "matchScore": 1,
                 "asrText": "そ の 映 画 の チ ケ ッ ト を だ れ に あ げ ま す か"
-              }
+              },
+              "reviewedAt": "2026-08-24T07:04:43.651Z"
             }
           },
           {
@@ -574,9 +580,9 @@
               "itemIndex": 9,
               "speaker": "乙",
               "text": "李さんに あげます。",
-              "start": 34.33,
+              "start": 34.63,
               "end": 36.65,
-              "duration": 2.32,
+              "duration": 2.02,
               "rawAzureTiming": {
                 "start": 34.31,
                 "end": 36.67,
@@ -592,16 +598,17 @@
                 7,
                 8
               ],
-              "method": "azure-speech-sentence-alignment-with-boundary-padding",
-              "confidence": "high",
+              "method": "manual-admin-adjustment",
+              "confidence": "approved",
               "alignmentIssues": [],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-16T11:29:25.883Z",
-                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "reviewedAt": "2026-08-24T07:04:50.468Z",
+                "note": "Manually verified and adjusted in the text audio preview.",
                 "matchScore": 1,
                 "asrText": "。 李 さ ん に あ げ ま す"
-              }
+              },
+              "reviewedAt": "2026-08-24T07:04:50.468Z"
             }
           }
         ]
@@ -895,8 +902,8 @@
               "speaker": "小野",
               "text": "さっき 長島さんに 電話を もらいました。",
               "start": 20.06,
-              "end": 22.81,
-              "duration": 2.75,
+              "end": 23.1,
+              "duration": 3.04,
               "rawAzureTiming": {
                 "start": 20.31,
                 "end": 22.83,
@@ -911,16 +918,17 @@
               "phraseIndexes": [
                 4
               ],
-              "method": "azure-speech-sentence-alignment-with-boundary-padding",
-              "confidence": "high",
+              "method": "manual-admin-adjustment",
+              "confidence": "approved",
               "alignmentIssues": [],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-16T11:29:25.883Z",
-                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "reviewedAt": "2026-08-24T07:05:13.761Z",
+                "note": "Manually verified and adjusted in the text audio preview.",
                 "matchScore": 1,
                 "asrText": "さ っ き 長 島 さ ん に 電 話 を も ら い ま し た"
-              }
+              },
+              "reviewedAt": "2026-08-24T07:05:13.761Z"
             }
           },
           {
@@ -957,9 +965,9 @@
               "itemIndex": 2,
               "speaker": "李",
               "text": "スケジュール表の 件ですか。",
-              "start": 23,
+              "start": 23.4,
               "end": 25.7,
-              "duration": 2.7,
+              "duration": 2.3,
               "rawAzureTiming": {
                 "start": 22.83,
                 "end": 25.55,
@@ -980,12 +988,12 @@
               "alignmentIssues": [],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-16T11:29:25.883Z",
-                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "reviewedAt": "2026-08-24T07:05:19.914Z",
+                "note": "Manually verified and adjusted in the text audio preview.",
                 "matchScore": 1,
                 "asrText": "。 ス ケ ジ ュ ー ル 表 の 件 で す か"
               },
-              "reviewedAt": "2026-08-16T11:34:10.179Z"
+              "reviewedAt": "2026-08-24T07:05:19.914Z"
             }
           },
           {
@@ -1117,8 +1125,8 @@
               "speaker": "小野",
               "text": "いつですか。",
               "start": 29.5,
-              "end": 30.26,
-              "duration": 0.76,
+              "end": 30.6,
+              "duration": 1.1,
               "rawAzureTiming": {
                 "start": 29.48,
                 "end": 30.28,
@@ -1133,16 +1141,17 @@
               "phraseIndexes": [
                 6
               ],
-              "method": "azure-speech-sentence-alignment-with-boundary-padding",
-              "confidence": "high",
+              "method": "manual-admin-adjustment",
+              "confidence": "approved",
               "alignmentIssues": [],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-16T11:29:25.883Z",
-                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "reviewedAt": "2026-08-24T07:05:31.782Z",
+                "note": "Manually verified and adjusted in the text audio preview.",
                 "matchScore": 1,
                 "asrText": "。 い つ で す か"
-              }
+              },
+              "reviewedAt": "2026-08-24T07:05:31.782Z"
             }
           },
           {
@@ -1310,8 +1319,8 @@
               "speaker": "李",
               "text": "分かりました。",
               "start": 39.21,
-              "end": 40.01,
-              "duration": 0.8,
+              "end": 40.61,
+              "duration": 1.4,
               "rawAzureTiming": {
                 "start": 39.19,
                 "end": 40.03,
@@ -1326,16 +1335,17 @@
               "phraseIndexes": [
                 8
               ],
-              "method": "azure-speech-sentence-alignment-with-boundary-padding",
-              "confidence": "high",
+              "method": "manual-admin-adjustment",
+              "confidence": "approved",
               "alignmentIssues": [],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-16T11:29:25.883Z",
-                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "reviewedAt": "2026-08-24T07:05:51.761Z",
+                "note": "Manually verified and adjusted in the text audio preview.",
                 "matchScore": 1,
                 "asrText": "わ か り ま し た"
-              }
+              },
+              "reviewedAt": "2026-08-24T07:05:51.761Z"
             }
           }
         ]
@@ -1452,8 +1462,8 @@
               "speaker": "李",
               "text": "ファックスは 届きましたか。",
               "start": 46.12,
-              "end": 48.08,
-              "duration": 1.96,
+              "end": 48.58,
+              "duration": 2.46,
               "rawAzureTiming": {
                 "start": 46.34,
                 "end": 48.1,
@@ -1468,16 +1478,17 @@
               "phraseIndexes": [
                 9
               ],
-              "method": "azure-speech-sentence-alignment-with-boundary-padding",
-              "confidence": "high",
+              "method": "manual-admin-adjustment",
+              "confidence": "approved",
               "alignmentIssues": [],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-16T11:29:25.883Z",
-                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "reviewedAt": "2026-08-24T07:06:23.127Z",
+                "note": "Manually verified and adjusted in the text audio preview.",
                 "matchScore": 1,
                 "asrText": "フ ァ ッ ク ス は 届 き ま し た か"
-              }
+              },
+              "reviewedAt": "2026-08-24T07:06:23.127Z"
             }
           },
           {
@@ -1508,8 +1519,8 @@
               "speaker": "小野",
               "text": "ええ、ファックスも メールも 届きましたよ。",
               "start": 48.62,
-              "end": 52.26,
-              "duration": 3.64,
+              "end": 52.16,
+              "duration": 3.54,
               "rawAzureTiming": {
                 "start": 48.1,
                 "end": 52.28,
@@ -1530,12 +1541,12 @@
               "alignmentIssues": [],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-16T11:29:25.883Z",
-                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "reviewedAt": "2026-08-24T07:06:13.859Z",
+                "note": "Manually verified and adjusted in the text audio preview.",
                 "matchScore": 1,
                 "asrText": "。 え え 、 フ ァ ッ ク ス も メ ー ル も 届 き ま し た よ"
               },
-              "reviewedAt": "2026-08-16T11:35:39.931Z"
+              "reviewedAt": "2026-08-24T07:06:13.859Z"
             }
           },
           {
@@ -1773,5 +1784,5 @@
       }
     ]
   },
-  "updatedAt": "2026-08-16T11:36:24.148Z"
+  "updatedAt": "2026-08-24T07:06:23.129Z"
 }

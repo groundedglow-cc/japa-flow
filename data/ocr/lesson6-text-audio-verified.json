@@ -755,8 +755,8 @@
               "speaker": "甲",
               "text": "大阪から 上海まで 飛行機で 行きますか。",
               "start": 42.54,
-              "end": 45.73,
-              "duration": 3.19,
+              "end": 46.63,
+              "duration": 4.09,
               "rawAzureTiming": {
                 "start": 42.79,
                 "end": 45.75,
@@ -771,16 +771,17 @@
               "phraseIndexes": [
                 10
               ],
-              "method": "azure-speech-sentence-alignment-with-boundary-padding",
-              "confidence": "high",
+              "method": "manual-admin-adjustment",
+              "confidence": "approved",
               "alignmentIssues": [],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-16T11:01:07.890Z",
-                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "reviewedAt": "2026-08-24T06:53:49.350Z",
+                "note": "Manually verified and adjusted in the text audio preview.",
                 "matchScore": 1,
                 "asrText": "大 阪 か ら 上 海 ま で 飛 行 機 で 行 き ま す か"
-              }
+              },
+              "reviewedAt": "2026-08-24T06:53:49.350Z"
             }
           },
           {
@@ -810,9 +811,9 @@
               "itemIndex": 12,
               "speaker": "乙",
               "text": "いいえ、フェリーで 行きます。",
-              "start": 45.77,
+              "start": 46.57,
               "end": 49.4,
-              "duration": 3.63,
+              "duration": 2.83,
               "rawAzureTiming": {
                 "start": 45.75,
                 "end": 49.28,
@@ -828,16 +829,17 @@
                 10,
                 11
               ],
-              "method": "azure-speech-sentence-alignment-with-boundary-padding",
-              "confidence": "high",
+              "method": "manual-admin-adjustment",
+              "confidence": "approved",
               "alignmentIssues": [],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-16T11:01:07.890Z",
-                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "reviewedAt": "2026-08-24T06:53:57.296Z",
+                "note": "Manually verified and adjusted in the text audio preview.",
                 "matchScore": 1,
                 "asrText": "。 い い え 、 フ ェ リ ー で い き ま す"
-              }
+              },
+              "reviewedAt": "2026-08-24T06:53:57.296Z"
             }
           }
         ]
@@ -915,8 +917,8 @@
               "speaker": "吉田",
               "text": "李さん、昨日は 何時に アパートへ 帰りましたか。",
               "start": 16.38,
-              "end": 20.01,
-              "duration": 3.63,
+              "end": 20.51,
+              "duration": 4.13,
               "rawAzureTiming": {
                 "start": 16.63,
                 "end": 20.03,
@@ -931,16 +933,17 @@
               "phraseIndexes": [
                 1
               ],
-              "method": "azure-speech-sentence-alignment-with-boundary-padding",
-              "confidence": "high",
+              "method": "manual-admin-adjustment",
+              "confidence": "approved",
               "alignmentIssues": [],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-16T11:01:07.890Z",
-                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "reviewedAt": "2026-08-24T06:54:20.528Z",
+                "note": "Manually verified and adjusted in the text audio preview.",
                 "matchScore": 1,
                 "asrText": "李 さ ん 、 昨 日 は 何 時 に ア パ ー ト へ 帰 り ま し た か"
-              }
+              },
+              "reviewedAt": "2026-08-24T06:54:20.528Z"
             }
           },
           {
@@ -970,9 +973,9 @@
               "itemIndex": 2,
               "speaker": "李",
               "text": "ええと、たしか 11時半ごろです。",
-              "start": 20.05,
+              "start": 20.7,
               "end": 24.59,
-              "duration": 4.54,
+              "duration": 3.89,
               "rawAzureTiming": {
                 "start": 20.03,
                 "end": 24.47,
@@ -988,18 +991,19 @@
                 1,
                 2
               ],
-              "method": "azure-speech-sentence-alignment-with-boundary-padding",
-              "confidence": "medium",
+              "method": "manual-admin-adjustment",
+              "confidence": "approved",
               "alignmentIssues": [
                 "Moderate ASR text similarity."
               ],
               "review": {
-                "status": "pending",
-                "reviewedAt": null,
-                "note": "Moderate ASR text similarity.",
+                "status": "approved",
+                "reviewedAt": "2026-08-24T06:54:29.578Z",
+                "note": "Manually verified and adjusted in the text audio preview.",
                 "matchScore": 0.714,
                 "asrText": "。 え え と 確 か 十 一 時 半 ご ろ で す"
-              }
+              },
+              "reviewedAt": "2026-08-24T06:54:29.578Z"
             }
           },
           {
@@ -1034,8 +1038,8 @@
               "speaker": "吉田",
               "text": "何で 帰りましたか。タクシーですか。",
               "start": 24.98,
-              "end": 27.69,
-              "duration": 2.71,
+              "end": 28.39,
+              "duration": 3.41,
               "rawAzureTiming": {
                 "start": 25.23,
                 "end": 27.71,
@@ -1050,16 +1054,17 @@
               "phraseIndexes": [
                 2
               ],
-              "method": "azure-speech-sentence-alignment-with-boundary-padding",
-              "confidence": "high",
+              "method": "manual-admin-adjustment",
+              "confidence": "approved",
               "alignmentIssues": [],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-16T11:01:07.890Z",
-                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "reviewedAt": "2026-08-24T06:54:43.559Z",
+                "note": "Manually verified and adjusted in the text audio preview.",
                 "matchScore": 1,
                 "asrText": "何 で 帰 り ま し た か 。 タ ク シ ー で す か"
-              }
+              },
+              "reviewedAt": "2026-08-24T06:54:43.559Z"
             }
           },
           {
@@ -1128,9 +1133,9 @@
               "itemIndex": 4,
               "speaker": "李",
               "text": "電車です。渋谷まで 電車で 行きました。駅から アパートまで 歩いて 帰りました。",
-              "start": 27.73,
+              "start": 28.3,
               "end": 35.39,
-              "duration": 7.66,
+              "duration": 7.09,
               "rawAzureTiming": {
                 "start": 27.71,
                 "end": 35.27,
@@ -1147,16 +1152,17 @@
                 3,
                 4
               ],
-              "method": "azure-speech-sentence-alignment-with-boundary-padding",
-              "confidence": "high",
+              "method": "manual-admin-adjustment",
+              "confidence": "approved",
               "alignmentIssues": [],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-16T11:01:07.890Z",
-                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "reviewedAt": "2026-08-24T06:54:51.809Z",
+                "note": "Manually verified and adjusted in the text audio preview.",
                 "matchScore": 1,
                 "asrText": "。 電 車 で す 渋 谷 ま で 電 車 で 行 き ま し た 駅 か ら ア パ ー ト ま で 歩 い て 帰 り ま し た"
-              }
+              },
+              "reviewedAt": "2026-08-24T06:54:51.809Z"
             }
           },
           {
@@ -1184,8 +1190,8 @@
               "speaker": "吉田",
               "text": "小野さんは？",
               "start": 35.86,
-              "end": 36.85,
-              "duration": 0.99,
+              "end": 37.5,
+              "duration": 1.64,
               "rawAzureTiming": {
                 "start": 36.11,
                 "end": 36.87,
@@ -1200,16 +1206,17 @@
               "phraseIndexes": [
                 5
               ],
-              "method": "azure-speech-sentence-alignment-with-boundary-padding",
-              "confidence": "high",
+              "method": "manual-admin-adjustment",
+              "confidence": "approved",
               "alignmentIssues": [],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-16T11:01:07.890Z",
-                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "reviewedAt": "2026-08-24T06:55:07.294Z",
+                "note": "Manually verified and adjusted in the text audio preview.",
                 "matchScore": 1,
                 "asrText": "小 野 さ ん は"
-              }
+              },
+              "reviewedAt": "2026-08-24T06:55:07.294Z"
             }
           },
           {
@@ -1253,9 +1260,9 @@
               "itemIndex": 6,
               "speaker": "小野",
               "text": "わたしも 電車です。駅からは タクシーで うちへ 帰りました。",
-              "start": 36.89,
+              "start": 37.2,
               "end": 42.87,
-              "duration": 5.98,
+              "duration": 5.67,
               "rawAzureTiming": {
                 "start": 36.87,
                 "end": 42.75,
@@ -1272,16 +1279,17 @@
                 6,
                 7
               ],
-              "method": "azure-speech-sentence-alignment-with-boundary-padding",
-              "confidence": "high",
+              "method": "manual-admin-adjustment",
+              "confidence": "approved",
               "alignmentIssues": [],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-16T11:01:07.890Z",
-                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "reviewedAt": "2026-08-24T06:55:21.537Z",
+                "note": "Manually verified and adjusted in the text audio preview.",
                 "matchScore": 0.88,
                 "asrText": "？ 私 も 電 車 で す 駅 か ら は タ ク シ ー で う ち へ 帰 り ま し た"
-              }
+              },
+              "reviewedAt": "2026-08-24T06:55:21.537Z"
             }
           },
           {
@@ -1316,8 +1324,8 @@
               "speaker": "李",
               "text": "何時に 帰りましたか。",
               "start": 43.3,
-              "end": 44.65,
-              "duration": 1.35,
+              "end": 45.25,
+              "duration": 1.95,
               "rawAzureTiming": {
                 "start": 43.55,
                 "end": 44.67,
@@ -1332,16 +1340,17 @@
               "phraseIndexes": [
                 8
               ],
-              "method": "azure-speech-sentence-alignment-with-boundary-padding",
-              "confidence": "high",
+              "method": "manual-admin-adjustment",
+              "confidence": "approved",
               "alignmentIssues": [],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-16T11:01:07.890Z",
-                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "reviewedAt": "2026-08-24T06:55:37.969Z",
+                "note": "Manually verified and adjusted in the text audio preview.",
                 "matchScore": 1,
                 "asrText": "何 時 に 帰 り ま し た か"
-              }
+              },
+              "reviewedAt": "2026-08-24T06:55:37.969Z"
             }
           },
           {
@@ -1371,9 +1380,9 @@
               "itemIndex": 8,
               "speaker": "小野",
               "text": "12時ごろです。",
-              "start": 44.69,
+              "start": 45.39,
               "end": 47.23,
-              "duration": 2.54,
+              "duration": 1.84,
               "rawAzureTiming": {
                 "start": 44.67,
                 "end": 47.11,
@@ -1389,18 +1398,19 @@
                 8,
                 9
               ],
-              "method": "azure-speech-sentence-alignment-with-boundary-padding",
-              "confidence": "needs-review",
+              "method": "manual-admin-adjustment",
+              "confidence": "approved",
               "alignmentIssues": [
                 "Low ASR text similarity."
               ],
               "review": {
-                "status": "pending",
-                "reviewedAt": null,
-                "note": "Low ASR text similarity.",
+                "status": "approved",
+                "reviewedAt": "2026-08-24T06:55:46.689Z",
+                "note": "Manually verified and adjusted in the text audio preview.",
                 "matchScore": 0.429,
                 "asrText": "。 十 二 時 頃 で す"
-              }
+              },
+              "reviewedAt": "2026-08-24T06:55:46.689Z"
             }
           }
         ]
@@ -1450,8 +1460,8 @@
               "speaker": "小野",
               "text": "森さん、ゆうべは まっすぐ 帰りましたか。",
               "start": 50.86,
-              "end": 53.37,
-              "duration": 2.51,
+              "end": 54.37,
+              "duration": 3.51,
               "rawAzureTiming": {
                 "start": 51.11,
                 "end": 53.39,
@@ -1466,16 +1476,17 @@
               "phraseIndexes": [
                 10
               ],
-              "method": "azure-speech-sentence-alignment-with-boundary-padding",
-              "confidence": "high",
+              "method": "manual-admin-adjustment",
+              "confidence": "approved",
               "alignmentIssues": [],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-16T11:01:07.890Z",
-                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "reviewedAt": "2026-08-24T06:56:00.272Z",
+                "note": "Manually verified and adjusted in the text audio preview.",
                 "matchScore": 1,
                 "asrText": "森 さ ん 、 ゆ う べ は ま っ す ぐ 帰 り ま し た か"
-              }
+              },
+              "reviewedAt": "2026-08-24T06:56:00.272Z"
             }
           },
           {
@@ -1519,9 +1530,9 @@
               "itemIndex": 10,
               "speaker": "森",
               "text": "いいえ、課長と いっしょに 銀座へ 行きました。",
-              "start": 53.41,
+              "start": 54.61,
               "end": 58.16,
-              "duration": 4.75,
+              "duration": 3.55,
               "rawAzureTiming": {
                 "start": 53.39,
                 "end": 58.04,
@@ -1537,16 +1548,17 @@
                 10,
                 11
               ],
-              "method": "azure-speech-sentence-alignment-with-boundary-padding",
-              "confidence": "high",
+              "method": "manual-admin-adjustment",
+              "confidence": "approved",
               "alignmentIssues": [],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-16T11:01:07.890Z",
-                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "reviewedAt": "2026-08-24T06:56:13.316Z",
+                "note": "Manually verified and adjusted in the text audio preview.",
                 "matchScore": 1,
                 "asrText": "。 い い え 、 課 長 と い っ し ょ に 銀 座 へ 行 き ま し た"
-              }
+              },
+              "reviewedAt": "2026-08-24T06:56:13.316Z"
             }
           },
           {
@@ -1879,5 +1891,6 @@
         ]
       }
     ]
-  }
+  },
+  "updatedAt": "2026-08-24T06:56:13.317Z"
 }

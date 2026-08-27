@@ -11,6 +11,7 @@ const sectionLabel = {
 const evaluationModeLabel = {
   exact: "精确判分",
   acceptable_answers: "多答案",
+  open_response: "开放题结构判分",
   self_check: "自检",
   manual_review: "人工复核"
 };
@@ -157,6 +158,13 @@ export function PracticePreview({ practice, localPractice = null }) {
   useEffect(() => {
     window.initPracticeAnswerFormatter?.();
   }, [currentActivity?.id, sessionLoadKey, admin]);
+
+  useEffect(() => {
+    if (!currentActivity?.id || typeof window === "undefined") return;
+    window.requestAnimationFrame(() => {
+      window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+    });
+  }, [currentActivity?.id]);
 
   useEffect(() => {
     let mounted = true;
@@ -482,11 +490,11 @@ function PracticeActivity({ activity, practice, admin, record, isReady, answerAl
           <span className="activity-kicker">{sectionLabel[activity.section]} · {activity.order}</span>
           <h2>{activity.title}</h2>
           {activity.instruction ? <p>{activity.instruction}</p> : null}
-          {activityResponseScopeHint ? <div className="response-scope-callout">{activityResponseScopeHint}</div> : null}
         </div>
       </div>
 
-      <ActivityResources activity={activity} assetMap={assetMap} audioUrl={audioUrl} />
+      <ActivityAudio activity={activity} audioUrl={audioUrl} />
+      <ActivityResources activity={activity} assetMap={assetMap} />
 
       <form ref={formRef} className="activity-form" onSubmit={(event) => event.preventDefault()}>
         {layout.length ? (
@@ -494,6 +502,7 @@ function PracticeActivity({ activity, practice, admin, record, isReady, answerAl
             {layout.map((block, index) => <LayoutBlockView key={index} block={block} />)}
           </div>
         ) : null}
+        {activityResponseScopeHint ? <div className="response-scope-callout">{activityResponseScopeHint}</div> : null}
 
         {activity.itemGroups?.length ? (
           <div className="practice-item-groups">
@@ -580,25 +589,30 @@ function PracticeActivity({ activity, practice, admin, record, isReady, answerAl
   );
 }
 
-function ActivityResources({ activity, assetMap, audioUrl }) {
+function ActivityAudio({ activity, audioUrl }) {
   const hasAudio = activity.requiresAudio || activity.audio;
-  const groupAssetIds = new Set((activity.itemGroups || []).flatMap((group) => group.displayAssets || []));
-  const activityAssetIds = (activity.displayAssets || []).filter((assetId) => !groupAssetIds.has(assetId));
-  const hasAssets = Boolean(activityAssetIds.length);
-  if (!hasAudio && !hasAssets) return null;
+  if (!hasAudio) return null;
   const audioGuidance = hasAudio ? resolveAudioGuidance(activity) : "";
 
   return (
+    <>
+      <div className={`audio-placeholder ${audioUrl ? "ready" : "pending"}`}>
+        {audioUrl ? <audio controls src={audioUrl}></audio> : <span>录音待补充</span>}
+      </div>
+      {audioGuidance ? <p className="audio-guidance">{audioGuidance}</p> : null}
+    </>
+  );
+}
+
+function ActivityResources({ activity, assetMap }) {
+  const groupAssetIds = new Set((activity.itemGroups || []).flatMap((group) => group.displayAssets || []));
+  const activityAssetIds = (activity.displayAssets || []).filter((assetId) => !groupAssetIds.has(assetId));
+  const hasAssets = Boolean(activityAssetIds.length);
+  if (!hasAssets) return null;
+
+  return (
     <div className="activity-resource-panel">
-      {hasAudio ? (
-        <>
-          <div className={`audio-placeholder ${audioUrl ? "ready" : "pending"}`}>
-            {audioUrl ? <audio controls src={audioUrl}></audio> : <span>录音待补充</span>}
-          </div>
-          {audioGuidance ? <p className="audio-guidance">{audioGuidance}</p> : null}
-        </>
-      ) : null}
-      {hasAssets ? <DisplayAssets assetIds={activityAssetIds} assetMap={assetMap} /> : null}
+      <DisplayAssets assetIds={activityAssetIds} assetMap={assetMap} />
     </div>
   );
 }
@@ -697,6 +711,12 @@ function ExampleBlockView({ example }) {
     );
   }
   const dialogueLines = exampleDialogueLines(example.after, example.afterKana);
+  const tripCompositionLines = example.renderHint === "trip_composition"
+    ? splitExampleTextLines(promptPartsPlainText(example.after || []))
+    : [];
+  const tripCompositionKanaLines = example.renderHint === "trip_composition"
+    ? splitExampleTextLines(example.afterKana || "")
+    : [];
   return (
     <div className={`example-block ${dialogueLines ? "dialogue-example" : ""}`}>
       <span className="example-head">
@@ -715,6 +735,12 @@ function ExampleBlockView({ example }) {
               <span>{line.speaker}</span>
               <p><Prompt parts={line.parts} kana={line.kana} /></p>
             </span>
+          ))}
+        </span>
+      ) : tripCompositionLines.length ? (
+        <span className="example-after trip-composition-lines">
+          {tripCompositionLines.map((line, index) => (
+            <span key={index}><RubyText text={line} kana={tripCompositionKanaLines[index] || ""} /></span>
           ))}
         </span>
       ) : (
@@ -786,7 +812,11 @@ function IncorrectAnswerDetails({ item, answer, result, className = "incorrect-a
   return (
     <article className={className}>
       {showPrompt ? <h4>{item.number}. <Prompt parts={item.prompt} kana={item.promptKana} /></h4> : null}
-      <AnswerComparison item={item} answer={answer} result={result} />
+      {item.evaluationMode === "open_response" ? (
+        <p>回答未满足本题要求的时间、范围或句型结构，请检查后重新作答。</p>
+      ) : (
+        <AnswerComparison item={item} answer={answer} result={result} />
+      )}
       {result?.status === "incorrect" && item.evaluationMode === "acceptable_answers" ? (
         <small>本题支持多个可接受答案，已在“正确答案”中合并展示。</small>
       ) : null}
@@ -830,9 +860,7 @@ function AnswerComparison({ item, answer, result }) {
   if (comparison.kind === "choice") {
     return (
       <div className="answer-diff answer-comparison" aria-label="答案对比">
-        <div className="answer-diff-head">
-          <strong>答案对比</strong>
-        </div>
+        <div className="answer-diff-head"><strong>答案对比</strong></div>
         <AnswerComparisonBlock tone="user" label="你的答案" value={comparison.actual || "未选择"} />
         <AnswerComparisonBlock tone="expected" label="正确答案" value={comparison.expected || "暂无"} />
       </div>
@@ -850,12 +878,36 @@ function AnswerComparison({ item, answer, result }) {
   );
 }
 
+function answerComparisonRows(item, answer) {
+  if (item.inputSlots?.length) {
+    return item.inputSlots.map((slot) => ({
+      id: slot.id,
+      label: item.inputSlots.length > 1 ? (slot.label || slot.id) : "",
+      actual: String(answer?.slotValues?.[slot.id] || ""),
+      expected: answerValuesForSlot(item, slot.id).join(" / ")
+    }));
+  }
+  if (item.choices?.length) {
+    const labels = new Map(item.choices.map((choice) => [choice.id, choice.label]));
+    return [{
+      id: "choice",
+      label: "",
+      actual: (answer?.choiceIds || []).map((id) => labels.get(id) || id).join(" / "),
+      expected: (item.answer?.choiceIds || []).map((id) => labels.get(id) || id).join(" / ")
+    }];
+  }
+  return [];
+}
+
 function PracticeItemView({ item, admin, storedAnswer, gradingResult, activityResponseScope, activityResponseScopeHint }) {
   const itemResponseScopeHint = resolveItemResponseScopeHint(item, activityResponseScope, activityResponseScopeHint);
   return (
     <section className={`practice-item ${item.renderHint || "inline"}`} data-item-status={gradingResult?.status || "idle"}>
-      {gradingResult?.status === "incorrect" ? (
+      {gradingResult?.status === "incorrect" && item.evaluationMode !== "open_response" ? (
         <IncorrectReasonPopover item={item} answer={storedAnswer} result={gradingResult} />
+      ) : null}
+      {gradingResult?.status === "correct" && item.answerSource !== "personal" && item.evaluationMode !== "open_response" ? (
+        <CorrectAnswerComparisonPopover item={item} answer={storedAnswer} />
       ) : null}
       <div className="item-main">
         <span className="item-number">{item.number}</span>
@@ -932,6 +984,54 @@ function IncorrectReasonPopover({ item, answer, result }) {
   );
 }
 
+function CorrectAnswerComparisonPopover({ item, answer }) {
+  const [isOpen, setIsOpen] = useState(false);
+  const popoverId = `${item.id}-answer-comparison`;
+
+  return (
+    <div className="incorrect-reason-popover correct-answer-popover">
+      <button
+        type="button"
+        className="incorrect-reason-trigger correct-answer-trigger"
+        aria-label={`查看第 ${item.number} 题答案对比`}
+        aria-expanded={isOpen}
+        aria-controls={popoverId}
+        onClick={() => setIsOpen((value) => !value)}
+      >
+        ✓
+      </button>
+      {isOpen ? (
+        <>
+          <button className="incorrect-reason-backdrop" type="button" aria-label="关闭答案对比" onClick={() => setIsOpen(false)} />
+          <div className="incorrect-reason-panel correct-answer-panel" id={popoverId} role="dialog" aria-label={`第 ${item.number} 题答案对比`} onClick={(event) => event.stopPropagation()}>
+            <div className="incorrect-reason-head correct-answer-head">
+              <strong>答案对比</strong>
+              <button type="button" onClick={() => setIsOpen(false)} aria-label="关闭答案对比">×</button>
+            </div>
+            <CorrectAnswerComparison item={item} answer={answer} />
+          </div>
+        </>
+      ) : null}
+    </div>
+  );
+}
+
+function CorrectAnswerComparison({ item, answer }) {
+  const rows = answerComparisonRows(item, answer);
+  if (!rows.length) return null;
+  return (
+    <div className="answer-diff answer-comparison" aria-label="答案对比">
+      {rows.map((row) => (
+        <div className="answer-comparison-row" key={row.id}>
+          {row.label ? <strong>{row.label}</strong> : null}
+          <AnswerComparisonBlock tone="user" label="我的答案" value={row.actual || "未作答"} />
+          <AnswerComparisonBlock tone="expected" label="标准答案" value={row.expected || "暂无"} />
+        </div>
+      ))}
+    </div>
+  );
+}
+
 function Choices({ choices, item, admin, storedAnswer, gradingResult }) {
   const storedChoiceIds = resolveStoredChoiceIds(item, storedAnswer?.choiceIds || []);
   const currentChoiceIds = storedAnswer ? storedChoiceIds : (admin ? item.answer?.choiceIds || [] : []);
@@ -961,6 +1061,21 @@ function InputSlotView({ item, slot, admin, storedAnswer, gradingResult }) {
   const label = `${item.number} ${slot.id}`;
   const placeholder = slot.placeholder || slot.expectedUnit;
   const result = gradingResult?.fieldResults?.[slot.id];
+
+  if (slot.choices?.length) {
+    const fieldName = slotFieldName(item.id, slot.id);
+    return (
+      <fieldset className="slot-choice-group" data-result={result || undefined}>
+        <legend>{slot.label || `${item.number} ${slot.id}`}</legend>
+        {slot.choices.map((choice) => (
+          <label key={choice.id}>
+            <input type="radio" name={fieldName} value={choice.label} defaultChecked={defaultValue === choice.label} />
+            <span>{choice.label}</span>
+          </label>
+        ))}
+      </fieldset>
+    );
+  }
 
   if (slot.multiline || slot.expectedUnit === "dialogue") {
     return (
@@ -1034,11 +1149,17 @@ function Prompt({ parts, kana }) {
   if (shouldRenderWholePrompt(parts, kana)) {
     return <RubyText text={parts.map((part) => part.text).join("")} kana={kana} />;
   }
+  const partsWithKana = applyPromptKanaToTextParts(parts, kana);
   return (
     <>
-      {parts.map((part, index) => {
+      {partsWithKana.map((part, index) => {
         if (part.type === "text") return <RichText key={index} part={part} />;
-        if (part.type === "blank") return <span className="inline-blank" data-slot-id={part.slotId} key={index}></span>;
+        if (part.type === "blank") {
+          if (part.display === "parentheses") {
+            return <span className="inline-blank parentheses-blank" data-slot-id={part.slotId} key={index}>（　）</span>;
+          }
+          return <span className="inline-blank" data-slot-id={part.slotId} key={index}></span>;
+        }
         if (part.type === "choice_ref") return <span className="choice-ref" key={index}>{part.choiceIds.join(" / ")}</span>;
         return <span className="asset-ref" key={index}>{part.assetId}</span>;
       })}
@@ -1076,6 +1197,79 @@ function RubyText({ text, kana }) {
 
 function shouldRenderWholePrompt(parts, kana) {
   return Boolean(kana) && parts.every((part) => part.type === "text" && !part.underline && !part.substitutionKey && !part.kana);
+}
+
+function applyPromptKanaToTextParts(parts, kana) {
+  if (!kana || !parts.some((part) => part.type === "blank")) return parts;
+
+  const blankMarkers = [...String(kana).matchAll(/[_＿]{2,}|…{2,}|[―—]{2,}/g)];
+  const blankCount = parts.filter((part) => part.type === "blank").length;
+
+  const textGroups = [[]];
+  parts.forEach((part, index) => {
+    if (part.type === "blank") {
+      textGroups.push([]);
+    } else if (part.type === "text") {
+      textGroups[textGroups.length - 1].push(index);
+    }
+  });
+
+  let terminalBlankReading = false;
+  let kanaSegments;
+  if (blankMarkers.length === blankCount) {
+    kanaSegments = [];
+    let cursor = 0;
+    blankMarkers.forEach((marker) => {
+      kanaSegments.push(String(kana).slice(cursor, marker.index));
+      cursor = marker.index + marker[0].length;
+    });
+    kanaSegments.push(String(kana).slice(cursor));
+  } else if (blankCount === 1 && blankMarkers.length === 0 && textGroups[1].length === 0) {
+    // Base-form prompts store only the reading of the word before a final
+    // blank, for example "書きます → ____" with kana "かきます".
+    terminalBlankReading = true;
+    kanaSegments = [String(kana), ""];
+  } else {
+    return parts;
+  }
+
+  const kanaByPartIndex = new Map();
+  textGroups.forEach((partIndexes, groupIndex) => {
+    if (partIndexes.length === 1) {
+      kanaByPartIndex.set(partIndexes[0], kanaSegments[groupIndex]);
+      return;
+    }
+
+    const rubyPartIndexes = partIndexes.filter((partIndex) =>
+      Array.from(parts[partIndex].text || "").some(isRubyTargetChar)
+    );
+    // Support prompts such as "書きます → ____": the arrow is a separate
+    // text part, while only the word before it needs the inferred reading.
+    if (rubyPartIndexes.length !== 1) return;
+
+    const rubyPartIndex = rubyPartIndexes[0];
+    const rubyPartPosition = partIndexes.indexOf(rubyPartIndex);
+    const prefix = partIndexes.slice(0, rubyPartPosition).map((partIndex) => parts[partIndex].text).join("");
+    const suffix = partIndexes.slice(rubyPartPosition + 1).map((partIndex) => parts[partIndex].text).join("");
+    let rubyKana = kanaSegments[groupIndex];
+    if (prefix) rubyKana = consumePlainText(rubyKana, prefix);
+    if (suffix) {
+      const suffixIndex = findPlainTextBoundary(rubyKana, suffix);
+      if (suffixIndex === -1) {
+        // In the terminal-blank format the display arrow is intentionally not
+        // stored in promptKana, so it cannot be used as a reading boundary.
+        if (!terminalBlankReading) return;
+      } else {
+        rubyKana = rubyKana.slice(0, suffixIndex);
+      }
+    }
+    kanaByPartIndex.set(rubyPartIndex, rubyKana);
+  });
+
+  return parts.map((part, index) => {
+    if (part.type !== "text" || part.kana || !kanaByPartIndex.has(index)) return part;
+    return { ...part, kana: kanaByPartIndex.get(index) };
+  });
 }
 
 function resolveActivityAudioUrl(practice, activity) {
@@ -1190,6 +1384,9 @@ function gradeItem(item, attempt, answerAlternatives = {}) {
   if (item.evaluationMode === "manual_review" || !item.answer) {
     return { status: "ungraded", fieldResults: {} };
   }
+  if (item.evaluationMode === "open_response") {
+    return gradeOpenResponseItem(item, attempt);
+  }
 
   const fieldResults = {};
   let sawGradableField = false;
@@ -1230,6 +1427,39 @@ function gradeItem(item, attempt, answerAlternatives = {}) {
   };
 }
 
+function gradeOpenResponseItem(item, attempt) {
+  const rule = item.answer?.openResponseRule;
+  const fieldResults = {};
+  let hasIncorrect = false;
+  (item.inputSlots || []).forEach((slot) => {
+    const actual = String(attempt.slotValues?.[slot.id] || "").trim();
+    const isCorrect = matchesOpenResponseRule(actual, rule);
+    fieldResults[slot.id] = isCorrect ? "correct" : "incorrect";
+    if (!isCorrect) hasIncorrect = true;
+  });
+  return { status: hasIncorrect ? "incorrect" : "correct", fieldResults };
+}
+
+function matchesOpenResponseRule(answer, rule) {
+  const normalized = String(answer || "").normalize("NFKC").replace(/[\s、。！？]/g, "");
+  if (!normalized || !rule) return false;
+
+  const time = "(?:午前|午後)?(?:[0-9]+|[一二三四五六七八九十]+)時(?:(?:[0-9]+|[一二三四五六七八九十]+)分|半)?";
+  const weekday = "(?:月|火|水|木|金|土|日)曜日";
+  const hasExpectedAction = !rule.actions?.length || rule.actions.some((action) => normalized.includes(action));
+  const allowsShortAnswer = rule.allowShortAnswer && /です$/.test(normalized);
+
+  if (rule.kind === "time") {
+    const hasTimeOnly = new RegExp(`^${time}(?:です)?$`).test(normalized);
+    const hasFullSentence = new RegExp(`${time}に`).test(normalized) && hasExpectedAction;
+    return hasTimeOnly || hasFullSentence;
+  }
+
+  const rangeUnit = rule.kind === "weekday_range" ? weekday : time;
+  const hasRange = new RegExp(`${rangeUnit}から${rangeUnit}まで`).test(normalized);
+  return hasRange && (allowsShortAnswer || hasExpectedAction);
+}
+
 function expectedTextMatcher(item, slotId, answerAlternatives = {}) {
   const answers = answerValuesForSlot(item, slotId).map((value) => normalizeAnswerText(value));
   (answerAlternatives?.[item.id]?.[slotId] || []).forEach((value) => answers.push(normalizeAnswerText(value)));
@@ -1247,7 +1477,7 @@ function expectedTextMatcher(item, slotId, answerAlternatives = {}) {
 
 function hasIncorrectTextAnswers(activity, grading) {
   return flattenActivityItems(activity).some((item) =>
-    item.inputSlots?.some((slot) => grading?.itemResults?.[item.id]?.fieldResults?.[slot.id] === "incorrect")
+    item.evaluationMode !== "open_response" && item.inputSlots?.some((slot) => grading?.itemResults?.[item.id]?.fieldResults?.[slot.id] === "incorrect")
   );
 }
 
@@ -1258,7 +1488,7 @@ async function reviewIncorrectTextAnswers({ practice, activity, answers, grading
   const items = flattenActivityItems(activity);
 
   for (const item of items) {
-    if (item.evaluationMode === "manual_review" || item.evaluationMode === "self_check") continue;
+    if (item.evaluationMode === "manual_review" || item.evaluationMode === "self_check" || item.evaluationMode === "open_response") continue;
     if (!item.inputSlots?.length) continue;
     for (const slot of item.inputSlots) {
       if (grading?.itemResults?.[item.id]?.fieldResults?.[slot.id] !== "incorrect") continue;
@@ -1280,7 +1510,9 @@ async function reviewIncorrectTextAnswers({ practice, activity, answers, grading
         answerUnit: slot.expectedUnit || activity.answerUnit,
         responseScope: item.responseScope || activity.responseScope || "",
         responseScopeHint: item.responseScopeHint || activity.responseScopeHint || "",
-        examples: exampleTextForItem(activity, item.id)
+        examples: exampleTextForItem(activity, item.id),
+        openResponseRule: item.answer?.openResponseRule,
+        cacheAcceptedAnswer: item.evaluationMode !== "open_response"
       });
       if (!result?.accepted) continue;
       alternatives = mergeAcceptedAnswerAlternative(alternatives, item.id, slot.id, result.normalizedAnswer || userAnswer);
@@ -1600,10 +1832,15 @@ function normalizeActivityRecord(activity, record) {
     if (normalized) answers[item.id] = normalized;
   });
 
-  const grading = record.grading?.itemResults
+  const submittedAt = record.grading?.submittedAt || record.grading?.summary?.submittedAt || record.updatedAt;
+  // Older lesson data may have saved an item as manual_review before its
+  // transcript and standard answer were completed. Once the item becomes
+  // gradable, re-evaluate the preserved user answer instead of leaving it
+  // permanently ungraded.
+  const grading = record.grading?.itemResults && !needsGradingRefresh(activity, record.grading)
     ? record.grading
     : record.grading
-      ? gradeActivity(activity, answers, record.grading.submittedAt || record.grading.summary?.submittedAt || record.updatedAt)
+      ? gradeActivity(activity, answers, submittedAt)
       : record.grading;
 
   return {
@@ -1611,6 +1848,15 @@ function normalizeActivityRecord(activity, record) {
     answers,
     grading
   };
+}
+
+function needsGradingRefresh(activity, grading) {
+  return flattenActivityItems(activity).some((item) => {
+    if (item.evaluationMode === "manual_review" || !item.answer || !item.inputSlots?.length) return false;
+    if (item.evaluationMode === "open_response") return true;
+    const savedResult = grading?.itemResults?.[item.id];
+    return savedResult?.status === "ungraded" && !Object.keys(savedResult.fieldResults || {}).length;
+  });
 }
 
 function normalizeStoredItemAnswer(item, source) {
@@ -2018,20 +2264,20 @@ function exampleDialogueLines(parts, kana) {
   const text = promptPartsPlainText(parts).trim();
   if (!/甲：|乙/.test(text)) return null;
   const textLines = splitDialogueContent(text);
-  const kanaLines = kana ? splitDialogueContent(kana) : [];
   if (!textLines.length) return null;
+  const kanaLines = splitDialogueKanaLines(kana, textLines.length);
   const partsLines = splitPromptPartsByDialogueLines(parts, textLines);
   return textLines.map((line, index) => ({
     speaker: line.speaker,
     parts: partsLines[index] || [],
-    kana: kanaLines[index]?.body || ""
+    kana: kanaLines[index] || ""
   }));
 }
 
 function splitDialogueContent(value) {
   const text = String(value || "").replace(/\s+/g, " ").trim();
   if (!text) return [];
-  const speakerPattern = /((?:甲|乙[12]?|丙|丁|A|B|C|D))：/g;
+  const speakerPattern = /((?:甲|乙[12一二]?|丙|丁|A|B|C|D|こう|おつ(?:いち|に|[12一二])?|コウ|オツ(?:イチ|ニ|[12一二])?))：/g;
   const matches = Array.from(text.matchAll(speakerPattern));
   return matches.map((match, index) => {
     const speaker = match[1];
@@ -2044,6 +2290,40 @@ function splitDialogueContent(value) {
       end: bodyEnd
     };
   }).filter((line) => line.body);
+}
+
+function splitDialogueKanaLines(kana, expectedLineCount) {
+  const sourceKana = String(kana || "");
+  if (!sourceKana) return [];
+
+  // Keep dialogue readings aligned by physical line first.  Unlike the visible
+  // text, kana dialogue data often uses こう／おつ for speakers; matching it
+  // against the normalized visible dialogue can otherwise leave the complete
+  // dialogue as the reading for one line.
+  const newlineLines = sourceKana
+    .split(/\r?\n/)
+    .map((line) => stripDialogueSpeaker(line))
+    .filter(Boolean);
+  if (newlineLines.length === expectedLineCount) return newlineLines;
+
+  const markedLines = splitDialogueContent(sourceKana).map((line) => line.body);
+  if (markedLines.length === expectedLineCount) return markedLines;
+
+  // Some lesson data omits speaker labels in kana but keeps each dialogue turn on its own line.
+  const rawNewlineLines = sourceKana
+    .split(/\r?\n/)
+    .map((line) => line.trim())
+    .filter(Boolean);
+  if (rawNewlineLines.length === expectedLineCount) return rawNewlineLines;
+
+  // An ambiguous reading must not be attached to a single kanji run.
+  return [];
+}
+
+function stripDialogueSpeaker(line) {
+  return String(line || "")
+    .replace(/^\s*(?:甲|乙[12一二]?|丙|丁|A|B|C|D|こう|おつ(?:いち|に|[12一二])?|コウ|オツ(?:イチ|ニ|[12一二]?)?)：\s*/, "")
+    .trim();
 }
 
 function splitPromptPartsByDialogueLines(parts, textLines) {
@@ -2103,8 +2383,12 @@ function splitRubySegments(text, kana) {
       reading = remainingKana;
       remainingKana = "";
     }
+    reading = reading.trim();
 
-    if (!reading || reading === run.text) {
+    // Never turn an alignment failure into a misleading, multi-sentence ruby.
+    // A reading is kana only; punctuation, speaker markers, or kanji indicate
+    // that the remaining dialogue was not split correctly.
+    if (!reading || reading === run.text || !isRubyReading(reading)) {
       segments.push({ type: "text", text: run.text });
       return;
     }
@@ -2151,14 +2435,24 @@ function findPlainTextBoundary(remainingKana, plainText) {
   const exactIndex = remainingKana.indexOf(plainText);
   if (exactIndex > -1) return exactIndex;
 
-  const anchor = plainText.replace(/[A-Za-z]+/g, "");
+  // Dialogue lines are trimmed before their kana is assigned, while the sliced
+  // text part can retain its trailing separator whitespace.
+  const anchor = plainText.trim().replace(/[A-Za-z]+/g, "");
   if (!anchor) return -1;
-  return remainingKana.indexOf(anchor);
+  const anchorIndex = remainingKana.indexOf(anchor);
+  if (anchorIndex > -1) return anchorIndex;
+  return findWhitespaceTolerantIndex(remainingKana, anchor);
 }
 
 function consumePlainText(remainingKana, plainText) {
   if (!remainingKana || !plainText) return remainingKana;
   if (remainingKana.startsWith(plainText)) return remainingKana.slice(plainText.length);
+  const trimmedPlainText = plainText.trim();
+  if (trimmedPlainText && remainingKana.startsWith(trimmedPlainText)) {
+    return remainingKana.slice(trimmedPlainText.length);
+  }
+  const whitespaceTolerantRest = consumeWhitespaceTolerantPrefix(remainingKana, plainText);
+  if (whitespaceTolerantRest !== null) return whitespaceTolerantRest;
 
   let cursor = remainingKana;
   const segments = plainText.match(/[A-Za-z]+|[^A-Za-z]+/g) || [plainText];
@@ -2175,6 +2469,52 @@ function consumePlainText(remainingKana, plainText) {
     }
   });
   return cursor;
+}
+
+function findWhitespaceTolerantIndex(value, query) {
+  const normalizedQuery = normalizeRubyAnchor(query);
+  if (!normalizedQuery) return -1;
+  const { text, indexMap } = normalizeRubyAnchorWithMap(value);
+  const normalizedIndex = text.indexOf(normalizedQuery);
+  return normalizedIndex > -1 ? indexMap[normalizedIndex] : -1;
+}
+
+function consumeWhitespaceTolerantPrefix(value, prefix) {
+  const normalizedPrefix = normalizeRubyAnchor(prefix);
+  if (!normalizedPrefix) return null;
+  const { text, endIndexMap } = normalizeRubyAnchorWithMap(value);
+  if (!text.startsWith(normalizedPrefix)) return null;
+  const endIndex = endIndexMap[normalizedPrefix.length - 1];
+  return value.slice(endIndex);
+}
+
+function normalizeRubyAnchor(value) {
+  return Array.from(String(value || "")).filter((char) => !isRubyWhitespace(char)).join("");
+}
+
+function normalizeRubyAnchorWithMap(value) {
+  const chars = Array.from(String(value || ""));
+  let originalIndex = 0;
+  let text = "";
+  const indexMap = [];
+  const endIndexMap = [];
+  chars.forEach((char) => {
+    const startIndex = originalIndex;
+    originalIndex += char.length;
+    if (isRubyWhitespace(char)) return;
+    text += char;
+    indexMap.push(startIndex);
+    endIndexMap.push(originalIndex);
+  });
+  return { text, indexMap, endIndexMap };
+}
+
+function isRubyWhitespace(char) {
+  return /[\s　]/.test(String(char || ""));
+}
+
+function isRubyReading(value) {
+  return /^[\u3040-\u30ffーゝゞヽヾ\s　]+$/.test(String(value || ""));
 }
 
 function isKanaOnly(value) {

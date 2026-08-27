@@ -240,9 +240,9 @@
           "itemIndex": 4,
           "speaker": "",
           "text": "吉田さんは 庭に います。",
-          "start": 14.3,
+          "start": 14.9,
           "end": 17.35,
-          "duration": 3.05,
+          "duration": 2.45,
           "rawAzureTiming": {
             "start": 14.55,
             "end": 17.23,
@@ -257,16 +257,17 @@
           "phraseIndexes": [
             3
           ],
-          "method": "azure-speech-sentence-alignment-with-boundary-padding",
-          "confidence": "high",
+          "method": "manual-admin-adjustment",
+          "confidence": "approved",
           "alignmentIssues": [],
           "review": {
             "status": "approved",
-            "reviewedAt": "2026-08-16T11:01:06.179Z",
-            "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+            "reviewedAt": "2026-08-20T14:46:09.597Z",
+            "note": "Manually verified and adjusted in the text audio preview.",
             "matchScore": 1,
             "asrText": "吉 田 さ ん は 庭 に い ま す 。"
-          }
+          },
+          "reviewedAt": "2026-08-20T14:46:09.597Z"
         }
       }
     ],
@@ -317,8 +318,8 @@
               "speaker": "甲",
               "text": "その 箱の 中に 何が ありますか。",
               "start": 18.9,
-              "end": 21.61,
-              "duration": 2.71,
+              "end": 22.31,
+              "duration": 3.41,
               "rawAzureTiming": {
                 "start": 19.15,
                 "end": 21.63,
@@ -333,16 +334,17 @@
               "phraseIndexes": [
                 4
               ],
-              "method": "azure-speech-sentence-alignment-with-boundary-padding",
-              "confidence": "high",
+              "method": "manual-admin-adjustment",
+              "confidence": "approved",
               "alignmentIssues": [],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-16T11:01:06.179Z",
-                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "reviewedAt": "2026-08-20T14:46:32.024Z",
+                "note": "Manually verified and adjusted in the text audio preview.",
                 "matchScore": 1,
                 "asrText": "そ の 箱 の 中 に 何 が あ り ま す か"
-              }
+              },
+              "reviewedAt": "2026-08-20T14:46:32.024Z"
             }
           },
           {
@@ -376,9 +378,9 @@
               "itemIndex": 6,
               "speaker": "乙",
               "text": "時計と 眼鏡が あります。",
-              "start": 21.65,
+              "start": 22.65,
               "end": 24.59,
-              "duration": 2.94,
+              "duration": 1.94,
               "rawAzureTiming": {
                 "start": 21.63,
                 "end": 24.47,
@@ -394,16 +396,17 @@
                 4,
                 5
               ],
-              "method": "azure-speech-sentence-alignment-with-boundary-padding",
-              "confidence": "high",
+              "method": "manual-admin-adjustment",
+              "confidence": "approved",
               "alignmentIssues": [],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-16T11:01:06.179Z",
-                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "reviewedAt": "2026-08-20T14:46:18.374Z",
+                "note": "Manually verified and adjusted in the text audio preview.",
                 "matchScore": 1,
                 "asrText": "。 時 計 と 眼 鏡 が あ り ま す 。"
-              }
+              },
+              "reviewedAt": "2026-08-20T14:46:18.374Z"
             }
           }
         ]
@@ -552,8 +555,8 @@
               "speaker": "甲",
               "text": "小野さんの 家は どこに ありますか。",
               "start": 31.42,
-              "end": 33.69,
-              "duration": 2.27,
+              "end": 34,
+              "duration": 2.58,
               "rawAzureTiming": {
                 "start": 31.67,
                 "end": 33.71,
@@ -568,16 +571,17 @@
               "phraseIndexes": [
                 6
               ],
-              "method": "azure-speech-sentence-alignment-with-boundary-padding",
-              "confidence": "high",
+              "method": "manual-admin-adjustment",
+              "confidence": "approved",
               "alignmentIssues": [],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-16T11:01:06.179Z",
-                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "reviewedAt": "2026-08-20T14:47:19.418Z",
+                "note": "Manually verified and adjusted in the text audio preview.",
                 "matchScore": 1,
                 "asrText": "小 野 さ ん の 家 は ど こ に あ り ま す か"
-              }
+              },
+              "reviewedAt": "2026-08-20T14:47:19.418Z"
             }
           },
           {
@@ -604,9 +608,9 @@
               "itemIndex": 10,
               "speaker": "乙",
               "text": "横浜に あります。",
-              "start": 33.73,
+              "start": 34.29,
               "end": 36.92,
-              "duration": 3.19,
+              "duration": 2.63,
               "rawAzureTiming": {
                 "start": 33.71,
                 "end": 36.8,
@@ -622,16 +626,17 @@
                 6,
                 7
               ],
-              "method": "azure-speech-sentence-alignment-with-boundary-padding",
-              "confidence": "high",
+              "method": "manual-admin-adjustment",
+              "confidence": "approved",
               "alignmentIssues": [],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-16T11:01:06.179Z",
-                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "reviewedAt": "2026-08-20T14:47:05.138Z",
+                "note": "Manually verified and adjusted in the text audio preview.",
                 "matchScore": 1,
                 "asrText": "。 横 浜 に あ り ま す 。"
-              }
+              },
+              "reviewedAt": "2026-08-20T14:47:05.138Z"
             }
           }
         ]
@@ -1336,9 +1341,9 @@
               "itemIndex": 9,
               "speaker": "小野",
               "text": "わたしの 家は 横浜です。",
-              "start": 44.34,
+              "start": 44.84,
               "end": 47.65,
-              "duration": 3.31,
+              "duration": 2.81,
               "rawAzureTiming": {
                 "start": 44.32,
                 "end": 47.67,
@@ -1354,16 +1359,17 @@
                 9,
                 10
               ],
-              "method": "azure-speech-sentence-alignment-with-boundary-padding",
-              "confidence": "high",
+              "method": "manual-admin-adjustment",
+              "confidence": "approved",
               "alignmentIssues": [],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-16T11:01:06.179Z",
-                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "reviewedAt": "2026-08-20T14:47:38.884Z",
+                "note": "Manually verified and adjusted in the text audio preview.",
                 "matchScore": 1,
                 "asrText": "。 わ た し の 家 は 横 浜 で す"
-              }
+              },
+              "reviewedAt": "2026-08-20T14:47:38.884Z"
             }
           },
           {
@@ -1398,8 +1404,8 @@
               "speaker": "李",
               "text": "ご家族も 横浜ですか。",
               "start": 47.69,
-              "end": 49.89,
-              "duration": 2.2,
+              "end": 50.19,
+              "duration": 2.5,
               "rawAzureTiming": {
                 "start": 47.67,
                 "end": 49.91,
@@ -1415,16 +1421,17 @@
                 10,
                 11
               ],
-              "method": "azure-speech-sentence-alignment-with-boundary-padding",
-              "confidence": "high",
+              "method": "manual-admin-adjustment",
+              "confidence": "approved",
               "alignmentIssues": [],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-16T11:01:06.179Z",
-                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "reviewedAt": "2026-08-20T14:48:02.713Z",
+                "note": "Manually verified and adjusted in the text audio preview.",
                 "matchScore": 1,
                 "asrText": "。 ご 家 族 も 横 浜 で す か"
-              }
+              },
+              "reviewedAt": "2026-08-20T14:48:02.713Z"
             }
           },
           {
@@ -1454,9 +1461,9 @@
               "itemIndex": 11,
               "speaker": "小野",
               "text": "いいえ、わたしは 一人暮らしです。",
-              "start": 49.93,
+              "start": 50.3,
               "end": 53.42,
-              "duration": 3.49,
+              "duration": 3.12,
               "rawAzureTiming": {
                 "start": 49.91,
                 "end": 53.44,
@@ -1472,16 +1479,17 @@
                 11,
                 12
               ],
-              "method": "azure-speech-sentence-alignment-with-boundary-padding",
-              "confidence": "high",
+              "method": "manual-admin-adjustment",
+              "confidence": "approved",
               "alignmentIssues": [],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-16T11:01:06.179Z",
-                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "reviewedAt": "2026-08-20T14:47:49.450Z",
+                "note": "Manually verified and adjusted in the text audio preview.",
                 "matchScore": 1,
                 "asrText": "。 い い え 、 わ た し は 一 人 暮 ら し で す"
-              }
+              },
+              "reviewedAt": "2026-08-20T14:47:49.450Z"
             }
           },
           {
@@ -1570,8 +1578,8 @@
               "speaker": "小野",
               "text": "両親は 名古屋に います。",
               "start": 56.49,
-              "end": 59.78,
-              "duration": 3.29,
+              "end": 59.18,
+              "duration": 2.69,
               "rawAzureTiming": {
                 "start": 56.47,
                 "end": 59.8,
@@ -1587,16 +1595,17 @@
                 13,
                 14
               ],
-              "method": "azure-speech-sentence-alignment-with-boundary-padding",
-              "confidence": "high",
+              "method": "manual-admin-adjustment",
+              "confidence": "approved",
               "alignmentIssues": [],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-16T11:01:06.179Z",
-                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "reviewedAt": "2026-08-20T14:48:23.101Z",
+                "note": "Manually verified and adjusted in the text audio preview.",
                 "matchScore": 1,
                 "asrText": "。 両 親 は 名 古 屋 に い ま す"
-              }
+              },
+              "reviewedAt": "2026-08-20T14:48:23.101Z"
             }
           },
           {
@@ -1623,9 +1632,9 @@
               "itemIndex": 14,
               "speaker": "李",
               "text": "ご兄弟は？",
-              "start": 59.82,
+              "start": 59.22,
               "end": 60.62,
-              "duration": 0.8,
+              "duration": 1.4,
               "rawAzureTiming": {
                 "start": 59.8,
                 "end": 60.64,
@@ -1640,16 +1649,17 @@
               "phraseIndexes": [
                 14
               ],
-              "method": "azure-speech-sentence-alignment-with-boundary-padding",
-              "confidence": "high",
+              "method": "manual-admin-adjustment",
+              "confidence": "approved",
               "alignmentIssues": [],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-16T11:01:06.179Z",
-                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "reviewedAt": "2026-08-20T14:48:14.746Z",
+                "note": "Manually verified and adjusted in the text audio preview.",
                 "matchScore": 1,
                 "asrText": "。 ご 兄 弟 は"
-              }
+              },
+              "reviewedAt": "2026-08-20T14:48:14.746Z"
             }
           },
           {
@@ -1751,5 +1761,6 @@
         ]
       }
     ]
-  }
+  },
+  "updatedAt": "2026-08-20T14:48:23.102Z"
 }

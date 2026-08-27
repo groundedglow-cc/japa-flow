@@ -945,108 +945,20 @@ h3 {
 
 .help-page {
   display: grid;
-  grid-template-columns: minmax(0, 1.45fr) minmax(280px, 0.85fr);
-  gap: 20px 24px;
-  align-items: start;
-}
-
-.help-hero {
-  display: grid;
-  gap: 12px;
-  grid-column: 1 / -1;
-}
-
-.help-hero h1 {
-  font-size: clamp(28px, 3vw, 42px);
-  line-height: 1.08;
-  max-width: 720px;
-}
-
-.help-hero .lead {
-  max-width: 760px;
-}
-
-.help-article {
-  display: contents;
-}
-
-.help-article-main,
-.help-note {
-  display: grid;
-  gap: 14px;
-  align-content: start;
-}
-
-.help-article-main {
-  min-width: 0;
-}
-
-.help-article-main h2 {
-  margin-bottom: 0;
-  font-size: 26px;
-  line-height: 1.22;
-}
-
-.help-note h3 {
-  margin-bottom: 0;
-  font-size: 19px;
-  line-height: 1.35;
-}
-
-.help-note {
-  padding-top: 4px;
-  border-top: 1px solid var(--line);
-}
-
-.help-article-side {
-  display: grid;
-  gap: 16px;
-  align-content: start;
-}
-
-.faq-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 16px;
-}
-
-.faq-card {
-  display: grid;
-  gap: 12px;
-  align-content: start;
-}
-
-.faq-card h2 {
-  margin-bottom: 0;
-  font-size: 22px;
-  line-height: 1.25;
-}
-
-.faq-card .lead {
-  margin-bottom: 0;
-}
-
-.faq-steps {
-  margin: 0;
-  padding-left: 20px;
-  display: grid;
-  gap: 8px;
-  color: var(--muted);
-  line-height: 1.65;
-}
-
-.help-steps {
-  margin: 0;
-  padding-left: 20px;
-  display: grid;
   gap: 10px;
-  color: var(--muted);
-  line-height: 1.7;
 }
 
-.help-steps.compact {
-  gap: 8px;
-  line-height: 1.6;
+.help-qa-line {
+  margin: 0;
+  color: var(--ink);
+  font-size: 16px;
+  line-height: 1.8;
+  word-break: break-word;
+}
+
+.help-qa-line strong {
+  display: inline-block;
+  min-width: 2.2em;
 }
 
 .favorite-tabs {
@@ -1766,6 +1678,34 @@ h3 {
 .text-lang.active {
   background: var(--accent);
   color: white;
+}
+
+.text-lang-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  min-width: 58px;
+  justify-content: center;
+}
+
+.text-lang-toggle:hover {
+  border-color: #92c7ad;
+  background: #f0faf5;
+}
+
+.text-lang-option {
+  color: var(--muted);
+  transition: color 0.16s ease, text-shadow 0.16s ease;
+}
+
+.text-lang-option.active {
+  color: #17b26a;
+  text-shadow: 0 0 0 currentColor;
+}
+
+.text-lang-separator {
+  color: #c1cbc6;
+  font-weight: 700;
 }
 
 .text-stage {

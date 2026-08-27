@@ -1804,8 +1804,8 @@
         "text": "しゅっちょう",
         "label": "出張",
         "start": 56.253,
-        "end": 56.904,
-        "duration": 0.651,
+        "end": 57.604,
+        "duration": 1.351,
         "speechUnitCount": 2,
         "wordCount": 2,
         "matchScore": 1,
@@ -1814,10 +1814,10 @@
           72,
           73
         ],
-        "method": "audio-vad-sequential-alignment-with-azure-verification",
+        "method": "manual-admin-adjustment",
         "timingSource": "audio-silence-detection",
         "timingConfidence": "high",
-        "confidence": "high",
+        "confidence": "approved",
         "alignmentIssues": [],
         "alignmentWarnings": [],
         "speechActivity": {
@@ -1838,7 +1838,8 @@
           "note": "Automatically approved by the audio-boundary alignment workflow.",
           "matchScore": 1,
           "asrText": "出 張"
-        }
+        },
+        "reviewedAt": "2026-08-24T06:46:18.748Z"
       }
     },
     {
@@ -3260,5 +3261,6 @@
         "provider": "azure-speech-sdk-continuous-recognition"
       }
     ]
-  }
+  },
+  "updatedAt": "2026-08-24T06:46:18.750Z"
 }

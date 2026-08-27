@@ -11,6 +11,21 @@
     return match ? decodeURIComponent(match[1]) : '';
   }
 
+  // The course detail page embeds practice from the same JapaFlow origin,
+  // while the production shell embeds it from the main app origin. Route
+  // messages to the actual parent when it is readable; otherwise use the
+  // known main-app origin for cross-origin embedding.
+  function parentTargetOrigin() {
+    try {
+      if (window.parent !== window && window.parent.location.origin) {
+        return window.parent.location.origin;
+      }
+    } catch (error) {
+      // Cross-origin parents cannot expose location.
+    }
+    return MAIN_APP_URL;
+  }
+
   // On standalone load (not iframe), sync cookie → localStorage
   if (window.parent === window) {
     var cookieToken = getCookie(TOKEN_KEY);
@@ -40,7 +55,7 @@
         window.dispatchEvent(new CustomEvent('japaflow:auth-changed', { detail: { loggedIn: false } }));
       }
       if (window.parent !== window) {
-        window.parent.postMessage({ type: 'AUTH_ACK' }, MAIN_APP_URL);
+        window.parent.postMessage({ type: 'AUTH_ACK' }, parentTargetOrigin());
       }
     }
   });
@@ -50,7 +65,7 @@
     function notifyRoute() {
       window.parent.postMessage(
         { type: 'ROUTE_CHANGE', path: window.location.pathname + window.location.search + window.location.hash },
-        MAIN_APP_URL
+        parentTargetOrigin()
       );
     }
 
@@ -69,7 +84,7 @@
 
   // Tell parent we're ready to receive auth
   if (window.parent !== window) {
-    window.parent.postMessage({ type: 'AUTH_READY' }, MAIN_APP_URL);
+    window.parent.postMessage({ type: 'AUTH_READY' }, parentTargetOrigin());
   }
 
   // Notify parent or redirect on auth expiry
@@ -77,7 +92,7 @@
     localStorage.removeItem(TOKEN_KEY);
     localStorage.removeItem(USER_KEY);
     if (window.parent !== window) {
-      window.parent.postMessage({ type: 'AUTH_EXPIRED' }, MAIN_APP_URL);
+      window.parent.postMessage({ type: 'AUTH_EXPIRED' }, parentTargetOrigin());
       return;
     }
     window.location.href = MAIN_APP_URL + '/login?redirect=' + encodeURIComponent(window.location.href);

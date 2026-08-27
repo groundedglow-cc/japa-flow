@@ -572,6 +572,22 @@
         $("#iframeStage").innerHTML = `<div class="empty-state">正在加载第 ${state.lessonNo} 课...</div>`;
       }
 
+      function mainAppUrl() {
+        return location.hostname === "localhost" ? "http://localhost:3000" : "https://groundedglow.cc";
+      }
+
+      function redirectToLogin() {
+        const redirect = `${location.origin}${location.pathname}${location.search}${location.hash}`;
+        location.href = `${mainAppUrl()}/login?redirect=${encodeURIComponent(redirect)}`;
+      }
+
+      window.addEventListener("message", (event) => {
+        if (event.origin !== location.origin || !["JAPAFLOW_AUTH_REQUIRED", "AUTH_EXPIRED"].includes(event.data?.type)) return;
+        const practiceFrame = document.querySelector("#frame-practice iframe");
+        if (!practiceFrame || event.source !== practiceFrame.contentWindow) return;
+        redirectToLogin();
+      });
+
       $("#stepList").addEventListener("click", (event) => {
         const link = event.target.closest("[data-part]");
         if (!link) return;

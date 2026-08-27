@@ -27,27 +27,60 @@
           "id": "l10-basic-s001",
           "trackId": "lesson_basic",
           "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit3/lesson10/lesson_basic.mp3",
+          "itemIndex": 1,
           "speaker": "",
           "text": "京都の 紅葉は 有名です。",
-          "start": 1.25,
-          "end": 3.75,
-          "duration": 2.5,
+          "start": 1.06,
+          "end": 3.63,
+          "duration": 2.57,
+          "rawAzureTiming": {
+            "start": 1.31,
+            "end": 3.51,
+            "duration": 2.2
+          },
+          "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+          "speechActivity": null,
           "speechUnitCount": 1,
           "matchScore": 1,
-          "asrText": "京 都 の 紅 葉 は 有 名 で す",
+          "asrConfidence": 0.822,
+          "asrText": "京 都 の 紅 葉 は 有 名 で す 。",
           "phraseIndexes": [
             0
           ],
-          "method": "legacy-asr-alignment-range-converted",
-          "confidence": "approved",
+          "method": "azure-speech-sentence-alignment-with-boundary-padding",
+          "confidence": "high",
+          "alignmentIssues": [],
           "review": {
             "status": "approved",
-            "reviewedAt": "2026-08-05T08:31:53.283Z",
-            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-24T08:24:36.164Z",
+            "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
             "matchScore": 1,
-            "asrText": "京 都 の 紅 葉 は 有 名 で す"
+            "asrText": "京 都 の 紅 葉 は 有 名 で す 。"
           }
-        }
+        },
+        "segments": [
+          {
+            "text": "京都",
+            "ruby": "きょうと"
+          },
+          {
+            "text": "の "
+          },
+          {
+            "text": "紅葉",
+            "ruby": "もみじ"
+          },
+          {
+            "text": "は "
+          },
+          {
+            "text": "有名",
+            "ruby": "ゆうめい"
+          },
+          {
+            "text": "です。"
+          }
+        ]
       },
       {
         "id": "l10-basic-s002",
@@ -61,27 +94,55 @@
           "id": "l10-basic-s002",
           "trackId": "lesson_basic",
           "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit3/lesson10/lesson_basic.mp3",
+          "itemIndex": 2,
           "speaker": "",
           "text": "この 通りは にぎやかでは ありません。",
-          "start": 5.29,
-          "end": 8.11,
-          "duration": 2.82,
+          "start": 5.1,
+          "end": 8.109,
+          "duration": 3.009,
+          "rawAzureTiming": {
+            "start": 5.35,
+            "end": 7.87,
+            "duration": 2.52
+          },
+          "timingSource": "azure-speech-boundary-with-local-vad-refinement",
+          "speechActivity": {
+            "start": 6.598,
+            "end": 7.989,
+            "duration": 1.391
+          },
           "speechUnitCount": 1,
           "matchScore": 1,
-          "asrText": "こ の 通 り は に ぎ や か で は あ り ま せ ん",
+          "asrConfidence": 0.757,
+          "asrText": "こ の と お り は に ぎ や か で は あ り ま せ ん 。",
           "phraseIndexes": [
             1
           ],
-          "method": "legacy-asr-alignment-range-converted",
-          "confidence": "approved",
+          "method": "azure-speech-sentence-alignment-with-boundary-padding",
+          "confidence": "high",
+          "alignmentIssues": [
+            "ASR boundary ended before the final local speech region; verify this sentence."
+          ],
           "review": {
             "status": "approved",
-            "reviewedAt": "2026-08-05T08:31:53.283Z",
-            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-24T08:24:36.164Z",
+            "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
             "matchScore": 1,
-            "asrText": "こ の 通 り は に ぎ や か で は あ り ま せ ん"
+            "asrText": "こ の と お り は に ぎ や か で は あ り ま せ ん 。"
           }
-        }
+        },
+        "segments": [
+          {
+            "text": "この "
+          },
+          {
+            "text": "通り",
+            "ruby": "とおり"
+          },
+          {
+            "text": "は にぎやかでは ありません。"
+          }
+        ]
       },
       {
         "id": "l10-basic-s003",
@@ -95,27 +156,60 @@
           "id": "l10-basic-s003",
           "trackId": "lesson_basic",
           "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit3/lesson10/lesson_basic.mp3",
+          "itemIndex": 3,
           "speaker": "",
           "text": "奈良は 静かな 町です。",
-          "start": 9.89,
+          "start": 9.7,
           "end": 12.03,
-          "duration": 2.14,
+          "duration": 2.33,
+          "rawAzureTiming": {
+            "start": 9.95,
+            "end": 11.91,
+            "duration": 1.96
+          },
+          "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+          "speechActivity": null,
           "speechUnitCount": 1,
-          "matchScore": 0.889,
-          "asrText": "奈 良 は 静 か な 街 で す",
+          "matchScore": 1,
+          "asrConfidence": 0.838,
+          "asrText": "奈 良 は 静 か な 町 で す 。",
           "phraseIndexes": [
             2
           ],
-          "method": "legacy-asr-alignment-range-converted",
-          "confidence": "approved",
+          "method": "azure-speech-sentence-alignment-with-boundary-padding",
+          "confidence": "high",
+          "alignmentIssues": [],
           "review": {
             "status": "approved",
-            "reviewedAt": "2026-08-05T08:31:53.283Z",
-            "note": "Automatically approved by the bulk alignment workflow.",
-            "matchScore": 0.889,
-            "asrText": "奈 良 は 静 か な 街 で す"
+            "reviewedAt": "2026-08-24T08:24:36.164Z",
+            "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+            "matchScore": 1,
+            "asrText": "奈 良 は 静 か な 町 で す 。"
           }
-        }
+        },
+        "segments": [
+          {
+            "text": "奈良",
+            "ruby": "なら"
+          },
+          {
+            "text": "は "
+          },
+          {
+            "text": "静か",
+            "ruby": "しずか"
+          },
+          {
+            "text": "な "
+          },
+          {
+            "text": "町",
+            "ruby": "まち"
+          },
+          {
+            "text": "です。"
+          }
+        ]
       },
       {
         "id": "l10-basic-s004",
@@ -129,27 +223,60 @@
           "id": "l10-basic-s004",
           "trackId": "lesson_basic",
           "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit3/lesson10/lesson_basic.mp3",
+          "itemIndex": 4,
           "speaker": "",
           "text": "昨日は 日曜日でした。",
-          "start": 12.85,
-          "end": 16.11,
-          "duration": 3.26,
+          "start": 13.66,
+          "end": 16.051,
+          "duration": 2.391,
+          "rawAzureTiming": {
+            "start": 12.91,
+            "end": 15.87,
+            "duration": 2.96
+          },
+          "timingSource": "azure-speech-boundary-with-local-vad-refinement",
+          "speechActivity": {
+            "start": 15.003,
+            "end": 15.931,
+            "duration": 0.928
+          },
           "speechUnitCount": 1,
           "matchScore": 1,
-          "asrText": "昨 日 は 日 曜 日 で し た",
+          "asrConfidence": 0.826,
+          "asrText": "昨 日 は 日 曜 日 で し た 。",
           "phraseIndexes": [
             3
           ],
-          "method": "legacy-asr-alignment-range-converted",
+          "method": "manual-admin-adjustment",
           "confidence": "approved",
+          "alignmentIssues": [
+            "ASR boundary ended before the final local speech region; verify this sentence."
+          ],
           "review": {
             "status": "approved",
-            "reviewedAt": "2026-08-05T08:31:53.283Z",
-            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-24T13:50:35.097Z",
+            "note": "Manually verified and adjusted in the text audio preview.",
             "matchScore": 1,
-            "asrText": "昨 日 は 日 曜 日 で し た"
+            "asrText": "昨 日 は 日 曜 日 で し た 。"
+          },
+          "reviewedAt": "2026-08-24T13:50:35.097Z"
+        },
+        "segments": [
+          {
+            "text": "昨日",
+            "ruby": "きのう"
+          },
+          {
+            "text": "は "
+          },
+          {
+            "text": "日曜日",
+            "ruby": "にちようび"
+          },
+          {
+            "text": "でした。"
           }
-        }
+        ]
       }
     ],
     "dialogues": [
@@ -169,27 +296,56 @@
               "id": "l10-basic-dialogue-001-line-001",
               "trackId": "lesson_basic",
               "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit3/lesson10/lesson_basic.mp3",
+              "itemIndex": 5,
               "speaker": "甲",
               "text": "どんな お土産を 買いましたか。",
-              "start": 17.89,
-              "end": 20.11,
-              "duration": 2.22,
+              "start": 17.7,
+              "end": 20.15,
+              "duration": 2.45,
+              "rawAzureTiming": {
+                "start": 17.95,
+                "end": 20.03,
+                "duration": 2.08
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
               "speechUnitCount": 1,
               "matchScore": 1,
+              "asrConfidence": 0.918,
               "asrText": "ど ん な お 土 産 を 買 い ま し た か",
               "phraseIndexes": [
                 4
               ],
-              "method": "legacy-asr-alignment-range-converted",
-              "confidence": "approved",
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-05T08:31:53.283Z",
-                "note": "Automatically approved by the bulk alignment workflow.",
+                "reviewedAt": "2026-08-24T08:24:36.164Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
                 "matchScore": 1,
                 "asrText": "ど ん な お 土 産 を 買 い ま し た か"
               }
-            }
+            },
+            "segments": [
+              {
+                "text": "どんな "
+              },
+              {
+                "text": "お土産",
+                "ruby": "おみやげ"
+              },
+              {
+                "text": "を "
+              },
+              {
+                "text": "買いました",
+                "ruby": "かいました"
+              },
+              {
+                "text": "か。"
+              }
+            ]
           },
           {
             "id": "l10-basic-dialogue-001-line-002",
@@ -203,27 +359,56 @@
               "id": "l10-basic-dialogue-001-line-002",
               "trackId": "lesson_basic",
               "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit3/lesson10/lesson_basic.mp3",
+              "itemIndex": 6,
               "speaker": "乙",
               "text": "きれいな 人形を 買いました。",
-              "start": 20.37,
-              "end": 22.19,
-              "duration": 1.82,
+              "start": 20.05,
+              "end": 22.23,
+              "duration": 2.18,
+              "rawAzureTiming": {
+                "start": 20.23,
+                "end": 22.11,
+                "duration": 1.88
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
               "speechUnitCount": 1,
               "matchScore": 1,
-              "asrText": "き れ い な 人 形 を 買 い ま し た",
+              "asrConfidence": 0.918,
+              "asrText": "。 き れ い な 人 形 を 買 い ま し た 。",
               "phraseIndexes": [
                 4
               ],
-              "method": "legacy-asr-alignment-range-converted",
-              "confidence": "approved",
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-05T08:31:53.283Z",
-                "note": "Automatically approved by the bulk alignment workflow.",
+                "reviewedAt": "2026-08-24T08:24:36.164Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
                 "matchScore": 1,
-                "asrText": "き れ い な 人 形 を 買 い ま し た"
+                "asrText": "。 き れ い な 人 形 を 買 い ま し た 。"
               }
-            }
+            },
+            "segments": [
+              {
+                "text": "きれいな "
+              },
+              {
+                "text": "人形",
+                "ruby": "にんぎょう"
+              },
+              {
+                "text": "を "
+              },
+              {
+                "text": "買いました",
+                "ruby": "かいました"
+              },
+              {
+                "text": "。"
+              }
+            ]
           }
         ]
       },
@@ -243,27 +428,46 @@
               "id": "l10-basic-dialogue-002-line-001",
               "trackId": "lesson_basic",
               "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit3/lesson10/lesson_basic.mp3",
+              "itemIndex": 7,
               "speaker": "甲",
               "text": "京都は どうでしたか。",
-              "start": 23.69,
-              "end": 25.71,
-              "duration": 2.02,
+              "start": 23.5,
+              "end": 25.49,
+              "duration": 1.99,
+              "rawAzureTiming": {
+                "start": 23.75,
+                "end": 25.51,
+                "duration": 1.76
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
               "speechUnitCount": 1,
               "matchScore": 1,
+              "asrConfidence": 0.923,
               "asrText": "京 都 は ど う で し た か",
               "phraseIndexes": [
                 5
               ],
-              "method": "legacy-asr-alignment-range-converted",
-              "confidence": "approved",
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-05T08:31:53.283Z",
-                "note": "Automatically approved by the bulk alignment workflow.",
+                "reviewedAt": "2026-08-24T08:24:36.164Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
                 "matchScore": 1,
                 "asrText": "京 都 は ど う で し た か"
               }
-            }
+            },
+            "segments": [
+              {
+                "text": "京都",
+                "ruby": "きょうと"
+              },
+              {
+                "text": "は どうでしたか。"
+              }
+            ]
           },
           {
             "id": "l10-basic-dialogue-002-line-002",
@@ -277,27 +481,48 @@
               "id": "l10-basic-dialogue-002-line-002",
               "trackId": "lesson_basic",
               "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit3/lesson10/lesson_basic.mp3",
+              "itemIndex": 8,
               "speaker": "乙",
               "text": "とても きれいでした。",
-              "start": 25.89,
-              "end": 27.39,
-              "duration": 1.5,
+              "start": 25.53,
+              "end": 27.229,
+              "duration": 1.699,
+              "rawAzureTiming": {
+                "start": 25.51,
+                "end": 27.03,
+                "duration": 1.52
+              },
+              "timingSource": "azure-speech-boundary-with-local-vad-refinement",
+              "speechActivity": {
+                "start": 26.009,
+                "end": 27.109,
+                "duration": 1.099
+              },
               "speechUnitCount": 1,
               "matchScore": 1,
-              "asrText": "と て も き れ い で し た",
+              "asrConfidence": 0.923,
+              "asrText": "。 と て も き れ い で し た",
               "phraseIndexes": [
                 5
               ],
-              "method": "legacy-asr-alignment-range-converted",
-              "confidence": "approved",
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [
+                "ASR boundary ended before the final local speech region; verify this sentence."
+              ],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-05T08:31:53.283Z",
-                "note": "Automatically approved by the bulk alignment workflow.",
+                "reviewedAt": "2026-08-24T08:24:36.164Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
                 "matchScore": 1,
-                "asrText": "と て も き れ い で し た"
+                "asrText": "。 と て も き れ い で し た"
               }
-            }
+            },
+            "segments": [
+              {
+                "text": "とても きれいでした。"
+              }
+            ]
           },
           {
             "id": "l10-basic-dialogue-002-line-003",
@@ -311,27 +536,58 @@
               "id": "l10-basic-dialogue-002-line-003",
               "trackId": "lesson_basic",
               "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit3/lesson10/lesson_basic.mp3",
+              "itemIndex": 9,
               "speaker": "乙",
               "text": "でも、静かでは ありませんでした。",
-              "start": 27.45,
-              "end": 29.95,
-              "duration": 2.5,
+              "start": 27.558,
+              "end": 29.901,
+              "duration": 2.343,
+              "rawAzureTiming": {
+                "start": 27.03,
+                "end": 29.51,
+                "duration": 2.48
+              },
+              "timingSource": "azure-speech-boundary-with-local-vad-refinement",
+              "speechActivity": {
+                "start": 27.618,
+                "end": 27.985,
+                "duration": 1.892,
+                "expectedDuration": 2.69,
+                "precedingSilence": 0.491
+              },
               "speechUnitCount": 1,
               "matchScore": 1,
-              "asrText": "で も 静 か で は あ り ま せ ん で し た",
+              "asrConfidence": 0.923,
+              "asrText": "。 で も 、 静 か で は あ り ま せ ん で し た 。",
               "phraseIndexes": [
                 5
               ],
-              "method": "legacy-asr-alignment-range-converted",
-              "confidence": "approved",
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [
+                "ASR boundary overlapped the previous sentence and was moved to the next local speech region; verify this sentence.",
+                "ASR boundary ended before the final local speech region; verify this sentence."
+              ],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-05T08:31:53.283Z",
-                "note": "Automatically approved by the bulk alignment workflow.",
+                "reviewedAt": "2026-08-24T08:24:36.164Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
                 "matchScore": 1,
-                "asrText": "で も 静 か で は あ り ま せ ん で し た"
+                "asrText": "。 で も 、 静 か で は あ り ま せ ん で し た 。"
               }
-            }
+            },
+            "segments": [
+              {
+                "text": "でも、"
+              },
+              {
+                "text": "静か",
+                "ruby": "しずか"
+              },
+              {
+                "text": "では ありませんでした。"
+              }
+            ]
           }
         ]
       },
@@ -351,27 +607,53 @@
               "id": "l10-basic-dialogue-003-line-001",
               "trackId": "lesson_basic",
               "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit3/lesson10/lesson_basic.mp3",
+              "itemIndex": 10,
               "speaker": "甲",
               "text": "横浜は どんな 町ですか。",
-              "start": 31.33,
-              "end": 33.83,
-              "duration": 2.5,
+              "start": 31.14,
+              "end": 33.85,
+              "duration": 2.71,
+              "rawAzureTiming": {
+                "start": 31.39,
+                "end": 33.75,
+                "duration": 2.36
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
               "speechUnitCount": 1,
-              "matchScore": 0.9,
-              "asrText": "横 浜 は ど ん な 街 で す か",
+              "matchScore": 1,
+              "asrConfidence": 0.874,
+              "asrText": "横 浜 は ど ん な 町 で す か",
               "phraseIndexes": [
                 6
               ],
-              "method": "legacy-asr-alignment-range-converted",
-              "confidence": "approved",
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-05T08:31:53.283Z",
-                "note": "Automatically approved by the bulk alignment workflow.",
-                "matchScore": 0.9,
-                "asrText": "横 浜 は ど ん な 街 で す か"
+                "reviewedAt": "2026-08-24T08:24:36.164Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "matchScore": 1,
+                "asrText": "横 浜 は ど ん な 町 で す か"
               }
-            }
+            },
+            "segments": [
+              {
+                "text": "横浜",
+                "ruby": "よこはま"
+              },
+              {
+                "text": "は どんな "
+              },
+              {
+                "text": "町",
+                "ruby": "まち"
+              },
+              {
+                "text": "ですか。"
+              }
+            ]
           },
           {
             "id": "l10-basic-dialogue-003-line-002",
@@ -385,27 +667,60 @@
               "id": "l10-basic-dialogue-003-line-002",
               "trackId": "lesson_basic",
               "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit3/lesson10/lesson_basic.mp3",
+              "itemIndex": 11,
               "speaker": "乙",
               "text": "大きい 町です。そして、にぎやかな 町です。",
-              "start": 33.81,
-              "end": 37.55,
-              "duration": 3.74,
+              "start": 33.77,
+              "end": 37.59,
+              "duration": 3.82,
+              "rawAzureTiming": {
+                "start": 33.87,
+                "end": 37.47,
+                "duration": 3.6
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
               "speechUnitCount": 1,
               "matchScore": 0.882,
-              "asrText": "大 き い 街 で す そ し て に ぎ や か な 街 で す",
+              "asrConfidence": 0.874,
+              "asrText": "。 大 き い 街 で す そ し て に ぎ や か な 街 で す",
               "phraseIndexes": [
                 6
               ],
-              "method": "legacy-asr-alignment-range-converted",
-              "confidence": "approved",
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-05T08:31:53.283Z",
-                "note": "Automatically approved by the bulk alignment workflow.",
+                "reviewedAt": "2026-08-24T08:24:36.164Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
                 "matchScore": 0.882,
-                "asrText": "大 き い 街 で す そ し て に ぎ や か な 街 で す"
+                "asrText": "。 大 き い 街 で す そ し て に ぎ や か な 街 で す"
               }
-            }
+            },
+            "segments": [
+              {
+                "text": "大きい",
+                "ruby": "おおきい"
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "町",
+                "ruby": "まち"
+              },
+              {
+                "text": "です。そして、にぎやかな "
+              },
+              {
+                "text": "町",
+                "ruby": "まち"
+              },
+              {
+                "text": "です。"
+              }
+            ]
           }
         ]
       },
@@ -425,27 +740,59 @@
               "id": "l10-basic-dialogue-004-line-001",
               "trackId": "lesson_basic",
               "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit3/lesson10/lesson_basic.mp3",
+              "itemIndex": 12,
               "speaker": "甲",
               "text": "東京の 天気は どうでしたか。",
-              "start": 39.41,
-              "end": 41.83,
-              "duration": 2.42,
+              "start": 39.22,
+              "end": 41.651,
+              "duration": 2.431,
+              "rawAzureTiming": {
+                "start": 39.47,
+                "end": 41.43,
+                "duration": 1.96
+              },
+              "timingSource": "azure-speech-boundary-with-local-vad-refinement",
+              "speechActivity": {
+                "start": 40.834,
+                "end": 41.531,
+                "duration": 0.697
+              },
               "speechUnitCount": 1,
               "matchScore": 1,
+              "asrConfidence": 0.876,
               "asrText": "東 京 の 天 気 は ど う で し た か",
               "phraseIndexes": [
                 7
               ],
-              "method": "legacy-asr-alignment-range-converted",
-              "confidence": "approved",
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [
+                "ASR boundary ended before the final local speech region; verify this sentence."
+              ],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-05T08:31:53.283Z",
-                "note": "Automatically approved by the bulk alignment workflow.",
+                "reviewedAt": "2026-08-24T08:24:36.164Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
                 "matchScore": 1,
                 "asrText": "東 京 の 天 気 は ど う で し た か"
               }
-            }
+            },
+            "segments": [
+              {
+                "text": "東京",
+                "ruby": "とうきょう"
+              },
+              {
+                "text": "の "
+              },
+              {
+                "text": "天気",
+                "ruby": "てんき"
+              },
+              {
+                "text": "は どうでしたか。"
+              }
+            ]
           },
           {
             "id": "l10-basic-dialogue-004-line-002",
@@ -459,27 +806,69 @@
               "id": "l10-basic-dialogue-004-line-002",
               "trackId": "lesson_basic",
               "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit3/lesson10/lesson_basic.mp3",
+              "itemIndex": 13,
               "speaker": "乙",
               "text": "昨日は 晴れでした。でも、おとといは 雨でした。",
-              "start": 42.33,
-              "end": 46.51,
-              "duration": 4.18,
-              "speechUnitCount": 1,
+              "start": 42.396,
+              "end": 46.55,
+              "duration": 4.154,
+              "rawAzureTiming": {
+                "start": 41.43,
+                "end": 46.43,
+                "duration": 5
+              },
+              "timingSource": "azure-speech-boundary-with-local-vad-refinement",
+              "speechActivity": {
+                "start": 42.456,
+                "end": 43.654,
+                "duration": 3.974,
+                "expectedDuration": 3.49,
+                "precedingSilence": 0.897
+              },
+              "speechUnitCount": 2,
               "matchScore": 1,
-              "asrText": "昨 日 は 晴 れ で し た で も お と と い は 雨 で し た",
+              "asrConfidence": 0.885,
+              "asrText": "。 昨 日 は 晴 れ で し た で も お と と い は 雨 で し た",
               "phraseIndexes": [
+                7,
                 8
               ],
-              "method": "legacy-asr-alignment-range-converted",
-              "confidence": "approved",
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [
+                "ASR boundary overlapped the previous sentence and was moved to the next local speech region; verify this sentence."
+              ],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-05T08:31:53.283Z",
-                "note": "Automatically approved by the bulk alignment workflow.",
+                "reviewedAt": "2026-08-24T08:24:36.164Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
                 "matchScore": 1,
-                "asrText": "昨 日 は 晴 れ で し た で も お と と い は 雨 で し た"
+                "asrText": "。 昨 日 は 晴 れ で し た で も お と と い は 雨 で し た"
               }
-            }
+            },
+            "segments": [
+              {
+                "text": "昨日",
+                "ruby": "きのう"
+              },
+              {
+                "text": "は "
+              },
+              {
+                "text": "晴れ",
+                "ruby": "はれ"
+              },
+              {
+                "text": "でした。でも、おとといは "
+              },
+              {
+                "text": "雨",
+                "ruby": "あめ"
+              },
+              {
+                "text": "でした。"
+              }
+            ]
           }
         ]
       }
@@ -522,27 +911,67 @@
               "id": "l10-app-block-003-line-001",
               "trackId": "lesson_apps",
               "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit3/lesson10/lesson_apps.mp3",
+              "itemIndex": 1,
               "speaker": "長島",
               "text": "昨日 京都へ 行きました。",
-              "start": 7.74,
-              "end": 16.88,
-              "duration": 9.14,
+              "start": 15.15,
+              "end": 17.149,
+              "duration": 1.999,
+              "rawAzureTiming": {
+                "start": 8.4,
+                "end": 16.68,
+                "duration": 8.28
+              },
+              "timingSource": "azure-speech-boundary-with-local-vad-refinement",
+              "speechActivity": {
+                "start": 11.435,
+                "end": 17.069,
+                "duration": 5.633
+              },
               "speechUnitCount": 1,
               "matchScore": 1,
+              "asrConfidence": 0.889,
               "asrText": "昨 日 京 都 へ 行 き ま し た",
               "phraseIndexes": [
                 1
               ],
-              "method": "legacy-asr-alignment-range-converted",
+              "method": "manual-admin-adjustment",
               "confidence": "approved",
+              "alignmentIssues": [
+                "ASR boundary ended before the final local speech region; verify this sentence."
+              ],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-05T08:32:29.112Z",
-                "note": "Automatically approved by the bulk alignment workflow.",
+                "reviewedAt": "2026-08-24T13:51:09.494Z",
+                "note": "Manually verified and adjusted in the text audio preview.",
                 "matchScore": 1,
                 "asrText": "昨 日 京 都 へ 行 き ま し た"
+              },
+              "reviewedAt": "2026-08-24T13:51:09.494Z"
+            },
+            "segments": [
+              {
+                "text": "昨日",
+                "ruby": "きのう"
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "京都",
+                "ruby": "きょうと"
+              },
+              {
+                "text": "へ "
+              },
+              {
+                "text": "行きました",
+                "ruby": "いきました"
+              },
+              {
+                "text": "。"
               }
-            }
+            ]
           },
           {
             "id": "l10-app-block-003-line-002",
@@ -556,27 +985,70 @@
               "id": "l10-app-block-003-line-002",
               "trackId": "lesson_apps",
               "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit3/lesson10/lesson_apps.mp3",
+              "itemIndex": 2,
               "speaker": "小野",
               "text": "京都ですか。京都の 紅葉は どうでしたか。",
-              "start": 17.81,
-              "end": 21.31,
-              "duration": 3.5,
-              "speechUnitCount": 1,
+              "start": 17.609,
+              "end": 21.09,
+              "duration": 3.481,
+              "rawAzureTiming": {
+                "start": 16.68,
+                "end": 21.11,
+                "duration": 4.43
+              },
+              "timingSource": "azure-speech-boundary-with-local-vad-refinement",
+              "speechActivity": {
+                "start": 17.169,
+                "end": 21.11,
+                "duration": 3.941,
+                "expectedDuration": 3.17,
+                "precedingSilence": 0.1
+              },
+              "speechUnitCount": 2,
               "matchScore": 1,
-              "asrText": "京 都 で す か 京 都 の 紅 葉 は ど う で し た か",
+              "asrConfidence": 0.913,
+              "asrText": "。 京 都 で す か 。 京 都 の 紅 葉 は ど う で し た か",
               "phraseIndexes": [
+                1,
                 2
               ],
-              "method": "legacy-asr-alignment-range-converted",
+              "method": "manual-admin-adjustment",
               "confidence": "approved",
+              "alignmentIssues": [
+                "ASR boundary overlapped the previous sentence and was moved to the next local speech region; verify this sentence."
+              ],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-05T08:32:29.112Z",
-                "note": "Automatically approved by the bulk alignment workflow.",
+                "reviewedAt": "2026-08-24T13:51:16.723Z",
+                "note": "Manually verified and adjusted in the text audio preview.",
                 "matchScore": 1,
-                "asrText": "京 都 で す か 京 都 の 紅 葉 は ど う で し た か"
+                "asrText": "。 京 都 で す か 。 京 都 の 紅 葉 は ど う で し た か"
+              },
+              "reviewedAt": "2026-08-24T13:51:16.723Z"
+            },
+            "segments": [
+              {
+                "text": "京都",
+                "ruby": "きょうと"
+              },
+              {
+                "text": "ですか。"
+              },
+              {
+                "text": "京都",
+                "ruby": "きょうと"
+              },
+              {
+                "text": "の "
+              },
+              {
+                "text": "紅葉",
+                "ruby": "もみじ"
+              },
+              {
+                "text": "は どうでしたか。"
               }
-            }
+            ]
           },
           {
             "id": "l10-app-block-003-line-003",
@@ -590,27 +1062,42 @@
               "id": "l10-app-block-003-line-003",
               "trackId": "lesson_apps",
               "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit3/lesson10/lesson_apps.mp3",
+              "itemIndex": 3,
               "speaker": "長島",
               "text": "とても きれいでした。",
-              "start": 21.49,
-              "end": 22.99,
-              "duration": 1.5,
+              "start": 21.13,
+              "end": 22.61,
+              "duration": 1.48,
+              "rawAzureTiming": {
+                "start": 21.11,
+                "end": 22.63,
+                "duration": 1.52
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
               "speechUnitCount": 1,
               "matchScore": 1,
-              "asrText": "と て も き れ い で し た",
+              "asrConfidence": 0.914,
+              "asrText": "。 と て も き れ い で し た",
               "phraseIndexes": [
                 2
               ],
-              "method": "legacy-asr-alignment-range-converted",
-              "confidence": "approved",
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-05T08:32:29.112Z",
-                "note": "Automatically approved by the bulk alignment workflow.",
+                "reviewedAt": "2026-08-24T08:24:36.164Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
                 "matchScore": 1,
-                "asrText": "と て も き れ い で し た"
+                "asrText": "。 と て も き れ い で し た"
               }
-            }
+            },
+            "segments": [
+              {
+                "text": "とても きれいでした。"
+              }
+            ]
           },
           {
             "id": "l10-app-block-003-line-004",
@@ -624,27 +1111,62 @@
               "id": "l10-app-block-003-line-004",
               "trackId": "lesson_apps",
               "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit3/lesson10/lesson_apps.mp3",
+              "itemIndex": 4,
               "speaker": "長島",
               "text": "でも、町は あまり 静かじゃ ありませんでした。",
-              "start": 23.09,
-              "end": 25.51,
-              "duration": 2.42,
+              "start": 22.65,
+              "end": 25.91,
+              "duration": 3.26,
+              "rawAzureTiming": {
+                "start": 22.63,
+                "end": 25.19,
+                "duration": 2.56
+              },
+              "timingSource": "azure-speech-boundary-with-local-vad-refinement",
+              "speechActivity": {
+                "start": 17.169,
+                "end": 25.8,
+                "duration": 8.631
+              },
               "speechUnitCount": 1,
-              "matchScore": 0.895,
-              "asrText": "で も 街 は あ ま り 静 か じ ゃ あ り ま せ ん で し",
+              "matchScore": 1,
+              "asrConfidence": 0.914,
+              "asrText": "。 で も 、 町 は あ ま り 静 か じ ゃ あ り ま せ ん で し た",
               "phraseIndexes": [
                 2
               ],
-              "method": "legacy-asr-alignment-range-converted",
-              "confidence": "approved",
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [
+                "ASR boundary ended before the final local speech region; verify this sentence."
+              ],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-05T08:32:29.112Z",
-                "note": "Automatically approved by the bulk alignment workflow.",
-                "matchScore": 0.895,
-                "asrText": "で も 街 は あ ま り 静 か じ ゃ あ り ま せ ん で し"
+                "reviewedAt": "2026-08-24T08:24:36.164Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "matchScore": 1,
+                "asrText": "。 で も 、 町 は あ ま り 静 か じ ゃ あ り ま せ ん で し た"
               }
-            }
+            },
+            "segments": [
+              {
+                "text": "でも、"
+              },
+              {
+                "text": "町",
+                "ruby": "まち"
+              },
+              {
+                "text": "は あまり "
+              },
+              {
+                "text": "静か",
+                "ruby": "しずか"
+              },
+              {
+                "text": "じゃ ありませんでした。"
+              }
+            ]
           },
           {
             "id": "l10-app-block-003-line-005",
@@ -658,27 +1180,52 @@
               "id": "l10-app-block-003-line-005",
               "trackId": "lesson_apps",
               "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit3/lesson10/lesson_apps.mp3",
+              "itemIndex": 5,
               "speaker": "李",
               "text": "えっ？",
-              "start": 25.37,
-              "end": 25.67,
-              "duration": 0.3,
-              "speechUnitCount": 1,
-              "matchScore": 0,
-              "asrText": "た",
+              "start": 25.87,
+              "end": 27.42,
+              "duration": 1.55,
+              "rawAzureTiming": {
+                "start": 25.19,
+                "end": 27.44,
+                "duration": 2.25
+              },
+              "timingSource": "azure-speech-boundary-with-local-vad-refinement",
+              "speechActivity": {
+                "start": 25.93,
+                "end": 27.44,
+                "duration": 1.51,
+                "expectedDuration": 0.9,
+                "precedingSilence": 0.13
+              },
+              "speechUnitCount": 2,
+              "matchScore": 0.5,
+              "asrConfidence": 0.911,
+              "asrText": "。 え",
               "phraseIndexes": [
-                2
+                2,
+                3
               ],
-              "method": "legacy-asr-alignment-range-converted",
-              "confidence": "approved",
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "needs-review",
+              "alignmentIssues": [
+                "ASR boundary overlapped the previous sentence and was moved to the next local speech region; verify this sentence.",
+                "Low ASR text similarity."
+              ],
               "review": {
-                "status": "approved",
-                "reviewedAt": "2026-08-05T08:32:29.112Z",
-                "note": "Automatically approved by the bulk alignment workflow.",
-                "matchScore": 0,
-                "asrText": "た"
+                "status": "pending",
+                "reviewedAt": null,
+                "note": "ASR boundary overlapped the previous sentence and was moved to the next local speech region; verify this sentence. Low ASR text similarity.",
+                "matchScore": 0.5,
+                "asrText": "。 え"
               }
-            }
+            },
+            "segments": [
+              {
+                "text": "えっ？"
+              }
+            ]
           },
           {
             "id": "l10-app-block-003-line-006",
@@ -692,27 +1239,53 @@
               "id": "l10-app-block-003-line-006",
               "trackId": "lesson_apps",
               "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit3/lesson10/lesson_apps.mp3",
+              "itemIndex": 6,
               "speaker": "長島",
               "text": "今 ちょうど 修学旅行の シーズンです。",
-              "start": 27.53,
-              "end": 30.75,
-              "duration": 3.22,
+              "start": 27.46,
+              "end": 30.52,
+              "duration": 3.06,
+              "rawAzureTiming": {
+                "start": 27.44,
+                "end": 30.4,
+                "duration": 2.96
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
               "speechUnitCount": 1,
-              "matchScore": 0.75,
-              "asrText": "今 丁 度 修 学 旅 行 の シ ー ズ ン で す",
+              "matchScore": 1,
+              "asrConfidence": 0.907,
+              "asrText": "今 ち ょ う ど 修 学 旅 行 の シ ー ズ ン で す",
               "phraseIndexes": [
                 3
               ],
-              "method": "legacy-asr-alignment-range-converted",
-              "confidence": "approved",
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-05T08:32:29.112Z",
-                "note": "Automatically approved by the bulk alignment workflow.",
-                "matchScore": 0.75,
-                "asrText": "今 丁 度 修 学 旅 行 の シ ー ズ ン で す"
+                "reviewedAt": "2026-08-24T08:24:36.164Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "matchScore": 1,
+                "asrText": "今 ち ょ う ど 修 学 旅 行 の シ ー ズ ン で す"
               }
-            }
+            },
+            "segments": [
+              {
+                "text": "今",
+                "ruby": "いま"
+              },
+              {
+                "text": " ちょうど "
+              },
+              {
+                "text": "修学旅行",
+                "ruby": "しゅうがくりょこう"
+              },
+              {
+                "text": "の シーズンです。"
+              }
+            ]
           },
           {
             "id": "l10-app-block-003-line-007",
@@ -726,27 +1299,48 @@
               "id": "l10-app-block-003-line-007",
               "trackId": "lesson_apps",
               "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit3/lesson10/lesson_apps.mp3",
+              "itemIndex": 7,
               "speaker": "長島",
               "text": "とても にぎやかでした。",
-              "start": 30.89,
-              "end": 32.11,
-              "duration": 1.22,
+              "start": 30.42,
+              "end": 32.266,
+              "duration": 1.846,
+              "rawAzureTiming": {
+                "start": 30.64,
+                "end": 31.88,
+                "duration": 1.24
+              },
+              "timingSource": "azure-speech-boundary-with-local-vad-refinement",
+              "speechActivity": {
+                "start": 30.595,
+                "end": 32.175,
+                "duration": 1.581
+              },
               "speechUnitCount": 1,
               "matchScore": 1,
-              "asrText": "と て も に ぎ や か で し た",
+              "asrConfidence": 0.907,
+              "asrText": "。 と て も に ぎ や か で し た",
               "phraseIndexes": [
                 3
               ],
-              "method": "legacy-asr-alignment-range-converted",
-              "confidence": "approved",
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [
+                "ASR boundary ended before the final local speech region; verify this sentence."
+              ],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-05T08:32:29.112Z",
-                "note": "Automatically approved by the bulk alignment workflow.",
+                "reviewedAt": "2026-08-24T08:24:36.164Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
                 "matchScore": 1,
-                "asrText": "と て も に ぎ や か で し た"
+                "asrText": "。 と て も に ぎ や か で し た"
               }
-            }
+            },
+            "segments": [
+              {
+                "text": "とても にぎやかでした。"
+              }
+            ]
           }
         ]
       },
@@ -775,27 +1369,67 @@
               "id": "l10-app-block-005-line-001",
               "trackId": "lesson_apps",
               "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit3/lesson10/lesson_apps.mp3",
+              "itemIndex": 8,
               "speaker": "李",
               "text": "この 通りは 静かですね。",
-              "start": 34.48,
-              "end": 36.66,
-              "duration": 2.18,
-              "speechUnitCount": 1,
+              "start": 33.226,
+              "end": 36.654,
+              "duration": 3.428,
+              "rawAzureTiming": {
+                "start": 31.88,
+                "end": 36.26,
+                "duration": 4.38
+              },
+              "timingSource": "azure-speech-boundary-with-local-vad-refinement",
+              "speechActivity": {
+                "start": 32.286,
+                "end": 32.834,
+                "duration": 3.974,
+                "expectedDuration": 2.05,
+                "precedingSilence": 0.111
+              },
+              "speechUnitCount": 2,
               "matchScore": 1,
-              "asrText": "こ の 通 り は 静 か で す ね",
+              "asrConfidence": 0.893,
+              "asrText": "。 こ の 通 り は 静 か で す ね",
               "phraseIndexes": [
+                3,
                 4
               ],
-              "method": "legacy-asr-alignment-range-converted",
+              "method": "manual-admin-adjustment",
               "confidence": "approved",
+              "alignmentIssues": [
+                "ASR boundary overlapped the previous sentence and was moved to the next local speech region; verify this sentence.",
+                "ASR boundary ended before the final local speech region; verify this sentence."
+              ],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-05T08:32:29.112Z",
-                "note": "Automatically approved by the bulk alignment workflow.",
+                "reviewedAt": "2026-08-24T13:52:54.081Z",
+                "note": "Manually verified and adjusted in the text audio preview.",
                 "matchScore": 1,
-                "asrText": "こ の 通 り は 静 か で す ね"
+                "asrText": "。 こ の 通 り は 静 か で す ね"
+              },
+              "reviewedAt": "2026-08-24T13:52:54.081Z"
+            },
+            "segments": [
+              {
+                "text": "この "
+              },
+              {
+                "text": "通り",
+                "ruby": "とおり"
+              },
+              {
+                "text": "は "
+              },
+              {
+                "text": "静か",
+                "ruby": "しずか"
+              },
+              {
+                "text": "ですね。"
               }
-            }
+            ]
           },
           {
             "id": "l10-app-block-005-line-002",
@@ -809,27 +1443,65 @@
               "id": "l10-app-block-005-line-002",
               "trackId": "lesson_apps",
               "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit3/lesson10/lesson_apps.mp3",
+              "itemIndex": 9,
               "speaker": "長島",
               "text": "ああ、今日は 平日ですね。",
-              "start": 37.41,
-              "end": 39.47,
-              "duration": 2.06,
-              "speechUnitCount": 1,
+              "start": 36.924,
+              "end": 39.43,
+              "duration": 2.506,
+              "rawAzureTiming": {
+                "start": 36.26,
+                "end": 39.31,
+                "duration": 3.05
+              },
+              "timingSource": "azure-speech-boundary-with-local-vad-refinement",
+              "speechActivity": {
+                "start": 36.984,
+                "end": 36.986,
+                "duration": 2.326,
+                "expectedDuration": 2.05,
+                "precedingSilence": 0.451
+              },
+              "speechUnitCount": 2,
               "matchScore": 1,
-              "asrText": "あ あ 今 日 は 平 日 で す ね",
+              "asrConfidence": 0.893,
+              "asrText": "。 あ あ 、 今 日 は 平 日 で す ね",
               "phraseIndexes": [
+                4,
                 5
               ],
-              "method": "legacy-asr-alignment-range-converted",
-              "confidence": "approved",
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [
+                "ASR boundary overlapped the previous sentence and was moved to the next local speech region; verify this sentence."
+              ],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-05T08:32:29.112Z",
-                "note": "Automatically approved by the bulk alignment workflow.",
+                "reviewedAt": "2026-08-24T08:24:36.164Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
                 "matchScore": 1,
-                "asrText": "あ あ 今 日 は 平 日 で す ね"
+                "asrText": "。 あ あ 、 今 日 は 平 日 で す ね"
               }
-            }
+            },
+            "segments": [
+              {
+                "text": "ああ、"
+              },
+              {
+                "text": "今日",
+                "ruby": "きょう"
+              },
+              {
+                "text": "は "
+              },
+              {
+                "text": "平日",
+                "ruby": "へいじつ"
+              },
+              {
+                "text": "ですね。"
+              }
+            ]
           },
           {
             "id": "l10-app-block-005-line-003",
@@ -843,27 +1515,79 @@
               "id": "l10-app-block-005-line-003",
               "trackId": "lesson_apps",
               "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit3/lesson10/lesson_apps.mp3",
+              "itemIndex": 10,
               "speaker": "長島",
               "text": "でも、休みの 日は 観光客が 多いです。とても にぎやかですよ。",
-              "start": 39.49,
-              "end": 43.99,
-              "duration": 4.5,
+              "start": 39.568,
+              "end": 44.173,
+              "duration": 4.605,
+              "rawAzureTiming": {
+                "start": 39.31,
+                "end": 43.91,
+                "duration": 4.6
+              },
+              "timingSource": "azure-speech-boundary-with-local-vad-refinement",
+              "speechActivity": {
+                "start": 39.628,
+                "end": 39.978,
+                "duration": 4.282,
+                "expectedDuration": 4.45,
+                "precedingSilence": 0.242
+              },
               "speechUnitCount": 1,
-              "matchScore": 0.92,
-              "asrText": "で も 休 み の 日 は 観 光 客 が 多 い で す と て も 賑 や か で す よ",
+              "matchScore": 0.923,
+              "asrConfidence": 0.894,
+              "asrText": "。 で も 休 み の 日 は 観 光 客 が 多 い で す と て も に ぎ や か で し た 。 よ",
               "phraseIndexes": [
                 5
               ],
-              "method": "legacy-asr-alignment-range-converted",
-              "confidence": "approved",
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [
+                "ASR boundary overlapped the previous sentence and was moved to the next local speech region; verify this sentence.",
+                "ASR boundary ended before the final local speech region; verify this sentence."
+              ],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-05T08:32:29.112Z",
-                "note": "Automatically approved by the bulk alignment workflow.",
-                "matchScore": 0.92,
-                "asrText": "で も 休 み の 日 は 観 光 客 が 多 い で す と て も 賑 や か で す よ"
+                "reviewedAt": "2026-08-24T08:24:36.164Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "matchScore": 0.923,
+                "asrText": "。 で も 休 み の 日 は 観 光 客 が 多 い で す と て も に ぎ や か で し た 。 よ"
               }
-            }
+            },
+            "segments": [
+              {
+                "text": "でも、"
+              },
+              {
+                "text": "休み",
+                "ruby": "やすみ"
+              },
+              {
+                "text": "の "
+              },
+              {
+                "text": "日",
+                "ruby": "ひ"
+              },
+              {
+                "text": "は "
+              },
+              {
+                "text": "観光客",
+                "ruby": "かんこうきゃく"
+              },
+              {
+                "text": "が "
+              },
+              {
+                "text": "多い",
+                "ruby": "おおい"
+              },
+              {
+                "text": "です。とても にぎやかですよ。"
+              }
+            ]
           },
           {
             "id": "l10-app-block-005-line-004",
@@ -877,27 +1601,48 @@
               "id": "l10-app-block-005-line-004",
               "trackId": "lesson_apps",
               "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit3/lesson10/lesson_apps.mp3",
+              "itemIndex": 11,
               "speaker": "李",
               "text": "そうですか。",
-              "start": 44.33,
-              "end": 45.35,
-              "duration": 1.02,
+              "start": 44.14,
+              "end": 45.658,
+              "duration": 1.518,
+              "rawAzureTiming": {
+                "start": 44.39,
+                "end": 45.11,
+                "duration": 0.72
+              },
+              "timingSource": "azure-speech-boundary-with-local-vad-refinement",
+              "speechActivity": {
+                "start": 44.341,
+                "end": 45.538,
+                "duration": 1.197
+              },
               "speechUnitCount": 1,
               "matchScore": 1,
+              "asrConfidence": 0.894,
               "asrText": "そ う で す か",
               "phraseIndexes": [
                 5
               ],
-              "method": "legacy-asr-alignment-range-converted",
-              "confidence": "approved",
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [
+                "ASR boundary ended before the final local speech region; verify this sentence."
+              ],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-05T08:32:29.112Z",
-                "note": "Automatically approved by the bulk alignment workflow.",
+                "reviewedAt": "2026-08-24T08:24:36.164Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
                 "matchScore": 1,
                 "asrText": "そ う で す か"
               }
-            }
+            },
+            "segments": [
+              {
+                "text": "そうですか。"
+              }
+            ]
           }
         ]
       },
@@ -926,27 +1671,53 @@
               "id": "l10-app-block-007-line-001",
               "trackId": "lesson_apps",
               "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit3/lesson10/lesson_apps.mp3",
+              "itemIndex": 12,
               "speaker": "李",
               "text": "あれえ、だれも いませんね。",
-              "start": 46.85,
-              "end": 49.27,
-              "duration": 2.42,
-              "speechUnitCount": 1,
+              "start": 45.732,
+              "end": 49.373,
+              "duration": 3.641,
+              "rawAzureTiming": {
+                "start": 45.11,
+                "end": 49.19,
+                "duration": 4.08
+              },
+              "timingSource": "azure-speech-boundary-with-local-vad-refinement",
+              "speechActivity": {
+                "start": 45.792,
+                "end": 45.838,
+                "duration": 3.398,
+                "expectedDuration": 2.21,
+                "precedingSilence": 0.255
+              },
+              "speechUnitCount": 2,
               "matchScore": 0.727,
-              "asrText": "あ れ 誰 も い ま せ ん ね",
+              "asrConfidence": 0.934,
+              "asrText": "。 あ れ 誰 も い ま せ ん ね",
               "phraseIndexes": [
+                5,
                 6
               ],
-              "method": "legacy-asr-alignment-range-converted",
-              "confidence": "approved",
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "medium",
+              "alignmentIssues": [
+                "ASR boundary overlapped the previous sentence and was moved to the next local speech region; verify this sentence.",
+                "ASR boundary ended before the final local speech region; verify this sentence.",
+                "Moderate ASR text similarity."
+              ],
               "review": {
-                "status": "approved",
-                "reviewedAt": "2026-08-05T08:32:29.112Z",
-                "note": "Automatically approved by the bulk alignment workflow.",
+                "status": "pending",
+                "reviewedAt": null,
+                "note": "ASR boundary overlapped the previous sentence and was moved to the next local speech region; verify this sentence. ASR boundary ended before the final local speech region; verify this sentence. Moderate ASR text similarity.",
                 "matchScore": 0.727,
-                "asrText": "あ れ 誰 も い ま せ ん ね"
+                "asrText": "。 あ れ 誰 も い ま せ ん ね"
               }
-            }
+            },
+            "segments": [
+              {
+                "text": "あれえ、だれも いませんね。"
+              }
+            ]
           },
           {
             "id": "l10-app-block-007-line-002",
@@ -960,27 +1731,48 @@
               "id": "l10-app-block-007-line-002",
               "trackId": "lesson_apps",
               "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit3/lesson10/lesson_apps.mp3",
+              "itemIndex": 13,
               "speaker": "小野",
               "text": "そうですね。",
-              "start": 50.09,
-              "end": 51.15,
-              "duration": 1.06,
+              "start": 49.9,
+              "end": 51.304,
+              "duration": 1.404,
+              "rawAzureTiming": {
+                "start": 50.15,
+                "end": 50.83,
+                "duration": 0.68
+              },
+              "timingSource": "azure-speech-boundary-with-local-vad-refinement",
+              "speechActivity": {
+                "start": 50.225,
+                "end": 51.184,
+                "duration": 0.958
+              },
               "speechUnitCount": 1,
               "matchScore": 1,
+              "asrConfidence": 0.864,
               "asrText": "そ う で す ね",
               "phraseIndexes": [
                 7
               ],
-              "method": "legacy-asr-alignment-range-converted",
-              "confidence": "approved",
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [
+                "ASR boundary ended before the final local speech region; verify this sentence."
+              ],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-05T08:32:29.112Z",
-                "note": "Automatically approved by the bulk alignment workflow.",
+                "reviewedAt": "2026-08-24T08:24:36.164Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
                 "matchScore": 1,
                 "asrText": "そ う で す ね"
               }
-            }
+            },
+            "segments": [
+              {
+                "text": "そうですね。"
+              }
+            ]
           },
           {
             "id": "l10-app-block-007-line-003",
@@ -994,27 +1786,66 @@
               "id": "l10-app-block-007-line-003",
               "trackId": "lesson_apps",
               "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit3/lesson10/lesson_apps.mp3",
+              "itemIndex": 14,
               "speaker": "李",
               "text": "ところで、この 美術館には どんな 作品が ありますか。",
-              "start": 51.97,
-              "end": 55.75,
-              "duration": 3.78,
-              "speechUnitCount": 1,
+              "start": 51.944,
+              "end": 55.9,
+              "duration": 3.956,
+              "rawAzureTiming": {
+                "start": 50.83,
+                "end": 55.31,
+                "duration": 4.48
+              },
+              "timingSource": "azure-speech-boundary-with-local-vad-refinement",
+              "speechActivity": {
+                "start": 52.004,
+                "end": 55.31,
+                "duration": 3.306,
+                "expectedDuration": 3.97,
+                "precedingSilence": 0.559
+              },
+              "speechUnitCount": 2,
               "matchScore": 1,
-              "asrText": "と こ ろ で こ の 美 術 館 に は ど ん な 作 品 が あ り ま す か",
+              "asrConfidence": 0.958,
+              "asrText": "。 と こ ろ で 、 こ の 美 術 館 に は ど ん な 作 品 が あ り ま す か",
               "phraseIndexes": [
+                7,
                 8
               ],
-              "method": "legacy-asr-alignment-range-converted",
+              "method": "manual-admin-adjustment",
               "confidence": "approved",
+              "alignmentIssues": [
+                "ASR boundary overlapped the previous sentence and was moved to the next local speech region; verify this sentence."
+              ],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-05T08:32:29.112Z",
-                "note": "Automatically approved by the bulk alignment workflow.",
+                "reviewedAt": "2026-08-24T13:58:06.798Z",
+                "note": "Manually verified and adjusted in the text audio preview.",
                 "matchScore": 1,
-                "asrText": "と こ ろ で こ の 美 術 館 に は ど ん な 作 品 が あ り ま す か"
+                "asrText": "。 と こ ろ で 、 こ の 美 術 館 に は ど ん な 作 品 が あ り ま す か"
+              },
+              "reviewedAt": "2026-08-24T13:58:06.798Z"
+            },
+            "segments": [
+              {
+                "text": "ところで、この "
+              },
+              {
+                "text": "美術館",
+                "ruby": "びじゅつかん"
+              },
+              {
+                "text": "には どんな "
+              },
+              {
+                "text": "作品",
+                "ruby": "さくひん"
+              },
+              {
+                "text": "が ありますか。"
               }
-            }
+            ]
           },
           {
             "id": "l10-app-block-007-line-004",
@@ -1028,27 +1859,69 @@
               "id": "l10-app-block-007-line-004",
               "trackId": "lesson_apps",
               "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit3/lesson10/lesson_apps.mp3",
+              "itemIndex": 15,
               "speaker": "小野",
               "text": "世界中の 有名な 作家の 彫刻です。",
-              "start": 56.73,
-              "end": 59.79,
-              "duration": 3.06,
-              "speechUnitCount": 1,
+              "start": 56.3,
+              "end": 59.67,
+              "duration": 3.37,
+              "rawAzureTiming": {
+                "start": 55.31,
+                "end": 59.55,
+                "duration": 4.24
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
+              "speechUnitCount": 2,
               "matchScore": 1,
-              "asrText": "世 界 中 の 有 名 な 作 家 の 彫 刻 で す",
+              "asrConfidence": 0.948,
+              "asrText": "。 世 界 中 の 有 名 な 作 家 の 彫 刻 で す",
               "phraseIndexes": [
+                8,
                 9
               ],
-              "method": "legacy-asr-alignment-range-converted",
+              "method": "manual-admin-adjustment",
               "confidence": "approved",
+              "alignmentIssues": [],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-05T08:32:29.112Z",
-                "note": "Automatically approved by the bulk alignment workflow.",
+                "reviewedAt": "2026-08-24T13:58:18.797Z",
+                "note": "Manually verified and adjusted in the text audio preview.",
                 "matchScore": 1,
-                "asrText": "世 界 中 の 有 名 な 作 家 の 彫 刻 で す"
+                "asrText": "。 世 界 中 の 有 名 な 作 家 の 彫 刻 で す"
+              },
+              "reviewedAt": "2026-08-24T13:58:18.797Z"
+            },
+            "segments": [
+              {
+                "text": "世界中",
+                "ruby": "せかいじゅう"
+              },
+              {
+                "text": "の "
+              },
+              {
+                "text": "有名",
+                "ruby": "ゆうめい"
+              },
+              {
+                "text": "な "
+              },
+              {
+                "text": "作家",
+                "ruby": "さっか"
+              },
+              {
+                "text": "の "
+              },
+              {
+                "text": "彫刻",
+                "ruby": "ちょうこく"
+              },
+              {
+                "text": "です。"
               }
-            }
+            ]
           },
           {
             "id": "l10-app-block-007-line-005",
@@ -1062,27 +1935,63 @@
               "id": "l10-app-block-007-line-005",
               "trackId": "lesson_apps",
               "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit3/lesson10/lesson_apps.mp3",
+              "itemIndex": 16,
               "speaker": "長島",
               "text": "美術館の 庭にも いろいろ おもしろいのが ありますよ。",
-              "start": 60.49,
-              "end": 63.67,
-              "duration": 3.18,
-              "speechUnitCount": 1,
-              "matchScore": 0.826,
-              "asrText": "美 術 館 の 庭 に も い ろ い ろ 面 白 い の が あ り ま す よ",
+              "start": 60.531,
+              "end": 63.718,
+              "duration": 3.187,
+              "rawAzureTiming": {
+                "start": 59.55,
+                "end": 63.27,
+                "duration": 3.72
+              },
+              "timingSource": "azure-speech-boundary-with-local-vad-refinement",
+              "speechActivity": {
+                "start": 60.591,
+                "end": 61.746,
+                "duration": 2.679,
+                "expectedDuration": 4.13,
+                "precedingSilence": 0.98
+              },
+              "speechUnitCount": 2,
+              "matchScore": 1,
+              "asrConfidence": 0.902,
+              "asrText": "。 美 術 館 の 庭 に も い ろ い ろ お も し ろ い の が あ り ま す よ",
               "phraseIndexes": [
+                9,
                 10
               ],
-              "method": "legacy-asr-alignment-range-converted",
-              "confidence": "approved",
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [
+                "ASR boundary overlapped the previous sentence and was moved to the next local speech region; verify this sentence.",
+                "ASR boundary ended before the final local speech region; verify this sentence."
+              ],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-05T08:32:29.112Z",
-                "note": "Automatically approved by the bulk alignment workflow.",
-                "matchScore": 0.826,
-                "asrText": "美 術 館 の 庭 に も い ろ い ろ 面 白 い の が あ り ま す よ"
+                "reviewedAt": "2026-08-24T08:24:36.164Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "matchScore": 1,
+                "asrText": "。 美 術 館 の 庭 に も い ろ い ろ お も し ろ い の が あ り ま す よ"
               }
-            }
+            },
+            "segments": [
+              {
+                "text": "美術館",
+                "ruby": "びじゅつかん"
+              },
+              {
+                "text": "の "
+              },
+              {
+                "text": "庭",
+                "ruby": "にわ"
+              },
+              {
+                "text": "にも いろいろ おもしろいのが ありますよ。"
+              }
+            ]
           }
         ]
       }
@@ -1093,26 +2002,33 @@
     "未输出 segments；已保留可可靠识别的整句 kana。"
   ],
   "audioAlignment": {
-    "schemaVersion": 1,
+    "schemaVersion": 2,
     "lessonId": "lesson10",
-    "convertedAt": "2026-08-14T00:17:06.257Z",
-    "method": "legacy-asr-alignment-range-converted",
+    "generatedAt": "2026-08-24T08:24:36.164Z",
+    "method": "azure-speech-sentence-alignment-with-boundary-padding",
+    "reviewStatus": "pending",
     "tracks": [
       {
         "id": "lesson_basic",
         "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit3/lesson10/lesson_basic.mp3",
         "sourceAudioSha256": "e8e6fd99a014f275919012d111beecf4fbd5add45a269ce0236f02542e1f3e0d",
         "expectedItems": 13,
-        "alignedItems": 13
+        "alignedItems": 13,
+        "detectedUnitCount": 14,
+        "warnings": []
       },
       {
         "id": "lesson_apps",
         "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit3/lesson10/lesson_apps.mp3",
         "sourceAudioSha256": "8f4decb94ef6b106d0a9066f64e8d8224e409881aee8cf98090df6bd6a3dc3b2",
         "expectedItems": 16,
-        "alignedItems": 16
+        "alignedItems": 16,
+        "detectedUnitCount": 24,
+        "warnings": [
+          "2 item(s) require manual verification."
+        ]
       }
     ]
   },
-  "updatedAt": "2026-08-14T00:17:06.257Z"
+  "updatedAt": "2026-08-24T13:58:18.798Z"
 }

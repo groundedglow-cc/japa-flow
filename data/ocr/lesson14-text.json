@@ -1,50 +1,496 @@
 {
   "lessonId": "lesson14",
   "sourceImages": [
-    { "section": "basic", "path": "course-assets/by-lesson/lesson14/page170.webp", "pageNo": 170 },
-    { "section": "application", "path": "course-assets/by-lesson/lesson14/page175.webp", "pageNo": 175 }
+    {
+      "section": "basic",
+      "path": "course-assets/by-lesson/lesson14/page170.webp",
+      "pageNo": 170
+    },
+    {
+      "section": "application",
+      "path": "course-assets/by-lesson/lesson14/page175.webp",
+      "pageNo": 175
+    }
   ],
   "basicText": {
     "title": "昨日 デパートへ 行って、買い物しました",
     "basicSentences": [
-      { "id": "l14-basic-s001", "order": 1, "text": "昨日 デパートへ 行って、買い物しました。", "kana": "きのう デパートへ いって、かいものしました。", "translationZh": "昨天去了百货商店，买了东西。", "confidence": "high", "rawText": "1. 昨日 デパートへ 行って、買い物しました。" },
-      { "id": "l14-basic-s002", "order": 2, "text": "李さんは 毎晩 ラジオを 聞いてから 寝ます。", "kana": "りさんは まいばん ラジオを きいてから ねます。", "translationZh": "小李每天晚上听完收音机后睡觉。", "confidence": "high", "rawText": "2. 李さんは 毎晩 ラジオを 聞いてから 寝ます。" },
-      { "id": "l14-basic-s003", "order": 3, "text": "ここに 住所と 名前を 書いて ください。", "kana": "ここに じゅうしょと なまえを かいて ください。", "translationZh": "请在这里写下住址和姓名。", "confidence": "high", "rawText": "3. ここに 住所と 名前を 書いて ください。" },
-      { "id": "l14-basic-s004", "order": 4, "text": "李さんは 毎朝 7時に 家を 出ます。", "kana": "りさんは まいあさ しちじに いえを でます。", "translationZh": "小李每天早晨七点离开家。", "confidence": "high", "rawText": "4. 李さんは 毎朝 7時に 家を 出ます。" }
+      {
+        "id": "l14-basic-s001",
+        "order": 1,
+        "text": "昨日 デパートへ 行って、買い物しました。",
+        "kana": "きのう デパートへ いって、かいものしました。",
+        "translationZh": "昨天去了百货商店，买了东西。",
+        "confidence": "high",
+        "rawText": "1. 昨日 デパートへ 行って、買い物しました。",
+        "segments": [
+          {
+            "text": "昨日",
+            "ruby": "きのう"
+          },
+          {
+            "text": " デパートへ "
+          },
+          {
+            "text": "行って",
+            "ruby": "いって"
+          },
+          {
+            "text": "、"
+          },
+          {
+            "text": "買い物",
+            "ruby": "かいもの"
+          },
+          {
+            "text": "しました。"
+          }
+        ]
+      },
+      {
+        "id": "l14-basic-s002",
+        "order": 2,
+        "text": "李さんは 毎晩 ラジオを 聞いてから 寝ます。",
+        "kana": "りさんは まいばん ラジオを きいてから ねます。",
+        "translationZh": "小李每天晚上听完收音机后睡觉。",
+        "confidence": "high",
+        "rawText": "2. 李さんは 毎晩 ラジオを 聞いてから 寝ます。",
+        "segments": [
+          {
+            "text": "李",
+            "ruby": "り"
+          },
+          {
+            "text": "さんは "
+          },
+          {
+            "text": "毎晩",
+            "ruby": "まいばん"
+          },
+          {
+            "text": " ラジオを "
+          },
+          {
+            "text": "聞いて",
+            "ruby": "きいて"
+          },
+          {
+            "text": "から "
+          },
+          {
+            "text": "寝",
+            "ruby": "ね"
+          },
+          {
+            "text": "ます。"
+          }
+        ]
+      },
+      {
+        "id": "l14-basic-s003",
+        "order": 3,
+        "text": "ここに 住所と 名前を 書いて ください。",
+        "kana": "ここに じゅうしょと なまえを かいて ください。",
+        "translationZh": "请在这里写下住址和姓名。",
+        "confidence": "high",
+        "rawText": "3. ここに 住所と 名前を 書いて ください。",
+        "segments": [
+          {
+            "text": "ここに "
+          },
+          {
+            "text": "住所",
+            "ruby": "じゅうしょ"
+          },
+          {
+            "text": "と "
+          },
+          {
+            "text": "名前",
+            "ruby": "なまえ"
+          },
+          {
+            "text": "を "
+          },
+          {
+            "text": "書いて",
+            "ruby": "かいて"
+          },
+          {
+            "text": " ください。"
+          }
+        ]
+      },
+      {
+        "id": "l14-basic-s004",
+        "order": 4,
+        "text": "李さんは 毎朝 7時に 家を 出ます。",
+        "kana": "りさんは まいあさ しちじに いえを でます。",
+        "translationZh": "小李每天早晨七点离开家。",
+        "confidence": "high",
+        "rawText": "4. 李さんは 毎朝 7時に 家を 出ます。",
+        "segments": [
+          {
+            "text": "李",
+            "ruby": "り"
+          },
+          {
+            "text": "さんは "
+          },
+          {
+            "text": "毎朝",
+            "ruby": "まいあさ"
+          },
+          {
+            "text": " 7"
+          },
+          {
+            "text": "時",
+            "ruby": "じ"
+          },
+          {
+            "text": "に "
+          },
+          {
+            "text": "家",
+            "ruby": "いえ"
+          },
+          {
+            "text": "を "
+          },
+          {
+            "text": "出",
+            "ruby": "で"
+          },
+          {
+            "text": "ます。"
+          }
+        ]
+      }
     ],
     "dialogues": [
       {
         "id": "l14-basic-dialogue-001",
         "label": "A",
         "lines": [
-          { "id": "l14-basic-dialogue-001-line-001", "speaker": "甲", "text": "今日の 午後は 何を しますか。", "kana": "きょうの ごごは なにを しますか。", "translationZh": "今天下午做什么？", "confidence": "high", "rawText": "甲：今日の 午後は 何を しますか。" },
-          { "id": "l14-basic-dialogue-001-line-002", "speaker": "乙", "text": "図書館へ 行って、勉強を します。", "kana": "としょかんへ いって、べんきょうを します。", "translationZh": "去图书馆学习。", "confidence": "high", "rawText": "乙：図書館へ 行って、勉強を します。" },
-          { "id": "l14-basic-dialogue-001-line-003", "speaker": "乙", "text": "それから 家へ 帰って、手紙を 書きます。", "kana": "それから いえへ かえって、てがみを かきます。", "translationZh": "然后回家写信。", "confidence": "high", "rawText": "それから 家へ 帰って、手紙を 書きます。" }
+          {
+            "id": "l14-basic-dialogue-001-line-001",
+            "speaker": "甲",
+            "text": "今日の 午後は 何を しますか。",
+            "kana": "きょうの ごごは なにを しますか。",
+            "translationZh": "今天下午做什么？",
+            "confidence": "high",
+            "rawText": "甲：今日の 午後は 何を しますか。",
+            "segments": [
+              {
+                "text": "今日",
+                "ruby": "きょう"
+              },
+              {
+                "text": "の "
+              },
+              {
+                "text": "午後",
+                "ruby": "ごご"
+              },
+              {
+                "text": "は "
+              },
+              {
+                "text": "何",
+                "ruby": "なに"
+              },
+              {
+                "text": "を しますか。"
+              }
+            ]
+          },
+          {
+            "id": "l14-basic-dialogue-001-line-002",
+            "speaker": "乙",
+            "text": "図書館へ 行って、勉強を します。",
+            "kana": "としょかんへ いって、べんきょうを します。",
+            "translationZh": "去图书馆学习。",
+            "confidence": "high",
+            "rawText": "乙：図書館へ 行って、勉強を します。",
+            "segments": [
+              {
+                "text": "図書館",
+                "ruby": "としょかん"
+              },
+              {
+                "text": "へ "
+              },
+              {
+                "text": "行って",
+                "ruby": "いって"
+              },
+              {
+                "text": "、"
+              },
+              {
+                "text": "勉強",
+                "ruby": "べんきょう"
+              },
+              {
+                "text": "を します。"
+              }
+            ]
+          },
+          {
+            "id": "l14-basic-dialogue-001-line-003",
+            "speaker": "乙",
+            "text": "それから 家へ 帰って、手紙を 書きます。",
+            "kana": "それから いえへ かえって、てがみを かきます。",
+            "translationZh": "然后回家写信。",
+            "confidence": "high",
+            "rawText": "それから 家へ 帰って、手紙を 書きます。",
+            "segments": [
+              {
+                "text": "それから "
+              },
+              {
+                "text": "家",
+                "ruby": "いえ"
+              },
+              {
+                "text": "へ "
+              },
+              {
+                "text": "帰って",
+                "ruby": "かえって"
+              },
+              {
+                "text": "、"
+              },
+              {
+                "text": "手紙",
+                "ruby": "てがみ"
+              },
+              {
+                "text": "を "
+              },
+              {
+                "text": "書きます",
+                "ruby": "かきます"
+              },
+              {
+                "text": "。"
+              }
+            ]
+          }
         ]
       },
       {
         "id": "l14-basic-dialogue-002",
         "label": "B",
         "lines": [
-          { "id": "l14-basic-dialogue-002-line-001", "speaker": "甲", "text": "いつ 出かけますか。", "kana": "いつ でかけますか。", "translationZh": "什么时候出门？", "confidence": "high", "rawText": "甲：いつ 出かけますか。" },
-          { "id": "l14-basic-dialogue-002-line-002", "speaker": "乙", "text": "昼ご飯を 食べてから 出かけます。", "kana": "ひるごはんを たべてから でかけます。", "translationZh": "吃完午饭后出门。", "confidence": "high", "rawText": "乙：昼ご飯を 食べてから 出かけます。" }
+          {
+            "id": "l14-basic-dialogue-002-line-001",
+            "speaker": "甲",
+            "text": "いつ 出かけますか。",
+            "kana": "いつ でかけますか。",
+            "translationZh": "什么时候出门？",
+            "confidence": "high",
+            "rawText": "甲：いつ 出かけますか。",
+            "segments": [
+              {
+                "text": "いつ "
+              },
+              {
+                "text": "出かけます",
+                "ruby": "でかけます"
+              },
+              {
+                "text": "か。"
+              }
+            ]
+          },
+          {
+            "id": "l14-basic-dialogue-002-line-002",
+            "speaker": "乙",
+            "text": "昼ご飯を 食べてから 出かけます。",
+            "kana": "ひるごはんを たべてから でかけます。",
+            "translationZh": "吃完午饭后出门。",
+            "confidence": "high",
+            "rawText": "乙：昼ご飯を 食べてから 出かけます。",
+            "segments": [
+              {
+                "text": "昼",
+                "ruby": "ひる"
+              },
+              {
+                "text": "ご"
+              },
+              {
+                "text": "飯",
+                "ruby": "はん"
+              },
+              {
+                "text": "を "
+              },
+              {
+                "text": "食べて",
+                "ruby": "たべて"
+              },
+              {
+                "text": "から "
+              },
+              {
+                "text": "出かけます",
+                "ruby": "でかけます"
+              },
+              {
+                "text": "。"
+              }
+            ]
+          }
         ]
       },
       {
         "id": "l14-basic-dialogue-003",
         "label": "C",
         "lines": [
-          { "id": "l14-basic-dialogue-003-line-001", "speaker": "甲", "text": "すみません、この 荷物を 中国へ 送って ください。", "kana": "すみません、この にもつを ちゅうごくへ おくって ください。", "translationZh": "劳驾，请把这个包裹寄到中国。", "confidence": "high", "rawText": "甲：すみません、この 荷物を 中国へ 送って ください。" },
-          { "id": "l14-basic-dialogue-003-line-002", "speaker": "乙", "text": "船便ですか、航空便ですか。", "kana": "ふなびんですか、こうくうびんですか。", "translationZh": "海运还是航空邮件？", "confidence": "high", "rawText": "乙：船便ですか、航空便ですか。" },
-          { "id": "l14-basic-dialogue-003-line-003", "speaker": "甲", "text": "船便で お願いします。", "kana": "ふなびんで おねがいします。", "translationZh": "请走海运。", "confidence": "high", "rawText": "甲：船便で お願いします。" }
+          {
+            "id": "l14-basic-dialogue-003-line-001",
+            "speaker": "甲",
+            "text": "すみません、この 荷物を 中国へ 送って ください。",
+            "kana": "すみません、この にもつを ちゅうごくへ おくって ください。",
+            "translationZh": "劳驾，请把这个包裹寄到中国。",
+            "confidence": "high",
+            "rawText": "甲：すみません、この 荷物を 中国へ 送って ください。",
+            "segments": [
+              {
+                "text": "すみません、この "
+              },
+              {
+                "text": "荷物",
+                "ruby": "にもつ"
+              },
+              {
+                "text": "を "
+              },
+              {
+                "text": "中国",
+                "ruby": "ちゅうごく"
+              },
+              {
+                "text": "へ "
+              },
+              {
+                "text": "送って",
+                "ruby": "おくって"
+              },
+              {
+                "text": " ください。"
+              }
+            ]
+          },
+          {
+            "id": "l14-basic-dialogue-003-line-002",
+            "speaker": "乙",
+            "text": "船便ですか、航空便ですか。",
+            "kana": "ふなびんですか、こうくうびんですか。",
+            "translationZh": "海运还是航空邮件？",
+            "confidence": "high",
+            "rawText": "乙：船便ですか、航空便ですか。",
+            "segments": [
+              {
+                "text": "船便",
+                "ruby": "ふなびん"
+              },
+              {
+                "text": "ですか、"
+              },
+              {
+                "text": "航空便",
+                "ruby": "こうくうびん"
+              },
+              {
+                "text": "ですか。"
+              }
+            ]
+          },
+          {
+            "id": "l14-basic-dialogue-003-line-003",
+            "speaker": "甲",
+            "text": "船便で お願いします。",
+            "kana": "ふなびんで おねがいします。",
+            "translationZh": "请走海运。",
+            "confidence": "high",
+            "rawText": "甲：船便で お願いします。",
+            "segments": [
+              {
+                "text": "船便",
+                "ruby": "ふなびん"
+              },
+              {
+                "text": "で "
+              },
+              {
+                "text": "お願い",
+                "ruby": "おねがい"
+              },
+              {
+                "text": "します。"
+              }
+            ]
+          }
         ]
       },
       {
         "id": "l14-basic-dialogue-004",
         "label": "D",
         "lines": [
-          { "id": "l14-basic-dialogue-004-line-001", "speaker": "甲", "text": "この バスは 駅前を 通りますか。", "kana": "この バスは えきまえを とおりますか。", "translationZh": "这辆公交车经过车站前面吗？", "confidence": "high", "rawText": "甲：この バスは 駅前を 通りますか。" },
-          { "id": "l14-basic-dialogue-004-line-002", "speaker": "乙", "text": "はい、通ります。", "kana": "はい、とおります。", "translationZh": "是的，经过。", "confidence": "high", "rawText": "乙：はい、通ります。" }
+          {
+            "id": "l14-basic-dialogue-004-line-001",
+            "speaker": "甲",
+            "text": "この バスは 駅前を 通りますか。",
+            "kana": "この バスは えきまえを とおりますか。",
+            "translationZh": "这辆公交车经过车站前面吗？",
+            "confidence": "high",
+            "rawText": "甲：この バスは 駅前を 通りますか。",
+            "segments": [
+              {
+                "text": "この バスは "
+              },
+              {
+                "text": "駅前",
+                "ruby": "えきまえ"
+              },
+              {
+                "text": "を "
+              },
+              {
+                "text": "通ります",
+                "ruby": "とおります"
+              },
+              {
+                "text": "か。"
+              }
+            ]
+          },
+          {
+            "id": "l14-basic-dialogue-004-line-002",
+            "speaker": "乙",
+            "text": "はい、通ります。",
+            "kana": "はい、とおります。",
+            "translationZh": "是的，经过。",
+            "confidence": "high",
+            "rawText": "乙：はい、通ります。",
+            "segments": [
+              {
+                "text": "はい、"
+              },
+              {
+                "text": "通ります",
+                "ruby": "とおります"
+              },
+              {
+                "text": "。"
+              }
+            ]
+          }
         ]
       }
     ]
@@ -52,41 +498,512 @@
   "applicationText": {
     "title": "原稿",
     "blocks": [
-      { "id": "l14-app-block-001", "type": "narration", "text": "一天晚上，小李回到公寓以后，用日语写好在箱根采访的稿子。第二天向吉田科长汇报。", "kana": null, "translationZh": "一天晚上，小李回到公寓以后，用日语写好在箱根采访的稿子。第二天向吉田科长汇报。", "confidence": "high", "rawText": "一天晚上，小李回到公寓以后，用日语写好在箱根采访的稿子。第二天向吉田科长汇报。" },
-      { "id": "l14-app-block-002", "type": "scene", "text": "（在办公室）", "kana": null, "translationZh": "在办公室。", "confidence": "high", "rawText": "（在办公室）" },
+      {
+        "id": "l14-app-block-001",
+        "type": "narration",
+        "text": "一天晚上，小李回到公寓以后，用日语写好在箱根采访的稿子。第二天向吉田科长汇报。",
+        "kana": null,
+        "translationZh": "一天晚上，小李回到公寓以后，用日语写好在箱根采访的稿子。第二天向吉田科长汇报。",
+        "confidence": "high",
+        "rawText": "一天晚上，小李回到公寓以后，用日语写好在箱根采访的稿子。第二天向吉田科长汇报。"
+      },
+      {
+        "id": "l14-app-block-002",
+        "type": "scene",
+        "text": "（在办公室）",
+        "kana": null,
+        "translationZh": "在办公室。",
+        "confidence": "high",
+        "rawText": "（在办公室）"
+      },
       {
         "id": "l14-app-block-003",
         "type": "dialogue",
         "lines": [
-          { "id": "l14-app-block-003-line-001", "speaker": "李", "text": "吉田課長、原稿が できました。", "kana": "よしだかちょう、げんこうが できました。", "translationZh": "吉田科长，稿子写好了。", "confidence": "high", "rawText": "李：吉田課長、原稿が できました。" },
-          { "id": "l14-app-block-003-line-002", "speaker": "吉田", "text": "箱根の 記事ですね。ちょっと 見せて ください。", "kana": "はこねの きじですね。ちょっと みせて ください。", "translationZh": "是箱根的报道吧。请给我看一下。", "confidence": "high", "rawText": "吉田：箱根の 記事ですね。ちょっと 見せて ください。" }
+          {
+            "id": "l14-app-block-003-line-001",
+            "speaker": "李",
+            "text": "吉田課長、原稿が できました。",
+            "kana": "よしだかちょう、げんこうが できました。",
+            "translationZh": "吉田科长，稿子写好了。",
+            "confidence": "high",
+            "rawText": "李：吉田課長、原稿が できました。",
+            "segments": [
+              {
+                "text": "吉田課長",
+                "ruby": "よしだかちょう"
+              },
+              {
+                "text": "、"
+              },
+              {
+                "text": "原稿",
+                "ruby": "げんこう"
+              },
+              {
+                "text": "が できました。"
+              }
+            ]
+          },
+          {
+            "id": "l14-app-block-003-line-002",
+            "speaker": "吉田",
+            "text": "箱根の 記事ですね。ちょっと 見せて ください。",
+            "kana": "はこねの きじですね。ちょっと みせて ください。",
+            "translationZh": "是箱根的报道吧。请给我看一下。",
+            "confidence": "high",
+            "rawText": "吉田：箱根の 記事ですね。ちょっと 見せて ください。",
+            "segments": [
+              {
+                "text": "箱根",
+                "ruby": "はこね"
+              },
+              {
+                "text": "の "
+              },
+              {
+                "text": "記事",
+                "ruby": "きじ"
+              },
+              {
+                "text": "ですね。ちょっと "
+              },
+              {
+                "text": "見せて",
+                "ruby": "みせて"
+              },
+              {
+                "text": " ください。"
+              }
+            ]
+          }
         ]
       },
-      { "id": "l14-app-block-004", "type": "scene", "text": "（快速浏览后）", "kana": null, "translationZh": "快速浏览后。", "confidence": "high", "rawText": "（快速浏览后）" },
+      {
+        "id": "l14-app-block-004",
+        "type": "scene",
+        "text": "（快速浏览后）",
+        "kana": null,
+        "translationZh": "快速浏览后。",
+        "confidence": "high",
+        "rawText": "（快速浏览后）"
+      },
       {
         "id": "l14-app-block-005",
         "type": "dialogue",
         "lines": [
-          { "id": "l14-app-block-005-line-001", "speaker": "吉田", "text": "なかなか いいですね。いつ 書きましたか。", "kana": "なかなか いいですね。いつ かきましたか。", "translationZh": "相当不错啊。是什么时候写的？", "confidence": "high", "rawText": "吉田：なかなか いいですね。いつ 書きましたか。" },
-          { "id": "l14-app-block-005-line-002", "speaker": "李", "text": "昨日 会社で メモを 整理して、小野さんに 見せました。", "kana": "きのう かいしゃで メモを せいりして、おのさんに みせました。", "translationZh": "昨天在公司整理了笔记，给小野女士看了。", "confidence": "high", "rawText": "李：昨日 会社で メモを 整理して、小野さんに 見せました。" },
-          { "id": "l14-app-block-005-line-003", "speaker": "李", "text": "そして、アパートへ 帰ってから 書きました。", "kana": "そして、アパートへ かえってから かきました。", "translationZh": "然后回到公寓后写的。", "confidence": "high", "rawText": "そして、アパートへ 帰ってから 書きました。" },
-          { "id": "l14-app-block-005-line-004", "speaker": "吉田", "text": "そうですか。大変でしたね。写真も できましたか。", "kana": "そうですか。たいへんでしたね。しゃしんも できましたか。", "translationZh": "是吗。辛苦了。照片也弄好了吗？", "confidence": "high", "rawText": "吉田：そうですか。大変でしたね。写真も できましたか。" },
-          { "id": "l14-app-block-005-line-005", "speaker": "李", "text": "はい。これから 長島さんの 事務所へ 行って、写真を 選びます。", "kana": "はい。これから ながしまさんの じむしょへ いって、しゃしんを えらびます。", "translationZh": "是的。接下来要去长岛先生的事务所挑选照片。", "confidence": "high", "rawText": "李：はい。これから 長島さんの 事務所へ 行って、写真を 選びます。" },
-          { "id": "l14-app-block-005-line-006", "speaker": "吉田", "text": "そうですか。", "kana": "そうですか。", "translationZh": "是吗。", "confidence": "high", "rawText": "吉田：そうですか。" },
-          { "id": "l14-app-block-005-line-007", "speaker": "李", "text": "後で 写真も 見て くださいませんか。", "kana": "あとで しゃしんも みて くださいませんか。", "translationZh": "之后也请看看照片好吗？", "confidence": "high", "rawText": "李：後で 写真も 見て くださいませんか。" }
+          {
+            "id": "l14-app-block-005-line-001",
+            "speaker": "吉田",
+            "text": "なかなか いいですね。いつ 書きましたか。",
+            "kana": "なかなか いいですね。いつ かきましたか。",
+            "translationZh": "相当不错啊。是什么时候写的？",
+            "confidence": "high",
+            "rawText": "吉田：なかなか いいですね。いつ 書きましたか。",
+            "segments": [
+              {
+                "text": "なかなか いいですね。いつ "
+              },
+              {
+                "text": "書きました",
+                "ruby": "かきました"
+              },
+              {
+                "text": "か。"
+              }
+            ]
+          },
+          {
+            "id": "l14-app-block-005-line-002",
+            "speaker": "李",
+            "text": "昨日 会社で メモを 整理して、小野さんに 見せました。",
+            "kana": "きのう かいしゃで メモを せいりして、おのさんに みせました。",
+            "translationZh": "昨天在公司整理了笔记，给小野女士看了。",
+            "confidence": "high",
+            "rawText": "李：昨日 会社で メモを 整理して、小野さんに 見せました。",
+            "segments": [
+              {
+                "text": "昨日",
+                "ruby": "きのう"
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "会社",
+                "ruby": "かいしゃ"
+              },
+              {
+                "text": "で メモを "
+              },
+              {
+                "text": "整理して",
+                "ruby": "せいりして"
+              },
+              {
+                "text": "、"
+              },
+              {
+                "text": "小野",
+                "ruby": "おの"
+              },
+              {
+                "text": "さんに "
+              },
+              {
+                "text": "見せました",
+                "ruby": "みせました"
+              },
+              {
+                "text": "。"
+              }
+            ]
+          },
+          {
+            "id": "l14-app-block-005-line-003",
+            "speaker": "李",
+            "text": "そして、アパートへ 帰ってから 書きました。",
+            "kana": "そして、アパートへ かえってから かきました。",
+            "translationZh": "然后回到公寓后写的。",
+            "confidence": "high",
+            "rawText": "そして、アパートへ 帰ってから 書きました。",
+            "segments": [
+              {
+                "text": "そして、アパートへ "
+              },
+              {
+                "text": "帰って",
+                "ruby": "かえって"
+              },
+              {
+                "text": "から "
+              },
+              {
+                "text": "書きました",
+                "ruby": "かきました"
+              },
+              {
+                "text": "。"
+              }
+            ]
+          },
+          {
+            "id": "l14-app-block-005-line-004",
+            "speaker": "吉田",
+            "text": "そうですか。大変でしたね。写真も できましたか。",
+            "kana": "そうですか。たいへんでしたね。しゃしんも できましたか。",
+            "translationZh": "是吗。辛苦了。照片也弄好了吗？",
+            "confidence": "high",
+            "rawText": "吉田：そうですか。大変でしたね。写真も できましたか。",
+            "segments": [
+              {
+                "text": "そうですか。"
+              },
+              {
+                "text": "大変",
+                "ruby": "たいへん"
+              },
+              {
+                "text": "でしたね。"
+              },
+              {
+                "text": "写真",
+                "ruby": "しゃしん"
+              },
+              {
+                "text": "も できましたか。"
+              }
+            ]
+          },
+          {
+            "id": "l14-app-block-005-line-005",
+            "speaker": "李",
+            "text": "はい。これから 長島さんの 事務所へ 行って、写真を 選びます。",
+            "kana": "はい。これから ながしまさんの じむしょへ いって、しゃしんを えらびます。",
+            "translationZh": "是的。接下来要去长岛先生的事务所挑选照片。",
+            "confidence": "high",
+            "rawText": "李：はい。これから 長島さんの 事務所へ 行って、写真を 選びます。",
+            "segments": [
+              {
+                "text": "はい。これから "
+              },
+              {
+                "text": "長島",
+                "ruby": "ながしま"
+              },
+              {
+                "text": "さんの "
+              },
+              {
+                "text": "事務所",
+                "ruby": "じむしょ"
+              },
+              {
+                "text": "へ "
+              },
+              {
+                "text": "行って",
+                "ruby": "いって"
+              },
+              {
+                "text": "、"
+              },
+              {
+                "text": "写真",
+                "ruby": "しゃしん"
+              },
+              {
+                "text": "を "
+              },
+              {
+                "text": "選びます",
+                "ruby": "えらびます"
+              },
+              {
+                "text": "。"
+              }
+            ]
+          },
+          {
+            "id": "l14-app-block-005-line-006",
+            "speaker": "吉田",
+            "text": "そうですか。",
+            "kana": "そうですか。",
+            "translationZh": "是吗。",
+            "confidence": "high",
+            "rawText": "吉田：そうですか。",
+            "segments": [
+              {
+                "text": "そうですか。"
+              }
+            ]
+          },
+          {
+            "id": "l14-app-block-005-line-007",
+            "speaker": "李",
+            "text": "後で 写真も 見て くださいませんか。",
+            "kana": "あとで しゃしんも みて くださいませんか。",
+            "translationZh": "之后也请看看照片好吗？",
+            "confidence": "high",
+            "rawText": "李：後で 写真も 見て くださいませんか。",
+            "segments": [
+              {
+                "text": "後で",
+                "ruby": "あとで"
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "写真",
+                "ruby": "しゃしん"
+              },
+              {
+                "text": "も "
+              },
+              {
+                "text": "見て",
+                "ruby": "みて"
+              },
+              {
+                "text": " くださいませんか。"
+              }
+            ]
+          }
         ]
       },
-      { "id": "l14-app-block-006", "type": "scene", "text": "（过了一会儿）", "kana": null, "translationZh": "过了一会儿。", "confidence": "high", "rawText": "（过了一会儿）" },
+      {
+        "id": "l14-app-block-006",
+        "type": "scene",
+        "text": "（过了一会儿）",
+        "kana": null,
+        "translationZh": "过了一会儿。",
+        "confidence": "high",
+        "rawText": "（过了一会儿）"
+      },
       {
         "id": "l14-app-block-007",
         "type": "dialogue",
         "lines": [
-          { "id": "l14-app-block-007-line-001", "speaker": "吉田", "text": "李さん、もう 会社を 出ますか。", "kana": "りさん、もう かいしゃを でますか。", "translationZh": "小李，已经要离开公司了吗？", "confidence": "high", "rawText": "吉田：李さん、もう 会社を 出ますか。" },
-          { "id": "l14-app-block-007-line-002", "speaker": "李", "text": "はい。銀行で お金を 下ろしてから 行きます。", "kana": "はい。ぎんこうで おかねを おろしてから いきます。", "translationZh": "是的。我从银行取了钱后再去。", "confidence": "high", "rawText": "李：はい。銀行で お金を 下ろしてから 行きます。" },
-          { "id": "l14-app-block-007-line-003", "speaker": "吉田", "text": "じゃあ、郵便局の 近くを 通りますね。", "kana": "じゃあ、ゆうびんきょくの ちかくを とおりますね。", "translationZh": "那么，你会经过邮局附近吧。", "confidence": "high", "rawText": "吉田：じゃあ、郵便局の 近くを 通りますね。" },
-          { "id": "l14-app-block-007-line-004", "speaker": "吉田", "text": "すみませんが、この 手紙を 出して ください。", "kana": "すみませんが、この てがみを だして ください。", "translationZh": "劳驾，请把这封信寄出去。", "confidence": "high", "rawText": "すみませんが、この 手紙を 出して ください。" },
-          { "id": "l14-app-block-007-line-005", "speaker": "李", "text": "はい。速達で 出しますか。", "kana": "はい。そくたつで だしますか。", "translationZh": "好的。用快递寄吗？", "confidence": "high", "rawText": "李：はい。速達で 出しますか。" },
-          { "id": "l14-app-block-007-line-006", "speaker": "吉田", "text": "ええ、そうして ください。", "kana": "ええ、そうして ください。", "translationZh": "嗯，请那样办。", "confidence": "high", "rawText": "吉田：ええ、そうして ください。" }
+          {
+            "id": "l14-app-block-007-line-001",
+            "speaker": "吉田",
+            "text": "李さん、もう 会社を 出ますか。",
+            "kana": "りさん、もう かいしゃを でますか。",
+            "translationZh": "小李，已经要离开公司了吗？",
+            "confidence": "high",
+            "rawText": "吉田：李さん、もう 会社を 出ますか。",
+            "segments": [
+              {
+                "text": "李",
+                "ruby": "り"
+              },
+              {
+                "text": "さん、もう "
+              },
+              {
+                "text": "会社",
+                "ruby": "かいしゃ"
+              },
+              {
+                "text": "を "
+              },
+              {
+                "text": "出",
+                "ruby": "で"
+              },
+              {
+                "text": "ますか。"
+              }
+            ]
+          },
+          {
+            "id": "l14-app-block-007-line-002",
+            "speaker": "李",
+            "text": "はい。銀行で お金を 下ろしてから 行きます。",
+            "kana": "はい。ぎんこうで おかねを おろしてから いきます。",
+            "translationZh": "是的。我从银行取了钱后再去。",
+            "confidence": "high",
+            "rawText": "李：はい。銀行で お金を 下ろしてから 行きます。",
+            "segments": [
+              {
+                "text": "はい。"
+              },
+              {
+                "text": "銀行",
+                "ruby": "ぎんこう"
+              },
+              {
+                "text": "で "
+              },
+              {
+                "text": "お金",
+                "ruby": "おかね"
+              },
+              {
+                "text": "を "
+              },
+              {
+                "text": "下ろして",
+                "ruby": "おろして"
+              },
+              {
+                "text": "から "
+              },
+              {
+                "text": "行きます",
+                "ruby": "いきます"
+              },
+              {
+                "text": "。"
+              }
+            ]
+          },
+          {
+            "id": "l14-app-block-007-line-003",
+            "speaker": "吉田",
+            "text": "じゃあ、郵便局の 近くを 通りますね。",
+            "kana": "じゃあ、ゆうびんきょくの ちかくを とおりますね。",
+            "translationZh": "那么，你会经过邮局附近吧。",
+            "confidence": "high",
+            "rawText": "吉田：じゃあ、郵便局の 近くを 通りますね。",
+            "segments": [
+              {
+                "text": "じゃあ、"
+              },
+              {
+                "text": "郵便局",
+                "ruby": "ゆうびんきょく"
+              },
+              {
+                "text": "の "
+              },
+              {
+                "text": "近く",
+                "ruby": "ちかく"
+              },
+              {
+                "text": "を "
+              },
+              {
+                "text": "通ります",
+                "ruby": "とおります"
+              },
+              {
+                "text": "ね。"
+              }
+            ]
+          },
+          {
+            "id": "l14-app-block-007-line-004",
+            "speaker": "吉田",
+            "text": "すみませんが、この 手紙を 出して ください。",
+            "kana": "すみませんが、この てがみを だして ください。",
+            "translationZh": "劳驾，请把这封信寄出去。",
+            "confidence": "high",
+            "rawText": "すみませんが、この 手紙を 出して ください。",
+            "segments": [
+              {
+                "text": "すみませんが、この "
+              },
+              {
+                "text": "手紙",
+                "ruby": "てがみ"
+              },
+              {
+                "text": "を "
+              },
+              {
+                "text": "出して",
+                "ruby": "だして"
+              },
+              {
+                "text": " ください。"
+              }
+            ]
+          },
+          {
+            "id": "l14-app-block-007-line-005",
+            "speaker": "李",
+            "text": "はい。速達で 出しますか。",
+            "kana": "はい。そくたつで だしますか。",
+            "translationZh": "好的。用快递寄吗？",
+            "confidence": "high",
+            "rawText": "李：はい。速達で 出しますか。",
+            "segments": [
+              {
+                "text": "はい。"
+              },
+              {
+                "text": "速達",
+                "ruby": "そくたつ"
+              },
+              {
+                "text": "で "
+              },
+              {
+                "text": "出します",
+                "ruby": "だします"
+              },
+              {
+                "text": "か。"
+              }
+            ]
+          },
+          {
+            "id": "l14-app-block-007-line-006",
+            "speaker": "吉田",
+            "text": "ええ、そうして ください。",
+            "kana": "ええ、そうして ください。",
+            "translationZh": "嗯，请那样办。",
+            "confidence": "high",
+            "rawText": "吉田：ええ、そうして ください。",
+            "segments": [
+              {
+                "text": "ええ、そうして ください。"
+              }
+            ]
+          }
         ]
       }
     ]

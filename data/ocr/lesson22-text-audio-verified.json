@@ -918,24 +918,25 @@
               "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit6/lesson22/lesson_apps.mp3",
               "speaker": "清水",
               "text": "太田、今度 中国へ 転勤だって。",
-              "start": 25.81,
+              "start": 25.51,
               "end": 28.51,
-              "duration": 2.7,
+              "duration": 3,
               "speechUnitCount": 1,
               "matchScore": 1,
               "asrText": "太 田 今 度 中 国 へ 転 勤 だ っ て",
               "phraseIndexes": [
                 3
               ],
-              "method": "legacy-asr-alignment-range-converted",
+              "method": "manual-admin-adjustment",
               "confidence": "approved",
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-05T08:47:34.343Z",
-                "note": "Automatically approved by the bulk alignment workflow.",
+                "reviewedAt": "2026-08-26T12:45:15.312Z",
+                "note": "Manually verified and adjusted in the text audio preview.",
                 "matchScore": 1,
                 "asrText": "太 田 今 度 中 国 へ 転 勤 だ っ て"
-              }
+              },
+              "reviewedAt": "2026-08-26T12:45:15.312Z"
             },
             "kana": "おおた、こんど ちゅうごくへ てんきんだって。",
             "segments": [
@@ -1199,24 +1200,25 @@
               "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit6/lesson22/lesson_apps.mp3",
               "speaker": "小野",
               "text": "ずいぶん 長いわね。太田君 1人で 行くの？",
-              "start": 42.98,
+              "start": 41.8,
               "end": 45.68,
-              "duration": 2.7,
+              "duration": 3.88,
               "speechUnitCount": 1,
               "matchScore": 0.941,
               "asrText": "ず い ぶ ん 長 い わ ね 太 田 君 一 人 で 行 く の",
               "phraseIndexes": [
                 5
               ],
-              "method": "legacy-asr-alignment-range-converted",
+              "method": "manual-admin-adjustment",
               "confidence": "approved",
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-05T08:47:34.343Z",
-                "note": "Automatically approved by the bulk alignment workflow.",
+                "reviewedAt": "2026-08-26T12:45:38.244Z",
+                "note": "Manually verified and adjusted in the text audio preview.",
                 "matchScore": 0.941,
                 "asrText": "ず い ぶ ん 長 い わ ね 太 田 君 一 人 で 行 く の"
-              }
+              },
+              "reviewedAt": "2026-08-26T12:45:38.244Z"
             },
             "kana": "ずいぶん ながいわね。おおたくん ひとりで いくの？",
             "segments": [
@@ -1623,5 +1625,5 @@
       }
     ]
   },
-  "updatedAt": "2026-08-14T00:17:06.892Z"
+  "updatedAt": "2026-08-26T12:45:38.245Z"
 }

@@ -29,6 +29,9 @@ import { lesson24Practice } from "../lesson24-practice-data.ts";
 import { lesson25Practice } from "../lesson25-practice-data.ts";
 import { lesson26Practice } from "../lesson26-practice-data.ts";
 import { lesson27Practice } from "../lesson27-practice-data.ts";
+import { lesson28Practice } from "../lesson28-practice-data.ts";
+import { lesson29Practice } from "../lesson29-practice-data.ts";
+import { lesson30Practice } from "../lesson30-practice-data.ts";
 
 const practices = {
   lesson1: lesson1Practice,
@@ -57,7 +60,10 @@ const practices = {
   lesson24: lesson24Practice,
   lesson25: lesson25Practice,
   lesson26: lesson26Practice,
-  lesson27: lesson27Practice
+  lesson27: lesson27Practice,
+  lesson28: lesson28Practice,
+  lesson29: lesson29Practice,
+  lesson30: lesson30Practice
 };
 
 function lessonIdFromPage() {
@@ -87,7 +93,9 @@ root.textContent = "加载练习...";
 async function bootstrap() {
   if (!practiceSessionApi.isAuthenticated()) {
     if (embeddedPreview) {
-      createRoot(root).render(<PracticePreview practice={{ ...fallbackPractice, preview: true }} localPractice={localPractice} />);
+      // The embedding page owns top-level navigation; an iframe redirect is often blocked.
+      root.textContent = "请先登录，正在跳转...";
+      window.parent.postMessage({ type: "JAPAFLOW_AUTH_REQUIRED" }, window.location.origin);
       return;
     }
     root.textContent = "请先登录后继续练习，正在跳转...";

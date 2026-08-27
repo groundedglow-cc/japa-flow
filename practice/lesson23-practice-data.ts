@@ -211,21 +211,20 @@ const activities: PracticeActivity[] = [
         confidenceNote: "ASR 完整覆盖例1和正式题 1-4，并识别到例2；正式题 5-8 的答案按教材印刷题干和例2句型补全。"
       }
     },
-    assets: [],
-    layout: [
-      { type: "example", content: { label: "[例1]", before: "森さんは 何時ごろ 来ますか。", beforeKana: "もりさんは なんじごろ きますか。", after: [text("森さんが 何時ごろ 来るか 知って いますか。")], afterKana: "もりさんが なんじごろ くるか しって いますか。" } },
-      { type: "example", content: { label: "[例2]", before: "今日 森さんは 来ます。", beforeKana: "きょう もりさんは きます。", after: [text("甲：今日 森さんは 来ますか。\n乙1：さあ、来るか 来ないか 分かりません。\n乙2：来るか どうか 分かりません。")], afterKana: "きょう もりさんは きますか。\nさあ、くるか こないか わかりません。\nくるか どうか わかりません。" } }
-    ],
-    items: [
+    assets: [], layout: [], itemGroups: [
+      { id: "l23-p1-a4-g1", example: { label: "[例1]", before: "森さんは 何時ごろ 来ますか。", beforeKana: "もりさんは なんじごろ きますか。", after: [text("森さんが 何時ごろ 来るか 知って いますか。")], afterKana: "もりさんが なんじごろ くるか しって いますか。" }, items: [
       answerItem("l23-p1-a4-q1", "1", "卒業式は 何時に 始まりますか。", "卒業式が 何時に 始まるか 知って いますか。", { promptKana: "そつぎょうしきは なんじに はじまりますか。", answerSource: "audio" }),
       answerItem("l23-p1-a4-q2", "2", "だれが 今 会社の 車を 運転して いますか。", "だれが 今 会社の 車を 運転して いるか 知って いますか。", { promptKana: "だれが いま かいしゃの くるまを うんてんして いますか。", answerSource: "audio" }),
       answerItem("l23-p1-a4-q3", "3", "この 箱の 中に 何が ありますか。", "この 箱の 中に 何が あるか 知って いますか。", { promptKana: "この はこの なかに なにが ありますか。", answerSource: "audio" }),
-      answerItem("l23-p1-a4-q4", "4", "森さんは どこへ 出かけましたか。", "森さんが どこへ 出かけたか 知って いますか。", { promptKana: "もりさんは どこへ でかけましたか。", answerSource: "audio" }),
+      answerItem("l23-p1-a4-q4", "4", "森さんは どこへ 出かけましたか。", "森さんが どこへ 出かけたか 知って いますか。", { promptKana: "もりさんは どこへ でかけましたか。", answerSource: "audio" })
+      ] },
+      { id: "l23-p1-a4-g2", example: { label: "[例2]", before: "今日 森さんは 来ます。", beforeKana: "きょう もりさんは きます。", after: [text("甲：今日 森さんは 来ますか。\n乙1：さあ、来るか 来ないか 分かりません。\n乙2：来るか どうか 分かりません。")], afterKana: "きょう もりさんは きますか。\nさあ、くるか こないか わかりません。\nくるか どうか わかりません。" }, items: [
       dialogueItem("l23-p1-a4-q5", "5", "明日 雪が 降ります。", "甲：明日 雪が 降りますか。\n乙1：さあ、降るか 降らないか 分かりません。\n乙2：降るか どうか 分かりません。", "あした ゆきが ふります。"),
       dialogueItem("l23-p1-a4-q6", "6", "キムさんは お酒を 飲みます。", "甲：キムさんは お酒を 飲みますか。\n乙1：さあ、飲むか 飲まないか 分かりません。\n乙2：飲むか どうか 分かりません。", "キムさんは おさけを のみます。"),
       dialogueItem("l23-p1-a4-q7", "7", "李さんは まだ 会社に います。", "甲：李さんは まだ 会社に いますか。\n乙1：さあ、いるか いないか 分かりません。\n乙2：いるか どうか 分かりません。", "りさんは まだ かいしゃに います。"),
       dialogueItem("l23-p1-a4-q8", "8", "来週 暇です。", "甲：来週 暇ですか。\n乙1：さあ、暇か 暇では ないか 分かりません。\n乙2：暇か どうか 分かりません。", "らいしゅう ひまです。")
-    ]
+      ] }
+    ], items: []
   },
   {
     id: "l23-p1-a5",
@@ -236,19 +235,18 @@ const activities: PracticeActivity[] = [
     interaction: "pattern_substitution",
     answerUnit: "sentence",
     responseScope: "sentence_only",
-    assets: [],
-    layout: [
-      { type: "example", content: { label: "[例1]", before: "この 仕事は いつ 終わりますか／分かりません", beforeKana: "この しごとは いつ おわりますか／わかりません", after: [text("この 仕事が いつ 終わるか 分かりません。")], afterKana: "この しごとが いつ おわるか わかりません。" } },
-      { type: "example", content: { label: "[例2]", before: "北京へ 帰りますか／分かりません", beforeKana: "ペキンへ かえりますか／わかりません", after: [text("北京へ 帰るか どうか 分かりません。")], afterKana: "ペキンへ かえるか どうか わかりません。" } }
-    ],
-    items: [
+    assets: [], layout: [], itemGroups: [
+      { id: "l23-p1-a5-g1", example: { label: "[例1]", before: "この 仕事は いつ 終わりますか／分かりません", beforeKana: "この しごとは いつ おわりますか／わかりません", after: [text("この 仕事が いつ 終わるか 分かりません。")], afterKana: "この しごとが いつ おわるか わかりません。" }, items: [
       answerItem("l23-p1-a5-q1", "1", "東京駅まで 何で 行きますか／分かりません", "東京駅まで 何で 行くか 分かりません。", { promptKana: "とうきょうえきまで なんで いきますか／わかりません" }),
       answerItem("l23-p1-a5-q2", "2", "書類を どこに 置きましたか／忘れました", "書類を どこに 置いたか 忘れました。", { promptKana: "しょるいを どこに おきましたか／わすれました" }),
-      answerItem("l23-p1-a5-q3", "3", "李さんは いつ 中国へ 帰りますか／知って いますか", "李さんが いつ 中国へ 帰るか 知って いますか。", { promptKana: "りさんは いつ ちゅうごくへ かえりますか／しって いますか" }),
+      answerItem("l23-p1-a5-q3", "3", "李さんは いつ 中国へ 帰りますか／知って いますか", "李さんが いつ 中国へ 帰るか 知って いますか。", { promptKana: "りさんは いつ ちゅうごくへ かえりますか／しって いますか" })
+      ] },
+      { id: "l23-p1-a5-g2", example: { label: "[例2]", before: "北京へ 帰りますか／分かりません", beforeKana: "ペキンへ かえりますか／わかりません", after: [text("北京へ 帰るか どうか 分かりません。")], afterKana: "ペキンへ かえるか どうか わかりません。" }, items: [
       answerItem("l23-p1-a5-q4", "4", "間違いが ありませんか／もう 一度 見て ください", "間違いが あるか どうか、もう 一度 見て ください。", { promptKana: "まちがいが ありませんか／もう いちど みて ください" }),
       answerItem("l23-p1-a5-q5", "5", "窓を 閉めましたか／確かめて ください", "窓を 閉めたか どうか 確かめて ください。", { promptKana: "まどを しめましたか／たしかめて ください" }),
       answerItem("l23-p1-a5-q6", "6", "仕事が 終わりましたか／小野さんに 聞いて ください", "仕事が 終わったか どうか 小野さんに 聞いて ください。", { promptKana: "しごとが おわりましたか／おのさんに きいて ください" })
-    ]
+      ] }
+    ], items: []
   },
   {
     id: "l23-p1-a6",
@@ -378,7 +376,7 @@ const activities: PracticeActivity[] = [
       { id: "l23-p2-a4-word-bank", kind: "exercise_image", imagePath: exerciseImage("book1_lesson23_2_4.png") }
     ],
     displayAssets: ["l23-p2-a4-word-bank"],
-    layout: [{ type: "word_bank", words: ["来ます", "います", "ありません", "始まります"].map((word) => text(word)) }],
+    layout: [],
     items: [
       blankItem("l23-p2-a4-q1", "1", [text("展覧会が いつから（"), blank("answer"), text("）か 分かりません。")], { answer: "始まる" }, { promptKana: "てんらんかいが いつから（　）か わかりません。", expectedUnit: "word" }),
       blankItem("l23-p2-a4-q2", "2", [text("この 書類に 間違いが あるか（"), blank("answer"), text("）か 確かめて ください。")], { answer: "ない" }, { promptKana: "この しょるいに まちがいが あるか（　）か たしかめて ください。", expectedUnit: "word" }),

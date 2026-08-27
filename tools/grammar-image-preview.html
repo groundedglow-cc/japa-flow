@@ -113,7 +113,6 @@
       }
 
       .lesson-panel-head,
-      .viewer-head,
       .image-head {
         display: flex;
         align-items: center;
@@ -125,13 +124,11 @@
         margin-bottom: 12px;
       }
 
-      .lesson-panel-head strong,
-      .viewer-head strong {
+      .lesson-panel-head strong {
         font-size: 15px;
       }
 
       .lesson-panel-head span,
-      .viewer-count,
       .image-head span {
         color: var(--muted);
         font-size: 12px;
@@ -214,10 +211,6 @@
         gap: 18px;
         min-width: 0;
         padding: 22px;
-      }
-
-      .viewer-head h2 {
-        margin-top: 4px;
       }
 
       .image-stack {
@@ -421,13 +414,6 @@
         const lesson = lessons[activeLessonNo - 1];
         summary.textContent = `第 ${activeLessonNo} 课 · ${lesson.pages.length} 张`;
         viewer.innerHTML = `
-          <div class="viewer-head">
-            <div>
-              <p class="eyebrow">第${activeLessonNo}课</p>
-              <h2>语法图片</h2>
-            </div>
-            <span class="viewer-count">${lesson.pages.length} 张</span>
-          </div>
           <div class="image-stack">
             ${lesson.pages.map((pageNo, index) => `
               <figure class="image-frame">

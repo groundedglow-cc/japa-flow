@@ -1,62 +1,822 @@
 {
   "lessonId": "lesson17",
   "sourceImages": [
-    { "section": "basic", "path": "course-assets/by-lesson/lesson17/page206.webp", "pageNo": 206 },
-    { "section": "application", "path": "course-assets/by-lesson/lesson17/page211.webp", "pageNo": 211 }
+    {
+      "section": "basic",
+      "path": "course-assets/by-lesson/lesson17/page206.webp",
+      "pageNo": 206
+    },
+    {
+      "section": "application",
+      "path": "course-assets/by-lesson/lesson17/page211.webp",
+      "pageNo": 211
+    }
   ],
   "basicText": {
     "title": "わたしは 新しい 洋服が 欲しいです",
     "basicSentences": [
-      { "id": "l17-basic-s001", "order": 1, "text": "わたしは 新しい 洋服が 欲しいです。", "kana": "わたしは あたらしい ようふくが ほしいです。", "segments": [{ "text": "わたしは " }, { "text": "新しい", "ruby": "あたらしい" }, { "text": " " }, { "text": "洋服", "ruby": "ようふく" }, { "text": "が " }, { "text": "欲", "ruby": "ほ" }, { "text": "しいです。" }], "translationZh": "我想要一件新西服。", "confidence": "high", "rawText": "1. わたしは 新しい 洋服が 欲しいです。" },
-      { "id": "l17-basic-s002", "order": 2, "text": "わたしは 映画を 見たいです。", "kana": "わたしは えいがを みたいです。", "segments": [{ "text": "わたしは " }, { "text": "映画", "ruby": "えいが" }, { "text": "を " }, { "text": "見", "ruby": "み" }, { "text": "たいです。" }], "translationZh": "我想看电影。", "confidence": "high", "rawText": "2. わたしは 映画を 見たいです。" },
-      { "id": "l17-basic-s003", "order": 3, "text": "いっしょに お茶を 飲みませんか。", "kana": "いっしょに おちゃを のみませんか。", "segments": [{ "text": "いっしょに " }, { "text": "お茶", "ruby": "おちゃ" }, { "text": "を " }, { "text": "飲", "ruby": "の" }, { "text": "みませんか。" }], "translationZh": "一起喝茶好吗？", "confidence": "high", "rawText": "3. いっしょに お茶を 飲みませんか。" },
-      { "id": "l17-basic-s004", "order": 4, "text": "ちょっと 休みましょう。", "kana": "ちょっと やすみましょう。", "segments": [{ "text": "ちょっと " }, { "text": "休", "ruby": "やす" }, { "text": "みましょう。" }], "translationZh": "休息一下吧。", "confidence": "high", "rawText": "4. ちょっと 休みましょう。" }
+      {
+        "id": "l17-basic-s001",
+        "order": 1,
+        "text": "わたしは 新しい 洋服が 欲しいです。",
+        "kana": "わたしは あたらしい ようふくが ほしいです。",
+        "segments": [
+          {
+            "text": "わたしは "
+          },
+          {
+            "text": "新しい",
+            "ruby": "あたらしい"
+          },
+          {
+            "text": " "
+          },
+          {
+            "text": "洋服",
+            "ruby": "ようふく"
+          },
+          {
+            "text": "が "
+          },
+          {
+            "text": "欲",
+            "ruby": "ほ"
+          },
+          {
+            "text": "しいです。"
+          }
+        ],
+        "translationZh": "我想要一件新西服。",
+        "confidence": "high",
+        "rawText": "1. わたしは 新しい 洋服が 欲しいです。"
+      },
+      {
+        "id": "l17-basic-s002",
+        "order": 2,
+        "text": "わたしは 映画を 見たいです。",
+        "kana": "わたしは えいがを みたいです。",
+        "segments": [
+          {
+            "text": "わたしは "
+          },
+          {
+            "text": "映画",
+            "ruby": "えいが"
+          },
+          {
+            "text": "を "
+          },
+          {
+            "text": "見",
+            "ruby": "み"
+          },
+          {
+            "text": "たいです。"
+          }
+        ],
+        "translationZh": "我想看电影。",
+        "confidence": "high",
+        "rawText": "2. わたしは 映画を 見たいです。"
+      },
+      {
+        "id": "l17-basic-s003",
+        "order": 3,
+        "text": "いっしょに お茶を 飲みませんか。",
+        "kana": "いっしょに おちゃを のみませんか。",
+        "segments": [
+          {
+            "text": "いっしょに "
+          },
+          {
+            "text": "お茶",
+            "ruby": "おちゃ"
+          },
+          {
+            "text": "を "
+          },
+          {
+            "text": "飲",
+            "ruby": "の"
+          },
+          {
+            "text": "みませんか。"
+          }
+        ],
+        "translationZh": "一起喝茶好吗？",
+        "confidence": "high",
+        "rawText": "3. いっしょに お茶を 飲みませんか。"
+      },
+      {
+        "id": "l17-basic-s004",
+        "order": 4,
+        "text": "ちょっと 休みましょう。",
+        "kana": "ちょっと やすみましょう。",
+        "segments": [
+          {
+            "text": "ちょっと "
+          },
+          {
+            "text": "休",
+            "ruby": "やす"
+          },
+          {
+            "text": "みましょう。"
+          }
+        ],
+        "translationZh": "休息一下吧。",
+        "confidence": "high",
+        "rawText": "4. ちょっと 休みましょう。"
+      }
     ],
     "dialogues": [
-      { "id": "l17-basic-dialogue-001", "label": "A", "lines": [
-        { "id": "l17-basic-dialogue-001-line-001", "speaker": "甲", "text": "今 何が いちばん 欲しいですか。", "kana": "いま なにが いちばん ほしいですか。", "segments": [{ "text": "今", "ruby": "いま" }, { "text": " " }, { "text": "何", "ruby": "なに" }, { "text": "が いちばん " }, { "text": "欲", "ruby": "ほ" }, { "text": "しいですか。" }], "translationZh": "现在最想要什么？", "confidence": "high", "rawText": "甲：今 何が いちばん 欲しいですか。" },
-        { "id": "l17-basic-dialogue-001-line-002", "speaker": "乙", "text": "安い 車が 欲しいです。", "kana": "やすい くるまが ほしいです。", "segments": [{ "text": "安い", "ruby": "やすい" }, { "text": " " }, { "text": "車", "ruby": "くるま" }, { "text": "が " }, { "text": "欲", "ruby": "ほ" }, { "text": "しいです。" }], "translationZh": "我想要一辆便宜的车。", "confidence": "high", "rawText": "乙：安い 車が 欲しいです。" }
-      ] },
-      { "id": "l17-basic-dialogue-002", "label": "B", "lines": [
-        { "id": "l17-basic-dialogue-002-line-001", "speaker": "甲", "text": "今日 デパートへ 買い物に 行きます。李さんも いっしょに どうですか。", "kana": "きょう デパートへ かいものに いきます。りさんも いっしょに どうですか。", "segments": [{ "text": "今日", "ruby": "きょう" }, { "text": " デパートへ " }, { "text": "買い物", "ruby": "かいもの" }, { "text": "に " }, { "text": "行", "ruby": "い" }, { "text": "きます。" }, { "text": "李", "ruby": "り" }, { "text": "さんも いっしょに どうですか。" }], "translationZh": "今天我去百货商店买东西。小李也一起去怎么样？", "confidence": "high", "rawText": "甲：今日 デパートへ 買い物に 行きます。李さんも いっしょに どうですか。" },
-        { "id": "l17-basic-dialogue-002-line-002", "speaker": "乙", "text": "はい、ぜひ 行きたいです。", "kana": "はい、ぜひ いきたいです。", "segments": [{ "text": "はい、ぜひ " }, { "text": "行", "ruby": "い" }, { "text": "きたいです。" }], "translationZh": "好的，我一定想去。", "confidence": "high", "rawText": "乙：はい、ぜひ 行きたいです。" }
-      ] },
-      { "id": "l17-basic-dialogue-003", "label": "C", "lines": [
-        { "id": "l17-basic-dialogue-003-line-001", "speaker": "甲", "text": "李さん、何を 食べたいですか。", "kana": "りさん、なにを たべたいですか。", "segments": [{ "text": "李", "ruby": "り" }, { "text": "さん、" }, { "text": "何", "ruby": "なに" }, { "text": "を " }, { "text": "食", "ruby": "た" }, { "text": "べたいですか。" }], "translationZh": "小李，你想吃什么？", "confidence": "high", "rawText": "甲：李さん、何を 食べたいですか。" },
-        { "id": "l17-basic-dialogue-003-line-002", "speaker": "乙", "text": "何でも いいです。", "kana": "なんでも いいです。", "segments": [{ "text": "何", "ruby": "なん" }, { "text": "でも いいです。" }], "translationZh": "什么都可以。", "confidence": "high", "rawText": "乙：何でも いいです。" }
-      ] },
-      { "id": "l17-basic-dialogue-004", "label": "D", "lines": [
-        { "id": "l17-basic-dialogue-004-line-001", "speaker": "甲", "text": "土曜日の 午後、コンサートへ 行きませんか。", "kana": "どようびの ごご、コンサートへ いきませんか。", "segments": [{ "text": "土曜日", "ruby": "どようび" }, { "text": "の " }, { "text": "午後", "ruby": "ごご" }, { "text": "、コンサートへ " }, { "text": "行", "ruby": "い" }, { "text": "きませんか。" }], "translationZh": "星期六下午去听音乐会好吗？", "confidence": "high", "rawText": "甲：土曜日の 午後、コンサートへ 行きませんか。" },
-        { "id": "l17-basic-dialogue-004-line-002", "speaker": "乙", "text": "いいですね。行きましょう。", "kana": "いいですね。いきましょう。", "segments": [{ "text": "いいですね。" }, { "text": "行", "ruby": "い" }, { "text": "きましょう。" }], "translationZh": "好啊。一起去吧。", "confidence": "high", "rawText": "乙：いいですね。行きましょう。" }
-      ] }
+      {
+        "id": "l17-basic-dialogue-001",
+        "label": "A",
+        "lines": [
+          {
+            "id": "l17-basic-dialogue-001-line-001",
+            "speaker": "甲",
+            "text": "今 何が いちばん 欲しいですか。",
+            "kana": "いま なにが いちばん ほしいですか。",
+            "segments": [
+              {
+                "text": "今",
+                "ruby": "いま"
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "何",
+                "ruby": "なに"
+              },
+              {
+                "text": "が いちばん "
+              },
+              {
+                "text": "欲",
+                "ruby": "ほ"
+              },
+              {
+                "text": "しいですか。"
+              }
+            ],
+            "translationZh": "现在最想要什么？",
+            "confidence": "high",
+            "rawText": "甲：今 何が いちばん 欲しいですか。"
+          },
+          {
+            "id": "l17-basic-dialogue-001-line-002",
+            "speaker": "乙",
+            "text": "安い 車が 欲しいです。",
+            "kana": "やすい くるまが ほしいです。",
+            "segments": [
+              {
+                "text": "安い",
+                "ruby": "やすい"
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "車",
+                "ruby": "くるま"
+              },
+              {
+                "text": "が "
+              },
+              {
+                "text": "欲",
+                "ruby": "ほ"
+              },
+              {
+                "text": "しいです。"
+              }
+            ],
+            "translationZh": "我想要一辆便宜的车。",
+            "confidence": "high",
+            "rawText": "乙：安い 車が 欲しいです。"
+          }
+        ]
+      },
+      {
+        "id": "l17-basic-dialogue-002",
+        "label": "B",
+        "lines": [
+          {
+            "id": "l17-basic-dialogue-002-line-001",
+            "speaker": "甲",
+            "text": "今日 デパートへ 買い物に 行きます。李さんも いっしょに どうですか。",
+            "kana": "きょう デパートへ かいものに いきます。りさんも いっしょに どうですか。",
+            "segments": [
+              {
+                "text": "今日",
+                "ruby": "きょう"
+              },
+              {
+                "text": " デパートへ "
+              },
+              {
+                "text": "買い物",
+                "ruby": "かいもの"
+              },
+              {
+                "text": "に "
+              },
+              {
+                "text": "行",
+                "ruby": "い"
+              },
+              {
+                "text": "きます。"
+              },
+              {
+                "text": "李",
+                "ruby": "り"
+              },
+              {
+                "text": "さんも いっしょに どうですか。"
+              }
+            ],
+            "translationZh": "今天我去百货商店买东西。小李也一起去怎么样？",
+            "confidence": "high",
+            "rawText": "甲：今日 デパートへ 買い物に 行きます。李さんも いっしょに どうですか。"
+          },
+          {
+            "id": "l17-basic-dialogue-002-line-002",
+            "speaker": "乙",
+            "text": "はい、ぜひ 行きたいです。",
+            "kana": "はい、ぜひ いきたいです。",
+            "segments": [
+              {
+                "text": "はい、ぜひ "
+              },
+              {
+                "text": "行",
+                "ruby": "い"
+              },
+              {
+                "text": "きたいです。"
+              }
+            ],
+            "translationZh": "好的，我一定想去。",
+            "confidence": "high",
+            "rawText": "乙：はい、ぜひ 行きたいです。"
+          }
+        ]
+      },
+      {
+        "id": "l17-basic-dialogue-003",
+        "label": "C",
+        "lines": [
+          {
+            "id": "l17-basic-dialogue-003-line-001",
+            "speaker": "甲",
+            "text": "李さん、何を 食べたいですか。",
+            "kana": "りさん、なにを たべたいですか。",
+            "segments": [
+              {
+                "text": "李",
+                "ruby": "り"
+              },
+              {
+                "text": "さん、"
+              },
+              {
+                "text": "何",
+                "ruby": "なに"
+              },
+              {
+                "text": "を "
+              },
+              {
+                "text": "食",
+                "ruby": "た"
+              },
+              {
+                "text": "べたいですか。"
+              }
+            ],
+            "translationZh": "小李，你想吃什么？",
+            "confidence": "high",
+            "rawText": "甲：李さん、何を 食べたいですか。"
+          },
+          {
+            "id": "l17-basic-dialogue-003-line-002",
+            "speaker": "乙",
+            "text": "何でも いいです。",
+            "kana": "なんでも いいです。",
+            "segments": [
+              {
+                "text": "何",
+                "ruby": "なん"
+              },
+              {
+                "text": "でも いいです。"
+              }
+            ],
+            "translationZh": "什么都可以。",
+            "confidence": "high",
+            "rawText": "乙：何でも いいです。"
+          }
+        ]
+      },
+      {
+        "id": "l17-basic-dialogue-004",
+        "label": "D",
+        "lines": [
+          {
+            "id": "l17-basic-dialogue-004-line-001",
+            "speaker": "甲",
+            "text": "土曜日の 午後、コンサートへ 行きませんか。",
+            "kana": "どようびの ごご、コンサートへ いきませんか。",
+            "segments": [
+              {
+                "text": "土曜日",
+                "ruby": "どようび"
+              },
+              {
+                "text": "の "
+              },
+              {
+                "text": "午後",
+                "ruby": "ごご"
+              },
+              {
+                "text": "、コンサートへ "
+              },
+              {
+                "text": "行",
+                "ruby": "い"
+              },
+              {
+                "text": "きませんか。"
+              }
+            ],
+            "translationZh": "星期六下午去听音乐会好吗？",
+            "confidence": "high",
+            "rawText": "甲：土曜日の 午後、コンサートへ 行きませんか。"
+          },
+          {
+            "id": "l17-basic-dialogue-004-line-002",
+            "speaker": "乙",
+            "text": "いいですね。行きましょう。",
+            "kana": "いいですね。いきましょう。",
+            "segments": [
+              {
+                "text": "いいですね。"
+              },
+              {
+                "text": "行",
+                "ruby": "い"
+              },
+              {
+                "text": "きましょう。"
+              }
+            ],
+            "translationZh": "好啊。一起去吧。",
+            "confidence": "high",
+            "rawText": "乙：いいですね。行きましょう。"
+          }
+        ]
+      }
     ]
   },
   "applicationText": {
     "title": "初詣",
     "blocks": [
-      { "id": "l17-app-block-001", "type": "narration", "text": "新年。为使自己今年的心愿能够实现，许多人去神社参拜。小李也跟着小野到神社去看一看。", "kana": null, "translationZh": "新年。为了实现自己今年的心愿，许多人到神社参拜。小李也跟着小野去神社看看。", "confidence": "high", "rawText": "新年。为使自己今年的心愿能够实现，许多人去神社参拜。小李也跟着小野到神社去看一看。" },
-      { "id": "l17-app-block-002", "type": "scene", "text": "（参拜后）", "kana": null, "translationZh": "参拜后。", "confidence": "high", "rawText": "（参拜后）" },
-      { "id": "l17-app-block-003", "type": "dialogue", "lines": [
-        { "id": "l17-app-block-003-line-001", "speaker": "李", "text": "小野さんは 何を お願いしましたか。", "kana": "おのさんは なにを おねがいしましたか。", "translationZh": "小野女士祈求了什么？", "confidence": "high", "rawText": "李：小野さんは 何を お願いしましたか。" },
-        { "id": "l17-app-block-003-line-002", "speaker": "小野", "text": "健康と 恋愛です。", "kana": "けんこうと れんあいです。", "translationZh": "健康和恋爱。", "confidence": "high", "rawText": "小野：健康と 恋愛です。" },
-        { "id": "l17-app-block-003-line-003", "speaker": "李", "text": "恋愛ですか？", "kana": "れんあいですか？", "translationZh": "恋爱吗？", "confidence": "high", "rawText": "李：恋愛ですか？" },
-        { "id": "l17-app-block-003-line-004", "speaker": "小野", "text": "ええ。今年中に 結婚したいです。", "kana": "ええ。ことしじゅうに けっこんしたいです。", "translationZh": "嗯。我想在今年内结婚。", "confidence": "high", "rawText": "小野：ええ。今年中に 結婚したいです。" },
-        { "id": "l17-app-block-003-line-005", "speaker": "李", "text": "相手は いますか。", "kana": "あいては いますか。", "translationZh": "有对象吗？", "confidence": "high", "rawText": "李：相手は いますか。" },
-        { "id": "l17-app-block-003-line-006", "speaker": "小野", "text": "いいえ。まず 恋人が 欲しいですね。", "kana": "いいえ。まず こいびとが ほしいですね。", "translationZh": "没有。首先得有个恋人啊。", "confidence": "high", "rawText": "小野：いいえ。まず 恋人が 欲しいですね。" },
-        { "id": "l17-app-block-003-line-007", "speaker": "李", "text": "どんな 男性が いいですか。", "kana": "どんな だんせいが いいですか。", "translationZh": "什么样的男性好呢？", "confidence": "high", "rawText": "李：どんな 男性が いいですか。" },
-        { "id": "l17-app-block-003-line-008", "speaker": "小野", "text": "まじめで 優しい 人が いいですね。", "kana": "まじめで やさしい ひとが いいですね。", "translationZh": "认真而温柔的人好。", "confidence": "high", "rawText": "小野：まじめで 優しい 人が いいですね。" },
-        { "id": "l17-app-block-003-line-009", "speaker": "李", "text": "じゃあ、森さんは どうですか。", "kana": "じゃあ、もりさんは どうですか。", "translationZh": "那么，森先生怎么样？", "confidence": "high", "rawText": "李：じゃあ、森さんは どうですか。" },
-        { "id": "l17-app-block-003-line-010", "speaker": "小野", "text": "（脸红）ええ？", "kana": "ええ？", "translationZh": "（脸红）哎？", "confidence": "high", "rawText": "小野：（脸红）ええ？" }
-      ] },
-      { "id": "l17-app-block-004", "type": "scene", "text": "（离开神社）", "kana": null, "translationZh": "离开神社时。", "confidence": "high", "rawText": "（离开神社）" },
-      { "id": "l17-app-block-005", "type": "dialogue", "lines": [
-        { "id": "l17-app-block-005-line-001", "speaker": "小野", "text": "ちょっと 寒いですね。温かい 物を 食べませんか。", "kana": "ちょっと さむいですね。あたたかい ものを たべませんか。", "translationZh": "有点冷啊。要不要吃点热的东西？", "confidence": "high", "rawText": "小野：ちょっと 寒いですね。温かい 物を 食べませんか。" },
-        { "id": "l17-app-block-005-line-002", "speaker": "李", "text": "そうですね。", "kana": "そうですね。", "translationZh": "是啊。", "confidence": "high", "rawText": "李：そうですね。" },
-        { "id": "l17-app-block-005-line-003", "speaker": "小野", "text": "何が いいですか。", "kana": "なにが いいですか。", "translationZh": "吃什么好呢？", "confidence": "high", "rawText": "小野：何が いいですか。" },
-        { "id": "l17-app-block-005-line-004", "speaker": "李", "text": "何でも いいですよ。", "kana": "なんでも いいですよ。", "translationZh": "什么都可以。", "confidence": "high", "rawText": "李：何でも いいですよ。" },
-        { "id": "l17-app-block-005-line-005", "speaker": "小野", "text": "じゃあ、お汁粉は どうですか。いい お店を 知って います。そこに 行きましょう。", "kana": "じゃあ、おしるこは どうですか。いい おみせを しって います。そこに いきましょう。", "translationZh": "那么，年糕小豆汤怎么样？我知道一家不错的店。去那里吧。", "confidence": "high", "rawText": "小野：じゃあ、お汁粉は どうですか。いい お店を 知って います。そこに 行きましょう。" },
-        { "id": "l17-app-block-005-line-006", "speaker": "李", "text": "お汁粉？ ぜひ 食べたいです。", "kana": "おしるこ？ ぜひ たべたいです。", "translationZh": "年糕小豆汤？我一定想吃。", "confidence": "high", "rawText": "李：お汁粉？ ぜひ 食べたいです。" }
-      ] }
+      {
+        "id": "l17-app-block-001",
+        "type": "narration",
+        "text": "新年。为使自己今年的心愿能够实现，许多人去神社参拜。小李也跟着小野到神社去看一看。",
+        "kana": null,
+        "translationZh": "新年。为了实现自己今年的心愿，许多人到神社参拜。小李也跟着小野去神社看看。",
+        "confidence": "high",
+        "rawText": "新年。为使自己今年的心愿能够实现，许多人去神社参拜。小李也跟着小野到神社去看一看。"
+      },
+      {
+        "id": "l17-app-block-002",
+        "type": "scene",
+        "text": "（参拜后）",
+        "kana": null,
+        "translationZh": "参拜后。",
+        "confidence": "high",
+        "rawText": "（参拜后）"
+      },
+      {
+        "id": "l17-app-block-003",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l17-app-block-003-line-001",
+            "speaker": "李",
+            "text": "小野さんは 何を お願いしましたか。",
+            "kana": "おのさんは なにを おねがいしましたか。",
+            "translationZh": "小野女士祈求了什么？",
+            "confidence": "high",
+            "rawText": "李：小野さんは 何を お願いしましたか。",
+            "segments": [
+              {
+                "text": "小野",
+                "ruby": "おの"
+              },
+              {
+                "text": "さんは "
+              },
+              {
+                "text": "何",
+                "ruby": "なに"
+              },
+              {
+                "text": "を "
+              },
+              {
+                "text": "お願い",
+                "ruby": "おねがい"
+              },
+              {
+                "text": "しましたか。"
+              }
+            ]
+          },
+          {
+            "id": "l17-app-block-003-line-002",
+            "speaker": "小野",
+            "text": "健康と 恋愛です。",
+            "kana": "けんこうと れんあいです。",
+            "translationZh": "健康和恋爱。",
+            "confidence": "high",
+            "rawText": "小野：健康と 恋愛です。",
+            "segments": [
+              {
+                "text": "健康",
+                "ruby": "けんこう"
+              },
+              {
+                "text": "と "
+              },
+              {
+                "text": "恋愛",
+                "ruby": "れんあい"
+              },
+              {
+                "text": "です。"
+              }
+            ]
+          },
+          {
+            "id": "l17-app-block-003-line-003",
+            "speaker": "李",
+            "text": "恋愛ですか？",
+            "kana": "れんあいですか？",
+            "translationZh": "恋爱吗？",
+            "confidence": "high",
+            "rawText": "李：恋愛ですか？",
+            "segments": [
+              {
+                "text": "恋愛",
+                "ruby": "れんあい"
+              },
+              {
+                "text": "ですか？"
+              }
+            ]
+          },
+          {
+            "id": "l17-app-block-003-line-004",
+            "speaker": "小野",
+            "text": "ええ。今年中に 結婚したいです。",
+            "kana": "ええ。ことしじゅうに けっこんしたいです。",
+            "translationZh": "嗯。我想在今年内结婚。",
+            "confidence": "high",
+            "rawText": "小野：ええ。今年中に 結婚したいです。",
+            "segments": [
+              {
+                "text": "ええ。"
+              },
+              {
+                "text": "今年中",
+                "ruby": "ことしじゅう"
+              },
+              {
+                "text": "に "
+              },
+              {
+                "text": "結婚",
+                "ruby": "けっこん"
+              },
+              {
+                "text": "したいです。"
+              }
+            ]
+          },
+          {
+            "id": "l17-app-block-003-line-005",
+            "speaker": "李",
+            "text": "相手は いますか。",
+            "kana": "あいては いますか。",
+            "translationZh": "有对象吗？",
+            "confidence": "high",
+            "rawText": "李：相手は いますか。",
+            "segments": [
+              {
+                "text": "相手",
+                "ruby": "あいて"
+              },
+              {
+                "text": "は いますか。"
+              }
+            ]
+          },
+          {
+            "id": "l17-app-block-003-line-006",
+            "speaker": "小野",
+            "text": "いいえ。まず 恋人が 欲しいですね。",
+            "kana": "いいえ。まず こいびとが ほしいですね。",
+            "translationZh": "没有。首先得有个恋人啊。",
+            "confidence": "high",
+            "rawText": "小野：いいえ。まず 恋人が 欲しいですね。",
+            "segments": [
+              {
+                "text": "いいえ。まず "
+              },
+              {
+                "text": "恋人",
+                "ruby": "こいびと"
+              },
+              {
+                "text": "が "
+              },
+              {
+                "text": "欲しい",
+                "ruby": "ほしい"
+              },
+              {
+                "text": "ですね。"
+              }
+            ]
+          },
+          {
+            "id": "l17-app-block-003-line-007",
+            "speaker": "李",
+            "text": "どんな 男性が いいですか。",
+            "kana": "どんな だんせいが いいですか。",
+            "translationZh": "什么样的男性好呢？",
+            "confidence": "high",
+            "rawText": "李：どんな 男性が いいですか。",
+            "segments": [
+              {
+                "text": "どんな "
+              },
+              {
+                "text": "男性",
+                "ruby": "だんせい"
+              },
+              {
+                "text": "が いいですか。"
+              }
+            ]
+          },
+          {
+            "id": "l17-app-block-003-line-008",
+            "speaker": "小野",
+            "text": "まじめで 優しい 人が いいですね。",
+            "kana": "まじめで やさしい ひとが いいですね。",
+            "translationZh": "认真而温柔的人好。",
+            "confidence": "high",
+            "rawText": "小野：まじめで 優しい 人が いいですね。",
+            "segments": [
+              {
+                "text": "まじめで "
+              },
+              {
+                "text": "優しい",
+                "ruby": "やさしい"
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "人",
+                "ruby": "ひと"
+              },
+              {
+                "text": "が いいですね。"
+              }
+            ]
+          },
+          {
+            "id": "l17-app-block-003-line-009",
+            "speaker": "李",
+            "text": "じゃあ、森さんは どうですか。",
+            "kana": "じゃあ、もりさんは どうですか。",
+            "translationZh": "那么，森先生怎么样？",
+            "confidence": "high",
+            "rawText": "李：じゃあ、森さんは どうですか。",
+            "segments": [
+              {
+                "text": "じゃあ、"
+              },
+              {
+                "text": "森",
+                "ruby": "もり"
+              },
+              {
+                "text": "さんは どうですか。"
+              }
+            ]
+          },
+          {
+            "id": "l17-app-block-003-line-010",
+            "speaker": "小野",
+            "text": "（脸红）ええ？",
+            "kana": "ええ？",
+            "translationZh": "（脸红）哎？",
+            "confidence": "high",
+            "rawText": "小野：（脸红）ええ？",
+            "segments": [
+              {
+                "text": "（脸红）",
+                "ruby": "りぇんほん"
+              },
+              {
+                "text": "ええ？"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "l17-app-block-004",
+        "type": "scene",
+        "text": "（离开神社）",
+        "kana": null,
+        "translationZh": "离开神社时。",
+        "confidence": "high",
+        "rawText": "（离开神社）"
+      },
+      {
+        "id": "l17-app-block-005",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l17-app-block-005-line-001",
+            "speaker": "小野",
+            "text": "ちょっと 寒いですね。温かい 物を 食べませんか。",
+            "kana": "ちょっと さむいですね。あたたかい ものを たべませんか。",
+            "translationZh": "有点冷啊。要不要吃点热的东西？",
+            "confidence": "high",
+            "rawText": "小野：ちょっと 寒いですね。温かい 物を 食べませんか。",
+            "segments": [
+              {
+                "text": "ちょっと "
+              },
+              {
+                "text": "寒い",
+                "ruby": "さむい"
+              },
+              {
+                "text": "ですね。"
+              },
+              {
+                "text": "温かい",
+                "ruby": "あたたかい"
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "物",
+                "ruby": "もの"
+              },
+              {
+                "text": "を "
+              },
+              {
+                "text": "食べません",
+                "ruby": "たべません"
+              },
+              {
+                "text": "か。"
+              }
+            ]
+          },
+          {
+            "id": "l17-app-block-005-line-002",
+            "speaker": "李",
+            "text": "そうですね。",
+            "kana": "そうですね。",
+            "translationZh": "是啊。",
+            "confidence": "high",
+            "rawText": "李：そうですね。",
+            "segments": [
+              {
+                "text": "そうですね。"
+              }
+            ]
+          },
+          {
+            "id": "l17-app-block-005-line-003",
+            "speaker": "小野",
+            "text": "何が いいですか。",
+            "kana": "なにが いいですか。",
+            "translationZh": "吃什么好呢？",
+            "confidence": "high",
+            "rawText": "小野：何が いいですか。",
+            "segments": [
+              {
+                "text": "何",
+                "ruby": "なに"
+              },
+              {
+                "text": "が いいですか。"
+              }
+            ]
+          },
+          {
+            "id": "l17-app-block-005-line-004",
+            "speaker": "李",
+            "text": "何でも いいですよ。",
+            "kana": "なんでも いいですよ。",
+            "translationZh": "什么都可以。",
+            "confidence": "high",
+            "rawText": "李：何でも いいですよ。",
+            "segments": [
+              {
+                "text": "何でも",
+                "ruby": "なんでも"
+              },
+              {
+                "text": " いいですよ。"
+              }
+            ]
+          },
+          {
+            "id": "l17-app-block-005-line-005",
+            "speaker": "小野",
+            "text": "じゃあ、お汁粉は どうですか。いい お店を 知って います。そこに 行きましょう。",
+            "kana": "じゃあ、おしるこは どうですか。いい おみせを しって います。そこに いきましょう。",
+            "translationZh": "那么，年糕小豆汤怎么样？我知道一家不错的店。去那里吧。",
+            "confidence": "high",
+            "rawText": "小野：じゃあ、お汁粉は どうですか。いい お店を 知って います。そこに 行きましょう。",
+            "segments": [
+              {
+                "text": "じゃあ、お汁粉",
+                "ruby": "おしるこ"
+              },
+              {
+                "text": "は どうですか。いい "
+              },
+              {
+                "text": "お店",
+                "ruby": "おみせ"
+              },
+              {
+                "text": "を "
+              },
+              {
+                "text": "知って",
+                "ruby": "しって"
+              },
+              {
+                "text": " います。そこに "
+              },
+              {
+                "text": "行きましょう",
+                "ruby": "いきましょう"
+              },
+              {
+                "text": "。"
+              }
+            ]
+          },
+          {
+            "id": "l17-app-block-005-line-006",
+            "speaker": "李",
+            "text": "お汁粉？ ぜひ 食べたいです。",
+            "kana": "おしるこ？ ぜひ たべたいです。",
+            "translationZh": "年糕小豆汤？我一定想吃。",
+            "confidence": "high",
+            "rawText": "李：お汁粉？ ぜひ 食べたいです。",
+            "segments": [
+              {
+                "text": "お汁粉",
+                "ruby": "おしるこ"
+              },
+              {
+                "text": "？ ぜひ "
+              },
+              {
+                "text": "食べたい",
+                "ruby": "たべたい"
+              },
+              {
+                "text": "です。"
+              }
+            ]
+          }
+        ]
+      }
     ]
   },
   "warnings": []

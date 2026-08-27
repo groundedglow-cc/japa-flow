@@ -30,7 +30,8 @@ const localStorage = new MemoryStorage();
 localStorage.setItem("light_blog_token", "test-token");
 
 globalThis.window = {
-  localStorage
+  localStorage,
+  location: { hostname: "localhost" }
 };
 
 const requests = [];

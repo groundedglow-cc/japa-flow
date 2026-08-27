@@ -2511,9 +2511,9 @@
         "itemIndex": 45,
         "text": "いってまいります",
         "label": "いってまいります",
-        "start": 76.354,
+        "start": 76.154,
         "end": 77.582,
-        "duration": 1.228,
+        "duration": 1.428,
         "speechUnitCount": 8,
         "wordCount": 8,
         "matchScore": 1,
@@ -2528,10 +2528,10 @@
           156,
           157
         ],
-        "method": "audio-vad-sequential-alignment-with-azure-verification",
+        "method": "manual-admin-adjustment",
         "timingSource": "audio-silence-detection",
         "timingConfidence": "high",
-        "confidence": "high",
+        "confidence": "approved",
         "alignmentIssues": [],
         "alignmentWarnings": [],
         "speechActivity": {
@@ -2552,7 +2552,8 @@
           "note": "Automatically approved by the audio-boundary alignment workflow.",
           "matchScore": 1,
           "asrText": "い っ て ま い り ま す"
-        }
+        },
+        "reviewedAt": "2026-08-24T06:58:26.201Z"
       }
     },
     {
@@ -2631,9 +2632,9 @@
         "itemIndex": 47,
         "text": "いってらっしゃい",
         "label": "いってらっしゃい",
-        "start": 80.596,
+        "start": 80.196,
         "end": 81.638,
-        "duration": 1.042,
+        "duration": 1.442,
         "speechUnitCount": 8,
         "wordCount": 8,
         "matchScore": 1,
@@ -2648,10 +2649,10 @@
           170,
           171
         ],
-        "method": "audio-vad-sequential-alignment-with-azure-verification",
+        "method": "manual-admin-adjustment",
         "timingSource": "audio-silence-detection",
         "timingConfidence": "high",
-        "confidence": "high",
+        "confidence": "approved",
         "alignmentIssues": [],
         "alignmentWarnings": [],
         "speechActivity": {
@@ -2672,7 +2673,8 @@
           "note": "Automatically approved by the audio-boundary alignment workflow.",
           "matchScore": 1,
           "asrText": "い っ て ら っ し ゃ い"
-        }
+        },
+        "reviewedAt": "2026-08-24T06:58:36.020Z"
       }
     },
     {
@@ -3050,5 +3052,6 @@
         "provider": "azure-speech-sdk-continuous-recognition"
       }
     ]
-  }
+  },
+  "updatedAt": "2026-08-24T06:58:36.022Z"
 }

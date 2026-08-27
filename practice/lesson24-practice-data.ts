@@ -150,17 +150,16 @@ const activities: PracticeActivity[] = [
     answerUnit: "sentence",
     responseScope: "answer_only",
     responseScopeHint: answerOnlyHint,
-    assets: [],
-    layout: [
-      { type: "example", content: { label: "[例1]", before: "日本料理は どうですか。（きれいです／おいしいです）", beforeKana: "にほんりょうりは どうですか。（きれいです／おいしいです）", after: [text("きれいで おいしいと 思います。")], afterKana: "きれいで おいしいと おもいます。" } },
-      { type: "example", content: { label: "[例2]", before: "四川料理は どうですか。（とても おいしいです／辛いです）", beforeKana: "しせんりょうりは どうですか。（とても おいしいです／からいです）", after: [text("とても おいしいですが、辛いと 思います。")], afterKana: "とても おいしいですが、からいと おもいます。" } }
-    ],
-    items: [
+    assets: [], layout: [], itemGroups: [
+      { id: "l24-p1-a2-g1", example: { label: "[例1]", before: "日本料理は どうですか。（きれいです／おいしいです）", beforeKana: "にほんりょうりは どうですか。（きれいです／おいしいです）", after: [text("きれいで おいしいと 思います。")], afterKana: "きれいで おいしいと おもいます。" }, items: [
       answerItem("l24-p1-a2-q1", "1", "この お店は どうですか。（安いです／おいしいです）", "安くて おいしいと 思います。", { promptKana: "この おみせは どうですか。（やすいです／おいしいです）", responseScope: "answer_only", responseScopeHint: answerOnlyHint }),
-      answerItem("l24-p1-a2-q2", "2", "この コンピュータは どうですか。（簡単です／便利です）", "簡単で 便利だと 思います。", { promptKana: "この コンピュータは どうですか。（かんたんです／べんりです）", responseScope: "answer_only", responseScopeHint: answerOnlyHint }),
+      answerItem("l24-p1-a2-q2", "2", "この コンピュータは どうですか。（簡単です／便利です）", "簡単で 便利だと 思います。", { promptKana: "この コンピュータは どうですか。（かんたんです／べんりです）", responseScope: "answer_only", responseScopeHint: answerOnlyHint })
+      ] },
+      { id: "l24-p1-a2-g2", example: { label: "[例2]", before: "四川料理は どうですか。（とても おいしいです／辛いです）", beforeKana: "しせんりょうりは どうですか。（とても おいしいです／からいです）", after: [text("とても おいしいですが、辛いと 思います。")], afterKana: "とても おいしいですが、からいと おもいます。" }, items: [
       answerItem("l24-p1-a2-q3", "3", "この ネクタイは どうですか。（悪く ないです／少し 派手です）", "悪く ないですが、少し 派手だと 思います。", { promptKana: "この ネクタイは どうですか。（わるく ないです／すこし はでです）", responseScope: "answer_only", responseScopeHint: answerOnlyHint }),
       answerItem("l24-p1-a2-q4", "4", "法律の 勉強は どうですか。（難しいです／役に 立ちます）", "難しいですが、役に 立つと 思います。", { promptKana: "ほうりつの べんきょうは どうですか。（むずかしいです／やくに たちます）", responseScope: "answer_only", responseScopeHint: answerOnlyHint })
-    ]
+      ] }
+    ], items: []
   },
   {
     id: "l24-p1-a3",
@@ -264,23 +263,22 @@ const activities: PracticeActivity[] = [
     interaction: "pattern_substitution",
     answerUnit: "sentence",
     responseScope: "sentence_only",
-    assets: [],
-    layout: [
-      { type: "example", content: { label: "[例1]", before: "東京タワー", beforeKana: "とうきょうタワー", after: [text("東京タワーへ 行きたいんですが、どうやって 行きますか。")], afterKana: "とうきょうタワーへ いきたいんですが、どうやって いきますか。" } },
-      { type: "example", content: { label: "[例2]", before: "使い方を 教えます", beforeKana: "つかいかたを おしえます", after: [text("すみませんが、使い方を 教えて くださいませんか。")], afterKana: "すみませんが、つかいかたを おしえて くださいませんか。" } }
-    ],
-    items: [
+    assets: [], layout: [], itemGroups: [
+      { id: "l24-p1-a6-g1", example: { label: "[例1]", before: "東京タワー", beforeKana: "とうきょうタワー", after: [text("東京タワーへ 行きたいんですが、どうやって 行きますか。")], afterKana: "とうきょうタワーへ いきたいんですが、どうやって いきますか。" }, items: [
       answerItem("l24-p1-a6-q1", "1", "新宿", "新宿へ 行きたいんですが、どうやって 行きますか。", { promptKana: "しんじゅく" }),
       answerItem("l24-p1-a6-q2", "2", "横浜", "横浜へ 行きたいんですが、どうやって 行きますか。", { promptKana: "よこはま" }),
       answerItem("l24-p1-a6-q3", "3", "JC企画", "JC企画へ 行きたいんですが、どうやって 行きますか。", { promptKana: "JCきかく" }),
       answerItem("l24-p1-a6-q4", "4", "東京大学", "東京大学へ 行きたいんですが、どうやって 行きますか。", { promptKana: "とうきょうだいがく" }),
-      answerItem("l24-p1-a6-q5", "5", "箱根の 美術館", "箱根の 美術館へ 行きたいんですが、どうやって 行きますか。", { promptKana: "はこねの びじゅつかん" }),
+      answerItem("l24-p1-a6-q5", "5", "箱根の 美術館", "箱根の 美術館へ 行きたいんですが、どうやって 行きますか。", { promptKana: "はこねの びじゅつかん" })
+      ] },
+      { id: "l24-p1-a6-g2", example: { label: "[例2]", before: "使い方を 教えます", beforeKana: "つかいかたを おしえます", after: [text("すみませんが、使い方を 教えて くださいませんか。")], afterKana: "すみませんが、つかいかたを おしえて くださいませんか。" }, items: [
       answerItem("l24-p1-a6-q6", "6", "読み方を 教えます", "すみませんが、読み方を 教えて くださいませんか。", { promptKana: "よみかたを おしえます" }),
       answerItem("l24-p1-a6-q7", "7", "もう 一度 言います", "すみませんが、もう 一度 言って くださいませんか。", { promptKana: "もう いちど いいます" }),
       answerItem("l24-p1-a6-q8", "8", "ゆっくり 言います", "すみませんが、ゆっくり 言って くださいませんか。", { promptKana: "ゆっくり いいます" }),
       answerItem("l24-p1-a6-q9", "9", "紙に 書きます", "すみませんが、紙に 書いて くださいませんか。", { promptKana: "かみに かきます" }),
       answerItem("l24-p1-a6-q10", "10", "地図を かきます", "すみませんが、地図を かいて くださいませんか。", { promptKana: "ちずを かきます" })
-    ]
+      ] }
+    ], items: []
   },
   {
     id: "l24-p1-a7",
@@ -329,8 +327,7 @@ const activities: PracticeActivity[] = [
     ],
     displayAssets: ["l24-p2-a1-word-bank"],
     layout: [
-      { type: "example", content: { label: "[例]", beforeParts: [text("長島さんは 焼酎が いちばん（"), blank("example"), text("）と 言いました。")], beforeKana: "ながしまさんは しょうちゅうが いちばん（　）と いいました。", after: [text("好きだ")], afterKana: "すきだ" } },
-      { type: "word_bank", words: ["好きです", "吸いません", "上手です", "来ません", "火曜日でした", "食べた ことが ありません"].map((word) => text(word)) }
+      { type: "example", content: { label: "[例]", beforeParts: [text("長島さんは 焼酎が いちばん（"), blank("example"), text("）と 言いました。")], beforeKana: "ながしまさんは しょうちゅうが いちばん（　）と いいました。", after: [text("好きだ")], afterKana: "すきだ" } }
     ],
     items: [
       blankItem("l24-p2-a1-q1", "1", [text("この 絵は とても（"), blank("answer"), text("）と 思います。")], { answer: "上手だ" }, { promptKana: "この えは とても（　）と おもいます。" }),
@@ -387,8 +384,7 @@ const activities: PracticeActivity[] = [
     ],
     displayAssets: ["l24-p2-a3-listening-choice"],
     layout: [
-      { type: "example", content: { label: "[例]", before: "どうして 食べないんですか。", beforeKana: "どうして たべないんですか。", after: [text("①")], afterKana: "いち" } },
-      { type: "word_bank", words: listeningChoices.map((choice, index) => text(`${index + 1}. ${choice.label}`)) }
+      { type: "example", content: { label: "[例]", before: "どうして 食べないんですか。", beforeKana: "どうして たべないんですか。", after: [text("①")], afterKana: "いち" } }
     ],
     items: [
       choiceItem("l24-p2-a3-q1", "1", "田中さんが いつ 来るか 知って いますか。", ["c2"], { promptKana: "たなかさんが いつ くるか しって いますか。", choices: listeningChoices }),

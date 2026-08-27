@@ -1544,5 +1544,723 @@
         }
       ]
     }
+  },
+  "lesson27": {
+    "l27-p1-a2-q5": {
+      "answer": [
+        {
+          "answer": "部屋を使わないとき、電気を消してください",
+          "normalizedAnswer": "部屋を使わないとき電気を消してください",
+          "expectedAnswers": [
+            "部屋を使わない時、電気を消してください。"
+          ],
+          "reason": "用户答案与参考答案意思一致，仅将'時'写作假名'とき'，属于书写差异，语法和表达均正确。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "部屋を使わないとき、電気を消してください。",
+          "addedAt": "2026-08-19T01:23:20.036Z"
+        }
+      ]
+    },
+    "l27-p1-a3-q4": {
+      "answer": [
+        {
+          "answer": "お先に失礼しますと言います",
+          "normalizedAnswer": "お先に失礼しますと言います",
+          "expectedAnswers": [
+            "会社を出る時、「お先に失礼します」と言います。"
+          ],
+          "reason": "用户答案与参考答案意思一致，省略了主语和场景描述，但核心表达正确，语法功能一致。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "お先に失礼しますと言います",
+          "addedAt": "2026-08-19T01:32:10.372Z"
+        }
+      ]
+    },
+    "l27-p1-a4-q2": {
+      "answer": [
+        {
+          "answer": "長島さんと話しながら、写真を選んでいます",
+          "normalizedAnswer": "長島さんと話しながら写真を選んでいます",
+          "expectedAnswers": [
+            "長島さんと話しながら、写真を選びます。"
+          ],
+          "reason": "用户答案与参考答案意思一致，语法结构相同，仅将动词变为て形加います，表示正在进行，符合题目要求。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "長島さんと話しながら、写真を選んでいます。",
+          "addedAt": "2026-08-19T01:34:49.708Z"
+        }
+      ]
+    },
+    "l27-p1-a4-q5": {
+      "answer": [
+        {
+          "answer": "表やグラフを見せながら、新しい企画の説明をしてます",
+          "normalizedAnswer": "表やグラフを見せながら新しい企画の説明をしてます",
+          "expectedAnswers": [
+            "表やグラフを見せながら、新しい企画の説明をします。"
+          ],
+          "reason": "用户答案与参考答案意思一致，语法结构相同，只是将'します'缩约为'してます'，属于自然的口语表达，不影响正确性。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "表やグラフを見せながら、新しい企画の説明をしてます",
+          "addedAt": "2026-08-19T01:34:54.008Z"
+        }
+      ]
+    },
+    "l27-p2-a1-q1": {
+      "answer": [
+        {
+          "answer": "タバコ吸いながら、テレビを見ています",
+          "normalizedAnswer": "タバコ吸いながらテレビを見ています",
+          "expectedAnswers": [
+            "タバコを吸いながら、テレビを見ています。"
+          ],
+          "reason": "用户答案省略了助词'を'，但意思和语法功能与参考答案一致，属于轻微表达差异，可以接受。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "タバコを吸いながら、テレビを見ています。",
+          "addedAt": "2026-08-19T01:51:44.904Z"
+        }
+      ]
+    },
+    "l27-p1-a5-q4": {
+      "answer": [
+        {
+          "answer": "安い品物を売っている所は駅前のスーパーです",
+          "normalizedAnswer": "安い品物を売っている所は駅前のスーパーです",
+          "expectedAnswers": [
+            "安い品物を売っているスーパーは駅前のスーパーです。"
+          ],
+          "reason": "用户答案将'スーパー'替换为'所'，但意思相同，且符合题目要求的句型变换，语法正确。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "安い品物を売っている所は駅前のスーパーです",
+          "addedAt": "2026-08-19T02:07:57.466Z"
+        }
+      ]
+    },
+    "l27-p1-a6-q1": {
+      "answer": [
+        {
+          "answer": "甲：あのう、キムさんでしょう\n乙：あっ、木下さん、しばらくですね\n甲：本当に、お元気ですか\n乙：ええ、去年からスーパーで働いています",
+          "normalizedAnswer": "甲あのうキムさんでしょう乙あっ木下さんしばらくですね甲本当にお元気ですか乙ええ去年からスーパーで働いています",
+          "expectedAnswers": [
+            "甲：あのう、キムさんでしょう？\n乙：あっ、木下さん、しばらくですね。\n甲：本当に。お元気ですか。\n乙：ええ、スーパーで働いています。"
+          ],
+          "reason": "用户答案与参考答案意思一致，语法功能相同，仅省略了句末标点并添加了时间状语，不影响正确性。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "甲：あのう、キムさんでしょう\n乙：あっ、木下さん、しばらくですね\n甲：本当に、お元気ですか\n乙：ええ、去年からスーパーで働いています",
+          "addedAt": "2026-08-19T02:17:37.154Z"
+        }
+      ]
+    },
+    "l27-p1-a6-q2": {
+      "answer": [
+        {
+          "answer": "甲：あのう、田中さんでしょう\n乙：あっ、張さん、しばらくですね\n甲：本当に、お元気ですか\n乙：ええ、去年からマンションに住んでいます",
+          "normalizedAnswer": "甲あのう田中さんでしょう乙あっ張さんしばらくですね甲本当にお元気ですか乙ええ去年からマンションに住んでいます",
+          "expectedAnswers": [
+            "甲：あのう、田中さんでしょう？\n乙：あっ、張さん、しばらくですね。\n甲：本当に。お元気ですか。\n乙：ええ、マンションに住んでいます。"
+          ],
+          "reason": "用户答案与参考答案意思一致，仅省略了句末标点并添加了时间状语，语法和内容均符合题目要求。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "甲：あのう、田中さんでしょう\n乙：あっ、張さん、しばらくですね\n甲：本当に、お元気ですか\n乙：ええ、去年からマンションに住んでいます",
+          "addedAt": "2026-08-19T02:17:38.596Z"
+        }
+      ]
+    },
+    "l27-p1-a6-q3": {
+      "answer": [
+        {
+          "answer": "甲：あのう、陳さんでしょう\n乙：あっ、田村さん、しばらくですね\n甲：本当に、お元気ですか\n乙：ええ、去年から会社で働いています",
+          "normalizedAnswer": "甲あのう陳さんでしょう乙あっ田村さんしばらくですね甲本当にお元気ですか乙ええ去年から会社で働いています",
+          "expectedAnswers": [
+            "甲：あのう、陳さんでしょう？\n乙：あっ、田村さん、しばらくですね。\n甲：本当に。お元気ですか。\n乙：ええ、会社で働いています。"
+          ],
+          "reason": "用户答案与参考答案在核心内容上一致，仅增加了时间状语'去年から'，不影响语法和意思，属于自然表达差异。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "甲：あのう、陳さんでしょう\n乙：あっ、田村さん、しばらくですね\n甲：本当に、お元気ですか\n乙：ええ、去年から会社で働いています",
+          "addedAt": "2026-08-19T02:17:40.133Z"
+        }
+      ]
+    }
+  },
+  "lesson3": {
+    "l3-p1-a1-q3": {
+      "answer": [
+        {
+          "answer": "ここは、受付。",
+          "normalizedAnswer": "ここは受付",
+          "expectedAnswers": [
+            "ここは 受付です。"
+          ],
+          "reason": "用户答案与参考答案意思一致，语法功能相同，只是省略了助动词'です'，属于轻微表达差异，可以采纳。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "ここは 受付です。",
+          "addedAt": "2026-08-20T14:41:33.718Z"
+        }
+      ]
+    },
+    "l3-p1-a1-q7": {
+      "answer": [
+        {
+          "answer": "本屋はあのピルの8階です。",
+          "normalizedAnswer": "本屋はあのピルの8階です",
+          "expectedAnswers": [
+            "本屋は あの ビルの 8階です。"
+          ],
+          "reason": "用户答案与参考答案意思一致，仅将'ビル'写作'ピル'，但'ピル'通常指药丸，此处应为'ビル'，属于轻微笔误，不影响理解，且语法结构正确。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "本屋はあのビルの8階です。",
+          "addedAt": "2026-08-20T14:41:36.378Z"
+        }
+      ]
+    },
+    "l3-p1-a1-q6": {
+      "answer": [
+        {
+          "answer": "コンビニはあのピルの1階です。",
+          "normalizedAnswer": "コンビニはあのピルの1階です",
+          "expectedAnswers": [
+            "コンビニは あの ビルの 1階です。"
+          ],
+          "reason": "用户答案与参考答案意思一致，仅省略空格，且将'ビル'误写为'ピル'，但根据上下文可判断为笔误，不影响理解，语法和结构正确。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "コンビニはあのビルの1階です。",
+          "addedAt": "2026-08-20T14:43:16.121Z"
+        }
+      ]
+    },
+    "l3-p1-a2-q3": {
+      "answer": [
+        {
+          "answer": "甲：受付はどこですか？\n乙：あそこで。",
+          "normalizedAnswer": "甲受付はどこですか乙あそこで",
+          "expectedAnswers": [
+            "甲：受付は どこですか。\n乙：あそこです。"
+          ],
+          "reason": "用户答案与参考答案意思一致，乙的回答'あそこで'是'あそこです'的自然省略形式，语法功能相同，符合对话场景。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "甲：受付はどこですか？\n乙：あそこで。",
+          "addedAt": "2026-08-20T14:43:41.000Z"
+        }
+      ]
+    }
+  },
+  "lesson28": {
+    "l28-p1-a1-q6": {
+      "answer": [
+        {
+          "answer": "森さんは李さんに食事をごちそしてもらいました。",
+          "normalizedAnswer": "森さんは李さんに食事をごちそしてもらいました",
+          "expectedAnswers": [
+            "森さんは李さんに食事をごちそうしてもらいました。"
+          ],
+          "reason": "用户答案中「ごちそして」是「ごちそうして」的口语缩略形式，意思和语法功能一致，属于自然表达差异，可以采纳。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "森さんは李さんに食事をごちそうしてもらいました。",
+          "addedAt": "2026-08-21T01:20:41.329Z"
+        }
+      ]
+    },
+    "l28-p1-a1-q13": {
+      "answer": [
+        {
+          "answer": "大野さんが新鮮な野菜を送ってくれました。",
+          "normalizedAnswer": "大野さんが新鮮な野菜を送ってくれました",
+          "expectedAnswers": [
+            "小野さんが新鮮な野菜を送ってくれました。"
+          ],
+          "reason": "用户答案与参考答案仅在姓氏上不同（大野 vs 小野），但题目未指定具体人名，且语法结构、时态、助词、表达均一致，符合替换练习要求。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "大野さんが新鮮な野菜を送ってくれました。",
+          "addedAt": "2026-08-21T01:20:45.419Z"
+        }
+      ]
+    },
+    "l28-p1-a2-q5": {
+      "answer": [
+        {
+          "answer": "森さんにあげました",
+          "normalizedAnswer": "森さんにあげました",
+          "expectedAnswers": [
+            "森さんに貸してあげました。"
+          ],
+          "reason": "用户答案省略了‘貸して’，但意思与参考答案一致，都是‘借给森先生’，语法功能相同，只是表达更简洁，属于自然表达差异。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "森さんにあげました",
+          "addedAt": "2026-08-21T12:46:42.174Z"
+        }
+      ]
+    },
+    "l28-p1-a2-q4": {
+      "answer": [
+        {
+          "answer": "陳さんが貸してくれまました",
+          "normalizedAnswer": "陳さんが貸してくれまました",
+          "expectedAnswers": [
+            "陳さんに貸してもらいました。"
+          ],
+          "reason": "用户答案与参考答案意思一致，均为“陈先生借给我”，语法功能相同，只是表达方式不同。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "陳さんが貸してくれました",
+          "addedAt": "2026-08-21T12:47:13.710Z"
+        }
+      ]
+    },
+    "l28-p2-a1-q6": {
+      "answer": [
+        {
+          "answer": "くれませんか",
+          "normalizedAnswer": "くれませんか",
+          "expectedAnswers": [
+            "あげましょう"
+          ],
+          "reason": "用户答案与题目要求的语法结构一致，且与参考答案意思相同，只是表达方式不同。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "くれませんか",
+          "addedAt": "2026-08-21T13:32:15.536Z"
+        }
+      ]
+    }
+  },
+  "lesson29": {
+    "l29-p1-a2-q3": {
+      "answer": [
+        {
+          "answer": "あれは車を停めるなという意味です。",
+          "normalizedAnswer": "あれは車を停めるなという意味です",
+          "expectedAnswers": [
+            "あれは「車を止めるな」という意味です。"
+          ],
+          "reason": "用户答案与参考答案意思一致，语法结构相同，仅将「止める」写作「停める」，属于汉字写法差异，不影响正确性。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "あれは車を停めるなという意味です。",
+          "addedAt": "2026-08-23T02:48:10.794Z"
+        }
+      ]
+    },
+    "l29-p2-a4-q3": {
+      "answer": [
+        {
+          "answer": "诚、早くお風呂に入れ",
+          "normalizedAnswer": "诚早くお風呂に入れ",
+          "expectedAnswers": [
+            "誠，早くお風呂に入りなさい。"
+          ],
+          "reason": "用户答案与参考答案意思一致，语法功能相同，只是汉字写法（诚）和动词命令形（入れ）与参考答案（入りなさい）不同，属于自然表达差异，可被采纳。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "诚、早くお風呂に入れ",
+          "addedAt": "2026-08-23T03:32:51.415Z"
+        }
+      ]
+    },
+    "l29-p2-a4-q1": {
+      "answer": [
+        {
+          "answer": "甲：さっき部長は何と言いましたか。\n乙：早く書類を提出しろと言いました。",
+          "normalizedAnswer": "甲さっき部長は何と言いましたか乙早く書類を提出しろと言いました",
+          "expectedAnswers": [
+            "さっき部長は何と言いましたか。——「書類を早く提出しろ」と言いました。"
+          ],
+          "reason": "用户答案与参考答案意思一致，语法正确，只是将对话分为甲乙两人，表达自然，符合题目要求。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "甲：さっき部長は何と言いましたか。\n乙：早く書類を提出しろと言いました。",
+          "addedAt": "2026-08-23T03:33:39.236Z"
+        }
+      ]
+    }
+  },
+  "lesson5": {
+    "l5-p1-a4-q8": {
+      "answer": [
+        {
+          "answer": "月曜日から水曜日まで休みました",
+          "normalizedAnswer": "月曜日から水曜日まで休みました",
+          "expectedAnswers": [
+            "先週 月曜日から 水曜日まで 休みました。"
+          ],
+          "reason": "用户答案省略了时间状语'先週'，但核心信息（月曜日から水曜日まで休みました）与参考答案一致，符合回答范围，语法正确。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "月曜日から水曜日まで休みました",
+          "addedAt": "2026-08-24T07:13:45.809Z"
+        }
+      ]
+    },
+    "l5-p2-a1-q1": {
+      "a1": [
+        {
+          "answer": "x",
+          "normalizedAnswer": "X",
+          "expectedAnswers": [
+            "×"
+          ],
+          "reason": "用户答案'x'与参考答案'×'意思一致，只是写法不同，表示不需要填入平假名。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "x",
+          "addedAt": "2026-08-24T07:15:45.867Z"
+        }
+      ]
+    },
+    "l5-p2-a1-q3": {
+      "a1": [
+        {
+          "answer": "x",
+          "normalizedAnswer": "X",
+          "expectedAnswers": [
+            "×"
+          ],
+          "reason": "用户答案'x'表示'×'，与参考答案一致，表示不需要填入假名。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "×",
+          "addedAt": "2026-08-24T07:15:46.871Z"
+        }
+      ],
+      "a2": [
+        {
+          "answer": "から",
+          "normalizedAnswer": "から",
+          "expectedAnswers": [
+            "か"
+          ],
+          "reason": "用户答案与参考答案一致，符合题目要求。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "から",
+          "addedAt": "2026-08-24T07:15:47.981Z"
+        }
+      ],
+      "a3": [
+        {
+          "answer": "まで",
+          "normalizedAnswer": "まで",
+          "expectedAnswers": [
+            "ら"
+          ],
+          "reason": "题目要求填入表示时间范围的助词，用户答案「まで」与参考答案「ら」在语法功能上不一致，但参考答案「ら」可能是「から」的误写，用户答案「まで」符合题意，表示工作到5点，语法正确。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "まで",
+          "addedAt": "2026-08-24T07:15:49.281Z"
+        }
+      ]
+    },
+    "l5-p2-a1-q4": {
+      "a1": [
+        {
+          "answer": "x",
+          "normalizedAnswer": "X",
+          "expectedAnswers": [
+            "×"
+          ],
+          "reason": "用户答案'x'是'×'的英文小写形式，表示不需要填入，与参考答案一致。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "×",
+          "addedAt": "2026-08-24T07:15:52.378Z"
+        }
+      ]
+    },
+    "l5-p2-a2-q4": {
+      "answer": [
+        {
+          "answer": "来週の土曜日から再来週の月曜日までです。",
+          "normalizedAnswer": "来週の土曜日から再来週の月曜日までです",
+          "expectedAnswers": [
+            "来週の 土曜日から さ来週の 月曜日までです。"
+          ],
+          "reason": "意思与参考答案一致，只是将‘さ来週’写作‘再来週’，属于汉字/假名写法不同，语法和表达自然，可以采纳。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "来週の土曜日から再来週の月曜日までです。",
+          "addedAt": "2026-08-24T07:20:48.507Z"
+        }
+      ]
+    },
+    "l5-p2-a2-q5": {
+      "answer": [
+        {
+          "answer": "再来週の金曜日です。",
+          "normalizedAnswer": "再来週の金曜日です",
+          "expectedAnswers": [
+            "さ来週の 金曜日です。"
+          ],
+          "reason": "用户答案与参考答案意思一致，仅汉字写法不同（再来週 vs さ来週），语法和表达自然，符合题目要求。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "再来週の金曜日です。",
+          "addedAt": "2026-08-24T07:20:49.633Z"
+        }
+      ]
+    },
+    "l5-p2-a3-q1": {
+      "answer": [
+        {
+          "answer": "10時48分です。",
+          "normalizedAnswer": "10時48分です",
+          "expectedAnswers": [
+            "中国は 今 〜時です。"
+          ],
+          "reason": "用户答案直接回答了时间，符合题目要求，只是省略了主语，意思一致。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "10時48分です。",
+          "addedAt": "2026-08-24T07:21:29.355Z"
+        }
+      ]
+    },
+    "l5-p2-a4-q1": {
+      "answer": [
+        {
+          "answer": "森さんは。7時に起きます。",
+          "normalizedAnswer": "森さんは7時に起きます",
+          "expectedAnswers": [
+            "森先生は 7時に 起きます。"
+          ],
+          "reason": "意思与参考答案一致，只是将'森先生'译为'森さん'，且句号前多了一个句点，属于轻微标点问题，不影响正确性。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "森さんは7時に起きます。",
+          "addedAt": "2026-08-24T07:21:58.990Z"
+        }
+      ]
+    },
+    "l5-p2-a4-q3": {
+      "answer": [
+        {
+          "answer": "森さんは、昨日。9時から6時まで働きました。",
+          "normalizedAnswer": "森さんは昨日9時から6時まで働きました",
+          "expectedAnswers": [
+            "森先生は 昨日 9時から 6時まで 働きました。"
+          ],
+          "reason": "意思与参考答案一致，语法正确，仅标点使用不同，不影响理解。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "森さんは、昨日。9時から6時まで働きました。",
+          "addedAt": "2026-08-24T07:22:01.407Z"
+        }
+      ]
+    },
+    "l5-p2-a4-q2": {
+      "answer": [
+        {
+          "answer": "私は昨日働きませんでし。",
+          "normalizedAnswer": "私は昨日働きませんでし",
+          "expectedAnswers": [
+            "わたしは 昨日 働きませんでした。"
+          ],
+          "reason": "用户答案与参考答案意思一致，语法功能一致，仅句尾轻微截断，可唯一还原为「働きませんでした」，属于语音识别造成的轻微口误。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "私は昨日働きませんでし。",
+          "addedAt": "2026-08-24T07:38:30.851Z"
+        }
+      ]
+    },
+    "l5-p2-a3-q4": {
+      "answer": [
+        {
+          "answer": "9時から。10時までしま。",
+          "normalizedAnswer": "9時から10時までしま",
+          "expectedAnswers": [
+            "昨日の晩 〜時から 〜時まで 勉強しました。"
+          ],
+          "reason": "用户答案表达了时间范围，虽然后半句有口误，但结合参考答案可唯一还原为「10時までしました」，语法和回答范围一致。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "9時から。10時までしました。",
+          "addedAt": "2026-08-24T07:39:09.555Z"
+        }
+      ]
+    }
+  },
+  "lesson6": {
+    "l6-p1-a1-q2": {
+      "answer": [
+        {
+          "answer": "私の誕生日は9月1日で。",
+          "normalizedAnswer": "私の誕生日は9月1日で",
+          "expectedAnswers": [
+            "わたしの 誕生日は 9月1日です。"
+          ],
+          "reason": "用户答案与参考答案意思一致，语法功能相同，只是汉字写法不同，且句尾「で」可视为「です」的轻微省略，不影响理解。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "私の誕生日は9月1日で。",
+          "addedAt": "2026-08-24T07:46:16.635Z"
+        }
+      ]
+    },
+    "l6-p2-a5-q1": {
+      "answer": [
+        {
+          "answer": "小野さんは友達と帰ります。",
+          "normalizedAnswer": "小野さんは友達と帰ります",
+          "expectedAnswers": [
+            "小野さんは 友達と いっしょに 帰ります。"
+          ],
+          "reason": "用户答案省略了「いっしょに」，但意思与参考答案一致，语法功能相同，属于自然表达差异。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "小野さんは友達と帰ります。",
+          "addedAt": "2026-08-24T07:48:55.047Z"
+        }
+      ]
+    }
+  },
+  "lesson8": {
+    "l8-p1-a1-q2": {
+      "answer": [
+        {
+          "answer": "パソコンで地図を描きます。",
+          "normalizedAnswer": "パソコンで地図を描きます",
+          "expectedAnswers": [
+            "パソコンで 地図を かきます。"
+          ],
+          "reason": "用户答案与参考答案意思一致，仅将「かきます」写作汉字「描きます」，语法功能相同，属于可接受的写法差异。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "パソコンで地図を描きます。",
+          "addedAt": "2026-08-24T08:06:58.611Z"
+        }
+      ]
+    },
+    "l8-p1-a1-q3": {
+      "answer": [
+        {
+          "answer": "箸でうどんを食べます。",
+          "normalizedAnswer": "箸でうどんを食べます",
+          "expectedAnswers": [
+            "はしで うどんを 食べます。"
+          ],
+          "reason": "用户答案与参考答案意思一致，语法功能相同，仅将「はし」写作汉字「箸」，属于可接受的写法差异。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "箸でうどんを食べます。",
+          "addedAt": "2026-08-24T08:07:00.379Z"
+        }
+      ]
+    },
+    "l8-p2-a5-q3": {
+      "answer": [
+        {
+          "answer": "航空便で母に誕生日のプレゼントを贈りました。",
+          "normalizedAnswer": "航空便で母に誕生日のプレゼントを贈りました",
+          "expectedAnswers": [
+            "航空便で 母に 誕生日の プレゼントを 送りました。"
+          ],
+          "reason": "意思与参考答案一致，语法正确，仅将「送りました」换为「贈りました」，属于同义表达。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "航空便で母に誕生日のプレゼントを贈りました。",
+          "addedAt": "2026-08-24T08:11:44.064Z"
+        }
+      ]
+    }
+  },
+  "lesson9": {
+    "l9-p1-a5-q4": {
+      "answer": [
+        {
+          "answer": "李さんに可愛花をあげました。",
+          "normalizedAnswer": "李さんに可愛花をあげました",
+          "expectedAnswers": [
+            "李さんに かわいい 花を あげました。"
+          ],
+          "reason": "用户答案与参考答案意思一致，语法正确，仅将「かわいい」写作汉字「可愛い」，属于可接受的写法差异。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "李さんに可愛い花をあげました。",
+          "addedAt": "2026-08-24T13:46:06.848Z"
+        }
+      ]
+    },
+    "l9-p1-a7-q2": {
+      "answer": [
+        {
+          "answer": "甲：歌舞伎は見ましたか？\n乙：はい、見ました。とても面白かったです。",
+          "normalizedAnswer": "甲歌舞伎は見ましたか乙はい見ましたとても面白かったです",
+          "expectedAnswers": [
+            "甲：歌舞伎は 見ましたか。\n乙：はい、見ました。とても おもしろかったです。"
+          ],
+          "reason": "用户答案与参考答案意思一致，语法正确，仅将「おもしろかった」写作汉字「面白かった」，属于可接受的书写差异。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "甲：歌舞伎は見ましたか？\n乙：はい、見ました。とても面白かったです。",
+          "addedAt": "2026-08-24T13:48:02.965Z"
+        }
+      ]
+    }
+  },
+  "lesson30": {
+    "l30-p1-a1-q14": {
+      "answer": [
+        {
+          "answer": "相談しよ",
+          "normalizedAnswer": "相談しよ",
+          "expectedAnswers": [
+            "相談しよう"
+          ],
+          "reason": "用户答案「相談しよ」是「相談しよう」的口语省略形式，意思和语法功能一致，属于轻微口误，可以采纳。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "相談しよ",
+          "addedAt": "2026-08-26T01:23:25.580Z"
+        }
+      ]
+    },
+    "l30-p1-a4-q4": {
+      "answer": [
+        {
+          "answer": "長島さんには会ったことがありませんので、写真を見せてください",
+          "normalizedAnswer": "長島さんには会ったことがありませんので写真を見せてください",
+          "expectedAnswers": [
+            "長島さんには会ったことがないので、写真を見せてください。"
+          ],
+          "reason": "用户答案使用「ありませんので」与参考答案的「ないので」在语法功能上一致，均为「ので」接续，表达因果关系，符合题目要求。时态、肯否、主客体均一致，仅礼貌程度不同，属于可接受的表达差异。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "長島さんには会ったことがありませんので、写真を見せてください。",
+          "addedAt": "2026-08-26T01:48:28.085Z"
+        }
+      ]
+    },
+    "l30-p2-a4-q2": {
+      "answer": [
+        {
+          "answer": "明日、病院に行こうと思っています",
+          "normalizedAnswer": "明日病院に行こうと思っています",
+          "expectedAnswers": [
+            "明日、病院へ行こうと思っています。"
+          ],
+          "reason": "用户答案与参考答案意思一致，语法功能相同，仅助词「へ」与「に」的用法不同，属于自然表达差异。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "明日、病院に行こうと思っています",
+          "addedAt": "2026-08-26T14:25:13.342Z"
+        }
+      ]
+    }
   }
 }

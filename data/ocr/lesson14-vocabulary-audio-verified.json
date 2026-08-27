@@ -24,9 +24,9 @@
         "itemIndex": 1,
         "text": "ふなびん",
         "label": "船便",
-        "start": 0.99,
-        "end": 2.01,
-        "duration": 1.02,
+        "start": 0.815,
+        "end": 1.91,
+        "duration": 1.095,
         "speechUnitCount": 2,
         "wordCount": 2,
         "matchScore": 1,
@@ -35,12 +35,28 @@
           1,
           2
         ],
-        "method": "azure-speech-word-alignment",
+        "method": "audio-vad-sequential-alignment-with-azure-verification",
+        "timingSource": "audio-silence-detection",
+        "timingConfidence": "high",
         "confidence": "high",
+        "alignmentIssues": [],
+        "alignmentWarnings": [],
+        "speechActivity": {
+          "start": 1.065,
+          "end": 1.79,
+          "activeDuration": 0.725,
+          "regionCount": 1
+        },
+        "rawAzureTiming": {
+          "start": 1.03,
+          "end": 1.91,
+          "duration": 0.88
+        },
         "review": {
           "status": "approved",
-          "reviewedAt": "2026-08-05T11:36:42.674Z",
-          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "severity": "ok",
+          "reviewedAt": "2026-08-25T07:02:48.634Z",
+          "note": "Automatically approved by the audio-boundary alignment workflow.",
           "matchScore": 1,
           "asrText": "船 便"
         }
@@ -64,9 +80,9 @@
         "itemIndex": 2,
         "text": "しょるい",
         "label": "書類",
-        "start": 2.59,
-        "end": 3.69,
-        "duration": 1.1,
+        "start": 2.425,
+        "end": 3.464,
+        "duration": 1.039,
         "speechUnitCount": 2,
         "wordCount": 2,
         "matchScore": 1,
@@ -75,12 +91,28 @@
           3,
           4
         ],
-        "method": "azure-speech-word-alignment",
+        "method": "audio-vad-sequential-alignment-with-azure-verification",
+        "timingSource": "audio-silence-detection",
+        "timingConfidence": "high",
         "confidence": "high",
+        "alignmentIssues": [],
+        "alignmentWarnings": [],
+        "speechActivity": {
+          "start": 2.675,
+          "end": 3.344,
+          "activeDuration": 0.669,
+          "regionCount": 1
+        },
+        "rawAzureTiming": {
+          "start": 2.63,
+          "end": 3.63,
+          "duration": 1
+        },
         "review": {
           "status": "approved",
-          "reviewedAt": "2026-08-05T11:36:42.674Z",
-          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "severity": "ok",
+          "reviewedAt": "2026-08-25T07:02:48.634Z",
+          "note": "Automatically approved by the audio-boundary alignment workflow.",
           "matchScore": 1,
           "asrText": "書 類"
         }
@@ -104,24 +136,41 @@
         "itemIndex": 3,
         "text": "げんこう",
         "label": "原稿",
-        "start": 6.11,
-        "end": 6.53,
-        "duration": 0.42,
-        "speechUnitCount": 1,
-        "wordCount": 1,
-        "matchScore": 0,
-        "asrText": "地",
+        "start": 3.884,
+        "end": 5.192,
+        "duration": 1.308,
+        "speechUnitCount": 2,
+        "wordCount": 2,
+        "matchScore": 1,
+        "asrText": "原 稿",
         "wordIndexes": [
-          8
+          5,
+          6
         ],
-        "method": "azure-speech-word-alignment",
-        "confidence": "needs-review",
+        "method": "audio-vad-sequential-alignment-with-azure-verification",
+        "timingSource": "audio-silence-detection",
+        "timingConfidence": "high",
+        "confidence": "high",
+        "alignmentIssues": [],
+        "alignmentWarnings": [],
+        "speechActivity": {
+          "start": 4.134,
+          "end": 5.072,
+          "activeDuration": 0.939,
+          "regionCount": 1
+        },
+        "rawAzureTiming": {
+          "start": 4.19,
+          "end": 4.99,
+          "duration": 0.8
+        },
         "review": {
           "status": "approved",
-          "reviewedAt": "2026-08-05T11:36:42.674Z",
-          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
-          "matchScore": 0,
-          "asrText": "地"
+          "severity": "ok",
+          "reviewedAt": "2026-08-25T07:02:48.634Z",
+          "note": "Automatically approved by the audio-boundary alignment workflow.",
+          "matchScore": 1,
+          "asrText": "原 稿"
         }
       }
     },
@@ -142,24 +191,41 @@
         "itemIndex": 4,
         "text": "きじ",
         "label": "記事",
-        "start": 7.19,
-        "end": 7.61,
-        "duration": 0.42,
-        "speechUnitCount": 1,
-        "wordCount": 1,
-        "matchScore": 0,
-        "asrText": "芽",
+        "start": 5.655,
+        "end": 6.41,
+        "duration": 0.755,
+        "speechUnitCount": 2,
+        "wordCount": 2,
+        "matchScore": 1,
+        "asrText": "記 事",
         "wordIndexes": [
-          9
+          7,
+          8
         ],
-        "method": "azure-speech-word-alignment",
-        "confidence": "needs-review",
+        "method": "audio-vad-sequential-alignment-with-azure-verification",
+        "timingSource": "audio-silence-detection",
+        "timingConfidence": "high",
+        "confidence": "high",
+        "alignmentIssues": [],
+        "alignmentWarnings": [],
+        "speechActivity": {
+          "start": 5.905,
+          "end": 6.29,
+          "activeDuration": 0.384,
+          "regionCount": 1
+        },
+        "rawAzureTiming": {
+          "start": 5.91,
+          "end": 6.55,
+          "duration": 0.64
+        },
         "review": {
           "status": "approved",
-          "reviewedAt": "2026-08-05T11:36:42.674Z",
-          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
-          "matchScore": 0,
-          "asrText": "芽"
+          "severity": "ok",
+          "reviewedAt": "2026-08-25T07:02:48.634Z",
+          "note": "Automatically approved by the audio-boundary alignment workflow.",
+          "matchScore": 1,
+          "asrText": "記 事"
         }
       }
     },
@@ -180,9 +246,9 @@
         "itemIndex": 5,
         "text": "メモ",
         "label": "メモ",
-        "start": 7.51,
-        "end": 7.85,
-        "duration": 0.34,
+        "start": 6.964,
+        "end": 7.716,
+        "duration": 0.752,
         "speechUnitCount": 1,
         "wordCount": 1,
         "matchScore": 0,
@@ -190,12 +256,30 @@
         "wordIndexes": [
           10
         ],
-        "method": "azure-speech-word-alignment",
-        "confidence": "needs-review",
+        "method": "audio-vad-sequential-alignment-with-azure-verification",
+        "timingSource": "audio-silence-detection",
+        "timingConfidence": "high",
+        "confidence": "high",
+        "alignmentIssues": [],
+        "alignmentWarnings": [
+          "low-asr-text-match:0"
+        ],
+        "speechActivity": {
+          "start": 7.214,
+          "end": 7.596,
+          "activeDuration": 0.381,
+          "regionCount": 1
+        },
+        "rawAzureTiming": {
+          "start": 7.55,
+          "end": 7.79,
+          "duration": 0.24
+        },
         "review": {
           "status": "approved",
-          "reviewedAt": "2026-08-05T11:36:42.674Z",
-          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "severity": "ok",
+          "reviewedAt": "2026-08-25T07:02:48.634Z",
+          "note": "Automatically approved by the audio-boundary alignment workflow.",
           "matchScore": 0,
           "asrText": "萌"
         }
@@ -218,9 +302,9 @@
         "itemIndex": 6,
         "text": "えきまえ",
         "label": "駅前",
-        "start": 8.79,
-        "end": 9.89,
-        "duration": 1.1,
+        "start": 8.675,
+        "end": 9.757,
+        "duration": 1.082,
         "speechUnitCount": 2,
         "wordCount": 2,
         "matchScore": 1,
@@ -229,12 +313,28 @@
           11,
           12
         ],
-        "method": "azure-speech-word-alignment",
+        "method": "audio-vad-sequential-alignment-with-azure-verification",
+        "timingSource": "audio-silence-detection",
+        "timingConfidence": "high",
         "confidence": "high",
+        "alignmentIssues": [],
+        "alignmentWarnings": [],
+        "speechActivity": {
+          "start": 8.925,
+          "end": 9.637,
+          "activeDuration": 0.712,
+          "regionCount": 1
+        },
+        "rawAzureTiming": {
+          "start": 8.83,
+          "end": 9.67,
+          "duration": 0.84
+        },
         "review": {
           "status": "approved",
-          "reviewedAt": "2026-08-05T11:36:42.674Z",
-          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "severity": "ok",
+          "reviewedAt": "2026-08-25T07:02:48.634Z",
+          "note": "Automatically approved by the audio-boundary alignment workflow.",
           "matchScore": 1,
           "asrText": "駅 前"
         }
@@ -258,9 +358,9 @@
         "itemIndex": 7,
         "text": "はし",
         "label": "橋",
-        "start": 10.87,
-        "end": 11.77,
-        "duration": 0.9,
+        "start": 10.781,
+        "end": 11.611,
+        "duration": 0.83,
         "speechUnitCount": 2,
         "wordCount": 2,
         "matchScore": 1,
@@ -269,12 +369,28 @@
           13,
           14
         ],
-        "method": "azure-speech-word-alignment",
+        "method": "audio-vad-sequential-alignment-with-azure-verification",
+        "timingSource": "audio-silence-detection",
+        "timingConfidence": "high",
         "confidence": "high",
+        "alignmentIssues": [],
+        "alignmentWarnings": [],
+        "speechActivity": {
+          "start": 11.031,
+          "end": 11.491,
+          "activeDuration": 0.46,
+          "regionCount": 1
+        },
+        "rawAzureTiming": {
+          "start": 10.91,
+          "end": 11.71,
+          "duration": 0.8
+        },
         "review": {
           "status": "approved",
-          "reviewedAt": "2026-08-05T11:36:42.674Z",
-          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "severity": "ok",
+          "reviewedAt": "2026-08-25T07:02:48.634Z",
+          "note": "Automatically approved by the audio-boundary alignment workflow.",
           "matchScore": 1,
           "asrText": "は し"
         }
@@ -297,9 +413,9 @@
         "itemIndex": 8,
         "text": "かど",
         "label": "角",
-        "start": 12.31,
-        "end": 13.01,
-        "duration": 0.7,
+        "start": 12.08,
+        "end": 12.862,
+        "duration": 0.782,
         "speechUnitCount": 1,
         "wordCount": 1,
         "matchScore": 1,
@@ -307,12 +423,28 @@
         "wordIndexes": [
           15
         ],
-        "method": "azure-speech-word-alignment",
+        "method": "audio-vad-sequential-alignment-with-azure-verification",
+        "timingSource": "audio-silence-detection",
+        "timingConfidence": "high",
         "confidence": "high",
+        "alignmentIssues": [],
+        "alignmentWarnings": [],
+        "speechActivity": {
+          "start": 12.33,
+          "end": 12.742,
+          "activeDuration": 0.413,
+          "regionCount": 1
+        },
+        "rawAzureTiming": {
+          "start": 12.35,
+          "end": 12.95,
+          "duration": 0.6
+        },
         "review": {
           "status": "approved",
-          "reviewedAt": "2026-08-05T11:36:42.674Z",
-          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "severity": "ok",
+          "reviewedAt": "2026-08-25T07:02:48.634Z",
+          "note": "Automatically approved by the audio-boundary alignment workflow.",
           "matchScore": 1,
           "asrText": "角"
         }
@@ -335,9 +467,9 @@
         "itemIndex": 9,
         "text": "おうだんほどう",
         "label": "横断歩道",
-        "start": 13.51,
-        "end": 14.97,
-        "duration": 1.46,
+        "start": 13.326,
+        "end": 14.836,
+        "duration": 1.51,
         "speechUnitCount": 4,
         "wordCount": 4,
         "matchScore": 1,
@@ -348,12 +480,28 @@
           18,
           19
         ],
-        "method": "azure-speech-word-alignment",
+        "method": "audio-vad-sequential-alignment-with-azure-verification",
+        "timingSource": "audio-silence-detection",
+        "timingConfidence": "high",
         "confidence": "high",
+        "alignmentIssues": [],
+        "alignmentWarnings": [],
+        "speechActivity": {
+          "start": 13.576,
+          "end": 14.716,
+          "activeDuration": 1.14,
+          "regionCount": 1
+        },
+        "rawAzureTiming": {
+          "start": 13.55,
+          "end": 14.91,
+          "duration": 1.36
+        },
         "review": {
           "status": "approved",
-          "reviewedAt": "2026-08-05T11:36:42.674Z",
-          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "severity": "ok",
+          "reviewedAt": "2026-08-25T07:02:48.634Z",
+          "note": "Automatically approved by the audio-boundary alignment workflow.",
           "matchScore": 1,
           "asrText": "横 断 歩 道"
         }
@@ -377,9 +525,9 @@
         "itemIndex": 10,
         "text": "みぎ",
         "label": "右",
-        "start": 15.47,
-        "end": 15.81,
-        "duration": 0.34,
+        "start": 15.214,
+        "end": 16.063,
+        "duration": 0.849,
         "speechUnitCount": 1,
         "wordCount": 1,
         "matchScore": 1,
@@ -387,12 +535,28 @@
         "wordIndexes": [
           20
         ],
-        "method": "azure-speech-word-alignment",
+        "method": "audio-vad-sequential-alignment-with-azure-verification",
+        "timingSource": "audio-silence-detection",
+        "timingConfidence": "high",
         "confidence": "high",
+        "alignmentIssues": [],
+        "alignmentWarnings": [],
+        "speechActivity": {
+          "start": 15.464,
+          "end": 15.943,
+          "activeDuration": 0.479,
+          "regionCount": 1
+        },
+        "rawAzureTiming": {
+          "start": 15.51,
+          "end": 15.75,
+          "duration": 0.24
+        },
         "review": {
           "status": "approved",
-          "reviewedAt": "2026-08-05T11:36:42.674Z",
-          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "severity": "ok",
+          "reviewedAt": "2026-08-25T07:02:48.634Z",
+          "note": "Automatically approved by the audio-boundary alignment workflow.",
           "matchScore": 1,
           "asrText": "右"
         }
@@ -416,9 +580,9 @@
         "itemIndex": 11,
         "text": "ひだり",
         "label": "左",
-        "start": 16.67,
-        "end": 17.61,
-        "duration": 0.94,
+        "start": 16.525,
+        "end": 17.454,
+        "duration": 0.929,
         "speechUnitCount": 1,
         "wordCount": 1,
         "matchScore": 1,
@@ -426,12 +590,28 @@
         "wordIndexes": [
           22
         ],
-        "method": "azure-speech-word-alignment",
+        "method": "audio-vad-sequential-alignment-with-azure-verification",
+        "timingSource": "audio-silence-detection",
+        "timingConfidence": "high",
         "confidence": "high",
+        "alignmentIssues": [],
+        "alignmentWarnings": [],
+        "speechActivity": {
+          "start": 16.775,
+          "end": 17.334,
+          "activeDuration": 0.559,
+          "regionCount": 1
+        },
+        "rawAzureTiming": {
+          "start": 16.71,
+          "end": 17.55,
+          "duration": 0.84
+        },
         "review": {
           "status": "approved",
-          "reviewedAt": "2026-08-05T11:36:42.674Z",
-          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "severity": "ok",
+          "reviewedAt": "2026-08-25T07:02:48.634Z",
+          "note": "Automatically approved by the audio-boundary alignment workflow.",
           "matchScore": 1,
           "asrText": "左"
         }
@@ -454,9 +634,9 @@
         "itemIndex": 12,
         "text": "こうさてん",
         "label": "交差点",
-        "start": 18.23,
-        "end": 19.61,
-        "duration": 1.38,
+        "start": 18.075,
+        "end": 19.431,
+        "duration": 1.356,
         "speechUnitCount": 3,
         "wordCount": 3,
         "matchScore": 1,
@@ -466,12 +646,28 @@
           24,
           25
         ],
-        "method": "azure-speech-word-alignment",
+        "method": "audio-vad-sequential-alignment-with-azure-verification",
+        "timingSource": "audio-silence-detection",
+        "timingConfidence": "high",
         "confidence": "high",
+        "alignmentIssues": [],
+        "alignmentWarnings": [],
+        "speechActivity": {
+          "start": 18.325,
+          "end": 19.311,
+          "activeDuration": 0.986,
+          "regionCount": 1
+        },
+        "rawAzureTiming": {
+          "start": 18.27,
+          "end": 19.39,
+          "duration": 1.12
+        },
         "review": {
           "status": "approved",
-          "reviewedAt": "2026-08-05T11:36:42.674Z",
-          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "severity": "ok",
+          "reviewedAt": "2026-08-25T07:02:48.634Z",
+          "note": "Automatically approved by the audio-boundary alignment workflow.",
           "matchScore": 1,
           "asrText": "交 差 点"
         }
@@ -495,9 +691,9 @@
         "itemIndex": 13,
         "text": "みち",
         "label": "道",
-        "start": 21.12,
-        "end": 21.3,
-        "duration": 0.18,
+        "start": 19.532,
+        "end": 20.494,
+        "duration": 0.962,
         "speechUnitCount": 1,
         "wordCount": 1,
         "matchScore": 1,
@@ -505,12 +701,30 @@
         "wordIndexes": [
           26
         ],
-        "method": "azure-speech-word-alignment",
+        "method": "audio-vad-sequential-alignment-with-azure-verification",
+        "timingSource": "audio-silence-detection",
+        "timingConfidence": "high",
         "confidence": "high",
+        "alignmentIssues": [],
+        "alignmentWarnings": [
+          "azure-timing-does-not-overlap-vad"
+        ],
+        "speechActivity": {
+          "start": 19.782,
+          "end": 20.374,
+          "activeDuration": 0.592,
+          "regionCount": 1
+        },
+        "rawAzureTiming": {
+          "start": 20.96,
+          "end": 21.24,
+          "duration": 0.28
+        },
         "review": {
           "status": "approved",
-          "reviewedAt": "2026-08-05T11:36:42.674Z",
-          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "severity": "ok",
+          "reviewedAt": "2026-08-25T07:02:48.634Z",
+          "note": "Automatically approved by the audio-boundary alignment workflow.",
           "matchScore": 1,
           "asrText": "道"
         }
@@ -533,9 +747,9 @@
         "itemIndex": 14,
         "text": "ドア",
         "label": "ドア",
-        "start": 21.2,
-        "end": 21.54,
-        "duration": 0.34,
+        "start": 20.851,
+        "end": 21.698,
+        "duration": 0.847,
         "speechUnitCount": 2,
         "wordCount": 2,
         "matchScore": 1,
@@ -544,12 +758,28 @@
           27,
           28
         ],
-        "method": "azure-speech-word-alignment",
+        "method": "audio-vad-sequential-alignment-with-azure-verification",
+        "timingSource": "audio-silence-detection",
+        "timingConfidence": "high",
         "confidence": "high",
+        "alignmentIssues": [],
+        "alignmentWarnings": [],
+        "speechActivity": {
+          "start": 21.101,
+          "end": 21.578,
+          "activeDuration": 0.478,
+          "regionCount": 1
+        },
+        "rawAzureTiming": {
+          "start": 21.24,
+          "end": 21.64,
+          "duration": 0.4
+        },
         "review": {
           "status": "approved",
-          "reviewedAt": "2026-08-05T11:36:42.674Z",
-          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "severity": "ok",
+          "reviewedAt": "2026-08-25T07:02:48.634Z",
+          "note": "Automatically approved by the audio-boundary alignment workflow.",
           "matchScore": 1,
           "asrText": "ド ア"
         }
@@ -573,24 +803,42 @@
         "itemIndex": 15,
         "text": "でんき",
         "label": "電気",
-        "start": 22.39,
-        "end": 22.85,
-        "duration": 0.46,
+        "start": 22.111,
+        "end": 23.157,
+        "duration": 1.046,
         "speechUnitCount": 1,
         "wordCount": 1,
         "matchScore": 0,
-        "asrText": "伝",
+        "asrText": "記",
         "wordIndexes": [
-          29
+          30
         ],
-        "method": "azure-speech-word-alignment",
-        "confidence": "needs-review",
+        "method": "audio-vad-sequential-alignment-with-azure-verification",
+        "timingSource": "audio-silence-detection",
+        "timingConfidence": "high",
+        "confidence": "high",
+        "alignmentIssues": [],
+        "alignmentWarnings": [
+          "low-asr-text-match:0"
+        ],
+        "speechActivity": {
+          "start": 22.361,
+          "end": 23.037,
+          "activeDuration": 0.677,
+          "regionCount": 1
+        },
+        "rawAzureTiming": {
+          "start": 22.79,
+          "end": 23.27,
+          "duration": 0.48
+        },
         "review": {
           "status": "approved",
-          "reviewedAt": "2026-08-05T11:36:42.674Z",
-          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "severity": "ok",
+          "reviewedAt": "2026-08-25T07:02:48.634Z",
+          "note": "Automatically approved by the audio-boundary alignment workflow.",
           "matchScore": 0,
-          "asrText": "伝"
+          "asrText": "記"
         }
       }
     },
@@ -611,9 +859,9 @@
         "itemIndex": 16,
         "text": "たいきょくけん",
         "label": "太極拳",
-        "start": 24.19,
-        "end": 25.69,
-        "duration": 1.5,
+        "start": 24.096,
+        "end": 25.574,
+        "duration": 1.478,
         "speechUnitCount": 3,
         "wordCount": 3,
         "matchScore": 1,
@@ -623,12 +871,28 @@
           32,
           33
         ],
-        "method": "azure-speech-word-alignment",
+        "method": "audio-vad-sequential-alignment-with-azure-verification",
+        "timingSource": "audio-silence-detection",
+        "timingConfidence": "high",
         "confidence": "high",
+        "alignmentIssues": [],
+        "alignmentWarnings": [],
+        "speechActivity": {
+          "start": 24.346,
+          "end": 25.454,
+          "activeDuration": 1.107,
+          "regionCount": 1
+        },
+        "rawAzureTiming": {
+          "start": 24.23,
+          "end": 25.59,
+          "duration": 1.36
+        },
         "review": {
           "status": "approved",
-          "reviewedAt": "2026-08-05T11:36:42.674Z",
-          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "severity": "ok",
+          "reviewedAt": "2026-08-25T07:02:48.634Z",
+          "note": "Automatically approved by the audio-boundary alignment workflow.",
           "matchScore": 1,
           "asrText": "太 極 拳"
         }
@@ -651,25 +915,42 @@
         "itemIndex": 17,
         "text": "あさごはん",
         "label": "朝ご飯",
-        "start": 26.51,
-        "end": 26.93,
-        "duration": 0.42,
-        "speechUnitCount": 2,
-        "wordCount": 2,
-        "matchScore": 0.667,
-        "asrText": "朝 ご",
+        "start": 26.087,
+        "end": 27.246,
+        "duration": 1.159,
+        "speechUnitCount": 3,
+        "wordCount": 3,
+        "matchScore": 1,
+        "asrText": "朝 ご 飯",
         "wordIndexes": [
           34,
-          35
+          35,
+          36
         ],
-        "method": "azure-speech-word-alignment",
-        "confidence": "needs-review",
+        "method": "audio-vad-sequential-alignment-with-azure-verification",
+        "timingSource": "audio-silence-detection",
+        "timingConfidence": "high",
+        "confidence": "high",
+        "alignmentIssues": [],
+        "alignmentWarnings": [],
+        "speechActivity": {
+          "start": 26.337,
+          "end": 27.126,
+          "activeDuration": 0.789,
+          "regionCount": 1
+        },
+        "rawAzureTiming": {
+          "start": 26.55,
+          "end": 27.31,
+          "duration": 0.76
+        },
         "review": {
           "status": "approved",
-          "reviewedAt": "2026-08-05T11:36:42.674Z",
-          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
-          "matchScore": 0.667,
-          "asrText": "朝 ご"
+          "severity": "ok",
+          "reviewedAt": "2026-08-25T07:02:48.634Z",
+          "note": "Automatically approved by the audio-boundary alignment workflow.",
+          "matchScore": 1,
+          "asrText": "朝 ご 飯"
         }
       }
     },
@@ -690,26 +971,44 @@
         "itemIndex": 18,
         "text": "ばんごはん",
         "label": "晩ご飯",
-        "start": 27.95,
-        "end": 29.09,
-        "duration": 1.14,
-        "speechUnitCount": 3,
-        "wordCount": 3,
-        "matchScore": 0.667,
-        "asrText": "晩 御 飯",
+        "start": 27.717,
+        "end": 29.003,
+        "duration": 1.286,
+        "speechUnitCount": 5,
+        "wordCount": 5,
+        "matchScore": 1,
+        "asrText": "ば ん ご は ん",
         "wordIndexes": [
+          37,
           38,
           39,
-          40
+          40,
+          41
         ],
-        "method": "azure-speech-word-alignment",
-        "confidence": "needs-review",
+        "method": "audio-vad-sequential-alignment-with-azure-verification",
+        "timingSource": "audio-silence-detection",
+        "timingConfidence": "high",
+        "confidence": "high",
+        "alignmentIssues": [],
+        "alignmentWarnings": [],
+        "speechActivity": {
+          "start": 27.967,
+          "end": 28.883,
+          "activeDuration": 0.916,
+          "regionCount": 1
+        },
+        "rawAzureTiming": {
+          "start": 27.99,
+          "end": 29.03,
+          "duration": 1.04
+        },
         "review": {
           "status": "approved",
-          "reviewedAt": "2026-08-05T11:36:42.674Z",
-          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
-          "matchScore": 0.667,
-          "asrText": "晩 御 飯"
+          "severity": "ok",
+          "reviewedAt": "2026-08-25T07:02:48.634Z",
+          "note": "Automatically approved by the audio-boundary alignment workflow.",
+          "matchScore": 1,
+          "asrText": "ば ん ご は ん"
         }
       }
     },
@@ -730,27 +1029,43 @@
         "itemIndex": 19,
         "text": "バーベキュー",
         "label": "バーベキュー",
-        "start": 29.63,
-        "end": 30.89,
-        "duration": 1.26,
+        "start": 29.49,
+        "end": 30.789,
+        "duration": 1.299,
         "speechUnitCount": 6,
         "wordCount": 6,
         "matchScore": 1,
         "asrText": "バ ー ベ キ ュ ー",
         "wordIndexes": [
-          41,
           42,
           43,
           44,
           45,
-          46
+          46,
+          47
         ],
-        "method": "azure-speech-word-alignment",
+        "method": "audio-vad-sequential-alignment-with-azure-verification",
+        "timingSource": "audio-silence-detection",
+        "timingConfidence": "high",
         "confidence": "high",
+        "alignmentIssues": [],
+        "alignmentWarnings": [],
+        "speechActivity": {
+          "start": 29.74,
+          "end": 30.669,
+          "activeDuration": 0.929,
+          "regionCount": 1
+        },
+        "rawAzureTiming": {
+          "start": 29.63,
+          "end": 30.59,
+          "duration": 0.96
+        },
         "review": {
           "status": "approved",
-          "reviewedAt": "2026-08-05T11:36:42.674Z",
-          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "severity": "ok",
+          "reviewedAt": "2026-08-25T07:02:48.634Z",
+          "note": "Automatically approved by the audio-boundary alignment workflow.",
           "matchScore": 1,
           "asrText": "バ ー ベ キ ュ ー"
         }
@@ -774,25 +1089,41 @@
         "itemIndex": 20,
         "text": "とおります",
         "label": "通ります",
-        "start": 31.67,
-        "end": 32.69,
-        "duration": 1.02,
+        "start": 31.426,
+        "end": 32.715,
+        "duration": 1.289,
         "speechUnitCount": 4,
         "wordCount": 4,
         "matchScore": 1,
         "asrText": "通 り ま す",
         "wordIndexes": [
-          47,
           48,
           49,
-          50
+          50,
+          51
         ],
-        "method": "azure-speech-word-alignment",
+        "method": "audio-vad-sequential-alignment-with-azure-verification",
+        "timingSource": "audio-silence-detection",
+        "timingConfidence": "high",
         "confidence": "high",
+        "alignmentIssues": [],
+        "alignmentWarnings": [],
+        "speechActivity": {
+          "start": 31.676,
+          "end": 32.595,
+          "activeDuration": 0.919,
+          "regionCount": 1
+        },
+        "rawAzureTiming": {
+          "start": 31.71,
+          "end": 32.63,
+          "duration": 0.92
+        },
         "review": {
           "status": "approved",
-          "reviewedAt": "2026-08-05T11:36:42.674Z",
-          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "severity": "ok",
+          "reviewedAt": "2026-08-25T07:02:48.634Z",
+          "note": "Automatically approved by the audio-boundary alignment workflow.",
           "matchScore": 1,
           "asrText": "通 り ま す"
         }
@@ -816,25 +1147,41 @@
         "itemIndex": 21,
         "text": "いそぎます",
         "label": "急ぎます",
-        "start": 33.31,
-        "end": 34.53,
-        "duration": 1.22,
+        "start": 33.147,
+        "end": 34.374,
+        "duration": 1.227,
         "speechUnitCount": 4,
         "wordCount": 4,
         "matchScore": 1,
         "asrText": "急 ぎ ま す",
         "wordIndexes": [
-          51,
           52,
           53,
-          54
+          54,
+          55
         ],
-        "method": "azure-speech-word-alignment",
+        "method": "audio-vad-sequential-alignment-with-azure-verification",
+        "timingSource": "audio-silence-detection",
+        "timingConfidence": "high",
         "confidence": "high",
+        "alignmentIssues": [],
+        "alignmentWarnings": [],
+        "speechActivity": {
+          "start": 33.397,
+          "end": 34.254,
+          "activeDuration": 0.857,
+          "regionCount": 1
+        },
+        "rawAzureTiming": {
+          "start": 33.35,
+          "end": 34.23,
+          "duration": 0.88
+        },
         "review": {
           "status": "approved",
-          "reviewedAt": "2026-08-05T11:36:42.674Z",
-          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "severity": "ok",
+          "reviewedAt": "2026-08-25T07:02:48.634Z",
+          "note": "Automatically approved by the audio-boundary alignment workflow.",
           "matchScore": 1,
           "asrText": "急 ぎ ま す"
         }
@@ -858,25 +1205,43 @@
         "itemIndex": 22,
         "text": "とびます",
         "label": "飛びます",
-        "start": 34.87,
-        "end": 35.97,
-        "duration": 1.1,
+        "start": 34.61,
+        "end": 35.723,
+        "duration": 1.113,
         "speechUnitCount": 4,
         "wordCount": 4,
         "matchScore": 1,
         "asrText": "飛 び ま す",
         "wordIndexes": [
-          55,
           56,
           57,
-          58
+          58,
+          59
         ],
-        "method": "azure-speech-word-alignment",
+        "method": "audio-vad-sequential-alignment-with-azure-verification",
+        "timingSource": "audio-silence-detection",
+        "timingConfidence": "high",
         "confidence": "high",
+        "alignmentIssues": [],
+        "alignmentWarnings": [
+          "azure-timing-does-not-overlap-vad"
+        ],
+        "speechActivity": {
+          "start": 34.86,
+          "end": 35.603,
+          "activeDuration": 0.743,
+          "regionCount": 1
+        },
+        "rawAzureTiming": {
+          "start": 35.8,
+          "end": 36.2,
+          "duration": 0.4
+        },
         "review": {
           "status": "approved",
-          "reviewedAt": "2026-08-05T11:36:42.674Z",
-          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "severity": "ok",
+          "reviewedAt": "2026-08-25T07:02:48.634Z",
+          "note": "Automatically approved by the audio-boundary alignment workflow.",
           "matchScore": 1,
           "asrText": "飛 び ま す"
         }
@@ -900,25 +1265,41 @@
         "itemIndex": 23,
         "text": "しにます",
         "label": "死にます",
-        "start": 36.15,
-        "end": 37.25,
-        "duration": 1.1,
+        "start": 35.959,
+        "end": 37.178,
+        "duration": 1.219,
         "speechUnitCount": 4,
         "wordCount": 4,
         "matchScore": 1,
         "asrText": "死 に ま す",
         "wordIndexes": [
-          59,
           60,
           61,
-          62
+          62,
+          63
         ],
-        "method": "azure-speech-word-alignment",
+        "method": "audio-vad-sequential-alignment-with-azure-verification",
+        "timingSource": "audio-silence-detection",
+        "timingConfidence": "high",
         "confidence": "high",
+        "alignmentIssues": [],
+        "alignmentWarnings": [],
+        "speechActivity": {
+          "start": 36.209,
+          "end": 37.058,
+          "activeDuration": 0.849,
+          "regionCount": 1
+        },
+        "rawAzureTiming": {
+          "start": 36.2,
+          "end": 37.08,
+          "duration": 0.88
+        },
         "review": {
           "status": "approved",
-          "reviewedAt": "2026-08-05T11:36:42.674Z",
-          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "severity": "ok",
+          "reviewedAt": "2026-08-25T07:02:48.634Z",
+          "note": "Automatically approved by the audio-boundary alignment workflow.",
           "matchScore": 1,
           "asrText": "死 に ま す"
         }
@@ -942,25 +1323,41 @@
         "itemIndex": 24,
         "text": "まちます",
         "label": "待ちます",
-        "start": 37.79,
-        "end": 38.93,
-        "duration": 1.14,
+        "start": 37.56,
+        "end": 38.767,
+        "duration": 1.207,
         "speechUnitCount": 4,
         "wordCount": 4,
         "matchScore": 1,
         "asrText": "待 ち ま す",
         "wordIndexes": [
-          63,
           64,
           65,
-          66
+          66,
+          67
         ],
-        "method": "azure-speech-word-alignment",
+        "method": "audio-vad-sequential-alignment-with-azure-verification",
+        "timingSource": "audio-silence-detection",
+        "timingConfidence": "high",
         "confidence": "high",
+        "alignmentIssues": [],
+        "alignmentWarnings": [],
+        "speechActivity": {
+          "start": 37.81,
+          "end": 38.647,
+          "activeDuration": 0.837,
+          "regionCount": 1
+        },
+        "rawAzureTiming": {
+          "start": 37.83,
+          "end": 38.87,
+          "duration": 1.04
+        },
         "review": {
           "status": "approved",
-          "reviewedAt": "2026-08-05T11:36:42.674Z",
-          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "severity": "ok",
+          "reviewedAt": "2026-08-25T07:02:48.634Z",
+          "note": "Automatically approved by the audio-boundary alignment workflow.",
           "matchScore": 1,
           "asrText": "待 ち ま す"
         }
@@ -984,25 +1381,41 @@
         "itemIndex": 25,
         "text": "うります",
         "label": "売ります",
-        "start": 39.11,
-        "end": 40.29,
-        "duration": 1.18,
+        "start": 38.972,
+        "end": 40.121,
+        "duration": 1.149,
         "speechUnitCount": 4,
         "wordCount": 4,
         "matchScore": 1,
         "asrText": "売 り ま す",
         "wordIndexes": [
-          67,
           68,
           69,
-          70
+          70,
+          71
         ],
-        "method": "azure-speech-word-alignment",
+        "method": "audio-vad-sequential-alignment-with-azure-verification",
+        "timingSource": "audio-silence-detection",
+        "timingConfidence": "high",
         "confidence": "high",
+        "alignmentIssues": [],
+        "alignmentWarnings": [],
+        "speechActivity": {
+          "start": 39.222,
+          "end": 40.001,
+          "activeDuration": 0.779,
+          "regionCount": 1
+        },
+        "rawAzureTiming": {
+          "start": 39.15,
+          "end": 39.95,
+          "duration": 0.8
+        },
         "review": {
           "status": "approved",
-          "reviewedAt": "2026-08-05T11:36:42.674Z",
-          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "severity": "ok",
+          "reviewedAt": "2026-08-25T07:02:48.634Z",
+          "note": "Automatically approved by the audio-boundary alignment workflow.",
           "matchScore": 1,
           "asrText": "売 り ま す"
         }
@@ -1026,26 +1439,43 @@
         "itemIndex": 26,
         "text": "はなします",
         "label": "話します",
-        "start": 41.07,
-        "end": 41.69,
-        "duration": 0.62,
-        "speechUnitCount": 3,
-        "wordCount": 3,
-        "matchScore": 0.75,
-        "asrText": "し ま す",
+        "start": 40.46,
+        "end": 41.782,
+        "duration": 1.322,
+        "speechUnitCount": 4,
+        "wordCount": 4,
+        "matchScore": 1,
+        "asrText": "話 し ま す",
         "wordIndexes": [
           72,
           73,
-          74
+          74,
+          75
         ],
-        "method": "azure-speech-word-alignment",
-        "confidence": "medium",
+        "method": "audio-vad-sequential-alignment-with-azure-verification",
+        "timingSource": "audio-silence-detection",
+        "timingConfidence": "high",
+        "confidence": "high",
+        "alignmentIssues": [],
+        "alignmentWarnings": [],
+        "speechActivity": {
+          "start": 40.71,
+          "end": 41.662,
+          "activeDuration": 0.952,
+          "regionCount": 1
+        },
+        "rawAzureTiming": {
+          "start": 40.79,
+          "end": 41.63,
+          "duration": 0.84
+        },
         "review": {
           "status": "approved",
-          "reviewedAt": "2026-08-05T11:36:42.674Z",
-          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
-          "matchScore": 0.75,
-          "asrText": "し ま す"
+          "severity": "ok",
+          "reviewedAt": "2026-08-25T07:02:48.634Z",
+          "note": "Automatically approved by the audio-boundary alignment workflow.",
+          "matchScore": 1,
+          "asrText": "話 し ま す"
         }
       }
     },
@@ -1067,25 +1497,41 @@
         "itemIndex": 27,
         "text": "わたります",
         "label": "渡ります",
-        "start": 43.16,
-        "end": 43.58,
-        "duration": 0.42,
+        "start": 42.042,
+        "end": 43.356,
+        "duration": 1.314,
         "speechUnitCount": 4,
         "wordCount": 4,
         "matchScore": 1,
         "asrText": "渡 り ま す",
         "wordIndexes": [
-          75,
           76,
           77,
-          78
+          78,
+          79
         ],
-        "method": "azure-speech-word-alignment",
+        "method": "audio-vad-sequential-alignment-with-azure-verification",
+        "timingSource": "audio-silence-detection",
+        "timingConfidence": "high",
         "confidence": "high",
+        "alignmentIssues": [],
+        "alignmentWarnings": [],
+        "speechActivity": {
+          "start": 42.292,
+          "end": 43.236,
+          "activeDuration": 0.944,
+          "regionCount": 1
+        },
+        "rawAzureTiming": {
+          "start": 43.2,
+          "end": 43.52,
+          "duration": 0.32
+        },
         "review": {
           "status": "approved",
-          "reviewedAt": "2026-08-05T11:36:42.674Z",
-          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "severity": "ok",
+          "reviewedAt": "2026-08-25T07:02:48.634Z",
+          "note": "Automatically approved by the audio-boundary alignment workflow.",
           "matchScore": 1,
           "asrText": "渡 り ま す"
         }
@@ -1109,26 +1555,42 @@
         "itemIndex": 28,
         "text": "おろします",
         "label": "下ろします",
-        "start": 44.35,
-        "end": 45.53,
-        "duration": 1.18,
+        "start": 44.241,
+        "end": 45.525,
+        "duration": 1.284,
         "speechUnitCount": 5,
         "wordCount": 5,
         "matchScore": 1,
         "asrText": "お ろ し ま す",
         "wordIndexes": [
-          79,
           80,
           81,
           82,
-          83
+          83,
+          84
         ],
-        "method": "azure-speech-word-alignment",
+        "method": "audio-vad-sequential-alignment-with-azure-verification",
+        "timingSource": "audio-silence-detection",
+        "timingConfidence": "high",
         "confidence": "high",
+        "alignmentIssues": [],
+        "alignmentWarnings": [],
+        "speechActivity": {
+          "start": 44.491,
+          "end": 45.405,
+          "activeDuration": 0.914,
+          "regionCount": 1
+        },
+        "rawAzureTiming": {
+          "start": 44.39,
+          "end": 45.47,
+          "duration": 1.08
+        },
         "review": {
           "status": "approved",
-          "reviewedAt": "2026-08-05T11:36:42.674Z",
-          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "severity": "ok",
+          "reviewedAt": "2026-08-25T07:02:48.634Z",
+          "note": "Automatically approved by the audio-boundary alignment workflow.",
           "matchScore": 1,
           "asrText": "お ろ し ま す"
         }
@@ -1152,25 +1614,41 @@
         "itemIndex": 29,
         "text": "えらびます",
         "label": "選びます",
-        "start": 46.96,
-        "end": 47.46,
-        "duration": 0.5,
+        "start": 45.883,
+        "end": 47.17,
+        "duration": 1.287,
         "speechUnitCount": 4,
         "wordCount": 4,
         "matchScore": 1,
         "asrText": "選 び ま す",
         "wordIndexes": [
-          84,
           85,
           86,
-          87
+          87,
+          88
         ],
-        "method": "azure-speech-word-alignment",
+        "method": "audio-vad-sequential-alignment-with-azure-verification",
+        "timingSource": "audio-silence-detection",
+        "timingConfidence": "high",
         "confidence": "high",
+        "alignmentIssues": [],
+        "alignmentWarnings": [],
+        "speechActivity": {
+          "start": 46.133,
+          "end": 47.05,
+          "activeDuration": 0.917,
+          "regionCount": 1
+        },
+        "rawAzureTiming": {
+          "start": 47,
+          "end": 47.16,
+          "duration": 0.16
+        },
         "review": {
           "status": "approved",
-          "reviewedAt": "2026-08-05T11:36:42.674Z",
-          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "severity": "ok",
+          "reviewedAt": "2026-08-25T07:02:48.634Z",
+          "note": "Automatically approved by the audio-boundary alignment workflow.",
           "matchScore": 1,
           "asrText": "選 び ま す"
         }
@@ -1195,25 +1673,41 @@
         "itemIndex": 30,
         "text": "けします",
         "label": "消します",
-        "start": 47.87,
-        "end": 48.73,
-        "duration": 0.86,
+        "start": 47.622,
+        "end": 48.838,
+        "duration": 1.216,
         "speechUnitCount": 4,
         "wordCount": 4,
         "matchScore": 1,
         "asrText": "消 し ま す",
         "wordIndexes": [
-          88,
           89,
           90,
-          91
+          91,
+          92
         ],
-        "method": "azure-speech-word-alignment",
+        "method": "audio-vad-sequential-alignment-with-azure-verification",
+        "timingSource": "audio-silence-detection",
+        "timingConfidence": "high",
         "confidence": "high",
+        "alignmentIssues": [],
+        "alignmentWarnings": [],
+        "speechActivity": {
+          "start": 47.872,
+          "end": 48.718,
+          "activeDuration": 0.846,
+          "regionCount": 1
+        },
+        "rawAzureTiming": {
+          "start": 47.91,
+          "end": 48.67,
+          "duration": 0.76
+        },
         "review": {
           "status": "approved",
-          "reviewedAt": "2026-08-05T11:36:42.674Z",
-          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "severity": "ok",
+          "reviewedAt": "2026-08-25T07:02:48.634Z",
+          "note": "Automatically approved by the audio-boundary alignment workflow.",
           "matchScore": 1,
           "asrText": "消 し ま す"
         }
@@ -1237,25 +1731,41 @@
         "itemIndex": 31,
         "text": "あるきます",
         "label": "歩きます",
-        "start": 49.71,
-        "end": 50.89,
-        "duration": 1.18,
+        "start": 49.32,
+        "end": 50.595,
+        "duration": 1.275,
         "speechUnitCount": 4,
         "wordCount": 4,
         "matchScore": 1,
         "asrText": "歩 き ま す",
         "wordIndexes": [
-          92,
           93,
           94,
-          95
+          95,
+          96
         ],
-        "method": "azure-speech-word-alignment",
+        "method": "audio-vad-sequential-alignment-with-azure-verification",
+        "timingSource": "audio-silence-detection",
+        "timingConfidence": "high",
         "confidence": "high",
+        "alignmentIssues": [],
+        "alignmentWarnings": [],
+        "speechActivity": {
+          "start": 49.57,
+          "end": 50.475,
+          "activeDuration": 0.906,
+          "regionCount": 1
+        },
+        "rawAzureTiming": {
+          "start": 49.75,
+          "end": 50.83,
+          "duration": 1.08
+        },
         "review": {
           "status": "approved",
-          "reviewedAt": "2026-08-05T11:36:42.674Z",
-          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "severity": "ok",
+          "reviewedAt": "2026-08-25T07:02:48.634Z",
+          "note": "Automatically approved by the audio-boundary alignment workflow.",
           "matchScore": 1,
           "asrText": "歩 き ま す"
         }
@@ -1279,26 +1789,42 @@
         "itemIndex": 32,
         "text": "まがります",
         "label": "曲がります",
-        "start": 51.39,
-        "end": 52.41,
-        "duration": 1.02,
+        "start": 51.201,
+        "end": 52.512,
+        "duration": 1.311,
         "speechUnitCount": 5,
         "wordCount": 5,
         "matchScore": 1,
         "asrText": "曲 が り ま す",
         "wordIndexes": [
-          96,
           97,
           98,
           99,
-          100
+          100,
+          101
         ],
-        "method": "azure-speech-word-alignment",
+        "method": "audio-vad-sequential-alignment-with-azure-verification",
+        "timingSource": "audio-silence-detection",
+        "timingConfidence": "high",
         "confidence": "high",
+        "alignmentIssues": [],
+        "alignmentWarnings": [],
+        "speechActivity": {
+          "start": 51.451,
+          "end": 52.392,
+          "activeDuration": 0.941,
+          "regionCount": 1
+        },
+        "rawAzureTiming": {
+          "start": 51.43,
+          "end": 52.35,
+          "duration": 0.92
+        },
         "review": {
           "status": "approved",
-          "reviewedAt": "2026-08-05T11:36:42.674Z",
-          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "severity": "ok",
+          "reviewedAt": "2026-08-25T07:02:48.634Z",
+          "note": "Automatically approved by the audio-boundary alignment workflow.",
           "matchScore": 1,
           "asrText": "曲 が り ま す"
         }
@@ -1322,25 +1848,41 @@
         "itemIndex": 33,
         "text": "あらいます",
         "label": "洗います",
-        "start": 53.19,
-        "end": 54.45,
-        "duration": 1.26,
+        "start": 52.908,
+        "end": 54.227,
+        "duration": 1.319,
         "speechUnitCount": 4,
         "wordCount": 4,
         "matchScore": 1,
         "asrText": "洗 い ま す",
         "wordIndexes": [
-          101,
           102,
           103,
-          104
+          104,
+          105
         ],
-        "method": "azure-speech-word-alignment",
+        "method": "audio-vad-sequential-alignment-with-azure-verification",
+        "timingSource": "audio-silence-detection",
+        "timingConfidence": "high",
         "confidence": "high",
+        "alignmentIssues": [],
+        "alignmentWarnings": [],
+        "speechActivity": {
+          "start": 53.158,
+          "end": 54.107,
+          "activeDuration": 0.949,
+          "regionCount": 1
+        },
+        "rawAzureTiming": {
+          "start": 53.23,
+          "end": 54.07,
+          "duration": 0.84
+        },
         "review": {
           "status": "approved",
-          "reviewedAt": "2026-08-05T11:36:42.674Z",
-          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "severity": "ok",
+          "reviewedAt": "2026-08-25T07:02:48.634Z",
+          "note": "Automatically approved by the audio-boundary alignment workflow.",
           "matchScore": 1,
           "asrText": "洗 い ま す"
         }
@@ -1363,24 +1905,40 @@
         "itemIndex": 34,
         "text": "でます",
         "label": "出ます",
-        "start": 54.75,
-        "end": 55.77,
-        "duration": 1.02,
+        "start": 54.545,
+        "end": 55.535,
+        "duration": 0.99,
         "speechUnitCount": 3,
         "wordCount": 3,
         "matchScore": 1,
         "asrText": "出 ま す",
         "wordIndexes": [
-          105,
           106,
-          107
+          107,
+          108
         ],
-        "method": "azure-speech-word-alignment",
+        "method": "audio-vad-sequential-alignment-with-azure-verification",
+        "timingSource": "audio-silence-detection",
+        "timingConfidence": "high",
         "confidence": "high",
+        "alignmentIssues": [],
+        "alignmentWarnings": [],
+        "speechActivity": {
+          "start": 54.795,
+          "end": 55.415,
+          "activeDuration": 0.62,
+          "regionCount": 1
+        },
+        "rawAzureTiming": {
+          "start": 54.79,
+          "end": 55.71,
+          "duration": 0.92
+        },
         "review": {
           "status": "approved",
-          "reviewedAt": "2026-08-05T11:36:42.674Z",
-          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "severity": "ok",
+          "reviewedAt": "2026-08-25T07:02:48.634Z",
+          "note": "Automatically approved by the audio-boundary alignment workflow.",
           "matchScore": 1,
           "asrText": "出 ま す"
         }
@@ -1404,26 +1962,42 @@
         "itemIndex": 35,
         "text": "でかけます",
         "label": "出かけます",
-        "start": 56.31,
-        "end": 57.61,
-        "duration": 1.3,
+        "start": 56.067,
+        "end": 57.421,
+        "duration": 1.354,
         "speechUnitCount": 5,
         "wordCount": 5,
         "matchScore": 1,
         "asrText": "出 か け ま す",
         "wordIndexes": [
-          108,
           109,
           110,
           111,
-          112
+          112,
+          113
         ],
-        "method": "azure-speech-word-alignment",
+        "method": "audio-vad-sequential-alignment-with-azure-verification",
+        "timingSource": "audio-silence-detection",
+        "timingConfidence": "high",
         "confidence": "high",
+        "alignmentIssues": [],
+        "alignmentWarnings": [],
+        "speechActivity": {
+          "start": 56.317,
+          "end": 57.301,
+          "activeDuration": 0.984,
+          "regionCount": 1
+        },
+        "rawAzureTiming": {
+          "start": 56.35,
+          "end": 57.27,
+          "duration": 0.92
+        },
         "review": {
           "status": "approved",
-          "reviewedAt": "2026-08-05T11:36:42.674Z",
-          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "severity": "ok",
+          "reviewedAt": "2026-08-25T07:02:48.634Z",
+          "note": "Automatically approved by the audio-boundary alignment workflow.",
           "matchScore": 1,
           "asrText": "出 か け ま す"
         }
@@ -1448,25 +2022,41 @@
         "itemIndex": 36,
         "text": "あけます",
         "label": "開けます",
-        "start": 58.11,
-        "end": 59.25,
-        "duration": 1.14,
+        "start": 57.862,
+        "end": 59.006,
+        "duration": 1.144,
         "speechUnitCount": 4,
         "wordCount": 4,
         "matchScore": 1,
         "asrText": "開 け ま す",
         "wordIndexes": [
-          113,
           114,
           115,
-          116
+          116,
+          117
         ],
-        "method": "azure-speech-word-alignment",
+        "method": "audio-vad-sequential-alignment-with-azure-verification",
+        "timingSource": "audio-silence-detection",
+        "timingConfidence": "high",
         "confidence": "high",
+        "alignmentIssues": [],
+        "alignmentWarnings": [],
+        "speechActivity": {
+          "start": 58.112,
+          "end": 58.886,
+          "activeDuration": 0.774,
+          "regionCount": 1
+        },
+        "rawAzureTiming": {
+          "start": 58.15,
+          "end": 59.19,
+          "duration": 1.04
+        },
         "review": {
           "status": "approved",
-          "reviewedAt": "2026-08-05T11:36:42.674Z",
-          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "severity": "ok",
+          "reviewedAt": "2026-08-25T07:02:48.634Z",
+          "note": "Automatically approved by the audio-boundary alignment workflow.",
           "matchScore": 1,
           "asrText": "開 け ま す"
         }
@@ -1489,25 +2079,41 @@
         "itemIndex": 37,
         "text": "すぎます",
         "label": "過ぎます",
-        "start": 59.75,
-        "end": 60.65,
-        "duration": 0.9,
+        "start": 59.411,
+        "end": 60.688,
+        "duration": 1.277,
         "speechUnitCount": 4,
         "wordCount": 4,
         "matchScore": 1,
         "asrText": "過 ぎ ま す",
         "wordIndexes": [
-          117,
           118,
           119,
-          120
+          120,
+          121
         ],
-        "method": "azure-speech-word-alignment",
+        "method": "audio-vad-sequential-alignment-with-azure-verification",
+        "timingSource": "audio-silence-detection",
+        "timingConfidence": "high",
         "confidence": "high",
+        "alignmentIssues": [],
+        "alignmentWarnings": [],
+        "speechActivity": {
+          "start": 59.661,
+          "end": 60.568,
+          "activeDuration": 0.907,
+          "regionCount": 1
+        },
+        "rawAzureTiming": {
+          "start": 59.79,
+          "end": 60.59,
+          "duration": 0.8
+        },
         "review": {
           "status": "approved",
-          "reviewedAt": "2026-08-05T11:36:42.674Z",
-          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "severity": "ok",
+          "reviewedAt": "2026-08-25T07:02:48.634Z",
+          "note": "Automatically approved by the audio-boundary alignment workflow.",
           "matchScore": 1,
           "asrText": "過 ぎ ま す"
         }
@@ -1531,25 +2137,41 @@
         "itemIndex": 38,
         "text": "みせます",
         "label": "見せます",
-        "start": 61.31,
-        "end": 62.41,
-        "duration": 1.1,
+        "start": 61.105,
+        "end": 62.247,
+        "duration": 1.142,
         "speechUnitCount": 4,
         "wordCount": 4,
         "matchScore": 1,
         "asrText": "見 せ ま す",
         "wordIndexes": [
-          121,
           122,
           123,
-          124
+          124,
+          125
         ],
-        "method": "azure-speech-word-alignment",
+        "method": "audio-vad-sequential-alignment-with-azure-verification",
+        "timingSource": "audio-silence-detection",
+        "timingConfidence": "high",
         "confidence": "high",
+        "alignmentIssues": [],
+        "alignmentWarnings": [],
+        "speechActivity": {
+          "start": 61.355,
+          "end": 62.127,
+          "activeDuration": 0.771,
+          "regionCount": 1
+        },
+        "rawAzureTiming": {
+          "start": 61.35,
+          "end": 62.15,
+          "duration": 0.8
+        },
         "review": {
           "status": "approved",
-          "reviewedAt": "2026-08-05T11:36:42.674Z",
-          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "severity": "ok",
+          "reviewedAt": "2026-08-25T07:02:48.634Z",
+          "note": "Automatically approved by the audio-boundary alignment workflow.",
           "matchScore": 1,
           "asrText": "見 せ ま す"
         }
@@ -1572,26 +2194,43 @@
         "itemIndex": 39,
         "text": "つけます",
         "label": "つけます",
-        "start": 63.15,
-        "end": 64.21,
-        "duration": 1.06,
-        "speechUnitCount": 3,
-        "wordCount": 3,
-        "matchScore": 0.75,
-        "asrText": "け ま す",
+        "start": 62.752,
+        "end": 63.977,
+        "duration": 1.225,
+        "speechUnitCount": 4,
+        "wordCount": 4,
+        "matchScore": 1,
+        "asrText": "つ け ま す",
         "wordIndexes": [
           126,
           127,
-          128
+          128,
+          129
         ],
-        "method": "azure-speech-word-alignment",
-        "confidence": "medium",
+        "method": "audio-vad-sequential-alignment-with-azure-verification",
+        "timingSource": "audio-silence-detection",
+        "timingConfidence": "high",
+        "confidence": "high",
+        "alignmentIssues": [],
+        "alignmentWarnings": [],
+        "speechActivity": {
+          "start": 63.002,
+          "end": 63.857,
+          "activeDuration": 0.855,
+          "regionCount": 1
+        },
+        "rawAzureTiming": {
+          "start": 62.95,
+          "end": 64.15,
+          "duration": 1.2
+        },
         "review": {
           "status": "approved",
-          "reviewedAt": "2026-08-05T11:36:42.674Z",
-          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
-          "matchScore": 0.75,
-          "asrText": "け ま す"
+          "severity": "ok",
+          "reviewedAt": "2026-08-25T07:02:48.634Z",
+          "note": "Automatically approved by the audio-boundary alignment workflow.",
+          "matchScore": 1,
+          "asrText": "つ け ま す"
         }
       }
     },
@@ -1612,25 +2251,41 @@
         "itemIndex": 40,
         "text": "おります",
         "label": "降ります",
-        "start": 64.63,
-        "end": 65.49,
-        "duration": 0.86,
+        "start": 64.453,
+        "end": 65.567,
+        "duration": 1.114,
         "speechUnitCount": 4,
         "wordCount": 4,
         "matchScore": 1,
         "asrText": "お り ま す",
         "wordIndexes": [
-          129,
           130,
           131,
-          132
+          132,
+          133
         ],
-        "method": "azure-speech-word-alignment",
+        "method": "audio-vad-sequential-alignment-with-azure-verification",
+        "timingSource": "audio-silence-detection",
+        "timingConfidence": "high",
         "confidence": "high",
+        "alignmentIssues": [],
+        "alignmentWarnings": [],
+        "speechActivity": {
+          "start": 64.703,
+          "end": 65.447,
+          "activeDuration": 0.744,
+          "regionCount": 1
+        },
+        "rawAzureTiming": {
+          "start": 64.67,
+          "end": 65.39,
+          "duration": 0.72
+        },
         "review": {
           "status": "approved",
-          "reviewedAt": "2026-08-05T11:36:42.674Z",
-          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "severity": "ok",
+          "reviewedAt": "2026-08-25T07:02:48.634Z",
+          "note": "Automatically approved by the audio-boundary alignment workflow.",
           "matchScore": 1,
           "asrText": "お り ま す"
         }
@@ -1653,27 +2308,43 @@
         "itemIndex": 41,
         "text": "かいものします",
         "label": "買い物します",
-        "start": 66.35,
-        "end": 67.85,
-        "duration": 1.5,
+        "start": 66.143,
+        "end": 67.79,
+        "duration": 1.647,
         "speechUnitCount": 6,
         "wordCount": 6,
         "matchScore": 1,
         "asrText": "買 い 物 し ま す",
         "wordIndexes": [
-          133,
           134,
           135,
           136,
           137,
-          138
+          138,
+          139
         ],
-        "method": "azure-speech-word-alignment",
+        "method": "audio-vad-sequential-alignment-with-azure-verification",
+        "timingSource": "audio-silence-detection",
+        "timingConfidence": "high",
         "confidence": "high",
+        "alignmentIssues": [],
+        "alignmentWarnings": [],
+        "speechActivity": {
+          "start": 66.393,
+          "end": 67.67,
+          "activeDuration": 1.277,
+          "regionCount": 1
+        },
+        "rawAzureTiming": {
+          "start": 66.39,
+          "end": 67.75,
+          "duration": 1.36
+        },
         "review": {
           "status": "approved",
-          "reviewedAt": "2026-08-05T11:36:42.674Z",
-          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "severity": "ok",
+          "reviewedAt": "2026-08-25T07:02:48.634Z",
+          "note": "Automatically approved by the audio-boundary alignment workflow.",
           "matchScore": 1,
           "asrText": "買 い 物 し ま す"
         }
@@ -1696,26 +2367,42 @@
         "itemIndex": 42,
         "text": "そつぎょうします",
         "label": "卒業します",
-        "start": 68.35,
-        "end": 69.89,
-        "duration": 1.54,
+        "start": 68.132,
+        "end": 69.886,
+        "duration": 1.754,
         "speechUnitCount": 5,
         "wordCount": 5,
         "matchScore": 1,
         "asrText": "卒 業 し ま す",
         "wordIndexes": [
-          139,
           140,
           141,
           142,
-          143
+          143,
+          144
         ],
-        "method": "azure-speech-word-alignment",
+        "method": "audio-vad-sequential-alignment-with-azure-verification",
+        "timingSource": "audio-silence-detection",
+        "timingConfidence": "high",
         "confidence": "high",
+        "alignmentIssues": [],
+        "alignmentWarnings": [],
+        "speechActivity": {
+          "start": 68.382,
+          "end": 69.766,
+          "activeDuration": 1.384,
+          "regionCount": 1
+        },
+        "rawAzureTiming": {
+          "start": 68.39,
+          "end": 69.83,
+          "duration": 1.44
+        },
         "review": {
           "status": "approved",
-          "reviewedAt": "2026-08-05T11:36:42.674Z",
-          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "severity": "ok",
+          "reviewedAt": "2026-08-25T07:02:48.634Z",
+          "note": "Automatically approved by the audio-boundary alignment workflow.",
           "matchScore": 1,
           "asrText": "卒 業 し ま す"
         }
@@ -1739,26 +2426,42 @@
         "itemIndex": 43,
         "text": "しょくじします",
         "label": "食事します",
-        "start": 70.47,
-        "end": 71.73,
-        "duration": 1.26,
+        "start": 70.219,
+        "end": 71.765,
+        "duration": 1.546,
         "speechUnitCount": 5,
         "wordCount": 5,
         "matchScore": 1,
         "asrText": "食 事 し ま す",
         "wordIndexes": [
-          144,
           145,
           146,
           147,
-          148
+          148,
+          149
         ],
-        "method": "azure-speech-word-alignment",
+        "method": "audio-vad-sequential-alignment-with-azure-verification",
+        "timingSource": "audio-silence-detection",
+        "timingConfidence": "high",
         "confidence": "high",
+        "alignmentIssues": [],
+        "alignmentWarnings": [],
+        "speechActivity": {
+          "start": 70.469,
+          "end": 71.645,
+          "activeDuration": 1.177,
+          "regionCount": 1
+        },
+        "rawAzureTiming": {
+          "start": 70.51,
+          "end": 71.67,
+          "duration": 1.16
+        },
         "review": {
           "status": "approved",
-          "reviewedAt": "2026-08-05T11:36:42.674Z",
-          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "severity": "ok",
+          "reviewedAt": "2026-08-25T07:02:48.634Z",
+          "note": "Automatically approved by the audio-boundary alignment workflow.",
           "matchScore": 1,
           "asrText": "食 事 し ま す"
         }
@@ -1781,26 +2484,42 @@
         "itemIndex": 44,
         "text": "せいりします",
         "label": "整理します",
-        "start": 72.79,
-        "end": 74.17,
-        "duration": 1.38,
+        "start": 72.692,
+        "end": 74.136,
+        "duration": 1.444,
         "speechUnitCount": 5,
         "wordCount": 5,
         "matchScore": 1,
         "asrText": "整 理 し ま す",
         "wordIndexes": [
-          149,
           150,
           151,
           152,
-          153
+          153,
+          154
         ],
-        "method": "azure-speech-word-alignment",
+        "method": "audio-vad-sequential-alignment-with-azure-verification",
+        "timingSource": "audio-silence-detection",
+        "timingConfidence": "high",
         "confidence": "high",
+        "alignmentIssues": [],
+        "alignmentWarnings": [],
+        "speechActivity": {
+          "start": 72.942,
+          "end": 74.016,
+          "activeDuration": 1.075,
+          "regionCount": 1
+        },
+        "rawAzureTiming": {
+          "start": 72.83,
+          "end": 74.07,
+          "duration": 1.24
+        },
         "review": {
           "status": "approved",
-          "reviewedAt": "2026-08-05T11:36:42.674Z",
-          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "severity": "ok",
+          "reviewedAt": "2026-08-25T07:02:48.634Z",
+          "note": "Automatically approved by the audio-boundary alignment workflow.",
           "matchScore": 1,
           "asrText": "整 理 し ま す"
         }
@@ -1823,27 +2542,43 @@
         "itemIndex": 45,
         "text": "コピーします",
         "label": "コピーします",
-        "start": 74.83,
-        "end": 76.01,
-        "duration": 1.18,
+        "start": 74.589,
+        "end": 76.115,
+        "duration": 1.526,
         "speechUnitCount": 6,
         "wordCount": 6,
         "matchScore": 1,
         "asrText": "コ ピ ー し ま す",
         "wordIndexes": [
-          154,
           155,
           156,
           157,
           158,
-          159
+          159,
+          160
         ],
-        "method": "azure-speech-word-alignment",
+        "method": "audio-vad-sequential-alignment-with-azure-verification",
+        "timingSource": "audio-silence-detection",
+        "timingConfidence": "high",
         "confidence": "high",
+        "alignmentIssues": [],
+        "alignmentWarnings": [],
+        "speechActivity": {
+          "start": 74.839,
+          "end": 75.995,
+          "activeDuration": 1.156,
+          "regionCount": 1
+        },
+        "rawAzureTiming": {
+          "start": 74.87,
+          "end": 75.95,
+          "duration": 1.08
+        },
         "review": {
           "status": "approved",
-          "reviewedAt": "2026-08-05T11:36:42.674Z",
-          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "severity": "ok",
+          "reviewedAt": "2026-08-25T07:02:48.634Z",
+          "note": "Automatically approved by the audio-boundary alignment workflow.",
           "matchScore": 1,
           "asrText": "コ ピ ー し ま す"
         }
@@ -1867,22 +2602,41 @@
         "itemIndex": 46,
         "text": "くらい",
         "label": "暗い",
-        "start": 77.68,
-        "end": 77.9,
-        "duration": 0.22,
+        "start": 76.379,
+        "end": 77.332,
+        "duration": 0.953,
         "speechUnitCount": 1,
         "wordCount": 1,
         "matchScore": 0,
         "asrText": "イ",
         "wordIndexes": [
-          162
+          163
         ],
-        "method": "azure-speech-word-alignment",
-        "confidence": "needs-review",
+        "method": "audio-vad-sequential-alignment-with-azure-verification",
+        "timingSource": "audio-silence-detection",
+        "timingConfidence": "high",
+        "confidence": "high",
+        "alignmentIssues": [],
+        "alignmentWarnings": [
+          "azure-timing-does-not-overlap-vad",
+          "low-asr-text-match:0"
+        ],
+        "speechActivity": {
+          "start": 76.629,
+          "end": 77.212,
+          "activeDuration": 0.583,
+          "regionCount": 1
+        },
+        "rawAzureTiming": {
+          "start": 77.72,
+          "end": 77.84,
+          "duration": 0.12
+        },
         "review": {
           "status": "approved",
-          "reviewedAt": "2026-08-05T11:36:42.674Z",
-          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "severity": "ok",
+          "reviewedAt": "2026-08-25T07:02:48.634Z",
+          "note": "Automatically approved by the audio-boundary alignment workflow.",
           "matchScore": 0,
           "asrText": "イ"
         }
@@ -1906,23 +2660,39 @@
         "itemIndex": 47,
         "text": "たいへん",
         "label": "大変",
-        "start": 78.07,
-        "end": 79.01,
-        "duration": 0.94,
+        "start": 77.804,
+        "end": 78.85,
+        "duration": 1.046,
         "speechUnitCount": 2,
         "wordCount": 2,
         "matchScore": 1,
         "asrText": "大 変",
         "wordIndexes": [
-          163,
-          164
+          164,
+          165
         ],
-        "method": "azure-speech-word-alignment",
+        "method": "audio-vad-sequential-alignment-with-azure-verification",
+        "timingSource": "audio-silence-detection",
+        "timingConfidence": "high",
         "confidence": "high",
+        "alignmentIssues": [],
+        "alignmentWarnings": [],
+        "speechActivity": {
+          "start": 78.054,
+          "end": 78.73,
+          "activeDuration": 0.677,
+          "regionCount": 1
+        },
+        "rawAzureTiming": {
+          "start": 78.11,
+          "end": 78.95,
+          "duration": 0.84
+        },
         "review": {
           "status": "approved",
-          "reviewedAt": "2026-08-05T11:36:42.674Z",
-          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "severity": "ok",
+          "reviewedAt": "2026-08-25T07:02:48.634Z",
+          "note": "Automatically approved by the audio-boundary alignment workflow.",
           "matchScore": 1,
           "asrText": "大 変"
         }
@@ -1947,25 +2717,41 @@
         "itemIndex": 48,
         "text": "なかなか",
         "label": "なかなか",
-        "start": 79.55,
-        "end": 80.77,
-        "duration": 1.22,
+        "start": 79.378,
+        "end": 80.589,
+        "duration": 1.211,
         "speechUnitCount": 4,
         "wordCount": 4,
         "matchScore": 1,
         "asrText": "な か な か",
         "wordIndexes": [
-          165,
           166,
           167,
-          168
+          168,
+          169
         ],
-        "method": "azure-speech-word-alignment",
+        "method": "audio-vad-sequential-alignment-with-azure-verification",
+        "timingSource": "audio-silence-detection",
+        "timingConfidence": "high",
         "confidence": "high",
+        "alignmentIssues": [],
+        "alignmentWarnings": [],
+        "speechActivity": {
+          "start": 79.628,
+          "end": 80.469,
+          "activeDuration": 0.841,
+          "regionCount": 1
+        },
+        "rawAzureTiming": {
+          "start": 79.59,
+          "end": 80.71,
+          "duration": 1.12
+        },
         "review": {
           "status": "approved",
-          "reviewedAt": "2026-08-05T11:36:42.674Z",
-          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "severity": "ok",
+          "reviewedAt": "2026-08-25T07:02:48.634Z",
+          "note": "Automatically approved by the audio-boundary alignment workflow.",
           "matchScore": 1,
           "asrText": "な か な か"
         }
@@ -1989,23 +2775,39 @@
         "itemIndex": 49,
         "text": "こう",
         "label": "こう",
-        "start": 81.27,
-        "end": 81.97,
-        "duration": 0.7,
+        "start": 81.029,
+        "end": 81.829,
+        "duration": 0.8,
         "speechUnitCount": 2,
         "wordCount": 2,
         "matchScore": 1,
         "asrText": "こ う",
         "wordIndexes": [
-          169,
-          170
+          170,
+          171
         ],
-        "method": "azure-speech-word-alignment",
+        "method": "audio-vad-sequential-alignment-with-azure-verification",
+        "timingSource": "audio-silence-detection",
+        "timingConfidence": "high",
         "confidence": "high",
+        "alignmentIssues": [],
+        "alignmentWarnings": [],
+        "speechActivity": {
+          "start": 81.279,
+          "end": 81.709,
+          "activeDuration": 0.43,
+          "regionCount": 1
+        },
+        "rawAzureTiming": {
+          "start": 81.31,
+          "end": 81.91,
+          "duration": 0.6
+        },
         "review": {
           "status": "approved",
-          "reviewedAt": "2026-08-05T11:36:42.674Z",
-          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "severity": "ok",
+          "reviewedAt": "2026-08-25T07:02:48.634Z",
+          "note": "Automatically approved by the audio-boundary alignment workflow.",
           "matchScore": 1,
           "asrText": "こ う"
         }
@@ -2028,24 +2830,40 @@
         "itemIndex": 50,
         "text": "そう／ああ",
         "label": "そう／ああ",
-        "start": 83.23,
-        "end": 86.01,
-        "duration": 2.78,
+        "start": 82.976,
+        "end": 85.841,
+        "duration": 2.865,
         "speechUnitCount": 3,
         "wordCount": 3,
         "matchScore": 0.75,
         "asrText": "そ う あ",
         "wordIndexes": [
-          171,
           172,
-          173
+          173,
+          174
         ],
-        "method": "azure-speech-word-alignment",
-        "confidence": "medium",
+        "method": "audio-vad-sequential-alignment-with-azure-verification",
+        "timingSource": "audio-silence-detection",
+        "timingConfidence": "high",
+        "confidence": "high",
+        "alignmentIssues": [],
+        "alignmentWarnings": [],
+        "speechActivity": {
+          "start": 83.226,
+          "end": 85.721,
+          "activeDuration": 1.095,
+          "regionCount": 2
+        },
+        "rawAzureTiming": {
+          "start": 83.27,
+          "end": 85.95,
+          "duration": 2.68
+        },
         "review": {
           "status": "approved",
-          "reviewedAt": "2026-08-05T11:36:42.674Z",
-          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "severity": "ok",
+          "reviewedAt": "2026-08-25T07:02:48.634Z",
+          "note": "Automatically approved by the audio-boundary alignment workflow.",
           "matchScore": 0.75,
           "asrText": "そ う あ"
         }
@@ -2068,23 +2886,39 @@
         "itemIndex": 51,
         "text": "あとで",
         "label": "後で",
-        "start": 87.07,
-        "end": 87.81,
-        "duration": 0.74,
+        "start": 86.731,
+        "end": 87.631,
+        "duration": 0.9,
         "speechUnitCount": 2,
         "wordCount": 2,
         "matchScore": 1,
         "asrText": "後 で",
         "wordIndexes": [
-          174,
-          175
+          175,
+          176
         ],
-        "method": "azure-speech-word-alignment",
+        "method": "audio-vad-sequential-alignment-with-azure-verification",
+        "timingSource": "audio-silence-detection",
+        "timingConfidence": "high",
         "confidence": "high",
+        "alignmentIssues": [],
+        "alignmentWarnings": [],
+        "speechActivity": {
+          "start": 86.981,
+          "end": 87.511,
+          "activeDuration": 0.53,
+          "regionCount": 1
+        },
+        "rawAzureTiming": {
+          "start": 87.11,
+          "end": 87.75,
+          "duration": 0.64
+        },
         "review": {
           "status": "approved",
-          "reviewedAt": "2026-08-05T11:36:42.674Z",
-          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "severity": "ok",
+          "reviewedAt": "2026-08-25T07:02:48.634Z",
+          "note": "Automatically approved by the audio-boundary alignment workflow.",
           "matchScore": 1,
           "asrText": "後 で"
         }
@@ -2108,25 +2942,41 @@
         "itemIndex": 52,
         "text": "それから",
         "label": "それから",
-        "start": 88.59,
-        "end": 89.81,
-        "duration": 1.22,
+        "start": 88.456,
+        "end": 89.639,
+        "duration": 1.183,
         "speechUnitCount": 4,
         "wordCount": 4,
         "matchScore": 1,
         "asrText": "そ れ か ら",
         "wordIndexes": [
-          176,
           177,
           178,
-          179
+          179,
+          180
         ],
-        "method": "azure-speech-word-alignment",
+        "method": "audio-vad-sequential-alignment-with-azure-verification",
+        "timingSource": "audio-silence-detection",
+        "timingConfidence": "high",
         "confidence": "high",
+        "alignmentIssues": [],
+        "alignmentWarnings": [],
+        "speechActivity": {
+          "start": 88.706,
+          "end": 89.519,
+          "activeDuration": 0.813,
+          "regionCount": 1
+        },
+        "rawAzureTiming": {
+          "start": 88.63,
+          "end": 89.75,
+          "duration": 1.12
+        },
         "review": {
           "status": "approved",
-          "reviewedAt": "2026-08-05T11:36:42.674Z",
-          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "severity": "ok",
+          "reviewedAt": "2026-08-25T07:02:48.634Z",
+          "note": "Automatically approved by the audio-boundary alignment workflow.",
           "matchScore": 1,
           "asrText": "そ れ か ら"
         }
@@ -2150,27 +3000,43 @@
         "itemIndex": 53,
         "text": "すみませんが",
         "label": "すみませんが",
-        "start": 90.75,
-        "end": 91.89,
-        "duration": 1.14,
+        "start": 90.623,
+        "end": 91.961,
+        "duration": 1.338,
         "speechUnitCount": 6,
         "wordCount": 6,
         "matchScore": 1,
         "asrText": "す み ま せ ん が",
         "wordIndexes": [
-          180,
           181,
           182,
           183,
           184,
-          185
+          185,
+          186
         ],
-        "method": "azure-speech-word-alignment",
+        "method": "audio-vad-sequential-alignment-with-azure-verification",
+        "timingSource": "audio-silence-detection",
+        "timingConfidence": "high",
         "confidence": "high",
+        "alignmentIssues": [],
+        "alignmentWarnings": [],
+        "speechActivity": {
+          "start": 90.873,
+          "end": 91.841,
+          "activeDuration": 0.968,
+          "regionCount": 1
+        },
+        "rawAzureTiming": {
+          "start": 90.79,
+          "end": 91.79,
+          "duration": 1
+        },
         "review": {
           "status": "approved",
-          "reviewedAt": "2026-08-05T11:36:42.674Z",
-          "note": "Automatically approved by the vocabulary ASR alignment workflow.",
+          "severity": "ok",
+          "reviewedAt": "2026-08-25T07:02:48.634Z",
+          "note": "Automatically approved by the audio-boundary alignment workflow.",
           "matchScore": 1,
           "asrText": "す み ま せ ん が"
         }
@@ -2181,22 +3047,24 @@
   "audioAlignment": {
     "schemaVersion": 1,
     "lessonId": "lesson14",
-    "generatedAt": "2026-08-05T11:35:56.759Z",
-    "method": "azure-speech-word-alignment",
+    "generatedAt": "2026-08-25T07:02:01.898Z",
+    "method": "audio-vad-sequential-alignment-with-azure-verification",
     "reviewStatus": "approved",
     "tracks": [
       {
         "trackId": "lesson_words",
         "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit4/lesson14/lesson_words.mp3",
+        "outputPath": "data/ocr/lesson14-vocabulary-audio-verified.json",
         "sourceAudioSha256": "a2247dea4af1c39166d04f40e5d8dbf963b504f4c09896b4fae166bef5d7947c",
-        "duration": 91.83,
+        "duration": 93.51,
         "expectedItems": 53,
-        "detectedWordCount": 185,
+        "detectedWordCount": 186,
         "alignedItems": 53,
         "warnings": [
-          "5 item(s) aligned with low ASR similarity.",
-          "Detected 185 word token(s) for 53 vocabulary item(s)."
-        ]
+          "3 item(s) aligned with low ASR similarity.",
+          "Audio VAD mapped 54 speech region(s) to 53 vocabulary item(s), confirmed by 50/53 Azure timing anchors."
+        ],
+        "provider": "azure-speech-sdk-continuous-recognition"
       }
     ]
   }

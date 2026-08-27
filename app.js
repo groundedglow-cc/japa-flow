@@ -4784,35 +4784,8 @@ function helpFaqCard(item) {
 function helpPage() {
   return layout(`
     <section class="help-page">
-      <section class="panel help-hero">
-        <p class="eyebrow">JapaFlow · 帮助</p>
-        <h1>麦克风录音问题</h1>
-        <p class="lead">当前先集中处理一个问题：浏览器已经放行权限，但页面依然录不到声音。下面按文章结构横向展开说明。</p>
-      </section>
-      <article class="help-article">
-        <section class="panel help-article-main">
-          <p class="eyebrow">问题一 · 录音转写</p>
-          <h2>为什么点了录音，却没有识别出文字？</h2>
-          <p class="lead">最常见的原因是浏览器当前选中了虚拟麦克风，比如 Teams、企业微信、Zoom、Loopback 之类的输入设备。</p>
-          <ol class="help-steps">
-            <li>确认浏览器麦克风下拉框里选的是实际麦克风，而不是虚拟话筒。</li>
-            <li>如果当前设备名称里带有“虚拟”“Virtual”“Teams”“企业微信”“Zoom”等字样，先切换掉。</li>
-            <li>切换后刷新页面，再重新录音。</li>
-          </ol>
-        </section>
-        <aside class="help-article-side">
-          <section class="help-note">
-            <p class="eyebrow">问题二 · 麦克风设置</p>
-            <h3>浏览器已经允许麦克风，为什么还是录不到声音？</h3>
-            <p>浏览器允许不等于选对了输入设备。权限只是放行，真正采集到哪一路声音，要看当前选中的麦克风。</p>
-            <ol class="help-steps compact">
-              <li>打开浏览器麦克风设置页，检查当前输入设备。</li>
-              <li>优先选 MacBook Pro Microphone、USB 麦克风或其他真实物理麦克风。</li>
-              <li>如果系统里装了会议软件，尽量不要选它们创建的虚拟输入。</li>
-            </ol>
-          </section>
-        </aside>
-      </article>
+      <p class="help-qa-line"><strong>Q:</strong> 为什么点击答题的麦克风，提示 当前选中了虚拟麦克风（xxxx），请切换为实际麦克风。</p>
+      <p class="help-qa-line"><strong>A:</strong> 电脑端可能有虚拟的麦克风，例如你使用会议软件后浏览器就记住了偏好，你需要选择一个真实可用的麦克风，例如在 Chrome 下设置位置在：chrome://settings/privacy - site settings - microphone 在麦克风选项中，选择可用的那一个。其他浏览器自行检索配置位置。</p>
     </section>
   `);
 }
@@ -5874,8 +5847,17 @@ function oldTextPage() {
           `).join("")}
         </div>
         <div class="text-prompt-switch" aria-label="提示语言">
-          <button class="text-lang ${state.textPromptLanguage === "zh" ? "active" : ""}" data-text-prompt-lang="zh" type="button">中文</button>
-          <button class="text-lang ${state.textPromptLanguage === "ja" ? "active" : ""}" data-text-prompt-lang="ja" type="button">日语</button>
+          <button
+            class="text-lang text-lang-toggle"
+            data-text-prompt-toggle
+            type="button"
+            aria-label="切换中文或日语提示，当前为${state.textPromptLanguage === "ja" ? "日语" : "中文"}"
+            title="切换中文 / 日语"
+          >
+            <span class="text-lang-option ${state.textPromptLanguage === "zh" ? "active" : ""}">中</span>
+            <span class="text-lang-separator">/</span>
+            <span class="text-lang-option ${state.textPromptLanguage === "ja" ? "active" : ""}">日</span>
+          </button>
         </div>
       </div>
     </div>
@@ -9196,6 +9178,11 @@ function bind() {
   }));
   app.querySelectorAll("[data-text-prompt-lang]").forEach((button) => button.addEventListener("click", () => {
     state.textPromptLanguage = button.dataset.textPromptLang;
+    writeTextProgress();
+    render();
+  }));
+  app.querySelectorAll("[data-text-prompt-toggle]").forEach((button) => button.addEventListener("click", () => {
+    state.textPromptLanguage = state.textPromptLanguage === "ja" ? "zh" : "ja";
     writeTextProgress();
     render();
   }));

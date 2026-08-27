@@ -956,13 +956,13 @@
           <article class="word-card">
             <div class="word-nav">
               <div class="word-nav-side">
-                <span class="word-shortcut" aria-hidden="true"><span class="word-shortcut-key">←</span><span>切换上一个</span></span>
+                <span class="word-shortcut" aria-hidden="true"><span class="word-shortcut-key">←</span><span>键切换上一个</span></span>
                 <button id="prevWord" type="button" ${state.index <= 0 ? "disabled" : ""}>上一个</button>
               </div>
               <span class="word-index">${state.index + 1} / ${total}</span>
               <div class="word-nav-side right">
                 <button id="nextWord" type="button" ${state.index >= total - 1 ? "disabled" : ""}>下一个</button>
-                <span class="word-shortcut" aria-hidden="true"><span>切换下一个</span><span class="word-shortcut-key">→</span></span>
+                <span class="word-shortcut" aria-hidden="true"><span>键切换下一个</span><span class="word-shortcut-key">→</span></span>
               </div>
             </div>
             <div class="word-body">

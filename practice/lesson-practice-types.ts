@@ -20,7 +20,12 @@ export type InputUnit = "word" | "phrase" | "sentence" | "dialogue" | "particle"
 
 export type AnswerSource = "prompt" | "audio" | "example_transform" | "personal";
 
-export type EvaluationMode = "exact" | "acceptable_answers" | "self_check" | "manual_review";
+export type EvaluationMode = "exact" | "acceptable_answers" | "open_response" | "self_check" | "manual_review";
+
+export type OpenResponseRule =
+  | { kind: "time"; actions?: string[]; allowShortAnswer?: boolean }
+  | { kind: "weekday_range"; actions?: string[]; allowShortAnswer?: boolean }
+  | { kind: "time_range"; actions?: string[]; allowShortAnswer?: boolean };
 
 export type ResponseScope =
   | "word_only"
@@ -44,7 +49,7 @@ export type RichText = {
 
 export type PromptPart =
   | RichText
-  | { type: "blank"; slotId: string }
+  | { type: "blank"; slotId: string; display?: "underline" | "parentheses" }
   | { type: "choice_ref"; choiceIds: string[] }
   | { type: "asset_ref"; assetId: string };
 
@@ -56,6 +61,7 @@ export type Choice = {
 export type Answer = {
   slotValues?: Record<string, string | string[]>;
   modelAnswers?: string[];
+  openResponseRule?: OpenResponseRule;
   choiceIds?: string[];
   boolean?: boolean;
   acceptableAlternatives?: string[];
@@ -66,6 +72,8 @@ export type Answer = {
 export type InputSlot = {
   id: string;
   expectedUnit: InputUnit;
+  choices?: Choice[];
+  label?: string;
   width?: "short" | "medium" | "long";
   placeholder?: string;
   multiline?: boolean;
@@ -87,11 +95,12 @@ export type PracticeItem = {
   choices?: Choice[];
   answer?: Answer;
   relatedAssets?: string[];
-  renderHint?: "inline" | "dialogue" | "card" | "table_row" | "map_question";
+  renderHint?: "inline" | "dialogue" | "card" | "table_row" | "map_question" | "trip_composition";
 };
 
 export type ExampleBlock = {
   id?: string;
+  renderHint?: "trip_composition";
   label?: string;
   before?: string;
   beforeKana?: string;

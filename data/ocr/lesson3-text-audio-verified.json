@@ -327,9 +327,9 @@
               "itemIndex": 6,
               "speaker": "乙",
               "text": "あちらです。",
-              "start": 21.77,
+              "start": 22.4,
               "end": 23.59,
-              "duration": 1.82,
+              "duration": 1.19,
               "rawAzureTiming": {
                 "start": 21.75,
                 "end": 23.47,
@@ -345,16 +345,17 @@
                 4,
                 5
               ],
-              "method": "azure-speech-sentence-alignment-with-boundary-padding",
-              "confidence": "high",
+              "method": "manual-admin-adjustment",
+              "confidence": "approved",
               "alignmentIssues": [],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-16T11:01:05.259Z",
-                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "reviewedAt": "2026-08-20T14:37:07.959Z",
+                "note": "Manually verified and adjusted in the text audio preview.",
                 "matchScore": 1,
                 "asrText": "。 あ ち ら で す 。"
-              }
+              },
+              "reviewedAt": "2026-08-20T14:37:07.959Z"
             }
           }
         ]
@@ -450,9 +451,9 @@
               "itemIndex": 8,
               "speaker": "乙",
               "text": "銀行です。",
-              "start": 28.45,
+              "start": 28.95,
               "end": 30.92,
-              "duration": 2.47,
+              "duration": 1.97,
               "rawAzureTiming": {
                 "start": 28.43,
                 "end": 30.8,
@@ -468,16 +469,17 @@
                 6,
                 7
               ],
-              "method": "azure-speech-sentence-alignment-with-boundary-padding",
-              "confidence": "high",
+              "method": "manual-admin-adjustment",
+              "confidence": "approved",
               "alignmentIssues": [],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-16T11:01:05.259Z",
-                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "reviewedAt": "2026-08-20T14:37:27.992Z",
+                "note": "Manually verified and adjusted in the text audio preview.",
                 "matchScore": 1,
                 "asrText": "。 銀 行 で す 。"
-              }
+              },
+              "reviewedAt": "2026-08-20T14:37:27.992Z"
             }
           }
         ]
@@ -1554,5 +1556,6 @@
         ]
       }
     ]
-  }
+  },
+  "updatedAt": "2026-08-20T14:37:27.993Z"
 }

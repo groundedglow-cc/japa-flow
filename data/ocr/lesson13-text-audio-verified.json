@@ -23,27 +23,64 @@
         "translationZh": "桌子上有3本书。",
         "confidence": "high",
         "rawText": "1. 机の 上に 本が 3冊 あります。",
+        "segments": [
+          {
+            "text": "机",
+            "ruby": "つくえ"
+          },
+          {
+            "text": "の "
+          },
+          {
+            "text": "上",
+            "ruby": "うえ"
+          },
+          {
+            "text": "に "
+          },
+          {
+            "text": "本",
+            "ruby": "ほん"
+          },
+          {
+            "text": "が 3冊 ",
+            "ruby": "さんさつ"
+          },
+          {
+            "text": "あります。"
+          }
+        ],
         "audioSegment": {
           "id": "l13-basic-s001",
           "trackId": "lesson_basic",
           "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit4/lesson13/lesson_basic.mp3",
+          "itemIndex": 1,
           "speaker": "",
           "text": "机の 上に 本が 3冊 あります。",
-          "start": 1.33,
-          "end": 4.79,
-          "duration": 3.46,
+          "start": 1.14,
+          "end": 4.83,
+          "duration": 3.69,
+          "rawAzureTiming": {
+            "start": 1.39,
+            "end": 4.71,
+            "duration": 3.32
+          },
+          "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+          "speechActivity": null,
           "speechUnitCount": 1,
           "matchScore": 0.917,
+          "asrConfidence": 0.824,
           "asrText": "机 の 上 に 本 が 三 冊 あ り ま す",
           "phraseIndexes": [
             0
           ],
-          "method": "legacy-asr-alignment-range-converted",
-          "confidence": "approved",
+          "method": "azure-speech-sentence-alignment-with-boundary-padding",
+          "confidence": "high",
+          "alignmentIssues": [],
           "review": {
             "status": "approved",
-            "reviewedAt": "2026-08-05T08:35:30.207Z",
-            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-25T07:00:15.991Z",
+            "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
             "matchScore": 0.917,
             "asrText": "机 の 上 に 本 が 三 冊 あ り ま す"
           }
@@ -57,27 +94,61 @@
         "translationZh": "小李每天工作7个小时。",
         "confidence": "high",
         "rawText": "2. 李さんは 毎日 7時間 働きます。",
+        "segments": [
+          {
+            "text": "李",
+            "ruby": "り"
+          },
+          {
+            "text": "さんは "
+          },
+          {
+            "text": "毎日",
+            "ruby": "まいにち"
+          },
+          {
+            "text": " 7時間 ",
+            "ruby": "しちじかん"
+          },
+          {
+            "text": "働",
+            "ruby": "はたら"
+          },
+          {
+            "text": "きます。"
+          }
+        ],
         "audioSegment": {
           "id": "l13-basic-s002",
           "trackId": "lesson_basic",
           "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit4/lesson13/lesson_basic.mp3",
+          "itemIndex": 2,
           "speaker": "",
           "text": "李さんは 毎日 7時間 働きます。",
-          "start": 6.45,
-          "end": 9.95,
-          "duration": 3.5,
+          "start": 6.26,
+          "end": 9.99,
+          "duration": 3.73,
+          "rawAzureTiming": {
+            "start": 6.51,
+            "end": 9.87,
+            "duration": 3.36
+          },
+          "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+          "speechActivity": null,
           "speechUnitCount": 1,
           "matchScore": 0.923,
+          "asrConfidence": 0.848,
           "asrText": "李 さ ん は 毎 日 七 時 間 働 き ま す",
           "phraseIndexes": [
             1
           ],
-          "method": "legacy-asr-alignment-range-converted",
-          "confidence": "approved",
+          "method": "azure-speech-sentence-alignment-with-boundary-padding",
+          "confidence": "high",
+          "alignmentIssues": [],
           "review": {
             "status": "approved",
-            "reviewedAt": "2026-08-05T08:35:30.207Z",
-            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-25T07:00:15.991Z",
+            "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
             "matchScore": 0.923,
             "asrText": "李 さ ん は 毎 日 七 時 間 働 き ま す"
           }
@@ -91,27 +162,61 @@
         "translationZh": "小李每周去两次游泳池。",
         "confidence": "high",
         "rawText": "3. 李さんは 1週間に 2回 プールへ 行きます。",
+        "segments": [
+          {
+            "text": "李",
+            "ruby": "り"
+          },
+          {
+            "text": "さんは 1週間",
+            "ruby": "いっしゅうかん"
+          },
+          {
+            "text": "に 2回 ",
+            "ruby": "にかい"
+          },
+          {
+            "text": "プールへ "
+          },
+          {
+            "text": "行",
+            "ruby": "い"
+          },
+          {
+            "text": "きます。"
+          }
+        ],
         "audioSegment": {
           "id": "l13-basic-s003",
           "trackId": "lesson_basic",
           "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit4/lesson13/lesson_basic.mp3",
+          "itemIndex": 3,
           "speaker": "",
           "text": "李さんは 1週間に 2回 プールへ 行きます。",
-          "start": 12.42,
-          "end": 15.08,
-          "duration": 2.66,
+          "start": 12.23,
+          "end": 15.12,
+          "duration": 2.89,
+          "rawAzureTiming": {
+            "start": 12.48,
+            "end": 15,
+            "duration": 2.52
+          },
+          "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+          "speechActivity": null,
           "speechUnitCount": 1,
           "matchScore": 0.833,
+          "asrConfidence": 0.806,
           "asrText": "さ ん は 一 週 間 に 二 回 プ ー ル へ 行 き ま す",
           "phraseIndexes": [
             2
           ],
-          "method": "legacy-asr-alignment-range-converted",
-          "confidence": "approved",
+          "method": "azure-speech-sentence-alignment-with-boundary-padding",
+          "confidence": "high",
+          "alignmentIssues": [],
           "review": {
             "status": "approved",
-            "reviewedAt": "2026-08-05T08:35:30.207Z",
-            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-25T07:00:15.991Z",
+            "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
             "matchScore": 0.833,
             "asrText": "さ ん は 一 週 間 に 二 回 プ ー ル へ 行 き ま す"
           }
@@ -125,29 +230,76 @@
         "translationZh": "下午去邮局寄包裹。",
         "confidence": "high",
         "rawText": "4. 午後 郵便局へ 荷物を 出しに 行きます。",
+        "segments": [
+          {
+            "text": "午後",
+            "ruby": "ごご"
+          },
+          {
+            "text": " "
+          },
+          {
+            "text": "郵便局",
+            "ruby": "ゆうびんきょく"
+          },
+          {
+            "text": "へ "
+          },
+          {
+            "text": "荷物",
+            "ruby": "にもつ"
+          },
+          {
+            "text": "を "
+          },
+          {
+            "text": "出",
+            "ruby": "だ"
+          },
+          {
+            "text": "しに "
+          },
+          {
+            "text": "行",
+            "ruby": "い"
+          },
+          {
+            "text": "きます。"
+          }
+        ],
         "audioSegment": {
           "id": "l13-basic-s004",
           "trackId": "lesson_basic",
           "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit4/lesson13/lesson_basic.mp3",
+          "itemIndex": 4,
           "speaker": "",
           "text": "午後 郵便局へ 荷物を 出しに 行きます。",
-          "start": 16.89,
-          "end": 20.71,
-          "duration": 3.82,
+          "start": 16.7,
+          "end": 20.75,
+          "duration": 4.05,
+          "rawAzureTiming": {
+            "start": 16.95,
+            "end": 20.63,
+            "duration": 3.68
+          },
+          "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+          "speechActivity": null,
           "speechUnitCount": 1,
           "matchScore": 1,
-          "asrText": "午 後 郵 便 局 へ 荷 物 を 出 し に 行 き ま す",
+          "asrConfidence": 0.918,
+          "asrText": "午 後 郵 便 局 へ 荷 物 を 出 し に 行 き ま す 。",
           "phraseIndexes": [
             3
           ],
-          "method": "legacy-asr-alignment-range-converted",
-          "confidence": "approved",
+          "method": "azure-speech-sentence-alignment-with-boundary-padding",
+          "confidence": "high",
+          "alignmentIssues": [],
           "review": {
             "status": "approved",
-            "reviewedAt": "2026-08-05T08:35:30.207Z",
-            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-08-25T07:00:15.991Z",
+            "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
             "matchScore": 1,
-            "asrText": "午 後 郵 便 局 へ 荷 物 を 出 し に 行 き ま す"
+            "asrText": "午 後 郵 便 局 へ 荷 物 を 出 し に 行 き ま す 。"
           }
         }
       }
@@ -165,29 +317,57 @@
             "translationZh": "请给我5张明信片。",
             "confidence": "high",
             "rawText": "甲：すみません、はがきを 5枚 ください。",
+            "segments": [
+              {
+                "text": "すみません、はがきを "
+              },
+              {
+                "text": "5枚",
+                "ruby": "ごまい"
+              },
+              {
+                "text": " ください。"
+              }
+            ],
             "audioSegment": {
               "id": "l13-basic-dialogue-001-line-001",
               "trackId": "lesson_basic",
               "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit4/lesson13/lesson_basic.mp3",
+              "itemIndex": 5,
               "speaker": "甲",
               "text": "すみません、はがきを 5枚 ください。",
-              "start": 22.47,
-              "end": 25.33,
-              "duration": 2.86,
+              "start": 22.28,
+              "end": 25.286,
+              "duration": 3.006,
+              "rawAzureTiming": {
+                "start": 22.53,
+                "end": 25.05,
+                "duration": 2.52
+              },
+              "timingSource": "azure-speech-boundary-with-local-vad-refinement",
+              "speechActivity": {
+                "start": 23.767,
+                "end": 25.166,
+                "duration": 1.4
+              },
               "speechUnitCount": 1,
-              "matchScore": 0.933,
-              "asrText": "す み ま せ ん は が き を 五 枚 く だ さ い",
+              "matchScore": 1,
+              "asrConfidence": 0.879,
+              "asrText": "す み ま せ ん 、 は が き を ご ま い く だ さ い",
               "phraseIndexes": [
                 4
               ],
-              "method": "legacy-asr-alignment-range-converted",
-              "confidence": "approved",
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [
+                "ASR boundary ended before the final local speech region; verify this sentence."
+              ],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-05T08:35:30.207Z",
-                "note": "Automatically approved by the bulk alignment workflow.",
-                "matchScore": 0.933,
-                "asrText": "す み ま せ ん は が き を 五 枚 く だ さ い"
+                "reviewedAt": "2026-08-25T07:00:15.991Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "matchScore": 1,
+                "asrText": "す み ま せ ん 、 は が き を ご ま い く だ さ い"
               }
             }
           },
@@ -199,29 +379,65 @@
             "translationZh": "好的。5张250日元。",
             "confidence": "high",
             "rawText": "乙：はい。5枚で 250円です。",
+            "segments": [
+              {
+                "text": "はい。"
+              },
+              {
+                "text": "5枚",
+                "ruby": "ごまい"
+              },
+              {
+                "text": "で 250円",
+                "ruby": "にひゃくごじゅうえん"
+              },
+              {
+                "text": "です。"
+              }
+            ],
             "audioSegment": {
               "id": "l13-basic-dialogue-001-line-002",
               "trackId": "lesson_basic",
               "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit4/lesson13/lesson_basic.mp3",
+              "itemIndex": 6,
               "speaker": "乙",
               "text": "はい。5枚で 250円です。",
-              "start": 26.74,
+              "start": 25.799,
               "end": 28.84,
-              "duration": 2.1,
-              "speechUnitCount": 1,
+              "duration": 3.041,
+              "rawAzureTiming": {
+                "start": 25.05,
+                "end": 28.72,
+                "duration": 3.67
+              },
+              "timingSource": "azure-speech-boundary-with-local-vad-refinement",
+              "speechActivity": {
+                "start": 25.859,
+                "end": 26.09,
+                "duration": 2.861,
+                "expectedDuration": 2.21,
+                "precedingSilence": 0.682
+              },
+              "speechUnitCount": 2,
               "matchScore": 0.583,
-              "asrText": "は い 五 枚 で 二 百 五 十 円 で す",
+              "asrConfidence": 0.889,
+              "asrText": "。 は い 五 枚 で 二 百 五 十 円 で す",
               "phraseIndexes": [
+                4,
                 5
               ],
-              "method": "legacy-asr-alignment-range-converted",
-              "confidence": "approved",
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "needs-review",
+              "alignmentIssues": [
+                "ASR boundary overlapped the previous sentence and was moved to the next local speech region; verify this sentence.",
+                "Low ASR text similarity."
+              ],
               "review": {
-                "status": "approved",
-                "reviewedAt": "2026-08-05T08:35:30.207Z",
-                "note": "Automatically approved by the bulk alignment workflow.",
+                "status": "pending",
+                "reviewedAt": null,
+                "note": "ASR boundary overlapped the previous sentence and was moved to the next local speech region; verify this sentence. Low ASR text similarity.",
                 "matchScore": 0.583,
-                "asrText": "は い 五 枚 で 二 百 五 十 円 で す"
+                "asrText": "。 は い 五 枚 で 二 百 五 十 円 で す"
               }
             }
           }
@@ -239,27 +455,62 @@
             "translationZh": "你经常看电影吗？",
             "confidence": "high",
             "rawText": "甲：よく 映画を 見ますか。",
+            "segments": [
+              {
+                "text": "よく "
+              },
+              {
+                "text": "映画",
+                "ruby": "えいが"
+              },
+              {
+                "text": "を "
+              },
+              {
+                "text": "見",
+                "ruby": "み"
+              },
+              {
+                "text": "ますか。"
+              }
+            ],
             "audioSegment": {
               "id": "l13-basic-dialogue-002-line-001",
               "trackId": "lesson_basic",
               "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit4/lesson13/lesson_basic.mp3",
+              "itemIndex": 7,
               "speaker": "甲",
               "text": "よく 映画を 見ますか。",
-              "start": 30.41,
-              "end": 32.55,
-              "duration": 2.14,
+              "start": 30.22,
+              "end": 32.379,
+              "duration": 2.159,
+              "rawAzureTiming": {
+                "start": 30.47,
+                "end": 32.15,
+                "duration": 1.68
+              },
+              "timingSource": "azure-speech-boundary-with-local-vad-refinement",
+              "speechActivity": {
+                "start": 31.22,
+                "end": 32.259,
+                "duration": 1.039
+              },
               "speechUnitCount": 1,
               "matchScore": 1,
+              "asrConfidence": 0.887,
               "asrText": "よ く 映 画 を 見 ま す か",
               "phraseIndexes": [
                 6
               ],
-              "method": "legacy-asr-alignment-range-converted",
-              "confidence": "approved",
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [
+                "ASR boundary ended before the final local speech region; verify this sentence."
+              ],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-05T08:35:30.207Z",
-                "note": "Automatically approved by the bulk alignment workflow.",
+                "reviewedAt": "2026-08-25T07:00:15.991Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
                 "matchScore": 1,
                 "asrText": "よ く 映 画 を 見 ま す か"
               }
@@ -273,29 +524,69 @@
             "translationZh": "是的，一个月看两次左右。",
             "confidence": "high",
             "rawText": "乙：ええ、1か月に 2回ぐらい 見ます。",
+            "segments": [
+              {
+                "text": "ええ、1か月",
+                "ruby": "いっかげつ"
+              },
+              {
+                "text": "に 2回",
+                "ruby": "にかい"
+              },
+              {
+                "text": "ぐらい "
+              },
+              {
+                "text": "見",
+                "ruby": "み"
+              },
+              {
+                "text": "ます。"
+              }
+            ],
             "audioSegment": {
               "id": "l13-basic-dialogue-002-line-002",
               "trackId": "lesson_basic",
               "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit4/lesson13/lesson_basic.mp3",
+              "itemIndex": 8,
               "speaker": "乙",
               "text": "ええ、1か月に 2回ぐらい 見ます。",
-              "start": 33.94,
-              "end": 35.96,
-              "duration": 2.02,
-              "speechUnitCount": 1,
+              "start": 32.958,
+              "end": 36.08,
+              "duration": 3.122,
+              "rawAzureTiming": {
+                "start": 32.15,
+                "end": 35.96,
+                "duration": 3.81
+              },
+              "timingSource": "azure-speech-boundary-with-local-vad-refinement",
+              "speechActivity": {
+                "start": 33.018,
+                "end": 33.285,
+                "duration": 2.942,
+                "expectedDuration": 2.69,
+                "precedingSilence": 0.733
+              },
+              "speechUnitCount": 2,
               "matchScore": 0.786,
-              "asrText": "え え 一 カ 月 に 二 回 ぐ ら い 見 ま す",
+              "asrConfidence": 0.872,
+              "asrText": "。 え え 一 カ 月 に 二 回 ぐ ら い 見 ま す",
               "phraseIndexes": [
+                6,
                 7
               ],
-              "method": "legacy-asr-alignment-range-converted",
-              "confidence": "approved",
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "medium",
+              "alignmentIssues": [
+                "ASR boundary overlapped the previous sentence and was moved to the next local speech region; verify this sentence.",
+                "Moderate ASR text similarity."
+              ],
               "review": {
-                "status": "approved",
-                "reviewedAt": "2026-08-05T08:35:30.207Z",
-                "note": "Automatically approved by the bulk alignment workflow.",
+                "status": "pending",
+                "reviewedAt": null,
+                "note": "ASR boundary overlapped the previous sentence and was moved to the next local speech region; verify this sentence. Moderate ASR text similarity.",
                 "matchScore": 0.786,
-                "asrText": "え え 一 カ 月 に 二 回 ぐ ら い 見 ま す"
+                "asrText": "。 え え 一 カ 月 に 二 回 ぐ ら い 見 ま す"
               }
             }
           }
@@ -313,27 +604,59 @@
             "translationZh": "从家到公司要花多长时间？",
             "confidence": "high",
             "rawText": "甲：家から 会社まで どのぐらい かかりますか。",
+            "segments": [
+              {
+                "text": "家",
+                "ruby": "いえ"
+              },
+              {
+                "text": "から "
+              },
+              {
+                "text": "会社",
+                "ruby": "かいしゃ"
+              },
+              {
+                "text": "まで どのぐらい かかりますか。"
+              }
+            ],
             "audioSegment": {
               "id": "l13-basic-dialogue-003-line-001",
               "trackId": "lesson_basic",
               "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit4/lesson13/lesson_basic.mp3",
+              "itemIndex": 9,
               "speaker": "甲",
               "text": "家から 会社まで どのぐらい かかりますか。",
-              "start": 37.94,
-              "end": 41.08,
-              "duration": 3.14,
+              "start": 37.75,
+              "end": 41.106,
+              "duration": 3.356,
+              "rawAzureTiming": {
+                "start": 38,
+                "end": 40.92,
+                "duration": 2.92
+              },
+              "timingSource": "azure-speech-boundary-with-local-vad-refinement",
+              "speechActivity": {
+                "start": 39.623,
+                "end": 40.986,
+                "duration": 1.363
+              },
               "speechUnitCount": 1,
               "matchScore": 1,
+              "asrConfidence": 0.888,
               "asrText": "家 か ら 会 社 ま で ど の ぐ ら い か か り ま す か",
               "phraseIndexes": [
                 8
               ],
-              "method": "legacy-asr-alignment-range-converted",
-              "confidence": "approved",
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [
+                "ASR boundary ended before the final local speech region; verify this sentence."
+              ],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-05T08:35:30.207Z",
-                "note": "Automatically approved by the bulk alignment workflow.",
+                "reviewedAt": "2026-08-25T07:00:15.991Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
                 "matchScore": 1,
                 "asrText": "家 か ら 会 社 ま で ど の ぐ ら い か か り ま す か"
               }
@@ -347,29 +670,61 @@
             "translationZh": "坐电车大约要一个小时。",
             "confidence": "high",
             "rawText": "乙：電車で 1時間ぐらい かかります。",
+            "segments": [
+              {
+                "text": "電車",
+                "ruby": "でんしゃ"
+              },
+              {
+                "text": "で 1時間",
+                "ruby": "いちじかん"
+              },
+              {
+                "text": "ぐらい かかります。"
+              }
+            ],
             "audioSegment": {
               "id": "l13-basic-dialogue-003-line-002",
               "trackId": "lesson_basic",
               "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit4/lesson13/lesson_basic.mp3",
+              "itemIndex": 10,
               "speaker": "乙",
               "text": "電車で 1時間ぐらい かかります。",
-              "start": 41.42,
-              "end": 44.28,
-              "duration": 2.86,
-              "speechUnitCount": 1,
+              "start": 41.641,
+              "end": 44.88,
+              "duration": 3.239,
+              "rawAzureTiming": {
+                "start": 40.92,
+                "end": 44.76,
+                "duration": 3.84
+              },
+              "timingSource": "azure-speech-boundary-with-local-vad-refinement",
+              "speechActivity": {
+                "start": 41.701,
+                "end": 42.361,
+                "duration": 3.059,
+                "expectedDuration": 2.69,
+                "precedingSilence": 0.682
+              },
+              "speechUnitCount": 2,
               "matchScore": 0.929,
-              "asrText": "電 車 で 一 時 間 ぐ ら い か か り ま す",
+              "asrConfidence": 0.932,
+              "asrText": "。 電 車 で 一 時 間 ぐ ら い か か り ま す",
               "phraseIndexes": [
-                8
+                8,
+                9
               ],
-              "method": "legacy-asr-alignment-range-converted",
-              "confidence": "approved",
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [
+                "ASR boundary overlapped the previous sentence and was moved to the next local speech region; verify this sentence."
+              ],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-05T08:35:30.207Z",
-                "note": "Automatically approved by the bulk alignment workflow.",
+                "reviewedAt": "2026-08-25T07:00:15.991Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
                 "matchScore": 0.929,
-                "asrText": "電 車 で 一 時 間 ぐ ら い か か り ま す"
+                "asrText": "。 電 車 で 一 時 間 ぐ ら い か か り ま す"
               }
             }
           }
@@ -387,27 +742,53 @@
             "translationZh": "昨天做什么了？",
             "confidence": "high",
             "rawText": "甲：昨日 何を しましたか。",
+            "segments": [
+              {
+                "text": "昨日",
+                "ruby": "きのう"
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "何",
+                "ruby": "なに"
+              },
+              {
+                "text": "を しましたか。"
+              }
+            ],
             "audioSegment": {
               "id": "l13-basic-dialogue-004-line-001",
               "trackId": "lesson_basic",
               "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit4/lesson13/lesson_basic.mp3",
+              "itemIndex": 11,
               "speaker": "甲",
               "text": "昨日 何を しましたか。",
-              "start": 46.78,
-              "end": 49.08,
-              "duration": 2.3,
+              "start": 46.59,
+              "end": 48.96,
+              "duration": 2.37,
+              "rawAzureTiming": {
+                "start": 46.84,
+                "end": 48.84,
+                "duration": 2
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
               "speechUnitCount": 1,
               "matchScore": 1,
+              "asrConfidence": 0.903,
               "asrText": "昨 日 何 を し ま し た か",
               "phraseIndexes": [
-                9
+                10
               ],
-              "method": "legacy-asr-alignment-range-converted",
-              "confidence": "approved",
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-05T08:35:30.207Z",
-                "note": "Automatically approved by the bulk alignment workflow.",
+                "reviewedAt": "2026-08-25T07:00:15.991Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
                 "matchScore": 1,
                 "asrText": "昨 日 何 を し ま し た か"
               }
@@ -421,29 +802,77 @@
             "translationZh": "去新宿看电影了。",
             "confidence": "high",
             "rawText": "乙：新宿へ 映画を 見に 行きました。",
+            "segments": [
+              {
+                "text": "新宿",
+                "ruby": "しんじゅく"
+              },
+              {
+                "text": "へ "
+              },
+              {
+                "text": "映画",
+                "ruby": "えいが"
+              },
+              {
+                "text": "を "
+              },
+              {
+                "text": "見",
+                "ruby": "み"
+              },
+              {
+                "text": "に "
+              },
+              {
+                "text": "行",
+                "ruby": "い"
+              },
+              {
+                "text": "きました。"
+              }
+            ],
             "audioSegment": {
               "id": "l13-basic-dialogue-004-line-002",
               "trackId": "lesson_basic",
               "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit4/lesson13/lesson_basic.mp3",
+              "itemIndex": 12,
               "speaker": "乙",
               "text": "新宿へ 映画を 見に 行きました。",
-              "start": 49.22,
-              "end": 51.92,
-              "duration": 2.7,
+              "start": 49.257,
+              "end": 51.76,
+              "duration": 2.503,
+              "rawAzureTiming": {
+                "start": 48.84,
+                "end": 51.64,
+                "duration": 2.8
+              },
+              "timingSource": "azure-speech-boundary-with-local-vad-refinement",
+              "speechActivity": {
+                "start": 49.317,
+                "end": 50.016,
+                "duration": 2.323,
+                "expectedDuration": 2.53,
+                "precedingSilence": 0.523
+              },
               "speechUnitCount": 1,
               "matchScore": 1,
-              "asrText": "新 宿 へ 映 画 を 見 に 行 き ま し た",
+              "asrConfidence": 0.903,
+              "asrText": "。 新 宿 へ 映 画 を 見 に 行 き ま し た",
               "phraseIndexes": [
-                9
+                10
               ],
-              "method": "legacy-asr-alignment-range-converted",
-              "confidence": "approved",
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [
+                "ASR boundary overlapped the previous sentence and was moved to the next local speech region; verify this sentence."
+              ],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-05T08:35:30.207Z",
-                "note": "Automatically approved by the bulk alignment workflow.",
+                "reviewedAt": "2026-08-25T07:00:15.991Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
                 "matchScore": 1,
-                "asrText": "新 宿 へ 映 画 を 見 に 行 き ま し た"
+                "asrText": "。 新 宿 へ 映 画 を 見 に 行 き ま し た"
               }
             }
           }
@@ -484,29 +913,79 @@
             "translationZh": "现在要和森先生去附近的店喝酒。",
             "confidence": "high",
             "rawText": "小野：これから 森さんと 近くの お店へ 飲みに 行きます。",
+            "segments": [
+              {
+                "text": "これから "
+              },
+              {
+                "text": "森",
+                "ruby": "もり"
+              },
+              {
+                "text": "さんと "
+              },
+              {
+                "text": "近",
+                "ruby": "ちか"
+              },
+              {
+                "text": "くの お"
+              },
+              {
+                "text": "店",
+                "ruby": "みせ"
+              },
+              {
+                "text": "へ "
+              },
+              {
+                "text": "飲",
+                "ruby": "の"
+              },
+              {
+                "text": "みに "
+              },
+              {
+                "text": "行",
+                "ruby": "い"
+              },
+              {
+                "text": "きます。"
+              }
+            ],
             "audioSegment": {
               "id": "l13-app-block-003-line-001",
               "trackId": "lesson_apps",
               "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit4/lesson13/lesson_apps.mp3",
+              "itemIndex": 1,
               "speaker": "小野",
               "text": "これから 森さんと 近くの お店へ 飲みに 行きます。",
-              "start": 13.38,
-              "end": 16.96,
-              "duration": 3.58,
+              "start": 13.19,
+              "end": 17,
+              "duration": 3.81,
+              "rawAzureTiming": {
+                "start": 13.44,
+                "end": 16.88,
+                "duration": 3.44
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
               "speechUnitCount": 1,
-              "matchScore": 0.952,
-              "asrText": "こ れ か ら 森 さ ん と 近 く の お 店 へ の み に 行 き ま す",
+              "matchScore": 1,
+              "asrConfidence": 0.918,
+              "asrText": "こ れ か ら 森 さ ん と 近 く の お 店 へ 飲 み に 行 き ま す",
               "phraseIndexes": [
                 3
               ],
-              "method": "legacy-asr-alignment-range-converted",
-              "confidence": "approved",
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-05T08:36:13.940Z",
-                "note": "Automatically approved by the bulk alignment workflow.",
-                "matchScore": 0.952,
-                "asrText": "こ れ か ら 森 さ ん と 近 く の お 店 へ の み に 行 き ま す"
+                "reviewedAt": "2026-08-25T07:00:15.991Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "matchScore": 1,
+                "asrText": "こ れ か ら 森 さ ん と 近 く の お 店 へ 飲 み に 行 き ま す"
               }
             }
           },
@@ -518,29 +997,54 @@
             "translationZh": "小李也一起去怎么样？",
             "confidence": "high",
             "rawText": "小野：李さんも いっしょに どうですか。",
+            "segments": [
+              {
+                "text": "李",
+                "ruby": "り"
+              },
+              {
+                "text": "さんも いっしょに どうですか。"
+              }
+            ],
             "audioSegment": {
               "id": "l13-app-block-003-line-002",
               "trackId": "lesson_apps",
               "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit4/lesson13/lesson_apps.mp3",
+              "itemIndex": 2,
               "speaker": "小野",
               "text": "李さんも いっしょに どうですか。",
-              "start": 17.3,
-              "end": 19.16,
-              "duration": 1.86,
+              "start": 17.07,
+              "end": 19.193,
+              "duration": 2.123,
+              "rawAzureTiming": {
+                "start": 17.32,
+                "end": 18.8,
+                "duration": 1.48
+              },
+              "timingSource": "azure-speech-boundary-with-local-vad-refinement",
+              "speechActivity": {
+                "start": 17.425,
+                "end": 19.089,
+                "duration": 1.665
+              },
               "speechUnitCount": 1,
-              "matchScore": 0.714,
-              "asrText": "李 さ ん も 一 緒 に ど う で す か",
+              "matchScore": 1,
+              "asrConfidence": 0.918,
+              "asrText": "。 李 さ ん も い っ し ょ に ど う で す か",
               "phraseIndexes": [
                 3
               ],
-              "method": "legacy-asr-alignment-range-converted",
-              "confidence": "approved",
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [
+                "ASR boundary ended before the final local speech region; verify this sentence."
+              ],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-05T08:36:13.940Z",
-                "note": "Automatically approved by the bulk alignment workflow.",
-                "matchScore": 0.714,
-                "asrText": "李 さ ん も 一 緒 に ど う で す か"
+                "reviewedAt": "2026-08-25T07:00:15.991Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "matchScore": 1,
+                "asrText": "。 李 さ ん も い っ し ょ に ど う で す か"
               }
             }
           },
@@ -552,29 +1056,61 @@
             "translationZh": "啊，可以吗？那就拜托了。",
             "confidence": "high",
             "rawText": "李：えっ、いいですか。お願いします。",
+            "segments": [
+              {
+                "text": "えっ、いいですか。お"
+              },
+              {
+                "text": "願",
+                "ruby": "ねが"
+              },
+              {
+                "text": "いします。"
+              }
+            ],
             "audioSegment": {
               "id": "l13-app-block-003-line-003",
               "trackId": "lesson_apps",
               "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit4/lesson13/lesson_apps.mp3",
+              "itemIndex": 3,
               "speaker": "李",
               "text": "えっ、いいですか。お願いします。",
-              "start": 19.66,
-              "end": 22.28,
-              "duration": 2.62,
-              "speechUnitCount": 1,
+              "start": 19.153,
+              "end": 22.334,
+              "duration": 3.181,
+              "rawAzureTiming": {
+                "start": 18.8,
+                "end": 22.12,
+                "duration": 3.32
+              },
+              "timingSource": "azure-speech-boundary-with-local-vad-refinement",
+              "speechActivity": {
+                "start": 19.213,
+                "end": 19.285,
+                "duration": 2.907,
+                "expectedDuration": 2.53,
+                "precedingSilence": 0.124
+              },
+              "speechUnitCount": 2,
               "matchScore": 0.923,
-              "asrText": "え い い で す か お 願 い し ま す",
+              "asrConfidence": 0.905,
+              "asrText": "。 え い い で す か お 願 い し ま す",
               "phraseIndexes": [
-                3
+                3,
+                4
               ],
-              "method": "legacy-asr-alignment-range-converted",
-              "confidence": "approved",
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [
+                "ASR boundary overlapped the previous sentence and was moved to the next local speech region; verify this sentence.",
+                "ASR boundary ended before the final local speech region; verify this sentence."
+              ],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-05T08:36:13.940Z",
-                "note": "Automatically approved by the bulk alignment workflow.",
+                "reviewedAt": "2026-08-25T07:00:15.991Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
                 "matchScore": 0.923,
-                "asrText": "え い い で す か お 願 い し ま す"
+                "asrText": "。 え い い で す か お 願 い し ま す"
               }
             }
           }
@@ -601,27 +1137,66 @@
             "translationZh": "森先生你们经常来这家店吗？",
             "confidence": "high",
             "rawText": "李：森さんたちは この お店へ よく 来ますか。",
+            "segments": [
+              {
+                "text": "森",
+                "ruby": "もり"
+              },
+              {
+                "text": "さんたちは この お"
+              },
+              {
+                "text": "店",
+                "ruby": "みせ"
+              },
+              {
+                "text": "へ よく "
+              },
+              {
+                "text": "来",
+                "ruby": "き"
+              },
+              {
+                "text": "ますか。"
+              }
+            ],
             "audioSegment": {
               "id": "l13-app-block-005-line-001",
               "trackId": "lesson_apps",
               "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit4/lesson13/lesson_apps.mp3",
+              "itemIndex": 4,
               "speaker": "李",
               "text": "森さんたちは この お店へ よく 来ますか。",
-              "start": 25.73,
-              "end": 28.59,
-              "duration": 2.86,
+              "start": 25.54,
+              "end": 28.673,
+              "duration": 3.133,
+              "rawAzureTiming": {
+                "start": 25.79,
+                "end": 28.31,
+                "duration": 2.52
+              },
+              "timingSource": "azure-speech-boundary-with-local-vad-refinement",
+              "speechActivity": {
+                "start": 26.839,
+                "end": 28.553,
+                "duration": 1.713
+              },
               "speechUnitCount": 1,
               "matchScore": 1,
+              "asrConfidence": 0.895,
               "asrText": "森 さ ん た ち は こ の お 店 へ よ く 来 ま す か",
               "phraseIndexes": [
-                4
+                5
               ],
-              "method": "legacy-asr-alignment-range-converted",
-              "confidence": "approved",
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [
+                "ASR boundary ended before the final local speech region; verify this sentence."
+              ],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-05T08:36:13.940Z",
-                "note": "Automatically approved by the bulk alignment workflow.",
+                "reviewedAt": "2026-08-25T07:00:15.991Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
                 "matchScore": 1,
                 "asrText": "森 さ ん た ち は こ の お 店 へ よ く 来 ま す か"
               }
@@ -635,29 +1210,72 @@
             "translationZh": "是的，我一周来两次左右。",
             "confidence": "high",
             "rawText": "森：ええ、ぼくは 週に 2回ぐらい 来ます。",
+            "segments": [
+              {
+                "text": "ええ、ぼくは "
+              },
+              {
+                "text": "週",
+                "ruby": "しゅう"
+              },
+              {
+                "text": "に 2回",
+                "ruby": "にかい"
+              },
+              {
+                "text": "ぐらい "
+              },
+              {
+                "text": "来",
+                "ruby": "き"
+              },
+              {
+                "text": "ます。"
+              }
+            ],
             "audioSegment": {
               "id": "l13-app-block-005-line-002",
               "trackId": "lesson_apps",
               "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit4/lesson13/lesson_apps.mp3",
+              "itemIndex": 5,
               "speaker": "森",
               "text": "ええ、ぼくは 週に 2回ぐらい 来ます。",
-              "start": 30.02,
-              "end": 33.04,
-              "duration": 3.02,
-              "speechUnitCount": 1,
+              "start": 28.642,
+              "end": 32.16,
+              "duration": 3.518,
+              "rawAzureTiming": {
+                "start": 28.31,
+                "end": 32.04,
+                "duration": 3.73
+              },
+              "timingSource": "azure-speech-boundary-with-local-vad-refinement",
+              "speechActivity": {
+                "start": 28.702,
+                "end": 28.74,
+                "duration": 3.339,
+                "expectedDuration": 2.85,
+                "precedingSilence": 0.149
+              },
+              "speechUnitCount": 2,
               "matchScore": 0.667,
-              "asrText": "え え 僕 は 週 に 二 回 ぐ ら い 行 き ま す",
+              "asrConfidence": 0.877,
+              "asrText": "。 え え 僕 は 週 に 二 回 ぐ ら い 行 き ま す",
               "phraseIndexes": [
-                5
+                5,
+                6
               ],
-              "method": "legacy-asr-alignment-range-converted",
-              "confidence": "approved",
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "medium",
+              "alignmentIssues": [
+                "ASR boundary overlapped the previous sentence and was moved to the next local speech region; verify this sentence.",
+                "Moderate ASR text similarity."
+              ],
               "review": {
-                "status": "approved",
-                "reviewedAt": "2026-08-05T08:36:13.940Z",
-                "note": "Automatically approved by the bulk alignment workflow.",
+                "status": "pending",
+                "reviewedAt": null,
+                "note": "ASR boundary overlapped the previous sentence and was moved to the next local speech region; verify this sentence. Moderate ASR text similarity.",
                 "matchScore": 0.667,
-                "asrText": "え え 僕 は 週 に 二 回 ぐ ら い 行 き ま す"
+                "asrText": "。 え え 僕 は 週 に 二 回 ぐ ら い 行 き ま す"
               }
             }
           },
@@ -669,29 +1287,57 @@
             "translationZh": "我也常来。",
             "confidence": "high",
             "rawText": "小野：わたしも よく 来ます。",
+            "segments": [
+              {
+                "text": "わたしも よく "
+              },
+              {
+                "text": "来",
+                "ruby": "き"
+              },
+              {
+                "text": "ます。"
+              }
+            ],
             "audioSegment": {
               "id": "l13-app-block-005-line-003",
               "trackId": "lesson_apps",
               "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit4/lesson13/lesson_apps.mp3",
+              "itemIndex": 6,
               "speaker": "小野",
               "text": "わたしも よく 来ます。",
-              "start": 32.9,
-              "end": 34.08,
-              "duration": 1.18,
+              "start": 32.39,
+              "end": 34.123,
+              "duration": 1.733,
+              "rawAzureTiming": {
+                "start": 32.64,
+                "end": 33.92,
+                "duration": 1.28
+              },
+              "timingSource": "azure-speech-boundary-with-local-vad-refinement",
+              "speechActivity": {
+                "start": 32.71,
+                "end": 34.003,
+                "duration": 1.293
+              },
               "speechUnitCount": 1,
-              "matchScore": 0.667,
-              "asrText": "私 も よ く 来 ま す",
+              "matchScore": 1,
+              "asrConfidence": 0.876,
+              "asrText": "わ た し も よ く 来 ま す",
               "phraseIndexes": [
-                5
+                6
               ],
-              "method": "legacy-asr-alignment-range-converted",
-              "confidence": "approved",
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [
+                "ASR boundary ended before the final local speech region; verify this sentence."
+              ],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-05T08:36:13.940Z",
-                "note": "Automatically approved by the bulk alignment workflow.",
-                "matchScore": 0.667,
-                "asrText": "私 も よ く 来 ま す"
+                "reviewedAt": "2026-08-25T07:00:15.991Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "matchScore": 1,
+                "asrText": "わ た し も よ く 来 ま す"
               }
             }
           }
@@ -718,29 +1364,67 @@
             "translationZh": "那个，不好意思。先来3杯生啤酒。",
             "confidence": "high",
             "rawText": "森：あのう、すみません。とりあえず 生ビールを 3つ お願いします。",
+            "segments": [
+              {
+                "text": "あのう、すみません。とりあえず "
+              },
+              {
+                "text": "生",
+                "ruby": "なま"
+              },
+              {
+                "text": "ビールを 3つ "
+              },
+              {
+                "text": "お願",
+                "ruby": "おねが"
+              },
+              {
+                "text": "いします。"
+              }
+            ],
             "audioSegment": {
               "id": "l13-app-block-007-line-001",
               "trackId": "lesson_apps",
               "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit4/lesson13/lesson_apps.mp3",
+              "itemIndex": 7,
               "speaker": "森",
               "text": "あのう、すみません。とりあえず 生ビールを 3つ お願いします。",
-              "start": 35.51,
-              "end": 40.69,
-              "duration": 5.18,
-              "speechUnitCount": 1,
+              "start": 34.147,
+              "end": 40.73,
+              "duration": 6.583,
+              "rawAzureTiming": {
+                "start": 33.92,
+                "end": 40.61,
+                "duration": 6.69
+              },
+              "timingSource": "azure-speech-boundary-with-local-vad-refinement",
+              "speechActivity": {
+                "start": 34.207,
+                "end": 34.207,
+                "duration": 6.403,
+                "expectedDuration": 4.61,
+                "precedingSilence": 0.204
+              },
+              "speechUnitCount": 2,
               "matchScore": 0.923,
-              "asrText": "あ の す み ま せ ん と り あ え ず 生 ビ ー ル を 三 つ お 願 い し ま す",
+              "asrConfidence": 0.938,
+              "asrText": "。 あ の す み ま せ ん と り あ え ず 生 ビ ー ル を 三 つ お 願 い し ま す",
               "phraseIndexes": [
-                6
+                6,
+                7
               ],
-              "method": "legacy-asr-alignment-range-converted",
-              "confidence": "approved",
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [
+                "ASR boundary overlapped the previous sentence and was moved to the next local speech region; verify this sentence."
+              ],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-05T08:36:13.940Z",
-                "note": "Automatically approved by the bulk alignment workflow.",
+                "reviewedAt": "2026-08-25T07:00:15.991Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
                 "matchScore": 0.923,
-                "asrText": "あ の す み ま せ ん と り あ え ず 生 ビ ー ル を 三 つ お 願 い し ま す"
+                "asrText": "。 あ の す み ま せ ん と り あ え ず 生 ビ ー ル を 三 つ お 願 い し ま す"
               }
             }
           }
@@ -767,27 +1451,61 @@
             "translationZh": "一杯生啤酒300日元吗？",
             "confidence": "high",
             "rawText": "李：生ビールが 1杯 300円ですか。",
+            "segments": [
+              {
+                "text": "生",
+                "ruby": "なま"
+              },
+              {
+                "text": "ビールが 1杯",
+                "ruby": "いっぱい"
+              },
+              {
+                "text": " 300円",
+                "ruby": "さんびゃくえん"
+              },
+              {
+                "text": "ですか。"
+              }
+            ],
             "audioSegment": {
               "id": "l13-app-block-009-line-001",
               "trackId": "lesson_apps",
               "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit4/lesson13/lesson_apps.mp3",
+              "itemIndex": 8,
               "speaker": "李",
               "text": "生ビールが 1杯 300円ですか。",
-              "start": 42.29,
-              "end": 45.31,
-              "duration": 3.02,
+              "start": 42.1,
+              "end": 45.442,
+              "duration": 3.342,
+              "rawAzureTiming": {
+                "start": 42.35,
+                "end": 45.23,
+                "duration": 2.88
+              },
+              "timingSource": "azure-speech-boundary-with-local-vad-refinement",
+              "speechActivity": {
+                "start": 43.838,
+                "end": 45.322,
+                "duration": 1.485
+              },
               "speechUnitCount": 1,
               "matchScore": 0.714,
+              "asrConfidence": 0.925,
               "asrText": "生 ビ ー ル が 一 杯 三 百 円 で す か",
               "phraseIndexes": [
-                7
+                8
               ],
-              "method": "legacy-asr-alignment-range-converted",
-              "confidence": "approved",
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "medium",
+              "alignmentIssues": [
+                "ASR boundary ended before the final local speech region; verify this sentence.",
+                "Moderate ASR text similarity."
+              ],
               "review": {
-                "status": "approved",
-                "reviewedAt": "2026-08-05T08:36:13.940Z",
-                "note": "Automatically approved by the bulk alignment workflow.",
+                "status": "pending",
+                "reviewedAt": null,
+                "note": "ASR boundary ended before the final local speech region; verify this sentence. Moderate ASR text similarity.",
                 "matchScore": 0.714,
                 "asrText": "生 ビ ー ル が 一 杯 三 百 円 で す か"
               }
@@ -801,27 +1519,92 @@
             "translationZh": "这里酒和食物都便宜。烤鸡肉串5串才400日元呢。",
             "confidence": "high",
             "rawText": "森：ここは お酒も 食べ物も 安いです。焼き鳥は 5本で 400円ですからね。",
+            "segments": [
+              {
+                "text": "ここは お"
+              },
+              {
+                "text": "酒",
+                "ruby": "さけ"
+              },
+              {
+                "text": "も "
+              },
+              {
+                "text": "食",
+                "ruby": "た"
+              },
+              {
+                "text": "べ"
+              },
+              {
+                "text": "物",
+                "ruby": "もの"
+              },
+              {
+                "text": "も "
+              },
+              {
+                "text": "安",
+                "ruby": "やす"
+              },
+              {
+                "text": "いです。"
+              },
+              {
+                "text": "焼",
+                "ruby": "や"
+              },
+              {
+                "text": "き"
+              },
+              {
+                "text": "鳥",
+                "ruby": "とり"
+              },
+              {
+                "text": "は 5本",
+                "ruby": "ごほん"
+              },
+              {
+                "text": "で 400円",
+                "ruby": "よんひゃくえん"
+              },
+              {
+                "text": "ですからね。"
+              }
+            ],
             "audioSegment": {
               "id": "l13-app-block-009-line-002",
               "trackId": "lesson_apps",
               "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit4/lesson13/lesson_apps.mp3",
+              "itemIndex": 9,
               "speaker": "森",
               "text": "ここは お酒も 食べ物も 安いです。焼き鳥は 5本で 400円ですからね。",
-              "start": 46.17,
-              "end": 51.83,
-              "duration": 5.66,
+              "start": 45.98,
+              "end": 51.87,
+              "duration": 5.89,
+              "rawAzureTiming": {
+                "start": 46.23,
+                "end": 51.75,
+                "duration": 5.52
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
               "speechUnitCount": 1,
               "matchScore": 0.867,
+              "asrConfidence": 0.919,
               "asrText": "こ こ は お 酒 も 食 べ 物 も 安 い で す 焼 き 鳥 は 五 本 で 四 百 円 で す か ら ね",
               "phraseIndexes": [
-                8
+                9
               ],
-              "method": "legacy-asr-alignment-range-converted",
-              "confidence": "approved",
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-05T08:36:13.940Z",
-                "note": "Automatically approved by the bulk alignment workflow.",
+                "reviewedAt": "2026-08-25T07:00:15.991Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
                 "matchScore": 0.867,
                 "asrText": "こ こ は お 酒 も 食 べ 物 も 安 い で す 焼 き 鳥 は 五 本 で 四 百 円 で す か ら ね"
               }
@@ -835,30 +1618,67 @@
             "translationZh": "炸鸡和土豆炖肉一盘350日元。",
             "confidence": "high",
             "rawText": "小野：唐揚げや 肉じゃがは 1皿 350円です。",
+            "segments": [
+              {
+                "text": "唐揚",
+                "ruby": "からあ"
+              },
+              {
+                "text": "げや "
+              },
+              {
+                "text": "肉",
+                "ruby": "にく"
+              },
+              {
+                "text": "じゃがは 1皿",
+                "ruby": "ひとさら"
+              },
+              {
+                "text": " 350円",
+                "ruby": "さんびゃくごじゅうえん"
+              },
+              {
+                "text": "です。"
+              }
+            ],
             "audioSegment": {
               "id": "l13-app-block-009-line-003",
               "trackId": "lesson_apps",
               "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit4/lesson13/lesson_apps.mp3",
+              "itemIndex": 10,
               "speaker": "小野",
               "text": "唐揚げや 肉じゃがは 1皿 350円です。",
-              "start": 53.22,
-              "end": 56.32,
-              "duration": 3.1,
+              "start": 52,
+              "end": 56.36,
+              "duration": 4.36,
+              "rawAzureTiming": {
+                "start": 53.28,
+                "end": 56.24,
+                "duration": 2.96
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
               "speechUnitCount": 1,
               "matchScore": 0.722,
+              "asrConfidence": 0.924,
               "asrText": "唐 揚 げ や 肉 じ ゃ が は 一 皿 三 百 五 十 円 で す",
               "phraseIndexes": [
-                9
+                10
               ],
-              "method": "legacy-asr-alignment-range-converted",
+              "method": "manual-admin-adjustment",
               "confidence": "approved",
+              "alignmentIssues": [
+                "Moderate ASR text similarity."
+              ],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-05T08:36:13.940Z",
-                "note": "Automatically approved by the bulk alignment workflow.",
+                "reviewedAt": "2026-08-25T07:04:07.784Z",
+                "note": "Manually verified and adjusted in the text audio preview.",
                 "matchScore": 0.722,
                 "asrText": "唐 揚 げ や 肉 じ ゃ が は 一 皿 三 百 五 十 円 で す"
-              }
+              },
+              "reviewedAt": "2026-08-25T07:04:07.784Z"
             }
           },
           {
@@ -869,29 +1689,57 @@
             "translationZh": "别的店大概多少钱？",
             "confidence": "high",
             "rawText": "李：ほかの お店は いくらぐらいですか。",
+            "segments": [
+              {
+                "text": "ほかの お"
+              },
+              {
+                "text": "店",
+                "ruby": "みせ"
+              },
+              {
+                "text": "は いくらぐらいですか。"
+              }
+            ],
             "audioSegment": {
               "id": "l13-app-block-009-line-004",
               "trackId": "lesson_apps",
               "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit4/lesson13/lesson_apps.mp3",
+              "itemIndex": 11,
               "speaker": "李",
               "text": "ほかの お店は いくらぐらいですか。",
-              "start": 56.81,
-              "end": 59.11,
-              "duration": 2.3,
+              "start": 56.58,
+              "end": 59.051,
+              "duration": 2.471,
+              "rawAzureTiming": {
+                "start": 56.83,
+                "end": 58.75,
+                "duration": 1.92
+              },
+              "timingSource": "azure-speech-boundary-with-local-vad-refinement",
+              "speechActivity": {
+                "start": 57.825,
+                "end": 58.931,
+                "duration": 1.106
+              },
               "speechUnitCount": 1,
-              "matchScore": 0.867,
-              "asrText": "他 の お 店 は い く ら ぐ ら い で す か",
+              "matchScore": 1,
+              "asrConfidence": 0.937,
+              "asrText": "ほ か の お 店 は い く ら ぐ ら い で す か 。",
               "phraseIndexes": [
-                10
+                11
               ],
-              "method": "legacy-asr-alignment-range-converted",
-              "confidence": "approved",
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [
+                "ASR boundary ended before the final local speech region; verify this sentence."
+              ],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-05T08:36:13.940Z",
-                "note": "Automatically approved by the bulk alignment workflow.",
-                "matchScore": 0.867,
-                "asrText": "他 の お 店 は い く ら ぐ ら い で す か"
+                "reviewedAt": "2026-08-25T07:00:15.991Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "matchScore": 1,
+                "asrText": "ほ か の お 店 は い く ら ぐ ら い で す か 。"
               }
             }
           },
@@ -903,27 +1751,65 @@
             "translationZh": "生啤酒大概一杯400到450日元。",
             "confidence": "high",
             "rawText": "森：生ビールは だいたい 1杯 400円か 450円ですね。",
+            "segments": [
+              {
+                "text": "生",
+                "ruby": "なま"
+              },
+              {
+                "text": "ビールは だいたい 1杯",
+                "ruby": "いっぱい"
+              },
+              {
+                "text": " 400円",
+                "ruby": "よんひゃくえん"
+              },
+              {
+                "text": "か 450円",
+                "ruby": "よんひゃくごじゅうえん"
+              },
+              {
+                "text": "ですね。"
+              }
+            ],
             "audioSegment": {
               "id": "l13-app-block-009-line-005",
               "trackId": "lesson_apps",
               "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit4/lesson13/lesson_apps.mp3",
+              "itemIndex": 12,
               "speaker": "森",
               "text": "生ビールは だいたい 1杯 400円か 450円ですね。",
-              "start": 59.65,
-              "end": 64.43,
-              "duration": 4.78,
+              "start": 60.03,
+              "end": 64.778,
+              "duration": 4.748,
+              "rawAzureTiming": {
+                "start": 60.28,
+                "end": 64.32,
+                "duration": 4.04
+              },
+              "timingSource": "azure-speech-boundary-with-local-vad-refinement",
+              "speechActivity": {
+                "start": 63.185,
+                "end": 64.658,
+                "duration": 1.473
+              },
               "speechUnitCount": 1,
               "matchScore": 0.667,
+              "asrConfidence": 0.754,
               "asrText": "生 ビ ー ル は だ い た い 一 杯 四 零 零 円 か 四 百 五 十 円 で す ね",
               "phraseIndexes": [
-                10
+                12
               ],
-              "method": "legacy-asr-alignment-range-converted",
-              "confidence": "approved",
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "medium",
+              "alignmentIssues": [
+                "ASR boundary ended before the final local speech region; verify this sentence.",
+                "Moderate ASR text similarity."
+              ],
               "review": {
-                "status": "approved",
-                "reviewedAt": "2026-08-05T08:36:13.940Z",
-                "note": "Automatically approved by the bulk alignment workflow.",
+                "status": "pending",
+                "reviewedAt": null,
+                "note": "ASR boundary ended before the final local speech region; verify this sentence. Moderate ASR text similarity.",
                 "matchScore": 0.667,
                 "asrText": "生 ビ ー ル は だ い た い 一 杯 四 零 零 円 か 四 百 五 十 円 で す ね"
               }
@@ -937,27 +1823,63 @@
             "translationZh": "烤鸡肉串一串大约150日元。",
             "confidence": "high",
             "rawText": "小野：焼き鳥は 1本 150円ぐらいですよ。",
+            "segments": [
+              {
+                "text": "焼",
+                "ruby": "や"
+              },
+              {
+                "text": "き"
+              },
+              {
+                "text": "鳥",
+                "ruby": "とり"
+              },
+              {
+                "text": "は 1本",
+                "ruby": "いっぽん"
+              },
+              {
+                "text": " 150円",
+                "ruby": "ひゃくごじゅうえん"
+              },
+              {
+                "text": "ぐらいですよ。"
+              }
+            ],
             "audioSegment": {
               "id": "l13-app-block-009-line-006",
               "trackId": "lesson_apps",
               "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit4/lesson13/lesson_apps.mp3",
+              "itemIndex": 13,
               "speaker": "小野",
               "text": "焼き鳥は 1本 150円ぐらいですよ。",
-              "start": 65.41,
-              "end": 68.71,
-              "duration": 3.3,
+              "start": 65.22,
+              "end": 68.75,
+              "duration": 3.53,
+              "rawAzureTiming": {
+                "start": 65.47,
+                "end": 68.63,
+                "duration": 3.16
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
               "speechUnitCount": 1,
               "matchScore": 0.75,
+              "asrConfidence": 0.924,
               "asrText": "焼 き 鳥 は 一 本 百 五 十 円 ぐ ら い で す よ",
               "phraseIndexes": [
-                11
+                13
               ],
-              "method": "legacy-asr-alignment-range-converted",
-              "confidence": "approved",
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "medium",
+              "alignmentIssues": [
+                "Moderate ASR text similarity."
+              ],
               "review": {
-                "status": "approved",
-                "reviewedAt": "2026-08-05T08:36:13.940Z",
-                "note": "Automatically approved by the bulk alignment workflow.",
+                "status": "pending",
+                "reviewedAt": null,
+                "note": "Moderate ASR text similarity.",
                 "matchScore": 0.75,
                 "asrText": "焼 き 鳥 は 一 本 百 五 十 円 ぐ ら い で す よ"
               }
@@ -971,29 +1893,57 @@
             "translationZh": "那这里很便宜啊。",
             "confidence": "high",
             "rawText": "李：じゃあ、ここは 安いですね。",
+            "segments": [
+              {
+                "text": "じゃあ、ここは "
+              },
+              {
+                "text": "安",
+                "ruby": "やす"
+              },
+              {
+                "text": "いですね。"
+              }
+            ],
             "audioSegment": {
               "id": "l13-app-block-009-line-007",
               "trackId": "lesson_apps",
               "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit4/lesson13/lesson_apps.mp3",
+              "itemIndex": 14,
               "speaker": "李",
               "text": "じゃあ、ここは 安いですね。",
-              "start": 69.21,
-              "end": 71.27,
-              "duration": 2.06,
+              "start": 69.02,
+              "end": 71.373,
+              "duration": 2.353,
+              "rawAzureTiming": {
+                "start": 69.27,
+                "end": 70.87,
+                "duration": 1.6
+              },
+              "timingSource": "azure-speech-boundary-with-local-vad-refinement",
+              "speechActivity": {
+                "start": 69.153,
+                "end": 71.253,
+                "duration": 2.1
+              },
               "speechUnitCount": 1,
               "matchScore": 1,
-              "asrText": "じ ゃ あ こ こ は 安 い で す ね",
+              "asrConfidence": 0.924,
+              "asrText": "じ ゃ あ 、 こ こ は 安 い で す ね",
               "phraseIndexes": [
-                11
+                13
               ],
-              "method": "legacy-asr-alignment-range-converted",
-              "confidence": "approved",
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [
+                "ASR boundary ended before the final local speech region; verify this sentence."
+              ],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-05T08:36:13.940Z",
-                "note": "Automatically approved by the bulk alignment workflow.",
+                "reviewedAt": "2026-08-25T07:00:15.991Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
                 "matchScore": 1,
-                "asrText": "じ ゃ あ こ こ は 安 い で す ね"
+                "asrText": "じ ゃ あ 、 こ こ は 安 い で す ね"
               }
             }
           }
@@ -1006,26 +1956,35 @@
     "未输出 segments；已保留可可靠识别的整句 kana。"
   ],
   "audioAlignment": {
-    "schemaVersion": 1,
+    "schemaVersion": 2,
     "lessonId": "lesson13",
-    "convertedAt": "2026-08-14T00:17:06.393Z",
-    "method": "legacy-asr-alignment-range-converted",
+    "generatedAt": "2026-08-25T07:00:15.991Z",
+    "method": "azure-speech-sentence-alignment-with-boundary-padding",
+    "reviewStatus": "pending",
     "tracks": [
       {
         "id": "lesson_basic",
         "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit4/lesson13/lesson_basic.mp3",
         "sourceAudioSha256": "7a164e7e966361c034534883f9c23766ec52c62050507f97e3c30b04cca700a5",
         "expectedItems": 12,
-        "alignedItems": 12
+        "alignedItems": 12,
+        "detectedUnitCount": 15,
+        "warnings": [
+          "2 item(s) require manual verification."
+        ]
       },
       {
         "id": "lesson_apps",
         "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit4/lesson13/lesson_apps.mp3",
         "sourceAudioSha256": "37decc207cd3e1304332f0a455f46eb407da18df6d591661788b93c54c65b19f",
         "expectedItems": 14,
-        "alignedItems": 14
+        "alignedItems": 14,
+        "detectedUnitCount": 17,
+        "warnings": [
+          "5 item(s) require manual verification."
+        ]
       }
     ]
   },
-  "updatedAt": "2026-08-14T00:17:06.393Z"
+  "updatedAt": "2026-08-25T07:04:07.785Z"
 }

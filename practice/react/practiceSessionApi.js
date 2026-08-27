@@ -54,7 +54,6 @@ function mainAppUrl() {
 
 function syncAuthCookie() {
   if (typeof window === "undefined" || typeof document === "undefined") return;
-  if (window.parent !== window) return;
   const cookieToken = getCookie(TOKEN_KEY);
   if (!cookieToken || window.localStorage.getItem(TOKEN_KEY)) return;
   window.localStorage.setItem(TOKEN_KEY, cookieToken);

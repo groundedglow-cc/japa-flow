@@ -371,8 +371,7 @@ const activities: PracticeActivity[] = [
     ],
     displayAssets: ["l21-p2-a1-cloze"],
     layout: [
-      { type: "example", content: { label: "[例]", beforeParts: [text("ラジオを（"), blank("example"), text("）ください。")], beforeKana: "ラジオを（______）ください。", after: [text("聞いて")], afterKana: "きいて" } },
-      { type: "word_bank", words: [text("聞きます"), text("つけます"), text("食べます"), text("飲みます"), text("見ます"), text("浴びます")] }
+      { type: "example", content: { label: "[例]", beforeParts: [text("ラジオを（"), blank("example"), text("）ください。")], beforeKana: "ラジオを（______）ください。", after: [text("聞いて")], afterKana: "きいて" } }
     ],
     items: [
       blankItem("l21-p2-a1-q1", "1", [text("歌舞伎を（"), blank("answer"), text("）ことが ありますか。")], { answer: "見た" }, { promptKana: "かぶきを（______）ことが ありますか。", expectedUnit: "conjugated_form" }),
@@ -435,7 +434,7 @@ const activities: PracticeActivity[] = [
     ],
     items: [
       trueFalseItem("l21-p2-a3-q1", "1", "（1）", false),
-      trueFalseItem("l21-p2-a3-q2", "2", "（2）", false)
+      trueFalseItem("l21-p2-a3-q2", "2", "（2）", true)
     ]
   },
   {

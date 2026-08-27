@@ -333,10 +333,10 @@ const activities: PracticeActivity[] = [
       }
     ],
     items: [
-      blankItem("l15-p1-a4-q1", "1", [text("「駐車禁止」：車を（"), blank("answer"), text("）は いけません。［止めます］")], { answer: "止めて" }, { promptKana: "「ちゅうしゃきんし」：くるまを（______）は いけません。［とめます］", responseScope: "word_only", responseScopeHint: completionHint, expectedUnit: "conjugated_form" }),
-      blankItem("l15-p1-a4-q2", "2", [text("「立入禁止」：ここに（"), blank("answer"), text("）は いけません。［入ります］")], { answer: "入って" }, { promptKana: "「たちいりきんし」：ここに（______）は いけません。［はいります］", responseScope: "word_only", responseScopeHint: completionHint, expectedUnit: "conjugated_form" }),
-      blankItem("l15-p1-a4-q3", "3", [text("「火気厳禁」：火を（"), blank("answer"), text("）は いけません。［使います］")], { answer: "使って" }, { promptKana: "「かきげんきん」：ひを（______）は いけません。［つかいます］", responseScope: "word_only", responseScopeHint: completionHint, expectedUnit: "conjugated_form" }),
-      blankItem("l15-p1-a4-q4", "4", [text("「撮影禁止」：写真を（"), blank("answer"), text("）は いけません。［撮ります］")], { answer: "撮って" }, { promptKana: "「さつえいきんし」：しゃしんを（______）は いけません。［とります］", responseScope: "word_only", responseScopeHint: completionHint, expectedUnit: "conjugated_form" })
+      blankItem("l15-p1-a4-q1", "1", [text("「駐車禁止」：車を（", { kana: "「ちゅうしゃきんし」：くるまを（" }), blank("answer"), text("）は いけません。［止めます］", { kana: "）は いけません。［とめます］" })], { answer: "止めて" }, { responseScope: "word_only", responseScopeHint: completionHint, expectedUnit: "conjugated_form" }),
+      blankItem("l15-p1-a4-q2", "2", [text("「立入禁止」：ここに（", { kana: "「たちいりきんし」：ここに（" }), blank("answer"), text("）は いけません。［入ります］", { kana: "）は いけません。［はいります］" })], { answer: "入って" }, { responseScope: "word_only", responseScopeHint: completionHint, expectedUnit: "conjugated_form" }),
+      blankItem("l15-p1-a4-q3", "3", [text("「火気厳禁」：火を（", { kana: "「かきげんきん」：ひを（" }), blank("answer"), text("）は いけません。［使います］", { kana: "）は いけません。［つかいます］" })], { answer: "使って" }, { responseScope: "word_only", responseScopeHint: completionHint, expectedUnit: "conjugated_form" }),
+      blankItem("l15-p1-a4-q4", "4", [text("「撮影禁止」：写真を（", { kana: "「さつえいきんし」：しゃしんを（" }), blank("answer"), text("）は いけません。［撮ります］", { kana: "）は いけません。［とります］" })], { answer: "撮って" }, { responseScope: "word_only", responseScopeHint: completionHint, expectedUnit: "conjugated_form" })
     ]
   },
   {
@@ -524,18 +524,17 @@ const activities: PracticeActivity[] = [
         type: "example",
         content: {
           label: "[例]",
-          beforeParts: [text("コーヒー（"), blank("example"), text("）飲みます。")],
-          beforeKana: "コーヒー（______）のみます。",
+          beforeParts: [text("コーヒー（"), blank("example"), text("）飲みます。", { kana: "）のみます。" })],
           after: [text("を")],
           afterKana: "を"
         }
       }
     ],
     items: [
-      blankItem("l15-p2-a2-q1", "1", [text("ここは 禁煙です。タバコを 吸って（"), blank("answer"), text("）いけません。")], { answer: "は" }, { promptKana: "ここは きんえんです。タバコを すって（______）いけません。", responseScope: "word_only", responseScopeHint: completionHint, expectedUnit: "particle" }),
-      blankItem("l15-p2-a2-q2", "2", [text("橋（"), blank("answer"), text("）渡ってから 右に 曲がります。")], { answer: "を" }, { promptKana: "はし（______）わたってから みぎに まがります。", responseScope: "word_only", responseScopeHint: completionHint, expectedUnit: "particle" }),
-      blankItem("l15-p2-a2-q3", "3", [text("ここで 写真を 撮って（"), blank("answer"), text("）いいですか。")], { answer: "も" }, { promptKana: "ここで しゃしんを とって（______）いいですか。", responseScope: "word_only", responseScopeHint: completionHint, expectedUnit: "particle" }),
-      blankItem("l15-p2-a2-q4", "4", [text("1年（"), blank("answer"), text("）何回 コンサートへ 行きますか。")], { answer: "に" }, { promptKana: "いちねん（______）なんかい コンサートへ いきますか。", responseScope: "word_only", responseScopeHint: completionHint, expectedUnit: "particle" })
+      blankItem("l15-p2-a2-q1", "1", [text("ここは 禁煙です。タバコを 吸って（", { kana: "ここは きんえんです。タバコを すって（" }), blank("answer"), text("）いけません。")], { answer: "は" }, { responseScope: "word_only", responseScopeHint: completionHint, expectedUnit: "particle" }),
+      blankItem("l15-p2-a2-q2", "2", [text("橋（", { kana: "はし（" }), blank("answer"), text("）渡ってから 右に 曲がります。", { kana: "）わたってから みぎに まがります。" })], { answer: "を" }, { responseScope: "word_only", responseScopeHint: completionHint, expectedUnit: "particle" }),
+      blankItem("l15-p2-a2-q3", "3", [text("ここで 写真を 撮って（", { kana: "ここで しゃしんを とって（" }), blank("answer"), text("）いいですか。")], { answer: "も" }, { responseScope: "word_only", responseScopeHint: completionHint, expectedUnit: "particle" }),
+      blankItem("l15-p2-a2-q4", "4", [text("1年（", { kana: "いちねん（" }), blank("answer"), text("）何回 コンサートへ 行きますか。", { kana: "）なんかい コンサートへ いきますか。" })], { answer: "に" }, { responseScope: "word_only", responseScopeHint: completionHint, expectedUnit: "particle" })
     ]
   },
   {

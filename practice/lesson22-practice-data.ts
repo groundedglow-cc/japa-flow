@@ -108,14 +108,8 @@ const activities: PracticeActivity[] = [
     answerUnit: "phrase",
     responseScope: "phrase_only",
     responseScopeHint: "填写箭头右侧的普通形肯定/否定形式。",
-    assets: [],
-    layout: [
-      { type: "example", content: { label: "[例1]", before: "食べます", beforeKana: "たべます", after: [text("食べる／食べない")], afterKana: "たべる／たべない" } },
-      { type: "example", content: { label: "[例2]", before: "大きいです", beforeKana: "おおきいです", after: [text("大きい／大きく ない")], afterKana: "おおきい／おおきく ない" } },
-      { type: "example", content: { label: "[例3]", before: "元気です", beforeKana: "げんきです", after: [text("元気だ／元気では ない")], afterKana: "げんきだ／げんきでは ない" } },
-      { type: "example", content: { label: "[例4]", before: "曇りです", beforeKana: "くもりです", after: [text("曇りだ／曇りでは ない")], afterKana: "くもりだ／くもりでは ない" } }
-    ],
-    items: [
+    assets: [], layout: [], itemGroups: [
+      { id: "l22-p1-a1-g1", example: { label: "[例1]", before: "食べます", beforeKana: "たべます", after: [text("食べる／食べない")], afterKana: "たべる／たべない" }, items: [
       phraseItem("l22-p1-a1-q1", "1", "忘れます", "忘れる／忘れない", { promptKana: "わすれます" }),
       phraseItem("l22-p1-a1-q2", "2", "教えます", "教える／教えない", { promptKana: "おしえます" }),
       phraseItem("l22-p1-a1-q3", "3", "あげます", "あげる／あげない"),
@@ -127,7 +121,9 @@ const activities: PracticeActivity[] = [
       phraseItem("l22-p1-a1-q9", "9", "買います", "買う／買わない", { promptKana: "かいます" }),
       phraseItem("l22-p1-a1-q10", "10", "使います", "使う／使わない", { promptKana: "つかいます" }),
       phraseItem("l22-p1-a1-q11", "11", "来ます", "来る／来ない", { promptKana: "きます", acceptableAlternatives: ["くる／こない"] }),
-      phraseItem("l22-p1-a1-q12", "12", "バドミントンを します", "バドミントンを する／バドミントンを しない"),
+      phraseItem("l22-p1-a1-q12", "12", "バドミントンを します", "バドミントンを する／バドミントンを しない")
+      ] },
+      { id: "l22-p1-a1-g2", example: { label: "[例2]", before: "大きいです", beforeKana: "おおきいです", after: [text("大きい／大きく ない")], afterKana: "おおきい／おおきく ない" }, items: [
       phraseItem("l22-p1-a1-q13", "13", "うれしいです", "うれしい／うれしく ない"),
       phraseItem("l22-p1-a1-q14", "14", "眠いです", "眠い／眠く ない", { promptKana: "ねむいです" }),
       phraseItem("l22-p1-a1-q15", "15", "おもしろいです", "おもしろい／おもしろく ない"),
@@ -135,7 +131,9 @@ const activities: PracticeActivity[] = [
       phraseItem("l22-p1-a1-q17", "17", "易しいです", "易しい／易しく ない", { promptKana: "やさしいです" }),
       phraseItem("l22-p1-a1-q18", "18", "難しいです", "難しい／難しく ない", { promptKana: "むずかしいです" }),
       phraseItem("l22-p1-a1-q19", "19", "軽いです", "軽い／軽く ない", { promptKana: "かるいです" }),
-      phraseItem("l22-p1-a1-q20", "20", "重いです", "重い／重く ない", { promptKana: "おもいです" }),
+      phraseItem("l22-p1-a1-q20", "20", "重いです", "重い／重く ない", { promptKana: "おもいです" })
+      ] },
+      { id: "l22-p1-a1-g3", example: { label: "[例3]", before: "元気です", beforeKana: "げんきです", after: [text("元気だ／元気では ない")], afterKana: "げんきだ／げんきでは ない" }, items: [
       phraseItem("l22-p1-a1-q21", "21", "暇です", "暇だ／暇では ない", { promptKana: "ひまです" }),
       phraseItem("l22-p1-a1-q22", "22", "好きです", "好きだ／好きでは ない", { promptKana: "すきです" }),
       phraseItem("l22-p1-a1-q23", "23", "嫌いです", "嫌いだ／嫌いでは ない", { promptKana: "きらいです" }),
@@ -143,7 +141,9 @@ const activities: PracticeActivity[] = [
       phraseItem("l22-p1-a1-q25", "25", "立派です", "立派だ／立派では ない", { promptKana: "りっぱです" }),
       phraseItem("l22-p1-a1-q26", "26", "きれいです", "きれいだ／きれいでは ない"),
       phraseItem("l22-p1-a1-q27", "27", "派手です", "派手だ／派手では ない", { promptKana: "はでです" }),
-      phraseItem("l22-p1-a1-q28", "28", "大変です", "大変だ／大変では ない", { promptKana: "たいへんです" }),
+      phraseItem("l22-p1-a1-q28", "28", "大変です", "大変だ／大変では ない", { promptKana: "たいへんです" })
+      ] },
+      { id: "l22-p1-a1-g4", example: { label: "[例4]", before: "曇りです", beforeKana: "くもりです", after: [text("曇りだ／曇りでは ない")], afterKana: "くもりだ／くもりでは ない" }, items: [
       phraseItem("l22-p1-a1-q29", "29", "晴れです", "晴れだ／晴れでは ない", { promptKana: "はれです" }),
       phraseItem("l22-p1-a1-q30", "30", "雨です", "雨だ／雨では ない", { promptKana: "あめです" }),
       phraseItem("l22-p1-a1-q31", "31", "29歳です", "29歳だ／29歳では ない", { promptKana: "にじゅうきゅうさいです" }),
@@ -152,7 +152,8 @@ const activities: PracticeActivity[] = [
       phraseItem("l22-p1-a1-q34", "34", "火曜日です", "火曜日だ／火曜日では ない", { promptKana: "かようびです" }),
       phraseItem("l22-p1-a1-q35", "35", "4時です", "4時だ／4時では ない", { promptKana: "よじです" }),
       phraseItem("l22-p1-a1-q36", "36", "午前中です", "午前中だ／午前中では ない", { promptKana: "ごぜんちゅうです" })
-    ]
+      ] }
+    ], items: []
   },
   {
     id: "l22-p1-a2",
@@ -163,12 +164,8 @@ const activities: PracticeActivity[] = [
     interaction: "pattern_substitution",
     answerUnit: "sentence",
     responseScope: "sentence_only",
-    assets: [],
-    layout: [
-      { type: "example", content: { label: "[例1]", before: "朝 7時に 起きます。\n昨日は 暑かったです。\n森さんは 野菜が 嫌いです。", beforeKana: "あさ しちじに おきます。\nきのうは あつかったです。\nもりさんは やさいが きらいです。", after: [text("朝 7時に 起きる。\n昨日は 暑かった。\n森さんは 野菜が 嫌いだ。")], afterKana: "あさ しちじに おきる。\nきのうは あつかった。\nもりさんは やさいが きらいだ。" } },
-      { type: "example", content: { label: "[例2]", before: "勉強して います。\n英語が できます。\n入っては いけません。", beforeKana: "べんきょうして います。\nえいごが できます。\nはいっては いけません。", after: [text("勉強して いる。\n英語が できる。\n入っては いけない。")], afterKana: "べんきょうして いる。\nえいごが できる。\nはいっては いけない。" } }
-    ],
-    items: [
+    assets: [], layout: [], itemGroups: [
+      { id: "l22-p1-a2-g1", example: { label: "[例1]", before: "朝 7時に 起きます。\n昨日は 暑かったです。\n森さんは 野菜が 嫌いです。", beforeKana: "あさ しちじに おきます。\nきのうは あつかったです。\nもりさんは やさいが きらいです。", after: [text("朝 7時に 起きる。\n昨日は 暑かった。\n森さんは 野菜が 嫌いだ。")], afterKana: "あさ しちじに おきる。\nきのうは あつかった。\nもりさんは やさいが きらいだ。" }, items: [
       answerItem("l22-p1-a2-q1", "1", "毎朝 太極拳を します。", "毎朝 太極拳を する。", { promptKana: "まいあさ たいきょくけんを します。" }),
       answerItem("l22-p1-a2-q2", "2", "タバコを 吸いません。", "タバコを 吸わない。", { promptKana: "タバコを すいません。" }),
       answerItem("l22-p1-a2-q3", "3", "のどが 渇きました。", "のどが 渇いた。", { promptKana: "のどが かわきました。" }),
@@ -177,7 +174,9 @@ const activities: PracticeActivity[] = [
       answerItem("l22-p1-a2-q6", "6", "昨日は 寒く なかったです。", "昨日は 寒く なかった。", { promptKana: "きのうは さむく なかったです。" }),
       answerItem("l22-p1-a2-q7", "7", "その 映画は おもしろく ないです。", "その 映画は おもしろく ない。", { promptKana: "その えいがは おもしろく ないです。" }),
       answerItem("l22-p1-a2-q8", "8", "チョコレートが 好きです。", "チョコレートが 好きだ。", { promptKana: "チョコレートが すきです。" }),
-      answerItem("l22-p1-a2-q9", "9", "明日 暇では ありません。", "明日 暇では ない。", { promptKana: "あした ひまでは ありません。" }),
+      answerItem("l22-p1-a2-q9", "9", "明日 暇では ありません。", "明日 暇では ない。", { promptKana: "あした ひまでは ありません。" })
+      ] },
+      { id: "l22-p1-a2-g2", example: { label: "[例2]", before: "勉強して います。\n英語が できます。\n入っては いけません。", beforeKana: "べんきょうして います。\nえいごが できます。\nはいっては いけません。", after: [text("勉強して いる。\n英語が できる。\n入っては いけない。")], afterKana: "べんきょうして いる。\nえいごが できる。\nはいっては いけない。" }, items: [
       answerItem("l22-p1-a2-q10", "10", "あそこに 電話が あります。", "あそこに 電話が ある。", { promptKana: "あそこに でんわが あります。" }),
       answerItem("l22-p1-a2-q11", "11", "テレビで 歌手が 歌って います。", "テレビで 歌手が 歌って いる。", { promptKana: "テレビで かしゅが うたって います。" }),
       answerItem("l22-p1-a2-q12", "12", "ピアノを 弾く ことが できます。", "ピアノを 弾く ことが できる。", { promptKana: "ピアノを ひく ことが できます。" }),
@@ -185,7 +184,8 @@ const activities: PracticeActivity[] = [
       answerItem("l22-p1-a2-q14", "14", "薬を 飲まなくても いいです。", "薬を 飲まなくても いい。", { promptKana: "くすりを のまなくても いいです。" }),
       answerItem("l22-p1-a2-q15", "15", "大統領に 会った ことが ありません。", "大統領に 会った ことが ない。", { promptKana: "だいとうりょうに あった ことが ありません。" }),
       answerItem("l22-p1-a2-q16", "16", "まだ 結婚して いません。", "まだ 結婚して いない。", { promptKana: "まだ けっこんして いません。" })
-    ]
+      ] }
+    ], items: []
   },
   {
     id: "l22-p1-a3",
@@ -306,7 +306,7 @@ const activities: PracticeActivity[] = [
       { id: "l22-p2-a2-word-bank", kind: "exercise_image", imagePath: exerciseImage("book1_lesson22_2_2.png") }
     ],
     displayAssets: ["l22-p2-a2-word-bank"],
-    layout: [{ type: "word_bank", words: ["先に", "さらに", "特に", "ぜひ", "まだ", "もうすぐ"].map((word) => text(word)) }],
+    layout: [],
     items: [
       blankItem("l22-p2-a2-q1", "1", [text("（"), blank("answer"), text("）3月だ。暖かく なるね。")], { answer: "もうすぐ" }, { promptKana: "さんがつだ。あたたかく なるね。", expectedUnit: "word" }),
       blankItem("l22-p2-a2-q2", "2", [text("みんな よかったけど、（"), blank("answer"), text("）田中君が よかったよ。")], { answer: "特に" }, { promptKana: "みんな よかったけど、たなかくんが よかったよ。", expectedUnit: "word" }),
@@ -336,20 +336,9 @@ const activities: PracticeActivity[] = [
         confidenceNote: "根据教材日记和例题整理的提问文本。"
       }
     },
-    assets: [],
-    layout: [
-      {
-        type: "passage",
-        title: "2月4日（日）",
-        lines: [text("今日 雪が 降った。道も 庭も 白く なって、きれいだった。日曜日で 暇だったから、1日 家に いて、本を 読んだ。寝る 前に、外を 見た。もう 雪は 降って いなかった。")]
-      },
-      {
-        type: "passage",
-        title: "2月5日（月）",
-        lines: [text("朝 6時半に 起きて、テレビを つけて、朝ご飯を 食べた。いつもは 7時50分に 家を 出るけど、早く 出た ほうが いいから、7時半に 出た。いつもは 自転車で 行くけど、今日は 歩いた。")]
-      },
-      { type: "example", content: { label: "[例]", before: "2月4日は 何曜日でしたか。", beforeKana: "にがつ よっかは なんようびでしたか。", after: [text("日曜日でした。")], afterKana: "にちようびでした。" } }
-    ],
+    assets: [{ id: "l22-p2-a3-reading", kind: "exercise_image", imagePath: exerciseImage("book1_lesson22_2_3.png") }],
+    displayAssets: ["l22-p2-a3-reading"],
+    layout: [],
     items: [
       answerItem("l22-p2-a3-q1", "1", "2月4日の天気はどうでしたか。", "雪が 降りました。", { answerSource: "audio", responseScope: "answer_only", responseScopeHint: answerOnlyHint, promptKana: "にがつ よっかの てんきは どうでしたか。" }),
       answerItem("l22-p2-a3-q2", "2", "2月4日は何をしましたか。", "1日 家に いて、本を 読みました。", { answerSource: "audio", responseScope: "answer_only", responseScopeHint: answerOnlyHint, promptKana: "にがつ よっかは なにを しましたか。" }),

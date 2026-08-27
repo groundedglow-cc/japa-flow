@@ -1,64 +1,895 @@
 {
   "lessonId": "lesson28",
   "sourceImages": [
-    {"section":"basic","path":"course-assets/by-lesson/lesson28/page34.webp","pageNo":34},
-    {"section":"application","path":"course-assets/by-lesson/lesson28/page39.webp","pageNo":39}
+    {
+      "section": "basic",
+      "path": "course-assets/by-lesson/lesson28/page34.webp",
+      "pageNo": 34
+    },
+    {
+      "section": "application",
+      "path": "course-assets/by-lesson/lesson28/page39.webp",
+      "pageNo": 39
+    }
   ],
   "basicText": {
     "title": "基本课文",
     "basicSentences": [
-      {"id":"l28-basic-s001","order":1,"text":"馬さんはわたしに地図をくれました。","translationZh":"小马给了我一张地图。","confidence":"high","rawText":"1. 馬さんはわたしに地図をくれました。"},
-      {"id":"l28-basic-s002","order":2,"text":"森さんはお年寄りの荷物を持ってあげました。","translationZh":"森先生帮老人拿行李。","confidence":"high","rawText":"2. 森さんはお年寄りの荷物を持ってあげました。"},
-      {"id":"l28-basic-s003","order":3,"text":"森さんは李さんに北京を案内してもらいました。","translationZh":"森先生请小李带他游览了北京。","confidence":"high","rawText":"3. 森さんは李さんに北京を案内してもらいました。"},
-      {"id":"l28-basic-s004","order":4,"text":"女の人がわたしの財布を拾ってくれました。","translationZh":"一位女士帮我捡起了钱包。","confidence":"high","rawText":"4. 女の人がわたしの財布を拾ってくれました。"}
+      {
+        "id": "l28-basic-s001",
+        "order": 1,
+        "text": "馬さんはわたしに地図をくれました。",
+        "translationZh": "小马给了我一张地图。",
+        "confidence": "high",
+        "rawText": "1. 馬さんはわたしに地図をくれました。",
+        "kana": "ばさんはわたしにちずをくれました。",
+        "segments": [
+          {
+            "text": "馬",
+            "ruby": "ば"
+          },
+          {
+            "text": "さんはわたしに"
+          },
+          {
+            "text": "地図",
+            "ruby": "ちず"
+          },
+          {
+            "text": "をくれました。"
+          }
+        ]
+      },
+      {
+        "id": "l28-basic-s002",
+        "order": 2,
+        "text": "森さんはお年寄りの荷物を持ってあげました。",
+        "translationZh": "森先生帮老人拿行李。",
+        "confidence": "high",
+        "rawText": "2. 森さんはお年寄りの荷物を持ってあげました。",
+        "kana": "もりさんはおとしよりのにもつをもってあげました。",
+        "segments": [
+          {
+            "text": "森",
+            "ruby": "もり"
+          },
+          {
+            "text": "さんはお"
+          },
+          {
+            "text": "年寄",
+            "ruby": "としよ"
+          },
+          {
+            "text": "りの"
+          },
+          {
+            "text": "荷物",
+            "ruby": "にもつ"
+          },
+          {
+            "text": "を"
+          },
+          {
+            "text": "持",
+            "ruby": "も"
+          },
+          {
+            "text": "ってあげました。"
+          }
+        ]
+      },
+      {
+        "id": "l28-basic-s003",
+        "order": 3,
+        "text": "森さんは李さんに北京を案内してもらいました。",
+        "translationZh": "森先生请小李带他游览了北京。",
+        "confidence": "high",
+        "rawText": "3. 森さんは李さんに北京を案内してもらいました。",
+        "kana": "もりさんはりさんにペキンをあんないしてもらいました。",
+        "segments": [
+          {
+            "text": "森",
+            "ruby": "もり"
+          },
+          {
+            "text": "さんは"
+          },
+          {
+            "text": "李",
+            "ruby": "り"
+          },
+          {
+            "text": "さんに"
+          },
+          {
+            "text": "北京",
+            "ruby": "ペキン"
+          },
+          {
+            "text": "を"
+          },
+          {
+            "text": "案内",
+            "ruby": "あんない"
+          },
+          {
+            "text": "してもらいました。"
+          }
+        ]
+      },
+      {
+        "id": "l28-basic-s004",
+        "order": 4,
+        "text": "女の人がわたしの財布を拾ってくれました。",
+        "translationZh": "一位女士帮我捡起了钱包。",
+        "confidence": "high",
+        "rawText": "4. 女の人がわたしの財布を拾ってくれました。",
+        "kana": "おんなのひとがわたしのさいふをひろってくれました。",
+        "segments": [
+          {
+            "text": "女",
+            "ruby": "おんな"
+          },
+          {
+            "text": "の"
+          },
+          {
+            "text": "人",
+            "ruby": "ひと"
+          },
+          {
+            "text": "がわたしの"
+          },
+          {
+            "text": "財布",
+            "ruby": "さいふ"
+          },
+          {
+            "text": "を"
+          },
+          {
+            "text": "拾",
+            "ruby": "ひろ"
+          },
+          {
+            "text": "ってくれました。"
+          }
+        ]
+      }
     ],
     "dialogues": [
-      {"id":"l28-basic-dialogue-001","label":"A","lines":[
-        {"id":"l28-basic-dialogue-001-line-001","speaker":"甲","text":"すてきなマフラーですね。","translationZh":"真漂亮的围巾啊。","confidence":"high","rawText":"甲：すてきなマフラーですね。"},
-        {"id":"l28-basic-dialogue-001-line-002","speaker":"乙","text":"ええ、小野さんが誕生日にくれたんです。","translationZh":"是啊，是小野在我生日时送给我的。","confidence":"high","rawText":"乙：ええ、小野さんが誕生日にくれたんです。"}
-      ]},
-      {"id":"l28-basic-dialogue-002","label":"B","lines":[
-        {"id":"l28-basic-dialogue-002-line-001","speaker":"甲","text":"森さんは明日引っ越しですね。","translationZh":"森先生明天搬家吧。","confidence":"high","rawText":"甲：森さんは明日引っ越しですね。"},
-        {"id":"l28-basic-dialogue-002-line-002","speaker":"乙","text":"ええ、みんなで手伝ってあげましょう。","translationZh":"是的，大家帮他一下吧。","confidence":"high","rawText":"乙：ええ、みんなで手伝ってあげましょう。"}
-      ]},
-      {"id":"l28-basic-dialogue-003","label":"C","lines":[
-        {"id":"l28-basic-dialogue-003-line-001","speaker":"甲","text":"この文章の意味が分からないんですが…。","translationZh":"这篇文章的意思我不明白。","confidence":"high","rawText":"甲：この文章の意味が分からないんですが…。"},
-        {"id":"l28-basic-dialogue-003-line-002","speaker":"乙","text":"戴さんに訳してもらいましょう。英語が得意ですから。","translationZh":"请小戴翻译一下吧，因为他擅长英语。","confidence":"high","rawText":"乙：戴さんに訳してもらいましょう。英語が得意ですから。"}
-      ]},
-      {"id":"l28-basic-dialogue-004","label":"D","lines":[
-        {"id":"l28-basic-dialogue-004-line-001","speaker":"甲","text":"おいしいお茶を送ってくれて、どうもありがとう。","translationZh":"谢谢你寄给我好喝的茶。","confidence":"high","rawText":"甲：おいしいお茶を送ってくれて、どうもありがとう。"},
-        {"id":"l28-basic-dialogue-004-line-002","speaker":"乙","text":"いいえ、どういたしまして。","translationZh":"不，不用谢。","confidence":"high","rawText":"乙：いいえ、どういたしまして。"}
-      ]}
+      {
+        "id": "l28-basic-dialogue-001",
+        "label": "A",
+        "lines": [
+          {
+            "id": "l28-basic-dialogue-001-line-001",
+            "speaker": "甲",
+            "text": "すてきなマフラーですね。",
+            "translationZh": "真漂亮的围巾啊。",
+            "confidence": "high",
+            "rawText": "甲：すてきなマフラーですね。",
+            "kana": "すてきなマフラーですね。",
+            "segments": [
+              {
+                "text": "すてきなマフラーですね。"
+              }
+            ]
+          },
+          {
+            "id": "l28-basic-dialogue-001-line-002",
+            "speaker": "乙",
+            "text": "ええ、小野さんが誕生日にくれたんです。",
+            "translationZh": "是啊，是小野在我生日时送给我的。",
+            "confidence": "high",
+            "rawText": "乙：ええ、小野さんが誕生日にくれたんです。",
+            "kana": "ええ、おのさんがたんじょうびにくれたんです。",
+            "segments": [
+              {
+                "text": "ええ、"
+              },
+              {
+                "text": "小野",
+                "ruby": "おの"
+              },
+              {
+                "text": "さんが"
+              },
+              {
+                "text": "誕生日",
+                "ruby": "たんじょうび"
+              },
+              {
+                "text": "にくれたんです。"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "l28-basic-dialogue-002",
+        "label": "B",
+        "lines": [
+          {
+            "id": "l28-basic-dialogue-002-line-001",
+            "speaker": "甲",
+            "text": "森さんは明日引っ越しですね。",
+            "translationZh": "森先生明天搬家吧。",
+            "confidence": "high",
+            "rawText": "甲：森さんは明日引っ越しですね。",
+            "kana": "もりさんはあしたひっこしですね。",
+            "segments": [
+              {
+                "text": "森",
+                "ruby": "もり"
+              },
+              {
+                "text": "さんは"
+              },
+              {
+                "text": "明日",
+                "ruby": "あした"
+              },
+              {
+                "text": "引",
+                "ruby": "ひ"
+              },
+              {
+                "text": "っ"
+              },
+              {
+                "text": "越",
+                "ruby": "こ"
+              },
+              {
+                "text": "しですね。"
+              }
+            ]
+          },
+          {
+            "id": "l28-basic-dialogue-002-line-002",
+            "speaker": "乙",
+            "text": "ええ、みんなで手伝ってあげましょう。",
+            "translationZh": "是的，大家帮他一下吧。",
+            "confidence": "high",
+            "rawText": "乙：ええ、みんなで手伝ってあげましょう。",
+            "kana": "ええ、みんなでてつだってあげましょう。",
+            "segments": [
+              {
+                "text": "ええ、みんなで"
+              },
+              {
+                "text": "手伝",
+                "ruby": "てつだ"
+              },
+              {
+                "text": "ってあげましょう。"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "l28-basic-dialogue-003",
+        "label": "C",
+        "lines": [
+          {
+            "id": "l28-basic-dialogue-003-line-001",
+            "speaker": "甲",
+            "text": "この文章の意味が分からないんですが…。",
+            "translationZh": "这篇文章的意思我不明白。",
+            "confidence": "high",
+            "rawText": "甲：この文章の意味が分からないんですが…。",
+            "kana": "このぶんしょうのいみがわからないんですが…。",
+            "segments": [
+              {
+                "text": "この"
+              },
+              {
+                "text": "文章",
+                "ruby": "ぶんしょう"
+              },
+              {
+                "text": "の"
+              },
+              {
+                "text": "意味",
+                "ruby": "いみ"
+              },
+              {
+                "text": "が"
+              },
+              {
+                "text": "分",
+                "ruby": "わ"
+              },
+              {
+                "text": "からないんですが…。"
+              }
+            ]
+          },
+          {
+            "id": "l28-basic-dialogue-003-line-002",
+            "speaker": "乙",
+            "text": "戴さんに訳してもらいましょう。英語が得意ですから。",
+            "translationZh": "请小戴翻译一下吧，因为他擅长英语。",
+            "confidence": "high",
+            "rawText": "乙：戴さんに訳してもらいましょう。英語が得意ですから。",
+            "kana": "たいさんにやくしてもらいましょう。えいごがとくいですから。",
+            "segments": [
+              {
+                "text": "戴",
+                "ruby": "たい"
+              },
+              {
+                "text": "さんに"
+              },
+              {
+                "text": "訳",
+                "ruby": "やく"
+              },
+              {
+                "text": "してもらいましょう。"
+              },
+              {
+                "text": "英語",
+                "ruby": "えいご"
+              },
+              {
+                "text": "が"
+              },
+              {
+                "text": "得意",
+                "ruby": "とくい"
+              },
+              {
+                "text": "ですから。"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "l28-basic-dialogue-004",
+        "label": "D",
+        "lines": [
+          {
+            "id": "l28-basic-dialogue-004-line-001",
+            "speaker": "甲",
+            "text": "おいしいお茶を送ってくれて、どうもありがとう。",
+            "translationZh": "谢谢你寄给我好喝的茶。",
+            "confidence": "high",
+            "rawText": "甲：おいしいお茶を送ってくれて、どうもありがとう。",
+            "kana": "おいしいおちゃをおくってくれて、どうもありがとう。",
+            "segments": [
+              {
+                "text": "おいしいお"
+              },
+              {
+                "text": "茶",
+                "ruby": "ちゃ"
+              },
+              {
+                "text": "を"
+              },
+              {
+                "text": "送",
+                "ruby": "おく"
+              },
+              {
+                "text": "ってくれて、どうもありがとう。"
+              }
+            ]
+          },
+          {
+            "id": "l28-basic-dialogue-004-line-002",
+            "speaker": "乙",
+            "text": "いいえ、どういたしまして。",
+            "translationZh": "不，不用谢。",
+            "confidence": "high",
+            "rawText": "乙：いいえ、どういたしまして。",
+            "kana": "いいえ、どういたしまして。",
+            "segments": [
+              {
+                "text": "いいえ、どういたしまして。"
+              }
+            ]
+          }
+        ]
+      }
     ]
   },
   "applicationText": {
     "title": "森さんの新居",
     "blocks": [
-      {"id":"l28-app-block-001","type":"scene","text":"加藤经理对森说","translationZh":"加藤经理对森说。","confidence":"high","rawText":"（加藤经理对森说）"},
-      {"id":"l28-app-block-002","type":"dialogue","lines":[
-        {"id":"l28-app-block-002-line-001","speaker":"加藤","text":"森君、住む所はもう決まったの？","translationZh":"森，住的地方已经定下来了吗？","confidence":"high","rawText":"加藤：森君、住む所はもう決まったの？"},
-        {"id":"l28-app-block-002-line-002","speaker":"森","text":"いいえ、まだなんです。さっき、陳さんに不動産屋さんを紹介してもらいました。それに、李さんや馬さんもいろいろと探してくれています。","translationZh":"还没有。刚才请小陈给我介绍了房产公司。而且，小李和小马也在帮我四处找。","confidence":"high","rawText":"森：いいえ、まだなんです。さっき、陳さんに不動産屋さんを紹介してもらいました。それに、李さんや馬さんもいろいろと探してくれています。"}
-      ]},
-      {"id":"l28-app-block-003","type":"scene","text":"第二个星期，森向加藤经理汇报搬家的事","translationZh":"第二个星期，森向加藤经理汇报搬家的事。","confidence":"high","rawText":"（第二个星期，森向加藤经理汇报搬家的事）"},
-      {"id":"l28-app-block-004","type":"dialogue","lines":[
-        {"id":"l28-app-block-004-line-001","speaker":"森","text":"支社長、引っ越し先が決まりました。","translationZh":"经理，搬家的地址定下来了。","confidence":"high","rawText":"森：支社長、引っ越し先が決まりました。"},
-        {"id":"l28-app-block-004-line-002","speaker":"加藤","text":"それはよかった。どの辺？","translationZh":"那太好了。在哪一带？","confidence":"high","rawText":"加藤：それはよかった。どの辺？"},
-        {"id":"l28-app-block-004-line-003","speaker":"森","text":"国際貿易センターの近くです。","translationZh":"在国际贸易中心附近。","confidence":"high","rawText":"森：国際貿易センターの近くです。"}
-      ]},
-      {"id":"l28-app-block-005","type":"scene","text":"听到两人谈话的小马说","translationZh":"听到两人谈话的小马说。","confidence":"high","rawText":"（听到两人谈话的小马说）"},
-      {"id":"l28-app-block-006","type":"dialogue","lines":[
-        {"id":"l28-app-block-006-line-001","speaker":"馬","text":"「国貿」ですか。あの辺はよく知っています。","translationZh":"是“国贸”吗？那一带我很熟。","confidence":"high","rawText":"馬：「国貿」ですか。あの辺はよく知っています。"},
-        {"id":"l28-app-block-006-line-002","speaker":"森","text":"そうなんですか。","translationZh":"是吗？","confidence":"high","rawText":"森：そうなんですか。"},
-        {"id":"l28-app-block-006-line-003","speaker":"馬","text":"ええ。今度近所を案内してあげますよ。","translationZh":"是的。下次我带你在附近转转。","confidence":"high","rawText":"馬：ええ。今度近所を案内してあげますよ。"},
-        {"id":"l28-app-block-006-line-004","speaker":"森","text":"ありがとうございます。","translationZh":"谢谢。","confidence":"high","rawText":"森：ありがとうございます。"}
-      ]},
-      {"id":"l28-app-block-007","type":"scene","text":"搬家的前一天","translationZh":"搬家的前一天。","confidence":"high","rawText":"（搬家的前一天）"},
-      {"id":"l28-app-block-008","type":"dialogue","lines":[
-        {"id":"l28-app-block-008-line-001","speaker":"戴","text":"森さん、引っ越しは明日ですね。","translationZh":"森先生，明天搬家吧。","confidence":"high","rawText":"戴：森さん、引っ越しは明日ですね。"},
-        {"id":"l28-app-block-008-line-002","speaker":"森","text":"ええ。馬さんと李さんが手伝いに来てくれます。","translationZh":"是的。小马和小李会来帮忙。","confidence":"high","rawText":"森：ええ。馬さんと李さんが手伝いに来てくれます。"},
-        {"id":"l28-app-block-008-line-003","speaker":"戴","text":"家具はどうしたんですか。","translationZh":"家具怎么办了？","confidence":"high","rawText":"戴：家具はどうしたんですか。"},
-        {"id":"l28-app-block-008-line-004","speaker":"森","text":"もう買いました。明日届けてもらいます。冷蔵庫は、支社長がくれました。","translationZh":"已经买了。明天让人送来。冰箱是分公司经理给我的。","confidence":"high","rawText":"森：もう買いました。明日届けてもらいます。冷蔵庫は、支社長がくれました。"}
-      ]}
+      {
+        "id": "l28-app-block-001",
+        "type": "scene",
+        "text": "加藤经理对森说",
+        "translationZh": "加藤经理对森说。",
+        "confidence": "high",
+        "rawText": "（加藤经理对森说）"
+      },
+      {
+        "id": "l28-app-block-002",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l28-app-block-002-line-001",
+            "speaker": "加藤",
+            "text": "森君、住む所はもう決まったの？",
+            "translationZh": "森，住的地方已经定下来了吗？",
+            "confidence": "high",
+            "rawText": "加藤：森君、住む所はもう決まったの？",
+            "kana": "もりくん、すむところはもうきまったの？",
+            "segments": [
+              {
+                "text": "森",
+                "ruby": "もり"
+              },
+              {
+                "text": "君",
+                "ruby": "くん"
+              },
+              {
+                "text": "、"
+              },
+              {
+                "text": "住",
+                "ruby": "す"
+              },
+              {
+                "text": "む"
+              },
+              {
+                "text": "所",
+                "ruby": "ところ"
+              },
+              {
+                "text": "はもう"
+              },
+              {
+                "text": "決",
+                "ruby": "き"
+              },
+              {
+                "text": "まったの？"
+              }
+            ]
+          },
+          {
+            "id": "l28-app-block-002-line-002",
+            "speaker": "森",
+            "text": "いいえ、まだなんです。さっき、陳さんに不動産屋さんを紹介してもらいました。それに、李さんや馬さんもいろいろと探してくれています。",
+            "translationZh": "还没有。刚才请小陈给我介绍了房产公司。而且，小李和小马也在帮我四处找。",
+            "confidence": "high",
+            "rawText": "森：いいえ、まだなんです。さっき、陳さんに不動産屋さんを紹介してもらいました。それに、李さんや馬さんもいろいろと探してくれています。",
+            "kana": "いいえ、まだなんです。さっき、ちんさんにふどうさんやさんをしょうかいしてもらいました。それに、りさんやばさんもいろいろとさがしてくれています。",
+            "segments": [
+              {
+                "text": "いいえ、まだなんです。さっき、"
+              },
+              {
+                "text": "陳",
+                "ruby": "ちん"
+              },
+              {
+                "text": "さんに"
+              },
+              {
+                "text": "不動産屋",
+                "ruby": "ふどうさんや"
+              },
+              {
+                "text": "さんを"
+              },
+              {
+                "text": "紹介",
+                "ruby": "しょうかい"
+              },
+              {
+                "text": "してもらいました。それに、"
+              },
+              {
+                "text": "李",
+                "ruby": "り"
+              },
+              {
+                "text": "さんや"
+              },
+              {
+                "text": "馬",
+                "ruby": "ば"
+              },
+              {
+                "text": "さんもいろいろと"
+              },
+              {
+                "text": "探",
+                "ruby": "さが"
+              },
+              {
+                "text": "してくれています。"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "l28-app-block-003",
+        "type": "scene",
+        "text": "第二个星期，森向加藤经理汇报搬家的事",
+        "translationZh": "第二个星期，森向加藤经理汇报搬家的事。",
+        "confidence": "high",
+        "rawText": "（第二个星期，森向加藤经理汇报搬家的事）"
+      },
+      {
+        "id": "l28-app-block-004",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l28-app-block-004-line-001",
+            "speaker": "森",
+            "text": "支社長、引っ越し先が決まりました。",
+            "translationZh": "经理，搬家的地址定下来了。",
+            "confidence": "high",
+            "rawText": "森：支社長、引っ越し先が決まりました。",
+            "kana": "ししゃちょう、ひっこしさきがきまりました。",
+            "segments": [
+              {
+                "text": "支社長",
+                "ruby": "ししゃちょう"
+              },
+              {
+                "text": "、"
+              },
+              {
+                "text": "引",
+                "ruby": "ひ"
+              },
+              {
+                "text": "っ"
+              },
+              {
+                "text": "越",
+                "ruby": "こ"
+              },
+              {
+                "text": "し"
+              },
+              {
+                "text": "先",
+                "ruby": "さき"
+              },
+              {
+                "text": "が"
+              },
+              {
+                "text": "決",
+                "ruby": "き"
+              },
+              {
+                "text": "まりました。"
+              }
+            ]
+          },
+          {
+            "id": "l28-app-block-004-line-002",
+            "speaker": "加藤",
+            "text": "それはよかった。どの辺？",
+            "translationZh": "那太好了。在哪一带？",
+            "confidence": "high",
+            "rawText": "加藤：それはよかった。どの辺？",
+            "kana": "それはよかった。どのへん？",
+            "segments": [
+              {
+                "text": "それはよかった。どの"
+              },
+              {
+                "text": "辺",
+                "ruby": "へん"
+              },
+              {
+                "text": "？"
+              }
+            ]
+          },
+          {
+            "id": "l28-app-block-004-line-003",
+            "speaker": "森",
+            "text": "国際貿易センターの近くです。",
+            "translationZh": "在国际贸易中心附近。",
+            "confidence": "high",
+            "rawText": "森：国際貿易センターの近くです。",
+            "kana": "こくさいぼうえきセンターのちかくです。",
+            "segments": [
+              {
+                "text": "国際貿易",
+                "ruby": "こくさいぼうえき"
+              },
+              {
+                "text": "センターの"
+              },
+              {
+                "text": "近",
+                "ruby": "ちか"
+              },
+              {
+                "text": "くです。"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "l28-app-block-005",
+        "type": "scene",
+        "text": "听到两人谈话的小马说",
+        "translationZh": "听到两人谈话的小马说。",
+        "confidence": "high",
+        "rawText": "（听到两人谈话的小马说）"
+      },
+      {
+        "id": "l28-app-block-006",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l28-app-block-006-line-001",
+            "speaker": "馬",
+            "text": "「国貿」ですか。あの辺はよく知っています。",
+            "translationZh": "是“国贸”吗？那一带我很熟。",
+            "confidence": "high",
+            "rawText": "馬：「国貿」ですか。あの辺はよく知っています。",
+            "kana": "「こくぼう」ですか。あのへんはよくしっています。",
+            "segments": [
+              {
+                "text": "「"
+              },
+              {
+                "text": "国貿",
+                "ruby": "こくぼう"
+              },
+              {
+                "text": "」ですか。あの"
+              },
+              {
+                "text": "辺",
+                "ruby": "へん"
+              },
+              {
+                "text": "はよく"
+              },
+              {
+                "text": "知",
+                "ruby": "し"
+              },
+              {
+                "text": "っています。"
+              }
+            ]
+          },
+          {
+            "id": "l28-app-block-006-line-002",
+            "speaker": "森",
+            "text": "そうなんですか。",
+            "translationZh": "是吗？",
+            "confidence": "high",
+            "rawText": "森：そうなんですか。",
+            "kana": "そうなんですか。",
+            "segments": [
+              {
+                "text": "そうなんですか。"
+              }
+            ]
+          },
+          {
+            "id": "l28-app-block-006-line-003",
+            "speaker": "馬",
+            "text": "ええ。今度近所を案内してあげますよ。",
+            "translationZh": "是的。下次我带你在附近转转。",
+            "confidence": "high",
+            "rawText": "馬：ええ。今度近所を案内してあげますよ。",
+            "kana": "ええ。こんどきんじょをあんないしてあげますよ。",
+            "segments": [
+              {
+                "text": "ええ。"
+              },
+              {
+                "text": "今度",
+                "ruby": "こんど"
+              },
+              {
+                "text": "近所",
+                "ruby": "きんじょ"
+              },
+              {
+                "text": "を"
+              },
+              {
+                "text": "案内",
+                "ruby": "あんない"
+              },
+              {
+                "text": "してあげますよ。"
+              }
+            ]
+          },
+          {
+            "id": "l28-app-block-006-line-004",
+            "speaker": "森",
+            "text": "ありがとうございます。",
+            "translationZh": "谢谢。",
+            "confidence": "high",
+            "rawText": "森：ありがとうございます。",
+            "kana": "ありがとうございます。",
+            "segments": [
+              {
+                "text": "ありがとうございます。"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "l28-app-block-007",
+        "type": "scene",
+        "text": "搬家的前一天",
+        "translationZh": "搬家的前一天。",
+        "confidence": "high",
+        "rawText": "（搬家的前一天）"
+      },
+      {
+        "id": "l28-app-block-008",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l28-app-block-008-line-001",
+            "speaker": "戴",
+            "text": "森さん、引っ越しは明日ですね。",
+            "translationZh": "森先生，明天搬家吧。",
+            "confidence": "high",
+            "rawText": "戴：森さん、引っ越しは明日ですね。",
+            "kana": "もりさん、ひっこしはあしたですね。",
+            "segments": [
+              {
+                "text": "森",
+                "ruby": "もり"
+              },
+              {
+                "text": "さん、"
+              },
+              {
+                "text": "引",
+                "ruby": "ひ"
+              },
+              {
+                "text": "っ"
+              },
+              {
+                "text": "越",
+                "ruby": "こ"
+              },
+              {
+                "text": "しは"
+              },
+              {
+                "text": "明日",
+                "ruby": "あした"
+              },
+              {
+                "text": "ですね。"
+              }
+            ]
+          },
+          {
+            "id": "l28-app-block-008-line-002",
+            "speaker": "森",
+            "text": "ええ。馬さんと李さんが手伝いに来てくれます。",
+            "translationZh": "是的。小马和小李会来帮忙。",
+            "confidence": "high",
+            "rawText": "森：ええ。馬さんと李さんが手伝いに来てくれます。",
+            "kana": "ええ。ばさんとりさんがてつだいにきてくれます。",
+            "segments": [
+              {
+                "text": "ええ。"
+              },
+              {
+                "text": "馬",
+                "ruby": "ば"
+              },
+              {
+                "text": "さんと"
+              },
+              {
+                "text": "李",
+                "ruby": "り"
+              },
+              {
+                "text": "さんが"
+              },
+              {
+                "text": "手伝",
+                "ruby": "てつだ"
+              },
+              {
+                "text": "いに"
+              },
+              {
+                "text": "来",
+                "ruby": "き"
+              },
+              {
+                "text": "てくれます。"
+              }
+            ]
+          },
+          {
+            "id": "l28-app-block-008-line-003",
+            "speaker": "戴",
+            "text": "家具はどうしたんですか。",
+            "translationZh": "家具怎么办了？",
+            "confidence": "high",
+            "rawText": "戴：家具はどうしたんですか。",
+            "kana": "かぐはどうしたんですか。",
+            "segments": [
+              {
+                "text": "家具",
+                "ruby": "かぐ"
+              },
+              {
+                "text": "はどうしたんですか。"
+              }
+            ]
+          },
+          {
+            "id": "l28-app-block-008-line-004",
+            "speaker": "森",
+            "text": "もう買いました。明日届けてもらいます。冷蔵庫は、支社長がくれました。",
+            "translationZh": "已经买了。明天让人送来。冰箱是分公司经理给我的。",
+            "confidence": "high",
+            "rawText": "森：もう買いました。明日届けてもらいます。冷蔵庫は、支社長がくれました。",
+            "kana": "もうかいました。あしたとどけてもらいます。れいぞうこは、ししゃちょうがくれました。",
+            "segments": [
+              {
+                "text": "もう"
+              },
+              {
+                "text": "買",
+                "ruby": "か"
+              },
+              {
+                "text": "いました。"
+              },
+              {
+                "text": "明日",
+                "ruby": "あした"
+              },
+              {
+                "text": "届",
+                "ruby": "とど"
+              },
+              {
+                "text": "けてもらいます。"
+              },
+              {
+                "text": "冷蔵庫",
+                "ruby": "れいぞうこ"
+              },
+              {
+                "text": "は、"
+              },
+              {
+                "text": "支社長",
+                "ruby": "ししゃちょう"
+              },
+              {
+                "text": "がくれました。"
+              }
+            ]
+          }
+        ]
+      }
     ]
   },
   "warnings": [

@@ -464,7 +464,6 @@ const activities: PracticeActivity[] = [
     ],
     displayAssets: ["l19-p2-a2-word-bank"],
     layout: [
-      { type: "word_bank", words: [text("だいたい"), text("ちょっと"), text("もう 一度"), text("ちゃんと"), text("ちょうど")] },
       {
         type: "example",
         content: {

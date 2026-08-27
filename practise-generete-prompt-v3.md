@@ -536,7 +536,7 @@ https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-
 5. 对图片题运行 crop 生成脚本，生成 `lesson{N}-image-crops.ts`。
 6. 对所有录音大题逐个转写。
 7. 根据教材截图、例句、录音 transcript、图片信息生成完整答案。
-8. 生成 `practice/lesson{N}-practice-data.ts`。所有题目、例句、图片引用、录音引用、答案、kana 都应在数据文件中表达。
+8. 生成 `practice/lesson{N}-practice-data.ts`。所有题目、例句、图片引用、录音引用、答案、kana 都应在数据文件中表达。所有用户可见且含汉字的文本必须提供完整句子级 kana（`text(..., { kana })`、`promptKana`、`beforeKana`、`afterKana` 或 RichText `kana`）；不得遗漏，也不得把整句 kana 直接作为单个汉字的 ruby。
 9. 生成 `practice/lesson{N}-practice-preview.html`。该文件只能是薄 HTML 壳，不包含 lesson-specific UI。
 10. 更新 `practice/react/entry.jsx`，注册 `lesson{N}Practice`。
 11. 运行 `npm run build:practice`，生成 `practice/dist/practice-preview-react.js`。

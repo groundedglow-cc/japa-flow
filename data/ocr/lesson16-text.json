@@ -1,48 +1,419 @@
 {
   "lessonId": "lesson16",
   "sourceImages": [
-    { "section": "basic", "path": "course-assets/by-lesson/lesson16/page190.webp", "pageNo": 190 },
-    { "section": "application", "path": "course-assets/by-lesson/lesson16/page195.webp", "pageNo": 195 }
+    {
+      "section": "basic",
+      "path": "course-assets/by-lesson/lesson16/page190.webp",
+      "pageNo": 190
+    },
+    {
+      "section": "application",
+      "path": "course-assets/by-lesson/lesson16/page195.webp",
+      "pageNo": 195
+    }
   ],
   "basicText": {
     "title": "ホテルの 部屋は 広くて 明るいです",
     "basicSentences": [
-      { "id": "l16-basic-s001", "order": 1, "text": "ホテルの 部屋は 広くて 明るいです。", "kana": "ホテルの へやは ひろくて あかるいです。", "translationZh": "宾馆的房间又宽敞又明亮。", "confidence": "high", "rawText": "1. ホテルの 部屋は 広くて 明るいです。" },
-      { "id": "l16-basic-s002", "order": 2, "text": "この コンピュータの 操作は 簡単で 便利です。", "kana": "この コンピュータの そうさは かんたんで べんりです。", "translationZh": "这台电脑操作简单又方便。", "confidence": "high", "rawText": "2. この コンピュータの 操作は 簡単で 便利です。" },
-      { "id": "l16-basic-s003", "order": 3, "text": "森さんは 車を 持って います。", "kana": "もりさんは くるまを もって います。", "translationZh": "森先生有一辆车。", "confidence": "high", "rawText": "3. 森さんは 車を 持って います。" },
-      { "id": "l16-basic-s004", "order": 4, "text": "3か月 パソコンを 練習しましたが、まだ あまり できません。", "kana": "さんかげつ パソコンを れんしゅうしましたが、まだ あまり できません。", "translationZh": "练习电脑三个月了，但还不太会。", "confidence": "high", "rawText": "4. 3か月 パソコンを 練習しましたが、まだ あまり できません。" }
+      {
+        "id": "l16-basic-s001",
+        "order": 1,
+        "text": "ホテルの 部屋は 広くて 明るいです。",
+        "kana": "ホテルの へやは ひろくて あかるいです。",
+        "translationZh": "宾馆的房间又宽敞又明亮。",
+        "confidence": "high",
+        "rawText": "1. ホテルの 部屋は 広くて 明るいです。",
+        "segments": [
+          {
+            "text": "ホテルの "
+          },
+          {
+            "text": "部屋",
+            "ruby": "へや"
+          },
+          {
+            "text": "は "
+          },
+          {
+            "text": "広",
+            "ruby": "ひろ"
+          },
+          {
+            "text": "くて "
+          },
+          {
+            "text": "明",
+            "ruby": "あか"
+          },
+          {
+            "text": "るいです。"
+          }
+        ]
+      },
+      {
+        "id": "l16-basic-s002",
+        "order": 2,
+        "text": "この コンピュータの 操作は 簡単で 便利です。",
+        "kana": "この コンピュータの そうさは かんたんで べんりです。",
+        "translationZh": "这台电脑操作简单又方便。",
+        "confidence": "high",
+        "rawText": "2. この コンピュータの 操作は 簡単で 便利です。",
+        "segments": [
+          {
+            "text": "この コンピュータの "
+          },
+          {
+            "text": "操作",
+            "ruby": "そうさ"
+          },
+          {
+            "text": "は "
+          },
+          {
+            "text": "簡単",
+            "ruby": "かんたん"
+          },
+          {
+            "text": "で "
+          },
+          {
+            "text": "便利",
+            "ruby": "べんり"
+          },
+          {
+            "text": "です。"
+          }
+        ]
+      },
+      {
+        "id": "l16-basic-s003",
+        "order": 3,
+        "text": "森さんは 車を 持って います。",
+        "kana": "もりさんは くるまを もって います。",
+        "translationZh": "森先生有一辆车。",
+        "confidence": "high",
+        "rawText": "3. 森さんは 車を 持って います。",
+        "segments": [
+          {
+            "text": "森",
+            "ruby": "もり"
+          },
+          {
+            "text": "さんは "
+          },
+          {
+            "text": "車",
+            "ruby": "くるま"
+          },
+          {
+            "text": "を "
+          },
+          {
+            "text": "持",
+            "ruby": "も"
+          },
+          {
+            "text": "って います。"
+          }
+        ]
+      },
+      {
+        "id": "l16-basic-s004",
+        "order": 4,
+        "text": "3か月 パソコンを 練習しましたが、まだ あまり できません。",
+        "kana": "さんかげつ パソコンを れんしゅうしましたが、まだ あまり できません。",
+        "translationZh": "练习电脑三个月了，但还不太会。",
+        "confidence": "high",
+        "rawText": "4. 3か月 パソコンを 練習しましたが、まだ あまり できません。",
+        "segments": [
+          {
+            "text": "3か月",
+            "ruby": "さんかげつ"
+          },
+          {
+            "text": " パソコンを "
+          },
+          {
+            "text": "練習",
+            "ruby": "れんしゅう"
+          },
+          {
+            "text": "しましたが、まだ あまり できません。"
+          }
+        ]
+      }
     ],
     "dialogues": [
       {
         "id": "l16-basic-dialogue-001",
         "label": "A",
         "lines": [
-          { "id": "l16-basic-dialogue-001-line-001", "speaker": "甲", "text": "森さんは どんな 人ですか。", "kana": "もりさんは どんな ひとですか。", "translationZh": "森先生是个什么样的人？", "confidence": "high", "rawText": "甲：森さんは どんな 人ですか。" },
-          { "id": "l16-basic-dialogue-001-line-002", "speaker": "乙", "text": "背が 高くて 脚が 長くて、ハンサムな 人です。", "kana": "せが たかくて あしが ながくて、ハンサムな ひとです。", "translationZh": "他个子高、腿长，是个英俊的人。", "confidence": "high", "rawText": "乙：背が 高くて 脚が 長くて、ハンサムな 人です。" }
+          {
+            "id": "l16-basic-dialogue-001-line-001",
+            "speaker": "甲",
+            "text": "森さんは どんな 人ですか。",
+            "kana": "もりさんは どんな ひとですか。",
+            "translationZh": "森先生是个什么样的人？",
+            "confidence": "high",
+            "rawText": "甲：森さんは どんな 人ですか。",
+            "segments": [
+              {
+                "text": "森",
+                "ruby": "もり"
+              },
+              {
+                "text": "さんは どんな "
+              },
+              {
+                "text": "人",
+                "ruby": "ひと"
+              },
+              {
+                "text": "ですか。"
+              }
+            ]
+          },
+          {
+            "id": "l16-basic-dialogue-001-line-002",
+            "speaker": "乙",
+            "text": "背が 高くて 脚が 長くて、ハンサムな 人です。",
+            "kana": "せが たかくて あしが ながくて、ハンサムな ひとです。",
+            "translationZh": "他个子高、腿长，是个英俊的人。",
+            "confidence": "high",
+            "rawText": "乙：背が 高くて 脚が 長くて、ハンサムな 人です。",
+            "segments": [
+              {
+                "text": "背",
+                "ruby": "せ"
+              },
+              {
+                "text": "が "
+              },
+              {
+                "text": "高",
+                "ruby": "たか"
+              },
+              {
+                "text": "くて "
+              },
+              {
+                "text": "脚",
+                "ruby": "あし"
+              },
+              {
+                "text": "が "
+              },
+              {
+                "text": "長",
+                "ruby": "なが"
+              },
+              {
+                "text": "くて、ハンサムな "
+              },
+              {
+                "text": "人",
+                "ruby": "ひと"
+              },
+              {
+                "text": "です。"
+              }
+            ]
+          }
         ]
       },
       {
         "id": "l16-basic-dialogue-002",
         "label": "B",
         "lines": [
-          { "id": "l16-basic-dialogue-002-line-001", "speaker": "甲", "text": "日本は どうですか。", "kana": "にほんは どうですか。", "translationZh": "日本怎么样？", "confidence": "high", "rawText": "甲：日本は どうですか。" },
-          { "id": "l16-basic-dialogue-002-line-002", "speaker": "乙", "text": "町が きれいで 安全ですが、物が 高いですね。", "kana": "まちが きれいで あんぜんですが、ものが たかいですね。", "translationZh": "城市很干净又安全，不过东西贵。", "confidence": "high", "rawText": "乙：町が きれいで 安全ですが、物が 高いですね。" }
+          {
+            "id": "l16-basic-dialogue-002-line-001",
+            "speaker": "甲",
+            "text": "日本は どうですか。",
+            "kana": "にほんは どうですか。",
+            "translationZh": "日本怎么样？",
+            "confidence": "high",
+            "rawText": "甲：日本は どうですか。",
+            "segments": [
+              {
+                "text": "日本",
+                "ruby": "にほん"
+              },
+              {
+                "text": "は どうですか。"
+              }
+            ]
+          },
+          {
+            "id": "l16-basic-dialogue-002-line-002",
+            "speaker": "乙",
+            "text": "町が きれいで 安全ですが、物が 高いですね。",
+            "kana": "まちが きれいで あんぜんですが、ものが たかいですね。",
+            "translationZh": "城市很干净又安全，不过东西贵。",
+            "confidence": "high",
+            "rawText": "乙：町が きれいで 安全ですが、物が 高いですね。",
+            "segments": [
+              {
+                "text": "町",
+                "ruby": "まち"
+              },
+              {
+                "text": "が きれいで "
+              },
+              {
+                "text": "安全",
+                "ruby": "あんぜん"
+              },
+              {
+                "text": "ですが、"
+              },
+              {
+                "text": "物",
+                "ruby": "もの"
+              },
+              {
+                "text": "が "
+              },
+              {
+                "text": "高",
+                "ruby": "たか"
+              },
+              {
+                "text": "いですね。"
+              }
+            ]
+          }
         ]
       },
       {
         "id": "l16-basic-dialogue-003",
         "label": "C",
         "lines": [
-          { "id": "l16-basic-dialogue-003-line-001", "speaker": "甲", "text": "スミスさんは 会社員ですか。", "kana": "スミスさんは かいしゃいんですか。", "translationZh": "史密斯先生是公司职员吗？", "confidence": "high", "rawText": "甲：スミスさんは 会社員ですか。" },
-          { "id": "l16-basic-dialogue-003-line-002", "speaker": "乙", "text": "ええ。旅行会社の 社員で、営業部の 部長です。", "kana": "ええ。りょこうがいしゃの しゃいんで、えいぎょうぶの ぶちょうです。", "translationZh": "是的。他是旅行社的职员，也是营业部部长。", "confidence": "high", "rawText": "乙：ええ。旅行会社の 社員で、営業部の 部長です。" }
+          {
+            "id": "l16-basic-dialogue-003-line-001",
+            "speaker": "甲",
+            "text": "スミスさんは 会社員ですか。",
+            "kana": "スミスさんは かいしゃいんですか。",
+            "translationZh": "史密斯先生是公司职员吗？",
+            "confidence": "high",
+            "rawText": "甲：スミスさんは 会社員ですか。",
+            "segments": [
+              {
+                "text": "スミスさんは "
+              },
+              {
+                "text": "会社員",
+                "ruby": "かいしゃいん"
+              },
+              {
+                "text": "ですか。"
+              }
+            ]
+          },
+          {
+            "id": "l16-basic-dialogue-003-line-002",
+            "speaker": "乙",
+            "text": "ええ。旅行会社の 社員で、営業部の 部長です。",
+            "kana": "ええ。りょこうがいしゃの しゃいんで、えいぎょうぶの ぶちょうです。",
+            "translationZh": "是的。他是旅行社的职员，也是营业部部长。",
+            "confidence": "high",
+            "rawText": "乙：ええ。旅行会社の 社員で、営業部の 部長です。",
+            "segments": [
+              {
+                "text": "ええ。"
+              },
+              {
+                "text": "旅行会社",
+                "ruby": "りょこうがいしゃ"
+              },
+              {
+                "text": "の "
+              },
+              {
+                "text": "社員",
+                "ruby": "しゃいん"
+              },
+              {
+                "text": "で、"
+              },
+              {
+                "text": "営業部",
+                "ruby": "えいぎょうぶ"
+              },
+              {
+                "text": "の "
+              },
+              {
+                "text": "部長",
+                "ruby": "ぶちょう"
+              },
+              {
+                "text": "です。"
+              }
+            ]
+          }
         ]
       },
       {
         "id": "l16-basic-dialogue-004",
         "label": "D",
         "lines": [
-          { "id": "l16-basic-dialogue-004-line-001", "speaker": "甲", "text": "長島さんは どこに 住んで いますか。", "kana": "ながしまさんは どこに すんで いますか。", "translationZh": "长岛先生住在哪里？", "confidence": "high", "rawText": "甲：長島さんは どこに 住んで いますか。" },
-          { "id": "l16-basic-dialogue-004-line-002", "speaker": "乙", "text": "家族と いっしょに 渋谷に 住んで います。", "kana": "かぞくと いっしょに しぶやに すんで います。", "translationZh": "和家人一起住在涩谷。", "confidence": "high", "rawText": "乙：家族と いっしょに 渋谷に 住んで います。" }
+          {
+            "id": "l16-basic-dialogue-004-line-001",
+            "speaker": "甲",
+            "text": "長島さんは どこに 住んで いますか。",
+            "kana": "ながしまさんは どこに すんで いますか。",
+            "translationZh": "长岛先生住在哪里？",
+            "confidence": "high",
+            "rawText": "甲：長島さんは どこに 住んで いますか。",
+            "segments": [
+              {
+                "text": "長島",
+                "ruby": "ながしま"
+              },
+              {
+                "text": "さんは どこに "
+              },
+              {
+                "text": "住",
+                "ruby": "す"
+              },
+              {
+                "text": "んで いますか。"
+              }
+            ]
+          },
+          {
+            "id": "l16-basic-dialogue-004-line-002",
+            "speaker": "乙",
+            "text": "家族と いっしょに 渋谷に 住んで います。",
+            "kana": "かぞくと いっしょに しぶやに すんで います。",
+            "translationZh": "和家人一起住在涩谷。",
+            "confidence": "high",
+            "rawText": "乙：家族と いっしょに 渋谷に 住んで います。",
+            "segments": [
+              {
+                "text": "家族",
+                "ruby": "かぞく"
+              },
+              {
+                "text": "と いっしょに "
+              },
+              {
+                "text": "渋谷",
+                "ruby": "しぶや"
+              },
+              {
+                "text": "に "
+              },
+              {
+                "text": "住",
+                "ruby": "す"
+              },
+              {
+                "text": "んで います。"
+              }
+            ]
+          }
         ]
       }
     ]
@@ -50,47 +421,560 @@
   "applicationText": {
     "title": "展示場",
     "blocks": [
-      { "id": "l16-app-block-001", "type": "scene", "text": "（在展览会场前）", "kana": null, "translationZh": "在展览会场前。", "confidence": "high", "rawText": "（在展览会场前）" },
+      {
+        "id": "l16-app-block-001",
+        "type": "scene",
+        "text": "（在展览会场前）",
+        "kana": null,
+        "translationZh": "在展览会场前。",
+        "confidence": "high",
+        "rawText": "（在展览会场前）"
+      },
       {
         "id": "l16-app-block-002",
         "type": "dialogue",
         "lines": [
-          { "id": "l16-app-block-002-line-001", "speaker": "李", "text": "大きくて きれいな 建物ですね。", "kana": "おおきくて きれいな たてものですね。", "translationZh": "真是一座又大又漂亮的建筑啊。", "confidence": "high", "rawText": "李：大きくて きれいな 建物ですね。" },
-          { "id": "l16-app-block-002-line-002", "speaker": "森", "text": "ええ。日本の 有名な 建築家の 設計で、最新の 展示場です。", "kana": "ええ。にほんの ゆうめいな けんちくかの せっけいで、さいしんの てんじじょうです。", "translationZh": "是的。这是日本著名建筑师设计的最新展览会场。", "confidence": "high", "rawText": "森：ええ。日本の 有名な 建築家の 設計で、最新の 展示場です。" },
-          { "id": "l16-app-block-002-line-003", "speaker": "李", "text": "デザインが ユニークで、形が おもしろいですね。", "kana": "デザインが ユニークで、かたちが おもしろいですね。", "translationZh": "设计很独特，造型也很有意思。", "confidence": "high", "rawText": "李：デザインが ユニークで、形が おもしろいですね。" }
+          {
+            "id": "l16-app-block-002-line-001",
+            "speaker": "李",
+            "text": "大きくて きれいな 建物ですね。",
+            "kana": "おおきくて きれいな たてものですね。",
+            "translationZh": "真是一座又大又漂亮的建筑啊。",
+            "confidence": "high",
+            "rawText": "李：大きくて きれいな 建物ですね。",
+            "segments": [
+              {
+                "text": "大",
+                "ruby": "おお"
+              },
+              {
+                "text": "きくて きれいな "
+              },
+              {
+                "text": "建物",
+                "ruby": "たてもの"
+              },
+              {
+                "text": "ですね。"
+              }
+            ]
+          },
+          {
+            "id": "l16-app-block-002-line-002",
+            "speaker": "森",
+            "text": "ええ。日本の 有名な 建築家の 設計で、最新の 展示場です。",
+            "kana": "ええ。にほんの ゆうめいな けんちくかの せっけいで、さいしんの てんじじょうです。",
+            "translationZh": "是的。这是日本著名建筑师设计的最新展览会场。",
+            "confidence": "high",
+            "rawText": "森：ええ。日本の 有名な 建築家の 設計で、最新の 展示場です。",
+            "segments": [
+              {
+                "text": "ええ。"
+              },
+              {
+                "text": "日本",
+                "ruby": "にほん"
+              },
+              {
+                "text": "の "
+              },
+              {
+                "text": "有名",
+                "ruby": "ゆうめい"
+              },
+              {
+                "text": "な "
+              },
+              {
+                "text": "建築家",
+                "ruby": "けんちくか"
+              },
+              {
+                "text": "の "
+              },
+              {
+                "text": "設計",
+                "ruby": "せっけい"
+              },
+              {
+                "text": "で、"
+              },
+              {
+                "text": "最新",
+                "ruby": "さいしん"
+              },
+              {
+                "text": "の "
+              },
+              {
+                "text": "展示場",
+                "ruby": "てんじじょう"
+              },
+              {
+                "text": "です。"
+              }
+            ]
+          },
+          {
+            "id": "l16-app-block-002-line-003",
+            "speaker": "李",
+            "text": "デザインが ユニークで、形が おもしろいですね。",
+            "kana": "デザインが ユニークで、かたちが おもしろいですね。",
+            "translationZh": "设计很独特，造型也很有意思。",
+            "confidence": "high",
+            "rawText": "李：デザインが ユニークで、形が おもしろいですね。",
+            "segments": [
+              {
+                "text": "デザインが ユニークで、"
+              },
+              {
+                "text": "形",
+                "ruby": "かたち"
+              },
+              {
+                "text": "が おもしろいですね。"
+              }
+            ]
+          }
         ]
       },
-      { "id": "l16-app-block-003", "type": "scene", "text": "（看见有很多保安人员）", "kana": null, "translationZh": "看见有很多保安人员。", "confidence": "high", "rawText": "（看见有很多保安人员）" },
+      {
+        "id": "l16-app-block-003",
+        "type": "scene",
+        "text": "（看见有很多保安人员）",
+        "kana": null,
+        "translationZh": "看见有很多保安人员。",
+        "confidence": "high",
+        "rawText": "（看见有很多保安人员）"
+      },
       {
         "id": "l16-app-block-004",
         "type": "dialogue",
         "lines": [
-          { "id": "l16-app-block-004-line-001", "speaker": "李", "text": "警備の 人が いろいろな 所に いますね。", "kana": "けいびの ひとが いろいろな ところに いますね。", "translationZh": "有保安人员在各种地方呢。", "confidence": "high", "rawText": "李：警備の 人が いろいろな 所に いますね。" },
-          { "id": "l16-app-block-004-line-002", "speaker": "森", "text": "ここは 駅から 近くて、入場料も 安いです。", "kana": "ここは えきから ちかくて、にゅうじょうりょうも やすいです。", "translationZh": "这里离车站近，门票也便宜。", "confidence": "high", "rawText": "森：ここは 駅から 近くて、入場料も 安いです。" },
-          { "id": "l16-app-block-004-line-003", "speaker": "森", "text": "たくさんの 人が 来ますから、警備が 厳重です。", "kana": "たくさんの ひとが きますから、けいびが げんじゅうです。", "translationZh": "因为来的人很多，所以警备很严。", "confidence": "high", "rawText": "たくさんの 人が 来ますから、警備が 厳重です。" },
-          { "id": "l16-app-block-004-line-004", "speaker": "森", "text": "あっ、李さん、IDカードは ありますか。", "kana": "あっ、りさん、アイディーカードは ありますか。", "translationZh": "啊，小李，你有身份证件吗？", "confidence": "high", "rawText": "あっ、李さん、IDカードは ありますか。" },
-          { "id": "l16-app-block-004-line-005", "speaker": "李", "text": "安心して ください。ちゃんと 持って います。", "kana": "あんしんして ください。ちゃんと もって います。", "translationZh": "请放心，我带着呢。", "confidence": "high", "rawText": "李：安心して ください。ちゃんと 持って います。" },
-          { "id": "l16-app-block-004-line-006", "speaker": "李", "text": "ほら。", "kana": "ほら。", "translationZh": "你看。", "confidence": "high", "rawText": "（拿出身份证件）ほら。" }
+          {
+            "id": "l16-app-block-004-line-001",
+            "speaker": "李",
+            "text": "警備の 人が いろいろな 所に いますね。",
+            "kana": "けいびの ひとが いろいろな ところに いますね。",
+            "translationZh": "有保安人员在各种地方呢。",
+            "confidence": "high",
+            "rawText": "李：警備の 人が いろいろな 所に いますね。",
+            "segments": [
+              {
+                "text": "警備",
+                "ruby": "けいび"
+              },
+              {
+                "text": "の "
+              },
+              {
+                "text": "人",
+                "ruby": "ひと"
+              },
+              {
+                "text": "が いろいろな "
+              },
+              {
+                "text": "所",
+                "ruby": "ところ"
+              },
+              {
+                "text": "に いますね。"
+              }
+            ]
+          },
+          {
+            "id": "l16-app-block-004-line-002",
+            "speaker": "森",
+            "text": "ここは 駅から 近くて、入場料も 安いです。",
+            "kana": "ここは えきから ちかくて、にゅうじょうりょうも やすいです。",
+            "translationZh": "这里离车站近，门票也便宜。",
+            "confidence": "high",
+            "rawText": "森：ここは 駅から 近くて、入場料も 安いです。",
+            "segments": [
+              {
+                "text": "ここは "
+              },
+              {
+                "text": "駅",
+                "ruby": "えき"
+              },
+              {
+                "text": "から "
+              },
+              {
+                "text": "近",
+                "ruby": "ちか"
+              },
+              {
+                "text": "くて、"
+              },
+              {
+                "text": "入場料",
+                "ruby": "にゅうじょうりょう"
+              },
+              {
+                "text": "も "
+              },
+              {
+                "text": "安",
+                "ruby": "やす"
+              },
+              {
+                "text": "いです。"
+              }
+            ]
+          },
+          {
+            "id": "l16-app-block-004-line-003",
+            "speaker": "森",
+            "text": "たくさんの 人が 来ますから、警備が 厳重です。",
+            "kana": "たくさんの ひとが きますから、けいびが げんじゅうです。",
+            "translationZh": "因为来的人很多，所以警备很严。",
+            "confidence": "high",
+            "rawText": "たくさんの 人が 来ますから、警備が 厳重です。",
+            "segments": [
+              {
+                "text": "たくさんの "
+              },
+              {
+                "text": "人",
+                "ruby": "ひと"
+              },
+              {
+                "text": "が "
+              },
+              {
+                "text": "来",
+                "ruby": "き"
+              },
+              {
+                "text": "ますから、"
+              },
+              {
+                "text": "警備",
+                "ruby": "けいび"
+              },
+              {
+                "text": "が "
+              },
+              {
+                "text": "厳重",
+                "ruby": "げんじゅう"
+              },
+              {
+                "text": "です。"
+              }
+            ]
+          },
+          {
+            "id": "l16-app-block-004-line-004",
+            "speaker": "森",
+            "text": "あっ、李さん、IDカードは ありますか。",
+            "kana": "あっ、りさん、アイディーカードは ありますか。",
+            "translationZh": "啊，小李，你有身份证件吗？",
+            "confidence": "high",
+            "rawText": "あっ、李さん、IDカードは ありますか。",
+            "segments": [
+              {
+                "text": "あっ、"
+              },
+              {
+                "text": "李",
+                "ruby": "り"
+              },
+              {
+                "text": "さん、IDカードは ありますか。"
+              }
+            ]
+          },
+          {
+            "id": "l16-app-block-004-line-005",
+            "speaker": "李",
+            "text": "安心して ください。ちゃんと 持って います。",
+            "kana": "あんしんして ください。ちゃんと もって います。",
+            "translationZh": "请放心，我带着呢。",
+            "confidence": "high",
+            "rawText": "李：安心して ください。ちゃんと 持って います。",
+            "segments": [
+              {
+                "text": "安心",
+                "ruby": "あんしん"
+              },
+              {
+                "text": "して ください。ちゃんと "
+              },
+              {
+                "text": "持",
+                "ruby": "も"
+              },
+              {
+                "text": "って います。"
+              }
+            ]
+          },
+          {
+            "id": "l16-app-block-004-line-006",
+            "speaker": "李",
+            "text": "ほら。",
+            "kana": "ほら。",
+            "translationZh": "你看。",
+            "confidence": "high",
+            "rawText": "（拿出身份证件）ほら。",
+            "segments": [
+              {
+                "text": "ほら。"
+              }
+            ]
+          }
         ]
       },
-      { "id": "l16-app-block-005", "type": "scene", "text": "（拿出身份证件后进入馆内。建筑物虽然很大，入口却很狭窄）", "kana": null, "translationZh": "拿出身份证件后进入馆内。建筑物虽然很大，入口却很狭窄。", "confidence": "high", "rawText": "（拿出身份证件后进入馆内。建筑物虽然很大，入口却很狭窄）" },
+      {
+        "id": "l16-app-block-005",
+        "type": "scene",
+        "text": "（拿出身份证件后进入馆内。建筑物虽然很大，入口却很狭窄）",
+        "kana": null,
+        "translationZh": "拿出身份证件后进入馆内。建筑物虽然很大，入口却很狭窄。",
+        "confidence": "high",
+        "rawText": "（拿出身份证件后进入馆内。建筑物虽然很大，入口却很狭窄）"
+      },
       {
         "id": "l16-app-block-006",
         "type": "dialogue",
         "lines": [
-          { "id": "l16-app-block-006-line-001", "speaker": "李", "text": "入り口は 狭いですが、中は とても 広いですね。", "kana": "いりぐちは せまいですが、なかは とても ひろいですね。", "translationZh": "入口很窄，不过里面非常宽敞。", "confidence": "high", "rawText": "李：入り口は 狭いですが、中は とても 広いですね。" },
-          { "id": "l16-app-block-006-line-002", "speaker": "森", "text": "ええ。天井が 高くて、窓が 多くて、とても 明るいです。", "kana": "ええ。てんじょうが たかくて、まどが おおくて、とても あかるいです。", "translationZh": "是的。天花板很高，窗户很多，非常明亮。", "confidence": "high", "rawText": "森：ええ。天井が 高くて、窓が 多くて、とても 明るいです。" }
+          {
+            "id": "l16-app-block-006-line-001",
+            "speaker": "李",
+            "text": "入り口は 狭いですが、中は とても 広いですね。",
+            "kana": "いりぐちは せまいですが、なかは とても ひろいですね。",
+            "translationZh": "入口很窄，不过里面非常宽敞。",
+            "confidence": "high",
+            "rawText": "李：入り口は 狭いですが、中は とても 広いですね。",
+            "segments": [
+              {
+                "text": "入",
+                "ruby": "い"
+              },
+              {
+                "text": "り"
+              },
+              {
+                "text": "口",
+                "ruby": "ぐち"
+              },
+              {
+                "text": "は "
+              },
+              {
+                "text": "狭",
+                "ruby": "せま"
+              },
+              {
+                "text": "いですが、"
+              },
+              {
+                "text": "中",
+                "ruby": "なか"
+              },
+              {
+                "text": "は とても "
+              },
+              {
+                "text": "広",
+                "ruby": "ひろ"
+              },
+              {
+                "text": "いですね。"
+              }
+            ]
+          },
+          {
+            "id": "l16-app-block-006-line-002",
+            "speaker": "森",
+            "text": "ええ。天井が 高くて、窓が 多くて、とても 明るいです。",
+            "kana": "ええ。てんじょうが たかくて、まどが おおくて、とても あかるいです。",
+            "translationZh": "是的。天花板很高，窗户很多，非常明亮。",
+            "confidence": "high",
+            "rawText": "森：ええ。天井が 高くて、窓が 多くて、とても 明るいです。",
+            "segments": [
+              {
+                "text": "ええ。"
+              },
+              {
+                "text": "天井",
+                "ruby": "てんじょう"
+              },
+              {
+                "text": "が "
+              },
+              {
+                "text": "高",
+                "ruby": "たか"
+              },
+              {
+                "text": "くて、"
+              },
+              {
+                "text": "窓",
+                "ruby": "まど"
+              },
+              {
+                "text": "が "
+              },
+              {
+                "text": "多",
+                "ruby": "おお"
+              },
+              {
+                "text": "くて、とても "
+              },
+              {
+                "text": "明",
+                "ruby": "あか"
+              },
+              {
+                "text": "るいです。"
+              }
+            ]
+          }
         ]
       },
-      { "id": "l16-app-block-007", "type": "scene", "text": "（正面装饰着一棵圣诞树。旁边是一块大牌子）", "kana": null, "translationZh": "正面装饰着一棵圣诞树。旁边是一块大牌子。", "confidence": "high", "rawText": "（正面装饰着一棵圣诞树。旁边是一块大牌子）" },
+      {
+        "id": "l16-app-block-007",
+        "type": "scene",
+        "text": "（正面装饰着一棵圣诞树。旁边是一块大牌子）",
+        "kana": null,
+        "translationZh": "正面装饰着一棵圣诞树。旁边是一块大牌子。",
+        "confidence": "high",
+        "rawText": "（正面装饰着一棵圣诞树。旁边是一块大牌子）"
+      },
       {
         "id": "l16-app-block-008",
         "type": "dialogue",
         "lines": [
-          { "id": "l16-app-block-008-line-001", "speaker": "李", "text": "クリスマスツリーの 横に 赤くて 大きい 看板が ありますね。あれは 何ですか。", "kana": "クリスマスツリーの よこに あかくて おおきい かんばんが ありますね。あれは なんですか。", "translationZh": "圣诞树旁边有一块又红又大的牌子。那是什么？", "confidence": "high", "rawText": "李：クリスマスツリーの 横に 赤くて 大きい 看板が ありますね。あれは 何ですか。" },
-          { "id": "l16-app-block-008-line-002", "speaker": "森", "text": "ああ、あれは 航空会社の 広告ですよ。", "kana": "ああ、あれは こうくうがいしゃの こうこくですよ。", "translationZh": "啊，那是航空公司的广告。", "confidence": "high", "rawText": "森：ああ、あれは 航空会社の 広告ですよ。" },
-          { "id": "l16-app-block-008-line-003", "speaker": "森", "text": "ずいぶん 派手ですね。", "kana": "ずいぶん はでですね。", "translationZh": "相当花哨啊。", "confidence": "high", "rawText": "ずいぶん 派手ですね。" },
-          { "id": "l16-app-block-008-line-004", "speaker": "李", "text": "派手ですが、わたしは 嫌いじゃ ありませんよ。", "kana": "はでですが、わたしは きらいじゃ ありませんよ。", "translationZh": "虽然花哨，但我并不讨厌。", "confidence": "high", "rawText": "李：派手ですが、わたしは 嫌いじゃ ありませんよ。" }
+          {
+            "id": "l16-app-block-008-line-001",
+            "speaker": "李",
+            "text": "クリスマスツリーの 横に 赤くて 大きい 看板が ありますね。あれは 何ですか。",
+            "kana": "クリスマスツリーの よこに あかくて おおきい かんばんが ありますね。あれは なんですか。",
+            "translationZh": "圣诞树旁边有一块又红又大的牌子。那是什么？",
+            "confidence": "high",
+            "rawText": "李：クリスマスツリーの 横に 赤くて 大きい 看板が ありますね。あれは 何ですか。",
+            "segments": [
+              {
+                "text": "クリスマスツリーの "
+              },
+              {
+                "text": "横",
+                "ruby": "よこ"
+              },
+              {
+                "text": "に "
+              },
+              {
+                "text": "赤",
+                "ruby": "あか"
+              },
+              {
+                "text": "くて "
+              },
+              {
+                "text": "大",
+                "ruby": "おお"
+              },
+              {
+                "text": "きい "
+              },
+              {
+                "text": "看板",
+                "ruby": "かんばん"
+              },
+              {
+                "text": "が ありますね。あれは "
+              },
+              {
+                "text": "何",
+                "ruby": "なん"
+              },
+              {
+                "text": "ですか。"
+              }
+            ]
+          },
+          {
+            "id": "l16-app-block-008-line-002",
+            "speaker": "森",
+            "text": "ああ、あれは 航空会社の 広告ですよ。",
+            "kana": "ああ、あれは こうくうがいしゃの こうこくですよ。",
+            "translationZh": "啊，那是航空公司的广告。",
+            "confidence": "high",
+            "rawText": "森：ああ、あれは 航空会社の 広告ですよ。",
+            "segments": [
+              {
+                "text": "ああ、あれは "
+              },
+              {
+                "text": "航空会社",
+                "ruby": "こうくうがいしゃ"
+              },
+              {
+                "text": "の "
+              },
+              {
+                "text": "広告",
+                "ruby": "こうこく"
+              },
+              {
+                "text": "ですよ。"
+              }
+            ]
+          },
+          {
+            "id": "l16-app-block-008-line-003",
+            "speaker": "森",
+            "text": "ずいぶん 派手ですね。",
+            "kana": "ずいぶん はでですね。",
+            "translationZh": "相当花哨啊。",
+            "confidence": "high",
+            "rawText": "ずいぶん 派手ですね。",
+            "segments": [
+              {
+                "text": "ずいぶん "
+              },
+              {
+                "text": "派手",
+                "ruby": "はで"
+              },
+              {
+                "text": "ですね。"
+              }
+            ]
+          },
+          {
+            "id": "l16-app-block-008-line-004",
+            "speaker": "李",
+            "text": "派手ですが、わたしは 嫌いじゃ ありませんよ。",
+            "kana": "はでですが、わたしは きらいじゃ ありませんよ。",
+            "translationZh": "虽然花哨，但我并不讨厌。",
+            "confidence": "high",
+            "rawText": "李：派手ですが、わたしは 嫌いじゃ ありませんよ。",
+            "segments": [
+              {
+                "text": "派手",
+                "ruby": "はで"
+              },
+              {
+                "text": "ですが、わたしは "
+              },
+              {
+                "text": "嫌",
+                "ruby": "きら"
+              },
+              {
+                "text": "いじゃ ありませんよ。"
+              }
+            ]
+          }
         ]
       }
     ]

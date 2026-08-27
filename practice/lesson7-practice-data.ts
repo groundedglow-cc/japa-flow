@@ -9,6 +9,7 @@ const text = (value: string, options: Omit<RichText, "type" | "text"> = {}): Ric
 const repl = (value: string, substitutionKey: string, options: Omit<RichText, "type" | "text" | "underline" | "substitutionKey"> = {}): RichText =>
   text(value, { ...options, underline: true, substitutionKey });
 const blank = (slotId: string): PromptPart => ({ type: "blank", slotId });
+const kanaBlank = (slotId: string): PromptPart => ({ type: "blank", slotId, display: "parentheses" });
 
 const answerOnlyHint = "只填写提问后的回答部分，不需要重写问题。";
 const sentenceSlot = (placeholder = "输入完整回答"): InputSlot[] => [{ id: "answer", expectedUnit: "sentence", width: "long", placeholder }];
@@ -282,40 +283,44 @@ const activities: PracticeActivity[] = [
         ]
       }
     },
-    layout: [
+    layout: [],
+    itemGroups: [
       {
-        type: "example",
-        content: {
+        id: "l7-p1-a3-g1",
+        example: {
           label: "[例1]",
           before: "毎朝 コーヒーを 飲みますか。（いいえ）",
           beforeKana: "まいあさ コーヒーを のみますか。（いいえ）",
           after: [text("いいえ、飲みません。")],
           afterKana: "いいえ、のみません。"
-        }
+        },
+        items: [
+      answerItem("l7-p1-a3-q1", "1", "今日、手紙を 書きますか。（はい）", "はい、書きます。", { promptKana: "きょう、てがみを かきますか。（はい）", answerSource: "audio", responseScope: "answer_only", responseScopeHint: answerOnlyHint }),
+      answerItem("l7-p1-a3-q2", "2", "昨日、映画を 見ましたか。（いいえ）", "いいえ、見ませんでした。", { promptKana: "きのう、えいがを みましたか。（いいえ）", answerSource: "audio", responseScope: "answer_only", responseScopeHint: answerOnlyHint }),
+      answerItem("l7-p1-a3-q3", "3", "今晩、CDを 聞きますか。（いいえ）", "いいえ、聞きません。", { promptKana: "こんばん、シーディーを ききますか。（いいえ）", answerSource: "audio", responseScope: "answer_only", responseScopeHint: answerOnlyHint }),
+      answerItem("l7-p1-a3-q4", "4", "昨日の 新聞を 読みましたか。（はい）", "はい、読みました。", { promptKana: "きのうの しんぶんを よみましたか。（はい）", answerSource: "audio", responseScope: "answer_only", responseScopeHint: answerOnlyHint }),
+      answerItem("l7-p1-a3-q5", "5", "先週 テニスを しましたか。（いいえ）", "いいえ、しませんでした。", { promptKana: "せんしゅう テニスを しましたか。（いいえ）", answerSource: "audio", responseScope: "answer_only", responseScopeHint: answerOnlyHint })
+        ]
       },
       {
-        type: "example",
-        content: {
+        id: "l7-p1-a3-g2",
+        example: {
           label: "[例2]",
           before: "昨日 何を 買いましたか。（辞書）",
           beforeKana: "きのう なにを かいましたか。（じしょ）",
           after: [text("辞書を 買いました。")],
           afterKana: "じしょを かいました。"
-        }
-      }
-    ],
-    items: [
-      answerItem("l7-p1-a3-q1", "1", "今日、手紙を 書きますか。（はい）", "はい、書きます。", { promptKana: "きょう、てがみを かきますか。（はい）", answerSource: "audio", responseScope: "answer_only", responseScopeHint: answerOnlyHint }),
-      answerItem("l7-p1-a3-q2", "2", "昨日、映画を 見ましたか。（いいえ）", "いいえ、見ませんでした。", { promptKana: "きのう、えいがを みましたか。（いいえ）", answerSource: "audio", responseScope: "answer_only", responseScopeHint: answerOnlyHint }),
-      answerItem("l7-p1-a3-q3", "3", "今晩、CDを 聞きますか。（いいえ）", "いいえ、聞きません。", { promptKana: "こんばん、シーディーを ききますか。（いいえ）", answerSource: "audio", responseScope: "answer_only", responseScopeHint: answerOnlyHint }),
-      answerItem("l7-p1-a3-q4", "4", "昨日の 新聞を 読みましたか。（はい）", "はい、読みました。", { promptKana: "きのうの しんぶんを よみましたか。（はい）", answerSource: "audio", responseScope: "answer_only", responseScopeHint: answerOnlyHint }),
-      answerItem("l7-p1-a3-q5", "5", "先週 テニスを しましたか。（いいえ）", "いいえ、しませんでした。", { promptKana: "せんしゅう テニスを しましたか。（いいえ）", answerSource: "audio", responseScope: "answer_only", responseScopeHint: answerOnlyHint }),
+        },
+        items: [
       answerItem("l7-p1-a3-q6", "6", "昨日 何を 買いましたか。（パソコン）", "パソコンを 買いました。", { promptKana: "きのう なにを かいましたか。（パソコン）", answerSource: "audio", responseScope: "answer_only", responseScopeHint: answerOnlyHint }),
       answerItem("l7-p1-a3-q7", "7", "毎朝 何を 飲みますか。（何も）", "何も 飲みません。", { promptKana: "まいあさ なにを のみますか。（なにも）", answerSource: "audio", responseScope: "answer_only", responseScopeHint: answerOnlyHint }),
       answerItem("l7-p1-a3-q8", "8", "毎晩 何を 聞きますか。（CD）", "CDを 聞きます。", { promptKana: "まいばん なにを ききますか。（シーディー）", answerSource: "audio", responseScope: "answer_only", responseScopeHint: answerOnlyHint }),
       answerItem("l7-p1-a3-q9", "9", "日曜日 何を しましたか。（何も）", "何も しませんでした。", { promptKana: "にちようび なにを しましたか。（なにも）", answerSource: "audio", responseScope: "answer_only", responseScopeHint: answerOnlyHint }),
       answerItem("l7-p1-a3-q10", "10", "昨日の朝 何を 食べましたか。（パンと 卵）", "パンと 卵を 食べました。", { promptKana: "きのうのあさ なにを たべましたか。（パンと たまご）", answerSource: "audio", responseScope: "answer_only", responseScopeHint: answerOnlyHint })
-    ]
+        ]
+      }
+    ],
+    items: []
   },
   {
     id: "l7-p1-a4",
@@ -496,7 +501,7 @@ const activities: PracticeActivity[] = [
         type: "example",
         content: {
           label: "[例]",
-          beforeParts: [text("毎日 6時 "), blank("particle"), text(" 起きます。")],
+          beforeParts: [text("毎日 6時 "), kanaBlank("particle"), text(" 起きます。")],
           beforeKana: "まいにち ろくじ （に） おきます。",
           after: [text("毎日 6時に 起きます。")],
           afterKana: "まいにち ろくじに おきます。"
@@ -504,23 +509,23 @@ const activities: PracticeActivity[] = [
       }
     ],
     items: [
-      slotItem("l7-p2-a2-q1", "1", [text("昨日 わたしは 友達 "), blank("p1"), text(" 銀座 "), blank("p2"), text(" 映画 "), blank("p3"), text(" "), blank("answer"), text("。")], [
+      slotItem("l7-p2-a2-q1", "1", [text("昨日 わたしは 友達 "), kanaBlank("p1"), text(" 銀座 "), kanaBlank("p2"), text(" 映画 "), kanaBlank("p3"), text(" "), blank("answer"), text("。")], [
         { id: "p1", expectedUnit: "particle", width: "short", placeholder: "助词" },
         { id: "p2", expectedUnit: "particle", width: "short", placeholder: "助词" },
         { id: "p3", expectedUnit: "particle", width: "short", placeholder: "助词" },
         { id: "answer", expectedUnit: "phrase", width: "medium", placeholder: "动词" }
       ], { p1: "と", p2: "で", p3: "を", answer: "見ました" }, { promptKana: "きのう わたしは ともだち （  ） ぎんざ （  ） えいが （  ） ______。" }),
-      slotItem("l7-p2-a2-q2", "2", [text("いつも バス "), blank("p1"), text(" 会社 "), blank("p2"), text(" "), blank("answer"), text("。")], [
+      slotItem("l7-p2-a2-q2", "2", [text("いつも バス "), kanaBlank("p1"), text(" 会社 "), kanaBlank("p2"), text(" "), blank("answer"), text("。")], [
         { id: "p1", expectedUnit: "particle", width: "short", placeholder: "助词" },
         { id: "p2", expectedUnit: "particle", width: "short", placeholder: "助词" },
         { id: "answer", expectedUnit: "phrase", width: "medium", placeholder: "动词" }
       ], { p1: "で", p2: "へ", answer: "行きます" }, { promptKana: "いつも バス （  ） かいしゃ （  ） ______。" }),
-      slotItem("l7-p2-a2-q3", "3", [text("先週 公園 "), blank("p1"), text(" "), blank("object"), text(" "), blank("answer"), text("。")], [
+      slotItem("l7-p2-a2-q3", "3", [text("先週 公園 "), kanaBlank("p1"), text(" "), blank("object"), text(" "), blank("answer"), text("。")], [
         { id: "p1", expectedUnit: "particle", width: "short", placeholder: "助词" },
         { id: "object", expectedUnit: "word", width: "medium", placeholder: "名词" },
         { id: "answer", expectedUnit: "phrase", width: "medium", placeholder: "动词" }
       ], { p1: "で", object: "サッカーを", answer: "しました" }, { promptKana: "せんしゅう こうえん （  ） （  ） ______。" }),
-      slotItem("l7-p2-a2-q4", "4", [text("昨日の 夜 8時 "), blank("p1"), text(" 10時 "), blank("p2"), text(" テレビ "), blank("p3"), text(" "), blank("answer"), text("。")], [
+      slotItem("l7-p2-a2-q4", "4", [text("昨日の 夜 8時 "), kanaBlank("p1"), text(" 10時 "), kanaBlank("p2"), text(" テレビ "), kanaBlank("p3"), text(" "), blank("answer"), text("。")], [
         { id: "p1", expectedUnit: "particle", width: "short", placeholder: "助词" },
         { id: "p2", expectedUnit: "particle", width: "short", placeholder: "助词" },
         { id: "p3", expectedUnit: "particle", width: "short", placeholder: "助词" },

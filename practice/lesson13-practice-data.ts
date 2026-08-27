@@ -177,7 +177,7 @@ const activities: PracticeActivity[] = [
     items: [
       blankItem("l13-p1-a2-q1", "1", "（1）", { answer: "3台" }, { responseScope: "phrase_only", responseScopeHint: completionHint }),
       blankItem("l13-p1-a2-q2", "2", "（2）", { answer: "1本" }, { responseScope: "phrase_only", responseScopeHint: completionHint }),
-      blankItem("l13-p1-a2-q3", "3", "（3）", { answer: "2冊" }, { responseScope: "phrase_only", responseScopeHint: completionHint }),
+      blankItem("l13-p1-a2-q3", "3", "（3）", { answer: "3冊" }, { responseScope: "phrase_only", responseScopeHint: completionHint }),
       blankItem("l13-p1-a2-q4", "4", "（4）", { answer: "5枚" }, { responseScope: "phrase_only", responseScopeHint: completionHint }),
       blankItem("l13-p1-a2-q5", "5", "（5）", { answer: "2人" }, { responseScope: "phrase_only", responseScopeHint: completionHint }),
       blankItem("l13-p1-a2-q6", "6", "（6）", { answer: "1人" }, { responseScope: "phrase_only", responseScopeHint: completionHint }),

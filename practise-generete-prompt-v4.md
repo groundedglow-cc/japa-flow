@@ -137,3 +137,13 @@ displayAssets: ["l1-p1-a4-person-cards"]
 5. 最终汇报列出每个图片题的“activity id → asset id → PNG 文件名 → 展示层级（activity 或 itemGroup）”，以及任何缺图或人工确认的变体映射。
 
 最终汇报中不再报告 crop id、source page 裁切坐标、裁切失败或人工 crop 校准；改为报告新 PNG 引用及其存在性检查结果。
+
+## 新课初始化硬性质量门：音频答案与会话 ruby
+
+以下规则覆盖 V3 中任何将“听力题”笼统标为人工复核的做法：
+
+1. 每个录音活动必须先运行 `scripts/transcribe-textbook-audio.mjs`。录音超过单次识别长度时，使用 `--start <seconds> --duration <seconds>` 分段转写，直到覆盖例句和全部小题；禁止用“暂无逐题录音转写”代替转写结果。
+2. 只要录音或例句能确定唯一的标准作答，每个小题必须写入 `answer.slotValues` 并使用可自动判分的 `evaluationMode`；不得标为 `manual_review`。`manual_review` 只允许用于教材本身没有唯一答案的自由表达题，并在最终汇报中逐题说明原因。
+3. 会话题的标准答案必须保留完整说话人、每一轮对话、助词、时态和句尾；`?admin=1` 必须能自动填入它，用户答错时必须能展示“你的答案 / 正确答案”对比。
+4. 会话例句的 `after` 与 `afterKana` 必须逐行一一对应。文本说话人可为 `甲/乙`，假名说话人可为 `こう/おつ`，但每一行假名仅包含该行正文；不得把整段会话、说话人标签或标点写进任一汉字的 ruby 读音。
+5. 交付前必须逐项检查：所有 `requiresAudio` item 是否有实际 transcript、标准答案和非 `manual_review` 判分；所有含 `甲/乙` 的例句是否按行展示；故意提交一个错误答案后是否展示正确答案与差异对比。任一项未通过不得交付。

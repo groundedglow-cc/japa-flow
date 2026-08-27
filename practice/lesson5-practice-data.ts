@@ -9,6 +9,7 @@ const text = (value: string, options: Omit<RichText, "type" | "text"> = {}): Ric
 const repl = (value: string, substitutionKey: string, options: Omit<RichText, "type" | "text" | "underline" | "substitutionKey"> = {}): RichText =>
   text(value, { ...options, underline: true, substitutionKey });
 const blank = (slotId: string): PromptPart => ({ type: "blank", slotId });
+const kanaBlank = (slotId: string): PromptPart => ({ type: "blank", slotId, display: "parentheses" });
 
 const sentenceSlot = (placeholder = "输入完整回答"): InputSlot[] => [{ id: "answer", expectedUnit: "sentence", width: "long", placeholder }];
 const shortSlot = (id: string, placeholder = "输入 1 个假名"): InputSlot => ({ id, expectedUnit: "word", width: "short", placeholder });
@@ -41,19 +42,28 @@ const answerItem = (
   answer: { slotValues: { answer }, note: options.note }
 });
 
-const personalItem = (id: string, number: string, prompt: string, modelAnswers: string[], promptKana: string): PracticeItem => ({
+const personalItem = (
+  id: string,
+  number: string,
+  prompt: string,
+  modelAnswers: string[],
+  promptKana: string,
+  openResponseRule: NonNullable<PracticeItem["answer"]>["openResponseRule"]
+): PracticeItem => ({
   id,
   number,
   prompt: [text(prompt)],
   promptKana,
   instruction: "",
   answerSource: "personal",
-  evaluationMode: "acceptable_answers",
-  responseScope: "free_response",
+  evaluationMode: "open_response",
+  responseScope: "answer_only",
+  responseScopeHint: "可直接回答问题，也可写完整句子；请按自己的实际情况作答。",
   inputSlots: sentenceSlot("按实际情况作答"),
   answer: {
     modelAnswers,
-    note: "按句式校验。可填写与你实际情况一致的答案，只要句型完整即可判对。"
+    openResponseRule,
+    note: "示例句型，仅校验回答结构；可填写与你实际情况一致的答案。"
   }
 });
 
@@ -415,11 +425,11 @@ const activities: PracticeActivity[] = [
     responseScope: "word_only",
     layout: [],
     items: [
-      blankItem("l5-p2-a1-q1", "1", [text("今 何時 "), blank("a1"), text(" です "), blank("a2"), text("。")], ["a1", "a2"], { a1: "×", a2: "か" }, "いま なんじ （  ） です （  ）。"),
-      blankItem("l5-p2-a1-q2", "2", [text("昨日は 何時 "), blank("a1"), text(" 起きましたか。")], ["a1"], { a1: "に" }, "きのうは なんじ （  ） おきましたか。"),
-      blankItem("l5-p2-a1-q3", "3", [text("小野さんは、毎日 "), blank("a1"), text(" 9時 "), blank("a2"), blank("a3"), text(" 5時 "), blank("a4"), blank("a5"), text(" 働きます。")], ["a1", "a2", "a3", "a4", "a5"], { a1: "×", a2: "か", a3: "ら", a4: "ま", a5: "で" }, "おのさんは、まいにち （  ） くじ （  ）（  ） ごじ （  ）（  ） はたらきます。"),
-      blankItem("l5-p2-a1-q4", "4", [text("試験は いつ "), blank("a1"), text(" ですか。")], ["a1"], { a1: "×" }, "しけんは いつ （  ） ですか。"),
-      blankItem("l5-p2-a1-q5", "5", [text("李さんは 先週 "), blank("a1"), text(" 土曜日 休みませんでした。")], ["a1"], { a1: "の" }, "りさんは せんしゅう （  ） どようび やすみませんでした。")
+      blankItem("l5-p2-a1-q1", "1", [text("今 何時 "), kanaBlank("a1"), text(" です "), kanaBlank("a2"), text("。")], ["a1", "a2"], { a1: "×", a2: "か" }, "いま なんじ （  ） です （  ）。"),
+      blankItem("l5-p2-a1-q2", "2", [text("昨日は 何時 "), kanaBlank("a1"), text(" 起きましたか。")], ["a1"], { a1: "に" }, "きのうは なんじ （  ） おきましたか。"),
+      blankItem("l5-p2-a1-q3", "3", [text("小野さんは、毎日 "), kanaBlank("a1"), text(" 9時 "), kanaBlank("a2"), kanaBlank("a3"), text(" 5時 "), kanaBlank("a4"), kanaBlank("a5"), text(" 働きます。")], ["a1", "a2", "a3", "a4", "a5"], { a1: "×", a2: "か", a3: "ら", a4: "ま", a5: "で" }, "おのさんは、まいにち （  ） くじ （  ）（  ） ごじ （  ）（  ） はたらきます。"),
+      blankItem("l5-p2-a1-q4", "4", [text("試験は いつ "), kanaBlank("a1"), text(" ですか。")], ["a1"], { a1: "×" }, "しけんは いつ （  ） ですか。"),
+      blankItem("l5-p2-a1-q5", "5", [text("李さんは 先週 "), kanaBlank("a1"), text(" 土曜日 休みませんでした。")], ["a1"], { a1: "の" }, "りさんは せんしゅう （  ） どようび やすみませんでした。")
     ]
   },
   {
@@ -496,10 +506,10 @@ const activities: PracticeActivity[] = [
       }
     ],
     items: [
-      personalItem("l5-p2-a3-q1", "1", "中国は 今 何時ですか。", ["中国は 今 〜時です。"], "ちゅうごくは いま なんじですか。"),
-      personalItem("l5-p2-a3-q2", "2", "（あなたは）今朝 何時に 起きましたか。", ["今朝 〜時に 起きました。"], "（あなたは）けさ なんじに おきましたか。"),
-      personalItem("l5-p2-a3-q3", "3", "（あなたは）何曜日から 何曜日まで 働きますか。", ["〜曜日から 〜曜日まで 働きます。"], "（あなたは）なんようびから なんようびまで はたらきますか。"),
-      personalItem("l5-p2-a3-q4", "4", "（あなたは）昨日の晩 何時から 何時まで 勉強しましたか。", ["昨日の晩 〜時から 〜時まで 勉強しました。"], "（あなたは）きのうのばん なんじから なんじまで べんきょうしましたか。")
+      personalItem("l5-p2-a3-q1", "1", "中国は 今 何時ですか。", ["中国は 今 〜時です。"], "ちゅうごくは いま なんじですか。", { kind: "time", allowShortAnswer: true }),
+      personalItem("l5-p2-a3-q2", "2", "（あなたは）今朝 何時に 起きましたか。", ["今朝 〜時に 起きました。"], "（あなたは）けさ なんじに おきましたか。", { kind: "time", actions: ["起きました"], allowShortAnswer: true }),
+      personalItem("l5-p2-a3-q3", "3", "（あなたは）何曜日から 何曜日まで 働きますか。", ["〜曜日から 〜曜日まで 働きます。"], "（あなたは）なんようびから なんようびまで はたらきますか。", { kind: "weekday_range", actions: ["働きます"], allowShortAnswer: true }),
+      personalItem("l5-p2-a3-q4", "4", "（あなたは）昨日の晩 何時から 何時まで 勉強しましたか。", ["昨日の晩 〜時から 〜時まで 勉強しました。"], "（あなたは）きのうのばん なんじから なんじまで べんきょうしましたか。", { kind: "time_range", actions: ["勉強しました"], allowShortAnswer: true })
     ]
   },
   {

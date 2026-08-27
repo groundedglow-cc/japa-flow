@@ -1241,9 +1241,9 @@
         "itemIndex": 30,
         "text": "おなかがいっぱいです",
         "label": "おなかがいっぱいです",
-        "start": 55.83,
+        "start": 55.3,
         "end": 57.13,
-        "duration": 1.3,
+        "duration": 1.83,
         "speechUnitCount": 8,
         "wordCount": 8,
         "matchScore": 0.8,
@@ -1258,15 +1258,16 @@
           131,
           132
         ],
-        "method": "azure-speech-word-alignment",
-        "confidence": "medium",
+        "method": "manual-admin-adjustment",
+        "confidence": "approved",
         "review": {
           "status": "approved",
           "reviewedAt": "2026-08-05T11:42:06.069Z",
           "note": "Automatically approved by the vocabulary ASR alignment workflow.",
           "matchScore": 0.8,
           "asrText": "か が い っ ぱ い で す"
-        }
+        },
+        "reviewedAt": "2026-08-26T13:05:14.327Z"
       }
     },
     {
@@ -1333,5 +1334,5 @@
       }
     ]
   },
-  "updatedAt": "2026-08-12T11:51:37.904Z"
+  "updatedAt": "2026-08-26T13:05:14.328Z"
 }

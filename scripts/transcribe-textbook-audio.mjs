@@ -9,17 +9,31 @@ const baseUrl = "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/text
 loadEnv();
 
 function usage() {
-  console.error("Usage: node scripts/transcribe-textbook-audio.mjs lessonN practice_1|practice_2 order [--out file]");
-  console.error("   or: node scripts/transcribe-textbook-audio.mjs --url https://.../Exe1_2.mp3 [--out file]");
+  console.error("Usage: node scripts/transcribe-textbook-audio.mjs lessonN practice_1|practice_2 order [--start seconds] [--duration seconds] [--out file]");
+  console.error("   or: node scripts/transcribe-textbook-audio.mjs --url https://.../Exe1_2.mp3 [--start seconds] [--duration seconds] [--out file]");
   process.exit(2);
 }
 
 const args = process.argv.slice(2);
 let outPath = "";
+let startSeconds = null;
+let durationSeconds = null;
 const outIndex = args.indexOf("--out");
 if (outIndex >= 0) {
   outPath = args[outIndex + 1] || "";
   args.splice(outIndex, 2);
+}
+const startIndex = args.indexOf("--start");
+if (startIndex >= 0) {
+  startSeconds = Number(args[startIndex + 1]);
+  if (!Number.isFinite(startSeconds) || startSeconds < 0) usage();
+  args.splice(startIndex, 2);
+}
+const durationIndex = args.indexOf("--duration");
+if (durationIndex >= 0) {
+  durationSeconds = Number(args[durationIndex + 1]);
+  if (!Number.isFinite(durationSeconds) || durationSeconds <= 0) usage();
+  args.splice(durationIndex, 2);
 }
 
 let audioUrl = "";
@@ -60,7 +74,9 @@ writeFileSync(mp3Path, Buffer.from(await mp3Response.arrayBuffer()));
 
 const converted = spawnSync(ffmpeg, [
   "-y",
+  ...(startSeconds === null ? [] : ["-ss", String(startSeconds)]),
   "-i", mp3Path,
+  ...(durationSeconds === null ? [] : ["-t", String(durationSeconds)]),
   "-ac", "1",
   "-ar", "16000",
   "-acodec", "pcm_s16le",

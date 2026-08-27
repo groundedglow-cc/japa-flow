@@ -126,9 +126,9 @@
           "itemIndex": 2,
           "speaker": "",
           "text": "李さんは 図書館で 勉強します。",
-          "start": 5.282,
+          "start": 5.82,
           "end": 9.552,
-          "duration": 4.27,
+          "duration": 3.732,
           "rawAzureTiming": {
             "start": 4.51,
             "end": 9.27,
@@ -150,19 +150,20 @@
             0,
             1
           ],
-          "method": "azure-speech-sentence-alignment-with-boundary-padding",
-          "confidence": "high",
+          "method": "manual-admin-adjustment",
+          "confidence": "approved",
           "alignmentIssues": [
             "ASR boundary overlapped the previous sentence and was moved to the next local speech region; verify this sentence.",
             "ASR boundary ended before the final local speech region; verify this sentence."
           ],
           "review": {
             "status": "approved",
-            "reviewedAt": "2026-08-16T11:52:14.498Z",
-            "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+            "reviewedAt": "2026-08-24T06:59:25.093Z",
+            "note": "Manually verified and adjusted in the text audio preview.",
             "matchScore": 1,
             "asrText": "。 李 さ ん は 図 書 館 で 勉 強 し ま す 。"
-          }
+          },
+          "reviewedAt": "2026-08-24T06:59:25.093Z"
         }
       },
       {
@@ -1032,8 +1033,8 @@
               "speaker": "小野",
               "text": "課長は？",
               "start": 17.821,
-              "end": 20.421,
-              "duration": 2.6,
+              "end": 19.21,
+              "duration": 1.389,
               "rawAzureTiming": {
                 "start": 17.44,
                 "end": 19.4,
@@ -1055,19 +1056,20 @@
                 2,
                 3
               ],
-              "method": "azure-speech-sentence-alignment-with-boundary-padding",
-              "confidence": "high",
+              "method": "manual-admin-adjustment",
+              "confidence": "approved",
               "alignmentIssues": [
                 "ASR boundary overlapped the previous sentence and was moved to the next local speech region; verify this sentence.",
                 "ASR boundary ended before the final local speech region; verify this sentence."
               ],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-16T11:52:14.498Z",
-                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "reviewedAt": "2026-08-24T07:00:36.820Z",
+                "note": "Manually verified and adjusted in the text audio preview.",
                 "matchScore": 1,
                 "asrText": "。 課 長 は"
-              }
+              },
+              "reviewedAt": "2026-08-24T07:00:36.820Z"
             }
           },
           {
@@ -1111,9 +1113,9 @@
               "itemIndex": 4,
               "speaker": "吉田",
               "text": "コンビニで お弁当と お茶を 買いました。",
-              "start": 20.381,
+              "start": 19.381,
               "end": 22.987,
-              "duration": 2.606,
+              "duration": 3.606,
               "rawAzureTiming": {
                 "start": 19.4,
                 "end": 22.56,
@@ -1134,19 +1136,20 @@
               "phraseIndexes": [
                 3
               ],
-              "method": "azure-speech-sentence-alignment-with-boundary-padding",
-              "confidence": "high",
+              "method": "manual-admin-adjustment",
+              "confidence": "approved",
               "alignmentIssues": [
                 "ASR boundary overlapped the previous sentence and was moved to the next local speech region; verify this sentence.",
                 "ASR boundary ended before the final local speech region; verify this sentence."
               ],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-16T11:52:14.498Z",
-                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "reviewedAt": "2026-08-24T07:00:47.822Z",
+                "note": "Manually verified and adjusted in the text audio preview.",
                 "matchScore": 1,
                 "asrText": "？ コ ン ビ ニ で お 弁 当 と お 茶 を 買 い ま し た"
-              }
+              },
+              "reviewedAt": "2026-08-24T07:00:47.822Z"
             }
           },
           {
@@ -1776,9 +1779,9 @@
               "itemIndex": 14,
               "speaker": "李",
               "text": "わたしも それを ください。",
-              "start": 49.85,
+              "start": 49.15,
               "end": 51.23,
-              "duration": 1.38,
+              "duration": 2.08,
               "rawAzureTiming": {
                 "start": 49.83,
                 "end": 51.11,
@@ -1793,18 +1796,19 @@
               "phraseIndexes": [
                 9
               ],
-              "method": "azure-speech-sentence-alignment-with-boundary-padding",
-              "confidence": "medium",
+              "method": "manual-admin-adjustment",
+              "confidence": "approved",
               "alignmentIssues": [
                 "Moderate ASR text similarity."
               ],
               "review": {
-                "status": "pending",
-                "reviewedAt": null,
-                "note": "Moderate ASR text similarity.",
+                "status": "approved",
+                "reviewedAt": "2026-08-24T07:01:24.218Z",
+                "note": "Manually verified and adjusted in the text audio preview.",
                 "matchScore": 0.727,
                 "asrText": "私 も そ れ を く だ さ い"
-              }
+              },
+              "reviewedAt": "2026-08-24T07:01:24.218Z"
             }
           },
           {
@@ -1901,5 +1905,6 @@
         ]
       }
     ]
-  }
+  },
+  "updatedAt": "2026-08-24T07:01:24.219Z"
 }

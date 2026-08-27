@@ -963,9 +963,9 @@
               "itemIndex": 1,
               "speaker": "森",
               "text": "今朝、公園を散歩している時、大勢の人が集まっているのを見ました。",
-              "start": 21.476,
+              "start": 24.476,
               "end": 30.053,
-              "duration": 8.577,
+              "duration": 5.577,
               "rawAzureTiming": {
                 "start": 15.36,
                 "end": 29.6,
@@ -985,19 +985,20 @@
               "phraseIndexes": [
                 1
               ],
-              "method": "azure-speech-sentence-alignment-with-boundary-padding",
-              "confidence": "high",
+              "method": "manual-admin-adjustment",
+              "confidence": "approved",
               "alignmentIssues": [
                 "ASR range was narrowed to the final local speech region; verify this sentence.",
                 "ASR boundary ended before the final local speech region; verify this sentence."
               ],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-18T13:11:19.004Z",
-                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "reviewedAt": "2026-08-19T13:41:13.409Z",
+                "note": "Manually verified and adjusted in the text audio preview.",
                 "matchScore": 1,
                 "asrText": "今 朝 公 園 を 散 歩 し て い る 時 大 勢 の 人 が 集 ま っ て い る の を 見 ま し た"
-              }
+              },
+              "reviewedAt": "2026-08-19T13:41:13.409Z"
             }
           },
           {
@@ -1255,8 +1256,8 @@
               "speaker": "森",
               "text": "ええ、いました。ほかに、踊りながら歌を歌っている人もいましたよ。",
               "start": 42.74,
-              "end": 47.26,
-              "duration": 4.52,
+              "end": 48.26,
+              "duration": 5.52,
               "rawAzureTiming": {
                 "start": 42.99,
                 "end": 47.28,
@@ -1272,18 +1273,19 @@
                 3,
                 4
               ],
-              "method": "azure-speech-sentence-alignment-with-boundary-padding",
-              "confidence": "medium",
+              "method": "manual-admin-adjustment",
+              "confidence": "approved",
               "alignmentIssues": [
                 "Moderate ASR text similarity."
               ],
               "review": {
-                "status": "pending",
-                "reviewedAt": null,
-                "note": "Moderate ASR text similarity.",
+                "status": "approved",
+                "reviewedAt": "2026-08-19T13:36:27.986Z",
+                "note": "Manually verified and adjusted in the text audio preview.",
                 "matchScore": 0.714,
                 "asrText": "え え い ま し た 他 に 踊 り な が ら 歌 を 歌 っ て い る 人"
-              }
+              },
+              "reviewedAt": "2026-08-19T13:36:27.986Z"
             }
           }
         ]
@@ -2028,5 +2030,6 @@
         ]
       }
     ]
-  }
+  },
+  "updatedAt": "2026-08-19T13:41:13.410Z"
 }

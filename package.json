@@ -11,6 +11,7 @@
     "align:ocr-text-audio": "node scripts/align-ocr-text-audio.mjs",
     "align:ocr-text-audio:auto": "node scripts/auto-align-ocr-text-audio.mjs",
     "backfill:ocr-text-ruby": "node scripts/backfill-text-ruby.mjs",
+    "backfill:practice-ruby": "node scripts/backfill-practice-ruby.mjs",
     "align:ocr-vocabulary-audio": "node scripts/align-ocr-vocabulary-audio.mjs",
     "align:ocr-vocabulary-audio:auto": "node scripts/auto-align-ocr-vocabulary-audio.mjs",
     "init:task": "node scripts/create-codex-parse-task.mjs",
