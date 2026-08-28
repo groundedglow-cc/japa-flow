@@ -19,6 +19,7 @@ const evaluationModeLabel = {
 const textbookAudioBaseUrl = "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio";
 const CHOICE_RESULT_KEY = "__choice__";
 const ANSWER_ALTERNATIVE_CACHE_KEY = "japaflow.practice.acceptedAlternatives.v1";
+const HOME_PROGRESS_SNAPSHOT_PREFIX = "japaflow.practice.home-progress.v1";
 const answerLexicalVariantGroups = [
   ["わたし", "私", "我"],
   ["あなた", "貴方", "貴女"],
@@ -156,6 +157,24 @@ export function PracticePreview({ practice, localPractice = null }) {
   const isPublished = Boolean(practiceSetId);
 
   useEffect(() => {
+    if (!isReady) return;
+    const progress = activities.reduce((total, activity) => {
+      const record = normalizeActivityRecord(activity, session.activities?.[activity.id]);
+      const activityProgress = activityProgressSummary(activity, record);
+      return {
+        completed: total.completed + activityProgress.completed,
+        total: total.total + activityProgress.total
+      };
+    }, { completed: 0, total: 0 });
+    window.localStorage.setItem(homeProgressSnapshotKey(practice.lessonId), JSON.stringify({
+      lessonId: practice.lessonId,
+      practiceSetId,
+      ...progress,
+      updatedAt: new Date().toISOString()
+    }));
+  }, [activities, isReady, practice.lessonId, practiceSetId, session]);
+
+  useEffect(() => {
     window.initPracticeAnswerFormatter?.();
   }, [currentActivity?.id, sessionLoadKey, admin]);
 
@@ -288,6 +307,19 @@ export function PracticePreview({ practice, localPractice = null }) {
       </section>
     </main>
   );
+}
+
+function homeProgressSnapshotKey(lessonId) {
+  let user = {};
+  try {
+    user = JSON.parse(window.localStorage.getItem("light_blog_user") || "{}") || {};
+  } catch {
+    user = {};
+  }
+  const token = window.localStorage.getItem("light_blog_token") || "";
+  const identity = user.id || user.userId || user.email || user.username || token.slice(-16) || "guest";
+  const numericLessonId = String(lessonId).match(/\d+/)?.[0] || String(lessonId);
+  return `${HOME_PROGRESS_SNAPSHOT_PREFIX}:${encodeURIComponent(String(identity)).replace(/%/g, "_")}:${numericLessonId}`;
 }
 
 function notifyPracticeProgressChanged(detail) {

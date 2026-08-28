@@ -22126,6 +22126,7 @@ var evaluationModeLabel = {
 var textbookAudioBaseUrl = "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio";
 var CHOICE_RESULT_KEY = "__choice__";
 var ANSWER_ALTERNATIVE_CACHE_KEY = "japaflow.practice.acceptedAlternatives.v1";
+var HOME_PROGRESS_SNAPSHOT_PREFIX = "japaflow.practice.home-progress.v1";
 var answerLexicalVariantGroups = [
   ["\u308F\u305F\u3057", "\u79C1", "\u6211"],
   ["\u3042\u306A\u305F", "\u8CB4\u65B9", "\u8CB4\u5973"],
@@ -22250,6 +22251,23 @@ function PracticePreview({ practice, localPractice: localPractice2 = null }) {
   const nextActivity = currentIndex < activities30.length - 1 ? activities30[currentIndex + 1] : null;
   const currentRecord = normalizeActivityRecord(currentActivity, session.activities?.[currentActivity?.id]);
   const isPublished = Boolean(practiceSetId);
+  (0, import_react.useEffect)(() => {
+    if (!isReady) return;
+    const progress = activities30.reduce((total, activity) => {
+      const record = normalizeActivityRecord(activity, session.activities?.[activity.id]);
+      const activityProgress = activityProgressSummary(activity, record);
+      return {
+        completed: total.completed + activityProgress.completed,
+        total: total.total + activityProgress.total
+      };
+    }, { completed: 0, total: 0 });
+    window.localStorage.setItem(homeProgressSnapshotKey(practice.lessonId), JSON.stringify({
+      lessonId: practice.lessonId,
+      practiceSetId,
+      ...progress,
+      updatedAt: (/* @__PURE__ */ new Date()).toISOString()
+    }));
+  }, [activities30, isReady, practice.lessonId, practiceSetId, session]);
   (0, import_react.useEffect)(() => {
     window.initPracticeAnswerFormatter?.();
   }, [currentActivity?.id, sessionLoadKey, admin]);
@@ -22389,6 +22407,18 @@ function PracticePreview({ practice, localPractice: localPractice2 = null }) {
       ] }, sourcePage.pageNo)) })
     ] })
   ] });
+}
+function homeProgressSnapshotKey(lessonId2) {
+  let user = {};
+  try {
+    user = JSON.parse(window.localStorage.getItem("light_blog_user") || "{}") || {};
+  } catch {
+    user = {};
+  }
+  const token = window.localStorage.getItem("light_blog_token") || "";
+  const identity = user.id || user.userId || user.email || user.username || token.slice(-16) || "guest";
+  const numericLessonId = String(lessonId2).match(/\d+/)?.[0] || String(lessonId2);
+  return `${HOME_PROGRESS_SNAPSHOT_PREFIX}:${encodeURIComponent(String(identity)).replace(/%/g, "_")}:${numericLessonId}`;
 }
 function notifyPracticeProgressChanged(detail) {
   if (typeof window === "undefined" || window.parent === window) return;

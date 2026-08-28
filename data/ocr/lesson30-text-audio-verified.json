@@ -1510,9 +1510,9 @@
               "itemIndex": 9,
               "speaker": "李",
               "text": "近くに北京植物園があるので、帰りに寄ろうと思うんです。",
-              "start": 48.377,
+              "start": 50.77,
               "end": 56.17,
-              "duration": 7.793,
+              "duration": 5.4,
               "rawAzureTiming": {
                 "start": 47.79,
                 "end": 56.19,
@@ -1534,18 +1534,19 @@
                 6,
                 7
               ],
-              "method": "azure-speech-sentence-alignment-with-boundary-padding",
-              "confidence": "high",
+              "method": "manual-admin-adjustment",
+              "confidence": "approved",
               "alignmentIssues": [
                 "ASR boundary overlapped the previous sentence and was moved to the next local speech region; verify this sentence."
               ],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-26T00:31:34.502Z",
-                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "reviewedAt": "2026-08-27T13:06:51.359Z",
+                "note": "Manually verified and adjusted in the text audio preview.",
                 "matchScore": 1,
                 "asrText": "。 近 く に 北 京 植 物 園 が あ る の で 、 帰 り に 寄 ろ う と 思 う ん で す"
-              }
+              },
+              "reviewedAt": "2026-08-27T13:06:51.359Z"
             },
             "kana": "ちかくにぺきんしょくぶつえんがあるので、かえりによろうとおもうんです。",
             "segments": [
@@ -1752,9 +1753,9 @@
               "itemIndex": 12,
               "speaker": "陳",
               "text": "今はちょうどピクニックのシーズンですから。",
-              "start": 66.9,
+              "start": 67.9,
               "end": 71.831,
-              "duration": 4.931,
+              "duration": 3.931,
               "rawAzureTiming": {
                 "start": 66.84,
                 "end": 71.39,
@@ -1781,12 +1782,12 @@
               ],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-27T01:04:23.523Z",
+                "reviewedAt": "2026-08-27T13:07:32.153Z",
                 "note": "Manually verified and adjusted in the text audio preview.",
                 "matchScore": 1,
                 "asrText": "。 今 は ち ょ う ど ピ ク ニ ッ ク の シ ー ズ ン で す か ら"
               },
-              "reviewedAt": "2026-08-27T01:04:23.523Z"
+              "reviewedAt": "2026-08-27T13:07:32.153Z"
             },
             "kana": "いまはちょうどピクニックのシーズンですから。",
             "segments": [
@@ -1893,9 +1894,9 @@
               "itemIndex": 14,
               "speaker": "李",
               "text": "秋の香山もいいですよ。今度は紅葉を見に来ようと思っています。",
-              "start": 76.6,
+              "start": 76.4,
               "end": 82.11,
-              "duration": 5.51,
+              "duration": 5.71,
               "rawAzureTiming": {
                 "start": 77.11,
                 "end": 81.99,
@@ -1915,12 +1916,12 @@
               "alignmentIssues": [],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-27T01:04:42.319Z",
+                "reviewedAt": "2026-08-27T13:08:40.045Z",
                 "note": "Manually verified and adjusted in the text audio preview.",
                 "matchScore": 0.964,
                 "asrText": "秋 の 鉱 山 も い い で す よ 今 度 は 紅 葉 を 見 に 来 よ う と 思 っ て い ま す"
               },
-              "reviewedAt": "2026-08-27T01:04:42.319Z"
+              "reviewedAt": "2026-08-27T13:08:40.045Z"
             },
             "kana": "あきのこうざんもいいですよ。こんどはこうようをみにこようとおもっています。",
             "segments": [
@@ -2012,5 +2013,5 @@
       }
     ]
   },
-  "updatedAt": "2026-08-27T01:04:42.320Z"
+  "updatedAt": "2026-08-27T13:08:40.047Z"
 }

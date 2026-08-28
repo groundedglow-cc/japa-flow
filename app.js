@@ -1976,6 +1976,10 @@ function apiFetchPracticeSession(lessonId) {
   return apiRequest("GET", `/lessons/${lessonId}/practice/session`);
 }
 
+function apiFetchPublishedPractice(lessonId) {
+  return apiRequest("GET", `/lessons/${lessonId}/practice`);
+}
+
 async function loadPracticeProgressSummary(lessonIds = []) {
   if (!shouldSync()) {
     state.lessonPracticeProgressByLesson = {};
@@ -1993,14 +1997,123 @@ async function loadPracticeProgressSummary(lessonIds = []) {
   };
 }
 
+async function loadCurrentPracticeSessions(lessonIds = []) {
+  if (!shouldSync()) {
+    state.lessonPracticeProgressByLesson = {};
+    return;
+  }
+  const uniqueIds = [...new Set(lessonIds.map(numericLessonIdValue).filter((id) => id != null))];
+  const sessions = await Promise.all(uniqueIds.map(async (lessonId) => [lessonId, await apiFetchPracticeSession(lessonId)]));
+  const responses = await Promise.all(sessions.map(async ([lessonId, session]) => {
+    const practiceSet = currentPracticeSessionHasProgress(session)
+      ? await apiFetchPublishedPractice(lessonId)
+      : null;
+    return [lessonId, currentPracticeSessionProgress(lessonId, session, practiceSet)];
+  }));
+  state.lessonPracticeProgressByLesson = {
+    ...state.lessonPracticeProgressByLesson,
+    ...Object.fromEntries(responses.map(([lessonId, progress]) => [String(lessonId), progress]))
+  };
+}
+
+function currentPracticeSessionHasProgress(session) {
+  return Boolean(
+    session?.activityProgress?.length
+    || Number(session?.completedActivityCount)
+    || Number(session?.session?.completedActivityCount)
+  );
+}
+
+function currentPracticeSessionProgress(lessonId, session, practiceSet) {
+  const sessionSummary = session?.session || session || {};
+  const completedActivities = Number(sessionSummary.completedActivityCount);
+  const totalActivities = Number(sessionSummary.totalActivityCount);
+  // The versioned-practice API is authoritative for course completion. Its
+  // status is set only after every current practice activity is complete.
+  // Do this before consulting a local/backend content definition, because the
+  // localhost practice page may intentionally prefer newer local content.
+  if (sessionSummary.status === "completed" || (totalActivities > 0 && completedActivities >= totalActivities)) {
+    return { completed: totalActivities || completedActivities || 1, total: totalActivities || completedActivities || 1 };
+  }
+  const snapshot = homePracticeProgressSnapshot(lessonId, practiceSet?.id);
+  if (snapshot) return snapshot;
+  const normalized = normalizePracticeProgress(session);
+  const activities = Array.isArray(practiceSet?.contentJson?.activities) ? practiceSet.contentJson.activities : [];
+  if (!activities.length) return normalized;
+  const activityProgressById = new Map(
+    (Array.isArray(session?.activityProgress) ? session.activityProgress : [])
+      .filter((progress) => progress?.activityId)
+      .map((progress) => [String(progress.activityId), progress])
+  );
+  // Keep this in sync with activityProgressSummary() in PracticePreview.jsx,
+  // which is the source of the “已做 x/y” indicator learners see in the
+  // current course practice page.
+  const items = activities.flatMap((activity) => {
+    const progress = activityProgressById.get(String(activity.id)) || {};
+    const answers = progress.answers || {};
+    return currentPracticeActivityItems(activity).map((item) => ({ item, answer: answers[item.id] }));
+  });
+  return {
+    completed: items.filter(({ item, answer }) => currentPracticeItemAnswered(item, answer)).length,
+    total: items.length
+  };
+}
+
+function homePracticeProgressSnapshot(lessonId, practiceSetId) {
+  const user = getStoredUser() || {};
+  const identity = user.id || user.userId || user.email || user.username || getAuthToken().slice(-16) || "guest";
+  const numericLessonId = String(lessonId).match(/\d+/)?.[0] || String(lessonId);
+  try {
+    const raw = localStorage.getItem(`japaflow.practice.home-progress.v1:${storageSafeSegment(identity)}:${numericLessonId}`);
+    const snapshot = raw ? JSON.parse(raw) : null;
+    if (!snapshot || !Number.isFinite(Number(snapshot.total)) || Number(snapshot.total) < 1) return null;
+    if (practiceSetId != null && snapshot.practiceSetId != null && String(snapshot.practiceSetId) !== String(practiceSetId)) return null;
+    return {
+      completed: Math.min(Number(snapshot.completed) || 0, Number(snapshot.total)),
+      total: Number(snapshot.total)
+    };
+  } catch {
+    return null;
+  }
+}
+
+function currentPracticeActivityItems(activity) {
+  return Array.isArray(activity?.itemGroups) && activity.itemGroups.length
+    ? activity.itemGroups.flatMap((group) => group.items || [])
+    : activity?.items || [];
+}
+
+function currentPracticeItemAnswered(item, answer) {
+  if (!answer) return false;
+  if (item.choices?.length) return Boolean(answer.choiceIds?.length);
+  if (!item.inputSlots?.length) return false;
+  return item.inputSlots.some((slot) => String(answer.slotValues?.[slot.id] || "").trim().length > 0)
+    || Boolean(firstCurrentPracticeSlotValue(answer.slotValues).trim());
+}
+
+function firstCurrentPracticeSlotValue(slotValues) {
+  if (!slotValues || typeof slotValues !== "object") return "";
+  for (const value of Object.values(slotValues)) {
+    if (Array.isArray(value)) {
+      const joined = value.join("\n");
+      if (joined) return joined;
+    } else if (typeof value === "string" && value) {
+      return value;
+    }
+  }
+  return "";
+}
+
 async function loadLessonPracticeSessionProgress(lessonId) {
   const numericLessonId = numericLessonIdValue(lessonId);
   if (!shouldSync() || numericLessonId == null) return;
-  const session = await apiFetchPracticeSession(numericLessonId);
-  if (!session) return;
+  const [session, practiceSet] = await Promise.all([
+    apiFetchPracticeSession(numericLessonId),
+    apiFetchPublishedPractice(numericLessonId)
+  ]);
   state.lessonPracticeProgressByLesson = {
     ...state.lessonPracticeProgressByLesson,
-    [String(numericLessonId)]: normalizePracticeProgress(session)
+    [String(numericLessonId)]: currentPracticeSessionProgress(numericLessonId, session, practiceSet)
   };
 }
 
@@ -4448,20 +4561,42 @@ function home() {
   const activeIntermediateVolume = params.get("intermediateVolume") === "lower" ? "lower" : "upper";
   const units = courseUnits(catalog).filter((unit) => unit.volumeKey === activeVolume);
   const intermediateBook = state.intermediateCatalog?.books?.find((book) => book.id === activeIntermediateVolume);
+  const focusLesson = homeFocusLesson(catalog);
+  const focusSummary = focusLesson ? catalogLessonProgressSummary(focusLesson) : null;
+  const focusPercent = focusSummary ? lessonHomePracticePercent(focusSummary) : 0;
+  const focusAction = lessonHomePracticeStarted(focusSummary) ? "继续练习" : "从第 1 课开始";
+  const focusTitle = focusLesson
+    ? `第${focusLesson.id}课 · ${focusLesson.subtitle || "标准日本语"}`
+    : "标准日本语初级";
   return layout(`
     <section class="course-home">
       <div class="course-home-hero">
-        <h1>标准日本语 <span class="course-home-kicker">* 在线学习</span></h1>
-        <div class="course-home-intro">
+        <div class="course-home-hero-copy">
+          <p class="course-home-overline">JAPANESE, ONE STEP AT A TIME</p>
+          <h1>让每一课日语，<br><em>学得更有方向。</em></h1>
+          <p class="course-home-lead">以《标准日本语》为主线，连接单词、语法、课文与练习；在循序渐进里，留下看得见的进步。</p>
+          <div class="course-home-actions">
+            ${focusLesson ? `<a class="primary home-start-button" href="/tools/course-detail-preview.html?lesson=${focusLesson.id}&part=practice" target="_blank" rel="noreferrer">${focusAction}<span aria-hidden="true">→</span></a>` : ""}
+            <a class="home-browse-link" href="#course-catalog">浏览课程 <span aria-hidden="true">↓</span></a>
+          </div>
+        </div>
+        <aside class="home-resume-card" aria-label="当前学习进度">
+          <span class="home-resume-label">${lessonHomePracticeStarted(focusSummary) ? "继续你的练习" : "准备开始"}</span>
+          <strong>${escapeHtml(focusTitle)}</strong>
+          <div class="home-resume-progress" aria-label="本课学习进度 ${focusPercent}%"><span style="--value:${focusPercent}%"></span></div>
+          <div class="home-resume-meta"><span>${lessonHomePracticeStarted(focusSummary) ? `练习完成 ${focusSummary.exercises.completed}/${focusSummary.exercises.total}` : "从练习开始"}</span><span>${focusPercent}%</span></div>
+          ${focusLesson ? `<a class="home-resume-link" href="/tools/course-detail-preview.html?lesson=${focusLesson.id}&part=practice" target="_blank" rel="noreferrer">进入课程 <span aria-hidden="true">→</span></a>` : ""}
+        </aside>
+        <details class="course-home-intro">
+          <summary>关于这个学习空间</summary>
           <p>我试过不少学日语的方法：买线上课程、安装多邻国、使用背词 App，也在线下报班跟着老师学。现在每天会规律投入 2-3 小时；刚考完 N5（初级上册），计划 10 月前完成 N4（初级下册）、今年 12 月初完成 N3（中级上册）。一路试下来，还是觉得标准教材最靠谱。培训机构大多也是按教材顺序教，因为词汇、语法、课文和练习本来就该连在一起学。☕</p>
           <p>很多 App 用来入门当然不错，但不少是为非汉语背景学习者设计的，对中文母语者来说节奏往往太慢；试用没多久也常会进入按月收费。这里保留标日初级 48 课的学习路线，再加上自动判题、跟读录音和进度记录。后面还想慢慢补上收藏、复习和错题功能（｀・ω・´）。项目免费开放，不过判题和音频会用到 DeepSeek 与 Azure，会造成一定费用，每人每天最多 100 次。遇到问题，或想聊聊学习体验，欢迎写邮件到 <a href="mailto:tyfccsu@gmail.com">tyfccsu@gmail.com</a>。只靠课文里的练习，磨耳朵的时间其实很有限；我自己也会把《大家的日本語》和生活日语教材一起学，给同一批语法和单词多一些反复见面的机会。</p>
-        </div>
+        </details>
       </div>
-      <section class="course-level-section" aria-labelledby="beginner-title">
-        <h2 id="beginner-title">初级</h2>
+      <section id="course-catalog" class="course-level-section">
         <div class="course-volume-tabs" role="tablist" aria-label="初级教材册别">
-          <button class="course-volume-tab ${activeVolume === "upper" ? "active" : ""}" type="button" role="tab" aria-selected="${activeVolume === "upper"}" data-nav="/?volume=upper&intermediateVolume=${activeIntermediateVolume}">上册 <small>第 1-24 课</small></button>
-          <button class="course-volume-tab ${activeVolume === "lower" ? "active" : ""}" type="button" role="tab" aria-selected="${activeVolume === "lower"}" data-nav="/?volume=lower&intermediateVolume=${activeIntermediateVolume}">下册 <small>第 25-48 课</small></button>
+          <button class="course-volume-tab ${activeVolume === "upper" ? "active" : ""}" type="button" role="tab" aria-selected="${activeVolume === "upper"}" data-nav="/?volume=upper&intermediateVolume=${activeIntermediateVolume}">初级上册(N5) <small>第 1-24 课</small></button>
+          <button class="course-volume-tab ${activeVolume === "lower" ? "active" : ""}" type="button" role="tab" aria-selected="${activeVolume === "lower"}" data-nav="/?volume=lower&intermediateVolume=${activeIntermediateVolume}">初级下册(N4) <small>第 25-48 课</small></button>
         </div>
         <div class="course-unit-list">
           ${units.map((unit, index) => courseUnit(unit, index === 0)).join("")}
@@ -4470,8 +4605,8 @@ function home() {
       <section class="course-level-section course-intermediate-section" aria-labelledby="intermediate-title">
         <h2 id="intermediate-title">中级</h2>
         <div class="course-volume-tabs" role="tablist" aria-label="中级教材册别">
-          <button class="course-volume-tab ${activeIntermediateVolume === "upper" ? "active" : ""}" type="button" role="tab" aria-selected="${activeIntermediateVolume === "upper"}" data-nav="/?volume=${activeVolume}&intermediateVolume=upper#intermediate-title">上册 <small>第 1-16 课</small></button>
-          <button class="course-volume-tab ${activeIntermediateVolume === "lower" ? "active" : ""}" type="button" role="tab" aria-selected="${activeIntermediateVolume === "lower"}" data-nav="/?volume=${activeVolume}&intermediateVolume=lower#intermediate-title">下册 <small>第 17-32 课</small></button>
+          <button class="course-volume-tab ${activeIntermediateVolume === "upper" ? "active" : ""}" type="button" role="tab" aria-selected="${activeIntermediateVolume === "upper"}" data-nav="/?volume=${activeVolume}&intermediateVolume=upper#intermediate-title">中级上册(N3) <small>第 1-16 课</small></button>
+          <button class="course-volume-tab ${activeIntermediateVolume === "lower" ? "active" : ""}" type="button" role="tab" aria-selected="${activeIntermediateVolume === "lower"}" data-nav="/?volume=${activeVolume}&intermediateVolume=lower#intermediate-title">中级下册(N3+) <small>第 17-32 课</small></button>
         </div>
         <div class="course-unit-list">
           ${intermediateBook
@@ -4482,6 +4617,16 @@ function home() {
       ${state.lessonCatalogMessage ? `<p class="form-error">${escapeHtml(state.lessonCatalogMessage)}</p>` : ""}
     </section>
   `);
+}
+
+function homeFocusLesson(catalog) {
+  const available = catalog.filter((item) => isLessonOpen(Number(item.id)));
+  if (!available.length) return null;
+  const started = available
+    .map((item) => ({ item, summary: catalogLessonProgressSummary(item) }))
+    .filter(({ summary }) => lessonHomePracticeStarted(summary) && !lessonHomeCompleted(summary))
+    .sort((a, b) => Number(b.item.id) - Number(a.item.id));
+  return started[0]?.item || available[0];
 }
 
 function currentHomePage(pageCount) {
@@ -4607,17 +4752,41 @@ function courseUnits(catalog) {
 }
 
 function courseUnit(unit, open = false, lessonRenderer = courseUnitLesson) {
+  const progress = lessonRenderer === courseUnitLesson ? courseUnitProgress(unit) : null;
   return `
     <details class="course-unit" ${open ? "open" : ""}>
       <summary>
-        <span>${unit.title}</span>
-        <em>${unit.range}</em>
+        <span class="course-unit-title"><strong>${unit.title}</strong><small>${unit.range}</small></span>
+        ${progress
+          ? `<span class="course-unit-progress"><i><b style="--value:${progress.percent}%"></b></i><em>${progress.completed}/${progress.total} 课</em></span>`
+          : `<em class="course-unit-coming">课程筹备中</em>`}
       </summary>
       <div class="course-lesson-list">
         ${unit.lessons.map((item) => lessonRenderer(item)).join("")}
       </div>
     </details>
   `;
+}
+
+function courseUnitProgress(unit) {
+  const availableLessons = unit.lessons.filter((item) => isLessonOpen(Number(item.id)));
+  const completed = availableLessons.filter((item) => lessonHomeCompleted(catalogLessonProgressSummary(item))).length;
+  const total = unit.lessons.length;
+  return { completed, total, percent: total ? Math.round((completed / total) * 100) : 0 };
+}
+
+function lessonHomeCompleted(summary) {
+  const exercises = summary?.exercises;
+  return Boolean(exercises?.total) && exercises.completed >= exercises.total;
+}
+
+function lessonHomePracticeStarted(summary) {
+  return Boolean(summary?.exercises?.completed);
+}
+
+function lessonHomePracticePercent(summary) {
+  const exercises = summary?.exercises;
+  return exercises?.total ? Math.round((exercises.completed / exercises.total) * 100) : 0;
 }
 
 function intermediateCourseUnitLesson(item) {
@@ -4642,10 +4811,14 @@ function courseUnitLesson(item) {
       </div>
     `;
   }
+  const summary = catalogLessonProgressSummary(item);
+  const percent = lessonHomePracticePercent(summary);
+  const done = lessonHomeCompleted(summary);
   return `
     <a class="course-lesson-row" href="/tools/course-detail-preview.html?lesson=${lessonNo}&part=vocabulary" target="_blank" rel="noreferrer">
-      <span class="course-lesson-no">第${lessonNo}课</span>
-      <span class="course-lesson-title">${escapeHtml(title)}</span>
+      <span class="course-lesson-no ${done ? "is-done" : ""}">${done ? "✓" : `第${lessonNo}课`}</span>
+      <span class="course-lesson-title"><strong>${escapeHtml(title)}</strong><small>${lessonHomePracticeStarted(summary) ? `练习进度 ${summary.exercises.completed}/${summary.exercises.total}` : "开始练习"}</small></span>
+      <span class="course-lesson-action">${done ? "已完成" : "进入"}<b aria-hidden="true">→</b></span>
     </a>
   `;
 }
@@ -8541,8 +8714,10 @@ async function loadCatalogLearningProgress(force = false) {
     if (data?.lessons) {
       state.lessonProgressByLesson = data.lessons;
     }
-    const lessonIds = (state.lessonCatalogStatus || []).map((item) => item.id).filter((id) => id != null);
-    await loadPracticeProgressSummary(lessonIds);
+    const lessonIds = (state.lessonCatalogStatus || [])
+      .map((item) => item.id)
+      .filter((id) => id != null && isLessonOpen(Number(id)));
+    await loadCurrentPracticeSessions(lessonIds);
   } finally {
     state.lessonProgressLoaded = true;
     state.lessonProgressLoading = false;
