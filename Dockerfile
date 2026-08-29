@@ -32,11 +32,19 @@ RUN apk add --no-cache nginx && \
 # Copy static files
 COPY --from=builder /app/app-dist /usr/share/nginx/html
 COPY nginx.conf /etc/nginx/http.d/default.conf
+# The student course detail page lives in tools/ and loads the three lesson
+# modules below in iframes. These are product pages, not build-time tooling.
+COPY --from=builder /app/tools/course-detail-preview.html /app/tools/vocabulary-import-preview.html /app/tools/grammar-image-preview.html /app/tools/text-import-preview.html /usr/share/nginx/html/tools/
 
 # Copy server code
 WORKDIR /app
 COPY --from=builder /app/server.mjs /app/package.json /app/package-lock.json /app/.npmrc ./
 COPY --from=builder /app/scripts ./scripts
+# The course detail modules read OCR lesson data through server.mjs and render
+# textbook assets directly. Keep one shared runtime copy and expose it through
+# Nginx aliases below instead of duplicating it in the static bundle.
+COPY --from=builder /app/data/ocr /app/data/ocr
+COPY --from=builder /app/course-assets /app/course-assets
 RUN --mount=type=cache,target=/root/.npm \
     npm ci --prefer-offline --no-audit --progress=false --omit=dev
 
