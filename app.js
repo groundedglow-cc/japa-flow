@@ -2888,6 +2888,15 @@ function navigate(path) {
 
 function route() {
   const pathname = decodeURIComponent(location.pathname).replace(/[\s\u3000/]+$/u, "");
+  // Old homepage/bookmark links used a local-only tools page. In production
+  // Nginx falls back to this SPA, so map them to the student learning pages.
+  if (pathname === "/tools/course-detail-preview.html") {
+    const params = new URLSearchParams(location.search);
+    const lessonId = String(params.get("lesson") || params.get("lessonId") || "").match(/\d+/)?.[0];
+    const pageByPart = { vocabulary: "vocab", grammar: "grammar", text: "text", practice: "exercises" };
+    const page = pageByPart[params.get("part")] || "lesson";
+    if (lessonId) return { lessonId, page };
+  }
   if (pathname === "/articles" || pathname === "/help") return { page: "help" };
   if (pathname === "/favorites") return { page: "favorites" };
   const lessonMatch = pathname.match(/^\/lesson\/(\d+)$/);
@@ -4576,7 +4585,7 @@ function home() {
           <h1>让每一课日语，<br><em>学得更有方向。</em></h1>
           <p class="course-home-lead">以《标准日本语》为主线，连接单词、语法、课文与练习；在循序渐进里，留下看得见的进步。</p>
           <div class="course-home-actions">
-            ${focusLesson ? `<a class="primary home-start-button" href="/tools/course-detail-preview.html?lesson=${focusLesson.id}&part=practice" target="_blank" rel="noreferrer">${focusAction}<span aria-hidden="true">→</span></a>` : ""}
+            ${focusLesson ? `<a class="primary home-start-button" href="/lesson/${focusLesson.id}/exercises">${focusAction}<span aria-hidden="true">→</span></a>` : ""}
             <a class="home-browse-link" href="#course-catalog">浏览课程 <span aria-hidden="true">↓</span></a>
           </div>
         </div>
@@ -4585,7 +4594,7 @@ function home() {
           <strong>${escapeHtml(focusTitle)}</strong>
           <div class="home-resume-progress" aria-label="本课学习进度 ${focusPercent}%"><span style="--value:${focusPercent}%"></span></div>
           <div class="home-resume-meta"><span>${lessonHomePracticeStarted(focusSummary) ? `练习完成 ${focusSummary.exercises.completed}/${focusSummary.exercises.total}` : "从练习开始"}</span><span>${focusPercent}%</span></div>
-          ${focusLesson ? `<a class="home-resume-link" href="/tools/course-detail-preview.html?lesson=${focusLesson.id}&part=practice" target="_blank" rel="noreferrer">进入课程 <span aria-hidden="true">→</span></a>` : ""}
+          ${focusLesson ? `<a class="home-resume-link" href="/lesson/${focusLesson.id}">进入课程 <span aria-hidden="true">→</span></a>` : ""}
         </aside>
         <details class="course-home-intro">
           <summary>关于这个学习空间</summary>
@@ -4815,7 +4824,7 @@ function courseUnitLesson(item) {
   const percent = lessonHomePracticePercent(summary);
   const done = lessonHomeCompleted(summary);
   return `
-    <a class="course-lesson-row" href="/tools/course-detail-preview.html?lesson=${lessonNo}&part=vocabulary" target="_blank" rel="noreferrer">
+    <a class="course-lesson-row" href="/lesson/${lessonNo}/vocab">
       <span class="course-lesson-no ${done ? "is-done" : ""}">${done ? "✓" : `第${lessonNo}课`}</span>
       <span class="course-lesson-title"><strong>${escapeHtml(title)}</strong><small>${lessonHomePracticeStarted(summary) ? `练习进度 ${summary.exercises.completed}/${summary.exercises.total}` : "开始练习"}</small></span>
       <span class="course-lesson-action">${done ? "已完成" : "进入"}<b aria-hidden="true">→</b></span>
