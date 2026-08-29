@@ -5174,17 +5174,18 @@ function lessonPracticeProgress(lessonId) {
 }
 
 function normalizePracticeProgress(value = {}) {
-  const session = value?.session || value || {};
-  const activityProgress = Array.isArray(value?.activityProgress) ? value.activityProgress : [];
+  const source = value && typeof value === "object" ? value : {};
+  const session = source.session && typeof source.session === "object" ? source.session : source;
+  const activityProgress = Array.isArray(source.activityProgress) ? source.activityProgress : [];
   const completed = Math.max(firstFiniteNumber(
-    value.completed,
-    value.completedActivityCount,
+    source.completed,
+    source.completedActivityCount,
     session.completed,
     session.completedActivityCount
   ), activityProgress.length);
   const total = firstPositiveNumber(
-    value.total,
-    value.totalActivityCount,
+    source.total,
+    source.totalActivityCount,
     session.total,
     session.totalActivityCount
   );
