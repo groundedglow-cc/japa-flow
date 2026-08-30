@@ -10,3 +10,4 @@ services:
     environment:
       AZURE_SPEECH_KEY: ${AZURE_SPEECH_KEY:?AZURE_SPEECH_KEY is required}
       AZURE_SPEECH_REGION: ${AZURE_SPEECH_REGION:?AZURE_SPEECH_REGION is required}
+      JAPAFLOW_QUOTA_API_URL: https://groundedglow.cc
