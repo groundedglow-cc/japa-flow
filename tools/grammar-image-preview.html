@@ -213,10 +213,69 @@
         padding: 22px;
       }
 
+      .viewer-toolbar {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        min-height: 34px;
+      }
+
+      .notebook-switch {
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        padding: 0;
+        background: transparent;
+        color: var(--ink);
+        font-size: 13px;
+        font-weight: 780;
+      }
+
+      .notebook-switch-track {
+        position: relative;
+        width: 40px;
+        height: 22px;
+        border-radius: 999px;
+        background: #c5d0ca;
+        transition: background 160ms ease;
+      }
+
+      .notebook-switch-track::after {
+        content: "";
+        position: absolute;
+        top: 3px;
+        left: 3px;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background: #fff;
+        box-shadow: 0 1px 3px rgba(24, 35, 30, 0.24);
+        transition: transform 160ms ease;
+      }
+
+      .notebook-switch[aria-checked="true"] .notebook-switch-track {
+        background: var(--accent);
+      }
+
+      .notebook-switch[aria-checked="true"] .notebook-switch-track::after {
+        transform: translateX(18px);
+      }
+
       .image-stack {
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 16px;
+      }
+
+      .image-stack.notebook-mode {
+        grid-template-columns: 1fr;
+      }
+
+      .notebook-row {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(300px, 1fr);
+        gap: 16px;
+        align-items: stretch;
       }
 
       .image-frame {
@@ -259,6 +318,94 @@
 
       .image-frame.missing img {
         display: none;
+      }
+
+      .notebook-panel {
+        display: flex;
+        flex-direction: column;
+        min-height: 100%;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: #fcfefd;
+        overflow: hidden;
+      }
+
+      .notebook-panel-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 10px 12px;
+        border-bottom: 1px solid var(--line);
+        background: #f3faf6;
+      }
+
+      .notebook-panel-head strong {
+        font-size: 13px;
+      }
+
+      .notebook-panel-head span {
+        color: var(--muted);
+        font-size: 12px;
+      }
+
+      .add-note-button {
+        padding: 6px 10px;
+        border: 1px solid #a9cdbc;
+        border-radius: 6px;
+        background: #fff;
+        color: #0d6548;
+        font-size: 12px;
+        font-weight: 780;
+      }
+
+      .add-note-button:hover {
+        background: var(--accent-soft);
+      }
+
+      .notebook-head-actions { display: inline-flex; gap: 8px; }
+      .ask-ai-button { padding: 6px 10px; border: 1px solid #8ebca8; border-radius: 6px; background: #e8f5ee; color: #0d6548; font-size: 12px; font-weight: 780; }
+      .notebook-ai { display: grid; gap: 8px; margin: 0 12px 12px; padding: 10px; border: 1px solid #cce2d7; border-radius: 7px; background: #f7fcf9; }
+      .notebook-ai[hidden] { display: none; }
+      .notebook-ai-input { width: 100%; min-height: 70px; resize: vertical; padding: 8px; border: 1px solid #bdd7c9; border-radius: 5px; font: inherit; font-size: 13px; }
+      .notebook-ai-actions { display: flex; justify-content: flex-end; gap: 8px; }
+      .notebook-ai-actions button { padding: 5px 9px; border: 1px solid #a9cdbc; border-radius: 5px; background: #fff; font: inherit; font-size: 12px; }
+      .notebook-ai-result { white-space: pre-wrap; color: var(--ink); font-size: 13px; line-height: 1.6; }
+      .notebook-ai-status { color: var(--muted); font-size: 12px; }
+
+      .note-list {
+        display: grid;
+        gap: 10px;
+        align-content: start;
+        flex: 1;
+        padding: 12px;
+      }
+
+      .note-empty {
+        margin: 0;
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.65;
+      }
+
+      .note-input {
+        width: 100%;
+        min-height: 132px;
+        resize: vertical;
+        padding: 10px;
+        border: 1px solid #c9d9d0;
+        border-radius: 6px;
+        outline: none;
+        background: #fff;
+        color: var(--ink);
+        font: inherit;
+        font-size: 14px;
+        line-height: 1.65;
+      }
+
+      .note-input:focus {
+        border-color: var(--accent);
+        box-shadow: 0 0 0 3px rgba(24, 135, 90, 0.14);
       }
 
       html.embedded .shell {
@@ -310,6 +457,10 @@
         }
 
         .image-stack {
+          grid-template-columns: 1fr;
+        }
+
+        .notebook-row {
           grid-template-columns: 1fr;
         }
 
@@ -379,6 +530,18 @@
       const lessonGrid = document.querySelector("#lessonGrid");
       const viewer = document.querySelector("#viewer");
       const summary = document.querySelector("#summary");
+      const NOTEBOOK_STORAGE_KEY = "japaflow.tools.grammarNotebook.notes.v1";
+      const NOTEBOOK_MODE_STORAGE_KEY = "japaflow.tools.grammarNotebook.mode.v1";
+      const state = { notebookMode: localStorage.getItem(NOTEBOOK_MODE_STORAGE_KEY) === "true" };
+
+      function escapeHtml(value) {
+        return String(value ?? "")
+          .replaceAll("&", "&amp;")
+          .replaceAll("<", "&lt;")
+          .replaceAll(">", "&gt;")
+          .replaceAll('"', "&quot;")
+          .replaceAll("'", "&#39;");
+      }
 
       function selectedLessonNo() {
         const params = new URLSearchParams(location.search);
@@ -398,6 +561,48 @@
         return `../course-assets/by-lesson/lesson${lessonNo}/page${pageNo}.webp`;
       }
 
+      function isAdminMode() { return new URLSearchParams(location.search).get("admin") === "1"; }
+
+      function noteStorageKey(lessonNo, pageNo) {
+        return `lesson${lessonNo}:page${pageNo}`;
+      }
+
+      function readNotebookStore() {
+        try {
+          const stored = JSON.parse(localStorage.getItem(NOTEBOOK_STORAGE_KEY) || "{}");
+          return stored && typeof stored === "object" ? stored : {};
+        } catch {
+          return {};
+        }
+      }
+
+      function notesForPage(lessonNo, pageNo) {
+        const notes = readNotebookStore()[noteStorageKey(lessonNo, pageNo)];
+        return Array.isArray(notes) ? notes : [];
+      }
+
+      function saveNotesForPage(lessonNo, pageNo, notes) {
+        const store = readNotebookStore();
+        localStorage.setItem(NOTEBOOK_STORAGE_KEY, JSON.stringify({
+          ...store,
+          [noteStorageKey(lessonNo, pageNo)]: notes
+        }));
+      }
+
+      function addNote(lessonNo, pageNo) {
+        const notes = notesForPage(lessonNo, pageNo);
+        const note = { id: `${Date.now()}-${Math.random().toString(16).slice(2)}`, text: "" };
+        saveNotesForPage(lessonNo, pageNo, [...notes, note]);
+        renderViewer(lessonNo, note.id);
+      }
+
+      function updateNote(lessonNo, pageNo, noteId, text) {
+        const notes = notesForPage(lessonNo, pageNo).map((note) =>
+          note.id === noteId ? { ...note, text } : note
+        );
+        saveNotesForPage(lessonNo, pageNo, notes);
+      }
+
       function renderLessons(activeLessonNo) {
         lessonGrid.innerHTML = lessons.map((lesson) => `
           <button class="lesson-entry ${lesson.lessonNo === activeLessonNo ? "active" : ""}" type="button" data-lesson="${lesson.lessonNo}">
@@ -410,23 +615,123 @@
         `).join("");
       }
 
-      function renderViewer(activeLessonNo) {
+      function renderViewer(activeLessonNo, focusNoteId = "") {
         const lesson = lessons[activeLessonNo - 1];
         summary.textContent = `第 ${activeLessonNo} 课 · ${lesson.pages.length} 张`;
         viewer.innerHTML = `
-          <div class="image-stack">
+          <div class="viewer-toolbar">
+            <button class="notebook-switch" id="notebookToggle" type="button" role="switch" aria-checked="${state.notebookMode}" aria-label="笔记本模式">
+              <span>笔记本模式</span>
+              <span class="notebook-switch-track" aria-hidden="true"></span>
+            </button>
+          </div>
+          <div class="image-stack ${state.notebookMode ? "notebook-mode" : ""}">
             ${lesson.pages.map((pageNo, index) => `
-              <figure class="image-frame">
-                <div class="image-head">
-                  <strong>Page ${pageNo}</strong>
-                  <span>第 ${index + 2} 张</span>
-                </div>
-                <img src="${imagePath(activeLessonNo, pageNo)}" alt="第${activeLessonNo}课 Page ${pageNo}" loading="lazy" onerror="this.closest('.image-frame').classList.add('missing')" />
-                <div class="image-error">图片不存在：lesson${activeLessonNo}/page${pageNo}.webp</div>
-              </figure>
+              ${state.notebookMode ? renderNotebookRow(activeLessonNo, pageNo, index) : renderImageFrame(activeLessonNo, pageNo, index)}
             `).join("")}
           </div>
         `;
+        viewer.querySelector("#notebookToggle").addEventListener("click", () => {
+          state.notebookMode = !state.notebookMode;
+          localStorage.setItem(NOTEBOOK_MODE_STORAGE_KEY, String(state.notebookMode));
+          renderViewer(activeLessonNo);
+        });
+        if (!state.notebookMode) return;
+        viewer.querySelectorAll("[data-add-note]").forEach((button) => {
+          button.addEventListener("click", () => addNote(activeLessonNo, Number(button.dataset.addNote)));
+        });
+        viewer.querySelectorAll("[data-note-id]").forEach((input) => {
+          input.addEventListener("input", () => updateNote(activeLessonNo, Number(input.dataset.pageNo), input.dataset.noteId, input.value));
+        });
+        viewer.querySelectorAll("[data-ask-ai]").forEach((button) => {
+          button.addEventListener("click", () => toggleNotebookAi(Number(button.dataset.askAi)));
+        });
+        viewer.querySelectorAll("[data-send-ai]").forEach((button) => {
+          button.addEventListener("click", () => askNotebookAi(activeLessonNo, Number(button.dataset.sendAi)));
+        });
+        viewer.querySelectorAll("[data-save-ai-note]").forEach((button) => {
+          button.addEventListener("click", () => saveAiAnswerAsNote(activeLessonNo, Number(button.dataset.saveAiNote)));
+        });
+        if (focusNoteId) viewer.querySelector(`[data-note-id="${focusNoteId}"]`)?.focus();
+      }
+
+      function renderImageFrame(lessonNo, pageNo, index) {
+        return `
+          <figure class="image-frame">
+            <div class="image-head">
+              <strong>Page ${pageNo}</strong>
+              <span>第 ${index + 2} 张</span>
+            </div>
+            <img src="${imagePath(lessonNo, pageNo)}" alt="第${lessonNo}课 Page ${pageNo}" loading="lazy" onerror="this.closest('.image-frame').classList.add('missing')" />
+            <div class="image-error">图片不存在：lesson${lessonNo}/page${pageNo}.webp</div>
+          </figure>
+        `;
+      }
+
+      function renderNotebookRow(lessonNo, pageNo, index) {
+        const notes = notesForPage(lessonNo, pageNo);
+        return `
+          <section class="notebook-row">
+            ${renderImageFrame(lessonNo, pageNo, index)}
+            <aside class="notebook-panel" aria-label="第 ${index + 2} 张语法图片笔记">
+              <div class="notebook-panel-head">
+                <div>
+                  <strong>Page ${pageNo} 笔记</strong>
+                  <span>自动保存在本机</span>
+                </div>
+                <div class="notebook-head-actions">
+                  <button class="ask-ai-button" type="button" data-ask-ai="${pageNo}">问 AI</button>
+                  <button class="add-note-button" type="button" data-add-note="${pageNo}">添加</button>
+                </div>
+              </div>
+              <div class="notebook-ai" id="notebookAi-${pageNo}" hidden>
+                <textarea class="notebook-ai-input" id="notebookAiInput-${pageNo}" placeholder="输入问题…"></textarea>
+                <div class="notebook-ai-actions"><button type="button" data-send-ai="${pageNo}">提问</button></div>
+                <div class="notebook-ai-status" id="notebookAiStatus-${pageNo}"></div>
+                <div class="notebook-ai-result" id="notebookAiResult-${pageNo}"></div>
+                <div class="notebook-ai-actions" id="notebookAiSave-${pageNo}" hidden><button type="button" data-save-ai-note="${pageNo}">存笔记</button></div>
+              </div>
+              <div class="note-list">
+                ${notes.length
+                  ? notes.map((note) => `<textarea class="note-input" data-page-no="${pageNo}" data-note-id="${escapeHtml(note.id)}" placeholder="记录语法规则、例句或易错点…">${escapeHtml(note.text)}</textarea>`).join("")
+                  : '<p class="note-empty">还没有笔记。点击“添加”开始记录。</p>'}
+              </div>
+            </aside>
+          </section>
+        `;
+      }
+
+      function toggleNotebookAi(pageNo) {
+        const panel = document.querySelector(`#notebookAi-${pageNo}`);
+        if (!panel) return;
+        panel.hidden = !panel.hidden;
+        if (!panel.hidden) document.querySelector(`#notebookAiInput-${pageNo}`)?.focus();
+      }
+
+      async function askNotebookAi(lessonNo, pageNo) {
+        const input = document.querySelector(`#notebookAiInput-${pageNo}`);
+        const status = document.querySelector(`#notebookAiStatus-${pageNo}`);
+        const result = document.querySelector(`#notebookAiResult-${pageNo}`);
+        const save = document.querySelector(`#notebookAiSave-${pageNo}`);
+        const question = String(input?.value || "").trim();
+        if (!question) { status.textContent = "请输入问题。"; return; }
+        status.textContent = "思考中…"; result.textContent = ""; save.hidden = true;
+        try {
+          const response = await fetch("/api/grammar/notebook-ai", { method: "POST", headers: { "Content-Type": "application/json", Authorization: `Bearer ${localStorage.getItem("light_blog_token") || ""}` }, body: JSON.stringify({ question, lessonId: lessonNo, pageNo }) });
+          const data = await response.json().catch(() => ({}));
+          if (!response.ok) throw new Error(data.error || data.message || `请求失败（${response.status}）`);
+          result.textContent = String(data.answer || "").trim(); status.textContent = result.textContent ? "回答已生成。" : "未得到回答。"; save.hidden = !result.textContent;
+        } catch (error) { status.textContent = error.message || "提问失败。"; }
+      }
+
+      function saveAiAnswerAsNote(lessonNo, pageNo) {
+        const question = String(document.querySelector(`#notebookAiInput-${pageNo}`)?.value || "").trim();
+        const answer = String(document.querySelector(`#notebookAiResult-${pageNo}`)?.textContent || "").trim();
+        if (!question || !answer) return;
+        const notes = notesForPage(lessonNo, pageNo);
+        const note = { id: `${Date.now()}-${Math.random().toString(16).slice(2)}`, text: `问：${question}\n答：${answer}` };
+        saveNotesForPage(lessonNo, pageNo, [...notes, note]);
+        renderViewer(lessonNo, note.id);
       }
 
       function render() {

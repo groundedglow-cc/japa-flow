@@ -1,61 +1,909 @@
 {
   "lessonId": "lesson32",
   "sourceImages": [
-    {"section":"basic","path":"course-assets/by-lesson/lesson32/page80.webp","pageNo":80},
-    {"section":"application","path":"course-assets/by-lesson/lesson32/page85.webp","pageNo":85}
+    {
+      "section": "basic",
+      "path": "course-assets/by-lesson/lesson32/page80.webp",
+      "pageNo": 80
+    },
+    {
+      "section": "application",
+      "path": "course-assets/by-lesson/lesson32/page85.webp",
+      "pageNo": 85
+    }
   ],
   "basicText": {
     "title": "基本课文",
     "basicSentences": [
-      {"id":"l32-basic-s001","order":1,"text":"今度の日曜日に遊園地へ行くつもりです。","translationZh":"我打算这个星期天去游乐园。","confidence":"high","rawText":"1. 今度の日曜日に遊園地へ行くつもりです。"},
-      {"id":"l32-basic-s002","order":2,"text":"明日、友達と映画を見に行くことにしました。","translationZh":"我决定明天和朋友去看电影。","confidence":"high","rawText":"2. 明日、友達と映画を見に行くことにしました。"},
-      {"id":"l32-basic-s003","order":3,"text":"来月から給料が上がることになりました。","translationZh":"决定从下个月起涨工资。","confidence":"high","rawText":"3. 来月から給料が上がることになりました。"},
-      {"id":"l32-basic-s004","order":4,"text":"馬さんの息子さんは今年小学校に入学するそうです。","translationZh":"听说小马的儿子今年要上小学。","confidence":"high","rawText":"4. 馬さんの息子さんは今年小学校に入学するそうです。"}
+      {
+        "id": "l32-basic-s001",
+        "order": 1,
+        "text": "今度の日曜日に遊園地へ行くつもりです。",
+        "translationZh": "我打算这个星期天去游乐园。",
+        "confidence": "high",
+        "rawText": "1. 今度の日曜日に遊園地へ行くつもりです。",
+        "kana": "こんどのにちようびにゆうえんちへいくつもりです。",
+        "segments": [
+          {
+            "text": "今度",
+            "ruby": "こんど"
+          },
+          {
+            "text": "の"
+          },
+          {
+            "text": "日曜日",
+            "ruby": "にちようび"
+          },
+          {
+            "text": "に"
+          },
+          {
+            "text": "遊園地",
+            "ruby": "ゆうえんち"
+          },
+          {
+            "text": "へ行",
+            "ruby": "い"
+          },
+          {
+            "text": "くつもりです。"
+          }
+        ]
+      },
+      {
+        "id": "l32-basic-s002",
+        "order": 2,
+        "text": "明日、友達と映画を見に行くことにしました。",
+        "translationZh": "我决定明天和朋友去看电影。",
+        "confidence": "high",
+        "rawText": "2. 明日、友達と映画を見に行くことにしました。",
+        "kana": "あした、ともだちとえいがをみにいくことにしました。",
+        "segments": [
+          {
+            "text": "明日",
+            "ruby": "あした"
+          },
+          {
+            "text": "、"
+          },
+          {
+            "text": "友達",
+            "ruby": "ともだち"
+          },
+          {
+            "text": "と"
+          },
+          {
+            "text": "映画",
+            "ruby": "えいが"
+          },
+          {
+            "text": "を見",
+            "ruby": "み"
+          },
+          {
+            "text": "に行",
+            "ruby": "い"
+          },
+          {
+            "text": "くことにしました。"
+          }
+        ]
+      },
+      {
+        "id": "l32-basic-s003",
+        "order": 3,
+        "text": "来月から給料が上がることになりました。",
+        "translationZh": "决定从下个月起涨工资。",
+        "confidence": "high",
+        "rawText": "3. 来月から給料が上がることになりました。",
+        "kana": "らいげつからきゅうりょうがあがることになりました。",
+        "segments": [
+          {
+            "text": "来月",
+            "ruby": "らいげつ"
+          },
+          {
+            "text": "から"
+          },
+          {
+            "text": "給料",
+            "ruby": "きゅうりょう"
+          },
+          {
+            "text": "が上",
+            "ruby": "あ"
+          },
+          {
+            "text": "がることになりました。"
+          }
+        ]
+      },
+      {
+        "id": "l32-basic-s004",
+        "order": 4,
+        "text": "馬さんの息子さんは今年小学校に入学するそうです。",
+        "translationZh": "听说小马的儿子今年要上小学。",
+        "confidence": "high",
+        "rawText": "4. 馬さんの息子さんは今年小学校に入学するそうです。",
+        "kana": "マーさんのむすこさんはことししょうがっこうににゅうがくするそうです。",
+        "segments": [
+          {
+            "text": "馬",
+            "ruby": "マー"
+          },
+          {
+            "text": "さんの"
+          },
+          {
+            "text": "息子",
+            "ruby": "むすこ"
+          },
+          {
+            "text": "さんは"
+          },
+          {
+            "text": "今年",
+            "ruby": "ことし"
+          },
+          {
+            "text": "小学校",
+            "ruby": "しょうがっこう"
+          },
+          {
+            "text": "に"
+          },
+          {
+            "text": "入学",
+            "ruby": "にゅうがく"
+          },
+          {
+            "text": "するそうです。"
+          }
+        ]
+      }
     ],
     "dialogues": [
-      {"id":"l32-basic-dialogue-001","label":"A","lines":[
-        {"id":"l32-basic-dialogue-001-line-001","speaker":"甲","text":"今度のボーナスで車を買うつもりです。","translationZh":"我打算用这次的奖金买车。","confidence":"high","rawText":"甲：今度のボーナスで車を買うつもりです。"},
-        {"id":"l32-basic-dialogue-001-line-002","speaker":"乙","text":"へえ、いいですね。","translationZh":"哎呀，真不错啊。","confidence":"high","rawText":"乙：へえ、いいですね。"}
-      ]},
-      {"id":"l32-basic-dialogue-002","label":"B","lines":[
-        {"id":"l32-basic-dialogue-002-line-001","speaker":"甲","text":"広州へは列車で行くんですか。","translationZh":"去广州坐火车吗？","confidence":"high","rawText":"甲：広州へは列車で行くんですか。"},
-        {"id":"l32-basic-dialogue-002-line-002","speaker":"乙","text":"いいえ、飛行機で行くことにしました。","translationZh":"不，我决定坐飞机去。","confidence":"high","rawText":"乙：いいえ、飛行機で行くことにしました。"}
-      ]},
-      {"id":"l32-basic-dialogue-003","label":"C","lines":[
-        {"id":"l32-basic-dialogue-003-line-001","speaker":"甲","text":"李さん、出張ですか。","translationZh":"小李，你要出差吗？","confidence":"high","rawText":"甲：李さん、出張ですか。"},
-        {"id":"l32-basic-dialogue-003-line-002","speaker":"乙","text":"ええ、月曜日から３日間、香港へ行くことになりました。","translationZh":"是的，决定从星期一开始去香港三天。","confidence":"high","rawText":"乙：ええ、月曜日から３日間、香港へ行くことになりました。"}
-      ]},
-      {"id":"l32-basic-dialogue-004","label":"D","lines":[
-        {"id":"l32-basic-dialogue-004-line-001","speaker":"甲","text":"ニュースによると、今年の冬はインフルエンザが流行するそうです。","translationZh":"据新闻说，今年冬天流感会流行。","confidence":"high","rawText":"甲：ニュースによると、今年の冬はインフルエンザが流行するそうです。"},
-        {"id":"l32-basic-dialogue-004-line-002","speaker":"乙","text":"そうですか。気をつけましょうね。","translationZh":"是吗？我们要注意啊。","confidence":"high","rawText":"乙：そうですか。気をつけましょうね。"}
-      ]}
+      {
+        "id": "l32-basic-dialogue-001",
+        "label": "A",
+        "lines": [
+          {
+            "id": "l32-basic-dialogue-001-line-001",
+            "speaker": "甲",
+            "text": "今度のボーナスで車を買うつもりです。",
+            "translationZh": "我打算用这次的奖金买车。",
+            "confidence": "high",
+            "rawText": "甲：今度のボーナスで車を買うつもりです。",
+            "kana": "こんどのボーナスでくるまをかうつもりです。",
+            "segments": [
+              {
+                "text": "今度",
+                "ruby": "こんど"
+              },
+              {
+                "text": "のボーナスで"
+              },
+              {
+                "text": "車",
+                "ruby": "くるま"
+              },
+              {
+                "text": "を買",
+                "ruby": "か"
+              },
+              {
+                "text": "うつもりです。"
+              }
+            ]
+          },
+          {
+            "id": "l32-basic-dialogue-001-line-002",
+            "speaker": "乙",
+            "text": "へえ、いいですね。",
+            "translationZh": "哎呀，真不错啊。",
+            "confidence": "high",
+            "rawText": "乙：へえ、いいですね。",
+            "kana": "へえ、いいですね。",
+            "segments": [
+              {
+                "text": "へえ、いいですね。"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "l32-basic-dialogue-002",
+        "label": "B",
+        "lines": [
+          {
+            "id": "l32-basic-dialogue-002-line-001",
+            "speaker": "甲",
+            "text": "広州へは列車で行くんですか。",
+            "translationZh": "去广州坐火车吗？",
+            "confidence": "high",
+            "rawText": "甲：広州へは列車で行くんですか。",
+            "kana": "こうしゅうへはれっしゃでいくんですか。",
+            "segments": [
+              {
+                "text": "広州",
+                "ruby": "こうしゅう"
+              },
+              {
+                "text": "へは"
+              },
+              {
+                "text": "列車",
+                "ruby": "れっしゃ"
+              },
+              {
+                "text": "で行",
+                "ruby": "い"
+              },
+              {
+                "text": "くんですか。"
+              }
+            ]
+          },
+          {
+            "id": "l32-basic-dialogue-002-line-002",
+            "speaker": "乙",
+            "text": "いいえ、飛行機で行くことにしました。",
+            "translationZh": "不，我决定坐飞机去。",
+            "confidence": "high",
+            "rawText": "乙：いいえ、飛行機で行くことにしました。",
+            "kana": "いいえ、ひこうきでいくことにしました。",
+            "segments": [
+              {
+                "text": "いいえ、"
+              },
+              {
+                "text": "飛行機",
+                "ruby": "ひこうき"
+              },
+              {
+                "text": "で行",
+                "ruby": "い"
+              },
+              {
+                "text": "くことにしました。"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "l32-basic-dialogue-003",
+        "label": "C",
+        "lines": [
+          {
+            "id": "l32-basic-dialogue-003-line-001",
+            "speaker": "甲",
+            "text": "李さん、出張ですか。",
+            "translationZh": "小李，你要出差吗？",
+            "confidence": "high",
+            "rawText": "甲：李さん、出張ですか。",
+            "kana": "りさん、しゅっちょうですか。",
+            "segments": [
+              {
+                "text": "李",
+                "ruby": "り"
+              },
+              {
+                "text": "さん、"
+              },
+              {
+                "text": "出張",
+                "ruby": "しゅっちょう"
+              },
+              {
+                "text": "ですか。"
+              }
+            ]
+          },
+          {
+            "id": "l32-basic-dialogue-003-line-002",
+            "speaker": "乙",
+            "text": "ええ、月曜日から３日間、香港へ行くことになりました。",
+            "translationZh": "是的，决定从星期一开始去香港三天。",
+            "confidence": "high",
+            "rawText": "乙：ええ、月曜日から３日間、香港へ行くことになりました。",
+            "kana": "ええ、げつようびから３にちかん、ほんこんへいくことになりました。",
+            "segments": [
+              {
+                "text": "ええ、"
+              },
+              {
+                "text": "月曜日",
+                "ruby": "げつようび"
+              },
+              {
+                "text": "から３"
+              },
+              {
+                "text": "日間",
+                "ruby": "にちかん"
+              },
+              {
+                "text": "、"
+              },
+              {
+                "text": "香港",
+                "ruby": "ほんこん"
+              },
+              {
+                "text": "へ行",
+                "ruby": "い"
+              },
+              {
+                "text": "くことになりました。"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "l32-basic-dialogue-004",
+        "label": "D",
+        "lines": [
+          {
+            "id": "l32-basic-dialogue-004-line-001",
+            "speaker": "甲",
+            "text": "ニュースによると、今年の冬はインフルエンザが流行するそうです。",
+            "translationZh": "据新闻说，今年冬天流感会流行。",
+            "confidence": "high",
+            "rawText": "甲：ニュースによると、今年の冬はインフルエンザが流行するそうです。",
+            "kana": "ニュースによると、ことしのふゆはインフルエンザがりゅうこうするそうです。",
+            "segments": [
+              {
+                "text": "ニュースによると、"
+              },
+              {
+                "text": "今年",
+                "ruby": "ことし"
+              },
+              {
+                "text": "の"
+              },
+              {
+                "text": "冬",
+                "ruby": "ふゆ"
+              },
+              {
+                "text": "はインフルエンザが"
+              },
+              {
+                "text": "流行",
+                "ruby": "りゅうこう"
+              },
+              {
+                "text": "するそうです。"
+              }
+            ]
+          },
+          {
+            "id": "l32-basic-dialogue-004-line-002",
+            "speaker": "乙",
+            "text": "そうですか。気をつけましょうね。",
+            "translationZh": "是吗？我们要注意啊。",
+            "confidence": "high",
+            "rawText": "乙：そうですか。気をつけましょうね。",
+            "kana": "そうですか。きをつけましょうね。",
+            "segments": [
+              {
+                "text": "そうですか。"
+              },
+              {
+                "text": "気",
+                "ruby": "き"
+              },
+              {
+                "text": "をつけましょうね。"
+              }
+            ]
+          }
+        ]
+      }
     ]
   },
   "applicationText": {
     "title": "連休",
     "blocks": [
-      {"id":"l32-app-block-001","type":"narration","text":"马上就到五一黄金周了，小野要来北京。小李和森在办公室谈论五一黄金周的安排。","translationZh":"马上就到五一黄金周了，小野要来北京。小李和森在办公室谈论五一黄金周的安排。","confidence":"high","rawText":"马上就到五一黄金周了，小野要来北京。小李和森在办公室谈论五一黄金周的安排。"},
-      {"id":"l32-app-block-002","type":"scene","text":"在办公室","translationZh":"在办公室。","confidence":"high","rawText":"（在办公室）"},
-      {"id":"l32-app-block-003","type":"dialogue","lines":[
-        {"id":"l32-app-block-003-line-001","speaker":"森","text":"李さん、今度の連休の予定は？","translationZh":"小李，这次连休有什么计划？","confidence":"high","rawText":"森：李さん、今度の連休の予定は？"},
-        {"id":"l32-app-block-003-line-002","speaker":"李","text":"小野さんを北京のいろんな所へ案内するつもりです。","translationZh":"我打算带小野去北京的各个地方游览。","confidence":"high","rawText":"李：小野さんを北京のいろんな所へ案内するつもりです。"},
-        {"id":"l32-app-block-003-line-003","speaker":"森","text":"天気は大丈夫でしょうか。","translationZh":"天气没问题吧？","confidence":"high","rawText":"森：天気は大丈夫でしょうか。"},
-        {"id":"l32-app-block-003-line-004","speaker":"李","text":"天気予報によると、連休中はずっと晴れだそうですよ。","translationZh":"据天气预报说，连休期间会一直是晴天。","confidence":"high","rawText":"李：天気予報によると、連休中はずっと晴れだそうですよ。"}
-      ]},
-      {"id":"l32-app-block-004","type":"narration","text":"根据小野来的邮件，小李把将去太田家访问的事告诉了森","translationZh":"根据小野来的邮件，小李把将去太田家访问的事告诉了森。","confidence":"high","rawText":"（根据小野来的邮件，小李把将去太田家访问的事告诉了森）"},
-      {"id":"l32-app-block-005","type":"dialogue","lines":[
-        {"id":"l32-app-block-005-line-001","speaker":"李","text":"小野さんは、友達の太田さんの家に行くそうです。わたしもいっしょに行くことになったんですが、森さんは？","translationZh":"听说小野要去她朋友太田家。我也决定一起去，森先生呢？","confidence":"high","rawText":"李：小野さんは、友達の太田さんの家に行くそうです。わたしもいっしょに行くことになったんですが、森さんは？"},
-        {"id":"l32-app-block-005-line-002","speaker":"森","text":"ぼくにもメールがあって、いっしょにお邪魔することにしましたよ。","translationZh":"我也收到了邮件，决定一起去拜访。","confidence":"high","rawText":"森：ぼくにもメールがあって、いっしょにお邪魔することにしましたよ。"},
-        {"id":"l32-app-block-005-line-003","speaker":"李","text":"小野さんのメールによると、太田さんの家で餃子パーティーをするそうです。だから、わたしにも手伝ってほしいって言っていました。","translationZh":"小野在邮件里说，太田家要办饺子宴。所以她说也希望我帮忙。","confidence":"high","rawText":"李：小野さんのメールによると、太田さんの家で餃子パーティーをするそうです。だから、わたしにも手伝ってほしいって言っていました。"},
-        {"id":"l32-app-block-005-line-004","speaker":"森","text":"餃子パーティー？ それはいいですね。","translationZh":"饺子宴？那真不错啊。","confidence":"high","rawText":"森：餃子パーティー？ それはいいですね。"}
-      ]},
-      {"id":"l32-app-block-006","type":"scene","text":"他们聊起太田","translationZh":"他们聊起太田。","confidence":"high","rawText":"（他们聊起太田）"},
-      {"id":"l32-app-block-007","type":"dialogue","lines":[
-        {"id":"l32-app-block-007-line-001","speaker":"李","text":"ところで、太田さんって、どんな人ですか。","translationZh":"对了，太田是个什么样的人？","confidence":"high","rawText":"李：ところで、太田さんって、どんな人ですか。"},
-        {"id":"l32-app-block-007-line-002","speaker":"森","text":"北京に来てから一度会ったことがありますが、とても気さくな人ですよ。スポーツ用品の会社で、宣伝を担当しているそうです。","translationZh":"自从来到北京后，我见过他一次。他是个很爽快的人。听说他在一家体育用品公司负责宣传工作。","confidence":"high","rawText":"森：北京に来てから一度会ったことがありますが、とても気さくな人ですよ。スポーツ用品の会社で、宣伝を担当しているそうです。"},
-        {"id":"l32-app-block-007-line-003","speaker":"李","text":"じゃあ、これからいっしょに仕事をすることになるかもしれませんね。","translationZh":"那么，今后我们也许会一起工作呢。","confidence":"high","rawText":"李：じゃあ、これからいっしょに仕事をすることになるかもしれませんね。"},
-        {"id":"l32-app-block-007-line-004","speaker":"森","text":"ええ。だから、できるだけ連絡を取ろうと思っています。","translationZh":"是的。所以我想尽可能和他保持联系。","confidence":"high","rawText":"森：ええ。だから、できるだけ連絡を取ろうと思っています。"}
-      ]}
+      {
+        "id": "l32-app-block-001",
+        "type": "narration",
+        "text": "马上就到五一黄金周了，小野要来北京。小李和森在办公室谈论五一黄金周的安排。",
+        "translationZh": "马上就到五一黄金周了，小野要来北京。小李和森在办公室谈论五一黄金周的安排。",
+        "confidence": "high",
+        "rawText": "马上就到五一黄金周了，小野要来北京。小李和森在办公室谈论五一黄金周的安排。"
+      },
+      {
+        "id": "l32-app-block-002",
+        "type": "scene",
+        "text": "在办公室",
+        "translationZh": "在办公室。",
+        "confidence": "high",
+        "rawText": "（在办公室）"
+      },
+      {
+        "id": "l32-app-block-003",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l32-app-block-003-line-001",
+            "speaker": "森",
+            "text": "李さん、今度の連休の予定は？",
+            "translationZh": "小李，这次连休有什么计划？",
+            "confidence": "high",
+            "rawText": "森：李さん、今度の連休の予定は？",
+            "kana": "りさん、こんどのれんきゅうのよていは？",
+            "segments": [
+              {
+                "text": "李",
+                "ruby": "り"
+              },
+              {
+                "text": "さん、"
+              },
+              {
+                "text": "今度",
+                "ruby": "こんど"
+              },
+              {
+                "text": "の"
+              },
+              {
+                "text": "連休",
+                "ruby": "れんきゅう"
+              },
+              {
+                "text": "の"
+              },
+              {
+                "text": "予定",
+                "ruby": "よてい"
+              },
+              {
+                "text": "は？"
+              }
+            ]
+          },
+          {
+            "id": "l32-app-block-003-line-002",
+            "speaker": "李",
+            "text": "小野さんを北京のいろんな所へ案内するつもりです。",
+            "translationZh": "我打算带小野去北京的各个地方游览。",
+            "confidence": "high",
+            "rawText": "李：小野さんを北京のいろんな所へ案内するつもりです。",
+            "kana": "おのさんをぺきんのいろんなところへあんないするつもりです。",
+            "segments": [
+              {
+                "text": "小野",
+                "ruby": "おの"
+              },
+              {
+                "text": "さんを"
+              },
+              {
+                "text": "北京",
+                "ruby": "ぺきん"
+              },
+              {
+                "text": "のいろんな"
+              },
+              {
+                "text": "所",
+                "ruby": "ところ"
+              },
+              {
+                "text": "へ"
+              },
+              {
+                "text": "案内",
+                "ruby": "あんない"
+              },
+              {
+                "text": "するつもりです。"
+              }
+            ]
+          },
+          {
+            "id": "l32-app-block-003-line-003",
+            "speaker": "森",
+            "text": "天気は大丈夫でしょうか。",
+            "translationZh": "天气没问题吧？",
+            "confidence": "high",
+            "rawText": "森：天気は大丈夫でしょうか。",
+            "kana": "てんきはだいじょうぶでしょうか。",
+            "segments": [
+              {
+                "text": "天気",
+                "ruby": "てんき"
+              },
+              {
+                "text": "は"
+              },
+              {
+                "text": "大丈夫",
+                "ruby": "だいじょうぶ"
+              },
+              {
+                "text": "でしょうか。"
+              }
+            ]
+          },
+          {
+            "id": "l32-app-block-003-line-004",
+            "speaker": "李",
+            "text": "天気予報によると、連休中はずっと晴れだそうですよ。",
+            "translationZh": "据天气预报说，连休期间会一直是晴天。",
+            "confidence": "high",
+            "rawText": "李：天気予報によると、連休中はずっと晴れだそうですよ。",
+            "kana": "てんきよほうによると、れんきゅうちゅうはずっとはれだそうですよ。",
+            "segments": [
+              {
+                "text": "天気予報",
+                "ruby": "てんきよほう"
+              },
+              {
+                "text": "によると、"
+              },
+              {
+                "text": "連休中",
+                "ruby": "れんきゅうちゅう"
+              },
+              {
+                "text": "はずっと"
+              },
+              {
+                "text": "晴",
+                "ruby": "は"
+              },
+              {
+                "text": "れだそうですよ。"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "l32-app-block-004",
+        "type": "narration",
+        "text": "根据小野来的邮件，小李把将去太田家访问的事告诉了森",
+        "translationZh": "根据小野来的邮件，小李把将去太田家访问的事告诉了森。",
+        "confidence": "high",
+        "rawText": "（根据小野来的邮件，小李把将去太田家访问的事告诉了森）"
+      },
+      {
+        "id": "l32-app-block-005",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l32-app-block-005-line-001",
+            "speaker": "李",
+            "text": "小野さんは、友達の太田さんの家に行くそうです。わたしもいっしょに行くことになったんですが、森さんは？",
+            "translationZh": "听说小野要去她朋友太田家。我也决定一起去，森先生呢？",
+            "confidence": "high",
+            "rawText": "李：小野さんは、友達の太田さんの家に行くそうです。わたしもいっしょに行くことになったんですが、森さんは？",
+            "kana": "おのさんは、ともだちのおおたさんのいえにいくそうです。わたしもいっしょにいくことになったんですが、もりさんは？",
+            "segments": [
+              {
+                "text": "小野",
+                "ruby": "おの"
+              },
+              {
+                "text": "さんは、"
+              },
+              {
+                "text": "友達",
+                "ruby": "ともだち"
+              },
+              {
+                "text": "の"
+              },
+              {
+                "text": "太田",
+                "ruby": "おおた"
+              },
+              {
+                "text": "さんの"
+              },
+              {
+                "text": "家",
+                "ruby": "いえ"
+              },
+              {
+                "text": "に行",
+                "ruby": "い"
+              },
+              {
+                "text": "くそうです。わたしもいっしょに行",
+                "ruby": "い"
+              },
+              {
+                "text": "くことになったんですが、"
+              },
+              {
+                "text": "森",
+                "ruby": "もり"
+              },
+              {
+                "text": "さんは？"
+              }
+            ]
+          },
+          {
+            "id": "l32-app-block-005-line-002",
+            "speaker": "森",
+            "text": "ぼくにもメールがあって、いっしょにお邪魔することにしましたよ。",
+            "translationZh": "我也收到了邮件，决定一起去拜访。",
+            "confidence": "high",
+            "rawText": "森：ぼくにもメールがあって、いっしょにお邪魔することにしましたよ。",
+            "kana": "ぼくにもメールがあって、いっしょにおじゃますることにしましたよ。",
+            "segments": [
+              {
+                "text": "ぼくにもメールがあって、いっしょにお"
+              },
+              {
+                "text": "邪魔",
+                "ruby": "じゃま"
+              },
+              {
+                "text": "することにしましたよ。"
+              }
+            ]
+          },
+          {
+            "id": "l32-app-block-005-line-003",
+            "speaker": "李",
+            "text": "小野さんのメールによると、太田さんの家で餃子パーティーをするそうです。だから、わたしにも手伝ってほしいって言っていました。",
+            "translationZh": "小野在邮件里说，太田家要办饺子宴。所以她说也希望我帮忙。",
+            "confidence": "high",
+            "rawText": "李：小野さんのメールによると、太田さんの家で餃子パーティーをするそうです。だから、わたしにも手伝ってほしいって言っていました。",
+            "kana": "おのさんのメールによると、おおたさんのいえでぎょうざパーティーをするそうです。だから、わたしにもてつだってほしいっていっていました。",
+            "segments": [
+              {
+                "text": "小野",
+                "ruby": "おの"
+              },
+              {
+                "text": "さんのメールによると、"
+              },
+              {
+                "text": "太田",
+                "ruby": "おおた"
+              },
+              {
+                "text": "さんの"
+              },
+              {
+                "text": "家",
+                "ruby": "いえ"
+              },
+              {
+                "text": "で"
+              },
+              {
+                "text": "餃子",
+                "ruby": "ぎょうざ"
+              },
+              {
+                "text": "パーティーをするそうです。だから、わたしにも"
+              },
+              {
+                "text": "手伝",
+                "ruby": "てつだ"
+              },
+              {
+                "text": "ってほしいって"
+              },
+              {
+                "text": "言",
+                "ruby": "い"
+              },
+              {
+                "text": "っていました。"
+              }
+            ]
+          },
+          {
+            "id": "l32-app-block-005-line-004",
+            "speaker": "森",
+            "text": "餃子パーティー？ それはいいですね。",
+            "translationZh": "饺子宴？那真不错啊。",
+            "confidence": "high",
+            "rawText": "森：餃子パーティー？ それはいいですね。",
+            "kana": "ぎょうざパーティー？ それはいいですね。",
+            "segments": [
+              {
+                "text": "餃子",
+                "ruby": "ぎょうざ"
+              },
+              {
+                "text": "パーティー？ それはいいですね。"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "l32-app-block-006",
+        "type": "scene",
+        "text": "他们聊起太田",
+        "translationZh": "他们聊起太田。",
+        "confidence": "high",
+        "rawText": "（他们聊起太田）"
+      },
+      {
+        "id": "l32-app-block-007",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l32-app-block-007-line-001",
+            "speaker": "李",
+            "text": "ところで、太田さんって、どんな人ですか。",
+            "translationZh": "对了，太田是个什么样的人？",
+            "confidence": "high",
+            "rawText": "李：ところで、太田さんって、どんな人ですか。",
+            "kana": "ところで、おおたさんって、どんなひとですか。",
+            "segments": [
+              {
+                "text": "ところで、"
+              },
+              {
+                "text": "太田",
+                "ruby": "おおた"
+              },
+              {
+                "text": "さんって、どんな"
+              },
+              {
+                "text": "人",
+                "ruby": "ひと"
+              },
+              {
+                "text": "ですか。"
+              }
+            ]
+          },
+          {
+            "id": "l32-app-block-007-line-002",
+            "speaker": "森",
+            "text": "北京に来てから一度会ったことがありますが、とても気さくな人ですよ。スポーツ用品の会社で、宣伝を担当しているそうです。",
+            "translationZh": "自从来到北京后，我见过他一次。他是个很爽快的人。听说他在一家体育用品公司负责宣传工作。",
+            "confidence": "high",
+            "rawText": "森：北京に来てから一度会ったことがありますが、とても気さくな人ですよ。スポーツ用品の会社で、宣伝を担当しているそうです。",
+            "kana": "ぺきんにきてからいちどあったことがありますが、とてもきさくなひとですよ。スポーツようひんのかいしゃで、せんでんをたんとうしているそうです。",
+            "segments": [
+              {
+                "text": "北京",
+                "ruby": "ぺきん"
+              },
+              {
+                "text": "に"
+              },
+              {
+                "text": "来",
+                "ruby": "き"
+              },
+              {
+                "text": "てから"
+              },
+              {
+                "text": "一度",
+                "ruby": "いちど"
+              },
+              {
+                "text": "会",
+                "ruby": "あ"
+              },
+              {
+                "text": "ったことがありますが、とても"
+              },
+              {
+                "text": "気",
+                "ruby": "き"
+              },
+              {
+                "text": "さくな"
+              },
+              {
+                "text": "人",
+                "ruby": "ひと"
+              },
+              {
+                "text": "ですよ。スポーツ"
+              },
+              {
+                "text": "用品",
+                "ruby": "ようひん"
+              },
+              {
+                "text": "の"
+              },
+              {
+                "text": "会社",
+                "ruby": "かいしゃ"
+              },
+              {
+                "text": "で、"
+              },
+              {
+                "text": "宣伝",
+                "ruby": "せんでん"
+              },
+              {
+                "text": "を"
+              },
+              {
+                "text": "担当",
+                "ruby": "たんとう"
+              },
+              {
+                "text": "しているそうです。"
+              }
+            ]
+          },
+          {
+            "id": "l32-app-block-007-line-003",
+            "speaker": "李",
+            "text": "じゃあ、これからいっしょに仕事をすることになるかもしれませんね。",
+            "translationZh": "那么，今后我们也许会一起工作呢。",
+            "confidence": "high",
+            "rawText": "李：じゃあ、これからいっしょに仕事をすることになるかもしれませんね。",
+            "kana": "じゃあ、これからいっしょにしごとをすることになるかもしれませんね。",
+            "segments": [
+              {
+                "text": "じゃあ、これからいっしょに"
+              },
+              {
+                "text": "仕事",
+                "ruby": "しごと"
+              },
+              {
+                "text": "をすることになるかもしれませんね。"
+              }
+            ]
+          },
+          {
+            "id": "l32-app-block-007-line-004",
+            "speaker": "森",
+            "text": "ええ。だから、できるだけ連絡を取ろうと思っています。",
+            "translationZh": "是的。所以我想尽可能和他保持联系。",
+            "confidence": "high",
+            "rawText": "森：ええ。だから、できるだけ連絡を取ろうと思っています。",
+            "kana": "ええ。だから、できるだけれんらくをとろうとおもっています。",
+            "segments": [
+              {
+                "text": "ええ。だから、できるだけ"
+              },
+              {
+                "text": "連絡",
+                "ruby": "れんらく"
+              },
+              {
+                "text": "を"
+              },
+              {
+                "text": "取",
+                "ruby": "と"
+              },
+              {
+                "text": "ろうと"
+              },
+              {
+                "text": "思",
+                "ruby": "おも"
+              },
+              {
+                "text": "っています。"
+              }
+            ]
+          }
+        ]
+      }
     ]
   },
   "warnings": [

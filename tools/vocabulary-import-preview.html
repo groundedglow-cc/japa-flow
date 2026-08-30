@@ -563,8 +563,24 @@
       }
 
       .word-list button.active {
-        border-color: var(--accent);
-        background: var(--accent-soft);
+        border-color: #0b5b42;
+        box-shadow: 0 0 0 2px rgba(31, 122, 91, 0.3);
+        position: relative;
+      }
+
+      /* 点击积累只用填充色表达；当前选中项则用独立描边与外圈表达。 */
+      .word-list button.word-clicked {
+        background: var(--word-click-background);
+        border-color: var(--word-click-border);
+      }
+
+      .word-list button.active.word-clicked {
+        border-color: #0b5b42;
+      }
+
+      .word-list button.word-clicked.word-clicked-strong,
+      .word-list button.word-clicked.word-clicked-strong strong {
+        color: #fff;
       }
 
       .image-panel {
@@ -733,6 +749,9 @@
       }
 
       const PANEL_RATIO_STORAGE_KEY = "japaflow.tools.vocabularyPreview.panelRatio.v1";
+      const WORD_CLICK_STORAGE_KEY = "japaflow.tools.vocabularyPreview.wordClicks.v1";
+      const MAX_WORD_CLICKS = 20;
+      const CLICKS_PER_WORD_LEVEL = 2;
       const state = { data: null, index: 0, audio: new Audio(), stopTimer: 0, samples: [], selectedSample: null, autoPlayToken: 0, editing: null };
 
       const $ = (selector) => document.querySelector(selector);
@@ -972,10 +991,12 @@
                   <span class="meaning-inline">${meaningText}</span>
                 </div>
                 <div class="meta">
-                  <span class="tag">${escapeHtml(word.id || "")}</span>
                   <span class="tag">${escapeHtml(word.partOfSpeech || "无词性")}</span>
-                  <span class="tag ${word.confidence === "low" ? "warn" : ""}">${escapeHtml(word.confidence || "unknown")}</span>
-                  <span class="tag ${audioReview.tagClass}">${escapeHtml(audioReview.label)}</span>
+                  ${isAdminMode() ? `
+                    <span class="tag">${escapeHtml(word.id || "")}</span>
+                    <span class="tag ${word.confidence === "low" ? "warn" : ""}">${escapeHtml(word.confidence || "unknown")}</span>
+                    <span class="tag ${audioReview.tagClass}">${escapeHtml(audioReview.label)}</span>
+                  ` : ""}
                 </div>
               </div>
               ${word.audioSegment ? `
@@ -1061,19 +1082,72 @@
 
       function renderWordList(words) {
         $("#wordList").innerHTML = words.map((word, index) => `
-          <button type="button" class="${wordListClass(word, index)}" data-index="${index}">
+          <button type="button" class="${wordListClass(word, index)}" data-index="${index}"${wordClickStyle(word)} title="${escapeHtml(wordClickLabel(word))}">
             <span class="word-list-main">
               <strong>${escapeHtml(word.writing || word.kana)}</strong>
-              ${renderReviewDot(word)}
+              ${isAdminMode() ? renderReviewDot(word) : ""}
             </span>
           </button>
         `).join("");
         $("#wordList").querySelectorAll("button").forEach((button) => {
           button.addEventListener("click", () => {
-            state.index = Number(button.dataset.index) || 0;
+            const index = Number(button.dataset.index) || 0;
+            // 切换单词只改变当前选中项；只有连续点击同一个当前单词才累计熟悉度。
+            if (index === state.index) incrementWordClick(words[index]);
+            state.index = index;
             render();
           });
         });
+      }
+
+      function wordClickLessonKey() {
+        return String(state.data?.lessonId || state.selectedSample?.lessonNo || lessonNoFromLocation() || "manual");
+      }
+
+      function wordClickId(word) {
+        return String(word?.id || word?.writing || word?.kana || "unknown");
+      }
+
+      function readWordClickStore() {
+        try {
+          const parsed = JSON.parse(localStorage.getItem(WORD_CLICK_STORAGE_KEY) || "{}");
+          return parsed && typeof parsed === "object" ? parsed : {};
+        } catch {
+          return {};
+        }
+      }
+
+      function wordClickCount(word) {
+        const count = Number(readWordClickStore()?.[wordClickLessonKey()]?.[wordClickId(word)] || 0);
+        return clamp(Number.isFinite(count) ? count : 0, 0, MAX_WORD_CLICKS);
+      }
+
+      function incrementWordClick(word) {
+        if (!word) return;
+        const store = readWordClickStore();
+        const lessonKey = wordClickLessonKey();
+        const wordId = wordClickId(word);
+        const lessonClicks = { ...(store[lessonKey] || {}) };
+        lessonClicks[wordId] = Math.min(MAX_WORD_CLICKS, wordClickCount(word) + 1);
+        localStorage.setItem(WORD_CLICK_STORAGE_KEY, JSON.stringify({ ...store, [lessonKey]: lessonClicks }));
+      }
+
+      function wordClickLevel(word) {
+        return Math.floor(wordClickCount(word) / CLICKS_PER_WORD_LEVEL);
+      }
+
+      function wordClickLabel(word) {
+        const count = wordClickCount(word);
+        if (!count) return "点击单词会记录熟悉度；每 2 次加深一个档位，最多 20 次";
+        return `已点击 ${count}/${MAX_WORD_CLICKS} 次 · 熟悉度 ${wordClickLevel(word)}/${MAX_WORD_CLICKS / CLICKS_PER_WORD_LEVEL}`;
+      }
+
+      function wordClickStyle(word) {
+        const level = wordClickLevel(word);
+        if (!level) return "";
+        const opacity = 0.08 + level * 0.054;
+        const borderOpacity = Math.min(0.82, opacity + 0.18);
+        return ` style="--word-click-background: rgba(31, 122, 91, ${opacity.toFixed(3)}); --word-click-border: rgba(21, 93, 68, ${borderOpacity.toFixed(3)});"`;
       }
 
       function move(offset) {
@@ -1137,8 +1211,11 @@
 
       function wordListClass(word, index) {
         const review = audioReviewState(word);
+        const clickLevel = wordClickLevel(word);
         return [
           index === state.index ? "active" : "",
+          clickLevel ? "word-clicked" : "",
+          clickLevel >= 7 ? "word-clicked-strong" : "",
           review.severity === "risk" ? "review-risk" : review.status === "pending" ? "review-pending" : ""
         ].filter(Boolean).join(" ");
       }
@@ -1149,6 +1226,10 @@
         if (review.severity === "risk") return `<span class="review-dot risk" title="${escapeHtml(review.reasons.join("；"))}">!</span>`;
         if (review.status === "pending") return `<span class="review-dot pending" title="${escapeHtml(review.reasons.join("；"))}">待</span>`;
         return `<span class="review-dot" title="approved">✓</span>`;
+      }
+
+      function isAdminMode() {
+        return document.documentElement.classList.contains("admin");
       }
 
       function audioReviewState(word) {
