@@ -214,9 +214,8 @@
         font-variant-numeric: tabular-nums;
       }
 
-      .status {
-        min-height: 20px;
-        margin-bottom: 12px;
+      #status {
+        display: none;
       }
 
       .status.error {
@@ -244,7 +243,12 @@
         border-top: 1px solid var(--line);
         resize: vertical;
         padding: 12px;
-        font: 13px/1.5 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+        font:
+          13px/1.5 ui-monospace,
+          SFMono-Regular,
+          Menlo,
+          Consolas,
+          monospace;
       }
 
       .text-section {
@@ -262,7 +266,9 @@
         background: #fbfcfd;
         padding: 12px 14px;
         user-select: none;
-        transition: background 0.16s ease, color 0.16s ease;
+        transition:
+          background 0.16s ease,
+          color 0.16s ease;
       }
 
       .text-section.expanded .section-head {
@@ -573,15 +579,6 @@
         margin-top: 14px;
       }
 
-      .image-title {
-        display: flex;
-        justify-content: space-between;
-        gap: 12px;
-        color: var(--muted);
-        font-size: 13px;
-        margin: 0 0 10px;
-      }
-
       .source-image {
         display: block;
         width: 100%;
@@ -650,7 +647,11 @@
         border: 1px solid var(--line);
         border-radius: 7px;
         background: #fff;
-        font: 15px/1.7 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        font:
+          15px/1.7 -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          sans-serif;
       }
 
       html.embedded header,
@@ -685,6 +686,10 @@
         top: 8px;
         right: 10px;
       }
+      html:not(.admin) .segment-actions .audio-review-status,
+      html:not(.admin) .segment-actions .segment-settings {
+        display: none;
+      }
 
       @media (max-width: 980px) {
         .workspace {
@@ -704,7 +709,13 @@
     </header>
 
     <div class="notebook-mode-control">
-      <button class="notebook-switch" id="notebookModeToggle" type="button" role="switch" aria-checked="false">
+      <button
+        class="notebook-switch"
+        id="notebookModeToggle"
+        type="button"
+        role="switch"
+        aria-checked="false"
+      >
         <span>笔记本模式</span>
         <span class="notebook-switch-track" aria-hidden="true"></span>
       </button>
@@ -713,7 +724,9 @@
     <main class="workspace" id="workspace">
       <section class="panel data-panel">
         <div class="toolbar">
-          <button class="primary" id="loadDefault" type="button">重新加载当前课次</button>
+          <button class="primary" id="loadDefault" type="button">
+            重新加载当前课次
+          </button>
           <button id="generateAudio" type="button">生成音频区间标注</button>
           <input id="fileInput" type="file" accept="application/json,.json" />
           <span class="summary" id="summary">未加载</span>
@@ -726,8 +739,12 @@
 
         <details>
           <summary>手动粘贴 JSON 导入</summary>
-          <textarea id="jsonInput" spellcheck="false" placeholder="粘贴 text OCR JSON"></textarea>
-          <div class="toolbar" style="padding: 10px 12px;">
+          <textarea
+            id="jsonInput"
+            spellcheck="false"
+            placeholder="粘贴 text OCR JSON"
+          ></textarea>
+          <div class="toolbar" style="padding: 10px 12px">
             <button id="parseInput" type="button">解析文本框</button>
           </div>
         </details>
@@ -740,16 +757,35 @@
     </main>
 
     <div class="modal-backdrop" id="segmentModal" aria-hidden="true">
-      <div class="modal" role="dialog" aria-modal="true" aria-labelledby="segmentModalTitle">
+      <div
+        class="modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="segmentModalTitle"
+      >
         <div class="modal-head">
           <div class="modal-title" id="segmentModalTitle">设置音频区间</div>
-          <button id="closeSegmentModal" type="button" aria-label="关闭">×</button>
+          <button id="closeSegmentModal" type="button" aria-label="关闭">
+            ×
+          </button>
         </div>
         <div class="modal-body">
           <p class="modal-text" id="segmentModalText"></p>
           <div class="time-grid">
-            <label>开始时间（秒）<input id="segmentStart" type="number" min="0" step="0.001" /></label>
-            <label>结束时间（秒）<input id="segmentEnd" type="number" min="0" step="0.001" /></label>
+            <label
+              >开始时间（秒）<input
+                id="segmentStart"
+                type="number"
+                min="0"
+                step="0.001"
+            /></label>
+            <label
+              >结束时间（秒）<input
+                id="segmentEnd"
+                type="number"
+                min="0"
+                step="0.001"
+            /></label>
           </div>
           <div class="modal-status" id="segmentModalStatus"></div>
         </div>
@@ -761,705 +797,704 @@
     </div>
 
     <script type="module">
-      if (new URLSearchParams(location.search).get("admin") === "1") {
-        document.documentElement.classList.add("admin");
-      }
-
-      const state = {
-        data: null,
-        audio: new Audio(),
-        stopTimer: 0,
-        segmentMap: new Map(),
-        itemMap: new Map(),
-        segmentSeq: 0,
-        samples: [],
-        selectedSample: null,
-        editing: null,
-        expandedTextSection: "basic",
-        textDisplayModes: { basic: "both", application: "both" },
-        notebookMode: false
-      };
-
-      const textDisplayModeLabels = { both: "中日", zh: "中文", ja: "日语" };
-      const textDisplayModeOrder = ["both", "zh", "ja"];
-      const TEXT_NOTEBOOK_STORAGE_KEY = "japaflow.tools.textNotebook.v1";
-
-      const $ = (selector) => document.querySelector(selector);
-      const escapeHtml = (value) => String(value ?? "")
-        .replaceAll("&", "&amp;")
-        .replaceAll("<", "&lt;")
-        .replaceAll(">", "&gt;")
-        .replaceAll('"', "&quot;")
-        .replaceAll("'", "&#39;");
-
-      const assetSrc = (path) => {
-        if (!path) return "";
-        if (/^(?:https?:)?\/\//.test(path) || path.startsWith("/")) return path;
-        return `../${path}`;
-      };
-
-      function normalizePayload(payload) {
-        if (!payload || (!payload.basicText && !payload.applicationText)) {
-          throw new Error("JSON 中缺少 basicText 或 applicationText。");
-        }
-        return payload;
-      }
-
-      function setStatus(message, isError = false) {
-        $("#status").textContent = message || "";
-        $("#status").classList.toggle("error", Boolean(isError));
-      }
-
-      function setData(payload, sourceLabel = "导入数据") {
-        state.data = normalizePayload(payload);
-        state.expandedTextSection = "basic";
-        state.textDisplayModes = { basic: "both", application: "both" };
-        $("#jsonInput").value = JSON.stringify(state.data, null, 2);
-        setStatus(`${sourceLabel} 已加载。`);
-        render();
-      }
-
-      function lessonNoFromLocation() {
-        const params = new URLSearchParams(location.search);
-        const raw = params.get("lesson") || params.get("lessonId") || params.get("lessonNo") || "";
-        const queryMatch = String(raw).match(/\d+/);
-        if (queryMatch) return Number(queryMatch[0]);
-        const hashMatch = location.hash.match(/lesson=(\d+)/);
-        return hashMatch ? Number(hashMatch[1]) : 0;
-      }
-
-      async function initSamples() {
-        const requestedLessonNo = lessonNoFromLocation();
-        await refreshSamples(requestedLessonNo || null);
-        const initialSample = requestedLessonNo
-          ? state.samples.find((sample) => sample.lessonNo === requestedLessonNo)
-          : state.samples[0];
-        if (initialSample) {
-          await selectSample(initialSample.lessonNo);
-        } else {
-          setStatus(requestedLessonNo ? `data/ocr 下暂无第 ${requestedLessonNo} 课课文样例数据。` : "data/ocr 下暂无课文样例数据。", true);
-          renderLessonList();
-        }
-      }
-
-      async function refreshSamples(preferredLessonNo = null) {
-        const response = await fetch("/api/ocr/sample-lessons?type=text", { cache: "no-store" });
-        const result = await response.json();
-        if (!response.ok) throw new Error(result.error || `读取样例列表失败：${response.status}`);
-        state.samples = result.lessons || [];
-        if (preferredLessonNo) {
-          state.selectedSample = state.samples.find((sample) => sample.lessonNo === preferredLessonNo) || state.selectedSample;
-        }
-        renderLessonList();
-      }
-
-      async function selectSample(lessonNo) {
-        const sample = state.samples.find((item) => item.lessonNo === lessonNo);
-        if (!sample) return;
-        state.selectedSample = sample;
-        renderLessonList();
-        const response = await fetch(sample.url, { cache: "no-store" });
-        if (!response.ok) throw new Error(`读取 ${sample.label} JSON 失败：${response.status}`);
-        setData(await response.json(), `${sample.label}${sample.hasAudio ? "音频标注样例" : "样例"}`);
-      }
-
-      async function loadDefault() {
-        if (!state.selectedSample && state.samples.length) state.selectedSample = state.samples[0];
-        if (!state.selectedSample) {
-          await initSamples();
-          return;
-        }
-        await selectSample(state.selectedSample.lessonNo);
-      }
-
-      function renderLessonList() {
-        $("#lessonList").innerHTML = state.samples.length ? state.samples.map((sample) => {
-          const totalLines = (sample.counts?.basicSentences || 0) + (sample.counts?.basicDialogueLines || 0) + (sample.counts?.applicationDialogueLines || 0);
-          return `
-            <button class="lesson-chip ${sample.lessonNo === state.selectedSample?.lessonNo ? "active" : ""}" type="button" data-lesson-no="${sample.lessonNo}">
-              <span>${escapeHtml(sample.label)}</span>
-              <span class="count">${escapeHtml(totalLines)}</span>
-              ${sample.hasAudio ? "<span aria-label=\"有音频区间标注\">▶</span>" : ""}
-            </button>
-          `;
-        }).join("") : `<span class="status">暂无样例</span>`;
-        $("#lessonList").querySelectorAll("button[data-lesson-no]").forEach((button) => {
-          button.addEventListener("click", () => {
-            selectSample(Number(button.dataset.lessonNo)).catch((error) => setStatus(error.message, true));
-          });
-        });
-      }
-
-      async function generateAudioAlignment() {
-        const lessonNo = state.selectedSample?.lessonNo || lessonNoFromData() || 1;
-        setStatus("正在生成音频区间标注...");
-        $("#generateAudio").disabled = true;
-        try {
-          const response = await fetch("/api/ocr/audio-align", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ lessonId: lessonNo, target: "text", force: true })
-          });
-          const result = await response.json();
-          if (!response.ok) throw new Error(result.error || `生成失败：${response.status}`);
-          await refreshSamples(lessonNo);
-          await selectSample(lessonNo);
-          const textOutput = (result.outputs || []).find((item) => item.outputPath?.includes("-text-audio-verified.json"));
-          const mapped = (textOutput?.tracks || []).reduce((sum, item) => sum + (item.items || 0), 0);
-          setStatus(mapped ? `音频区间标注已生成：${mapped} 条。` : "音频区间标注已生成。");
-        } catch (error) {
-          setStatus(error.message, true);
-        } finally {
-          $("#generateAudio").disabled = false;
-        }
-      }
-
-      function render() {
-        const data = state.data;
-        const sentenceCount = (data?.basicText?.basicSentences || []).length;
-        const basicDialogueLines = (data?.basicText?.dialogues || []).reduce((sum, dialogue) => sum + (dialogue.lines || []).length, 0);
-        const appLines = (data?.applicationText?.blocks || []).reduce((sum, block) => sum + (block.lines || []).length, 0);
-        state.segmentMap = new Map();
-        state.itemMap = new Map();
-        state.segmentSeq = 0;
-        const audioSegments = collectAudioSegments(data);
-        const pendingCount = audioSegments.filter((segment) => segment.review?.status !== "approved").length;
-        $("#summary").textContent = data ? `${data.lessonId || "unknown"} · 基本句 ${sentenceCount} · 对话 ${basicDialogueLines + appLines} 行${audioSegments.length ? ` · 已通过 ${audioSegments.length - pendingCount} · 待核对 ${pendingCount}` : ""}` : "未加载";
-        $("#textPreview").innerHTML = data ? `${renderBasic(data.basicText)}${renderApplication(data.applicationText)}` : "";
-        bindSegmentButtons();
-        renderRightPanel(data);
-      }
-
-      function lessonNoFromData() {
-        const match = String(state.data?.lessonId || "").match(/\d+/);
-        return match ? Number(match[0]) : 0;
-      }
-
-      function renderBasic(basicText) {
-        if (!basicText) return "";
-        const mode = state.textDisplayModes.basic || "both";
-        const sentences = (basicText.basicSentences || []).map((sentence) => {
-          const segmentId = registerSegment(sentence.audioSegment);
-          registerItem(sentence);
-          return `
-            <div class="sentence${segmentId ? " has-audio" : ""}" data-item-id="${escapeHtml(sentence.id || "")}" ${segmentId ? `data-play-segment-id="${escapeHtml(segmentId)}"` : ""}>
-              <div class="num">${escapeHtml(sentence.order || "")}</div>
-              <div>${renderTextContent(sentence, mode)}</div>
-              <div>${segmentActions(sentence, segmentId, sentence.audioSegment)}</div>
-            </div>
-          `;
-        }).join("");
-
-        const dialogues = (basicText.dialogues || []).map((dialogue) => `
-          <div class="dialogue">
-            <h3 class="dialogue-title">对话 ${escapeHtml(dialogue.label || "")}</h3>
-            ${(dialogue.lines || []).map((line) => renderLine(line, mode)).join("")}
-          </div>
-        `).join("");
-
-        const expanded = state.expandedTextSection === "basic";
-        return `
-          <section class="text-section ${expanded ? "expanded" : "collapsed"}" data-text-section="basic">
-            <div class="section-head">
-              <h2>${escapeHtml(basicText.title || "基本课文")}</h2>
-              <span class="section-actions">
-                <span class="section-label">基本句 + 甲乙对话</span>
-                <button class="section-display-toggle" type="button" data-display-section="basic">${textDisplayModeLabels[mode]}</button>
-                <button class="section-toggle" type="button" data-toggle-section="basic" aria-expanded="${expanded ? "true" : "false"}">${expanded ? "▾ 收起" : "▸ 展开"}</button>
-              </span>
-            </div>
-            ${expanded ? `<div class="basic-sentences">${sentences}</div>${dialogues}` : ""}
-          </section>
-        `;
-      }
-
-      function renderApplication(applicationText) {
-        if (!applicationText) return "";
-        const mode = state.textDisplayModes.application || "both";
-        const blocks = (applicationText.blocks || []).map((block) => {
-          if (block.type === "dialogue") {
-            return `<div class="dialogue">${(block.lines || []).map((line) => renderLine(line, mode)).join("")}</div>`;
-          }
-          if (mode === "ja") return "";
-          return `
-            <div class="block ${escapeHtml(block.type || "narration")}">
-              <div class="block-title">${escapeHtml(block.type || "narration")}</div>
-              <div class="cn">${escapeHtml(block.text || "")}</div>
-              ${block.rawText && block.rawText !== block.text ? `<div class="raw">${escapeHtml(block.rawText)}</div>` : ""}
-            </div>
-          `;
-        }).join("");
-
-        const expanded = state.expandedTextSection === "application";
-        return `
-          <section class="text-section ${expanded ? "expanded" : "collapsed"}" data-text-section="application">
-            <div class="section-head">
-              <h2>${escapeHtml(applicationText.title || "应用课文")}</h2>
-              <span class="section-actions">
-                <span class="section-label">旁白 / 场景 / 多人对话</span>
-                <button class="section-display-toggle" type="button" data-display-section="application">${textDisplayModeLabels[mode]}</button>
-                <button class="section-toggle" type="button" data-toggle-section="application" aria-expanded="${expanded ? "true" : "false"}">${expanded ? "▾ 收起" : "▸ 展开"}</button>
-              </span>
-            </div>
-            ${expanded ? blocks : ""}
-          </section>
-        `;
-      }
-
-      function renderLine(line, mode = "both") {
-        const segmentId = registerSegment(line.audioSegment);
-        registerItem(line);
-        return `
-          <div class="line${segmentId ? " has-audio" : ""}" data-item-id="${escapeHtml(line.id || "")}" ${segmentId ? `data-play-segment-id="${escapeHtml(segmentId)}"` : ""}>
-            <div><span class="speaker">${escapeHtml(line.speaker || "?")}</span></div>
-            <div>${renderTextContent(line, mode)}</div>
-            <div>${segmentActions(line, segmentId, line.audioSegment)}</div>
-          </div>
-        `;
-      }
-
-      function segmentActions(item, segmentId, segment) {
-        return `
-          <div class="segment-actions">
-            ${segmentButton(segmentId, segment)}
-            ${segmentReviewStatus(segment)}
-            ${item?.id && segment ? `<button class="audio-button segment-settings" type="button" data-edit-item-id="${escapeHtml(item.id)}" title="设置音频区间" aria-label="设置音频区间">⚙</button>` : ""}
-          </div>
-        `;
-      }
-
-      function segmentReviewStatus(segment) {
-        if (!segment) return "";
-        const pending = segment.review?.status !== "approved";
-        const score = Number(segment.matchScore);
-        const status = pending ? "待核对" : "已通过";
-        const source = segment.timingSource === "azure-speech-word-timestamp-with-boundary-padding" ? "Azure 句界" : "旧标注";
-        const diagnostics = [
-          source,
-          Number.isFinite(score) ? `匹配 ${(score * 100).toFixed(0)}%` : "",
-          ...(segment.alignmentIssues || []),
-          segment.review?.note || ""
-        ].filter(Boolean).join(" · ");
-        return `<span class="audio-review-status ${pending ? "pending" : ""}" title="${escapeHtml(diagnostics)}">${status}${Number.isFinite(score) ? ` ${(score * 100).toFixed(0)}%` : ""}</span>`;
-      }
-
-      function segmentButton(segmentId, segment) {
-        if (!segmentId || !segment) return `<span class="audio-placeholder"></span>`;
-        return `<button class="audio-button" type="button" data-segment-id="${escapeHtml(segmentId)}" title="${escapeHtml(formatSegmentTime(segment))}" aria-label="播放音频片段">▶</button>`;
-      }
-
-      function registerItem(item) {
-        if (item?.id) state.itemMap.set(item.id, item);
-      }
-
-      function registerSegment(segment) {
-        if (!segment) return "";
-        const id = `segment-${state.segmentSeq += 1}`;
-        state.segmentMap.set(id, segment);
-        return id;
-      }
-
-      function collectAudioSegments(data) {
-        return [
-          ...(data?.basicText?.basicSentences || []),
-          ...(data?.basicText?.dialogues || []).flatMap((dialogue) => dialogue.lines || []),
-          ...(data?.applicationText?.blocks || []).flatMap((block) => block.lines || [])
-        ].map((item) => item.audioSegment).filter(Boolean);
-      }
-
-      function renderJapanese(item) {
-        const segments = Array.isArray(item?.segments) ? item.segments : [];
-        if (!segments.length) return `<span class="base-text">${escapeHtml(item?.text || "")}</span>`;
-        return segments.map((segment) => {
-          const text = segment?.text || "";
-          const ruby = segment?.ruby || "";
-          if (!ruby) return `<span class="base-text">${escapeHtml(text)}</span>`;
-          return rubyTextSegments(text, ruby).map((part) => {
-            if (!part.ruby) return `<span class="base-text">${escapeHtml(part.text)}</span>`;
-            return `<ruby><rb>${escapeHtml(part.text)}</rb><rt aria-hidden="true">${escapeHtml(part.ruby)}</rt></ruby>`;
-          }).join("");
-        }).join("");
-      }
-
-      function hasKanji(value) {
-        return /[\u3400-\u9fff々〆ヵヶ]/.test(value);
-      }
-
-      function isKanjiChar(char) {
-        return /[\u3400-\u9fff々〆ヵヶ]/.test(char);
-      }
-
-      function toHiragana(value) {
-        return String(value || "").replace(/[\u30a1-\u30f6]/g, (char) =>
-          String.fromCharCode(char.charCodeAt(0) - 0x60)
-        );
-      }
-
-      function rubyTextSegments(text, ruby) {
-        if (!text || !ruby || !hasKanji(text)) return [{ text }];
-
-        const tokens = [];
-        for (const char of [...text]) {
-          const kind = isKanjiChar(char) ? "kanji" : "plain";
-          const last = tokens[tokens.length - 1];
-          if (last?.kind === kind) last.text += char;
-          else tokens.push({ kind, text: char });
-        }
-
-        if (tokens.every((token) => token.kind === "kanji")) return [{ text, ruby }];
-
-        const parts = [];
-        let rubyCursor = 0;
-        const normalizedRuby = toHiragana(ruby);
-
-        tokens.forEach((token, index) => {
-          if (token.kind === "plain") {
-            const reading = toHiragana(token.text);
-            if (normalizedRuby.slice(rubyCursor).startsWith(reading)) rubyCursor += reading.length;
-            parts.push({ text: token.text });
-            return;
-          }
-
-          const nextPlain = tokens.slice(index + 1).find((item) => item.kind === "plain");
-          let rubyEnd = ruby.length;
-          if (nextPlain) {
-            const nextReading = toHiragana(nextPlain.text);
-            const found = normalizedRuby.indexOf(nextReading, rubyCursor + 1);
-            if (found >= 0) rubyEnd = found;
-          }
-
-          const tokenRuby = ruby.slice(rubyCursor, rubyEnd);
-          rubyCursor = rubyEnd;
-          parts.push(tokenRuby ? { text: token.text, ruby: tokenRuby } : { text: token.text });
-        });
-
-        return parts;
-      }
-
-      function renderTextContent(item, mode = "both") {
-        const parts = [];
-        if (mode !== "zh") {
-          parts.push(`<div class="jp" data-copy-text="${escapeHtml(copyTextForJapanese(item))}">${renderJapanese(item)}</div>`);
-        }
-        if (mode !== "ja") {
-          parts.push(`<div class="cn">${escapeHtml(item?.translationZh || "")}</div>`);
-        }
-        return parts.join("");
-      }
-
-      function copyTextForJapanese(item) {
-        const segments = Array.isArray(item?.segments) ? item.segments : [];
-        return segments.length ? segments.map((segment) => segment?.text || "").join("") : item?.text || "";
-      }
-
-      function bindSegmentButtons() {
-        $("#textPreview").querySelectorAll("[data-toggle-section]").forEach((button) => {
-          button.addEventListener("click", () => {
-            const section = button.dataset.toggleSection;
-            if (!section) return;
-            state.expandedTextSection = state.expandedTextSection === section ? "" : section;
-            render();
-          });
-        });
-        $("#textPreview").querySelectorAll("[data-display-section]").forEach((button) => {
-          button.addEventListener("click", () => {
-            const section = button.dataset.displaySection;
-            if (!section) return;
-            const current = state.textDisplayModes[section] || "both";
-            const next = textDisplayModeOrder[(textDisplayModeOrder.indexOf(current) + 1) % textDisplayModeOrder.length];
-            state.textDisplayModes = { ...state.textDisplayModes, [section]: next };
-            render();
-          });
-        });
-        $("#textPreview").querySelectorAll(".sentence[data-play-segment-id], .line[data-play-segment-id]").forEach((row) => {
-          row.addEventListener("click", (event) => {
-            if (event.target.closest("button[data-segment-id]")) return;
-            const segmentId = row.dataset.playSegmentId;
-            if (!segmentId) return;
-            playSegment(state.segmentMap.get(segmentId));
-          });
-        });
-        $("#textPreview").querySelectorAll("[data-segment-id]").forEach((button) => {
-          button.addEventListener("click", (event) => {
-            event.stopPropagation();
-            playSegment(state.segmentMap.get(button.dataset.segmentId));
-          });
-        });
-        $("#textPreview").querySelectorAll("[data-edit-item-id]").forEach((button) => {
-          button.addEventListener("click", (event) => {
-            event.stopPropagation();
-            openSegmentModal(button.dataset.editItemId).catch((error) => setStatus(error.message, true));
-          });
-        });
-      }
-
-      function bindCopyBehavior() {
-        $("#textPreview").addEventListener("copy", (event) => {
-          const selection = window.getSelection();
-          if (!selection || selection.isCollapsed || selection.rangeCount !== 1) return;
-          const range = selection.getRangeAt(0);
-          const copied = selectedBaseText(range);
-          if (!copied) return;
-          event.clipboardData.setData("text/plain", copied);
-          event.preventDefault();
-        });
-      }
-
-      function selectedBaseText(range) {
-        const selectedNodes = [...$("#textPreview").querySelectorAll(".jp[data-copy-text]")]
-          .filter((node) => range.intersectsNode(node));
-        if (!selectedNodes.length) return "";
-        return selectedNodes.map((node) => node.dataset.copyText || node.textContent || "").join("\n");
-      }
-
-      function formatSegmentTime(segment) {
-        return `${Number(segment.start || 0).toFixed(3)}s - ${Number(segment.end || 0).toFixed(3)}s`;
-      }
-
-      async function playSegment(segment) {
-        if (!segment?.sourceUrl) {
-          setStatus("当前句子没有音频片段。", true);
-          return;
-        }
-        clearInterval(state.stopTimer);
-        state.audio.pause();
-        state.audio.src = segment.sourceUrl;
-        try {
-          await waitForAudioMetadata();
-          state.audio.currentTime = Math.max(0, Number(segment.start) || 0);
-          state.stopTimer = window.setInterval(() => {
-            if (state.audio.currentTime >= Number(segment.end || 0)) {
-              state.audio.pause();
-              clearInterval(state.stopTimer);
+            if (new URLSearchParams(location.search).get("admin") === "1") {
+              document.documentElement.classList.add("admin");
             }
-          }, 30);
-          await state.audio.play();
-        } catch (error) {
-          clearInterval(state.stopTimer);
-          setStatus(`播放失败：${error.message}`, true);
-        }
-      }
 
-      function modalStatus(message, isError = false) {
-        $("#segmentModalStatus").textContent = message || "";
-        $("#segmentModalStatus").classList.toggle("error", Boolean(isError));
-      }
+            const state = {
+              data: null,
+              audio: new Audio(),
+              stopTimer: 0,
+              segmentMap: new Map(),
+              itemMap: new Map(),
+              segmentSeq: 0,
+              samples: [],
+              selectedSample: null,
+              editing: null,
+              expandedTextSections: { basic: true, application: false },
+              textDisplayModes: { basic: "both", application: "both" },
+              notebookMode: false
+            };
 
-      async function loadEditableSegment(itemId) {
-        const item = state.itemMap.get(itemId);
-        const lessonNo = state.selectedSample?.lessonNo || lessonNoFromData() || lessonNoFromLocation();
-        const editableSegment = item?.audioSegment || null;
-        if (!item || !editableSegment) throw new Error("当前句子没有可编辑的音频区间。");
-        return { item, lessonNo, segment: editableSegment };
-      }
+            const textDisplayModeLabels = { both: "中日", zh: "中文", ja: "日语" };
+            const textDisplayModeOrder = ["both", "zh", "ja"];
+            const TEXT_NOTEBOOK_STORAGE_KEY = "japaflow.tools.textNotebook.v1";
 
-      async function openSegmentModal(itemId) {
-        const editing = await loadEditableSegment(itemId);
-        state.editing = editing;
-        $("#segmentModalText").textContent = editing.item.text || "";
-        $("#segmentStart").value = Number(editing.segment.start || 0).toFixed(3);
-        $("#segmentEnd").value = Number(editing.segment.end || 0).toFixed(3);
-        modalStatus(`当前区间：${formatSegmentTime(editing.segment)}`);
-        $("#segmentModal").classList.add("open");
-        $("#segmentModal").setAttribute("aria-hidden", "false");
-        $("#segmentStart").focus();
-      }
+            const $ = (selector) => document.querySelector(selector);
+            const escapeHtml = (value) => String(value ?? "")
+              .replaceAll("&", "&amp;")
+              .replaceAll("<", "&lt;")
+              .replaceAll(">", "&gt;")
+              .replaceAll('"', "&quot;")
+              .replaceAll("'", "&#39;");
 
-      function closeSegmentModal() {
-        state.editing = null;
-        $("#segmentModal").classList.remove("open");
-        $("#segmentModal").setAttribute("aria-hidden", "true");
-      }
+            const assetSrc = (path) => {
+              if (!path) return "";
+              if (/^(?:https?:)?\/\//.test(path) || path.startsWith("/")) return path;
+              return `../${path}`;
+            };
 
-      function editedRange() {
-        const start = Number($("#segmentStart").value);
-        const end = Number($("#segmentEnd").value);
-        if (!Number.isFinite(start) || !Number.isFinite(end) || start < 0 || end <= start) {
-          throw new Error("请填写有效的开始和结束时间。");
-        }
-        return {
-          start: Math.round(start * 1000) / 1000,
-          end: Math.round(end * 1000) / 1000
-        };
-      }
+            function normalizePayload(payload) {
+              if (!payload || (!payload.basicText && !payload.applicationText)) {
+                throw new Error("JSON 中缺少 basicText 或 applicationText。");
+              }
+              return payload;
+            }
 
-      async function testEditedSegment() {
-        if (!state.editing) return;
-        try {
-          const range = editedRange();
-          await playSegment({ ...state.editing.segment, ...range });
-          modalStatus(`测试播放：${range.start.toFixed(3)}s - ${range.end.toFixed(3)}s`);
-        } catch (error) {
-          modalStatus(error.message, true);
-        }
-      }
+            function setStatus(message, isError = false) {
+              $("#status").textContent = message || "";
+              $("#status").classList.toggle("error", Boolean(isError));
+            }
 
-      async function saveEditedSegment() {
-        if (!state.editing) return;
-        try {
-          const range = editedRange();
-          modalStatus("正在保存...");
-          $("#saveSegment").disabled = true;
-          const response = await fetch("/api/ocr/text-audio-segment", {
-            method: "PUT",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              lessonId: state.editing.lessonNo,
-              itemId: state.editing.item.id,
-              start: range.start,
-              end: range.end
-            })
-          });
-          const result = await response.json();
-          if (!response.ok) throw new Error(result.error || `保存失败：${response.status}`);
-          state.editing.item.audioSegment = result.audioSegment;
-          render();
-          closeSegmentModal();
-          setStatus(`音频区间已保存：${result.updatedFiles.join("，")}`);
-        } catch (error) {
-          modalStatus(error.message, true);
-        } finally {
-          $("#saveSegment").disabled = false;
-        }
-      }
+            function setData(payload, sourceLabel = "导入数据") {
+              state.data = normalizePayload(payload);
+              state.expandedTextSections = { basic: true, application: false };
+              state.textDisplayModes = { basic: "both", application: "both" };
+              $("#jsonInput").value = JSON.stringify(state.data, null, 2);
+              setStatus(`${sourceLabel} 已加载。`);
+              render();
+            }
 
-      function waitForAudioMetadata() {
-        if (state.audio.readyState >= 1) return Promise.resolve();
-        state.audio.load();
-        return new Promise((resolve, reject) => {
-          const cleanup = () => {
-            state.audio.removeEventListener("loadedmetadata", handleLoaded);
-            state.audio.removeEventListener("error", handleError);
-          };
-          const handleLoaded = () => {
-            cleanup();
-            resolve();
-          };
-          const handleError = () => {
-            cleanup();
-            reject(new Error("音频加载失败"));
-          };
-          state.audio.addEventListener("loadedmetadata", handleLoaded);
-          state.audio.addEventListener("error", handleError);
-        });
-      }
+            function lessonNoFromLocation() {
+              const params = new URLSearchParams(location.search);
+              const raw = params.get("lesson") || params.get("lessonId") || params.get("lessonNo") || "";
+              const queryMatch = String(raw).match(/\d+/);
+              if (queryMatch) return Number(queryMatch[0]);
+              const hashMatch = location.hash.match(/lesson=(\d+)/);
+              return hashMatch ? Number(hashMatch[1]) : 0;
+            }
 
-      function notebookLessonKey() {
-        return String(state.data?.lessonId || state.selectedSample?.lessonNo || lessonNoFromLocation() || "manual");
-      }
+            async function initSamples() {
+              const requestedLessonNo = lessonNoFromLocation();
+              await refreshSamples(requestedLessonNo || null);
+              const initialSample = requestedLessonNo
+                ? state.samples.find((sample) => sample.lessonNo === requestedLessonNo)
+                : state.samples[0];
+              if (initialSample) {
+                await selectSample(initialSample.lessonNo);
+              } else {
+                setStatus(requestedLessonNo ? `data/ocr 下暂无第 ${requestedLessonNo} 课课文样例数据。` : "data/ocr 下暂无课文样例数据。", true);
+                renderLessonList();
+              }
+            }
 
-      function readTextNotebookStore() {
-        try {
-          const stored = JSON.parse(localStorage.getItem(TEXT_NOTEBOOK_STORAGE_KEY) || "{}");
-          return stored && typeof stored === "object" ? stored : {};
-        } catch {
-          return {};
-        }
-      }
+            async function refreshSamples(preferredLessonNo = null) {
+              const response = await fetch("/api/ocr/sample-lessons?type=text", { cache: "no-store" });
+              const result = await response.json();
+              if (!response.ok) throw new Error(result.error || `读取样例列表失败：${response.status}`);
+              state.samples = result.lessons || [];
+              if (preferredLessonNo) {
+                state.selectedSample = state.samples.find((sample) => sample.lessonNo === preferredLessonNo) || state.selectedSample;
+              }
+              renderLessonList();
+            }
 
-      function notesForTextNotebook() {
-        const stored = readTextNotebookStore()[notebookLessonKey()];
-        // 兼容此前单一 textarea 写入的字符串数据。
-        if (typeof stored === "string") return stored ? [{ id: "legacy", text: stored }] : [];
-        return Array.isArray(stored) ? stored : [];
-      }
+            async function selectSample(lessonNo) {
+              const sample = state.samples.find((item) => item.lessonNo === lessonNo);
+              if (!sample) return;
+              state.selectedSample = sample;
+              renderLessonList();
+              const response = await fetch(sample.url, { cache: "no-store" });
+              if (!response.ok) throw new Error(`读取 ${sample.label} JSON 失败：${response.status}`);
+              setData(await response.json(), `${sample.label}${sample.hasAudio ? "音频标注样例" : "样例"}`);
+            }
 
-      function saveTextNotebook(notes) {
-        const store = readTextNotebookStore();
-        localStorage.setItem(TEXT_NOTEBOOK_STORAGE_KEY, JSON.stringify({ ...store, [notebookLessonKey()]: notes }));
-      }
+            async function loadDefault() {
+              if (!state.selectedSample && state.samples.length) state.selectedSample = state.samples[0];
+              if (!state.selectedSample) {
+                await initSamples();
+                return;
+              }
+              await selectSample(state.selectedSample.lessonNo);
+            }
 
-      function addTextNotebookNote() {
-        const note = { id: `${Date.now()}-${Math.random().toString(16).slice(2)}`, text: "" };
-        saveTextNotebook([...notesForTextNotebook(), note]);
-        renderNotebookPanel(note.id);
-      }
+            function renderLessonList() {
+              $("#lessonList").innerHTML = state.samples.length ? state.samples.map((sample) => {
+                const totalLines = (sample.counts?.basicSentences || 0) + (sample.counts?.basicDialogueLines || 0) + (sample.counts?.applicationDialogueLines || 0);
+                return `
+                  <button class="lesson-chip ${sample.lessonNo === state.selectedSample?.lessonNo ? "active" : ""}" type="button" data-lesson-no="${sample.lessonNo}">
+                    <span>${escapeHtml(sample.label)}</span>
+                    <span class="count">${escapeHtml(totalLines)}</span>
+                    ${sample.hasAudio ? "<span aria-label=\"有音频区间标注\">▶</span>" : ""}
+                  </button>
+                `;
+              }).join("") : `<span class="status">暂无样例</span>`;
+              $("#lessonList").querySelectorAll("button[data-lesson-no]").forEach((button) => {
+                button.addEventListener("click", () => {
+                  selectSample(Number(button.dataset.lessonNo)).catch((error) => setStatus(error.message, true));
+                });
+              });
+            }
 
-      function updateTextNotebookNote(noteId, text) {
-        saveTextNotebook(notesForTextNotebook().map((note) => note.id === noteId ? { ...note, text } : note));
-      }
+            async function generateAudioAlignment() {
+              const lessonNo = state.selectedSample?.lessonNo || lessonNoFromData() || 1;
+              setStatus("正在生成音频区间标注...");
+              $("#generateAudio").disabled = true;
+              try {
+                const response = await fetch("/api/ocr/audio-align", {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify({ lessonId: lessonNo, target: "text", force: true })
+                });
+                const result = await response.json();
+                if (!response.ok) throw new Error(result.error || `生成失败：${response.status}`);
+                await refreshSamples(lessonNo);
+                await selectSample(lessonNo);
+                const textOutput = (result.outputs || []).find((item) => item.outputPath?.includes("-text-audio-verified.json"));
+                const mapped = (textOutput?.tracks || []).reduce((sum, item) => sum + (item.items || 0), 0);
+                setStatus(mapped ? `音频区间标注已生成：${mapped} 条。` : "音频区间标注已生成。");
+              } catch (error) {
+                setStatus(error.message, true);
+              } finally {
+                $("#generateAudio").disabled = false;
+              }
+            }
 
-      function renderRightPanel(data) {
-        if (state.notebookMode) {
-          renderNotebookPanel();
-          return;
-        }
-        renderImages(data);
-      }
+            function render() {
+              const data = state.data;
+              const sentenceCount = (data?.basicText?.basicSentences || []).length;
+              const basicDialogueLines = (data?.basicText?.dialogues || []).reduce((sum, dialogue) => sum + (dialogue.lines || []).length, 0);
+              const appLines = (data?.applicationText?.blocks || []).reduce((sum, block) => sum + (block.lines || []).length, 0);
+              state.segmentMap = new Map();
+              state.itemMap = new Map();
+              state.segmentSeq = 0;
+              const audioSegments = collectAudioSegments(data);
+              const pendingCount = audioSegments.filter((segment) => segment.review?.status !== "approved").length;
+              $("#summary").textContent = data ? `${data.lessonId || "unknown"} · 基本句 ${sentenceCount} · 对话 ${basicDialogueLines + appLines} 行${audioSegments.length ? ` · 已通过 ${audioSegments.length - pendingCount} · 待核对 ${pendingCount}` : ""}` : "未加载";
+              $("#textPreview").innerHTML = data ? `${renderBasic(data.basicText)}${renderApplication(data.applicationText)}` : "";
+              bindSegmentButtons();
+              renderRightPanel(data);
+            }
 
-      function renderNotebookPanel(focusNoteId = "") {
-        const notes = notesForTextNotebook();
-        $("#imagePanel").innerHTML = `
-          <section class="lesson-notebook">
-            <div class="lesson-notebook-head">
-              <div>
-                <h2>课文笔记</h2>
-                <p>记录本课课文中的表达、翻译或疑问；内容会自动保存在本机。</p>
-              </div>
-              <button class="lesson-notebook-add" id="addLessonNotebookNote" type="button">添加</button>
-            </div>
-            <div class="lesson-note-list">
-              ${notes.length
-                ? notes.map((note) => `<textarea class="lesson-notebook-input" data-note-id="${escapeHtml(note.id)}" placeholder="开始记录…">${escapeHtml(note.text)}</textarea>`).join("")
-                : '<p class="lesson-note-empty">还没有笔记。点击“添加”开始记录。</p>'}
-            </div>
-          </section>
-        `;
-        $("#addLessonNotebookNote").addEventListener("click", addTextNotebookNote);
-        $("#imagePanel").querySelectorAll("[data-note-id]").forEach((input) => {
-          input.addEventListener("input", () => updateTextNotebookNote(input.dataset.noteId, input.value));
-        });
-        if (focusNoteId) $("#imagePanel").querySelector(`[data-note-id="${focusNoteId}"]`)?.focus();
-      }
+            function lessonNoFromData() {
+              const match = String(state.data?.lessonId || "").match(/\d+/);
+              return match ? Number(match[0]) : 0;
+            }
 
-      function renderImages(data) {
-        const images = data?.sourceImages || [];
-        $("#imagePanel").innerHTML = images.length ? images.map((image) => {
-          const src = assetSrc(image.path);
-          return `
-            <div class="image-block">
-              <p class="image-title">
-                <span>${escapeHtml(image.section || "")} · page${escapeHtml(image.pageNo || "")}</span>
-                <a href="${escapeHtml(src)}" target="_blank" rel="noreferrer">打开图片</a>
-              </p>
-              <img class="source-image" src="${escapeHtml(src)}" alt="${escapeHtml(image.section || "source")}" />
-            </div>
-          `;
-        }).join("") : `<p class="status">暂无 sourceImages。</p>`;
-      }
+            function renderBasic(basicText) {
+              if (!basicText) return "";
+              const mode = state.textDisplayModes.basic || "both";
+              const sentences = (basicText.basicSentences || []).map((sentence) => {
+                const segmentId = registerSegment(sentence.audioSegment);
+                registerItem(sentence);
+                return `
+                  <div class="sentence${segmentId ? " has-audio" : ""}" data-item-id="${escapeHtml(sentence.id || "")}" ${segmentId ? `data-play-segment-id="${escapeHtml(segmentId)}"` : ""}>
+                    <div class="num">${escapeHtml(sentence.order || "")}</div>
+                    <div>${renderTextContent(sentence, mode)}</div>
+                    <div>${segmentActions(sentence, segmentId, sentence.audioSegment)}</div>
+                  </div>
+                `;
+              }).join("");
 
-      $("#loadDefault").addEventListener("click", () => loadDefault().catch((error) => setStatus(error.message, true)));
-      $("#generateAudio").addEventListener("click", generateAudioAlignment);
-      $("#parseInput").addEventListener("click", () => {
-        try {
-          setData(JSON.parse($("#jsonInput").value), "文本框 JSON");
-        } catch (error) {
-          setStatus(error.message, true);
-        }
-      });
-      $("#fileInput").addEventListener("change", async (event) => {
-        const file = event.target.files?.[0];
-        if (!file) return;
-        try {
-          setData(JSON.parse(await file.text()), file.name);
-        } catch (error) {
-          setStatus(error.message, true);
-        }
-      });
-      $("#closeSegmentModal").addEventListener("click", closeSegmentModal);
-      $("#segmentModal").addEventListener("click", (event) => {
-        if (event.target.id === "segmentModal") closeSegmentModal();
-      });
-      $("#testSegmentPlay").addEventListener("click", testEditedSegment);
-      $("#saveSegment").addEventListener("click", saveEditedSegment);
-      $("#notebookModeToggle").addEventListener("click", () => {
-        state.notebookMode = !state.notebookMode;
-        $("#notebookModeToggle").setAttribute("aria-checked", String(state.notebookMode));
-        renderRightPanel(state.data);
-      });
+              const dialogues = (basicText.dialogues || []).map((dialogue) => `
+                <div class="dialogue">
+                  <h3 class="dialogue-title">对话 ${escapeHtml(dialogue.label || "")}</h3>
+                  ${(dialogue.lines || []).map((line) => renderLine(line, mode)).join("")}
+                </div>
+              `).join("");
 
-      bindCopyBehavior();
-      initSamples().catch((error) => setStatus(error.message, true));
+              const expanded = Boolean(state.expandedTextSections.basic);
+              return `
+                <section class="text-section ${expanded ? "expanded" : "collapsed"}" data-text-section="basic">
+                  <div class="section-head">
+                    <h2>${escapeHtml(basicText.title || "基本课文")}</h2>
+                    <span class="section-actions">
+                      <span class="section-label">基本句 + 甲乙对话</span>
+                      <button class="section-display-toggle" type="button" data-display-section="basic">${textDisplayModeLabels[mode]}</button>
+                      <button class="section-toggle" type="button" data-toggle-section="basic" aria-expanded="${expanded ? "true" : "false"}">${expanded ? "▾ 收起" : "▸ 展开"}</button>
+                    </span>
+                  </div>
+                  ${expanded ? `<div class="basic-sentences">${sentences}</div>${dialogues}` : ""}
+                </section>
+              `;
+            }
+
+            function renderApplication(applicationText) {
+              if (!applicationText) return "";
+              const mode = state.textDisplayModes.application || "both";
+              const blocks = (applicationText.blocks || []).map((block) => {
+                if (block.type === "dialogue") {
+                  return `<div class="dialogue">${(block.lines || []).map((line) => renderLine(line, mode)).join("")}</div>`;
+                }
+                if (mode === "ja") return "";
+                return `
+                  <div class="block ${escapeHtml(block.type || "narration")}">
+                    <div class="block-title">${escapeHtml(block.type || "narration")}</div>
+                    <div class="cn">${escapeHtml(block.text || "")}</div>
+                    ${block.rawText && block.rawText !== block.text ? `<div class="raw">${escapeHtml(block.rawText)}</div>` : ""}
+                  </div>
+                `;
+              }).join("");
+
+              const expanded = Boolean(state.expandedTextSections.application);
+              return `
+                <section class="text-section ${expanded ? "expanded" : "collapsed"}" data-text-section="application">
+                  <div class="section-head">
+                    <h2>${escapeHtml(applicationText.title || "应用课文")}</h2>
+                    <span class="section-actions">
+                      <span class="section-label">旁白 / 场景 / 多人对话</span>
+                      <button class="section-display-toggle" type="button" data-display-section="application">${textDisplayModeLabels[mode]}</button>
+                      <button class="section-toggle" type="button" data-toggle-section="application" aria-expanded="${expanded ? "true" : "false"}">${expanded ? "▾ 收起" : "▸ 展开"}</button>
+                    </span>
+                  </div>
+                  ${expanded ? blocks : ""}
+                </section>
+              `;
+            }
+
+            function renderLine(line, mode = "both") {
+              const segmentId = registerSegment(line.audioSegment);
+              registerItem(line);
+              return `
+                <div class="line${segmentId ? " has-audio" : ""}" data-item-id="${escapeHtml(line.id || "")}" ${segmentId ? `data-play-segment-id="${escapeHtml(segmentId)}"` : ""}>
+                  <div><span class="speaker">${escapeHtml(line.speaker || "?")}</span></div>
+                  <div>${renderTextContent(line, mode)}</div>
+                  <div>${segmentActions(line, segmentId, line.audioSegment)}</div>
+                </div>
+              `;
+            }
+
+            function segmentActions(item, segmentId, segment) {
+              return `
+                <div class="segment-actions">
+                  ${segmentButton(segmentId, segment)}
+                  ${segmentReviewStatus(segment)}
+                  ${item?.id && segment ? `<button class="audio-button segment-settings" type="button" data-edit-item-id="${escapeHtml(item.id)}" title="设置音频区间" aria-label="设置音频区间">⚙</button>` : ""}
+                </div>
+              `;
+            }
+
+            function segmentReviewStatus(segment) {
+              if (!segment) return "";
+              const pending = segment.review?.status !== "approved";
+              const score = Number(segment.matchScore);
+              const status = pending ? "待核对" : "已通过";
+              const source = segment.timingSource === "azure-speech-word-timestamp-with-boundary-padding" ? "Azure 句界" : "旧标注";
+              const diagnostics = [
+                source,
+                Number.isFinite(score) ? `匹配 ${(score * 100).toFixed(0)}%` : "",
+                ...(segment.alignmentIssues || []),
+                segment.review?.note || ""
+              ].filter(Boolean).join(" · ");
+              return `<span class="audio-review-status ${pending ? "pending" : ""}" title="${escapeHtml(diagnostics)}">${status}${Number.isFinite(score) ? ` ${(score * 100).toFixed(0)}%` : ""}</span>`;
+            }
+
+            function segmentButton(segmentId, segment) {
+              if (!segmentId || !segment) return `<span class="audio-placeholder"></span>`;
+              return `<button class="audio-button" type="button" data-segment-id="${escapeHtml(segmentId)}" title="${escapeHtml(formatSegmentTime(segment))}" aria-label="播放音频片段">▶</button>`;
+            }
+
+            function registerItem(item) {
+              if (item?.id) state.itemMap.set(item.id, item);
+            }
+
+            function registerSegment(segment) {
+              if (!segment) return "";
+              const id = `segment-${state.segmentSeq += 1}`;
+              state.segmentMap.set(id, segment);
+              return id;
+            }
+
+            function collectAudioSegments(data) {
+              return [
+                ...(data?.basicText?.basicSentences || []),
+                ...(data?.basicText?.dialogues || []).flatMap((dialogue) => dialogue.lines || []),
+                ...(data?.applicationText?.blocks || []).flatMap((block) => block.lines || [])
+              ].map((item) => item.audioSegment).filter(Boolean);
+            }
+
+            function renderJapanese(item) {
+              const segments = Array.isArray(item?.segments) ? item.segments : [];
+              if (!segments.length) return `<span class="base-text">${escapeHtml(item?.text || "")}</span>`;
+              return segments.map((segment) => {
+                const text = segment?.text || "";
+                const ruby = segment?.ruby || "";
+                if (!ruby) return `<span class="base-text">${escapeHtml(text)}</span>`;
+                return rubyTextSegments(text, ruby).map((part) => {
+                  if (!part.ruby) return `<span class="base-text">${escapeHtml(part.text)}</span>`;
+                  return `<ruby><rb>${escapeHtml(part.text)}</rb><rt aria-hidden="true">${escapeHtml(part.ruby)}</rt></ruby>`;
+                }).join("");
+              }).join("");
+            }
+
+            function hasKanji(value) {
+              return /[\u3400-\u9fff々〆ヵヶ]/.test(value);
+            }
+
+            function isKanjiChar(char) {
+              return /[\u3400-\u9fff々〆ヵヶ]/.test(char);
+            }
+
+            function toHiragana(value) {
+              return String(value || "").replace(/[\u30a1-\u30f6]/g, (char) =>
+                String.fromCharCode(char.charCodeAt(0) - 0x60)
+              );
+            }
+
+            function rubyTextSegments(text, ruby) {
+              if (!text || !ruby || !hasKanji(text)) return [{ text }];
+
+              const tokens = [];
+              for (const char of [...text]) {
+                const kind = isKanjiChar(char) ? "kanji" : "plain";
+                const last = tokens[tokens.length - 1];
+                if (last?.kind === kind) last.text += char;
+                else tokens.push({ kind, text: char });
+              }
+
+              if (tokens.every((token) => token.kind === "kanji")) return [{ text, ruby }];
+
+              const parts = [];
+              let rubyCursor = 0;
+              const normalizedRuby = toHiragana(ruby);
+
+              tokens.forEach((token, index) => {
+                if (token.kind === "plain") {
+                  const reading = toHiragana(token.text);
+                  if (normalizedRuby.slice(rubyCursor).startsWith(reading)) rubyCursor += reading.length;
+                  parts.push({ text: token.text });
+                  return;
+                }
+
+                const nextPlain = tokens.slice(index + 1).find((item) => item.kind === "plain");
+                let rubyEnd = ruby.length;
+                if (nextPlain) {
+                  const nextReading = toHiragana(nextPlain.text);
+                  const found = normalizedRuby.indexOf(nextReading, rubyCursor + 1);
+                  if (found >= 0) rubyEnd = found;
+                }
+
+                const tokenRuby = ruby.slice(rubyCursor, rubyEnd);
+                rubyCursor = rubyEnd;
+                parts.push(tokenRuby ? { text: token.text, ruby: tokenRuby } : { text: token.text });
+              });
+
+              return parts;
+            }
+
+            function renderTextContent(item, mode = "both") {
+              const parts = [];
+              if (mode !== "zh") {
+                parts.push(`<div class="jp" data-copy-text="${escapeHtml(copyTextForJapanese(item))}">${renderJapanese(item)}</div>`);
+              }
+              if (mode !== "ja") {
+                parts.push(`<div class="cn">${escapeHtml(item?.translationZh || "")}</div>`);
+              }
+              return parts.join("");
+            }
+
+            function copyTextForJapanese(item) {
+              const segments = Array.isArray(item?.segments) ? item.segments : [];
+              return segments.length ? segments.map((segment) => segment?.text || "").join("") : item?.text || "";
+            }
+
+            function bindSegmentButtons() {
+              $("#textPreview").querySelectorAll("[data-toggle-section]").forEach((button) => {
+                button.addEventListener("click", () => {
+                  const section = button.dataset.toggleSection;
+                  if (!section) return;
+                  state.expandedTextSections = {
+                    ...state.expandedTextSections,
+                    [section]: !state.expandedTextSections[section]
+                  };
+                  render();
+                });
+              });
+              $("#textPreview").querySelectorAll("[data-display-section]").forEach((button) => {
+                button.addEventListener("click", () => {
+                  const section = button.dataset.displaySection;
+                  if (!section) return;
+                  const current = state.textDisplayModes[section] || "both";
+                  const next = textDisplayModeOrder[(textDisplayModeOrder.indexOf(current) + 1) % textDisplayModeOrder.length];
+                  state.textDisplayModes = { ...state.textDisplayModes, [section]: next };
+                  render();
+                });
+              });
+              $("#textPreview").querySelectorAll(".sentence[data-play-segment-id], .line[data-play-segment-id]").forEach((row) => {
+                row.addEventListener("click", (event) => {
+                  if (event.target.closest("button[data-segment-id]")) return;
+                  const segmentId = row.dataset.playSegmentId;
+                  if (!segmentId) return;
+                  playSegment(state.segmentMap.get(segmentId));
+                });
+              });
+              $("#textPreview").querySelectorAll("[data-segment-id]").forEach((button) => {
+                button.addEventListener("click", (event) => {
+                  event.stopPropagation();
+                  playSegment(state.segmentMap.get(button.dataset.segmentId));
+                });
+              });
+              $("#textPreview").querySelectorAll("[data-edit-item-id]").forEach((button) => {
+                button.addEventListener("click", (event) => {
+                  event.stopPropagation();
+                  openSegmentModal(button.dataset.editItemId).catch((error) => setStatus(error.message, true));
+                });
+              });
+            }
+
+            function bindCopyBehavior() {
+              $("#textPreview").addEventListener("copy", (event) => {
+                const selection = window.getSelection();
+                if (!selection || selection.isCollapsed || selection.rangeCount !== 1) return;
+                const range = selection.getRangeAt(0);
+                const copied = selectedBaseText(range);
+                if (!copied) return;
+                event.clipboardData.setData("text/plain", copied);
+                event.preventDefault();
+              });
+            }
+
+            function selectedBaseText(range) {
+              const selectedNodes = [...$("#textPreview").querySelectorAll(".jp[data-copy-text]")]
+                .filter((node) => range.intersectsNode(node));
+              if (!selectedNodes.length) return "";
+              return selectedNodes.map((node) => node.dataset.copyText || node.textContent || "").join("\n");
+            }
+
+            function formatSegmentTime(segment) {
+              return `${Number(segment.start || 0).toFixed(3)}s - ${Number(segment.end || 0).toFixed(3)}s`;
+            }
+
+            async function playSegment(segment) {
+              if (!segment?.sourceUrl) {
+                setStatus("当前句子没有音频片段。", true);
+                return;
+              }
+              clearInterval(state.stopTimer);
+              state.audio.pause();
+              state.audio.src = segment.sourceUrl;
+              try {
+                await waitForAudioMetadata();
+                state.audio.currentTime = Math.max(0, Number(segment.start) || 0);
+                state.stopTimer = window.setInterval(() => {
+                  if (state.audio.currentTime >= Number(segment.end || 0)) {
+                    state.audio.pause();
+                    clearInterval(state.stopTimer);
+                  }
+                }, 30);
+                await state.audio.play();
+              } catch (error) {
+                clearInterval(state.stopTimer);
+                setStatus(`播放失败：${error.message}`, true);
+              }
+            }
+
+            function modalStatus(message, isError = false) {
+              $("#segmentModalStatus").textContent = message || "";
+              $("#segmentModalStatus").classList.toggle("error", Boolean(isError));
+            }
+
+            async function loadEditableSegment(itemId) {
+              const item = state.itemMap.get(itemId);
+              const lessonNo = state.selectedSample?.lessonNo || lessonNoFromData() || lessonNoFromLocation();
+              const editableSegment = item?.audioSegment || null;
+              if (!item || !editableSegment) throw new Error("当前句子没有可编辑的音频区间。");
+              return { item, lessonNo, segment: editableSegment };
+            }
+
+            async function openSegmentModal(itemId) {
+              const editing = await loadEditableSegment(itemId);
+              state.editing = editing;
+              $("#segmentModalText").textContent = editing.item.text || "";
+              $("#segmentStart").value = Number(editing.segment.start || 0).toFixed(3);
+              $("#segmentEnd").value = Number(editing.segment.end || 0).toFixed(3);
+              modalStatus(`当前区间：${formatSegmentTime(editing.segment)}`);
+              $("#segmentModal").classList.add("open");
+              $("#segmentModal").setAttribute("aria-hidden", "false");
+              $("#segmentStart").focus();
+            }
+
+            function closeSegmentModal() {
+              state.editing = null;
+              $("#segmentModal").classList.remove("open");
+              $("#segmentModal").setAttribute("aria-hidden", "true");
+            }
+
+            function editedRange() {
+              const start = Number($("#segmentStart").value);
+              const end = Number($("#segmentEnd").value);
+              if (!Number.isFinite(start) || !Number.isFinite(end) || start < 0 || end <= start) {
+                throw new Error("请填写有效的开始和结束时间。");
+              }
+              return {
+                start: Math.round(start * 1000) / 1000,
+                end: Math.round(end * 1000) / 1000
+              };
+            }
+
+            async function testEditedSegment() {
+              if (!state.editing) return;
+              try {
+                const range = editedRange();
+                await playSegment({ ...state.editing.segment, ...range });
+                modalStatus(`测试播放：${range.start.toFixed(3)}s - ${range.end.toFixed(3)}s`);
+              } catch (error) {
+                modalStatus(error.message, true);
+              }
+            }
+
+            async function saveEditedSegment() {
+              if (!state.editing) return;
+              try {
+                const range = editedRange();
+                modalStatus("正在保存...");
+                $("#saveSegment").disabled = true;
+                const response = await fetch("/api/ocr/text-audio-segment", {
+                  method: "PUT",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify({
+                    lessonId: state.editing.lessonNo,
+                    itemId: state.editing.item.id,
+                    start: range.start,
+                    end: range.end
+                  })
+                });
+                const result = await response.json();
+                if (!response.ok) throw new Error(result.error || `保存失败：${response.status}`);
+                state.editing.item.audioSegment = result.audioSegment;
+                render();
+                closeSegmentModal();
+                setStatus(`音频区间已保存：${result.updatedFiles.join("，")}`);
+              } catch (error) {
+                modalStatus(error.message, true);
+              } finally {
+                $("#saveSegment").disabled = false;
+              }
+            }
+
+            function waitForAudioMetadata() {
+              if (state.audio.readyState >= 1) return Promise.resolve();
+              state.audio.load();
+              return new Promise((resolve, reject) => {
+                const cleanup = () => {
+                  state.audio.removeEventListener("loadedmetadata", handleLoaded);
+                  state.audio.removeEventListener("error", handleError);
+                };
+                const handleLoaded = () => {
+                  cleanup();
+                  resolve();
+                };
+                const handleError = () => {
+                  cleanup();
+                  reject(new Error("音频加载失败"));
+                };
+                state.audio.addEventListener("loadedmetadata", handleLoaded);
+                state.audio.addEventListener("error", handleError);
+              });
+            }
+
+            function notebookLessonKey() {
+              return String(state.data?.lessonId || state.selectedSample?.lessonNo || lessonNoFromLocation() || "manual");
+            }
+
+            function readTextNotebookStore() {
+              try {
+                const stored = JSON.parse(localStorage.getItem(TEXT_NOTEBOOK_STORAGE_KEY) || "{}");
+                return stored && typeof stored === "object" ? stored : {};
+              } catch {
+                return {};
+              }
+            }
+
+            function notesForTextNotebook() {
+              const stored = readTextNotebookStore()[notebookLessonKey()];
+              // 兼容此前单一 textarea 写入的字符串数据。
+              if (typeof stored === "string") return stored ? [{ id: "legacy", text: stored }] : [];
+              return Array.isArray(stored) ? stored : [];
+            }
+
+            function saveTextNotebook(notes) {
+              const store = readTextNotebookStore();
+              localStorage.setItem(TEXT_NOTEBOOK_STORAGE_KEY, JSON.stringify({ ...store, [notebookLessonKey()]: notes }));
+            }
+
+            function addTextNotebookNote() {
+              const note = { id: `${Date.now()}-${Math.random().toString(16).slice(2)}`, text: "" };
+              saveTextNotebook([...notesForTextNotebook(), note]);
+              renderNotebookPanel(note.id);
+            }
+
+            function updateTextNotebookNote(noteId, text) {
+              saveTextNotebook(notesForTextNotebook().map((note) => note.id === noteId ? { ...note, text } : note));
+            }
+
+            function renderRightPanel(data) {
+              if (state.notebookMode) {
+                renderNotebookPanel();
+                return;
+              }
+              renderImages(data);
+            }
+
+            function renderNotebookPanel(focusNoteId = "") {
+              const notes = notesForTextNotebook();
+              $("#imagePanel").innerHTML = `
+                <section class="lesson-notebook">
+                  <div class="lesson-notebook-head">
+                    <div>
+                      <h2>课文笔记</h2>
+                      <p>记录本课课文中的表达、翻译或疑问；内容会自动保存在本机。</p>
+                    </div>
+                    <button class="lesson-notebook-add" id="addLessonNotebookNote" type="button">添加</button>
+                  </div>
+                  <div class="lesson-note-list">
+                    ${notes.length
+                      ? notes.map((note) => `<textarea class="lesson-notebook-input" data-note-id="${escapeHtml(note.id)}" placeholder="开始记录…">${escapeHtml(note.text)}</textarea>`).join("")
+                      : '<p class="lesson-note-empty">还没有笔记。点击“添加”开始记录。</p>'}
+                  </div>
+                </section>
+              `;
+              $("#addLessonNotebookNote").addEventListener("click", addTextNotebookNote);
+              $("#imagePanel").querySelectorAll("[data-note-id]").forEach((input) => {
+                input.addEventListener("input", () => updateTextNotebookNote(input.dataset.noteId, input.value));
+              });
+              if (focusNoteId) $("#imagePanel").querySelector(`[data-note-id="${focusNoteId}"]`)?.focus();
+            }
+
+            function renderImages(data) {
+              const images = data?.sourceImages || [];
+              $("#imagePanel").innerHTML = images.length ? images.map((image) => {
+                const src = assetSrc(image.path);
+                return `
+                  <div class="image-block">
+                    <img class="source-image" src="${escapeHtml(src)}" alt="${escapeHtml(image.section || "source")}" />
+                  </div>
+                `;
+              }).join("") : `<p class="status">暂无 sourceImages。</p>`;
+            }
+
+            $("#loadDefault").addEventListener("click", () => loadDefault().catch((error) => setStatus(error.message, true)));
+            $("#generateAudio").addEventListener("click", generateAudioAlignment);
+            $("#parseInput").addEventListener("click", () => {
+              try {
+                setData(JSON.parse($("#jsonInput").value), "文本框 JSON");
+              } catch (error) {
+                setStatus(error.message, true);
+              }
+            });
+            $("#fileInput").addEventListener("change", async (event) => {
+              const file = event.target.files?.[0];
+              if (!file) return;
+              try {
+                setData(JSON.parse(await file.text()), file.name);
+              } catch (error) {
+                setStatus(error.message, true);
+              }
+            });
+            $("#closeSegmentModal").addEventListener("click", closeSegmentModal);
+            $("#segmentModal").addEventListener("click", (event) => {
+              if (event.target.id === "segmentModal") closeSegmentModal();
+            });
+            $("#testSegmentPlay").addEventListener("click", testEditedSegment);
+            $("#saveSegment").addEventListener("click", saveEditedSegment);
+            $("#notebookModeToggle").addEventListener("click", () => {
+              state.notebookMode = !state.notebookMode;
+              $("#notebookModeToggle").setAttribute("aria-checked", String(state.notebookMode));
+              renderRightPanel(state.data);
+            });
+
+            bindCopyBehavior();
+            initSamples().catch((error) => setStatus(error.message, true));
     </script>
   </body>
 </html>

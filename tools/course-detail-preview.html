@@ -218,6 +218,97 @@
         color: #fff;
       }
 
+      .course-account {
+        position: relative;
+        flex: 0 0 auto;
+      }
+
+      .course-account-trigger,
+      .course-account-login {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        min-height: 38px;
+        padding: 5px 9px;
+        border: 0;
+        border-radius: 8px;
+        background: transparent;
+        color: var(--ink);
+        font: inherit;
+        text-align: left;
+        cursor: pointer;
+      }
+
+      .course-account-trigger:hover,
+      .course-account-trigger:focus-visible,
+      .course-account-login:hover,
+      .course-account-login:focus-visible {
+        background: #e8f2ee;
+        color: var(--accent);
+        outline: none;
+      }
+
+      .course-account-main {
+        display: grid;
+        gap: 1px;
+        min-width: 0;
+        font-size: 13px;
+        font-weight: 700;
+      }
+
+      .course-account-email {
+        max-width: 180px;
+        overflow: hidden;
+        color: var(--muted);
+        font-size: 11px;
+        font-weight: 620;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .course-account-chevron {
+        color: var(--muted);
+      }
+
+      .course-account-menu {
+        position: absolute;
+        top: calc(100% + 5px);
+        right: 0;
+        display: none;
+        min-width: 104px;
+        padding: 5px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: #fff;
+        box-shadow: var(--shadow);
+      }
+
+      .course-account.open .course-account-menu {
+        display: block;
+      }
+
+      .course-account-menu button {
+        width: 100%;
+        min-height: 34px;
+        padding: 0 10px;
+        border: 0;
+        border-radius: 7px;
+        background: transparent;
+        color: var(--ink);
+        font: inherit;
+        font-size: 13px;
+        font-weight: 740;
+        text-align: left;
+        cursor: pointer;
+      }
+
+      .course-account-menu button:hover,
+      .course-account-menu button:focus-visible {
+        background: #e8f2ee;
+        color: var(--accent);
+        outline: none;
+      }
+
       .main {
         display: grid;
         grid-template-columns: minmax(0, 1fr);
@@ -416,7 +507,6 @@
         </div>
         <nav class="home-nav" aria-label="主导航">
           <a href="/">首页</a>
-          <a href="/favorites">收藏</a>
           <a href="/help">帮助</a>
         </nav>
         <form class="lesson-form" id="lessonForm">
@@ -424,6 +514,7 @@
           <input id="lessonInput" name="lesson" type="number" min="1" max="48" step="1" />
           <button class="primary" type="submit">切换课程</button>
         </form>
+        <div class="course-account" id="courseAccount"></div>
       </header>
 
       <main class="main">
@@ -485,6 +576,60 @@
       };
 
       const $ = (selector) => document.querySelector(selector);
+
+      function escapeHtml(value) {
+        return String(value ?? "").replace(/[&<>\"']/g, (char) => ({
+          "&": "&amp;",
+          "<": "&lt;",
+          ">": "&gt;",
+          "\"": "&quot;",
+          "'": "&#39;"
+        }[char]));
+      }
+
+      function getStoredUser() {
+        try {
+          const raw = localStorage.getItem("light_blog_user");
+          return raw ? JSON.parse(raw) : null;
+        } catch {
+          return null;
+        }
+      }
+
+      function isLoggedIn() {
+        return Boolean(localStorage.getItem("light_blog_token"));
+      }
+
+      function renderCourseAccount() {
+        const account = $("#courseAccount");
+        if (!account) return;
+        if (!isLoggedIn()) {
+          account.innerHTML = `<button class="course-account-login" type="button" data-course-login>登录</button>`;
+          account.querySelector("[data-course-login]").addEventListener("click", redirectToLogin);
+          return;
+        }
+        const user = getStoredUser() || {};
+        const username = user.username || "已登录";
+        const email = user.email || "";
+        account.innerHTML = `
+          <button class="course-account-trigger" type="button" aria-expanded="false" aria-label="账号菜单">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            <span class="course-account-main"><span>${escapeHtml(username)}</span>${email ? `<span class="course-account-email">${escapeHtml(email)}</span>` : ""}</span>
+            <svg class="course-account-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <div class="course-account-menu"><button type="button" data-course-logout>退出</button></div>
+        `;
+        const trigger = account.querySelector(".course-account-trigger");
+        trigger.addEventListener("click", () => {
+          const open = account.classList.toggle("open");
+          trigger.setAttribute("aria-expanded", String(open));
+        });
+        account.querySelector("[data-course-logout]").addEventListener("click", () => {
+          localStorage.removeItem("light_blog_token");
+          localStorage.removeItem("light_blog_user");
+          renderCourseAccount();
+        });
+      }
 
       function lessonNoFromLocation() {
         const params = new URLSearchParams(location.search);
@@ -556,6 +701,7 @@
       function render() {
         $("#pageTitle").textContent = `标日初级第${state.lessonNo}课`;
         $("#lessonInput").value = String(state.lessonNo);
+        renderCourseAccount();
         renderSteps();
         renderFrame();
         updateUrl();

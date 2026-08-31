@@ -22198,11 +22198,16 @@ function PracticePreview({ practice, localPractice: localPractice2 = null }) {
   const activities31 = practice.activities;
   const practiceSetId = practice.practiceSetId || null;
   const preview = Boolean(practice.preview);
-  const [session, setSession] = (0, import_react.useState)({ lessonId: practice.lessonId, activities: {} });
+  const [session, setSession] = (0, import_react.useState)({
+    lessonId: practice.lessonId,
+    activities: {}
+  });
   const [sessionLoadKey, setSessionLoadKey] = (0, import_react.useState)(0);
   const [isReady, setIsReady] = (0, import_react.useState)(false);
   const [answerAlternatives, setAnswerAlternatives] = (0, import_react.useState)({});
-  const [currentActivityId, setCurrentActivityId] = (0, import_react.useState)(() => activityIdFromHash(window.location.hash, activities31[0]?.id));
+  const [currentActivityId, setCurrentActivityId] = (0, import_react.useState)(
+    () => activityIdFromHash(window.location.hash, activities31[0]?.id)
+  );
   (0, import_react.useEffect)(() => {
     let mounted = true;
     setIsReady(false);
@@ -22242,31 +22247,47 @@ function PracticePreview({ practice, localPractice: localPractice2 = null }) {
   (0, import_react.useEffect)(() => {
     if (!activities31.some((activity) => activity.id === currentActivityId) && activities31[0]?.id) {
       setCurrentActivityId(activities31[0].id);
-      if (typeof window !== "undefined") window.location.hash = activities31[0].id;
+      if (typeof window !== "undefined")
+        window.location.hash = activities31[0].id;
     }
   }, [activities31, currentActivityId]);
-  const currentIndex = Math.max(0, activities31.findIndex((activity) => activity.id === currentActivityId));
+  const currentIndex = Math.max(
+    0,
+    activities31.findIndex((activity) => activity.id === currentActivityId)
+  );
   const currentActivity = activities31[currentIndex] || activities31[0];
   const previousActivity = currentIndex > 0 ? activities31[currentIndex - 1] : null;
   const nextActivity = currentIndex < activities31.length - 1 ? activities31[currentIndex + 1] : null;
-  const currentRecord = normalizeActivityRecord(currentActivity, session.activities?.[currentActivity?.id]);
+  const currentRecord = normalizeActivityRecord(
+    currentActivity,
+    session.activities?.[currentActivity?.id]
+  );
   const isPublished = Boolean(practiceSetId);
   (0, import_react.useEffect)(() => {
     if (!isReady) return;
-    const progress = activities31.reduce((total, activity) => {
-      const record = normalizeActivityRecord(activity, session.activities?.[activity.id]);
-      const activityProgress = activityProgressSummary(activity, record);
-      return {
-        completed: total.completed + activityProgress.completed,
-        total: total.total + activityProgress.total
-      };
-    }, { completed: 0, total: 0 });
-    window.localStorage.setItem(homeProgressSnapshotKey(practice.lessonId), JSON.stringify({
-      lessonId: practice.lessonId,
-      practiceSetId,
-      ...progress,
-      updatedAt: (/* @__PURE__ */ new Date()).toISOString()
-    }));
+    const progress = activities31.reduce(
+      (total, activity) => {
+        const record = normalizeActivityRecord(
+          activity,
+          session.activities?.[activity.id]
+        );
+        const activityProgress = activityProgressSummary(activity, record);
+        return {
+          completed: total.completed + activityProgress.completed,
+          total: total.total + activityProgress.total
+        };
+      },
+      { completed: 0, total: 0 }
+    );
+    window.localStorage.setItem(
+      homeProgressSnapshotKey(practice.lessonId),
+      JSON.stringify({
+        lessonId: practice.lessonId,
+        practiceSetId,
+        ...progress,
+        updatedAt: (/* @__PURE__ */ new Date()).toISOString()
+      })
+    );
   }, [activities31, isReady, practice.lessonId, practiceSetId, session]);
   (0, import_react.useEffect)(() => {
     window.initPracticeAnswerFormatter?.();
@@ -22311,7 +22332,11 @@ function PracticePreview({ practice, localPractice: localPractice2 = null }) {
         [activityId]: saved
       }
     }));
-    notifyPracticeProgressChanged({ lessonId: practice.lessonId, practiceSetId, activityId });
+    notifyPracticeProgressChanged({
+      lessonId: practice.lessonId,
+      practiceSetId,
+      activityId
+    });
   };
   return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("main", { className: "practice-shell", children: [
     /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("aside", { className: "practice-sidebar", children: [
@@ -22320,7 +22345,10 @@ function PracticePreview({ practice, localPractice: localPractice2 = null }) {
         /* @__PURE__ */ (0, import_jsx_runtime.jsx)("strong", { children: practice.title })
       ] }),
       /* @__PURE__ */ (0, import_jsx_runtime.jsx)("nav", { className: "activity-nav", "aria-label": "\u7EC3\u4E60\u6D3B\u52A8", children: activities31.map((activity) => {
-        const record = normalizeActivityRecord(activity, session.activities?.[activity.id]);
+        const record = normalizeActivityRecord(
+          activity,
+          session.activities?.[activity.id]
+        );
         const progress = activityProgressSummary(activity, record);
         return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
           "a",
@@ -22335,36 +22363,43 @@ function PracticePreview({ practice, localPractice: localPractice2 = null }) {
                 activity.order
               ] }),
               /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: activity.title }),
-              /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "activity-nav-progress", "aria-label": `\u5B8C\u6210\u5EA6 ${progress.percent}%${progress.incorrect ? `\uFF0C\u9519\u9898 ${progress.incorrect} \u9898` : ""}`, children: [
-                /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "activity-progress-meta", children: [
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("em", { children: [
-                    "\u5DF2\u505A ",
-                    progress.completed,
-                    "/",
-                    progress.total,
-                    progress.incorrect ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { className: "activity-progress-wrong", children: [
-                      "\uFF08\u9519 ",
-                      progress.incorrect,
-                      "\uFF09"
-                    ] }) : null
-                  ] }),
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("strong", { children: [
-                    progress.percent,
-                    "%"
-                  ] })
-                ] }),
-                /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
-                  "div",
-                  {
-                    className: "activity-progress-track",
-                    role: "progressbar",
-                    "aria-valuemin": "0",
-                    "aria-valuemax": "100",
-                    "aria-valuenow": progress.percent,
-                    children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("i", { style: { width: `${progress.percent}%` } })
-                  }
-                )
-              ] })
+              /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+                "div",
+                {
+                  className: "activity-nav-progress",
+                  "aria-label": `\u5B8C\u6210\u5EA6 ${progress.percent}%${progress.incorrect ? `\uFF0C\u9519\u9898 ${progress.incorrect} \u9898` : ""}`,
+                  children: [
+                    /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "activity-progress-meta", children: [
+                      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("em", { children: [
+                        "\u5DF2\u505A ",
+                        progress.completed,
+                        "/",
+                        progress.total,
+                        progress.incorrect ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { className: "activity-progress-wrong", children: [
+                          "\uFF08\u9519 ",
+                          progress.incorrect,
+                          "\uFF09"
+                        ] }) : null
+                      ] }),
+                      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("strong", { children: [
+                        progress.percent,
+                        "%"
+                      ] })
+                    ] }),
+                    /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                      "div",
+                      {
+                        className: "activity-progress-track",
+                        role: "progressbar",
+                        "aria-valuemin": "0",
+                        "aria-valuemax": "100",
+                        "aria-valuenow": progress.percent,
+                        children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("i", { style: { width: `${progress.percent}%` } })
+                      }
+                    )
+                  ]
+                }
+              )
             ]
           },
           activity.id
@@ -22373,7 +22408,14 @@ function PracticePreview({ practice, localPractice: localPractice2 = null }) {
     ] }),
     /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", { className: "practice-content", children: [
       /* @__PURE__ */ (0, import_jsx_runtime.jsx)(PracticeTextHighlighter, {}),
-      admin ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(PracticePublishPanel, { lessonId: practice.lessonId, practice, localPractice: localPractice2 }) : null,
+      admin ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+        PracticePublishPanel,
+        {
+          lessonId: practice.lessonId,
+          practice,
+          localPractice: localPractice2
+        }
+      ) : null,
       admin ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
         PracticeAlternativeSyncPanel,
         {
@@ -22399,13 +22441,28 @@ function PracticePreview({ practice, localPractice: localPractice2 = null }) {
         },
         `${currentActivity.id}:${sessionLoadKey}:${admin ? "admin" : "user"}`
       ) : null,
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("section", { className: "source-page-strip", "aria-label": "\u6559\u6750\u539F\u9875", children: practice.sourcePages.map((sourcePage) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("a", { href: sourcePage.imagePath, target: "_blank", rel: "noreferrer", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", { src: sourcePage.imagePath, alt: `\u6559\u6750\u7B2C ${sourcePage.pageNo} \u9875` }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { children: [
-          "p.",
-          sourcePage.pageNo
-        ] })
-      ] }, sourcePage.pageNo)) })
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("section", { className: "source-page-strip", "aria-label": "\u6559\u6750\u539F\u9875", children: practice.sourcePages.map((sourcePage) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+        "a",
+        {
+          href: sourcePage.imagePath,
+          target: "_blank",
+          rel: "noreferrer",
+          children: [
+            /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+              "img",
+              {
+                src: sourcePage.imagePath,
+                alt: `\u6559\u6750\u7B2C ${sourcePage.pageNo} \u9875`
+              }
+            ),
+            /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { children: [
+              "p.",
+              sourcePage.pageNo
+            ] })
+          ]
+        },
+        sourcePage.pageNo
+      )) })
     ] })
   ] });
 }
@@ -22414,10 +22471,19 @@ function PracticeTextHighlighter() {
   (0, import_react.useEffect)(() => {
     const capture = () => {
       const selectedRange = window.getSelection()?.rangeCount ? window.getSelection().getRangeAt(0) : null;
-      if (!selectedRange || selectedRange.collapsed || !String(selectedRange).trim() || !closestElement(selectedRange.commonAncestorContainer)?.closest(".practice-content") || closestElement(selectedRange.commonAncestorContainer)?.closest("input, textarea")) return setSelection(null);
+      if (!selectedRange || selectedRange.collapsed || !String(selectedRange).trim() || !closestElement(selectedRange.commonAncestorContainer)?.closest(
+        ".practice-content"
+      ) || closestElement(selectedRange.commonAncestorContainer)?.closest(
+        "input, textarea"
+      ))
+        return setSelection(null);
       const range = expandRangeToRuby(selectedRange.cloneRange());
       const rect = range.getBoundingClientRect();
-      setSelection({ range: range.cloneRange(), top: rect.bottom + window.scrollY + 6, left: rect.left + window.scrollX });
+      setSelection({
+        range: range.cloneRange(),
+        top: rect.bottom + window.scrollY + 6,
+        left: rect.left + window.scrollX
+      });
     };
     const removeHighlight = (event) => {
       const mark = event.target instanceof Element ? event.target.closest("mark[data-practice-highlight]") : null;
@@ -22450,10 +22516,27 @@ function PracticeTextHighlighter() {
     setSelection(null);
   };
   if (!selection) return null;
-  return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "practice-highlight-palette", style: { top: selection.top, left: selection.left }, children: [
-    ["#fde68a", "#fecaca", "#bfdbfe", "#bbf7d0", "#e9d5ff"].map((color) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { type: "button", "aria-label": "\u6807\u8BB0\u989C\u8272", style: { backgroundColor: color }, onMouseDown: (event) => event.preventDefault(), onClick: () => apply(color) }, color)),
-    /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "\u70B9\u51FB\u6807\u8BB0\u53EF\u53D6\u6D88" })
-  ] });
+  return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+    "div",
+    {
+      className: "practice-highlight-palette",
+      style: { top: selection.top, left: selection.left },
+      children: [
+        ["#fde68a", "#fecaca", "#bfdbfe", "#bbf7d0", "#e9d5ff"].map((color) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+          "button",
+          {
+            type: "button",
+            "aria-label": "\u6807\u8BB0\u989C\u8272",
+            style: { backgroundColor: color },
+            onMouseDown: (event) => event.preventDefault(),
+            onClick: () => apply(color)
+          },
+          color
+        )),
+        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "\u70B9\u51FB\u6807\u8BB0\u53EF\u53D6\u6D88" })
+      ]
+    }
+  );
 }
 function closestElement(node) {
   return node instanceof Element ? node : node?.parentElement || null;
@@ -22479,10 +22562,13 @@ function homeProgressSnapshotKey(lessonId2) {
 }
 function notifyPracticeProgressChanged(detail) {
   if (typeof window === "undefined" || window.parent === window) return;
-  window.parent.postMessage({
-    type: "JAPAFLOW_PRACTICE_PROGRESS_CHANGED",
-    ...detail
-  }, window.location.origin);
+  window.parent.postMessage(
+    {
+      type: "JAPAFLOW_PRACTICE_PROGRESS_CHANGED",
+      ...detail
+    },
+    window.location.origin
+  );
 }
 function UnpublishedPracticeNotice() {
   return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", { className: "practice-blocked-panel", children: [
@@ -22501,8 +22587,14 @@ function PracticePublishPanel({ lessonId: lessonId2, practice, localPractice: lo
     if (!canPublish) return;
     setStatus({ state: "pending", message: "\u53D1\u5E03\u4E2D..." });
     try {
-      const published = await practiceSessionApi.publishLocalPractice({ lessonId: lessonId2, practice: localPractice2 });
-      setStatus({ state: "success", message: `\u5DF2\u53D1\u5E03 version ${published.version}` });
+      const published = await practiceSessionApi.publishLocalPractice({
+        lessonId: lessonId2,
+        practice: localPractice2
+      });
+      setStatus({
+        state: "success",
+        message: `\u5DF2\u53D1\u5E03 version ${published.version}`
+      });
     } catch (error) {
       setStatus({ state: "error", message: String(error.message || error) });
     }
@@ -22525,12 +22617,25 @@ function PracticePublishPanel({ lessonId: lessonId2, practice, localPractice: lo
       ] })
     ] }),
     /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "admin-publish-actions", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { type: "button", className: "secondary-action", onClick: handlePublish, disabled: !canPublish || status.state === "pending", children: databaseVersion ? "\u91CD\u65B0\u53D1\u5E03\u4E3A\u65B0\u7248\u672C" : "\u53D1\u5E03\u5230\u6570\u636E\u5E93" }),
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+        "button",
+        {
+          type: "button",
+          className: "secondary-action",
+          onClick: handlePublish,
+          disabled: !canPublish || status.state === "pending",
+          children: databaseVersion ? "\u91CD\u65B0\u53D1\u5E03\u4E3A\u65B0\u7248\u672C" : "\u53D1\u5E03\u5230\u6570\u636E\u5E93"
+        }
+      ),
       status.message ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: `admin-publish-status ${status.state}`, children: status.message }) : null
     ] })
   ] });
 }
-function PracticeAlternativeSyncPanel({ lessonId: lessonId2, practice, answerAlternatives }) {
+function PracticeAlternativeSyncPanel({
+  lessonId: lessonId2,
+  practice,
+  answerAlternatives
+}) {
   const [status, setStatus] = (0, import_react.useState)({ state: "idle", message: "" });
   const [syncedVersion, setSyncedVersion] = (0, import_react.useState)(null);
   const [expanded, setExpanded] = (0, import_react.useState)(false);
@@ -22550,7 +22655,10 @@ function PracticeAlternativeSyncPanel({ lessonId: lessonId2, practice, answerAlt
         sourcePromptHash: ""
       });
       setSyncedVersion(published.version);
-      setStatus({ state: "success", message: `\u5DF2\u540C\u6B65\u5230 version ${published.version}\uFF0C\u5237\u65B0\u540E\u52A0\u8F7D\u6570\u636E\u5E93\u7248\u672C\u3002` });
+      setStatus({
+        state: "success",
+        message: `\u5DF2\u540C\u6B65\u5230 version ${published.version}\uFF0C\u5237\u65B0\u540E\u52A0\u8F7D\u6570\u636E\u5E93\u7248\u672C\u3002`
+      });
     } catch (error) {
       setStatus({ state: "error", message: String(error.message || error) });
     }
@@ -22567,7 +22675,8 @@ function PracticeAlternativeSyncPanel({ lessonId: lessonId2, practice, answerAlt
         syncPlan.itemCount,
         " \u4E2A\u7EC3\u4E60\u9898\u5B58\u5728 ",
         syncPlan.answerCount,
-        " \u4E2A\u5019\u9009\u7B54\u6848\uFF0C\u5EFA\u8BAE\u540C\u6B65\u5230\u6570\u636E\u5E93\u3002"
+        " ",
+        "\u4E2A\u5019\u9009\u7B54\u6848\uFF0C\u5EFA\u8BAE\u540C\u6B65\u5230\u6570\u636E\u5E93\u3002"
       ] })
     ] }),
     /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "admin-publish-actions", children: [
@@ -22593,48 +22702,94 @@ function PracticeAlternativeSyncPanel({ lessonId: lessonId2, practice, answerAlt
       ),
       status.message ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: `admin-publish-status ${status.state}`, children: status.message }) : null
     ] }),
-    expanded && syncPlan.details.length ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "admin-alternative-details", children: syncPlan.details.map((detail) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("article", { className: "admin-alternative-detail", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "admin-alternative-detail-head", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("strong", { children: detail.activityTitle }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { children: [
-          detail.itemNumber ? `\u9898\u53F7 ${detail.itemNumber}` : detail.itemId,
-          detail.slotId !== "answer" ? ` \xB7 ${detail.slotId}` : ""
-        ] })
-      ] }),
-      detail.promptText ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { className: "admin-alternative-prompt", children: detail.promptText }) : null,
-      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "admin-answer-columns", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("em", { children: "\u5F53\u524D\u6570\u636E\u5E93\u7B54\u6848" }),
-          detail.standardAnswers.map((answer3, index) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("code", { children: answer3 }, index))
-        ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("em", { children: "\u5F85\u540C\u6B65\u5019\u9009\u7B54\u6848" }),
-          detail.candidateAnswers.map((answer3, index) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("code", { children: answer3 }, index))
-        ] })
-      ] })
-    ] }, `${detail.itemId}:${detail.slotId}`)) }) : null
+    expanded && syncPlan.details.length ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "admin-alternative-details", children: syncPlan.details.map((detail) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+      "article",
+      {
+        className: "admin-alternative-detail",
+        children: [
+          /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "admin-alternative-detail-head", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime.jsx)("strong", { children: detail.activityTitle }),
+            /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { children: [
+              detail.itemNumber ? `\u9898\u53F7 ${detail.itemNumber}` : detail.itemId,
+              detail.slotId !== "answer" ? ` \xB7 ${detail.slotId}` : ""
+            ] })
+          ] }),
+          detail.promptText ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { className: "admin-alternative-prompt", children: detail.promptText }) : null,
+          /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "admin-answer-columns", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [
+              /* @__PURE__ */ (0, import_jsx_runtime.jsx)("em", { children: "\u5F53\u524D\u6570\u636E\u5E93\u7B54\u6848" }),
+              detail.standardAnswers.map((answer3, index) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("code", { children: answer3 }, index))
+            ] }),
+            /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [
+              /* @__PURE__ */ (0, import_jsx_runtime.jsx)("em", { children: "\u5F85\u540C\u6B65\u5019\u9009\u7B54\u6848" }),
+              detail.candidateAnswers.map((answer3, index) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("code", { children: answer3 }, index))
+            ] })
+          ] })
+        ]
+      },
+      `${detail.itemId}:${detail.slotId}`
+    )) }) : null
   ] });
 }
-function PracticeActivity({ activity, practice, admin, record, isReady, answerAlternatives, onAnswerAlternativesChange, onSave, previousActivity, nextActivity, onNavigate }) {
+function PracticeActivity({
+  activity,
+  practice,
+  admin,
+  record,
+  isReady,
+  answerAlternatives,
+  onAnswerAlternativesChange,
+  onSave,
+  previousActivity,
+  nextActivity,
+  onNavigate
+}) {
   const layout = activity.layout || [];
   const assetMap = (0, import_react.useMemo)(() => activityAssetMap(activity), [activity]);
   const audioUrl2 = resolveActivityAudioUrl(practice, activity);
   const formRef = (0, import_react.useRef)(null);
   const summary = record?.grading?.summary || null;
   const [isAnswerSheetOpen, setIsAnswerSheetOpen] = (0, import_react.useState)(false);
-  const [submitStatus, setSubmitStatus] = (0, import_react.useState)({ state: "idle", message: "" });
-  const activityResponseScopeHint = resolveResponseScopeHint(activity.responseScope, activity.responseScopeHint);
+  const [submitStatus, setSubmitStatus] = (0, import_react.useState)({
+    state: "idle",
+    message: ""
+  });
+  const activityResponseScopeHint = resolveResponseScopeHint(
+    activity.responseScope,
+    activity.responseScopeHint
+  );
   const handleSubmit = async () => {
     if (!formRef.current) return;
     const answers = collectActivityAnswers(formRef.current, activity);
-    let grading = gradeActivity(activity, answers, void 0, answerAlternatives);
+    let grading = gradeActivity(
+      activity,
+      answers,
+      void 0,
+      answerAlternatives
+    );
     const needsReview = hasIncorrectTextAnswers(activity, grading);
-    setSubmitStatus({ state: "pending", message: needsReview ? "\u6B63\u5728\u590D\u6838\u53EF\u80FD\u7684\u53EF\u63A5\u53D7\u7B54\u6848..." : "\u63D0\u4EA4\u4E2D..." });
+    setSubmitStatus({
+      state: "pending",
+      message: needsReview ? "\u6B63\u5728\u590D\u6838\u53EF\u80FD\u7684\u53EF\u63A5\u53D7\u7B54\u6848..." : "\u63D0\u4EA4\u4E2D..."
+    });
     try {
-      const review = needsReview ? await reviewIncorrectTextAnswers({ practice, activity, answers, grading, answerAlternatives }) : { alternatives: answerAlternatives, acceptedCount: 0, reviewedCount: 0 };
+      const review = needsReview ? await reviewIncorrectTextAnswers({
+        practice,
+        activity,
+        answers,
+        grading,
+        answerAlternatives
+      }) : {
+        alternatives: answerAlternatives,
+        acceptedCount: 0,
+        reviewedCount: 0
+      };
       if (review.acceptedCount > 0) {
         onAnswerAlternativesChange(review.alternatives);
-        writeLocalAcceptedAnswerAlternatives(practice.lessonId, review.alternatives);
+        writeLocalAcceptedAnswerAlternatives(
+          practice.lessonId,
+          review.alternatives
+        );
         grading = {
           ...gradeActivity(activity, answers, void 0, review.alternatives),
           answerReview: {
@@ -22643,95 +22798,176 @@ function PracticeActivity({ activity, practice, admin, record, isReady, answerAl
           }
         };
       }
-      await onSave(activity.id, {
-        answers,
-        grading
-      }, activity);
+      await onSave(
+        activity.id,
+        {
+          answers,
+          grading
+        },
+        activity
+      );
       setSubmitStatus({
         state: "success",
         message: review.acceptedCount > 0 ? `\u5DF2\u63D0\u4EA4\uFF0C\u91C7\u7EB3 ${review.acceptedCount} \u4E2A\u53EF\u63A5\u53D7\u7B54\u6848` : "\u5DF2\u63D0\u4EA4"
       });
     } catch (error) {
-      setSubmitStatus({ state: "error", message: String(error.message || error) });
+      setSubmitStatus({
+        state: "error",
+        message: String(error.message || error)
+      });
     }
   };
-  return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("article", { className: "practice-activity practice-activity-single", id: activity.id, children: [
-    /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "activity-head", children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { className: "activity-kicker", children: [
-        sectionLabel[activity.section],
-        " \xB7 ",
-        activity.order
-      ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h2", { children: activity.title }),
-      activity.instruction ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { children: activity.instruction }) : null
-    ] }) }),
-    /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ActivityAudio, { activity, audioUrl: audioUrl2 }),
-    /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ActivityResources, { activity, assetMap }),
-    /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("form", { ref: formRef, className: "activity-form", onSubmit: (event) => event.preventDefault(), children: [
-      layout.length ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "layout-blocks", children: layout.map((block, index) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(LayoutBlockView, { block }, index)) }) : null,
-      activityResponseScopeHint ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "response-scope-callout", children: activityResponseScopeHint }) : null,
-      activity.itemGroups?.length ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "practice-item-groups", children: activity.itemGroups.map((group) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
-        PracticeItemGroupView,
-        {
-          group,
-          assetMap,
-          admin,
-          answerRecord: record?.answers || {},
-          gradingRecord: record?.grading?.itemResults || {},
-          activityResponseScope: activity.responseScope,
-          activityResponseScopeHint: activity.responseScopeHint
-        },
-        group.id
-      )) }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "practice-items", children: activity.items.map((item2) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
-        PracticeItemView,
-        {
-          item: item2,
-          admin,
-          storedAnswer: record?.answers?.[item2.id],
-          gradingResult: record?.grading?.itemResults?.[item2.id],
-          activityResponseScope: activity.responseScope,
-          activityResponseScopeHint: activity.responseScopeHint
-        },
-        item2.id
-      )) })
-    ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("footer", { className: "activity-footer", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "activity-submit-block", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { type: "button", className: "primary-action", onClick: handleSubmit, disabled: !isReady, children: "\u63D0\u4EA4\u672C\u9898" }),
-        summary?.submittedAt ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "submission-summary", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("strong", { children: [
-            summary.correctCount,
-            "/",
-            summary.gradedCount || summary.totalCount
+  return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+    "article",
+    {
+      className: "practice-activity practice-activity-single",
+      id: activity.id,
+      children: [
+        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "activity-head", children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [
+          /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { className: "activity-kicker", children: [
+            sectionLabel[activity.section],
+            " \xB7 ",
+            activity.order
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { children: [
-            summary.incorrectCount ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("button", { type: "button", className: "inline-answer-sheet-trigger", onClick: () => setIsAnswerSheetOpen(true), children: [
-              summary.incorrectCount,
-              " \u9898\u9519\u8BEF"
-            ] }) : "\u5DF2\u5224\u9898",
-            summary.ungradedCount ? ` \xB7 ${summary.ungradedCount} \u9898\u672A\u81EA\u52A8\u5224\u5206` : ""
-          ] })
-        ] }) : /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "submission-summary pending", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("strong", { children: "\u672A\u63D0\u4EA4" }),
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "\u63D0\u4EA4\u540E\u4F1A\u672C\u5730\u4FDD\u5B58\u5E76\u6062\u590D\u4F60\u7684\u4F5C\u7B54\u8BB0\u5F55" })
+          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h2", { children: activity.title }),
+          activity.instruction ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { children: activity.instruction }) : null
+        ] }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ActivityAudio, { activity, audioUrl: audioUrl2 }),
+        /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ActivityResources, { activity, assetMap }),
+        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+          "form",
+          {
+            ref: formRef,
+            className: "activity-form",
+            onSubmit: (event) => event.preventDefault(),
+            children: [
+              layout.length ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "layout-blocks", children: layout.map((block, index) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(LayoutBlockView, { block }, index)) }) : null,
+              activityResponseScopeHint ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "response-scope-callout", children: activityResponseScopeHint }) : null,
+              activity.itemGroups?.length ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "practice-item-groups", children: activity.itemGroups.map((group) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                PracticeItemGroupView,
+                {
+                  group,
+                  assetMap,
+                  admin,
+                  answerRecord: record?.answers || {},
+                  gradingRecord: record?.grading?.itemResults || {},
+                  activityResponseScope: activity.responseScope,
+                  activityResponseScopeHint: activity.responseScopeHint
+                },
+                group.id
+              )) }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "practice-items", children: activity.items.map((item2) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                PracticeItemView,
+                {
+                  item: item2,
+                  admin,
+                  storedAnswer: record?.answers?.[item2.id],
+                  gradingResult: record?.grading?.itemResults?.[item2.id],
+                  activityResponseScope: activity.responseScope,
+                  activityResponseScopeHint: activity.responseScopeHint
+                },
+                item2.id
+              )) })
+            ]
+          }
+        ),
+        /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+          ActivityFooter,
+          {
+            summary,
+            isReady,
+            activity,
+            submitStatus,
+            previousActivity,
+            nextActivity,
+            onSubmit: handleSubmit,
+            onNavigate,
+            onOpenAnswerSheet: () => setIsAnswerSheetOpen(true)
+          }
+        ),
+        isAnswerSheetOpen ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+          IncorrectAnswerModal,
+          {
+            activity,
+            answers: record?.answers || {},
+            grading: record?.grading?.itemResults || {},
+            onClose: () => setIsAnswerSheetOpen(false)
+          }
+        ) : null
+      ]
+    }
+  );
+}
+function ActivityFooter({
+  summary,
+  isReady,
+  activity,
+  submitStatus,
+  previousActivity,
+  nextActivity,
+  onSubmit,
+  onNavigate,
+  onOpenAnswerSheet
+}) {
+  return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("footer", { className: "activity-footer", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "activity-submit-block", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+        "button",
+        {
+          type: "button",
+          className: "primary-action",
+          onClick: onSubmit,
+          disabled: !isReady,
+          children: "\u63D0\u4EA4\u672C\u9898"
+        }
+      ),
+      summary?.submittedAt ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "submission-summary", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("strong", { children: [
+          summary.correctCount,
+          "/",
+          summary.gradedCount || summary.totalCount
         ] }),
-        activity.requiresAudio || activity.audio ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { className: "submit-audio-hint", children: "\u63D0\u793A\uFF1A\u5F55\u97F3\u8F6C\u5199\u53EF\u80FD\u4E0D\u51C6\u786E\uFF0C\u63D0\u4EA4\u524D\u8BF7\u4EBA\u5DE5\u6838\u5BF9\u3002" }) : null,
-        submitStatus.message ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { className: `submit-status-message ${submitStatus.state}`, children: submitStatus.message }) : null
+        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { children: [
+          summary.incorrectCount ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+            "button",
+            {
+              type: "button",
+              className: "inline-answer-sheet-trigger",
+              onClick: onOpenAnswerSheet,
+              children: [
+                summary.incorrectCount,
+                " \u9898\u9519\u8BEF"
+              ]
+            }
+          ) : "\u5DF2\u5224\u9898",
+          summary.ungradedCount ? ` \xB7 ${summary.ungradedCount} \u9898\u672A\u81EA\u52A8\u5224\u5206` : ""
+        ] })
+      ] }) : /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "submission-summary pending", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("strong", { children: "\u672A\u63D0\u4EA4" }),
+        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "\u63D0\u4EA4\u540E\u4F1A\u672C\u5730\u4FDD\u5B58\u5E76\u6062\u590D\u4F60\u7684\u4F5C\u7B54\u8BB0\u5F55" })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "activity-nav-actions", children: [
-        previousActivity ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { type: "button", className: "secondary-action", onClick: () => onNavigate(previousActivity.id), children: "\u4E0A\u4E00\u9898" }) : null,
-        nextActivity ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { type: "button", className: "secondary-action", onClick: () => onNavigate(nextActivity.id), children: "\u4E0B\u4E00\u9898" }) : null
-      ] })
+      activity.requiresAudio || activity.audio ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { className: "submit-audio-hint", children: "\u63D0\u793A\uFF1A\u5F55\u97F3\u8F6C\u5199\u53EF\u80FD\u4E0D\u51C6\u786E\uFF0C\u63D0\u4EA4\u524D\u8BF7\u4EBA\u5DE5\u6838\u5BF9\u3002" }) : null,
+      submitStatus.message ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { className: `submit-status-message ${submitStatus.state}`, children: submitStatus.message }) : null
     ] }),
-    isAnswerSheetOpen ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
-      IncorrectAnswerModal,
-      {
-        activity,
-        answers: record?.answers || {},
-        grading: record?.grading?.itemResults || {},
-        onClose: () => setIsAnswerSheetOpen(false)
-      }
-    ) : null
+    /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "activity-nav-actions", children: [
+      previousActivity ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+        "button",
+        {
+          type: "button",
+          className: "secondary-action",
+          onClick: () => onNavigate(previousActivity.id),
+          children: "\u4E0A\u4E00\u9898"
+        }
+      ) : null,
+      nextActivity ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+        "button",
+        {
+          type: "button",
+          className: "secondary-action",
+          onClick: () => onNavigate(nextActivity.id),
+          children: "\u4E0B\u4E00\u9898"
+        }
+      ) : null
+    ] })
   ] });
 }
 function ActivityAudio({ activity, audioUrl: audioUrl2 }) {
@@ -22744,42 +22980,54 @@ function ActivityAudio({ activity, audioUrl: audioUrl2 }) {
   ] });
 }
 function ActivityResources({ activity, assetMap }) {
-  const groupAssetIds = new Set((activity.itemGroups || []).flatMap((group) => group.displayAssets || []));
-  const activityAssetIds = (activity.displayAssets || []).filter((assetId) => !groupAssetIds.has(assetId));
+  const groupAssetIds = new Set(
+    (activity.itemGroups || []).flatMap((group) => group.displayAssets || [])
+  );
+  const activityAssetIds = (activity.displayAssets || []).filter(
+    (assetId) => !groupAssetIds.has(assetId)
+  );
   const hasAssets = Boolean(activityAssetIds.length);
   if (!hasAssets) return null;
-  return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "activity-resource-panel", children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(DisplayAssets, { assetIds: activityAssetIds, assetMap }) });
+  return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "activity-resource-panel", "data-activity-id": activity.id, children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(DisplayAssets, { assetIds: activityAssetIds, assetMap }) });
 }
-function PracticeItemGroupView({ group, assetMap, admin, answerRecord, gradingRecord, activityResponseScope, activityResponseScopeHint }) {
+function PracticeItemGroupView({
+  group,
+  assetMap,
+  admin,
+  answerRecord,
+  gradingRecord,
+  activityResponseScope,
+  activityResponseScopeHint
+}) {
   return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", { className: "practice-item-group", id: group.id, children: [
     group.displayAssets?.length ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(DisplayAssets, { assetIds: group.displayAssets, assetMap }) : null,
-    /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "example-practice-block", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "group-head", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [
-          group.title ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", { children: group.title }) : null,
-          group.instruction ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { children: group.instruction }) : null
-        ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ExampleBlockView, { example: group.example })
+    group.title || group.instruction || group.example ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "example-practice-block", children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "group-head", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [
+        group.title ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", { children: group.title }) : null,
+        group.instruction ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { children: group.instruction }) : null
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "practice-items", children: group.items.map((item2) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
-        PracticeItemView,
-        {
-          item: item2,
-          assetMap,
-          admin,
-          storedAnswer: answerRecord?.[item2.id],
-          gradingResult: gradingRecord?.[item2.id],
-          activityResponseScope,
-          activityResponseScopeHint
-        },
-        item2.id
-      )) })
-    ] })
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ExampleBlockView, { example: group.example })
+    ] }) }) : null,
+    /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "practice-items", children: group.items.map((item2) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+      PracticeItemView,
+      {
+        item: item2,
+        assetMap,
+        admin,
+        storedAnswer: answerRecord?.[item2.id],
+        gradingResult: gradingRecord?.[item2.id],
+        activityResponseScope,
+        activityResponseScopeHint
+      },
+      item2.id
+    )) })
   ] });
 }
 function LayoutBlockView({ block }) {
-  if (block.type === "text") return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "layout-text", children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(RichTextList, { parts: block.text }) });
-  if (block.type === "example") return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ExampleBlockView, { example: block.content });
+  if (block.type === "text")
+    return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "layout-text", children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(RichTextList, { parts: block.text }) });
+  if (block.type === "example")
+    return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ExampleBlockView, { example: block.content });
   if (block.type === "dialogue") {
     return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "dialogue-block", children: block.lines.map((line2, index) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "dialogue-line", children: [
       /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: line2.speaker }),
@@ -22792,7 +23040,15 @@ function LayoutBlockView({ block }) {
   if (block.type === "map") {
     return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "map-block", children: [
       /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ImageAssetView, { asset: block.image }),
-      (block.labels || []).map((label, index) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "map-label", style: { left: `${label.x}%`, top: `${label.y}%` }, children: label.text }, index))
+      (block.labels || []).map((label, index) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+        "span",
+        {
+          className: "map-label",
+          style: { left: `${label.x}%`, top: `${label.y}%` },
+          children: label.text
+        },
+        index
+      ))
     ] });
   }
   if (block.type === "word_bank") {
@@ -22828,12 +23084,22 @@ function ExampleBlockView({ example }) {
     dialogueLines ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "example-after dialogue-lines", children: dialogueLines.map((line2, index) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { className: "dialogue-line", children: [
       /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: line2.speaker }),
       /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Prompt, { parts: line2.parts, kana: line2.kana }) })
-    ] }, index)) }) : tripCompositionLines.length ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "example-after trip-composition-lines", children: tripCompositionLines.map((line2, index) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(RubyText, { text: line2, kana: tripCompositionKanaLines[index] || "" }) }, index)) }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "example-after", children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Prompt, { parts: example.after, kana: example.afterKana }) })
+    ] }, index)) }) : tripCompositionLines.length ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "example-after trip-composition-lines", children: tripCompositionLines.map((line2, index) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+      RubyText,
+      {
+        text: line2,
+        kana: tripCompositionKanaLines[index] || ""
+      }
+    ) }, index)) }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "example-after", children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Prompt, { parts: example.after, kana: example.afterKana }) })
   ] });
 }
 function pairedExampleRows(example) {
-  const before = splitExampleTextLines(example.before || promptPartsPlainText(example.beforeParts || []));
-  const after = splitExampleTextLines(promptPartsPlainText(example.after || []));
+  const before = splitExampleTextLines(
+    example.before || promptPartsPlainText(example.beforeParts || [])
+  );
+  const after = splitExampleTextLines(
+    promptPartsPlainText(example.after || [])
+  );
   if (before.length < 2 || before.length !== after.length) return [];
   const beforeKana = splitExampleTextLines(example.beforeKana || "");
   const afterKana = splitExampleTextLines(example.afterKana || "");
@@ -22848,38 +23114,56 @@ function splitExampleTextLines(value) {
   return String(value || "").split(/\r?\n/).map((line2) => line2.trim()).filter(Boolean);
 }
 function IncorrectAnswerModal({ activity, answers, grading, onClose }) {
-  const incorrectItems = flattenActivityItems2(activity).map((item2) => ({ item: item2, result: grading?.[item2.id], answer: answers?.[item2.id] })).filter(({ result }) => result?.status === "incorrect");
-  return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "answer-sheet-modal-backdrop", role: "presentation", onClick: onClose, children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
-    "section",
+  const incorrectItems = flattenActivityItems2(activity).map((item2) => ({
+    item: item2,
+    result: grading?.[item2.id],
+    answer: answers?.[item2.id]
+  })).filter(({ result }) => result?.status === "incorrect");
+  return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+    "div",
     {
-      className: "answer-sheet-modal",
-      role: "dialog",
-      "aria-modal": "true",
-      "aria-label": "\u9519\u8BEF\u9898\u76EE\u4E0E\u53C2\u8003\u7B54\u6848",
-      onClick: (event) => event.stopPropagation(),
-      children: [
-        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("header", { className: "answer-sheet-head", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [
-            /* @__PURE__ */ (0, import_jsx_runtime.jsx)("strong", { children: "\u9519\u8BEF\u9898\u76EE\u4E0E\u53C2\u8003\u7B54\u6848" }),
-            /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { children: "\u4EE5\u4E0B\u5185\u5BB9\u4EC5\u5C55\u793A\u672C\u6B21\u63D0\u4EA4\u91CC\u81EA\u52A8\u5224\u9519\u7684\u9898\u76EE\u3002" })
-          ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { type: "button", className: "modal-close-btn", onClick: onClose, children: "\u5173\u95ED" })
-        ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "answer-sheet-list", children: incorrectItems.map(({ item: item2, answer: answer3, result }) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
-          IncorrectAnswerDetails,
-          {
-            item: item2,
-            answer: answer3,
-            result,
-            className: "answer-sheet-entry"
-          },
-          item2.id
-        )) })
-      ]
+      className: "answer-sheet-modal-backdrop",
+      role: "presentation",
+      onClick: onClose,
+      children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+        "section",
+        {
+          className: "answer-sheet-modal",
+          role: "dialog",
+          "aria-modal": "true",
+          "aria-label": "\u9519\u8BEF\u9898\u76EE\u4E0E\u53C2\u8003\u7B54\u6848",
+          onClick: (event) => event.stopPropagation(),
+          children: [
+            /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("header", { className: "answer-sheet-head", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [
+                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("strong", { children: "\u9519\u8BEF\u9898\u76EE\u4E0E\u53C2\u8003\u7B54\u6848" }),
+                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { children: "\u4EE5\u4E0B\u5185\u5BB9\u4EC5\u5C55\u793A\u672C\u6B21\u63D0\u4EA4\u91CC\u81EA\u52A8\u5224\u9519\u7684\u9898\u76EE\u3002" })
+              ] }),
+              /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { type: "button", className: "modal-close-btn", onClick: onClose, children: "\u5173\u95ED" })
+            ] }),
+            /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "answer-sheet-list", children: incorrectItems.map(({ item: item2, answer: answer3, result }) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+              IncorrectAnswerDetails,
+              {
+                item: item2,
+                answer: answer3,
+                result,
+                className: "answer-sheet-entry"
+              },
+              item2.id
+            )) })
+          ]
+        }
+      )
     }
-  ) });
+  );
 }
-function IncorrectAnswerDetails({ item: item2, answer: answer3, result, className = "incorrect-answer-details", showPrompt = true }) {
+function IncorrectAnswerDetails({
+  item: item2,
+  answer: answer3,
+  result,
+  className = "incorrect-answer-details",
+  showPrompt = true
+}) {
   return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("article", { className, children: [
     showPrompt ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("h4", { children: [
       item2.number,
@@ -22905,7 +23189,8 @@ function AnswerGitDiff({ lines }) {
 }
 function renderAnswerDiffParts(parts = []) {
   return parts.map((part, index) => {
-    if (part.type === "equal") return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(import_react.default.Fragment, { children: part.text }, index);
+    if (part.type === "equal")
+      return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(import_react.default.Fragment, { children: part.text }, index);
     return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("mark", { "data-diff": part.type, children: part.text }, index);
   });
 }
@@ -22915,8 +23200,22 @@ function AnswerComparison({ item: item2, answer: answer3, result }) {
   if (comparison.kind === "choice") {
     return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "answer-diff answer-comparison", "aria-label": "\u7B54\u6848\u5BF9\u6BD4", children: [
       /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "answer-diff-head", children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("strong", { children: "\u7B54\u6848\u5BF9\u6BD4" }) }),
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)(AnswerComparisonBlock, { tone: "user", label: "\u4F60\u7684\u7B54\u6848", value: comparison.actual || "\u672A\u9009\u62E9" }),
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)(AnswerComparisonBlock, { tone: "expected", label: "\u6B63\u786E\u7B54\u6848", value: comparison.expected || "\u6682\u65E0" })
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+        AnswerComparisonBlock,
+        {
+          tone: "user",
+          label: "\u4F60\u7684\u7B54\u6848",
+          value: comparison.actual || "\u672A\u9009\u62E9"
+        }
+      ),
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+        AnswerComparisonBlock,
+        {
+          tone: "expected",
+          label: "\u6B63\u786E\u7B54\u6848",
+          value: comparison.expected || "\u6682\u65E0"
+        }
+      )
     ] });
   }
   return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "answer-diff answer-comparison", "aria-label": "\u7B54\u6848\u5BF9\u6BD4", children: [
@@ -22937,41 +23236,79 @@ function answerComparisonRows(item2, answer3) {
     }));
   }
   if (item2.choices?.length) {
-    const labels = new Map(item2.choices.map((choice) => [choice.id, choice.label]));
-    return [{
-      id: "choice",
-      label: "",
-      actual: (answer3?.choiceIds || []).map((id) => labels.get(id) || id).join(" / "),
-      expected: (item2.answer?.choiceIds || []).map((id) => labels.get(id) || id).join(" / ")
-    }];
+    const labels = new Map(
+      item2.choices.map((choice) => [choice.id, choice.label])
+    );
+    return [
+      {
+        id: "choice",
+        label: "",
+        actual: (answer3?.choiceIds || []).map((id) => labels.get(id) || id).join(" / "),
+        expected: (item2.answer?.choiceIds || []).map((id) => labels.get(id) || id).join(" / ")
+      }
+    ];
   }
   return [];
 }
-function PracticeItemView({ item: item2, admin, storedAnswer, gradingResult, activityResponseScope, activityResponseScopeHint }) {
-  const itemResponseScopeHint = resolveItemResponseScopeHint(item2, activityResponseScope, activityResponseScopeHint);
-  return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", { className: `practice-item ${item2.renderHint || "inline"}`, "data-item-status": gradingResult?.status || "idle", children: [
-    gradingResult?.status === "incorrect" && item2.evaluationMode !== "open_response" ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(IncorrectReasonPopover, { item: item2, answer: storedAnswer, result: gradingResult }) : null,
-    gradingResult?.status === "correct" && item2.answerSource !== "personal" && item2.evaluationMode !== "open_response" ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(CorrectAnswerComparisonPopover, { item: item2, answer: storedAnswer }) : null,
-    /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "item-main", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "item-number", children: item2.number }),
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "item-prompt", children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Prompt, { parts: item2.prompt, kana: item2.promptKana }) })
-    ] }),
-    item2.evaluationMode ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "evaluation-mode", children: evaluationModeLabel[item2.evaluationMode] }) : null,
-    item2.instruction ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { className: "item-instruction", children: item2.instruction }) : null,
-    itemResponseScopeHint ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { className: "item-response-scope", children: itemResponseScopeHint }) : null,
-    item2.choices?.length ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Choices, { choices: item2.choices, item: item2, admin, storedAnswer, gradingResult }) : null,
-    item2.inputSlots?.length ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "slot-row", children: item2.inputSlots.map((slot) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
-      InputSlotView,
-      {
-        item: item2,
-        slot,
-        admin,
-        storedAnswer,
-        gradingResult
-      },
-      slot.id
-    )) }) : null
-  ] });
+function PracticeItemView({
+  item: item2,
+  admin,
+  storedAnswer,
+  gradingResult,
+  activityResponseScope,
+  activityResponseScopeHint
+}) {
+  const itemResponseScopeHint = resolveItemResponseScopeHint(
+    item2,
+    activityResponseScope,
+    activityResponseScopeHint
+  );
+  return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+    "section",
+    {
+      className: `practice-item ${item2.renderHint || "inline"}`,
+      "data-item-status": gradingResult?.status || "idle",
+      children: [
+        gradingResult?.status === "incorrect" && item2.evaluationMode !== "open_response" ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+          IncorrectReasonPopover,
+          {
+            item: item2,
+            answer: storedAnswer,
+            result: gradingResult
+          }
+        ) : null,
+        gradingResult?.status === "correct" && item2.answerSource !== "personal" && item2.evaluationMode !== "open_response" ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(CorrectAnswerComparisonPopover, { item: item2, answer: storedAnswer }) : null,
+        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "item-main", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "item-number", children: item2.number }),
+          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "item-prompt", children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Prompt, { parts: item2.prompt, kana: item2.promptKana }) })
+        ] }),
+        item2.evaluationMode ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "evaluation-mode", children: evaluationModeLabel[item2.evaluationMode] }) : null,
+        item2.instruction ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { className: "item-instruction", children: item2.instruction }) : null,
+        itemResponseScopeHint ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { className: "item-response-scope", children: itemResponseScopeHint }) : null,
+        item2.choices?.length ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+          Choices,
+          {
+            choices: item2.choices,
+            item: item2,
+            admin,
+            storedAnswer,
+            gradingResult
+          }
+        ) : null,
+        item2.inputSlots?.length ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "slot-row", children: item2.inputSlots.map((slot) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+          InputSlotView,
+          {
+            item: item2,
+            slot,
+            admin,
+            storedAnswer,
+            gradingResult
+          },
+          slot.id
+        )) }) : null
+      ]
+    }
+  );
 }
 function IncorrectReasonPopover({ item: item2, answer: answer3, result }) {
   const [isOpen, setIsOpen] = (0, import_react.useState)(false);
@@ -23010,7 +23347,15 @@ function IncorrectReasonPopover({ item: item2, answer: answer3, result }) {
           children: [
             /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "incorrect-reason-head", children: [
               /* @__PURE__ */ (0, import_jsx_runtime.jsx)("strong", { children: "\u9519\u8BEF\u539F\u56E0" }),
-              /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { type: "button", onClick: () => setIsOpen(false), "aria-label": "\u5173\u95ED\u9519\u8BEF\u539F\u56E0", children: "\xD7" })
+              /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                "button",
+                {
+                  type: "button",
+                  onClick: () => setIsOpen(false),
+                  "aria-label": "\u5173\u95ED\u9519\u8BEF\u539F\u56E0",
+                  children: "\xD7"
+                }
+              )
             ] }),
             /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
               IncorrectAnswerDetails,
@@ -23048,17 +23393,43 @@ function CorrectAnswerComparisonPopover({ item: item2, answer: answer3 }) {
       }
     ),
     isOpen ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { className: "incorrect-reason-backdrop", type: "button", "aria-label": "\u5173\u95ED\u7B54\u6848\u5BF9\u6BD4", onClick: () => setIsOpen(false) }),
-      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "incorrect-reason-panel correct-answer-panel", id: popoverId, role: "dialog", "aria-label": `\u7B2C ${item2.number} \u9898\u7B54\u6848\u5BF9\u6BD4`, onClick: (event) => event.stopPropagation(), children: [
-        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "incorrect-reason-head correct-answer-head", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("strong", { children: [
-            resultLabel,
-            " \xB7 \u7B54\u6848\u5BF9\u6BD4"
-          ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { type: "button", onClick: () => setIsOpen(false), "aria-label": "\u5173\u95ED\u7B54\u6848\u5BF9\u6BD4", children: "\xD7" })
-        ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)(CorrectAnswerComparison, { item: item2, answer: answer3 })
-      ] })
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+        "button",
+        {
+          className: "incorrect-reason-backdrop",
+          type: "button",
+          "aria-label": "\u5173\u95ED\u7B54\u6848\u5BF9\u6BD4",
+          onClick: () => setIsOpen(false)
+        }
+      ),
+      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+        "div",
+        {
+          className: "incorrect-reason-panel correct-answer-panel",
+          id: popoverId,
+          role: "dialog",
+          "aria-label": `\u7B2C ${item2.number} \u9898\u7B54\u6848\u5BF9\u6BD4`,
+          onClick: (event) => event.stopPropagation(),
+          children: [
+            /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "incorrect-reason-head correct-answer-head", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("strong", { children: [
+                resultLabel,
+                " \xB7 \u7B54\u6848\u5BF9\u6BD4"
+              ] }),
+              /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                "button",
+                {
+                  type: "button",
+                  onClick: () => setIsOpen(false),
+                  "aria-label": "\u5173\u95ED\u7B54\u6848\u5BF9\u6BD4",
+                  children: "\xD7"
+                }
+              )
+            ] }),
+            /* @__PURE__ */ (0, import_jsx_runtime.jsx)(CorrectAnswerComparison, { item: item2, answer: answer3 })
+          ]
+        }
+      )
     ] }) : null
   ] });
 }
@@ -23077,7 +23448,8 @@ function isExactCorrectAnswer(item2, attempt) {
 }
 function primaryAnswerValueForSlot(item2, slotId) {
   const value = item2.answer?.slotValues?.[slotId];
-  if (Array.isArray(value)) return value.map((entry) => String(entry || "").trim()).filter(Boolean).join("\n");
+  if (Array.isArray(value))
+    return value.map((entry) => String(entry || "").trim()).filter(Boolean).join("\n");
   return String(value || "").trim();
 }
 function CorrectAnswerComparison({ item: item2, answer: answer3 }) {
@@ -23085,28 +23457,52 @@ function CorrectAnswerComparison({ item: item2, answer: answer3 }) {
   if (!rows.length) return null;
   return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "answer-diff answer-comparison", "aria-label": "\u7B54\u6848\u5BF9\u6BD4", children: rows.map((row) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "answer-comparison-row", children: [
     row.label ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("strong", { children: row.label }) : null,
-    /* @__PURE__ */ (0, import_jsx_runtime.jsx)(AnswerComparisonBlock, { tone: "user", label: "\u6211\u7684\u7B54\u6848", value: row.actual || "\u672A\u4F5C\u7B54" }),
-    /* @__PURE__ */ (0, import_jsx_runtime.jsx)(AnswerComparisonBlock, { tone: "expected", label: "\u6807\u51C6\u7B54\u6848", value: row.expected || "\u6682\u65E0" })
+    /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+      AnswerComparisonBlock,
+      {
+        tone: "user",
+        label: "\u6211\u7684\u7B54\u6848",
+        value: row.actual || "\u672A\u4F5C\u7B54"
+      }
+    ),
+    /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+      AnswerComparisonBlock,
+      {
+        tone: "expected",
+        label: "\u6807\u51C6\u7B54\u6848",
+        value: row.expected || "\u6682\u65E0"
+      }
+    )
   ] }, row.id)) });
 }
 function Choices({ choices, item: item2, admin, storedAnswer, gradingResult }) {
-  const storedChoiceIds = resolveStoredChoiceIds(item2, storedAnswer?.choiceIds || []);
+  const storedChoiceIds = resolveStoredChoiceIds(
+    item2,
+    storedAnswer?.choiceIds || []
+  );
   const currentChoiceIds = storedAnswer ? storedChoiceIds : admin ? item2.answer?.choiceIds || [] : [];
   const currentChoiceIdSet = new Set(currentChoiceIds);
   const isMultiChoice = (item2.answer?.choiceIds || []).length > 1;
   const choiceResult = gradingResult?.fieldResults?.[CHOICE_RESULT_KEY] || gradingResult?.status;
-  return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "choice-row", children: choices.map((choice) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { "data-result": currentChoiceIdSet.has(choice.id) ? choiceResult || void 0 : void 0, children: [
-    /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
-      "input",
-      {
-        type: isMultiChoice ? "checkbox" : "radio",
-        name: item2.id,
-        value: choice.id,
-        defaultChecked: currentChoiceIdSet.has(choice.id)
-      }
-    ),
-    /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: choice.label })
-  ] }, choice.id)) });
+  return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "choice-row", children: choices.map((choice) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+    "label",
+    {
+      "data-result": currentChoiceIdSet.has(choice.id) ? choiceResult || void 0 : void 0,
+      children: [
+        /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+          "input",
+          {
+            type: isMultiChoice ? "checkbox" : "radio",
+            name: item2.id,
+            value: choice.id,
+            defaultChecked: currentChoiceIdSet.has(choice.id)
+          }
+        ),
+        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: choice.label })
+      ]
+    },
+    choice.id
+  )) });
 }
 function InputSlotView({ item: item2, slot, admin, storedAnswer, gradingResult }) {
   const defaultValue = defaultFieldValue(item2, slot.id, storedAnswer, admin);
@@ -23119,7 +23515,15 @@ function InputSlotView({ item: item2, slot, admin, storedAnswer, gradingResult }
     return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("fieldset", { className: "slot-choice-group", "data-result": result || void 0, children: [
       /* @__PURE__ */ (0, import_jsx_runtime.jsx)("legend", { children: slot.label || `${item2.number} ${slot.id}` }),
       slot.choices.map((choice) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { children: [
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("input", { type: "radio", name: fieldName, value: choice.label, defaultChecked: defaultValue === choice.label }),
+        /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+          "input",
+          {
+            type: "radio",
+            name: fieldName,
+            value: choice.label,
+            defaultChecked: defaultValue === choice.label
+          }
+        ),
         /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: choice.label })
       ] }, choice.id))
     ] });
@@ -23164,24 +23568,42 @@ function PracticeAiNote({ item: item2, slot }) {
   const [question, setQuestion] = (0, import_react.useState)("");
   const [answer3, setAnswer] = (0, import_react.useState)("");
   const [manualNote, setManualNote] = (0, import_react.useState)("");
-  const [savedNotes, setSavedNotes] = (0, import_react.useState)(() => notesForPracticeAiKey(key));
+  const [savedNotes, setSavedNotes] = (0, import_react.useState)(
+    () => notesForPracticeAiKey(key)
+  );
   const [status, setStatus] = (0, import_react.useState)("");
   const ask = async () => {
     if (!question.trim()) return setStatus("\u8BF7\u8F93\u5165\u95EE\u9898\u3002");
     setStatus("\u601D\u8003\u4E2D\u2026");
     setAnswer("");
     try {
-      const response = await fetch("/api/grammar/notebook-ai", { method: "POST", headers: { "Content-Type": "application/json", Authorization: `Bearer ${localStorage.getItem("light_blog_token") || ""}` }, body: JSON.stringify({ question, lessonId: item2.id, pageNo: slot.id }) });
+      const response = await fetch("/api/grammar/notebook-ai", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("light_blog_token") || ""}`
+        },
+        body: JSON.stringify({ question, lessonId: item2.id, pageNo: slot.id })
+      });
       const data = await response.json().catch(() => ({}));
-      if (!response.ok) throw new Error(data.error || data.message || "AI \u8BF7\u6C42\u5931\u8D25\u3002");
-      setAnswer(String(data.answer || ""));
+      if (!response.ok)
+        throw new Error(data.error || data.message || "AI \u8BF7\u6C42\u5931\u8D25\u3002");
+      const nextAnswer = practiceAiAnswerFromResponse(data);
+      if (!nextAnswer) {
+        setStatus("AI \u672A\u8FD4\u56DE\u53EF\u4FDD\u5B58\u7684\u56DE\u7B54\uFF0C\u8BF7\u91CD\u8BD5\u3002");
+        return;
+      }
+      setAnswer(nextAnswer);
       setStatus("\u56DE\u7B54\u5DF2\u751F\u6210\u3002");
     } catch (error) {
       setStatus(error.message || "AI \u8BF7\u6C42\u5931\u8D25\u3002");
     }
   };
   const addSavedNote = (text32) => {
-    const note = { id: `${Date.now()}-${Math.random().toString(16).slice(2)}`, text: text32 };
+    const note = {
+      id: `${Date.now()}-${Math.random().toString(16).slice(2)}`,
+      text: text32
+    };
     const all = readPracticeAiNotes();
     const next = [...notesForPracticeAiKey(key), note];
     all[key] = next;
@@ -23189,6 +23611,7 @@ function PracticeAiNote({ item: item2, slot }) {
     setSavedNotes(next);
   };
   const save = () => {
+    if (!answer3.trim()) return;
     addSavedNote(`\u95EE\uFF1A${question.trim()}
 \u7B54\uFF1A${answer3.trim()}`);
     setAnswer("");
@@ -23208,7 +23631,9 @@ function PracticeAiNote({ item: item2, slot }) {
   };
   const erase = (noteId) => {
     const all = readPracticeAiNotes();
-    const next = notesForPracticeAiKey(key).filter((note) => note.id !== noteId);
+    const next = notesForPracticeAiKey(key).filter(
+      (note) => note.id !== noteId
+    );
     if (next.length) all[key] = next;
     else delete all[key];
     writePracticeAiNotes(all);
@@ -23216,18 +23641,55 @@ function PracticeAiNote({ item: item2, slot }) {
   };
   return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "practice-ai-note", children: [
     /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "practice-note-tools", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { type: "button", className: "practice-ai-trigger", onClick: () => setOpen((value) => !value), "aria-expanded": open, title: "\u95EE AI", children: "\u2726" }),
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { type: "button", className: "practice-manual-note-trigger", onClick: () => setManualOpen((value) => !value), "aria-expanded": manualOpen, title: "\u6DFB\u52A0\u7B14\u8BB0", children: "\u270E" })
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+        "button",
+        {
+          type: "button",
+          className: "practice-ai-trigger",
+          onClick: () => setOpen((value) => !value),
+          "aria-expanded": open,
+          title: "\u95EE AI",
+          children: "\u2726"
+        }
+      ),
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+        "button",
+        {
+          type: "button",
+          className: "practice-manual-note-trigger",
+          onClick: () => setManualOpen((value) => !value),
+          "aria-expanded": manualOpen,
+          title: "\u6DFB\u52A0\u7B14\u8BB0",
+          children: "\u270E"
+        }
+      )
     ] }),
     manualOpen ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "practice-manual-note-panel", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("textarea", { value: manualNote, onChange: (event) => setManualNote(event.target.value), placeholder: "\u5199\u4E0B\u4F60\u7684\u7B14\u8BB0\u2026", rows: "2" }),
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+        "textarea",
+        {
+          value: manualNote,
+          onChange: (event) => setManualNote(event.target.value),
+          placeholder: "\u5199\u4E0B\u4F60\u7684\u7B14\u8BB0\u2026",
+          rows: "2"
+        }
+      ),
       /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { type: "button", onClick: saveManualNote, children: "\u4FDD\u5B58\u7B14\u8BB0" })
     ] }) : null,
     open ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "practice-ai-panel", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("textarea", { value: question, onChange: (event) => setQuestion(event.target.value), placeholder: "\u5411 AI \u63D0\u95EE\u2026", rows: "2" }),
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+        "textarea",
+        {
+          value: question,
+          onChange: (event) => setQuestion(event.target.value),
+          placeholder: "\u5411 AI \u63D0\u95EE\u2026",
+          rows: "2"
+        }
+      ),
       /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { type: "button", onClick: ask, children: "\u63D0\u95EE" }),
       status ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("small", { children: status }) : null,
-      answer3 ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [
+      answer3 ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "practice-ai-answer", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("strong", { children: "AI \u56DE\u7B54" }),
         /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { children: answer3 }),
         /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "practice-ai-actions", children: [
           /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { type: "button", onClick: save, children: "\u5B58\u7B14\u8BB0" }),
@@ -23236,10 +23698,30 @@ function PracticeAiNote({ item: item2, slot }) {
       ] }) : null
     ] }) : null,
     savedNotes.length ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "practice-ai-saved-list", children: savedNotes.map((note) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("article", { className: "practice-ai-saved", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { type: "button", className: "practice-ai-erase", onClick: () => erase(note.id), "aria-label": "\u5220\u9664\u7B14\u8BB0", title: "\u5220\u9664\u7B14\u8BB0", children: "\u232B" }),
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+        "button",
+        {
+          type: "button",
+          className: "practice-ai-erase",
+          onClick: () => erase(note.id),
+          "aria-label": "\u5220\u9664\u7B14\u8BB0",
+          title: "\u5220\u9664\u7B14\u8BB0",
+          children: "\u232B"
+        }
+      ),
       /* @__PURE__ */ (0, import_jsx_runtime.jsx)("pre", { children: note.text })
     ] }, note.id)) }) : null
   ] });
+}
+function practiceAiAnswerFromResponse(data) {
+  const candidates = [
+    data?.answer,
+    data?.data?.answer,
+    data?.result?.answer,
+    data?.content,
+    data?.data?.content
+  ];
+  return String(candidates.find((value) => typeof value === "string" && value.trim()) || "").trim();
 }
 function readPracticeAiNotes() {
   try {
@@ -23278,7 +23760,15 @@ function ImageAssetView({ asset }) {
       backgroundImage: `url('${asset.imagePath}')`
     };
     return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("figure", { className: `image-asset ${asset.kind} cropped`, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "crop-window", role: "img", "aria-label": asset.label || asset.id, style }),
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+        "div",
+        {
+          className: "crop-window",
+          role: "img",
+          "aria-label": asset.label || asset.id,
+          style
+        }
+      ),
       asset.label ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("figcaption", { children: asset.label }) : null
     ] });
   }
@@ -23296,11 +23786,27 @@ function Prompt({ parts, kana: kana2 }) {
     if (part.type === "text") return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(RichText, { part }, index);
     if (part.type === "blank") {
       if (part.display === "parentheses") {
-        return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "inline-blank parentheses-blank", "data-slot-id": part.slotId, children: "\uFF08\u3000\uFF09" }, index);
+        return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+          "span",
+          {
+            className: "inline-blank parentheses-blank",
+            "data-slot-id": part.slotId,
+            children: "\uFF08\u3000\uFF09"
+          },
+          index
+        );
       }
-      return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "inline-blank", "data-slot-id": part.slotId }, index);
+      return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+        "span",
+        {
+          className: "inline-blank",
+          "data-slot-id": part.slotId
+        },
+        index
+      );
     }
-    if (part.type === "choice_ref") return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "choice-ref", children: part.choiceIds.join(" / ") }, index);
+    if (part.type === "choice_ref")
+      return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "choice-ref", children: part.choiceIds.join(" / ") }, index);
     return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "asset-ref", children: part.assetId }, index);
   }) });
 }
@@ -23309,7 +23815,14 @@ function RichTextList({ parts }) {
 }
 function RichText({ part }) {
   const content = /* @__PURE__ */ (0, import_jsx_runtime.jsx)(RubyText, { text: part.text, kana: part.kana });
-  return part.underline ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "underlined", "data-substitution-key": part.substitutionKey || void 0, children: content }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(import_jsx_runtime.Fragment, { children: content });
+  return part.underline ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+    "span",
+    {
+      className: "underlined",
+      "data-substitution-key": part.substitutionKey || void 0,
+      children: content
+    }
+  ) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(import_jsx_runtime.Fragment, { children: content });
 }
 function RubyText({ text: text32, kana: kana2 }) {
   if (!kana2) return text32;
@@ -23325,7 +23838,9 @@ function RubyText({ text: text32, kana: kana2 }) {
   }) });
 }
 function shouldRenderWholePrompt(parts, kana2) {
-  return Boolean(kana2) && parts.every((part) => part.type === "text" && !part.underline && !part.substitutionKey && !part.kana);
+  return Boolean(kana2) && parts.every(
+    (part) => part.type === "text" && !part.underline && !part.substitutionKey && !part.kana
+  );
 }
 function applyPromptKanaToTextParts(parts, kana2) {
   if (!kana2 || !parts.some((part) => part.type === "blank")) return parts;
@@ -23382,13 +23897,15 @@ function applyPromptKanaToTextParts(parts, kana2) {
     kanaByPartIndex.set(rubyPartIndex, rubyKana);
   });
   return parts.map((part, index) => {
-    if (part.type !== "text" || part.kana || !kanaByPartIndex.has(index)) return part;
+    if (part.type !== "text" || part.kana || !kanaByPartIndex.has(index))
+      return part;
     return { ...part, kana: kanaByPartIndex.get(index) };
   });
 }
 function resolveActivityAudioUrl(practice, activity) {
   if (activity.audio?.source === "external_url") return activity.audio.url;
-  if (!activity.requiresAudio && activity.audio?.source !== "textbook_exercise") return void 0;
+  if (!activity.requiresAudio && activity.audio?.source !== "textbook_exercise")
+    return void 0;
   const lessonNo = lessonNumber2(practice.lessonId);
   const exerciseNo = exerciseNumber(activity.section);
   if (!lessonNo || !exerciseNo) return void 0;
@@ -23438,7 +23955,9 @@ function collectActivityAnswers(form, activity) {
       itemAnswer.slotValues = slotValues;
     }
     if (item2.choices?.length) {
-      const selected = [...form.querySelectorAll(`input[name="${item2.id}"]:checked`)];
+      const selected = [
+        ...form.querySelectorAll(`input[name="${item2.id}"]:checked`)
+      ];
       itemAnswer.choiceIds = selected.map((field) => field.value);
     }
     answers[item2.id] = itemAnswer;
@@ -23494,7 +24013,9 @@ function gradeItem(item2, attempt, answerAlternatives = {}) {
       sawGradableField = true;
       const actual = normalizeAnswerText(attempt.slotValues?.[slot.id]);
       const actualCandidates = [actual];
-      const speakerlessActual = normalizeSpeakerlessAnswer(attempt.slotValues?.[slot.id]);
+      const speakerlessActual = normalizeSpeakerlessAnswer(
+        attempt.slotValues?.[slot.id]
+      );
       if (speakerlessActual && speakerlessActual !== actual && canAcceptSpeakerlessAnswer(item2, matcher)) {
         actualCandidates.push(speakerlessActual);
       }
@@ -23509,7 +24030,9 @@ function gradeItem(item2, attempt, answerAlternatives = {}) {
     sawGradableField = true;
     const actualChoices = normalizeChoiceIds(attempt.choiceIds || []);
     const expectedChoices = normalizeChoiceIds(item2.answer.choiceIds);
-    const isCorrect = actualChoices.length === expectedChoices.length && actualChoices.every((choiceId, index) => choiceId === expectedChoices[index]);
+    const isCorrect = actualChoices.length === expectedChoices.length && actualChoices.every(
+      (choiceId, index) => choiceId === expectedChoices[index]
+    );
     fieldResults[CHOICE_RESULT_KEY] = isCorrect ? "correct" : "incorrect";
     if (!isCorrect) hasIncorrect = true;
   }
@@ -23544,35 +24067,55 @@ function matchesOpenResponseRule(answer3, rule) {
     return hasTimeOnly || hasFullSentence;
   }
   const rangeUnit = rule.kind === "weekday_range" ? weekday : time;
-  const hasRange = new RegExp(`${rangeUnit}\u304B\u3089${rangeUnit}\u307E\u3067`).test(normalized);
+  const hasRange = new RegExp(`${rangeUnit}\u304B\u3089${rangeUnit}\u307E\u3067`).test(
+    normalized
+  );
   return hasRange && (allowsShortAnswer || hasExpectedAction);
 }
 function expectedTextMatcher(item2, slotId, answerAlternatives = {}) {
-  const answers = answerValuesForSlot(item2, slotId).map((value) => normalizeAnswerText(value));
-  (answerAlternatives?.[item2.id]?.[slotId] || []).forEach((value) => answers.push(normalizeAnswerText(value)));
+  const answers = answerValuesForSlot(item2, slotId).map(
+    (value) => normalizeAnswerText(value)
+  );
+  (answerAlternatives?.[item2.id]?.[slotId] || []).forEach(
+    (value) => answers.push(normalizeAnswerText(value))
+  );
   const unique = Array.from(new Set(answers.filter(Boolean)));
   return {
     exacts: unique.filter((value) => !value.includes("\u301C")),
     patterns: unique.filter((value) => value.includes("\u301C")).map(patternFromPlaceholderAnswer).filter(Boolean),
-    speakerTaggedExpected: unique.some((value) => /(?:^|\n)[甲乙丙丁A-DＡ-Ｄ][：:]/.test(value))
+    speakerTaggedExpected: unique.some(
+      (value) => /(?:^|\n)[甲乙丙丁A-DＡ-Ｄ][：:]/.test(value)
+    )
   };
 }
 function hasIncorrectTextAnswers(activity, grading) {
   return flattenActivityItems2(activity).some(
-    (item2) => item2.evaluationMode !== "open_response" && item2.inputSlots?.some((slot) => grading?.itemResults?.[item2.id]?.fieldResults?.[slot.id] === "incorrect")
+    (item2) => item2.evaluationMode !== "open_response" && item2.inputSlots?.some(
+      (slot) => grading?.itemResults?.[item2.id]?.fieldResults?.[slot.id] === "incorrect"
+    )
   );
 }
-async function reviewIncorrectTextAnswers({ practice, activity, answers, grading, answerAlternatives }) {
+async function reviewIncorrectTextAnswers({
+  practice,
+  activity,
+  answers,
+  grading,
+  answerAlternatives
+}) {
   let alternatives = answerAlternatives || {};
   let acceptedCount = 0;
   let reviewedCount = 0;
   const items = flattenActivityItems2(activity);
   for (const item2 of items) {
-    if (item2.evaluationMode === "manual_review" || item2.evaluationMode === "self_check" || item2.evaluationMode === "open_response") continue;
+    if (item2.evaluationMode === "manual_review" || item2.evaluationMode === "self_check" || item2.evaluationMode === "open_response")
+      continue;
     if (!item2.inputSlots?.length) continue;
     for (const slot of item2.inputSlots) {
-      if (grading?.itemResults?.[item2.id]?.fieldResults?.[slot.id] !== "incorrect") continue;
-      const userAnswer = String(answers?.[item2.id]?.slotValues?.[slot.id] || "").trim();
+      if (grading?.itemResults?.[item2.id]?.fieldResults?.[slot.id] !== "incorrect")
+        continue;
+      const userAnswer = String(
+        answers?.[item2.id]?.slotValues?.[slot.id] || ""
+      ).trim();
       if (!userAnswer) continue;
       reviewedCount += 1;
       const result = await requestAnswerReview({
@@ -23595,7 +24138,12 @@ async function reviewIncorrectTextAnswers({ practice, activity, answers, grading
         cacheAcceptedAnswer: item2.evaluationMode !== "open_response"
       });
       if (!result?.accepted) continue;
-      alternatives = mergeAcceptedAnswerAlternative(alternatives, item2.id, slot.id, result.normalizedAnswer || userAnswer);
+      alternatives = mergeAcceptedAnswerAlternative(
+        alternatives,
+        item2.id,
+        slot.id,
+        result.normalizedAnswer || userAnswer
+      );
       acceptedCount += 1;
     }
   }
@@ -23612,17 +24160,25 @@ async function requestAnswerReview(payload) {
   });
   const data = await response.json().catch(() => ({}));
   if (!response.ok) {
-    throw new Error(data.error || data.message || (data.code === "AI_DAILY_QUOTA_EXCEEDED" ? "\u4ECA\u65E5 AI \u8C03\u7528\u989D\u5EA6\u5DF2\u7528\u5B8C\u3002" : `\u7B54\u6848\u590D\u6838\u5931\u8D25\uFF08HTTP ${response.status}\uFF09`));
+    throw new Error(
+      data.error || data.message || (data.code === "AI_DAILY_QUOTA_EXCEEDED" ? "\u4ECA\u65E5 AI \u8C03\u7528\u989D\u5EA6\u5DF2\u7528\u5B8C\u3002" : `\u7B54\u6848\u590D\u6838\u5931\u8D25\uFF08HTTP ${response.status}\uFF09`)
+    );
   }
   return data;
 }
 async function loadAcceptedAnswerAlternatives(lessonId2) {
   const local = readLocalAcceptedAnswerAlternatives(lessonId2);
   try {
-    const response = await fetch(`/api/practice/answer-alternatives?lessonId=${encodeURIComponent(lessonId2)}`, { cache: "no-store" });
+    const response = await fetch(
+      `/api/practice/answer-alternatives?lessonId=${encodeURIComponent(lessonId2)}`,
+      { cache: "no-store" }
+    );
     const data = await response.json().catch(() => ({}));
     if (!response.ok) return local;
-    const merged = mergeAnswerAlternativeIndexes(local, data.alternatives || {});
+    const merged = mergeAnswerAlternativeIndexes(
+      local,
+      data.alternatives || {}
+    );
     writeLocalAcceptedAnswerAlternatives(lessonId2, merged);
     return merged;
   } catch {
@@ -23632,7 +24188,9 @@ async function loadAcceptedAnswerAlternatives(lessonId2) {
 function readLocalAcceptedAnswerAlternatives(lessonId2) {
   if (typeof window === "undefined") return {};
   try {
-    const all = JSON.parse(window.localStorage.getItem(ANSWER_ALTERNATIVE_CACHE_KEY) || "{}");
+    const all = JSON.parse(
+      window.localStorage.getItem(ANSWER_ALTERNATIVE_CACHE_KEY) || "{}"
+    );
     return all?.[lessonId2] && typeof all[lessonId2] === "object" ? all[lessonId2] : {};
   } catch {
     return {};
@@ -23641,9 +24199,14 @@ function readLocalAcceptedAnswerAlternatives(lessonId2) {
 function writeLocalAcceptedAnswerAlternatives(lessonId2, alternatives) {
   if (typeof window === "undefined") return;
   try {
-    const all = JSON.parse(window.localStorage.getItem(ANSWER_ALTERNATIVE_CACHE_KEY) || "{}");
+    const all = JSON.parse(
+      window.localStorage.getItem(ANSWER_ALTERNATIVE_CACHE_KEY) || "{}"
+    );
     all[lessonId2] = alternatives || {};
-    window.localStorage.setItem(ANSWER_ALTERNATIVE_CACHE_KEY, JSON.stringify(all));
+    window.localStorage.setItem(
+      ANSWER_ALTERNATIVE_CACHE_KEY,
+      JSON.stringify(all)
+    );
   } catch {
   }
 }
@@ -23663,7 +24226,8 @@ function mergeAcceptedAnswerAlternative(alternatives = {}, itemId, slotId, answe
   if (!value) return alternatives;
   const existing = alternatives?.[itemId]?.[slotId] || [];
   const normalizedValue = normalizeAnswerText(value);
-  if (existing.some((entry) => normalizeAnswerText(entry) === normalizedValue)) return alternatives;
+  if (existing.some((entry) => normalizeAnswerText(entry) === normalizedValue))
+    return alternatives;
   return {
     ...alternatives,
     [itemId]: {
@@ -23679,7 +24243,10 @@ function buildAcceptedAnswerAlternativeSyncPlan(practice, alternatives = {}) {
   const activities31 = (practice.activities || []).map((activity) => {
     let activityChanged = false;
     const mergeItem = (item2) => {
-      const result = mergePracticeItemAcceptedAlternatives(item2, alternatives?.[item2.id]);
+      const result = mergePracticeItemAcceptedAlternatives(
+        item2,
+        alternatives?.[item2.id]
+      );
       if (result.answerCount > 0) {
         activityChanged = true;
         answerCount += result.answerCount;
@@ -23757,7 +24324,9 @@ function mergePracticeItemAcceptedAlternatives(item2, itemAlternatives) {
   return answerCount > 0 ? { item: { ...item2, answer: nextAnswer }, answerCount, details } : { item: item2, answerCount: 0, details: [] };
 }
 function uniqueNewAnswerValues(existingValues, incomingValues) {
-  const normalizedExisting = new Set(existingValues.map((value) => normalizeAnswerText(value)).filter(Boolean));
+  const normalizedExisting = new Set(
+    existingValues.map((value) => normalizeAnswerText(value)).filter(Boolean)
+  );
   const additions = [];
   incomingValues.forEach((value) => {
     const answer3 = String(value || "").trim();
@@ -23802,7 +24371,9 @@ function promptPartsPlainText(parts = []) {
   }).join("");
 }
 function exampleTextForItem(activity, itemId) {
-  const group = (activity.itemGroups || []).find((entry) => entry.items?.some((item2) => item2.id === itemId));
+  const group = (activity.itemGroups || []).find(
+    (entry) => entry.items?.some((item2) => item2.id === itemId)
+  );
   if (group?.example) return examplePlainText(group.example);
   return (activity.layout || []).filter((block) => block.type === "example").map((block) => examplePlainText(block.content)).filter(Boolean).join("\n\n");
 }
@@ -23821,7 +24392,8 @@ function normalizeSpeakerlessAnswer(value) {
   return normalizeAnswerText(normalized);
 }
 function normalizeAnswerText(value) {
-  if (Array.isArray(value)) return value.map((entry) => normalizeAnswerText(entry)).join("\n");
+  if (Array.isArray(value))
+    return value.map((entry) => normalizeAnswerText(entry)).join("\n");
   const normalized = String(value || "").normalize("NFKC").replace(/\u3000/g, " ").replace(/[A-Za-z]+/g, (textValue) => textValue.toUpperCase()).replace(/て\s*は\s*ありません/g, "\u3067\u306F\u3042\u308A\u307E\u305B\u3093").replace(/て\s*は\s*ないです/g, "\u3067\u306F\u3042\u308A\u307E\u305B\u3093").replace(/じゃありません/g, "\u3067\u306F\u3042\u308A\u307E\u305B\u3093").replace(/じゃないです/g, "\u3067\u306F\u3042\u308A\u307E\u305B\u3093").replace(/\s+/g, "").replace(/\p{P}/gu, (mark) => mark === "\u301C" ? mark : "").replace(/^ー+/, "").trim();
   return normalizeAnswerLexicalVariants(normalized);
 }
@@ -23869,7 +24441,8 @@ function normalizeActivityRecord(activity, record) {
 }
 function needsGradingRefresh(activity, grading) {
   return flattenActivityItems2(activity).some((item2) => {
-    if (item2.evaluationMode === "manual_review" || !item2.answer || !item2.inputSlots?.length) return false;
+    if (item2.evaluationMode === "manual_review" || !item2.answer || !item2.inputSlots?.length)
+      return false;
     if (item2.evaluationMode === "open_response") return true;
     const savedResult = grading?.itemResults?.[item2.id];
     return savedResult?.status === "ungraded" && !Object.keys(savedResult.fieldResults || {}).length;
@@ -23884,13 +24457,15 @@ function normalizeStoredItemAnswer(item2, source) {
     const choiceIds = directChoiceIds(item2, source, direct);
     return choiceIds.length ? { ...typeof direct === "object" ? direct : {}, choiceIds } : null;
   }
-  if (!item2.inputSlots?.length) return direct && typeof direct === "object" ? direct : null;
+  if (!item2.inputSlots?.length)
+    return direct && typeof direct === "object" ? direct : null;
   const slotValues = direct?.slotValues && typeof direct.slotValues === "object" ? { ...direct.slotValues } : {};
   if (typeof direct === "string") {
     slotValues[_a = item2.inputSlots[0]?.id || "answer"] || (slotValues[_a] = direct);
   } else if (direct && typeof direct === "object") {
     const directValue = direct.answer || direct.value || direct.text || direct.userAnswer;
-    if (typeof directValue === "string") slotValues[_b = item2.inputSlots[0]?.id || "answer"] || (slotValues[_b] = directValue);
+    if (typeof directValue === "string")
+      slotValues[_b = item2.inputSlots[0]?.id || "answer"] || (slotValues[_b] = directValue);
   }
   item2.inputSlots.forEach((slot) => {
     if (slotValues[slot.id]) return;
@@ -23913,19 +24488,24 @@ function directChoiceIds(item2, source, direct) {
     if (Array.isArray(choice)) return choice.map(String);
     if (typeof choice === "string") return [choice];
   }
-  return firstStringValue([
-    source[`${item2.id}::choice`],
-    source[`${item2.id}::__choice__`],
-    source[`${item2.id}.choice`]
-  ], true);
+  return firstStringValue(
+    [
+      source[`${item2.id}::choice`],
+      source[`${item2.id}::__choice__`],
+      source[`${item2.id}.choice`]
+    ],
+    true
+  );
 }
 function firstStringValue(values, asArray = false) {
   for (const value of values) {
-    if (Array.isArray(value) && value.length) return asArray ? value.map(String) : String(value[0] || "");
+    if (Array.isArray(value) && value.length)
+      return asArray ? value.map(String) : String(value[0] || "");
     if (typeof value === "string" && value) return asArray ? [value] : value;
     if (value && typeof value === "object") {
       const nested = value.value || value.answer || value.userAnswer || value.text;
-      if (typeof nested === "string" && nested) return asArray ? [nested] : nested;
+      if (typeof nested === "string" && nested)
+        return asArray ? [nested] : nested;
     }
   }
   return asArray ? [] : "";
@@ -23933,8 +24513,12 @@ function firstStringValue(values, asArray = false) {
 function activityProgressSummary(activity, record) {
   const items = flattenActivityItems2(activity);
   const total = items.length;
-  const completed = items.filter((item2) => isItemAnswered(item2, record?.answers?.[item2.id])).length;
-  const incorrect = items.filter((item2) => record?.grading?.itemResults?.[item2.id]?.status === "incorrect").length;
+  const completed = items.filter(
+    (item2) => isItemAnswered(item2, record?.answers?.[item2.id])
+  ).length;
+  const incorrect = items.filter(
+    (item2) => record?.grading?.itemResults?.[item2.id]?.status === "incorrect"
+  ).length;
   return {
     total,
     completed,
@@ -23946,7 +24530,9 @@ function isItemAnswered(item2, answer3) {
   if (!answer3) return false;
   if (item2.choices?.length) return Boolean(answer3.choiceIds?.length);
   if (!item2.inputSlots?.length) return false;
-  return item2.inputSlots.some((slot) => String(answer3.slotValues?.[slot.id] || "").trim().length > 0) || Boolean(firstStoredSlotValue(answer3.slotValues).trim());
+  return item2.inputSlots.some(
+    (slot) => String(answer3.slotValues?.[slot.id] || "").trim().length > 0
+  ) || Boolean(firstStoredSlotValue(answer3.slotValues).trim());
 }
 function defaultFieldValue(item2, slotId, storedAnswer, admin) {
   const stored = storedAnswer?.slotValues?.[slotId];
@@ -23983,11 +24569,16 @@ function resolveStoredChoiceIds(item2, choiceIds) {
   });
 }
 function resolveItemResponseScopeHint(item2, activityResponseScope, activityResponseScopeHint) {
-  const ownHint = resolveResponseScopeHint(item2.responseScope, item2.responseScopeHint);
+  const ownHint = resolveResponseScopeHint(
+    item2.responseScope,
+    item2.responseScopeHint
+  );
   if (!ownHint) return "";
   if (!activityResponseScopeHint) return ownHint;
-  if (item2.responseScope && item2.responseScope !== activityResponseScope) return ownHint;
-  if (item2.responseScopeHint && item2.responseScopeHint !== activityResponseScopeHint) return ownHint;
+  if (item2.responseScope && item2.responseScope !== activityResponseScope)
+    return ownHint;
+  if (item2.responseScopeHint && item2.responseScopeHint !== activityResponseScopeHint)
+    return ownHint;
   return "";
 }
 function resolveResponseScopeHint(responseScope, responseScopeHint) {
@@ -24002,7 +24593,9 @@ function resolveAudioGuidance(activity) {
 function formatAttemptSummary(item2, answer3) {
   if (!answer3) return "\u672A\u4F5C\u7B54";
   if (item2.choices?.length) {
-    const selected = new Set(resolveStoredChoiceIds(item2, answer3.choiceIds || []));
+    const selected = new Set(
+      resolveStoredChoiceIds(item2, answer3.choiceIds || [])
+    );
     const labels = item2.choices.filter((choice) => selected.has(choice.id)).map((choice) => choice.label);
     return labels.length ? labels.join(" / ") : "\u672A\u9009\u62E9";
   }
@@ -24041,7 +24634,9 @@ function buildAnswerComparison(item2, answer3, result) {
     };
   }
   if (!item2.inputSlots?.length) return null;
-  const targetSlots = result?.fieldResults ? item2.inputSlots.filter((slot) => result.fieldResults?.[slot.id] === "incorrect") : [];
+  const targetSlots = result?.fieldResults ? item2.inputSlots.filter(
+    (slot) => result.fieldResults?.[slot.id] === "incorrect"
+  ) : [];
   const slots6 = targetSlots.length ? targetSlots : item2.inputSlots;
   const diffLines = slots6.flatMap((slot) => {
     const actual = formatSlotAttemptSummary(item2, answer3, slot.id);
@@ -24067,7 +24662,10 @@ function closestExpectedAnswer(actual, candidates) {
   const actualNormalized = normalizeAnswerText(actual);
   return candidates.map((candidate) => ({
     candidate,
-    distance: editDistance(actualNormalized, normalizeAnswerText(candidate))
+    distance: editDistance(
+      actualNormalized,
+      normalizeAnswerText(candidate)
+    )
   })).sort((a, b) => a.distance - b.distance)[0]?.candidate || candidates[0];
 }
 function editDistance(left, right) {
@@ -24084,12 +24682,18 @@ function editDistance(left, right) {
   return previous[b.length] || 0;
 }
 function comparableAnswerText(value) {
-  return String(value || "").normalize("NFKC").replace(/\r\n?/g, "\n").split("\n").map((line2) => line2.replace(/^\s*(?:乙[0-9０-９]+|[甲乙丙丁]|[A-DＡ-Ｄ])\s*[：:]\s*/u, "")).join("\n").replace(/[ \t\u3000]+/g, "").replace(/\p{P}/gu, "").replace(/\n{3,}/g, "\n\n").replace(/^\n+|\n+$/g, "");
+  return String(value || "").normalize("NFKC").replace(/\r\n?/g, "\n").split("\n").map(
+    (line2) => line2.replace(
+      /^\s*(?:乙[0-9０-９]+|[甲乙丙丁]|[A-DＡ-Ｄ])\s*[：:]\s*/u,
+      ""
+    )
+  ).join("\n").replace(/[ \t\u3000]+/g, "").replace(/\p{P}/gu, "").replace(/\n{3,}/g, "\n\n").replace(/^\n+|\n+$/g, "");
 }
 function diffComparableAnswerText(actual, expected) {
   const actualComparable = comparableAnswerText(actual);
   const expectedComparable = comparableAnswerText(expected);
-  if (!actualComparable && !expectedComparable) return { actualParts: [], expectedParts: [] };
+  if (!actualComparable && !expectedComparable)
+    return { actualParts: [], expectedParts: [] };
   return diffText(actualComparable, expectedComparable);
 }
 function comparableAnswerLines(value) {
@@ -24104,7 +24708,10 @@ function gitLikeAnswerDiff(actual, expected) {
   let index = 0;
   while (index < ops.length) {
     if (ops[index].type === "equal") {
-      rows.push({ type: "context", parts: [{ type: "equal", text: ops[index].text || " " }] });
+      rows.push({
+        type: "context",
+        parts: [{ type: "equal", text: ops[index].text || " " }]
+      });
       index += 1;
       continue;
     }
@@ -24120,13 +24727,28 @@ function gitLikeAnswerDiff(actual, expected) {
       const deleted = deletes[pairIndex];
       const inserted = inserts[pairIndex];
       if (deleted != null && inserted != null) {
-        const { actualParts, expectedParts } = diffComparableAnswerText(deleted, inserted);
-        rows.push({ type: "delete", parts: actualParts.length ? actualParts : [{ type: "delete", text: deleted || " " }] });
-        rows.push({ type: "insert", parts: expectedParts.length ? expectedParts : [{ type: "insert", text: inserted || " " }] });
+        const { actualParts, expectedParts } = diffComparableAnswerText(
+          deleted,
+          inserted
+        );
+        rows.push({
+          type: "delete",
+          parts: actualParts.length ? actualParts : [{ type: "delete", text: deleted || " " }]
+        });
+        rows.push({
+          type: "insert",
+          parts: expectedParts.length ? expectedParts : [{ type: "insert", text: inserted || " " }]
+        });
       } else if (deleted != null) {
-        rows.push({ type: "delete", parts: [{ type: "delete", text: deleted || " " }] });
+        rows.push({
+          type: "delete",
+          parts: [{ type: "delete", text: deleted || " " }]
+        });
       } else if (inserted != null) {
-        rows.push({ type: "insert", parts: [{ type: "insert", text: inserted || " " }] });
+        rows.push({
+          type: "insert",
+          parts: [{ type: "insert", text: inserted || " " }]
+        });
       }
     }
   }
@@ -24137,7 +24759,10 @@ function diffLineOperations(actualLines, expectedLines) {
   const table = new Uint16Array((actualLines.length + 1) * width);
   for (let row2 = actualLines.length - 1; row2 >= 0; row2 -= 1) {
     for (let col2 = expectedLines.length - 1; col2 >= 0; col2 -= 1) {
-      table[row2 * width + col2] = actualLines[row2] === expectedLines[col2] ? table[(row2 + 1) * width + col2 + 1] + 1 : Math.max(table[(row2 + 1) * width + col2], table[row2 * width + col2 + 1]);
+      table[row2 * width + col2] = actualLines[row2] === expectedLines[col2] ? table[(row2 + 1) * width + col2 + 1] + 1 : Math.max(
+        table[(row2 + 1) * width + col2],
+        table[row2 * width + col2 + 1]
+      );
     }
   }
   const ops = [];
@@ -24173,7 +24798,10 @@ function diffText(actual, expected) {
   const table = new Uint16Array((a.length + 1) * width);
   for (let row2 = a.length - 1; row2 >= 0; row2 -= 1) {
     for (let col2 = b.length - 1; col2 >= 0; col2 -= 1) {
-      table[row2 * width + col2] = a[row2] === b[col2] ? table[(row2 + 1) * width + col2 + 1] + 1 : Math.max(table[(row2 + 1) * width + col2], table[row2 * width + col2 + 1]);
+      table[row2 * width + col2] = a[row2] === b[col2] ? table[(row2 + 1) * width + col2 + 1] + 1 : Math.max(
+        table[(row2 + 1) * width + col2],
+        table[row2 * width + col2 + 1]
+      );
     }
   }
   const actualParts = [];
@@ -24255,11 +24883,17 @@ function splitDialogueKanaLines(kana2, expectedLineCount) {
   return [];
 }
 function stripDialogueSpeaker(line2) {
-  return String(line2 || "").replace(/^\s*(?:甲|乙[12一二]?|丙|丁|A|B|C|D|こう|おつ(?:いち|に|[12一二])?|コウ|オツ(?:イチ|ニ|[12一二]?)?)：\s*/, "").trim();
+  return String(line2 || "").replace(
+    /^\s*(?:甲|乙[12一二]?|丙|丁|A|B|C|D|こう|おつ(?:いち|に|[12一二])?|コウ|オツ(?:イチ|ニ|[12一二]?)?)：\s*/,
+    ""
+  ).trim();
 }
 function splitPromptPartsByDialogueLines(parts, textLines) {
   const result = textLines.map(() => []);
-  const ranges = textLines.map((line2) => ({ start: line2.start, end: line2.end }));
+  const ranges = textLines.map((line2) => ({
+    start: line2.start,
+    end: line2.end
+  }));
   let cursor = 0;
   for (const part of parts) {
     const partText = promptPartsPlainText([part]);
@@ -24271,7 +24905,9 @@ function splitPromptPartsByDialogueLines(parts, textLines) {
       if (overlapStart >= overlapEnd) return;
       const sliceStart = overlapStart - partStart;
       const sliceEnd = overlapEnd - partStart;
-      result[index].push(slicePromptPart(part, partText.slice(sliceStart, sliceEnd)));
+      result[index].push(
+        slicePromptPart(part, partText.slice(sliceStart, sliceEnd))
+      );
     });
     cursor = partEnd;
   }
@@ -24288,7 +24924,8 @@ function splitRubySegments(text32, kana2) {
     return [{ type: "text", text: sourceText }];
   }
   const runs = splitRubyRuns(sourceText);
-  if (!runs.some((run) => run.annotatable)) return [{ type: "text", text: sourceText }];
+  if (!runs.some((run) => run.annotatable))
+    return [{ type: "text", text: sourceText }];
   let remainingKana = sourceKana;
   const segments = [];
   runs.forEach((run, index) => {
@@ -24297,7 +24934,10 @@ function splitRubySegments(text32, kana2) {
       remainingKana = consumePlainText(remainingKana, run.text);
       return;
     }
-    const nextPlainText = findAnchorPlainText(remainingKana, runs.slice(index + 1));
+    const nextPlainText = findAnchorPlainText(
+      remainingKana,
+      runs.slice(index + 1)
+    );
     let reading = "";
     if (nextPlainText) {
       const boundaryIndex = findPlainTextBoundary(remainingKana, nextPlainText);
@@ -24336,7 +24976,9 @@ function splitRubyRuns(value) {
   return runs;
 }
 function isRubyTargetChar(char) {
-  return /[\u3400-\u4dbf\u4e00-\u9fff々〇〆ヶヵ0-9０-９]/.test(String(char || ""));
+  return /[\u3400-\u4dbf\u4e00-\u9fff々〇〆ヶヵ0-9０-９]/.test(
+    String(char || "")
+  );
 }
 function findAnchorPlainText(remainingKana, futureRuns) {
   for (const run of futureRuns) {
@@ -24356,12 +24998,16 @@ function findPlainTextBoundary(remainingKana, plainText) {
 }
 function consumePlainText(remainingKana, plainText) {
   if (!remainingKana || !plainText) return remainingKana;
-  if (remainingKana.startsWith(plainText)) return remainingKana.slice(plainText.length);
+  if (remainingKana.startsWith(plainText))
+    return remainingKana.slice(plainText.length);
   const trimmedPlainText = plainText.trim();
   if (trimmedPlainText && remainingKana.startsWith(trimmedPlainText)) {
     return remainingKana.slice(trimmedPlainText.length);
   }
-  const whitespaceTolerantRest = consumeWhitespaceTolerantPrefix(remainingKana, plainText);
+  const whitespaceTolerantRest = consumeWhitespaceTolerantPrefix(
+    remainingKana,
+    plainText
+  );
   if (whitespaceTolerantRest !== null) return whitespaceTolerantRest;
   let cursor = remainingKana;
   const segments = plainText.match(/[A-Za-z]+|[^A-Za-z]+/g) || [plainText];
@@ -38835,11 +39481,15 @@ var activities30 = [
   { id: "l32-p1-a3", section: "practice_1", order: 3, title: "\u4EFF\u7167\u4F8B\u53E5\u66FF\u6362\u753B\u7EBF\u90E8\u5206\u8FDB\u884C\u7EC3\u4E60\u3002", instruction: "", interaction: "pattern_substitution", answerUnit: "sentence", responseScope: "sentence_only", layout: [{ type: "example", content: { label: "[\u4F8B1]", before: "\u98DB\u884C\u6A5F\u3067\u884C\u304D\u307E\u3059\u3002", beforeKana: "\u3072\u3053\u3046\u304D\u3067\u3044\u304D\u307E\u3059\u3002", after: [text31("\u98DB\u884C\u6A5F\u3067\u884C\u304F\u3053\u3068\u306B\u3057\u307E\u3057\u305F\u3002", { kana: "\u3072\u3053\u3046\u304D\u3067\u3044\u304F\u3053\u3068\u306B\u3057\u307E\u3057\u305F\u3002" })] } }], items: [sentenceItem3("l32-p1-a3-q1", "1", "\u5927\u962A\u3067\u4E57\u308A\u63DB\u3048\u307E\u3059\u3002", "\u304A\u304A\u3055\u304B\u3067\u306E\u308A\u304B\u3048\u307E\u3059\u3002", "\u5927\u962A\u3067\u4E57\u308A\u63DB\u3048\u308B\u3053\u3068\u306B\u3057\u307E\u3057\u305F\u3002"), sentenceItem3("l32-p1-a3-q2", "2", "\u4F1A\u793E\u3092\u8F9E\u3081\u307E\u3059\u3002", "\u304B\u3044\u3057\u3083\u3092\u3084\u3081\u307E\u3059\u3002", "\u4F1A\u793E\u3092\u8F9E\u3081\u308B\u3053\u3068\u306B\u3057\u307E\u3057\u305F\u3002"), sentenceItem3("l32-p1-a3-q3", "3", "\u6E05\u6C34\u3055\u3093\u3068\u7D50\u5A5A\u3057\u307E\u3059\u3002", "\u3057\u307F\u305A\u3055\u3093\u3068\u3051\u3063\u3053\u3093\u3057\u307E\u3059\u3002", "\u6E05\u6C34\u3055\u3093\u3068\u7D50\u5A5A\u3059\u308B\u3053\u3068\u306B\u3057\u307E\u3057\u305F\u3002"), sentenceItem3("l32-p1-a3-q4", "4", "\u65C5\u884C\u306B\u884C\u304D\u307E\u305B\u3093\u3002", "\u308A\u3087\u3053\u3046\u306B\u3044\u304D\u307E\u305B\u3093\u3002", "\u65C5\u884C\u306B\u884C\u304B\u306A\u3044\u3053\u3068\u306B\u3057\u307E\u3057\u305F\u3002"), sentenceItem3("l32-p1-a3-q5", "5", "\u8ECA\u3092\u8CB7\u3044\u307E\u305B\u3093\u3002", "\u304F\u308B\u307E\u3092\u304B\u3044\u307E\u305B\u3093\u3002", "\u8ECA\u3092\u8CB7\u308F\u306A\u3044\u3053\u3068\u306B\u3057\u307E\u3057\u305F\u3002"), sentenceItem3("l32-p1-a3-q6", "6", "\u3082\u3046\u304A\u9152\u3092\u98F2\u307F\u307E\u305B\u3093\u3002", "\u3082\u3046\u304A\u3055\u3051\u3092\u306E\u307F\u307E\u305B\u3093\u3002", "\u3082\u3046\u304A\u9152\u3092\u98F2\u307E\u306A\u3044\u3053\u3068\u306B\u3057\u307E\u3057\u305F\u3002"), sentenceItem3("l32-p1-a3-q7", "7", "\u6771\u4EAC\u306B\u652F\u5E97\u3092\u4F5C\u308A\u307E\u3059\u3002", "\u3068\u3046\u304D\u3087\u3046\u306B\u3057\u3066\u3093\u3092\u3064\u304F\u308A\u307E\u3059\u3002", "\u6771\u4EAC\u306B\u652F\u5E97\u3092\u4F5C\u308B\u3053\u3068\u306B\u306A\u308A\u307E\u3057\u305F\u3002"), sentenceItem3("l32-p1-a3-q8", "8", "\u7D66\u6599\u304C\u4E0A\u304C\u308A\u307E\u3059\u3002", "\u304D\u3085\u3046\u308A\u3087\u3046\u304C\u3042\u304C\u308A\u307E\u3059\u3002", "\u7D66\u6599\u304C\u4E0A\u304C\u308B\u3053\u3068\u306B\u306A\u308A\u307E\u3057\u305F\u3002"), sentenceItem3("l32-p1-a3-q9", "9", "\u4ECA\u5E74\u304B\u3089\u571F\u66DC\u65E5\u3082\u4F11\u307F\u307E\u3059\u3002", "\u3053\u3068\u3057\u304B\u3089\u3069\u3088\u3046\u3073\u3082\u3084\u3059\u307F\u307E\u3059\u3002", "\u4ECA\u5E74\u304B\u3089\u571F\u66DC\u65E5\u3082\u4F11\u3080\u3053\u3068\u306B\u306A\u308A\u307E\u3057\u305F\u3002"), sentenceItem3("l32-p1-a3-q10", "10", "6\u6642\u307E\u3067\u50CD\u304B\u306A\u3051\u308C\u3070\u306A\u308A\u307E\u305B\u3093\u3002", "\u308D\u304F\u3058\u307E\u3067\u306F\u305F\u3089\u304B\u306A\u3051\u308C\u3070\u306A\u308A\u307E\u305B\u3093\u3002", "6\u6642\u307E\u3067\u50CD\u304B\u306A\u3051\u308C\u3070\u306A\u3089\u306A\u3044\u3053\u3068\u306B\u306A\u308A\u307E\u3057\u305F\u3002"), sentenceItem3("l32-p1-a3-q11", "11", "\u52A0\u85E4\u3055\u3093\u304C\u51B7\u8535\u5EAB\u3092\u304F\u308C\u307E\u3059\u3002", "\u304B\u3068\u3046\u3055\u3093\u304C\u308C\u3044\u305E\u3046\u3053\u3092\u304F\u308C\u307E\u3059\u3002", "\u52A0\u85E4\u3055\u3093\u304C\u51B7\u8535\u5EAB\u3092\u304F\u308C\u308B\u3053\u3068\u306B\u306A\u308A\u307E\u3057\u305F\u3002"), sentenceItem3("l32-p1-a3-q12", "12", "\u3053\u3053\u3067\u30BF\u30D0\u30B3\u3092\u5438\u3063\u3066\u306F\u3044\u3051\u307E\u305B\u3093\u3002", "\u3053\u3053\u3067\u30BF\u30D0\u30B3\u3092\u3059\u3063\u3066\u306F\u3044\u3051\u307E\u305B\u3093\u3002", "\u3053\u3053\u3067\u30BF\u30D0\u30B3\u3092\u5438\u3063\u3066\u306F\u3044\u3051\u306A\u3044\u3053\u3068\u306B\u306A\u308A\u307E\u3057\u305F\u3002")] },
   { id: "l32-p1-a4", section: "practice_1", order: 4, title: "\u4EFF\u7167\u4F8B\u53E5\u66FF\u6362\u753B\u7EBF\u90E8\u5206\u8FDB\u884C\u7EC3\u4E60\u3002", instruction: "", interaction: "pattern_substitution", answerUnit: "sentence", responseScope: "sentence_only", layout: [{ type: "example", content: { label: "[\u4F8B]", before: "\u5317\u6D77\u9053\u3067\u5927\u304D\u306A\u5730\u9707\u304C\u3042\u308A\u307E\u3057\u305F\u3002", beforeKana: "\u307B\u3063\u304B\u3044\u3069\u3046\u3067\u304A\u304A\u304D\u306A\u3058\u3057\u3093\u304C\u3042\u308A\u307E\u3057\u305F\u3002", after: [text31("\u30CB\u30E5\u30FC\u30B9\u306B\u3088\u308B\u3068\u3001\u5317\u6D77\u9053\u3067\u5927\u304D\u306A\u5730\u9707\u304C\u3042\u3063\u305F\u305D\u3046\u3067\u3059\u3002", { kana: "\u30CB\u30E5\u30FC\u30B9\u306B\u3088\u308B\u3068\u3001\u307B\u3063\u304B\u3044\u3069\u3046\u3067\u304A\u304A\u304D\u306A\u3058\u3057\u3093\u304C\u3042\u3063\u305F\u305D\u3046\u3067\u3059\u3002" })] } }], items: [sentenceItem3("l32-p1-a4-q1", "1", "\u9996\u76F8\u306F\u6765\u6708\u30A2\u30E1\u30EA\u30AB\u306B\u884C\u304D\u307E\u3059\u3002", "\u3057\u3085\u3057\u3087\u3046\u306F\u3089\u3044\u3052\u3064\u30A2\u30E1\u30EA\u30AB\u306B\u3044\u304D\u307E\u3059\u3002", "\u30CB\u30E5\u30FC\u30B9\u306B\u3088\u308B\u3068\u3001\u9996\u76F8\u306F\u6765\u6708\u30A2\u30E1\u30EA\u30AB\u306B\u884C\u304F\u305D\u3046\u3067\u3059\u3002"), sentenceItem3("l32-p1-a4-q2", "2", "\u725B\u4E73\u306E\u5024\u6BB5\u304C\u4E0A\u304C\u308A\u307E\u3059\u3002", "\u304E\u3085\u3046\u306B\u3085\u3046\u306E\u306D\u3060\u3093\u304C\u3042\u304C\u308A\u307E\u3059\u3002", "\u30CB\u30E5\u30FC\u30B9\u306B\u3088\u308B\u3068\u3001\u725B\u4E73\u306E\u5024\u6BB5\u304C\u4E0A\u304C\u308B\u305D\u3046\u3067\u3059\u3002"), sentenceItem3("l32-p1-a4-q3", "3", "\u4ECA\u5E74\u306E\u51AC\u306F\u3042\u307E\u308A\u5BD2\u304F\u306A\u3044\u3067\u3059\u3002", "\u3053\u3068\u3057\u306E\u3075\u3086\u306F\u3042\u307E\u308A\u3055\u3080\u304F\u306A\u3044\u3067\u3059\u3002", "\u30CB\u30E5\u30FC\u30B9\u306B\u3088\u308B\u3068\u3001\u4ECA\u5E74\u306E\u51AC\u306F\u3042\u307E\u308A\u5BD2\u304F\u306A\u3044\u305D\u3046\u3067\u3059\u3002"), sentenceItem3("l32-p1-a4-q4", "4", "\u98A8\u304C\u5F37\u3044\u306E\u3067\u3001\u98DB\u884C\u6A5F\u304C\u98DB\u3073\u307E\u305B\u3093\u3002", "\u304B\u305C\u304C\u3064\u3088\u3044\u306E\u3067\u3001\u3072\u3053\u3046\u304D\u304C\u3068\u3073\u307E\u305B\u3093\u3002", "\u30CB\u30E5\u30FC\u30B9\u306B\u3088\u308B\u3068\u3001\u98A8\u304C\u5F37\u3044\u306E\u3067\u3001\u98DB\u884C\u6A5F\u304C\u98DB\u3070\u306A\u3044\u305D\u3046\u3067\u3059\u3002"), sentenceItem3("l32-p1-a4-q5", "5", "\u65B0\u578B\u306E\u30D1\u30BD\u30B3\u30F3\u306F\u64CD\u4F5C\u304C\u7C21\u5358\u3067\u3059\u3002", "\u3057\u3093\u304C\u305F\u306E\u30D1\u30BD\u30B3\u30F3\u306F\u305D\u3046\u3055\u304C\u304B\u3093\u305F\u3093\u3067\u3059\u3002", "\u30CB\u30E5\u30FC\u30B9\u306B\u3088\u308B\u3068\u3001\u65B0\u578B\u306E\u30D1\u30BD\u30B3\u30F3\u306F\u64CD\u4F5C\u304C\u7C21\u5358\u3060\u305D\u3046\u3067\u3059\u3002"), sentenceItem3("l32-p1-a4-q6", "6", "\u5927\u7D71\u9818\u304C\u5973\u512A\u3068\u7D50\u5A5A\u3057\u307E\u3057\u305F\u3002", "\u3060\u3044\u3068\u3046\u308A\u3087\u3046\u304C\u3058\u3087\u3086\u3046\u3068\u3051\u3063\u3053\u3093\u3057\u307E\u3057\u305F\u3002", "\u30CB\u30E5\u30FC\u30B9\u306B\u3088\u308B\u3068\u3001\u5927\u7D71\u9818\u304C\u5973\u512A\u3068\u7D50\u5A5A\u3057\u305F\u305D\u3046\u3067\u3059\u3002")] },
   { id: "l32-p1-a5", section: "practice_1", order: 5, title: "\u4EFF\u7167\u4F8B\u53E5\u66FF\u6362\u753B\u7EBF\u90E8\u5206\u7EC3\u4E60\u4F1A\u8BDD\u3002", instruction: "", interaction: "dialogue_practice", answerUnit: "dialogue", responseScope: "dialogue_only", layout: [{ type: "example", content: { label: "[\u4F8B]", before: "\u6234\u3055\u3093\u306F\u65E5\u672C\u6599\u7406\u3092\u98DF\u3079\u307E\u3059\uFF0F\u5BFF\u53F8\u304C\u597D\u304D\u3067\u3059\uFF0F\u5927\u4E08\u592B\u3067\u3059", beforeKana: "\u305F\u3044\u3055\u3093\u306F\u306B\u307B\u3093\u308A\u3087\u3046\u308A\u3092\u305F\u3079\u307E\u3059\uFF0F\u3059\u3057\u304C\u3059\u304D\u3067\u3059\uFF0F\u3060\u3044\u3058\u3087\u3046\u3076\u3067\u3059", after: [text31("\u7532\uFF1A\u6234\u3055\u3093\u306F\u65E5\u672C\u6599\u7406\u3092\u98DF\u3079\u308B\u3067\u3057\u3087\u3046\u304B\u3002\n\u4E59\uFF1A\u5BFF\u53F8\u304C\u597D\u304D\u3060\u305D\u3046\u3067\u3059\u304B\u3089\u3001\u5927\u4E08\u592B\u3067\u3057\u3087\u3046\u3002", { kana: "\u3053\u3046\uFF1A\u305F\u3044\u3055\u3093\u306F\u306B\u307B\u3093\u308A\u3087\u3046\u308A\u3092\u305F\u3079\u308B\u3067\u3057\u3087\u3046\u304B\u3002\n\u304A\u3064\uFF1A\u3059\u3057\u304C\u3059\u304D\u3060\u305D\u3046\u3067\u3059\u304B\u3089\u3001\u3060\u3044\u3058\u3087\u3046\u3076\u3067\u3057\u3087\u3046\u3002" })] } }], items: [dialogueItem25("l32-p1-a5-q1", "1", "\u68EE\u3055\u3093\u306F\u660E\u65E5\u6765\u307E\u3059\uFF0F\u90FD\u5408\u304C\u60AA\u3044\u3067\u3059\uFF0F\u6765\u307E\u305B\u3093", "\u3082\u308A\u3055\u3093\u306F\u3042\u3057\u305F\u304D\u307E\u3059\uFF0F\u3064\u3054\u3046\u304C\u308F\u308B\u3044\u3067\u3059\uFF0F\u304D\u307E\u305B\u3093", "\u7532\uFF1A\u68EE\u3055\u3093\u306F\u660E\u65E5\u6765\u308B\u3067\u3057\u3087\u3046\u304B\u3002\n\u4E59\uFF1A\u90FD\u5408\u304C\u60AA\u3044\u305D\u3046\u3067\u3059\u304B\u3089\u3001\u6765\u306A\u3044\u3067\u3057\u3087\u3046\u3002"), dialogueItem25("l32-p1-a5-q2", "2", "\u9673\u3055\u3093\u306F\u6559\u3048\u65B9\u304C\u4E0A\u624B\u3067\u3059\uFF0F\u5B66\u6821\u306E\u5148\u751F\u3067\u3057\u305F\uFF0F\u4E0A\u624B\u3067\u3059", "\u3061\u3093\u3055\u3093\u306F\u304A\u3057\u3048\u304B\u305F\u304C\u3058\u3087\u3046\u305A\u3067\u3059\uFF0F\u304C\u3063\u3053\u3046\u306E\u305B\u3093\u305B\u3044\u3067\u3057\u305F\uFF0F\u3058\u3087\u3046\u305A\u3067\u3059", "\u7532\uFF1A\u9673\u3055\u3093\u306F\u6559\u3048\u65B9\u304C\u4E0A\u624B\u3067\u3057\u3087\u3046\u304B\u3002\n\u4E59\uFF1A\u5B66\u6821\u306E\u5148\u751F\u3060\u3063\u305F\u305D\u3046\u3067\u3059\u304B\u3089\u3001\u4E0A\u624B\u3067\u3057\u3087\u3046\u3002"), dialogueItem25("l32-p1-a5-q3", "3", "\u674E\u3055\u3093\u306F\u3042\u306E\u756A\u7D44\u3092\u898B\u307E\u3057\u305F\uFF0F\u6B74\u53F2\u306B\u8208\u5473\u304C\u3042\u308A\u307E\u3059\uFF0F\u898B\u307E\u3057\u305F", "\u308A\u3055\u3093\u306F\u3042\u306E\u3070\u3093\u3050\u307F\u3092\u307F\u307E\u3057\u305F\uFF0F\u308C\u304D\u3057\u306B\u304D\u3087\u3046\u307F\u304C\u3042\u308A\u307E\u3059\uFF0F\u307F\u307E\u3057\u305F", "\u7532\uFF1A\u674E\u3055\u3093\u306F\u3042\u306E\u756A\u7D44\u3092\u898B\u305F\u3067\u3057\u3087\u3046\u304B\u3002\n\u4E59\uFF1A\u6B74\u53F2\u306B\u8208\u5473\u304C\u3042\u308B\u305D\u3046\u3067\u3059\u304B\u3089\u3001\u898B\u305F\u3067\u3057\u3087\u3046\u3002"), dialogueItem25("l32-p1-a5-q4", "4", "\u5F35\u3055\u3093\u306F\u5408\u683C\u3057\u307E\u3057\u305F\uFF0F\u8A66\u9A13\u306F\u7C21\u5358\u3067\u3057\u305F\uFF0F\u5408\u683C\u3057\u307E\u3057\u305F", "\u3061\u3087\u3046\u3055\u3093\u306F\u3054\u3046\u304B\u304F\u3057\u307E\u3057\u305F\uFF0F\u3057\u3051\u3093\u306F\u304B\u3093\u305F\u3093\u3067\u3057\u305F\uFF0F\u3054\u3046\u304B\u304F\u3057\u307E\u3057\u305F", "\u7532\uFF1A\u5F35\u3055\u3093\u306F\u5408\u683C\u3057\u305F\u3067\u3057\u3087\u3046\u304B\u3002\n\u4E59\uFF1A\u8A66\u9A13\u306F\u7C21\u5358\u3060\u3063\u305F\u305D\u3046\u3067\u3059\u304B\u3089\u3001\u5408\u683C\u3057\u305F\u3067\u3057\u3087\u3046\u3002"), dialogueItem25("l32-p1-a5-q5", "5", "\u660E\u65E5\u306F\u96E8\u3067\u3059\uFF0F\u53F0\u98A8\u304C\u6765\u3066\u3044\u307E\u3059\uFF0F\u96E8\u3067\u3059", "\u3042\u3057\u305F\u306F\u3042\u3081\u3067\u3059\uFF0F\u305F\u3044\u3075\u3046\u304C\u304D\u3066\u3044\u307E\u3059\uFF0F\u3042\u3081\u3067\u3059", "\u7532\uFF1A\u660E\u65E5\u306F\u96E8\u3067\u3057\u3087\u3046\u304B\u3002\n\u4E59\uFF1A\u53F0\u98A8\u304C\u6765\u3066\u3044\u308B\u305D\u3046\u3067\u3059\u304B\u3089\u3001\u96E8\u3067\u3057\u3087\u3046\u3002")] },
-  { id: "l32-p1-a6", section: "practice_1", order: 6, title: "\u770B\u4E0B\u9762\u7684\u4FBF\u6761\uFF0C\u4EFF\u7167\u4F8B\u53E5\u56DE\u7B54\u5F55\u97F3\u4E2D\u7684\u63D0\u95EE\u3002", instruction: "", interaction: "listening_answer", answerUnit: "sentence", responseScope: "answer_only", requiresAudio: true, audio: { source: "textbook_exercise", url: audio30(1, 6), label: "\u7B2C32\u8BFE \u7EC3\u4E60I-6", transcript: { source: "asr", text: "\u660E\u65E5\u3001\u4F55\u6642\u306B\u51FA\u767A\u3059\u308B\u3053\u3068\u306B\u306A\u308A\u307E\u3057\u305F\u304B\u3002\u5348\u524D8\u6642\u306B\u51FA\u767A\u3059\u308B\u3053\u3068\u306B\u306A\u308A\u307E\u3057\u305F\u3002\u4F55\u3067\u884C\u304F\u3064\u3082\u308A\u3067\u3059\u304B\u3002\u8ECA\u3067\u884C\u304F\u3064\u3082\u308A\u3067\u3059\u3002\u6B21\u306E\u4F1A\u8B70\u306F\u3069\u3053\u3067\u884C\u3046\u3053\u3068\u306B\u306A\u308A\u307E\u3057\u305F\u304B\u3002\u4EAC\u90FD\u3067\u884C\u3046\u3053\u3068\u306B\u306A\u308A\u307E\u3057\u305F\u3002\u3044\u3064\u304B\u3089\u3044\u3064\u307E\u3067\u884C\u3046\u3053\u3068\u306B\u306A\u308A\u307E\u3057\u305F\u304B\u30029\u67081\u65E5\u304B\u30897\u65E5\u307E\u3067\u884C\u3046\u3053\u3068\u306B\u306A\u308A\u307E\u3057\u305F\u3002\u5289\u82F1\u3055\u3093\u306F\u4F55\u3067\u884C\u304F\u3053\u3068\u306B\u3057\u307E\u3057\u305F\u304B\u3002\u65B0\u5E79\u7DDA\u3067\u884C\u304F\u3053\u3068\u306B\u3057\u307E\u3057\u305F\u3002\u5289\u82F1\u3055\u3093\u306F\u8AB0\u3068\u98DF\u4E8B\u3092\u3059\u308B\u3064\u3082\u308A\u3067\u3059\u304B\u3002\u4F50\u85E4\u3055\u3093\u3068\u98DF\u4E8B\u3092\u3059\u308B\u3064\u3082\u308A\u3067\u3059\u3002" } }, assets: ["1", "2", "3"].map((n) => ({ id: `l32-p1-a6-note-${n}`, kind: "exercise_image", imagePath: exerciseImage29(`book1_lesson32_6_${n}.png`), label: `\u7EC3\u4E60 I 6 \u4FBF\u6761 ${n}` })), displayAssets: ["l32-p1-a6-note-1", "l32-p1-a6-note-2", "l32-p1-a6-note-3"], layout: [], items: [sentenceItem3("l32-p1-a6-q1", "1", "\u542C\u5F55\u97F3\uFF0C\u56DE\u7B54\u95EE\u9898\u3002", "", "\u4EAC\u90FD\u3067\u884C\u3046\u3053\u3068\u306B\u306A\u308A\u307E\u3057\u305F\u3002", "audio"), sentenceItem3("l32-p1-a6-q2", "2", "\u542C\u5F55\u97F3\uFF0C\u56DE\u7B54\u95EE\u9898\u3002", "", "9\u67081\u65E5\u304B\u30897\u65E5\u307E\u3067\u884C\u3046\u3053\u3068\u306B\u306A\u308A\u307E\u3057\u305F\u3002", "audio"), sentenceItem3("l32-p1-a6-q3", "3", "\u542C\u5F55\u97F3\uFF0C\u56DE\u7B54\u95EE\u9898\u3002", "", "\u65B0\u5E79\u7DDA\u3067\u884C\u304F\u3053\u3068\u306B\u3057\u307E\u3057\u305F\u3002", "audio"), sentenceItem3("l32-p1-a6-q4", "4", "\u542C\u5F55\u97F3\uFF0C\u56DE\u7B54\u95EE\u9898\u3002", "", "\u4F50\u85E4\u3055\u3093\u3068\u98DF\u4E8B\u3092\u3059\u308B\u3064\u3082\u308A\u3067\u3059\u3002", "audio")].map((item2) => ({ ...item2, responseScope: "answer_only", responseScopeHint: "\u53EA\u5199\u56DE\u7B54\u53E5\u3002" })) },
-  { id: "l32-p2-a1", section: "practice_2", order: 1, title: "\u5C06\uFF08\u3000\uFF09\u4E2D\u7684\u8BCD\u8BED\u53D8\u6210\u9002\u5F53\u7684\u5F62\u5F0F\uFF0C\u5B8C\u6210\u53E5\u5B50\u3002", instruction: "", interaction: "fill_blank", answerUnit: "word", responseScope: "word_only", layout: [{ type: "example", content: { label: "[\u4F8B]", before: "\u30CB\u30E5\u30FC\u30B9\u306B\u3088\u308B\u3068\u3001\u9996\u76F8\u306F\uFF08\u75C5\u6C17\u3067\u3059 \u2192 \u75C5\u6C17\u3060\uFF09\u305D\u3046\u3067\u3059\u3002", beforeKana: "\u30CB\u30E5\u30FC\u30B9\u306B\u3088\u308B\u3068\u3001\u3057\u3085\u3057\u3087\u3046\u306F\uFF08\u3073\u3087\u3046\u304D\u3067\u3059 \u2192 \u3073\u3087\u3046\u304D\u3060\uFF09\u305D\u3046\u3067\u3059\u3002", after: [text31("")] } }], items: [["\u99AC\u3055\u3093\u306F\u732B\u304C\uFF08\u5927\u597D\u304D\u3067\u3059 \u2192 ", "\uFF09\u305D\u3046\u3067\u3059\u3002", "\u5927\u597D\u304D\u3060"], ["\u5929\u6C17\u4E88\u5831\u306B\u3088\u308B\u3068\u3001\u660E\u65E5\u306F\uFF08\u6674\u308C\u307E\u3059 \u2192 ", "\uFF09\u305D\u3046\u3067\u3059\u3002", "\u6674\u308C\u308B"], ["\u660E\u65E5\u306F\uFF08\u96E8\u3067\u3059 \u2192 ", "\uFF09\u304B\u3082\u3057\u308C\u307E\u305B\u3093\u3002", "\u96E8"], ["\u6234\u3055\u3093\u306F\u3042\u306E\u65B0\u3057\u3044\u672C\u5C4B\u3078\u3082\u3046\uFF08\u884C\u304D\u307E\u3057\u305F \u2192 ", "\uFF09\u305D\u3046\u3067\u3059\u3002", "\u884C\u3063\u305F"], ["\u3042\u307E\u308A\u52C9\u5F37\u3057\u306A\u304B\u3063\u305F\u304B\u3089\u3001\u606F\u5B50\u306F\uFF08\u5408\u683C\u3057\u307E\u305B\u3093 \u2192 ", "\uFF09\u304B\u3082\u3057\u308C\u307E\u305B\u3093\u3002", "\u5408\u683C\u3057\u306A\u3044"], ["\u6765\u6708\u65B0\u3057\u3044\u30B3\u30F3\u30D4\u30E5\u30FC\u30BF\u304C\u51FA\u308B\u306E\u3067\u3001\u4ECA\u306F\uFF08\u8CB7\u3044\u307E\u305B\u3093 \u2192 ", "\uFF09\u3064\u3082\u308A\u3067\u3059\u3002", "\u8CB7\u308F\u306A\u3044"]].map(([before, after, answer3], index) => ({ id: `l32-p2-a1-q${index + 1}`, number: String(index + 1), prompt: [text31(before), blank27("answer"), text31(after)], promptKana: "", instruction: "", answerSource: "prompt", evaluationMode: "exact", responseScope: "word_only", responseScopeHint: "\u586B\u5199\u7BAD\u5934\u540E\u7684\u8BCD\u8BED\u3002", inputSlots: wordSlot5(), answer: { slotValues: { answer: answer3 } } })) },
+  { id: "l32-p1-a6", section: "practice_1", order: 6, title: "\u770B\u4E0B\u9762\u7684\u4FBF\u6761\uFF0C\u4EFF\u7167\u4F8B\u53E5\u56DE\u7B54\u5F55\u97F3\u4E2D\u7684\u63D0\u95EE\u3002", instruction: "", interaction: "listening_answer", answerUnit: "sentence", responseScope: "answer_only", requiresAudio: true, audio: { source: "textbook_exercise", url: audio30(1, 6), label: "\u7B2C32\u8BFE \u7EC3\u4E60I-6", transcript: { source: "asr", text: "\u660E\u65E5\u3001\u4F55\u6642\u306B\u51FA\u767A\u3059\u308B\u3053\u3068\u306B\u306A\u308A\u307E\u3057\u305F\u304B\u3002\u5348\u524D8\u6642\u306B\u51FA\u767A\u3059\u308B\u3053\u3068\u306B\u306A\u308A\u307E\u3057\u305F\u3002\u4F55\u3067\u884C\u304F\u3064\u3082\u308A\u3067\u3059\u304B\u3002\u8ECA\u3067\u884C\u304F\u3064\u3082\u308A\u3067\u3059\u3002\u6B21\u306E\u4F1A\u8B70\u306F\u3069\u3053\u3067\u884C\u3046\u3053\u3068\u306B\u306A\u308A\u307E\u3057\u305F\u304B\u3002\u4EAC\u90FD\u3067\u884C\u3046\u3053\u3068\u306B\u306A\u308A\u307E\u3057\u305F\u3002\u3044\u3064\u304B\u3089\u3044\u3064\u307E\u3067\u884C\u3046\u3053\u3068\u306B\u306A\u308A\u307E\u3057\u305F\u304B\u30029\u67081\u65E5\u304B\u30897\u65E5\u307E\u3067\u884C\u3046\u3053\u3068\u306B\u306A\u308A\u307E\u3057\u305F\u3002\u5289\u82F1\u3055\u3093\u306F\u4F55\u3067\u884C\u304F\u3053\u3068\u306B\u3057\u307E\u3057\u305F\u304B\u3002\u65B0\u5E79\u7DDA\u3067\u884C\u304F\u3053\u3068\u306B\u3057\u307E\u3057\u305F\u3002\u5289\u82F1\u3055\u3093\u306F\u8AB0\u3068\u98DF\u4E8B\u3092\u3059\u308B\u3064\u3082\u308A\u3067\u3059\u304B\u3002\u4F50\u85E4\u3055\u3093\u3068\u98DF\u4E8B\u3092\u3059\u308B\u3064\u3082\u308A\u3067\u3059\u3002" } }, assets: ["1", "2", "3"].map((n) => ({ id: `l32-p1-a6-note-${n}`, kind: "exercise_image", imagePath: exerciseImage29(`book1_lesson32_6_${n}.png`), label: `\u7EC3\u4E60 I 6 \u4FBF\u6761 ${n}` })), layout: [], itemGroups: [
+    { id: "l32-p1-a6-example", displayAssets: ["l32-p1-a6-note-1"], example: { label: "[\u4F8B]", before: "\u660E\u65E5\u4F55\u6642\u306B\u51FA\u767A\u3059\u308B\u3053\u3068\u306B\u306A\u308A\u307E\u3057\u305F\u304B\u3002\n\u4F55\u3067\u884C\u304F\u3064\u3082\u308A\u3067\u3059\u304B\u3002", beforeKana: "\u3042\u3057\u305F\u306A\u3093\u3058\u306B\u3057\u3085\u3063\u3071\u3064\u3059\u308B\u3053\u3068\u306B\u306A\u308A\u307E\u3057\u305F\u304B\u3002\n\u306A\u3093\u3067\u3044\u304F\u3064\u3082\u308A\u3067\u3059\u304B\u3002", after: [text31("\u5348\u524D8\u6642\u306B\u51FA\u767A\u3059\u308B\u3053\u3068\u306B\u306A\u308A\u307E\u3057\u305F\u3002\n\u8ECA\u3067\u884C\u304F\u3064\u3082\u308A\u3067\u3059\u3002")], afterKana: "\u3054\u305C\u3093\u306F\u3061\u3058\u306B\u3057\u3085\u3063\u3071\u3064\u3059\u308B\u3053\u3068\u306B\u306A\u308A\u307E\u3057\u305F\u3002\n\u304F\u308B\u307E\u3067\u3044\u304F\u3064\u3082\u308A\u3067\u3059\u3002" }, items: [] },
+    { id: "l32-p1-a6-note-2", displayAssets: ["l32-p1-a6-note-2"], items: [sentenceItem3("l32-p1-a6-q1", "1", "\u542C\u5F55\u97F3\uFF0C\u56DE\u7B54\u95EE\u9898\u3002", "", "\u4EAC\u90FD\u3067\u884C\u3046\u3053\u3068\u306B\u306A\u308A\u307E\u3057\u305F\u3002", "audio"), sentenceItem3("l32-p1-a6-q2", "2", "\u542C\u5F55\u97F3\uFF0C\u56DE\u7B54\u95EE\u9898\u3002", "", "9\u67081\u65E5\u304B\u30897\u65E5\u307E\u3067\u884C\u3046\u3053\u3068\u306B\u306A\u308A\u307E\u3057\u305F\u3002", "audio")].map((item2) => ({ ...item2, responseScope: "answer_only", responseScopeHint: "\u53EA\u5199\u56DE\u7B54\u53E5\u3002" })) },
+    { id: "l32-p1-a6-note-3", displayAssets: ["l32-p1-a6-note-3"], items: [sentenceItem3("l32-p1-a6-q3", "3", "\u542C\u5F55\u97F3\uFF0C\u56DE\u7B54\u95EE\u9898\u3002", "", "\u65B0\u5E79\u7DDA\u3067\u884C\u304F\u3053\u3068\u306B\u3057\u307E\u3057\u305F\u3002", "audio"), sentenceItem3("l32-p1-a6-q4", "4", "\u542C\u5F55\u97F3\uFF0C\u56DE\u7B54\u95EE\u9898\u3002", "", "\u4F50\u85E4\u3055\u3093\u3068\u98DF\u4E8B\u3092\u3059\u308B\u3064\u3082\u308A\u3067\u3059\u3002", "audio")].map((item2) => ({ ...item2, responseScope: "answer_only", responseScopeHint: "\u53EA\u5199\u56DE\u7B54\u53E5\u3002" })) }
+  ], items: [] },
+  { id: "l32-p2-a1", section: "practice_2", order: 1, title: "\u5C06\uFF08\u3000\uFF09\u4E2D\u7684\u8BCD\u8BED\u53D8\u6210\u9002\u5F53\u7684\u5F62\u5F0F\uFF0C\u5B8C\u6210\u53E5\u5B50\u3002", instruction: "", interaction: "fill_blank", answerUnit: "word", responseScope: "word_only", layout: [{ type: "example", content: { label: "[\u4F8B]", before: "\u30CB\u30E5\u30FC\u30B9\u306B\u3088\u308B\u3068\u3001\u9996\u76F8\u306F\uFF08\u75C5\u6C17\u3067\u3059 \u2192 \u75C5\u6C17\u3060\uFF09\u305D\u3046\u3067\u3059\u3002", beforeKana: "\u30CB\u30E5\u30FC\u30B9\u306B\u3088\u308B\u3068\u3001\u3057\u3085\u3057\u3087\u3046\u306F\uFF08\u3073\u3087\u3046\u304D\u3067\u3059 \u2192 \u3073\u3087\u3046\u304D\u3060\uFF09\u305D\u3046\u3067\u3059\u3002", after: [text31("")] } }], items: [["\u99AC\u3055\u3093\u306F\u732B\u304C\uFF08\u5927\u597D\u304D\u3067\u3059 \u2192 ", "\uFF09\u305D\u3046\u3067\u3059\u3002", "\u5927\u597D\u304D\u3060", "\u3070\u3055\u3093\u306F\u306D\u3053\u304C\uFF08\u3060\u3044\u3059\u304D\u3067\u3059 \u2192 ______\uFF09\u305D\u3046\u3067\u3059\u3002"], ["\u5929\u6C17\u4E88\u5831\u306B\u3088\u308B\u3068\u3001\u660E\u65E5\u306F\uFF08\u6674\u308C\u307E\u3059 \u2192 ", "\uFF09\u305D\u3046\u3067\u3059\u3002", "\u6674\u308C\u308B", "\u3066\u3093\u304D\u3088\u307B\u3046\u306B\u3088\u308B\u3068\u3001\u3042\u3057\u305F\u306F\uFF08\u306F\u308C\u307E\u3059 \u2192 ______\uFF09\u305D\u3046\u3067\u3059\u3002"], ["\u660E\u65E5\u306F\uFF08\u96E8\u3067\u3059 \u2192 ", "\uFF09\u304B\u3082\u3057\u308C\u307E\u305B\u3093\u3002", "\u96E8", "\u3042\u3057\u305F\u306F\uFF08\u3042\u3081\u3067\u3059 \u2192 ______\uFF09\u304B\u3082\u3057\u308C\u307E\u305B\u3093\u3002"], ["\u6234\u3055\u3093\u306F\u3042\u306E\u65B0\u3057\u3044\u672C\u5C4B\u3078\u3082\u3046\uFF08\u884C\u304D\u307E\u3057\u305F \u2192 ", "\uFF09\u305D\u3046\u3067\u3059\u3002", "\u884C\u3063\u305F", "\u305F\u3044\u3055\u3093\u306F\u3042\u306E\u3042\u305F\u3089\u3057\u3044\u307B\u3093\u3084\u3078\u3082\u3046\uFF08\u3044\u304D\u307E\u3057\u305F \u2192 ______\uFF09\u305D\u3046\u3067\u3059\u3002"], ["\u3042\u307E\u308A\u52C9\u5F37\u3057\u306A\u304B\u3063\u305F\u304B\u3089\u3001\u606F\u5B50\u306F\uFF08\u5408\u683C\u3057\u307E\u305B\u3093 \u2192 ", "\uFF09\u304B\u3082\u3057\u308C\u307E\u305B\u3093\u3002", "\u5408\u683C\u3057\u306A\u3044", "\u3042\u307E\u308A\u3079\u3093\u304D\u3087\u3046\u3057\u306A\u304B\u3063\u305F\u304B\u3089\u3001\u3080\u3059\u3053\u306F\uFF08\u3054\u3046\u304B\u304F\u3057\u307E\u305B\u3093 \u2192 ______\uFF09\u304B\u3082\u3057\u308C\u307E\u305B\u3093\u3002"], ["\u6765\u6708\u65B0\u3057\u3044\u30B3\u30F3\u30D4\u30E5\u30FC\u30BF\u304C\u51FA\u308B\u306E\u3067\u3001\u4ECA\u306F\uFF08\u8CB7\u3044\u307E\u305B\u3093 \u2192 ", "\uFF09\u3064\u3082\u308A\u3067\u3059\u3002", "\u8CB7\u308F\u306A\u3044", "\u3089\u3044\u3052\u3064\u3042\u305F\u3089\u3057\u3044\u30B3\u30F3\u30D4\u30E5\u30FC\u30BF\u304C\u3067\u308B\u306E\u3067\u3001\u3044\u307E\u306F\uFF08\u304B\u3044\u307E\u305B\u3093 \u2192 ______\uFF09\u3064\u3082\u308A\u3067\u3059\u3002"]].map(([before, after, answer3, promptKana], index) => ({ id: `l32-p2-a1-q${index + 1}`, number: String(index + 1), prompt: [text31(before), blank27("answer"), text31(after)], promptKana, instruction: "", answerSource: "prompt", evaluationMode: "exact", responseScope: "word_only", responseScopeHint: "\u586B\u5199\u7BAD\u5934\u540E\u7684\u8BCD\u8BED\u3002", inputSlots: wordSlot5(), answer: { slotValues: { answer: answer3 } } })) },
   { id: "l32-p2-a2", section: "practice_2", order: 2, title: "\u5728\uFF08\u3000\uFF09\u4E2D\u586B\u5165\u9002\u5F53\u7684\u7591\u95EE\u8BCD\u3002", instruction: "", interaction: "fill_blank", answerUnit: "word", responseScope: "word_only", layout: [{ type: "example", content: { label: "[\u4F8B]", before: "\u590F\u306F\uFF08\u4F55\u6642\uFF09\u304B\u3089\u304A\u5E97\u3092\u958B\u3051\u307E\u3059\u304B\u3002\u2014\u20148\u6642\u304B\u3089\u958B\u3051\u308B\u3053\u3068\u306B\u3057\u307E\u3057\u305F\u3002", beforeKana: "\u306A\u3064\u306F\uFF08\u306A\u3093\u3058\uFF09\u304B\u3089\u304A\u307F\u305B\u3092\u3042\u3051\u307E\u3059\u304B\u3002\u2014\u2014\u306F\u3061\u3058\u304B\u3089\u3042\u3051\u308B\u3053\u3068\u306B\u3057\u307E\u3057\u305F\u3002", after: [text31("")] } }], items: [wordItem("l32-p2-a2-q1", "1", "\u590F\u4F11\u307F\u306B\uFF08\u3000\uFF09\u3078\u884C\u304D\u307E\u3059\u304B\u3002", "\u306A\u3064\u3084\u3059\u307F\u306B\uFF08\u3000\uFF09\u3078\u3044\u304D\u307E\u3059\u304B\u3002", "\u3069\u3053"), wordItem("l32-p2-a2-q2", "2", "\uFF08\u3000\uFF09\u304C\u624B\u4F1D\u3063\u3066\u304F\u308C\u308B\u3093\u3067\u3059\u304B\u3002", "\uFF08\u3000\uFF09\u304C\u3066\u3064\u3060\u3063\u3066\u304F\u308C\u308B\u3093\u3067\u3059\u304B\u3002", "\u3060\u308C"), wordItem("l32-p2-a2-q3", "3", "\uFF08\u3000\uFF09\u663C\u3054\u98EF\u3092\u98DF\u3079\u308B\u3093\u3067\u3059\u304B\u3002", "\uFF08\u3000\uFF09\u3072\u308B\u3054\u306F\u3093\u3092\u305F\u3079\u308B\u3093\u3067\u3059\u304B\u3002", "\u3044\u3064"), wordItem("l32-p2-a2-q4", "4", "\u6B21\u306E\u4F01\u753B\u306F\uFF08\u3000\uFF09\u304C\u62C5\u5F53\u3059\u308B\u3093\u3067\u3059\u304B\u3002", "\u3064\u304E\u306E\u304D\u304B\u304F\u306F\uFF08\u3000\uFF09\u304C\u305F\u3093\u3068\u3046\u3059\u308B\u3093\u3067\u3059\u304B\u3002", "\u3060\u308C")] },
   { id: "l32-p2-a3", section: "practice_2", order: 3, title: "\u4ECE\u6846\u4E2D\u9009\u62E9\u9002\u5F53\u7684\u8BCD\u8BED\u586B\u5165\uFF08\u3000\uFF09\u4E2D\u3002", instruction: "", interaction: "fill_blank", answerUnit: "word", responseScope: "word_only", assets: [{ id: "l32-p2-a3-word-bank", kind: "exercise_image", imagePath: exerciseImage29("book1_lesson32_2_3.png"), label: "\u7EC3\u4E60 II 3 \u8BCD\u6846" }], displayAssets: ["l32-p2-a3-word-bank"], layout: [{ type: "word_bank", words: [text31("\u305D\u308D\u305D\u308D"), text31("\u305F\u307E\u306B"), text31("\u3055\u3063\u304D"), text31("\u3068\u3053\u308D\u3067"), text31("\u5FC5\u305A")] }], items: [wordItem("l32-p2-a3-q1", "1", "11\u6642\u3067\u3059\u3002\uFF08\u3000\uFF09\u5E30\u308A\u307E\u3057\u3087\u3046\u3002", "\u3058\u3085\u3046\u3044\u3061\u3058\u3067\u3059\u3002\uFF08\u3000\uFF09\u304B\u3048\u308A\u307E\u3057\u3087\u3046\u3002", "\u305D\u308D\u305D\u308D"), wordItem("l32-p2-a3-q2", "2", "\u3053\u308C\u306F\u5927\u5207\u306A\u66F8\u985E\u3067\u3059\u304B\u3089\u3001\uFF08\u3000\uFF09\u8FD4\u3057\u3066\u304F\u3060\u3055\u3044\u3002", "\u3053\u308C\u306F\u305F\u3044\u305B\u3064\u306A\u3057\u3087\u308B\u3044\u3067\u3059\u304B\u3089\u3001\uFF08\u3000\uFF09\u304B\u3048\u3057\u3066\u304F\u3060\u3055\u3044\u3002", "\u5FC5\u305A"), wordItem("l32-p2-a3-q3", "3", "\u3042\u307E\u308A\u30AB\u30E9\u30AA\u30B1\u306B\u884C\u304D\u307E\u305B\u3093\u304C\u3001\uFF08\u3000\uFF09\u884C\u304F\u3053\u3068\u3082\u3042\u308A\u307E\u3059\u3002", "\u3042\u307E\u308A\u30AB\u30E9\u30AA\u30B1\u306B\u3044\u304D\u307E\u305B\u3093\u304C\u3001\uFF08\u3000\uFF09\u3044\u304F\u3053\u3068\u3082\u3042\u308A\u307E\u3059\u3002", "\u305F\u307E\u306B"), wordItem("l32-p2-a3-q4", "4", "\u738B\u3055\u3093\u306F\u7D50\u5A5A\u3057\u3066\u3044\u308B\u305D\u3046\u3067\u3059\u306D\u3002\uFF08\u3000\uFF09\u3001\u3042\u306A\u305F\u306F\u3069\u3046\u306A\u3093\u3067\u3059\u304B\u3002", "\u304A\u3046\u3055\u3093\u306F\u3051\u3063\u3053\u3093\u3057\u3066\u3044\u308B\u305D\u3046\u3067\u3059\u306D\u3002\uFF08\u3000\uFF09\u3001\u3042\u306A\u305F\u306F\u3069\u3046\u306A\u3093\u3067\u3059\u304B\u3002", "\u3068\u3053\u308D\u3067")] },
-  { id: "l32-p2-a4", section: "practice_2", order: 4, title: "\u542C\u5F55\u97F3\u4E2D\u7684\u4F1A\u8BDD\uFF0C\u56DE\u7B54\u63D0\u95EE\u3002", instruction: "", interaction: "listening_answer", answerUnit: "sentence", responseScope: "answer_only", requiresAudio: true, audio: { source: "textbook_exercise", url: audio30(2, 4), label: "\u7B2C32\u8BFE \u7EC3\u4E60II-4", transcript: { source: "asr", text: "\u3044\u3064\u3001\u4E2D\u7530\u3055\u3093\u3068\u4F1A\u3046\u3053\u3068\u306B\u306A\u308A\u307E\u3057\u305F\u304B\u3002\u5927\u962A\u3078\u4F55\u3067\u884C\u304F\u3053\u3068\u306B\u3057\u307E\u3057\u305F\u304B\u3002\u4ED5\u4E8B\u304C\u7D42\u308F\u3063\u3066\u304B\u3089\u4F55\u3092\u3059\u308B\u3064\u3082\u308A\u3067\u3059\u304B\u3002\u6765\u9031\u3001\u5927\u962A\u306B\u51FA\u5F35\u306A\u3093\u3067\u3059\u3002\u6C34\u66DC\u65E5\u306E\u5348\u524D\u4E2D\u306B\u4E2D\u7530\u3055\u3093\u3068\u4F1A\u3046\u3053\u3068\u306B\u3057\u307E\u3057\u305F\u3002\u671D\u65E9\u3044\u306E\u3067\u98DB\u884C\u6A5F\u3067\u884C\u3053\u3046\u3068\u601D\u3044\u307E\u3059\u3002\u4EAC\u90FD\u306F\u4ECA\u3001\u685C\u304C\u304D\u308C\u3044\u3060\u305D\u3046\u3067\u3059\u3002\u4EAC\u90FD\u3068\u5927\u962A\u306F\u8FD1\u3044\u3067\u3059\u304B\u3089\u898B\u306B\u884C\u3053\u3046\u3068\u601D\u3044\u307E\u3059\u3002" } }, layout: [{ type: "example", content: { label: "[\u4F8B]", before: "\u738B\u3055\u3093\u306F\u3069\u3053\u306B\u51FA\u5F35\u3057\u307E\u3059\u304B\u3002", beforeKana: "\u304A\u3046\u3055\u3093\u306F\u3069\u3053\u306B\u3057\u3085\u3063\u3061\u3087\u3046\u3057\u307E\u3059\u304B\u3002", after: [text31("\u5927\u962A\u3067\u3059\u3002", { kana: "\u304A\u304A\u3055\u304B\u3067\u3059\u3002" })] } }], items: [sentenceItem3("l32-p2-a4-q1", "1", "\u542C\u5F55\u97F3\uFF0C\u56DE\u7B54\u95EE\u9898\u3002", "", "\u6C34\u66DC\u65E5\u306E\u5348\u524D\u4E2D\u306B\u4E2D\u7530\u3055\u3093\u3068\u4F1A\u3046\u3053\u3068\u306B\u3057\u307E\u3057\u305F\u3002", "audio"), sentenceItem3("l32-p2-a4-q2", "2", "\u542C\u5F55\u97F3\uFF0C\u56DE\u7B54\u95EE\u9898\u3002", "", "\u98DB\u884C\u6A5F\u3067\u884C\u304F\u3053\u3068\u306B\u3057\u307E\u3057\u305F\u3002", "audio"), sentenceItem3("l32-p2-a4-q3", "3", "\u542C\u5F55\u97F3\uFF0C\u56DE\u7B54\u95EE\u9898\u3002", "", "\u4EAC\u90FD\u3078\u685C\u3092\u898B\u306B\u884C\u3053\u3046\u3068\u601D\u3044\u307E\u3059\u3002", "audio")].map((item2) => ({ ...item2, responseScope: "answer_only", responseScopeHint: "\u53EA\u5199\u56DE\u7B54\u53E5\u3002" })) },
+  { id: "l32-p2-a4", section: "practice_2", order: 4, title: "\u542C\u5F55\u97F3\u4E2D\u7684\u4F1A\u8BDD\uFF0C\u56DE\u7B54\u63D0\u95EE\u3002", instruction: "", interaction: "listening_answer", answerUnit: "sentence", responseScope: "answer_only", requiresAudio: true, audio: { source: "textbook_exercise", url: audio30(2, 4), label: "\u7B2C32\u8BFE \u7EC3\u4E60II-4", transcript: { source: "asr", text: "\u3044\u3064\u3001\u4E2D\u7530\u3055\u3093\u3068\u4F1A\u3046\u3053\u3068\u306B\u306A\u308A\u307E\u3057\u305F\u304B\u3002\u5927\u962A\u3078\u4F55\u3067\u884C\u304F\u3053\u3068\u306B\u3057\u307E\u3057\u305F\u304B\u3002\u4ED5\u4E8B\u304C\u7D42\u308F\u3063\u3066\u304B\u3089\u4F55\u3092\u3059\u308B\u3064\u3082\u308A\u3067\u3059\u304B\u3002\u6765\u9031\u3001\u5927\u962A\u306B\u51FA\u5F35\u306A\u3093\u3067\u3059\u3002\u6C34\u66DC\u65E5\u306E\u5348\u524D\u4E2D\u306B\u4E2D\u7530\u3055\u3093\u3068\u4F1A\u3046\u3053\u3068\u306B\u3057\u307E\u3057\u305F\u3002\u671D\u65E9\u3044\u306E\u3067\u98DB\u884C\u6A5F\u3067\u884C\u3053\u3046\u3068\u601D\u3044\u307E\u3059\u3002\u4EAC\u90FD\u306F\u4ECA\u3001\u685C\u304C\u304D\u308C\u3044\u3060\u305D\u3046\u3067\u3059\u3002\u4EAC\u90FD\u3068\u5927\u962A\u306F\u8FD1\u3044\u3067\u3059\u304B\u3089\u898B\u306B\u884C\u3053\u3046\u3068\u601D\u3044\u307E\u3059\u3002" } }, layout: [{ type: "example", content: { label: "[\u4F8B]", before: "\u738B\u3055\u3093\u306F\u3069\u3053\u306B\u51FA\u5F35\u3057\u307E\u3059\u304B\u3002", beforeKana: "\u304A\u3046\u3055\u3093\u306F\u3069\u3053\u306B\u3057\u3085\u3063\u3061\u3087\u3046\u3057\u307E\u3059\u304B\u3002", after: [text31("\u5927\u962A\u3067\u3059\u3002", { kana: "\u304A\u304A\u3055\u304B\u3067\u3059\u3002" })] } }], items: [sentenceItem3("l32-p2-a4-q1", "1", "\u542C\u5F55\u97F3\uFF0C\u56DE\u7B54\u95EE\u9898\u3002", "", "\u6C34\u66DC\u65E5\u306E\u5348\u524D\u4E2D\u306B\u4E2D\u7530\u3055\u3093\u3068\u4F1A\u3046\u3053\u3068\u306B\u3057\u307E\u3057\u305F\u3002", "audio"), sentenceItem3("l32-p2-a4-q2", "2", "\u542C\u5F55\u97F3\uFF0C\u56DE\u7B54\u95EE\u9898\u3002", "", "\u98DB\u884C\u6A5F\u3067\u884C\u304F\u3053\u3068\u306B\u3057\u307E\u3057\u305F\u3002", "audio"), sentenceItem3("l32-p2-a4-q3", "3", "\u542C\u5F55\u97F3\uFF0C\u56DE\u7B54\u95EE\u9898\u3002", "", "\u4EAC\u90FD\u3078\u685C\u3092\u898B\u306B\u884C\u3053\u3046\u3068\u601D\u3044\u307E\u3059\u3002", "audio")].map((item2) => ({ ...item2, responseScope: "answer_only", responseScopeHint: "\u8BF7\u4F7F\u7528\u5B8C\u6574\u53E5\u5F0F\u56DE\u7B54\u95EE\u9898\u3002" })) },
   { id: "l32-p2-a5", section: "practice_2", order: 5, title: "\u5C06\u4E0B\u9762\u7684\u53E5\u5B50\u8BD1\u6210\u65E5\u8BED\u3002", instruction: "", interaction: "translation", answerUnit: "sentence", responseScope: "sentence_only", layout: [], items: [sentenceItem3("l32-p2-a5-q1", "1", "\u6211\u6253\u7B97\u7528\u8FD9\u6B21\u7684\u5956\u91D1\u4E70\u8F66\u3002", "", "\u4ECA\u5EA6\u306E\u30DC\u30FC\u30CA\u30B9\u3067\u8ECA\u3092\u8CB7\u3046\u3064\u3082\u308A\u3067\u3059\u3002", "prompt"), sentenceItem3("l32-p2-a5-q2", "2", "\u660E\u5929\u548C\u670B\u53CB\u53BB\u770B\u7535\u5F71\u3002", "", "\u660E\u65E5\u3001\u53CB\u9054\u3068\u6620\u753B\u3092\u898B\u306B\u884C\u304F\u3053\u3068\u306B\u3057\u307E\u3057\u305F\u3002", "prompt"), sentenceItem3("l32-p2-a5-q3", "3", "\u636E\u62A5\u9053\u4ECA\u5E74\u51AC\u5929\u6D41\u884C\u6D41\u611F\u3002", "", "\u30CB\u30E5\u30FC\u30B9\u306B\u3088\u308B\u3068\u3001\u4ECA\u5E74\u306E\u51AC\u306F\u30A4\u30F3\u30D5\u30EB\u30A8\u30F3\u30B6\u304C\u6D41\u884C\u3059\u308B\u305D\u3046\u3067\u3059\u3002", "prompt")] }
 ];
 var lesson32Practice = { lessonId: "lesson32", title: "\u7B2C32\u8BFE \u4ECA\u5EA6\u306E\u65E5\u66DC\u65E5\u306B\u904A\u5712\u5730\u3078\u884C\u304F\u3064\u3082\u308A\u3067\u3059", sourcePages: [{ pageNo: 86, imagePath: page32(86), label: "\u7EC3\u4E60 I" }, { pageNo: 87, imagePath: page32(87), label: "\u7EC3\u4E60 I" }, { pageNo: 88, imagePath: page32(88), label: "\u7EC3\u4E60 II" }], activities: activities30 };

@@ -2325,6 +2325,18 @@
           "model": "deepseek-v4-flash",
           "modelNormalizedAnswer": "甲：森さんは明日来るでしょうか\n乙：都合が悪いですから、来ないでしょう",
           "addedAt": "2026-08-30T12:14:23.474Z"
+        },
+        {
+          "answer": "甲：森さんは明日来るでしょうか。\n乙：都合が悪いそうです、来ないでしょう。",
+          "normalizedAnswer": "甲森さんは明日来るでしょうか乙都合が悪いそうです来ないでしょう",
+          "expectedAnswers": [
+            "甲：森さんは明日来るでしょうか。\n乙：都合が悪いそうですから、来ないでしょう。"
+          ],
+          "reason": "用户答案与参考答案意思一致，语法功能相同，仅省略了「から」，属于轻微自然表达差异，不影响句义和回答范围。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "甲：森さんは明日来るでしょうか。\n乙：都合が悪いそうです、来ないでしょう。",
+          "addedAt": "2026-08-31T01:24:57.756Z"
         }
       ]
     },
@@ -2341,6 +2353,18 @@
           "model": "deepseek-v4-flash",
           "modelNormalizedAnswer": "甲：張さんは合格したでしょうか\n乙：試験は簡単だから、合格したでしょう",
           "addedAt": "2026-08-30T12:21:55.061Z"
+        },
+        {
+          "answer": "甲：張さんは合格したでしょうか。\n乙：試験は簡単だったそうです、合格したでしょう。",
+          "normalizedAnswer": "甲張さんは合格したでしょうか乙試験は簡単だったそうです合格したでしょう",
+          "expectedAnswers": [
+            "甲：張さんは合格したでしょうか。\n乙：試験は簡単だったそうですから、合格したでしょう。"
+          ],
+          "reason": "用户答案与参考答案意思一致，语法功能相同，仅将「そうですから」简化为「そうです、」，属于轻微表达差异，不影响句义和回答范围。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "甲：張さんは合格したでしょうか。\n乙：試験は簡単だったそうです、合格したでしょう。",
+          "addedAt": "2026-08-31T01:25:01.138Z"
         }
       ]
     },
@@ -2357,6 +2381,70 @@
           "model": "deepseek-v4-flash",
           "modelNormalizedAnswer": "甲：明日は雨だでしょうか\n乙：台風が来ているから、雨だでしょう",
           "addedAt": "2026-08-30T12:21:56.125Z"
+        }
+      ]
+    },
+    "l32-p2-a1-q3": {
+      "answer": [
+        {
+          "answer": "雨だ",
+          "normalizedAnswer": "雨だ",
+          "expectedAnswers": [
+            "雨"
+          ],
+          "reason": "用户答案与参考答案意思一致，语法功能相同，均为名词+だ形，符合题目要求。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "雨だ",
+          "addedAt": "2026-08-31T01:30:06.543Z"
+        }
+      ]
+    },
+    "l32-p2-a2-q3": {
+      "answer": [
+        {
+          "answer": "何時に",
+          "normalizedAnswer": "何時に",
+          "expectedAnswers": [
+            "いつ"
+          ],
+          "reason": "题目要求填入疑问词，用户答案「何時に」与参考答案「いつ」意思一致，均询问时间，语法功能相同，只是表达不同。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "何時に",
+          "addedAt": "2026-08-31T01:32:45.208Z"
+        }
+      ]
+    },
+    "l32-p1-a6-q1": {
+      "answer": [
+        {
+          "answer": "京都でおこなうことになりました",
+          "normalizedAnswer": "京都でおこなうことになりました",
+          "expectedAnswers": [
+            "京都で行うことになりました。"
+          ],
+          "reason": "用户答案与参考答案意思一致，仅将汉字'行う'换为假名'おこなう'，语法功能相同，可以采纳。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "京都でおこなうことになりました",
+          "addedAt": "2026-08-31T01:54:55.743Z"
+        }
+      ]
+    },
+    "l32-p1-a6-q2": {
+      "answer": [
+        {
+          "answer": "9月1日から7日までおこなうことになりました",
+          "normalizedAnswer": "9月1日から7日までおこなうことになりました",
+          "expectedAnswers": [
+            "9月1日から7日まで行うことになりました。"
+          ],
+          "reason": "用户答案与参考答案意思一致，仅将汉字'行う'改为假名'おこなう'，语法功能相同，可以采纳。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "9月1日から7日までおこなうことになりました",
+          "addedAt": "2026-08-31T01:54:56.909Z"
         }
       ]
     }

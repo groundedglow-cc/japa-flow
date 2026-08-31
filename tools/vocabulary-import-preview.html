@@ -83,7 +83,10 @@
 
       .workspace {
         display: grid;
-        grid-template-columns: minmax(360px, var(--vocab-left-panel)) 8px minmax(320px, 1fr);
+        grid-template-columns: minmax(
+            360px,
+            var(--vocab-left-panel)
+          ) 8px minmax(320px, 1fr);
         gap: 12px;
         padding: 16px;
         align-items: start;
@@ -174,7 +177,12 @@
         border-top: 1px solid var(--line);
         resize: vertical;
         padding: 12px;
-        font: 13px/1.5 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+        font:
+          13px/1.5 ui-monospace,
+          SFMono-Regular,
+          Menlo,
+          Consolas,
+          monospace;
       }
 
       .status {
@@ -222,6 +230,22 @@
         color: var(--muted);
         font-size: 12px;
         white-space: nowrap;
+      }
+
+      button.word-shortcut {
+        padding: 0;
+        border: 0;
+        background: transparent;
+        cursor: pointer;
+      }
+
+      button.word-shortcut:hover:not(:disabled) {
+        color: var(--accent);
+      }
+
+      button.word-shortcut:disabled {
+        cursor: not-allowed;
+        opacity: 0.45;
       }
 
       .word-shortcut-key {
@@ -399,13 +423,23 @@
         min-height: calc(100vh - 104px);
         border: 0;
         border-radius: 999px;
-        background: linear-gradient(to right, transparent 0 2px, var(--line) 2px 6px, transparent 6px 8px);
+        background: linear-gradient(
+          to right,
+          transparent 0 2px,
+          var(--line) 2px 6px,
+          transparent 6px 8px
+        );
         cursor: col-resize;
       }
 
       .panel-resizer:hover,
       .panel-resizer.dragging {
-        background: linear-gradient(to right, transparent 0 2px, var(--accent) 2px 6px, transparent 6px 8px);
+        background: linear-gradient(
+          to right,
+          transparent 0 2px,
+          var(--accent) 2px 6px,
+          transparent 6px 8px
+        );
       }
 
       .modal-backdrop {
@@ -589,14 +623,6 @@
         padding: 12px;
       }
 
-      .image-title {
-        display: flex;
-        justify-content: space-between;
-        color: var(--muted);
-        font-size: 13px;
-        margin: 0 0 10px;
-      }
-
       .source-image {
         display: block;
         width: 100%;
@@ -614,6 +640,17 @@
       }
 
       html.embedded .status {
+        display: none;
+      }
+
+      html:not(.admin) .audio-review,
+      html:not(.admin) .segment-settings,
+      html:not(.admin) .audio-segment-time,
+      html:not(.admin) .review-dot {
+        display: none;
+      }
+
+      html:not(.admin) .word-main .tag:not(.part-of-speech) {
         display: none;
       }
 
@@ -687,7 +724,9 @@
     <main class="workspace">
       <section class="panel data-panel">
         <div class="toolbar">
-          <button class="primary" id="loadDefault" type="button">重新加载当前课次</button>
+          <button class="primary" id="loadDefault" type="button">
+            重新加载当前课次
+          </button>
           <button id="generateAudio" type="button">生成音频区间标注</button>
           <input id="fileInput" type="file" accept="application/json,.json" />
           <span class="summary" id="summary">未加载</span>
@@ -700,8 +739,12 @@
 
         <details>
           <summary>手动粘贴 JSON 导入</summary>
-          <textarea id="jsonInput" spellcheck="false" placeholder="粘贴 vocabulary OCR JSON"></textarea>
-          <div class="toolbar" style="padding: 10px 12px;">
+          <textarea
+            id="jsonInput"
+            spellcheck="false"
+            placeholder="粘贴 vocabulary OCR JSON"
+          ></textarea>
+          <div class="toolbar" style="padding: 10px 12px">
             <button id="parseInput" type="button">解析文本框</button>
           </div>
         </details>
@@ -711,28 +754,48 @@
         <div class="word-list" id="wordList"></div>
       </section>
 
-      <button class="panel-resizer" id="panelResizer" type="button" aria-label="调整左右面板宽度"></button>
+      <button
+        class="panel-resizer"
+        id="panelResizer"
+        type="button"
+        aria-label="调整左右面板宽度"
+      ></button>
 
       <aside class="panel image-panel">
-        <p class="image-title">
-          <span id="imageLabel">教材图片</span>
-          <a id="imageLink" href="#" target="_blank" rel="noreferrer">打开图片</a>
-        </p>
         <img class="source-image" id="sourceImage" alt="教材词汇页" />
       </aside>
     </main>
 
     <div class="modal-backdrop" id="segmentModal" aria-hidden="true">
-      <div class="modal" role="dialog" aria-modal="true" aria-labelledby="segmentModalTitle">
+      <div
+        class="modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="segmentModalTitle"
+      >
         <div class="modal-head">
           <div class="modal-title" id="segmentModalTitle">设置音频区间</div>
-          <button id="closeSegmentModal" type="button" aria-label="关闭">×</button>
+          <button id="closeSegmentModal" type="button" aria-label="关闭">
+            ×
+          </button>
         </div>
         <div class="modal-body">
           <p class="modal-text" id="segmentModalText"></p>
           <div class="time-grid">
-            <label>开始时间（秒）<input id="segmentStart" type="number" min="0" step="0.001" /></label>
-            <label>结束时间（秒）<input id="segmentEnd" type="number" min="0" step="0.001" /></label>
+            <label
+              >开始时间（秒）<input
+                id="segmentStart"
+                type="number"
+                min="0"
+                step="0.001"
+            /></label>
+            <label
+              >结束时间（秒）<input
+                id="segmentEnd"
+                type="number"
+                min="0"
+                step="0.001"
+            /></label>
           </div>
           <div class="modal-status" id="segmentModalStatus"></div>
         </div>
@@ -748,19 +811,31 @@
         document.documentElement.classList.add("admin");
       }
 
-      const PANEL_RATIO_STORAGE_KEY = "japaflow.tools.vocabularyPreview.panelRatio.v1";
-      const WORD_CLICK_STORAGE_KEY = "japaflow.tools.vocabularyPreview.wordClicks.v1";
+      const PANEL_RATIO_STORAGE_KEY =
+        "japaflow.tools.vocabularyPreview.panelRatio.v1";
+      const WORD_CLICK_STORAGE_KEY =
+        "japaflow.tools.vocabularyPreview.wordClicks.v1";
       const MAX_WORD_CLICKS = 20;
       const CLICKS_PER_WORD_LEVEL = 2;
-      const state = { data: null, index: 0, audio: new Audio(), stopTimer: 0, samples: [], selectedSample: null, autoPlayToken: 0, editing: null };
+      const state = {
+        data: null,
+        index: 0,
+        audio: new Audio(),
+        stopTimer: 0,
+        samples: [],
+        selectedSample: null,
+        autoPlayToken: 0,
+        editing: null,
+      };
 
       const $ = (selector) => document.querySelector(selector);
-      const escapeHtml = (value) => String(value ?? "")
-        .replaceAll("&", "&amp;")
-        .replaceAll("<", "&lt;")
-        .replaceAll(">", "&gt;")
-        .replaceAll('"', "&quot;")
-        .replaceAll("'", "&#39;");
+      const escapeHtml = (value) =>
+        String(value ?? "")
+          .replaceAll("&", "&amp;")
+          .replaceAll("<", "&lt;")
+          .replaceAll(">", "&gt;")
+          .replaceAll('"', "&quot;")
+          .replaceAll("'", "&#39;");
 
       const assetSrc = (path) => {
         if (!path) return "";
@@ -774,8 +849,12 @@
 
       function setPanelRatio(percent, persist = true) {
         const ratio = clamp(Number(percent) || 48, 32, 68);
-        document.documentElement.style.setProperty("--vocab-left-panel", `${ratio.toFixed(2)}%`);
-        if (persist) localStorage.setItem(PANEL_RATIO_STORAGE_KEY, String(ratio));
+        document.documentElement.style.setProperty(
+          "--vocab-left-panel",
+          `${ratio.toFixed(2)}%`,
+        );
+        if (persist)
+          localStorage.setItem(PANEL_RATIO_STORAGE_KEY, String(ratio));
       }
 
       function initPanelResizer() {
@@ -809,7 +888,8 @@
         const stopDragging = (event) => {
           if (!resizer.classList.contains("dragging")) return;
           resizer.classList.remove("dragging");
-          if (resizer.hasPointerCapture(event.pointerId)) resizer.releasePointerCapture(event.pointerId);
+          if (resizer.hasPointerCapture(event.pointerId))
+            resizer.releasePointerCapture(event.pointerId);
         };
         resizer.addEventListener("pointerup", stopDragging);
         resizer.addEventListener("pointercancel", stopDragging);
@@ -837,7 +917,11 @@
 
       function lessonNoFromLocation() {
         const params = new URLSearchParams(location.search);
-        const raw = params.get("lesson") || params.get("lessonId") || params.get("lessonNo") || "";
+        const raw =
+          params.get("lesson") ||
+          params.get("lessonId") ||
+          params.get("lessonNo") ||
+          "";
         const queryMatch = String(raw).match(/\d+/);
         if (queryMatch) return Number(queryMatch[0]);
         const hashMatch = location.hash.match(/lesson=(\d+)/);
@@ -848,23 +932,39 @@
         const requestedLessonNo = lessonNoFromLocation();
         await refreshSamples(requestedLessonNo || null);
         const initialSample = requestedLessonNo
-          ? state.samples.find((sample) => sample.lessonNo === requestedLessonNo)
+          ? state.samples.find(
+              (sample) => sample.lessonNo === requestedLessonNo,
+            )
           : state.samples[0];
         if (initialSample) {
           await selectSample(initialSample.lessonNo);
         } else {
-          setStatus(requestedLessonNo ? `data/ocr 下暂无第 ${requestedLessonNo} 课单词样例数据。` : "data/ocr 下暂无单词样例数据。", true);
+          setStatus(
+            requestedLessonNo
+              ? `data/ocr 下暂无第 ${requestedLessonNo} 课单词样例数据。`
+              : "data/ocr 下暂无单词样例数据。",
+            true,
+          );
           renderLessonList();
         }
       }
 
       async function refreshSamples(preferredLessonNo = null) {
-        const response = await fetch("/api/ocr/sample-lessons?type=vocabulary", { cache: "no-store" });
+        const response = await fetch(
+          "/api/ocr/sample-lessons?type=vocabulary",
+          { cache: "no-store" },
+        );
         const result = await response.json();
-        if (!response.ok) throw new Error(result.error || `读取样例列表失败：${response.status}`);
+        if (!response.ok)
+          throw new Error(
+            result.error || `读取样例列表失败：${response.status}`,
+          );
         state.samples = result.lessons || [];
         if (preferredLessonNo) {
-          state.selectedSample = state.samples.find((sample) => sample.lessonNo === preferredLessonNo) || state.selectedSample;
+          state.selectedSample =
+            state.samples.find(
+              (sample) => sample.lessonNo === preferredLessonNo,
+            ) || state.selectedSample;
         }
         renderLessonList();
       }
@@ -875,12 +975,17 @@
         state.selectedSample = sample;
         renderLessonList();
         const response = await fetch(sample.url, { cache: "no-store" });
-        if (!response.ok) throw new Error(`读取 ${sample.label} JSON 失败：${response.status}`);
-        setData(await response.json(), `${sample.label}${sample.hasAudio ? "音频标注样例" : "样例"}`);
+        if (!response.ok)
+          throw new Error(`读取 ${sample.label} JSON 失败：${response.status}`);
+        setData(
+          await response.json(),
+          `${sample.label}${sample.hasAudio ? "音频标注样例" : "样例"}`,
+        );
       }
 
       async function loadDefault() {
-        if (!state.selectedSample && state.samples.length) state.selectedSample = state.samples[0];
+        if (!state.selectedSample && state.samples.length)
+          state.selectedSample = state.samples[0];
         if (!state.selectedSample) {
           await initSamples();
           return;
@@ -889,37 +994,59 @@
       }
 
       function renderLessonList() {
-        $("#lessonList").innerHTML = state.samples.length ? state.samples.map((sample) => `
+        $("#lessonList").innerHTML = state.samples.length
+          ? state.samples
+              .map(
+                (sample) => `
           <button class="lesson-chip ${sample.lessonNo === state.selectedSample?.lessonNo ? "active" : ""}" type="button" data-lesson-no="${sample.lessonNo}">
             <span>${escapeHtml(sample.label)}</span>
             <span class="count">${escapeHtml(sample.counts?.vocabulary || 0)}</span>
-            ${sample.hasAudio ? "<span aria-label=\"有音频区间标注\">▶</span>" : ""}
+            ${sample.hasAudio ? '<span aria-label="有音频区间标注">▶</span>' : ""}
           </button>
-        `).join("") : `<span class="status">暂无样例</span>`;
-        $("#lessonList").querySelectorAll("button[data-lesson-no]").forEach((button) => {
-          button.addEventListener("click", () => {
-            selectSample(Number(button.dataset.lessonNo)).catch((error) => setStatus(error.message, true));
+        `,
+              )
+              .join("")
+          : `<span class="status">暂无样例</span>`;
+        $("#lessonList")
+          .querySelectorAll("button[data-lesson-no]")
+          .forEach((button) => {
+            button.addEventListener("click", () => {
+              selectSample(Number(button.dataset.lessonNo)).catch((error) =>
+                setStatus(error.message, true),
+              );
+            });
           });
-        });
       }
 
       async function generateAudioAlignment() {
-        const lessonNo = state.selectedSample?.lessonNo || lessonNoFromData() || 1;
+        const lessonNo =
+          state.selectedSample?.lessonNo || lessonNoFromData() || 1;
         setStatus("正在生成音频区间标注...");
         $("#generateAudio").disabled = true;
         try {
           const response = await fetch("/api/ocr/audio-align", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ lessonId: lessonNo, target: "vocabulary", force: true })
+            body: JSON.stringify({
+              lessonId: lessonNo,
+              target: "vocabulary",
+              force: true,
+            }),
           });
           const result = await response.json();
-          if (!response.ok) throw new Error(result.error || `生成失败：${response.status}`);
+          if (!response.ok)
+            throw new Error(result.error || `生成失败：${response.status}`);
           await refreshSamples(lessonNo);
           await selectSample(lessonNo);
-          const vocabularyOutput = (result.outputs || []).find((item) => item.outputPath?.includes("-vocabulary-audio-verified.json"));
+          const vocabularyOutput = (result.outputs || []).find((item) =>
+            item.outputPath?.includes("-vocabulary-audio-verified.json"),
+          );
           const summary = vocabularyOutput?.track;
-          setStatus(summary ? `音频区间标注已生成：${summary.alignedItems || summary.expectedItems || 0} 条。` : "音频区间标注已生成。");
+          setStatus(
+            summary
+              ? `音频区间标注已生成：${summary.alignedItems || summary.expectedItems || 0} 条。`
+              : "音频区间标注已生成。",
+          );
         } catch (error) {
           setStatus(error.message, true);
         } finally {
@@ -938,13 +1065,16 @@
       }
 
       function summaryText(data, words) {
-        const stats = words.reduce((acc, word) => {
-          const review = audioReviewState(word);
-          if (review.status === "approved") acc.approved += 1;
-          else acc.pending += 1;
-          if (review.severity === "risk") acc.risk += 1;
-          return acc;
-        }, { approved: 0, pending: 0, risk: 0 });
+        const stats = words.reduce(
+          (acc, word) => {
+            const review = audioReviewState(word);
+            if (review.status === "approved") acc.approved += 1;
+            else acc.pending += 1;
+            if (review.severity === "risk") acc.risk += 1;
+            return acc;
+          },
+          { approved: 0, pending: 0, risk: 0 },
+        );
         const reviewStatus = data.audioAlignment?.reviewStatus || "unknown";
         return `${data.lessonId || "unknown"} · ${words.length} 个词 · ${stats.approved} approved · ${stats.pending} pending · ${stats.risk} 高风险 · ${reviewStatus}`;
       }
@@ -959,29 +1089,30 @@
         const src = assetSrc(image?.path);
         $("#sourceImage").src = src;
         $("#sourceImage").hidden = !src;
-        $("#imageLink").href = src || "#";
-        $("#imageLabel").textContent = image ? `page${image.pageNo || ""} · ${image.path}` : "教材图片";
       }
 
       function renderWord(word, total) {
         if (!word) {
-          $("#wordCard").innerHTML = `<div class="word-card"><div class="word-body">暂无单词数据。</div></div>`;
+          $("#wordCard").innerHTML =
+            `<div class="word-card"><div class="word-body">暂无单词数据。</div></div>`;
           return;
         }
-        const meanings = Array.isArray(word.meaningZh) ? word.meaningZh : [word.meaningZh].filter(Boolean);
-        const meaningText = meanings.length ? meanings.map(escapeHtml).join(" / ") : "暂无中文释义";
+        const meanings = Array.isArray(word.meaningZh)
+          ? word.meaningZh
+          : [word.meaningZh].filter(Boolean);
+        const meaningText = meanings.length
+          ? meanings.map(escapeHtml).join(" / ")
+          : "暂无中文释义";
         const audioReview = audioReviewState(word);
         $("#wordCard").innerHTML = `
           <article class="word-card">
             <div class="word-nav">
               <div class="word-nav-side">
-                <span class="word-shortcut" aria-hidden="true"><span class="word-shortcut-key">←</span><span>键切换上一个</span></span>
-                <button id="prevWord" type="button" ${state.index <= 0 ? "disabled" : ""}>上一个</button>
+                <button class="word-shortcut" type="button" data-word-move="-1" ${state.index <= 0 ? "disabled" : ""} aria-label="上一个单词"><span class="word-shortcut-key">←</span><span>上一个</span></button>
               </div>
               <span class="word-index">${state.index + 1} / ${total}</span>
               <div class="word-nav-side right">
-                <button id="nextWord" type="button" ${state.index >= total - 1 ? "disabled" : ""}>下一个</button>
-                <span class="word-shortcut" aria-hidden="true"><span>键切换下一个</span><span class="word-shortcut-key">→</span></span>
+                <button class="word-shortcut" type="button" data-word-move="1" ${state.index >= total - 1 ? "disabled" : ""} aria-label="下一个单词"><span>下一个</span><span class="word-shortcut-key">→</span></button>
               </div>
             </div>
             <div class="word-body">
@@ -992,38 +1123,60 @@
                 </div>
                 <div class="meta">
                   <span class="tag">${escapeHtml(word.partOfSpeech || "无词性")}</span>
-                  ${isAdminMode() ? `
+                  ${
+                    isAdminMode()
+                      ? `
                     <span class="tag">${escapeHtml(word.id || "")}</span>
                     <span class="tag ${word.confidence === "low" ? "warn" : ""}">${escapeHtml(word.confidence || "unknown")}</span>
                     <span class="tag ${audioReview.tagClass}">${escapeHtml(audioReview.label)}</span>
-                  ` : ""}
+                  `
+                      : ""
+                  }
                 </div>
               </div>
-              ${word.audioSegment ? `
+              ${
+                word.audioSegment
+                  ? `
                 <div class="audio-row">
                   <button class="audio-button" id="playWordAudio" type="button" title="播放音频片段" aria-label="播放音频片段">▶</button>
                   <button class="audio-button segment-settings" id="editWordAudio" type="button" title="设置音频区间" aria-label="设置音频区间">⚙</button>
-                  <span>${escapeHtml(formatSegmentTime(word.audioSegment))}</span>
+                  <span class="audio-segment-time">${escapeHtml(formatSegmentTime(word.audioSegment))}</span>
                 </div>
                 ${renderAudioReview(word.audioSegment, audioReview)}
-              ` : ""}
+              `
+                  : ""
+              }
             </div>
           </article>
         `;
-        $("#prevWord")?.addEventListener("click", () => move(-1));
-        $("#nextWord")?.addEventListener("click", () => move(1));
-        $("#playWordAudio")?.addEventListener("click", () => playSegment(word.audioSegment));
-        $("#editWordAudio")?.addEventListener("click", () => openSegmentModal(word.id).catch((error) => setStatus(error.message, true)));
+        $("#wordCard")
+          .querySelectorAll("[data-word-move]")
+          .forEach((button) =>
+            button.addEventListener("click", () =>
+              move(Number(button.dataset.wordMove)),
+            ),
+          );
+        $("#playWordAudio")?.addEventListener("click", () =>
+          playSegment(word.audioSegment),
+        );
+        $("#editWordAudio")?.addEventListener("click", () =>
+          openSegmentModal(word.id).catch((error) =>
+            setStatus(error.message, true),
+          ),
+        );
       }
 
       function renderWordWriting(word) {
         const writing = String(word?.writing || word?.kana || "");
         const kana = String(word?.kana || "");
-        if (!writing || !kana || writing === kana || !hasKanji(writing)) return escapeHtml(writing);
-        return wordRubySegments(writing, kana).map((segment) => {
-          if (!segment.ruby) return escapeHtml(segment.text);
-          return `<ruby><rb>${escapeHtml(segment.text)}</rb><rt aria-hidden="true">${escapeHtml(segment.ruby)}</rt></ruby>`;
-        }).join("");
+        if (!writing || !kana || writing === kana || !hasKanji(writing))
+          return escapeHtml(writing);
+        return wordRubySegments(writing, kana)
+          .map((segment) => {
+            if (!segment.ruby) return escapeHtml(segment.text);
+            return `<ruby><rb>${escapeHtml(segment.text)}</rb><rt aria-hidden="true">${escapeHtml(segment.ruby)}</rt></ruby>`;
+          })
+          .join("");
       }
 
       function hasKanji(value) {
@@ -1036,7 +1189,7 @@
 
       function toHiragana(value) {
         return String(value || "").replace(/[\u30a1-\u30f6]/g, (char) =>
-          String.fromCharCode(char.charCodeAt(0) - 0x60)
+          String.fromCharCode(char.charCodeAt(0) - 0x60),
         );
       }
 
@@ -1060,12 +1213,15 @@
         tokens.forEach((token, index) => {
           if (token.kind === "plain") {
             const reading = toHiragana(token.text);
-            if (normalizedKana.slice(kanaCursor).startsWith(reading)) kanaCursor += reading.length;
+            if (normalizedKana.slice(kanaCursor).startsWith(reading))
+              kanaCursor += reading.length;
             segments.push({ text: token.text });
             return;
           }
 
-          const nextPlain = tokens.slice(index + 1).find((item) => item.kind === "plain");
+          const nextPlain = tokens
+            .slice(index + 1)
+            .find((item) => item.kind === "plain");
           let rubyEnd = kana.length;
           if (nextPlain) {
             const nextReading = toHiragana(nextPlain.text);
@@ -1074,34 +1230,47 @@
           }
           const ruby = kana.slice(kanaCursor, rubyEnd);
           kanaCursor = rubyEnd;
-          segments.push(ruby ? { text: token.text, ruby } : { text: token.text });
+          segments.push(
+            ruby ? { text: token.text, ruby } : { text: token.text },
+          );
         });
 
         return segments;
       }
 
       function renderWordList(words) {
-        $("#wordList").innerHTML = words.map((word, index) => `
+        $("#wordList").innerHTML = words
+          .map(
+            (word, index) => `
           <button type="button" class="${wordListClass(word, index)}" data-index="${index}"${wordClickStyle(word)} title="${escapeHtml(wordClickLabel(word))}">
             <span class="word-list-main">
               <strong>${escapeHtml(word.writing || word.kana)}</strong>
               ${isAdminMode() ? renderReviewDot(word) : ""}
             </span>
           </button>
-        `).join("");
-        $("#wordList").querySelectorAll("button").forEach((button) => {
-          button.addEventListener("click", () => {
-            const index = Number(button.dataset.index) || 0;
-            // 切换单词只改变当前选中项；只有连续点击同一个当前单词才累计熟悉度。
-            if (index === state.index) incrementWordClick(words[index]);
-            state.index = index;
-            render();
+        `,
+          )
+          .join("");
+        $("#wordList")
+          .querySelectorAll("button")
+          .forEach((button) => {
+            button.addEventListener("click", () => {
+              const index = Number(button.dataset.index) || 0;
+              // 切换单词只改变当前选中项；只有连续点击同一个当前单词才累计熟悉度。
+              if (index === state.index) incrementWordClick(words[index]);
+              state.index = index;
+              render();
+            });
           });
-        });
       }
 
       function wordClickLessonKey() {
-        return String(state.data?.lessonId || state.selectedSample?.lessonNo || lessonNoFromLocation() || "manual");
+        return String(
+          state.data?.lessonId ||
+            state.selectedSample?.lessonNo ||
+            lessonNoFromLocation() ||
+            "manual",
+        );
       }
 
       function wordClickId(word) {
@@ -1110,7 +1279,9 @@
 
       function readWordClickStore() {
         try {
-          const parsed = JSON.parse(localStorage.getItem(WORD_CLICK_STORAGE_KEY) || "{}");
+          const parsed = JSON.parse(
+            localStorage.getItem(WORD_CLICK_STORAGE_KEY) || "{}",
+          );
           return parsed && typeof parsed === "object" ? parsed : {};
         } catch {
           return {};
@@ -1118,7 +1289,10 @@
       }
 
       function wordClickCount(word) {
-        const count = Number(readWordClickStore()?.[wordClickLessonKey()]?.[wordClickId(word)] || 0);
+        const count = Number(
+          readWordClickStore()?.[wordClickLessonKey()]?.[wordClickId(word)] ||
+            0,
+        );
         return clamp(Number.isFinite(count) ? count : 0, 0, MAX_WORD_CLICKS);
       }
 
@@ -1128,8 +1302,14 @@
         const lessonKey = wordClickLessonKey();
         const wordId = wordClickId(word);
         const lessonClicks = { ...(store[lessonKey] || {}) };
-        lessonClicks[wordId] = Math.min(MAX_WORD_CLICKS, wordClickCount(word) + 1);
-        localStorage.setItem(WORD_CLICK_STORAGE_KEY, JSON.stringify({ ...store, [lessonKey]: lessonClicks }));
+        lessonClicks[wordId] = Math.min(
+          MAX_WORD_CLICKS,
+          wordClickCount(word) + 1,
+        );
+        localStorage.setItem(
+          WORD_CLICK_STORAGE_KEY,
+          JSON.stringify({ ...store, [lessonKey]: lessonClicks }),
+        );
       }
 
       function wordClickLevel(word) {
@@ -1138,7 +1318,8 @@
 
       function wordClickLabel(word) {
         const count = wordClickCount(word);
-        if (!count) return "点击单词会记录熟悉度；每 2 次加深一个档位，最多 20 次";
+        if (!count)
+          return "点击单词会记录熟悉度；每 2 次加深一个档位，最多 20 次";
         return `已点击 ${count}/${MAX_WORD_CLICKS} 次 · 熟悉度 ${wordClickLevel(word)}/${MAX_WORD_CLICKS / CLICKS_PER_WORD_LEVEL}`;
       }
 
@@ -1158,11 +1339,22 @@
 
       function isEditableTarget(target) {
         const element = target instanceof Element ? target : null;
-        return Boolean(element && element.closest("input, textarea, select, [contenteditable=''], [contenteditable='true']"));
+        return Boolean(
+          element &&
+          element.closest(
+            "input, textarea, select, [contenteditable=''], [contenteditable='true']",
+          ),
+        );
       }
 
       function handleWordNavigationKeydown(event) {
-        if (event.defaultPrevented || event.altKey || event.ctrlKey || event.metaKey) return;
+        if (
+          event.defaultPrevented ||
+          event.altKey ||
+          event.ctrlKey ||
+          event.metaKey
+        )
+          return;
         if (isEditableTarget(event.target)) return;
         if ($("#segmentModal").classList.contains("open")) return;
         if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
@@ -1190,7 +1382,10 @@
 
       function renderAudioReview(segment, review) {
         const raw = segment.rawAzureTiming;
-        const timingLabel = segment.timingSource === "audio-silence-detection" ? "静音边界" : "Azure 时间戳";
+        const timingLabel =
+          segment.timingSource === "audio-silence-detection"
+            ? "静音边界"
+            : "Azure 时间戳";
         return `
           <div class="audio-review ${review.severity === "risk" ? "danger" : review.status === "pending" ? "warn" : ""}">
             <div class="audio-review-line">
@@ -1202,9 +1397,12 @@
             </div>
             ${segment.asrText ? `<div>ASR：${escapeHtml(segment.asrText)}</div>` : ""}
             ${review.reasons.length ? `<div>原因：${review.reasons.map(escapeHtml).join("；")}</div>` : ""}
-            ${Array.isArray(segment.alignmentWarnings) && segment.alignmentWarnings.length
-              ? `<div>诊断：${segment.alignmentWarnings.map((warning) => escapeHtml(readableAlignmentWarning(warning))).join("；")}</div>`
-              : ""}
+            ${
+              Array.isArray(segment.alignmentWarnings) &&
+              segment.alignmentWarnings.length
+                ? `<div>诊断：${segment.alignmentWarnings.map((warning) => escapeHtml(readableAlignmentWarning(warning))).join("；")}</div>`
+                : ""
+            }
           </div>
         `;
       }
@@ -1216,15 +1414,23 @@
           index === state.index ? "active" : "",
           clickLevel ? "word-clicked" : "",
           clickLevel >= 7 ? "word-clicked-strong" : "",
-          review.severity === "risk" ? "review-risk" : review.status === "pending" ? "review-pending" : ""
-        ].filter(Boolean).join(" ");
+          review.severity === "risk"
+            ? "review-risk"
+            : review.status === "pending"
+              ? "review-pending"
+              : "",
+        ]
+          .filter(Boolean)
+          .join(" ");
       }
 
       function renderReviewDot(word) {
         const review = audioReviewState(word);
         if (!word.audioSegment) return "";
-        if (review.severity === "risk") return `<span class="review-dot risk" title="${escapeHtml(review.reasons.join("；"))}">!</span>`;
-        if (review.status === "pending") return `<span class="review-dot pending" title="${escapeHtml(review.reasons.join("；"))}">待</span>`;
+        if (review.severity === "risk")
+          return `<span class="review-dot risk" title="${escapeHtml(review.reasons.join("；"))}">!</span>`;
+        if (review.status === "pending")
+          return `<span class="review-dot pending" title="${escapeHtml(review.reasons.join("；"))}">待</span>`;
         return `<span class="review-dot" title="approved">✓</span>`;
       }
 
@@ -1235,21 +1441,42 @@
       function audioReviewState(word) {
         const segment = word?.audioSegment;
         if (!segment) {
-          return { status: "pending", severity: "risk", label: "无音频", tagClass: "danger", reasons: ["没有音频区间"] };
+          return {
+            status: "pending",
+            severity: "risk",
+            label: "无音频",
+            tagClass: "danger",
+            reasons: ["没有音频区间"],
+          };
         }
         const status = segment.review?.status || "pending";
         const reasons = audioRiskReasons(word, segment);
-        const severity = reasons.some((reason) => /低匹配|极短|重叠|无效|边界过近/.test(reason))
-          || segment.review?.severity === "risk"
-          ? "risk"
-          : status === "pending" || reasons.length ? "pending" : "ok";
-        const label = status === "approved" && severity === "ok" ? "approved" : status === "approved" ? "approved · 可疑" : "pending";
+        const severity =
+          reasons.some((reason) =>
+            /低匹配|极短|重叠|无效|边界过近/.test(reason),
+          ) || segment.review?.severity === "risk"
+            ? "risk"
+            : status === "pending" || reasons.length
+              ? "pending"
+              : "ok";
+        const label =
+          status === "approved" && severity === "ok"
+            ? "approved"
+            : status === "approved"
+              ? "approved · 可疑"
+              : "pending";
         return {
-          status: status === "approved" && severity === "ok" ? "approved" : "pending",
+          status:
+            status === "approved" && severity === "ok" ? "approved" : "pending",
           severity,
           label,
-          tagClass: severity === "risk" ? "danger" : status === "approved" && severity === "ok" ? "" : "warn",
-          reasons
+          tagClass:
+            severity === "risk"
+              ? "danger"
+              : status === "approved" && severity === "ok"
+                ? ""
+                : "warn",
+          reasons,
         };
       }
 
@@ -1260,44 +1487,72 @@
         const start = Number(segment.start);
         const end = Number(segment.end);
         const minDuration = expectedMinimumDuration(word);
-        const hasReliableAudioBoundary = segment.timingSource === "audio-silence-detection"
-          && segment.timingConfidence === "high";
-        if (!Number.isFinite(start) || !Number.isFinite(end) || end <= start) reasons.push("无效时间区间");
+        const hasReliableAudioBoundary =
+          segment.timingSource === "audio-silence-detection" &&
+          segment.timingConfidence === "high";
+        if (!Number.isFinite(start) || !Number.isFinite(end) || end <= start)
+          reasons.push("无效时间区间");
         if (!hasReliableAudioBoundary) {
-          if (Number.isFinite(score) && score < 0.65) reasons.push(`低匹配分 ${score.toFixed(3)}`);
-          if (Number.isFinite(duration) && duration < 0.35) reasons.push(`极短时长 ${duration.toFixed(3)}s`);
-          if (Number.isFinite(duration) && duration < minDuration * 0.55) reasons.push(`短于预估 ${duration.toFixed(3)}s / ${minDuration.toFixed(3)}s`);
+          if (Number.isFinite(score) && score < 0.65)
+            reasons.push(`低匹配分 ${score.toFixed(3)}`);
+          if (Number.isFinite(duration) && duration < 0.35)
+            reasons.push(`极短时长 ${duration.toFixed(3)}s`);
+          if (Number.isFinite(duration) && duration < minDuration * 0.55)
+            reasons.push(
+              `短于预估 ${duration.toFixed(3)}s / ${minDuration.toFixed(3)}s`,
+            );
         }
-        if (Array.isArray(segment.alignmentIssues) && segment.alignmentIssues.length) reasons.push(...segment.alignmentIssues.map(readableAlignmentIssue));
-        if (segment.review?.status && segment.review.status !== "approved") reasons.push(`未人工确认 ${segment.review.status}`);
-        if (segment.review?.note && /Pending manual verification/i.test(segment.review.note)) reasons.push("脚本要求人工验证");
+        if (
+          Array.isArray(segment.alignmentIssues) &&
+          segment.alignmentIssues.length
+        )
+          reasons.push(...segment.alignmentIssues.map(readableAlignmentIssue));
+        if (segment.review?.status && segment.review.status !== "approved")
+          reasons.push(`未人工确认 ${segment.review.status}`);
+        if (
+          segment.review?.note &&
+          /Pending manual verification/i.test(segment.review.note)
+        )
+          reasons.push("脚本要求人工验证");
         return [...new Set(reasons.filter(Boolean))];
       }
 
       function expectedMinimumDuration(word) {
         const text = String(word?.kana || word?.writing || "");
         const normalized = normalizeWordTextForReview(text);
-        const units = Math.max(1, [...normalized.replace(/[ゃゅょぁぃぅぇぉャュョァィゥェォ]/gu, "")].length);
+        const units = Math.max(
+          1,
+          [...normalized.replace(/[ゃゅょぁぃぅぇぉャュョァィゥェォ]/gu, "")]
+            .length,
+        );
         return Math.min(1.5, Math.max(0.45, units * 0.28));
       }
 
       function normalizeWordTextForReview(value) {
-        return String(value || "").normalize("NFKC").replace(/[\s\p{P}\p{S}]/gu, "").toLowerCase();
+        return String(value || "")
+          .normalize("NFKC")
+          .replace(/[\s\p{P}\p{S}]/gu, "")
+          .toLowerCase();
       }
 
       function readableAlignmentIssue(issue) {
         const text = String(issue || "");
-        if (text.startsWith("expanded-start:")) return `自动前扩 ${text.replace("expanded-start:", "")}`;
-        if (text.startsWith("short-azure-timing:")) return `Azure 原始时间过短 ${text.replace("short-azure-timing:", "")}`;
-        if (text.startsWith("large-heuristic-expansion:")) return `大幅启发式扩展 ${text.replace("large-heuristic-expansion:", "")}`;
+        if (text.startsWith("expanded-start:"))
+          return `自动前扩 ${text.replace("expanded-start:", "")}`;
+        if (text.startsWith("short-azure-timing:"))
+          return `Azure 原始时间过短 ${text.replace("short-azure-timing:", "")}`;
+        if (text.startsWith("large-heuristic-expansion:"))
+          return `大幅启发式扩展 ${text.replace("large-heuristic-expansion:", "")}`;
         if (text === "neighbor-boundary-too-tight") return "相邻词边界过近";
         return text;
       }
 
       function readableAlignmentWarning(warning) {
         const text = String(warning || "");
-        if (text === "azure-timing-does-not-overlap-vad") return "Azure 时间与静音边界不重合，已采用静音边界";
-        if (text.startsWith("low-asr-text-match:")) return `ASR 文字匹配较低 ${text.replace("low-asr-text-match:", "")}`;
+        if (text === "azure-timing-does-not-overlap-vad")
+          return "Azure 时间与静音边界不重合，已采用静音边界";
+        if (text.startsWith("low-asr-text-match:"))
+          return `ASR 文字匹配较低 ${text.replace("low-asr-text-match:", "")}`;
         return text;
       }
 
@@ -1336,21 +1591,30 @@
       }
 
       async function loadEditableSegment(wordId) {
-        const word = (state.data?.vocabulary || []).find((item) => item?.id === wordId);
-        const lessonNo = state.selectedSample?.lessonNo || lessonNoFromData() || lessonNoFromLocation();
+        const word = (state.data?.vocabulary || []).find(
+          (item) => item?.id === wordId,
+        );
+        const lessonNo =
+          state.selectedSample?.lessonNo ||
+          lessonNoFromData() ||
+          lessonNoFromLocation();
         const editableSegment = word?.audioSegment || null;
-        if (!word || !editableSegment) throw new Error("当前单词没有可编辑的音频区间。");
+        if (!word || !editableSegment)
+          throw new Error("当前单词没有可编辑的音频区间。");
         return { word, lessonNo, segment: editableSegment };
       }
 
       async function openSegmentModal(wordId) {
         const editing = await loadEditableSegment(wordId);
         state.editing = editing;
-        const label = editing.word.writing && editing.word.writing !== editing.word.kana
-          ? `${editing.word.writing}（${editing.word.kana || ""}）`
-          : editing.word.kana || editing.word.writing || editing.word.id;
+        const label =
+          editing.word.writing && editing.word.writing !== editing.word.kana
+            ? `${editing.word.writing}（${editing.word.kana || ""}）`
+            : editing.word.kana || editing.word.writing || editing.word.id;
         $("#segmentModalText").textContent = label;
-        $("#segmentStart").value = Number(editing.segment.start || 0).toFixed(3);
+        $("#segmentStart").value = Number(editing.segment.start || 0).toFixed(
+          3,
+        );
         $("#segmentEnd").value = Number(editing.segment.end || 0).toFixed(3);
         modalStatus(`当前区间：${formatSegmentTime(editing.segment)}`);
         $("#segmentModal").classList.add("open");
@@ -1367,12 +1631,17 @@
       function editedRange() {
         const start = Number($("#segmentStart").value);
         const end = Number($("#segmentEnd").value);
-        if (!Number.isFinite(start) || !Number.isFinite(end) || start < 0 || end <= start) {
+        if (
+          !Number.isFinite(start) ||
+          !Number.isFinite(end) ||
+          start < 0 ||
+          end <= start
+        ) {
           throw new Error("请填写有效的开始和结束时间。");
         }
         return {
           start: Math.round(start * 1000) / 1000,
-          end: Math.round(end * 1000) / 1000
+          end: Math.round(end * 1000) / 1000,
         };
       }
 
@@ -1381,7 +1650,9 @@
         try {
           const range = editedRange();
           await playSegment({ ...state.editing.segment, ...range });
-          modalStatus(`测试播放：${range.start.toFixed(3)}s - ${range.end.toFixed(3)}s`);
+          modalStatus(
+            `测试播放：${range.start.toFixed(3)}s - ${range.end.toFixed(3)}s`,
+          );
         } catch (error) {
           modalStatus(error.message, true);
         }
@@ -1400,11 +1671,12 @@
               lessonId: state.editing.lessonNo,
               itemId: state.editing.word.id,
               start: range.start,
-              end: range.end
-            })
+              end: range.end,
+            }),
           });
           const result = await response.json();
-          if (!response.ok) throw new Error(result.error || `保存失败：${response.status}`);
+          if (!response.ok)
+            throw new Error(result.error || `保存失败：${response.status}`);
           state.editing.word.audioSegment = result.audioSegment;
           $("#jsonInput").value = JSON.stringify(state.data, null, 2);
           render();
@@ -1438,7 +1710,9 @@
         });
       }
 
-      $("#loadDefault").addEventListener("click", () => loadDefault().catch((error) => setStatus(error.message, true)));
+      $("#loadDefault").addEventListener("click", () =>
+        loadDefault().catch((error) => setStatus(error.message, true)),
+      );
       $("#generateAudio").addEventListener("click", generateAudioAlignment);
       $("#parseInput").addEventListener("click", () => {
         try {

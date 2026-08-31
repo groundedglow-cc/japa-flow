@@ -929,9 +929,9 @@
               "itemIndex": 1,
               "speaker": "森",
               "text": "李さん、今度の連休の予定は？",
-              "start": 14.6,
+              "start": 14,
               "end": 17.098,
-              "duration": 2.498,
+              "duration": 3.098,
               "rawAzureTiming": {
                 "start": 14.85,
                 "end": 16.89,
@@ -950,19 +950,20 @@
               "phraseIndexes": [
                 2
               ],
-              "method": "azure-speech-sentence-alignment-with-boundary-padding",
-              "confidence": "medium",
+              "method": "manual-admin-adjustment",
+              "confidence": "approved",
               "alignmentIssues": [
                 "ASR boundary ended before the final local speech region; verify this sentence.",
                 "Moderate ASR text similarity."
               ],
               "review": {
-                "status": "pending",
-                "reviewedAt": null,
-                "note": "ASR boundary ended before the final local speech region; verify this sentence. Moderate ASR text similarity.",
+                "status": "approved",
+                "reviewedAt": "2026-08-31T02:08:40.104Z",
+                "note": "Manually verified and adjusted in the text audio preview.",
                 "matchScore": 0.75,
                 "asrText": "今 度 の 連 休 の 予 定 は"
-              }
+              },
+              "reviewedAt": "2026-08-31T02:08:40.104Z"
             },
             "kana": "りさん、こんどのれんきゅうのよていは？",
             "segments": [
@@ -1919,5 +1920,5 @@
       }
     ]
   },
-  "updatedAt": "2026-08-30T01:58:15.949Z"
+  "updatedAt": "2026-08-31T02:08:40.105Z"
 }

@@ -10,26 +10,170 @@
   --shadow: 0 18px 44px rgba(23, 33, 29, 0.08);
 }
 
-.practice-input-with-notes { display: flex; flex: 0 1 min(680px, 100%); flex-wrap: wrap; align-items: flex-start; gap: 7px; width: min(680px, 100%); }
-.practice-ai-note { display: contents; }
-.practice-note-tools { display: flex; gap: 5px; padding-top: 5px; }
-.practice-ai-trigger { width: 28px; height: 28px; border: 1px solid #b9d8cb; border-radius: 50%; background: #f1faf5; color: #176746; cursor: pointer; }
-.practice-manual-note-trigger { width: 28px; height: 28px; border: 1px solid #d6c6aa; border-radius: 50%; background: #fffaf0; color: #8a6332; cursor: pointer; }
-.practice-ai-panel { display: grid; flex-basis: 100%; gap: 7px; width: 100%; margin-top: 2px; padding: 10px; border: 1px solid #c7dfd3; border-radius: 7px; background: #f8fcfa; }
-.practice-manual-note-panel { display: grid; flex-basis: 100%; gap: 7px; width: 100%; margin-top: 2px; padding: 10px; border: 1px solid #e5d8bd; border-radius: 7px; background: #fffdf7; }
-.practice-ai-panel textarea { width: 100%; min-height: 52px; resize: vertical; padding: 7px; border: 1px solid #bdd7c9; border-radius: 5px; font: inherit; font-size: 13px; }
-.practice-manual-note-panel textarea { width: 100%; min-height: 52px; resize: vertical; padding: 7px; border: 1px solid #decda9; border-radius: 5px; font: inherit; font-size: 13px; }
-.practice-ai-panel button { justify-self: start; padding: 5px 9px; border: 1px solid #a8cdbc; border-radius: 5px; background: #fff; cursor: pointer; font: inherit; font-size: 12px; }
-.practice-manual-note-panel button { justify-self: start; padding: 5px 9px; border: 1px solid #d6c6aa; border-radius: 5px; background: #fff; cursor: pointer; font: inherit; font-size: 12px; }
-.practice-ai-panel small { color: #65736c; }
-.practice-ai-panel p, .practice-ai-saved pre { margin: 0; white-space: pre-wrap; font: 13px/1.55 inherit; }
-.practice-ai-saved { display: grid; gap: 5px; padding-top: 7px; border-top: 1px solid #d7e8df; }
-.practice-ai-saved-list { display: grid; flex-basis: 100%; gap: 7px; width: 100%; margin-top: 2px; }
-.practice-ai-erase { justify-self: end; border: 0; padding: 0; color: #8d5e58; background: transparent; cursor: pointer; }
-.practice-highlight-palette { position: absolute; z-index: 80; display: flex; align-items: center; gap: 5px; padding: 6px; border: 1px solid #d7ddd9; border-radius: 7px; background: #fff; box-shadow: 0 8px 22px rgba(23,32,42,.16); }
-.practice-highlight-palette button { width: 22px; height: 22px; padding: 0; border: 1px solid rgba(0,0,0,.12); border-radius: 50%; cursor: pointer; }
-.practice-highlight-palette span { margin-left: 3px; color: var(--muted); font-size: 12px; white-space: nowrap; }
-mark[data-practice-highlight] { cursor: pointer; }
+.practice-input-with-notes {
+  display: flex;
+  flex: 0 1 min(680px, 100%);
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 7px;
+  width: min(680px, 100%);
+}
+.practice-ai-note {
+  display: contents;
+}
+.practice-note-tools {
+  display: flex;
+  gap: 5px;
+  padding-top: 5px;
+}
+.practice-ai-trigger {
+  width: 28px;
+  height: 28px;
+  border: 1px solid #b9d8cb;
+  border-radius: 50%;
+  background: #f1faf5;
+  color: #176746;
+  cursor: pointer;
+}
+.practice-manual-note-trigger {
+  width: 28px;
+  height: 28px;
+  border: 1px solid #d6c6aa;
+  border-radius: 50%;
+  background: #fffaf0;
+  color: #8a6332;
+  cursor: pointer;
+}
+.practice-ai-panel {
+  display: grid;
+  flex-basis: 100%;
+  gap: 7px;
+  width: 100%;
+  margin-top: 2px;
+  padding: 10px;
+  border: 1px solid #c7dfd3;
+  border-radius: 7px;
+  background: #f8fcfa;
+}
+.practice-manual-note-panel {
+  display: grid;
+  flex-basis: 100%;
+  gap: 7px;
+  width: 100%;
+  margin-top: 2px;
+  padding: 10px;
+  border: 1px solid #e5d8bd;
+  border-radius: 7px;
+  background: #fffdf7;
+}
+.practice-ai-panel textarea {
+  width: 100%;
+  min-height: 52px;
+  resize: vertical;
+  padding: 7px;
+  border: 1px solid #bdd7c9;
+  border-radius: 5px;
+  font: inherit;
+  font-size: 13px;
+}
+.practice-manual-note-panel textarea {
+  width: 100%;
+  min-height: 52px;
+  resize: vertical;
+  padding: 7px;
+  border: 1px solid #decda9;
+  border-radius: 5px;
+  font: inherit;
+  font-size: 13px;
+}
+.practice-ai-panel button {
+  justify-self: start;
+  padding: 5px 9px;
+  border: 1px solid #a8cdbc;
+  border-radius: 5px;
+  background: #fff;
+  cursor: pointer;
+  font: inherit;
+  font-size: 12px;
+}
+.practice-manual-note-panel button {
+  justify-self: start;
+  padding: 5px 9px;
+  border: 1px solid #d6c6aa;
+  border-radius: 5px;
+  background: #fff;
+  cursor: pointer;
+  font: inherit;
+  font-size: 12px;
+}
+.practice-ai-panel small {
+  color: #65736c;
+}
+.practice-ai-panel p,
+.practice-ai-saved pre {
+  margin: 0;
+  white-space: pre-wrap;
+  font: 13px/1.55 inherit;
+}
+
+.practice-ai-answer {
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+.practice-ai-answer p {
+  font-size: inherit;
+}
+.practice-ai-saved {
+  display: grid;
+  gap: 5px;
+  padding-top: 7px;
+  border-top: 1px solid #d7e8df;
+}
+.practice-ai-saved-list {
+  display: grid;
+  flex-basis: 100%;
+  gap: 7px;
+  width: 100%;
+  margin-top: 2px;
+}
+.practice-ai-erase {
+  justify-self: end;
+  border: 0;
+  padding: 0;
+  color: #8d5e58;
+  background: transparent;
+  cursor: pointer;
+}
+.practice-highlight-palette {
+  position: absolute;
+  z-index: 80;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px;
+  border: 1px solid #d7ddd9;
+  border-radius: 7px;
+  background: #fff;
+  box-shadow: 0 8px 22px rgba(23, 32, 42, 0.16);
+}
+.practice-highlight-palette button {
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 50%;
+  cursor: pointer;
+}
+.practice-highlight-palette span {
+  margin-left: 3px;
+  color: var(--muted);
+  font-size: 12px;
+  white-space: nowrap;
+}
+mark[data-practice-highlight] {
+  cursor: pointer;
+}
 
 * {
   box-sizing: border-box;
@@ -185,7 +329,7 @@ textarea {
 
 .practice-content {
   width: min(980px, 100%);
-  padding: 28px 32px 40px;
+  padding: 28px 32px 124px;
 }
 
 .practice-blocked-panel {
@@ -657,6 +801,15 @@ rt {
   max-width: 760px;
 }
 
+.practice-item-group[id^="l32-p1-a6-"] .related-asset-strip,
+.practice-item-group[id^="l32-p1-a6-"] .related-asset-strip .image-asset {
+  max-width: 500px;
+}
+
+.practice-item-group[id^="l32-p1-a6-"] .related-asset-strip {
+  grid-template-columns: minmax(0, 500px);
+}
+
 .asset-config-warning {
   display: grid;
   min-height: 120px;
@@ -1033,11 +1186,13 @@ rt {
   align-items: center;
   gap: 16px;
   flex-wrap: wrap;
-  position: sticky;
+  position: fixed;
   bottom: 0;
+  left: 280px;
+  right: 0;
   z-index: 20;
-  margin-top: 24px;
-  padding: 14px 0 calc(14px + env(safe-area-inset-bottom));
+  margin: 0;
+  padding: 14px 32px calc(14px + env(safe-area-inset-bottom));
   background: var(--panel);
   border-top: 1px solid var(--line);
   box-shadow: 0 -10px 20px color-mix(in srgb, var(--panel) 82%, transparent);
@@ -1567,7 +1722,13 @@ rt {
   }
 
   .practice-content {
-    padding: 20px 16px 32px;
+    padding: 20px 16px 116px;
+  }
+
+  .activity-footer {
+    left: 0;
+    padding-right: 16px;
+    padding-left: 16px;
   }
 
   .admin-publish-panel,

@@ -5,7 +5,7 @@ const sectionLabel = {
   practice_1: "练习 I",
   practice_2: "练习 II",
   vocabulary: "生词",
-  culture_note: "专栏"
+  culture_note: "专栏",
 };
 
 const evaluationModeLabel = {
@@ -13,12 +13,14 @@ const evaluationModeLabel = {
   acceptable_answers: "多答案",
   open_response: "开放题结构判分",
   self_check: "自检",
-  manual_review: "人工复核"
+  manual_review: "人工复核",
 };
 
-const textbookAudioBaseUrl = "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio";
+const textbookAudioBaseUrl =
+  "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio";
 const CHOICE_RESULT_KEY = "__choice__";
-const ANSWER_ALTERNATIVE_CACHE_KEY = "japaflow.practice.acceptedAlternatives.v1";
+const ANSWER_ALTERNATIVE_CACHE_KEY =
+  "japaflow.practice.acceptedAlternatives.v1";
 const HOME_PROGRESS_SNAPSHOT_PREFIX = "japaflow.practice.home-progress.v1";
 const answerLexicalVariantGroups = [
   ["わたし", "私", "我"],
@@ -82,7 +84,7 @@ const answerLexicalVariantGroups = [
   ["ながしま", "長島"],
   ["おのみどり", "小野緑"],
   ["りしゅうれい", "李秀麗"],
-  ["もりけんたろう", "森健太郎"]
+  ["もりけんたろう", "森健太郎"],
 ];
 const sortedAnswerLexicalVariantGroups = [...answerLexicalVariantGroups]
   .map((group) => [...group].sort((a, b) => b.length - a.length))
@@ -94,11 +96,16 @@ export function PracticePreview({ practice, localPractice = null }) {
   const activities = practice.activities;
   const practiceSetId = practice.practiceSetId || null;
   const preview = Boolean(practice.preview);
-  const [session, setSession] = useState({ lessonId: practice.lessonId, activities: {} });
+  const [session, setSession] = useState({
+    lessonId: practice.lessonId,
+    activities: {},
+  });
   const [sessionLoadKey, setSessionLoadKey] = useState(0);
   const [isReady, setIsReady] = useState(false);
   const [answerAlternatives, setAnswerAlternatives] = useState({});
-  const [currentActivityId, setCurrentActivityId] = useState(() => activityIdFromHash(window.location.hash, activities[0]?.id));
+  const [currentActivityId, setCurrentActivityId] = useState(() =>
+    activityIdFromHash(window.location.hash, activities[0]?.id),
+  );
 
   useEffect(() => {
     let mounted = true;
@@ -107,7 +114,10 @@ export function PracticePreview({ practice, localPractice = null }) {
       .loadLessonSession(practice.lessonId)
       .then((record) => {
         if (!mounted) return;
-        const nextSession = record?.lessonId === practice.lessonId ? record : { lessonId: practice.lessonId, activities: {} };
+        const nextSession =
+          record?.lessonId === practice.lessonId
+            ? record
+            : { lessonId: practice.lessonId, activities: {} };
         setSession(nextSession);
         setSessionLoadKey((value) => value + 1);
         if (!window.location.hash && nextSession.currentActivityId) {
@@ -143,35 +153,56 @@ export function PracticePreview({ practice, localPractice = null }) {
   }, [activities]);
 
   useEffect(() => {
-    if (!activities.some((activity) => activity.id === currentActivityId) && activities[0]?.id) {
+    if (
+      !activities.some((activity) => activity.id === currentActivityId) &&
+      activities[0]?.id
+    ) {
       setCurrentActivityId(activities[0].id);
-      if (typeof window !== "undefined") window.location.hash = activities[0].id;
+      if (typeof window !== "undefined")
+        window.location.hash = activities[0].id;
     }
   }, [activities, currentActivityId]);
 
-  const currentIndex = Math.max(0, activities.findIndex((activity) => activity.id === currentActivityId));
+  const currentIndex = Math.max(
+    0,
+    activities.findIndex((activity) => activity.id === currentActivityId),
+  );
   const currentActivity = activities[currentIndex] || activities[0];
-  const previousActivity = currentIndex > 0 ? activities[currentIndex - 1] : null;
-  const nextActivity = currentIndex < activities.length - 1 ? activities[currentIndex + 1] : null;
-  const currentRecord = normalizeActivityRecord(currentActivity, session.activities?.[currentActivity?.id]);
+  const previousActivity =
+    currentIndex > 0 ? activities[currentIndex - 1] : null;
+  const nextActivity =
+    currentIndex < activities.length - 1 ? activities[currentIndex + 1] : null;
+  const currentRecord = normalizeActivityRecord(
+    currentActivity,
+    session.activities?.[currentActivity?.id],
+  );
   const isPublished = Boolean(practiceSetId);
 
   useEffect(() => {
     if (!isReady) return;
-    const progress = activities.reduce((total, activity) => {
-      const record = normalizeActivityRecord(activity, session.activities?.[activity.id]);
-      const activityProgress = activityProgressSummary(activity, record);
-      return {
-        completed: total.completed + activityProgress.completed,
-        total: total.total + activityProgress.total
-      };
-    }, { completed: 0, total: 0 });
-    window.localStorage.setItem(homeProgressSnapshotKey(practice.lessonId), JSON.stringify({
-      lessonId: practice.lessonId,
-      practiceSetId,
-      ...progress,
-      updatedAt: new Date().toISOString()
-    }));
+    const progress = activities.reduce(
+      (total, activity) => {
+        const record = normalizeActivityRecord(
+          activity,
+          session.activities?.[activity.id],
+        );
+        const activityProgress = activityProgressSummary(activity, record);
+        return {
+          completed: total.completed + activityProgress.completed,
+          total: total.total + activityProgress.total,
+        };
+      },
+      { completed: 0, total: 0 },
+    );
+    window.localStorage.setItem(
+      homeProgressSnapshotKey(practice.lessonId),
+      JSON.stringify({
+        lessonId: practice.lessonId,
+        practiceSetId,
+        ...progress,
+        updatedAt: new Date().toISOString(),
+      }),
+    );
   }, [activities, isReady, practice.lessonId, practiceSetId, session]);
 
   useEffect(() => {
@@ -201,7 +232,7 @@ export function PracticePreview({ practice, localPractice = null }) {
     practiceSessionApi.updateLessonSession({
       lessonId: practice.lessonId,
       practiceSetId,
-      currentActivityId: activityId
+      currentActivityId: activityId,
     });
   };
 
@@ -211,17 +242,21 @@ export function PracticePreview({ practice, localPractice = null }) {
       practiceSetId,
       activityId,
       activity,
-      payload
+      payload,
     });
     setSession((prev) => ({
       ...prev,
       lessonId: practice.lessonId,
       activities: {
         ...(prev.activities || {}),
-        [activityId]: saved
-      }
+        [activityId]: saved,
+      },
     }));
-    notifyPracticeProgressChanged({ lessonId: practice.lessonId, practiceSetId, activityId });
+    notifyPracticeProgressChanged({
+      lessonId: practice.lessonId,
+      practiceSetId,
+      activityId,
+    });
   };
 
   return (
@@ -233,7 +268,10 @@ export function PracticePreview({ practice, localPractice = null }) {
         </div>
         <nav className="activity-nav" aria-label="练习活动">
           {activities.map((activity) => {
-            const record = normalizeActivityRecord(activity, session.activities?.[activity.id]);
+            const record = normalizeActivityRecord(
+              activity,
+              session.activities?.[activity.id],
+            );
             const progress = activityProgressSummary(activity, record);
             return (
               <a
@@ -242,13 +280,22 @@ export function PracticePreview({ practice, localPractice = null }) {
                 className={activity.id === currentActivity?.id ? "active" : ""}
                 title={activity.title}
               >
-                <small>{sectionLabel[activity.section]} · {activity.order}</small>
+                <small>
+                  {sectionLabel[activity.section]} · {activity.order}
+                </small>
                 <span>{activity.title}</span>
-                <div className="activity-nav-progress" aria-label={`完成度 ${progress.percent}%${progress.incorrect ? `，错题 ${progress.incorrect} 题` : ""}`}>
+                <div
+                  className="activity-nav-progress"
+                  aria-label={`完成度 ${progress.percent}%${progress.incorrect ? `，错题 ${progress.incorrect} 题` : ""}`}
+                >
                   <div className="activity-progress-meta">
                     <em>
                       已做 {progress.completed}/{progress.total}
-                      {progress.incorrect ? <span className="activity-progress-wrong">（错 {progress.incorrect}）</span> : null}
+                      {progress.incorrect ? (
+                        <span className="activity-progress-wrong">
+                          （错 {progress.incorrect}）
+                        </span>
+                      ) : null}
                     </em>
                     <strong>{progress.percent}%</strong>
                   </div>
@@ -270,7 +317,13 @@ export function PracticePreview({ practice, localPractice = null }) {
 
       <section className="practice-content">
         <PracticeTextHighlighter />
-        {admin ? <PracticePublishPanel lessonId={practice.lessonId} practice={practice} localPractice={localPractice} /> : null}
+        {admin ? (
+          <PracticePublishPanel
+            lessonId={practice.lessonId}
+            practice={practice}
+            localPractice={localPractice}
+          />
+        ) : null}
         {admin ? (
           <PracticeAlternativeSyncPanel
             lessonId={practice.lessonId}
@@ -299,8 +352,16 @@ export function PracticePreview({ practice, localPractice = null }) {
 
         <section className="source-page-strip" aria-label="教材原页">
           {practice.sourcePages.map((sourcePage) => (
-            <a key={sourcePage.pageNo} href={sourcePage.imagePath} target="_blank" rel="noreferrer">
-              <img src={sourcePage.imagePath} alt={`教材第 ${sourcePage.pageNo} 页`} />
+            <a
+              key={sourcePage.pageNo}
+              href={sourcePage.imagePath}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <img
+                src={sourcePage.imagePath}
+                alt={`教材第 ${sourcePage.pageNo} 页`}
+              />
               <span>p.{sourcePage.pageNo}</span>
             </a>
           ))}
@@ -314,14 +375,34 @@ function PracticeTextHighlighter() {
   const [selection, setSelection] = useState(null);
   useEffect(() => {
     const capture = () => {
-      const selectedRange = window.getSelection()?.rangeCount ? window.getSelection().getRangeAt(0) : null;
-      if (!selectedRange || selectedRange.collapsed || !String(selectedRange).trim() || !closestElement(selectedRange.commonAncestorContainer)?.closest(".practice-content") || closestElement(selectedRange.commonAncestorContainer)?.closest("input, textarea")) return setSelection(null);
+      const selectedRange = window.getSelection()?.rangeCount
+        ? window.getSelection().getRangeAt(0)
+        : null;
+      if (
+        !selectedRange ||
+        selectedRange.collapsed ||
+        !String(selectedRange).trim() ||
+        !closestElement(selectedRange.commonAncestorContainer)?.closest(
+          ".practice-content",
+        ) ||
+        closestElement(selectedRange.commonAncestorContainer)?.closest(
+          "input, textarea",
+        )
+      )
+        return setSelection(null);
       const range = expandRangeToRuby(selectedRange.cloneRange());
       const rect = range.getBoundingClientRect();
-      setSelection({ range: range.cloneRange(), top: rect.bottom + window.scrollY + 6, left: rect.left + window.scrollX });
+      setSelection({
+        range: range.cloneRange(),
+        top: rect.bottom + window.scrollY + 6,
+        left: rect.left + window.scrollX,
+      });
     };
     const removeHighlight = (event) => {
-      const mark = event.target instanceof Element ? event.target.closest("mark[data-practice-highlight]") : null;
+      const mark =
+        event.target instanceof Element
+          ? event.target.closest("mark[data-practice-highlight]")
+          : null;
       if (!mark) return;
       const parent = mark.parentNode;
       while (mark.firstChild) parent.insertBefore(mark.firstChild, mark);
@@ -332,14 +413,42 @@ function PracticeTextHighlighter() {
     };
     document.addEventListener("mouseup", capture);
     document.addEventListener("click", removeHighlight);
-    return () => { document.removeEventListener("mouseup", capture); document.removeEventListener("click", removeHighlight); };
+    return () => {
+      document.removeEventListener("mouseup", capture);
+      document.removeEventListener("click", removeHighlight);
+    };
   }, []);
   const apply = (color) => {
-    try { const span = document.createElement("mark"); span.dataset.practiceHighlight = "true"; span.style.backgroundColor = color; const fragment = selection.range.extractContents(); span.appendChild(fragment); selection.range.insertNode(span); window.getSelection()?.removeAllRanges(); } catch {}
+    try {
+      const span = document.createElement("mark");
+      span.dataset.practiceHighlight = "true";
+      span.style.backgroundColor = color;
+      const fragment = selection.range.extractContents();
+      span.appendChild(fragment);
+      selection.range.insertNode(span);
+      window.getSelection()?.removeAllRanges();
+    } catch {}
     setSelection(null);
   };
   if (!selection) return null;
-  return <div className="practice-highlight-palette" style={{ top: selection.top, left: selection.left }}>{["#fde68a", "#fecaca", "#bfdbfe", "#bbf7d0", "#e9d5ff"].map((color) => <button key={color} type="button" aria-label="标记颜色" style={{ backgroundColor: color }} onMouseDown={(event) => event.preventDefault()} onClick={() => apply(color)} />)}<span>点击标记可取消</span></div>;
+  return (
+    <div
+      className="practice-highlight-palette"
+      style={{ top: selection.top, left: selection.left }}
+    >
+      {["#fde68a", "#fecaca", "#bfdbfe", "#bbf7d0", "#e9d5ff"].map((color) => (
+        <button
+          key={color}
+          type="button"
+          aria-label="标记颜色"
+          style={{ backgroundColor: color }}
+          onMouseDown={(event) => event.preventDefault()}
+          onClick={() => apply(color)}
+        />
+      ))}
+      <span>点击标记可取消</span>
+    </div>
+  );
 }
 
 function closestElement(node) {
@@ -357,22 +466,33 @@ function expandRangeToRuby(range) {
 function homeProgressSnapshotKey(lessonId) {
   let user = {};
   try {
-    user = JSON.parse(window.localStorage.getItem("light_blog_user") || "{}") || {};
+    user =
+      JSON.parse(window.localStorage.getItem("light_blog_user") || "{}") || {};
   } catch {
     user = {};
   }
   const token = window.localStorage.getItem("light_blog_token") || "";
-  const identity = user.id || user.userId || user.email || user.username || token.slice(-16) || "guest";
-  const numericLessonId = String(lessonId).match(/\d+/)?.[0] || String(lessonId);
+  const identity =
+    user.id ||
+    user.userId ||
+    user.email ||
+    user.username ||
+    token.slice(-16) ||
+    "guest";
+  const numericLessonId =
+    String(lessonId).match(/\d+/)?.[0] || String(lessonId);
   return `${HOME_PROGRESS_SNAPSHOT_PREFIX}:${encodeURIComponent(String(identity)).replace(/%/g, "_")}:${numericLessonId}`;
 }
 
 function notifyPracticeProgressChanged(detail) {
   if (typeof window === "undefined" || window.parent === window) return;
-  window.parent.postMessage({
-    type: "JAPAFLOW_PRACTICE_PROGRESS_CHANGED",
-    ...detail
-  }, window.location.origin);
+  window.parent.postMessage(
+    {
+      type: "JAPAFLOW_PRACTICE_PROGRESS_CHANGED",
+      ...detail,
+    },
+    window.location.origin,
+  );
 }
 
 function UnpublishedPracticeNotice() {
@@ -400,8 +520,14 @@ function PracticePublishPanel({ lessonId, practice, localPractice }) {
     if (!canPublish) return;
     setStatus({ state: "pending", message: "发布中..." });
     try {
-      const published = await practiceSessionApi.publishLocalPractice({ lessonId, practice: localPractice });
-      setStatus({ state: "success", message: `已发布 version ${published.version}` });
+      const published = await practiceSessionApi.publishLocalPractice({
+        lessonId,
+        practice: localPractice,
+      });
+      setStatus({
+        state: "success",
+        message: `已发布 version ${published.version}`,
+      });
     } catch (error) {
       setStatus({ state: "error", message: String(error.message || error) });
     }
@@ -414,29 +540,47 @@ function PracticePublishPanel({ lessonId, practice, localPractice }) {
         {canPublish ? (
           <p>
             {localPractice.title} · {localPractice.activities.length} 题
-            {databaseVersion ? ` · 当前数据库 version ${databaseVersion}` : " · 当前未加载数据库版本"}
+            {databaseVersion
+              ? ` · 当前数据库 version ${databaseVersion}`
+              : " · 当前未加载数据库版本"}
           </p>
         ) : (
-          <p>未找到本课本地练习数据。请先生成 `practice/lesson{lessonNo || "N"}-practice-data.ts`，例如：`{generateCommand}`。</p>
+          <p>
+            未找到本课本地练习数据。请先生成 `practice/lesson{lessonNo || "N"}
+            -practice-data.ts`，例如：`{generateCommand}`。
+          </p>
         )}
       </div>
       <div className="admin-publish-actions">
-        <button type="button" className="secondary-action" onClick={handlePublish} disabled={!canPublish || status.state === "pending"}>
+        <button
+          type="button"
+          className="secondary-action"
+          onClick={handlePublish}
+          disabled={!canPublish || status.state === "pending"}
+        >
           {databaseVersion ? "重新发布为新版本" : "发布到数据库"}
         </button>
-        {status.message ? <span className={`admin-publish-status ${status.state}`}>{status.message}</span> : null}
+        {status.message ? (
+          <span className={`admin-publish-status ${status.state}`}>
+            {status.message}
+          </span>
+        ) : null}
       </div>
     </section>
   );
 }
 
-function PracticeAlternativeSyncPanel({ lessonId, practice, answerAlternatives }) {
+function PracticeAlternativeSyncPanel({
+  lessonId,
+  practice,
+  answerAlternatives,
+}) {
   const [status, setStatus] = useState({ state: "idle", message: "" });
   const [syncedVersion, setSyncedVersion] = useState(null);
   const [expanded, setExpanded] = useState(false);
   const syncPlan = useMemo(
     () => buildAcceptedAnswerAlternativeSyncPlan(practice, answerAlternatives),
-    [practice, answerAlternatives]
+    [practice, answerAlternatives],
   );
 
   if (!syncPlan.answerCount && !syncedVersion) return null;
@@ -449,10 +593,13 @@ function PracticeAlternativeSyncPanel({ lessonId, practice, answerAlternatives }
         lessonId,
         practice: syncPlan.practice,
         sourcePromptName: "practice-answer-alternative-sync",
-        sourcePromptHash: ""
+        sourcePromptHash: "",
       });
       setSyncedVersion(published.version);
-      setStatus({ state: "success", message: `已同步到 version ${published.version}，刷新后加载数据库版本。` });
+      setStatus({
+        state: "success",
+        message: `已同步到 version ${published.version}，刷新后加载数据库版本。`,
+      });
     } catch (error) {
       setStatus({ state: "error", message: String(error.message || error) });
     }
@@ -466,7 +613,8 @@ function PracticeAlternativeSyncPanel({ lessonId, practice, answerAlternatives }
           <p>候选答案已写入数据库 version {syncedVersion}。</p>
         ) : (
           <p>
-            有 {syncPlan.itemCount} 个练习题存在 {syncPlan.answerCount} 个候选答案，建议同步到数据库。
+            有 {syncPlan.itemCount} 个练习题存在 {syncPlan.answerCount}{" "}
+            个候选答案，建议同步到数据库。
           </p>
         )}
       </div>
@@ -483,29 +631,51 @@ function PracticeAlternativeSyncPanel({ lessonId, practice, answerAlternatives }
           type="button"
           className="secondary-action"
           onClick={handleSync}
-          disabled={!syncPlan.answerCount || status.state === "pending" || Boolean(syncedVersion)}
+          disabled={
+            !syncPlan.answerCount ||
+            status.state === "pending" ||
+            Boolean(syncedVersion)
+          }
         >
           同步到数据库
         </button>
-        {status.message ? <span className={`admin-publish-status ${status.state}`}>{status.message}</span> : null}
+        {status.message ? (
+          <span className={`admin-publish-status ${status.state}`}>
+            {status.message}
+          </span>
+        ) : null}
       </div>
       {expanded && syncPlan.details.length ? (
         <div className="admin-alternative-details">
           {syncPlan.details.map((detail) => (
-            <article className="admin-alternative-detail" key={`${detail.itemId}:${detail.slotId}`}>
+            <article
+              className="admin-alternative-detail"
+              key={`${detail.itemId}:${detail.slotId}`}
+            >
               <div className="admin-alternative-detail-head">
                 <strong>{detail.activityTitle}</strong>
-                <span>{detail.itemNumber ? `题号 ${detail.itemNumber}` : detail.itemId}{detail.slotId !== "answer" ? ` · ${detail.slotId}` : ""}</span>
+                <span>
+                  {detail.itemNumber
+                    ? `题号 ${detail.itemNumber}`
+                    : detail.itemId}
+                  {detail.slotId !== "answer" ? ` · ${detail.slotId}` : ""}
+                </span>
               </div>
-              {detail.promptText ? <p className="admin-alternative-prompt">{detail.promptText}</p> : null}
+              {detail.promptText ? (
+                <p className="admin-alternative-prompt">{detail.promptText}</p>
+              ) : null}
               <div className="admin-answer-columns">
                 <div>
                   <em>当前数据库答案</em>
-                  {detail.standardAnswers.map((answer, index) => <code key={index}>{answer}</code>)}
+                  {detail.standardAnswers.map((answer, index) => (
+                    <code key={index}>{answer}</code>
+                  ))}
                 </div>
                 <div>
                   <em>待同步候选答案</em>
-                  {detail.candidateAnswers.map((answer, index) => <code key={index}>{answer}</code>)}
+                  {detail.candidateAnswers.map((answer, index) => (
+                    <code key={index}>{answer}</code>
+                  ))}
                 </div>
               </div>
             </article>
@@ -516,55 +686,109 @@ function PracticeAlternativeSyncPanel({ lessonId, practice, answerAlternatives }
   );
 }
 
-function PracticeActivity({ activity, practice, admin, record, isReady, answerAlternatives, onAnswerAlternativesChange, onSave, previousActivity, nextActivity, onNavigate }) {
+function PracticeActivity({
+  activity,
+  practice,
+  admin,
+  record,
+  isReady,
+  answerAlternatives,
+  onAnswerAlternativesChange,
+  onSave,
+  previousActivity,
+  nextActivity,
+  onNavigate,
+}) {
   const layout = activity.layout || [];
   const assetMap = useMemo(() => activityAssetMap(activity), [activity]);
   const audioUrl = resolveActivityAudioUrl(practice, activity);
   const formRef = useRef(null);
   const summary = record?.grading?.summary || null;
   const [isAnswerSheetOpen, setIsAnswerSheetOpen] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState({ state: "idle", message: "" });
-  const activityResponseScopeHint = resolveResponseScopeHint(activity.responseScope, activity.responseScopeHint);
+  const [submitStatus, setSubmitStatus] = useState({
+    state: "idle",
+    message: "",
+  });
+  const activityResponseScopeHint = resolveResponseScopeHint(
+    activity.responseScope,
+    activity.responseScopeHint,
+  );
 
   const handleSubmit = async () => {
     if (!formRef.current) return;
     const answers = collectActivityAnswers(formRef.current, activity);
-    let grading = gradeActivity(activity, answers, undefined, answerAlternatives);
+    let grading = gradeActivity(
+      activity,
+      answers,
+      undefined,
+      answerAlternatives,
+    );
     const needsReview = hasIncorrectTextAnswers(activity, grading);
-    setSubmitStatus({ state: "pending", message: needsReview ? "正在复核可能的可接受答案..." : "提交中..." });
+    setSubmitStatus({
+      state: "pending",
+      message: needsReview ? "正在复核可能的可接受答案..." : "提交中...",
+    });
     try {
       const review = needsReview
-        ? await reviewIncorrectTextAnswers({ practice, activity, answers, grading, answerAlternatives })
-        : { alternatives: answerAlternatives, acceptedCount: 0, reviewedCount: 0 };
+        ? await reviewIncorrectTextAnswers({
+            practice,
+            activity,
+            answers,
+            grading,
+            answerAlternatives,
+          })
+        : {
+            alternatives: answerAlternatives,
+            acceptedCount: 0,
+            reviewedCount: 0,
+          };
       if (review.acceptedCount > 0) {
         onAnswerAlternativesChange(review.alternatives);
-        writeLocalAcceptedAnswerAlternatives(practice.lessonId, review.alternatives);
+        writeLocalAcceptedAnswerAlternatives(
+          practice.lessonId,
+          review.alternatives,
+        );
         grading = {
           ...gradeActivity(activity, answers, undefined, review.alternatives),
           answerReview: {
             reviewedCount: review.reviewedCount,
-            acceptedCount: review.acceptedCount
-          }
+            acceptedCount: review.acceptedCount,
+          },
         };
       }
-      await onSave(activity.id, {
-        answers,
-        grading
-      }, activity);
+      await onSave(
+        activity.id,
+        {
+          answers,
+          grading,
+        },
+        activity,
+      );
       setSubmitStatus({
         state: "success",
-        message: review.acceptedCount > 0 ? `已提交，采纳 ${review.acceptedCount} 个可接受答案` : "已提交"
+        message:
+          review.acceptedCount > 0
+            ? `已提交，采纳 ${review.acceptedCount} 个可接受答案`
+            : "已提交",
       });
     } catch (error) {
-      setSubmitStatus({ state: "error", message: String(error.message || error) });
+      setSubmitStatus({
+        state: "error",
+        message: String(error.message || error),
+      });
     }
   };
 
   return (
-    <article className="practice-activity practice-activity-single" id={activity.id}>
+    <article
+      className="practice-activity practice-activity-single"
+      id={activity.id}
+    >
       <div className="activity-head">
         <div>
-          <span className="activity-kicker">{sectionLabel[activity.section]} · {activity.order}</span>
+          <span className="activity-kicker">
+            {sectionLabel[activity.section]} · {activity.order}
+          </span>
           <h2>{activity.title}</h2>
           {activity.instruction ? <p>{activity.instruction}</p> : null}
         </div>
@@ -573,13 +797,23 @@ function PracticeActivity({ activity, practice, admin, record, isReady, answerAl
       <ActivityAudio activity={activity} audioUrl={audioUrl} />
       <ActivityResources activity={activity} assetMap={assetMap} />
 
-      <form ref={formRef} className="activity-form" onSubmit={(event) => event.preventDefault()}>
+      <form
+        ref={formRef}
+        className="activity-form"
+        onSubmit={(event) => event.preventDefault()}
+      >
         {layout.length ? (
           <div className="layout-blocks">
-            {layout.map((block, index) => <LayoutBlockView key={index} block={block} />)}
+            {layout.map((block, index) => (
+              <LayoutBlockView key={index} block={block} />
+            ))}
           </div>
         ) : null}
-        {activityResponseScopeHint ? <div className="response-scope-callout">{activityResponseScopeHint}</div> : null}
+        {activityResponseScopeHint ? (
+          <div className="response-scope-callout">
+            {activityResponseScopeHint}
+          </div>
+        ) : null}
 
         {activity.itemGroups?.length ? (
           <div className="practice-item-groups">
@@ -613,47 +847,18 @@ function PracticeActivity({ activity, practice, admin, record, isReady, answerAl
         )}
       </form>
 
-      <footer className="activity-footer">
-        <div className="activity-submit-block">
-          <button type="button" className="primary-action" onClick={handleSubmit} disabled={!isReady}>
-            提交本题
-          </button>
-          {summary?.submittedAt ? (
-            <div className="submission-summary">
-              <strong>{summary.correctCount}/{summary.gradedCount || summary.totalCount}</strong>
-              <span>
-                {summary.incorrectCount ? (
-                  <button type="button" className="inline-answer-sheet-trigger" onClick={() => setIsAnswerSheetOpen(true)}>
-                    {summary.incorrectCount} 题错误
-                  </button>
-                ) : "已判题"}
-                {summary.ungradedCount ? ` · ${summary.ungradedCount} 题未自动判分` : ""}
-              </span>
-            </div>
-          ) : (
-            <div className="submission-summary pending">
-              <strong>未提交</strong>
-              <span>提交后会本地保存并恢复你的作答记录</span>
-            </div>
-          )}
-          {activity.requiresAudio || activity.audio ? (
-            <p className="submit-audio-hint">提示：录音转写可能不准确，提交前请人工核对。</p>
-          ) : null}
-          {submitStatus.message ? <p className={`submit-status-message ${submitStatus.state}`}>{submitStatus.message}</p> : null}
-        </div>
-        <div className="activity-nav-actions">
-          {previousActivity ? (
-            <button type="button" className="secondary-action" onClick={() => onNavigate(previousActivity.id)}>
-              上一题
-            </button>
-          ) : null}
-          {nextActivity ? (
-            <button type="button" className="secondary-action" onClick={() => onNavigate(nextActivity.id)}>
-              下一题
-            </button>
-          ) : null}
-        </div>
-      </footer>
+      <ActivityFooter
+        summary={summary}
+        isReady={isReady}
+        activity={activity}
+        submitStatus={submitStatus}
+        previousActivity={previousActivity}
+        nextActivity={nextActivity}
+        onSubmit={handleSubmit}
+        onNavigate={onNavigate}
+        onOpenAnswerSheet={() => setIsAnswerSheetOpen(true)}
+      />
+
       {isAnswerSheetOpen ? (
         <IncorrectAnswerModal
           activity={activity}
@@ -666,6 +871,91 @@ function PracticeActivity({ activity, practice, admin, record, isReady, answerAl
   );
 }
 
+function ActivityFooter({
+  summary,
+  isReady,
+  activity,
+  submitStatus,
+  previousActivity,
+  nextActivity,
+  onSubmit,
+  onNavigate,
+  onOpenAnswerSheet,
+}) {
+  return (
+    <footer className="activity-footer">
+      <div className="activity-submit-block">
+        <button
+          type="button"
+          className="primary-action"
+          onClick={onSubmit}
+          disabled={!isReady}
+        >
+          提交本题
+        </button>
+        {summary?.submittedAt ? (
+          <div className="submission-summary">
+            <strong>
+              {summary.correctCount}/{summary.gradedCount || summary.totalCount}
+            </strong>
+            <span>
+              {summary.incorrectCount ? (
+                <button
+                  type="button"
+                  className="inline-answer-sheet-trigger"
+                  onClick={onOpenAnswerSheet}
+                >
+                  {summary.incorrectCount} 题错误
+                </button>
+              ) : (
+                "已判题"
+              )}
+              {summary.ungradedCount
+                ? ` · ${summary.ungradedCount} 题未自动判分`
+                : ""}
+            </span>
+          </div>
+        ) : (
+          <div className="submission-summary pending">
+            <strong>未提交</strong>
+            <span>提交后会本地保存并恢复你的作答记录</span>
+          </div>
+        )}
+        {activity.requiresAudio || activity.audio ? (
+          <p className="submit-audio-hint">
+            提示：录音转写可能不准确，提交前请人工核对。
+          </p>
+        ) : null}
+        {submitStatus.message ? (
+          <p className={`submit-status-message ${submitStatus.state}`}>
+            {submitStatus.message}
+          </p>
+        ) : null}
+      </div>
+      <div className="activity-nav-actions">
+        {previousActivity ? (
+          <button
+            type="button"
+            className="secondary-action"
+            onClick={() => onNavigate(previousActivity.id)}
+          >
+            上一题
+          </button>
+        ) : null}
+        {nextActivity ? (
+          <button
+            type="button"
+            className="secondary-action"
+            onClick={() => onNavigate(nextActivity.id)}
+          >
+            下一题
+          </button>
+        ) : null}
+      </div>
+    </footer>
+  );
+}
+
 function ActivityAudio({ activity, audioUrl }) {
   const hasAudio = activity.requiresAudio || activity.audio;
   if (!hasAudio) return null;
@@ -674,7 +964,11 @@ function ActivityAudio({ activity, audioUrl }) {
   return (
     <>
       <div className={`audio-placeholder ${audioUrl ? "ready" : "pending"}`}>
-        {audioUrl ? <audio controls src={audioUrl}></audio> : <span>录音待补充</span>}
+        {audioUrl ? (
+          <audio controls src={audioUrl}></audio>
+        ) : (
+          <span>录音待补充</span>
+        )}
       </div>
       {audioGuidance ? <p className="audio-guidance">{audioGuidance}</p> : null}
     </>
@@ -682,59 +976,83 @@ function ActivityAudio({ activity, audioUrl }) {
 }
 
 function ActivityResources({ activity, assetMap }) {
-  const groupAssetIds = new Set((activity.itemGroups || []).flatMap((group) => group.displayAssets || []));
-  const activityAssetIds = (activity.displayAssets || []).filter((assetId) => !groupAssetIds.has(assetId));
+  const groupAssetIds = new Set(
+    (activity.itemGroups || []).flatMap((group) => group.displayAssets || []),
+  );
+  const activityAssetIds = (activity.displayAssets || []).filter(
+    (assetId) => !groupAssetIds.has(assetId),
+  );
   const hasAssets = Boolean(activityAssetIds.length);
   if (!hasAssets) return null;
 
   return (
-    <div className="activity-resource-panel">
+    <div className="activity-resource-panel" data-activity-id={activity.id}>
       <DisplayAssets assetIds={activityAssetIds} assetMap={assetMap} />
     </div>
   );
 }
 
-function PracticeItemGroupView({ group, assetMap, admin, answerRecord, gradingRecord, activityResponseScope, activityResponseScopeHint }) {
+function PracticeItemGroupView({
+  group,
+  assetMap,
+  admin,
+  answerRecord,
+  gradingRecord,
+  activityResponseScope,
+  activityResponseScopeHint,
+}) {
   return (
     <section className="practice-item-group" id={group.id}>
-      {group.displayAssets?.length ? <DisplayAssets assetIds={group.displayAssets} assetMap={assetMap} /> : null}
-      <div className="example-practice-block">
-        <div className="group-head">
-          <div>
-            {group.title ? <h3>{group.title}</h3> : null}
-            {group.instruction ? <p>{group.instruction}</p> : null}
+      {group.displayAssets?.length ? (
+        <DisplayAssets assetIds={group.displayAssets} assetMap={assetMap} />
+      ) : null}
+      {group.title || group.instruction || group.example ? (
+        <div className="example-practice-block">
+          <div className="group-head">
+            <div>
+              {group.title ? <h3>{group.title}</h3> : null}
+              {group.instruction ? <p>{group.instruction}</p> : null}
+            </div>
+            <ExampleBlockView example={group.example} />
           </div>
-          <ExampleBlockView example={group.example} />
         </div>
-        <div className="practice-items">
-          {group.items.map((item) => (
-            <PracticeItemView
-              key={item.id}
-              item={item}
-              assetMap={assetMap}
-              admin={admin}
-              storedAnswer={answerRecord?.[item.id]}
-              gradingResult={gradingRecord?.[item.id]}
-              activityResponseScope={activityResponseScope}
-              activityResponseScopeHint={activityResponseScopeHint}
-            />
-          ))}
-        </div>
+      ) : null}
+      <div className="practice-items">
+        {group.items.map((item) => (
+          <PracticeItemView
+            key={item.id}
+            item={item}
+            assetMap={assetMap}
+            admin={admin}
+            storedAnswer={answerRecord?.[item.id]}
+            gradingResult={gradingRecord?.[item.id]}
+            activityResponseScope={activityResponseScope}
+            activityResponseScopeHint={activityResponseScopeHint}
+          />
+        ))}
       </div>
     </section>
   );
 }
 
 function LayoutBlockView({ block }) {
-  if (block.type === "text") return <div className="layout-text"><RichTextList parts={block.text} /></div>;
-  if (block.type === "example") return <ExampleBlockView example={block.content} />;
+  if (block.type === "text")
+    return (
+      <div className="layout-text">
+        <RichTextList parts={block.text} />
+      </div>
+    );
+  if (block.type === "example")
+    return <ExampleBlockView example={block.content} />;
   if (block.type === "dialogue") {
     return (
       <div className="dialogue-block">
         {block.lines.map((line, index) => (
           <div className="dialogue-line" key={index}>
             <span>{line.speaker}</span>
-            <p><Prompt parts={line.parts} kana={line.kana} /></p>
+            <p>
+              <Prompt parts={line.parts} kana={line.kana} />
+            </p>
           </div>
         ))}
       </div>
@@ -743,7 +1061,9 @@ function LayoutBlockView({ block }) {
   if (block.type === "image_grid") {
     return (
       <div className="asset-grid" style={{ "--columns": block.columns || 2 }}>
-        {block.assets.map((asset) => <ImageAssetView key={asset.id} asset={asset} />)}
+        {block.assets.map((asset) => (
+          <ImageAssetView key={asset.id} asset={asset} />
+        ))}
       </div>
     );
   }
@@ -752,18 +1072,36 @@ function LayoutBlockView({ block }) {
       <div className="map-block">
         <ImageAssetView asset={block.image} />
         {(block.labels || []).map((label, index) => (
-          <span className="map-label" key={index} style={{ left: `${label.x}%`, top: `${label.y}%` }}>{label.text}</span>
+          <span
+            className="map-label"
+            key={index}
+            style={{ left: `${label.x}%`, top: `${label.y}%` }}
+          >
+            {label.text}
+          </span>
         ))}
       </div>
     );
   }
   if (block.type === "word_bank") {
-    return <div className="word-bank">{block.words.map((word, index) => <span key={index}><RichText part={word} /></span>)}</div>;
+    return (
+      <div className="word-bank">
+        {block.words.map((word, index) => (
+          <span key={index}>
+            <RichText part={word} />
+          </span>
+        ))}
+      </div>
+    );
   }
   return (
     <div className="passage-block">
       {block.title ? <h3>{block.title}</h3> : null}
-      {block.lines.map((line, index) => <p key={index}><RichText part={line} /></p>)}
+      {block.lines.map((line, index) => (
+        <p key={index}>
+          <RichText part={line} />
+        </p>
+      ))}
     </div>
   );
 }
@@ -774,13 +1112,19 @@ function ExampleBlockView({ example }) {
   if (pairedRows.length) {
     return (
       <div className="example-block paired-example">
-        {example.label ? <span className="example-label">{example.label}</span> : null}
+        {example.label ? (
+          <span className="example-label">{example.label}</span>
+        ) : null}
         <span className="example-pair-list">
           {pairedRows.map((row, index) => (
             <span className="example-pair-row" key={index}>
-              <span className="example-before"><RubyText text={row.before} kana={row.beforeKana} /></span>
+              <span className="example-before">
+                <RubyText text={row.before} kana={row.beforeKana} />
+              </span>
               <span className="example-arrow">→</span>
-              <span className="example-after"><RubyText text={row.after} kana={row.afterKana} /></span>
+              <span className="example-after">
+                <RubyText text={row.after} kana={row.afterKana} />
+              </span>
             </span>
           ))}
         </span>
@@ -788,20 +1132,28 @@ function ExampleBlockView({ example }) {
     );
   }
   const dialogueLines = exampleDialogueLines(example.after, example.afterKana);
-  const tripCompositionLines = example.renderHint === "trip_composition"
-    ? splitExampleTextLines(promptPartsPlainText(example.after || []))
-    : [];
-  const tripCompositionKanaLines = example.renderHint === "trip_composition"
-    ? splitExampleTextLines(example.afterKana || "")
-    : [];
+  const tripCompositionLines =
+    example.renderHint === "trip_composition"
+      ? splitExampleTextLines(promptPartsPlainText(example.after || []))
+      : [];
+  const tripCompositionKanaLines =
+    example.renderHint === "trip_composition"
+      ? splitExampleTextLines(example.afterKana || "")
+      : [];
   return (
     <div className={`example-block ${dialogueLines ? "dialogue-example" : ""}`}>
       <span className="example-head">
-        {example.label ? <span className="example-label">{example.label}</span> : null}
+        {example.label ? (
+          <span className="example-label">{example.label}</span>
+        ) : null}
         {example.beforeParts?.length ? (
-          <span className="example-before"><Prompt parts={example.beforeParts} kana={example.beforeKana} /></span>
+          <span className="example-before">
+            <Prompt parts={example.beforeParts} kana={example.beforeKana} />
+          </span>
         ) : example.before ? (
-          <span className="example-before"><RubyText text={example.before} kana={example.beforeKana} /></span>
+          <span className="example-before">
+            <RubyText text={example.before} kana={example.beforeKana} />
+          </span>
         ) : null}
         <span className="example-arrow">→</span>
       </span>
@@ -810,26 +1162,39 @@ function ExampleBlockView({ example }) {
           {dialogueLines.map((line, index) => (
             <span className="dialogue-line" key={index}>
               <span>{line.speaker}</span>
-              <p><Prompt parts={line.parts} kana={line.kana} /></p>
+              <p>
+                <Prompt parts={line.parts} kana={line.kana} />
+              </p>
             </span>
           ))}
         </span>
       ) : tripCompositionLines.length ? (
         <span className="example-after trip-composition-lines">
           {tripCompositionLines.map((line, index) => (
-            <span key={index}><RubyText text={line} kana={tripCompositionKanaLines[index] || ""} /></span>
+            <span key={index}>
+              <RubyText
+                text={line}
+                kana={tripCompositionKanaLines[index] || ""}
+              />
+            </span>
           ))}
         </span>
       ) : (
-        <span className="example-after"><Prompt parts={example.after} kana={example.afterKana} /></span>
+        <span className="example-after">
+          <Prompt parts={example.after} kana={example.afterKana} />
+        </span>
       )}
     </div>
   );
 }
 
 function pairedExampleRows(example) {
-  const before = splitExampleTextLines(example.before || promptPartsPlainText(example.beforeParts || []));
-  const after = splitExampleTextLines(promptPartsPlainText(example.after || []));
+  const before = splitExampleTextLines(
+    example.before || promptPartsPlainText(example.beforeParts || []),
+  );
+  const after = splitExampleTextLines(
+    promptPartsPlainText(example.after || []),
+  );
   if (before.length < 2 || before.length !== after.length) return [];
   const beforeKana = splitExampleTextLines(example.beforeKana || "");
   const afterKana = splitExampleTextLines(example.afterKana || "");
@@ -837,7 +1202,7 @@ function pairedExampleRows(example) {
     before: line,
     beforeKana: beforeKana[index] || "",
     after: after[index],
-    afterKana: afterKana[index] || ""
+    afterKana: afterKana[index] || "",
   }));
 }
 
@@ -850,11 +1215,19 @@ function splitExampleTextLines(value) {
 
 function IncorrectAnswerModal({ activity, answers, grading, onClose }) {
   const incorrectItems = flattenActivityItems(activity)
-    .map((item) => ({ item, result: grading?.[item.id], answer: answers?.[item.id] }))
+    .map((item) => ({
+      item,
+      result: grading?.[item.id],
+      answer: answers?.[item.id],
+    }))
     .filter(({ result }) => result?.status === "incorrect");
 
   return (
-    <div className="answer-sheet-modal-backdrop" role="presentation" onClick={onClose}>
+    <div
+      className="answer-sheet-modal-backdrop"
+      role="presentation"
+      onClick={onClose}
+    >
       <section
         className="answer-sheet-modal"
         role="dialog"
@@ -867,7 +1240,9 @@ function IncorrectAnswerModal({ activity, answers, grading, onClose }) {
             <strong>错误题目与参考答案</strong>
             <p>以下内容仅展示本次提交里自动判错的题目。</p>
           </div>
-          <button type="button" className="modal-close-btn" onClick={onClose}>关闭</button>
+          <button type="button" className="modal-close-btn" onClick={onClose}>
+            关闭
+          </button>
         </header>
         <div className="answer-sheet-list">
           {incorrectItems.map(({ item, answer, result }) => (
@@ -885,16 +1260,27 @@ function IncorrectAnswerModal({ activity, answers, grading, onClose }) {
   );
 }
 
-function IncorrectAnswerDetails({ item, answer, result, className = "incorrect-answer-details", showPrompt = true }) {
+function IncorrectAnswerDetails({
+  item,
+  answer,
+  result,
+  className = "incorrect-answer-details",
+  showPrompt = true,
+}) {
   return (
     <article className={className}>
-      {showPrompt ? <h4>{item.number}. <Prompt parts={item.prompt} kana={item.promptKana} /></h4> : null}
+      {showPrompt ? (
+        <h4>
+          {item.number}. <Prompt parts={item.prompt} kana={item.promptKana} />
+        </h4>
+      ) : null}
       {item.evaluationMode === "open_response" ? (
         <p>回答未满足本题要求的时间、范围或句型结构，请检查后重新作答。</p>
       ) : (
         <AnswerComparison item={item} answer={answer} result={result} />
       )}
-      {result?.status === "incorrect" && item.evaluationMode === "acceptable_answers" ? (
+      {result?.status === "incorrect" &&
+      item.evaluationMode === "acceptable_answers" ? (
         <small>本题支持多个可接受答案，已在“正确答案”中合并展示。</small>
       ) : null}
     </article>
@@ -916,7 +1302,9 @@ function AnswerGitDiff({ lines }) {
     <div className="git-answer-diff" role="table" aria-label="答案差异明细">
       {lines.map((line, index) => (
         <div className={`git-diff-row ${line.type}`} role="row" key={index}>
-          <span className="git-diff-prefix" aria-hidden="true">{line.type === "delete" ? "-" : line.type === "insert" ? "+" : " "}</span>
+          <span className="git-diff-prefix" aria-hidden="true">
+            {line.type === "delete" ? "-" : line.type === "insert" ? "+" : " "}
+          </span>
           <code>{renderAnswerDiffParts(line.parts)}</code>
         </div>
       ))}
@@ -926,8 +1314,13 @@ function AnswerGitDiff({ lines }) {
 
 function renderAnswerDiffParts(parts = []) {
   return parts.map((part, index) => {
-    if (part.type === "equal") return <React.Fragment key={index}>{part.text}</React.Fragment>;
-    return <mark data-diff={part.type} key={index}>{part.text}</mark>;
+    if (part.type === "equal")
+      return <React.Fragment key={index}>{part.text}</React.Fragment>;
+    return (
+      <mark data-diff={part.type} key={index}>
+        {part.text}
+      </mark>
+    );
   });
 }
 
@@ -937,9 +1330,19 @@ function AnswerComparison({ item, answer, result }) {
   if (comparison.kind === "choice") {
     return (
       <div className="answer-diff answer-comparison" aria-label="答案对比">
-        <div className="answer-diff-head"><strong>答案对比</strong></div>
-        <AnswerComparisonBlock tone="user" label="你的答案" value={comparison.actual || "未选择"} />
-        <AnswerComparisonBlock tone="expected" label="正确答案" value={comparison.expected || "暂无"} />
+        <div className="answer-diff-head">
+          <strong>答案对比</strong>
+        </div>
+        <AnswerComparisonBlock
+          tone="user"
+          label="你的答案"
+          value={comparison.actual || "未选择"}
+        />
+        <AnswerComparisonBlock
+          tone="expected"
+          label="正确答案"
+          value={comparison.expected || "暂无"}
+        />
       </div>
     );
   }
@@ -959,41 +1362,88 @@ function answerComparisonRows(item, answer) {
   if (item.inputSlots?.length) {
     return item.inputSlots.map((slot) => ({
       id: slot.id,
-      label: item.inputSlots.length > 1 ? (slot.label || slot.id) : "",
+      label: item.inputSlots.length > 1 ? slot.label || slot.id : "",
       actual: String(answer?.slotValues?.[slot.id] || ""),
-      expected: answerValuesForSlot(item, slot.id).join(" / ")
+      expected: answerValuesForSlot(item, slot.id).join(" / "),
     }));
   }
   if (item.choices?.length) {
-    const labels = new Map(item.choices.map((choice) => [choice.id, choice.label]));
-    return [{
-      id: "choice",
-      label: "",
-      actual: (answer?.choiceIds || []).map((id) => labels.get(id) || id).join(" / "),
-      expected: (item.answer?.choiceIds || []).map((id) => labels.get(id) || id).join(" / ")
-    }];
+    const labels = new Map(
+      item.choices.map((choice) => [choice.id, choice.label]),
+    );
+    return [
+      {
+        id: "choice",
+        label: "",
+        actual: (answer?.choiceIds || [])
+          .map((id) => labels.get(id) || id)
+          .join(" / "),
+        expected: (item.answer?.choiceIds || [])
+          .map((id) => labels.get(id) || id)
+          .join(" / "),
+      },
+    ];
   }
   return [];
 }
 
-function PracticeItemView({ item, admin, storedAnswer, gradingResult, activityResponseScope, activityResponseScopeHint }) {
-  const itemResponseScopeHint = resolveItemResponseScopeHint(item, activityResponseScope, activityResponseScopeHint);
+function PracticeItemView({
+  item,
+  admin,
+  storedAnswer,
+  gradingResult,
+  activityResponseScope,
+  activityResponseScopeHint,
+}) {
+  const itemResponseScopeHint = resolveItemResponseScopeHint(
+    item,
+    activityResponseScope,
+    activityResponseScopeHint,
+  );
   return (
-    <section className={`practice-item ${item.renderHint || "inline"}`} data-item-status={gradingResult?.status || "idle"}>
-      {gradingResult?.status === "incorrect" && item.evaluationMode !== "open_response" ? (
-        <IncorrectReasonPopover item={item} answer={storedAnswer} result={gradingResult} />
+    <section
+      className={`practice-item ${item.renderHint || "inline"}`}
+      data-item-status={gradingResult?.status || "idle"}
+    >
+      {gradingResult?.status === "incorrect" &&
+      item.evaluationMode !== "open_response" ? (
+        <IncorrectReasonPopover
+          item={item}
+          answer={storedAnswer}
+          result={gradingResult}
+        />
       ) : null}
-      {gradingResult?.status === "correct" && item.answerSource !== "personal" && item.evaluationMode !== "open_response" ? (
+      {gradingResult?.status === "correct" &&
+      item.answerSource !== "personal" &&
+      item.evaluationMode !== "open_response" ? (
         <CorrectAnswerComparisonPopover item={item} answer={storedAnswer} />
       ) : null}
       <div className="item-main">
         <span className="item-number">{item.number}</span>
-        <div className="item-prompt"><Prompt parts={item.prompt} kana={item.promptKana} /></div>
+        <div className="item-prompt">
+          <Prompt parts={item.prompt} kana={item.promptKana} />
+        </div>
       </div>
-      {item.evaluationMode ? <span className="evaluation-mode">{evaluationModeLabel[item.evaluationMode]}</span> : null}
-      {item.instruction ? <p className="item-instruction">{item.instruction}</p> : null}
-      {itemResponseScopeHint ? <p className="item-response-scope">{itemResponseScopeHint}</p> : null}
-      {item.choices?.length ? <Choices choices={item.choices} item={item} admin={admin} storedAnswer={storedAnswer} gradingResult={gradingResult} /> : null}
+      {item.evaluationMode ? (
+        <span className="evaluation-mode">
+          {evaluationModeLabel[item.evaluationMode]}
+        </span>
+      ) : null}
+      {item.instruction ? (
+        <p className="item-instruction">{item.instruction}</p>
+      ) : null}
+      {itemResponseScopeHint ? (
+        <p className="item-response-scope">{itemResponseScopeHint}</p>
+      ) : null}
+      {item.choices?.length ? (
+        <Choices
+          choices={item.choices}
+          item={item}
+          admin={admin}
+          storedAnswer={storedAnswer}
+          gradingResult={gradingResult}
+        />
+      ) : null}
       {item.inputSlots?.length ? (
         <div className="slot-row">
           {item.inputSlots.map((slot) => (
@@ -1045,7 +1495,13 @@ function IncorrectReasonPopover({ item, answer, result }) {
           >
             <div className="incorrect-reason-head">
               <strong>错误原因</strong>
-              <button type="button" onClick={() => setIsOpen(false)} aria-label="关闭错误原因">×</button>
+              <button
+                type="button"
+                onClick={() => setIsOpen(false)}
+                aria-label="关闭错误原因"
+              >
+                ×
+              </button>
             </div>
             <IncorrectAnswerDetails
               item={item}
@@ -1082,11 +1538,28 @@ function CorrectAnswerComparisonPopover({ item, answer }) {
       </button>
       {isOpen ? (
         <>
-          <button className="incorrect-reason-backdrop" type="button" aria-label="关闭答案对比" onClick={() => setIsOpen(false)} />
-          <div className="incorrect-reason-panel correct-answer-panel" id={popoverId} role="dialog" aria-label={`第 ${item.number} 题答案对比`} onClick={(event) => event.stopPropagation()}>
+          <button
+            className="incorrect-reason-backdrop"
+            type="button"
+            aria-label="关闭答案对比"
+            onClick={() => setIsOpen(false)}
+          />
+          <div
+            className="incorrect-reason-panel correct-answer-panel"
+            id={popoverId}
+            role="dialog"
+            aria-label={`第 ${item.number} 题答案对比`}
+            onClick={(event) => event.stopPropagation()}
+          >
             <div className="incorrect-reason-head correct-answer-head">
               <strong>{resultLabel} · 答案对比</strong>
-              <button type="button" onClick={() => setIsOpen(false)} aria-label="关闭答案对比">×</button>
+              <button
+                type="button"
+                onClick={() => setIsOpen(false)}
+                aria-label="关闭答案对比"
+              >
+                ×
+              </button>
             </div>
             <CorrectAnswerComparison item={item} answer={answer} />
           </div>
@@ -1100,7 +1573,10 @@ function isExactCorrectAnswer(item, attempt) {
   if (item.choices?.length) {
     const actual = normalizeChoiceIds(attempt?.choiceIds || []);
     const expected = normalizeChoiceIds(item.answer?.choiceIds || []);
-    return actual.length === expected.length && actual.every((choiceId, index) => choiceId === expected[index]);
+    return (
+      actual.length === expected.length &&
+      actual.every((choiceId, index) => choiceId === expected[index])
+    );
   }
   if (!item.inputSlots?.length) return false;
   return item.inputSlots.every((slot) => {
@@ -1112,7 +1588,11 @@ function isExactCorrectAnswer(item, attempt) {
 
 function primaryAnswerValueForSlot(item, slotId) {
   const value = item.answer?.slotValues?.[slotId];
-  if (Array.isArray(value)) return value.map((entry) => String(entry || "").trim()).filter(Boolean).join("\n");
+  if (Array.isArray(value))
+    return value
+      .map((entry) => String(entry || "").trim())
+      .filter(Boolean)
+      .join("\n");
   return String(value || "").trim();
 }
 
@@ -1124,8 +1604,16 @@ function CorrectAnswerComparison({ item, answer }) {
       {rows.map((row) => (
         <div className="answer-comparison-row" key={row.id}>
           {row.label ? <strong>{row.label}</strong> : null}
-          <AnswerComparisonBlock tone="user" label="我的答案" value={row.actual || "未作答"} />
-          <AnswerComparisonBlock tone="expected" label="标准答案" value={row.expected || "暂无"} />
+          <AnswerComparisonBlock
+            tone="user"
+            label="我的答案"
+            value={row.actual || "未作答"}
+          />
+          <AnswerComparisonBlock
+            tone="expected"
+            label="标准答案"
+            value={row.expected || "暂无"}
+          />
         </div>
       ))}
     </div>
@@ -1133,15 +1621,30 @@ function CorrectAnswerComparison({ item, answer }) {
 }
 
 function Choices({ choices, item, admin, storedAnswer, gradingResult }) {
-  const storedChoiceIds = resolveStoredChoiceIds(item, storedAnswer?.choiceIds || []);
-  const currentChoiceIds = storedAnswer ? storedChoiceIds : (admin ? item.answer?.choiceIds || [] : []);
+  const storedChoiceIds = resolveStoredChoiceIds(
+    item,
+    storedAnswer?.choiceIds || [],
+  );
+  const currentChoiceIds = storedAnswer
+    ? storedChoiceIds
+    : admin
+      ? item.answer?.choiceIds || []
+      : [];
   const currentChoiceIdSet = new Set(currentChoiceIds);
   const isMultiChoice = (item.answer?.choiceIds || []).length > 1;
-  const choiceResult = gradingResult?.fieldResults?.[CHOICE_RESULT_KEY] || gradingResult?.status;
+  const choiceResult =
+    gradingResult?.fieldResults?.[CHOICE_RESULT_KEY] || gradingResult?.status;
   return (
     <div className="choice-row">
       {choices.map((choice) => (
-        <label key={choice.id} data-result={currentChoiceIdSet.has(choice.id) ? choiceResult || undefined : undefined}>
+        <label
+          key={choice.id}
+          data-result={
+            currentChoiceIdSet.has(choice.id)
+              ? choiceResult || undefined
+              : undefined
+          }
+        >
           <input
             type={isMultiChoice ? "checkbox" : "radio"}
             name={item.id}
@@ -1169,7 +1672,12 @@ function InputSlotView({ item, slot, admin, storedAnswer, gradingResult }) {
         <legend>{slot.label || `${item.number} ${slot.id}`}</legend>
         {slot.choices.map((choice) => (
           <label key={choice.id}>
-            <input type="radio" name={fieldName} value={choice.label} defaultChecked={defaultValue === choice.label} />
+            <input
+              type="radio"
+              name={fieldName}
+              value={choice.label}
+              defaultChecked={defaultValue === choice.label}
+            />
             <span>{choice.label}</span>
           </label>
         ))}
@@ -1178,30 +1686,34 @@ function InputSlotView({ item, slot, admin, storedAnswer, gradingResult }) {
   }
 
   if (slot.multiline || slot.expectedUnit === "dialogue") {
-    return <div className="practice-input-with-notes">
-      <textarea
+    return (
+      <div className="practice-input-with-notes">
+        <textarea
+          name={slotFieldName(item.id, slot.id)}
+          className={className}
+          rows={slot.rows || 3}
+          aria-label={label}
+          placeholder={placeholder}
+          defaultValue={defaultValue}
+          data-result={result || undefined}
+        />
+        <PracticeAiNote item={item} slot={slot} />
+      </div>
+    );
+  }
+  return (
+    <div className="practice-input-with-notes">
+      <input
         name={slotFieldName(item.id, slot.id)}
         className={className}
-        rows={slot.rows || 3}
         aria-label={label}
         placeholder={placeholder}
         defaultValue={defaultValue}
         data-result={result || undefined}
       />
       <PracticeAiNote item={item} slot={slot} />
-    </div>;
-  }
-  return <div className="practice-input-with-notes">
-    <input
-      name={slotFieldName(item.id, slot.id)}
-      className={className}
-      aria-label={label}
-      placeholder={placeholder}
-      defaultValue={defaultValue}
-      data-result={result || undefined}
-    />
-    <PracticeAiNote item={item} slot={slot} />
-  </div>;
+    </div>
+  );
 }
 
 const PRACTICE_AI_NOTES_KEY = "japaflow.practice.aiNotes.v1";
@@ -1212,42 +1724,212 @@ function PracticeAiNote({ item, slot }) {
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState("");
   const [manualNote, setManualNote] = useState("");
-  const [savedNotes, setSavedNotes] = useState(() => notesForPracticeAiKey(key));
+  const [savedNotes, setSavedNotes] = useState(() =>
+    notesForPracticeAiKey(key),
+  );
   const [status, setStatus] = useState("");
   const ask = async () => {
     if (!question.trim()) return setStatus("请输入问题。");
-    setStatus("思考中…"); setAnswer("");
+    setStatus("思考中…");
+    setAnswer("");
     try {
-      const response = await fetch("/api/grammar/notebook-ai", { method: "POST", headers: { "Content-Type": "application/json", Authorization: `Bearer ${localStorage.getItem("light_blog_token") || ""}` }, body: JSON.stringify({ question, lessonId: item.id, pageNo: slot.id }) });
+      const response = await fetch("/api/grammar/notebook-ai", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("light_blog_token") || ""}`,
+        },
+        body: JSON.stringify({ question, lessonId: item.id, pageNo: slot.id }),
+      });
       const data = await response.json().catch(() => ({}));
-      if (!response.ok) throw new Error(data.error || data.message || "AI 请求失败。");
-      setAnswer(String(data.answer || "")); setStatus("回答已生成。");
-    } catch (error) { setStatus(error.message || "AI 请求失败。"); }
+      if (!response.ok)
+        throw new Error(data.error || data.message || "AI 请求失败。");
+      const nextAnswer = practiceAiAnswerFromResponse(data);
+      if (!nextAnswer) {
+        setStatus("AI 未返回可保存的回答，请重试。");
+        return;
+      }
+      setAnswer(nextAnswer);
+      setStatus("回答已生成。");
+    } catch (error) {
+      setStatus(error.message || "AI 请求失败。");
+    }
   };
-  const addSavedNote = (text) => { const note = { id: `${Date.now()}-${Math.random().toString(16).slice(2)}`, text }; const all = readPracticeAiNotes(); const next = [...notesForPracticeAiKey(key), note]; all[key] = next; writePracticeAiNotes(all); setSavedNotes(next); };
-  const save = () => { addSavedNote(`问：${question.trim()}\n答：${answer.trim()}`); setAnswer(""); setQuestion(""); setStatus(""); setOpen(false); };
-  const saveManualNote = () => { if (!manualNote.trim()) return; addSavedNote(manualNote.trim()); setManualNote(""); setManualOpen(false); };
-  const discardAnswer = () => { setAnswer(""); setStatus("已废弃本次回答。"); };
-  const erase = (noteId) => { const all = readPracticeAiNotes(); const next = notesForPracticeAiKey(key).filter((note) => note.id !== noteId); if (next.length) all[key] = next; else delete all[key]; writePracticeAiNotes(all); setSavedNotes(next); };
-  return <div className="practice-ai-note"><div className="practice-note-tools"><button type="button" className="practice-ai-trigger" onClick={() => setOpen((value) => !value)} aria-expanded={open} title="问 AI">✦</button><button type="button" className="practice-manual-note-trigger" onClick={() => setManualOpen((value) => !value)} aria-expanded={manualOpen} title="添加笔记">✎</button></div>{manualOpen ? <div className="practice-manual-note-panel"><textarea value={manualNote} onChange={(event) => setManualNote(event.target.value)} placeholder="写下你的笔记…" rows="2" /><button type="button" onClick={saveManualNote}>保存笔记</button></div> : null}{open ? <div className="practice-ai-panel"><textarea value={question} onChange={(event) => setQuestion(event.target.value)} placeholder="向 AI 提问…" rows="2" /><button type="button" onClick={ask}>提问</button>{status ? <small>{status}</small> : null}{answer ? <><p>{answer}</p><div className="practice-ai-actions"><button type="button" onClick={save}>存笔记</button><button type="button" onClick={discardAnswer}>废弃</button></div></> : null}</div> : null}{savedNotes.length ? <div className="practice-ai-saved-list">{savedNotes.map((note) => <article className="practice-ai-saved" key={note.id}><button type="button" className="practice-ai-erase" onClick={() => erase(note.id)} aria-label="删除笔记" title="删除笔记">⌫</button><pre>{note.text}</pre></article>)}</div> : null}</div>;
+  const addSavedNote = (text) => {
+    const note = {
+      id: `${Date.now()}-${Math.random().toString(16).slice(2)}`,
+      text,
+    };
+    const all = readPracticeAiNotes();
+    const next = [...notesForPracticeAiKey(key), note];
+    all[key] = next;
+    writePracticeAiNotes(all);
+    setSavedNotes(next);
+  };
+  const save = () => {
+    if (!answer.trim()) return;
+    addSavedNote(`问：${question.trim()}\n答：${answer.trim()}`);
+    setAnswer("");
+    setQuestion("");
+    setStatus("");
+    setOpen(false);
+  };
+  const saveManualNote = () => {
+    if (!manualNote.trim()) return;
+    addSavedNote(manualNote.trim());
+    setManualNote("");
+    setManualOpen(false);
+  };
+  const discardAnswer = () => {
+    setAnswer("");
+    setStatus("已废弃本次回答。");
+  };
+  const erase = (noteId) => {
+    const all = readPracticeAiNotes();
+    const next = notesForPracticeAiKey(key).filter(
+      (note) => note.id !== noteId,
+    );
+    if (next.length) all[key] = next;
+    else delete all[key];
+    writePracticeAiNotes(all);
+    setSavedNotes(next);
+  };
+  return (
+    <div className="practice-ai-note">
+      <div className="practice-note-tools">
+        <button
+          type="button"
+          className="practice-ai-trigger"
+          onClick={() => setOpen((value) => !value)}
+          aria-expanded={open}
+          title="问 AI"
+        >
+          ✦
+        </button>
+        <button
+          type="button"
+          className="practice-manual-note-trigger"
+          onClick={() => setManualOpen((value) => !value)}
+          aria-expanded={manualOpen}
+          title="添加笔记"
+        >
+          ✎
+        </button>
+      </div>
+      {manualOpen ? (
+        <div className="practice-manual-note-panel">
+          <textarea
+            value={manualNote}
+            onChange={(event) => setManualNote(event.target.value)}
+            placeholder="写下你的笔记…"
+            rows="2"
+          />
+          <button type="button" onClick={saveManualNote}>
+            保存笔记
+          </button>
+        </div>
+      ) : null}
+      {open ? (
+        <div className="practice-ai-panel">
+          <textarea
+            value={question}
+            onChange={(event) => setQuestion(event.target.value)}
+            placeholder="向 AI 提问…"
+            rows="2"
+          />
+          <button type="button" onClick={ask}>
+            提问
+          </button>
+          {status ? <small>{status}</small> : null}
+          {answer ? (
+            <div className="practice-ai-answer">
+              <strong>AI 回答</strong>
+              <p>{answer}</p>
+              <div className="practice-ai-actions">
+                <button type="button" onClick={save}>
+                  存笔记
+                </button>
+                <button type="button" onClick={discardAnswer}>
+                  废弃
+                </button>
+              </div>
+            </div>
+          ) : null}
+        </div>
+      ) : null}
+      {savedNotes.length ? (
+        <div className="practice-ai-saved-list">
+          {savedNotes.map((note) => (
+            <article className="practice-ai-saved" key={note.id}>
+              <button
+                type="button"
+                className="practice-ai-erase"
+                onClick={() => erase(note.id)}
+                aria-label="删除笔记"
+                title="删除笔记"
+              >
+                ⌫
+              </button>
+              <pre>{note.text}</pre>
+            </article>
+          ))}
+        </div>
+      ) : null}
+    </div>
+  );
 }
-function readPracticeAiNotes() { try { return JSON.parse(localStorage.getItem(PRACTICE_AI_NOTES_KEY) || "{}"); } catch { return {}; } }
-function writePracticeAiNotes(notes) { localStorage.setItem(PRACTICE_AI_NOTES_KEY, JSON.stringify(notes)); }
-function notesForPracticeAiKey(key) { const stored = readPracticeAiNotes()[key]; return Array.isArray(stored) ? stored : stored ? [{ id: "legacy", text: stored }] : []; }
+
+function practiceAiAnswerFromResponse(data) {
+  const candidates = [
+    data?.answer,
+    data?.data?.answer,
+    data?.result?.answer,
+    data?.content,
+    data?.data?.content,
+  ];
+  return String(candidates.find((value) => typeof value === "string" && value.trim()) || "").trim();
+}
+
+function readPracticeAiNotes() {
+  try {
+    return JSON.parse(localStorage.getItem(PRACTICE_AI_NOTES_KEY) || "{}");
+  } catch {
+    return {};
+  }
+}
+function writePracticeAiNotes(notes) {
+  localStorage.setItem(PRACTICE_AI_NOTES_KEY, JSON.stringify(notes));
+}
+function notesForPracticeAiKey(key) {
+  const stored = readPracticeAiNotes()[key];
+  return Array.isArray(stored)
+    ? stored
+    : stored
+      ? [{ id: "legacy", text: stored }]
+      : [];
+}
 
 function DisplayAssets({ assetIds, assetMap }) {
   return (
     <div className="related-asset-strip">
       {assetIds.map((id) => {
         const asset = assetMap.get(id);
-        return asset ? <ImageAssetView key={id} asset={asset} /> : <MissingAssetNotice key={id} id={id} />;
+        return asset ? (
+          <ImageAssetView key={id} asset={asset} />
+        ) : (
+          <MissingAssetNotice key={id} id={id} />
+        );
       })}
     </div>
   );
 }
 
 function MissingAssetNotice({ id }) {
-  return <div className="asset-config-warning" data-missing-asset={id}>暂未正确配置好图片，请联系管理员。</div>;
+  return (
+    <div className="asset-config-warning" data-missing-asset={id}>
+      暂未正确配置好图片，请联系管理员。
+    </div>
+  );
 }
 
 function ImageAssetView({ asset }) {
@@ -1261,18 +1943,27 @@ function ImageAssetView({ asset }) {
       "--crop-size-y": `${10000 / crop.height}%`,
       "--crop-pos-x": `${posX}%`,
       "--crop-pos-y": `${posY}%`,
-      backgroundImage: `url('${asset.imagePath}')`
+      backgroundImage: `url('${asset.imagePath}')`,
     };
     return (
       <figure className={`image-asset ${asset.kind} cropped`}>
-        <div className="crop-window" role="img" aria-label={asset.label || asset.id} style={style}></div>
+        <div
+          className="crop-window"
+          role="img"
+          aria-label={asset.label || asset.id}
+          style={style}
+        ></div>
         {asset.label ? <figcaption>{asset.label}</figcaption> : null}
       </figure>
     );
   }
   return (
     <figure className={`image-asset ${asset.kind}`}>
-      {asset.imagePath ? <img src={asset.imagePath} alt={asset.label || asset.id} /> : <div className="empty-asset">图片待补充</div>}
+      {asset.imagePath ? (
+        <img src={asset.imagePath} alt={asset.label || asset.id} />
+      ) : (
+        <div className="empty-asset">图片待补充</div>
+      )}
       {asset.label ? <figcaption>{asset.label}</figcaption> : null}
     </figure>
   );
@@ -1280,7 +1971,9 @@ function ImageAssetView({ asset }) {
 
 function Prompt({ parts, kana }) {
   if (shouldRenderWholePrompt(parts, kana)) {
-    return <RubyText text={parts.map((part) => part.text).join("")} kana={kana} />;
+    return (
+      <RubyText text={parts.map((part) => part.text).join("")} kana={kana} />
+    );
   }
   const partsWithKana = applyPromptKanaToTextParts(parts, kana);
   return (
@@ -1289,25 +1982,59 @@ function Prompt({ parts, kana }) {
         if (part.type === "text") return <RichText key={index} part={part} />;
         if (part.type === "blank") {
           if (part.display === "parentheses") {
-            return <span className="inline-blank parentheses-blank" data-slot-id={part.slotId} key={index}>（　）</span>;
+            return (
+              <span
+                className="inline-blank parentheses-blank"
+                data-slot-id={part.slotId}
+                key={index}
+              >
+                （　）
+              </span>
+            );
           }
-          return <span className="inline-blank" data-slot-id={part.slotId} key={index}></span>;
+          return (
+            <span
+              className="inline-blank"
+              data-slot-id={part.slotId}
+              key={index}
+            ></span>
+          );
         }
-        if (part.type === "choice_ref") return <span className="choice-ref" key={index}>{part.choiceIds.join(" / ")}</span>;
-        return <span className="asset-ref" key={index}>{part.assetId}</span>;
+        if (part.type === "choice_ref")
+          return (
+            <span className="choice-ref" key={index}>
+              {part.choiceIds.join(" / ")}
+            </span>
+          );
+        return (
+          <span className="asset-ref" key={index}>
+            {part.assetId}
+          </span>
+        );
       })}
     </>
   );
 }
 
 function RichTextList({ parts }) {
-  return <>{parts.map((part, index) => <RichText key={index} part={part} />)}</>;
+  return (
+    <>
+      {parts.map((part, index) => (
+        <RichText key={index} part={part} />
+      ))}
+    </>
+  );
 }
 
 function RichText({ part }) {
   const content = <RubyText text={part.text} kana={part.kana} />;
   return part.underline ? (
-    <span className="underlined" data-substitution-key={part.substitutionKey || undefined}>{content}</span>
+    <span
+      className="underlined"
+      data-substitution-key={part.substitutionKey || undefined}
+    >
+      {content}
+    </span>
   ) : (
     <>{content}</>
   );
@@ -1320,7 +2047,12 @@ function RubyText({ text, kana }) {
     <>
       {segments.map((segment, index) => {
         if (segment.type === "ruby") {
-          return <ruby key={index}>{segment.text}<rt>{segment.kana}</rt></ruby>;
+          return (
+            <ruby key={index}>
+              {segment.text}
+              <rt>{segment.kana}</rt>
+            </ruby>
+          );
         }
         return <React.Fragment key={index}>{segment.text}</React.Fragment>;
       })}
@@ -1329,7 +2061,16 @@ function RubyText({ text, kana }) {
 }
 
 function shouldRenderWholePrompt(parts, kana) {
-  return Boolean(kana) && parts.every((part) => part.type === "text" && !part.underline && !part.substitutionKey && !part.kana);
+  return (
+    Boolean(kana) &&
+    parts.every(
+      (part) =>
+        part.type === "text" &&
+        !part.underline &&
+        !part.substitutionKey &&
+        !part.kana,
+    )
+  );
 }
 
 function applyPromptKanaToTextParts(parts, kana) {
@@ -1357,7 +2098,11 @@ function applyPromptKanaToTextParts(parts, kana) {
       cursor = marker.index + marker[0].length;
     });
     kanaSegments.push(String(kana).slice(cursor));
-  } else if (blankCount === 1 && blankMarkers.length === 0 && textGroups[1].length === 0) {
+  } else if (
+    blankCount === 1 &&
+    blankMarkers.length === 0 &&
+    textGroups[1].length === 0
+  ) {
     // Base-form prompts store only the reading of the word before a final
     // blank, for example "書きます → ____" with kana "かきます".
     terminalBlankReading = true;
@@ -1374,7 +2119,7 @@ function applyPromptKanaToTextParts(parts, kana) {
     }
 
     const rubyPartIndexes = partIndexes.filter((partIndex) =>
-      Array.from(parts[partIndex].text || "").some(isRubyTargetChar)
+      Array.from(parts[partIndex].text || "").some(isRubyTargetChar),
     );
     // Support prompts such as "書きます → ____": the arrow is a separate
     // text part, while only the word before it needs the inferred reading.
@@ -1382,8 +2127,14 @@ function applyPromptKanaToTextParts(parts, kana) {
 
     const rubyPartIndex = rubyPartIndexes[0];
     const rubyPartPosition = partIndexes.indexOf(rubyPartIndex);
-    const prefix = partIndexes.slice(0, rubyPartPosition).map((partIndex) => parts[partIndex].text).join("");
-    const suffix = partIndexes.slice(rubyPartPosition + 1).map((partIndex) => parts[partIndex].text).join("");
+    const prefix = partIndexes
+      .slice(0, rubyPartPosition)
+      .map((partIndex) => parts[partIndex].text)
+      .join("");
+    const suffix = partIndexes
+      .slice(rubyPartPosition + 1)
+      .map((partIndex) => parts[partIndex].text)
+      .join("");
     let rubyKana = kanaSegments[groupIndex];
     if (prefix) rubyKana = consumePlainText(rubyKana, prefix);
     if (suffix) {
@@ -1400,14 +2151,16 @@ function applyPromptKanaToTextParts(parts, kana) {
   });
 
   return parts.map((part, index) => {
-    if (part.type !== "text" || part.kana || !kanaByPartIndex.has(index)) return part;
+    if (part.type !== "text" || part.kana || !kanaByPartIndex.has(index))
+      return part;
     return { ...part, kana: kanaByPartIndex.get(index) };
   });
 }
 
 function resolveActivityAudioUrl(practice, activity) {
   if (activity.audio?.source === "external_url") return activity.audio.url;
-  if (!activity.requiresAudio && activity.audio?.source !== "textbook_exercise") return undefined;
+  if (!activity.requiresAudio && activity.audio?.source !== "textbook_exercise")
+    return undefined;
 
   const lessonNo = lessonNumber(practice.lessonId);
   const exerciseNo = exerciseNumber(activity.section);
@@ -1442,7 +2195,9 @@ function activityAssetMap(activity) {
 }
 
 function activityIdFromHash(hash, fallbackId) {
-  const value = String(hash || "").replace(/^#/, "").trim();
+  const value = String(hash || "")
+    .replace(/^#/, "")
+    .trim();
   return value || fallbackId;
 }
 
@@ -1461,14 +2216,17 @@ function collectActivityAnswers(form, activity) {
       const slotValues = {};
       item.inputSlots.forEach((slot) => {
         const field = form.elements.namedItem(slotFieldName(item.id, slot.id));
-        const value = field && "value" in field ? String(field.value || "") : "";
+        const value =
+          field && "value" in field ? String(field.value || "") : "";
         slotValues[slot.id] = value;
       });
       itemAnswer.slotValues = slotValues;
     }
 
     if (item.choices?.length) {
-      const selected = [...form.querySelectorAll(`input[name="${item.id}"]:checked`)];
+      const selected = [
+        ...form.querySelectorAll(`input[name="${item.id}"]:checked`),
+      ];
       itemAnswer.choiceIds = selected.map((field) => field.value);
     }
 
@@ -1478,7 +2236,12 @@ function collectActivityAnswers(form, activity) {
   return answers;
 }
 
-function gradeActivity(activity, answers, submittedAt = new Date().toISOString(), answerAlternatives = {}) {
+function gradeActivity(
+  activity,
+  answers,
+  submittedAt = new Date().toISOString(),
+  answerAlternatives = {},
+) {
   const itemResults = {};
   let correctCount = 0;
   let incorrectCount = 0;
@@ -1507,9 +2270,9 @@ function gradeActivity(activity, answers, submittedAt = new Date().toISOString()
       correctCount,
       incorrectCount,
       ungradedCount,
-      submittedAt
+      submittedAt,
     },
-    itemResults
+    itemResults,
   };
 }
 
@@ -1532,12 +2295,20 @@ function gradeItem(item, attempt, answerAlternatives = {}) {
       sawGradableField = true;
       const actual = normalizeAnswerText(attempt.slotValues?.[slot.id]);
       const actualCandidates = [actual];
-      const speakerlessActual = normalizeSpeakerlessAnswer(attempt.slotValues?.[slot.id]);
-      if (speakerlessActual && speakerlessActual !== actual && canAcceptSpeakerlessAnswer(item, matcher)) {
+      const speakerlessActual = normalizeSpeakerlessAnswer(
+        attempt.slotValues?.[slot.id],
+      );
+      if (
+        speakerlessActual &&
+        speakerlessActual !== actual &&
+        canAcceptSpeakerlessAnswer(item, matcher)
+      ) {
         actualCandidates.push(speakerlessActual);
       }
-      const isCorrect = actualCandidates.some((candidate) =>
-        matcher.exacts.includes(candidate) || matcher.patterns.some((pattern) => pattern.test(candidate))
+      const isCorrect = actualCandidates.some(
+        (candidate) =>
+          matcher.exacts.includes(candidate) ||
+          matcher.patterns.some((pattern) => pattern.test(candidate)),
       );
       fieldResults[slot.id] = isCorrect ? "correct" : "incorrect";
       if (!isCorrect) hasIncorrect = true;
@@ -1548,7 +2319,11 @@ function gradeItem(item, attempt, answerAlternatives = {}) {
     sawGradableField = true;
     const actualChoices = normalizeChoiceIds(attempt.choiceIds || []);
     const expectedChoices = normalizeChoiceIds(item.answer.choiceIds);
-    const isCorrect = actualChoices.length === expectedChoices.length && actualChoices.every((choiceId, index) => choiceId === expectedChoices[index]);
+    const isCorrect =
+      actualChoices.length === expectedChoices.length &&
+      actualChoices.every(
+        (choiceId, index) => choiceId === expectedChoices[index],
+      );
     fieldResults[CHOICE_RESULT_KEY] = isCorrect ? "correct" : "incorrect";
     if (!isCorrect) hasIncorrect = true;
   }
@@ -1556,7 +2331,7 @@ function gradeItem(item, attempt, answerAlternatives = {}) {
   if (!sawGradableField) return { status: "ungraded", fieldResults };
   return {
     status: hasIncorrect ? "incorrect" : "correct",
-    fieldResults
+    fieldResults,
   };
 }
 
@@ -1574,28 +2349,40 @@ function gradeOpenResponseItem(item, attempt) {
 }
 
 function matchesOpenResponseRule(answer, rule) {
-  const normalized = String(answer || "").normalize("NFKC").replace(/[\s、。！？]/g, "");
+  const normalized = String(answer || "")
+    .normalize("NFKC")
+    .replace(/[\s、。！？]/g, "");
   if (!normalized || !rule) return false;
 
-  const time = "(?:午前|午後)?(?:[0-9]+|[一二三四五六七八九十]+)時(?:(?:[0-9]+|[一二三四五六七八九十]+)分|半)?";
+  const time =
+    "(?:午前|午後)?(?:[0-9]+|[一二三四五六七八九十]+)時(?:(?:[0-9]+|[一二三四五六七八九十]+)分|半)?";
   const weekday = "(?:月|火|水|木|金|土|日)曜日";
-  const hasExpectedAction = !rule.actions?.length || rule.actions.some((action) => normalized.includes(action));
+  const hasExpectedAction =
+    !rule.actions?.length ||
+    rule.actions.some((action) => normalized.includes(action));
   const allowsShortAnswer = rule.allowShortAnswer && /です$/.test(normalized);
 
   if (rule.kind === "time") {
     const hasTimeOnly = new RegExp(`^${time}(?:です)?$`).test(normalized);
-    const hasFullSentence = new RegExp(`${time}に`).test(normalized) && hasExpectedAction;
+    const hasFullSentence =
+      new RegExp(`${time}に`).test(normalized) && hasExpectedAction;
     return hasTimeOnly || hasFullSentence;
   }
 
   const rangeUnit = rule.kind === "weekday_range" ? weekday : time;
-  const hasRange = new RegExp(`${rangeUnit}から${rangeUnit}まで`).test(normalized);
+  const hasRange = new RegExp(`${rangeUnit}から${rangeUnit}まで`).test(
+    normalized,
+  );
   return hasRange && (allowsShortAnswer || hasExpectedAction);
 }
 
 function expectedTextMatcher(item, slotId, answerAlternatives = {}) {
-  const answers = answerValuesForSlot(item, slotId).map((value) => normalizeAnswerText(value));
-  (answerAlternatives?.[item.id]?.[slotId] || []).forEach((value) => answers.push(normalizeAnswerText(value)));
+  const answers = answerValuesForSlot(item, slotId).map((value) =>
+    normalizeAnswerText(value),
+  );
+  (answerAlternatives?.[item.id]?.[slotId] || []).forEach((value) =>
+    answers.push(normalizeAnswerText(value)),
+  );
 
   const unique = Array.from(new Set(answers.filter(Boolean)));
   return {
@@ -1604,28 +2391,52 @@ function expectedTextMatcher(item, slotId, answerAlternatives = {}) {
       .filter((value) => value.includes("〜"))
       .map(patternFromPlaceholderAnswer)
       .filter(Boolean),
-    speakerTaggedExpected: unique.some((value) => /(?:^|\n)[甲乙丙丁A-DＡ-Ｄ][：:]/.test(value))
+    speakerTaggedExpected: unique.some((value) =>
+      /(?:^|\n)[甲乙丙丁A-DＡ-Ｄ][：:]/.test(value),
+    ),
   };
 }
 
 function hasIncorrectTextAnswers(activity, grading) {
-  return flattenActivityItems(activity).some((item) =>
-    item.evaluationMode !== "open_response" && item.inputSlots?.some((slot) => grading?.itemResults?.[item.id]?.fieldResults?.[slot.id] === "incorrect")
+  return flattenActivityItems(activity).some(
+    (item) =>
+      item.evaluationMode !== "open_response" &&
+      item.inputSlots?.some(
+        (slot) =>
+          grading?.itemResults?.[item.id]?.fieldResults?.[slot.id] ===
+          "incorrect",
+      ),
   );
 }
 
-async function reviewIncorrectTextAnswers({ practice, activity, answers, grading, answerAlternatives }) {
+async function reviewIncorrectTextAnswers({
+  practice,
+  activity,
+  answers,
+  grading,
+  answerAlternatives,
+}) {
   let alternatives = answerAlternatives || {};
   let acceptedCount = 0;
   let reviewedCount = 0;
   const items = flattenActivityItems(activity);
 
   for (const item of items) {
-    if (item.evaluationMode === "manual_review" || item.evaluationMode === "self_check" || item.evaluationMode === "open_response") continue;
+    if (
+      item.evaluationMode === "manual_review" ||
+      item.evaluationMode === "self_check" ||
+      item.evaluationMode === "open_response"
+    )
+      continue;
     if (!item.inputSlots?.length) continue;
     for (const slot of item.inputSlots) {
-      if (grading?.itemResults?.[item.id]?.fieldResults?.[slot.id] !== "incorrect") continue;
-      const userAnswer = String(answers?.[item.id]?.slotValues?.[slot.id] || "").trim();
+      if (
+        grading?.itemResults?.[item.id]?.fieldResults?.[slot.id] !== "incorrect"
+      )
+        continue;
+      const userAnswer = String(
+        answers?.[item.id]?.slotValues?.[slot.id] || "",
+      ).trim();
       if (!userAnswer) continue;
       reviewedCount += 1;
       const result = await requestAnswerReview({
@@ -1642,13 +2453,19 @@ async function reviewIncorrectTextAnswers({ practice, activity, answers, grading
         expectedAnswers: answerValuesForSlot(item, slot.id),
         answerUnit: slot.expectedUnit || activity.answerUnit,
         responseScope: item.responseScope || activity.responseScope || "",
-        responseScopeHint: item.responseScopeHint || activity.responseScopeHint || "",
+        responseScopeHint:
+          item.responseScopeHint || activity.responseScopeHint || "",
         examples: exampleTextForItem(activity, item.id),
         openResponseRule: item.answer?.openResponseRule,
-        cacheAcceptedAnswer: item.evaluationMode !== "open_response"
+        cacheAcceptedAnswer: item.evaluationMode !== "open_response",
       });
       if (!result?.accepted) continue;
-      alternatives = mergeAcceptedAnswerAlternative(alternatives, item.id, slot.id, result.normalizedAnswer || userAnswer);
+      alternatives = mergeAcceptedAnswerAlternative(
+        alternatives,
+        item.id,
+        slot.id,
+        result.normalizedAnswer || userAnswer,
+      );
       acceptedCount += 1;
     }
   }
@@ -1658,16 +2475,22 @@ async function reviewIncorrectTextAnswers({ practice, activity, answers, grading
 
 async function requestAnswerReview(payload) {
   const response = await fetch("/api/practice/review-answer", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("light_blog_token") || ""}`
-      },
-      body: JSON.stringify(payload)
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${localStorage.getItem("light_blog_token") || ""}`,
+    },
+    body: JSON.stringify(payload),
   });
   const data = await response.json().catch(() => ({}));
   if (!response.ok) {
-    throw new Error(data.error || data.message || (data.code === "AI_DAILY_QUOTA_EXCEEDED" ? "今日 AI 调用额度已用完。" : `答案复核失败（HTTP ${response.status}）`));
+    throw new Error(
+      data.error ||
+        data.message ||
+        (data.code === "AI_DAILY_QUOTA_EXCEEDED"
+          ? "今日 AI 调用额度已用完。"
+          : `答案复核失败（HTTP ${response.status}）`),
+    );
   }
   return data;
 }
@@ -1675,10 +2498,16 @@ async function requestAnswerReview(payload) {
 async function loadAcceptedAnswerAlternatives(lessonId) {
   const local = readLocalAcceptedAnswerAlternatives(lessonId);
   try {
-    const response = await fetch(`/api/practice/answer-alternatives?lessonId=${encodeURIComponent(lessonId)}`, { cache: "no-store" });
+    const response = await fetch(
+      `/api/practice/answer-alternatives?lessonId=${encodeURIComponent(lessonId)}`,
+      { cache: "no-store" },
+    );
     const data = await response.json().catch(() => ({}));
     if (!response.ok) return local;
-    const merged = mergeAnswerAlternativeIndexes(local, data.alternatives || {});
+    const merged = mergeAnswerAlternativeIndexes(
+      local,
+      data.alternatives || {},
+    );
     writeLocalAcceptedAnswerAlternatives(lessonId, merged);
     return merged;
   } catch {
@@ -1689,8 +2518,12 @@ async function loadAcceptedAnswerAlternatives(lessonId) {
 function readLocalAcceptedAnswerAlternatives(lessonId) {
   if (typeof window === "undefined") return {};
   try {
-    const all = JSON.parse(window.localStorage.getItem(ANSWER_ALTERNATIVE_CACHE_KEY) || "{}");
-    return all?.[lessonId] && typeof all[lessonId] === "object" ? all[lessonId] : {};
+    const all = JSON.parse(
+      window.localStorage.getItem(ANSWER_ALTERNATIVE_CACHE_KEY) || "{}",
+    );
+    return all?.[lessonId] && typeof all[lessonId] === "object"
+      ? all[lessonId]
+      : {};
   } catch {
     return {};
   }
@@ -1699,9 +2532,14 @@ function readLocalAcceptedAnswerAlternatives(lessonId) {
 function writeLocalAcceptedAnswerAlternatives(lessonId, alternatives) {
   if (typeof window === "undefined") return;
   try {
-    const all = JSON.parse(window.localStorage.getItem(ANSWER_ALTERNATIVE_CACHE_KEY) || "{}");
+    const all = JSON.parse(
+      window.localStorage.getItem(ANSWER_ALTERNATIVE_CACHE_KEY) || "{}",
+    );
     all[lessonId] = alternatives || {};
-    window.localStorage.setItem(ANSWER_ALTERNATIVE_CACHE_KEY, JSON.stringify(all));
+    window.localStorage.setItem(
+      ANSWER_ALTERNATIVE_CACHE_KEY,
+      JSON.stringify(all),
+    );
   } catch {}
 }
 
@@ -1717,18 +2555,24 @@ function mergeAnswerAlternativeIndexes(left = {}, right = {}) {
   return merged;
 }
 
-function mergeAcceptedAnswerAlternative(alternatives = {}, itemId, slotId, answer) {
+function mergeAcceptedAnswerAlternative(
+  alternatives = {},
+  itemId,
+  slotId,
+  answer,
+) {
   const value = String(answer || "").trim();
   if (!value) return alternatives;
   const existing = alternatives?.[itemId]?.[slotId] || [];
   const normalizedValue = normalizeAnswerText(value);
-  if (existing.some((entry) => normalizeAnswerText(entry) === normalizedValue)) return alternatives;
+  if (existing.some((entry) => normalizeAnswerText(entry) === normalizedValue))
+    return alternatives;
   return {
     ...alternatives,
     [itemId]: {
       ...(alternatives[itemId] || {}),
-      [slotId]: [...existing, value]
-    }
+      [slotId]: [...existing, value],
+    },
   };
 }
 
@@ -1739,7 +2583,10 @@ function buildAcceptedAnswerAlternativeSyncPlan(practice, alternatives = {}) {
   const activities = (practice.activities || []).map((activity) => {
     let activityChanged = false;
     const mergeItem = (item) => {
-      const result = mergePracticeItemAcceptedAlternatives(item, alternatives?.[item.id]);
+      const result = mergePracticeItemAcceptedAlternatives(
+        item,
+        alternatives?.[item.id],
+      );
       if (result.answerCount > 0) {
         activityChanged = true;
         answerCount += result.answerCount;
@@ -1750,7 +2597,7 @@ function buildAcceptedAnswerAlternativeSyncPlan(practice, alternatives = {}) {
             activityTitle: activity.title || activity.id || "",
             itemId: item.id,
             itemNumber: item.number || "",
-            promptText: promptPartsPlainText(item.prompt || [])
+            promptText: promptPartsPlainText(item.prompt || []),
           });
         });
       }
@@ -1782,7 +2629,7 @@ function buildAcceptedAnswerAlternativeSyncPlan(practice, alternatives = {}) {
     practice: answerCount > 0 ? { ...practice, activities } : practice,
     itemCount: itemIds.size,
     answerCount,
-    details
+    details,
   };
 }
 
@@ -1795,7 +2642,9 @@ function mergePracticeItemAcceptedAlternatives(item, itemAlternatives) {
   let answerCount = 0;
   const details = [];
   item.inputSlots.forEach((slot) => {
-    const incoming = Array.isArray(itemAlternatives[slot.id]) ? itemAlternatives[slot.id] : [];
+    const incoming = Array.isArray(itemAlternatives[slot.id])
+      ? itemAlternatives[slot.id]
+      : [];
     const standardAnswers = answerValuesForSlot(item, slot.id);
     const newValues = uniqueNewAnswerValues(standardAnswers, incoming);
     if (!newValues.length) return;
@@ -1803,14 +2652,18 @@ function mergePracticeItemAcceptedAlternatives(item, itemAlternatives) {
     if (nextAnswer === item.answer) nextAnswer = { ...item.answer };
     if (slot.id === "answer") {
       nextAnswer.acceptableAlternatives = [
-        ...(Array.isArray(nextAnswer.acceptableAlternatives) ? nextAnswer.acceptableAlternatives : []),
-        ...newValues
+        ...(Array.isArray(nextAnswer.acceptableAlternatives)
+          ? nextAnswer.acceptableAlternatives
+          : []),
+        ...newValues,
       ];
     } else {
       const slotAlternatives = { ...(nextAnswer.slotAlternatives || {}) };
       slotAlternatives[slot.id] = [
-        ...(Array.isArray(slotAlternatives[slot.id]) ? slotAlternatives[slot.id] : []),
-        ...newValues
+        ...(Array.isArray(slotAlternatives[slot.id])
+          ? slotAlternatives[slot.id]
+          : []),
+        ...newValues,
       ];
       nextAnswer.slotAlternatives = slotAlternatives;
     }
@@ -1818,7 +2671,7 @@ function mergePracticeItemAcceptedAlternatives(item, itemAlternatives) {
     details.push({
       slotId: slot.id,
       standardAnswers: standardAnswers.length ? standardAnswers : ["暂无"],
-      candidateAnswers: newValues
+      candidateAnswers: newValues,
     });
   });
 
@@ -1828,7 +2681,9 @@ function mergePracticeItemAcceptedAlternatives(item, itemAlternatives) {
 }
 
 function uniqueNewAnswerValues(existingValues, incomingValues) {
-  const normalizedExisting = new Set(existingValues.map((value) => normalizeAnswerText(value)).filter(Boolean));
+  const normalizedExisting = new Set(
+    existingValues.map((value) => normalizeAnswerText(value)).filter(Boolean),
+  );
   const additions = [];
   incomingValues.forEach((value) => {
     const answer = String(value || "").trim();
@@ -1844,7 +2699,10 @@ function answerValuesForSlot(item, slotId) {
   const values = [];
   const slotValue = item.answer?.slotValues?.[slotId];
   if (Array.isArray(slotValue)) {
-    const joined = slotValue.map((entry) => String(entry || "").trim()).filter(Boolean).join("\n");
+    const joined = slotValue
+      .map((entry) => String(entry || "").trim())
+      .filter(Boolean)
+      .join("\n");
     if (joined) values.push(joined);
   } else {
     appendAnswerValue(values, slotValue);
@@ -1867,17 +2725,21 @@ function appendAnswerValue(values, value) {
 }
 
 function promptPartsPlainText(parts = []) {
-  return parts.map((part) => {
-    if (part.type === "text") return part.text || "";
-    if (part.type === "blank") return "____";
-    if (part.type === "choice_ref") return part.choiceIds?.join(" / ") || "";
-    if (part.type === "asset_ref") return part.assetId || "";
-    return "";
-  }).join("");
+  return parts
+    .map((part) => {
+      if (part.type === "text") return part.text || "";
+      if (part.type === "blank") return "____";
+      if (part.type === "choice_ref") return part.choiceIds?.join(" / ") || "";
+      if (part.type === "asset_ref") return part.assetId || "";
+      return "";
+    })
+    .join("");
 }
 
 function exampleTextForItem(activity, itemId) {
-  const group = (activity.itemGroups || []).find((entry) => entry.items?.some((item) => item.id === itemId));
+  const group = (activity.itemGroups || []).find((entry) =>
+    entry.items?.some((item) => item.id === itemId),
+  );
   if (group?.example) return examplePlainText(group.example);
   return (activity.layout || [])
     .filter((block) => block.type === "example")
@@ -1888,14 +2750,17 @@ function exampleTextForItem(activity, itemId) {
 
 function examplePlainText(example) {
   if (!example) return "";
-  const before = example.before || promptPartsPlainText(example.beforeParts || []);
+  const before =
+    example.before || promptPartsPlainText(example.beforeParts || []);
   const after = promptPartsPlainText(example.after || []);
   return [before, after].filter(Boolean).join("\n→\n");
 }
 
 function canAcceptSpeakerlessAnswer(item, matcher) {
   if (matcher.speakerTaggedExpected) return false;
-  return item.renderHint === "dialogue" || item.responseScope === "dialogue_only";
+  return (
+    item.renderHint === "dialogue" || item.responseScope === "dialogue_only"
+  );
 }
 
 function normalizeSpeakerlessAnswer(value) {
@@ -1906,7 +2771,8 @@ function normalizeSpeakerlessAnswer(value) {
 }
 
 function normalizeAnswerText(value) {
-  if (Array.isArray(value)) return value.map((entry) => normalizeAnswerText(entry)).join("\n");
+  if (Array.isArray(value))
+    return value.map((entry) => normalizeAnswerText(entry)).join("\n");
   const normalized = String(value || "")
     .normalize("NFKC")
     .replace(/\u3000/g, " ")
@@ -1916,7 +2782,7 @@ function normalizeAnswerText(value) {
     .replace(/じゃありません/g, "ではありません")
     .replace(/じゃないです/g, "ではありません")
     .replace(/\s+/g, "")
-    .replace(/\p{P}/gu, (mark) => mark === "〜" ? mark : "")
+    .replace(/\p{P}/gu, (mark) => (mark === "〜" ? mark : ""))
     .replace(/^ー+/, "")
     .trim();
   return normalizeAnswerLexicalVariants(normalized);
@@ -1957,7 +2823,12 @@ function flattenActivityItems(activity) {
 
 function normalizeActivityRecord(activity, record) {
   if (!activity || !record) return record || null;
-  const source = record.answers || record.answerRecord || record.submissions || record.values || record;
+  const source =
+    record.answers ||
+    record.answerRecord ||
+    record.submissions ||
+    record.values ||
+    record;
   const answers = { ...(record.answers || {}) };
 
   flattenActivityItems(activity).forEach((item) => {
@@ -1965,30 +2836,43 @@ function normalizeActivityRecord(activity, record) {
     if (normalized) answers[item.id] = normalized;
   });
 
-  const submittedAt = record.grading?.submittedAt || record.grading?.summary?.submittedAt || record.updatedAt;
+  const submittedAt =
+    record.grading?.submittedAt ||
+    record.grading?.summary?.submittedAt ||
+    record.updatedAt;
   // Older lesson data may have saved an item as manual_review before its
   // transcript and standard answer were completed. Once the item becomes
   // gradable, re-evaluate the preserved user answer instead of leaving it
   // permanently ungraded.
-  const grading = record.grading?.itemResults && !needsGradingRefresh(activity, record.grading)
-    ? record.grading
-    : record.grading
-      ? gradeActivity(activity, answers, submittedAt)
-      : record.grading;
+  const grading =
+    record.grading?.itemResults &&
+    !needsGradingRefresh(activity, record.grading)
+      ? record.grading
+      : record.grading
+        ? gradeActivity(activity, answers, submittedAt)
+        : record.grading;
 
   return {
     ...record,
     answers,
-    grading
+    grading,
   };
 }
 
 function needsGradingRefresh(activity, grading) {
   return flattenActivityItems(activity).some((item) => {
-    if (item.evaluationMode === "manual_review" || !item.answer || !item.inputSlots?.length) return false;
+    if (
+      item.evaluationMode === "manual_review" ||
+      !item.answer ||
+      !item.inputSlots?.length
+    )
+      return false;
     if (item.evaluationMode === "open_response") return true;
     const savedResult = grading?.itemResults?.[item.id];
-    return savedResult?.status === "ungraded" && !Object.keys(savedResult.fieldResults || {}).length;
+    return (
+      savedResult?.status === "ungraded" &&
+      !Object.keys(savedResult.fieldResults || {}).length
+    );
   });
 }
 
@@ -1999,20 +2883,26 @@ function normalizeStoredItemAnswer(item, source) {
   if (item.choices?.length) {
     if (direct?.choiceIds?.length) return direct;
     const choiceIds = directChoiceIds(item, source, direct);
-    return choiceIds.length ? { ...(typeof direct === "object" ? direct : {}), choiceIds } : null;
+    return choiceIds.length
+      ? { ...(typeof direct === "object" ? direct : {}), choiceIds }
+      : null;
   }
 
-  if (!item.inputSlots?.length) return direct && typeof direct === "object" ? direct : null;
+  if (!item.inputSlots?.length)
+    return direct && typeof direct === "object" ? direct : null;
 
-  const slotValues = direct?.slotValues && typeof direct.slotValues === "object"
-    ? { ...direct.slotValues }
-    : {};
+  const slotValues =
+    direct?.slotValues && typeof direct.slotValues === "object"
+      ? { ...direct.slotValues }
+      : {};
 
   if (typeof direct === "string") {
     slotValues[item.inputSlots[0]?.id || "answer"] ||= direct;
   } else if (direct && typeof direct === "object") {
-    const directValue = direct.answer || direct.value || direct.text || direct.userAnswer;
-    if (typeof directValue === "string") slotValues[item.inputSlots[0]?.id || "answer"] ||= directValue;
+    const directValue =
+      direct.answer || direct.value || direct.text || direct.userAnswer;
+    if (typeof directValue === "string")
+      slotValues[item.inputSlots[0]?.id || "answer"] ||= directValue;
   }
 
   item.inputSlots.forEach((slot) => {
@@ -2022,7 +2912,7 @@ function normalizeStoredItemAnswer(item, source) {
       source[`${item.id}.${slot.id}`],
       source[`${item.id}:${slot.id}`],
       source[`${item.id}_${slot.id}`],
-      source[slot.id]
+      source[slot.id],
     ]);
     if (value) slotValues[slot.id] = value;
   });
@@ -2036,24 +2926,35 @@ function directChoiceIds(item, source, direct) {
   if (Array.isArray(direct)) return direct.map(String);
   if (typeof direct === "string") return [direct];
   if (direct && typeof direct === "object") {
-    const choice = direct.choiceId || direct.choice || direct.value || direct.answer || direct.userAnswer;
+    const choice =
+      direct.choiceId ||
+      direct.choice ||
+      direct.value ||
+      direct.answer ||
+      direct.userAnswer;
     if (Array.isArray(choice)) return choice.map(String);
     if (typeof choice === "string") return [choice];
   }
-  return firstStringValue([
-    source[`${item.id}::choice`],
-    source[`${item.id}::__choice__`],
-    source[`${item.id}.choice`]
-  ], true);
+  return firstStringValue(
+    [
+      source[`${item.id}::choice`],
+      source[`${item.id}::__choice__`],
+      source[`${item.id}.choice`],
+    ],
+    true,
+  );
 }
 
 function firstStringValue(values, asArray = false) {
   for (const value of values) {
-    if (Array.isArray(value) && value.length) return asArray ? value.map(String) : String(value[0] || "");
+    if (Array.isArray(value) && value.length)
+      return asArray ? value.map(String) : String(value[0] || "");
     if (typeof value === "string" && value) return asArray ? [value] : value;
     if (value && typeof value === "object") {
-      const nested = value.value || value.answer || value.userAnswer || value.text;
-      if (typeof nested === "string" && nested) return asArray ? [nested] : nested;
+      const nested =
+        value.value || value.answer || value.userAnswer || value.text;
+      if (typeof nested === "string" && nested)
+        return asArray ? [nested] : nested;
     }
   }
   return asArray ? [] : "";
@@ -2062,13 +2963,17 @@ function firstStringValue(values, asArray = false) {
 function activityProgressSummary(activity, record) {
   const items = flattenActivityItems(activity);
   const total = items.length;
-  const completed = items.filter((item) => isItemAnswered(item, record?.answers?.[item.id])).length;
-  const incorrect = items.filter((item) => record?.grading?.itemResults?.[item.id]?.status === "incorrect").length;
+  const completed = items.filter((item) =>
+    isItemAnswered(item, record?.answers?.[item.id]),
+  ).length;
+  const incorrect = items.filter(
+    (item) => record?.grading?.itemResults?.[item.id]?.status === "incorrect",
+  ).length;
   return {
     total,
     completed,
     incorrect,
-    percent: total ? Math.round((completed / total) * 100) : 0
+    percent: total ? Math.round((completed / total) * 100) : 0,
   };
 }
 
@@ -2076,8 +2981,11 @@ function isItemAnswered(item, answer) {
   if (!answer) return false;
   if (item.choices?.length) return Boolean(answer.choiceIds?.length);
   if (!item.inputSlots?.length) return false;
-  return item.inputSlots.some((slot) => String(answer.slotValues?.[slot.id] || "").trim().length > 0)
-    || Boolean(firstStoredSlotValue(answer.slotValues).trim());
+  return (
+    item.inputSlots.some(
+      (slot) => String(answer.slotValues?.[slot.id] || "").trim().length > 0,
+    ) || Boolean(firstStoredSlotValue(answer.slotValues).trim())
+  );
 }
 
 function defaultFieldValue(item, slotId, storedAnswer, admin) {
@@ -2117,12 +3025,24 @@ function resolveStoredChoiceIds(item, choiceIds) {
   });
 }
 
-function resolveItemResponseScopeHint(item, activityResponseScope, activityResponseScopeHint) {
-  const ownHint = resolveResponseScopeHint(item.responseScope, item.responseScopeHint);
+function resolveItemResponseScopeHint(
+  item,
+  activityResponseScope,
+  activityResponseScopeHint,
+) {
+  const ownHint = resolveResponseScopeHint(
+    item.responseScope,
+    item.responseScopeHint,
+  );
   if (!ownHint) return "";
   if (!activityResponseScopeHint) return ownHint;
-  if (item.responseScope && item.responseScope !== activityResponseScope) return ownHint;
-  if (item.responseScopeHint && item.responseScopeHint !== activityResponseScopeHint) return ownHint;
+  if (item.responseScope && item.responseScope !== activityResponseScope)
+    return ownHint;
+  if (
+    item.responseScopeHint &&
+    item.responseScopeHint !== activityResponseScopeHint
+  )
+    return ownHint;
   return "";
 }
 
@@ -2140,8 +3060,12 @@ function resolveAudioGuidance(activity) {
 function formatAttemptSummary(item, answer) {
   if (!answer) return "未作答";
   if (item.choices?.length) {
-    const selected = new Set(resolveStoredChoiceIds(item, answer.choiceIds || []));
-    const labels = item.choices.filter((choice) => selected.has(choice.id)).map((choice) => choice.label);
+    const selected = new Set(
+      resolveStoredChoiceIds(item, answer.choiceIds || []),
+    );
+    const labels = item.choices
+      .filter((choice) => selected.has(choice.id))
+      .map((choice) => choice.label);
     return labels.length ? labels.join(" / ") : "未选择";
   }
   if (item.inputSlots?.length) {
@@ -2160,7 +3084,9 @@ function formatAttemptSummary(item, answer) {
 function formatExpectedAnswerSummary(item) {
   if (item.choices?.length) {
     const expected = new Set(item.answer?.choiceIds || []);
-    const labels = item.choices.filter((choice) => expected.has(choice.id)).map((choice) => choice.label);
+    const labels = item.choices
+      .filter((choice) => expected.has(choice.id))
+      .map((choice) => choice.label);
     return labels.join(" / ");
   }
 
@@ -2181,13 +3107,15 @@ function buildAnswerComparison(item, answer, result) {
     return {
       kind: "choice",
       actual: formatAttemptSummary(item, answer),
-      expected: formatExpectedAnswerSummary(item)
+      expected: formatExpectedAnswerSummary(item),
     };
   }
 
   if (!item.inputSlots?.length) return null;
   const targetSlots = result?.fieldResults
-    ? item.inputSlots.filter((slot) => result.fieldResults?.[slot.id] === "incorrect")
+    ? item.inputSlots.filter(
+        (slot) => result.fieldResults?.[slot.id] === "incorrect",
+      )
     : [];
   const slots = targetSlots.length ? targetSlots : item.inputSlots;
   const diffLines = slots.flatMap((slot) => {
@@ -2214,12 +3142,17 @@ function formatSlotAttemptSummary(item, answer, slotId) {
 
 function closestExpectedAnswer(actual, candidates) {
   const actualNormalized = normalizeAnswerText(actual);
-  return candidates
-    .map((candidate) => ({
-      candidate,
-      distance: editDistance(actualNormalized, normalizeAnswerText(candidate))
-    }))
-    .sort((a, b) => a.distance - b.distance)[0]?.candidate || candidates[0];
+  return (
+    candidates
+      .map((candidate) => ({
+        candidate,
+        distance: editDistance(
+          actualNormalized,
+          normalizeAnswerText(candidate),
+        ),
+      }))
+      .sort((a, b) => a.distance - b.distance)[0]?.candidate || candidates[0]
+  );
 }
 
 function editDistance(left, right) {
@@ -2229,9 +3162,10 @@ function editDistance(left, right) {
   for (let row = 1; row <= a.length; row += 1) {
     const current = [row];
     for (let col = 1; col <= b.length; col += 1) {
-      current[col] = a[row - 1] === b[col - 1]
-        ? previous[col - 1]
-        : Math.min(previous[col - 1], previous[col], current[col - 1]) + 1;
+      current[col] =
+        a[row - 1] === b[col - 1]
+          ? previous[col - 1]
+          : Math.min(previous[col - 1], previous[col], current[col - 1]) + 1;
     }
     previous = current;
   }
@@ -2243,7 +3177,12 @@ function comparableAnswerText(value) {
     .normalize("NFKC")
     .replace(/\r\n?/g, "\n")
     .split("\n")
-    .map((line) => line.replace(/^\s*(?:乙[0-9０-９]+|[甲乙丙丁]|[A-DＡ-Ｄ])\s*[：:]\s*/u, ""))
+    .map((line) =>
+      line.replace(
+        /^\s*(?:乙[0-9０-９]+|[甲乙丙丁]|[A-DＡ-Ｄ])\s*[：:]\s*/u,
+        "",
+      ),
+    )
     .join("\n")
     .replace(/[ \t\u3000]+/g, "")
     .replace(/\p{P}/gu, "")
@@ -2254,7 +3193,8 @@ function comparableAnswerText(value) {
 function diffComparableAnswerText(actual, expected) {
   const actualComparable = comparableAnswerText(actual);
   const expectedComparable = comparableAnswerText(expected);
-  if (!actualComparable && !expectedComparable) return { actualParts: [], expectedParts: [] };
+  if (!actualComparable && !expectedComparable)
+    return { actualParts: [], expectedParts: [] };
   return diffText(actualComparable, expectedComparable);
 }
 
@@ -2271,7 +3211,10 @@ function gitLikeAnswerDiff(actual, expected) {
   let index = 0;
   while (index < ops.length) {
     if (ops[index].type === "equal") {
-      rows.push({ type: "context", parts: [{ type: "equal", text: ops[index].text || " " }] });
+      rows.push({
+        type: "context",
+        parts: [{ type: "equal", text: ops[index].text || " " }],
+      });
       index += 1;
       continue;
     }
@@ -2289,13 +3232,32 @@ function gitLikeAnswerDiff(actual, expected) {
       const deleted = deletes[pairIndex];
       const inserted = inserts[pairIndex];
       if (deleted != null && inserted != null) {
-        const { actualParts, expectedParts } = diffComparableAnswerText(deleted, inserted);
-        rows.push({ type: "delete", parts: actualParts.length ? actualParts : [{ type: "delete", text: deleted || " " }] });
-        rows.push({ type: "insert", parts: expectedParts.length ? expectedParts : [{ type: "insert", text: inserted || " " }] });
+        const { actualParts, expectedParts } = diffComparableAnswerText(
+          deleted,
+          inserted,
+        );
+        rows.push({
+          type: "delete",
+          parts: actualParts.length
+            ? actualParts
+            : [{ type: "delete", text: deleted || " " }],
+        });
+        rows.push({
+          type: "insert",
+          parts: expectedParts.length
+            ? expectedParts
+            : [{ type: "insert", text: inserted || " " }],
+        });
       } else if (deleted != null) {
-        rows.push({ type: "delete", parts: [{ type: "delete", text: deleted || " " }] });
+        rows.push({
+          type: "delete",
+          parts: [{ type: "delete", text: deleted || " " }],
+        });
       } else if (inserted != null) {
-        rows.push({ type: "insert", parts: [{ type: "insert", text: inserted || " " }] });
+        rows.push({
+          type: "insert",
+          parts: [{ type: "insert", text: inserted || " " }],
+        });
       }
     }
   }
@@ -2307,9 +3269,13 @@ function diffLineOperations(actualLines, expectedLines) {
   const table = new Uint16Array((actualLines.length + 1) * width);
   for (let row = actualLines.length - 1; row >= 0; row -= 1) {
     for (let col = expectedLines.length - 1; col >= 0; col -= 1) {
-      table[row * width + col] = actualLines[row] === expectedLines[col]
-        ? table[(row + 1) * width + col + 1] + 1
-        : Math.max(table[(row + 1) * width + col], table[row * width + col + 1]);
+      table[row * width + col] =
+        actualLines[row] === expectedLines[col]
+          ? table[(row + 1) * width + col + 1] + 1
+          : Math.max(
+              table[(row + 1) * width + col],
+              table[row * width + col + 1],
+            );
     }
   }
 
@@ -2347,9 +3313,13 @@ function diffText(actual, expected) {
   const table = new Uint16Array((a.length + 1) * width);
   for (let row = a.length - 1; row >= 0; row -= 1) {
     for (let col = b.length - 1; col >= 0; col -= 1) {
-      table[row * width + col] = a[row] === b[col]
-        ? table[(row + 1) * width + col + 1] + 1
-        : Math.max(table[(row + 1) * width + col], table[row * width + col + 1]);
+      table[row * width + col] =
+        a[row] === b[col]
+          ? table[(row + 1) * width + col + 1] + 1
+          : Math.max(
+              table[(row + 1) * width + col],
+              table[row * width + col + 1],
+            );
     }
   }
 
@@ -2403,26 +3373,31 @@ function exampleDialogueLines(parts, kana) {
   return textLines.map((line, index) => ({
     speaker: line.speaker,
     parts: partsLines[index] || [],
-    kana: kanaLines[index] || ""
+    kana: kanaLines[index] || "",
   }));
 }
 
 function splitDialogueContent(value) {
-  const text = String(value || "").replace(/\s+/g, " ").trim();
+  const text = String(value || "")
+    .replace(/\s+/g, " ")
+    .trim();
   if (!text) return [];
-  const speakerPattern = /((?:甲|乙[12一二]?|丙|丁|A|B|C|D|こう|おつ(?:いち|に|[12一二])?|コウ|オツ(?:イチ|ニ|[12一二])?))：/g;
+  const speakerPattern =
+    /((?:甲|乙[12一二]?|丙|丁|A|B|C|D|こう|おつ(?:いち|に|[12一二])?|コウ|オツ(?:イチ|ニ|[12一二])?))：/g;
   const matches = Array.from(text.matchAll(speakerPattern));
-  return matches.map((match, index) => {
-    const speaker = match[1];
-    const bodyStart = (match.index || 0) + match[0].length;
-    const bodyEnd = matches[index + 1]?.index ?? text.length;
-    return {
-      speaker,
-      body: text.slice(bodyStart, bodyEnd).trim(),
-      start: bodyStart,
-      end: bodyEnd
-    };
-  }).filter((line) => line.body);
+  return matches
+    .map((match, index) => {
+      const speaker = match[1];
+      const bodyStart = (match.index || 0) + match[0].length;
+      const bodyEnd = matches[index + 1]?.index ?? text.length;
+      return {
+        speaker,
+        body: text.slice(bodyStart, bodyEnd).trim(),
+        start: bodyStart,
+        end: bodyEnd,
+      };
+    })
+    .filter((line) => line.body);
 }
 
 function splitDialogueKanaLines(kana, expectedLineCount) {
@@ -2455,13 +3430,19 @@ function splitDialogueKanaLines(kana, expectedLineCount) {
 
 function stripDialogueSpeaker(line) {
   return String(line || "")
-    .replace(/^\s*(?:甲|乙[12一二]?|丙|丁|A|B|C|D|こう|おつ(?:いち|に|[12一二])?|コウ|オツ(?:イチ|ニ|[12一二]?)?)：\s*/, "")
+    .replace(
+      /^\s*(?:甲|乙[12一二]?|丙|丁|A|B|C|D|こう|おつ(?:いち|に|[12一二])?|コウ|オツ(?:イチ|ニ|[12一二]?)?)：\s*/,
+      "",
+    )
     .trim();
 }
 
 function splitPromptPartsByDialogueLines(parts, textLines) {
   const result = textLines.map(() => []);
-  const ranges = textLines.map((line) => ({ start: line.start, end: line.end }));
+  const ranges = textLines.map((line) => ({
+    start: line.start,
+    end: line.end,
+  }));
   let cursor = 0;
   for (const part of parts) {
     const partText = promptPartsPlainText([part]);
@@ -2473,7 +3454,9 @@ function splitPromptPartsByDialogueLines(parts, textLines) {
       if (overlapStart >= overlapEnd) return;
       const sliceStart = overlapStart - partStart;
       const sliceEnd = overlapEnd - partStart;
-      result[index].push(slicePromptPart(part, partText.slice(sliceStart, sliceEnd)));
+      result[index].push(
+        slicePromptPart(part, partText.slice(sliceStart, sliceEnd)),
+      );
     });
     cursor = partEnd;
   }
@@ -2488,12 +3471,18 @@ function slicePromptPart(part, text) {
 function splitRubySegments(text, kana) {
   const sourceText = String(text || "");
   const sourceKana = String(kana || "");
-  if (!sourceText || !sourceKana || sourceText === sourceKana || isKanaOnly(sourceText)) {
+  if (
+    !sourceText ||
+    !sourceKana ||
+    sourceText === sourceKana ||
+    isKanaOnly(sourceText)
+  ) {
     return [{ type: "text", text: sourceText }];
   }
 
   const runs = splitRubyRuns(sourceText);
-  if (!runs.some((run) => run.annotatable)) return [{ type: "text", text: sourceText }];
+  if (!runs.some((run) => run.annotatable))
+    return [{ type: "text", text: sourceText }];
 
   let remainingKana = sourceKana;
   const segments = [];
@@ -2504,7 +3493,10 @@ function splitRubySegments(text, kana) {
       return;
     }
 
-    const nextPlainText = findAnchorPlainText(remainingKana, runs.slice(index + 1));
+    const nextPlainText = findAnchorPlainText(
+      remainingKana,
+      runs.slice(index + 1),
+    );
     let reading = "";
     if (nextPlainText) {
       const boundaryIndex = findPlainTextBoundary(remainingKana, nextPlainText);
@@ -2553,7 +3545,9 @@ function splitRubyRuns(value) {
 }
 
 function isRubyTargetChar(char) {
-  return /[\u3400-\u4dbf\u4e00-\u9fff々〇〆ヶヵ0-9０-９]/.test(String(char || ""));
+  return /[\u3400-\u4dbf\u4e00-\u9fff々〇〆ヶヵ0-9０-９]/.test(
+    String(char || ""),
+  );
 }
 
 function findAnchorPlainText(remainingKana, futureRuns) {
@@ -2579,12 +3573,16 @@ function findPlainTextBoundary(remainingKana, plainText) {
 
 function consumePlainText(remainingKana, plainText) {
   if (!remainingKana || !plainText) return remainingKana;
-  if (remainingKana.startsWith(plainText)) return remainingKana.slice(plainText.length);
+  if (remainingKana.startsWith(plainText))
+    return remainingKana.slice(plainText.length);
   const trimmedPlainText = plainText.trim();
   if (trimmedPlainText && remainingKana.startsWith(trimmedPlainText)) {
     return remainingKana.slice(trimmedPlainText.length);
   }
-  const whitespaceTolerantRest = consumeWhitespaceTolerantPrefix(remainingKana, plainText);
+  const whitespaceTolerantRest = consumeWhitespaceTolerantPrefix(
+    remainingKana,
+    plainText,
+  );
   if (whitespaceTolerantRest !== null) return whitespaceTolerantRest;
 
   let cursor = remainingKana;
@@ -2622,7 +3620,9 @@ function consumeWhitespaceTolerantPrefix(value, prefix) {
 }
 
 function normalizeRubyAnchor(value) {
-  return Array.from(String(value || "")).filter((char) => !isRubyWhitespace(char)).join("");
+  return Array.from(String(value || ""))
+    .filter((char) => !isRubyWhitespace(char))
+    .join("");
 }
 
 function normalizeRubyAnchorWithMap(value) {
