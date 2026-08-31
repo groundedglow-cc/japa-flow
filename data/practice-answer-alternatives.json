@@ -1525,6 +1525,22 @@
           "addedAt": "2026-08-18T13:47:59.097Z"
         }
       ]
+    },
+    "l1-p2-a1-q2": {
+      "answer": [
+        {
+          "answer": "小野",
+          "normalizedAnswer": "小野",
+          "expectedAnswers": [
+            "小野さん"
+          ],
+          "reason": "题目要求填入适当词语，用户答案「小野」与参考答案「小野さん」在语法功能上一致，均为名词，且符合上下文「いいえ、小野では ありません」的语境。省略敬称「さん」不影响句义和语法功能，属于自然表达差异。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "小野",
+          "addedAt": "2026-08-31T02:39:50.811Z"
+        }
+      ]
     }
   },
   "lesson2": {

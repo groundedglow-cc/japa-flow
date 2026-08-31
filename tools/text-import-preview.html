@@ -532,6 +532,10 @@
         margin: 0 0 10px;
       }
 
+      #status { display: none; }
+      html:not(.admin) .segment-actions .audio-review-status,
+      html:not(.admin) .segment-actions .segment-settings { display: none; }
+
       .source-image {
         display: block;
         width: 100%;
@@ -651,7 +655,7 @@
         samples: [],
         selectedSample: null,
         editing: null,
-        expandedTextSection: "basic",
+        expandedTextSections: { basic: true, application: false },
         textDisplayModes: { basic: "both", application: "both" }
       };
 
@@ -686,7 +690,7 @@
 
       function setData(payload, sourceLabel = "导入数据") {
         state.data = normalizePayload(payload);
-        state.expandedTextSection = "basic";
+        state.expandedTextSections = { basic: true, application: false };
         state.textDisplayModes = { basic: "both", application: "both" };
         $("#jsonInput").value = JSON.stringify(state.data, null, 2);
         setStatus(`${sourceLabel} 已加载。`);
@@ -831,7 +835,7 @@
           </div>
         `).join("");
 
-        const expanded = state.expandedTextSection === "basic";
+        const expanded = Boolean(state.expandedTextSections.basic);
         return `
           <section class="text-section ${expanded ? "expanded" : "collapsed"}" data-text-section="basic">
             <div class="section-head">
@@ -864,7 +868,7 @@
           `;
         }).join("");
 
-        const expanded = state.expandedTextSection === "application";
+        const expanded = Boolean(state.expandedTextSections.application);
         return `
           <section class="text-section ${expanded ? "expanded" : "collapsed"}" data-text-section="application">
             <div class="section-head">
@@ -1031,7 +1035,7 @@
           button.addEventListener("click", () => {
             const section = button.dataset.toggleSection;
             if (!section) return;
-            state.expandedTextSection = state.expandedTextSection === section ? "" : section;
+            state.expandedTextSections = { ...state.expandedTextSections, [section]: !state.expandedTextSections[section] };
             render();
           });
         });
@@ -1223,13 +1227,7 @@
         $("#imagePanel").innerHTML = images.length ? images.map((image) => {
           const src = assetSrc(image.path);
           return `
-            <div class="image-block">
-              <p class="image-title">
-                <span>${escapeHtml(image.section || "")} · page${escapeHtml(image.pageNo || "")}</span>
-                <a href="${escapeHtml(src)}" target="_blank" rel="noreferrer">打开图片</a>
-              </p>
-              <img class="source-image" src="${escapeHtml(src)}" alt="${escapeHtml(image.section || "source")}" />
-            </div>
+            <div class="image-block"><img class="source-image" src="${escapeHtml(src)}" alt="${escapeHtml(image.section || "source")}" /></div>
           `;
         }).join("") : `<p class="status">暂无 sourceImages。</p>`;
       }

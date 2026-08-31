@@ -392,6 +392,10 @@
         font-size: 18px;
       }
 
+      button.word-shortcut { padding: 0; border: 0; background: transparent; cursor: pointer; }
+      button.word-shortcut:hover:not(:disabled) { color: var(--accent); }
+      button.word-shortcut:disabled { cursor: not-allowed; opacity: 0.45; }
+
       .panel-resizer {
         position: sticky;
         top: 72px;
@@ -521,6 +525,17 @@
         background: #fff0ee;
       }
 
+      .word-list button.active { border-color: #0b5b42; box-shadow: 0 0 0 2px rgba(31, 122, 91, 0.3); position: relative; }
+      .word-list button.word-clicked { background: var(--word-click-background); border-color: var(--word-click-border); }
+      .word-list button.active.word-clicked { border-color: #0b5b42; }
+      .word-list button.word-clicked.word-clicked-strong, .word-list button.word-clicked.word-clicked-strong strong { color: #fff; }
+
+      html:not(.admin) .audio-review,
+      html:not(.admin) .segment-settings,
+      html:not(.admin) .audio-segment-time,
+      html:not(.admin) .review-dot { display: none; }
+      html:not(.admin) .word-main .tag:not(.part-of-speech) { display: none; }
+
       .word-list-main {
         display: flex;
         align-items: center;
@@ -563,8 +578,8 @@
       }
 
       .word-list button.active {
-        border-color: var(--accent);
-        background: var(--accent-soft);
+        border-color: #0b5b42;
+        background: transparent;
       }
 
       .image-panel {
@@ -573,13 +588,29 @@
         padding: 12px;
       }
 
-      .image-title {
-        display: flex;
-        justify-content: space-between;
-        color: var(--muted);
+      .image-placeholder {
+        display: grid;
+        min-height: 280px;
+        place-items: center;
+        padding: 24px;
+        border: 1px dashed #b8cec3;
+        border-radius: 8px;
+        background: linear-gradient(135deg, #f6faf8, #edf5f0);
+        color: #61726c;
         font-size: 13px;
-        margin: 0 0 10px;
+        line-height: 1.7;
+        text-align: center;
       }
+
+      .image-placeholder::before {
+        content: "▧";
+        display: block;
+        margin-bottom: 8px;
+        color: var(--accent);
+        font-size: 28px;
+      }
+
+      .image-placeholder.error { border-color: #e6beb7; background: #fff8f6; color: #935148; }
 
       .source-image {
         display: block;
@@ -698,10 +729,7 @@
       <button class="panel-resizer" id="panelResizer" type="button" aria-label="调整左右面板宽度"></button>
 
       <aside class="panel image-panel">
-        <p class="image-title">
-          <span id="imageLabel">教材图片</span>
-          <a id="imageLink" href="#" target="_blank" rel="noreferrer">打开图片</a>
-        </p>
+        <div class="image-placeholder" id="imagePlaceholder" role="status" aria-live="polite">教材图片加载中…</div>
         <img class="source-image" id="sourceImage" alt="教材词汇页" />
       </aside>
     </main>
@@ -733,7 +761,10 @@
       }
 
       const PANEL_RATIO_STORAGE_KEY = "japaflow.tools.vocabularyPreview.panelRatio.v1";
-      const state = { data: null, index: 0, audio: new Audio(), stopTimer: 0, samples: [], selectedSample: null, autoPlayToken: 0, editing: null };
+      const WORD_CLICK_STORAGE_KEY = "japaflow.tools.vocabularyPreview.wordClicks.v1";
+      const MAX_WORD_CLICKS = 20;
+      const CLICKS_PER_WORD_LEVEL = 2;
+      const state = { data: null, index: 0, audio: new Audio(), stopTimer: 0, samples: [], selectedSample: null, autoPlayToken: 0, autoPlayEnabled: false, editing: null };
 
       const $ = (selector) => document.querySelector(selector);
       const escapeHtml = (value) => String(value ?? "")
@@ -811,6 +842,7 @@
       function setData(payload, sourceLabel = "导入数据") {
         state.data = normalizePayload(payload);
         state.index = 0;
+        state.autoPlayEnabled = false;
         $("#jsonInput").value = JSON.stringify(state.data, null, 2);
         setStatus(`${sourceLabel} 已加载。`);
         render();
@@ -915,7 +947,7 @@
         renderImage(data);
         renderWord(words[state.index], words.length);
         renderWordList(words);
-        scheduleCurrentWordPlayback(words[state.index]);
+        if (state.autoPlayEnabled) scheduleCurrentWordPlayback(words[state.index]);
       }
 
       function summaryText(data, words) {
@@ -938,10 +970,27 @@
       function renderImage(data) {
         const image = data?.sourceImages?.[0];
         const src = assetSrc(image?.path);
-        $("#sourceImage").src = src;
-        $("#sourceImage").hidden = !src;
-        $("#imageLink").href = src || "#";
-        $("#imageLabel").textContent = image ? `page${image.pageNo || ""} · ${image.path}` : "教材图片";
+        const sourceImage = $("#sourceImage");
+        const placeholder = $("#imagePlaceholder");
+        sourceImage.hidden = true;
+        placeholder.hidden = false;
+        placeholder.classList.remove("error");
+        if (!src) {
+          placeholder.textContent = "本课暂未配置教材图片。";
+          return;
+        }
+        placeholder.textContent = "教材图片加载中…";
+        sourceImage.onload = () => {
+          sourceImage.hidden = false;
+          placeholder.hidden = true;
+        };
+        sourceImage.onerror = () => {
+          sourceImage.hidden = true;
+          placeholder.hidden = false;
+          placeholder.classList.add("error");
+          placeholder.textContent = "教材图片暂时无法加载，请稍后重试。";
+        };
+        sourceImage.src = src;
       }
 
       function renderWord(word, total) {
@@ -956,13 +1005,11 @@
           <article class="word-card">
             <div class="word-nav">
               <div class="word-nav-side">
-                <span class="word-shortcut" aria-hidden="true"><span class="word-shortcut-key">←</span><span>键切换上一个</span></span>
-                <button id="prevWord" type="button" ${state.index <= 0 ? "disabled" : ""}>上一个</button>
+                <button class="word-shortcut" type="button" data-word-move="-1" ${state.index <= 0 ? "disabled" : ""} aria-label="上一个单词"><span class="word-shortcut-key">←</span><span>上一个</span></button>
               </div>
               <span class="word-index">${state.index + 1} / ${total}</span>
               <div class="word-nav-side right">
-                <button id="nextWord" type="button" ${state.index >= total - 1 ? "disabled" : ""}>下一个</button>
-                <span class="word-shortcut" aria-hidden="true"><span>键切换下一个</span><span class="word-shortcut-key">→</span></span>
+                <button class="word-shortcut" type="button" data-word-move="1" ${state.index >= total - 1 ? "disabled" : ""} aria-label="下一个单词"><span>下一个</span><span class="word-shortcut-key">→</span></button>
               </div>
             </div>
             <div class="word-body">
@@ -972,25 +1019,22 @@
                   <span class="meaning-inline">${meaningText}</span>
                 </div>
                 <div class="meta">
-                  <span class="tag">${escapeHtml(word.id || "")}</span>
-                  <span class="tag">${escapeHtml(word.partOfSpeech || "无词性")}</span>
-                  <span class="tag ${word.confidence === "low" ? "warn" : ""}">${escapeHtml(word.confidence || "unknown")}</span>
-                  <span class="tag ${audioReview.tagClass}">${escapeHtml(audioReview.label)}</span>
+                  <span class="tag part-of-speech">${escapeHtml(word.partOfSpeech || "无词性")}</span>
+                  ${isAdminMode() ? `<span class="tag">${escapeHtml(word.id || "")}</span><span class="tag ${word.confidence === "low" ? "warn" : ""}">${escapeHtml(word.confidence || "unknown")}</span><span class="tag ${audioReview.tagClass}">${escapeHtml(audioReview.label)}</span>` : ""}
                 </div>
               </div>
               ${word.audioSegment ? `
                 <div class="audio-row">
                   <button class="audio-button" id="playWordAudio" type="button" title="播放音频片段" aria-label="播放音频片段">▶</button>
                   <button class="audio-button segment-settings" id="editWordAudio" type="button" title="设置音频区间" aria-label="设置音频区间">⚙</button>
-                  <span>${escapeHtml(formatSegmentTime(word.audioSegment))}</span>
+                  <span class="audio-segment-time">${escapeHtml(formatSegmentTime(word.audioSegment))}</span>
                 </div>
                 ${renderAudioReview(word.audioSegment, audioReview)}
               ` : ""}
             </div>
           </article>
         `;
-        $("#prevWord")?.addEventListener("click", () => move(-1));
-        $("#nextWord")?.addEventListener("click", () => move(1));
+        $("#wordCard").querySelectorAll("[data-word-move]").forEach((button) => button.addEventListener("click", () => move(Number(button.dataset.wordMove))));
         $("#playWordAudio")?.addEventListener("click", () => playSegment(word.audioSegment));
         $("#editWordAudio")?.addEventListener("click", () => openSegmentModal(word.id).catch((error) => setStatus(error.message, true)));
       }
@@ -1061,16 +1105,19 @@
 
       function renderWordList(words) {
         $("#wordList").innerHTML = words.map((word, index) => `
-          <button type="button" class="${wordListClass(word, index)}" data-index="${index}">
+          <button type="button" class="${wordListClass(word, index)}" data-index="${index}"${wordClickStyle(word)} title="${escapeHtml(wordClickLabel(word))}">
             <span class="word-list-main">
               <strong>${escapeHtml(word.writing || word.kana)}</strong>
-              ${renderReviewDot(word)}
+              ${isAdminMode() ? renderReviewDot(word) : ""}
             </span>
           </button>
         `).join("");
         $("#wordList").querySelectorAll("button").forEach((button) => {
           button.addEventListener("click", () => {
-            state.index = Number(button.dataset.index) || 0;
+            const index = Number(button.dataset.index) || 0;
+            if (index === state.index) incrementWordClick(words[index]);
+            state.index = index;
+            state.autoPlayEnabled = true;
             render();
           });
         });
@@ -1079,6 +1126,7 @@
       function move(offset) {
         const total = state.data?.vocabulary?.length || 0;
         state.index = Math.max(0, Math.min(total - 1, state.index + offset));
+        state.autoPlayEnabled = true;
         render();
       }
 
@@ -1137,8 +1185,11 @@
 
       function wordListClass(word, index) {
         const review = audioReviewState(word);
+        const clickLevel = wordClickLevel(word);
         return [
           index === state.index ? "active" : "",
+          clickLevel ? "word-clicked" : "",
+          clickLevel >= 7 ? "word-clicked-strong" : "",
           review.severity === "risk" ? "review-risk" : review.status === "pending" ? "review-pending" : ""
         ].filter(Boolean).join(" ");
       }
@@ -1150,6 +1201,16 @@
         if (review.status === "pending") return `<span class="review-dot pending" title="${escapeHtml(review.reasons.join("；"))}">待</span>`;
         return `<span class="review-dot" title="approved">✓</span>`;
       }
+
+      function isAdminMode() { return document.documentElement.classList.contains("admin"); }
+      function wordClickLessonKey() { return String(state.data?.lessonId || state.selectedSample?.lessonNo || lessonNoFromLocation() || "manual"); }
+      function wordClickId(word) { return String(word?.id || word?.writing || word?.kana || "unknown"); }
+      function readWordClickStore() { try { const parsed = JSON.parse(localStorage.getItem(WORD_CLICK_STORAGE_KEY) || "{}"); return parsed && typeof parsed === "object" ? parsed : {}; } catch { return {}; } }
+      function wordClickCount(word) { const count = Number(readWordClickStore()?.[wordClickLessonKey()]?.[wordClickId(word)] || 0); return clamp(Number.isFinite(count) ? count : 0, 0, MAX_WORD_CLICKS); }
+      function incrementWordClick(word) { if (!word) return; const store = readWordClickStore(); const lessonKey = wordClickLessonKey(); const wordId = wordClickId(word); const lessonClicks = { ...(store[lessonKey] || {}) }; lessonClicks[wordId] = Math.min(MAX_WORD_CLICKS, wordClickCount(word) + 1); localStorage.setItem(WORD_CLICK_STORAGE_KEY, JSON.stringify({ ...store, [lessonKey]: lessonClicks })); }
+      function wordClickLevel(word) { return Math.floor(wordClickCount(word) / CLICKS_PER_WORD_LEVEL); }
+      function wordClickLabel(word) { const count = wordClickCount(word); return count ? `已点击 ${count}/${MAX_WORD_CLICKS} 次 · 熟悉度 ${wordClickLevel(word)}/${MAX_WORD_CLICKS / CLICKS_PER_WORD_LEVEL}` : "连续点击单词会记录熟悉度；每 2 次加深一个档位，最多 20 次"; }
+      function wordClickStyle(word) { const level = wordClickLevel(word); if (!level) return ""; const opacity = 0.08 + level * 0.054; const borderOpacity = Math.min(0.82, opacity + 0.18); return ` style="--word-click-background: rgba(31, 122, 91, ${opacity.toFixed(3)}); --word-click-border: rgba(21, 93, 68, ${borderOpacity.toFixed(3)});"`; }
 
       function audioReviewState(word) {
         const segment = word?.audioSegment;

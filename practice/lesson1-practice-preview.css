@@ -164,7 +164,7 @@ textarea {
 
 .practice-content {
   width: min(980px, 100%);
-  padding: 28px 32px 40px;
+  padding: 28px 32px 124px;
 }
 
 .practice-blocked-panel {
@@ -1012,9 +1012,16 @@ rt {
   align-items: center;
   gap: 16px;
   flex-wrap: wrap;
-  margin-top: 24px;
-  padding-top: 20px;
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 280px;
+  z-index: 20;
+  margin: 0;
+  padding: 14px 32px calc(14px + env(safe-area-inset-bottom));
+  background: var(--panel);
   border-top: 1px solid var(--line);
+  box-shadow: 0 -10px 20px color-mix(in srgb, var(--panel) 82%, transparent);
 }
 
 .activity-submit-block {
@@ -1266,6 +1273,27 @@ rt {
   border-color: #19715a;
   background: #e4f6ed;
 }
+
+.equivalent-answer-trigger { font-size: 21px; font-weight: 800; }
+
+.practice-input-with-notes { display: grid; flex: 1 0 100%; gap: 7px; width: 100%; min-width: 0; }
+.practice-ai-note { display: flex; flex-wrap: wrap; gap: 7px; width: 100%; }
+.practice-note-tools { display: flex; gap: 6px; }
+.practice-ai-trigger, .practice-manual-note-trigger { width: 28px; height: 28px; border-radius: 50%; cursor: pointer; }
+.practice-ai-trigger { border: 1px solid #b9d8cb; background: #f1faf5; color: #176746; }
+.practice-manual-note-trigger { border: 1px solid #d6c6aa; background: #fffaf0; color: #8a6332; }
+.practice-ai-panel, .practice-manual-note-panel { display: grid; flex-basis: 100%; gap: 7px; width: 100%; margin-top: 2px; padding: 10px; border-radius: 7px; }
+.practice-ai-panel { border: 1px solid #c7dfd3; background: #f8fcfa; }
+.practice-manual-note-panel { border: 1px solid #e5d8bd; background: #fffdf7; }
+.practice-ai-panel textarea, .practice-manual-note-panel textarea { width: 100%; min-height: 52px; resize: vertical; padding: 7px; border: 1px solid #bdd7c9; border-radius: 5px; font: inherit; font-size: 13px; }
+.practice-ai-panel button, .practice-manual-note-panel button { justify-self: start; padding: 5px 9px; border: 1px solid #a8cdbc; border-radius: 5px; background: #fff; cursor: pointer; font: inherit; font-size: 12px; }
+.practice-ai-panel small { color: #65736c; }
+.practice-ai-answer { font-size: 12px; line-height: 1.55; }
+.practice-ai-answer p, .practice-ai-saved pre { margin: 0; white-space: pre-wrap; font: 13px/1.55 inherit; }
+.practice-ai-actions { display: flex; gap: 7px; margin-top: 7px; }
+.practice-ai-saved-list { display: grid; flex-basis: 100%; gap: 7px; width: 100%; margin-top: 2px; }
+.practice-ai-saved { display: grid; gap: 5px; padding-top: 7px; border-top: 1px solid #d7e8df; }
+.practice-ai-erase { justify-self: end; padding: 0; border: 0; color: #8d5e58; background: transparent; cursor: pointer; }
 
 .incorrect-reason-backdrop {
   position: fixed;
@@ -1536,7 +1564,7 @@ rt {
   }
 
   .practice-content {
-    padding: 20px 16px 32px;
+    padding: 20px 16px 116px;
   }
 
   .admin-publish-panel,
@@ -1561,6 +1589,9 @@ rt {
 
   .activity-footer {
     align-items: stretch;
+    left: 0;
+    padding-right: 16px;
+    padding-left: 16px;
   }
 
   .group-head {

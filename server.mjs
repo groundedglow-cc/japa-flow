@@ -1396,6 +1396,39 @@ function hasSamePracticeAnswerContent(inputText, formattedText) {
   return Boolean(inputFingerprint) && inputFingerprint === formattedFingerprint;
 }
 
+async function askNotebookAi({ question, lessonId, pageNo, authHeader }) {
+  const key = process.env.DEEPSEEK_API_KEY;
+  const baseUrl = (process.env.DEEPSEEK_BASE_URL || "https://api.deepseek.com").replace(/\/+$/, "");
+  const model = process.env.DEEPSEEK_MODEL || "deepseek-v4-flash";
+  const cleanQuestion = compactPracticeText(question, 1200);
+  if (!cleanQuestion) throw new Error("请输入问题。");
+  if (!key) throw new Error("未配置 DeepSeek 服务。");
+  const quota = await reserveAiQuota(authHeader, "deepseek_format");
+  let response;
+  try {
+    response = await fetch(`${baseUrl}/chat/completions`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Authorization: `Bearer ${key}` },
+      body: JSON.stringify({
+        model,
+        temperature: 0.2,
+        max_tokens: 180,
+        messages: [
+          { role: "system", content: "你是日语学习助手。回答必须非常简洁：最多 3 条短句，不要寒暄，不要 Markdown 标题；若信息不足，直接说明。" },
+          { role: "user", content: `第 ${lessonId || ""} 课教材第 ${pageNo || ""} 页。问题：${cleanQuestion}` }
+        ]
+      })
+    });
+  } catch (error) {
+    await completeAiQuota(authHeader, quota.requestId, false);
+    throw error;
+  }
+  const body = await response.json().catch(() => ({}));
+  await completeAiQuota(authHeader, quota.requestId, response.ok);
+  if (!response.ok) throw new Error(body?.error?.message || `模型服务请求失败（${response.status}）。`);
+  return { answer: compactPracticeText(body.choices?.[0]?.message?.content || "", 1000), model };
+}
+
 async function formatPracticeAnswer({ inputText, examples = "", formatHints = {}, answerUnit = "", authHeader }) {
   const key = process.env.DEEPSEEK_API_KEY;
   const baseUrl = (process.env.DEEPSEEK_BASE_URL || "https://api.deepseek.com").replace(/\/+$/, "");
@@ -2327,6 +2360,12 @@ async function handleApi(req, res, url) {
     if (url.pathname === "/api/practice/format-answer" && req.method === "POST") {
       const body = await readJson(req);
       const result = await formatPracticeAnswer({ ...body, authHeader: req.headers.authorization });
+      sendJson(res, 200, result);
+      return true;
+    }
+    if (url.pathname === "/api/grammar/notebook-ai" && req.method === "POST") {
+      const body = await readJson(req);
+      const result = await askNotebookAi({ ...body, authHeader: req.headers.authorization });
       sendJson(res, 200, result);
       return true;
     }

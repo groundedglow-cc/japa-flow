@@ -1639,6 +1639,7 @@ const state = {
   lessonProgressByLesson: {},
   lessonPracticeProgressByLesson: {},
   lessonProgressLoaded: false,
+  catalogPracticeProgressLoaded: false,
   lessonProgressLoading: false,
   initStatus: null,
   initStatusLessonId: "",
@@ -1943,6 +1944,7 @@ function clearAuthState() {
   state.lessonProgressByLesson = {};
   state.lessonPracticeProgressByLesson = {};
   state.lessonProgressLoaded = false;
+  state.catalogPracticeProgressLoaded = false;
 }
 
 function handleAuthExpired() {
@@ -2025,38 +2027,36 @@ function currentPracticeSessionHasProgress(session) {
 }
 
 function currentPracticeSessionProgress(lessonId, session, practiceSet) {
-  const sessionSummary = session?.session || session || {};
-  const completedActivities = Number(sessionSummary.completedActivityCount);
-  const totalActivities = Number(sessionSummary.totalActivityCount);
-  // The versioned-practice API is authoritative for course completion. Its
-  // status is set only after every current practice activity is complete.
-  // Do this before consulting a local/backend content definition, because the
-  // localhost practice page may intentionally prefer newer local content.
-  if (sessionSummary.status === "completed" || (totalActivities > 0 && completedActivities >= totalActivities)) {
-    return { completed: totalActivities || completedActivities || 1, total: totalActivities || completedActivities || 1 };
-  }
-  const snapshot = homePracticeProgressSnapshot(lessonId, practiceSet?.id);
-  if (snapshot) return snapshot;
   const normalized = normalizePracticeProgress(session);
-  const activities = Array.isArray(practiceSet?.contentJson?.activities) ? practiceSet.contentJson.activities : [];
-  if (!activities.length) return normalized;
-  const activityProgressById = new Map(
-    (Array.isArray(session?.activityProgress) ? session.activityProgress : [])
-      .filter((progress) => progress?.activityId)
-      .map((progress) => [String(progress.activityId), progress])
-  );
-  // Keep this in sync with activityProgressSummary() in PracticePreview.jsx,
-  // which is the source of the “已做 x/y” indicator learners see in the
-  // current course practice page.
-  const items = activities.flatMap((activity) => {
-    const progress = activityProgressById.get(String(activity.id)) || {};
-    const answers = progress.answers || {};
-    return currentPracticeActivityItems(activity).map((item) => ({ item, answer: answers[item.id] }));
-  });
-  return {
-    completed: items.filter(({ item, answer }) => currentPracticeItemAnswered(item, answer)).length,
-    total: items.length
-  };
+  const sessionProgress = currentPracticeSessionActivityProgress(session, practiceSet);
+  // 首页按“练习 I · n”这一层级统计。只有该活动达到练习页的 N/N
+  // 状态，才视为完成 1 题；不可把同一活动内的每个填空算成一题。
+  if (sessionProgress.total > 0) return sessionProgress;
+  const snapshot = homePracticeProgressSnapshot(lessonId, practiceSet?.id);
+  return snapshot || normalized;
+}
+
+function currentPracticeSessionActivityProgress(session, practiceSet) {
+  const activityProgress = Array.isArray(session?.activityProgress) ? session.activityProgress : [];
+  const completed = activityProgress.filter((activity) => {
+    const explicit = Number(activity?.latestTotalItems);
+    const total = Number.isFinite(explicit) && explicit > 0 ? explicit : Math.max(
+      Object.keys(activity?.answers || {}).length,
+      Object.keys(activity?.itemResults || {}).length
+    );
+    const answered = Object.keys(activity?.answers || {}).length;
+    const graded = Object.keys(activity?.itemResults || {}).length;
+    return total > 0 && Math.max(answered, graded) >= total;
+  }).length;
+  const summary = session?.session || session || {};
+  const declaredTotal = Number(summary.totalActivityCount);
+  const contentTotal = Array.isArray(practiceSet?.contentJson?.activities)
+    ? practiceSet.contentJson.activities.length
+    : 0;
+  const total = Number.isFinite(declaredTotal) && declaredTotal > 0
+    ? declaredTotal
+    : Math.max(contentTotal, activityProgress.length);
+  return { completed: Math.min(completed, total), total };
 }
 
 function homePracticeProgressSnapshot(lessonId, practiceSetId) {
@@ -4497,7 +4497,6 @@ function layout(content) {
         </div>
         <nav class="nav" aria-label="主导航">
           ${navLink("/", "首页", current === "home")}
-          ${navLink("/favorites", "收藏", current === "favorites")}
           ${navLink("/help", "帮助", current === "help")}
         </nav>
         <div class="topbar-actions">
@@ -4573,10 +4572,10 @@ function home() {
       <div class="course-home-hero">
         <div class="course-home-hero-copy">
           <p class="course-home-overline">JAPANESE, ONE STEP AT A TIME</p>
-          <h1>让每一课日语，<br><em>学得更有方向。</em></h1>
-          <p class="course-home-lead">以《标准日本语》为主线，连接单词、语法、课文与练习；在循序渐进里，留下看得见的进步。</p>
+          <h1>中文母语者的日语学习平台。</h1>
+          <p class="course-home-lead">JapaFlow 面向中文日语初学者，以《标准日本语》为主线，整合单词、课文、发音、练习与即时反馈，帮助你系统学习、持续复习，并将知识转化为真实表达能力。</p>
           <div class="course-home-actions">
-            ${focusLesson ? `<a class="primary home-start-button" href="/tools/course-detail-preview.html?lesson=${focusLesson.id}&part=practice" target="_blank" rel="noreferrer">${focusAction}<span aria-hidden="true">→</span></a>` : ""}
+            ${focusLesson ? `<a class="primary home-start-button" href="/tools/course-detail-preview.html?lesson=${focusLesson.id}&part=practice" target="_blank" rel="noreferrer">${focusAction}</a>` : ""}
             <a class="home-browse-link" href="#course-catalog">浏览课程 <span aria-hidden="true">↓</span></a>
           </div>
         </div>
@@ -4587,11 +4586,7 @@ function home() {
           <div class="home-resume-meta"><span>${lessonHomePracticeStarted(focusSummary) ? `练习完成 ${focusSummary.exercises.completed}/${focusSummary.exercises.total}` : "从练习开始"}</span><span>${focusPercent}%</span></div>
           ${focusLesson ? `<a class="home-resume-link" href="/tools/course-detail-preview.html?lesson=${focusLesson.id}&part=practice" target="_blank" rel="noreferrer">进入课程 <span aria-hidden="true">→</span></a>` : ""}
         </aside>
-        <details class="course-home-intro">
-          <summary>关于这个学习空间</summary>
-          <p>我试过不少学日语的方法：买线上课程、安装多邻国、使用背词 App，也在线下报班跟着老师学。现在每天会规律投入 2-3 小时；刚考完 N5（初级上册），计划 10 月前完成 N4（初级下册）、今年 12 月初完成 N3（中级上册）。一路试下来，还是觉得标准教材最靠谱。培训机构大多也是按教材顺序教，因为词汇、语法、课文和练习本来就该连在一起学。☕</p>
-          <p>很多 App 用来入门当然不错，但不少是为非汉语背景学习者设计的，对中文母语者来说节奏往往太慢；试用没多久也常会进入按月收费。这里保留标日初级 48 课的学习路线，再加上自动判题、跟读录音和进度记录。后面还想慢慢补上收藏、复习和错题功能（｀・ω・´）。项目免费开放，不过判题和音频会用到 DeepSeek 与 Azure，会造成一定费用，每人每天最多 100 次。遇到问题，或想聊聊学习体验，欢迎写邮件到 <a href="mailto:tyfccsu@gmail.com">tyfccsu@gmail.com</a>。只靠课文里的练习，磨耳朵的时间其实很有限；我自己也会把《大家的日本語》和生活日语教材一起学，给同一批语法和单词多一些反复见面的机会。</p>
-        </details>
+        <a class="course-home-intro" href="https://blog.groundedglow.cc/articles/2" target="_blank" rel="noreferrer">关于这个学习空间</a>
       </div>
       <section id="course-catalog" class="course-level-section">
         <div class="course-volume-tabs" role="tablist" aria-label="初级教材册别">
@@ -4602,11 +4597,11 @@ function home() {
           ${units.map((unit, index) => courseUnit(unit, index === 0)).join("")}
         </div>
       </section>
-      <section class="course-level-section course-intermediate-section" aria-labelledby="intermediate-title">
-        <h2 id="intermediate-title">中级</h2>
+      <section class="course-level-section course-intermediate-section" aria-label="中级课程">
+        <h2>中级</h2>
         <div class="course-volume-tabs" role="tablist" aria-label="中级教材册别">
-          <button class="course-volume-tab ${activeIntermediateVolume === "upper" ? "active" : ""}" type="button" role="tab" aria-selected="${activeIntermediateVolume === "upper"}" data-nav="/?volume=${activeVolume}&intermediateVolume=upper#intermediate-title">中级上册(N3) <small>第 1-16 课</small></button>
-          <button class="course-volume-tab ${activeIntermediateVolume === "lower" ? "active" : ""}" type="button" role="tab" aria-selected="${activeIntermediateVolume === "lower"}" data-nav="/?volume=${activeVolume}&intermediateVolume=lower#intermediate-title">中级下册(N3+) <small>第 17-32 课</small></button>
+          <button class="course-volume-tab ${activeIntermediateVolume === "upper" ? "active" : ""}" type="button" role="tab" aria-selected="${activeIntermediateVolume === "upper"}" data-nav="/?volume=${activeVolume}&intermediateVolume=upper">中级上册(N3) <small>第 1-16 课</small></button>
+          <button class="course-volume-tab ${activeIntermediateVolume === "lower" ? "active" : ""}" type="button" role="tab" aria-selected="${activeIntermediateVolume === "lower"}" data-nav="/?volume=${activeVolume}&intermediateVolume=lower">中级下册(N3+) <small>第 17-32 课</small></button>
         </div>
         <div class="course-unit-list">
           ${intermediateBook
@@ -4743,7 +4738,7 @@ function courseUnits(catalog) {
       id: unitIndex + 1,
       volume,
       volumeKey: unitIndex < 6 ? "upper" : "lower",
-      title: `${volume} 第${volumeUnitNo}单元 · ${unitTitles[unitIndex]}`,
+      title: `第${chineseLessonNumber(volumeUnitNo)}单元 · ${unitTitles[unitIndex]}`,
       range: `第${startLesson}-${startLesson + 3}课`,
       lessons
     });
@@ -8628,7 +8623,7 @@ async function loadAudioStatus(force = false) {
 
 async function loadCourseCatalog(force = false) {
   if (state.lessonCatalogLoading) return;
-  if (!force && state.lessonCatalogStatus && (!shouldSync() || state.lessonProgressLoaded)) return;
+  if (!force && state.lessonCatalogStatus && (!shouldSync() || state.catalogPracticeProgressLoaded)) return;
   state.lessonCatalogLoading = true;
   try {
     // 学员端读静态 JSON（适用于纯静态部署 / App）；管理端读 API（看实时状态）。
@@ -8643,13 +8638,14 @@ async function loadCourseCatalog(force = false) {
       data = await response.json();
     }
     state.lessonCatalogStatus = data.lessons || [];
-    if (shouldSync() && (force || !state.lessonProgressLoaded)) {
+    if (shouldSync() && (force || !state.catalogPracticeProgressLoaded)) {
       await loadCatalogLearningProgress();
     }
     state.lessonCatalogMessage = "";
   } catch (error) {
     if (!state.lessonCatalogStatus) state.lessonCatalogStatus = [];
     state.lessonProgressLoaded = true;
+    state.catalogPracticeProgressLoaded = true;
     state.lessonCatalogMessage = String(error.message || error);
   } finally {
     state.lessonCatalogLoading = false;
@@ -8708,7 +8704,7 @@ async function loadCatalogLearningProgress(force = false) {
     return;
   }
   if (state.lessonProgressLoading) return;
-  if (!force && state.lessonProgressLoaded) return;
+  if (!force && state.catalogPracticeProgressLoaded) return;
   state.lessonProgressLoading = true;
   try {
     const data = await apiFetchAllProgress();
@@ -8721,6 +8717,7 @@ async function loadCatalogLearningProgress(force = false) {
     await loadCurrentPracticeSessions(lessonIds);
   } finally {
     state.lessonProgressLoaded = true;
+    state.catalogPracticeProgressLoaded = true;
     state.lessonProgressLoading = false;
   }
 }
@@ -9592,6 +9589,7 @@ window.addEventListener("japaflow:auth-changed", async (e) => {
     state.authUserLoaded = false;
     state.lessonProgressByLesson = {};
     state.lessonProgressLoaded = false;
+    state.catalogPracticeProgressLoaded = false;
     state.modal = null;
     await reloadLessonScopedState();
     render();
@@ -9601,6 +9599,7 @@ window.addEventListener("japaflow:auth-changed", async (e) => {
     state.authUserLoading = false;
     state.lessonProgressByLesson = {};
     state.lessonProgressLoaded = false;
+    state.catalogPracticeProgressLoaded = false;
     state.modal = { type: "authPrompt" };
     render();
   }

@@ -22974,30 +22974,53 @@ function IncorrectReasonPopover({ item: item2, answer: answer3, result }) {
 function CorrectAnswerComparisonPopover({ item: item2, answer: answer3 }) {
   const [isOpen, setIsOpen] = (0, import_react.useState)(false);
   const popoverId = `${item2.id}-answer-comparison`;
+  const exact = isExactCorrectAnswer(item2, answer3);
+  const resultLabel = exact ? "\u5B8C\u5168\u6B63\u786E" : "\u7B54\u6848\u7B49\u4EF7";
   return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "incorrect-reason-popover correct-answer-popover", children: [
     /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
       "button",
       {
         type: "button",
-        className: "incorrect-reason-trigger correct-answer-trigger",
-        "aria-label": `\u67E5\u770B\u7B2C ${item2.number} \u9898\u7B54\u6848\u5BF9\u6BD4`,
+        className: `incorrect-reason-trigger correct-answer-trigger${exact ? "" : " equivalent-answer-trigger"}`,
+        "aria-label": `\u7B2C ${item2.number} \u9898${resultLabel}\uFF0C\u67E5\u770B\u7B54\u6848\u5BF9\u6BD4`,
+        title: resultLabel,
         "aria-expanded": isOpen,
         "aria-controls": popoverId,
         onClick: () => setIsOpen((value) => !value),
-        children: "\u2713"
+        children: exact ? "\u2713" : "\u2248"
       }
     ),
     isOpen ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [
       /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { className: "incorrect-reason-backdrop", type: "button", "aria-label": "\u5173\u95ED\u7B54\u6848\u5BF9\u6BD4", onClick: () => setIsOpen(false) }),
       /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "incorrect-reason-panel correct-answer-panel", id: popoverId, role: "dialog", "aria-label": `\u7B2C ${item2.number} \u9898\u7B54\u6848\u5BF9\u6BD4`, onClick: (event) => event.stopPropagation(), children: [
         /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "incorrect-reason-head correct-answer-head", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("strong", { children: "\u7B54\u6848\u5BF9\u6BD4" }),
+          /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("strong", { children: [
+            resultLabel,
+            " \xB7 \u7B54\u6848\u5BF9\u6BD4"
+          ] }),
           /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { type: "button", onClick: () => setIsOpen(false), "aria-label": "\u5173\u95ED\u7B54\u6848\u5BF9\u6BD4", children: "\xD7" })
         ] }),
         /* @__PURE__ */ (0, import_jsx_runtime.jsx)(CorrectAnswerComparison, { item: item2, answer: answer3 })
       ] })
     ] }) : null
   ] });
+}
+function isExactCorrectAnswer(item2, attempt) {
+  if (item2.choices?.length) {
+    const actual = normalizeChoiceIds(attempt?.choiceIds || []);
+    const expected = normalizeChoiceIds(item2.answer?.choiceIds || []);
+    return actual.length === expected.length && actual.every((choiceId, index) => choiceId === expected[index]);
+  }
+  if (!item2.inputSlots?.length) return false;
+  return item2.inputSlots.every((slot) => {
+    const expected = primaryAnswerValueForSlot(item2, slot.id);
+    const actual = String(attempt?.slotValues?.[slot.id] || "").trim();
+    return Boolean(expected) && actual === expected;
+  });
+}
+function primaryAnswerValueForSlot(item2, slotId) {
+  const value = item2.answer?.slotValues?.[slotId];
+  return Array.isArray(value) ? value.map((entry) => String(entry || "").trim()).filter(Boolean).join("\n") : String(value || "").trim();
 }
 function CorrectAnswerComparison({ item: item2, answer: answer3 }) {
   const rows = answerComparisonRows(item2, answer3);
@@ -23044,30 +23067,116 @@ function InputSlotView({ item: item2, slot, admin, storedAnswer, gradingResult }
     ] });
   }
   if (slot.multiline || slot.expectedUnit === "dialogue") {
-    return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
-      "textarea",
-      {
-        name: slotFieldName(item2.id, slot.id),
-        className,
-        rows: slot.rows || 3,
-        "aria-label": label,
-        placeholder,
-        defaultValue,
-        "data-result": result || void 0
-      }
-    );
+    return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "practice-input-with-notes", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("textarea", { name: slotFieldName(item2.id, slot.id), className, rows: slot.rows || 3, "aria-label": label, placeholder, defaultValue, "data-result": result || void 0 }),
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)(PracticeAiNote, { item: item2, slot })
+    ] });
   }
-  return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
-    "input",
-    {
-      name: slotFieldName(item2.id, slot.id),
-      className,
-      "aria-label": label,
-      placeholder,
-      defaultValue,
-      "data-result": result || void 0
+  return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "practice-input-with-notes", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime.jsx)("input", { name: slotFieldName(item2.id, slot.id), className, "aria-label": label, placeholder, defaultValue, "data-result": result || void 0 }),
+    /* @__PURE__ */ (0, import_jsx_runtime.jsx)(PracticeAiNote, { item: item2, slot })
+  ] });
+}
+var PRACTICE_AI_NOTES_KEY = "japaflow.practice.aiNotes.v1";
+function PracticeAiNote({ item: item2, slot }) {
+  const key = `${item2.id}:${slot.id}`;
+  const [open, setOpen] = (0, import_react.useState)(false);
+  const [manualOpen, setManualOpen] = (0, import_react.useState)(false);
+  const [question, setQuestion] = (0, import_react.useState)("");
+  const [answer3, setAnswer] = (0, import_react.useState)("");
+  const [manualNote, setManualNote] = (0, import_react.useState)("");
+  const [savedNotes, setSavedNotes] = (0, import_react.useState)(() => notesForPracticeAiKey(key));
+  const [status, setStatus] = (0, import_react.useState)("");
+  const addSavedNote = (text31) => {
+    const all = readPracticeAiNotes();
+    const next = [...notesForPracticeAiKey(key), { id: `${Date.now()}-${Math.random().toString(16).slice(2)}`, text: text31 }];
+    all[key] = next;
+    writePracticeAiNotes(all);
+    setSavedNotes(next);
+  };
+  const ask = async () => {
+    if (!question.trim()) return setStatus("\u8BF7\u8F93\u5165\u95EE\u9898\u3002");
+    setStatus("\u601D\u8003\u4E2D\u2026");
+    setAnswer("");
+    try {
+      const response = await fetch("/api/grammar/notebook-ai", { method: "POST", headers: { "Content-Type": "application/json", Authorization: `Bearer ${localStorage.getItem("light_blog_token") || ""}` }, body: JSON.stringify({ question, lessonId: item2.id, pageNo: slot.id }) });
+      const data = await response.json().catch(() => ({}));
+      if (!response.ok) throw new Error(data.error || data.message || "AI \u8BF7\u6C42\u5931\u8D25\u3002");
+      const nextAnswer = practiceAiAnswerFromResponse(data);
+      if (!nextAnswer) return setStatus("AI \u672A\u8FD4\u56DE\u53EF\u4FDD\u5B58\u7684\u56DE\u7B54\uFF0C\u8BF7\u91CD\u8BD5\u3002");
+      setAnswer(nextAnswer);
+      setStatus("\u56DE\u7B54\u5DF2\u751F\u6210\u3002");
+    } catch (error) {
+      setStatus(error.message || "AI \u8BF7\u6C42\u5931\u8D25\u3002");
     }
-  );
+  };
+  const erase = (noteId) => {
+    const all = readPracticeAiNotes();
+    const next = notesForPracticeAiKey(key).filter((note) => note.id !== noteId);
+    if (next.length) all[key] = next;
+    else delete all[key];
+    writePracticeAiNotes(all);
+    setSavedNotes(next);
+  };
+  return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "practice-ai-note", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "practice-note-tools", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { type: "button", className: "practice-ai-trigger", onClick: () => setOpen((value) => !value), "aria-expanded": open, title: "\u95EE AI", children: "\u2726" }),
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { type: "button", className: "practice-manual-note-trigger", onClick: () => setManualOpen((value) => !value), "aria-expanded": manualOpen, title: "\u6DFB\u52A0\u7B14\u8BB0", children: "\u270E" })
+    ] }),
+    manualOpen ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "practice-manual-note-panel", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("textarea", { value: manualNote, onChange: (event) => setManualNote(event.target.value), placeholder: "\u5199\u4E0B\u4F60\u7684\u7B14\u8BB0\u2026", rows: "2" }),
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { type: "button", onClick: () => {
+        if (!manualNote.trim()) return;
+        addSavedNote(manualNote.trim());
+        setManualNote("");
+        setManualOpen(false);
+      }, children: "\u4FDD\u5B58\u7B14\u8BB0" })
+    ] }) : null,
+    open ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "practice-ai-panel", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("textarea", { value: question, onChange: (event) => setQuestion(event.target.value), placeholder: "\u5411 AI \u63D0\u95EE\u2026", rows: "2" }),
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { type: "button", onClick: ask, children: "\u63D0\u95EE" }),
+      status ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("small", { children: status }) : null,
+      answer3 ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "practice-ai-answer", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("strong", { children: "AI \u56DE\u7B54" }),
+        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { children: answer3 }),
+        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "practice-ai-actions", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { type: "button", onClick: () => {
+            addSavedNote(`\u95EE\uFF1A${question.trim()}
+\u7B54\uFF1A${answer3.trim()}`);
+            setAnswer("");
+            setQuestion("");
+            setStatus("");
+            setOpen(false);
+          }, children: "\u5B58\u7B14\u8BB0" }),
+          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { type: "button", onClick: () => {
+            setAnswer("");
+            setStatus("\u5DF2\u5E9F\u5F03\u672C\u6B21\u56DE\u7B54\u3002");
+          }, children: "\u5E9F\u5F03" })
+        ] })
+      ] }) : null
+    ] }) : null,
+    savedNotes.length ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "practice-ai-saved-list", children: savedNotes.map((note) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("article", { className: "practice-ai-saved", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { type: "button", className: "practice-ai-erase", onClick: () => erase(note.id), "aria-label": "\u5220\u9664\u7B14\u8BB0", title: "\u5220\u9664\u7B14\u8BB0", children: "\u232B" }),
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("pre", { children: note.text })
+    ] }, note.id)) }) : null
+  ] });
+}
+function practiceAiAnswerFromResponse(data) {
+  return String([data?.answer, data?.data?.answer, data?.content, data?.data?.content].find((value) => typeof value === "string" && value.trim()) || "").trim();
+}
+function readPracticeAiNotes() {
+  try {
+    return JSON.parse(localStorage.getItem(PRACTICE_AI_NOTES_KEY) || "{}");
+  } catch {
+    return {};
+  }
+}
+function writePracticeAiNotes(notes) {
+  localStorage.setItem(PRACTICE_AI_NOTES_KEY, JSON.stringify(notes));
+}
+function notesForPracticeAiKey(key) {
+  const stored = readPracticeAiNotes()[key];
+  return Array.isArray(stored) ? stored : stored ? [{ id: "legacy", text: stored }] : [];
 }
 function DisplayAssets({ assetIds, assetMap }) {
   return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "related-asset-strip", children: assetIds.map((id) => {

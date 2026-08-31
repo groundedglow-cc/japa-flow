@@ -1019,25 +1019,28 @@ function IncorrectReasonPopover({ item, answer, result }) {
 function CorrectAnswerComparisonPopover({ item, answer }) {
   const [isOpen, setIsOpen] = useState(false);
   const popoverId = `${item.id}-answer-comparison`;
+  const exact = isExactCorrectAnswer(item, answer);
+  const resultLabel = exact ? "完全正确" : "答案等价";
 
   return (
     <div className="incorrect-reason-popover correct-answer-popover">
       <button
         type="button"
-        className="incorrect-reason-trigger correct-answer-trigger"
-        aria-label={`查看第 ${item.number} 题答案对比`}
+        className={`incorrect-reason-trigger correct-answer-trigger${exact ? "" : " equivalent-answer-trigger"}`}
+        aria-label={`第 ${item.number} 题${resultLabel}，查看答案对比`}
+        title={resultLabel}
         aria-expanded={isOpen}
         aria-controls={popoverId}
         onClick={() => setIsOpen((value) => !value)}
       >
-        ✓
+        {exact ? "✓" : "≈"}
       </button>
       {isOpen ? (
         <>
           <button className="incorrect-reason-backdrop" type="button" aria-label="关闭答案对比" onClick={() => setIsOpen(false)} />
           <div className="incorrect-reason-panel correct-answer-panel" id={popoverId} role="dialog" aria-label={`第 ${item.number} 题答案对比`} onClick={(event) => event.stopPropagation()}>
             <div className="incorrect-reason-head correct-answer-head">
-              <strong>答案对比</strong>
+              <strong>{resultLabel} · 答案对比</strong>
               <button type="button" onClick={() => setIsOpen(false)} aria-label="关闭答案对比">×</button>
             </div>
             <CorrectAnswerComparison item={item} answer={answer} />
@@ -1046,6 +1049,25 @@ function CorrectAnswerComparisonPopover({ item, answer }) {
       ) : null}
     </div>
   );
+}
+
+function isExactCorrectAnswer(item, attempt) {
+  if (item.choices?.length) {
+    const actual = normalizeChoiceIds(attempt?.choiceIds || []);
+    const expected = normalizeChoiceIds(item.answer?.choiceIds || []);
+    return actual.length === expected.length && actual.every((choiceId, index) => choiceId === expected[index]);
+  }
+  if (!item.inputSlots?.length) return false;
+  return item.inputSlots.every((slot) => {
+    const expected = primaryAnswerValueForSlot(item, slot.id);
+    const actual = String(attempt?.slotValues?.[slot.id] || "").trim();
+    return Boolean(expected) && actual === expected;
+  });
+}
+
+function primaryAnswerValueForSlot(item, slotId) {
+  const value = item.answer?.slotValues?.[slotId];
+  return Array.isArray(value) ? value.map((entry) => String(entry || "").trim()).filter(Boolean).join("\n") : String(value || "").trim();
 }
 
 function CorrectAnswerComparison({ item, answer }) {
@@ -1111,28 +1133,71 @@ function InputSlotView({ item, slot, admin, storedAnswer, gradingResult }) {
 
   if (slot.multiline || slot.expectedUnit === "dialogue") {
     return (
-      <textarea
-        name={slotFieldName(item.id, slot.id)}
-        className={className}
-        rows={slot.rows || 3}
-        aria-label={label}
-        placeholder={placeholder}
-        defaultValue={defaultValue}
-        data-result={result || undefined}
-      />
+      <div className="practice-input-with-notes">
+        <textarea name={slotFieldName(item.id, slot.id)} className={className} rows={slot.rows || 3} aria-label={label} placeholder={placeholder} defaultValue={defaultValue} data-result={result || undefined} />
+        <PracticeAiNote item={item} slot={slot} />
+      </div>
     );
   }
   return (
-    <input
-      name={slotFieldName(item.id, slot.id)}
-      className={className}
-      aria-label={label}
-      placeholder={placeholder}
-      defaultValue={defaultValue}
-      data-result={result || undefined}
-    />
+    <div className="practice-input-with-notes">
+      <input name={slotFieldName(item.id, slot.id)} className={className} aria-label={label} placeholder={placeholder} defaultValue={defaultValue} data-result={result || undefined} />
+      <PracticeAiNote item={item} slot={slot} />
+    </div>
   );
 }
+
+const PRACTICE_AI_NOTES_KEY = "japaflow.practice.aiNotes.v1";
+
+function PracticeAiNote({ item, slot }) {
+  const key = `${item.id}:${slot.id}`;
+  const [open, setOpen] = useState(false);
+  const [manualOpen, setManualOpen] = useState(false);
+  const [question, setQuestion] = useState("");
+  const [answer, setAnswer] = useState("");
+  const [manualNote, setManualNote] = useState("");
+  const [savedNotes, setSavedNotes] = useState(() => notesForPracticeAiKey(key));
+  const [status, setStatus] = useState("");
+  const addSavedNote = (text) => {
+    const all = readPracticeAiNotes();
+    const next = [...notesForPracticeAiKey(key), { id: `${Date.now()}-${Math.random().toString(16).slice(2)}`, text }];
+    all[key] = next;
+    writePracticeAiNotes(all);
+    setSavedNotes(next);
+  };
+  const ask = async () => {
+    if (!question.trim()) return setStatus("请输入问题。");
+    setStatus("思考中…"); setAnswer("");
+    try {
+      const response = await fetch("/api/grammar/notebook-ai", { method: "POST", headers: { "Content-Type": "application/json", Authorization: `Bearer ${localStorage.getItem("light_blog_token") || ""}` }, body: JSON.stringify({ question, lessonId: item.id, pageNo: slot.id }) });
+      const data = await response.json().catch(() => ({}));
+      if (!response.ok) throw new Error(data.error || data.message || "AI 请求失败。");
+      const nextAnswer = practiceAiAnswerFromResponse(data);
+      if (!nextAnswer) return setStatus("AI 未返回可保存的回答，请重试。");
+      setAnswer(nextAnswer); setStatus("回答已生成。");
+    } catch (error) { setStatus(error.message || "AI 请求失败。"); }
+  };
+  const erase = (noteId) => {
+    const all = readPracticeAiNotes();
+    const next = notesForPracticeAiKey(key).filter((note) => note.id !== noteId);
+    if (next.length) all[key] = next; else delete all[key];
+    writePracticeAiNotes(all); setSavedNotes(next);
+  };
+  return <div className="practice-ai-note">
+    <div className="practice-note-tools">
+      <button type="button" className="practice-ai-trigger" onClick={() => setOpen((value) => !value)} aria-expanded={open} title="问 AI">✦</button>
+      <button type="button" className="practice-manual-note-trigger" onClick={() => setManualOpen((value) => !value)} aria-expanded={manualOpen} title="添加笔记">✎</button>
+    </div>
+    {manualOpen ? <div className="practice-manual-note-panel"><textarea value={manualNote} onChange={(event) => setManualNote(event.target.value)} placeholder="写下你的笔记…" rows="2" /><button type="button" onClick={() => { if (!manualNote.trim()) return; addSavedNote(manualNote.trim()); setManualNote(""); setManualOpen(false); }}>保存笔记</button></div> : null}
+    {open ? <div className="practice-ai-panel"><textarea value={question} onChange={(event) => setQuestion(event.target.value)} placeholder="向 AI 提问…" rows="2" /><button type="button" onClick={ask}>提问</button>{status ? <small>{status}</small> : null}{answer ? <div className="practice-ai-answer"><strong>AI 回答</strong><p>{answer}</p><div className="practice-ai-actions"><button type="button" onClick={() => { addSavedNote(`问：${question.trim()}\n答：${answer.trim()}`); setAnswer(""); setQuestion(""); setStatus(""); setOpen(false); }}>存笔记</button><button type="button" onClick={() => { setAnswer(""); setStatus("已废弃本次回答。"); }}>废弃</button></div></div> : null}</div> : null}
+    {savedNotes.length ? <div className="practice-ai-saved-list">{savedNotes.map((note) => <article className="practice-ai-saved" key={note.id}><button type="button" className="practice-ai-erase" onClick={() => erase(note.id)} aria-label="删除笔记" title="删除笔记">⌫</button><pre>{note.text}</pre></article>)}</div> : null}
+  </div>;
+}
+
+function practiceAiAnswerFromResponse(data) { return String([data?.answer, data?.data?.answer, data?.content, data?.data?.content].find((value) => typeof value === "string" && value.trim()) || "").trim(); }
+function readPracticeAiNotes() { try { return JSON.parse(localStorage.getItem(PRACTICE_AI_NOTES_KEY) || "{}"); } catch { return {}; } }
+function writePracticeAiNotes(notes) { localStorage.setItem(PRACTICE_AI_NOTES_KEY, JSON.stringify(notes)); }
+function notesForPracticeAiKey(key) { const stored = readPracticeAiNotes()[key]; return Array.isArray(stored) ? stored : stored ? [{ id: "legacy", text: stored }] : []; }
 
 function DisplayAssets({ assetIds, assetMap }) {
   return (

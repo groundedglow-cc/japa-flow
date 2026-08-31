@@ -86,12 +86,14 @@ button {
   position: sticky;
   top: 0;
   z-index: 10;
+  width: min(1240px, 100%);
+  margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 18px;
   min-height: 64px;
-  padding: 0 28px;
+  padding: 0 42px;
   border-bottom: 1px solid var(--line);
   background: rgba(242, 247, 249, 0.94);
   backdrop-filter: blur(12px);
@@ -502,7 +504,7 @@ h3 {
 }
 
 .course-home h1 {
-  font-size: clamp(38px, 4.6vw, 62px);
+  font-size: clamp(38px, 4.6vw, 54px);
   letter-spacing: -0.055em;
 }
 
@@ -619,24 +621,17 @@ h3 {
 
 .course-home-intro {
   grid-column: 1 / -1;
-  max-width: 75ch;
-  color: #61726c;
-}
-
-.course-home-intro summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
   width: fit-content;
-  cursor: pointer;
   color: #52736a;
   font-size: 13px;
   font-weight: 750;
+  text-decoration: none;
 }
 
-.course-home-intro p {
-  margin: 14px 0 0;
-  color: #50615b;
-  font-size: 14px;
-  line-height: 1.8;
-}
+.course-home-intro:hover { color: var(--accent); }
 
 .course-level-section {
   position: relative;
