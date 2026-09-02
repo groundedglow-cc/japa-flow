@@ -538,7 +538,7 @@
       }
 
       .word-list button {
-        min-height: 42px;
+        min-height: 50px;
         display: flex;
         align-items: center;
         text-align: left;
@@ -591,9 +591,24 @@
 
       .word-list strong {
         display: block;
+        min-width: 0;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
+      }
+
+      /* 单词快捷入口也展示与主词卡一致的假名标注。 */
+      .word-list strong ruby {
+        ruby-position: over;
+        ruby-align: center;
+      }
+
+      .word-list strong rt {
+        color: var(--muted);
+        font-size: 0.48em;
+        font-weight: 500;
+        line-height: 1;
+        user-select: none;
       }
 
       .word-list button.active {
@@ -613,7 +628,8 @@
       }
 
       .word-list button.word-clicked.word-clicked-strong,
-      .word-list button.word-clicked.word-clicked-strong strong {
+      .word-list button.word-clicked.word-clicked-strong strong,
+      .word-list button.word-clicked.word-clicked-strong rt {
         color: #fff;
       }
 
@@ -1244,7 +1260,7 @@
             (word, index) => `
           <button type="button" class="${wordListClass(word, index)}" data-index="${index}"${wordClickStyle(word)} title="${escapeHtml(wordClickLabel(word))}">
             <span class="word-list-main">
-              <strong>${escapeHtml(word.writing || word.kana)}</strong>
+              <strong>${renderWordWriting(word)}</strong>
               ${isAdminMode() ? renderReviewDot(word) : ""}
             </span>
           </button>
