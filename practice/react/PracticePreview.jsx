@@ -242,7 +242,10 @@ export function PracticePreview({ practice, localPractice = null }) {
                 className={activity.id === currentActivity?.id ? "active" : ""}
                 title={activity.title}
               >
-                <small>{sectionLabel[activity.section]} · {activity.order}</small>
+                <small>
+                  {sectionLabel[activity.section]} · {activity.order}
+                  <em className={`activity-nav-mobile-count${progress.percent === 100 ? " complete" : ""}`}> · {progress.completed}/{progress.total}</em>
+                </small>
                 <span>{activity.title}</span>
                 <div className="activity-nav-progress" aria-label={`完成度 ${progress.percent}%${progress.incorrect ? `，错题 ${progress.incorrect} 题` : ""}`}>
                   <div className="activity-progress-meta">
@@ -266,6 +269,9 @@ export function PracticePreview({ practice, localPractice = null }) {
             );
           })}
         </nav>
+        <div className="practice-progress-dots" aria-label={`当前第 ${Math.max(0, activities.findIndex((activity) => activity.id === currentActivity?.id) + 1)} 题，共 ${activities.length} 题`}>
+          {activities.map((activity, index) => <i key={activity.id} className={activity.id === currentActivity?.id ? "active" : ""} title={`第 ${index + 1} 题`} />)}
+        </div>
       </aside>
 
       <section className="practice-content">
@@ -520,7 +526,7 @@ function PracticeActivity({ activity, practice, admin, record, isReady, answerAl
       <div className="activity-head">
         <div>
           <span className="activity-kicker">{sectionLabel[activity.section]} · {activity.order}</span>
-          <h2>{activity.title}</h2>
+          <h2><span className="activity-kicker-inline">{sectionLabel[activity.section]} · {activity.order}</span>{activity.title}</h2>
           {activity.instruction ? <p>{activity.instruction}</p> : null}
         </div>
       </div>
@@ -591,12 +597,20 @@ function PracticeActivity({ activity, practice, admin, record, isReady, answerAl
               <span>提交后会本地保存并恢复你的作答记录</span>
             </div>
           )}
+          <div className="activity-nav-actions activity-nav-actions-mobile">
+            {previousActivity ? (
+              <button type="button" className="secondary-action" onClick={() => onNavigate(previousActivity.id)}>上一题</button>
+            ) : null}
+            {nextActivity ? (
+              <button type="button" className="secondary-action" onClick={() => onNavigate(nextActivity.id)}>下一题</button>
+            ) : null}
+          </div>
           {activity.requiresAudio || activity.audio ? (
             <p className="submit-audio-hint">提示：录音转写可能不准确，提交前请人工核对。</p>
           ) : null}
           {submitStatus.message ? <p className={`submit-status-message ${submitStatus.state}`}>{submitStatus.message}</p> : null}
         </div>
-        <div className="activity-nav-actions">
+        <div className="activity-nav-actions activity-nav-actions-desktop">
           {previousActivity ? (
             <button type="button" className="secondary-action" onClick={() => onNavigate(previousActivity.id)}>
               上一题
@@ -1033,7 +1047,7 @@ function CorrectAnswerComparisonPopover({ item, answer }) {
         aria-controls={popoverId}
         onClick={() => setIsOpen((value) => !value)}
       >
-        {exact ? "✓" : "≈"}
+        ✓
       </button>
       {isOpen ? (
         <>
@@ -1093,19 +1107,22 @@ function Choices({ choices, item, admin, storedAnswer, gradingResult }) {
   const isMultiChoice = (item.answer?.choiceIds || []).length > 1;
   const choiceResult = gradingResult?.fieldResults?.[CHOICE_RESULT_KEY] || gradingResult?.status;
   return (
-    <div className="choice-row">
-      {choices.map((choice) => (
-        <label key={choice.id} data-result={currentChoiceIdSet.has(choice.id) ? choiceResult || undefined : undefined}>
-          <input
-            type={isMultiChoice ? "checkbox" : "radio"}
-            name={item.id}
-            value={choice.id}
-            defaultChecked={currentChoiceIdSet.has(choice.id)}
-          />
-          <span>{choice.label}</span>
-        </label>
-      ))}
-    </div>
+    <>
+      <div className="choice-row">
+        {choices.map((choice) => (
+          <label key={choice.id} data-result={currentChoiceIdSet.has(choice.id) ? choiceResult || undefined : undefined}>
+            <input
+              type={isMultiChoice ? "checkbox" : "radio"}
+              name={item.id}
+              value={choice.id}
+              defaultChecked={currentChoiceIdSet.has(choice.id)}
+            />
+            <span>{choice.label}</span>
+          </label>
+        ))}
+      </div>
+      <PracticeAiNote item={item} slot={{ id: "choice" }} />
+    </>
   );
 }
 
@@ -1152,30 +1169,47 @@ const PRACTICE_AI_NOTES_KEY = "japaflow.practice.aiNotes.v1";
 function PracticeAiNote({ item, slot }) {
   const key = `${item.id}:${slot.id}`;
   const [open, setOpen] = useState(false);
-  const [manualOpen, setManualOpen] = useState(false);
-  const [question, setQuestion] = useState("");
+  const [closing, setClosing] = useState(false);
+  const [draft, setDraft] = useState("");
   const [answer, setAnswer] = useState("");
-  const [manualNote, setManualNote] = useState("");
   const [savedNotes, setSavedNotes] = useState(() => notesForPracticeAiKey(key));
   const [status, setStatus] = useState("");
-  const addSavedNote = (text) => {
+  const [colorPickerId, setColorPickerId] = useState("");
+  const [editingId, setEditingId] = useState("");
+  const [editingText, setEditingText] = useState("");
+  const addSavedNote = ({ text, kind = "note", color }) => {
     const all = readPracticeAiNotes();
-    const next = [...notesForPracticeAiKey(key), { id: `${Date.now()}-${Math.random().toString(16).slice(2)}`, text }];
+    const next = [...notesForPracticeAiKey(key), { id: `${Date.now()}-${Math.random().toString(16).slice(2)}`, text, kind, color: color || (kind === "ai" ? "purple" : "yellow") }];
     all[key] = next;
     writePracticeAiNotes(all);
     setSavedNotes(next);
   };
   const ask = async () => {
-    if (!question.trim()) return setStatus("请输入问题。");
+    if (!draft.trim()) return setStatus("请输入问题。");
     setStatus("思考中…"); setAnswer("");
     try {
-      const response = await fetch("/api/grammar/notebook-ai", { method: "POST", headers: { "Content-Type": "application/json", Authorization: `Bearer ${localStorage.getItem("light_blog_token") || ""}` }, body: JSON.stringify({ question, lessonId: item.id, pageNo: slot.id }) });
+      const response = await fetch("/api/grammar/notebook-ai", { method: "POST", headers: { "Content-Type": "application/json", Authorization: `Bearer ${localStorage.getItem("light_blog_token") || ""}` }, body: JSON.stringify({ question: draft, lessonId: item.id, pageNo: slot.id }) });
       const data = await response.json().catch(() => ({}));
+      if (response.status === 401 || response.status === 403) {
+        notifyPracticeAiAuthExpired();
+        throw new Error("登录已失效，正在跳转登录页。");
+      }
       if (!response.ok) throw new Error(data.error || data.message || "AI 请求失败。");
       const nextAnswer = practiceAiAnswerFromResponse(data);
       if (!nextAnswer) return setStatus("AI 未返回可保存的回答，请重试。");
       setAnswer(nextAnswer); setStatus("回答已生成。");
     } catch (error) { setStatus(error.message || "AI 请求失败。"); }
+  };
+  const closePanel = () => {
+    if (!open || closing) return;
+    setClosing(true);
+    window.setTimeout(() => { setOpen(false); setClosing(false); setDraft(""); setAnswer(""); setStatus(""); }, 180);
+  };
+  const saveDraft = () => {
+    const text = answer ? `问：${draft.trim()}\n答：${answer.trim()}` : draft.trim();
+    if (!text) return;
+    addSavedNote({ text, kind: answer ? "ai" : "note" });
+    closePanel();
   };
   const erase = (noteId) => {
     const all = readPracticeAiNotes();
@@ -1183,21 +1217,50 @@ function PracticeAiNote({ item, slot }) {
     if (next.length) all[key] = next; else delete all[key];
     writePracticeAiNotes(all); setSavedNotes(next);
   };
+  const changeColor = (noteId, color) => {
+    const all = readPracticeAiNotes();
+    const next = notesForPracticeAiKey(key).map((note) => note.id === noteId ? { ...note, color } : note);
+    all[key] = next; writePracticeAiNotes(all); setSavedNotes(next); setColorPickerId("");
+  };
+  const saveEdit = (noteId) => {
+    const text = editingText.trim();
+    if (!text) return;
+    const all = readPracticeAiNotes();
+    const next = notesForPracticeAiKey(key).map((note) => note.id === noteId ? { ...note, text } : note);
+    all[key] = next; writePracticeAiNotes(all); setSavedNotes(next); setEditingId(""); setEditingText("");
+  };
+  const autoResize = (event) => { const textarea = event.currentTarget; textarea.style.height = "auto"; textarea.style.height = `${Math.max(38, textarea.scrollHeight)}px`; };
   return <div className="practice-ai-note">
     <div className="practice-note-tools">
-      <button type="button" className="practice-ai-trigger" onClick={() => setOpen((value) => !value)} aria-expanded={open} title="问 AI">✦</button>
-      <button type="button" className="practice-manual-note-trigger" onClick={() => setManualOpen((value) => !value)} aria-expanded={manualOpen} title="添加笔记">✎</button>
+      <button type="button" className={`practice-note-trigger${open ? " active" : ""}`} onClick={() => open ? closePanel() : (setClosing(false), setOpen(true))} aria-expanded={open} aria-pressed={open} title="问 AI 或记笔记"><span>✦</span></button>
     </div>
-    {manualOpen ? <div className="practice-manual-note-panel"><textarea value={manualNote} onChange={(event) => setManualNote(event.target.value)} placeholder="写下你的笔记…" rows="2" /><button type="button" onClick={() => { if (!manualNote.trim()) return; addSavedNote(manualNote.trim()); setManualNote(""); setManualOpen(false); }}>保存笔记</button></div> : null}
-    {open ? <div className="practice-ai-panel"><textarea value={question} onChange={(event) => setQuestion(event.target.value)} placeholder="向 AI 提问…" rows="2" /><button type="button" onClick={ask}>提问</button>{status ? <small>{status}</small> : null}{answer ? <div className="practice-ai-answer"><strong>AI 回答</strong><p>{answer}</p><div className="practice-ai-actions"><button type="button" onClick={() => { addSavedNote(`问：${question.trim()}\n答：${answer.trim()}`); setAnswer(""); setQuestion(""); setStatus(""); setOpen(false); }}>存笔记</button><button type="button" onClick={() => { setAnswer(""); setStatus("已废弃本次回答。"); }}>废弃</button></div></div> : null}</div> : null}
-    {savedNotes.length ? <div className="practice-ai-saved-list">{savedNotes.map((note) => <article className="practice-ai-saved" key={note.id}><button type="button" className="practice-ai-erase" onClick={() => erase(note.id)} aria-label="删除笔记" title="删除笔记">⌫</button><pre>{note.text}</pre></article>)}</div> : null}
+    {open || closing ? <div className={`practice-note-panel${closing ? " closing" : ""}`}><textarea value={draft} onChange={(event) => setDraft(event.target.value)} onInput={autoResize} placeholder="写下笔记，或输入想问 AI 的问题…" rows="1" autoFocus />{answer ? <div className="practice-ai-answer" aria-label="AI 回答"><strong>AI 回答</strong><p>{answer}</p></div> : null}{status ? <small>{status}</small> : null}{draft.trim() ? <div className="practice-note-actions"><button type="button" onClick={saveDraft}>保存笔记</button><button type="button" onClick={ask}>问 AI</button></div> : null}</div> : null}
+    {savedNotes.length ? <div className="practice-ai-saved-list">{savedNotes.map((note) => <article className={`practice-ai-saved note-color-${note.color || (note.kind === "ai" ? "purple" : "yellow")}`} key={note.id} title="点击更改颜色，双击编辑笔记" onClick={(event) => { if (event.target.closest("textarea, button") || editingId) return; setColorPickerId((value) => value === note.id ? "" : note.id); }} onDoubleClick={(event) => { event.preventDefault(); event.stopPropagation(); setEditingId(note.id); setEditingText(note.text); setColorPickerId(""); }}>
+      <button type="button" className="practice-ai-erase" onClick={(event) => { event.stopPropagation(); erase(note.id); }} aria-label="删除笔记" title="删除笔记">⌫</button>
+      {editingId === note.id ? <div className="practice-note-edit" onClick={(event) => event.stopPropagation()}><textarea value={editingText} onChange={(event) => setEditingText(event.target.value)} onInput={autoResize} rows="2" autoFocus /><button type="button" onClick={(event) => { event.stopPropagation(); saveEdit(note.id); }}>保存修改</button></div> : <pre>{note.text}</pre>}
+      {colorPickerId === note.id ? <div className="practice-note-color-picker" onClick={(event) => event.stopPropagation()}>{["yellow", "purple", "green", "blue", "pink"].map((color) => <button className={`note-color-choice ${color}`} type="button" key={color} onClick={() => changeColor(note.id, color)} aria-label={`标记为${color}`}/>)}</div> : null}
+    </article>)}</div> : null}
   </div>;
 }
 
 function practiceAiAnswerFromResponse(data) { return String([data?.answer, data?.data?.answer, data?.content, data?.data?.content].find((value) => typeof value === "string" && value.trim()) || "").trim(); }
+function notifyPracticeAiAuthExpired() {
+  window.localStorage.removeItem("light_blog_token");
+  window.localStorage.removeItem("light_blog_user");
+  if (window.parent && window.parent !== window) {
+    window.parent.postMessage({ type: "AUTH_EXPIRED" }, window.location.origin);
+    return;
+  }
+  const mainApp = window.location.hostname === "localhost" ? "http://localhost:3000" : "https://groundedglow.cc";
+  window.location.href = `${mainApp}/login?redirect=${encodeURIComponent(window.location.href)}`;
+}
 function readPracticeAiNotes() { try { return JSON.parse(localStorage.getItem(PRACTICE_AI_NOTES_KEY) || "{}"); } catch { return {}; } }
 function writePracticeAiNotes(notes) { localStorage.setItem(PRACTICE_AI_NOTES_KEY, JSON.stringify(notes)); }
-function notesForPracticeAiKey(key) { const stored = readPracticeAiNotes()[key]; return Array.isArray(stored) ? stored : stored ? [{ id: "legacy", text: stored }] : []; }
+function notesForPracticeAiKey(key) {
+  const stored = readPracticeAiNotes()[key];
+  const entries = Array.isArray(stored) ? stored : stored ? [{ id: "legacy", text: stored }] : [];
+  return entries.map((note, index) => typeof note === "string" ? { id: `legacy-${index}`, text: note, kind: "note", color: "yellow" } : { ...note, kind: note.kind || "note", color: note.color || (note.kind === "ai" ? "purple" : "yellow") });
+}
 
 function DisplayAssets({ assetIds, assetMap }) {
   return (

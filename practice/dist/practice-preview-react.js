@@ -22332,7 +22332,13 @@ function PracticePreview({ practice, localPractice: localPractice2 = null }) {
               /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("small", { children: [
                 sectionLabel[activity.section],
                 " \xB7 ",
-                activity.order
+                activity.order,
+                /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("em", { className: `activity-nav-mobile-count${progress.percent === 100 ? " complete" : ""}`, children: [
+                  " \xB7 ",
+                  progress.completed,
+                  "/",
+                  progress.total
+                ] })
               ] }),
               /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: activity.title }),
               /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "activity-nav-progress", "aria-label": `\u5B8C\u6210\u5EA6 ${progress.percent}%${progress.incorrect ? `\uFF0C\u9519\u9898 ${progress.incorrect} \u9898` : ""}`, children: [
@@ -22369,7 +22375,8 @@ function PracticePreview({ practice, localPractice: localPractice2 = null }) {
           },
           activity.id
         );
-      }) })
+      }) }),
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "practice-progress-dots", "aria-label": `\u5F53\u524D\u7B2C ${Math.max(0, activities30.findIndex((activity) => activity.id === currentActivity?.id) + 1)} \u9898\uFF0C\u5171 ${activities30.length} \u9898`, children: activities30.map((activity, index) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("i", { className: activity.id === currentActivity?.id ? "active" : "", title: `\u7B2C ${index + 1} \u9898` }, activity.id)) })
     ] }),
     /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", { className: "practice-content", children: [
       admin ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(PracticePublishPanel, { lessonId: practice.lessonId, practice, localPractice: localPractice2 }) : null,
@@ -22605,7 +22612,14 @@ function PracticeActivity({ activity, practice, admin, record, isReady, answerAl
         " \xB7 ",
         activity.order
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h2", { children: activity.title }),
+      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("h2", { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { className: "activity-kicker-inline", children: [
+          sectionLabel[activity.section],
+          " \xB7 ",
+          activity.order
+        ] }),
+        activity.title
+      ] }),
       activity.instruction ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { children: activity.instruction }) : null
     ] }) }),
     /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ActivityAudio, { activity, audioUrl: audioUrl2 }),
@@ -22658,10 +22672,14 @@ function PracticeActivity({ activity, practice, admin, record, isReady, answerAl
           /* @__PURE__ */ (0, import_jsx_runtime.jsx)("strong", { children: "\u672A\u63D0\u4EA4" }),
           /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "\u63D0\u4EA4\u540E\u4F1A\u672C\u5730\u4FDD\u5B58\u5E76\u6062\u590D\u4F60\u7684\u4F5C\u7B54\u8BB0\u5F55" })
         ] }),
+        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "activity-nav-actions activity-nav-actions-mobile", children: [
+          previousActivity ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { type: "button", className: "secondary-action", onClick: () => onNavigate(previousActivity.id), children: "\u4E0A\u4E00\u9898" }) : null,
+          nextActivity ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { type: "button", className: "secondary-action", onClick: () => onNavigate(nextActivity.id), children: "\u4E0B\u4E00\u9898" }) : null
+        ] }),
         activity.requiresAudio || activity.audio ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { className: "submit-audio-hint", children: "\u63D0\u793A\uFF1A\u5F55\u97F3\u8F6C\u5199\u53EF\u80FD\u4E0D\u51C6\u786E\uFF0C\u63D0\u4EA4\u524D\u8BF7\u4EBA\u5DE5\u6838\u5BF9\u3002" }) : null,
         submitStatus.message ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { className: `submit-status-message ${submitStatus.state}`, children: submitStatus.message }) : null
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "activity-nav-actions", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "activity-nav-actions activity-nav-actions-desktop", children: [
         previousActivity ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { type: "button", className: "secondary-action", onClick: () => onNavigate(previousActivity.id), children: "\u4E0A\u4E00\u9898" }) : null,
         nextActivity ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { type: "button", className: "secondary-action", onClick: () => onNavigate(nextActivity.id), children: "\u4E0B\u4E00\u9898" }) : null
       ] })
@@ -22987,7 +23005,7 @@ function CorrectAnswerComparisonPopover({ item: item2, answer: answer3 }) {
         "aria-expanded": isOpen,
         "aria-controls": popoverId,
         onClick: () => setIsOpen((value) => !value),
-        children: exact ? "\u2713" : "\u2248"
+        children: "\u2713"
       }
     ),
     isOpen ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [
@@ -23037,18 +23055,21 @@ function Choices({ choices, item: item2, admin, storedAnswer, gradingResult }) {
   const currentChoiceIdSet = new Set(currentChoiceIds);
   const isMultiChoice = (item2.answer?.choiceIds || []).length > 1;
   const choiceResult = gradingResult?.fieldResults?.[CHOICE_RESULT_KEY] || gradingResult?.status;
-  return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "choice-row", children: choices.map((choice) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { "data-result": currentChoiceIdSet.has(choice.id) ? choiceResult || void 0 : void 0, children: [
-    /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
-      "input",
-      {
-        type: isMultiChoice ? "checkbox" : "radio",
-        name: item2.id,
-        value: choice.id,
-        defaultChecked: currentChoiceIdSet.has(choice.id)
-      }
-    ),
-    /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: choice.label })
-  ] }, choice.id)) });
+  return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [
+    /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "choice-row", children: choices.map((choice) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { "data-result": currentChoiceIdSet.has(choice.id) ? choiceResult || void 0 : void 0, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+        "input",
+        {
+          type: isMultiChoice ? "checkbox" : "radio",
+          name: item2.id,
+          value: choice.id,
+          defaultChecked: currentChoiceIdSet.has(choice.id)
+        }
+      ),
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: choice.label })
+    ] }, choice.id)) }),
+    /* @__PURE__ */ (0, import_jsx_runtime.jsx)(PracticeAiNote, { item: item2, slot: { id: "choice" } })
+  ] });
 }
 function InputSlotView({ item: item2, slot, admin, storedAnswer, gradingResult }) {
   const defaultValue = defaultFieldValue(item2, slot.id, storedAnswer, admin);
@@ -23081,26 +23102,32 @@ var PRACTICE_AI_NOTES_KEY = "japaflow.practice.aiNotes.v1";
 function PracticeAiNote({ item: item2, slot }) {
   const key = `${item2.id}:${slot.id}`;
   const [open, setOpen] = (0, import_react.useState)(false);
-  const [manualOpen, setManualOpen] = (0, import_react.useState)(false);
-  const [question, setQuestion] = (0, import_react.useState)("");
+  const [closing, setClosing] = (0, import_react.useState)(false);
+  const [draft, setDraft] = (0, import_react.useState)("");
   const [answer3, setAnswer] = (0, import_react.useState)("");
-  const [manualNote, setManualNote] = (0, import_react.useState)("");
   const [savedNotes, setSavedNotes] = (0, import_react.useState)(() => notesForPracticeAiKey(key));
   const [status, setStatus] = (0, import_react.useState)("");
-  const addSavedNote = (text31) => {
+  const [colorPickerId, setColorPickerId] = (0, import_react.useState)("");
+  const [editingId, setEditingId] = (0, import_react.useState)("");
+  const [editingText, setEditingText] = (0, import_react.useState)("");
+  const addSavedNote = ({ text: text31, kind = "note", color }) => {
     const all = readPracticeAiNotes();
-    const next = [...notesForPracticeAiKey(key), { id: `${Date.now()}-${Math.random().toString(16).slice(2)}`, text: text31 }];
+    const next = [...notesForPracticeAiKey(key), { id: `${Date.now()}-${Math.random().toString(16).slice(2)}`, text: text31, kind, color: color || (kind === "ai" ? "purple" : "yellow") }];
     all[key] = next;
     writePracticeAiNotes(all);
     setSavedNotes(next);
   };
   const ask = async () => {
-    if (!question.trim()) return setStatus("\u8BF7\u8F93\u5165\u95EE\u9898\u3002");
+    if (!draft.trim()) return setStatus("\u8BF7\u8F93\u5165\u95EE\u9898\u3002");
     setStatus("\u601D\u8003\u4E2D\u2026");
     setAnswer("");
     try {
-      const response = await fetch("/api/grammar/notebook-ai", { method: "POST", headers: { "Content-Type": "application/json", Authorization: `Bearer ${localStorage.getItem("light_blog_token") || ""}` }, body: JSON.stringify({ question, lessonId: item2.id, pageNo: slot.id }) });
+      const response = await fetch("/api/grammar/notebook-ai", { method: "POST", headers: { "Content-Type": "application/json", Authorization: `Bearer ${localStorage.getItem("light_blog_token") || ""}` }, body: JSON.stringify({ question: draft, lessonId: item2.id, pageNo: slot.id }) });
       const data = await response.json().catch(() => ({}));
+      if (response.status === 401 || response.status === 403) {
+        notifyPracticeAiAuthExpired();
+        throw new Error("\u767B\u5F55\u5DF2\u5931\u6548\uFF0C\u6B63\u5728\u8DF3\u8F6C\u767B\u5F55\u9875\u3002");
+      }
       if (!response.ok) throw new Error(data.error || data.message || "AI \u8BF7\u6C42\u5931\u8D25\u3002");
       const nextAnswer = practiceAiAnswerFromResponse(data);
       if (!nextAnswer) return setStatus("AI \u672A\u8FD4\u56DE\u53EF\u4FDD\u5B58\u7684\u56DE\u7B54\uFF0C\u8BF7\u91CD\u8BD5\u3002");
@@ -23110,6 +23137,24 @@ function PracticeAiNote({ item: item2, slot }) {
       setStatus(error.message || "AI \u8BF7\u6C42\u5931\u8D25\u3002");
     }
   };
+  const closePanel = () => {
+    if (!open || closing) return;
+    setClosing(true);
+    window.setTimeout(() => {
+      setOpen(false);
+      setClosing(false);
+      setDraft("");
+      setAnswer("");
+      setStatus("");
+    }, 180);
+  };
+  const saveDraft = () => {
+    const text31 = answer3 ? `\u95EE\uFF1A${draft.trim()}
+\u7B54\uFF1A${answer3.trim()}` : draft.trim();
+    if (!text31) return;
+    addSavedNote({ text: text31, kind: answer3 ? "ai" : "note" });
+    closePanel();
+  };
   const erase = (noteId) => {
     const all = readPracticeAiNotes();
     const next = notesForPracticeAiKey(key).filter((note) => note.id !== noteId);
@@ -23118,51 +23163,81 @@ function PracticeAiNote({ item: item2, slot }) {
     writePracticeAiNotes(all);
     setSavedNotes(next);
   };
+  const changeColor = (noteId, color) => {
+    const all = readPracticeAiNotes();
+    const next = notesForPracticeAiKey(key).map((note) => note.id === noteId ? { ...note, color } : note);
+    all[key] = next;
+    writePracticeAiNotes(all);
+    setSavedNotes(next);
+    setColorPickerId("");
+  };
+  const saveEdit = (noteId) => {
+    const text31 = editingText.trim();
+    if (!text31) return;
+    const all = readPracticeAiNotes();
+    const next = notesForPracticeAiKey(key).map((note) => note.id === noteId ? { ...note, text: text31 } : note);
+    all[key] = next;
+    writePracticeAiNotes(all);
+    setSavedNotes(next);
+    setEditingId("");
+    setEditingText("");
+  };
+  const autoResize = (event) => {
+    const textarea = event.currentTarget;
+    textarea.style.height = "auto";
+    textarea.style.height = `${Math.max(38, textarea.scrollHeight)}px`;
+  };
   return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "practice-ai-note", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "practice-note-tools", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { type: "button", className: "practice-ai-trigger", onClick: () => setOpen((value) => !value), "aria-expanded": open, title: "\u95EE AI", children: "\u2726" }),
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { type: "button", className: "practice-manual-note-trigger", onClick: () => setManualOpen((value) => !value), "aria-expanded": manualOpen, title: "\u6DFB\u52A0\u7B14\u8BB0", children: "\u270E" })
-    ] }),
-    manualOpen ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "practice-manual-note-panel", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("textarea", { value: manualNote, onChange: (event) => setManualNote(event.target.value), placeholder: "\u5199\u4E0B\u4F60\u7684\u7B14\u8BB0\u2026", rows: "2" }),
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { type: "button", onClick: () => {
-        if (!manualNote.trim()) return;
-        addSavedNote(manualNote.trim());
-        setManualNote("");
-        setManualOpen(false);
-      }, children: "\u4FDD\u5B58\u7B14\u8BB0" })
-    ] }) : null,
-    open ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "practice-ai-panel", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("textarea", { value: question, onChange: (event) => setQuestion(event.target.value), placeholder: "\u5411 AI \u63D0\u95EE\u2026", rows: "2" }),
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { type: "button", onClick: ask, children: "\u63D0\u95EE" }),
-      status ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("small", { children: status }) : null,
-      answer3 ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "practice-ai-answer", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "practice-note-tools", children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { type: "button", className: `practice-note-trigger${open ? " active" : ""}`, onClick: () => open ? closePanel() : (setClosing(false), setOpen(true)), "aria-expanded": open, "aria-pressed": open, title: "\u95EE AI \u6216\u8BB0\u7B14\u8BB0", children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "\u2726" }) }) }),
+    open || closing ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: `practice-note-panel${closing ? " closing" : ""}`, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("textarea", { value: draft, onChange: (event) => setDraft(event.target.value), onInput: autoResize, placeholder: "\u5199\u4E0B\u7B14\u8BB0\uFF0C\u6216\u8F93\u5165\u60F3\u95EE AI \u7684\u95EE\u9898\u2026", rows: "1", autoFocus: true }),
+      answer3 ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "practice-ai-answer", "aria-label": "AI \u56DE\u7B54", children: [
         /* @__PURE__ */ (0, import_jsx_runtime.jsx)("strong", { children: "AI \u56DE\u7B54" }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { children: answer3 }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "practice-ai-actions", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { type: "button", onClick: () => {
-            addSavedNote(`\u95EE\uFF1A${question.trim()}
-\u7B54\uFF1A${answer3.trim()}`);
-            setAnswer("");
-            setQuestion("");
-            setStatus("");
-            setOpen(false);
-          }, children: "\u5B58\u7B14\u8BB0" }),
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { type: "button", onClick: () => {
-            setAnswer("");
-            setStatus("\u5DF2\u5E9F\u5F03\u672C\u6B21\u56DE\u7B54\u3002");
-          }, children: "\u5E9F\u5F03" })
-        ] })
+        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { children: answer3 })
+      ] }) : null,
+      status ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("small", { children: status }) : null,
+      draft.trim() ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "practice-note-actions", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { type: "button", onClick: saveDraft, children: "\u4FDD\u5B58\u7B14\u8BB0" }),
+        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { type: "button", onClick: ask, children: "\u95EE AI" })
       ] }) : null
     ] }) : null,
-    savedNotes.length ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "practice-ai-saved-list", children: savedNotes.map((note) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("article", { className: "practice-ai-saved", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { type: "button", className: "practice-ai-erase", onClick: () => erase(note.id), "aria-label": "\u5220\u9664\u7B14\u8BB0", title: "\u5220\u9664\u7B14\u8BB0", children: "\u232B" }),
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("pre", { children: note.text })
+    savedNotes.length ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "practice-ai-saved-list", children: savedNotes.map((note) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("article", { className: `practice-ai-saved note-color-${note.color || (note.kind === "ai" ? "purple" : "yellow")}`, title: "\u70B9\u51FB\u66F4\u6539\u989C\u8272\uFF0C\u53CC\u51FB\u7F16\u8F91\u7B14\u8BB0", onClick: (event) => {
+      if (event.target.closest("textarea, button") || editingId) return;
+      setColorPickerId((value) => value === note.id ? "" : note.id);
+    }, onDoubleClick: (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      setEditingId(note.id);
+      setEditingText(note.text);
+      setColorPickerId("");
+    }, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { type: "button", className: "practice-ai-erase", onClick: (event) => {
+        event.stopPropagation();
+        erase(note.id);
+      }, "aria-label": "\u5220\u9664\u7B14\u8BB0", title: "\u5220\u9664\u7B14\u8BB0", children: "\u232B" }),
+      editingId === note.id ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "practice-note-edit", onClick: (event) => event.stopPropagation(), children: [
+        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("textarea", { value: editingText, onChange: (event) => setEditingText(event.target.value), onInput: autoResize, rows: "2", autoFocus: true }),
+        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { type: "button", onClick: (event) => {
+          event.stopPropagation();
+          saveEdit(note.id);
+        }, children: "\u4FDD\u5B58\u4FEE\u6539" })
+      ] }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)("pre", { children: note.text }),
+      colorPickerId === note.id ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "practice-note-color-picker", onClick: (event) => event.stopPropagation(), children: ["yellow", "purple", "green", "blue", "pink"].map((color) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { className: `note-color-choice ${color}`, type: "button", onClick: () => changeColor(note.id, color), "aria-label": `\u6807\u8BB0\u4E3A${color}` }, color)) }) : null
     ] }, note.id)) }) : null
   ] });
 }
 function practiceAiAnswerFromResponse(data) {
   return String([data?.answer, data?.data?.answer, data?.content, data?.data?.content].find((value) => typeof value === "string" && value.trim()) || "").trim();
+}
+function notifyPracticeAiAuthExpired() {
+  window.localStorage.removeItem("light_blog_token");
+  window.localStorage.removeItem("light_blog_user");
+  if (window.parent && window.parent !== window) {
+    window.parent.postMessage({ type: "AUTH_EXPIRED" }, window.location.origin);
+    return;
+  }
+  const mainApp = window.location.hostname === "localhost" ? "http://localhost:3000" : "https://groundedglow.cc";
+  window.location.href = `${mainApp}/login?redirect=${encodeURIComponent(window.location.href)}`;
 }
 function readPracticeAiNotes() {
   try {
@@ -23176,7 +23251,8 @@ function writePracticeAiNotes(notes) {
 }
 function notesForPracticeAiKey(key) {
   const stored = readPracticeAiNotes()[key];
-  return Array.isArray(stored) ? stored : stored ? [{ id: "legacy", text: stored }] : [];
+  const entries = Array.isArray(stored) ? stored : stored ? [{ id: "legacy", text: stored }] : [];
+  return entries.map((note, index) => typeof note === "string" ? { id: `legacy-${index}`, text: note, kind: "note", color: "yellow" } : { ...note, kind: note.kind || "note", color: note.color || (note.kind === "ai" ? "purple" : "yellow") });
 }
 function DisplayAssets({ assetIds, assetMap }) {
   return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "related-asset-strip", children: assetIds.map((id) => {

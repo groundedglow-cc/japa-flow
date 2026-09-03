@@ -1405,6 +1405,18 @@ async function askNotebookAi({ question, lessonId, pageNo, authHeader }) {
   if (!key) throw new Error("未配置 DeepSeek 服务。");
   const quota = await reserveAiQuota(authHeader, "deepseek_format");
   let response;
+  const messages = [
+    {
+      role: "system",
+      content: [
+        "你是面向中文母语者的日语学习助手。",
+        "用户可以自由提问：日语句子、单词、语法、翻译、用法或学习建议；直接回答问题，不依赖课程编号或题目编号。",
+        "若用户只输入日语句子，默认简洁说明它的中文意思、读法或关键语法，而不是留空。",
+        "回答必须非常简洁：最多 3 条短句；不要寒暄，不要 Markdown 标题；信息不足时说明需要什么信息。"
+      ].join("\n")
+    },
+    { role: "user", content: cleanQuestion }
+  ];
   try {
     response = await fetch(`${baseUrl}/chat/completions`, {
       method: "POST",
@@ -1412,21 +1424,45 @@ async function askNotebookAi({ question, lessonId, pageNo, authHeader }) {
       body: JSON.stringify({
         model,
         temperature: 0.2,
-        max_tokens: 180,
-        messages: [
-          { role: "system", content: "你是日语学习助手。回答必须非常简洁：最多 3 条短句，不要寒暄，不要 Markdown 标题；若信息不足，直接说明。" },
-          { role: "user", content: `第 ${lessonId || ""} 课教材第 ${pageNo || ""} 页。问题：${cleanQuestion}` }
-        ]
+        max_tokens: 320,
+        messages,
+        thinking: { type: "disabled" },
+        stream: false
       })
     });
   } catch (error) {
     await completeAiQuota(authHeader, quota.requestId, false);
     throw error;
   }
-  const body = await response.json().catch(() => ({}));
+  let body = await response.json().catch(() => ({}));
+  let answer = compactPracticeText(body.choices?.[0]?.message?.content || "", 1000);
+  if (response.ok && !answer) {
+    try {
+      response = await fetch(`${baseUrl}/chat/completions`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Authorization: `Bearer ${key}` },
+        body: JSON.stringify({ model, temperature: 0.2, max_tokens: 320, messages: [...messages, { role: "user", content: "请直接给出简洁的学习回答，不要留空。" }], thinking: { type: "disabled" }, stream: false })
+      });
+      body = await response.json().catch(() => ({}));
+      answer = compactPracticeText(body.choices?.[0]?.message?.content || "", 1000);
+    } catch (error) {
+      await completeAiQuota(authHeader, quota.requestId, false);
+      throw error;
+    }
+  }
   await completeAiQuota(authHeader, quota.requestId, response.ok);
   if (!response.ok) throw new Error(body?.error?.message || `模型服务请求失败（${response.status}）。`);
-  return { answer: compactPracticeText(body.choices?.[0]?.message?.content || "", 1000), model };
+  if (!answer) {
+    console.warn("[grammar/notebook-ai] empty model response", {
+      model,
+      responseId: body?.id || "",
+      finishReason: body?.choices?.[0]?.finish_reason || "",
+      contentLength: String(body?.choices?.[0]?.message?.content || "").length,
+      questionLength: cleanQuestion.length
+    });
+    throw new Error("模型未返回内容，请稍后重试。");
+  }
+  return { answer, model };
 }
 
 async function formatPracticeAnswer({ inputText, examples = "", formatHints = {}, answerUnit = "", authHeader }) {

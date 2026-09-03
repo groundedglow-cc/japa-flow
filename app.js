@@ -1615,6 +1615,7 @@ async function fetchFrontendConfig() {
 }
 
 const state = {
+  mobileMenuOpen: false,
   wordProgress: initialWordProgress(),
   wordLearning: initialWordLearning(),
   exerciseResults: [],
@@ -4488,9 +4489,15 @@ function layout(content) {
   const storedUser = getStoredUser() || {};
   const storedUsername = storedUser.username || "已登录";
   const storedEmail = storedUser.email || "";
+  const mobileAccount = isLoggedIn()
+    ? `<div class="mobile-drawer-account"><span class="mobile-drawer-account-label">当前账号</span><strong>${escapeHtml(storedUsername)}</strong>${storedEmail ? `<small>${escapeHtml(storedEmail)}</small>` : ""}<button type="button" data-header-logout>退出登录</button></div>`
+    : `<div class="mobile-drawer-account"><span class="mobile-drawer-account-label">登录后可同步学习进度</span><button type="button" class="topbar-login" data-header-login>登录</button></div>`;
   return `
     <div class="shell">
       <header class="topbar">
+        <button class="mobile-menu-trigger" type="button" data-mobile-menu-toggle aria-label="打开导航菜单" aria-expanded="${state.mobileMenuOpen ? "true" : "false"}">
+          <span></span><span></span><span></span>
+        </button>
         <div class="brand" role="button" tabindex="0" data-nav="/">
           <span class="brand-mark">日</span>
           <span>JapaFlow</span>
@@ -4519,6 +4526,17 @@ function layout(content) {
           `}
         </div>
       </header>
+      <div class="mobile-drawer-layer ${state.mobileMenuOpen ? "open" : ""}" aria-hidden="${state.mobileMenuOpen ? "false" : "true"}">
+        <button class="mobile-drawer-backdrop" type="button" data-mobile-menu-close aria-label="关闭导航菜单"></button>
+        <aside class="mobile-drawer" aria-label="移动端导航菜单">
+          <div class="mobile-drawer-head"><strong>JapaFlow</strong><button type="button" data-mobile-menu-close aria-label="关闭导航菜单">×</button></div>
+          <nav class="mobile-drawer-nav" aria-label="主导航">
+            ${navLink("/", "首页", current === "home")}
+            ${navLink("/help", "帮助", current === "help")}
+          </nav>
+          ${mobileAccount}
+        </aside>
+      </div>
       ${showLessonSubnav ? lessonSubnav(runtimeLessonId, current) : ""}
       <main class="main">${content}</main>
       ${state.modal ? modal(state.modal) : ""}
@@ -4952,8 +4970,15 @@ function helpFaqCard(item) {
 function helpPage() {
   return layout(`
     <section class="help-page">
-      <p class="help-qa-line"><strong>Q:</strong> 为什么点击答题的麦克风，提示 当前选中了虚拟麦克风（xxxx），请切换为实际麦克风。</p>
-      <p class="help-qa-line"><strong>A:</strong> 电脑端可能有虚拟的麦克风，例如你使用会议软件后浏览器就记住了偏好，你需要选择一个真实可用的麦克风，例如在 Chrome 下设置位置在：chrome://settings/privacy - site settings - microphone 在麦克风选项中，选择可用的那一个。其他浏览器自行检索配置位置。</p>
+      <h1>常见问题</h1>
+      <article class="help-question">
+        <p class="help-qa-line"><strong>Q:</strong> 为什么点击答题的麦克风，提示 当前选中了虚拟麦克风（xxxx），请切换为实际麦克风。</p>
+        <p class="help-qa-line"><strong>A:</strong> 电脑端可能有虚拟的麦克风，例如你使用会议软件后浏览器就记住了偏好，你需要选择一个真实可用的麦克风，例如在 Chrome 下设置位置在：chrome://settings/privacy - site settings - microphone 在麦克风选项中，选择可用的那一个。其他浏览器自行检索配置位置。</p>
+      </article>
+      <article class="help-question">
+        <p class="help-qa-line"><strong>Q:</strong> 如何联系维护者？</p>
+        <p class="help-qa-line"><strong>A:</strong> 邮箱 <a href="mailto:tyfccsu@gmail.com">tyfccsu@gmail.com</a>；wechat: tangyefei24（请备注 japaflow）。</p>
+      </article>
     </section>
   `);
 }
@@ -9191,8 +9216,16 @@ function bind() {
     redirectToLogin(window.location.href);
   }
   app.querySelector('[data-auth-action="login"]')?.addEventListener("click", triggerLogin);
-  app.querySelector("[data-header-login]")?.addEventListener("click", triggerLogin);
-  app.querySelector("[data-header-logout]")?.addEventListener("click", logoutUser);
+  app.querySelectorAll("[data-header-login]").forEach((button) => button.addEventListener("click", triggerLogin));
+  app.querySelectorAll("[data-header-logout]").forEach((button) => button.addEventListener("click", logoutUser));
+  app.querySelectorAll("[data-mobile-menu-toggle]").forEach((button) => button.addEventListener("click", () => {
+    state.mobileMenuOpen = !state.mobileMenuOpen;
+    render();
+  }));
+  app.querySelectorAll("[data-mobile-menu-close]").forEach((button) => button.addEventListener("click", () => {
+    state.mobileMenuOpen = false;
+    render();
+  }));
   app.querySelectorAll("[data-speak]").forEach((button) => {
     button.addEventListener("click", () => playAudio(button.dataset.speak, button.dataset.audio));
   });

@@ -261,6 +261,8 @@
         display: none;
       }
 
+      .image-lightbox { display: none; }
+
       html.embedded .shell {
         width: 100%;
         padding: 0;
@@ -323,6 +325,7 @@
       }
 
       @media (max-width: 560px) {
+        .image-head { display: none; }
         .lesson-grid {
           grid-template-columns: repeat(3, minmax(0, 1fr));
         }
@@ -334,6 +337,14 @@
         .viewer {
           padding: 14px;
         }
+
+        .image-frame img { cursor: zoom-in; }
+        .image-lightbox { position: fixed; z-index: 100; inset: 0; display: none; background: rgba(8, 18, 27, 0.92); }
+        .image-lightbox.open { display: grid; grid-template-rows: auto minmax(0, 1fr); }
+        .image-lightbox-toolbar { display: flex; align-items: center; justify-content: flex-end; gap: 8px; padding: 12px; }
+        .image-lightbox-toolbar button { min-width: 34px; height: 34px; padding: 0 9px; border: 1px solid rgba(255, 255, 255, 0.35); border-radius: 8px; background: rgba(255, 255, 255, 0.12); color: #fff; font-size: 18px; }
+        .image-lightbox-stage { display: grid; min-width: 0; min-height: 0; place-items: center; overflow: auto; padding: 8px 16px 24px; }
+        .image-lightbox-stage img { display: block; width: min(100%, 760px); max-width: none; height: auto; transform-origin: center center; transition: transform 150ms ease; }
       }
     </style>
   </head>
@@ -359,6 +370,15 @@
         <article class="viewer" id="viewer"></article>
       </section>
     </main>
+    <div class="image-lightbox" id="imageLightbox" aria-hidden="true">
+      <div class="image-lightbox-toolbar">
+        <button type="button" data-image-zoom="out" aria-label="缩小图片">−</button>
+        <button type="button" data-image-zoom="reset" aria-label="还原图片">1:1</button>
+        <button type="button" data-image-zoom="in" aria-label="放大图片">+</button>
+        <button type="button" data-image-lightbox-close aria-label="关闭图片">×</button>
+      </div>
+      <div class="image-lightbox-stage"><img id="imageLightboxImage" alt="放大的语法教材图片" /></div>
+    </div>
 
     <script>
       const firstPages = [
@@ -379,6 +399,22 @@
       const lessonGrid = document.querySelector("#lessonGrid");
       const viewer = document.querySelector("#viewer");
       const summary = document.querySelector("#summary");
+      const imageLightbox = document.querySelector("#imageLightbox");
+      const imageLightboxImage = document.querySelector("#imageLightboxImage");
+      let imageZoom = 1;
+
+      function isMobileImageViewer() { return window.matchMedia("(max-width: 560px)").matches; }
+      function updateImageZoom() { imageLightboxImage.style.transform = `scale(${imageZoom})`; }
+      function closeImageLightbox() { imageLightbox.classList.remove("open"); imageLightbox.setAttribute("aria-hidden", "true"); imageLightboxImage.removeAttribute("src"); }
+      function openImageLightbox(image) {
+        if (!isMobileImageViewer()) return;
+        imageZoom = 1;
+        imageLightboxImage.src = image.currentSrc || image.src;
+        imageLightboxImage.alt = image.alt;
+        updateImageZoom();
+        imageLightbox.classList.add("open");
+        imageLightbox.setAttribute("aria-hidden", "false");
+      }
 
       function selectedLessonNo() {
         const params = new URLSearchParams(location.search);
@@ -440,6 +476,22 @@
         if (!button) return;
         location.hash = `lesson=${button.dataset.lesson}`;
       });
+
+      viewer.addEventListener("click", (event) => {
+        const image = event.target.closest(".image-frame img");
+        if (image) openImageLightbox(image);
+      });
+      imageLightbox.addEventListener("click", (event) => {
+        const zoom = event.target.closest("[data-image-zoom]");
+        if (zoom) {
+          const action = zoom.dataset.imageZoom;
+          imageZoom = action === "in" ? Math.min(3, imageZoom + 0.25) : action === "out" ? Math.max(0.75, imageZoom - 0.25) : 1;
+          updateImageZoom();
+          return;
+        }
+        if (event.target.closest("[data-image-lightbox-close]") || event.target === imageLightbox) closeImageLightbox();
+      });
+      window.addEventListener("keydown", (event) => { if (event.key === "Escape") closeImageLightbox(); });
 
       window.addEventListener("hashchange", render);
       render();

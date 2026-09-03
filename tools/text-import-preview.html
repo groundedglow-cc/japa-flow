@@ -273,9 +273,9 @@
 
       .sentence {
         display: grid;
-        grid-template-columns: 36px 1fr auto;
-        gap: 12px;
-        padding: 10px 0;
+        grid-template-columns: 52px 1fr auto;
+        gap: 10px;
+        padding: 9px 0;
         border-bottom: 1px solid #edf0f3;
         align-items: start;
         cursor: pointer;
@@ -582,6 +582,25 @@
           position: static;
         }
       }
+
+      @media (max-width: 640px) {
+        html.embedded .image-panel { display: none; }
+        .section-head { align-items: flex-start; gap: 8px; padding: 10px 11px; }
+        .section-head h3 { margin: 0; font-size: 16px; line-height: 1.35; }
+        .section-actions { gap: 4px; }
+        .section-label { display: none; }
+        .section-toggle, .section-display-toggle { min-width: 48px; padding: 3px 6px; font-size: 11px; }
+        .dialogue { padding: 9px 11px; }
+        .sentence, .line { grid-template-columns: 32px minmax(0, 1fr) auto; gap: 6px; padding: 6px 0; }
+        .speaker { min-width: 29px; height: 24px; font-size: 12px; }
+        .sentence .jp, .sentence .jp .base-text, .line .jp, .line .jp .base-text { font-size: 15px; line-height: 1.38; }
+        .sentence .kana, .sentence .cn, .line .kana, .line .cn { margin-top: 2px; font-size: 13px; line-height: 1.35; }
+        .sentence .segment-actions, .line .segment-actions { gap: 3px; }
+        .sentence .segment-actions button, .line .segment-actions button { min-width: 26px; width: 26px; height: 26px; padding: 0; font-size: 11px; }
+        .block-title { display: none; }
+        .block.scene, .block.narration { font-size: 13px; }
+        .block .cn { margin-top: 0; font-size: 13px; line-height: 1.45; }
+      }
     </style>
   </head>
   <body>
@@ -839,7 +858,7 @@
         return `
           <section class="text-section ${expanded ? "expanded" : "collapsed"}" data-text-section="basic">
             <div class="section-head">
-              <h2>${escapeHtml(basicText.title || "基本课文")}</h2>
+              <h3>${escapeHtml(basicText.title || "基本课文")}</h3>
               <span class="section-actions">
                 <span class="section-label">基本句 + 甲乙对话</span>
                 <button class="section-display-toggle" type="button" data-display-section="basic">${textDisplayModeLabels[mode]}</button>
@@ -872,7 +891,7 @@
         return `
           <section class="text-section ${expanded ? "expanded" : "collapsed"}" data-text-section="application">
             <div class="section-head">
-              <h2>${escapeHtml(applicationText.title || "应用课文")}</h2>
+              <h3>${escapeHtml(applicationText.title || "应用课文")}</h3>
               <span class="section-actions">
                 <span class="section-label">旁白 / 场景 / 多人对话</span>
                 <button class="section-display-toggle" type="button" data-display-section="application">${textDisplayModeLabels[mode]}</button>
