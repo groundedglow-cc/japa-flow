@@ -1396,13 +1396,23 @@ function hasSamePracticeAnswerContent(inputText, formattedText) {
   return Boolean(inputFingerprint) && inputFingerprint === formattedFingerprint;
 }
 
-async function askNotebookAi({ question, lessonId, pageNo, authHeader }) {
+async function askNotebookAi({ question, lessonId, pageNo, contentType, word, authHeader }) {
   const key = process.env.DEEPSEEK_API_KEY;
   const baseUrl = (process.env.DEEPSEEK_BASE_URL || "https://api.deepseek.com").replace(/\/+$/, "");
   const model = process.env.DEEPSEEK_MODEL || "deepseek-v4-flash";
   const cleanQuestion = compactPracticeText(question, 1200);
   if (!cleanQuestion) throw new Error("请输入问题。");
   if (!key) throw new Error("未配置 DeepSeek 服务。");
+  const wordWriting = compactPracticeText(word?.writing || word?.kana || "", 120);
+  const wordKana = compactPracticeText(word?.kana || "", 120);
+  const wordMeaning = Array.isArray(word?.meaningZh)
+    ? word.meaningZh.map((item) => compactPracticeText(item, 120)).filter(Boolean).join("；")
+    : compactPracticeText(word?.meaningZh || "", 240);
+  const context = contentType === "text"
+    ? `第 ${lessonId || ""} 课教材课文`
+    : contentType === "vocabulary"
+      ? `第 ${lessonId || ""} 课词汇「${wordWriting}${wordKana && wordKana !== wordWriting ? `（${wordKana}）` : ""}${wordMeaning ? `，中文释义：${wordMeaning}` : ""}」`
+      : `第 ${lessonId || ""} 课教材第 ${pageNo || ""} 页`;
   const quota = await reserveAiQuota(authHeader, "deepseek_format");
   let response;
   try {
@@ -1415,7 +1425,7 @@ async function askNotebookAi({ question, lessonId, pageNo, authHeader }) {
         max_tokens: 180,
         messages: [
           { role: "system", content: "你是日语学习助手。回答必须非常简洁：最多 3 条短句，不要寒暄，不要 Markdown 标题；若信息不足，直接说明。" },
-          { role: "user", content: `第 ${lessonId || ""} 课教材第 ${pageNo || ""} 页。问题：${cleanQuestion}` }
+          { role: "user", content: `${context}。问题：${cleanQuestion}` }
         ]
       })
     });

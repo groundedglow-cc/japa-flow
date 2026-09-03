@@ -316,7 +316,6 @@ export function PracticePreview({ practice, localPractice = null }) {
       </aside>
 
       <section className="practice-content">
-        <PracticeTextHighlighter />
         {admin ? (
           <PracticePublishPanel
             lessonId={practice.lessonId}
@@ -369,98 +368,6 @@ export function PracticePreview({ practice, localPractice = null }) {
       </section>
     </main>
   );
-}
-
-function PracticeTextHighlighter() {
-  const [selection, setSelection] = useState(null);
-  useEffect(() => {
-    const capture = () => {
-      const selectedRange = window.getSelection()?.rangeCount
-        ? window.getSelection().getRangeAt(0)
-        : null;
-      if (
-        !selectedRange ||
-        selectedRange.collapsed ||
-        !String(selectedRange).trim() ||
-        !closestElement(selectedRange.commonAncestorContainer)?.closest(
-          ".practice-content",
-        ) ||
-        closestElement(selectedRange.commonAncestorContainer)?.closest(
-          "input, textarea",
-        )
-      )
-        return setSelection(null);
-      const range = expandRangeToRuby(selectedRange.cloneRange());
-      const rect = range.getBoundingClientRect();
-      setSelection({
-        range: range.cloneRange(),
-        top: rect.bottom + window.scrollY + 6,
-        left: rect.left + window.scrollX,
-      });
-    };
-    const removeHighlight = (event) => {
-      const mark =
-        event.target instanceof Element
-          ? event.target.closest("mark[data-practice-highlight]")
-          : null;
-      if (!mark) return;
-      const parent = mark.parentNode;
-      while (mark.firstChild) parent.insertBefore(mark.firstChild, mark);
-      parent.removeChild(mark);
-      parent.normalize();
-      window.getSelection()?.removeAllRanges();
-      setSelection(null);
-    };
-    document.addEventListener("mouseup", capture);
-    document.addEventListener("click", removeHighlight);
-    return () => {
-      document.removeEventListener("mouseup", capture);
-      document.removeEventListener("click", removeHighlight);
-    };
-  }, []);
-  const apply = (color) => {
-    try {
-      const span = document.createElement("mark");
-      span.dataset.practiceHighlight = "true";
-      span.style.backgroundColor = color;
-      const fragment = selection.range.extractContents();
-      span.appendChild(fragment);
-      selection.range.insertNode(span);
-      window.getSelection()?.removeAllRanges();
-    } catch {}
-    setSelection(null);
-  };
-  if (!selection) return null;
-  return (
-    <div
-      className="practice-highlight-palette"
-      style={{ top: selection.top, left: selection.left }}
-    >
-      {["#fde68a", "#fecaca", "#bfdbfe", "#bbf7d0", "#e9d5ff"].map((color) => (
-        <button
-          key={color}
-          type="button"
-          aria-label="标记颜色"
-          style={{ backgroundColor: color }}
-          onMouseDown={(event) => event.preventDefault()}
-          onClick={() => apply(color)}
-        />
-      ))}
-      <span>点击标记可取消</span>
-    </div>
-  );
-}
-
-function closestElement(node) {
-  return node instanceof Element ? node : node?.parentElement || null;
-}
-
-function expandRangeToRuby(range) {
-  const startRuby = closestElement(range.startContainer)?.closest("ruby");
-  const endRuby = closestElement(range.endContainer)?.closest("ruby");
-  if (startRuby) range.setStartBefore(startRuby);
-  if (endRuby) range.setEndAfter(endRuby);
-  return range;
 }
 
 function homeProgressSnapshotKey(lessonId) {
@@ -1444,6 +1351,11 @@ function PracticeItemView({
           gradingResult={gradingResult}
         />
       ) : null}
+      {item.choices?.length && !item.inputSlots?.length ? (
+        <div className="practice-choice-note">
+          <PracticeAiNote item={item} slot={{ id: "choice" }} />
+        </div>
+      ) : null}
       {item.inputSlots?.length ? (
         <div className="slot-row">
           {item.inputSlots.map((slot) => (
@@ -1717,6 +1629,13 @@ function InputSlotView({ item, slot, admin, storedAnswer, gradingResult }) {
 }
 
 const PRACTICE_AI_NOTES_KEY = "japaflow.practice.aiNotes.v1";
+const PRACTICE_NOTE_COLORS = [
+  { id: "yellow", label: "黄色" },
+  { id: "red", label: "红色" },
+  { id: "blue", label: "蓝色" },
+  { id: "green", label: "绿色" },
+  { id: "purple", label: "紫色" },
+];
 function PracticeAiNote({ item, slot }) {
   const key = `${item.id}:${slot.id}`;
   const [open, setOpen] = useState(false);
@@ -1727,6 +1646,9 @@ function PracticeAiNote({ item, slot }) {
   const [savedNotes, setSavedNotes] = useState(() =>
     notesForPracticeAiKey(key),
   );
+  const [colorPickerNoteId, setColorPickerNoteId] = useState("");
+  const [editingNoteId, setEditingNoteId] = useState("");
+  const [editingNoteText, setEditingNoteText] = useState("");
   const [status, setStatus] = useState("");
   const ask = async () => {
     if (!question.trim()) return setStatus("请输入问题。");
@@ -1765,6 +1687,7 @@ function PracticeAiNote({ item, slot }) {
     all[key] = next;
     writePracticeAiNotes(all);
     setSavedNotes(next);
+    setColorPickerNoteId("");
   };
   const save = () => {
     if (!answer.trim()) return;
@@ -1793,6 +1716,35 @@ function PracticeAiNote({ item, slot }) {
     else delete all[key];
     writePracticeAiNotes(all);
     setSavedNotes(next);
+    if (colorPickerNoteId === noteId) setColorPickerNoteId("");
+  };
+  const setNoteColor = (noteId, color) => {
+    const all = readPracticeAiNotes();
+    const next = notesForPracticeAiKey(key).map((note) =>
+      note.id === noteId ? { ...note, color: color || undefined } : note,
+    );
+    all[key] = next;
+    writePracticeAiNotes(all);
+    setSavedNotes(next);
+    setColorPickerNoteId("");
+  };
+  const beginEdit = (note) => {
+    setColorPickerNoteId("");
+    setEditingNoteId(note.id);
+    setEditingNoteText(note.text);
+  };
+  const saveEditedNote = () => {
+    const nextText = editingNoteText.trim();
+    if (!nextText) return;
+    const all = readPracticeAiNotes();
+    const next = notesForPracticeAiKey(key).map((note) =>
+      note.id === editingNoteId ? { ...note, text: nextText } : note,
+    );
+    all[key] = next;
+    writePracticeAiNotes(all);
+    setSavedNotes(next);
+    setEditingNoteId("");
+    setEditingNoteText("");
   };
   return (
     <div className="practice-ai-note">
@@ -1860,17 +1812,66 @@ function PracticeAiNote({ item, slot }) {
       {savedNotes.length ? (
         <div className="practice-ai-saved-list">
           {savedNotes.map((note) => (
-            <article className="practice-ai-saved" key={note.id}>
+            <article
+              className={`practice-ai-saved${note.color ? ` practice-ai-saved--${note.color}` : ""}`}
+              key={note.id}
+              onClick={() => {
+                if (editingNoteId !== note.id) {
+                  setColorPickerNoteId((value) => value === note.id ? "" : note.id);
+                }
+              }}
+              onDoubleClick={() => beginEdit(note)}
+            >
               <button
                 type="button"
                 className="practice-ai-erase"
-                onClick={() => erase(note.id)}
+                onClick={(event) => {
+                  event.stopPropagation();
+                  erase(note.id);
+                }}
                 aria-label="删除笔记"
                 title="删除笔记"
               >
                 ⌫
               </button>
-              <pre>{note.text}</pre>
+              {editingNoteId === note.id ? (
+                <div className="practice-note-editor" onClick={(event) => event.stopPropagation()}>
+                  <textarea
+                    value={editingNoteText}
+                    onChange={(event) => setEditingNoteText(event.target.value)}
+                    rows="3"
+                    aria-label="编辑笔记"
+                  />
+                  <div>
+                    <button type="button" onClick={saveEditedNote}>保存</button>
+                    <button type="button" onClick={() => setEditingNoteId("")}>取消</button>
+                  </div>
+                </div>
+              ) : (
+                <pre>{note.text}</pre>
+              )}
+              {colorPickerNoteId === note.id ? (
+                <div className="practice-note-color-picker" onClick={(event) => event.stopPropagation()}>
+                  <span>标记颜色</span>
+                  {PRACTICE_NOTE_COLORS.map((color) => (
+                    <button
+                      key={color.id}
+                      type="button"
+                      className={`practice-note-color-dot practice-note-color-dot--${color.id}`}
+                      aria-label={`标记为${color.label}`}
+                      title={color.label}
+                      onClick={() => setNoteColor(note.id, color.id)}
+                    />
+                  ))}
+                  <button
+                    type="button"
+                    className="practice-note-color-clear"
+                    onClick={() => setNoteColor(note.id, "")}
+                  >
+                    清除
+                  </button>
+                </div>
+              ) : null}
             </article>
           ))}
         </div>

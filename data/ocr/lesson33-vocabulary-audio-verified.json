@@ -2673,9 +2673,9 @@
         "itemIndex": 47,
         "text": "おひさしぶりです",
         "label": "お久しぶりです",
-        "start": 80.624,
+        "start": 80.24,
         "end": 82.136,
-        "duration": 1.512,
+        "duration": 1.896,
         "speechUnitCount": 7,
         "wordCount": 7,
         "matchScore": 1,
@@ -2689,10 +2689,10 @@
           170,
           171
         ],
-        "method": "audio-vad-sequential-alignment-with-azure-verification",
+        "method": "manual-admin-adjustment",
         "timingSource": "audio-silence-detection",
         "timingConfidence": "high",
-        "confidence": "high",
+        "confidence": "approved",
         "alignmentIssues": [],
         "alignmentWarnings": [],
         "speechActivity": {
@@ -2713,7 +2713,8 @@
           "note": "Automatically approved by the audio-boundary alignment workflow.",
           "matchScore": 1,
           "asrText": "お 久 し ぶ り で す"
-        }
+        },
+        "reviewedAt": "2026-09-01T12:56:06.773Z"
       }
     }
   ],
@@ -2742,5 +2743,5 @@
       }
     ]
   },
-  "updatedAt": "2026-09-01T00:35:23.902Z"
+  "updatedAt": "2026-09-01T12:56:06.781Z"
 }

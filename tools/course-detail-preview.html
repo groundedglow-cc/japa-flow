@@ -729,8 +729,9 @@
 
       window.addEventListener("message", (event) => {
         if (event.origin !== location.origin || !["JAPAFLOW_AUTH_REQUIRED", "AUTH_EXPIRED"].includes(event.data?.type)) return;
-        const practiceFrame = document.querySelector("#frame-practice iframe");
-        if (!practiceFrame || event.source !== practiceFrame.contentWindow) return;
+        const courseFrame = Array.from(document.querySelectorAll("#iframeStage iframe"))
+          .find((frame) => frame.contentWindow === event.source);
+        if (!courseFrame) return;
         redirectToLogin();
       });
 

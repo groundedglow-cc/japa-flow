@@ -125,10 +125,85 @@
   font-size: inherit;
 }
 .practice-ai-saved {
+  position: relative;
   display: grid;
   gap: 5px;
-  padding-top: 7px;
-  border-top: 1px solid #d7e8df;
+  padding: 10px 36px 10px 12px;
+  border: 1px solid #d7e8df;
+  border-radius: 12px;
+  background: #f9fcfa;
+  cursor: pointer;
+  transition: border-color 140ms ease, box-shadow 140ms ease;
+}
+.practice-ai-saved:hover,
+.practice-ai-saved:focus-within {
+  border-color: #a8cdbc;
+  box-shadow: 0 4px 12px rgba(23, 33, 29, 0.08);
+}
+.practice-ai-saved--yellow { background: #fff8cf; }
+.practice-ai-saved--red { background: #fee4e2; }
+.practice-ai-saved--blue { background: #e2efff; }
+.practice-ai-saved--green { background: #e2f6e9; }
+.practice-ai-saved--purple { background: #f0e6ff; }
+.practice-note-color-picker {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding-top: 2px;
+}
+.practice-note-color-picker span {
+  color: var(--muted);
+  font-size: 12px;
+}
+.practice-note-color-dot {
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  border: 1px solid rgba(0, 0, 0, 0.14);
+  border-radius: 50%;
+  cursor: pointer;
+}
+.practice-note-color-dot--yellow { background: #fde68a; }
+.practice-note-color-dot--red { background: #fecaca; }
+.practice-note-color-dot--blue { background: #bfdbfe; }
+.practice-note-color-dot--green { background: #bbf7d0; }
+.practice-note-color-dot--purple { background: #e9d5ff; }
+.practice-note-color-clear {
+  padding: 2px 5px;
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  font: inherit;
+  font-size: 12px;
+}
+.practice-note-editor {
+  display: grid;
+  gap: 6px;
+}
+.practice-note-editor textarea {
+  width: 100%;
+  min-height: 72px;
+  resize: vertical;
+  padding: 7px;
+  border: 1px solid #b9d8cb;
+  border-radius: 5px;
+  background: #fff;
+  font: 13px/1.55 inherit;
+}
+.practice-note-editor div {
+  display: flex;
+  gap: 6px;
+}
+.practice-note-editor button {
+  padding: 4px 8px;
+  border: 1px solid #a8cdbc;
+  border-radius: 5px;
+  background: #fff;
+  cursor: pointer;
+  font: inherit;
+  font-size: 12px;
 }
 .practice-ai-saved-list {
   display: grid;
@@ -138,43 +213,29 @@
   margin-top: 2px;
 }
 .practice-ai-erase {
-  justify-self: end;
+  position: absolute;
+  top: 7px;
+  right: 8px;
   border: 0;
   padding: 0;
   color: #8d5e58;
   background: transparent;
   cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 140ms ease;
 }
-.practice-highlight-palette {
-  position: absolute;
-  z-index: 80;
+.practice-ai-saved:hover .practice-ai-erase,
+.practice-ai-saved:focus-within .practice-ai-erase {
+  opacity: 1;
+  pointer-events: auto;
+}
+.practice-choice-note {
   display: flex;
-  align-items: center;
-  gap: 5px;
-  padding: 6px;
-  border: 1px solid #d7ddd9;
-  border-radius: 7px;
-  background: #fff;
-  box-shadow: 0 8px 22px rgba(23, 32, 42, 0.16);
+  flex-wrap: wrap;
+  gap: 7px;
+  padding-left: 46px;
 }
-.practice-highlight-palette button {
-  width: 22px;
-  height: 22px;
-  padding: 0;
-  border: 1px solid rgba(0, 0, 0, 0.12);
-  border-radius: 50%;
-  cursor: pointer;
-}
-.practice-highlight-palette span {
-  margin-left: 3px;
-  color: var(--muted);
-  font-size: 12px;
-  white-space: nowrap;
-}
-mark[data-practice-highlight] {
-  cursor: pointer;
-}
-
 * {
   box-sizing: border-box;
 }

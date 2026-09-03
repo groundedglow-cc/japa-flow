@@ -391,6 +391,115 @@
         color: #b42318;
       }
 
+      .word-ai {
+        display: grid;
+        gap: 9px;
+        margin-top: 16px;
+        padding-top: 14px;
+        border-top: 1px solid var(--line);
+      }
+
+      .word-ai-head,
+      .word-ai-actions {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+      }
+
+      .word-ai-head strong {
+        font-size: 14px;
+      }
+
+      .word-ai-toggle,
+      .word-ai-actions button,
+      .word-ai-note-delete {
+        border: 1px solid #a9cdbc;
+        border-radius: 6px;
+        background: #fff;
+        color: var(--accent);
+        font: inherit;
+        font-size: 12px;
+        cursor: pointer;
+      }
+
+      .word-ai-toggle,
+      .word-ai-actions button {
+        padding: 5px 9px;
+      }
+
+      .word-ai-composer {
+        display: grid;
+        gap: 8px;
+        padding: 10px;
+        border: 1px solid #cce2d7;
+        border-radius: 8px;
+        background: #f7fcf9;
+      }
+
+      .word-ai-composer[hidden] {
+        display: none;
+      }
+
+      .word-ai-input {
+        width: 100%;
+        min-height: 76px;
+        box-sizing: border-box;
+        resize: vertical;
+        padding: 8px;
+        border: 1px solid #bdd7c9;
+        border-radius: 6px;
+        font: inherit;
+        font-size: 13px;
+      }
+
+      .word-ai-status {
+        min-height: 18px;
+        color: var(--muted);
+        font-size: 12px;
+      }
+
+      .word-ai-result {
+        white-space: pre-wrap;
+        color: var(--text);
+        font-size: 13px;
+        line-height: 1.6;
+      }
+
+      .word-ai-notes {
+        display: grid;
+        gap: 8px;
+      }
+
+      .word-ai-note {
+        position: relative;
+        padding: 10px 36px 10px 12px;
+        border: 1px solid #cce2d7;
+        border-radius: 10px;
+        background: #f9fcfa;
+        color: var(--text);
+        font-size: 13px;
+        line-height: 1.6;
+        white-space: pre-wrap;
+      }
+
+      .word-ai-note-delete {
+        position: absolute;
+        top: 7px;
+        right: 7px;
+        width: 22px;
+        height: 22px;
+        padding: 0;
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .word-ai-note:hover .word-ai-note-delete,
+      .word-ai-note:focus-within .word-ai-note-delete {
+        opacity: 1;
+        pointer-events: auto;
+      }
+
       .audio-review-line {
         display: flex;
         flex-wrap: wrap;
@@ -831,6 +940,8 @@
         "japaflow.tools.vocabularyPreview.panelRatio.v1";
       const WORD_CLICK_STORAGE_KEY =
         "japaflow.tools.vocabularyPreview.wordClicks.v1";
+      const WORD_AI_NOTE_STORAGE_KEY =
+        "japaflow.tools.vocabularyPreview.wordAiNotes.v1";
       const MAX_WORD_CLICKS = 20;
       const CLICKS_PER_WORD_LEVEL = 2;
       const state = {
@@ -1162,6 +1273,20 @@
               `
                   : ""
               }
+              <section class="word-ai" aria-label="单词问 AI">
+                <div class="word-ai-head">
+                  <strong>单词问答</strong>
+                  <button class="word-ai-toggle" id="askWordAi" type="button">问 AI</button>
+                </div>
+                <div class="word-ai-composer" id="wordAiComposer" hidden>
+                  <textarea class="word-ai-input" id="wordAiInput" placeholder="输入有关这个单词、用法或例句的问题…"></textarea>
+                  <div class="word-ai-actions"><button id="sendWordAi" type="button">提问</button></div>
+                  <div class="word-ai-status" id="wordAiStatus"></div>
+                  <div class="word-ai-result" id="wordAiResult"></div>
+                  <div class="word-ai-actions" id="saveWordAiWrap" hidden><button id="saveWordAi" type="button">保存到这个单词</button></div>
+                </div>
+                ${renderWordAiNotes(word)}
+              </section>
             </div>
           </article>
         `;
@@ -1180,6 +1305,25 @@
             setStatus(error.message, true),
           ),
         );
+        $("#askWordAi")?.addEventListener("click", () => {
+          const composer = $("#wordAiComposer");
+          if (!composer) return;
+          composer.hidden = !composer.hidden;
+          if (!composer.hidden) $("#wordAiInput")?.focus();
+        });
+        $("#sendWordAi")?.addEventListener("click", () =>
+          askWordAi(word),
+        );
+        $("#saveWordAi")?.addEventListener("click", () =>
+          saveWordAiAnswer(word),
+        );
+        $("#wordCard")
+          .querySelectorAll("[data-word-ai-delete]")
+          .forEach((button) =>
+            button.addEventListener("click", () =>
+              deleteWordAiNote(word, button.dataset.wordAiDelete),
+            ),
+          );
       }
 
       function renderWordWriting(word) {
@@ -1291,6 +1435,125 @@
 
       function wordClickId(word) {
         return String(word?.id || word?.writing || word?.kana || "unknown");
+      }
+
+      function wordAiNoteKey(word) {
+        return `${wordClickLessonKey()}:${wordClickId(word)}`;
+      }
+
+      function readWordAiNotes() {
+        try {
+          const parsed = JSON.parse(
+            localStorage.getItem(WORD_AI_NOTE_STORAGE_KEY) || "{}",
+          );
+          return parsed && typeof parsed === "object" ? parsed : {};
+        } catch {
+          return {};
+        }
+      }
+
+      function notesForWord(word) {
+        const notes = readWordAiNotes()[wordAiNoteKey(word)];
+        return Array.isArray(notes) ? notes : [];
+      }
+
+      function saveNotesForWord(word, notes) {
+        const store = readWordAiNotes();
+        localStorage.setItem(
+          WORD_AI_NOTE_STORAGE_KEY,
+          JSON.stringify({ ...store, [wordAiNoteKey(word)]: notes }),
+        );
+      }
+
+      function renderWordAiNotes(word) {
+        const notes = notesForWord(word);
+        if (!notes.length) return '<div class="word-ai-notes" id="wordAiNotes"></div>';
+        return `<div class="word-ai-notes" id="wordAiNotes">${notes
+          .map(
+            (note) => `
+              <article class="word-ai-note">
+                ${escapeHtml(`问：${note.question || ""}\n答：${note.answer || ""}`)}
+                <button class="word-ai-note-delete" type="button" data-word-ai-delete="${escapeHtml(note.id)}" aria-label="删除这条问答" title="删除">×</button>
+              </article>`,
+          )
+          .join("")}</div>`;
+      }
+
+      function notifyAuthExpired() {
+        localStorage.removeItem("light_blog_token");
+        localStorage.removeItem("light_blog_user");
+        if (window.parent !== window) {
+          window.parent.postMessage({ type: "AUTH_EXPIRED" }, location.origin);
+        }
+      }
+
+      async function askWordAi(word) {
+        const input = $("#wordAiInput");
+        const status = $("#wordAiStatus");
+        const result = $("#wordAiResult");
+        const saveWrap = $("#saveWordAiWrap");
+        const send = $("#sendWordAi");
+        const question = String(input?.value || "").trim();
+        if (!question) {
+          status.textContent = "请输入问题。";
+          return;
+        }
+        status.textContent = "思考中…";
+        result.textContent = "";
+        result.dataset.answer = "";
+        saveWrap.hidden = true;
+        send.disabled = true;
+        try {
+          const response = await fetch("/api/grammar/notebook-ai", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${localStorage.getItem("light_blog_token") || ""}`,
+            },
+            body: JSON.stringify({
+              question,
+              lessonId: lessonNoFromData(),
+              contentType: "vocabulary",
+              word: { writing: word.writing || "", kana: word.kana || "", meaningZh: word.meaningZh || [] },
+            }),
+          });
+          const data = await response.json().catch(() => ({}));
+          if (response.status === 401 || response.status === 403) {
+            notifyAuthExpired();
+            throw new Error("登录已失效，正在跳转登录页。");
+          }
+          if (!response.ok)
+            throw new Error(data.error || data.message || `请求失败（${response.status}）`);
+          const answer = String(data.answer || "").trim();
+          result.textContent = answer;
+          result.dataset.answer = answer;
+          status.textContent = answer ? "回答已生成。" : "未得到回答。";
+          saveWrap.hidden = !answer;
+        } catch (error) {
+          status.textContent = error.message || "提问失败。";
+        } finally {
+          send.disabled = false;
+        }
+      }
+
+      function saveWordAiAnswer(word) {
+        const question = String($("#wordAiInput")?.value || "").trim();
+        const answer = String($("#wordAiResult")?.dataset.answer || "").trim();
+        if (!question || !answer) return;
+        saveNotesForWord(word, [
+          ...notesForWord(word),
+          { id: `${Date.now()}-${Math.random().toString(16).slice(2)}`, question, answer },
+        ]);
+        render();
+      }
+
+      function deleteWordAiNote(word, noteId) {
+        if (!noteId) return;
+        saveNotesForWord(
+          word,
+          notesForWord(word).filter((note) => note.id !== noteId),
+        );
+        render();
       }
 
       function readWordClickStore() {

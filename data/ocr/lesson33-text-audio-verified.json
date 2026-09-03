@@ -487,9 +487,9 @@
               "itemIndex": 8,
               "speaker": "乙",
               "text": "引き出しに入っていますよ。",
-              "start": 31.085,
+              "start": 30.85,
               "end": 32.87,
-              "duration": 1.785,
+              "duration": 2.02,
               "rawAzureTiming": {
                 "start": 29.87,
                 "end": 32.75,
@@ -511,18 +511,19 @@
                 8,
                 9
               ],
-              "method": "azure-speech-sentence-alignment-with-boundary-padding",
-              "confidence": "high",
+              "method": "manual-admin-adjustment",
+              "confidence": "approved",
               "alignmentIssues": [
                 "ASR boundary overlapped the previous sentence and was moved to the next local speech region; verify this sentence."
               ],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-09-01T00:32:27.905Z",
-                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "reviewedAt": "2026-09-02T00:22:06.725Z",
+                "note": "Manually verified and adjusted in the text audio preview.",
                 "matchScore": 1,
                 "asrText": "。 引 き 出 し に 入 っ て い ま す よ 。"
-              }
+              },
+              "reviewedAt": "2026-09-02T00:22:06.725Z"
             },
             "kana": "ひきだしにはいっていますよ。",
             "segments": [
@@ -563,8 +564,8 @@
               "speaker": "甲",
               "text": "おじいさんにもらった腕時計が壊れてしまいました。",
               "start": 34.86,
-              "end": 37.81,
-              "duration": 2.95,
+              "end": 38.1,
+              "duration": 3.24,
               "rawAzureTiming": {
                 "start": 35.11,
                 "end": 37.83,
@@ -579,16 +580,17 @@
               "phraseIndexes": [
                 10
               ],
-              "method": "azure-speech-sentence-alignment-with-boundary-padding",
-              "confidence": "high",
+              "method": "manual-admin-adjustment",
+              "confidence": "approved",
               "alignmentIssues": [],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-09-01T00:32:27.905Z",
-                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "reviewedAt": "2026-09-01T11:56:57.806Z",
+                "note": "Manually verified and adjusted in the text audio preview.",
                 "matchScore": 1,
                 "asrText": "お じ い さ ん に も ら っ た 腕 時 計 が 壊 れ て し ま い ま し た"
-              }
+              },
+              "reviewedAt": "2026-09-01T11:56:57.806Z"
             },
             "kana": "おじいさんにもらったうでどけいがこわれてしまいました。",
             "segments": [
@@ -1320,9 +1322,9 @@
               "itemIndex": 7,
               "speaker": "森",
               "text": "すみません、小野さん。遅刻してしまいました。",
-              "start": 45.14,
+              "start": 47.14,
               "end": 50.781,
-              "duration": 5.641,
+              "duration": 3.641,
               "rawAzureTiming": {
                 "start": 45.12,
                 "end": 50.47,
@@ -1342,18 +1344,19 @@
                 6,
                 7
               ],
-              "method": "azure-speech-sentence-alignment-with-boundary-padding",
-              "confidence": "high",
+              "method": "manual-admin-adjustment",
+              "confidence": "approved",
               "alignmentIssues": [
                 "ASR boundary ended before the final local speech region; verify this sentence."
               ],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-09-01T00:32:27.905Z",
-                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "reviewedAt": "2026-09-02T00:51:56.693Z",
+                "note": "Manually verified and adjusted in the text audio preview.",
                 "matchScore": 1,
                 "asrText": "。 す み ま せ ん 小 野 さ ん 遅 刻 し て し ま い ま し た"
-              }
+              },
+              "reviewedAt": "2026-09-02T00:51:56.693Z"
             },
             "kana": "すみません、おのさん。ちこくしてしまいました。",
             "segments": [
@@ -1840,5 +1843,5 @@
       }
     ]
   },
-  "updatedAt": "2026-09-01T00:38:57.145Z"
+  "updatedAt": "2026-09-02T00:51:56.694Z"
 }
