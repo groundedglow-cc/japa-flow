@@ -1525,22 +1525,6 @@
           "addedAt": "2026-08-18T13:47:59.097Z"
         }
       ]
-    },
-    "l1-p2-a1-q2": {
-      "answer": [
-        {
-          "answer": "小野",
-          "normalizedAnswer": "小野",
-          "expectedAnswers": [
-            "小野さん"
-          ],
-          "reason": "题目要求填入适当词语，用户答案「小野」与参考答案「小野さん」在语法功能上一致，均为名词，且符合上下文「いいえ、小野では ありません」的语境。省略敬称「さん」不影响句义和语法功能，属于自然表达差异。",
-          "provider": "deepseek",
-          "model": "deepseek-v4-flash",
-          "modelNormalizedAnswer": "小野",
-          "addedAt": "2026-08-31T02:39:50.811Z"
-        }
-      ]
     }
   },
   "lesson2": {
@@ -2275,6 +2259,258 @@
           "model": "deepseek-v4-flash",
           "modelNormalizedAnswer": "明日、病院に行こうと思っています",
           "addedAt": "2026-08-26T14:25:13.342Z"
+        }
+      ]
+    }
+  },
+  "lesson32": {
+    "l32-p1-a3-q8": {
+      "answer": [
+        {
+          "answer": "給料が上がることになりまして。",
+          "normalizedAnswer": "給料が上がることになりまして",
+          "expectedAnswers": [
+            "給料が上がることになりました。"
+          ],
+          "reason": "用户答案与参考答案意思一致，语法功能相同，只是句尾使用了「まして」这一礼貌程度稍低的表达，属于可接受的变体。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "給料が上がることになりまして。",
+          "addedAt": "2026-08-30T12:01:38.368Z"
+        }
+      ]
+    },
+    "l32-p1-a4-q5": {
+      "answer": [
+        {
+          "answer": "新型のパソコンは操作が簡単だそうです",
+          "normalizedAnswer": "新型のパソコンは操作が簡単だそうです",
+          "expectedAnswers": [
+            "ニュースによると、新型のパソコンは操作が簡単だそうです。"
+          ],
+          "reason": "用户答案与参考答案意思一致，语法功能相同，只是省略了「ニュースによると」，但题目要求为仿照例句替换画线部分，未要求必须包含该短语，因此可以采纳。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "新型のパソコンは操作が簡単だそうです",
+          "addedAt": "2026-08-30T12:05:01.934Z"
+        }
+      ]
+    },
+    "l32-p1-a4-q6": {
+      "answer": [
+        {
+          "answer": "大統領が女優と結婚したそうです",
+          "normalizedAnswer": "大統領が女優と結婚したそうです",
+          "expectedAnswers": [
+            "ニュースによると、大統領が女優と結婚したそうです。"
+          ],
+          "reason": "用户答案与参考答案意思一致，语法功能相同，只是省略了「ニュースによると」，但题目要求为仿照例句替换画线部分，例句中「ニュースによると」是提示信息来源的状语，用户答案未包含该状语，但题目并未明确要求必须包含，且用户答案完整表达了「据说总统和女演员结婚了」的意思，符合语法和回答范围。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "大統領が女優と結婚したそうです",
+          "addedAt": "2026-08-30T12:05:03.566Z"
+        }
+      ]
+    },
+    "l32-p1-a5-q1": {
+      "answer": [
+        {
+          "answer": "甲：森さんは明日来るでしょうか\n乙：都合が悪いですから、来ないでしょう",
+          "normalizedAnswer": "甲森さんは明日来るでしょうか乙都合が悪いですから来ないでしょう",
+          "expectedAnswers": [
+            "甲：森さんは明日来るでしょうか。\n乙：都合が悪いそうですから、来ないでしょう。"
+          ],
+          "reason": "用户答案与参考答案意思一致，语法功能相同，仅省略了句尾标点，且乙句使用「ですから」代替「だそうですから」虽略有差异，但结合题目要求（替换画线部分）仍可接受，未改变句义和回答范围。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "甲：森さんは明日来るでしょうか\n乙：都合が悪いですから、来ないでしょう",
+          "addedAt": "2026-08-30T12:14:23.474Z"
+        },
+        {
+          "answer": "甲：森さんは明日来るでしょうか。\n乙：都合が悪いそうです、来ないでしょう。",
+          "normalizedAnswer": "甲森さんは明日来るでしょうか乙都合が悪いそうです来ないでしょう",
+          "expectedAnswers": [
+            "甲：森さんは明日来るでしょうか。\n乙：都合が悪いそうですから、来ないでしょう。"
+          ],
+          "reason": "用户答案与参考答案意思一致，语法功能相同，仅省略了「から」，属于轻微自然表达差异，不影响句义和回答范围。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "甲：森さんは明日来るでしょうか。\n乙：都合が悪いそうです、来ないでしょう。",
+          "addedAt": "2026-08-31T01:24:57.756Z"
+        }
+      ]
+    },
+    "l32-p1-a5-q4": {
+      "answer": [
+        {
+          "answer": "甲：張さんは合格したでしょうか\n乙：試験は簡単だから、合格したでしょう",
+          "normalizedAnswer": "甲張さんは合格したでしょうか乙試験は簡単だから合格したでしょう",
+          "expectedAnswers": [
+            "甲：張さんは合格したでしょうか。\n乙：試験は簡単だったそうですから、合格したでしょう。"
+          ],
+          "reason": "用户答案与参考答案意思一致，语法功能相同，只是乙句省略了「そうです」的传闻表达，但结合题目规则和上下文，不影响回答的完整性和正确性。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "甲：張さんは合格したでしょうか\n乙：試験は簡単だから、合格したでしょう",
+          "addedAt": "2026-08-30T12:21:55.061Z"
+        },
+        {
+          "answer": "甲：張さんは合格したでしょうか。\n乙：試験は簡単だったそうです、合格したでしょう。",
+          "normalizedAnswer": "甲張さんは合格したでしょうか乙試験は簡単だったそうです合格したでしょう",
+          "expectedAnswers": [
+            "甲：張さんは合格したでしょうか。\n乙：試験は簡単だったそうですから、合格したでしょう。"
+          ],
+          "reason": "用户答案与参考答案意思一致，语法功能相同，仅将「そうですから」简化为「そうです、」，属于轻微表达差异，不影响句义和回答范围。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "甲：張さんは合格したでしょうか。\n乙：試験は簡単だったそうです、合格したでしょう。",
+          "addedAt": "2026-08-31T01:25:01.138Z"
+        }
+      ]
+    },
+    "l32-p1-a5-q5": {
+      "answer": [
+        {
+          "answer": "甲：明日は雨だでしょうか\n乙：台風が来ているから、雨だでしょう",
+          "normalizedAnswer": "甲明日は雨だでしょうか乙台風が来ているから雨だでしょう",
+          "expectedAnswers": [
+            "甲：明日は雨でしょうか。\n乙：台風が来ているそうですから、雨でしょう。"
+          ],
+          "reason": "用户答案与参考答案意思一致，语法功能相同，只是省略了「そうです」和使用了「だ」的简体形式，属于自然表达差异，可以采纳。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "甲：明日は雨だでしょうか\n乙：台風が来ているから、雨だでしょう",
+          "addedAt": "2026-08-30T12:21:56.125Z"
+        }
+      ]
+    },
+    "l32-p2-a1-q3": {
+      "answer": [
+        {
+          "answer": "雨だ",
+          "normalizedAnswer": "雨だ",
+          "expectedAnswers": [
+            "雨"
+          ],
+          "reason": "用户答案与参考答案意思一致，语法功能相同，均为名词+だ形，符合题目要求。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "雨だ",
+          "addedAt": "2026-08-31T01:30:06.543Z"
+        }
+      ]
+    },
+    "l32-p2-a2-q3": {
+      "answer": [
+        {
+          "answer": "何時に",
+          "normalizedAnswer": "何時に",
+          "expectedAnswers": [
+            "いつ"
+          ],
+          "reason": "题目要求填入疑问词，用户答案「何時に」与参考答案「いつ」意思一致，均询问时间，语法功能相同，只是表达不同。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "何時に",
+          "addedAt": "2026-08-31T01:32:45.208Z"
+        }
+      ]
+    },
+    "l32-p1-a6-q1": {
+      "answer": [
+        {
+          "answer": "京都でおこなうことになりました",
+          "normalizedAnswer": "京都でおこなうことになりました",
+          "expectedAnswers": [
+            "京都で行うことになりました。"
+          ],
+          "reason": "用户答案与参考答案意思一致，仅将汉字'行う'换为假名'おこなう'，语法功能相同，可以采纳。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "京都でおこなうことになりました",
+          "addedAt": "2026-08-31T01:54:55.743Z"
+        }
+      ]
+    },
+    "l32-p1-a6-q2": {
+      "answer": [
+        {
+          "answer": "9月1日から7日までおこなうことになりました",
+          "normalizedAnswer": "9月1日から7日までおこなうことになりました",
+          "expectedAnswers": [
+            "9月1日から7日まで行うことになりました。"
+          ],
+          "reason": "用户答案与参考答案意思一致，仅将汉字'行う'改为假名'おこなう'，语法功能相同，可以采纳。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "9月1日から7日までおこなうことになりました",
+          "addedAt": "2026-08-31T01:54:56.909Z"
+        }
+      ]
+    }
+  },
+  "lesson34": {
+    "l34-p1-a5-q3": {
+      "answer": [
+        {
+          "answer": "明日の試験のために、今晩よく勉強しようと思っています",
+          "normalizedAnswer": "明日の試験のために今晩よく勉強しようと思っています",
+          "expectedAnswers": [
+            "明日の試験のために、今晩よく勉強しようと思います。"
+          ],
+          "reason": "用户答案与参考答案意思一致，语法功能相同，只是将「思います」改为「思っています」，属于自然表达差异，不影响句义和语法功能。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "明日の試験のために、今晩よく勉強しようと思っています",
+          "addedAt": "2026-09-04T01:35:51.460Z"
+        }
+      ]
+    },
+    "l34-p1-a5-q4": {
+      "answer": [
+        {
+          "answer": "留学するために、日本語の勉強を続けています",
+          "normalizedAnswer": "留学するために日本語の勉強を続けています",
+          "expectedAnswers": [
+            "留学するために、日本語の勉強を続けます。"
+          ],
+          "reason": "用户答案与参考答案意思一致，语法功能相同，仅时态由非过去时改为进行时，但在此语境下表达持续状态，可接受。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "留学するために、日本語の勉強を続けています。",
+          "addedAt": "2026-09-04T01:35:52.874Z"
+        }
+      ]
+    },
+    "l34-p1-a5-q6": {
+      "answer": [
+        {
+          "answer": "論文を書くために、資料をたくさん読んでいます",
+          "normalizedAnswer": "論文を書くために資料をたくさん読んでいます",
+          "expectedAnswers": [
+            "論文を書くために、資料をたくさん読みます。"
+          ],
+          "reason": "用户答案与参考答案意思一致，语法功能相同，只是将「読みます」改为「読んでいます」，属于自然表达差异，可以采纳。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "論文を書くために、資料をたくさん読んでいます",
+          "addedAt": "2026-09-04T01:35:54.840Z"
+        }
+      ]
+    },
+    "l34-p1-a5-q7": {
+      "answer": [
+        {
+          "answer": "オリンピックに出るために、毎日１万メートル泳いでいます",
+          "normalizedAnswer": "オリンピックに出るために毎日1万メートル泳いでいます",
+          "expectedAnswers": [
+            "オリンピックに出るために、毎日１万メートル泳ぎます。"
+          ],
+          "reason": "用户答案与参考答案意思一致，语法功能相同，只是将「泳ぎます」改为「泳いでいます」，属于自然表达差异，可以采纳。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "オリンピックに出るために、毎日１万メートル泳いでいます",
+          "addedAt": "2026-09-04T01:35:56.274Z"
         }
       ]
     }

@@ -1809,7 +1809,7 @@ let audioVersions = {};
 let runtimeLessonLoadingId = "";
 let runtimeLessonErrorId = "";
 let runtimeLessonError = "";
-const DEFAULT_OPEN_LESSON_IDS = Array.from({ length: 24 }, (_, index) => index + 1);
+const DEFAULT_OPEN_LESSON_IDS = Array.from({ length: 35 }, (_, index) => index + 1);
 const TEXT_VERSION_KEY = "textVersion";
 const TEXT_VERSION_NEW = "new";
 const TEXT_VERSION_OLD = "old";
