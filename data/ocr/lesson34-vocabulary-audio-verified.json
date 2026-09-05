@@ -944,9 +944,9 @@
         "itemIndex": 17,
         "text": "はっぴょうかい",
         "label": "発表会",
-        "start": 28.458,
+        "start": 27.458,
         "end": 29.36,
-        "duration": 0.902,
+        "duration": 1.902,
         "speechUnitCount": 3,
         "wordCount": 3,
         "matchScore": 1,
@@ -956,10 +956,10 @@
           59,
           60
         ],
-        "method": "audio-vad-sequential-alignment-with-azure-verification",
+        "method": "manual-admin-adjustment",
         "timingSource": "audio-silence-detection",
         "timingConfidence": "high",
-        "confidence": "high",
+        "confidence": "approved",
         "alignmentIssues": [],
         "alignmentWarnings": [],
         "speechActivity": {
@@ -980,7 +980,8 @@
           "note": "Automatically approved by the audio-boundary alignment workflow.",
           "matchScore": 1,
           "asrText": "発 表 会"
-        }
+        },
+        "reviewedAt": "2026-09-04T13:47:15.455Z"
       }
     },
     {
@@ -2166,9 +2167,9 @@
         "itemIndex": 38,
         "text": "ちょきんします",
         "label": "貯金します",
-        "start": 67.042,
+        "start": 66.62,
         "end": 68.71,
-        "duration": 1.668,
+        "duration": 2.09,
         "speechUnitCount": 5,
         "wordCount": 5,
         "matchScore": 1,
@@ -2180,10 +2181,10 @@
           157,
           158
         ],
-        "method": "audio-vad-sequential-alignment-with-azure-verification",
+        "method": "manual-admin-adjustment",
         "timingSource": "audio-silence-detection",
         "timingConfidence": "high",
-        "confidence": "high",
+        "confidence": "approved",
         "alignmentIssues": [],
         "alignmentWarnings": [],
         "speechActivity": {
@@ -2204,7 +2205,8 @@
           "note": "Automatically approved by the audio-boundary alignment workflow.",
           "matchScore": 1,
           "asrText": "貯 金 し ま す"
-        }
+        },
+        "reviewedAt": "2026-09-04T01:54:46.313Z"
       }
     },
     {
@@ -2806,9 +2808,9 @@
         "itemIndex": 49,
         "text": "いっしょうけんめい",
         "label": "一生懸命",
-        "start": 87.019,
+        "start": 86.819,
         "end": 88.676,
-        "duration": 1.657,
+        "duration": 1.857,
         "speechUnitCount": 4,
         "wordCount": 4,
         "matchScore": 1,
@@ -2819,10 +2821,10 @@
           199,
           200
         ],
-        "method": "audio-vad-sequential-alignment-with-azure-verification",
+        "method": "manual-admin-adjustment",
         "timingSource": "audio-silence-detection",
         "timingConfidence": "high",
-        "confidence": "high",
+        "confidence": "approved",
         "alignmentIssues": [],
         "alignmentWarnings": [],
         "speechActivity": {
@@ -2843,7 +2845,8 @@
           "note": "Automatically approved by the audio-boundary alignment workflow.",
           "matchScore": 1,
           "asrText": "一 生 懸 命"
-        }
+        },
+        "reviewedAt": "2026-09-04T01:55:45.803Z"
       }
     },
     {
@@ -3163,5 +3166,5 @@
       }
     ]
   },
-  "updatedAt": "2026-09-03T00:58:53.313Z"
+  "updatedAt": "2026-09-04T13:47:15.460Z"
 }

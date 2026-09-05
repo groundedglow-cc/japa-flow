@@ -1,40 +1,416 @@
 {
   "lessonId": "lesson35",
   "sourceImages": [
-    { "section": "basic", "path": "course-assets/by-lesson/lesson35/page116.webp", "pageNo": 116 },
-    { "section": "application", "path": "course-assets/by-lesson/lesson35/page121.webp", "pageNo": 121 }
+    {
+      "section": "basic",
+      "path": "course-assets/by-lesson/lesson35/page116.webp",
+      "pageNo": 116
+    },
+    {
+      "section": "application",
+      "path": "course-assets/by-lesson/lesson35/page121.webp",
+      "pageNo": 121
+    }
   ],
   "basicText": {
     "title": "基本课文",
     "basicSentences": [
-      { "id": "l35-basic-s001", "order": 1, "text": "明日雨が降ったら、マラソン大会は中止です。", "translationZh": "如果明天下雨，马拉松大会就取消。", "confidence": "high", "rawText": "1. 明日雨が降ったら、マラソン大会は中止です。" },
-      { "id": "l35-basic-s002", "order": 2, "text": "日本へ帰っても、中国語の勉強を続けてください。", "translationZh": "即使回到日本，也请继续学习汉语。", "confidence": "high", "rawText": "2. 日本へ帰っても、中国語の勉強を続けてください。" },
-      { "id": "l35-basic-s003", "order": 3, "text": "今年の夏休みは３日だけです。", "translationZh": "今年暑假只有三天。", "confidence": "high", "rawText": "3. 今年の夏休みは３日だけです。" },
-      { "id": "l35-basic-s004", "order": 4, "text": "会議室には李さんしかいません。", "translationZh": "会议室里只有小李一个人。", "confidence": "high", "rawText": "4. 会議室には李さんしかいません。" }
+      {
+        "id": "l35-basic-s001",
+        "order": 1,
+        "text": "明日雨が降ったら、マラソン大会は中止です。",
+        "translationZh": "如果明天下雨，马拉松大会就取消。",
+        "confidence": "high",
+        "rawText": "1. 明日雨が降ったら、マラソン大会は中止です。",
+        "kana": "あしたあめがふったら、マラソンたいかいはちゅうしです。",
+        "segments": [
+          {
+            "text": "明日",
+            "ruby": "あした"
+          },
+          {
+            "text": "雨",
+            "ruby": "あめ"
+          },
+          {
+            "text": "が"
+          },
+          {
+            "text": "降",
+            "ruby": "ふ"
+          },
+          {
+            "text": "ったら、マラソン"
+          },
+          {
+            "text": "大会",
+            "ruby": "たいかい"
+          },
+          {
+            "text": "は"
+          },
+          {
+            "text": "中止",
+            "ruby": "ちゅうし"
+          },
+          {
+            "text": "です。"
+          }
+        ]
+      },
+      {
+        "id": "l35-basic-s002",
+        "order": 2,
+        "text": "日本へ帰っても、中国語の勉強を続けてください。",
+        "translationZh": "即使回到日本，也请继续学习汉语。",
+        "confidence": "high",
+        "rawText": "2. 日本へ帰っても、中国語の勉強を続けてください。",
+        "kana": "にほんへかえっても、ちゅうごくごのべんきょうをつづけてください。",
+        "segments": [
+          {
+            "text": "日本",
+            "ruby": "にほん"
+          },
+          {
+            "text": "へ"
+          },
+          {
+            "text": "帰",
+            "ruby": "かえ"
+          },
+          {
+            "text": "っても、"
+          },
+          {
+            "text": "中国語",
+            "ruby": "ちゅうごくご"
+          },
+          {
+            "text": "の"
+          },
+          {
+            "text": "勉強",
+            "ruby": "べんきょう"
+          },
+          {
+            "text": "を"
+          },
+          {
+            "text": "続",
+            "ruby": "つづ"
+          },
+          {
+            "text": "けてください。"
+          }
+        ]
+      },
+      {
+        "id": "l35-basic-s003",
+        "order": 3,
+        "text": "今年の夏休みは３日だけです。",
+        "translationZh": "今年暑假只有三天。",
+        "confidence": "high",
+        "rawText": "3. 今年の夏休みは３日だけです。",
+        "kana": "ことしのなつやすみはみっかだけです。",
+        "segments": [
+          {
+            "text": "今年",
+            "ruby": "ことし"
+          },
+          {
+            "text": "の"
+          },
+          {
+            "text": "夏休",
+            "ruby": "なつやす"
+          },
+          {
+            "text": "みは３"
+          },
+          {
+            "text": "日",
+            "ruby": "か"
+          },
+          {
+            "text": "だけです。"
+          }
+        ]
+      },
+      {
+        "id": "l35-basic-s004",
+        "order": 4,
+        "text": "会議室には李さんしかいません。",
+        "translationZh": "会议室里只有小李一个人。",
+        "confidence": "high",
+        "rawText": "4. 会議室には李さんしかいません。",
+        "kana": "かいぎしつにはリーさんしかいません。",
+        "segments": [
+          {
+            "text": "会議室",
+            "ruby": "かいぎしつ"
+          },
+          {
+            "text": "には"
+          },
+          {
+            "text": "李",
+            "ruby": "リー"
+          },
+          {
+            "text": "さんしかいません。"
+          }
+        ]
+      }
     ],
     "dialogues": [
       {
-        "id": "l35-basic-dialogue-001", "label": "A", "lines": [
-          { "id": "l35-basic-dialogue-001-line-001", "speaker": "甲", "text": "大学を卒業したらどうしますか。", "translationZh": "大学毕业后你打算做什么？", "confidence": "high", "rawText": "甲：大学を卒業したらどうしますか。" },
-          { "id": "l35-basic-dialogue-001-line-002", "speaker": "乙", "text": "外国で働きたいです。", "translationZh": "我想在国外工作。", "confidence": "high", "rawText": "乙：外国で働きたいです。" }
+        "id": "l35-basic-dialogue-001",
+        "label": "A",
+        "lines": [
+          {
+            "id": "l35-basic-dialogue-001-line-001",
+            "speaker": "甲",
+            "text": "大学を卒業したらどうしますか。",
+            "translationZh": "大学毕业后你打算做什么？",
+            "confidence": "high",
+            "rawText": "甲：大学を卒業したらどうしますか。",
+            "kana": "だいがくをそつぎょうしたらどうしますか。",
+            "segments": [
+              {
+                "text": "大学",
+                "ruby": "だいがく"
+              },
+              {
+                "text": "を"
+              },
+              {
+                "text": "卒業",
+                "ruby": "そつぎょう"
+              },
+              {
+                "text": "したらどうしますか。"
+              }
+            ]
+          },
+          {
+            "id": "l35-basic-dialogue-001-line-002",
+            "speaker": "乙",
+            "text": "外国で働きたいです。",
+            "translationZh": "我想在国外工作。",
+            "confidence": "high",
+            "rawText": "乙：外国で働きたいです。",
+            "kana": "がいこくではたらきたいです。",
+            "segments": [
+              {
+                "text": "外国",
+                "ruby": "がいこく"
+              },
+              {
+                "text": "で"
+              },
+              {
+                "text": "働",
+                "ruby": "はたら"
+              },
+              {
+                "text": "きたいです。"
+              }
+            ]
+          }
         ]
       },
       {
-        "id": "l35-basic-dialogue-002", "label": "B", "lines": [
-          { "id": "l35-basic-dialogue-002-line-001", "speaker": "甲", "text": "馬さんは元気がないね。何かあったのかな。", "translationZh": "马先生没什么精神啊。是不是发生什么事了？", "confidence": "high", "rawText": "甲：馬さんは元気がないね。何かあったのかな。" },
-          { "id": "l35-basic-dialogue-002-line-002", "speaker": "乙", "text": "いくら聞いても何も言わないんだよ。", "translationZh": "怎么问他他也什么都不说。", "confidence": "high", "rawText": "乙：いくら聞いても何も言わないんだよ。" }
+        "id": "l35-basic-dialogue-002",
+        "label": "B",
+        "lines": [
+          {
+            "id": "l35-basic-dialogue-002-line-001",
+            "speaker": "甲",
+            "text": "馬さんは元気がないね。何かあったのかな。",
+            "translationZh": "马先生没什么精神啊。是不是发生什么事了？",
+            "confidence": "high",
+            "rawText": "甲：馬さんは元気がないね。何かあったのかな。",
+            "kana": "マーさんはげんきがないね。なにかあったのかな。",
+            "segments": [
+              {
+                "text": "馬",
+                "ruby": "マー"
+              },
+              {
+                "text": "さんは"
+              },
+              {
+                "text": "元気",
+                "ruby": "げんき"
+              },
+              {
+                "text": "がないね。"
+              },
+              {
+                "text": "何",
+                "ruby": "なに"
+              },
+              {
+                "text": "かあったのかな。"
+              }
+            ]
+          },
+          {
+            "id": "l35-basic-dialogue-002-line-002",
+            "speaker": "乙",
+            "text": "いくら聞いても何も言わないんだよ。",
+            "translationZh": "怎么问他他也什么都不说。",
+            "confidence": "high",
+            "rawText": "乙：いくら聞いても何も言わないんだよ。",
+            "kana": "いくらきいてもなにもいわないんだよ。",
+            "segments": [
+              {
+                "text": "いくら"
+              },
+              {
+                "text": "聞",
+                "ruby": "き"
+              },
+              {
+                "text": "いても"
+              },
+              {
+                "text": "何",
+                "ruby": "なに"
+              },
+              {
+                "text": "も"
+              },
+              {
+                "text": "言",
+                "ruby": "い"
+              },
+              {
+                "text": "わないんだよ。"
+              }
+            ]
+          }
         ]
       },
       {
-        "id": "l35-basic-dialogue-003", "label": "C", "lines": [
-          { "id": "l35-basic-dialogue-003-line-001", "speaker": "甲", "text": "李さん、資料はまだできませんか。", "translationZh": "小李，资料还没做好吗？", "confidence": "high", "rawText": "甲：李さん、資料はまだできませんか。" },
-          { "id": "l35-basic-dialogue-003-line-002", "speaker": "乙", "text": "すみません、あと少しだけ待ってください。", "translationZh": "对不起，请再稍等一会儿。", "confidence": "high", "rawText": "乙：すみません、あと少しだけ待ってください。" }
+        "id": "l35-basic-dialogue-003",
+        "label": "C",
+        "lines": [
+          {
+            "id": "l35-basic-dialogue-003-line-001",
+            "speaker": "甲",
+            "text": "李さん、資料はまだできませんか。",
+            "translationZh": "小李，资料还没做好吗？",
+            "confidence": "high",
+            "rawText": "甲：李さん、資料はまだできませんか。",
+            "kana": "リーさん、しりょうはまだできませんか。",
+            "segments": [
+              {
+                "text": "李",
+                "ruby": "リー"
+              },
+              {
+                "text": "さん、"
+              },
+              {
+                "text": "資料",
+                "ruby": "しりょう"
+              },
+              {
+                "text": "はまだできませんか。"
+              }
+            ]
+          },
+          {
+            "id": "l35-basic-dialogue-003-line-002",
+            "speaker": "乙",
+            "text": "すみません、あと少しだけ待ってください。",
+            "translationZh": "对不起，请再稍等一会儿。",
+            "confidence": "high",
+            "rawText": "乙：すみません、あと少しだけ待ってください。",
+            "kana": "すみません、あとすこしだけまってください。",
+            "segments": [
+              {
+                "text": "すみません、あと"
+              },
+              {
+                "text": "少",
+                "ruby": "すこ"
+              },
+              {
+                "text": "しだけ"
+              },
+              {
+                "text": "待",
+                "ruby": "ま"
+              },
+              {
+                "text": "ってください。"
+              }
+            ]
+          }
         ]
       },
       {
-        "id": "l35-basic-dialogue-004", "label": "D", "lines": [
-          { "id": "l35-basic-dialogue-004-line-001", "speaker": "甲", "text": "このゴーカートは大人でも乗ることができますか。", "translationZh": "这辆卡丁车大人也能坐吗？", "confidence": "high", "rawText": "甲：このゴーカートは大人でも乗ることができますか。" },
-          { "id": "l35-basic-dialogue-004-line-002", "speaker": "乙", "text": "いいえ、子供しか乗ることができません。", "translationZh": "不，只有孩子能坐。", "confidence": "high", "rawText": "乙：いいえ、子供しか乗ることができません。" }
+        "id": "l35-basic-dialogue-004",
+        "label": "D",
+        "lines": [
+          {
+            "id": "l35-basic-dialogue-004-line-001",
+            "speaker": "甲",
+            "text": "このゴーカートは大人でも乗ることができますか。",
+            "translationZh": "这辆卡丁车大人也能坐吗？",
+            "confidence": "high",
+            "rawText": "甲：このゴーカートは大人でも乗ることができますか。",
+            "kana": "このゴーカートはおとなでものることができますか。",
+            "segments": [
+              {
+                "text": "このゴーカートは"
+              },
+              {
+                "text": "大人",
+                "ruby": "おとな"
+              },
+              {
+                "text": "でも"
+              },
+              {
+                "text": "乗",
+                "ruby": "の"
+              },
+              {
+                "text": "ることができますか。"
+              }
+            ]
+          },
+          {
+            "id": "l35-basic-dialogue-004-line-002",
+            "speaker": "乙",
+            "text": "いいえ、子供しか乗ることができません。",
+            "translationZh": "不，只有孩子能坐。",
+            "confidence": "high",
+            "rawText": "乙：いいえ、子供しか乗ることができません。",
+            "kana": "いいえ、こどもしかのることができません。",
+            "segments": [
+              {
+                "text": "いいえ、"
+              },
+              {
+                "text": "子供",
+                "ruby": "こども"
+              },
+              {
+                "text": "しか"
+              },
+              {
+                "text": "乗",
+                "ruby": "の"
+              },
+              {
+                "text": "ることができません。"
+              }
+            ]
+          }
         ]
       }
     ]
@@ -42,34 +418,524 @@
   "applicationText": {
     "title": "ホームパーティー",
     "blocks": [
-      { "id": "l35-app-block-001", "type": "narration", "text": "太田先生和夫人住在天坛公园附近的公寓里。小李、森和小野一起去太田夫妇家拜访，一起包饺子。", "translationZh": "太田老师和夫人住在天坛公园附近的公寓里。小李、森和小野一起去拜访太田夫妇，并一起包饺子。", "confidence": "high", "rawText": "太田先生和夫人住在天坛公园附近的公寓里。小李、森和小野一起去太田夫妇家拜访，一起包饺子。" },
-      { "id": "l35-app-block-002", "type": "scene", "text": "小野和太田夫人帮忙打下手，饺子主要由小李来做。小李正在擀饺子皮儿。", "translationZh": "小野和太田夫人帮忙打下手，饺子主要由小李来做；小李正在擀饺子皮。", "confidence": "high", "rawText": "（小野和太田夫人帮忙打下手，饺子主要由小李来做。小李正在擀饺子皮儿）" },
-      { "id": "l35-app-block-003", "type": "dialogue", "lines": [
-        { "id": "l35-app-block-003-line-001", "speaker": "李", "text": "あのう、お酒があったら、少し入れてくれませんか。", "translationZh": "那个，如果有酒，能放一点吗？", "confidence": "high", "rawText": "李：あのう、お酒があったら、少し入れてくれませんか。" }
-      ] },
-      { "id": "l35-app-block-004", "type": "scene", "text": "太田夫人倒了一勺绍兴酒。", "translationZh": "太田夫人倒了一勺绍兴酒。", "confidence": "high", "rawText": "（太田夫人倒了一勺绍兴酒）" },
-      { "id": "l35-app-block-005", "type": "dialogue", "lines": [
-        { "id": "l35-app-block-005-line-001", "speaker": "夫人", "text": "１杯だけでいいですか。", "translationZh": "一勺就可以吗？", "confidence": "high", "rawText": "夫人：１杯だけでいいですか。" },
-        { "id": "l35-app-block-005-line-002", "speaker": "李", "text": "いいえ、３杯ぐらい入れてください。", "translationZh": "不，请放三勺左右。", "confidence": "high", "rawText": "李：いいえ、３杯ぐらい入れてください。" },
-        { "id": "l35-app-block-005-line-003", "speaker": "夫人", "text": "李さん、餃子を作るのが上手ですね。", "translationZh": "小李，你很会包饺子啊。", "confidence": "high", "rawText": "夫人：李さん、餃子を作るのが上手ですね。" },
-        { "id": "l35-app-block-005-line-004", "speaker": "李", "text": "ええ。北京では、餃子はどの家でも、自分たちで作って食べます。小さな子供も上手ですよ。", "translationZh": "是的。在北京，家家都自己包饺子吃。小孩子也很会包。", "confidence": "high", "rawText": "李：ええ。北京では、餃子はどの家でも、自分たちで作って食べます。小さな子供も上手ですよ。" },
-        { "id": "l35-app-block-005-line-005", "speaker": "夫人", "text": "わたし、本のとおりに作っても、なかなかうまくできないんですが、どうやったらおいしくなるんでしょうか。", "translationZh": "我即使照着书做，也总是做不好，怎样做才会好吃呢？", "confidence": "high", "rawText": "夫人：わたし、本のとおりに作っても、なかなかうまくできないんですが、どうやったらおいしくなるんでしょうか。" },
-        { "id": "l35-app-block-005-line-006", "speaker": "小野", "text": "何度も作ると、だんだん上手になりますよ。", "translationZh": "多做几次，就会渐渐做得好了。", "confidence": "high", "rawText": "小野：何度も作ると、だんだん上手になりますよ。" },
-        { "id": "l35-app-block-005-line-007", "speaker": "李", "text": "もし時間があったら、またいっしょに作りましょう。", "translationZh": "如果有时间，我们再一起包吧。", "confidence": "high", "rawText": "李：もし時間があったら、またいっしょに作りましょう。" }
-      ] },
-      { "id": "l35-app-block-006", "type": "scene", "text": "不一会儿，饺子做好了。", "translationZh": "不一会儿，饺子做好了。", "confidence": "high", "rawText": "（不一会儿，饺子做好了）" },
-      { "id": "l35-app-block-007", "type": "dialogue", "lines": [
-        { "id": "l35-app-block-007-line-001", "speaker": "太田", "text": "準備ができたら、乾杯しますよ。", "translationZh": "准备好了就干杯。", "confidence": "high", "rawText": "太田：準備ができたら、乾杯しますよ。" }
-      ] },
-      { "id": "l35-app-block-008", "type": "scene", "text": "酒斟好后，太田提议干杯。", "translationZh": "酒斟好后，太田提议干杯。", "confidence": "high", "rawText": "（酒斟好后，太田提议干杯）" },
-      { "id": "l35-app-block-009", "type": "dialogue", "lines": [
-        { "id": "l35-app-block-009-line-001", "speaker": "太田", "text": "皆さんの健康を祝って、カンパーイ！", "translationZh": "祝大家健康，干杯！", "confidence": "high", "rawText": "太田：皆さんの健康を祝って、カンパーイ！" }
-      ] },
-      { "id": "l35-app-block-010", "type": "scene", "text": "大家吃着饺子。", "translationZh": "大家吃着饺子。", "confidence": "high", "rawText": "（大家吃着饺子）" },
-      { "id": "l35-app-block-011", "type": "dialogue", "lines": [
-        { "id": "l35-app-block-011-line-001", "speaker": "小野", "text": "森さん、たくさん食べますね。わたしはいくら頑張っても、20個ぐらいしか食べることができません。", "translationZh": "森先生，你真能吃啊。我无论怎么努力，也只能吃二十个左右。", "confidence": "high", "rawText": "小野：森さん、たくさん食べますね。わたしはいくら頑張っても、20個ぐらいしか食べることができません。" },
-        { "id": "l35-app-block-011-line-002", "speaker": "森", "text": "ぼくは、小野さんが作った餃子だったら、30個は大丈夫ですよ。", "translationZh": "如果是小野女士包的饺子，我吃三十个也没问题。", "confidence": "high", "rawText": "森：ぼくは、小野さんが作った餃子だったら、30個は大丈夫ですよ。" }
-      ] }
+      {
+        "id": "l35-app-block-001",
+        "type": "narration",
+        "text": "太田先生和夫人住在天坛公园附近的公寓里。小李、森和小野一起去太田夫妇家拜访，一起包饺子。",
+        "translationZh": "太田老师和夫人住在天坛公园附近的公寓里。小李、森和小野一起去拜访太田夫妇，并一起包饺子。",
+        "confidence": "high",
+        "rawText": "太田先生和夫人住在天坛公园附近的公寓里。小李、森和小野一起去太田夫妇家拜访，一起包饺子。"
+      },
+      {
+        "id": "l35-app-block-002",
+        "type": "scene",
+        "text": "小野和太田夫人帮忙打下手，饺子主要由小李来做。小李正在擀饺子皮儿。",
+        "translationZh": "小野和太田夫人帮忙打下手，饺子主要由小李来做；小李正在擀饺子皮。",
+        "confidence": "high",
+        "rawText": "（小野和太田夫人帮忙打下手，饺子主要由小李来做。小李正在擀饺子皮儿）"
+      },
+      {
+        "id": "l35-app-block-003",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l35-app-block-003-line-001",
+            "speaker": "李",
+            "text": "あのう、お酒があったら、少し入れてくれませんか。",
+            "translationZh": "那个，如果有酒，能放一点吗？",
+            "confidence": "high",
+            "rawText": "李：あのう、お酒があったら、少し入れてくれませんか。",
+            "kana": "あのう、おさけがあったら、すこしいれてくれませんか。",
+            "segments": [
+              {
+                "text": "あのう、お"
+              },
+              {
+                "text": "酒",
+                "ruby": "さけ"
+              },
+              {
+                "text": "があったら、"
+              },
+              {
+                "text": "少",
+                "ruby": "すこ"
+              },
+              {
+                "text": "し"
+              },
+              {
+                "text": "入",
+                "ruby": "い"
+              },
+              {
+                "text": "れてくれませんか。"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "l35-app-block-004",
+        "type": "scene",
+        "text": "太田夫人倒了一勺绍兴酒。",
+        "translationZh": "太田夫人倒了一勺绍兴酒。",
+        "confidence": "high",
+        "rawText": "（太田夫人倒了一勺绍兴酒）"
+      },
+      {
+        "id": "l35-app-block-005",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l35-app-block-005-line-001",
+            "speaker": "夫人",
+            "text": "１杯だけでいいですか。",
+            "translationZh": "一勺就可以吗？",
+            "confidence": "high",
+            "rawText": "夫人：１杯だけでいいですか。",
+            "kana": "いっぱいだけでいいですか。",
+            "segments": [
+              {
+                "text": "１"
+              },
+              {
+                "text": "杯",
+                "ruby": "ぱい"
+              },
+              {
+                "text": "だけでいいですか。"
+              }
+            ]
+          },
+          {
+            "id": "l35-app-block-005-line-002",
+            "speaker": "李",
+            "text": "いいえ、３杯ぐらい入れてください。",
+            "translationZh": "不，请放三勺左右。",
+            "confidence": "high",
+            "rawText": "李：いいえ、３杯ぐらい入れてください。",
+            "kana": "いいえ、さんばいぐらいいれてください。",
+            "segments": [
+              {
+                "text": "いいえ、３"
+              },
+              {
+                "text": "杯",
+                "ruby": "ばい"
+              },
+              {
+                "text": "ぐらい"
+              },
+              {
+                "text": "入",
+                "ruby": "い"
+              },
+              {
+                "text": "れてください。"
+              }
+            ]
+          },
+          {
+            "id": "l35-app-block-005-line-003",
+            "speaker": "夫人",
+            "text": "李さん、餃子を作るのが上手ですね。",
+            "translationZh": "小李，你很会包饺子啊。",
+            "confidence": "high",
+            "rawText": "夫人：李さん、餃子を作るのが上手ですね。",
+            "kana": "リーさん、ぎょうざをつくるのがじょうずですね。",
+            "segments": [
+              {
+                "text": "李",
+                "ruby": "リー"
+              },
+              {
+                "text": "さん、"
+              },
+              {
+                "text": "餃子",
+                "ruby": "ぎょうざ"
+              },
+              {
+                "text": "を"
+              },
+              {
+                "text": "作",
+                "ruby": "つく"
+              },
+              {
+                "text": "るのが"
+              },
+              {
+                "text": "上手",
+                "ruby": "じょうず"
+              },
+              {
+                "text": "ですね。"
+              }
+            ]
+          },
+          {
+            "id": "l35-app-block-005-line-004",
+            "speaker": "李",
+            "text": "ええ。北京では、餃子はどの家でも、自分たちで作って食べます。小さな子供も上手ですよ。",
+            "translationZh": "是的。在北京，家家都自己包饺子吃。小孩子也很会包。",
+            "confidence": "high",
+            "rawText": "李：ええ。北京では、餃子はどの家でも、自分たちで作って食べます。小さな子供も上手ですよ。",
+            "kana": "ええ。ぺきんでは、ぎょうざはどのいえでも、じぶんたちでつくってたべます。ちいさなこどももじょうずですよ。",
+            "segments": [
+              {
+                "text": "ええ。"
+              },
+              {
+                "text": "北京",
+                "ruby": "ぺきん"
+              },
+              {
+                "text": "では、"
+              },
+              {
+                "text": "餃子",
+                "ruby": "ぎょうざ"
+              },
+              {
+                "text": "はどの"
+              },
+              {
+                "text": "家",
+                "ruby": "いえ"
+              },
+              {
+                "text": "でも、"
+              },
+              {
+                "text": "自分",
+                "ruby": "じぶん"
+              },
+              {
+                "text": "たちで"
+              },
+              {
+                "text": "作",
+                "ruby": "つく"
+              },
+              {
+                "text": "って"
+              },
+              {
+                "text": "食",
+                "ruby": "た"
+              },
+              {
+                "text": "べます。"
+              },
+              {
+                "text": "小",
+                "ruby": "ちい"
+              },
+              {
+                "text": "さな"
+              },
+              {
+                "text": "子供",
+                "ruby": "こども"
+              },
+              {
+                "text": "も"
+              },
+              {
+                "text": "上手",
+                "ruby": "じょうず"
+              },
+              {
+                "text": "ですよ。"
+              }
+            ]
+          },
+          {
+            "id": "l35-app-block-005-line-005",
+            "speaker": "夫人",
+            "text": "わたし、本のとおりに作っても、なかなかうまくできないんですが、どうやったらおいしくなるんでしょうか。",
+            "translationZh": "我即使照着书做，也总是做不好，怎样做才会好吃呢？",
+            "confidence": "high",
+            "rawText": "夫人：わたし、本のとおりに作っても、なかなかうまくできないんですが、どうやったらおいしくなるんでしょうか。",
+            "kana": "わたし、ほんのとおりにつくっても、なかなかうまくできないんですが、どうやったらおいしくなるんでしょうか。",
+            "segments": [
+              {
+                "text": "わたし、"
+              },
+              {
+                "text": "本",
+                "ruby": "ほん"
+              },
+              {
+                "text": "のとおりに"
+              },
+              {
+                "text": "作",
+                "ruby": "つく"
+              },
+              {
+                "text": "っても、なかなかうまくできないんですが、どうやったらおいしくなるんでしょうか。"
+              }
+            ]
+          },
+          {
+            "id": "l35-app-block-005-line-006",
+            "speaker": "小野",
+            "text": "何度も作ると、だんだん上手になりますよ。",
+            "translationZh": "多做几次，就会渐渐做得好了。",
+            "confidence": "high",
+            "rawText": "小野：何度も作ると、だんだん上手になりますよ。",
+            "kana": "なんどもつくると、だんだんじょうずになりますよ。",
+            "segments": [
+              {
+                "text": "何度",
+                "ruby": "なんど"
+              },
+              {
+                "text": "も"
+              },
+              {
+                "text": "作",
+                "ruby": "つく"
+              },
+              {
+                "text": "ると、だんだん"
+              },
+              {
+                "text": "上手",
+                "ruby": "じょうず"
+              },
+              {
+                "text": "になりますよ。"
+              }
+            ]
+          },
+          {
+            "id": "l35-app-block-005-line-007",
+            "speaker": "李",
+            "text": "もし時間があったら、またいっしょに作りましょう。",
+            "translationZh": "如果有时间，我们再一起包吧。",
+            "confidence": "high",
+            "rawText": "李：もし時間があったら、またいっしょに作りましょう。",
+            "kana": "もしじかんがあったら、またいっしょにつくりましょう。",
+            "segments": [
+              {
+                "text": "もし"
+              },
+              {
+                "text": "時間",
+                "ruby": "じかん"
+              },
+              {
+                "text": "があったら、またいっしょに"
+              },
+              {
+                "text": "作",
+                "ruby": "つく"
+              },
+              {
+                "text": "りましょう。"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "l35-app-block-006",
+        "type": "scene",
+        "text": "不一会儿，饺子做好了。",
+        "translationZh": "不一会儿，饺子做好了。",
+        "confidence": "high",
+        "rawText": "（不一会儿，饺子做好了）"
+      },
+      {
+        "id": "l35-app-block-007",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l35-app-block-007-line-001",
+            "speaker": "太田",
+            "text": "準備ができたら、乾杯しますよ。",
+            "translationZh": "准备好了就干杯。",
+            "confidence": "high",
+            "rawText": "太田：準備ができたら、乾杯しますよ。",
+            "kana": "じゅんびができたら、かんぱいしますよ。",
+            "segments": [
+              {
+                "text": "準備",
+                "ruby": "じゅんび"
+              },
+              {
+                "text": "ができたら、"
+              },
+              {
+                "text": "乾杯",
+                "ruby": "かんぱい"
+              },
+              {
+                "text": "しますよ。"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "l35-app-block-008",
+        "type": "scene",
+        "text": "酒斟好后，太田提议干杯。",
+        "translationZh": "酒斟好后，太田提议干杯。",
+        "confidence": "high",
+        "rawText": "（酒斟好后，太田提议干杯）"
+      },
+      {
+        "id": "l35-app-block-009",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l35-app-block-009-line-001",
+            "speaker": "太田",
+            "text": "皆さんの健康を祝って、カンパーイ！",
+            "translationZh": "祝大家健康，干杯！",
+            "confidence": "high",
+            "rawText": "太田：皆さんの健康を祝って、カンパーイ！",
+            "kana": "みなさんのけんこうをいわって、カンパーイ！",
+            "segments": [
+              {
+                "text": "皆",
+                "ruby": "みな"
+              },
+              {
+                "text": "さんの"
+              },
+              {
+                "text": "健康",
+                "ruby": "けんこう"
+              },
+              {
+                "text": "を"
+              },
+              {
+                "text": "祝",
+                "ruby": "いわ"
+              },
+              {
+                "text": "って、カンパーイ！"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "l35-app-block-010",
+        "type": "scene",
+        "text": "大家吃着饺子。",
+        "translationZh": "大家吃着饺子。",
+        "confidence": "high",
+        "rawText": "（大家吃着饺子）"
+      },
+      {
+        "id": "l35-app-block-011",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l35-app-block-011-line-001",
+            "speaker": "小野",
+            "text": "森さん、たくさん食べますね。わたしはいくら頑張っても、20個ぐらいしか食べることができません。",
+            "translationZh": "森先生，你真能吃啊。我无论怎么努力，也只能吃二十个左右。",
+            "confidence": "high",
+            "rawText": "小野：森さん、たくさん食べますね。わたしはいくら頑張っても、20個ぐらいしか食べることができません。",
+            "kana": "もりさん、たくさんたべますね。わたしはいくらがんばっても、20こぐらいしかたべることができません。",
+            "segments": [
+              {
+                "text": "森",
+                "ruby": "もり"
+              },
+              {
+                "text": "さん、たくさん"
+              },
+              {
+                "text": "食",
+                "ruby": "た"
+              },
+              {
+                "text": "べますね。わたしはいくら"
+              },
+              {
+                "text": "頑張",
+                "ruby": "がんば"
+              },
+              {
+                "text": "っても、20"
+              },
+              {
+                "text": "個",
+                "ruby": "こ"
+              },
+              {
+                "text": "ぐらいしか"
+              },
+              {
+                "text": "食",
+                "ruby": "た"
+              },
+              {
+                "text": "べることができません。"
+              }
+            ]
+          },
+          {
+            "id": "l35-app-block-011-line-002",
+            "speaker": "森",
+            "text": "ぼくは、小野さんが作った餃子だったら、30個は大丈夫ですよ。",
+            "translationZh": "如果是小野女士包的饺子，我吃三十个也没问题。",
+            "confidence": "high",
+            "rawText": "森：ぼくは、小野さんが作った餃子だったら、30個は大丈夫ですよ。",
+            "kana": "ぼくは、おのさんがつくったぎょうざだったら、30こはだいじょうぶですよ。",
+            "segments": [
+              {
+                "text": "ぼくは、"
+              },
+              {
+                "text": "小野",
+                "ruby": "おの"
+              },
+              {
+                "text": "さんが"
+              },
+              {
+                "text": "作",
+                "ruby": "つく"
+              },
+              {
+                "text": "った"
+              },
+              {
+                "text": "餃子",
+                "ruby": "ぎょうざ"
+              },
+              {
+                "text": "だったら、30"
+              },
+              {
+                "text": "個",
+                "ruby": "こ"
+              },
+              {
+                "text": "は"
+              },
+              {
+                "text": "大丈夫",
+                "ruby": "だいじょうぶ"
+              },
+              {
+                "text": "ですよ。"
+              }
+            ]
+          }
+        ]
+      }
     ]
   },
   "warnings": [

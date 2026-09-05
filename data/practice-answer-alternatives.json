@@ -2448,5 +2448,71 @@
         }
       ]
     }
+  },
+  "lesson34": {
+    "l34-p1-a5-q3": {
+      "answer": [
+        {
+          "answer": "明日の試験のために、今晩よく勉強しようと思っています",
+          "normalizedAnswer": "明日の試験のために今晩よく勉強しようと思っています",
+          "expectedAnswers": [
+            "明日の試験のために、今晩よく勉強しようと思います。"
+          ],
+          "reason": "用户答案与参考答案意思一致，语法功能相同，只是将「思います」改为「思っています」，属于自然表达差异，不影响句义和语法功能。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "明日の試験のために、今晩よく勉強しようと思っています",
+          "addedAt": "2026-09-04T01:35:51.460Z"
+        }
+      ]
+    },
+    "l34-p1-a5-q4": {
+      "answer": [
+        {
+          "answer": "留学するために、日本語の勉強を続けています",
+          "normalizedAnswer": "留学するために日本語の勉強を続けています",
+          "expectedAnswers": [
+            "留学するために、日本語の勉強を続けます。"
+          ],
+          "reason": "用户答案与参考答案意思一致，语法功能相同，仅时态由非过去时改为进行时，但在此语境下表达持续状态，可接受。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "留学するために、日本語の勉強を続けています。",
+          "addedAt": "2026-09-04T01:35:52.874Z"
+        }
+      ]
+    },
+    "l34-p1-a5-q6": {
+      "answer": [
+        {
+          "answer": "論文を書くために、資料をたくさん読んでいます",
+          "normalizedAnswer": "論文を書くために資料をたくさん読んでいます",
+          "expectedAnswers": [
+            "論文を書くために、資料をたくさん読みます。"
+          ],
+          "reason": "用户答案与参考答案意思一致，语法功能相同，只是将「読みます」改为「読んでいます」，属于自然表达差异，可以采纳。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "論文を書くために、資料をたくさん読んでいます",
+          "addedAt": "2026-09-04T01:35:54.840Z"
+        }
+      ]
+    },
+    "l34-p1-a5-q7": {
+      "answer": [
+        {
+          "answer": "オリンピックに出るために、毎日１万メートル泳いでいます",
+          "normalizedAnswer": "オリンピックに出るために毎日1万メートル泳いでいます",
+          "expectedAnswers": [
+            "オリンピックに出るために、毎日１万メートル泳ぎます。"
+          ],
+          "reason": "用户答案与参考答案意思一致，语法功能相同，只是将「泳ぎます」改为「泳いでいます」，属于自然表达差异，可以采纳。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "オリンピックに出るために、毎日１万メートル泳いでいます",
+          "addedAt": "2026-09-04T01:35:56.274Z"
+        }
+      ]
+    }
   }
 }
