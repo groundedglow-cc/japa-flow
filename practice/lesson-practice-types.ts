@@ -72,6 +72,7 @@ export type Answer = {
 export type InputSlot = {
   id: string;
   expectedUnit: InputUnit;
+  showAiNote?: boolean;
   choices?: Choice[];
   label?: string;
   width?: "short" | "medium" | "long";
@@ -105,6 +106,14 @@ export type ExampleBlock = {
   before?: string;
   beforeKana?: string;
   beforeParts?: PromptPart[];
+  pairedRows?: {
+    before: PromptPart[];
+    after: PromptPart[];
+  }[];
+  formatHints?: {
+    speakerLabels: string[];
+    speakerSentenceCounts?: number[];
+  };
   substitutionSlots?: {
     key: string;
     label: string;

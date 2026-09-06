@@ -46,7 +46,38 @@
             "matchScore": 1,
             "asrText": "こ の ボ タ ン を 押 す と 電 源 が 入 り ま す"
           }
-        }
+        },
+        "kana": "このぼたんをおすと、でんげんがはいります。",
+        "segments": [
+          {
+            "text": "このボタンを",
+            "ruby": ""
+          },
+          {
+            "text": "押",
+            "ruby": "お"
+          },
+          {
+            "text": "すと、",
+            "ruby": ""
+          },
+          {
+            "text": "電源",
+            "ruby": "でんげん"
+          },
+          {
+            "text": "が",
+            "ruby": ""
+          },
+          {
+            "text": "入",
+            "ruby": "はい"
+          },
+          {
+            "text": "ります。",
+            "ruby": ""
+          }
+        ]
       },
       {
         "id": "l31-basic-s002",
@@ -79,7 +110,14 @@
             "matchScore": 1,
             "asrText": "そ の パ ソ コ ン は た ま に フ リ ー ズ す る こ と が あ り ま す"
           }
-        }
+        },
+        "kana": "そのぱそこんは、たまにふりーずすることがあります。",
+        "segments": [
+          {
+            "text": "そのパソコンは、たまにフリーズすることがあります。",
+            "ruby": ""
+          }
+        ]
       },
       {
         "id": "l31-basic-s003",
@@ -112,7 +150,26 @@
             "matchScore": 1,
             "asrText": "馬 さ ん は と て も 上 手 に レ ポ ー ト を ま と め ま し た"
           }
-        }
+        },
+        "kana": "マーさんはとてもじょうずにれぽーとをまとめました。",
+        "segments": [
+          {
+            "text": "馬",
+            "ruby": "マー"
+          },
+          {
+            "text": "さんはとても",
+            "ruby": ""
+          },
+          {
+            "text": "上手",
+            "ruby": "じょうず"
+          },
+          {
+            "text": "にレポートをまとめました。",
+            "ruby": ""
+          }
+        ]
       },
       {
         "id": "l31-basic-s004",
@@ -145,7 +202,26 @@
             "matchScore": 1,
             "asrText": "李 さ ん は 来 る で し ょ う か"
           }
-        }
+        },
+        "kana": "リーさんはくるでしょうか。",
+        "segments": [
+          {
+            "text": "李",
+            "ruby": "リー"
+          },
+          {
+            "text": "さんは",
+            "ruby": ""
+          },
+          {
+            "text": "来",
+            "ruby": "く"
+          },
+          {
+            "text": "るでしょうか。",
+            "ruby": ""
+          }
+        ]
       }
     ],
     "dialogues": [
@@ -184,7 +260,30 @@
                 "matchScore": 1,
                 "asrText": "す み ま せ ん 市 役 所 へ は ど う 行 く ん で す か"
               }
-            }
+            },
+            "kana": "すみません。しやくしょへはどういくんですか。",
+            "segments": [
+              {
+                "text": "すみません。",
+                "ruby": ""
+              },
+              {
+                "text": "市役所",
+                "ruby": "しやくしょ"
+              },
+              {
+                "text": "へはどう",
+                "ruby": ""
+              },
+              {
+                "text": "行",
+                "ruby": "い"
+              },
+              {
+                "text": "くんですか。",
+                "ruby": ""
+              }
+            ]
           },
           {
             "id": "l31-basic-dialogue-001-line-002",
@@ -217,7 +316,46 @@
                 "matchScore": 1,
                 "asrText": "こ の 道 を ま っ す ぐ 行 く と デ パ ー ト が あ り ま す 市 役 所 は そ の 隣 で す よ"
               }
-            }
+            },
+            "kana": "このみちをまっすぐいくと、でぱーとがあります。しやくしょはそのとなりですよ。",
+            "segments": [
+              {
+                "text": "この",
+                "ruby": ""
+              },
+              {
+                "text": "道",
+                "ruby": "みち"
+              },
+              {
+                "text": "をまっすぐ",
+                "ruby": ""
+              },
+              {
+                "text": "行",
+                "ruby": "い"
+              },
+              {
+                "text": "くと、デパートがあります。",
+                "ruby": ""
+              },
+              {
+                "text": "市役所",
+                "ruby": "しやくしょ"
+              },
+              {
+                "text": "はその",
+                "ruby": ""
+              },
+              {
+                "text": "隣",
+                "ruby": "となり"
+              },
+              {
+                "text": "ですよ。",
+                "ruby": ""
+              }
+            ]
           },
           {
             "id": "l31-basic-dialogue-001-line-003",
@@ -232,25 +370,33 @@
               "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit8/lesson31/lesson_basic.mp3",
               "speaker": "甲",
               "text": "ありがとうございます。",
-              "start": 35.89,
+              "start": 35.49,
               "end": 37.27,
-              "duration": 1.38,
+              "duration": 1.78,
               "speechUnitCount": 1,
               "matchScore": 1,
               "asrText": "あ り が と う ご ざ い ま す",
               "phraseIndexes": [
                 6
               ],
-              "method": "legacy-asr-alignment-range-converted",
+              "method": "manual-admin-adjustment",
               "confidence": "approved",
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-05T10:10:17.883Z",
-                "note": "Automatically approved by the bulk alignment workflow.",
+                "reviewedAt": "2026-09-06T08:24:19.276Z",
+                "note": "Manually verified and adjusted in the text audio preview.",
                 "matchScore": 1,
                 "asrText": "あ り が と う ご ざ い ま す"
+              },
+              "reviewedAt": "2026-09-06T08:24:19.276Z"
+            },
+            "kana": "ありがとうございます。",
+            "segments": [
+              {
+                "text": "ありがとうございます。",
+                "ruby": ""
               }
-            }
+            ]
           }
         ]
       },
@@ -289,7 +435,42 @@
                 "matchScore": 0.875,
                 "asrText": "朝 ご は ん は 毎 日 き ち ん と 食 べ ま す か"
               }
-            }
+            },
+            "kana": "あさごはんはまいにちきちんとたべますか。",
+            "segments": [
+              {
+                "text": "朝",
+                "ruby": "あさ"
+              },
+              {
+                "text": "ご",
+                "ruby": ""
+              },
+              {
+                "text": "飯",
+                "ruby": "はん"
+              },
+              {
+                "text": "は",
+                "ruby": ""
+              },
+              {
+                "text": "毎日",
+                "ruby": "まいにち"
+              },
+              {
+                "text": "きちんと",
+                "ruby": ""
+              },
+              {
+                "text": "食",
+                "ruby": "た"
+              },
+              {
+                "text": "べますか。",
+                "ruby": ""
+              }
+            ]
           },
           {
             "id": "l31-basic-dialogue-002-line-002",
@@ -304,9 +485,9 @@
               "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit8/lesson31/lesson_basic.mp3",
               "speaker": "乙",
               "text": "ええ。でも、たまに食べないことがあります。",
-              "start": 44.05,
+              "start": 43.95,
               "end": 48.11,
-              "duration": 4.06,
+              "duration": 4.16,
               "speechUnitCount": 2,
               "matchScore": 1,
               "asrText": "え え で も た ま に 食 べ な い こ と が あ り ま す",
@@ -314,16 +495,32 @@
                 8,
                 9
               ],
-              "method": "legacy-asr-alignment-range-converted",
+              "method": "manual-admin-adjustment",
               "confidence": "approved",
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-05T10:10:17.883Z",
-                "note": "Automatically approved by the bulk alignment workflow.",
+                "reviewedAt": "2026-09-06T08:24:30.276Z",
+                "note": "Manually verified and adjusted in the text audio preview.",
                 "matchScore": 1,
                 "asrText": "え え で も た ま に 食 べ な い こ と が あ り ま す"
+              },
+              "reviewedAt": "2026-09-06T08:24:30.276Z"
+            },
+            "kana": "ええ。でも、たまにたべないことがあります。",
+            "segments": [
+              {
+                "text": "ええ。でも、たまに",
+                "ruby": ""
+              },
+              {
+                "text": "食",
+                "ruby": "た"
+              },
+              {
+                "text": "べないことがあります。",
+                "ruby": ""
               }
-            }
+            ]
           }
         ]
       },
@@ -344,25 +541,41 @@
               "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit8/lesson31/lesson_basic.mp3",
               "speaker": "甲",
               "text": "あっ、雨ですよ。",
-              "start": 50.82,
+              "start": 50.52,
               "end": 52.48,
-              "duration": 1.66,
+              "duration": 1.96,
               "speechUnitCount": 1,
               "matchScore": 1,
               "asrText": "あ っ 雨 で す よ",
               "phraseIndexes": [
                 10
               ],
-              "method": "legacy-asr-alignment-range-converted",
+              "method": "manual-admin-adjustment",
               "confidence": "approved",
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-05T10:10:17.883Z",
-                "note": "Automatically approved by the bulk alignment workflow.",
+                "reviewedAt": "2026-09-06T08:24:37.608Z",
+                "note": "Manually verified and adjusted in the text audio preview.",
                 "matchScore": 1,
                 "asrText": "あ っ 雨 で す よ"
+              },
+              "reviewedAt": "2026-09-06T08:24:37.608Z"
+            },
+            "kana": "あっ、あめですよ。",
+            "segments": [
+              {
+                "text": "あっ、",
+                "ruby": ""
+              },
+              {
+                "text": "雨",
+                "ruby": "あめ"
+              },
+              {
+                "text": "ですよ。",
+                "ruby": ""
               }
-            }
+            ]
           },
           {
             "id": "l31-basic-dialogue-003-line-002",
@@ -377,9 +590,9 @@
               "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit8/lesson31/lesson_basic.mp3",
               "speaker": "乙",
               "text": "本当ですね。早く家に帰りましょう。",
-              "start": 53.25,
+              "start": 53.05,
               "end": 57.03,
-              "duration": 3.78,
+              "duration": 3.98,
               "speechUnitCount": 2,
               "matchScore": 1,
               "asrText": "本 当 で す ね 早 く 家 に 帰 り ま し ょ う",
@@ -387,16 +600,52 @@
                 11,
                 12
               ],
-              "method": "legacy-asr-alignment-range-converted",
+              "method": "manual-admin-adjustment",
               "confidence": "approved",
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-05T10:10:17.883Z",
-                "note": "Automatically approved by the bulk alignment workflow.",
+                "reviewedAt": "2026-09-06T08:24:43.387Z",
+                "note": "Manually verified and adjusted in the text audio preview.",
                 "matchScore": 1,
                 "asrText": "本 当 で す ね 早 く 家 に 帰 り ま し ょ う"
+              },
+              "reviewedAt": "2026-09-06T08:24:43.387Z"
+            },
+            "kana": "ほんとうですね。はやくいえにかえりましょう。",
+            "segments": [
+              {
+                "text": "本当",
+                "ruby": "ほんとう"
+              },
+              {
+                "text": "ですね。",
+                "ruby": ""
+              },
+              {
+                "text": "早",
+                "ruby": "はや"
+              },
+              {
+                "text": "く",
+                "ruby": ""
+              },
+              {
+                "text": "家",
+                "ruby": "いえ"
+              },
+              {
+                "text": "に",
+                "ruby": ""
+              },
+              {
+                "text": "帰",
+                "ruby": "かえ"
+              },
+              {
+                "text": "りましょう。",
+                "ruby": ""
               }
-            }
+            ]
           }
         ]
       },
@@ -417,25 +666,41 @@
               "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit8/lesson31/lesson_basic.mp3",
               "speaker": "甲",
               "text": "すみません、馬さんはどちらでしょうか。",
-              "start": 59.34,
+              "start": 59.14,
               "end": 62.24,
-              "duration": 2.9,
+              "duration": 3.1,
               "speechUnitCount": 1,
               "matchScore": 0.889,
               "asrText": "す み ま せ ん ば あ さ ん は ど ち ら で し ょ う か",
               "phraseIndexes": [
                 13
               ],
-              "method": "legacy-asr-alignment-range-converted",
+              "method": "manual-admin-adjustment",
               "confidence": "approved",
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-05T10:10:17.883Z",
-                "note": "Automatically approved by the bulk alignment workflow.",
+                "reviewedAt": "2026-09-06T08:24:50.426Z",
+                "note": "Manually verified and adjusted in the text audio preview.",
                 "matchScore": 0.889,
                 "asrText": "す み ま せ ん ば あ さ ん は ど ち ら で し ょ う か"
+              },
+              "reviewedAt": "2026-09-06T08:24:50.426Z"
+            },
+            "kana": "すみません、マーさんはどちらでしょうか。",
+            "segments": [
+              {
+                "text": "すみません、",
+                "ruby": ""
+              },
+              {
+                "text": "馬",
+                "ruby": "マー"
+              },
+              {
+                "text": "さんはどちらでしょうか。",
+                "ruby": ""
               }
-            }
+            ]
           },
           {
             "id": "l31-basic-dialogue-004-line-002",
@@ -450,25 +715,45 @@
               "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit8/lesson31/lesson_basic.mp3",
               "speaker": "乙",
               "text": "馬さんはさっき出かけましたよ。",
-              "start": 63.05,
+              "start": 62.65,
               "end": 65.67,
-              "duration": 2.62,
+              "duration": 3.02,
               "speechUnitCount": 1,
               "matchScore": 1,
               "asrText": "馬 さ ん は さ っ き 出 か け ま し た よ",
               "phraseIndexes": [
                 14
               ],
-              "method": "legacy-asr-alignment-range-converted",
+              "method": "manual-admin-adjustment",
               "confidence": "approved",
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-05T10:10:17.883Z",
-                "note": "Automatically approved by the bulk alignment workflow.",
+                "reviewedAt": "2026-09-06T08:25:02.538Z",
+                "note": "Manually verified and adjusted in the text audio preview.",
                 "matchScore": 1,
                 "asrText": "馬 さ ん は さ っ き 出 か け ま し た よ"
+              },
+              "reviewedAt": "2026-09-06T08:25:02.538Z"
+            },
+            "kana": "マーさんはさっきでかけましたよ。",
+            "segments": [
+              {
+                "text": "馬",
+                "ruby": "マー"
+              },
+              {
+                "text": "さんはさっき",
+                "ruby": ""
+              },
+              {
+                "text": "出",
+                "ruby": "で"
+              },
+              {
+                "text": "かけましたよ。",
+                "ruby": ""
               }
-            }
+            ]
           }
         ]
       }
@@ -528,7 +813,54 @@
                 "matchScore": 0.943,
                 "asrText": "こ こ を 曲 が る と 小 さ な 公 園 が あ っ て 子 ど も た ち が よ く 卓 球 を し て い る ん で す よ"
               }
-            }
+            },
+            "kana": "ここをまがるとちいさなこうえんがあって、こどもたちがよくたっきゅうをしているんですよ。",
+            "segments": [
+              {
+                "text": "ここを",
+                "ruby": ""
+              },
+              {
+                "text": "曲",
+                "ruby": "ま"
+              },
+              {
+                "text": "がると",
+                "ruby": ""
+              },
+              {
+                "text": "小",
+                "ruby": "ちい"
+              },
+              {
+                "text": "さな",
+                "ruby": ""
+              },
+              {
+                "text": "公園",
+                "ruby": "こうえん"
+              },
+              {
+                "text": "があって、",
+                "ruby": ""
+              },
+              {
+                "text": "子供",
+                "ruby": "こども"
+              },
+              {
+                "text": "たちがよく",
+                "ruby": ""
+              },
+              {
+                "text": "卓球",
+                "ruby": "たっきゅう"
+              },
+              {
+                "text": "をしているんですよ。",
+                "ruby": ""
+              }
+            ]
           },
           {
             "id": "l31-app-block-003-line-002",
@@ -561,7 +893,26 @@
                 "matchScore": 1,
                 "asrText": "卓 球 で す か 公 園 で"
               }
-            }
+            },
+            "kana": "たっきゅうですか？ こうえんで？",
+            "segments": [
+              {
+                "text": "卓球",
+                "ruby": "たっきゅう"
+              },
+              {
+                "text": "ですか？ ",
+                "ruby": ""
+              },
+              {
+                "text": "公園",
+                "ruby": "こうえん"
+              },
+              {
+                "text": "で？",
+                "ruby": ""
+              }
+            ]
           },
           {
             "id": "l31-app-block-003-line-003",
@@ -576,25 +927,49 @@
               "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit8/lesson31/lesson_apps.mp3",
               "speaker": "馬",
               "text": "そうです。その公園にはコンクリートでできた卓球台があるんです。",
-              "start": 32.73,
+              "start": 32.53,
               "end": 37.19,
-              "duration": 4.46,
+              "duration": 4.66,
               "speechUnitCount": 1,
               "matchScore": 1,
               "asrText": "そ う で す そ の 公 園 に は コ ン ク リ ー ト で で き た 卓 球 台 が あ る ん で す",
               "phraseIndexes": [
                 5
               ],
-              "method": "legacy-asr-alignment-range-converted",
+              "method": "manual-admin-adjustment",
               "confidence": "approved",
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-05T10:11:21.193Z",
-                "note": "Automatically approved by the bulk alignment workflow.",
+                "reviewedAt": "2026-09-06T08:25:20.803Z",
+                "note": "Manually verified and adjusted in the text audio preview.",
                 "matchScore": 1,
                 "asrText": "そ う で す そ の 公 園 に は コ ン ク リ ー ト で で き た 卓 球 台 が あ る ん で す"
+              },
+              "reviewedAt": "2026-09-06T08:25:20.803Z"
+            },
+            "kana": "そうです。そのこうえんにはこんくりーとでできたたっきゅうだいがあるんです。",
+            "segments": [
+              {
+                "text": "そうです。その",
+                "ruby": ""
+              },
+              {
+                "text": "公園",
+                "ruby": "こうえん"
+              },
+              {
+                "text": "にはコンクリートでできた",
+                "ruby": ""
+              },
+              {
+                "text": "卓球台",
+                "ruby": "たっきゅうだい"
+              },
+              {
+                "text": "があるんです。",
+                "ruby": ""
               }
-            }
+            ]
           },
           {
             "id": "l31-app-block-003-line-004",
@@ -627,7 +1002,22 @@
                 "matchScore": 0.8,
                 "asrText": "コ ン ク リ ー ト の 卓 球 台 へ え 面 白 い で す ね"
               }
-            }
+            },
+            "kana": "こんくりーとのたっきゅうだい？ へえ、おもしろいですね。",
+            "segments": [
+              {
+                "text": "コンクリートの",
+                "ruby": ""
+              },
+              {
+                "text": "卓球台",
+                "ruby": "たっきゅうだい"
+              },
+              {
+                "text": "？ へえ、おもしろいですね。",
+                "ruby": ""
+              }
+            ]
           },
           {
             "id": "l31-app-block-003-line-005",
@@ -642,25 +1032,73 @@
               "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit8/lesson31/lesson_apps.mp3",
               "speaker": "馬",
               "text": "ええ、卓球をしたい時にいつでもできるんです。たまに公園のそばを通ることがあるんですが、必ずだれかがやっていますね。",
-              "start": 43.05,
+              "start": 43,
               "end": 51.55,
-              "duration": 8.5,
+              "duration": 8.55,
               "speechUnitCount": 1,
               "matchScore": 0.925,
               "asrText": "え え 卓 球 を し た い と き に い つ で も で き る ん で す た ま に 公 園 の そ ば を 通 る こ と が あ る ん で す が 必 ず 誰 か が や っ て い ま す ね",
               "phraseIndexes": [
                 7
               ],
-              "method": "legacy-asr-alignment-range-converted",
+              "method": "manual-admin-adjustment",
               "confidence": "approved",
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-05T10:11:21.193Z",
-                "note": "Automatically approved by the bulk alignment workflow.",
+                "reviewedAt": "2026-09-06T08:25:27.485Z",
+                "note": "Manually verified and adjusted in the text audio preview.",
                 "matchScore": 0.925,
                 "asrText": "え え 卓 球 を し た い と き に い つ で も で き る ん で す た ま に 公 園 の そ ば を 通 る こ と が あ る ん で す が 必 ず 誰 か が や っ て い ま す ね"
+              },
+              "reviewedAt": "2026-09-06T08:25:27.485Z"
+            },
+            "kana": "ええ、たっきゅうをしたいときにいつでもできるんです。たまにこうえんのそばをとおることがあるんですが、かならずだれかがやっていますね。",
+            "segments": [
+              {
+                "text": "ええ、",
+                "ruby": ""
+              },
+              {
+                "text": "卓球",
+                "ruby": "たっきゅう"
+              },
+              {
+                "text": "をしたい",
+                "ruby": ""
+              },
+              {
+                "text": "時",
+                "ruby": "とき"
+              },
+              {
+                "text": "にいつでもできるんです。たまに",
+                "ruby": ""
+              },
+              {
+                "text": "公園",
+                "ruby": "こうえん"
+              },
+              {
+                "text": "のそばを",
+                "ruby": ""
+              },
+              {
+                "text": "通",
+                "ruby": "とお"
+              },
+              {
+                "text": "ることがあるんですが、",
+                "ruby": ""
+              },
+              {
+                "text": "必",
+                "ruby": "かなら"
+              },
+              {
+                "text": "ずだれかがやっていますね。",
+                "ruby": ""
               }
-            }
+            ]
           }
         ]
       },
@@ -689,25 +1127,41 @@
               "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit8/lesson31/lesson_apps.mp3",
               "speaker": "馬",
               "text": "ここから300メートルほど行くと、スポーツセンターがあります。",
-              "start": 56.06,
+              "start": 55.6,
               "end": 59.84,
-              "duration": 3.78,
+              "duration": 4.24,
               "speechUnitCount": 1,
               "matchScore": 0.897,
               "asrText": "こ こ か ら 三 百 メ ー ト ル ほ ど 行 く と ス ポ ー ツ セ ン タ ー が あ り ま す",
               "phraseIndexes": [
                 8
               ],
-              "method": "legacy-asr-alignment-range-converted",
+              "method": "manual-admin-adjustment",
               "confidence": "approved",
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-05T10:11:21.193Z",
-                "note": "Automatically approved by the bulk alignment workflow.",
+                "reviewedAt": "2026-09-06T08:25:34.135Z",
+                "note": "Manually verified and adjusted in the text audio preview.",
                 "matchScore": 0.897,
                 "asrText": "こ こ か ら 三 百 メ ー ト ル ほ ど 行 く と ス ポ ー ツ セ ン タ ー が あ り ま す"
+              },
+              "reviewedAt": "2026-09-06T08:25:34.135Z"
+            },
+            "kana": "ここからさんびゃくめーとるほどいくと、すぽーつせんたーがあります。",
+            "segments": [
+              {
+                "text": "ここから300メートルほど",
+                "ruby": ""
+              },
+              {
+                "text": "行",
+                "ruby": "い"
+              },
+              {
+                "text": "くと、スポーツセンターがあります。",
+                "ruby": ""
               }
-            }
+            ]
           },
           {
             "id": "l31-app-block-005-line-002",
@@ -722,9 +1176,9 @@
               "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit8/lesson31/lesson_apps.mp3",
               "speaker": "森",
               "text": "スポーツセンター？ だれでも自由に利用することができるんでしょうか。",
-              "start": 60.41,
+              "start": 60.1,
               "end": 64.91,
-              "duration": 4.5,
+              "duration": 4.81,
               "speechUnitCount": 2,
               "matchScore": 0.935,
               "asrText": "ス ポ ー ツ セ ン タ ー 誰 で も 自 由 に 利 用 す る こ と が で き る ん で し ょ う か",
@@ -732,16 +1186,40 @@
                 9,
                 10
               ],
-              "method": "legacy-asr-alignment-range-converted",
+              "method": "manual-admin-adjustment",
               "confidence": "approved",
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-05T10:11:21.193Z",
-                "note": "Automatically approved by the bulk alignment workflow.",
+                "reviewedAt": "2026-09-06T08:25:41.484Z",
+                "note": "Manually verified and adjusted in the text audio preview.",
                 "matchScore": 0.935,
                 "asrText": "ス ポ ー ツ セ ン タ ー 誰 で も 自 由 に 利 用 す る こ と が で き る ん で し ょ う か"
+              },
+              "reviewedAt": "2026-09-06T08:25:41.484Z"
+            },
+            "kana": "すぽーつせんたー？ だれでもじゆうにりようすることができるんでしょうか。",
+            "segments": [
+              {
+                "text": "スポーツセンター？ だれでも",
+                "ruby": ""
+              },
+              {
+                "text": "自由",
+                "ruby": "じゆう"
+              },
+              {
+                "text": "に",
+                "ruby": ""
+              },
+              {
+                "text": "利用",
+                "ruby": "りよう"
+              },
+              {
+                "text": "することができるんでしょうか。",
+                "ruby": ""
               }
-            }
+            ]
           },
           {
             "id": "l31-app-block-005-line-003",
@@ -756,25 +1234,49 @@
               "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit8/lesson31/lesson_apps.mp3",
               "speaker": "馬",
               "text": "ええ、だれでも利用することができます。ただし、有料ですが。",
-              "start": 66.34,
+              "start": 65.34,
               "end": 70,
-              "duration": 3.66,
+              "duration": 4.66,
               "speechUnitCount": 1,
               "matchScore": 0.92,
               "asrText": "え え 誰 で も 利 用 す る こ と が で き ま す た だ し 有 料 で す が",
               "phraseIndexes": [
                 11
               ],
-              "method": "legacy-asr-alignment-range-converted",
+              "method": "manual-admin-adjustment",
               "confidence": "approved",
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-05T10:11:21.193Z",
-                "note": "Automatically approved by the bulk alignment workflow.",
+                "reviewedAt": "2026-09-06T08:25:49.082Z",
+                "note": "Manually verified and adjusted in the text audio preview.",
                 "matchScore": 0.92,
                 "asrText": "え え 誰 で も 利 用 す る こ と が で き ま す た だ し 有 料 で す が"
+              },
+              "reviewedAt": "2026-09-06T08:25:49.082Z"
+            },
+            "kana": "ええ、だれでもりようすることができます。ただし、ゆうりょうですが。",
+            "segments": [
+              {
+                "text": "ええ、だれでも",
+                "ruby": ""
+              },
+              {
+                "text": "利用",
+                "ruby": "りよう"
+              },
+              {
+                "text": "することができます。ただし、",
+                "ruby": ""
+              },
+              {
+                "text": "有料",
+                "ruby": "ゆうりょう"
+              },
+              {
+                "text": "ですが。",
+                "ruby": ""
               }
-            }
+            ]
           },
           {
             "id": "l31-app-block-005-line-004",
@@ -807,7 +1309,26 @@
                 "matchScore": 1,
                 "asrText": "馬 さ ん も よ く 利 用 す る ん で す か"
               }
-            }
+            },
+            "kana": "マーさんもよくりようするんですか。",
+            "segments": [
+              {
+                "text": "馬",
+                "ruby": "マー"
+              },
+              {
+                "text": "さんもよく",
+                "ruby": ""
+              },
+              {
+                "text": "利用",
+                "ruby": "りよう"
+              },
+              {
+                "text": "するんですか。",
+                "ruby": ""
+              }
+            ]
           },
           {
             "id": "l31-app-block-005-line-005",
@@ -822,9 +1343,9 @@
               "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit8/lesson31/lesson_apps.mp3",
               "speaker": "馬",
               "text": "たまにプールで泳ぐことがあります。でも、会員じゃないと夜8時以降は利用することができないんです。だから会員になろうと思っているんです。",
-              "start": 73.94,
+              "start": 72.64,
               "end": 83.19,
-              "duration": 9.25,
+              "duration": 10.55,
               "speechUnitCount": 2,
               "matchScore": 0.984,
               "asrText": "た ま に プ ー ル で 泳 ぐ こ と が あ り ま す で も 会 員 じ ゃ な い と 夜 八 時 以 降 は 利 用 す る こ と が で き な い ん で す だ か ら 会 員 に な ろ う と 思 っ て い る ん で す",
@@ -832,16 +1353,84 @@
                 12,
                 13
               ],
-              "method": "legacy-asr-alignment-range-converted",
+              "method": "manual-admin-adjustment",
               "confidence": "approved",
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-05T10:11:21.193Z",
-                "note": "Automatically approved by the bulk alignment workflow.",
+                "reviewedAt": "2026-09-06T08:26:30.580Z",
+                "note": "Manually verified and adjusted in the text audio preview.",
                 "matchScore": 0.984,
                 "asrText": "た ま に プ ー ル で 泳 ぐ こ と が あ り ま す で も 会 員 じ ゃ な い と 夜 八 時 以 降 は 利 用 す る こ と が で き な い ん で す だ か ら 会 員 に な ろ う と 思 っ て い る ん で す"
+              },
+              "reviewedAt": "2026-09-06T08:26:30.580Z"
+            },
+            "kana": "たまにぷーるでおよぐことがあります。でも、かいいんじゃないとよるはちじいこうはりようすることができないんです。だからかいいんになろうとおもっているんです。",
+            "segments": [
+              {
+                "text": "たまにプールで",
+                "ruby": ""
+              },
+              {
+                "text": "泳",
+                "ruby": "およ"
+              },
+              {
+                "text": "ぐことがあります。でも、",
+                "ruby": ""
+              },
+              {
+                "text": "会員",
+                "ruby": "かいいん"
+              },
+              {
+                "text": "じゃないと",
+                "ruby": ""
+              },
+              {
+                "text": "夜",
+                "ruby": "よる"
+              },
+              {
+                "text": "8",
+                "ruby": ""
+              },
+              {
+                "text": "時",
+                "ruby": "じ"
+              },
+              {
+                "text": "以降",
+                "ruby": "いこう"
+              },
+              {
+                "text": "は",
+                "ruby": ""
+              },
+              {
+                "text": "利用",
+                "ruby": "りよう"
+              },
+              {
+                "text": "することができないんです。だから",
+                "ruby": ""
+              },
+              {
+                "text": "会員",
+                "ruby": "かいいん"
+              },
+              {
+                "text": "になろうと",
+                "ruby": ""
+              },
+              {
+                "text": "思",
+                "ruby": "おも"
+              },
+              {
+                "text": "っているんです。",
+                "ruby": ""
               }
-            }
+            ]
           },
           {
             "id": "l31-app-block-005-line-006",
@@ -856,25 +1445,53 @@
               "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit8/lesson31/lesson_apps.mp3",
               "speaker": "森",
               "text": "会員になると、何かほかにも特典があるんですか。",
-              "start": 83.93,
+              "start": 83.3,
               "end": 87.51,
-              "duration": 3.58,
+              "duration": 4.21,
               "speechUnitCount": 1,
               "matchScore": 0.905,
               "asrText": "会 員 に な る と 何 か 他 に も 特 典 が あ る ん で す か",
               "phraseIndexes": [
                 14
               ],
-              "method": "legacy-asr-alignment-range-converted",
+              "method": "manual-admin-adjustment",
               "confidence": "approved",
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-05T10:11:21.193Z",
-                "note": "Automatically approved by the bulk alignment workflow.",
+                "reviewedAt": "2026-09-06T08:26:38.790Z",
+                "note": "Manually verified and adjusted in the text audio preview.",
                 "matchScore": 0.905,
                 "asrText": "会 員 に な る と 何 か 他 に も 特 典 が あ る ん で す か"
+              },
+              "reviewedAt": "2026-09-06T08:26:38.790Z"
+            },
+            "kana": "かいいんになると、なにかほかにもとくてんがあるんですか。",
+            "segments": [
+              {
+                "text": "会員",
+                "ruby": "かいいん"
+              },
+              {
+                "text": "になると、",
+                "ruby": ""
+              },
+              {
+                "text": "何",
+                "ruby": "なに"
+              },
+              {
+                "text": "かほかにも",
+                "ruby": ""
+              },
+              {
+                "text": "特典",
+                "ruby": "とくてん"
+              },
+              {
+                "text": "があるんですか。",
+                "ruby": ""
               }
-            }
+            ]
           },
           {
             "id": "l31-app-block-005-line-007",
@@ -889,25 +1506,61 @@
               "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit8/lesson31/lesson_apps.mp3",
               "speaker": "馬",
               "text": "会員の家族も安く利用することができるんです。",
-              "start": 88.37,
+              "start": 87.7,
               "end": 91.55,
-              "duration": 3.18,
+              "duration": 3.85,
               "speechUnitCount": 1,
               "matchScore": 1,
               "asrText": "会 員 の 家 族 も 安 く 利 用 す る こ と が で き る ん で す",
               "phraseIndexes": [
                 15
               ],
-              "method": "legacy-asr-alignment-range-converted",
+              "method": "manual-admin-adjustment",
               "confidence": "approved",
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-05T10:11:21.193Z",
-                "note": "Automatically approved by the bulk alignment workflow.",
+                "reviewedAt": "2026-09-06T08:26:46.540Z",
+                "note": "Manually verified and adjusted in the text audio preview.",
                 "matchScore": 1,
                 "asrText": "会 員 の 家 族 も 安 く 利 用 す る こ と が で き る ん で す"
+              },
+              "reviewedAt": "2026-09-06T08:26:46.540Z"
+            },
+            "kana": "かいいんのかぞくもやすくりようすることができるんです。",
+            "segments": [
+              {
+                "text": "会員",
+                "ruby": "かいいん"
+              },
+              {
+                "text": "の",
+                "ruby": ""
+              },
+              {
+                "text": "家族",
+                "ruby": "かぞく"
+              },
+              {
+                "text": "も",
+                "ruby": ""
+              },
+              {
+                "text": "安",
+                "ruby": "やす"
+              },
+              {
+                "text": "く",
+                "ruby": ""
+              },
+              {
+                "text": "利用",
+                "ruby": "りよう"
+              },
+              {
+                "text": "することができるんです。",
+                "ruby": ""
               }
-            }
+            ]
           }
         ]
       },
@@ -936,25 +1589,41 @@
               "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit8/lesson31/lesson_apps.mp3",
               "speaker": "森",
               "text": "今何時でしょうか。",
-              "start": 94.43,
+              "start": 94,
               "end": 95.93,
-              "duration": 1.5,
+              "duration": 1.93,
               "speechUnitCount": 1,
               "matchScore": 1,
               "asrText": "今 何 時 で し ょ う か",
               "phraseIndexes": [
                 16
               ],
-              "method": "legacy-asr-alignment-range-converted",
+              "method": "manual-admin-adjustment",
               "confidence": "approved",
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-05T10:11:21.193Z",
-                "note": "Automatically approved by the bulk alignment workflow.",
+                "reviewedAt": "2026-09-06T08:26:53.475Z",
+                "note": "Manually verified and adjusted in the text audio preview.",
                 "matchScore": 1,
                 "asrText": "今 何 時 で し ょ う か"
+              },
+              "reviewedAt": "2026-09-06T08:26:53.475Z"
+            },
+            "kana": "いまなんじでしょうか。",
+            "segments": [
+              {
+                "text": "今",
+                "ruby": "いま"
+              },
+              {
+                "text": "何時",
+                "ruby": "なんじ"
+              },
+              {
+                "text": "でしょうか。",
+                "ruby": ""
               }
-            }
+            ]
           },
           {
             "id": "l31-app-block-007-line-002",
@@ -969,25 +1638,49 @@
               "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit8/lesson31/lesson_apps.mp3",
               "speaker": "馬",
               "text": "もうすぐ1時15分になります。",
-              "start": 96.61,
+              "start": 96.1,
               "end": 99.35,
-              "duration": 2.74,
+              "duration": 3.25,
               "speechUnitCount": 1,
               "matchScore": 0.786,
               "asrText": "も う す ぐ 一 時 十 五 分 に な り ま す",
               "phraseIndexes": [
                 17
               ],
-              "method": "legacy-asr-alignment-range-converted",
+              "method": "manual-admin-adjustment",
               "confidence": "approved",
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-05T10:11:21.193Z",
-                "note": "Automatically approved by the bulk alignment workflow.",
+                "reviewedAt": "2026-09-06T08:26:59.124Z",
+                "note": "Manually verified and adjusted in the text audio preview.",
                 "matchScore": 0.786,
                 "asrText": "も う す ぐ 一 時 十 五 分 に な り ま す"
+              },
+              "reviewedAt": "2026-09-06T08:26:59.124Z"
+            },
+            "kana": "もうすぐいちじじゅうごふんになります。",
+            "segments": [
+              {
+                "text": "もうすぐ1",
+                "ruby": ""
+              },
+              {
+                "text": "時",
+                "ruby": "じ"
+              },
+              {
+                "text": "15",
+                "ruby": ""
+              },
+              {
+                "text": "分",
+                "ruby": "ふん"
+              },
+              {
+                "text": "になります。",
+                "ruby": ""
               }
-            }
+            ]
           },
           {
             "id": "l31-app-block-007-line-003",
@@ -1002,25 +1695,73 @@
               "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit8/lesson31/lesson_apps.mp3",
               "speaker": "森",
               "text": "じゃあ、早く帰らないと、午後の会議が始まりますね。",
-              "start": 99.45,
+              "start": 99.05,
               "end": 103.19,
-              "duration": 3.74,
+              "duration": 4.14,
               "speechUnitCount": 1,
               "matchScore": 1,
               "asrText": "じ ゃ あ 早 く 帰 ら な い と 午 後 の 会 議 が 始 ま り ま す ね",
               "phraseIndexes": [
                 17
               ],
-              "method": "legacy-asr-alignment-range-converted",
+              "method": "manual-admin-adjustment",
               "confidence": "approved",
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-05T10:11:21.193Z",
-                "note": "Automatically approved by the bulk alignment workflow.",
+                "reviewedAt": "2026-09-06T08:27:07.454Z",
+                "note": "Manually verified and adjusted in the text audio preview.",
                 "matchScore": 1,
                 "asrText": "じ ゃ あ 早 く 帰 ら な い と 午 後 の 会 議 が 始 ま り ま す ね"
+              },
+              "reviewedAt": "2026-09-06T08:27:07.454Z"
+            },
+            "kana": "じゃあ、はやくかえらないと、ごごのかいぎがはじまりますね。",
+            "segments": [
+              {
+                "text": "じゃあ、",
+                "ruby": ""
+              },
+              {
+                "text": "早",
+                "ruby": "はや"
+              },
+              {
+                "text": "く",
+                "ruby": ""
+              },
+              {
+                "text": "帰",
+                "ruby": "かえ"
+              },
+              {
+                "text": "らないと、",
+                "ruby": ""
+              },
+              {
+                "text": "午後",
+                "ruby": "ごご"
+              },
+              {
+                "text": "の",
+                "ruby": ""
+              },
+              {
+                "text": "会議",
+                "ruby": "かいぎ"
+              },
+              {
+                "text": "が",
+                "ruby": ""
+              },
+              {
+                "text": "始",
+                "ruby": "はじ"
+              },
+              {
+                "text": "まりますね。",
+                "ruby": ""
               }
-            }
+            ]
           }
         ]
       }
@@ -1052,5 +1793,5 @@
       }
     ]
   },
-  "updatedAt": "2026-08-14T00:17:07.364Z"
+  "updatedAt": "2026-09-06T08:27:07.455Z"
 }

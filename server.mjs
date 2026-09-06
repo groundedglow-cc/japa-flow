@@ -1521,6 +1521,7 @@ async function formatPracticeAnswer({ inputText, examples = "", formatHints = {}
             `答案类型：${compactPracticeText(answerUnit, 60) || "未提供"}`,
             `说话人标签顺序：${speakerLabels.join(" / ")}`,
             `每轮句子数：${speakerSentenceCounts.length ? speakerSentenceCounts.join(" / ") : "未提供"}`,
+            `格式轮次示例（仅表示轮次，不是可使用的答案内容）：${speakerLabels.map((label) => `${label}：…`).join("\n")}`,
             "",
             "只整理下面这段用户输入，不要参考或生成其它内容：",
             cleanInput

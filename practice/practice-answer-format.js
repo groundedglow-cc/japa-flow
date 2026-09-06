@@ -93,6 +93,21 @@
       ? Array.from(group.querySelectorAll(".group-head .example-block, .group-head .dialogue-block"))
       : Array.from(activity.querySelectorAll(".layout-blocks > .example-block, .layout-blocks > .dialogue-block"));
 
+    for (const root of roots) {
+      const speakerLabels = String(root.dataset.dialogueSpeakerLabels || "")
+        .split(/\s*\/\s*/)
+        .filter((label) => /^((?:乙[12１２]?)|[甲丙丁ABCD])$/.test(label));
+      if (!speakerLabels.length) continue;
+      const speakerSentenceCounts = String(root.dataset.dialogueSpeakerSentenceCounts || "")
+        .split(/\s*\/\s*/)
+        .map((count) => Number(count))
+        .filter((count) => Number.isInteger(count) && count > 0);
+      return {
+        speakerLabels,
+        ...(speakerSentenceCounts.length === speakerLabels.length ? { speakerSentenceCounts } : {})
+      };
+    }
+
     roots.some((root) => {
       const lines = Array.from(root.querySelectorAll(".example-after .dialogue-line, .dialogue-line"));
       lines.forEach((line) => {

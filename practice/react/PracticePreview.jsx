@@ -348,6 +348,11 @@ function UnpublishedPracticeNotice() {
   );
 }
 
+function practiceContentSignature(practice) {
+  const { practiceSetId, practiceVersion, ...content } = practice || {};
+  return JSON.stringify(content);
+}
+
 function PracticePublishPanel({ lessonId, practice, localPractice }) {
   const [status, setStatus] = useState({ state: "idle", message: "" });
   const lessonNo = String(lessonId || "").match(/\d+/)?.[0] || "";
@@ -356,6 +361,11 @@ function PracticePublishPanel({ lessonId, practice, localPractice }) {
     : "practise-generete-prompt-v3.md generate lesson N data";
   const canPublish = Boolean(localPractice?.activities?.length);
   const databaseVersion = practice.practiceVersion || null;
+  const hasUnpublishedLocalChanges = Boolean(
+    canPublish
+    && databaseVersion
+    && practiceContentSignature(localPractice) !== practiceContentSignature(practice)
+  );
 
   const handlePublish = async () => {
     if (!canPublish) return;
@@ -373,17 +383,24 @@ function PracticePublishPanel({ lessonId, practice, localPractice }) {
       <div>
         <strong>本地练习数据</strong>
         {canPublish ? (
-          <p>
-            {localPractice.title} · {localPractice.activities.length} 题
-            {databaseVersion ? ` · 当前数据库 version ${databaseVersion}` : " · 当前未加载数据库版本"}
-          </p>
+          <>
+            <p>
+              {localPractice.title} · {localPractice.activities.length} 题
+              {databaseVersion ? ` · 当前数据库 version ${databaseVersion}` : " · 当前未加载数据库版本"}
+            </p>
+            {hasUnpublishedLocalChanges ? (
+              <p className="admin-publish-diff-notice">检测到本地题目数据与已发布版本不一致；重新发布后，正式用户才会加载这些改动。</p>
+            ) : databaseVersion ? (
+              <p className="admin-publish-sync-notice">本地题目数据与已发布版本一致。</p>
+            ) : null}
+          </>
         ) : (
           <p>未找到本课本地练习数据。请先生成 `practice/lesson{lessonNo || "N"}-practice-data.ts`，例如：`{generateCommand}`。</p>
         )}
       </div>
       <div className="admin-publish-actions">
         <button type="button" className="secondary-action" onClick={handlePublish} disabled={!canPublish || status.state === "pending"}>
-          {databaseVersion ? "重新发布为新版本" : "发布到数据库"}
+          {databaseVersion ? (hasUnpublishedLocalChanges ? "发布本地改动为新版本" : "重新发布为新版本") : "发布到数据库"}
         </button>
         {status.message ? <span className={`admin-publish-status ${status.state}`}>{status.message}</span> : null}
       </div>
@@ -739,10 +756,44 @@ function LayoutBlockView({ block }) {
 
 function ExampleBlockView({ example }) {
   if (!example) return null;
+  const formatHintProps = {
+    "data-dialogue-speaker-labels": example.formatHints?.speakerLabels?.join(" / ") || undefined,
+    "data-dialogue-speaker-sentence-counts": example.formatHints?.speakerSentenceCounts?.join(" / ") || undefined
+  };
+  const explicitPairedRows = example.pairedRows || [];
+  const continuationDialogueLines = explicitPairedRows.length
+    ? exampleDialogueLines(example.after, example.afterKana)
+    : null;
+  if (explicitPairedRows.length) {
+    return (
+      <div className="example-block paired-example" {...formatHintProps}>
+        {example.label ? <span className="example-label">{example.label}</span> : null}
+        <span className="example-pair-list">
+          {explicitPairedRows.map((row, index) => (
+            <span className="example-pair-row" key={index}>
+              <span className="example-before"><Prompt parts={row.before} /></span>
+              <span className="example-arrow">→</span>
+              <span className="example-after"><Prompt parts={row.after} /></span>
+            </span>
+          ))}
+          {continuationDialogueLines ? (
+            <span className="example-after dialogue-lines example-dialogue-continuation">
+              {continuationDialogueLines.map((line, index) => (
+                <span className="dialogue-line" key={index}>
+                  <span>{line.speaker}</span>
+                  <p><Prompt parts={line.parts} kana={line.kana} /></p>
+                </span>
+              ))}
+            </span>
+          ) : null}
+        </span>
+      </div>
+    );
+  }
   const pairedRows = pairedExampleRows(example);
   if (pairedRows.length) {
     return (
-      <div className="example-block paired-example">
+      <div className="example-block paired-example" {...formatHintProps}>
         {example.label ? <span className="example-label">{example.label}</span> : null}
         <span className="example-pair-list">
           {pairedRows.map((row, index) => (
@@ -764,7 +815,7 @@ function ExampleBlockView({ example }) {
     ? splitExampleTextLines(example.afterKana || "")
     : [];
   return (
-    <div className={`example-block ${dialogueLines ? "dialogue-example" : ""}`}>
+    <div className={`example-block ${dialogueLines ? "dialogue-example" : ""}`} {...formatHintProps}>
       <span className="example-head">
         {example.label ? <span className="example-label">{example.label}</span> : null}
         {example.beforeParts?.length ? (
@@ -1132,6 +1183,7 @@ function InputSlotView({ item, slot, admin, storedAnswer, gradingResult }) {
   const label = `${item.number} ${slot.id}`;
   const placeholder = slot.placeholder || slot.expectedUnit;
   const result = gradingResult?.fieldResults?.[slot.id];
+  const showAiNote = slot.showAiNote !== false && (item.id !== "l31-p2-a3-q1" || slot.id === "e");
 
   if (slot.choices?.length) {
     const fieldName = slotFieldName(item.id, slot.id);
@@ -1152,14 +1204,14 @@ function InputSlotView({ item, slot, admin, storedAnswer, gradingResult }) {
     return (
       <div className="practice-input-with-notes">
         <textarea name={slotFieldName(item.id, slot.id)} className={className} rows={slot.rows || 3} aria-label={label} placeholder={placeholder} defaultValue={defaultValue} data-result={result || undefined} />
-        <PracticeAiNote item={item} slot={slot} />
+        {showAiNote ? <PracticeAiNote item={item} slot={slot} /> : null}
       </div>
     );
   }
   return (
     <div className="practice-input-with-notes">
       <input name={slotFieldName(item.id, slot.id)} className={className} aria-label={label} placeholder={placeholder} defaultValue={defaultValue} data-result={result || undefined} />
-      <PracticeAiNote item={item} slot={slot} />
+      {showAiNote ? <PracticeAiNote item={item} slot={slot} /> : null}
     </div>
   );
 }
@@ -2429,7 +2481,11 @@ function exampleDialogueLines(parts, kana) {
   const partsLines = splitPromptPartsByDialogueLines(parts, textLines);
   return textLines.map((line, index) => ({
     speaker: line.speaker,
-    parts: partsLines[index] || [],
+    // Dialogue-level afterKana is split above into per-line readings. A
+    // RichText.kana on the original multi-line block would otherwise be
+    // inherited by every line and attach the full dialogue reading to each
+    // line's kanji.
+    parts: (partsLines[index] || []).map((part) => part.type === "text" ? { ...part, kana: undefined } : part),
     kana: kanaLines[index] || ""
   }));
 }
