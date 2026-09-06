@@ -20,6 +20,8 @@ const textbookAudioBaseUrl = "https://japaflow-audio-bucket.oss-cn-shanghai.aliy
 const CHOICE_RESULT_KEY = "__choice__";
 const ANSWER_ALTERNATIVE_CACHE_KEY = "japaflow.practice.acceptedAlternatives.v1";
 const HOME_PROGRESS_SNAPSHOT_PREFIX = "japaflow.practice.home-progress.v1";
+const lessonVocabularyCache = new Map();
+const lessonVocabularyOccurrencesCache = new Map();
 const answerLexicalVariantGroups = [
   ["わたし", "私", "我"],
   ["あなた", "貴方", "貴女"],
@@ -98,6 +100,7 @@ export function PracticePreview({ practice, localPractice = null }) {
   const [sessionLoadKey, setSessionLoadKey] = useState(0);
   const [isReady, setIsReady] = useState(false);
   const [answerAlternatives, setAnswerAlternatives] = useState({});
+  const vocabularyOccurrences = useLessonVocabularyOccurrences(practice.lessonId);
   const [currentActivityId, setCurrentActivityId] = useState(() => activityIdFromHash(window.location.hash, activities[0]?.id));
 
   useEffect(() => {
@@ -290,6 +293,7 @@ export function PracticePreview({ practice, localPractice = null }) {
             key={`${currentActivity.id}:${sessionLoadKey}:${admin ? "admin" : "user"}`}
             activity={currentActivity}
             practice={practice}
+            wordIds={vocabularyOccurrences?.practice?.[currentActivity.id] || currentActivity.wordIds}
             admin={admin}
             record={currentRecord}
             isReady={isReady}
@@ -512,7 +516,7 @@ function PracticeAlternativeSyncPanel({ lessonId, practice, answerAlternatives }
   );
 }
 
-function PracticeActivity({ activity, practice, admin, record, isReady, answerAlternatives, onAnswerAlternativesChange, onSave, previousActivity, nextActivity, onNavigate }) {
+function PracticeActivity({ activity, practice, wordIds, admin, record, isReady, answerAlternatives, onAnswerAlternativesChange, onSave, previousActivity, nextActivity, onNavigate }) {
   const layout = activity.layout || [];
   const assetMap = useMemo(() => activityAssetMap(activity), [activity]);
   const audioUrl = resolveActivityAudioUrl(practice, activity);
@@ -521,6 +525,7 @@ function PracticeActivity({ activity, practice, admin, record, isReady, answerAl
   const [isAnswerSheetOpen, setIsAnswerSheetOpen] = useState(false);
   const [submitStatus, setSubmitStatus] = useState({ state: "idle", message: "" });
   const activityResponseScopeHint = resolveResponseScopeHint(activity.responseScope, activity.responseScopeHint);
+  const vocabulary = useLessonVocabulary(practice.lessonId);
 
   const handleSubmit = async () => {
     if (!formRef.current) return;
@@ -565,6 +570,8 @@ function PracticeActivity({ activity, practice, admin, record, isReady, answerAl
           {activity.instruction ? <p>{activity.instruction}</p> : null}
         </div>
       </div>
+
+      <LessonWordList wordIds={wordIds} vocabulary={vocabulary} />
 
       <ActivityAudio activity={activity} audioUrl={audioUrl} />
       <ActivityResources activity={activity} assetMap={assetMap} />
@@ -668,6 +675,138 @@ function PracticeActivity({ activity, practice, admin, record, isReady, answerAl
       ) : null}
     </article>
   );
+}
+
+function useLessonVocabulary(lessonId) {
+  const [vocabulary, setVocabulary] = useState(() => lessonVocabularyCache.get(lessonId) || null);
+
+  useEffect(() => {
+    let active = true;
+    if (!lessonId) return () => { active = false; };
+    const cached = lessonVocabularyCache.get(lessonId);
+    if (cached) {
+      setVocabulary(cached);
+      return () => { active = false; };
+    }
+    const lessonNo = lessonNumber(lessonId);
+    if (!lessonNo) return () => { active = false; };
+    fetch(`/data/ocr/lesson${lessonNo}-vocabulary-audio-verified.json`)
+      .then((response) => {
+        if (!response.ok) throw new Error("Vocabulary data is unavailable");
+        return response.json();
+      })
+      .then((data) => {
+        const words = Array.isArray(data?.vocabulary) ? data.vocabulary : [];
+        lessonVocabularyCache.set(lessonId, words);
+        if (active) setVocabulary(words);
+      })
+      .catch(() => {
+        if (active) setVocabulary([]);
+      });
+    return () => { active = false; };
+  }, [lessonId]);
+
+  return vocabulary;
+}
+
+function useLessonVocabularyOccurrences(lessonId) {
+  const [occurrences, setOccurrences] = useState(() => lessonVocabularyOccurrencesCache.get(lessonId) || null);
+
+  useEffect(() => {
+    let active = true;
+    if (!lessonId) return () => { active = false; };
+    const cached = lessonVocabularyOccurrencesCache.get(lessonId);
+    if (cached) {
+      setOccurrences(cached);
+      return () => { active = false; };
+    }
+    const lessonNo = lessonNumber(lessonId);
+    if (!lessonNo) return () => { active = false; };
+    fetch(`/data/ocr/lesson${lessonNo}-vocabulary-occurrences.json`)
+      .then((response) => {
+        if (!response.ok) throw new Error("Vocabulary occurrences are unavailable");
+        return response.json();
+      })
+      .then((data) => {
+        lessonVocabularyOccurrencesCache.set(lessonId, data);
+        if (active) setOccurrences(data);
+      })
+      .catch(() => {
+        if (active) setOccurrences({});
+      });
+    return () => { active = false; };
+  }, [lessonId]);
+
+  return occurrences;
+}
+
+function LessonWordList({ wordIds, vocabulary }) {
+  if (!Array.isArray(wordIds) || !wordIds.length || !Array.isArray(vocabulary)) return null;
+  const words = wordIds
+    .map((wordId) => vocabulary[Number(wordId) - 1])
+    .filter(Boolean);
+  if (!words.length) return null;
+
+  return (
+    <section className="lesson-word-list" aria-label="本题生词">
+      <span className="lesson-word-list-label">生词</span>
+      <div className="lesson-word-list-items">
+        {words.map((word, index) => (
+          <button
+            className="lesson-word-chip"
+            key={`${word.id || word.writing || word.kana}-${index}`}
+            type="button"
+            onClick={() => playVocabularyAudio(word)}
+            title={`播放 ${word.writing || word.kanjiOrTerm || word.kana || "单词"} 的发音`}
+          >
+            <span className="lesson-word-japanese"><RubyText text={word.writing || word.kanjiOrTerm || word.kana} kana={word.kana} /></span>
+            <span className="lesson-word-meaning">{wordMeaning(word)}</span>
+          </button>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function wordMeaning(word) {
+  if (Array.isArray(word?.meaningZh)) return word.meaningZh.filter(Boolean).join("；");
+  return word?.chinese || word?.cn || "";
+}
+
+function playVocabularyAudio(word) {
+  const text = word?.writing || word?.kanjiOrTerm || word?.kana || "";
+  const segment = word?.audioSegment;
+  const source = segment?.sourceUrl || (segment?.localAudioPath ? `/${String(segment.localAudioPath).replace(/^\/+/, "")}` : "");
+  if (!source) {
+    speakVocabularyWord(text);
+    return;
+  }
+  const audio = new Audio(source);
+  const start = Math.max(0, Number(segment.start) || 0);
+  const end = Math.max(start, Number(segment.end) || 0);
+  let stopped = false;
+  const stop = () => {
+    if (stopped) return;
+    stopped = true;
+    audio.pause();
+  };
+  audio.addEventListener("loadedmetadata", () => {
+    audio.currentTime = start;
+    audio.play().catch(() => speakVocabularyWord(text));
+  }, { once: true });
+  audio.addEventListener("timeupdate", () => {
+    if (end && audio.currentTime >= end) stop();
+  });
+  audio.addEventListener("error", () => speakVocabularyWord(text), { once: true });
+  audio.load();
+}
+
+function speakVocabularyWord(text) {
+  if (!text || !("speechSynthesis" in window)) return;
+  window.speechSynthesis.cancel();
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = "ja-JP";
+  window.speechSynthesis.speak(utterance);
 }
 
 function ActivityAudio({ activity, audioUrl }) {

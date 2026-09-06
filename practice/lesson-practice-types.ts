@@ -221,6 +221,12 @@ export type PracticeActivity = {
   answerUnit: AnswerUnit;
   responseScope?: ResponseScope;
   responseScopeHint?: string;
+  /**
+   * One-based indexes into this lesson's OCR vocabulary list. Keep the
+   * Keep each word at its first occurrence so the learner sees a de-duplicated
+   * vocabulary list in the order words occur in this activity.
+   */
+  wordIds?: number[];
   requiresAudio?: boolean;
   audio?: ActivityAudio;
   assets?: ImageAsset[];

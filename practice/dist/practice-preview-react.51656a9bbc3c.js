@@ -22127,6 +22127,8 @@ var textbookAudioBaseUrl = "https://japaflow-audio-bucket.oss-cn-shanghai.aliyun
 var CHOICE_RESULT_KEY = "__choice__";
 var ANSWER_ALTERNATIVE_CACHE_KEY = "japaflow.practice.acceptedAlternatives.v1";
 var HOME_PROGRESS_SNAPSHOT_PREFIX = "japaflow.practice.home-progress.v1";
+var lessonVocabularyCache = /* @__PURE__ */ new Map();
+var lessonVocabularyOccurrencesCache = /* @__PURE__ */ new Map();
 var answerLexicalVariantGroups = [
   ["\u308F\u305F\u3057", "\u79C1", "\u6211"],
   ["\u3042\u306A\u305F", "\u8CB4\u65B9", "\u8CB4\u5973"],
@@ -22202,6 +22204,7 @@ function PracticePreview({ practice, localPractice: localPractice2 = null }) {
   const [sessionLoadKey, setSessionLoadKey] = (0, import_react.useState)(0);
   const [isReady, setIsReady] = (0, import_react.useState)(false);
   const [answerAlternatives, setAnswerAlternatives] = (0, import_react.useState)({});
+  const vocabularyOccurrences = useLessonVocabularyOccurrences(practice.lessonId);
   const [currentActivityId, setCurrentActivityId] = (0, import_react.useState)(() => activityIdFromHash(window.location.hash, activities35[0]?.id));
   (0, import_react.useEffect)(() => {
     let mounted = true;
@@ -22393,6 +22396,7 @@ function PracticePreview({ practice, localPractice: localPractice2 = null }) {
         {
           activity: currentActivity,
           practice,
+          wordIds: vocabularyOccurrences?.practice?.[currentActivity.id] || currentActivity.wordIds,
           admin,
           record: currentRecord,
           isReady,
@@ -22589,7 +22593,7 @@ function PracticeAlternativeSyncPanel({ lessonId: lessonId2, practice, answerAlt
     ] }, `${detail.itemId}:${detail.slotId}`)) }) : null
   ] });
 }
-function PracticeActivity({ activity, practice, admin, record, isReady, answerAlternatives, onAnswerAlternativesChange, onSave, previousActivity, nextActivity, onNavigate }) {
+function PracticeActivity({ activity, practice, wordIds, admin, record, isReady, answerAlternatives, onAnswerAlternativesChange, onSave, previousActivity, nextActivity, onNavigate }) {
   const layout = activity.layout || [];
   const assetMap = (0, import_react.useMemo)(() => activityAssetMap(activity), [activity]);
   const audioUrl2 = resolveActivityAudioUrl(practice, activity);
@@ -22598,6 +22602,7 @@ function PracticeActivity({ activity, practice, admin, record, isReady, answerAl
   const [isAnswerSheetOpen, setIsAnswerSheetOpen] = (0, import_react.useState)(false);
   const [submitStatus, setSubmitStatus] = (0, import_react.useState)({ state: "idle", message: "" });
   const activityResponseScopeHint = resolveResponseScopeHint(activity.responseScope, activity.responseScopeHint);
+  const vocabulary = useLessonVocabulary(practice.lessonId);
   const handleSubmit = async () => {
     if (!formRef.current) return;
     const answers = collectActivityAnswers(formRef.current, activity);
@@ -22646,6 +22651,7 @@ function PracticeActivity({ activity, practice, admin, record, isReady, answerAl
       ] }),
       activity.instruction ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { children: activity.instruction }) : null
     ] }) }),
+    /* @__PURE__ */ (0, import_jsx_runtime.jsx)(LessonWordList, { wordIds, vocabulary }),
     /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ActivityAudio, { activity, audioUrl: audioUrl2 }),
     /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ActivityResources, { activity, assetMap }),
     /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("form", { ref: formRef, className: "activity-form", onSubmit: (event) => event.preventDefault(), children: [
@@ -22718,6 +22724,133 @@ function PracticeActivity({ activity, practice, admin, record, isReady, answerAl
       }
     ) : null
   ] });
+}
+function useLessonVocabulary(lessonId2) {
+  const [vocabulary, setVocabulary] = (0, import_react.useState)(() => lessonVocabularyCache.get(lessonId2) || null);
+  (0, import_react.useEffect)(() => {
+    let active = true;
+    if (!lessonId2) return () => {
+      active = false;
+    };
+    const cached = lessonVocabularyCache.get(lessonId2);
+    if (cached) {
+      setVocabulary(cached);
+      return () => {
+        active = false;
+      };
+    }
+    const lessonNo = lessonNumber2(lessonId2);
+    if (!lessonNo) return () => {
+      active = false;
+    };
+    fetch(`/data/ocr/lesson${lessonNo}-vocabulary-audio-verified.json`).then((response) => {
+      if (!response.ok) throw new Error("Vocabulary data is unavailable");
+      return response.json();
+    }).then((data) => {
+      const words = Array.isArray(data?.vocabulary) ? data.vocabulary : [];
+      lessonVocabularyCache.set(lessonId2, words);
+      if (active) setVocabulary(words);
+    }).catch(() => {
+      if (active) setVocabulary([]);
+    });
+    return () => {
+      active = false;
+    };
+  }, [lessonId2]);
+  return vocabulary;
+}
+function useLessonVocabularyOccurrences(lessonId2) {
+  const [occurrences, setOccurrences] = (0, import_react.useState)(() => lessonVocabularyOccurrencesCache.get(lessonId2) || null);
+  (0, import_react.useEffect)(() => {
+    let active = true;
+    if (!lessonId2) return () => {
+      active = false;
+    };
+    const cached = lessonVocabularyOccurrencesCache.get(lessonId2);
+    if (cached) {
+      setOccurrences(cached);
+      return () => {
+        active = false;
+      };
+    }
+    const lessonNo = lessonNumber2(lessonId2);
+    if (!lessonNo) return () => {
+      active = false;
+    };
+    fetch(`/data/ocr/lesson${lessonNo}-vocabulary-occurrences.json`).then((response) => {
+      if (!response.ok) throw new Error("Vocabulary occurrences are unavailable");
+      return response.json();
+    }).then((data) => {
+      lessonVocabularyOccurrencesCache.set(lessonId2, data);
+      if (active) setOccurrences(data);
+    }).catch(() => {
+      if (active) setOccurrences({});
+    });
+    return () => {
+      active = false;
+    };
+  }, [lessonId2]);
+  return occurrences;
+}
+function LessonWordList({ wordIds, vocabulary }) {
+  if (!Array.isArray(wordIds) || !wordIds.length || !Array.isArray(vocabulary)) return null;
+  const words = wordIds.map((wordId) => vocabulary[Number(wordId) - 1]).filter(Boolean);
+  if (!words.length) return null;
+  return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", { className: "lesson-word-list", "aria-label": "\u672C\u9898\u751F\u8BCD", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "lesson-word-list-label", children: "\u751F\u8BCD" }),
+    /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "lesson-word-list-items", children: words.map((word, index) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+      "button",
+      {
+        className: "lesson-word-chip",
+        type: "button",
+        onClick: () => playVocabularyAudio(word),
+        title: `\u64AD\u653E ${word.writing || word.kanjiOrTerm || word.kana || "\u5355\u8BCD"} \u7684\u53D1\u97F3`,
+        children: [
+          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "lesson-word-japanese", children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(RubyText, { text: word.writing || word.kanjiOrTerm || word.kana, kana: word.kana }) }),
+          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "lesson-word-meaning", children: wordMeaning(word) })
+        ]
+      },
+      `${word.id || word.writing || word.kana}-${index}`
+    )) })
+  ] });
+}
+function wordMeaning(word) {
+  if (Array.isArray(word?.meaningZh)) return word.meaningZh.filter(Boolean).join("\uFF1B");
+  return word?.chinese || word?.cn || "";
+}
+function playVocabularyAudio(word) {
+  const text36 = word?.writing || word?.kanjiOrTerm || word?.kana || "";
+  const segment = word?.audioSegment;
+  const source = segment?.sourceUrl || (segment?.localAudioPath ? `/${String(segment.localAudioPath).replace(/^\/+/, "")}` : "");
+  if (!source) {
+    speakVocabularyWord(text36);
+    return;
+  }
+  const audio35 = new Audio(source);
+  const start = Math.max(0, Number(segment.start) || 0);
+  const end = Math.max(start, Number(segment.end) || 0);
+  let stopped = false;
+  const stop = () => {
+    if (stopped) return;
+    stopped = true;
+    audio35.pause();
+  };
+  audio35.addEventListener("loadedmetadata", () => {
+    audio35.currentTime = start;
+    audio35.play().catch(() => speakVocabularyWord(text36));
+  }, { once: true });
+  audio35.addEventListener("timeupdate", () => {
+    if (end && audio35.currentTime >= end) stop();
+  });
+  audio35.addEventListener("error", () => speakVocabularyWord(text36), { once: true });
+  audio35.load();
+}
+function speakVocabularyWord(text36) {
+  if (!text36 || !("speechSynthesis" in window)) return;
+  window.speechSynthesis.cancel();
+  const utterance = new SpeechSynthesisUtterance(text36);
+  utterance.lang = "ja-JP";
+  window.speechSynthesis.speak(utterance);
 }
 function ActivityAudio({ activity, audioUrl: audioUrl2 }) {
   const hasAudio = activity.requiresAudio || activity.audio;

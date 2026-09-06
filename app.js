@@ -1809,6 +1809,7 @@ let audioVersions = {};
 let runtimeLessonLoadingId = "";
 let runtimeLessonErrorId = "";
 let runtimeLessonError = "";
+let runtimeVocabularyOccurrences = {};
 const DEFAULT_OPEN_LESSON_IDS = Array.from({ length: 35 }, (_, index) => index + 1);
 const TEXT_VERSION_KEY = "textVersion";
 const TEXT_VERSION_NEW = "new";
@@ -2547,13 +2548,27 @@ async function applyRuntimeLesson(data) {
   const nextLesson = normalizeRuntimeLesson(data);
   lesson = nextLesson;
   textStructure = nextLesson.textStructure;
+  runtimeVocabularyOccurrences = await loadVocabularyOccurrences(nextLesson.id);
   await reloadLessonScopedState();
 }
 
 async function restoreBundledLesson() {
   lesson = JSON.parse(JSON.stringify(bundledLessonRuntime.lesson));
   textStructure = JSON.parse(JSON.stringify(bundledLessonRuntime.textStructure));
+  runtimeVocabularyOccurrences = await loadVocabularyOccurrences(lesson.id);
   await reloadLessonScopedState();
+}
+
+async function loadVocabularyOccurrences(lessonId) {
+  const lessonNo = String(lessonId || "").match(/\d+/)?.[0];
+  if (!lessonNo) return {};
+  try {
+    const response = await fetch(`/data/ocr/lesson${encodeURIComponent(lessonNo)}-vocabulary-occurrences.json`);
+    if (!response.ok) return {};
+    return await response.json();
+  } catch {
+    return {};
+  }
 }
 
 function lessonAudioVoiceId() {
@@ -5909,7 +5924,7 @@ function newTextPage() {
 
 function renderNewTextStructure(section) {
   if (!section) return "";
-  return textSectionGroups(section).map((group, groupIndex) => {
+  return `${renderTextVocabularyList(section)}${textSectionGroups(section).map((group, groupIndex) => {
     const key = textGroupPlaybackKey(section.id, groupIndex);
     const playing = state.textReadingPlayingKey === key;
     return `
@@ -5932,7 +5947,7 @@ function renderNewTextStructure(section) {
       </div>
     </section>
   `;
-  }).join("");
+  }).join("")}`;
 }
 
 function newTextSentenceItem(sentence, groupKind, groupKey) {
@@ -6170,7 +6185,7 @@ function textGroupProgress(ids) {
 
 function renderTextStructure(section) {
   if (!section) return "";
-  return textSectionGroups(section).map((group) => `
+  return `${renderTextVocabularyList(section)}${textSectionGroups(section).map((group) => `
     <section class="text-section">
       <div class="text-group-title">
         <span>${escapeHtml(group.title)}${group.note ? `<small>${escapeHtml(group.note)}</small>` : ""}</span>
@@ -6184,7 +6199,34 @@ function renderTextStructure(section) {
         }).join("")}
       </div>
     </section>
-  `).join("");
+  `).join("")}`;
+}
+
+// `wordIds` uses the textbook's one-based vocabulary numbering. The generator
+// retains each word at its first occurrence, rather than sorting the list.
+function renderTextVocabularyList(section) {
+  const occurrenceWordIds = runtimeVocabularyOccurrences?.text?.[section?.id];
+  const wordIds = Array.isArray(occurrenceWordIds)
+    ? occurrenceWordIds
+    : (Array.isArray(section?.wordIds) ? section.wordIds : []);
+  if (!wordIds.length) return "";
+  const words = wordIds
+    .map((wordId) => lesson.vocabulary[Number(wordId) - 1])
+    .filter(Boolean);
+  if (!words.length) return "";
+  return `
+    <section class="text-vocabulary-list" aria-label="本篇生词">
+      <span class="text-vocabulary-list-label">生词</span>
+      <div class="text-vocabulary-list-items">
+        ${words.map((word) => `
+          <button class="text-vocabulary-chip" type="button" data-speak="${escapeHtml(word.jp)}" data-audio="${escapeHtml(audioUrl("word", word.id))}" title="播放 ${escapeHtml(word.jp)} 的发音">
+            <span class="text-vocabulary-japanese">${renderJapaneseText(word.jp, { kana: word.kana })}</span>
+            <span class="text-vocabulary-meaning">${escapeHtml(word.cn || "")}</span>
+          </button>
+        `).join("")}
+      </div>
+    </section>
+  `;
 }
 
 function sentenceListItem(item, index, tabId) {

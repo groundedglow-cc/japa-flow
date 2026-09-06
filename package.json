@@ -17,6 +17,7 @@
     "init:task": "node scripts/create-codex-parse-task.mjs",
     "diff:lesson": "node scripts/diff-lesson-init.mjs",
     "backfill:exercise-kana": "node scripts/backfill-exercise-kana.mjs",
+    "generate:vocabulary-occurrences": "node scripts/generate-lesson-vocabulary-occurrences.mjs",
     "migrate:exercise-images": "node scripts/migrate-practice-exercise-images.mjs",
     "sync:ios": "npm run build:app && npx cap sync ios",
     "open:ios": "npx cap open ios"

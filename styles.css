@@ -2046,6 +2046,58 @@ h3 {
   gap: 22px;
 }
 
+.text-vocabulary-list {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 11px 12px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--soft-panel, #f6faf8);
+}
+
+.text-vocabulary-list-label {
+  flex: 0 0 auto;
+  padding-top: 5px;
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.text-vocabulary-list-items {
+  display: flex;
+  flex: 1;
+  flex-wrap: wrap;
+  gap: 8px;
+  min-width: 0;
+}
+
+.text-vocabulary-chip {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+  min-height: 31px;
+  padding: 5px 9px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: var(--panel);
+  color: var(--ink);
+  cursor: pointer;
+  font: inherit;
+  text-align: left;
+}
+
+.text-vocabulary-chip:hover,
+.text-vocabulary-chip:focus-visible {
+  border-color: var(--accent);
+  outline: none;
+}
+
+.text-vocabulary-japanese { font-weight: 760; }
+.text-vocabulary-japanese ruby rt,
+.text-vocabulary-meaning { color: var(--muted); }
+.text-vocabulary-meaning { font-size: 12px; }
+
 .text-reading-section {
   display: grid;
   gap: 12px;

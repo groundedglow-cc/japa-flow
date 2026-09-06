@@ -356,6 +356,68 @@ figcaption {
   color: var(--muted);
 }
 
+.lesson-word-list {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin: 0 0 16px;
+  padding: 11px 12px;
+  border: 1px solid #d9e7e1;
+  border-radius: 14px;
+  background: #f6faf8;
+}
+
+.lesson-word-list-label {
+  flex: 0 0 auto;
+  padding-top: 5px;
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 850;
+}
+
+.lesson-word-list-items {
+  display: flex;
+  flex: 1;
+  flex-wrap: wrap;
+  gap: 8px;
+  min-width: 0;
+}
+
+.lesson-word-chip {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+  min-height: 31px;
+  padding: 5px 9px;
+  border: 1px solid #cfe1d9;
+  border-radius: 9px;
+  background: #fff;
+  color: var(--ink);
+  cursor: pointer;
+  font: inherit;
+  text-align: left;
+}
+
+.lesson-word-chip:hover,
+.lesson-word-chip:focus-visible {
+  border-color: var(--accent);
+  background: #edf7f2;
+  outline: none;
+}
+
+.lesson-word-japanese {
+  font-weight: 780;
+}
+
+.lesson-word-japanese ruby rt {
+  color: var(--muted);
+}
+
+.lesson-word-meaning {
+  color: var(--muted);
+  font-size: 12px;
+}
+
 .practice-activity {
   margin-bottom: 18px;
   padding: 16px;
