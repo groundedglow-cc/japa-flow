@@ -978,6 +978,7 @@
       }
 
       function summaryText(data, words) {
+        if (!isAdminMode()) return `${data.lessonId || "unknown"} · ${words.length} 个词`;
         const stats = words.reduce((acc, word) => {
           const review = audioReviewState(word);
           if (review.status === "approved") acc.approved += 1;
@@ -1051,7 +1052,7 @@
                 </div>
                 ${word.audioSegment ? `<div class="audio-row"><button class="audio-button" id="playWordAudio" type="button" title="播放音频片段" aria-label="播放音频片段">▶</button><button class="audio-button segment-settings" id="editWordAudio" type="button" title="设置音频区间" aria-label="设置音频区间">⚙</button><span class="audio-segment-time">${escapeHtml(formatSegmentTime(word.audioSegment))}</span></div>` : ""}
               </div>
-              ${word.audioSegment ? `
+              ${isAdminMode() && word.audioSegment ? `
                 ${renderAudioReview(word.audioSegment, audioReview)}
               ` : ""}
             </div>
@@ -1213,7 +1214,7 @@
           index === state.index ? "active" : "",
           clickLevel ? "word-clicked" : "",
           clickLevel >= 7 ? "word-clicked-strong" : "",
-          review.severity === "risk" ? "review-risk" : review.status === "pending" ? "review-pending" : ""
+          isAdminMode() && (review.severity === "risk" ? "review-risk" : review.status === "pending" ? "review-pending" : "")
         ].filter(Boolean).join(" ");
       }
 

@@ -350,21 +350,36 @@ function UnpublishedPracticeNotice() {
 
 function practiceContentSignature(practice) {
   const { practiceSetId, practiceVersion, ...content } = practice || {};
-  return JSON.stringify(content);
+  return JSON.stringify(canonicalPracticeContent(content));
+}
+
+function canonicalPracticeContent(value) {
+  if (Array.isArray(value)) return value.map(canonicalPracticeContent);
+  if (value && typeof value === "object") {
+    return Object.fromEntries(
+      Object.keys(value)
+        .sort()
+        .map((key) => [key, canonicalPracticeContent(value[key])])
+    );
+  }
+  return value;
 }
 
 function PracticePublishPanel({ lessonId, practice, localPractice }) {
   const [status, setStatus] = useState({ state: "idle", message: "" });
+  const [publishedLocalSignature, setPublishedLocalSignature] = useState(null);
   const lessonNo = String(lessonId || "").match(/\d+/)?.[0] || "";
   const generateCommand = lessonNo
     ? `practise-generete-prompt-v3.md generate lesson ${lessonNo} data`
     : "practise-generete-prompt-v3.md generate lesson N data";
   const canPublish = Boolean(localPractice?.activities?.length);
   const databaseVersion = practice.practiceVersion || null;
+  const localContentSignature = practiceContentSignature(localPractice);
   const hasUnpublishedLocalChanges = Boolean(
     canPublish
     && databaseVersion
-    && practiceContentSignature(localPractice) !== practiceContentSignature(practice)
+    && localContentSignature !== publishedLocalSignature
+    && localContentSignature !== practiceContentSignature(practice)
   );
 
   const handlePublish = async () => {
@@ -372,6 +387,7 @@ function PracticePublishPanel({ lessonId, practice, localPractice }) {
     setStatus({ state: "pending", message: "发布中..." });
     try {
       const published = await practiceSessionApi.publishLocalPractice({ lessonId, practice: localPractice });
+      setPublishedLocalSignature(localContentSignature);
       setStatus({ state: "success", message: `已发布 version ${published.version}` });
     } catch (error) {
       setStatus({ state: "error", message: String(error.message || error) });

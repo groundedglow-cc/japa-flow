@@ -45,6 +45,7 @@ COPY --from=builder /app/scripts ./scripts
 # Nginx aliases below instead of duplicating it in the static bundle.
 COPY --from=builder /app/data/ocr /app/data/ocr
 COPY --from=builder /app/course-assets /app/course-assets
+COPY --from=builder /app/data/book1_exercise_images /app/data/book1_exercise_images
 RUN --mount=type=cache,target=/root/.npm \
     npm ci --prefer-offline --no-audit --progress=false --omit=dev
 

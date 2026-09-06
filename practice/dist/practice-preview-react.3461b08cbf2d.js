@@ -22443,22 +22443,34 @@ function UnpublishedPracticeNotice() {
 }
 function practiceContentSignature2(practice) {
   const { practiceSetId, practiceVersion, ...content } = practice || {};
-  return JSON.stringify(content);
+  return JSON.stringify(canonicalPracticeContent(content));
+}
+function canonicalPracticeContent(value) {
+  if (Array.isArray(value)) return value.map(canonicalPracticeContent);
+  if (value && typeof value === "object") {
+    return Object.fromEntries(
+      Object.keys(value).sort().map((key) => [key, canonicalPracticeContent(value[key])])
+    );
+  }
+  return value;
 }
 function PracticePublishPanel({ lessonId: lessonId2, practice, localPractice: localPractice2 }) {
   const [status, setStatus] = (0, import_react.useState)({ state: "idle", message: "" });
+  const [publishedLocalSignature, setPublishedLocalSignature] = (0, import_react.useState)(null);
   const lessonNo = String(lessonId2 || "").match(/\d+/)?.[0] || "";
   const generateCommand = lessonNo ? `practise-generete-prompt-v3.md generate lesson ${lessonNo} data` : "practise-generete-prompt-v3.md generate lesson N data";
   const canPublish = Boolean(localPractice2?.activities?.length);
   const databaseVersion = practice.practiceVersion || null;
+  const localContentSignature = practiceContentSignature2(localPractice2);
   const hasUnpublishedLocalChanges = Boolean(
-    canPublish && databaseVersion && practiceContentSignature2(localPractice2) !== practiceContentSignature2(practice)
+    canPublish && databaseVersion && localContentSignature !== publishedLocalSignature && localContentSignature !== practiceContentSignature2(practice)
   );
   const handlePublish = async () => {
     if (!canPublish) return;
     setStatus({ state: "pending", message: "\u53D1\u5E03\u4E2D..." });
     try {
       const published = await practiceSessionApi.publishLocalPractice({ lessonId: lessonId2, practice: localPractice2 });
+      setPublishedLocalSignature(localContentSignature);
       setStatus({ state: "success", message: `\u5DF2\u53D1\u5E03 version ${published.version}` });
     } catch (error) {
       setStatus({ state: "error", message: String(error.message || error) });
