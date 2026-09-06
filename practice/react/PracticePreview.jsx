@@ -368,12 +368,13 @@ function canonicalPracticeContent(value) {
 function PracticePublishPanel({ lessonId, practice, localPractice }) {
   const [status, setStatus] = useState({ state: "idle", message: "" });
   const [publishedLocalSignature, setPublishedLocalSignature] = useState(null);
+  const [publishedVersion, setPublishedVersion] = useState(practice.practiceVersion || null);
   const lessonNo = String(lessonId || "").match(/\d+/)?.[0] || "";
   const generateCommand = lessonNo
     ? `practise-generete-prompt-v3.md generate lesson ${lessonNo} data`
     : "practise-generete-prompt-v3.md generate lesson N data";
   const canPublish = Boolean(localPractice?.activities?.length);
-  const databaseVersion = practice.practiceVersion || null;
+  const databaseVersion = publishedVersion;
   const localContentSignature = practiceContentSignature(localPractice);
   const hasUnpublishedLocalChanges = Boolean(
     canPublish
@@ -388,7 +389,8 @@ function PracticePublishPanel({ lessonId, practice, localPractice }) {
     try {
       const published = await practiceSessionApi.publishLocalPractice({ lessonId, practice: localPractice });
       setPublishedLocalSignature(localContentSignature);
-      setStatus({ state: "success", message: `已发布 version ${published.version}` });
+      setPublishedVersion(published.version);
+      setStatus({ state: "success", message: `已发布 version ${published.version}；本地数据已与数据库同步。` });
     } catch (error) {
       setStatus({ state: "error", message: String(error.message || error) });
     }
@@ -415,8 +417,8 @@ function PracticePublishPanel({ lessonId, practice, localPractice }) {
         )}
       </div>
       <div className="admin-publish-actions">
-        <button type="button" className="secondary-action" onClick={handlePublish} disabled={!canPublish || status.state === "pending"}>
-          {databaseVersion ? (hasUnpublishedLocalChanges ? "发布本地改动为新版本" : "重新发布为新版本") : "发布到数据库"}
+        <button type="button" className="secondary-action" onClick={handlePublish} disabled={!canPublish || status.state === "pending" || Boolean(databaseVersion && !hasUnpublishedLocalChanges)}>
+          {databaseVersion ? (hasUnpublishedLocalChanges ? "发布本地改动为新版本" : "已同步到数据库") : "发布到数据库"}
         </button>
         {status.message ? <span className={`admin-publish-status ${status.state}`}>{status.message}</span> : null}
       </div>

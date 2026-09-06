@@ -22457,10 +22457,11 @@ function canonicalPracticeContent(value) {
 function PracticePublishPanel({ lessonId: lessonId2, practice, localPractice: localPractice2 }) {
   const [status, setStatus] = (0, import_react.useState)({ state: "idle", message: "" });
   const [publishedLocalSignature, setPublishedLocalSignature] = (0, import_react.useState)(null);
+  const [publishedVersion, setPublishedVersion] = (0, import_react.useState)(practice.practiceVersion || null);
   const lessonNo = String(lessonId2 || "").match(/\d+/)?.[0] || "";
   const generateCommand = lessonNo ? `practise-generete-prompt-v3.md generate lesson ${lessonNo} data` : "practise-generete-prompt-v3.md generate lesson N data";
   const canPublish = Boolean(localPractice2?.activities?.length);
-  const databaseVersion = practice.practiceVersion || null;
+  const databaseVersion = publishedVersion;
   const localContentSignature = practiceContentSignature2(localPractice2);
   const hasUnpublishedLocalChanges = Boolean(
     canPublish && databaseVersion && localContentSignature !== publishedLocalSignature && localContentSignature !== practiceContentSignature2(practice)
@@ -22471,7 +22472,8 @@ function PracticePublishPanel({ lessonId: lessonId2, practice, localPractice: lo
     try {
       const published = await practiceSessionApi.publishLocalPractice({ lessonId: lessonId2, practice: localPractice2 });
       setPublishedLocalSignature(localContentSignature);
-      setStatus({ state: "success", message: `\u5DF2\u53D1\u5E03 version ${published.version}` });
+      setPublishedVersion(published.version);
+      setStatus({ state: "success", message: `\u5DF2\u53D1\u5E03 version ${published.version}\uFF1B\u672C\u5730\u6570\u636E\u5DF2\u4E0E\u6570\u636E\u5E93\u540C\u6B65\u3002` });
     } catch (error) {
       setStatus({ state: "error", message: String(error.message || error) });
     }
@@ -22497,7 +22499,7 @@ function PracticePublishPanel({ lessonId: lessonId2, practice, localPractice: lo
       ] })
     ] }),
     /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "admin-publish-actions", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { type: "button", className: "secondary-action", onClick: handlePublish, disabled: !canPublish || status.state === "pending", children: databaseVersion ? hasUnpublishedLocalChanges ? "\u53D1\u5E03\u672C\u5730\u6539\u52A8\u4E3A\u65B0\u7248\u672C" : "\u91CD\u65B0\u53D1\u5E03\u4E3A\u65B0\u7248\u672C" : "\u53D1\u5E03\u5230\u6570\u636E\u5E93" }),
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { type: "button", className: "secondary-action", onClick: handlePublish, disabled: !canPublish || status.state === "pending" || Boolean(databaseVersion && !hasUnpublishedLocalChanges), children: databaseVersion ? hasUnpublishedLocalChanges ? "\u53D1\u5E03\u672C\u5730\u6539\u52A8\u4E3A\u65B0\u7248\u672C" : "\u5DF2\u540C\u6B65\u5230\u6570\u636E\u5E93" : "\u53D1\u5E03\u5230\u6570\u636E\u5E93" }),
       status.message ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: `admin-publish-status ${status.state}`, children: status.message }) : null
     ] })
   ] });
