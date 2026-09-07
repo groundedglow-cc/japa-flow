@@ -226,6 +226,72 @@
         font-size: 13px;
       }
 
+      .text-vocabulary-debug {
+        padding: 10px 14px;
+        border-bottom: 1px solid var(--line);
+        background: #f5fbfd;
+        color: #24556b;
+      }
+
+      .text-vocabulary-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        padding: 0;
+        border: 0;
+        background: transparent;
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 700;
+        text-align: left;
+      }
+
+      .text-vocabulary-toggle strong { color: var(--accent); }
+      .text-vocabulary-toggle:hover strong,
+      .text-vocabulary-toggle:focus-visible strong { text-decoration: underline; }
+
+      .text-vocabulary-items {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 8px;
+      }
+
+      .text-vocabulary-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        border: 1px solid #b7d9e7;
+        border-radius: 6px;
+        background: #fff;
+        color: var(--text);
+        padding: 4px 8px;
+        cursor: pointer;
+        font: inherit;
+        font-size: 15px;
+        transition: border-color 0.16s ease, background 0.16s ease, color 0.16s ease;
+      }
+
+      .text-vocabulary-chip:hover,
+      .text-vocabulary-chip:focus-visible,
+      .text-vocabulary-chip.playing {
+        border-color: var(--accent);
+        background: var(--accent-soft);
+        color: var(--accent);
+        outline: none;
+      }
+
+      .text-vocabulary-chip rt {
+        color: var(--muted);
+        font-size: 0.72em;
+      }
+
+      .text-vocabulary-meaning {
+        color: var(--muted);
+        font-size: 12px;
+      }
+
       .section-actions {
         display: inline-flex;
         align-items: center;
@@ -271,18 +337,19 @@
         padding: 12px 14px;
       }
 
+      .basic-sentences,
+      .text-section[data-text-section="basic"] .dialogue,
+      .application-scene-group {
+        border-bottom: 1px solid #edf0f3;
+      }
+
       .sentence {
         display: grid;
         grid-template-columns: 52px 1fr auto;
         gap: 10px;
         padding: 9px 0;
-        border-bottom: 1px solid #edf0f3;
         align-items: start;
         cursor: pointer;
-      }
-
-      .sentence:last-child {
-        border-bottom: 0;
       }
 
       .num {
@@ -291,7 +358,7 @@
       }
 
       .jp {
-        font-size: 18px;
+        font-size: 16px;
         font-weight: 650;
         line-height: 1.45;
       }
@@ -310,7 +377,7 @@
       }
 
       .jp .base-text {
-        font-size: 18px;
+        font-size: 16px;
         white-space: pre-wrap;
       }
 
@@ -323,7 +390,11 @@
       }
 
       .cn {
-        color: #46515f;
+        color: #8a95a3;
+      }
+
+      .cn.text-only-translation {
+        margin-top: 0;
       }
 
       .raw {
@@ -340,48 +411,36 @@
         grid-template-columns: 52px 1fr auto;
         gap: 10px;
         padding: 9px 0;
-        border-bottom: 1px solid #edf0f3;
         align-items: start;
         cursor: pointer;
       }
 
-      .line:last-child {
-        border-bottom: 0;
-      }
-
       .speaker {
-        display: inline-flex;
-        justify-content: center;
-        align-items: center;
-        min-width: 36px;
-        height: 28px;
-        border-radius: 999px;
-        background: var(--accent-soft);
+        display: inline;
         color: var(--accent);
         font-weight: 700;
       }
 
       .block.scene,
       .block.narration {
-        border-left: 4px solid var(--scene-line);
-        background: var(--scene);
-        margin: 12px 14px;
-        border-radius: 6px;
+        margin: 10px 14px 4px;
+        padding: 0;
       }
 
-      .block-title {
-        color: var(--muted);
+      .block.scene .cn,
+      .block.narration .cn {
+        color: #9ba4ae;
         font-size: 12px;
-        text-transform: uppercase;
-        margin-bottom: 6px;
+        font-style: italic;
+        line-height: 1.45;
       }
 
       .audio-button {
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        width: 34px;
-        height: 34px;
+        width: 28px;
+        height: 28px;
         padding: 0;
         border-color: var(--accent);
         color: var(--accent);
@@ -592,14 +651,13 @@
         .section-toggle, .section-display-toggle { min-width: 48px; padding: 3px 6px; font-size: 11px; }
         .dialogue { padding: 9px 11px; }
         .sentence, .line { grid-template-columns: 32px minmax(0, 1fr) auto; gap: 6px; padding: 6px 0; }
-        .speaker { min-width: 29px; height: 24px; font-size: 12px; }
-        .sentence .jp, .sentence .jp .base-text, .line .jp, .line .jp .base-text { font-size: 15px; line-height: 1.38; }
+        .speaker { font-size: 12px; }
+        .sentence .jp, .sentence .jp .base-text, .line .jp, .line .jp .base-text { font-size: 14px; line-height: 1.38; }
         .sentence .kana, .sentence .cn, .line .kana, .line .cn { margin-top: 2px; font-size: 13px; line-height: 1.35; }
         .sentence .segment-actions, .line .segment-actions { gap: 3px; }
         .sentence .segment-actions button, .line .segment-actions button { min-width: 26px; width: 26px; height: 26px; padding: 0; font-size: 11px; }
-        .block-title { display: none; }
-        .block.scene, .block.narration { font-size: 13px; }
-        .block .cn { margin-top: 0; font-size: 13px; line-height: 1.45; }
+        .block.scene, .block.narration { margin: 8px 11px 2px; }
+        .block.scene .cn, .block.narration .cn { margin-top: 0; font-size: 11px; line-height: 1.4; }
       }
     </style>
   </head>
@@ -674,12 +732,14 @@
         samples: [],
         selectedSample: null,
         editing: null,
+        vocabularyContext: { words: [], occurrences: null, status: "尚未读取" },
         expandedTextSections: { basic: true, application: false },
         textDisplayModes: { basic: "both", application: "both" }
       };
 
       const textDisplayModeLabels = { both: "中日", zh: "中文", ja: "日语" };
       const textDisplayModeOrder = ["both", "zh", "ja"];
+      const VOCABULARY_COLLAPSED_STORAGE_KEY = "japaflow.tools.textPreview.vocabularyCollapsed.v1";
 
       const $ = (selector) => document.querySelector(selector);
       const escapeHtml = (value) => String(value ?? "")
@@ -757,7 +817,24 @@
         renderLessonList();
         const response = await fetch(sample.url, { cache: "no-store" });
         if (!response.ok) throw new Error(`读取 ${sample.label} JSON 失败：${response.status}`);
+        await loadVocabularyContext(lessonNo);
         setData(await response.json(), `${sample.label}${sample.hasAudio ? "音频标注样例" : "样例"}`);
+      }
+
+      async function loadVocabularyContext(lessonNo) {
+        const [vocabularyResponse, occurrenceResponse] = await Promise.all([
+          fetch(`/data/ocr/lesson${lessonNo}-vocabulary-audio-verified.json`, { cache: "no-store" }),
+          fetch(`/data/ocr/lesson${lessonNo}-vocabulary-occurrences.json`, { cache: "no-store" })
+        ]);
+        const vocabularyData = vocabularyResponse.ok ? await vocabularyResponse.json() : null;
+        const occurrenceData = occurrenceResponse.ok ? await occurrenceResponse.json() : null;
+        state.vocabularyContext = {
+          words: vocabularyData?.vocabulary || [],
+          occurrences: occurrenceData,
+          status: vocabularyResponse.ok && occurrenceResponse.ok
+            ? "OCR 单词表与出现索引已读取"
+            : `读取失败：词表 ${vocabularyResponse.status}，索引 ${occurrenceResponse.status}`
+        };
       }
 
       async function loadDefault() {
@@ -860,11 +937,11 @@
             <div class="section-head">
               <h3>${escapeHtml(basicText.title || "基本课文")}</h3>
               <span class="section-actions">
-                <span class="section-label">基本句 + 甲乙对话</span>
                 <button class="section-display-toggle" type="button" data-display-section="basic">${textDisplayModeLabels[mode]}</button>
                 <button class="section-toggle" type="button" data-toggle-section="basic" aria-expanded="${expanded ? "true" : "false"}">${expanded ? "▾ 收起" : "▸ 展开"}</button>
               </span>
             </div>
+            ${renderTextVocabularyList("basic")}
             ${expanded ? `<div class="basic-sentences">${sentences}</div>${dialogues}` : ""}
           </section>
         `;
@@ -873,19 +950,34 @@
       function renderApplication(applicationText) {
         if (!applicationText) return "";
         const mode = state.textDisplayModes.application || "both";
-        const blocks = (applicationText.blocks || []).map((block) => {
+        const displayedDescriptions = new Set();
+        const sceneGroups = [];
+        let currentSceneGroup = [];
+        const flushSceneGroup = () => {
+          if (currentSceneGroup.length) sceneGroups.push(currentSceneGroup.join(""));
+          currentSceneGroup = [];
+        };
+        (applicationText.blocks || []).forEach((block) => {
           if (block.type === "dialogue") {
-            return `<div class="dialogue">${(block.lines || []).map((line) => renderLine(line, mode)).join("")}</div>`;
+            currentSceneGroup.push(`<div class="dialogue">${(block.lines || []).map((line) => renderLine(line, mode)).join("")}</div>`);
+            return;
           }
-          if (mode === "ja") return "";
-          return `
+          flushSceneGroup();
+          if (mode === "ja") return;
+          const description = String(block.text || block.rawText || "")
+            .trim()
+            .replace(/^[（(]\s*|\s*[）)]$/g, "");
+          const descriptionKey = description.replace(/\s+/g, "");
+          if (!description || displayedDescriptions.has(descriptionKey)) return;
+          displayedDescriptions.add(descriptionKey);
+          currentSceneGroup.push(`
             <div class="block ${escapeHtml(block.type || "narration")}">
-              <div class="block-title">${escapeHtml(block.type || "narration")}</div>
-              <div class="cn">${escapeHtml(block.text || "")}</div>
-              ${block.rawText && block.rawText !== block.text ? `<div class="raw">${escapeHtml(block.rawText)}</div>` : ""}
+              <div class="cn">${escapeHtml(description)}</div>
             </div>
-          `;
-        }).join("");
+          `);
+        });
+        flushSceneGroup();
+        const blocks = sceneGroups.map((group) => `<div class="application-scene-group">${group}</div>`).join("");
 
         const expanded = Boolean(state.expandedTextSections.application);
         return `
@@ -898,6 +990,7 @@
                 <button class="section-toggle" type="button" data-toggle-section="application" aria-expanded="${expanded ? "true" : "false"}">${expanded ? "▾ 收起" : "▸ 展开"}</button>
               </span>
             </div>
+            ${renderTextVocabularyList("application")}
             ${expanded ? blocks : ""}
           </section>
         `;
@@ -913,6 +1006,34 @@
             <div>${segmentActions(line, segmentId, line.audioSegment)}</div>
           </div>
         `;
+      }
+
+      function renderTextVocabularyList(section) {
+        const context = state.vocabularyContext;
+        const indexes = context.occurrences?.text?.[section];
+        const words = Array.isArray(indexes)
+          ? indexes.map((index) => ({ index, word: context.words[index - 1] })).filter((item) => item.word)
+          : [];
+        if (!words.length) return "";
+        const chips = words.map(({ index, word }) => {
+          const writing = word.writing || word.kana || "";
+          const japanese = word.kana && hasKanji(writing)
+            ? `<ruby>${escapeHtml(writing)}<rt>${escapeHtml(word.kana)}</rt></ruby>`
+            : escapeHtml(writing);
+          return `
+          <button class="text-vocabulary-chip" type="button" data-vocabulary-index="${index}" title="播放单词发音">
+            <span>${japanese}</span>
+            <span class="text-vocabulary-meaning">${escapeHtml((word.meaningZh || []).join("；"))}</span>
+          </button>
+        `;
+        }).join("");
+        const collapsed = window.localStorage.getItem(VOCABULARY_COLLAPSED_STORAGE_KEY) === "true";
+        return `<div class="text-vocabulary-debug" data-text-vocabulary-section="${section}">
+          <button class="text-vocabulary-toggle" type="button" data-toggle-vocabulary="${section}" aria-expanded="${!collapsed}">
+            <strong>本段生词 · ${words.length}</strong><span>${collapsed ? "⌄" : "⌃"}</span>
+          </button>
+          ${collapsed ? "" : `<div class="text-vocabulary-items">${chips}</div>`}
+        </div>`;
       }
 
       function segmentActions(item, segmentId, segment) {
@@ -1039,7 +1160,7 @@
           parts.push(`<div class="jp" data-copy-text="${escapeHtml(copyTextForJapanese(item))}">${renderJapanese(item)}</div>`);
         }
         if (mode !== "ja") {
-          parts.push(`<div class="cn">${escapeHtml(item?.translationZh || "")}</div>`);
+          parts.push(`<div class="cn${mode === "zh" ? " text-only-translation" : ""}">${escapeHtml(item?.translationZh || "")}</div>`);
         }
         return parts.join("");
       }
@@ -1050,6 +1171,26 @@
       }
 
       function bindSegmentButtons() {
+        $("#textPreview").querySelectorAll("[data-toggle-vocabulary]").forEach((button) => {
+          button.addEventListener("click", () => {
+            const collapsed = button.getAttribute("aria-expanded") === "true";
+            window.localStorage.setItem(VOCABULARY_COLLAPSED_STORAGE_KEY, String(collapsed));
+            render();
+          });
+        });
+        $("#textPreview").querySelectorAll("[data-vocabulary-index]").forEach((button) => {
+          button.addEventListener("click", (event) => {
+            event.stopPropagation();
+            const index = Number(button.dataset.vocabularyIndex);
+            const word = state.vocabularyContext.words[index - 1];
+            if (!word?.audioSegment) return;
+            button.classList.add("playing");
+            playSegment(word.audioSegment).finally(() => {
+              const duration = Math.max(300, Number(word.audioSegment.duration || 0) * 1000);
+              window.setTimeout(() => button.classList.remove("playing"), duration);
+            });
+          });
+        });
         $("#textPreview").querySelectorAll("[data-toggle-section]").forEach((button) => {
           button.addEventListener("click", () => {
             const section = button.dataset.toggleSection;

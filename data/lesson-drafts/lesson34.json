@@ -1,0 +1,2716 @@
+{
+  "id": 34,
+  "title": "第34课",
+  "subtitle": "壁にカレンダーが掛けてあります",
+  "vocabulary": [
+    {
+      "id": "w1",
+      "jp": "カレンダー",
+      "kana": "カレンダー",
+      "cn": "挂历，日历"
+    },
+    {
+      "id": "w2",
+      "jp": "ポスター",
+      "kana": "ポスター",
+      "cn": "宣传画，海报"
+    },
+    {
+      "id": "w3",
+      "jp": "ハードスケジュール",
+      "kana": "ハードスケジュール",
+      "cn": "紧张的日程"
+    },
+    {
+      "id": "w4",
+      "jp": "カレーライス",
+      "kana": "カレーライス",
+      "cn": "咖喱饭"
+    },
+    {
+      "id": "w5",
+      "jp": "とっておき",
+      "kana": "とっておき",
+      "cn": "珍藏，私藏"
+    },
+    {
+      "id": "w6",
+      "jp": "ほんば（本場）",
+      "kana": "ほんば",
+      "cn": "原产地，发源地"
+    },
+    {
+      "id": "w7",
+      "jp": "げんかん（玄関）",
+      "kana": "げんかん",
+      "cn": "门口，玄关"
+    },
+    {
+      "id": "w8",
+      "jp": "ロッカー",
+      "kana": "ロッカー",
+      "cn": "橱柜，文件柜"
+    },
+    {
+      "id": "w9",
+      "jp": "バッグ",
+      "kana": "バッグ",
+      "cn": "包，手提包"
+    },
+    {
+      "id": "w10",
+      "jp": "りょこうしゃ（旅行社）",
+      "kana": "りょこうしゃ",
+      "cn": "旅行社"
+    },
+    {
+      "id": "w11",
+      "jp": "しさつだん（視察団）",
+      "kana": "しさつだん",
+      "cn": "视察团"
+    },
+    {
+      "id": "w12",
+      "jp": "とうちゃく（到着）",
+      "kana": "とうちゃく",
+      "cn": "到达，抵达"
+    },
+    {
+      "id": "w13",
+      "jp": "かえり（帰り）",
+      "kana": "かえり",
+      "cn": "回程，返回，回家"
+    },
+    {
+      "id": "w14",
+      "jp": "もちかえり（持ち帰り）",
+      "kana": "もちかえり",
+      "cn": "打包，带回"
+    },
+    {
+      "id": "w15",
+      "jp": "じこ（事故）",
+      "kana": "じこ",
+      "cn": "事故"
+    },
+    {
+      "id": "w16",
+      "jp": "はなたば（花束）",
+      "kana": "はなたば",
+      "cn": "花束"
+    },
+    {
+      "id": "w17",
+      "jp": "はっぴょうかい（発表会）",
+      "kana": "はっぴょうかい",
+      "cn": "发布会"
+    },
+    {
+      "id": "w18",
+      "jp": "ろんぶん（論文）",
+      "kana": "ろんぶん",
+      "cn": "论文"
+    },
+    {
+      "id": "w19",
+      "jp": "ダイエット",
+      "kana": "ダイエット",
+      "cn": "减肥"
+    },
+    {
+      "id": "w20",
+      "jp": "オリンピック",
+      "kana": "オリンピック",
+      "cn": "奥运会，奥林匹克"
+    },
+    {
+      "id": "w21",
+      "jp": "あちこち／あっちこっち",
+      "kana": "あちこち／あっちこっち",
+      "cn": "到处，处处"
+    },
+    {
+      "id": "w22",
+      "jp": "やきます（焼きます）",
+      "kana": "やきます",
+      "cn": "烤，烧，烧毁"
+    },
+    {
+      "id": "w23",
+      "jp": "かせぎます（稼ぎます）",
+      "kana": "かせぎます",
+      "cn": "挣钱，赚钱"
+    },
+    {
+      "id": "w24",
+      "jp": "のこります（残ります）",
+      "kana": "のこります",
+      "cn": "剩余，剩下"
+    },
+    {
+      "id": "w25",
+      "jp": "つつみます（包みます）",
+      "kana": "つつみます",
+      "cn": "卷，包裹"
+    },
+    {
+      "id": "w26",
+      "jp": "たのみます（頼みます）",
+      "kana": "たのみます",
+      "cn": "点（菜）；请求；托付"
+    },
+    {
+      "id": "w27",
+      "jp": "はります",
+      "kana": "はります",
+      "cn": "粘，贴"
+    },
+    {
+      "id": "w28",
+      "jp": "かざります（飾ります）",
+      "kana": "かざります",
+      "cn": "装饰"
+    },
+    {
+      "id": "w29",
+      "jp": "しまいます",
+      "kana": "しまいます",
+      "cn": "收拾起来，放到一边"
+    },
+    {
+      "id": "w30",
+      "jp": "あいます（合います）",
+      "kana": "あいます",
+      "cn": "合适，适合"
+    },
+    {
+      "id": "w31",
+      "jp": "もどします（戻します）",
+      "kana": "もどします",
+      "cn": "放回，返还，返回"
+    },
+    {
+      "id": "w32",
+      "jp": "ためます",
+      "kana": "ためます",
+      "cn": "积攒，储存"
+    },
+    {
+      "id": "w33",
+      "jp": "ならべます（並べます）",
+      "kana": "ならべます",
+      "cn": "排列"
+    },
+    {
+      "id": "w34",
+      "jp": "あずけます（預けます）",
+      "kana": "あずけます",
+      "cn": "寄存，托付"
+    },
+    {
+      "id": "w35",
+      "jp": "つづけます（続けます）",
+      "kana": "つづけます",
+      "cn": "继续，持续"
+    },
+    {
+      "id": "w36",
+      "jp": "やせます",
+      "kana": "やせます",
+      "cn": "瘦"
+    },
+    {
+      "id": "w37",
+      "jp": "ほうもんします（訪問〜）",
+      "kana": "ほうもんします",
+      "cn": "拜访，访问"
+    },
+    {
+      "id": "w38",
+      "jp": "ちょきんします（貯金〜）",
+      "kana": "ちょきんします",
+      "cn": "存钱，储蓄"
+    },
+    {
+      "id": "w39",
+      "jp": "かんげいします（歓迎〜）",
+      "kana": "かんげいします",
+      "cn": "欢迎"
+    },
+    {
+      "id": "w40",
+      "jp": "よういします（用意〜）",
+      "kana": "よういします",
+      "cn": "准备"
+    },
+    {
+      "id": "w41",
+      "jp": "おかしい",
+      "kana": "おかしい",
+      "cn": "奇怪，可笑，不正常"
+    },
+    {
+      "id": "w42",
+      "jp": "ひどい",
+      "kana": "ひどい",
+      "cn": "严重，厉害"
+    },
+    {
+      "id": "w43",
+      "jp": "もったいない",
+      "kana": "もったいない",
+      "cn": "可惜，浪费，过分"
+    },
+    {
+      "id": "w44",
+      "jp": "ゆうしゅう（優秀）",
+      "kana": "ゆうしゅう",
+      "cn": "优秀，优异"
+    },
+    {
+      "id": "w45",
+      "jp": "さいこう（最高）",
+      "kana": "さいこう",
+      "cn": "最好，最高"
+    },
+    {
+      "id": "w46",
+      "jp": "しっかり",
+      "kana": "しっかり",
+      "cn": "充分，充足"
+    },
+    {
+      "id": "w47",
+      "jp": "ひじょうに（非常に）",
+      "kana": "ひじょうに",
+      "cn": "非常"
+    },
+    {
+      "id": "w48",
+      "jp": "こんなに",
+      "kana": "こんなに",
+      "cn": "这么，这样地"
+    },
+    {
+      "id": "w49",
+      "jp": "いっしょうけんめい（一生懸命）",
+      "kana": "いっしょうけんめい",
+      "cn": "拼命地，努力地"
+    },
+    {
+      "id": "w50",
+      "jp": "うわあ",
+      "kana": "うわあ",
+      "cn": "哇"
+    },
+    {
+      "id": "w51",
+      "jp": "このまま",
+      "kana": "このまま",
+      "cn": "就这样，照这样，如此"
+    },
+    {
+      "id": "w52",
+      "jp": "いただきます",
+      "kana": "いただきます",
+      "cn": "我吃了，（我）开始吃了"
+    },
+    {
+      "id": "w53",
+      "jp": "えんりょなく（遠慮なく）",
+      "kana": "えんりょなく",
+      "cn": "不客气"
+    },
+    {
+      "id": "w54",
+      "jp": "〜部",
+      "kana": "〜ぶ",
+      "cn": "〜份；〜部"
+    }
+  ],
+  "sentences": [
+    {
+      "id": "s1",
+      "order": 1,
+      "text": "壁にカレンダーが掛けてあります。",
+      "kana": "かべにカレンダーがかけてあります。",
+      "translation": "墙上挂着日历。",
+      "words": [
+        "w1"
+      ],
+      "grammar": [
+        "g1"
+      ]
+    },
+    {
+      "id": "s2",
+      "order": 2,
+      "text": "お客さんが来る前に、部屋を掃除しておきます。",
+      "kana": "おきゃくさんがくるまえに、へやをそうじしておきます。",
+      "translation": "客人来之前，把房间打扫好。",
+      "words": [],
+      "grammar": [
+        "g2"
+      ]
+    },
+    {
+      "id": "s3",
+      "order": 3,
+      "text": "太田さんは中国語で手紙を書いてみました。",
+      "kana": "おおたさんはちゅうごくごでてがみをかいてみました。",
+      "translation": "太田先生试着用汉语写了一封信。",
+      "words": [],
+      "grammar": [
+        "g3"
+      ]
+    },
+    {
+      "id": "s4",
+      "order": 4,
+      "text": "日本へ留学するために、お金をためています。",
+      "kana": "にほんへりゅうがくするために、おかねをためています。",
+      "translation": "我正在为去日本留学攒钱。",
+      "words": [
+        "w32"
+      ],
+      "grammar": [
+        "g4"
+      ]
+    },
+    {
+      "id": "s5",
+      "order": "A1",
+      "speaker": "甲",
+      "text": "森さん、車をどこに止めましたか。",
+      "kana": "もりさん、くるまをどこにとめましたか。",
+      "translation": "森先生，您把车停在哪里了？",
+      "words": [],
+      "grammar": []
+    },
+    {
+      "id": "s6",
+      "order": "A2",
+      "speaker": "乙",
+      "text": "公園の前に止めてあります。",
+      "kana": "こうえんのまえにとめてあります。",
+      "translation": "停在公园前面。",
+      "words": [],
+      "grammar": [
+        "g1"
+      ]
+    },
+    {
+      "id": "s7",
+      "order": "B1",
+      "speaker": "甲",
+      "text": "森さん、会議の資料はどうしますか。",
+      "kana": "もりさん、かいぎのしりょうはどうしますか。",
+      "translation": "森先生，会议资料怎么办？",
+      "words": [],
+      "grammar": []
+    },
+    {
+      "id": "s8",
+      "order": "B2",
+      "speaker": "乙",
+      "text": "10部コピーしておいてください。",
+      "kana": "じゅうぶコピーしておいてください。",
+      "translation": "请先复印10份。",
+      "words": [
+        "w54"
+      ],
+      "grammar": [
+        "g2"
+      ]
+    },
+    {
+      "id": "s9",
+      "order": "C1",
+      "speaker": "甲",
+      "text": "カレーライスを作ってみました。",
+      "kana": "カレーライスをつくってみました。",
+      "translation": "我试着做了咖喱饭。",
+      "words": [
+        "w4"
+      ],
+      "grammar": [
+        "g3"
+      ]
+    },
+    {
+      "id": "s10",
+      "order": "C2",
+      "speaker": "甲",
+      "text": "食べてみてください。",
+      "kana": "たべてみてください。",
+      "translation": "请尝尝看。",
+      "words": [],
+      "grammar": [
+        "g3"
+      ]
+    },
+    {
+      "id": "s11",
+      "order": "C3",
+      "speaker": "乙",
+      "text": "ああ、おいしそうですね。いただきます。",
+      "kana": "ああ、おいしそうですね。いただきます。",
+      "translation": "啊，看上去很好吃。我开动了。",
+      "words": [
+        "w52"
+      ],
+      "grammar": []
+    },
+    {
+      "id": "s12",
+      "order": "D1",
+      "speaker": "甲",
+      "text": "太田さん、タバコをやめたんですか。",
+      "kana": "おおたさん、タバコをやめたんですか。",
+      "translation": "太田先生，您戒烟了吗？",
+      "words": [],
+      "grammar": []
+    },
+    {
+      "id": "s13",
+      "order": "D2",
+      "speaker": "乙",
+      "text": "ええ、健康のためにやめました。",
+      "kana": "ええ、けんこうのためにやめました。",
+      "translation": "是的，为了健康戒了。",
+      "words": [],
+      "grammar": [
+        "g4"
+      ]
+    },
+    {
+      "id": "s14",
+      "order": "应用1",
+      "speaker": "森",
+      "text": "小野さんを歓迎するために、とっておきのお店を予約しておきましたよ。",
+      "kana": "おのさんをかんげいするために、とっておきのおみせをよやくしておきましたよ。",
+      "translation": "为了欢迎小野女士，我预订了一家特别好的餐馆。",
+      "words": [
+        "w5",
+        "w39"
+      ],
+      "grammar": [
+        "g2",
+        "g4"
+      ]
+    },
+    {
+      "id": "s15",
+      "order": "应用2",
+      "speaker": "小野",
+      "text": "本当に!? ありがとうございます。",
+      "kana": "ほんとうに!? ありがとうございます。",
+      "translation": "真的吗！？谢谢。",
+      "words": [],
+      "grammar": []
+    },
+    {
+      "id": "s16",
+      "order": "应用3",
+      "speaker": "李",
+      "text": "北京ダックがおいしいお店なんですよ。",
+      "kana": "ぺきんダックがおいしいおみせなんですよ。",
+      "translation": "那是一家北京烤鸭很好吃的店。",
+      "words": [],
+      "grammar": []
+    },
+    {
+      "id": "s17",
+      "order": "应用4",
+      "speaker": "小野",
+      "text": "うわあ、きれいに焼いてありますね。",
+      "kana": "うわあ、きれいにやいてありますね。",
+      "translation": "哇，烤得真漂亮啊。",
+      "words": [
+        "w22",
+        "w50"
+      ],
+      "grammar": [
+        "g1"
+      ]
+    },
+    {
+      "id": "s18",
+      "order": "应用5",
+      "speaker": "李",
+      "text": "ええ。おいしそうな色でしょう。",
+      "kana": "ええ。おいしそうないろでしょう。",
+      "translation": "是啊，看起来很可口的颜色吧。",
+      "words": [],
+      "grammar": []
+    },
+    {
+      "id": "s19",
+      "order": "应用6",
+      "speaker": "小野",
+      "text": "おいしい! 今まで、こんなにおいしいのを食べたことありません。",
+      "kana": "おいしい! いままで、こんなにおいしいのをたべたことありません。",
+      "translation": "好吃！至今还没吃过这么好吃的。",
+      "words": [
+        "w48"
+      ],
+      "grammar": []
+    },
+    {
+      "id": "s20",
+      "order": "应用7",
+      "speaker": "森",
+      "text": "本場の料理は最高でしょう?",
+      "kana": "ほんばのりょうりはさいこうでしょう?",
+      "translation": "原产地的菜肴是最好的吧？",
+      "words": [
+        "w6",
+        "w45"
+      ],
+      "grammar": []
+    },
+    {
+      "id": "s21",
+      "order": "应用8",
+      "speaker": "小野",
+      "text": "ええ、最高! 今度は自分で包んでみます。",
+      "kana": "ええ、さいこう! こんどはじぶんでつつんでみます。",
+      "translation": "是啊，太棒了！下次我自己试着包一下。",
+      "words": [
+        "w25",
+        "w45"
+      ],
+      "grammar": [
+        "g3"
+      ]
+    },
+    {
+      "id": "s22",
+      "order": "应用9",
+      "speaker": "森",
+      "text": "ほかにも料理はたくさん頼んでありますからね。",
+      "kana": "ほかにもりょうりはたくさんたのんでありますからね。",
+      "translation": "还点了很多其他菜呢。",
+      "words": [
+        "w26"
+      ],
+      "grammar": [
+        "g1"
+      ]
+    },
+    {
+      "id": "s23",
+      "order": "应用10",
+      "speaker": "李",
+      "text": "小野さん、今日はしっかり食べておいてください。",
+      "kana": "おのさん、きょうはしっかりたべておいてください。",
+      "translation": "小野女士，今天请好好吃饱。",
+      "words": [
+        "w46"
+      ],
+      "grammar": [
+        "g2"
+      ]
+    },
+    {
+      "id": "s24",
+      "order": "应用11",
+      "speaker": "李",
+      "text": "明日からハードスケジュールで、あちこち行きますからね。",
+      "kana": "あしたからハードスケジュールで、あちこちいきますからね。",
+      "translation": "从明天起日程很紧，要到处去。",
+      "words": [
+        "w3",
+        "w21"
+      ],
+      "grammar": []
+    },
+    {
+      "id": "s25",
+      "order": "应用12",
+      "speaker": "小野",
+      "text": "こんなに残ってしまいました。もったいないですね。",
+      "kana": "こんなにのこってしまいました。もったいないですね。",
+      "translation": "剩下这么多，太可惜了。",
+      "words": [
+        "w24",
+        "w43",
+        "w48"
+      ],
+      "grammar": []
+    },
+    {
+      "id": "s26",
+      "order": "应用13",
+      "speaker": "李",
+      "text": "本当ですね。じゃあ、持ち帰りにしましょう。",
+      "kana": "ほんとうですね。じゃあ、もちかえりにしましょう。",
+      "translation": "确实。那么打包带回去吧。",
+      "words": [
+        "w14"
+      ],
+      "grammar": []
+    },
+    {
+      "id": "s27",
+      "order": "应用14",
+      "speaker": "森",
+      "text": "小野さん、カラオケも予約してあるんですが、どうしますか。",
+      "kana": "おのさん、カラオケもよやくしてあるんですが、どうしますか。",
+      "translation": "小野女士，卡拉OK也预订好了，怎么办？",
+      "words": [],
+      "grammar": [
+        "g1"
+      ]
+    },
+    {
+      "id": "s28",
+      "order": "应用15",
+      "speaker": "小野",
+      "text": "もちろん行きますよ。",
+      "kana": "もちろんいきますよ。",
+      "translation": "当然去。",
+      "words": [],
+      "grammar": []
+    }
+  ],
+  "textStructure": [
+    {
+      "id": "basic",
+      "title": "基本课文",
+      "groups": [
+        {
+          "title": "基本句",
+          "kind": "statements",
+          "ids": [
+            "s1",
+            "s2",
+            "s3",
+            "s4"
+          ]
+        },
+        {
+          "title": "对话 A",
+          "kind": "dialogue",
+          "ids": [
+            "s5",
+            "s6"
+          ]
+        },
+        {
+          "title": "对话 B",
+          "kind": "dialogue",
+          "ids": [
+            "s7",
+            "s8"
+          ]
+        },
+        {
+          "title": "对话 C",
+          "kind": "dialogue",
+          "ids": [
+            "s9",
+            "s10",
+            "s11"
+          ]
+        },
+        {
+          "title": "对话 D",
+          "kind": "dialogue",
+          "ids": [
+            "s12",
+            "s13"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "application",
+      "title": "应用课文 · 北京ダック",
+      "groups": [
+        {
+          "title": "宾馆",
+          "kind": "dialogue",
+          "note": "傍晚，森和小李去宾馆接小野",
+          "ids": [
+            "s14",
+            "s15",
+            "s16"
+          ]
+        },
+        {
+          "title": "餐厅",
+          "kind": "dialogue",
+          "note": "烤鸭端上来",
+          "ids": [
+            "s17",
+            "s18"
+          ]
+        },
+        {
+          "title": "用餐",
+          "kind": "dialogue",
+          "note": "小野尝了一口",
+          "ids": [
+            "s19",
+            "s20",
+            "s21",
+            "s22"
+          ]
+        },
+        {
+          "title": "继续用餐",
+          "kind": "dialogue",
+          "note": "又有菜端上来",
+          "ids": [
+            "s23",
+            "s24"
+          ]
+        },
+        {
+          "title": "餐后",
+          "kind": "dialogue",
+          "note": "看到很多剩下的菜肴",
+          "ids": [
+            "s25",
+            "s26",
+            "s27",
+            "s28"
+          ]
+        }
+      ]
+    }
+  ],
+  "grammar": [
+    {
+      "id": "g1",
+      "pattern": "他动词て形＋あります",
+      "meaning": "表示有意进行的动作结果所处的状态。",
+      "structure": "他动词て形＋あります",
+      "usage": "不涉及动作主体，只涉及动作对象。",
+      "examples": [
+        "s1",
+        "s6",
+        "s17",
+        "s22",
+        "s27"
+      ],
+      "extraExamples": [
+        {
+          "jp": "壁にカレンダーが掛けてあります。",
+          "kana": "かべにカレンダーがかけてあります。",
+          "cn": "墙上挂着日历。"
+        },
+        {
+          "jp": "窓が開けてあります。",
+          "kana": "まどがあけてあります。",
+          "cn": "窗户开着。"
+        },
+        {
+          "jp": "パスポートはバッグの中に入れてあります。",
+          "kana": "パスポートはバッグのなかにいれてあります。",
+          "cn": "护照在包里放着。"
+        },
+        {
+          "jp": "壁にわたしがカレンダーを掛けました。",
+          "kana": "かべにわたしがカレンダーをかけました。",
+          "cn": "我在墙上挂了日历。"
+        },
+        {
+          "jp": "壁にカレンダーが掛けてあります。",
+          "kana": "かべにカレンダーがかけてあります。",
+          "cn": "墙上挂着日历。"
+        }
+      ]
+    },
+    {
+      "id": "g2",
+      "pattern": "动词て形＋おきます",
+      "meaning": "为某种准备而有意识地进行动作。",
+      "structure": "动词て形＋おきます",
+      "usage": "表示为了某种目的而将动作结果或效果保留下来。",
+      "examples": [
+        "s2",
+        "s8",
+        "s14",
+        "s23"
+      ],
+      "extraExamples": [
+        {
+          "jp": "お客さんが来る前に、部屋を掃除しておきます。",
+          "kana": "おきゃくさんがくるまえに、へやをそうじしておきます。",
+          "cn": "客人来之前把房间打扫好。"
+        },
+        {
+          "jp": "明日は忙しいです。今夜はゆっくり休んでおいてください。",
+          "kana": "あしたはいそがしいです。こんやはゆっくりやすんでおいてください。",
+          "cn": "明天会很忙，今晚请好好休息。"
+        },
+        {
+          "jp": "訪問する前に、一度電話しておきます。",
+          "kana": "ほうもんするまえに、いちどでんわしておきます。",
+          "cn": "拜访之前我先打个电话。"
+        },
+        {
+          "jp": "帰りの切符を買っておきますか。",
+          "kana": "かえりのきっぷをかっておきますか。",
+          "cn": "要事先买好回程票吗？"
+        },
+        {
+          "jp": "いいえ、買っておかなくてもいいです。",
+          "kana": "いいえ、かっておかなくてもいいです。",
+          "cn": "不，不需要。"
+        }
+      ]
+    },
+    {
+      "id": "g3",
+      "pattern": "动词て形＋みます",
+      "meaning": "试着做某事。",
+      "structure": "动词て形＋みます",
+      "usage": "表示尝试。",
+      "examples": [
+        "s3",
+        "s9",
+        "s10",
+        "s21"
+      ],
+      "extraExamples": [
+        {
+          "jp": "太田さんは中国語で手紙を書いてみました。",
+          "kana": "おおたさんはちゅうごくごでてがみをかいてみました。",
+          "cn": "太田先生试着用汉语写了一封信。"
+        },
+        {
+          "jp": "おいしそうですね。食べてみます。",
+          "kana": "おいしそうですね。たべてみます。",
+          "cn": "看上去很好吃，我来尝尝。"
+        },
+        {
+          "jp": "それはおかしい。もう一度調べてみてください。",
+          "kana": "それはおかしい。もういちどしらべてみてください。",
+          "cn": "真奇怪。你再调查一下。"
+        }
+      ]
+    },
+    {
+      "id": "g4",
+      "pattern": "小句1（基本形）ために、小句2／名词＋の＋ために、小句",
+      "meaning": "为了……；表示目的。",
+      "structure": "动词基本形＋ために／名词＋の＋ために",
+      "usage": "前后两个小句的主语相同。",
+      "examples": [
+        "s4",
+        "s13",
+        "s14"
+      ],
+      "extraExamples": [
+        {
+          "jp": "日本に留学するために、お金をためています。",
+          "kana": "にほんにりゅうがくするために、おかねをためています。",
+          "cn": "我正在为去日本留学攒钱。"
+        },
+        {
+          "jp": "運動をするために、新しい靴を買いました。",
+          "kana": "うんどうをするために、あたらしいくつをかいました。",
+          "cn": "为了运动买了新鞋。"
+        },
+        {
+          "jp": "林さんは駅へ行くために、バスに乗りました。",
+          "kana": "はやしさんはえきへいくために、バスにのりました。",
+          "cn": "林先生为去车站，坐了公共汽车。"
+        },
+        {
+          "jp": "留学のために、日本語を勉強しています。",
+          "kana": "りゅうがくのために、にほんごをべんきょうしています。",
+          "cn": "为了留学正在学习日语。"
+        },
+        {
+          "jp": "健康のために、毎日歩いています。",
+          "kana": "けんこうのために、まいにちあるいています。",
+          "cn": "为了健康每天步行。"
+        }
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "ex-l34-p1-a1-q1",
+      "groupId": "ex-l34-p1-a1-l34-p1-a1",
+      "groupTitle": "看图，仿照例句进行练习。",
+      "category": "replacement",
+      "instruction": "看图，仿照例句进行练习。",
+      "example": "閉めます → 閉めてあります。",
+      "exampleKana": "しめます → しめてあります。",
+      "type": "transform",
+      "question": "書きます → （　）",
+      "questionKana": "かきます →",
+      "choices": [],
+      "answer": "書いてあります",
+      "answerKana": "かいてあります",
+      "referenceAnswers": [
+        "書いてあります"
+      ],
+      "referenceAnswerKana": [
+        "かいてあります"
+      ],
+      "relatedGrammar": [
+        "g1"
+      ],
+      "relatedSentences": [],
+      "explanation": ""
+    },
+    {
+      "id": "ex-l34-p1-a1-q2",
+      "groupId": "ex-l34-p1-a1-l34-p1-a1",
+      "groupTitle": "看图，仿照例句进行练习。",
+      "category": "replacement",
+      "instruction": "看图，仿照例句进行练习。",
+      "example": "閉めます → 閉めてあります。",
+      "exampleKana": "しめます → しめてあります。",
+      "type": "transform",
+      "question": "開けます → （　）",
+      "questionKana": "あけます →",
+      "choices": [],
+      "answer": "開けてあります",
+      "answerKana": "",
+      "referenceAnswers": [
+        "開けてあります"
+      ],
+      "referenceAnswerKana": [
+        ""
+      ],
+      "relatedGrammar": [
+        "g1"
+      ],
+      "relatedSentences": [],
+      "explanation": ""
+    },
+    {
+      "id": "ex-l34-p1-a1-q3",
+      "groupId": "ex-l34-p1-a1-l34-p1-a1",
+      "groupTitle": "看图，仿照例句进行练习。",
+      "category": "replacement",
+      "instruction": "看图，仿照例句进行练习。",
+      "example": "閉めます → 閉めてあります。",
+      "exampleKana": "しめます → しめてあります。",
+      "type": "transform",
+      "question": "はります → （　）",
+      "questionKana": "はります →",
+      "choices": [],
+      "answer": "はってあります",
+      "answerKana": "はってあります",
+      "referenceAnswers": [
+        "はってあります"
+      ],
+      "referenceAnswerKana": [
+        "はってあります"
+      ],
+      "relatedGrammar": [
+        "g1"
+      ],
+      "relatedSentences": [],
+      "explanation": ""
+    },
+    {
+      "id": "ex-l34-p1-a1-q4",
+      "groupId": "ex-l34-p1-a1-l34-p1-a1",
+      "groupTitle": "看图，仿照例句进行练习。",
+      "category": "replacement",
+      "instruction": "看图，仿照例句进行练习。",
+      "example": "閉めます → 閉めてあります。",
+      "exampleKana": "しめます → しめてあります。",
+      "type": "transform",
+      "question": "飾ります → （　）",
+      "questionKana": "かざります →",
+      "choices": [],
+      "answer": "飾ってあります",
+      "answerKana": "",
+      "referenceAnswers": [
+        "飾ってあります"
+      ],
+      "referenceAnswerKana": [
+        ""
+      ],
+      "relatedGrammar": [
+        "g1"
+      ],
+      "relatedSentences": [],
+      "explanation": ""
+    },
+    {
+      "id": "ex-l34-p1-a2-q1",
+      "groupId": "ex-l34-p1-a2-l34-p1-a2",
+      "groupTitle": "仿照例句替换画线部分进行练习。",
+      "category": "replacement",
+      "instruction": "仿照例句替换画线部分进行练习。",
+      "example": "壁にカレンダーを掛けました。 → 壁にカレンダーが掛けてあります。",
+      "exampleKana": "かべにカレンダーをかけました。 → かべにカレンダーがかけてあります。",
+      "type": "transform",
+      "question": "冷蔵庫にビールを入れました。",
+      "questionKana": "れいぞうこにビールをいれました。",
+      "choices": [],
+      "answer": "冷蔵庫にビールが入れてあります。",
+      "answerKana": "",
+      "referenceAnswers": [
+        "冷蔵庫にビールが入れてあります。"
+      ],
+      "referenceAnswerKana": [
+        ""
+      ],
+      "relatedGrammar": [
+        "g1"
+      ],
+      "relatedSentences": [],
+      "explanation": ""
+    },
+    {
+      "id": "ex-l34-p1-a2-q2",
+      "groupId": "ex-l34-p1-a2-l34-p1-a2",
+      "groupTitle": "仿照例句替换画线部分进行练习。",
+      "category": "replacement",
+      "instruction": "仿照例句替换画线部分进行练习。",
+      "example": "壁にカレンダーを掛けました。 → 壁にカレンダーが掛けてあります。",
+      "exampleKana": "かべにカレンダーをかけました。 → かべにカレンダーがかけてあります。",
+      "type": "transform",
+      "question": "玄関に花を飾りました。",
+      "questionKana": "げんかんにはなをかざりました。",
+      "choices": [],
+      "answer": "玄関に花が飾ってあります。",
+      "answerKana": "",
+      "referenceAnswers": [
+        "玄関に花が飾ってあります。"
+      ],
+      "referenceAnswerKana": [
+        ""
+      ],
+      "relatedGrammar": [
+        "g1"
+      ],
+      "relatedSentences": [],
+      "explanation": ""
+    },
+    {
+      "id": "ex-l34-p1-a2-q3",
+      "groupId": "ex-l34-p1-a2-l34-p1-a2",
+      "groupTitle": "仿照例句替换画线部分进行练习。",
+      "category": "replacement",
+      "instruction": "仿照例句替换画线部分进行练习。",
+      "example": "壁にカレンダーを掛けました。 → 壁にカレンダーが掛けてあります。",
+      "exampleKana": "かべにカレンダーをかけました。 → かべにカレンダーがかけてあります。",
+      "type": "transform",
+      "question": "あそこに車を止めました。",
+      "questionKana": "あそこにくるまをとめました。",
+      "choices": [],
+      "answer": "あそこに車が止めてあります。",
+      "answerKana": "",
+      "referenceAnswers": [
+        "あそこに車が止めてあります。"
+      ],
+      "referenceAnswerKana": [
+        ""
+      ],
+      "relatedGrammar": [
+        "g1"
+      ],
+      "relatedSentences": [],
+      "explanation": ""
+    },
+    {
+      "id": "ex-l34-p1-a2-q4",
+      "groupId": "ex-l34-p1-a2-l34-p1-a2",
+      "groupTitle": "仿照例句替换画线部分进行练习。",
+      "category": "replacement",
+      "instruction": "仿照例句替换画线部分进行练习。",
+      "example": "壁にカレンダーを掛けました。 → 壁にカレンダーが掛けてあります。",
+      "exampleKana": "かべにカレンダーをかけました。 → かべにカレンダーがかけてあります。",
+      "type": "transform",
+      "question": "会議室のいすを片づけました。",
+      "questionKana": "かいぎしつのいすをかたづけました。",
+      "choices": [],
+      "answer": "会議室のいすが片づけてあります。",
+      "answerKana": "",
+      "referenceAnswers": [
+        "会議室のいすが片づけてあります。"
+      ],
+      "referenceAnswerKana": [
+        ""
+      ],
+      "relatedGrammar": [
+        "g1"
+      ],
+      "relatedSentences": [],
+      "explanation": ""
+    },
+    {
+      "id": "ex-l34-p1-a2-q5",
+      "groupId": "ex-l34-p1-a2-l34-p1-a2",
+      "groupTitle": "仿照例句替换画线部分进行练习。",
+      "category": "replacement",
+      "instruction": "仿照例句替换画线部分进行练习。",
+      "example": "壁にカレンダーを掛けました。 → 壁にカレンダーが掛けてあります。",
+      "exampleKana": "かべにカレンダーをかけました。 → かべにカレンダーがかけてあります。",
+      "type": "transform",
+      "question": "部屋の電気をつけました。",
+      "questionKana": "へやのでんきをつけました。",
+      "choices": [],
+      "answer": "部屋の電気がつけてあります。",
+      "answerKana": "",
+      "referenceAnswers": [
+        "部屋の電気がつけてあります。"
+      ],
+      "referenceAnswerKana": [
+        ""
+      ],
+      "relatedGrammar": [
+        "g1"
+      ],
+      "relatedSentences": [],
+      "explanation": ""
+    },
+    {
+      "id": "ex-l34-p1-a2-q6",
+      "groupId": "ex-l34-p1-a2-l34-p1-a2",
+      "groupTitle": "仿照例句替换画线部分进行练习。",
+      "category": "replacement",
+      "instruction": "仿照例句替换画线部分进行练习。",
+      "example": "壁にカレンダーを掛けました。 → 壁にカレンダーが掛けてあります。",
+      "exampleKana": "かべにカレンダーをかけました。 → かべにカレンダーがかけてあります。",
+      "type": "transform",
+      "question": "本棚に本をきちんと並べました。",
+      "questionKana": "ほんだなにほんをきちんとならべました。",
+      "choices": [],
+      "answer": "本棚に本がきちんと並べてあります。",
+      "answerKana": "",
+      "referenceAnswers": [
+        "本棚に本がきちんと並べてあります。"
+      ],
+      "referenceAnswerKana": [
+        ""
+      ],
+      "relatedGrammar": [
+        "g1"
+      ],
+      "relatedSentences": [],
+      "explanation": ""
+    },
+    {
+      "id": "ex-l34-p1-a3-q1",
+      "groupId": "ex-l34-p1-a3-l34-p1-a3",
+      "groupTitle": "仿照例句，用（　）中的词语回答提问。",
+      "category": "replacement",
+      "instruction": "仿照例句，用（　）中的词语回答提问。",
+      "example": "どこに車を止めましたか。（公園の横） → 公園の横に止めてあります。",
+      "exampleKana": "どこにくるまをとめましたか。（こうえんのよこ） → こうえんのよこにとめてあります。",
+      "type": "transform",
+      "question": "どこに荷物を置きましたか。（ロッカーの前）",
+      "questionKana": "どこににもつをおきましたか。（ロッカーのまえ）",
+      "choices": [],
+      "answer": "ロッカーの前に置いてあります。",
+      "answerKana": "",
+      "referenceAnswers": [
+        "ロッカーの前に置いてあります。"
+      ],
+      "referenceAnswerKana": [
+        ""
+      ],
+      "relatedGrammar": [
+        "g1"
+      ],
+      "relatedSentences": [],
+      "explanation": ""
+    },
+    {
+      "id": "ex-l34-p1-a3-q2",
+      "groupId": "ex-l34-p1-a3-l34-p1-a3",
+      "groupTitle": "仿照例句，用（　）中的词语回答提问。",
+      "category": "replacement",
+      "instruction": "仿照例句，用（　）中的词语回答提问。",
+      "example": "どこに車を止めましたか。（公園の横） → 公園の横に止めてあります。",
+      "exampleKana": "どこにくるまをとめましたか。（こうえんのよこ） → こうえんのよこにとめてあります。",
+      "type": "transform",
+      "question": "だれにパスポートを預けましたか。（旅行社の人）",
+      "questionKana": "だれにパスポートをあずけましたか。（りょこうしゃのひと）",
+      "choices": [],
+      "answer": "旅行社の人に預けてあります。",
+      "answerKana": "",
+      "referenceAnswers": [
+        "旅行社の人に預けてあります。"
+      ],
+      "referenceAnswerKana": [
+        ""
+      ],
+      "relatedGrammar": [
+        "g1"
+      ],
+      "relatedSentences": [],
+      "explanation": ""
+    },
+    {
+      "id": "ex-l34-p1-a3-q3",
+      "groupId": "ex-l34-p1-a3-l34-p1-a3",
+      "groupTitle": "仿照例句，用（　）中的词语回答提问。",
+      "category": "replacement",
+      "instruction": "仿照例句，用（　）中的词语回答提问。",
+      "example": "どこに車を止めましたか。（公園の横） → 公園の横に止めてあります。",
+      "exampleKana": "どこにくるまをとめましたか。（こうえんのよこ） → こうえんのよこにとめてあります。",
+      "type": "transform",
+      "question": "どこにかぎをしまいましたか。（引き出しの中）",
+      "questionKana": "どこにかぎをしまいましたか。（ひきだしのなか）",
+      "choices": [],
+      "answer": "引き出しの中にしまってあります。",
+      "answerKana": "",
+      "referenceAnswers": [
+        "引き出しの中にしまってあります。"
+      ],
+      "referenceAnswerKana": [
+        ""
+      ],
+      "relatedGrammar": [
+        "g1"
+      ],
+      "relatedSentences": [],
+      "explanation": ""
+    },
+    {
+      "id": "ex-l34-p1-a3-q4",
+      "groupId": "ex-l34-p1-a3-l34-p1-a3",
+      "groupTitle": "仿照例句，用（　）中的词语回答提问。",
+      "category": "replacement",
+      "instruction": "仿照例句，用（　）中的词语回答提问。",
+      "example": "どこに車を止めましたか。（公園の横） → 公園の横に止めてあります。",
+      "exampleKana": "どこにくるまをとめましたか。（こうえんのよこ） → こうえんのよこにとめてあります。",
+      "type": "transform",
+      "question": "どこにポスターをはりましたか。（受付の後ろの壁）",
+      "questionKana": "どこにポスターをはりましたか。（うけつけのうしろのかべ）",
+      "choices": [],
+      "answer": "受付の後ろの壁にはってあります。",
+      "answerKana": "",
+      "referenceAnswers": [
+        "受付の後ろの壁にはってあります。"
+      ],
+      "referenceAnswerKana": [
+        ""
+      ],
+      "relatedGrammar": [
+        "g1"
+      ],
+      "relatedSentences": [],
+      "explanation": ""
+    },
+    {
+      "id": "ex-l34-p1-a3-q5",
+      "groupId": "ex-l34-p1-a3-l34-p1-a3",
+      "groupTitle": "仿照例句，用（　）中的词语回答提问。",
+      "category": "replacement",
+      "instruction": "仿照例句，用（　）中的词语回答提问。",
+      "example": "どこに車を止めましたか。（公園の横） → 公園の横に止めてあります。",
+      "exampleKana": "どこにくるまをとめましたか。（こうえんのよこ） → こうえんのよこにとめてあります。",
+      "type": "transform",
+      "question": "だれに会議のあいさつを頼みましたか。（部長）",
+      "questionKana": "だれにかいぎのあいさつをたのみましたか。（ぶちょう）",
+      "choices": [],
+      "answer": "部長に頼んであります。",
+      "answerKana": "",
+      "referenceAnswers": [
+        "部長に頼んであります。"
+      ],
+      "referenceAnswerKana": [
+        ""
+      ],
+      "relatedGrammar": [
+        "g1"
+      ],
+      "relatedSentences": [],
+      "explanation": ""
+    },
+    {
+      "id": "ex-l34-p1-a4-q1",
+      "groupId": "ex-l34-p1-a4-l34-p1-a4-g1",
+      "groupTitle": "仿照例句替换画线部分进行练习。",
+      "category": "replacement",
+      "instruction": "仿照例句替换画线部分进行练习。",
+      "example": "歓迎の準備をします → 歓迎客が来る前に、歓迎の準備をしておきます。",
+      "exampleKana": "かんげいのじゅんびをします → かんげいきゃくがくるまえに、かんげいのじゅんびをしておきます。",
+      "type": "transform",
+      "question": "到着の時間を調べます。",
+      "questionKana": "とうちゃくのじかんをしらべます。",
+      "choices": [],
+      "answer": "到着の時間を調べておきます。",
+      "answerKana": "",
+      "referenceAnswers": [
+        "到着の時間を調べておきます。"
+      ],
+      "referenceAnswerKana": [
+        ""
+      ],
+      "relatedGrammar": [
+        "g2"
+      ],
+      "relatedSentences": [],
+      "explanation": ""
+    },
+    {
+      "id": "ex-l34-p1-a4-q2",
+      "groupId": "ex-l34-p1-a4-l34-p1-a4-g1",
+      "groupTitle": "仿照例句替换画线部分进行练习。",
+      "category": "replacement",
+      "instruction": "仿照例句替换画线部分进行练习。",
+      "example": "歓迎の準備をします → 歓迎客が来る前に、歓迎の準備をしておきます。",
+      "exampleKana": "かんげいのじゅんびをします → かんげいきゃくがくるまえに、かんげいのじゅんびをしておきます。",
+      "type": "transform",
+      "question": "花束をたくさん用意します。",
+      "questionKana": "はなたばをたくさんよういします。",
+      "choices": [],
+      "answer": "花束をたくさん用意しておきます。",
+      "answerKana": "",
+      "referenceAnswers": [
+        "花束をたくさん用意しておきます。"
+      ],
+      "referenceAnswerKana": [
+        ""
+      ],
+      "relatedGrammar": [
+        "g2"
+      ],
+      "relatedSentences": [],
+      "explanation": ""
+    },
+    {
+      "id": "ex-l34-p1-a4-q3",
+      "groupId": "ex-l34-p1-a4-l34-p1-a4-g1",
+      "groupTitle": "仿照例句替换画线部分进行练习。",
+      "category": "replacement",
+      "instruction": "仿照例句替换画线部分进行练习。",
+      "example": "歓迎の準備をします → 歓迎客が来る前に、歓迎の準備をしておきます。",
+      "exampleKana": "かんげいのじゅんびをします → かんげいきゃくがくるまえに、かんげいのじゅんびをしておきます。",
+      "type": "transform",
+      "question": "いいホテルを探します。",
+      "questionKana": "いいホテルをさがします。",
+      "choices": [],
+      "answer": "いいホテルを探しておきます。",
+      "answerKana": "",
+      "referenceAnswers": [
+        "いいホテルを探しておきます。"
+      ],
+      "referenceAnswerKana": [
+        ""
+      ],
+      "relatedGrammar": [
+        "g2"
+      ],
+      "relatedSentences": [],
+      "explanation": ""
+    },
+    {
+      "id": "ex-l34-p1-a4-q4",
+      "groupId": "ex-l34-p1-a4-l34-p1-a4-g1",
+      "groupTitle": "仿照例句替换画线部分进行练习。",
+      "category": "replacement",
+      "instruction": "仿照例句替换画线部分进行练习。",
+      "example": "歓迎の準備をします → 歓迎客が来る前に、歓迎の準備をしておきます。",
+      "exampleKana": "かんげいのじゅんびをします → かんげいきゃくがくるまえに、かんげいのじゅんびをしておきます。",
+      "type": "transform",
+      "question": "会議の打ち合わせをします。",
+      "questionKana": "かいぎのうちあわせをします。",
+      "choices": [],
+      "answer": "会議の打ち合わせをしておきます。",
+      "answerKana": "",
+      "referenceAnswers": [
+        "会議の打ち合わせをしておきます。"
+      ],
+      "referenceAnswerKana": [
+        ""
+      ],
+      "relatedGrammar": [
+        "g2"
+      ],
+      "relatedSentences": [],
+      "explanation": ""
+    },
+    {
+      "id": "ex-l34-p1-a4-q5",
+      "groupId": "ex-l34-p1-a4-l34-p1-a4-g1",
+      "groupTitle": "仿照例句替换画线部分进行练习。",
+      "category": "replacement",
+      "instruction": "仿照例句替换画线部分进行练习。",
+      "example": "歓迎の準備をします → 歓迎客が来る前に、歓迎の準備をしておきます。",
+      "exampleKana": "かんげいのじゅんびをします → かんげいきゃくがくるまえに、かんげいのじゅんびをしておきます。",
+      "type": "transform",
+      "question": "訪問先の資料を集めます。",
+      "questionKana": "ほうもんさきのしりょうをあつめます。",
+      "choices": [],
+      "answer": "訪問先の資料を集めておきます。",
+      "answerKana": "",
+      "referenceAnswers": [
+        "訪問先の資料を集めておきます。"
+      ],
+      "referenceAnswerKana": [
+        ""
+      ],
+      "relatedGrammar": [
+        "g2"
+      ],
+      "relatedSentences": [],
+      "explanation": ""
+    },
+    {
+      "id": "ex-l34-p1-a4-q6",
+      "groupId": "ex-l34-p1-a4-l34-p1-a4-g1",
+      "groupTitle": "仿照例句替换画线部分进行练习。",
+      "category": "replacement",
+      "instruction": "仿照例句替换画线部分进行练习。",
+      "example": "歓迎の準備をします → 歓迎客が来る前に、歓迎の準備をしておきます。",
+      "exampleKana": "かんげいのじゅんびをします → かんげいきゃくがくるまえに、かんげいのじゅんびをしておきます。",
+      "type": "transform",
+      "question": "歓迎のあいさつを考えます。",
+      "questionKana": "かんげいのあいさつをかんがえます。",
+      "choices": [],
+      "answer": "歓迎のあいさつを考えておきます。",
+      "answerKana": "",
+      "referenceAnswers": [
+        "歓迎のあいさつを考えておきます。"
+      ],
+      "referenceAnswerKana": [
+        ""
+      ],
+      "relatedGrammar": [
+        "g2"
+      ],
+      "relatedSentences": [],
+      "explanation": ""
+    },
+    {
+      "id": "ex-l34-p1-a4-q7",
+      "groupId": "ex-l34-p1-a4-l34-p1-a4-g2",
+      "groupTitle": "仿照例句替换画线部分进行练习。",
+      "category": "replacement",
+      "instruction": "仿照例句替换画线部分进行练习。",
+      "example": "おいしいです／食べます → おいしいかどうか、食べてみます。",
+      "exampleKana": "おいしいです／たべます → おいしいかどうか、たべてみます。",
+      "type": "transform",
+      "question": "似合います／着ます",
+      "questionKana": "にあいます／きます",
+      "choices": [],
+      "answer": "似合うかどうか、着てみます。",
+      "answerKana": "",
+      "referenceAnswers": [
+        "似合うかどうか、着てみます。"
+      ],
+      "referenceAnswerKana": [
+        ""
+      ],
+      "relatedGrammar": [
+        "g3"
+      ],
+      "relatedSentences": [],
+      "explanation": ""
+    },
+    {
+      "id": "ex-l34-p1-a4-q8",
+      "groupId": "ex-l34-p1-a4-l34-p1-a4-g2",
+      "groupTitle": "仿照例句替换画线部分进行练习。",
+      "category": "replacement",
+      "instruction": "仿照例句替换画线部分进行练习。",
+      "example": "おいしいです／食べます → おいしいかどうか、食べてみます。",
+      "exampleKana": "おいしいです／たべます → おいしいかどうか、たべてみます。",
+      "type": "transform",
+      "question": "おもしろいです／読みます",
+      "questionKana": "おもしろいです／よみます",
+      "choices": [],
+      "answer": "おもしろいかどうか、読んでみます。",
+      "answerKana": "おもしろいかどうか、よんでみます。",
+      "referenceAnswers": [
+        "おもしろいかどうか、読んでみます。"
+      ],
+      "referenceAnswerKana": [
+        "おもしろいかどうか、よんでみます。"
+      ],
+      "relatedGrammar": [
+        "g3"
+      ],
+      "relatedSentences": [],
+      "explanation": ""
+    },
+    {
+      "id": "ex-l34-p1-a4-q9",
+      "groupId": "ex-l34-p1-a4-l34-p1-a4-g2",
+      "groupTitle": "仿照例句替换画线部分进行练习。",
+      "category": "replacement",
+      "instruction": "仿照例句替换画线部分进行练习。",
+      "example": "おいしいです／食べます → おいしいかどうか、食べてみます。",
+      "exampleKana": "おいしいです／たべます → おいしいかどうか、たべてみます。",
+      "type": "transform",
+      "question": "便利です／田中さんに聞きます",
+      "questionKana": "べんりです／たなかさんにききます",
+      "choices": [],
+      "answer": "便利かどうか、田中さんに聞いてみます。",
+      "answerKana": "",
+      "referenceAnswers": [
+        "便利かどうか、田中さんに聞いてみます。"
+      ],
+      "referenceAnswerKana": [
+        ""
+      ],
+      "relatedGrammar": [
+        "g3"
+      ],
+      "relatedSentences": [],
+      "explanation": ""
+    },
+    {
+      "id": "ex-l34-p1-a4-q10",
+      "groupId": "ex-l34-p1-a4-l34-p1-a4-g2",
+      "groupTitle": "仿照例句替换画线部分进行练习。",
+      "category": "replacement",
+      "instruction": "仿照例句替换画线部分进行练习。",
+      "example": "おいしいです／食べます → おいしいかどうか、食べてみます。",
+      "exampleKana": "おいしいです／たべます → おいしいかどうか、たべてみます。",
+      "type": "transform",
+      "question": "できます／やります",
+      "questionKana": "できます／やります",
+      "choices": [],
+      "answer": "できるかどうか、やってみます。",
+      "answerKana": "できるかどうか、やってみます。",
+      "referenceAnswers": [
+        "できるかどうか、やってみます。"
+      ],
+      "referenceAnswerKana": [
+        "できるかどうか、やってみます。"
+      ],
+      "relatedGrammar": [
+        "g3"
+      ],
+      "relatedSentences": [],
+      "explanation": ""
+    },
+    {
+      "id": "ex-l34-p1-a4-q11",
+      "groupId": "ex-l34-p1-a4-l34-p1-a4-g2",
+      "groupTitle": "仿照例句替换画线部分进行练习。",
+      "category": "replacement",
+      "instruction": "仿照例句替换画线部分进行练习。",
+      "example": "おいしいです／食べます → おいしいかどうか、食べてみます。",
+      "exampleKana": "おいしいです／たべます → おいしいかどうか、たべてみます。",
+      "type": "transform",
+      "question": "サイズが合います／はきます",
+      "questionKana": "サイズがあいます／はきます",
+      "choices": [],
+      "answer": "サイズが合うかどうか、はいてみます。",
+      "answerKana": "",
+      "referenceAnswers": [
+        "サイズが合うかどうか、はいてみます。"
+      ],
+      "referenceAnswerKana": [
+        ""
+      ],
+      "relatedGrammar": [
+        "g3"
+      ],
+      "relatedSentences": [],
+      "explanation": ""
+    },
+    {
+      "id": "ex-l34-p1-a4-q12",
+      "groupId": "ex-l34-p1-a4-l34-p1-a4-g2",
+      "groupTitle": "仿照例句替换画线部分进行练习。",
+      "category": "replacement",
+      "instruction": "仿照例句替换画线部分进行练习。",
+      "example": "おいしいです／食べます → おいしいかどうか、食べてみます。",
+      "exampleKana": "おいしいです／たべます → おいしいかどうか、たべてみます。",
+      "type": "transform",
+      "question": "予約してあります／調べます",
+      "questionKana": "よやくしてあります／しらべます",
+      "choices": [],
+      "answer": "予約してあるかどうか、調べてみます。",
+      "answerKana": "",
+      "referenceAnswers": [
+        "予約してあるかどうか、調べてみます。"
+      ],
+      "referenceAnswerKana": [
+        ""
+      ],
+      "relatedGrammar": [
+        "g3"
+      ],
+      "relatedSentences": [],
+      "explanation": ""
+    },
+    {
+      "id": "ex-l34-p1-a5-q1",
+      "groupId": "ex-l34-p1-a5-l34-p1-a5-g1",
+      "groupTitle": "仿照例句替换画线部分进行练习。",
+      "category": "replacement",
+      "instruction": "仿照例句替换画线部分进行练习。",
+      "example": "健康／ジョギングをします → 健康のために、ジョギングをしています。",
+      "exampleKana": "けんこう／ジョギングをします → けんこうのために、ジョギングをしています。",
+      "type": "transform",
+      "question": "発表会／毎日２時間ピアノを練習します",
+      "questionKana": "はっぴょうかい／まいにちにじかんピアノをれんしゅうします",
+      "choices": [],
+      "answer": "発表会のために、毎日２時間ピアノを練習しています。",
+      "answerKana": "",
+      "referenceAnswers": [
+        "発表会のために、毎日２時間ピアノを練習しています。"
+      ],
+      "referenceAnswerKana": [
+        ""
+      ],
+      "relatedGrammar": [
+        "g4"
+      ],
+      "relatedSentences": [],
+      "explanation": ""
+    },
+    {
+      "id": "ex-l34-p1-a5-q2",
+      "groupId": "ex-l34-p1-a5-l34-p1-a5-g1",
+      "groupTitle": "仿照例句替换画线部分进行练习。",
+      "category": "replacement",
+      "instruction": "仿照例句替换画线部分进行练习。",
+      "example": "健康／ジョギングをします → 健康のために、ジョギングをしています。",
+      "exampleKana": "けんこう／ジョギングをします → けんこうのために、ジョギングをしています。",
+      "type": "transform",
+      "question": "家族／一生懸命働きます",
+      "questionKana": "かぞく／いっしょうけんめいはたらきます",
+      "choices": [],
+      "answer": "家族のために、一生懸命働いています。",
+      "answerKana": "",
+      "referenceAnswers": [
+        "家族のために、一生懸命働いています。"
+      ],
+      "referenceAnswerKana": [
+        ""
+      ],
+      "relatedGrammar": [
+        "g4"
+      ],
+      "relatedSentences": [],
+      "explanation": ""
+    },
+    {
+      "id": "ex-l34-p1-a5-q3",
+      "groupId": "ex-l34-p1-a5-l34-p1-a5-g1",
+      "groupTitle": "仿照例句替换画线部分进行练习。",
+      "category": "replacement",
+      "instruction": "仿照例句替换画线部分进行练习。",
+      "example": "健康／ジョギングをします → 健康のために、ジョギングをしています。",
+      "exampleKana": "けんこう／ジョギングをします → けんこうのために、ジョギングをしています。",
+      "type": "transform",
+      "question": "明日の試験／今晩よく勉強しようと思います",
+      "questionKana": "あしたのしけん／こんばんよくべんきょうしようとおもいます",
+      "choices": [],
+      "answer": "明日の試験のために、今晩よく勉強しようと思います。",
+      "answerKana": "",
+      "referenceAnswers": [
+        "明日の試験のために、今晩よく勉強しようと思います。"
+      ],
+      "referenceAnswerKana": [
+        ""
+      ],
+      "relatedGrammar": [
+        "g4"
+      ],
+      "relatedSentences": [],
+      "explanation": ""
+    },
+    {
+      "id": "ex-l34-p1-a5-q4",
+      "groupId": "ex-l34-p1-a5-l34-p1-a5-g2",
+      "groupTitle": "仿照例句替换画线部分进行练习。",
+      "category": "replacement",
+      "instruction": "仿照例句替换画线部分进行练习。",
+      "example": "医者になります／一生懸命勉強します → 医者になるために、一生懸命勉強しています。",
+      "exampleKana": "いしゃになります／いっしょうけんめいべんきょうします → いしゃになるために、いっしょうけんめいべんきょうしています。",
+      "type": "transform",
+      "question": "留学します／日本語の勉強を続けます",
+      "questionKana": "りゅうがくします／にほんごのべんきょうをつづけます",
+      "choices": [],
+      "answer": "留学するために、日本語の勉強を続けます。",
+      "answerKana": "",
+      "referenceAnswers": [
+        "留学するために、日本語の勉強を続けます。"
+      ],
+      "referenceAnswerKana": [
+        ""
+      ],
+      "relatedGrammar": [
+        "g4"
+      ],
+      "relatedSentences": [],
+      "explanation": ""
+    },
+    {
+      "id": "ex-l34-p1-a5-q5",
+      "groupId": "ex-l34-p1-a5-l34-p1-a5-g2",
+      "groupTitle": "仿照例句替换画线部分进行练习。",
+      "category": "replacement",
+      "instruction": "仿照例句替换画线部分进行练习。",
+      "example": "医者になります／一生懸命勉強します → 医者になるために、一生懸命勉強しています。",
+      "exampleKana": "いしゃになります／いっしょうけんめいべんきょうします → いしゃになるために、いっしょうけんめいべんきょうしています。",
+      "type": "transform",
+      "question": "やせます／１か月ダイエットをします",
+      "questionKana": "やせます／いっかげつダイエットをします",
+      "choices": [],
+      "answer": "やせるために、１か月ダイエットをします。",
+      "answerKana": "",
+      "referenceAnswers": [
+        "やせるために、１か月ダイエットをします。"
+      ],
+      "referenceAnswerKana": [
+        ""
+      ],
+      "relatedGrammar": [
+        "g4"
+      ],
+      "relatedSentences": [],
+      "explanation": ""
+    },
+    {
+      "id": "ex-l34-p1-a5-q6",
+      "groupId": "ex-l34-p1-a5-l34-p1-a5-g2",
+      "groupTitle": "仿照例句替换画线部分进行练习。",
+      "category": "replacement",
+      "instruction": "仿照例句替换画线部分进行练习。",
+      "example": "医者になります／一生懸命勉強します → 医者になるために、一生懸命勉強しています。",
+      "exampleKana": "いしゃになります／いっしょうけんめいべんきょうします → いしゃになるために、いっしょうけんめいべんきょうしています。",
+      "type": "transform",
+      "question": "論文を書きます／資料をたくさん読みます",
+      "questionKana": "ろんぶんをかきます／しりょうをたくさんよみます",
+      "choices": [],
+      "answer": "論文を書くために、資料をたくさん読みます。",
+      "answerKana": "",
+      "referenceAnswers": [
+        "論文を書くために、資料をたくさん読みます。"
+      ],
+      "referenceAnswerKana": [
+        ""
+      ],
+      "relatedGrammar": [
+        "g4"
+      ],
+      "relatedSentences": [],
+      "explanation": ""
+    },
+    {
+      "id": "ex-l34-p1-a5-q7",
+      "groupId": "ex-l34-p1-a5-l34-p1-a5-g2",
+      "groupTitle": "仿照例句替换画线部分进行练习。",
+      "category": "replacement",
+      "instruction": "仿照例句替换画线部分进行练习。",
+      "example": "医者になります／一生懸命勉強します → 医者になるために、一生懸命勉強しています。",
+      "exampleKana": "いしゃになります／いっしょうけんめいべんきょうします → いしゃになるために、いっしょうけんめいべんきょうしています。",
+      "type": "transform",
+      "question": "オリンピックに出ます／毎日１万メートル泳ぎます",
+      "questionKana": "オリンピックにでます／まいにちいちまんメートルおよぎます",
+      "choices": [],
+      "answer": "オリンピックに出るために、毎日１万メートル泳ぎます。",
+      "answerKana": "",
+      "referenceAnswers": [
+        "オリンピックに出るために、毎日１万メートル泳ぎます。"
+      ],
+      "referenceAnswerKana": [
+        ""
+      ],
+      "relatedGrammar": [
+        "g4"
+      ],
+      "relatedSentences": [],
+      "explanation": ""
+    },
+    {
+      "id": "ex-l34-p1-a6-q1",
+      "groupId": "ex-l34-p1-a6-l34-p1-a6-g1",
+      "groupTitle": "听录音，仿照例句替换画线部分练习会话。",
+      "category": "listening-dialogue",
+      "instruction": "听录音，仿照例句替换画线部分练习会话。",
+      "example": "甲 （句式 1）窓を開けます → あのう、この窓を開けておいてもいいですか。\n　　（句式 2）窓を閉めません → あのう、この窓を閉めておかなくてもいいですか。\n乙：ええ。そのままにしておいてください。\n甲：じゃあ、お先に失礼します。\n乙：お疲れ様でした。",
+      "exampleKana": "甲 （句式 1）まどをあけます → あのう、このまどをあけておいてもいいですか。\n　　（句式 2）まどをしめません → あのう、このまどをしめておかなくてもいいですか。\nおつ：ええ。そのままにしておいてください。\nこう：じゃあ、おさきにしつれいします。\nおつ：おつかれさまでした。",
+      "type": "listening",
+      "question": "パソコンの電源をつけます",
+      "questionKana": "パソコンのでんげんをつけます",
+      "choices": [],
+      "answer": "甲：あのう、このパソコンの電源をつけておいてもいいですか。\n乙：ええ。そのままにしておいてください。\n甲：じゃあ、お先に失礼します。\n乙：お疲れ様でした。",
+      "answerKana": "",
+      "referenceAnswers": [
+        "甲：あのう、このパソコンの電源をつけておいてもいいですか。\n乙：ええ。そのままにしておいてください。\n甲：じゃあ、お先に失礼します。\n乙：お疲れ様でした。"
+      ],
+      "referenceAnswerKana": [
+        ""
+      ],
+      "relatedGrammar": [
+        "g2"
+      ],
+      "relatedSentences": [],
+      "explanation": "按教材录音完成。",
+      "audioRequired": true
+    },
+    {
+      "id": "ex-l34-p1-a6-q2",
+      "groupId": "ex-l34-p1-a6-l34-p1-a6-g1",
+      "groupTitle": "听录音，仿照例句替换画线部分练习会话。",
+      "category": "listening-dialogue",
+      "instruction": "听录音，仿照例句替换画线部分练习会话。",
+      "example": "甲 （句式 1）窓を開けます → あのう、この窓を開けておいてもいいですか。\n　　（句式 2）窓を閉めません → あのう、この窓を閉めておかなくてもいいですか。\n乙：ええ。そのままにしておいてください。\n甲：じゃあ、お先に失礼します。\n乙：お疲れ様でした。",
+      "exampleKana": "甲 （句式 1）まどをあけます → あのう、このまどをあけておいてもいいですか。\n　　（句式 2）まどをしめません → あのう、このまどをしめておかなくてもいいですか。\nおつ：ええ。そのままにしておいてください。\nこう：じゃあ、おさきにしつれいします。\nおつ：おつかれさまでした。",
+      "type": "listening",
+      "question": "資料を机の上に置きます",
+      "questionKana": "しりょうをつくえのうえにおきます",
+      "choices": [],
+      "answer": "甲：あのう、この資料を机の上に置いておいてもいいですか。\n乙：ええ。そのままにしておいてください。\n甲：じゃあ、お先に失礼します。\n乙：お疲れ様でした。",
+      "answerKana": "",
+      "referenceAnswers": [
+        "甲：あのう、この資料を机の上に置いておいてもいいですか。\n乙：ええ。そのままにしておいてください。\n甲：じゃあ、お先に失礼します。\n乙：お疲れ様でした。"
+      ],
+      "referenceAnswerKana": [
+        ""
+      ],
+      "relatedGrammar": [
+        "g2"
+      ],
+      "relatedSentences": [],
+      "explanation": "按教材录音完成。",
+      "audioRequired": true
+    },
+    {
+      "id": "ex-l34-p1-a6-q3",
+      "groupId": "ex-l34-p1-a6-l34-p1-a6-g1",
+      "groupTitle": "听录音，仿照例句替换画线部分练习会话。",
+      "category": "listening-dialogue",
+      "instruction": "听录音，仿照例句替换画线部分练习会话。",
+      "example": "甲 （句式 1）窓を開けます → あのう、この窓を開けておいてもいいですか。\n　　（句式 2）窓を閉めません → あのう、この窓を閉めておかなくてもいいですか。\n乙：ええ。そのままにしておいてください。\n甲：じゃあ、お先に失礼します。\n乙：お疲れ様でした。",
+      "exampleKana": "甲 （句式 1）まどをあけます → あのう、このまどをあけておいてもいいですか。\n　　（句式 2）まどをしめません → あのう、このまどをしめておかなくてもいいですか。\nおつ：ええ。そのままにしておいてください。\nこう：じゃあ、おさきにしつれいします。\nおつ：おつかれさまでした。",
+      "type": "listening",
+      "question": "辞書を本棚に戻しません",
+      "questionKana": "じしょをほんだなにもどしません",
+      "choices": [],
+      "answer": "甲：あのう、この辞書を本棚に戻しておかなくてもいいですか。\n乙：ええ。そのままにしておいてください。\n甲：じゃあ、お先に失礼します。\n乙：お疲れ様でした。",
+      "answerKana": "",
+      "referenceAnswers": [
+        "甲：あのう、この辞書を本棚に戻しておかなくてもいいですか。\n乙：ええ。そのままにしておいてください。\n甲：じゃあ、お先に失礼します。\n乙：お疲れ様でした。"
+      ],
+      "referenceAnswerKana": [
+        ""
+      ],
+      "relatedGrammar": [
+        "g2"
+      ],
+      "relatedSentences": [],
+      "explanation": "按教材录音完成。",
+      "audioRequired": true
+    },
+    {
+      "id": "ex-l34-p1-a6-q4",
+      "groupId": "ex-l34-p1-a6-l34-p1-a6-g1",
+      "groupTitle": "听录音，仿照例句替换画线部分练习会话。",
+      "category": "listening-dialogue",
+      "instruction": "听录音，仿照例句替换画线部分练习会话。",
+      "example": "甲 （句式 1）窓を開けます → あのう、この窓を開けておいてもいいですか。\n　　（句式 2）窓を閉めません → あのう、この窓を閉めておかなくてもいいですか。\n乙：ええ。そのままにしておいてください。\n甲：じゃあ、お先に失礼します。\n乙：お疲れ様でした。",
+      "exampleKana": "甲 （句式 1）まどをあけます → あのう、このまどをあけておいてもいいですか。\n　　（句式 2）まどをしめません → あのう、このまどをしめておかなくてもいいですか。\nおつ：ええ。そのままにしておいてください。\nこう：じゃあ、おさきにしつれいします。\nおつ：おつかれさまでした。",
+      "type": "listening",
+      "question": "会議室を片づけません",
+      "questionKana": "かいぎしつをかたづけません",
+      "choices": [],
+      "answer": "甲：あのう、この会議室を片づけておかなくてもいいですか。\n乙：ええ。そのままにしておいてください。\n甲：じゃあ、お先に失礼します。\n乙：お疲れ様でした。",
+      "answerKana": "",
+      "referenceAnswers": [
+        "甲：あのう、この会議室を片づけておかなくてもいいですか。\n乙：ええ。そのままにしておいてください。\n甲：じゃあ、お先に失礼します。\n乙：お疲れ様でした。"
+      ],
+      "referenceAnswerKana": [
+        ""
+      ],
+      "relatedGrammar": [
+        "g2"
+      ],
+      "relatedSentences": [],
+      "explanation": "按教材录音完成。",
+      "audioRequired": true
+    },
+    {
+      "id": "ex-l34-p1-a6-q5",
+      "groupId": "ex-l34-p1-a6-l34-p1-a6-g2",
+      "groupTitle": "听录音，仿照例句替换画线部分练习会话。",
+      "category": "listening-dialogue",
+      "instruction": "听录音，仿照例句替换画线部分练习会话。",
+      "example": "お菓子／食べます → 甲：このお菓子、おいしそうですね。\n乙：どうぞ食べてみてください。\n甲：いいですか。じゃあ、ちょっと……あっ、おいしいですね。\n乙：そうですか。どうぞたくさん食べてください。\n甲：ありがとうございます。じゃあ、遠慮なく。",
+      "exampleKana": "おかし／たべます → こう：このおかし、おいしそうですね。\nおつ：どうぞたべてみてください。\nこう：いいですか。じゃあ、ちょっと……あっ、おいしいですね。\nおつ：そうですか。どうぞたくさんたべてください。\nこう：ありがとうございます。じゃあ、えんりょなく。",
+      "type": "listening",
+      "question": "ワイン／飲みます",
+      "questionKana": "ワイン／のみます",
+      "choices": [],
+      "answer": "甲：このワイン、おいしそうですね。\n乙：どうぞ飲んでみてください。\n甲：いいですか。じゃあ、ちょっと……あっ、おいしいですね。\n乙：そうですか。どうぞたくさん飲んでください。\n甲：ありがとうございます。じゃあ、遠慮なく。",
+      "answerKana": "",
+      "referenceAnswers": [
+        "甲：このワイン、おいしそうですね。\n乙：どうぞ飲んでみてください。\n甲：いいですか。じゃあ、ちょっと……あっ、おいしいですね。\n乙：そうですか。どうぞたくさん飲んでください。\n甲：ありがとうございます。じゃあ、遠慮なく。"
+      ],
+      "referenceAnswerKana": [
+        ""
+      ],
+      "relatedGrammar": [
+        "g3"
+      ],
+      "relatedSentences": [],
+      "explanation": "按教材录音完成。",
+      "audioRequired": true
+    },
+    {
+      "id": "ex-l34-p1-a6-q6",
+      "groupId": "ex-l34-p1-a6-l34-p1-a6-g2",
+      "groupTitle": "听录音，仿照例句替换画线部分练习会话。",
+      "category": "listening-dialogue",
+      "instruction": "听录音，仿照例句替换画线部分练习会话。",
+      "example": "お菓子／食べます → 甲：このお菓子、おいしそうですね。\n乙：どうぞ食べてみてください。\n甲：いいですか。じゃあ、ちょっと……あっ、おいしいですね。\n乙：そうですか。どうぞたくさん食べてください。\n甲：ありがとうございます。じゃあ、遠慮なく。",
+      "exampleKana": "おかし／たべます → こう：このおかし、おいしそうですね。\nおつ：どうぞたべてみてください。\nこう：いいですか。じゃあ、ちょっと……あっ、おいしいですね。\nおつ：そうですか。どうぞたくさんたべてください。\nこう：ありがとうございます。じゃあ、えんりょなく。",
+      "type": "listening",
+      "question": "料理／食べます",
+      "questionKana": "りょうり／たべます",
+      "choices": [],
+      "answer": "甲：この料理、おいしそうですね。\n乙：どうぞ食べてみてください。\n甲：いいですか。じゃあ、ちょっと……あっ、おいしいですね。\n乙：そうですか。どうぞたくさん食べてください。\n甲：ありがとうございます。じゃあ、遠慮なく。",
+      "answerKana": "",
+      "referenceAnswers": [
+        "甲：この料理、おいしそうですね。\n乙：どうぞ食べてみてください。\n甲：いいですか。じゃあ、ちょっと……あっ、おいしいですね。\n乙：そうですか。どうぞたくさん食べてください。\n甲：ありがとうございます。じゃあ、遠慮なく。"
+      ],
+      "referenceAnswerKana": [
+        ""
+      ],
+      "relatedGrammar": [
+        "g3"
+      ],
+      "relatedSentences": [],
+      "explanation": "按教材录音完成。",
+      "audioRequired": true
+    },
+    {
+      "id": "ex-l34-p1-a6-q7",
+      "groupId": "ex-l34-p1-a6-l34-p1-a6-g2",
+      "groupTitle": "听录音，仿照例句替换画线部分练习会话。",
+      "category": "listening-dialogue",
+      "instruction": "听录音，仿照例句替换画线部分练习会话。",
+      "example": "お菓子／食べます → 甲：このお菓子、おいしそうですね。\n乙：どうぞ食べてみてください。\n甲：いいですか。じゃあ、ちょっと……あっ、おいしいですね。\n乙：そうですか。どうぞたくさん食べてください。\n甲：ありがとうございます。じゃあ、遠慮なく。",
+      "exampleKana": "おかし／たべます → こう：このおかし、おいしそうですね。\nおつ：どうぞたべてみてください。\nこう：いいですか。じゃあ、ちょっと……あっ、おいしいですね。\nおつ：そうですか。どうぞたくさんたべてください。\nこう：ありがとうございます。じゃあ、えんりょなく。",
+      "type": "listening",
+      "question": "チーズ／食べます",
+      "questionKana": "チーズ／たべます",
+      "choices": [],
+      "answer": "甲：このチーズ、おいしそうですね。\n乙：どうぞ食べてみてください。\n甲：いいですか。じゃあ、ちょっと……あっ、おいしいですね。\n乙：そうですか。どうぞたくさん食べてください。\n甲：ありがとうございます。じゃあ、遠慮なく。",
+      "answerKana": "",
+      "referenceAnswers": [
+        "甲：このチーズ、おいしそうですね。\n乙：どうぞ食べてみてください。\n甲：いいですか。じゃあ、ちょっと……あっ、おいしいですね。\n乙：そうですか。どうぞたくさん食べてください。\n甲：ありがとうございます。じゃあ、遠慮なく。"
+      ],
+      "referenceAnswerKana": [
+        ""
+      ],
+      "relatedGrammar": [
+        "g3"
+      ],
+      "relatedSentences": [],
+      "explanation": "按教材录音完成。",
+      "audioRequired": true
+    },
+    {
+      "id": "ex-l34-p2-a1-q1",
+      "groupId": "ex-l34-p2-a1-l34-p2-a1",
+      "groupTitle": "给正确的答案画○。",
+      "category": "choice",
+      "instruction": "给正确的答案画○。",
+      "example": "名前や住所が書いて（あります・います）。",
+      "exampleKana": "なまえやじゅうしょがかいて（あります・います）。",
+      "type": "choice",
+      "question": "暗いので、電気がつけて（います・あります）。",
+      "questionKana": "くらいので、でんきがつけて（います・あります）。",
+      "choices": [
+        "います",
+        "あります"
+      ],
+      "answer": "あります",
+      "answerKana": "あります",
+      "referenceAnswers": [
+        "あります"
+      ],
+      "referenceAnswerKana": [
+        "あります"
+      ],
+      "relatedGrammar": [
+        "g1"
+      ],
+      "relatedSentences": [],
+      "explanation": ""
+    },
+    {
+      "id": "ex-l34-p2-a1-q2",
+      "groupId": "ex-l34-p2-a1-l34-p2-a1",
+      "groupTitle": "给正确的答案画○。",
+      "category": "choice",
+      "instruction": "给正确的答案画○。",
+      "example": "名前や住所が書いて（あります・います）。",
+      "exampleKana": "なまえやじゅうしょがかいて（あります・います）。",
+      "type": "choice",
+      "question": "風邪ですから、早く薬を飲んで（おいた・しまった）ほうがいいですよ。",
+      "questionKana": "かぜですから、はやくくすりをのんで（おいた・しまった）ほうがいいですよ。",
+      "choices": [
+        "おいた",
+        "しまった"
+      ],
+      "answer": "おいた",
+      "answerKana": "おいた",
+      "referenceAnswers": [
+        "おいた"
+      ],
+      "referenceAnswerKana": [
+        "おいた"
+      ],
+      "relatedGrammar": [
+        "g1"
+      ],
+      "relatedSentences": [],
+      "explanation": ""
+    },
+    {
+      "id": "ex-l34-p2-a1-q3",
+      "groupId": "ex-l34-p2-a1-l34-p2-a1",
+      "groupTitle": "给正确的答案画○。",
+      "category": "choice",
+      "instruction": "给正确的答案画○。",
+      "example": "名前や住所が書いて（あります・います）。",
+      "exampleKana": "なまえやじゅうしょがかいて（あります・います）。",
+      "type": "choice",
+      "question": "お客さんが来るので、部屋を掃除して（みて・おいて）ください。",
+      "questionKana": "おきゃくさんがくるので、へやをそうじして（みて・おいて）ください。",
+      "choices": [
+        "みて",
+        "おいて"
+      ],
+      "answer": "おいて",
+      "answerKana": "おいて",
+      "referenceAnswers": [
+        "おいて"
+      ],
+      "referenceAnswerKana": [
+        "おいて"
+      ],
+      "relatedGrammar": [
+        "g1"
+      ],
+      "relatedSentences": [],
+      "explanation": ""
+    },
+    {
+      "id": "ex-l34-p2-a1-q4",
+      "groupId": "ex-l34-p2-a1-l34-p2-a1",
+      "groupTitle": "给正确的答案画○。",
+      "category": "choice",
+      "instruction": "给正确的答案画○。",
+      "example": "名前や住所が書いて（あります・います）。",
+      "exampleKana": "なまえやじゅうしょがかいて（あります・います）。",
+      "type": "choice",
+      "question": "健康のために、ジョギングを始めて（みよう・いよう）と思っています。",
+      "questionKana": "けんこうのために、ジョギングをはじめて（みよう・いよう）とおもっています。",
+      "choices": [
+        "みよう",
+        "いよう"
+      ],
+      "answer": "みよう",
+      "answerKana": "みよう",
+      "referenceAnswers": [
+        "みよう"
+      ],
+      "referenceAnswerKana": [
+        "みよう"
+      ],
+      "relatedGrammar": [
+        "g1"
+      ],
+      "relatedSentences": [],
+      "explanation": ""
+    },
+    {
+      "id": "ex-l34-p2-a1-q5",
+      "groupId": "ex-l34-p2-a1-l34-p2-a1",
+      "groupTitle": "给正确的答案画○。",
+      "category": "choice",
+      "instruction": "给正确的答案画○。",
+      "example": "名前や住所が書いて（あります・います）。",
+      "exampleKana": "なまえやじゅうしょがかいて（あります・います）。",
+      "type": "choice",
+      "question": "冷蔵庫にビールが入って（います・おきます）。",
+      "questionKana": "れいぞうこにビールがはいって（います・おきます）。",
+      "choices": [
+        "います",
+        "おきます"
+      ],
+      "answer": "います",
+      "answerKana": "います",
+      "referenceAnswers": [
+        "います"
+      ],
+      "referenceAnswerKana": [
+        "います"
+      ],
+      "relatedGrammar": [
+        "g1"
+      ],
+      "relatedSentences": [],
+      "explanation": ""
+    },
+    {
+      "id": "ex-l34-p2-a2-q1",
+      "groupId": "ex-l34-p2-a2-l34-p2-a2",
+      "groupTitle": "听录音，与录音内容一致的在（　）中画○，不一致的画×。",
+      "category": "listening-true-false",
+      "instruction": "听录音，与录音内容一致的在（　）中画○，不一致的画×。",
+      "example": "部屋にテーブルが置いてあります。 → （○）",
+      "exampleKana": "へやにテーブルがおいてあります。 → （○）",
+      "type": "choice",
+      "question": "听录音，判断第 1 句。",
+      "questionKana": "听录音，判断第 1 句。",
+      "choices": [
+        "○",
+        "×"
+      ],
+      "answer": "○",
+      "answerKana": "○",
+      "referenceAnswers": [
+        "○"
+      ],
+      "referenceAnswerKana": [
+        "○"
+      ],
+      "relatedGrammar": [
+        "g1"
+      ],
+      "relatedSentences": [],
+      "explanation": "按教材录音完成。",
+      "audioRequired": true
+    },
+    {
+      "id": "ex-l34-p2-a2-q2",
+      "groupId": "ex-l34-p2-a2-l34-p2-a2",
+      "groupTitle": "听录音，与录音内容一致的在（　）中画○，不一致的画×。",
+      "category": "listening-true-false",
+      "instruction": "听录音，与录音内容一致的在（　）中画○，不一致的画×。",
+      "example": "部屋にテーブルが置いてあります。 → （○）",
+      "exampleKana": "へやにテーブルがおいてあります。 → （○）",
+      "type": "choice",
+      "question": "听录音，判断第 2 句。",
+      "questionKana": "听录音，判断第 2 句。",
+      "choices": [
+        "○",
+        "×"
+      ],
+      "answer": "○",
+      "answerKana": "○",
+      "referenceAnswers": [
+        "○"
+      ],
+      "referenceAnswerKana": [
+        "○"
+      ],
+      "relatedGrammar": [
+        "g1"
+      ],
+      "relatedSentences": [],
+      "explanation": "按教材录音完成。",
+      "audioRequired": true
+    },
+    {
+      "id": "ex-l34-p2-a2-q3",
+      "groupId": "ex-l34-p2-a2-l34-p2-a2",
+      "groupTitle": "听录音，与录音内容一致的在（　）中画○，不一致的画×。",
+      "category": "listening-true-false",
+      "instruction": "听录音，与录音内容一致的在（　）中画○，不一致的画×。",
+      "example": "部屋にテーブルが置いてあります。 → （○）",
+      "exampleKana": "へやにテーブルがおいてあります。 → （○）",
+      "type": "choice",
+      "question": "听录音，判断第 3 句。",
+      "questionKana": "听录音，判断第 3 句。",
+      "choices": [
+        "○",
+        "×"
+      ],
+      "answer": "×",
+      "answerKana": "×",
+      "referenceAnswers": [
+        "×"
+      ],
+      "referenceAnswerKana": [
+        "×"
+      ],
+      "relatedGrammar": [
+        "g1"
+      ],
+      "relatedSentences": [],
+      "explanation": "按教材录音完成。",
+      "audioRequired": true
+    },
+    {
+      "id": "ex-l34-p2-a2-q4",
+      "groupId": "ex-l34-p2-a2-l34-p2-a2",
+      "groupTitle": "听录音，与录音内容一致的在（　）中画○，不一致的画×。",
+      "category": "listening-true-false",
+      "instruction": "听录音，与录音内容一致的在（　）中画○，不一致的画×。",
+      "example": "部屋にテーブルが置いてあります。 → （○）",
+      "exampleKana": "へやにテーブルがおいてあります。 → （○）",
+      "type": "choice",
+      "question": "听录音，判断第 4 句。",
+      "questionKana": "听录音，判断第 4 句。",
+      "choices": [
+        "○",
+        "×"
+      ],
+      "answer": "×",
+      "answerKana": "×",
+      "referenceAnswers": [
+        "×"
+      ],
+      "referenceAnswerKana": [
+        "×"
+      ],
+      "relatedGrammar": [
+        "g1"
+      ],
+      "relatedSentences": [],
+      "explanation": "按教材录音完成。",
+      "audioRequired": true
+    },
+    {
+      "id": "ex-l34-p2-a2-q5",
+      "groupId": "ex-l34-p2-a2-l34-p2-a2",
+      "groupTitle": "听录音，与录音内容一致的在（　）中画○，不一致的画×。",
+      "category": "listening-true-false",
+      "instruction": "听录音，与录音内容一致的在（　）中画○，不一致的画×。",
+      "example": "部屋にテーブルが置いてあります。 → （○）",
+      "exampleKana": "へやにテーブルがおいてあります。 → （○）",
+      "type": "choice",
+      "question": "听录音，判断第 5 句。",
+      "questionKana": "听录音，判断第 5 句。",
+      "choices": [
+        "○",
+        "×"
+      ],
+      "answer": "×",
+      "answerKana": "×",
+      "referenceAnswers": [
+        "×"
+      ],
+      "referenceAnswerKana": [
+        "×"
+      ],
+      "relatedGrammar": [
+        "g1"
+      ],
+      "relatedSentences": [],
+      "explanation": "按教材录音完成。",
+      "audioRequired": true
+    },
+    {
+      "id": "ex-l34-p2-a2-q6",
+      "groupId": "ex-l34-p2-a2-l34-p2-a2",
+      "groupTitle": "听录音，与录音内容一致的在（　）中画○，不一致的画×。",
+      "category": "listening-true-false",
+      "instruction": "听录音，与录音内容一致的在（　）中画○，不一致的画×。",
+      "example": "部屋にテーブルが置いてあります。 → （○）",
+      "exampleKana": "へやにテーブルがおいてあります。 → （○）",
+      "type": "choice",
+      "question": "听录音，判断第 6 句。",
+      "questionKana": "听录音，判断第 6 句。",
+      "choices": [
+        "○",
+        "×"
+      ],
+      "answer": "○",
+      "answerKana": "○",
+      "referenceAnswers": [
+        "○"
+      ],
+      "referenceAnswerKana": [
+        "○"
+      ],
+      "relatedGrammar": [
+        "g1"
+      ],
+      "relatedSentences": [],
+      "explanation": "按教材录音完成。",
+      "audioRequired": true
+    },
+    {
+      "id": "ex-l34-p2-a2-q7",
+      "groupId": "ex-l34-p2-a2-l34-p2-a2",
+      "groupTitle": "听录音，与录音内容一致的在（　）中画○，不一致的画×。",
+      "category": "listening-true-false",
+      "instruction": "听录音，与录音内容一致的在（　）中画○，不一致的画×。",
+      "example": "部屋にテーブルが置いてあります。 → （○）",
+      "exampleKana": "へやにテーブルがおいてあります。 → （○）",
+      "type": "choice",
+      "question": "听录音，判断第 7 句。",
+      "questionKana": "听录音，判断第 7 句。",
+      "choices": [
+        "○",
+        "×"
+      ],
+      "answer": "○",
+      "answerKana": "○",
+      "referenceAnswers": [
+        "○"
+      ],
+      "referenceAnswerKana": [
+        "○"
+      ],
+      "relatedGrammar": [
+        "g1"
+      ],
+      "relatedSentences": [],
+      "explanation": "按教材录音完成。",
+      "audioRequired": true
+    },
+    {
+      "id": "ex-l34-p2-a2-q8",
+      "groupId": "ex-l34-p2-a2-l34-p2-a2",
+      "groupTitle": "听录音，与录音内容一致的在（　）中画○，不一致的画×。",
+      "category": "listening-true-false",
+      "instruction": "听录音，与录音内容一致的在（　）中画○，不一致的画×。",
+      "example": "部屋にテーブルが置いてあります。 → （○）",
+      "exampleKana": "へやにテーブルがおいてあります。 → （○）",
+      "type": "choice",
+      "question": "听录音，判断第 8 句。",
+      "questionKana": "听录音，判断第 8 句。",
+      "choices": [
+        "○",
+        "×"
+      ],
+      "answer": "×",
+      "answerKana": "×",
+      "referenceAnswers": [
+        "×"
+      ],
+      "referenceAnswerKana": [
+        "×"
+      ],
+      "relatedGrammar": [
+        "g1"
+      ],
+      "relatedSentences": [],
+      "explanation": "按教材录音完成。",
+      "audioRequired": true
+    },
+    {
+      "id": "ex-l34-p2-a2-q9",
+      "groupId": "ex-l34-p2-a2-l34-p2-a2",
+      "groupTitle": "听录音，与录音内容一致的在（　）中画○，不一致的画×。",
+      "category": "listening-true-false",
+      "instruction": "听录音，与录音内容一致的在（　）中画○，不一致的画×。",
+      "example": "部屋にテーブルが置いてあります。 → （○）",
+      "exampleKana": "へやにテーブルがおいてあります。 → （○）",
+      "type": "choice",
+      "question": "听录音，判断第 9 句。",
+      "questionKana": "听录音，判断第 9 句。",
+      "choices": [
+        "○",
+        "×"
+      ],
+      "answer": "○",
+      "answerKana": "○",
+      "referenceAnswers": [
+        "○"
+      ],
+      "referenceAnswerKana": [
+        "○"
+      ],
+      "relatedGrammar": [
+        "g1"
+      ],
+      "relatedSentences": [],
+      "explanation": "按教材录音完成。",
+      "audioRequired": true
+    },
+    {
+      "id": "ex-l34-p2-a2-q10",
+      "groupId": "ex-l34-p2-a2-l34-p2-a2",
+      "groupTitle": "听录音，与录音内容一致的在（　）中画○，不一致的画×。",
+      "category": "listening-true-false",
+      "instruction": "听录音，与录音内容一致的在（　）中画○，不一致的画×。",
+      "example": "部屋にテーブルが置いてあります。 → （○）",
+      "exampleKana": "へやにテーブルがおいてあります。 → （○）",
+      "type": "choice",
+      "question": "听录音，判断第 10 句。",
+      "questionKana": "听录音，判断第 10 句。",
+      "choices": [
+        "○",
+        "×"
+      ],
+      "answer": "×",
+      "answerKana": "×",
+      "referenceAnswers": [
+        "×"
+      ],
+      "referenceAnswerKana": [
+        "×"
+      ],
+      "relatedGrammar": [
+        "g1"
+      ],
+      "relatedSentences": [],
+      "explanation": "按教材录音完成。",
+      "audioRequired": true
+    },
+    {
+      "id": "ex-l34-p2-a3-q1",
+      "groupId": "ex-l34-p2-a3-l34-p2-a3",
+      "groupTitle": "从□中选择适当的词语填入（　）中。",
+      "category": "replacement",
+      "instruction": "从□中选择适当的词语填入（　）中。",
+      "example": "会議は（だいたい）３時半ごろには終わるでしょう。",
+      "exampleKana": "かいぎは（だいたい）さんじはんごろにはおわるでしょう。",
+      "type": "transform",
+      "question": "お客さんが来る前に、部屋を（（　））掃除しておいてください。",
+      "questionKana": "おきゃくさんがくるまえに、へやを（）そうじしておいてください。",
+      "choices": [],
+      "answer": "ちゃんと",
+      "answerKana": "ちゃんと",
+      "referenceAnswers": [
+        "ちゃんと"
+      ],
+      "referenceAnswerKana": [
+        "ちゃんと"
+      ],
+      "relatedGrammar": [
+        "g1"
+      ],
+      "relatedSentences": [],
+      "explanation": ""
+    },
+    {
+      "id": "ex-l34-p2-a3-q2",
+      "groupId": "ex-l34-p2-a3-l34-p2-a3",
+      "groupTitle": "从□中选择适当的词语填入（　）中。",
+      "category": "replacement",
+      "instruction": "从□中选择适当的词语填入（　）中。",
+      "example": "会議は（だいたい）３時半ごろには終わるでしょう。",
+      "exampleKana": "かいぎは（だいたい）さんじはんごろにはおわるでしょう。",
+      "type": "transform",
+      "question": "久しぶりに運動したので、体の（（　））が痛いです。",
+      "questionKana": "ひさしぶりにうんどうしたので、からだの（）がいたいです。",
+      "choices": [],
+      "answer": "あちこち",
+      "answerKana": "あちこち",
+      "referenceAnswers": [
+        "あちこち"
+      ],
+      "referenceAnswerKana": [
+        "あちこち"
+      ],
+      "relatedGrammar": [
+        "g1"
+      ],
+      "relatedSentences": [],
+      "explanation": ""
+    },
+    {
+      "id": "ex-l34-p2-a3-q3",
+      "groupId": "ex-l34-p2-a3-l34-p2-a3",
+      "groupTitle": "从□中选择适当的词语填入（　）中。",
+      "category": "replacement",
+      "instruction": "从□中选择适当的词语填入（　）中。",
+      "example": "会議は（だいたい）３時半ごろには終わるでしょう。",
+      "exampleKana": "かいぎは（だいたい）さんじはんごろにはおわるでしょう。",
+      "type": "transform",
+      "question": "（（　））おいしい料理は、食べたことがありません。",
+      "questionKana": "（）おいしいりょうりは、たべたことがありません。",
+      "choices": [],
+      "answer": "こんなに",
+      "answerKana": "こんなに",
+      "referenceAnswers": [
+        "こんなに"
+      ],
+      "referenceAnswerKana": [
+        "こんなに"
+      ],
+      "relatedGrammar": [
+        "g1"
+      ],
+      "relatedSentences": [],
+      "explanation": ""
+    },
+    {
+      "id": "ex-l34-p2-a3-q4",
+      "groupId": "ex-l34-p2-a3-l34-p2-a3",
+      "groupTitle": "从□中选择适当的词语填入（　）中。",
+      "category": "replacement",
+      "instruction": "从□中选择适当的词语填入（　）中。",
+      "example": "会議は（だいたい）３時半ごろには終わるでしょう。",
+      "exampleKana": "かいぎは（だいたい）さんじはんごろにはおわるでしょう。",
+      "type": "transform",
+      "question": "おいしいと、（（　））たくさん食べてしまいます。",
+      "questionKana": "おいしいと、（）たくさんたべてしまいます。",
+      "choices": [],
+      "answer": "つい",
+      "answerKana": "つい",
+      "referenceAnswers": [
+        "つい"
+      ],
+      "referenceAnswerKana": [
+        "つい"
+      ],
+      "relatedGrammar": [
+        "g1"
+      ],
+      "relatedSentences": [],
+      "explanation": ""
+    },
+    {
+      "id": "ex-l34-p2-a3-q5",
+      "groupId": "ex-l34-p2-a3-l34-p2-a3",
+      "groupTitle": "从□中选择适当的词语填入（　）中。",
+      "category": "replacement",
+      "instruction": "从□中选择适当的词语填入（　）中。",
+      "example": "会議は（だいたい）３時半ごろには終わるでしょう。",
+      "exampleKana": "かいぎは（だいたい）さんじはんごろにはおわるでしょう。",
+      "type": "transform",
+      "question": "天気予報によると、連休中は（（　））晴れだそうです。",
+      "questionKana": "てんきよほうによると、れんきゅうちゅうは（）はれだそうです。",
+      "choices": [],
+      "answer": "ずっと",
+      "answerKana": "ずっと",
+      "referenceAnswers": [
+        "ずっと"
+      ],
+      "referenceAnswerKana": [
+        "ずっと"
+      ],
+      "relatedGrammar": [
+        "g1"
+      ],
+      "relatedSentences": [],
+      "explanation": ""
+    },
+    {
+      "id": "ex-l34-p2-a3-q6",
+      "groupId": "ex-l34-p2-a3-l34-p2-a3",
+      "groupTitle": "从□中选择适当的词语填入（　）中。",
+      "category": "replacement",
+      "instruction": "从□中选择适当的词语填入（　）中。",
+      "example": "会議は（だいたい）３時半ごろには終わるでしょう。",
+      "exampleKana": "かいぎは（だいたい）さんじはんごろにはおわるでしょう。",
+      "type": "transform",
+      "question": "10時になりましたから、（（　））会議を始めましょうか。",
+      "questionKana": "じゅうじになりましたから、（）かいぎをはじめましょうか。",
+      "choices": [],
+      "answer": "そろそろ",
+      "answerKana": "そろそろ",
+      "referenceAnswers": [
+        "そろそろ"
+      ],
+      "referenceAnswerKana": [
+        "そろそろ"
+      ],
+      "relatedGrammar": [
+        "g1"
+      ],
+      "relatedSentences": [],
+      "explanation": ""
+    },
+    {
+      "id": "ex-l34-p2-a3-q7",
+      "groupId": "ex-l34-p2-a3-l34-p2-a3",
+      "groupTitle": "从□中选择适当的词语填入（　）中。",
+      "category": "replacement",
+      "instruction": "从□中选择适当的词语填入（　）中。",
+      "example": "会議は（だいたい）３時半ごろには終わるでしょう。",
+      "exampleKana": "かいぎは（だいたい）さんじはんごろにはおわるでしょう。",
+      "type": "transform",
+      "question": "５、６人集まると、（（　））だれかが遅刻しますね。",
+      "questionKana": "ご、ろくにんあつまると、（）だれかがちこくしますね。",
+      "choices": [],
+      "answer": "必ず",
+      "answerKana": "",
+      "referenceAnswers": [
+        "必ず"
+      ],
+      "referenceAnswerKana": [
+        ""
+      ],
+      "relatedGrammar": [
+        "g1"
+      ],
+      "relatedSentences": [],
+      "explanation": ""
+    },
+    {
+      "id": "ex-l34-p2-a4-q1",
+      "groupId": "ex-l34-p2-a4-l34-p2-a4",
+      "groupTitle": "将下面的句子译成日语。",
+      "category": "translation",
+      "instruction": "将下面的句子译成日语。",
+      "example": "",
+      "exampleKana": "",
+      "type": "translation",
+      "question": "森先生，你把车停在哪儿了？——停在公园前面了。",
+      "questionKana": "森先生，你把车停在哪儿了？——停在公园前面了。",
+      "choices": [],
+      "answer": "森さん、車をどこに止めましたか。——公園の前に止めてあります。",
+      "answerKana": "もりさん、くるまをどこにとめましたか。——こうえんのまえにとめてあります。",
+      "referenceAnswers": [
+        "森さん、車をどこに止めましたか。——公園の前に止めてあります。"
+      ],
+      "referenceAnswerKana": [
+        "もりさん、くるまをどこにとめましたか。——こうえんのまえにとめてあります。"
+      ],
+      "relatedGrammar": [
+        "g2"
+      ],
+      "relatedSentences": [],
+      "explanation": ""
+    },
+    {
+      "id": "ex-l34-p2-a4-q2",
+      "groupId": "ex-l34-p2-a4-l34-p2-a4",
+      "groupTitle": "将下面的句子译成日语。",
+      "category": "translation",
+      "instruction": "将下面的句子译成日语。",
+      "example": "",
+      "exampleKana": "",
+      "type": "translation",
+      "question": "请把会议资料复印10份。",
+      "questionKana": "请把会议资料复印10份。",
+      "choices": [],
+      "answer": "会議の資料を10部コピーしておいてください。",
+      "answerKana": "",
+      "referenceAnswers": [
+        "会議の資料を10部コピーしておいてください。"
+      ],
+      "referenceAnswerKana": [
+        ""
+      ],
+      "relatedGrammar": [
+        "g2"
+      ],
+      "relatedSentences": [],
+      "explanation": ""
+    },
+    {
+      "id": "ex-l34-p2-a4-q3",
+      "groupId": "ex-l34-p2-a4-l34-p2-a4",
+      "groupTitle": "将下面的句子译成日语。",
+      "category": "translation",
+      "instruction": "将下面的句子译成日语。",
+      "example": "",
+      "exampleKana": "",
+      "type": "translation",
+      "question": "我正在为去日本留学攒钱。",
+      "questionKana": "我正在为去日本留学攒钱。",
+      "choices": [],
+      "answer": "日本へ留学するために、貯金しています。",
+      "answerKana": "",
+      "referenceAnswers": [
+        "日本へ留学するために、貯金しています。"
+      ],
+      "referenceAnswerKana": [
+        ""
+      ],
+      "relatedGrammar": [
+        "g2"
+      ],
+      "relatedSentences": [],
+      "explanation": ""
+    }
+  ]
+}

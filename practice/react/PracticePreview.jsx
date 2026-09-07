@@ -20,6 +20,7 @@ const textbookAudioBaseUrl = "https://japaflow-audio-bucket.oss-cn-shanghai.aliy
 const CHOICE_RESULT_KEY = "__choice__";
 const ANSWER_ALTERNATIVE_CACHE_KEY = "japaflow.practice.acceptedAlternatives.v1";
 const HOME_PROGRESS_SNAPSHOT_PREFIX = "japaflow.practice.home-progress.v1";
+const VOCABULARY_COLLAPSED_STORAGE_KEY = "japaflow.practice.vocabularyCollapsed.v1";
 const lessonVocabularyCache = new Map();
 const lessonVocabularyOccurrencesCache = new Map();
 const answerLexicalVariantGroups = [
@@ -741,6 +742,14 @@ function useLessonVocabularyOccurrences(lessonId) {
 }
 
 function LessonWordList({ wordIds, vocabulary }) {
+  const [collapsed, setCollapsed] = useState(() => window.localStorage.getItem(VOCABULARY_COLLAPSED_STORAGE_KEY) === "true");
+  const toggleCollapsed = () => {
+    setCollapsed((current) => {
+      const next = !current;
+      window.localStorage.setItem(VOCABULARY_COLLAPSED_STORAGE_KEY, String(next));
+      return next;
+    });
+  };
   if (!Array.isArray(wordIds) || !wordIds.length || !Array.isArray(vocabulary)) return null;
   const words = wordIds
     .map((wordId) => vocabulary[Number(wordId) - 1])
@@ -749,7 +758,10 @@ function LessonWordList({ wordIds, vocabulary }) {
 
   return (
     <section className="lesson-word-list" aria-label="本题生词">
-      <span className="lesson-word-list-label">生词</span>
+      <button className="lesson-word-list-toggle" type="button" onClick={toggleCollapsed} aria-expanded={!collapsed}>
+        <strong>本题生词 · {words.length}</strong><span>{collapsed ? "⌄" : "⌃"}</span>
+      </button>
+      {!collapsed ? (
       <div className="lesson-word-list-items">
         {words.map((word, index) => (
           <button
@@ -759,13 +771,19 @@ function LessonWordList({ wordIds, vocabulary }) {
             onClick={() => playVocabularyAudio(word)}
             title={`播放 ${word.writing || word.kanjiOrTerm || word.kana || "单词"} 的发音`}
           >
-            <span className="lesson-word-japanese"><RubyText text={word.writing || word.kanjiOrTerm || word.kana} kana={word.kana} /></span>
+            <span className="lesson-word-japanese"><LessonWordJapanese word={word} /></span>
             <span className="lesson-word-meaning">{wordMeaning(word)}</span>
           </button>
         ))}
       </div>
+      ) : null}
     </section>
   );
+}
+
+function LessonWordJapanese({ word }) {
+  const text = word?.writing || word?.kanjiOrTerm || word?.kana || "";
+  return /[\u3400-\u9fff々〆ヵヶ]/u.test(text) ? <RubyText text={text} kana={word?.kana} /> : text;
 }
 
 function wordMeaning(word) {

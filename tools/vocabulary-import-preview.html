@@ -96,7 +96,19 @@
       }
 
       .data-panel {
-        padding: 16px;
+        position: relative;
+        padding: 54px 16px 16px;
+      }
+
+      .vocabulary-usage-hint {
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        max-width: min(48%, 330px);
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1.45;
+        text-align: right;
       }
 
       .toolbar {
@@ -728,6 +740,7 @@
 
     <main class="workspace">
       <section class="panel data-panel">
+        <p class="vocabulary-usage-hint">本课词汇会在课文与练习中，按实际出现顺序再次呈现。</p>
         <div class="toolbar">
           <button class="primary" id="loadDefault" type="button">重新加载当前课次</button>
           <button id="generateAudio" type="button">生成音频区间标注</button>

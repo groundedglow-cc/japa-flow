@@ -1820,9 +1820,9 @@
         "itemIndex": 32,
         "text": "ためます",
         "label": "ためます",
-        "start": 56.776,
+        "start": 56.576,
         "end": 57.908,
-        "duration": 1.132,
+        "duration": 1.332,
         "speechUnitCount": 2,
         "wordCount": 2,
         "matchScore": 0.5,
@@ -1831,10 +1831,10 @@
           131,
           132
         ],
-        "method": "audio-vad-sequential-alignment-with-azure-verification",
+        "method": "manual-admin-adjustment",
         "timingSource": "audio-silence-detection",
         "timingConfidence": "high",
-        "confidence": "high",
+        "confidence": "approved",
         "alignmentIssues": [],
         "alignmentWarnings": [
           "low-asr-text-match:0.5"
@@ -1857,7 +1857,8 @@
           "note": "Automatically approved by the audio-boundary alignment workflow.",
           "matchScore": 0.5,
           "asrText": "ま す"
-        }
+        },
+        "reviewedAt": "2026-09-07T11:11:57.077Z"
       }
     },
     {
@@ -1935,9 +1936,9 @@
         "itemIndex": 34,
         "text": "あずけます",
         "label": "預けます",
-        "start": 59.997,
+        "start": 59.797,
         "end": 61.308,
-        "duration": 1.311,
+        "duration": 1.511,
         "speechUnitCount": 4,
         "wordCount": 4,
         "matchScore": 1,
@@ -1948,10 +1949,10 @@
           139,
           140
         ],
-        "method": "audio-vad-sequential-alignment-with-azure-verification",
+        "method": "manual-admin-adjustment",
         "timingSource": "audio-silence-detection",
         "timingConfidence": "high",
-        "confidence": "high",
+        "confidence": "approved",
         "alignmentIssues": [],
         "alignmentWarnings": [],
         "speechActivity": {
@@ -1972,7 +1973,8 @@
           "note": "Automatically approved by the audio-boundary alignment workflow.",
           "matchScore": 1,
           "asrText": "預 け ま す"
-        }
+        },
+        "reviewedAt": "2026-09-07T08:09:09.598Z"
       }
     },
     {
@@ -2226,9 +2228,9 @@
         "itemIndex": 39,
         "text": "かんげいします",
         "label": "歓迎します",
-        "start": 69.044,
+        "start": 68.844,
         "end": 70.591,
-        "duration": 1.547,
+        "duration": 1.747,
         "speechUnitCount": 5,
         "wordCount": 5,
         "matchScore": 1,
@@ -2240,10 +2242,10 @@
           162,
           163
         ],
-        "method": "audio-vad-sequential-alignment-with-azure-verification",
+        "method": "manual-admin-adjustment",
         "timingSource": "audio-silence-detection",
         "timingConfidence": "high",
-        "confidence": "high",
+        "confidence": "approved",
         "alignmentIssues": [],
         "alignmentWarnings": [],
         "speechActivity": {
@@ -2264,7 +2266,8 @@
           "note": "Automatically approved by the audio-boundary alignment workflow.",
           "matchScore": 1,
           "asrText": "歓 迎 し ま す"
-        }
+        },
+        "reviewedAt": "2026-09-07T11:27:01.665Z"
       }
     },
     {
@@ -2344,9 +2347,9 @@
         "itemIndex": 41,
         "text": "おかしい",
         "label": "おかしい",
-        "start": 73.179,
+        "start": 72.9,
         "end": 74.252,
-        "duration": 1.073,
+        "duration": 1.352,
         "speechUnitCount": 4,
         "wordCount": 4,
         "matchScore": 1,
@@ -2357,10 +2360,10 @@
           171,
           172
         ],
-        "method": "audio-vad-sequential-alignment-with-azure-verification",
+        "method": "manual-admin-adjustment",
         "timingSource": "audio-silence-detection",
         "timingConfidence": "high",
-        "confidence": "high",
+        "confidence": "approved",
         "alignmentIssues": [],
         "alignmentWarnings": [],
         "speechActivity": {
@@ -2381,7 +2384,8 @@
           "note": "Automatically approved by the audio-boundary alignment workflow.",
           "matchScore": 1,
           "asrText": "お か し い"
-        }
+        },
+        "reviewedAt": "2026-09-07T08:08:58.493Z"
       }
     },
     {
@@ -3166,5 +3170,5 @@
       }
     ]
   },
-  "updatedAt": "2026-09-04T13:47:15.460Z"
+  "updatedAt": "2026-09-07T11:27:01.667Z"
 }

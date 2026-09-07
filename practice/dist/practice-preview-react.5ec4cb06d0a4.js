@@ -22127,6 +22127,7 @@ var textbookAudioBaseUrl = "https://japaflow-audio-bucket.oss-cn-shanghai.aliyun
 var CHOICE_RESULT_KEY = "__choice__";
 var ANSWER_ALTERNATIVE_CACHE_KEY = "japaflow.practice.acceptedAlternatives.v1";
 var HOME_PROGRESS_SNAPSHOT_PREFIX = "japaflow.practice.home-progress.v1";
+var VOCABULARY_COLLAPSED_STORAGE_KEY = "japaflow.practice.vocabularyCollapsed.v1";
 var lessonVocabularyCache = /* @__PURE__ */ new Map();
 var lessonVocabularyOccurrencesCache = /* @__PURE__ */ new Map();
 var answerLexicalVariantGroups = [
@@ -22793,12 +22794,26 @@ function useLessonVocabularyOccurrences(lessonId2) {
   return occurrences;
 }
 function LessonWordList({ wordIds, vocabulary }) {
+  const [collapsed, setCollapsed] = (0, import_react.useState)(() => window.localStorage.getItem(VOCABULARY_COLLAPSED_STORAGE_KEY) === "true");
+  const toggleCollapsed = () => {
+    setCollapsed((current) => {
+      const next = !current;
+      window.localStorage.setItem(VOCABULARY_COLLAPSED_STORAGE_KEY, String(next));
+      return next;
+    });
+  };
   if (!Array.isArray(wordIds) || !wordIds.length || !Array.isArray(vocabulary)) return null;
   const words = wordIds.map((wordId) => vocabulary[Number(wordId) - 1]).filter(Boolean);
   if (!words.length) return null;
   return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", { className: "lesson-word-list", "aria-label": "\u672C\u9898\u751F\u8BCD", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "lesson-word-list-label", children: "\u751F\u8BCD" }),
-    /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "lesson-word-list-items", children: words.map((word, index) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+    /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("button", { className: "lesson-word-list-toggle", type: "button", onClick: toggleCollapsed, "aria-expanded": !collapsed, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("strong", { children: [
+        "\u672C\u9898\u751F\u8BCD \xB7 ",
+        words.length
+      ] }),
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: collapsed ? "\u2304" : "\u2303" })
+    ] }),
+    !collapsed ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "lesson-word-list-items", children: words.map((word, index) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
       "button",
       {
         className: "lesson-word-chip",
@@ -22806,13 +22821,17 @@ function LessonWordList({ wordIds, vocabulary }) {
         onClick: () => playVocabularyAudio(word),
         title: `\u64AD\u653E ${word.writing || word.kanjiOrTerm || word.kana || "\u5355\u8BCD"} \u7684\u53D1\u97F3`,
         children: [
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "lesson-word-japanese", children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(RubyText, { text: word.writing || word.kanjiOrTerm || word.kana, kana: word.kana }) }),
+          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "lesson-word-japanese", children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(LessonWordJapanese, { word }) }),
           /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "lesson-word-meaning", children: wordMeaning(word) })
         ]
       },
       `${word.id || word.writing || word.kana}-${index}`
-    )) })
+    )) }) : null
   ] });
+}
+function LessonWordJapanese({ word }) {
+  const text36 = word?.writing || word?.kanjiOrTerm || word?.kana || "";
+  return /[\u3400-\u9fff々〆ヵヶ]/u.test(text36) ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(RubyText, { text: text36, kana: word?.kana }) : text36;
 }
 function wordMeaning(word) {
   if (Array.isArray(word?.meaningZh)) return word.meaningZh.filter(Boolean).join("\uFF1B");
