@@ -1105,47 +1105,17 @@ function AnswerComparisonBlock({ tone, label, value }) {
   );
 }
 
-function AnswerGitDiff({ lines }) {
-  if (!lines?.length) return null;
-  return (
-    <div className="git-answer-diff" role="table" aria-label="答案差异明细">
-      {lines.map((line, index) => (
-        <div className={`git-diff-row ${line.type}`} role="row" key={index}>
-          <span className="git-diff-prefix" aria-hidden="true">{line.type === "delete" ? "-" : line.type === "insert" ? "+" : " "}</span>
-          <code>{renderAnswerDiffParts(line.parts)}</code>
-        </div>
-      ))}
-    </div>
-  );
-}
-
-function renderAnswerDiffParts(parts = []) {
-  return parts.map((part, index) => {
-    if (part.type === "equal") return <React.Fragment key={index}>{part.text}</React.Fragment>;
-    return <mark data-diff={part.type} key={index}>{part.text}</mark>;
-  });
-}
-
 function AnswerComparison({ item, answer, result }) {
-  const comparison = buildAnswerComparison(item, answer, result);
-  if (!comparison) return null;
-  if (comparison.kind === "choice") {
-    return (
-      <div className="answer-diff answer-comparison" aria-label="答案对比">
-        <div className="answer-diff-head"><strong>答案对比</strong></div>
-        <AnswerComparisonBlock tone="user" label="你的答案" value={comparison.actual || "未选择"} />
-        <AnswerComparisonBlock tone="expected" label="正确答案" value={comparison.expected || "暂无"} />
-      </div>
-    );
-  }
-
+  const actual = formatAttemptSummary(item, answer);
+  const expected = formatExpectedAnswerSummary(item);
   return (
     <div className="answer-diff answer-comparison" aria-label="答案对比">
       <div className="answer-diff-head">
-        <strong>差异对比</strong>
-        <span>- 你的答案 / + 正确答案，已忽略说话人、空格和标点</span>
+        <strong>答案参考</strong>
+        <span>符合语法和情境的其他表达也可判为正确</span>
       </div>
-      <AnswerGitDiff lines={comparison.diffLines} />
+      <AnswerComparisonBlock tone="user" label="你的答案" value={actual || (item.choices?.length ? "未选择" : "未作答")} />
+      <AnswerComparisonBlock tone="expected" label="参考正确答案（仅供参考）" value={expected || "暂无"} />
     </div>
   );
 }
@@ -1772,7 +1742,7 @@ function gradeItem(item, attempt, answerAlternatives = {}) {
     return { status: "ungraded", fieldResults: {} };
   }
   if (item.evaluationMode === "open_response") {
-    return gradeOpenResponseItem(item, attempt);
+    return gradeOpenResponseItem(item, attempt, answerAlternatives);
   }
 
   const fieldResults = {};
@@ -1814,13 +1784,15 @@ function gradeItem(item, attempt, answerAlternatives = {}) {
   };
 }
 
-function gradeOpenResponseItem(item, attempt) {
+function gradeOpenResponseItem(item, attempt, answerAlternatives = {}) {
   const rule = item.answer?.openResponseRule;
   const fieldResults = {};
   let hasIncorrect = false;
   (item.inputSlots || []).forEach((slot) => {
     const actual = String(attempt.slotValues?.[slot.id] || "").trim();
-    const isCorrect = matchesOpenResponseRule(actual, rule);
+    const acceptedAlternatives = (answerAlternatives?.[item.id]?.[slot.id] || [])
+      .map((value) => normalizeAnswerText(value));
+    const isCorrect = acceptedAlternatives.includes(normalizeAnswerText(actual)) || matchesOpenResponseRule(actual, rule);
     fieldResults[slot.id] = isCorrect ? "correct" : "incorrect";
     if (!isCorrect) hasIncorrect = true;
   });
@@ -1864,7 +1836,7 @@ function expectedTextMatcher(item, slotId, answerAlternatives = {}) {
 
 function hasIncorrectTextAnswers(activity, grading) {
   return flattenActivityItems(activity).some((item) =>
-    item.evaluationMode !== "open_response" && item.inputSlots?.some((slot) => grading?.itemResults?.[item.id]?.fieldResults?.[slot.id] === "incorrect")
+    item.inputSlots?.some((slot) => grading?.itemResults?.[item.id]?.fieldResults?.[slot.id] === "incorrect")
   );
 }
 
@@ -1875,7 +1847,7 @@ async function reviewIncorrectTextAnswers({ practice, activity, answers, grading
   const items = flattenActivityItems(activity);
 
   for (const item of items) {
-    if (item.evaluationMode === "manual_review" || item.evaluationMode === "self_check" || item.evaluationMode === "open_response") continue;
+    if (item.evaluationMode === "manual_review" || item.evaluationMode === "self_check") continue;
     if (!item.inputSlots?.length) continue;
     for (const slot of item.inputSlots) {
       if (grading?.itemResults?.[item.id]?.fieldResults?.[slot.id] !== "incorrect") continue;

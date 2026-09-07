@@ -1383,6 +1383,14 @@ function compactPracticeText(value, limit = 3000) {
     .slice(0, limit);
 }
 
+function plainNotebookAiAnswer(value) {
+  return compactPracticeText(value, 1000)
+    // The notebook UI renders plain text. Remove emphasis delimiters if a
+    // provider ignores the prompt, rather than exposing Markdown syntax.
+    .replace(/\*\*/g, "")
+    .replace(/__/g, "");
+}
+
 function practiceAnswerFingerprint(value) {
   return String(value || "")
     .replace(/((?:乙[12１２]?)|[甲丙丁ABCD])[:：]/g, "")
@@ -1412,7 +1420,7 @@ async function askNotebookAi({ question, lessonId, pageNo, authHeader }) {
         "你是面向中文母语者的日语学习助手。",
         "用户可以自由提问：日语句子、单词、语法、翻译、用法或学习建议；直接回答问题，不依赖课程编号或题目编号。",
         "若用户只输入日语句子，默认简洁说明它的中文意思、读法或关键语法，而不是留空。",
-        "回答必须非常简洁：最多 3 条短句；不要寒暄，不要 Markdown 标题；信息不足时说明需要什么信息。"
+        "回答必须非常简洁：最多 3 条短句；不要寒暄，只输出纯文本，不要使用任何 Markdown 语法，尤其不得使用 ** 或 __ 加粗标记；信息不足时说明需要什么信息。"
       ].join("\n")
     },
     { role: "user", content: cleanQuestion }
@@ -1435,7 +1443,7 @@ async function askNotebookAi({ question, lessonId, pageNo, authHeader }) {
     throw error;
   }
   let body = await response.json().catch(() => ({}));
-  let answer = compactPracticeText(body.choices?.[0]?.message?.content || "", 1000);
+  let answer = plainNotebookAiAnswer(body.choices?.[0]?.message?.content || "");
   if (response.ok && !answer) {
     try {
       response = await fetch(`${baseUrl}/chat/completions`, {
@@ -1444,7 +1452,7 @@ async function askNotebookAi({ question, lessonId, pageNo, authHeader }) {
         body: JSON.stringify({ model, temperature: 0.2, max_tokens: 320, messages: [...messages, { role: "user", content: "请直接给出简洁的学习回答，不要留空。" }], thinking: { type: "disabled" }, stream: false })
       });
       body = await response.json().catch(() => ({}));
-      answer = compactPracticeText(body.choices?.[0]?.message?.content || "", 1000);
+      answer = plainNotebookAiAnswer(body.choices?.[0]?.message?.content || "");
     } catch (error) {
       await completeAiQuota(authHeader, quota.requestId, false);
       throw error;
@@ -1714,6 +1722,7 @@ async function reviewPracticeAnswer(payload) {
             "你是标准日本语练习的答案复核器。",
             "任务：判断用户的日语答案是否可以作为该题的正确答案被采纳。",
             "可以采纳：意思与题目要求一致、语法功能一致，只是写法、汉字/假名、礼貌程度或自然表达不同。",
+            "必须先按语法和题目情境整体判断，绝不能按参考答案逐字、逐行对比；只要回答语法正确、符合题目情境和回答范围，即使措辞、句子顺序或行数不同，也应采纳。",
             "可以采纳：语音识别造成的明显句尾截断或轻微口误，只要结合参考答案能够唯一还原，且不改变句义、语法功能和回答范围。例如「働きませんでし」可视作「働きませんでした」。",
             "不能采纳：时态、肯否、主客体、助词、数量、专有名词、题目要求的语法变换或回答范围不一致。",
             "如果提供了开放题规则，参考答案仅为示例句型；应按规则判断，不得要求用户复述示例中的个人事实或完整句。",

@@ -23055,35 +23055,16 @@ function AnswerComparisonBlock({ tone, label, value }) {
     /* @__PURE__ */ (0, import_jsx_runtime.jsx)("code", { children: value })
   ] });
 }
-function AnswerGitDiff({ lines }) {
-  if (!lines?.length) return null;
-  return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "git-answer-diff", role: "table", "aria-label": "\u7B54\u6848\u5DEE\u5F02\u660E\u7EC6", children: lines.map((line2, index) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: `git-diff-row ${line2.type}`, role: "row", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "git-diff-prefix", "aria-hidden": "true", children: line2.type === "delete" ? "-" : line2.type === "insert" ? "+" : " " }),
-    /* @__PURE__ */ (0, import_jsx_runtime.jsx)("code", { children: renderAnswerDiffParts(line2.parts) })
-  ] }, index)) });
-}
-function renderAnswerDiffParts(parts = []) {
-  return parts.map((part, index) => {
-    if (part.type === "equal") return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(import_react.default.Fragment, { children: part.text }, index);
-    return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("mark", { "data-diff": part.type, children: part.text }, index);
-  });
-}
 function AnswerComparison({ item: item2, answer: answer3, result }) {
-  const comparison = buildAnswerComparison(item2, answer3, result);
-  if (!comparison) return null;
-  if (comparison.kind === "choice") {
-    return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "answer-diff answer-comparison", "aria-label": "\u7B54\u6848\u5BF9\u6BD4", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "answer-diff-head", children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("strong", { children: "\u7B54\u6848\u5BF9\u6BD4" }) }),
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)(AnswerComparisonBlock, { tone: "user", label: "\u4F60\u7684\u7B54\u6848", value: comparison.actual || "\u672A\u9009\u62E9" }),
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)(AnswerComparisonBlock, { tone: "expected", label: "\u6B63\u786E\u7B54\u6848", value: comparison.expected || "\u6682\u65E0" })
-    ] });
-  }
+  const actual = formatAttemptSummary(item2, answer3);
+  const expected = formatExpectedAnswerSummary(item2);
   return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "answer-diff answer-comparison", "aria-label": "\u7B54\u6848\u5BF9\u6BD4", children: [
     /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "answer-diff-head", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("strong", { children: "\u5DEE\u5F02\u5BF9\u6BD4" }),
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "- \u4F60\u7684\u7B54\u6848 / + \u6B63\u786E\u7B54\u6848\uFF0C\u5DF2\u5FFD\u7565\u8BF4\u8BDD\u4EBA\u3001\u7A7A\u683C\u548C\u6807\u70B9" })
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("strong", { children: "\u7B54\u6848\u53C2\u8003" }),
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "\u7B26\u5408\u8BED\u6CD5\u548C\u60C5\u5883\u7684\u5176\u4ED6\u8868\u8FBE\u4E5F\u53EF\u5224\u4E3A\u6B63\u786E" })
     ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime.jsx)(AnswerGitDiff, { lines: comparison.diffLines })
+    /* @__PURE__ */ (0, import_jsx_runtime.jsx)(AnswerComparisonBlock, { tone: "user", label: "\u4F60\u7684\u7B54\u6848", value: actual || (item2.choices?.length ? "\u672A\u9009\u62E9" : "\u672A\u4F5C\u7B54") }),
+    /* @__PURE__ */ (0, import_jsx_runtime.jsx)(AnswerComparisonBlock, { tone: "expected", label: "\u53C2\u8003\u6B63\u786E\u7B54\u6848\uFF08\u4EC5\u4F9B\u53C2\u8003\uFF09", value: expected || "\u6682\u65E0" })
   ] });
 }
 function answerComparisonRows(item2, answer3) {
@@ -23680,7 +23661,7 @@ function gradeItem(item2, attempt, answerAlternatives = {}) {
     return { status: "ungraded", fieldResults: {} };
   }
   if (item2.evaluationMode === "open_response") {
-    return gradeOpenResponseItem(item2, attempt);
+    return gradeOpenResponseItem(item2, attempt, answerAlternatives);
   }
   const fieldResults = {};
   let sawGradableField = false;
@@ -23717,13 +23698,14 @@ function gradeItem(item2, attempt, answerAlternatives = {}) {
     fieldResults
   };
 }
-function gradeOpenResponseItem(item2, attempt) {
+function gradeOpenResponseItem(item2, attempt, answerAlternatives = {}) {
   const rule = item2.answer?.openResponseRule;
   const fieldResults = {};
   let hasIncorrect = false;
   (item2.inputSlots || []).forEach((slot2) => {
     const actual = String(attempt.slotValues?.[slot2.id] || "").trim();
-    const isCorrect = matchesOpenResponseRule(actual, rule);
+    const acceptedAlternatives = (answerAlternatives?.[item2.id]?.[slot2.id] || []).map((value) => normalizeAnswerText(value));
+    const isCorrect = acceptedAlternatives.includes(normalizeAnswerText(actual)) || matchesOpenResponseRule(actual, rule);
     fieldResults[slot2.id] = isCorrect ? "correct" : "incorrect";
     if (!isCorrect) hasIncorrect = true;
   });
@@ -23757,7 +23739,7 @@ function expectedTextMatcher(item2, slotId, answerAlternatives = {}) {
 }
 function hasIncorrectTextAnswers(activity, grading) {
   return flattenActivityItems2(activity).some(
-    (item2) => item2.evaluationMode !== "open_response" && item2.inputSlots?.some((slot2) => grading?.itemResults?.[item2.id]?.fieldResults?.[slot2.id] === "incorrect")
+    (item2) => item2.inputSlots?.some((slot2) => grading?.itemResults?.[item2.id]?.fieldResults?.[slot2.id] === "incorrect")
   );
 }
 async function reviewIncorrectTextAnswers({ practice, activity, answers, grading, answerAlternatives }) {
@@ -23766,7 +23748,7 @@ async function reviewIncorrectTextAnswers({ practice, activity, answers, grading
   let reviewedCount = 0;
   const items = flattenActivityItems2(activity);
   for (const item2 of items) {
-    if (item2.evaluationMode === "manual_review" || item2.evaluationMode === "self_check" || item2.evaluationMode === "open_response") continue;
+    if (item2.evaluationMode === "manual_review" || item2.evaluationMode === "self_check") continue;
     if (!item2.inputSlots?.length) continue;
     for (const slot2 of item2.inputSlots) {
       if (grading?.itemResults?.[item2.id]?.fieldResults?.[slot2.id] !== "incorrect") continue;
@@ -24229,186 +24211,6 @@ function formatExpectedAnswerSummary(item2) {
     });
   }
   return Array.from(new Set(answers)).join(" / ") || "\u6682\u65E0";
-}
-function buildAnswerComparison(item2, answer3, result) {
-  if (item2.choices?.length) {
-    return {
-      kind: "choice",
-      actual: formatAttemptSummary(item2, answer3),
-      expected: formatExpectedAnswerSummary(item2)
-    };
-  }
-  if (!item2.inputSlots?.length) return null;
-  const targetSlots = result?.fieldResults ? item2.inputSlots.filter((slot2) => result.fieldResults?.[slot2.id] === "incorrect") : [];
-  const slots6 = targetSlots.length ? targetSlots : item2.inputSlots;
-  const diffLines = slots6.flatMap((slot2) => {
-    const actual = formatSlotAttemptSummary(item2, answer3, slot2.id);
-    const candidates = answerValuesForSlot(item2, slot2.id);
-    if (!actual || !candidates.length) return [];
-    const expected = closestExpectedAnswer(actual, candidates);
-    return gitLikeAnswerDiff(actual === "\u672A\u4F5C\u7B54" ? "" : actual, expected);
-  });
-  if (!diffLines.length) return null;
-  return { kind: "text", diffLines };
-}
-function formatSlotAttemptSummary(item2, answer3, slotId) {
-  if (!answer3) return "\u672A\u4F5C\u7B54";
-  const value = String(answer3.slotValues?.[slotId] || "").trim();
-  if (value) return value;
-  if (item2.inputSlots?.length === 1) {
-    const legacyValue = firstStoredSlotValue(answer3.slotValues).trim();
-    if (legacyValue) return legacyValue;
-  }
-  return "\u672A\u4F5C\u7B54";
-}
-function closestExpectedAnswer(actual, candidates) {
-  const actualNormalized = normalizeAnswerText(actual);
-  return candidates.map((candidate) => ({
-    candidate,
-    distance: editDistance(actualNormalized, normalizeAnswerText(candidate))
-  })).sort((a, b) => a.distance - b.distance)[0]?.candidate || candidates[0];
-}
-function editDistance(left, right) {
-  const a = Array.from(String(left || ""));
-  const b = Array.from(String(right || ""));
-  let previous = Array.from({ length: b.length + 1 }, (_, index) => index);
-  for (let row = 1; row <= a.length; row += 1) {
-    const current = [row];
-    for (let col = 1; col <= b.length; col += 1) {
-      current[col] = a[row - 1] === b[col - 1] ? previous[col - 1] : Math.min(previous[col - 1], previous[col], current[col - 1]) + 1;
-    }
-    previous = current;
-  }
-  return previous[b.length] || 0;
-}
-function comparableAnswerText(value) {
-  return String(value || "").normalize("NFKC").replace(/\r\n?/g, "\n").split("\n").map((line2) => line2.replace(/^\s*(?:乙[0-9０-９]+|[甲乙丙丁]|[A-DＡ-Ｄ])\s*[：:]\s*/u, "")).join("\n").replace(/[ \t\u3000]+/g, "").replace(/\p{P}/gu, "").replace(/\n{3,}/g, "\n\n").replace(/^\n+|\n+$/g, "");
-}
-function diffComparableAnswerText(actual, expected) {
-  const actualComparable = comparableAnswerText(actual);
-  const expectedComparable = comparableAnswerText(expected);
-  if (!actualComparable && !expectedComparable) return { actualParts: [], expectedParts: [] };
-  return diffText(actualComparable, expectedComparable);
-}
-function comparableAnswerLines(value) {
-  const comparable = comparableAnswerText(value);
-  return comparable ? comparable.split("\n") : [];
-}
-function gitLikeAnswerDiff(actual, expected) {
-  const actualLines = comparableAnswerLines(actual);
-  const expectedLines = comparableAnswerLines(expected);
-  const ops = diffLineOperations(actualLines, expectedLines);
-  const rows = [];
-  let index = 0;
-  while (index < ops.length) {
-    if (ops[index].type === "equal") {
-      rows.push({ type: "context", parts: [{ type: "equal", text: ops[index].text || " " }] });
-      index += 1;
-      continue;
-    }
-    const deletes = [];
-    const inserts = [];
-    while (index < ops.length && ops[index].type !== "equal") {
-      if (ops[index].type === "delete") deletes.push(ops[index].text);
-      if (ops[index].type === "insert") inserts.push(ops[index].text);
-      index += 1;
-    }
-    const length = Math.max(deletes.length, inserts.length);
-    for (let pairIndex = 0; pairIndex < length; pairIndex += 1) {
-      const deleted = deletes[pairIndex];
-      const inserted = inserts[pairIndex];
-      if (deleted != null && inserted != null) {
-        const { actualParts, expectedParts } = diffComparableAnswerText(deleted, inserted);
-        rows.push({ type: "delete", parts: actualParts.length ? actualParts : [{ type: "delete", text: deleted || " " }] });
-        rows.push({ type: "insert", parts: expectedParts.length ? expectedParts : [{ type: "insert", text: inserted || " " }] });
-      } else if (deleted != null) {
-        rows.push({ type: "delete", parts: [{ type: "delete", text: deleted || " " }] });
-      } else if (inserted != null) {
-        rows.push({ type: "insert", parts: [{ type: "insert", text: inserted || " " }] });
-      }
-    }
-  }
-  return rows;
-}
-function diffLineOperations(actualLines, expectedLines) {
-  const width = expectedLines.length + 1;
-  const table = new Uint16Array((actualLines.length + 1) * width);
-  for (let row2 = actualLines.length - 1; row2 >= 0; row2 -= 1) {
-    for (let col2 = expectedLines.length - 1; col2 >= 0; col2 -= 1) {
-      table[row2 * width + col2] = actualLines[row2] === expectedLines[col2] ? table[(row2 + 1) * width + col2 + 1] + 1 : Math.max(table[(row2 + 1) * width + col2], table[row2 * width + col2 + 1]);
-    }
-  }
-  const ops = [];
-  let row = 0;
-  let col = 0;
-  while (row < actualLines.length && col < expectedLines.length) {
-    if (actualLines[row] === expectedLines[col]) {
-      ops.push({ type: "equal", text: actualLines[row] });
-      row += 1;
-      col += 1;
-    } else if (table[(row + 1) * width + col] >= table[row * width + col + 1]) {
-      ops.push({ type: "delete", text: actualLines[row] });
-      row += 1;
-    } else {
-      ops.push({ type: "insert", text: expectedLines[col] });
-      col += 1;
-    }
-  }
-  while (row < actualLines.length) {
-    ops.push({ type: "delete", text: actualLines[row] });
-    row += 1;
-  }
-  while (col < expectedLines.length) {
-    ops.push({ type: "insert", text: expectedLines[col] });
-    col += 1;
-  }
-  return ops;
-}
-function diffText(actual, expected) {
-  const a = Array.from(actual);
-  const b = Array.from(expected);
-  const width = b.length + 1;
-  const table = new Uint16Array((a.length + 1) * width);
-  for (let row2 = a.length - 1; row2 >= 0; row2 -= 1) {
-    for (let col2 = b.length - 1; col2 >= 0; col2 -= 1) {
-      table[row2 * width + col2] = a[row2] === b[col2] ? table[(row2 + 1) * width + col2 + 1] + 1 : Math.max(table[(row2 + 1) * width + col2], table[row2 * width + col2 + 1]);
-    }
-  }
-  const actualParts = [];
-  const expectedParts = [];
-  let row = 0;
-  let col = 0;
-  while (row < a.length && col < b.length) {
-    if (a[row] === b[col]) {
-      pushDiffPart(actualParts, "equal", a[row]);
-      pushDiffPart(expectedParts, "equal", b[col]);
-      row += 1;
-      col += 1;
-    } else if (table[(row + 1) * width + col] >= table[row * width + col + 1]) {
-      pushDiffPart(actualParts, "delete", a[row]);
-      row += 1;
-    } else {
-      pushDiffPart(expectedParts, "insert", b[col]);
-      col += 1;
-    }
-  }
-  while (row < a.length) {
-    pushDiffPart(actualParts, "delete", a[row]);
-    row += 1;
-  }
-  while (col < b.length) {
-    pushDiffPart(expectedParts, "insert", b[col]);
-    col += 1;
-  }
-  return { actualParts, expectedParts };
-}
-function pushDiffPart(parts, type, text36) {
-  const last = parts[parts.length - 1];
-  if (last?.type === type) {
-    last.text += text36;
-    return;
-  }
-  parts.push({ type, text: text36 });
 }
 function exampleDialogueLines(parts, kana2) {
   if (!parts?.length) return null;
@@ -39722,7 +39524,7 @@ var activities33 = [
     interaction: "single_choice",
     answerUnit: "choice",
     responseScope: "choice_only",
-    layout: [{ type: "example", content: { label: "[\u4F8B]", before: "\u540D\u524D\u3084\u4F4F\u6240\u304C\u66F8\u3044\u3066\uFF08\u3042\u308A\u307E\u3059\u30FB\u3044\u307E\u3059\uFF09\u3002", beforeKana: "\u306A\u307E\u3048\u3084\u3058\u3085\u3046\u3057\u3087\u304C\u304B\u3044\u3066\uFF08\u3042\u308A\u307E\u3059\u30FB\u3044\u307E\u3059\uFF09\u3002", after: [] } }],
+    layout: [{ type: "example", content: { label: "[\u4F8B]", beforeParts: [text34("\u540D\u524D\u3084\u4F4F\u6240\u304C\u66F8\u3044\u3066\uFF08", { kana: "\u306A\u307E\u3048\u3084\u3058\u3085\u3046\u3057\u3087\u304C\u304B\u3044\u3066\uFF08" }), text34("\u3042\u308A\u307E\u3059", { underline: true }), text34("\u30FB\u3044\u307E\u3059\uFF09\u3002")], after: [] } }],
     items: [
       choiceItem15("l34-p2-a1-q1", "1", "\u6697\u3044\u306E\u3067\u3001\u96FB\u6C17\u304C\u3064\u3051\u3066\uFF08\u3044\u307E\u3059\u30FB\u3042\u308A\u307E\u3059\uFF09\u3002", "\u304F\u3089\u3044\u306E\u3067\u3001\u3067\u3093\u304D\u304C\u3064\u3051\u3066\uFF08\u3044\u307E\u3059\u30FB\u3042\u308A\u307E\u3059\uFF09\u3002", [{ id: "imasu", label: "\u3044\u307E\u3059" }, { id: "arimasu", label: "\u3042\u308A\u307E\u3059" }], "arimasu"),
       choiceItem15("l34-p2-a1-q2", "2", "\u98A8\u90AA\u3067\u3059\u304B\u3089\u3001\u65E9\u304F\u85AC\u3092\u98F2\u3093\u3067\uFF08\u304A\u3044\u305F\u30FB\u3057\u307E\u3063\u305F\uFF09\u307B\u3046\u304C\u3044\u3044\u3067\u3059\u3088\u3002", "\u304B\u305C\u3067\u3059\u304B\u3089\u3001\u306F\u3084\u304F\u304F\u3059\u308A\u3092\u306E\u3093\u3067\uFF08\u304A\u3044\u305F\u30FB\u3057\u307E\u3063\u305F\uFF09\u307B\u3046\u304C\u3044\u3044\u3067\u3059\u3088\u3002", [{ id: "oita", label: "\u304A\u3044\u305F" }, { id: "shimatta", label: "\u3057\u307E\u3063\u305F" }], "oita"),

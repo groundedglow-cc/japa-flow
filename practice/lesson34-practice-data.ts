@@ -109,7 +109,7 @@ const activities: PracticeActivity[] = [
   },
   {
     id: "l34-p2-a1", section: "practice_2", order: 1, title: "给正确的答案画○。", instruction: "", interaction: "single_choice", answerUnit: "choice", responseScope: "choice_only",
-    layout: [{ type: "example", content: { label: "[例]", before: "名前や住所が書いて（あります・います）。", beforeKana: "なまえやじゅうしょがかいて（あります・います）。", after: [] } }],
+    layout: [{ type: "example", content: { label: "[例]", beforeParts: [text("名前や住所が書いて（", { kana: "なまえやじゅうしょがかいて（" }), text("あります", { underline: true }), text("・います）。")], after: [] } }],
     items: [
       choiceItem("l34-p2-a1-q1", "1", "暗いので、電気がつけて（います・あります）。", "くらいので、でんきがつけて（います・あります）。", [{ id: "imasu", label: "います" }, { id: "arimasu", label: "あります" }], "arimasu"),
       choiceItem("l34-p2-a1-q2", "2", "風邪ですから、早く薬を飲んで（おいた・しまった）ほうがいいですよ。", "かぜですから、はやくくすりをのんで（おいた・しまった）ほうがいいですよ。", [{ id: "oita", label: "おいた" }, { id: "shimatta", label: "しまった" }], "oita"),
