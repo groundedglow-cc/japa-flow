@@ -12,7 +12,7 @@ const wordItem = (id: string, number: string, prompt: PromptPart[], promptKana: 
 const sentenceItem = (id: string, number: string, prompt: string, promptKana: string, answer: string, source: PracticeItem["answerSource"] = "example_transform"): PracticeItem => ({ id, number, prompt: [text(prompt)], promptKana, instruction: "", answerSource: source, evaluationMode: "exact", responseScope: "sentence_only", responseScopeHint: "写出完整句子。", inputSlots: sentenceSlot(), answer: { slotValues: { answer } } });
 const dialogueItem = (id: string, number: string, prompt: string, promptKana: string, answer: string): PracticeItem => ({ id, number, prompt: [text(prompt)], promptKana, instruction: "", answerSource: "audio", evaluationMode: "exact", responseScope: "dialogue_only", responseScopeHint: "写出完整会话。", inputSlots: dialogueSlot(), answer: { slotValues: { answer } }, renderHint: "dialogue" });
 const choiceItem = (id: string, number: string, choices: Choice[], answerChoiceId: string): PracticeItem => ({ id, number, prompt: [text("听录音，选择对应答案。")], instruction: "", answerSource: "audio", evaluationMode: "exact", responseScope: "choice_only", choices, answer: { choiceIds: [answerChoiceId] }, renderHint: "inline" });
-const conditionalItem = (id: string, number: string, prompt: string, promptKana: string, affirmative: string, negative: string): PracticeItem => ({ id, number, prompt: [text(`${prompt} → `), blank("affirmative"), text(" → "), blank("negative")], promptKana, instruction: "", answerSource: "example_transform", evaluationMode: "exact", responseScope: "word_only", responseScopeHint: "分别填写「～たら」和「～なかったら」的形式。", inputSlots: [{ id: "affirmative", expectedUnit: "word", width: "medium", placeholder: "肯定形" }, { id: "negative", expectedUnit: "word", width: "medium", placeholder: "否定形" }], answer: { slotValues: { affirmative, negative } } });
+const conditionalItem = (id: string, number: string, prompt: string, promptKana: string, affirmative: string, negative: string): PracticeItem => ({ id, number, prompt: [text(`${prompt} → `), blank("affirmative"), text(" → "), blank("negative")], promptKana, instruction: "", answerSource: "example_transform", evaluationMode: "exact", responseScope: "word_only", responseScopeHint: "分别填写「～たら」和「～なかったら」的形式。", renderHint: "dual_word", inputSlots: [{ id: "affirmative", expectedUnit: "word", width: "medium", placeholder: "肯定形" }, { id: "negative", expectedUnit: "word", width: "medium", placeholder: "否定形", showAiNote: false }], answer: { slotValues: { affirmative, negative } } });
 
 const listeningChoices: Choice[] = [
   { id: "c1", label: "① 雪が降りません" }, { id: "c2", label: "② 太りません" }, { id: "c3", label: "③ 運転してはいけません" }, { id: "c4", label: "④ 頑張ります" }, { id: "c5", label: "⑤ この本を読んでみてください" }, { id: "c6", label: "⑥ なかなか治りません" }, { id: "c7", label: "⑦ 中国に帰って働きます" }
@@ -39,13 +39,31 @@ const activities: PracticeActivity[] = [
   },
   {
     id: "l35-p1-a4", section: "practice_1", order: 4, title: "仿照例句替换画线部分进行练习。", instruction: "", interaction: "dialogue_practice", answerUnit: "dialogue", responseScope: "dialogue_only",
-    layout: [{ type: "example", content: { label: "[例]", before: "安いです／買います\n子供です／安くなります", beforeKana: "やすいです／かいます\nこどもです／やすくなります", after: [text("甲：安かったら、買いますか。\n乙：いいえ、安くても買いません。\n甲：子供だったら安くなりますか。\n乙：いいえ、子供でも安くなりません。", { kana: "こう：やすかったら、かいますか。\nおつ：いいえ、やすくてもかいません。\nこう：こどもだったらやすくなりますか。\nおつ：いいえ、こどもでもやすくなりません。" })] } }],
-    items: [dialogueItem("l35-p1-a4-q1", "1", "天気がいいです／出かけます", "てんきがいいです／でかけます", "甲：天気がよかったら、出かけますか。\n乙：いいえ、天気がよくても出かけません。"), dialogueItem("l35-p1-a4-q2", "2", "説明を聞きます／分かります", "せつめいをききます／わかります", "甲：説明を聞いたら、分かりますか。\n乙：いいえ、説明を聞いても分かりません。"), dialogueItem("l35-p1-a4-q3", "3", "暇です／サッカーを見に行きます", "ひまです／サッカーをみにいきます", "甲：暇だったら、サッカーを見に行きますか。\n乙：いいえ、暇でもサッカーを見に行きません。"), dialogueItem("l35-p1-a4-q4", "4", "友達です／今日来ます", "ともだちです／きょうきます", "甲：友達だったら、今日来ますか。\n乙：いいえ、友達でも今日来ません。")]
+    layout: [], itemGroups: [
+      { id: "l35-p1-a4-g1", example: { label: "[例 1]", before: "安いです／買います", beforeKana: "やすいです／かいます", after: [text("甲：安かったら、買いますか。\n乙：いいえ、安くても買いません。", { kana: "こう：やすかったら、かいますか。\nおつ：いいえ、やすくてもかいません。" })] }, items: [
+        dialogueItem("l35-p1-a4-q1", "1", "天気がいいです／出かけます", "てんきがいいです／でかけます", "甲：天気がよかったら、出かけますか。\n乙：いいえ、天気がよくても出かけません。"),
+        dialogueItem("l35-p1-a4-q2", "2", "説明を聞きます／分かります", "せつめいをききます／わかります", "甲：説明を聞いたら、分かりますか。\n乙：いいえ、説明を聞いても分かりません。")
+      ] },
+      { id: "l35-p1-a4-g2", example: { label: "[例 2]", before: "子供です／安くなります", beforeKana: "こどもです／やすくなります", after: [text("甲：子供だったら安くなりますか。\n乙：いいえ、子供でも安くなりません。", { kana: "こう：こどもだったらやすくなりますか。\nおつ：いいえ、こどもでもやすくなりません。" })] }, items: [
+        dialogueItem("l35-p1-a4-q3", "3", "暇です／サッカーを見に行きます", "ひまです／サッカーをみにいきます", "甲：暇だったら、サッカーを見に行きますか。\n乙：いいえ、暇でもサッカーを見に行きません。"),
+        dialogueItem("l35-p1-a4-q4", "4", "友達です／今日来ます", "ともだちです／きょうきます", "甲：友達だったら、今日来ますか。\n乙：いいえ、友達でも今日来ません。")
+      ] }
+    ], items: []
   },
   {
     id: "l35-p1-a5", section: "practice_1", order: 5, title: "仿照例句替换画线部分回答提问。", instruction: "", interaction: "pattern_substitution", answerUnit: "sentence", responseScope: "answer_only", responseScopeHint: "只写回答句。",
-    layout: [{ type: "example", content: { label: "[例 1]", before: "今年の夏休みは何日ですか。（３日）", beforeKana: "ことしのなつやすみはなんにちですか。（みっか）", after: [text("３日だけです。", { kana: "みっかだけです。" })] } }, { type: "example", content: { label: "[例 2]", before: "会議室にはだれがいますか。（李さん）", beforeKana: "かいぎしつにはだれがいますか。（りさん）", after: [text("李さんしかいません。", { kana: "りさんしかいません。" })] } }],
-    items: [sentenceItem("l35-p1-a5-q1", "1", "今回の研修に参加するのは何人ですか。（２人）", "こんかいのけんしゅうにさんかするのはなんにんですか。（ふたり）", "２人だけです。"), sentenceItem("l35-p1-a5-q2", "2", "在庫はどのぐらいありますか。（２冊）", "ざいこはどのぐらいありますか。（にさつ）", "２冊だけあります。"), sentenceItem("l35-p1-a5-q3", "3", "日本語の授業はどのぐらいありますか。（１週間に１度）", "にほんごのじゅぎょうはどのぐらいありますか。（いっしゅうかんにいちど）", "１週間に１度だけあります。"), sentenceItem("l35-p1-a5-q4", "4", "来週いつ空いていますか。（火曜日）", "らいしゅういつあいていますか。（かようび）", "火曜日だけ空いています。"), sentenceItem("l35-p1-a5-q5", "5", "カラオケで何曲歌いましたか。（１曲）", "カラオケでなんきょくうたいましたか。（いっきょく）", "１曲だけ歌いました。"), sentenceItem("l35-p1-a5-q6", "6", "今いくらお金を持っていますか。（100円）", "いまいくらおかねをもっていますか。（ひゃくえん）", "100円だけ持っています。")].map((item) => ({ ...item, responseScope: "answer_only" as const, responseScopeHint: "只写回答句。" }))
+    layout: [], itemGroups: [
+      { id: "l35-p1-a5-g1", example: { label: "[例 1]", before: "今年の夏休みは何日ですか。（３日）", beforeKana: "ことしのなつやすみはなんにちですか。（みっか）", after: [text("３日だけです。", { kana: "みっかだけです。" })] }, items: [
+        sentenceItem("l35-p1-a5-q1", "1", "今回の研修に参加するのは何人ですか。（２人）", "こんかいのけんしゅうにさんかするのはなんにんですか。（ふたり）", "２人だけです。"),
+        sentenceItem("l35-p1-a5-q2", "2", "在庫はどのぐらいありますか。（２冊）", "ざいこはどのぐらいありますか。（にさつ）", "２冊だけあります。"),
+        sentenceItem("l35-p1-a5-q3", "3", "日本語の授業はどのぐらいありますか。（１週間に１度）", "にほんごのじゅぎょうはどのぐらいありますか。（いっしゅうかんにいちど）", "１週間に１度だけあります。")
+      ].map((item) => ({ ...item, responseScope: "answer_only" as const, responseScopeHint: "只写回答句。" })) },
+      { id: "l35-p1-a5-g2", example: { label: "[例 2]", before: "会議室にはだれがいますか。（李さん）", beforeKana: "かいぎしつにはだれがいますか。（りさん）", after: [text("李さんしかいません。", { kana: "りさんしかいません。" })] }, items: [
+        sentenceItem("l35-p1-a5-q4", "4", "来週いつ空いていますか。（火曜日）", "らいしゅういつあいていますか。（かようび）", "火曜日しか空いていません。"),
+        sentenceItem("l35-p1-a5-q5", "5", "カラオケで何曲歌いましたか。（１曲）", "カラオケでなんきょくうたいましたか。（いっきょく）", "１曲しか歌いませんでした。"),
+        sentenceItem("l35-p1-a5-q6", "6", "今いくらお金を持っていますか。（100円）", "いまいくらおかねをもっていますか。（ひゃくえん）", "100円しか持っていません。")
+      ].map((item) => ({ ...item, responseScope: "answer_only" as const, responseScopeHint: "只写回答句。" })) }
+    ], items: []
   },
   {
     id: "l35-p1-a6", section: "practice_1", order: 6, title: "仿照例句，用（　）中的词语造句。", instruction: "", interaction: "pattern_substitution", answerUnit: "sentence", responseScope: "sentence_only",

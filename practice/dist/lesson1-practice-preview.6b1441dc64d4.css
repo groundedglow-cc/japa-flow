@@ -365,6 +365,18 @@ figcaption {
   background: #f5fbfd;
 }
 
+.activity-learning-context {
+  /* Sticky descendants must be constrained by the whole activity, not this
+     small wrapper. Otherwise they stop sticking as soon as the wrapper ends. */
+  display: contents;
+}
+
+.activity-vocabulary-sticky {
+  position: sticky;
+  top: 0;
+  z-index: 21;
+}
+
 .lesson-word-list-toggle {
   display: flex;
   align-items: center;
@@ -394,8 +406,9 @@ figcaption {
 }
 
 .lesson-word-chip {
+  position: relative;
   display: inline-flex;
-  align-items: center;
+  align-items: flex-end;
   gap: 6px;
   min-height: 0;
   padding: 4px 8px;
@@ -427,6 +440,22 @@ figcaption {
 .lesson-word-meaning {
   color: var(--muted);
   font-size: 12px;
+}
+
+.lesson-word-pos {
+  position: absolute;
+  top: 3px;
+  right: 4px;
+  min-width: 17px;
+  padding: 1px 3px;
+  border-radius: 4px;
+  background: #0f766e;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 850;
+  line-height: 13px;
+  text-align: center;
+  pointer-events: none;
 }
 
 .practice-activity {
@@ -526,6 +555,26 @@ figcaption {
 }
 
 .group-head .example-block {
+  width: 100%;
+}
+
+.example-block-with-ai {
+  display: grid;
+  gap: 8px;
+  min-width: 0;
+}
+
+.group-head .example-block-with-ai,
+.layout-blocks > .example-block-with-ai {
+  width: 100%;
+}
+
+.example-block-with-ai > .example-block {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.example-block-with-ai > .practice-ai-note {
   width: 100%;
 }
 
@@ -847,16 +896,17 @@ rt {
 }
 
 .audio-placeholder {
-  display: flex;
-  align-items: center;
+  display: grid;
+  align-items: stretch;
+  gap: 8px;
   min-height: 34px;
   color: var(--muted);
   font-size: 13px;
 }
 
-.audio-placeholder.ready {
+.audio-placeholder.ready.sticky {
   position: sticky;
-  top: 0;
+  top: var(--activity-audio-sticky-top, 0px);
   z-index: 20;
   padding: 8px 0;
   background: var(--panel);
@@ -874,6 +924,72 @@ rt {
 
 .audio-placeholder audio {
   width: min(360px, 100%);
+}
+
+.audio-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.audio-transcript-toggle {
+  display: grid;
+  flex: 0 0 auto;
+  width: 30px;
+  height: 30px;
+  place-items: center;
+  border: 1px solid #bdd7c9;
+  border-radius: 9px;
+  background: #f5faf7;
+  color: var(--accent);
+  cursor: pointer;
+  font: inherit;
+  transition: background 160ms ease, border-color 160ms ease, color 160ms ease;
+}
+
+.audio-transcript-toggle span {
+  min-height: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  font-size: 15px;
+  line-height: 1;
+}
+
+.audio-transcript-toggle:hover,
+.audio-transcript-toggle.active {
+  border-color: var(--accent);
+  background: #e9f5ef;
+  color: #1f6b49;
+}
+
+.audio-transcript-panel {
+  display: grid;
+  gap: 10px;
+  max-width: min(760px, 100%);
+  padding: 12px;
+  border: 1px solid #cfe3d7;
+  border-radius: 12px;
+  background: #fbfdfc;
+  color: var(--text);
+  line-height: 1.75;
+  white-space: pre-line;
+}
+
+.audio-transcript-block {
+  display: grid;
+  gap: 4px;
+}
+
+.audio-transcript-block strong {
+  color: var(--accent);
+  font-size: 12px;
+}
+
+.audio-transcript-block p {
+  margin: 0;
 }
 
 .audio-guidance {
@@ -906,6 +1022,24 @@ rt {
   margin-top: 6px;
   padding-top: 10px;
   border-top: 1px dashed var(--line);
+}
+
+.practice-item.dual_word .practice-input-with-notes {
+  flex: 1 1 0;
+  width: auto;
+  min-width: 0;
+  align-self: flex-start;
+}
+
+.practice-item.dual_word .slot-row.multi-slot-row {
+  flex-wrap: nowrap;
+  align-items: flex-start;
+}
+
+.practice-item.dual_word .slot-row.multi-slot-row > .practice-ai-note {
+  flex: 0 0 auto;
+  width: auto;
+  align-self: flex-start;
 }
 
 .trip-composition-lines {

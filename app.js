@@ -1679,6 +1679,10 @@ const state = {
   textRecordingId: "",
   textRecordingStoppingId: "",
   textRecordingError: "",
+  textAiOpenId: "",
+  textAiDraft: "",
+  textAiAnswer: "",
+  textAiStatus: "",
   favoriteRecordingPreparingKey: "",
   favoriteRecordingKey: "",
   favoriteRecordingStoppingKey: "",
@@ -2636,6 +2640,7 @@ async function reloadLessonScopedState() {
   state.textRecordingId = "";
   state.textRecordingStoppingId = "";
   state.textRecordingError = "";
+  resetTextAiPanel();
   state.sentencePractice = initialSentencePractice();
   Object.entries(readLocalSentencePractice() || {}).forEach(([id, value]) => {
     if (state.sentencePractice[id]) {
@@ -2891,6 +2896,7 @@ function resetTextLearningData() {
   state.textRecordingId = "";
   state.textRecordingStoppingId = "";
   state.textRecordingError = "";
+  resetTextAiPanel();
   lastAutoSpokenSentence = null;
   render();
 }
@@ -3018,6 +3024,13 @@ function textTabIdForSentence(sentenceId) {
   return textStructure.find((section) => textSectionGroups(section).some((group) => (group.ids || []).includes(sentenceId)))?.id || "basic";
 }
 
+function resetTextAiPanel() {
+  state.textAiOpenId = "";
+  state.textAiDraft = "";
+  state.textAiAnswer = "";
+  state.textAiStatus = "";
+}
+
 function setTextTab(tabId, sentenceIndex = 0) {
   const sentences = textSentencesForTab(tabId);
   const nextIndex = clamp(sentenceIndex, 0, Math.max(0, sentences.length - 1));
@@ -3030,6 +3043,7 @@ function setTextTab(tabId, sentenceIndex = 0) {
   state.textRecordingPreparingId = "";
   state.textRecordingId = "";
   state.textRecordingStoppingId = "";
+  resetTextAiPanel();
   lastAutoSpokenSentence = null;
   writeTextProgress();
 }
@@ -5954,26 +5968,151 @@ function newTextSentenceItem(sentence, groupKind, groupKey) {
   const japanese = renderJapaneseText(sentence.text, { kana: sentence.kana });
   const active = state.textReadingCurrentSentenceId === sentence.id ? "active" : "";
   const followControl = renderTextReadingFollowControl(sentence, groupKey);
+  const aiOpen = state.textAiOpenId === sentence.id;
+  const sentenceTools = renderTextSentenceTools(sentence, aiOpen);
+  const aiPanel = renderTextSentenceAiPanel(sentence, aiOpen);
   if (groupKind === "statements") {
     return `
-      <div class="text-reading-statement ${active}">
+      <div class="text-reading-statement ${active} ${aiOpen ? "ai-open" : ""}">
         <span class="text-reading-order">${escapeHtml(sentence.order || "")}</span>
-        <div class="text-reading-content">
-          <p>${japanese}</p>
-          ${followControl}
+        <div class="text-reading-main">
+          <div class="text-reading-content">
+            <p>${japanese}</p>
+            ${sentenceTools}
+            ${followControl}
+          </div>
+          ${aiPanel}
         </div>
       </div>
     `;
   }
   return `
-    <div class="text-reading-line ${sentence.speaker ? "" : "no-speaker"} ${active}">
+    <div class="text-reading-line ${sentence.speaker ? "" : "no-speaker"} ${active} ${aiOpen ? "ai-open" : ""}">
       ${sentence.speaker ? `<span class="speaker">${escapeHtml(sentence.speaker)}</span>` : ""}
-      <div class="text-reading-content">
-        <p>${japanese}</p>
-        ${followControl}
+      <div class="text-reading-main">
+        <div class="text-reading-content">
+          <p>${japanese}</p>
+          ${sentenceTools}
+          ${followControl}
+        </div>
+        ${aiPanel}
       </div>
     </div>
   `;
+}
+
+function renderTextSentenceTools(sentence, aiOpen) {
+  return `
+    <div class="text-reading-tools">
+      <button
+        class="text-reading-play text-reading-sentence-play"
+        type="button"
+        data-speak="${escapeHtml(sentence.text)}"
+        data-audio="${escapeHtml(audioUrl("sentence", sentence.id))}"
+        aria-label="播放句子"
+        title="播放句子"
+      ></button>
+      <button
+        class="text-reading-ai-trigger ${aiOpen ? "active" : ""}"
+        type="button"
+        data-text-ai-toggle="${escapeHtml(sentence.id)}"
+        aria-expanded="${aiOpen ? "true" : "false"}"
+        aria-label="问 AI"
+        title="问 AI"
+      ><span>AI</span></button>
+    </div>
+  `;
+}
+
+function renderTextSentenceAiPanel(sentence, open) {
+  if (!open) return "";
+  const savedNotes = readTextAiNotes(sentence.id);
+  return `
+    <div class="text-ai-panel" data-text-ai-panel="${escapeHtml(sentence.id)}">
+      <textarea data-text-ai-draft="${escapeHtml(sentence.id)}" rows="1" placeholder="写下笔记，或输入想问 AI 的问题...">${escapeHtml(state.textAiDraft || "")}</textarea>
+      ${state.textAiAnswer ? `<div class="text-ai-answer" aria-label="AI 回答"><strong>AI 回答</strong><p>${escapeHtml(state.textAiAnswer)}</p></div>` : ""}
+      ${state.textAiStatus ? `<small>${escapeHtml(state.textAiStatus)}</small>` : ""}
+      <div class="text-ai-actions">
+        <button type="button" data-text-ai-save="${escapeHtml(sentence.id)}" ${(state.textAiDraft || "").trim() ? "" : "disabled"}>保存笔记</button>
+        <button type="button" data-text-ai-ask="${escapeHtml(sentence.id)}" ${(state.textAiDraft || "").trim() ? "" : "disabled"}>问 AI</button>
+      </div>
+      ${savedNotes.length ? `
+        <div class="text-ai-saved-list">
+          ${savedNotes.map((note) => `
+            <article class="text-ai-saved">
+              <button type="button" data-text-ai-erase="${escapeHtml(sentence.id)}" data-note-id="${escapeHtml(note.id)}" aria-label="删除笔记" title="删除笔记">⌫</button>
+              <pre>${escapeHtml(note.text)}</pre>
+            </article>
+          `).join("")}
+        </div>
+      ` : ""}
+    </div>
+  `;
+}
+
+function textAiStorageKey(sentenceId) {
+  return `lesson:${lesson.id}:textAiNotes:${sentenceId}`;
+}
+
+function readTextAiNotes(sentenceId) {
+  const entries = read(textAiStorageKey(sentenceId), []);
+  return Array.isArray(entries) ? entries : [];
+}
+
+function writeTextAiNotes(sentenceId, notes) {
+  write(textAiStorageKey(sentenceId), notes);
+}
+
+function addTextAiNote(sentenceId, text) {
+  const next = [...readTextAiNotes(sentenceId), { id: `${Date.now()}-${Math.random().toString(16).slice(2)}`, text }];
+  writeTextAiNotes(sentenceId, next);
+}
+
+async function askTextSentenceAi(sentenceId) {
+  const sentence = sentenceById(sentenceId);
+  const question = String(state.textAiDraft || "").trim();
+  if (!sentence || !question) return;
+  state.textAiStatus = "思考中...";
+  state.textAiAnswer = "";
+  render();
+  try {
+    const response = await fetch("/api/grammar/notebook-ai", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Authorization: `Bearer ${getAuthToken()}` },
+      body: JSON.stringify({
+        question: `${sentence.text}\n\n${question}`,
+        lessonId: lesson.id,
+        pageNo: sentence.id
+      })
+    });
+    const data = await response.json().catch(() => ({}));
+    if (response.status === 401 || response.status === 403) {
+      handleAuthExpired();
+      throw new Error("登录已失效，正在跳转登录页。");
+    }
+    if (!response.ok) throw new Error(data.error || data.message || "AI 请求失败。");
+    const answer = String([data?.answer, data?.data?.answer, data?.content, data?.data?.content].find((value) => typeof value === "string" && value.trim()) || "").trim();
+    state.textAiAnswer = answer;
+    state.textAiStatus = answer ? "回答已生成。" : "AI 未返回可保存的回答，请重试。";
+  } catch (error) {
+    state.textAiStatus = error.message || "AI 请求失败。";
+  }
+  render();
+}
+
+function saveTextSentenceAiNote(sentenceId) {
+  const draft = String(state.textAiDraft || "").trim();
+  if (!draft) return;
+  const answer = String(state.textAiAnswer || "").trim();
+  addTextAiNote(sentenceId, answer ? `问：${draft}\n答：${answer}` : draft);
+  resetTextAiPanel();
+  render();
+}
+
+function eraseTextSentenceAiNote(sentenceId, noteId) {
+  const next = readTextAiNotes(sentenceId).filter((note) => note.id !== noteId);
+  writeTextAiNotes(sentenceId, next);
+  render();
 }
 
 function textReadingRating(practice) {
@@ -6222,6 +6361,7 @@ function renderTextVocabularyList(section) {
           <button class="text-vocabulary-chip" type="button" data-speak="${escapeHtml(word.jp)}" data-audio="${escapeHtml(audioUrl("word", word.id))}" title="播放 ${escapeHtml(word.jp)} 的发音">
             <span class="text-vocabulary-japanese">${renderJapaneseText(word.jp, { kana: word.kana })}</span>
             <span class="text-vocabulary-meaning">${escapeHtml(word.cn || "")}</span>
+            ${word.partOfSpeech ? `<span class="text-vocabulary-pos">${escapeHtml(word.partOfSpeech)}</span>` : ""}
           </button>
         `).join("")}
       </div>
@@ -9415,6 +9555,34 @@ function bind() {
   }));
   app.querySelectorAll("[data-text-reading-finish]").forEach((button) => button.addEventListener("click", () => {
     finishTextReadingSentence(button.dataset.textReadingFinish);
+  }));
+  app.querySelectorAll("[data-text-ai-toggle]").forEach((button) => button.addEventListener("click", () => {
+    const sentenceId = button.dataset.textAiToggle;
+    const opening = state.textAiOpenId !== sentenceId;
+    state.textAiOpenId = opening ? sentenceId : "";
+    state.textAiDraft = "";
+    state.textAiAnswer = "";
+    state.textAiStatus = "";
+    render();
+  }));
+  app.querySelectorAll("[data-text-ai-draft]").forEach((textarea) => {
+    textarea.addEventListener("input", () => {
+      state.textAiDraft = textarea.value;
+      textarea.style.height = "auto";
+      textarea.style.height = `${Math.max(38, textarea.scrollHeight)}px`;
+      app.querySelectorAll("[data-text-ai-save], [data-text-ai-ask]").forEach((button) => {
+        button.disabled = !state.textAiDraft.trim();
+      });
+    });
+  });
+  app.querySelectorAll("[data-text-ai-ask]").forEach((button) => button.addEventListener("click", () => {
+    askTextSentenceAi(button.dataset.textAiAsk);
+  }));
+  app.querySelectorAll("[data-text-ai-save]").forEach((button) => button.addEventListener("click", () => {
+    saveTextSentenceAiNote(button.dataset.textAiSave);
+  }));
+  app.querySelectorAll("[data-text-ai-erase]").forEach((button) => button.addEventListener("click", () => {
+    eraseTextSentenceAiNote(button.dataset.textAiErase, button.dataset.noteId);
   }));
   app.querySelectorAll("[data-text-version]").forEach((button) => button.addEventListener("click", () => {
     const version = button.dataset.textVersion === TEXT_VERSION_OLD ? TEXT_VERSION_OLD : TEXT_VERSION_NEW;

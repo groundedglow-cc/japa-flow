@@ -46,7 +46,17 @@
             "matchScore": 1,
             "asrText": "遅 く な っ て す み ま せ ん"
           }
-        }
+        },
+        "kana": "おそくなって、すみません。",
+        "segments": [
+          {
+            "text": "遅くなって",
+            "ruby": "おそくなって"
+          },
+          {
+            "text": "、すみません。"
+          }
+        ]
       },
       {
         "id": "l36-basic-s002",
@@ -79,7 +89,34 @@
             "matchScore": 1,
             "asrText": "こ の 写 真 は パ ス ポ ー ト の 申 請 に 使 い ま す"
           }
-        }
+        },
+        "kana": "このしゃしんはパスポートのしんせいにつかいます。",
+        "segments": [
+          {
+            "text": "この"
+          },
+          {
+            "text": "写真",
+            "ruby": "しゃしん"
+          },
+          {
+            "text": "はパスポートの"
+          },
+          {
+            "text": "申請",
+            "ruby": "しんせい"
+          },
+          {
+            "text": "に"
+          },
+          {
+            "text": "使います",
+            "ruby": "つかいます"
+          },
+          {
+            "text": "。"
+          }
+        ]
       },
       {
         "id": "l36-basic-s003",
@@ -112,7 +149,38 @@
             "matchScore": 1,
             "asrText": "張 さ ん は 毎 日 お 酒 を 飲 ん で ば か り い ま す"
           }
-        }
+        },
+        "kana": "ちょうさんはまいにちおさけをのんでばかりいます。",
+        "segments": [
+          {
+            "text": "張",
+            "ruby": "ちょう"
+          },
+          {
+            "text": "さんは"
+          },
+          {
+            "text": "毎日",
+            "ruby": "まいにち"
+          },
+          {
+            "text": "お"
+          },
+          {
+            "text": "酒",
+            "ruby": "さけ"
+          },
+          {
+            "text": "を"
+          },
+          {
+            "text": "飲んでばかりいます",
+            "ruby": "のんでばかりいます"
+          },
+          {
+            "text": "。"
+          }
+        ]
       },
       {
         "id": "l36-basic-s004",
@@ -127,25 +195,64 @@
           "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit9/lesson36/lesson_basic.mp3",
           "speaker": "",
           "text": "空港の入り口に警官が立っているのが見えます。",
-          "start": 16.29,
+          "start": 16.9,
           "end": 21.03,
-          "duration": 4.74,
+          "duration": 4.13,
           "speechUnitCount": 1,
           "matchScore": 1,
           "asrText": "空 港 の 入 り 口 に 警 官 が 立 っ て い る の が 見 え ま す",
           "phraseIndexes": [
             4
           ],
-          "method": "legacy-asr-alignment-range-converted",
+          "method": "manual-admin-adjustment",
           "confidence": "approved",
           "review": {
             "status": "approved",
-            "reviewedAt": "2026-08-05T10:17:28.871Z",
-            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-09-10T00:31:47.241Z",
+            "note": "Manually verified and adjusted in the text audio preview.",
             "matchScore": 1,
             "asrText": "空 港 の 入 り 口 に 警 官 が 立 っ て い る の が 見 え ま す"
+          },
+          "reviewedAt": "2026-09-10T00:31:47.241Z"
+        },
+        "kana": "くうこうのいりぐちにけいかんがたっているのがみえます。",
+        "segments": [
+          {
+            "text": "空港",
+            "ruby": "くうこう"
+          },
+          {
+            "text": "の"
+          },
+          {
+            "text": "入り口",
+            "ruby": "いりぐち"
+          },
+          {
+            "text": "に"
+          },
+          {
+            "text": "警官",
+            "ruby": "けいかん"
+          },
+          {
+            "text": "が"
+          },
+          {
+            "text": "立っている",
+            "ruby": "たっている"
+          },
+          {
+            "text": "のが"
+          },
+          {
+            "text": "見えます",
+            "ruby": "みえます"
+          },
+          {
+            "text": "。"
           }
-        }
+        ]
       }
     ],
     "dialogues": [
@@ -166,9 +273,9 @@
               "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit9/lesson36/lesson_basic.mp3",
               "speaker": "甲",
               "text": "陳さん、明日のパーティーに行きますか。",
-              "start": 23.77,
+              "start": 23.57,
               "end": 26.51,
-              "duration": 2.74,
+              "duration": 2.94,
               "speechUnitCount": 2,
               "matchScore": 0.941,
               "asrText": "ん さ ん 明 日 の パ ー テ ィ ー に 行 き ま す か",
@@ -176,16 +283,41 @@
                 5,
                 6
               ],
-              "method": "legacy-asr-alignment-range-converted",
+              "method": "manual-admin-adjustment",
               "confidence": "approved",
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-05T10:17:28.871Z",
-                "note": "Automatically approved by the bulk alignment workflow.",
+                "reviewedAt": "2026-09-10T00:56:53.717Z",
+                "note": "Manually verified and adjusted in the text audio preview.",
                 "matchScore": 0.941,
                 "asrText": "ん さ ん 明 日 の パ ー テ ィ ー に 行 き ま す か"
+              },
+              "reviewedAt": "2026-09-10T00:56:53.717Z"
+            },
+            "kana": "ちんさん、あしたのパーティーにいきますか。",
+            "segments": [
+              {
+                "text": "陳",
+                "ruby": "ちん"
+              },
+              {
+                "text": "さん、"
+              },
+              {
+                "text": "明日",
+                "ruby": "あした"
+              },
+              {
+                "text": "のパーティーに"
+              },
+              {
+                "text": "行きます",
+                "ruby": "いきます"
+              },
+              {
+                "text": "か。"
               }
-            }
+            ]
           },
           {
             "id": "l36-basic-dialogue-001-line-002",
@@ -218,7 +350,34 @@
                 "matchScore": 1,
                 "asrText": "い い え 明 日 は 仕 事 で 行 く こ と が で き ま せ ん"
               }
-            }
+            },
+            "kana": "いいえ、あしたはしごとで、いくことができません。",
+            "segments": [
+              {
+                "text": "いいえ、"
+              },
+              {
+                "text": "明日",
+                "ruby": "あした"
+              },
+              {
+                "text": "は"
+              },
+              {
+                "text": "仕事",
+                "ruby": "しごと"
+              },
+              {
+                "text": "で、"
+              },
+              {
+                "text": "行く",
+                "ruby": "いく"
+              },
+              {
+                "text": "ことができません。"
+              }
+            ]
           }
         ]
       },
@@ -257,7 +416,20 @@
                 "matchScore": 1,
                 "asrText": "わ あ と て も 小 さ い カ メ ラ で す ね"
               }
-            }
+            },
+            "kana": "わあ、とてもちいさいカメラですね。",
+            "segments": [
+              {
+                "text": "わあ、とても"
+              },
+              {
+                "text": "小さい",
+                "ruby": "ちいさい"
+              },
+              {
+                "text": "カメラですね。"
+              }
+            ]
           },
           {
             "id": "l36-basic-dialogue-002-line-002",
@@ -290,7 +462,34 @@
                 "matchScore": 1,
                 "asrText": "え え こ れ は 軽 く て 持 ち 歩 く の に と て も 便 利 な ん で す よ"
               }
-            }
+            },
+            "kana": "ええ。これはかるくて、もちあるくのにとてもべんりなんですよ。",
+            "segments": [
+              {
+                "text": "ええ。これは"
+              },
+              {
+                "text": "軽くて",
+                "ruby": "かるくて"
+              },
+              {
+                "text": "、"
+              },
+              {
+                "text": "持ち歩く",
+                "ruby": "もちあるく"
+              },
+              {
+                "text": "のにとても"
+              },
+              {
+                "text": "便利",
+                "ruby": "べんり"
+              },
+              {
+                "text": "なんですよ。"
+              }
+            ]
           }
         ]
       },
@@ -311,25 +510,47 @@
               "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit9/lesson36/lesson_basic.mp3",
               "speaker": "甲",
               "text": "何で野菜ばかり食べているんですか。",
-              "start": 43.76,
+              "start": 43.56,
               "end": 46.18,
-              "duration": 2.42,
+              "duration": 2.62,
               "speechUnitCount": 1,
               "matchScore": 0.938,
               "asrText": "ん で 野 菜 ば か り 食 べ て い る ん で す か",
               "phraseIndexes": [
                 9
               ],
-              "method": "legacy-asr-alignment-range-converted",
+              "method": "manual-admin-adjustment",
               "confidence": "approved",
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-05T10:17:28.871Z",
-                "note": "Automatically approved by the bulk alignment workflow.",
+                "reviewedAt": "2026-09-10T00:32:35.444Z",
+                "note": "Manually verified and adjusted in the text audio preview.",
                 "matchScore": 0.938,
                 "asrText": "ん で 野 菜 ば か り 食 べ て い る ん で す か"
+              },
+              "reviewedAt": "2026-09-10T00:32:35.444Z"
+            },
+            "kana": "なんでやさいばかりたべているんですか。",
+            "segments": [
+              {
+                "text": "何で",
+                "ruby": "なんで"
+              },
+              {
+                "text": "野菜",
+                "ruby": "やさい"
+              },
+              {
+                "text": "ばかり"
+              },
+              {
+                "text": "食べている",
+                "ruby": "たべている"
+              },
+              {
+                "text": "んですか。"
               }
-            }
+            ]
           },
           {
             "id": "l36-basic-dialogue-003-line-002",
@@ -362,7 +583,24 @@
                 "matchScore": 1,
                 "asrText": "今 ダ イ エ ッ ト 中 な ん で す"
               }
-            }
+            },
+            "kana": "いま、ダイエットちゅうなんです。",
+            "segments": [
+              {
+                "text": "今",
+                "ruby": "いま"
+              },
+              {
+                "text": "、ダイエット"
+              },
+              {
+                "text": "中",
+                "ruby": "ちゅう"
+              },
+              {
+                "text": "なんです。"
+              }
+            ]
           }
         ]
       },
@@ -383,25 +621,50 @@
               "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit9/lesson36/lesson_basic.mp3",
               "speaker": "甲",
               "text": "李さんが呼んでいたのが聞こえましたか。",
-              "start": 50.73,
+              "start": 51.4,
               "end": 54.71,
-              "duration": 3.98,
+              "duration": 3.31,
               "speechUnitCount": 1,
               "matchScore": 0.944,
               "asrText": "d さ ん が 呼 ん で い た の が 聞 こ え ま し た か",
               "phraseIndexes": [
                 11
               ],
-              "method": "legacy-asr-alignment-range-converted",
+              "method": "manual-admin-adjustment",
               "confidence": "approved",
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-05T10:17:28.871Z",
-                "note": "Automatically approved by the bulk alignment workflow.",
+                "reviewedAt": "2026-09-10T00:33:13.819Z",
+                "note": "Manually verified and adjusted in the text audio preview.",
                 "matchScore": 0.944,
                 "asrText": "d さ ん が 呼 ん で い た の が 聞 こ え ま し た か"
+              },
+              "reviewedAt": "2026-09-10T00:33:13.819Z"
+            },
+            "kana": "りさんがよんでいたのがきこえましたか。",
+            "segments": [
+              {
+                "text": "李",
+                "ruby": "り"
+              },
+              {
+                "text": "さんが"
+              },
+              {
+                "text": "呼んでいた",
+                "ruby": "よんでいた"
+              },
+              {
+                "text": "のが"
+              },
+              {
+                "text": "聞こえました",
+                "ruby": "きこえました"
+              },
+              {
+                "text": "か。"
               }
-            }
+            ]
           },
           {
             "id": "l36-basic-dialogue-004-line-002",
@@ -434,7 +697,20 @@
                 "matchScore": 1,
                 "asrText": "い い え 聞 こ え ま せ ん で し た"
               }
-            }
+            },
+            "kana": "いいえ、きこえませんでした。",
+            "segments": [
+              {
+                "text": "いいえ、"
+              },
+              {
+                "text": "聞こえませんでした",
+                "ruby": "きこえませんでした"
+              },
+              {
+                "text": "。"
+              }
+            ]
           }
         ]
       }
@@ -494,7 +770,32 @@
                 "matchScore": 1,
                 "asrText": "何 か 変 な 音 が 聞 こ え ま せ ん か"
               }
-            }
+            },
+            "kana": "なにかへんなおとがきこえませんか。",
+            "segments": [
+              {
+                "text": "何か",
+                "ruby": "なにか"
+              },
+              {
+                "text": "変な",
+                "ruby": "へんな"
+              },
+              {
+                "text": "音",
+                "ruby": "おと"
+              },
+              {
+                "text": "が"
+              },
+              {
+                "text": "聞こえません",
+                "ruby": "きこえません"
+              },
+              {
+                "text": "か。"
+              }
+            ]
           },
           {
             "id": "l36-app-block-003-line-002",
@@ -527,7 +828,24 @@
                 "matchScore": 0.833,
                 "asrText": "コ の 音 で す よ"
               }
-            }
+            },
+            "kana": "たこのおとですよ。",
+            "segments": [
+              {
+                "text": "凧",
+                "ruby": "たこ"
+              },
+              {
+                "text": "の"
+              },
+              {
+                "text": "音",
+                "ruby": "おと"
+              },
+              {
+                "text": "ですよ。"
+              }
+            ]
           },
           {
             "id": "l36-app-block-003-line-003",
@@ -560,7 +878,34 @@
                 "matchScore": 0.87,
                 "asrText": "ほ ら あ そ こ で タ コ を 上 げ て い る の が 見 え る で し ょ う"
               }
-            }
+            },
+            "kana": "ほら、あそこでたこをあげているのがみえるでしょう。",
+            "segments": [
+              {
+                "text": "ほら、あそこで"
+              },
+              {
+                "text": "凧",
+                "ruby": "たこ"
+              },
+              {
+                "text": "を"
+              },
+              {
+                "text": "揚げている",
+                "ruby": "あげている"
+              },
+              {
+                "text": "のが"
+              },
+              {
+                "text": "見える",
+                "ruby": "みえる"
+              },
+              {
+                "text": "でしょう。"
+              }
+            ]
           },
           {
             "id": "l36-app-block-003-line-004",
@@ -594,7 +939,34 @@
                 "matchScore": 0.773,
                 "asrText": "あ ら 本 当 タ コ が な っ て い る の が 聞 こ え た ん で す ね"
               }
-            }
+            },
+            "kana": "あら、ほんと。たこがなっているのがきこえたんですね。",
+            "segments": [
+              {
+                "text": "あら、ほんと。"
+              },
+              {
+                "text": "凧",
+                "ruby": "たこ"
+              },
+              {
+                "text": "が"
+              },
+              {
+                "text": "鳴っている",
+                "ruby": "なっている"
+              },
+              {
+                "text": "のが"
+              },
+              {
+                "text": "聞こえた",
+                "ruby": "きこえた"
+              },
+              {
+                "text": "んですね。"
+              }
+            ]
           }
         ]
       },
@@ -641,7 +1013,45 @@
                 "matchScore": 1,
                 "asrText": "奥 さ ん は 北 京 の 生 活 に 慣 れ る の に 苦 労 し ま し た か"
               }
-            }
+            },
+            "kana": "おくさんは、ぺきんのせいかつになれるのにくろうしましたか。",
+            "segments": [
+              {
+                "text": "奥さん",
+                "ruby": "おくさん"
+              },
+              {
+                "text": "は、"
+              },
+              {
+                "text": "北京",
+                "ruby": "ぺきん"
+              },
+              {
+                "text": "の"
+              },
+              {
+                "text": "生活",
+                "ruby": "せいかつ"
+              },
+              {
+                "text": "に"
+              },
+              {
+                "text": "慣れる",
+                "ruby": "なれる"
+              },
+              {
+                "text": "のに"
+              },
+              {
+                "text": "苦労しました",
+                "ruby": "くろうしました"
+              },
+              {
+                "text": "か。"
+              }
+            ]
           },
           {
             "id": "l36-app-block-005-line-002",
@@ -674,7 +1084,41 @@
                 "matchScore": 1,
                 "asrText": "え え と に か く 最 初 は 言 葉 が 通 じ な く て と て も 困 り ま し た"
               }
-            }
+            },
+            "kana": "ええ。とにかくさいしょはことばがつうじなくて、とてもこまりました。",
+            "segments": [
+              {
+                "text": "ええ。とにかく"
+              },
+              {
+                "text": "最初",
+                "ruby": "さいしょ"
+              },
+              {
+                "text": "は"
+              },
+              {
+                "text": "言葉",
+                "ruby": "ことば"
+              },
+              {
+                "text": "が"
+              },
+              {
+                "text": "通じなくて",
+                "ruby": "つうじなくて"
+              },
+              {
+                "text": "、とても"
+              },
+              {
+                "text": "困りました",
+                "ruby": "こまりました"
+              },
+              {
+                "text": "。"
+              }
+            ]
           },
           {
             "id": "l36-app-block-005-line-003",
@@ -707,7 +1151,17 @@
                 "matchScore": 0.765,
                 "asrText": "今 は ど う で す か も う ペ ラ ペ ラ で し ょ う"
               }
-            }
+            },
+            "kana": "いまはどうですか。もうぺらぺらでしょう。",
+            "segments": [
+              {
+                "text": "今",
+                "ruby": "いま"
+              },
+              {
+                "text": "はどうですか。もうぺらぺらでしょう。"
+              }
+            ]
           },
           {
             "id": "l36-app-block-005-line-004",
@@ -740,7 +1194,27 @@
                 "matchScore": 0.864,
                 "asrText": "家 ま だ ま だ で す で も 日 常 会 話 に は 困 り ま せ ん"
               }
-            }
+            },
+            "kana": "いいえ、まだまだです。でも、にちじょうかいわにはこまりません。",
+            "segments": [
+              {
+                "text": "いいえ、まだまだです。でも、"
+              },
+              {
+                "text": "日常会話",
+                "ruby": "にちじょうかいわ"
+              },
+              {
+                "text": "には"
+              },
+              {
+                "text": "困りません",
+                "ruby": "こまりません"
+              },
+              {
+                "text": "。"
+              }
+            ]
           },
           {
             "id": "l36-app-block-005-line-005",
@@ -773,7 +1247,17 @@
                 "matchScore": 1,
                 "asrText": "買 い 物 は"
               }
-            }
+            },
+            "kana": "かいものは。",
+            "segments": [
+              {
+                "text": "買い物",
+                "ruby": "かいもの"
+              },
+              {
+                "text": "は。"
+              }
+            ]
           },
           {
             "id": "l36-app-block-005-line-006",
@@ -807,7 +1291,66 @@
                 "matchScore": 1,
                 "asrText": "自 分 で 市 場 へ 行 き ま す よ 市 場 は 食 べ 物 の ほ か に も い ろ い ろ 売 っ て い て 買 い 物 に 便 利 で す ね"
               }
-            }
+            },
+            "kana": "じぶんでいちばへいきますよ。いちばはたべもののほかにもいろいろうっていて、かいものにべんりですね。",
+            "segments": [
+              {
+                "text": "自分",
+                "ruby": "じぶん"
+              },
+              {
+                "text": "で"
+              },
+              {
+                "text": "市場",
+                "ruby": "いちば"
+              },
+              {
+                "text": "へ"
+              },
+              {
+                "text": "行きます",
+                "ruby": "いきます"
+              },
+              {
+                "text": "よ。"
+              },
+              {
+                "text": "市場",
+                "ruby": "いちば"
+              },
+              {
+                "text": "は"
+              },
+              {
+                "text": "食べ物",
+                "ruby": "たべもの"
+              },
+              {
+                "text": "のほかにもいろいろ"
+              },
+              {
+                "text": "売っていて",
+                "ruby": "うっていて"
+              },
+              {
+                "text": "、"
+              },
+              {
+                "text": "買い物",
+                "ruby": "かいもの"
+              },
+              {
+                "text": "に"
+              },
+              {
+                "text": "便利",
+                "ruby": "べんり"
+              },
+              {
+                "text": "ですね。"
+              }
+            ]
           },
           {
             "id": "l36-app-block-005-line-007",
@@ -840,7 +1383,41 @@
                 "matchScore": 1,
                 "asrText": "そ う で す ね で も 市 場 は 量 り 売 り の お 店 が 多 い で し ょ う"
               }
-            }
+            },
+            "kana": "そうですね。でも、いちばははかりうりのおみせがおおいでしょう。",
+            "segments": [
+              {
+                "text": "そうですね。でも、"
+              },
+              {
+                "text": "市場",
+                "ruby": "いちば"
+              },
+              {
+                "text": "は"
+              },
+              {
+                "text": "量り売り",
+                "ruby": "はかりうり"
+              },
+              {
+                "text": "の"
+              },
+              {
+                "text": "お店",
+                "ruby": "おみせ"
+              },
+              {
+                "text": "が"
+              },
+              {
+                "text": "多い",
+                "ruby": "おおい"
+              },
+              {
+                "text": "でしょう。"
+              }
+            ]
           },
           {
             "id": "l36-app-block-005-line-008",
@@ -874,7 +1451,66 @@
                 "matchScore": 0.938,
                 "asrText": "そ う な ん で す よ 食 べ 物 を 買 う の に 知 っ て い る 言 い 方 ば か り 繰 り 返 し て い ま し た だ か ら 卵 も 一 気 リ ン ゴ も 一 斤"
               }
-            }
+            },
+            "kana": "そうなんですよ。たべものをかうのに、しっているいいかたばかりくりかえしていました。だから、たまごもいちきん、リンゴもいちきん…。",
+            "segments": [
+              {
+                "text": "そうなんですよ。"
+              },
+              {
+                "text": "食べ物",
+                "ruby": "たべもの"
+              },
+              {
+                "text": "を"
+              },
+              {
+                "text": "買う",
+                "ruby": "かう"
+              },
+              {
+                "text": "のに、"
+              },
+              {
+                "text": "知っている",
+                "ruby": "しっている"
+              },
+              {
+                "text": "言い方",
+                "ruby": "いいかた"
+              },
+              {
+                "text": "ばかり"
+              },
+              {
+                "text": "繰り返していました",
+                "ruby": "くりかえしていました"
+              },
+              {
+                "text": "。だから、"
+              },
+              {
+                "text": "卵",
+                "ruby": "たまご"
+              },
+              {
+                "text": "も１"
+              },
+              {
+                "text": "斤",
+                "ruby": "きん"
+              },
+              {
+                "text": "、リンゴも１"
+              },
+              {
+                "text": "斤",
+                "ruby": "きん"
+              },
+              {
+                "text": "…。"
+              }
+            ]
           }
         ]
       },
@@ -921,7 +1557,41 @@
                 "matchScore": 1,
                 "asrText": "と こ ろ で こ ち ら へ 来 て か ら ご 主 人 と ど こ か へ 旅 行 に 行 き ま し た か"
               }
-            }
+            },
+            "kana": "ところで、こちらへきてから、ごしゅじんとどこかへりょこうにいきましたか。",
+            "segments": [
+              {
+                "text": "ところで、こちらへ"
+              },
+              {
+                "text": "来て",
+                "ruby": "きて"
+              },
+              {
+                "text": "から、ご"
+              },
+              {
+                "text": "主人",
+                "ruby": "しゅじん"
+              },
+              {
+                "text": "とどこかへ"
+              },
+              {
+                "text": "旅行",
+                "ruby": "りょこう"
+              },
+              {
+                "text": "に"
+              },
+              {
+                "text": "行きました",
+                "ruby": "いきました"
+              },
+              {
+                "text": "か。"
+              }
+            ]
           },
           {
             "id": "l36-app-block-007-line-002",
@@ -954,7 +1624,34 @@
                 "matchScore": 1,
                 "asrText": "い い え 主 人 は 働 い て ば か り で ど こ へ も 行 か な い ん で す よ"
               }
-            }
+            },
+            "kana": "いいえ。しゅじんははたらいてばかりで、どこへもいかないんですよ。",
+            "segments": [
+              {
+                "text": "いいえ。"
+              },
+              {
+                "text": "主人",
+                "ruby": "しゅじん"
+              },
+              {
+                "text": "は"
+              },
+              {
+                "text": "働いてばかりで",
+                "ruby": "はたらいてばかりで"
+              },
+              {
+                "text": "、どこへも"
+              },
+              {
+                "text": "行かない",
+                "ruby": "いかない"
+              },
+              {
+                "text": "んですよ。"
+              }
+            ]
           }
         ]
       }
@@ -986,5 +1683,5 @@
       }
     ]
   },
-  "updatedAt": "2026-08-14T00:17:07.607Z"
+  "updatedAt": "2026-09-10T00:56:53.718Z"
 }

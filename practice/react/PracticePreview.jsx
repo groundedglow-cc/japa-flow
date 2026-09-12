@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { practiceSessionApi } from "./practiceSessionApi.js";
 
 const sectionLabel = {
@@ -572,9 +572,7 @@ function PracticeActivity({ activity, practice, wordIds, admin, record, isReady,
         </div>
       </div>
 
-      <LessonWordList wordIds={wordIds} vocabulary={vocabulary} />
-
-      <ActivityAudio activity={activity} audioUrl={audioUrl} />
+      <ActivityLearningContext wordIds={wordIds} vocabulary={vocabulary} activity={activity} audioUrl={audioUrl} />
       <ActivityResources activity={activity} assetMap={assetMap} />
 
       <form ref={formRef} className="activity-form" onSubmit={(event) => event.preventDefault()}>
@@ -741,8 +739,38 @@ function useLessonVocabularyOccurrences(lessonId) {
   return occurrences;
 }
 
+function ActivityLearningContext({ wordIds, vocabulary, activity, audioUrl }) {
+  const words = Array.isArray(wordIds) && Array.isArray(vocabulary)
+    ? wordIds.map((wordId) => vocabulary[Number(wordId) - 1]).filter(Boolean)
+    : [];
+  const hasWords = words.length > 0;
+  const vocabularyRef = useRef(null);
+  const [vocabularyHeight, setVocabularyHeight] = useState(0);
+
+  useLayoutEffect(() => {
+    if (!hasWords) {
+      setVocabularyHeight(0);
+      return undefined;
+    }
+    const updateHeight = () => setVocabularyHeight(Math.ceil(vocabularyRef.current?.getBoundingClientRect().height || 0));
+    updateHeight();
+    const observer = new ResizeObserver(updateHeight);
+    if (vocabularyRef.current) observer.observe(vocabularyRef.current);
+    return () => {
+      observer.disconnect();
+    };
+  }, [hasWords]);
+
+  return (
+    <div className="activity-learning-context">
+      {hasWords ? <div className="activity-vocabulary-sticky" ref={vocabularyRef}><LessonWordList wordIds={wordIds} vocabulary={vocabulary} /></div> : null}
+      <ActivityAudio activity={activity} audioUrl={audioUrl} sticky stickyOffset={hasWords ? vocabularyHeight : 0} />
+    </div>
+  );
+}
+
 function LessonWordList({ wordIds, vocabulary }) {
-  const [collapsed, setCollapsed] = useState(() => window.localStorage.getItem(VOCABULARY_COLLAPSED_STORAGE_KEY) === "true");
+  const [collapsed, setCollapsed] = useState(() => window.localStorage.getItem(VOCABULARY_COLLAPSED_STORAGE_KEY) !== "false");
   const toggleCollapsed = () => {
     setCollapsed((current) => {
       const next = !current;
@@ -759,7 +787,7 @@ function LessonWordList({ wordIds, vocabulary }) {
   return (
     <section className="lesson-word-list" aria-label="本题生词">
       <button className="lesson-word-list-toggle" type="button" onClick={toggleCollapsed} aria-expanded={!collapsed}>
-        <strong>本题生词 · {words.length}</strong><span>{collapsed ? "⌄" : "⌃"}</span>
+        <strong>本题生词 · {words.length}</strong><span>{collapsed ? "▸" : "▾"}</span>
       </button>
       {!collapsed ? (
       <div className="lesson-word-list-items">
@@ -773,6 +801,7 @@ function LessonWordList({ wordIds, vocabulary }) {
           >
             <span className="lesson-word-japanese"><LessonWordJapanese word={word} /></span>
             <span className="lesson-word-meaning">{wordMeaning(word)}</span>
+            {word?.partOfSpeech ? <span className="lesson-word-pos">{word.partOfSpeech}</span> : null}
           </button>
         ))}
       </div>
@@ -827,15 +856,49 @@ function speakVocabularyWord(text) {
   window.speechSynthesis.speak(utterance);
 }
 
-function ActivityAudio({ activity, audioUrl }) {
+function ActivityAudio({ activity, audioUrl, sticky = false, stickyOffset = 0 }) {
+  const [transcriptOpen, setTranscriptOpen] = useState(false);
   const hasAudio = activity.requiresAudio || activity.audio;
   if (!hasAudio) return null;
   const audioGuidance = hasAudio ? resolveAudioGuidance(activity) : "";
+  const transcript = activity.audio?.transcript;
+  const hasTranscript = Boolean(transcript?.text || transcript?.translation);
+  const transcriptId = `${activity.id}-audio-transcript`;
 
   return (
     <>
-      <div className={`audio-placeholder ${audioUrl ? "ready" : "pending"}`}>
-        {audioUrl ? <audio controls src={audioUrl}></audio> : <span>录音待补充</span>}
+      <div className={`audio-placeholder ${audioUrl ? "ready" : "pending"}${sticky ? " sticky" : ""}`} style={sticky ? { "--activity-audio-sticky-top": `${stickyOffset}px` } : undefined}>
+        <div className="audio-row">
+          {audioUrl ? <audio controls src={audioUrl}></audio> : <span>录音待补充</span>}
+          {hasTranscript ? (
+            <button
+              type="button"
+              className={`audio-transcript-toggle${transcriptOpen ? " active" : ""}`}
+              aria-label={transcriptOpen ? "收起录音文稿" : "查看录音文稿"}
+              aria-expanded={transcriptOpen}
+              aria-controls={transcriptId}
+              onClick={() => setTranscriptOpen((value) => !value)}
+            >
+              <span aria-hidden="true">▤</span>
+            </button>
+          ) : null}
+        </div>
+        {hasTranscript && transcriptOpen ? (
+          <div className="audio-transcript-panel" id={transcriptId}>
+            {transcript.text ? (
+              <div className="audio-transcript-block">
+                <strong>原文</strong>
+                <p>{transcript.text}</p>
+              </div>
+            ) : null}
+            {transcript.translation ? (
+              <div className="audio-transcript-block">
+                <strong>翻译</strong>
+                <p>{transcript.translation}</p>
+              </div>
+            ) : null}
+          </div>
+        ) : null}
       </div>
       {audioGuidance ? <p className="audio-guidance">{audioGuidance}</p> : null}
     </>
@@ -865,7 +928,7 @@ function PracticeItemGroupView({ group, assetMap, admin, answerRecord, gradingRe
             {group.title ? <h3>{group.title}</h3> : null}
             {group.instruction ? <p>{group.instruction}</p> : null}
           </div>
-          <ExampleBlockView example={group.example} />
+          <ExampleBlockView example={group.example} noteKey={`${group.id}:example`} />
         </div>
         <div className="practice-items">
           {group.items.map((item) => (
@@ -888,7 +951,7 @@ function PracticeItemGroupView({ group, assetMap, admin, answerRecord, gradingRe
 
 function LayoutBlockView({ block }) {
   if (block.type === "text") return <div className="layout-text"><RichTextList parts={block.text} /></div>;
-  if (block.type === "example") return <ExampleBlockView example={block.content} />;
+  if (block.type === "example") return <ExampleBlockView example={block.content} noteKey={`layout-example:${examplePlainText(block.content)}`} />;
   if (block.type === "dialogue") {
     return (
       <div className="dialogue-block">
@@ -929,7 +992,17 @@ function LayoutBlockView({ block }) {
   );
 }
 
-function ExampleBlockView({ example }) {
+function ExampleBlockView({ example, noteKey = "" }) {
+  if (!example) return null;
+  return (
+    <div className="example-block-with-ai">
+      <ExampleBlockContent example={example} />
+      <PracticeAiNote item={{ id: noteKey || `example:${examplePlainText(example)}` }} slot={{ id: "example" }} />
+    </div>
+  );
+}
+
+function ExampleBlockContent({ example }) {
   if (!example) return null;
   const formatHintProps = {
     "data-dialogue-speaker-labels": example.formatHints?.speakerLabels?.join(" / ") || undefined,
@@ -1143,6 +1216,7 @@ function answerComparisonRows(item, answer) {
 
 function PracticeItemView({ item, admin, storedAnswer, gradingResult, activityResponseScope, activityResponseScopeHint }) {
   const itemResponseScopeHint = resolveItemResponseScopeHint(item, activityResponseScope, activityResponseScopeHint);
+  const hasMultipleInputSlots = (item.inputSlots?.length || 0) > 1;
   return (
     <section className={`practice-item ${item.renderHint || "inline"}`} data-item-status={gradingResult?.status || "idle"}>
       {gradingResult?.status === "incorrect" && item.evaluationMode !== "open_response" ? (
@@ -1160,7 +1234,7 @@ function PracticeItemView({ item, admin, storedAnswer, gradingResult, activityRe
       {itemResponseScopeHint ? <p className="item-response-scope">{itemResponseScopeHint}</p> : null}
       {item.choices?.length ? <Choices choices={item.choices} item={item} admin={admin} storedAnswer={storedAnswer} gradingResult={gradingResult} /> : null}
       {item.inputSlots?.length ? (
-        <div className="slot-row">
+        <div className={`slot-row${hasMultipleInputSlots ? " multi-slot-row" : ""}`}>
           {item.inputSlots.map((slot) => (
             <InputSlotView
               key={slot.id}
@@ -1169,8 +1243,10 @@ function PracticeItemView({ item, admin, storedAnswer, gradingResult, activityRe
               admin={admin}
               storedAnswer={storedAnswer}
               gradingResult={gradingResult}
+              showAiNote={!hasMultipleInputSlots}
             />
           ))}
+          {hasMultipleInputSlots ? <PracticeAiNote item={item} slot={{ id: "answer" }} /> : null}
         </div>
       ) : null}
     </section>
@@ -1322,13 +1398,13 @@ function Choices({ choices, item, admin, storedAnswer, gradingResult }) {
   );
 }
 
-function InputSlotView({ item, slot, admin, storedAnswer, gradingResult }) {
+function InputSlotView({ item, slot, admin, storedAnswer, gradingResult, showAiNote = true }) {
   const defaultValue = defaultFieldValue(item, slot.id, storedAnswer, admin);
   const className = `practice-input ${slot.width || "medium"}${slot.multiline || slot.expectedUnit === "dialogue" ? " multiline" : ""}`;
   const label = `${item.number} ${slot.id}`;
   const placeholder = slot.placeholder || slot.expectedUnit;
   const result = gradingResult?.fieldResults?.[slot.id];
-  const showAiNote = slot.showAiNote !== false && (item.id !== "l31-p2-a3-q1" || slot.id === "e");
+  const shouldShowAiNote = showAiNote && slot.showAiNote !== false && (item.id !== "l31-p2-a3-q1" || slot.id === "e");
 
   if (slot.choices?.length) {
     const fieldName = slotFieldName(item.id, slot.id);
@@ -1349,14 +1425,14 @@ function InputSlotView({ item, slot, admin, storedAnswer, gradingResult }) {
     return (
       <div className="practice-input-with-notes">
         <textarea name={slotFieldName(item.id, slot.id)} className={className} rows={slot.rows || 3} aria-label={label} placeholder={placeholder} defaultValue={defaultValue} data-result={result || undefined} />
-        {showAiNote ? <PracticeAiNote item={item} slot={slot} /> : null}
+        {shouldShowAiNote ? <PracticeAiNote item={item} slot={slot} /> : null}
       </div>
     );
   }
   return (
     <div className="practice-input-with-notes">
       <input name={slotFieldName(item.id, slot.id)} className={className} aria-label={label} placeholder={placeholder} defaultValue={defaultValue} data-result={result || undefined} />
-      {showAiNote ? <PracticeAiNote item={item} slot={slot} /> : null}
+      {shouldShowAiNote ? <PracticeAiNote item={item} slot={slot} /> : null}
     </div>
   );
 }

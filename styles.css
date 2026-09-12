@@ -2025,7 +2025,7 @@ h3 {
 
 .text-reading-page {
   display: grid;
-  gap: 18px;
+  gap: 14px;
   max-width: 960px;
   margin: 0 auto;
 }
@@ -2043,7 +2043,7 @@ h3 {
 
 .text-reading-sections {
   display: grid;
-  gap: 22px;
+  gap: 14px;
 }
 
 .text-vocabulary-list {
@@ -2073,11 +2073,12 @@ h3 {
 }
 
 .text-vocabulary-chip {
+  position: relative;
   display: inline-flex;
-  align-items: baseline;
+  align-items: flex-end;
   gap: 6px;
   min-height: 31px;
-  padding: 5px 9px;
+  padding: 5px 27px 5px 9px;
   border: 1px solid var(--line);
   border-radius: 9px;
   background: var(--panel);
@@ -2097,10 +2098,25 @@ h3 {
 .text-vocabulary-japanese ruby rt,
 .text-vocabulary-meaning { color: var(--muted); }
 .text-vocabulary-meaning { font-size: 12px; }
+.text-vocabulary-pos {
+  position: absolute;
+  top: 3px;
+  right: 4px;
+  min-width: 17px;
+  padding: 1px 3px;
+  border-radius: 4px;
+  background: #0f766e;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 850;
+  line-height: 13px;
+  text-align: center;
+  pointer-events: none;
+}
 
 .text-reading-section {
   display: grid;
-  gap: 12px;
+  gap: 8px;
 }
 
 .text-reading-section-head {
@@ -2108,7 +2124,7 @@ h3 {
   align-items: center;
   justify-content: flex-start;
   gap: 8px;
-  padding-bottom: 8px;
+  padding-bottom: 6px;
   border-bottom: 1px solid var(--line);
 }
 
@@ -2157,14 +2173,14 @@ h3 {
 .text-reading-statements,
 .text-reading-dialogue {
   display: grid;
-  gap: 8px;
+  gap: 5px;
 }
 
 .text-reading-statement,
 .text-reading-line {
   display: grid;
-  gap: 10px;
-  padding: 12px 14px;
+  gap: 8px;
+  padding: 9px 12px;
   border: 1px solid var(--line);
   border-radius: 8px;
   background: white;
@@ -2190,6 +2206,156 @@ h3 {
   justify-content: space-between;
   gap: 14px;
   min-width: 0;
+}
+
+.text-reading-main {
+  display: grid;
+  gap: 8px;
+  min-width: 0;
+}
+
+.text-reading-tools {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  flex: 0 0 auto;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.16s ease;
+}
+
+.text-reading-statement:hover .text-reading-tools,
+.text-reading-line:hover .text-reading-tools,
+.text-reading-statement.active .text-reading-tools,
+.text-reading-line.active .text-reading-tools {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.text-reading-sentence-play {
+  width: 26px;
+  height: 26px;
+  min-height: 26px;
+  cursor: pointer;
+}
+
+.text-reading-sentence-play::before {
+  left: 10px;
+  top: 7px;
+  border-top-width: 6px;
+  border-bottom-width: 6px;
+  border-left-width: 9px;
+}
+
+.text-reading-ai-trigger {
+  display: grid;
+  width: 26px;
+  height: 26px;
+  min-height: 26px;
+  place-items: center;
+  padding: 0;
+  border: 1px solid #d8ccec;
+  border-radius: 999px;
+  background: #fbf8ff;
+  color: #6b4c9a;
+  cursor: pointer;
+  font: inherit;
+  font-size: 10px;
+  font-weight: 900;
+}
+
+.text-reading-ai-trigger.active {
+  border-color: #b79bdd;
+  background: #f0e9fb;
+  color: #533579;
+}
+
+.text-ai-panel {
+  display: grid;
+  gap: 7px;
+  max-width: 620px;
+}
+
+.text-ai-panel textarea {
+  width: 100%;
+  min-height: 38px;
+  padding: 8px;
+  border: 1px solid #bdd7c9;
+  border-radius: 7px;
+  resize: none;
+  overflow: hidden;
+  font: inherit;
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.text-ai-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 7px;
+}
+
+.text-ai-actions button {
+  min-height: 30px;
+  padding: 5px 9px;
+  border: 1px solid #a8cdbc;
+  border-radius: 6px;
+  background: #fff;
+  cursor: pointer;
+  font: inherit;
+  font-size: 12px;
+}
+
+.text-ai-actions button:disabled {
+  cursor: default;
+  opacity: 0.45;
+}
+
+.text-ai-panel small {
+  color: var(--muted);
+}
+
+.text-ai-answer {
+  padding: 8px;
+  border: 1px solid #d9cbed;
+  border-radius: 7px;
+  background: #faf7ff;
+  color: #43345e;
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+.text-ai-answer p,
+.text-ai-saved pre {
+  margin: 0;
+  white-space: pre-wrap;
+  font: 13px/1.55 inherit;
+}
+
+.text-ai-saved-list {
+  display: grid;
+  gap: 7px;
+}
+
+.text-ai-saved {
+  position: relative;
+  display: grid;
+  gap: 7px;
+  padding: 10px 34px 10px 12px;
+  border: 1px solid #ddd3ea;
+  border-radius: 8px;
+  background: #faf7fd;
+}
+
+.text-ai-saved button {
+  position: absolute;
+  top: 7px;
+  right: 7px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #8d5e58;
+  cursor: pointer;
 }
 
 .text-reading-statement.active,
@@ -2336,6 +2502,13 @@ h3 {
 @keyframes text-follow-spin {
   to {
     transform: rotate(360deg);
+  }
+}
+
+@media (hover: none) {
+  .text-reading-tools {
+    opacity: 1;
+    pointer-events: auto;
   }
 }
 

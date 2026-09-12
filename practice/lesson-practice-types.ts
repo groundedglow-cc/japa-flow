@@ -96,7 +96,7 @@ export type PracticeItem = {
   choices?: Choice[];
   answer?: Answer;
   relatedAssets?: string[];
-  renderHint?: "inline" | "dialogue" | "card" | "table_row" | "map_question" | "trip_composition";
+  renderHint?: "inline" | "dialogue" | "card" | "table_row" | "map_question" | "trip_composition" | "dual_word";
 };
 
 export type ExampleBlock = {
@@ -181,6 +181,7 @@ export type ActivityAudio = {
 
 export type AudioTranscript = {
   text: string;
+  translation?: string;
   source: "asr" | "manual";
   segments?: {
     itemNumber?: string;

@@ -329,8 +329,8 @@
               "speaker": "甲",
               "text": "大学を卒業したらどうしますか。",
               "start": 26.58,
-              "end": 28.89,
-              "duration": 2.31,
+              "end": 29,
+              "duration": 2.42,
               "rawAzureTiming": {
                 "start": 26.83,
                 "end": 28.91,
@@ -345,16 +345,17 @@
               "phraseIndexes": [
                 7
               ],
-              "method": "azure-speech-sentence-alignment-with-boundary-padding",
-              "confidence": "high",
+              "method": "manual-admin-adjustment",
+              "confidence": "approved",
               "alignmentIssues": [],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-09-05T01:21:18.185Z",
-                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "reviewedAt": "2026-09-08T01:09:48.028Z",
+                "note": "Manually verified and adjusted in the text audio preview.",
                 "matchScore": 1,
                 "asrText": "大 学 を 卒 業 し た ら ど う し ま す か"
-              }
+              },
+              "reviewedAt": "2026-09-08T01:09:48.028Z"
             },
             "kana": "だいがくをそつぎょうしたらどうしますか。",
             "segments": [
@@ -388,9 +389,9 @@
               "itemIndex": 6,
               "speaker": "乙",
               "text": "外国で働きたいです。",
-              "start": 28.93,
+              "start": 29.6,
               "end": 32.35,
-              "duration": 3.42,
+              "duration": 2.75,
               "rawAzureTiming": {
                 "start": 28.91,
                 "end": 32.23,
@@ -406,16 +407,17 @@
                 7,
                 8
               ],
-              "method": "azure-speech-sentence-alignment-with-boundary-padding",
-              "confidence": "high",
+              "method": "manual-admin-adjustment",
+              "confidence": "approved",
               "alignmentIssues": [],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-09-05T01:21:18.185Z",
-                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "reviewedAt": "2026-09-08T01:10:19.427Z",
+                "note": "Manually verified and adjusted in the text audio preview.",
                 "matchScore": 1,
                 "asrText": "。 外 国 で 働 き た い で す 。"
-              }
+              },
+              "reviewedAt": "2026-09-08T01:10:19.427Z"
             },
             "kana": "がいこくではたらきたいです。",
             "segments": [
@@ -528,9 +530,9 @@
               "itemIndex": 8,
               "speaker": "乙",
               "text": "いくら聞いても何も言わないんだよ。",
-              "start": 38.873,
+              "start": 38.33,
               "end": 41.09,
-              "duration": 2.217,
+              "duration": 2.76,
               "rawAzureTiming": {
                 "start": 37.55,
                 "end": 41.11,
@@ -552,18 +554,19 @@
                 9,
                 10
               ],
-              "method": "azure-speech-sentence-alignment-with-boundary-padding",
-              "confidence": "high",
+              "method": "manual-admin-adjustment",
+              "confidence": "approved",
               "alignmentIssues": [
                 "ASR boundary overlapped the previous sentence and was moved to the next local speech region; verify this sentence."
               ],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-09-05T01:21:18.185Z",
-                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "reviewedAt": "2026-09-08T01:10:51.122Z",
+                "note": "Manually verified and adjusted in the text audio preview.",
                 "matchScore": 1,
                 "asrText": "。 い く ら 聞 い て も 何 も 言 わ な い ん だ よ"
-              }
+              },
+              "reviewedAt": "2026-09-08T01:10:51.122Z"
             },
             "kana": "いくらきいてもなにもいわないんだよ。",
             "segments": [
@@ -613,9 +616,9 @@
               "itemIndex": 9,
               "speaker": "甲",
               "text": "李さん、資料はまだできませんか。",
-              "start": 41.13,
+              "start": 42.8,
               "end": 46.23,
-              "duration": 5.1,
+              "duration": 3.43,
               "rawAzureTiming": {
                 "start": 41.11,
                 "end": 46.11,
@@ -631,18 +634,19 @@
                 10,
                 11
               ],
-              "method": "azure-speech-sentence-alignment-with-boundary-padding",
-              "confidence": "medium",
+              "method": "manual-admin-adjustment",
+              "confidence": "approved",
               "alignmentIssues": [
                 "Moderate ASR text similarity."
               ],
               "review": {
-                "status": "pending",
-                "reviewedAt": null,
-                "note": "Moderate ASR text similarity.",
+                "status": "approved",
+                "reviewedAt": "2026-09-08T01:11:31.252Z",
+                "note": "Manually verified and adjusted in the text audio preview.",
                 "matchScore": 0.786,
                 "asrText": "。 c t 三 資 料 は ま だ で き ま せ ん か"
-              }
+              },
+              "reviewedAt": "2026-09-08T01:11:31.252Z"
             },
             "kana": "リーさん、しりょうはまだできませんか。",
             "segments": [
@@ -814,9 +818,9 @@
               "itemIndex": 12,
               "speaker": "乙",
               "text": "いいえ、子供しか乗ることができません。",
-              "start": 55.913,
+              "start": 55.613,
               "end": 59.091,
-              "duration": 3.178,
+              "duration": 3.478,
               "rawAzureTiming": {
                 "start": 54.83,
                 "end": 58.59,
@@ -838,19 +842,20 @@
                 12,
                 13
               ],
-              "method": "azure-speech-sentence-alignment-with-boundary-padding",
-              "confidence": "high",
+              "method": "manual-admin-adjustment",
+              "confidence": "approved",
               "alignmentIssues": [
                 "ASR boundary overlapped the previous sentence and was moved to the next local speech region; verify this sentence.",
                 "ASR boundary ended before the final local speech region; verify this sentence."
               ],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-09-05T01:21:18.185Z",
-                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "reviewedAt": "2026-09-08T01:12:40.067Z",
+                "note": "Manually verified and adjusted in the text audio preview.",
                 "matchScore": 1,
                 "asrText": "。 い い え 、 子 供 し か 乗 る こ と が で き ま せ ん"
-              }
+              },
+              "reviewedAt": "2026-09-08T01:12:40.067Z"
             },
             "kana": "いいえ、こどもしかのることができません。",
             "segments": [
@@ -1913,5 +1918,6 @@
         ]
       }
     ]
-  }
+  },
+  "updatedAt": "2026-09-08T01:12:40.068Z"
 }

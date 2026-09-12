@@ -259,14 +259,16 @@
       }
 
       .text-vocabulary-chip {
+        position: relative;
         display: inline-flex;
-        align-items: center;
-        gap: 5px;
-        border: 1px solid #b7d9e7;
-        border-radius: 6px;
+        align-items: flex-end;
+        gap: 6px;
+        min-height: 31px;
+        border: 1px solid var(--line);
+        border-radius: 9px;
         background: #fff;
         color: var(--text);
-        padding: 4px 8px;
+        padding: 5px 27px 5px 9px;
         cursor: pointer;
         font: inherit;
         font-size: 15px;
@@ -277,8 +279,6 @@
       .text-vocabulary-chip:focus-visible,
       .text-vocabulary-chip.playing {
         border-color: var(--accent);
-        background: var(--accent-soft);
-        color: var(--accent);
         outline: none;
       }
 
@@ -290,6 +290,22 @@
       .text-vocabulary-meaning {
         color: var(--muted);
         font-size: 12px;
+      }
+
+      .text-vocabulary-pos {
+        position: absolute;
+        top: 3px;
+        right: 4px;
+        min-width: 17px;
+        padding: 1px 3px;
+        border-radius: 4px;
+        background: #0f766e;
+        color: #fff;
+        font-size: 10px;
+        font-weight: 850;
+        line-height: 13px;
+        text-align: center;
+        pointer-events: none;
       }
 
       .section-actions {
@@ -334,7 +350,7 @@
       .basic-sentences,
       .dialogue,
       .block {
-        padding: 12px 14px;
+        padding: 9px 12px;
       }
 
       .basic-sentences,
@@ -346,8 +362,8 @@
       .sentence {
         display: grid;
         grid-template-columns: 52px 1fr auto;
-        gap: 10px;
-        padding: 9px 0;
+        gap: 8px;
+        padding: 6px 0;
         align-items: start;
         cursor: pointer;
       }
@@ -386,7 +402,7 @@
       .raw {
         color: var(--muted);
         line-height: 1.5;
-        margin-top: 4px;
+        margin-top: 2px;
       }
 
       .cn {
@@ -402,17 +418,23 @@
       }
 
       .dialogue-title {
-        margin: 4px 0 8px;
+        margin: 2px 0 5px;
         color: var(--accent);
       }
 
       .line {
         display: grid;
         grid-template-columns: 52px 1fr auto;
-        gap: 10px;
-        padding: 9px 0;
+        gap: 8px;
+        padding: 6px 0;
         align-items: start;
         cursor: pointer;
+      }
+
+      .text-cell {
+        display: grid;
+        gap: 8px;
+        min-width: 0;
       }
 
       .speaker {
@@ -423,7 +445,7 @@
 
       .block.scene,
       .block.narration {
-        margin: 10px 14px 4px;
+        margin: 7px 12px 2px;
         padding: 0;
       }
 
@@ -445,6 +467,7 @@
         border-color: var(--accent);
         color: var(--accent);
         background: var(--accent-soft);
+        cursor: pointer;
         font-size: 14px;
         line-height: 1;
       }
@@ -453,6 +476,124 @@
         display: flex;
         gap: 6px;
         align-items: center;
+      }
+
+      .segment-actions .audio-button,
+      .segment-actions .text-ai-button {
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.16s ease;
+      }
+
+      .sentence:hover .segment-actions .audio-button,
+      .line:hover .segment-actions .audio-button,
+      .sentence:hover .segment-actions .text-ai-button,
+      .line:hover .segment-actions .text-ai-button {
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      .text-ai-button {
+        border-color: #d8ccec;
+        background: #fbf8ff;
+        color: #6b4c9a;
+        cursor: pointer;
+        font-size: 10px;
+        font-weight: 900;
+      }
+
+      .text-ai-button.active {
+        border-color: #b79bdd;
+        background: #f0e9fb;
+        color: #533579;
+      }
+
+      .text-ai-panel {
+        display: grid;
+        gap: 7px;
+        max-width: 620px;
+      }
+
+      .text-ai-panel textarea {
+        width: 100%;
+        min-height: 38px;
+        padding: 8px;
+        border: 1px solid #bdd7c9;
+        border-radius: 7px;
+        resize: none;
+        overflow: hidden;
+        font: inherit;
+        font-size: 13px;
+        line-height: 1.55;
+      }
+
+      .text-ai-actions {
+        display: flex;
+        justify-content: flex-end;
+        gap: 7px;
+      }
+
+      .text-ai-actions button {
+        min-height: 30px;
+        padding: 5px 9px;
+        border: 1px solid #a8cdbc;
+        border-radius: 6px;
+        background: #fff;
+        cursor: pointer;
+        font: inherit;
+        font-size: 12px;
+      }
+
+      .text-ai-actions button:disabled {
+        cursor: default;
+        opacity: 0.45;
+      }
+
+      .text-ai-panel small {
+        color: var(--muted);
+      }
+
+      .text-ai-answer {
+        padding: 8px;
+        border: 1px solid #d9cbed;
+        border-radius: 7px;
+        background: #faf7ff;
+        color: #43345e;
+        font-size: 12px;
+        line-height: 1.55;
+      }
+
+      .text-ai-answer p,
+      .text-ai-saved pre {
+        margin: 0;
+        white-space: pre-wrap;
+        font: 13px/1.55 inherit;
+      }
+
+      .text-ai-saved-list {
+        display: grid;
+        gap: 7px;
+      }
+
+      .text-ai-saved {
+        position: relative;
+        display: grid;
+        gap: 7px;
+        padding: 10px 34px 10px 12px;
+        border: 1px solid #ddd3ea;
+        border-radius: 8px;
+        background: #faf7fd;
+      }
+
+      .text-ai-saved button {
+        position: absolute;
+        top: 7px;
+        right: 7px;
+        padding: 0;
+        border: 0;
+        background: transparent;
+        color: #8d5e58;
+        cursor: pointer;
       }
 
       .audio-review-status {
@@ -659,6 +800,14 @@
         .block.scene, .block.narration { margin: 8px 11px 2px; }
         .block.scene .cn, .block.narration .cn { margin-top: 0; font-size: 11px; line-height: 1.4; }
       }
+
+      @media (hover: none) {
+        .segment-actions .audio-button,
+        .segment-actions .text-ai-button {
+          opacity: 1;
+          pointer-events: auto;
+        }
+      }
     </style>
   </head>
   <body>
@@ -732,6 +881,10 @@
         samples: [],
         selectedSample: null,
         editing: null,
+        textAiOpenId: "",
+        textAiDraft: "",
+        textAiAnswer: "",
+        textAiStatus: "",
         vocabularyContext: { words: [], occurrences: null, status: "尚未读取" },
         expandedTextSections: { basic: true, application: false },
         textDisplayModes: { basic: "both", application: "both" }
@@ -771,6 +924,7 @@
         state.data = normalizePayload(payload);
         state.expandedTextSections = { basic: true, application: false };
         state.textDisplayModes = { basic: "both", application: "both" };
+        resetTextAiPanel();
         $("#jsonInput").value = JSON.stringify(state.data, null, 2);
         setStatus(`${sourceLabel} 已加载。`);
         render();
@@ -916,9 +1070,9 @@
           const segmentId = registerSegment(sentence.audioSegment);
           registerItem(sentence);
           return `
-            <div class="sentence${segmentId ? " has-audio" : ""}" data-item-id="${escapeHtml(sentence.id || "")}" ${segmentId ? `data-play-segment-id="${escapeHtml(segmentId)}"` : ""}>
+            <div class="sentence${segmentId ? " has-audio" : ""}${state.textAiOpenId === sentence.id ? " ai-open" : ""}" data-item-id="${escapeHtml(sentence.id || "")}" ${segmentId ? `data-play-segment-id="${escapeHtml(segmentId)}"` : ""}>
               <div class="num">${escapeHtml(sentence.order || "")}</div>
-              <div>${renderTextContent(sentence, mode)}</div>
+              <div class="text-cell">${renderTextContent(sentence, mode)}${renderTextAiPanel(sentence)}</div>
               <div>${segmentActions(sentence, segmentId, sentence.audioSegment)}</div>
             </div>
           `;
@@ -1000,9 +1154,9 @@
         const segmentId = registerSegment(line.audioSegment);
         registerItem(line);
         return `
-          <div class="line${segmentId ? " has-audio" : ""}" data-item-id="${escapeHtml(line.id || "")}" ${segmentId ? `data-play-segment-id="${escapeHtml(segmentId)}"` : ""}>
+          <div class="line${segmentId ? " has-audio" : ""}${state.textAiOpenId === line.id ? " ai-open" : ""}" data-item-id="${escapeHtml(line.id || "")}" ${segmentId ? `data-play-segment-id="${escapeHtml(segmentId)}"` : ""}>
             <div><span class="speaker">${escapeHtml(line.speaker || "?")}</span></div>
-            <div>${renderTextContent(line, mode)}</div>
+            <div class="text-cell">${renderTextContent(line, mode)}${renderTextAiPanel(line)}</div>
             <div>${segmentActions(line, segmentId, line.audioSegment)}</div>
           </div>
         `;
@@ -1024,13 +1178,14 @@
           <button class="text-vocabulary-chip" type="button" data-vocabulary-index="${index}" title="播放单词发音">
             <span>${japanese}</span>
             <span class="text-vocabulary-meaning">${escapeHtml((word.meaningZh || []).join("；"))}</span>
+            ${word.partOfSpeech ? `<span class="text-vocabulary-pos">${escapeHtml(word.partOfSpeech)}</span>` : ""}
           </button>
         `;
         }).join("");
-        const collapsed = window.localStorage.getItem(VOCABULARY_COLLAPSED_STORAGE_KEY) === "true";
+        const collapsed = window.localStorage.getItem(VOCABULARY_COLLAPSED_STORAGE_KEY) !== "false";
         return `<div class="text-vocabulary-debug" data-text-vocabulary-section="${section}">
           <button class="text-vocabulary-toggle" type="button" data-toggle-vocabulary="${section}" aria-expanded="${!collapsed}">
-            <strong>本段生词 · ${words.length}</strong><span>${collapsed ? "⌄" : "⌃"}</span>
+            <strong>本段生词 · ${words.length}</strong><span>${collapsed ? "▸" : "▾"}</span>
           </button>
           ${collapsed ? "" : `<div class="text-vocabulary-items">${chips}</div>`}
         </div>`;
@@ -1040,10 +1195,108 @@
         return `
           <div class="segment-actions">
             ${segmentButton(segmentId, segment)}
+            ${item?.id ? `<button class="audio-button text-ai-button ${state.textAiOpenId === item.id ? "active" : ""}" type="button" data-text-ai-toggle="${escapeHtml(item.id)}" title="问 AI" aria-label="问 AI">AI</button>` : ""}
             ${segmentReviewStatus(segment)}
             ${item?.id && segment ? `<button class="audio-button segment-settings" type="button" data-edit-item-id="${escapeHtml(item.id)}" title="设置音频区间" aria-label="设置音频区间">⚙</button>` : ""}
           </div>
         `;
+      }
+
+      function renderTextAiPanel(item) {
+        if (!item?.id || state.textAiOpenId !== item.id) return "";
+        const notes = readTextAiNotes(item.id);
+        return `
+          <div class="text-ai-panel" data-text-ai-panel="${escapeHtml(item.id)}">
+            <textarea data-text-ai-draft="${escapeHtml(item.id)}" rows="1" placeholder="写下笔记，或输入想问 AI 的问题...">${escapeHtml(state.textAiDraft || "")}</textarea>
+            ${state.textAiAnswer ? `<div class="text-ai-answer" aria-label="AI 回答"><strong>AI 回答</strong><p>${escapeHtml(state.textAiAnswer)}</p></div>` : ""}
+            ${state.textAiStatus ? `<small>${escapeHtml(state.textAiStatus)}</small>` : ""}
+            <div class="text-ai-actions">
+              <button type="button" data-text-ai-save="${escapeHtml(item.id)}" ${(state.textAiDraft || "").trim() ? "" : "disabled"}>保存笔记</button>
+              <button type="button" data-text-ai-ask="${escapeHtml(item.id)}" ${(state.textAiDraft || "").trim() ? "" : "disabled"}>问 AI</button>
+            </div>
+            ${notes.length ? `
+              <div class="text-ai-saved-list">
+                ${notes.map((note) => `
+                  <article class="text-ai-saved">
+                    <button type="button" data-text-ai-erase="${escapeHtml(item.id)}" data-note-id="${escapeHtml(note.id)}" aria-label="删除笔记" title="删除笔记">⌫</button>
+                    <pre>${escapeHtml(note.text)}</pre>
+                  </article>
+                `).join("")}
+              </div>
+            ` : ""}
+          </div>
+        `;
+      }
+
+      function resetTextAiPanel() {
+        state.textAiOpenId = "";
+        state.textAiDraft = "";
+        state.textAiAnswer = "";
+        state.textAiStatus = "";
+      }
+
+      function textAiStorageKey(itemId) {
+        const lessonId = state.data?.lessonId || state.selectedSample?.lessonNo || "unknown";
+        return `japaflow.tools.textPreview.aiNotes.v1:${lessonId}:${itemId}`;
+      }
+
+      function readTextAiNotes(itemId) {
+        try {
+          const value = JSON.parse(window.localStorage.getItem(textAiStorageKey(itemId)) || "[]");
+          return Array.isArray(value) ? value : [];
+        } catch {
+          return [];
+        }
+      }
+
+      function writeTextAiNotes(itemId, notes) {
+        window.localStorage.setItem(textAiStorageKey(itemId), JSON.stringify(notes));
+      }
+
+      function saveTextAiNote(itemId) {
+        const draft = String(state.textAiDraft || "").trim();
+        if (!draft) return;
+        const answer = String(state.textAiAnswer || "").trim();
+        const notes = readTextAiNotes(itemId);
+        writeTextAiNotes(itemId, [...notes, { id: `${Date.now()}-${Math.random().toString(16).slice(2)}`, text: answer ? `问：${draft}\n答：${answer}` : draft }]);
+        resetTextAiPanel();
+        render();
+      }
+
+      function eraseTextAiNote(itemId, noteId) {
+        writeTextAiNotes(itemId, readTextAiNotes(itemId).filter((note) => note.id !== noteId));
+        render();
+      }
+
+      async function askTextAi(itemId) {
+        const item = state.itemMap.get(itemId);
+        const draft = String(state.textAiDraft || "").trim();
+        if (!item || !draft) return;
+        state.textAiStatus = "思考中...";
+        state.textAiAnswer = "";
+        render();
+        try {
+          const response = await fetch("/api/grammar/notebook-ai", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${window.localStorage.getItem("light_blog_token") || ""}`
+            },
+            body: JSON.stringify({
+              question: `${copyTextForJapanese(item)}\n\n${draft}`,
+              lessonId: state.data?.lessonId || state.selectedSample?.lessonNo || "",
+              pageNo: itemId
+            })
+          });
+          const data = await response.json().catch(() => ({}));
+          if (!response.ok) throw new Error(data.error || data.message || "AI 请求失败。");
+          const answer = String([data?.answer, data?.data?.answer, data?.content, data?.data?.content].find((value) => typeof value === "string" && value.trim()) || "").trim();
+          state.textAiAnswer = answer;
+          state.textAiStatus = answer ? "回答已生成。" : "AI 未返回可保存的回答，请重试。";
+        } catch (error) {
+          state.textAiStatus = error.message || "AI 请求失败。";
+        }
+        render();
       }
 
       function segmentReviewStatus(segment) {
@@ -1195,6 +1448,7 @@
           button.addEventListener("click", () => {
             const section = button.dataset.toggleSection;
             if (!section) return;
+            resetTextAiPanel();
             state.expandedTextSections = { ...state.expandedTextSections, [section]: !state.expandedTextSections[section] };
             render();
           });
@@ -1205,16 +1459,60 @@
             if (!section) return;
             const current = state.textDisplayModes[section] || "both";
             const next = textDisplayModeOrder[(textDisplayModeOrder.indexOf(current) + 1) % textDisplayModeOrder.length];
+            resetTextAiPanel();
             state.textDisplayModes = { ...state.textDisplayModes, [section]: next };
             render();
           });
         });
+        $("#textPreview").querySelectorAll("[data-text-ai-toggle]").forEach((button) => {
+          button.addEventListener("click", (event) => {
+            event.stopPropagation();
+            const itemId = button.dataset.textAiToggle;
+            const opening = state.textAiOpenId !== itemId;
+            state.textAiOpenId = opening ? itemId : "";
+            state.textAiDraft = "";
+            state.textAiAnswer = "";
+            state.textAiStatus = "";
+            render();
+          });
+        });
+        $("#textPreview").querySelectorAll("[data-text-ai-draft]").forEach((textarea) => {
+          textarea.addEventListener("click", (event) => event.stopPropagation());
+          textarea.addEventListener("input", () => {
+            state.textAiDraft = textarea.value;
+            textarea.style.height = "auto";
+            textarea.style.height = `${Math.max(38, textarea.scrollHeight)}px`;
+            $("#textPreview").querySelectorAll("[data-text-ai-save], [data-text-ai-ask]").forEach((button) => {
+              button.disabled = !state.textAiDraft.trim();
+            });
+          });
+        });
+        $("#textPreview").querySelectorAll("[data-text-ai-ask]").forEach((button) => {
+          button.addEventListener("click", (event) => {
+            event.stopPropagation();
+            askTextAi(button.dataset.textAiAsk);
+          });
+        });
+        $("#textPreview").querySelectorAll("[data-text-ai-save]").forEach((button) => {
+          button.addEventListener("click", (event) => {
+            event.stopPropagation();
+            saveTextAiNote(button.dataset.textAiSave);
+          });
+        });
+        $("#textPreview").querySelectorAll("[data-text-ai-erase]").forEach((button) => {
+          button.addEventListener("click", (event) => {
+            event.stopPropagation();
+            eraseTextAiNote(button.dataset.textAiErase, button.dataset.noteId);
+          });
+        });
         $("#textPreview").querySelectorAll(".sentence[data-play-segment-id], .line[data-play-segment-id]").forEach((row) => {
           row.addEventListener("click", (event) => {
-            if (event.target.closest("button[data-segment-id]")) return;
+            if (event.target.closest("button, textarea")) return;
             const segmentId = row.dataset.playSegmentId;
             if (!segmentId) return;
+            if (state.textAiOpenId) resetTextAiPanel();
             playSegment(state.segmentMap.get(segmentId));
+            render();
           });
         });
         $("#textPreview").querySelectorAll("[data-segment-id]").forEach((button) => {

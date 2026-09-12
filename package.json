@@ -18,6 +18,8 @@
     "diff:lesson": "node scripts/diff-lesson-init.mjs",
     "backfill:exercise-kana": "node scripts/backfill-exercise-kana.mjs",
     "generate:vocabulary-occurrences": "node scripts/generate-lesson-vocabulary-occurrences.mjs",
+    "generate:grammar-vocabulary": "node scripts/generate-grammar-vocabulary-occurrences.mjs",
+    "generate:grammar-vocabulary:native-ocr": "node scripts/generate-grammar-vocabulary-native-ocr.mjs",
     "migrate:exercise-images": "node scripts/migrate-practice-exercise-images.mjs",
     "sync:ios": "npm run build:app && npx cap sync ios",
     "open:ios": "npx cap open ios"

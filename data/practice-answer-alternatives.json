@@ -2561,6 +2561,230 @@
           "addedAt": "2026-09-06T08:19:48.819Z"
         }
       ]
+    },
+    "l34-p2-a4-q3": {
+      "answer": [
+        {
+          "answer": "日本へ留学するために、お金をためています",
+          "normalizedAnswer": "日本へ留学するためにお金をためています",
+          "expectedAnswers": [
+            "日本へ留学するために、貯金しています。"
+          ],
+          "reason": "意思与参考答案一致，语法正确，只是表达方式不同。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "日本へ留学するために、お金をためています",
+          "addedAt": "2026-09-07T12:06:06.396Z"
+        }
+      ]
+    },
+    "l34-p1-a6-q4": {
+      "answer": [
+        {
+          "answer": "甲：あの、この会議室を片づけておかなくでもいいですか？\n乙：ええ、そのままにしておいてください。\n甲：じゃあ、お先に失礼します。\n乙：お疲れさまでした。",
+          "normalizedAnswer": "甲あのこの会議室を片づけておかなくでもいいですか乙ええそのままにしておいてください甲じゃあお先に失礼します乙お疲れさまでした",
+          "expectedAnswers": [
+            "甲：あのう、この会議室を片づけておかなくてもいいですか。\n乙：ええ。そのままにしておいてください。\n甲：じゃあ、お先に失礼します。\n乙：お疲れ様でした。"
+          ],
+          "reason": "用户答案与参考答案意思一致，语法功能相同，仅存在轻微口语省略（あのう→あの）和标点差异，不影响正确性。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "甲：あの、この会議室を片づけておかなくでもいいですか？\n乙：ええ、そのままにしておいてください。\n甲：じゃあ、お先に失礼します。\n乙：お疲れさまでした。",
+          "addedAt": "2026-09-07T12:17:49.854Z"
+        }
+      ]
+    }
+  },
+  "lesson35": {
+    "l35-p1-a2-q6": {
+      "answer": [
+        {
+          "answer": "もうあなたが社長だっら、どしますか",
+          "normalizedAnswer": "もうあなたが社長だっらどしますか",
+          "expectedAnswers": [
+            "もしあなたが社長だったら、どうしますか。"
+          ],
+          "reason": "用户答案与参考答案意思一致，语法功能相同，仅存在轻微语音识别错误（'だっら'应为'だったら'，'どしますか'应为'どうしますか'），结合上下文可唯一还原，不影响句义和语法功能。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "もうあなたが社長だったら、どうしますか。",
+          "addedAt": "2026-09-08T02:04:18.877Z"
+        },
+        {
+          "answer": "もしあなたが社長だっら、どしますか",
+          "normalizedAnswer": "もしあなたが社長だっらどしますか",
+          "expectedAnswers": [
+            "もしあなたが社長だったら、どうしますか。"
+          ],
+          "reason": "用户答案存在轻微口误（「だっら」应为「だったら」，「どしますか」应为「どうしますか」），但结合参考答案可唯一还原，且不改变句义和语法功能。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "もしあなたが社長だったら、どうしますか。",
+          "addedAt": "2026-09-08T02:05:39.364Z"
+        }
+      ]
+    },
+    "l35-p1-a4-q1": {
+      "answer": [
+        {
+          "answer": "甲：天気が良かったら、出かけますか\n乙：いいえ、よくても出かけません",
+          "normalizedAnswer": "甲天気が良かったら出かけますか乙いいえよくても出かけません",
+          "expectedAnswers": [
+            "甲：天気がよかったら、出かけますか。\n乙：いいえ、天気がよくても出かけません。"
+          ],
+          "reason": "用户答案与参考答案意思一致，语法功能相同，仅省略了「天気が」和句尾句号，属于轻微清洗可接受。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "甲：天気が良かったら、出かけますか。\n乙：いいえ、よくても出かけません。",
+          "addedAt": "2026-09-08T02:23:55.365Z"
+        }
+      ]
+    },
+    "l35-p1-a4-q2": {
+      "answer": [
+        {
+          "answer": "甲：説明を聞いたら、分かりますか\n乙：いいえ、聞いても分かりません",
+          "normalizedAnswer": "甲説明を聞いたら分かりますか乙いいえ聞いても分かりません",
+          "expectedAnswers": [
+            "甲：説明を聞いたら、分かりますか。\n乙：いいえ、説明を聞いても分かりません。"
+          ],
+          "reason": "用户答案与参考答案意思一致，语法功能相同，省略了重复的「説明を」不影响理解，句尾缺少句号属于轻微标点问题，可以采纳。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "甲：説明を聞いたら、分かりますか。\n乙：いいえ、聞いても分かりません。",
+          "addedAt": "2026-09-08T02:23:56.797Z"
+        }
+      ]
+    },
+    "l35-p1-a5-q2": {
+      "answer": [
+        {
+          "answer": "2冊だけです。",
+          "normalizedAnswer": "2冊だけです",
+          "expectedAnswers": [
+            "２冊だけあります。"
+          ],
+          "reason": "用户答案与参考答案意思一致，语法功能相同，只是省略了动词，但结合题目可唯一还原，且符合开放题规则中例句的句式。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "2冊だけです。",
+          "addedAt": "2026-09-08T02:38:16.337Z"
+        }
+      ]
+    },
+    "l35-p1-a5-q3": {
+      "answer": [
+        {
+          "answer": "1週間に一度だけです。",
+          "normalizedAnswer": "1週間に一度だけです",
+          "expectedAnswers": [
+            "１週間に１度だけあります。"
+          ],
+          "reason": "用户答案与参考答案意思一致，语法功能相同，只是省略了动词，属于自然表达，可以采纳。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "1週間に一度だけです。",
+          "addedAt": "2026-09-08T02:38:17.258Z"
+        }
+      ]
+    },
+    "l35-p1-a5-q6": {
+      "answer": [
+        {
+          "answer": "100円 した持っていません",
+          "normalizedAnswer": "100円した持っていません",
+          "expectedAnswers": [
+            "100円しか持っていません。"
+          ],
+          "reason": "用户答案中「した」是「しか」的轻微口误，结合参考答案可唯一还原，不改变句义和语法功能。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "100円しか持っていません。",
+          "addedAt": "2026-09-08T02:43:25.171Z"
+        }
+      ]
+    },
+    "l35-p1-a7-q2": {
+      "answer": [
+        {
+          "answer": "甲：地震が起いたら、どうしますか。\n乙：まずドアを開けて、外へ逃げます\n甲：机の下はどうですか。\n乙：机の下でも大丈夫です。",
+          "normalizedAnswer": "甲地震が起いたらどうしますか乙まずドアを開けて外へ逃げます甲机の下はどうですか乙机の下でも大丈夫です",
+          "expectedAnswers": [
+            "甲：地震が起きたら、どうしますか。\n乙：まずドアを開けて、外へ逃げます。\n甲：机の下はどうですか。\n乙：机の下でも大丈夫です。"
+          ],
+          "reason": "用户答案中「起いたら」是「起きたら」的轻微口误，结合上下文可唯一还原，不改变句义和语法功能；乙的第一句末尾缺少句号，属于轻微标点问题，不影响采纳。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "甲：地震が起きたら、どうしますか。\n乙：まずドアを開けて、外へ逃げます。\n甲：机の下はどうですか。\n乙：机の下でも大丈夫です。",
+          "addedAt": "2026-09-08T02:48:55.927Z"
+        }
+      ]
+    },
+    "l35-p2-a5-q3": {
+      "answer": [
+        {
+          "answer": "日本へ帰ったら、中国語の勉強を続けてください",
+          "normalizedAnswer": "日本へ帰ったら中国語の勉強を続けてください",
+          "expectedAnswers": [
+            "日本へ帰っても、中国語の勉強を続けてください。"
+          ],
+          "reason": "用户答案使用「たら」表示条件，与参考答案的「ても」在语义上略有不同，但在此语境下均表达“回到日本后”的假设条件，且后续请求一致，语法功能相同，意思可接受。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "日本へ帰ったら、中国語の勉強を続けてください",
+          "addedAt": "2026-09-09T02:37:13.086Z"
+        }
+      ]
+    }
+  },
+  "lesson36": {
+    "l36-p1-a2-q2": {
+      "answer": [
+        {
+          "answer": "甲：王さんが会社を辞めたのを知っていますか。\n乙：ええ、王さんからメールをもらて、びっくりしました。",
+          "normalizedAnswer": "甲王さんが会社を辞めたのを知っていますか乙ええ王さんからメールをもらてびっくりしました",
+          "expectedAnswers": [
+            "甲：王さんが会社を辞めたのを知っていますか。\n乙：ええ、王さんからメールをもらって、びっくりしました。"
+          ],
+          "reason": "用户答案与参考答案意思和语法功能一致，仅将「もらって」误写为「もらて」，属于轻微口误/书写错误，不影响理解，可采纳。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "甲：王さんが会社を辞めたのを知っていますか。\n乙：ええ、王さんからメールをもらて、びっくりしました。",
+          "addedAt": "2026-09-10T01:30:45.086Z"
+        }
+      ]
+    },
+    "l36-p1-a6-q9": {
+      "answer": [
+        {
+          "answer": "どこかでピエノを弾いているのが聞こえます。",
+          "normalizedAnswer": "どこかでピエノを弾いているのが聞こえます",
+          "expectedAnswers": [
+            "どこかでピアノを弾いているのが聞こえます。"
+          ],
+          "reason": "用户答案仅将「ピアノ」误写为「ピエノ」，属于轻微拼写错误，不影响语法结构和句义，整体符合题目要求，可以采纳。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "どこかでピアノを弾いているのが聞こえます。",
+          "addedAt": "2026-09-11T12:29:47.947Z"
+        }
+      ]
+    },
+    "l36-p2-a4-q3": {
+      "answer": [
+        {
+          "answer": "三千万",
+          "normalizedAnswer": "三千万",
+          "expectedAnswers": [
+            "3,000万"
+          ],
+          "reason": "用户用汉字书写“三千万”，与参考答案“3,000万”数值一致，符合题目要求填写金额词语，语法和情境均正确。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "三千万",
+          "addedAt": "2026-09-12T03:06:28.483Z"
+        }
+      ]
     }
   }
 }

@@ -112,8 +112,7 @@
         padding: 14px;
       }
 
-      .lesson-panel-head,
-      .image-head {
+      .lesson-panel-head {
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -128,8 +127,7 @@
         font-size: 15px;
       }
 
-      .lesson-panel-head span,
-      .image-head span {
+      .lesson-panel-head span {
         color: var(--muted);
         font-size: 12px;
         font-weight: 780;
@@ -228,15 +226,74 @@
         background: #fff;
       }
 
-      .image-head {
+      .grammar-vocabulary {
         padding: 10px 12px;
         border-bottom: 1px solid var(--line);
-        background: #f8faf9;
+        background: #f5fbfd;
       }
 
-      .image-head strong {
-        font-size: 13px;
+      .grammar-vocabulary-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        padding: 0;
+        background: transparent;
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 760;
+        text-align: left;
       }
+
+      .grammar-vocabulary-toggle strong {
+        color: var(--accent);
+      }
+
+      .grammar-vocabulary-toggle:hover strong,
+      .grammar-vocabulary-toggle:focus-visible strong {
+        text-decoration: underline;
+      }
+
+      .grammar-vocabulary-items {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 8px;
+      }
+
+      .grammar-vocabulary-chip-wrap {
+        display: inline-flex;
+        align-items: flex-end;
+        gap: 5px;
+      }
+
+      .grammar-vocabulary-chip {
+        position: relative;
+        display: inline-flex;
+        align-items: flex-end;
+        gap: 6px;
+        min-height: 31px;
+        border: 1px solid var(--line);
+        border-radius: 9px;
+        background: #fff;
+        color: var(--ink);
+        padding: 5px 27px 5px 9px;
+        cursor: pointer;
+        font: inherit;
+        font-size: 15px;
+        text-align: left;
+      }
+
+      .grammar-vocabulary-chip:hover,
+      .grammar-vocabulary-chip:focus-visible,
+      .grammar-vocabulary-chip.playing {
+        border-color: var(--accent);
+        outline: none;
+      }
+
+      .grammar-vocabulary-chip rt { color: var(--muted); font-size: .72em; }
+      .grammar-vocabulary-meaning { color: var(--muted); font-size: 12px; }
+      .grammar-vocabulary-pos { position: absolute; top: 3px; right: 4px; min-width: 17px; padding: 1px 3px; border-radius: 4px; background: #0f766e; color: #fff; font-size: 10px; font-weight: 850; line-height: 13px; text-align: center; pointer-events: none; }
 
       .image-frame img {
         display: block;
@@ -325,7 +382,6 @@
       }
 
       @media (max-width: 560px) {
-        .image-head { display: none; }
         .lesson-grid {
           grid-template-columns: repeat(3, minmax(0, 1fr));
         }
@@ -402,6 +458,10 @@
       const imageLightbox = document.querySelector("#imageLightbox");
       const imageLightboxImage = document.querySelector("#imageLightboxImage");
       let imageZoom = 1;
+      const grammarVocabularyCache = new Map();
+      const vocabularyAudio = new Audio();
+      let vocabularyStopHandler = null;
+      const grammarVocabularyCollapsePrefix = "japaflow:grammar-vocabulary-collapsed:";
 
       function isMobileImageViewer() { return window.matchMedia("(max-width: 560px)").matches; }
       function updateImageZoom() { imageLightboxImage.style.transform = `scale(${imageZoom})`; }
@@ -434,6 +494,79 @@
         return `../course-assets/by-lesson/lesson${lessonNo}/page${pageNo}.webp`;
       }
 
+      function vocabularyDataPath(lessonNo) {
+        return `../data/ocr/lesson${lessonNo}-grammar-vocabulary-occurrences.json`;
+      }
+
+      function vocabularyListPath(lessonNo) {
+        return `../data/ocr/lesson${lessonNo}-vocabulary-audio-verified.json`;
+      }
+
+      function escapeHtml(value) {
+        return String(value ?? "").replace(/[&<>\"']/g, (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;", "'": "&#039;" })[char]);
+      }
+
+      function hasKanji(value) { return /[\u3400-\u9fff]/.test(value || ""); }
+
+      function collapseKey(lessonNo, pageNo) {
+        return `${grammarVocabularyCollapsePrefix}lesson${lessonNo}:page${pageNo}`;
+      }
+
+      function isVocabularyCollapsed(lessonNo, pageNo) {
+        return localStorage.getItem(collapseKey(lessonNo, pageNo)) !== "false";
+      }
+
+      async function loadGrammarVocabulary(lessonNo) {
+        if (grammarVocabularyCache.has(lessonNo)) return grammarVocabularyCache.get(lessonNo);
+        const promise = Promise.all([fetch(vocabularyDataPath(lessonNo)), fetch(vocabularyListPath(lessonNo))])
+          .then(async ([occurrencesResponse, vocabularyResponse]) => {
+            if (!occurrencesResponse.ok || !vocabularyResponse.ok) return null;
+            return { occurrences: await occurrencesResponse.json(), words: (await vocabularyResponse.json()).vocabulary || [] };
+          })
+          .catch(() => null);
+        grammarVocabularyCache.set(lessonNo, promise);
+        return promise;
+      }
+
+      function renderGrammarVocabulary(lessonNo, pageNo, data) {
+        if (data?.occurrences?.reviewStatus !== "approved") return "";
+        const ids = data?.occurrences?.pages?.[pageNo]?.wordIds;
+        const words = Array.isArray(ids) ? ids.map((id) => ({ id, word: data.words[id - 1] })).filter((item) => item.word) : [];
+        if (!words.length) return "";
+        const collapsed = isVocabularyCollapsed(lessonNo, pageNo);
+        const chips = words.map(({ id, word }) => {
+          const writing = word.writing || word.kana || "";
+          const japanese = word.kana && hasKanji(writing) ? `<ruby>${escapeHtml(writing)}<rt>${escapeHtml(word.kana)}</rt></ruby>` : escapeHtml(writing);
+          return `<span class="grammar-vocabulary-chip-wrap"><button class="grammar-vocabulary-chip" type="button" data-vocabulary-index="${id}" title="播放单词发音"><span>${japanese}</span><span class="grammar-vocabulary-meaning">${escapeHtml((word.meaningZh || []).join("；"))}</span>${word.partOfSpeech ? `<span class="grammar-vocabulary-pos">${escapeHtml(word.partOfSpeech)}</span>` : ""}</button></span>`;
+        }).join("");
+        return `<section class="grammar-vocabulary" aria-label="本页生词">
+          <button class="grammar-vocabulary-toggle" type="button" data-toggle-vocabulary="${pageNo}" aria-expanded="${!collapsed}">
+            <strong>本页生词 · ${words.length}</strong><span>${collapsed ? "▸" : "▾"}</span>
+          </button>
+          ${collapsed ? "" : `<div class="grammar-vocabulary-items">${chips}</div>`}
+        </section>`;
+      }
+
+      function playVocabularyWord(word, button) {
+        const segment = word?.audioSegment;
+        const url = segment?.sourceUrl;
+        if (!url) return;
+        vocabularyAudio.pause();
+        if (vocabularyStopHandler) vocabularyAudio.removeEventListener("timeupdate", vocabularyStopHandler);
+        vocabularyAudio.src = url;
+        vocabularyAudio.currentTime = Number(segment.start) || 0;
+        document.querySelectorAll(".grammar-vocabulary-chip.playing").forEach((item) => item.classList.remove("playing"));
+        button.classList.add("playing");
+        const stopAt = Number(segment.end) || 0;
+        const stop = () => {
+          if (stopAt && vocabularyAudio.currentTime >= stopAt) { vocabularyAudio.pause(); vocabularyAudio.removeEventListener("timeupdate", stop); vocabularyStopHandler = null; button.classList.remove("playing"); }
+        };
+        vocabularyStopHandler = stop;
+        vocabularyAudio.addEventListener("timeupdate", stop);
+        vocabularyAudio.addEventListener("ended", () => button.classList.remove("playing"), { once: true });
+        vocabularyAudio.play().catch(() => button.classList.remove("playing"));
+      }
+
       function renderLessons(activeLessonNo) {
         lessonGrid.innerHTML = lessons.map((lesson) => `
           <button class="lesson-entry ${lesson.lessonNo === activeLessonNo ? "active" : ""}" type="button" data-lesson="${lesson.lessonNo}">
@@ -446,17 +579,16 @@
         `).join("");
       }
 
-      function renderViewer(activeLessonNo) {
+      async function renderViewer(activeLessonNo) {
         const lesson = lessons[activeLessonNo - 1];
+        const vocabularyData = await loadGrammarVocabulary(activeLessonNo);
+        if (activeLessonNo !== selectedLessonNo()) return;
         summary.textContent = `第 ${activeLessonNo} 课 · ${lesson.pages.length} 张`;
         viewer.innerHTML = `
           <div class="image-stack">
             ${lesson.pages.map((pageNo, index) => `
               <figure class="image-frame">
-                <div class="image-head">
-                  <strong>Page ${pageNo}</strong>
-                  <span>第 ${index + 2} 张</span>
-                </div>
+                ${renderGrammarVocabulary(activeLessonNo, pageNo, vocabularyData)}
                 <img src="${imagePath(activeLessonNo, pageNo)}" alt="第${activeLessonNo}课 Page ${pageNo}" loading="lazy" onerror="this.closest('.image-frame').classList.add('missing')" />
                 <div class="image-error">图片不存在：lesson${activeLessonNo}/page${pageNo}.webp</div>
               </figure>
@@ -478,6 +610,21 @@
       });
 
       viewer.addEventListener("click", (event) => {
+        const toggle = event.target.closest("[data-toggle-vocabulary]");
+        if (toggle) {
+          const lesson = selectedLessonNo();
+          const pageNo = toggle.dataset.toggleVocabulary;
+          const collapsed = toggle.getAttribute("aria-expanded") === "true";
+          localStorage.setItem(collapseKey(lesson, pageNo), String(collapsed));
+          renderViewer(lesson);
+          return;
+        }
+        const vocabularyButton = event.target.closest("[data-vocabulary-index]");
+        if (vocabularyButton) {
+          const lesson = selectedLessonNo();
+          loadGrammarVocabulary(lesson).then((data) => playVocabularyWord(data?.words?.[Number(vocabularyButton.dataset.vocabularyIndex) - 1], vocabularyButton));
+          return;
+        }
         const image = event.target.closest(".image-frame img");
         if (image) openImageLightbox(image);
       });
