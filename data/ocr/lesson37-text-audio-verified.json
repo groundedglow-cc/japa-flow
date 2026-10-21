@@ -46,7 +46,24 @@
             "matchScore": 1,
             "asrText": "優 勝 す れ ば オ リ ン ピ ッ ク に 出 場 す る こ と が で き ま す"
           }
-        }
+        },
+        "kana": "ゆうしょうすれば、オリンピックにしゅつじょうすることができます。",
+        "segments": [
+          {
+            "text": "優勝すれば",
+            "ruby": "ゆうしょうすれば"
+          },
+          {
+            "text": "、オリンピックに"
+          },
+          {
+            "text": "出場する",
+            "ruby": "しゅつじょうする"
+          },
+          {
+            "text": "ことができます。"
+          }
+        ]
       },
       {
         "id": "l37-basic-s002",
@@ -79,7 +96,38 @@
             "matchScore": 1,
             "asrText": "天 安 門 へ 行 く な ら 地 下 鉄 が 便 利 で す よ"
           }
-        }
+        },
+        "kana": "てんあんもんへいくなら、ちかてつがべんりですよ。",
+        "segments": [
+          {
+            "text": "天安門",
+            "ruby": "てんあんもん"
+          },
+          {
+            "text": "へ"
+          },
+          {
+            "text": "行く",
+            "ruby": "いく"
+          },
+          {
+            "text": "なら、"
+          },
+          {
+            "text": "地下鉄",
+            "ruby": "ちかてつ"
+          },
+          {
+            "text": "が"
+          },
+          {
+            "text": "便利",
+            "ruby": "べんり"
+          },
+          {
+            "text": "ですよ。"
+          }
+        ]
       },
       {
         "id": "l37-basic-s003",
@@ -112,7 +160,31 @@
             "matchScore": 1,
             "asrText": "映 画 で も 見 に 行 き ま せ ん か"
           }
-        }
+        },
+        "kana": "えいがでもみにいきませんか。",
+        "segments": [
+          {
+            "text": "映画",
+            "ruby": "えいが"
+          },
+          {
+            "text": "でも"
+          },
+          {
+            "text": "見",
+            "ruby": "み"
+          },
+          {
+            "text": "に"
+          },
+          {
+            "text": "行きません",
+            "ruby": "いきません"
+          },
+          {
+            "text": "か。"
+          }
+        ]
       },
       {
         "id": "l37-basic-s004",
@@ -127,25 +199,60 @@
           "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson37/lesson_basic.mp3",
           "speaker": "",
           "text": "パーティーで、戴さんとか楊さんとか、いろいろな人に会いました。",
-          "start": 18.65,
+          "start": 19.5,
           "end": 25.47,
-          "duration": 6.82,
+          "duration": 5.97,
           "speechUnitCount": 1,
           "matchScore": 0.786,
           "asrText": "パ ー テ ィ ー で タ イ さ ん と か 楊 さ ん と か 色 々 な 人 に 会 い ま し た",
           "phraseIndexes": [
             4
           ],
-          "method": "legacy-asr-alignment-range-converted",
+          "method": "manual-admin-adjustment",
           "confidence": "approved",
           "review": {
             "status": "approved",
-            "reviewedAt": "2026-08-05T10:19:01.708Z",
-            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-09-13T01:48:51.445Z",
+            "note": "Manually verified and adjusted in the text audio preview.",
             "matchScore": 0.786,
             "asrText": "パ ー テ ィ ー で タ イ さ ん と か 楊 さ ん と か 色 々 な 人 に 会 い ま し た"
+          },
+          "reviewedAt": "2026-09-13T01:48:51.445Z"
+        },
+        "kana": "パーティーで、たいさんとかようさんとか、いろいろなひとにあいました。",
+        "segments": [
+          {
+            "text": "パーティーで、"
+          },
+          {
+            "text": "戴",
+            "ruby": "たい"
+          },
+          {
+            "text": "さんとか"
+          },
+          {
+            "text": "楊",
+            "ruby": "よう"
+          },
+          {
+            "text": "さんとか、いろいろな"
+          },
+          {
+            "text": "人",
+            "ruby": "ひと"
+          },
+          {
+            "text": "に"
+          },
+          {
+            "text": "会いました",
+            "ruby": "あいました"
+          },
+          {
+            "text": "。"
           }
-        }
+        ]
       }
     ],
     "dialogues": [
@@ -184,7 +291,38 @@
                 "matchScore": 0.905,
                 "asrText": "沈 さ ん の 携 帯 電 話 の 番 号 が わ か ら な い ん で す が"
               }
-            }
+            },
+            "kana": "ちんさんのけいたいでんわのばんごうがわからないんですが…。",
+            "segments": [
+              {
+                "text": "陳",
+                "ruby": "ちん"
+              },
+              {
+                "text": "さんの"
+              },
+              {
+                "text": "携帯電話",
+                "ruby": "けいたいでんわ"
+              },
+              {
+                "text": "の"
+              },
+              {
+                "text": "番号",
+                "ruby": "ばんごう"
+              },
+              {
+                "text": "が"
+              },
+              {
+                "text": "分からない",
+                "ruby": "わからない"
+              },
+              {
+                "text": "んですが…。"
+              }
+            ]
           },
           {
             "id": "l37-basic-dialogue-001-line-002",
@@ -217,7 +355,31 @@
                 "matchScore": 0.923,
                 "asrText": "李 さ ん に 聞 け ば わ か り ま す よ"
               }
-            }
+            },
+            "kana": "りさんにきけば、わかりますよ。",
+            "segments": [
+              {
+                "text": "李",
+                "ruby": "り"
+              },
+              {
+                "text": "さんに"
+              },
+              {
+                "text": "聞けば",
+                "ruby": "きけば"
+              },
+              {
+                "text": "、"
+              },
+              {
+                "text": "分かります",
+                "ruby": "わかります"
+              },
+              {
+                "text": "よ。"
+              }
+            ]
           }
         ]
       },
@@ -238,25 +400,43 @@
               "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson37/lesson_basic.mp3",
               "speaker": "甲",
               "text": "李さん、プールに行きませんか。",
-              "start": 39.41,
+              "start": 38,
               "end": 40.67,
-              "duration": 1.26,
+              "duration": 2.67,
               "speechUnitCount": 1,
               "matchScore": 0.769,
               "asrText": "プ ー ル に 行 き ま せ ん か",
               "phraseIndexes": [
                 8
               ],
-              "method": "legacy-asr-alignment-range-converted",
+              "method": "manual-admin-adjustment",
               "confidence": "approved",
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-05T10:19:01.708Z",
-                "note": "Automatically approved by the bulk alignment workflow.",
+                "reviewedAt": "2026-09-13T01:49:34.496Z",
+                "note": "Manually verified and adjusted in the text audio preview.",
                 "matchScore": 0.769,
                 "asrText": "プ ー ル に 行 き ま せ ん か"
+              },
+              "reviewedAt": "2026-09-13T01:49:34.496Z"
+            },
+            "kana": "りさん、プールにいきませんか。",
+            "segments": [
+              {
+                "text": "李",
+                "ruby": "り"
+              },
+              {
+                "text": "さん、プールに"
+              },
+              {
+                "text": "行きません",
+                "ruby": "いきません"
+              },
+              {
+                "text": "か。"
               }
-            }
+            ]
           },
           {
             "id": "l37-basic-dialogue-002-line-002",
@@ -271,25 +451,57 @@
               "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson37/lesson_basic.mp3",
               "speaker": "乙",
               "text": "今日はちょっと用事があるんです。明日なら暇ですが…。",
-              "start": 41.33,
+              "start": 41.03,
               "end": 45.79,
-              "duration": 4.46,
+              "duration": 4.76,
               "speechUnitCount": 1,
               "matchScore": 1,
               "asrText": "今 日 は ち ょ っ と 用 事 が あ る ん で す 明 日 な ら 暇 で す が",
               "phraseIndexes": [
                 9
               ],
-              "method": "legacy-asr-alignment-range-converted",
+              "method": "manual-admin-adjustment",
               "confidence": "approved",
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-05T10:19:01.708Z",
-                "note": "Automatically approved by the bulk alignment workflow.",
+                "reviewedAt": "2026-09-13T01:49:43.886Z",
+                "note": "Manually verified and adjusted in the text audio preview.",
                 "matchScore": 1,
                 "asrText": "今 日 は ち ょ っ と 用 事 が あ る ん で す 明 日 な ら 暇 で す が"
+              },
+              "reviewedAt": "2026-09-13T01:49:43.886Z"
+            },
+            "kana": "きょうはちょっとようじがあるんです。あしたならひまですが…。",
+            "segments": [
+              {
+                "text": "今日",
+                "ruby": "きょう"
+              },
+              {
+                "text": "はちょっと"
+              },
+              {
+                "text": "用事",
+                "ruby": "ようじ"
+              },
+              {
+                "text": "があるんです。"
+              },
+              {
+                "text": "明日",
+                "ruby": "あした"
+              },
+              {
+                "text": "なら"
+              },
+              {
+                "text": "暇",
+                "ruby": "ひま"
+              },
+              {
+                "text": "ですが…。"
               }
-            }
+            ]
           }
         ]
       },
@@ -328,7 +540,24 @@
                 "matchScore": 1,
                 "asrText": "最 近 ち ょ っ と 太 り ま し た"
               }
-            }
+            },
+            "kana": "さいきん、ちょっとふとりました。",
+            "segments": [
+              {
+                "text": "最近",
+                "ruby": "さいきん"
+              },
+              {
+                "text": "、ちょっと"
+              },
+              {
+                "text": "太りました",
+                "ruby": "ふとりました"
+              },
+              {
+                "text": "。"
+              }
+            ]
           },
           {
             "id": "l37-basic-dialogue-003-line-002",
@@ -343,25 +572,39 @@
               "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson37/lesson_basic.mp3",
               "speaker": "乙",
               "text": "じゃあ、運動でもしたらどうですか。",
-              "start": 51.77,
+              "start": 51.17,
               "end": 54.03,
-              "duration": 2.26,
+              "duration": 2.86,
               "speechUnitCount": 1,
               "matchScore": 1,
               "asrText": "じ ゃ あ 運 動 で も し た ら ど う で す か",
               "phraseIndexes": [
                 11
               ],
-              "method": "legacy-asr-alignment-range-converted",
+              "method": "manual-admin-adjustment",
               "confidence": "approved",
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-05T10:19:01.708Z",
-                "note": "Automatically approved by the bulk alignment workflow.",
+                "reviewedAt": "2026-09-13T01:49:58.136Z",
+                "note": "Manually verified and adjusted in the text audio preview.",
                 "matchScore": 1,
                 "asrText": "じ ゃ あ 運 動 で も し た ら ど う で す か"
+              },
+              "reviewedAt": "2026-09-13T01:49:58.136Z"
+            },
+            "kana": "じゃあ、うんどうでもしたらどうですか。",
+            "segments": [
+              {
+                "text": "じゃあ、"
+              },
+              {
+                "text": "運動",
+                "ruby": "うんどう"
+              },
+              {
+                "text": "でもしたらどうですか。"
               }
-            }
+            ]
           }
         ]
       },
@@ -382,25 +625,50 @@
               "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson37/lesson_basic.mp3",
               "speaker": "甲",
               "text": "葉子さん、昨日バーゲンに行ったの？",
-              "start": 57.79,
+              "start": 57.59,
               "end": 61.29,
-              "duration": 3.5,
+              "duration": 3.7,
               "speechUnitCount": 1,
               "matchScore": 0.933,
               "asrText": "陽 子 さ ん 昨 日 バ ー ゲ ン に 行 っ た の",
               "phraseIndexes": [
                 12
               ],
-              "method": "legacy-asr-alignment-range-converted",
+              "method": "manual-admin-adjustment",
               "confidence": "approved",
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-05T10:19:01.708Z",
-                "note": "Automatically approved by the bulk alignment workflow.",
+                "reviewedAt": "2026-09-13T01:50:12.039Z",
+                "note": "Manually verified and adjusted in the text audio preview.",
                 "matchScore": 0.933,
                 "asrText": "陽 子 さ ん 昨 日 バ ー ゲ ン に 行 っ た の"
+              },
+              "reviewedAt": "2026-09-13T01:50:12.039Z"
+            },
+            "kana": "ようこさん、きのうバーゲンにいったの？",
+            "segments": [
+              {
+                "text": "葉子",
+                "ruby": "ようこ"
+              },
+              {
+                "text": "さん、"
+              },
+              {
+                "text": "昨日",
+                "ruby": "きのう"
+              },
+              {
+                "text": "バーゲンに"
+              },
+              {
+                "text": "行った",
+                "ruby": "いった"
+              },
+              {
+                "text": "の？"
               }
-            }
+            ]
           },
           {
             "id": "l37-basic-dialogue-004-line-002",
@@ -415,25 +683,46 @@
               "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson37/lesson_basic.mp3",
               "speaker": "乙",
               "text": "うん、コートとか靴とか、いっぱい買っちゃった。",
-              "start": 62.7,
+              "start": 62.2,
               "end": 65.36,
-              "duration": 2.66,
+              "duration": 3.16,
               "speechUnitCount": 1,
               "matchScore": 1,
               "asrText": "う ん コ ー ト と か 靴 と か い っ ぱ い 買 っ ち ゃ っ た",
               "phraseIndexes": [
                 13
               ],
-              "method": "legacy-asr-alignment-range-converted",
+              "method": "manual-admin-adjustment",
               "confidence": "approved",
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-05T10:19:01.708Z",
-                "note": "Automatically approved by the bulk alignment workflow.",
+                "reviewedAt": "2026-09-13T01:50:26.755Z",
+                "note": "Manually verified and adjusted in the text audio preview.",
                 "matchScore": 1,
                 "asrText": "う ん コ ー ト と か 靴 と か い っ ぱ い 買 っ ち ゃ っ た"
+              },
+              "reviewedAt": "2026-09-13T01:50:26.755Z"
+            },
+            "kana": "うん、コートとかくつとか、いっぱいかっちゃった。",
+            "segments": [
+              {
+                "text": "うん、コートとか"
+              },
+              {
+                "text": "靴",
+                "ruby": "くつ"
+              },
+              {
+                "text": "とか、いっぱい"
+              },
+              {
+                "text": "買っちゃった",
+                "ruby": "かっちゃった"
+              },
+              {
+                "text": "。"
               }
-            }
+            ]
           }
         ]
       }
@@ -467,25 +756,39 @@
               "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson37/lesson_apps.mp3",
               "speaker": "小野",
               "text": "「八達嶺」までどのぐらいですか。",
-              "start": 3.78,
+              "start": 10.8,
               "end": 13.88,
-              "duration": 10.1,
+              "duration": 3.08,
               "speechUnitCount": 1,
               "matchScore": 0.846,
               "asrText": "発 達 令 ま で ど の ぐ ら い で す か",
               "phraseIndexes": [
                 1
               ],
-              "method": "legacy-asr-alignment-range-converted",
+              "method": "manual-admin-adjustment",
               "confidence": "approved",
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-05T10:19:59.998Z",
-                "note": "Automatically approved by the bulk alignment workflow.",
+                "reviewedAt": "2026-09-15T02:12:42.144Z",
+                "note": "Manually verified and adjusted in the text audio preview.",
                 "matchScore": 0.846,
                 "asrText": "発 達 令 ま で ど の ぐ ら い で す か"
+              },
+              "reviewedAt": "2026-09-15T02:12:42.144Z"
+            },
+            "kana": "「はったつれい」までどのぐらいですか。",
+            "segments": [
+              {
+                "text": "「"
+              },
+              {
+                "text": "八達嶺",
+                "ruby": "はったつれい"
+              },
+              {
+                "text": "」までどのぐらいですか。"
               }
-            }
+            ]
           },
           {
             "id": "l37-app-block-002-line-002",
@@ -518,7 +821,45 @@
                 "matchScore": 0.944,
                 "asrText": "高 速 道 路 を 利 用 す れ ば だ い た い 一 時 間 ぐ ら い で す 鉄 道 な ら 二 時 間 ち ょ っ と で す ね"
               }
-            }
+            },
+            "kana": "こうそくどうろをりようすれば、だいたい１じかんぐらいです。てつどうなら２じかんちょっとですね。",
+            "segments": [
+              {
+                "text": "高速道路",
+                "ruby": "こうそくどうろ"
+              },
+              {
+                "text": "を"
+              },
+              {
+                "text": "利用すれば",
+                "ruby": "りようすれば"
+              },
+              {
+                "text": "、だいたい１"
+              },
+              {
+                "text": "時間",
+                "ruby": "じかん"
+              },
+              {
+                "text": "ぐらいです。"
+              },
+              {
+                "text": "鉄道",
+                "ruby": "てつどう"
+              },
+              {
+                "text": "なら２"
+              },
+              {
+                "text": "時間",
+                "ruby": "じかん"
+              },
+              {
+                "text": "ちょっとですね。"
+              }
+            ]
           },
           {
             "id": "l37-app-block-002-line-003",
@@ -551,7 +892,24 @@
                 "matchScore": 1,
                 "asrText": "鉄 道 で も 行 く こ と が で き る ん で す か"
               }
-            }
+            },
+            "kana": "てつどうでもいくことができるんですか。",
+            "segments": [
+              {
+                "text": "鉄道",
+                "ruby": "てつどう"
+              },
+              {
+                "text": "でも"
+              },
+              {
+                "text": "行く",
+                "ruby": "いく"
+              },
+              {
+                "text": "ことができるんですか。"
+              }
+            ]
           },
           {
             "id": "l37-app-block-002-line-004",
@@ -584,7 +942,55 @@
                 "matchScore": 1,
                 "asrText": "え え 鉄 道 で 行 く な ら 北 京 北 駅 が 便 利 で す 直 通 列 車 が 出 て い ま す か ら"
               }
-            }
+            },
+            "kana": "ええ。てつどうでいくなら、ペキンきたえきがべんりです。ちょくつうれっしゃがでていますから。",
+            "segments": [
+              {
+                "text": "ええ。"
+              },
+              {
+                "text": "鉄道",
+                "ruby": "てつどう"
+              },
+              {
+                "text": "で"
+              },
+              {
+                "text": "行く",
+                "ruby": "いく"
+              },
+              {
+                "text": "なら、"
+              },
+              {
+                "text": "北京北駅",
+                "ruby": "ペキンきたえき"
+              },
+              {
+                "text": "が"
+              },
+              {
+                "text": "便利",
+                "ruby": "べんり"
+              },
+              {
+                "text": "です。"
+              },
+              {
+                "text": "直通列車",
+                "ruby": "ちょくつうれっしゃ"
+              },
+              {
+                "text": "が"
+              },
+              {
+                "text": "出ています",
+                "ruby": "でています"
+              },
+              {
+                "text": "から。"
+              }
+            ]
           }
         ]
       },
@@ -631,7 +1037,66 @@
                 "matchScore": 0.795,
                 "asrText": "発 達 令 は 万 里 の 長 城 の 観 光 ス ポ ッ ト の ひ と つ で す 北 京 か ら 近 く て 一 番 有 名 な 場 所 で す"
               }
-            }
+            },
+            "kana": "はったつれいはばんりのちょうじょうのかんこうスポットの１つです。ペキンからちかくて、いちばんゆうめいなばしょです。",
+            "segments": [
+              {
+                "text": "八達嶺",
+                "ruby": "はったつれい"
+              },
+              {
+                "text": "は"
+              },
+              {
+                "text": "万里",
+                "ruby": "ばんり"
+              },
+              {
+                "text": "の"
+              },
+              {
+                "text": "長城",
+                "ruby": "ちょうじょう"
+              },
+              {
+                "text": "の"
+              },
+              {
+                "text": "観光",
+                "ruby": "かんこう"
+              },
+              {
+                "text": "スポットの１つです。"
+              },
+              {
+                "text": "北京",
+                "ruby": "ペキン"
+              },
+              {
+                "text": "から"
+              },
+              {
+                "text": "近くて",
+                "ruby": "ちかくて"
+              },
+              {
+                "text": "、いちばん"
+              },
+              {
+                "text": "有名",
+                "ruby": "ゆうめい"
+              },
+              {
+                "text": "な"
+              },
+              {
+                "text": "場所",
+                "ruby": "ばしょ"
+              },
+              {
+                "text": "です。"
+              }
+            ]
           },
           {
             "id": "l37-app-block-004-line-002",
@@ -665,7 +1130,69 @@
                 "matchScore": 1,
                 "asrText": "テ レ ビ と か 写 真 集 と か で 見 た こ と が あ り ま す が 実 際 に 見 る と 本 当 に 規 模 が 大 き い で す ね さ す が 世 界 遺 産 で す"
               }
-            }
+            },
+            "kana": "テレビとかしゃしんしゅうとかでみたことがありますが、じっさいにみると、ほんとうにきぼがおおきいですね。さすが「せかいいさん」です。",
+            "segments": [
+              {
+                "text": "テレビとか"
+              },
+              {
+                "text": "写真集",
+                "ruby": "しゃしんしゅう"
+              },
+              {
+                "text": "とかで"
+              },
+              {
+                "text": "見た",
+                "ruby": "みた"
+              },
+              {
+                "text": "ことがありますが、"
+              },
+              {
+                "text": "実際",
+                "ruby": "じっさい"
+              },
+              {
+                "text": "に"
+              },
+              {
+                "text": "見る",
+                "ruby": "みる"
+              },
+              {
+                "text": "と、"
+              },
+              {
+                "text": "本当",
+                "ruby": "ほんとう"
+              },
+              {
+                "text": "に"
+              },
+              {
+                "text": "規模",
+                "ruby": "きぼ"
+              },
+              {
+                "text": "が"
+              },
+              {
+                "text": "大きい",
+                "ruby": "おおきい"
+              },
+              {
+                "text": "ですね。さすが「"
+              },
+              {
+                "text": "世界遺産",
+                "ruby": "せかいいさん"
+              },
+              {
+                "text": "」です。"
+              }
+            ]
           }
         ]
       },
@@ -712,7 +1239,34 @@
                 "matchScore": 0.938,
                 "asrText": "ど う し て 万 里 の 長 城 と い う ん で す か"
               }
-            }
+            },
+            "kana": "どうして「ばんりのちょうじょう」というんですか。",
+            "segments": [
+              {
+                "text": "どうして「"
+              },
+              {
+                "text": "万里",
+                "ruby": "ばんり"
+              },
+              {
+                "text": "の"
+              },
+              {
+                "text": "長城",
+                "ruby": "ちょうじょう"
+              },
+              {
+                "text": "」と"
+              },
+              {
+                "text": "言う",
+                "ruby": "いう"
+              },
+              {
+                "text": "んですか。"
+              }
+            ]
           },
           {
             "id": "l37-app-block-006-line-002",
@@ -746,7 +1300,80 @@
                 "matchScore": 0.81,
                 "asrText": "頂 上 の 全 長 は 五 千 キ ロ メ ー ト ル 以 上 あ り ま す 中 国 で は 一 利 は 零 点 五 キ ロ メ ー ト ル で す か ら 中 国 の 単 位 に 換 算 す れ ば 一 万 里 を 超 え る ん で す よ"
               }
-            }
+            },
+            "kana": "ちょうじょうのぜんちょうは５，０００キロメートルいじょうあります。ちゅうごくでは「１り」は0.5キロメートルですから、ちゅうごくのたんいにかんさんすれば、１まんりをこえるんですよ。",
+            "segments": [
+              {
+                "text": "長城",
+                "ruby": "ちょうじょう"
+              },
+              {
+                "text": "の"
+              },
+              {
+                "text": "全長",
+                "ruby": "ぜんちょう"
+              },
+              {
+                "text": "は５，０００キロメートル"
+              },
+              {
+                "text": "以上",
+                "ruby": "いじょう"
+              },
+              {
+                "text": "あります。"
+              },
+              {
+                "text": "中国",
+                "ruby": "ちゅうごく"
+              },
+              {
+                "text": "では「１"
+              },
+              {
+                "text": "里",
+                "ruby": "り"
+              },
+              {
+                "text": "」は0.5キロメートルですから、"
+              },
+              {
+                "text": "中国",
+                "ruby": "ちゅうごく"
+              },
+              {
+                "text": "の"
+              },
+              {
+                "text": "単位",
+                "ruby": "たんい"
+              },
+              {
+                "text": "に"
+              },
+              {
+                "text": "換算すれば",
+                "ruby": "かんさんすれば"
+              },
+              {
+                "text": "、１"
+              },
+              {
+                "text": "万里",
+                "ruby": "ばんり"
+              },
+              {
+                "text": "を"
+              },
+              {
+                "text": "超える",
+                "ruby": "こえる"
+              },
+              {
+                "text": "んですよ。"
+              }
+            ]
           }
         ]
       },
@@ -793,7 +1420,38 @@
                 "matchScore": 1,
                 "asrText": "何 か お 土 産 を 買 お う と 思 う ん で す が"
               }
-            }
+            },
+            "kana": "なにかおみやげをかおうとおもうんですが…。",
+            "segments": [
+              {
+                "text": "何か",
+                "ruby": "なにか"
+              },
+              {
+                "text": "お"
+              },
+              {
+                "text": "土産",
+                "ruby": "みやげ"
+              },
+              {
+                "text": "を"
+              },
+              {
+                "text": "買おう",
+                "ruby": "かおう"
+              },
+              {
+                "text": "と"
+              },
+              {
+                "text": "思う",
+                "ruby": "おもう"
+              },
+              {
+                "text": "んですが…。"
+              }
+            ]
           },
           {
             "id": "l37-app-block-008-line-002",
@@ -826,7 +1484,20 @@
                 "matchScore": 1,
                 "asrText": "お 土 産 な ら t シ ャ ツ と か メ ダ ル と か い ろ い ろ あ り ま す よ"
               }
-            }
+            },
+            "kana": "おみやげなら、Ｔシャツとかメダルとか、いろいろありますよ。",
+            "segments": [
+              {
+                "text": "お"
+              },
+              {
+                "text": "土産",
+                "ruby": "みやげ"
+              },
+              {
+                "text": "なら、Ｔシャツとかメダルとか、いろいろありますよ。"
+              }
+            ]
           },
           {
             "id": "l37-app-block-008-line-003",
@@ -859,7 +1530,20 @@
                 "matchScore": 1,
                 "asrText": "そ う で す か じ ゃ あ メ ダ ル で も 買 お う か な"
               }
-            }
+            },
+            "kana": "そうですか。じゃあ、メダルでもかおうかな。",
+            "segments": [
+              {
+                "text": "そうですか。じゃあ、メダルでも"
+              },
+              {
+                "text": "買おう",
+                "ruby": "かおう"
+              },
+              {
+                "text": "かな。"
+              }
+            ]
           },
           {
             "id": "l37-app-block-008-line-004",
@@ -892,7 +1576,34 @@
                 "matchScore": 0.92,
                 "asrText": "ゆ っ く り 探 せ ば 他 に も い い お 土 産 が あ る と 思 い ま す よ"
               }
-            }
+            },
+            "kana": "ゆっくりさがせば、ほかにもいいおみやげがあるとおもいますよ。",
+            "segments": [
+              {
+                "text": "ゆっくり"
+              },
+              {
+                "text": "探せば",
+                "ruby": "さがせば"
+              },
+              {
+                "text": "、ほかにもいいお"
+              },
+              {
+                "text": "土産",
+                "ruby": "みやげ"
+              },
+              {
+                "text": "があると"
+              },
+              {
+                "text": "思います",
+                "ruby": "おもいます"
+              },
+              {
+                "text": "よ。"
+              }
+            ]
           }
         ]
       }
@@ -924,5 +1635,5 @@
       }
     ]
   },
-  "updatedAt": "2026-08-14T00:17:07.650Z"
+  "updatedAt": "2026-09-15T02:12:42.144Z"
 }

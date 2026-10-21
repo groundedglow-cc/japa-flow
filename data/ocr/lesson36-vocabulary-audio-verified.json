@@ -2038,9 +2038,9 @@
         "itemIndex": 36,
         "text": "あげます",
         "label": "揚げます",
-        "start": 61.699,
+        "start": 61.599,
         "end": 62.86,
-        "duration": 1.161,
+        "duration": 1.261,
         "speechUnitCount": 4,
         "wordCount": 4,
         "matchScore": 1,
@@ -2051,10 +2051,10 @@
           133,
           134
         ],
-        "method": "audio-vad-sequential-alignment-with-azure-verification",
+        "method": "manual-admin-adjustment",
         "timingSource": "audio-silence-detection",
         "timingConfidence": "high",
-        "confidence": "high",
+        "confidence": "approved",
         "alignmentIssues": [],
         "alignmentWarnings": [],
         "speechActivity": {
@@ -2075,7 +2075,8 @@
           "note": "Automatically approved by the audio-boundary alignment workflow.",
           "matchScore": 1,
           "asrText": "あ げ ま す"
-        }
+        },
+        "reviewedAt": "2026-09-12T13:15:46.518Z"
       }
     },
     {
@@ -2095,9 +2096,9 @@
         "itemIndex": 37,
         "text": "なれます",
         "label": "慣れます",
-        "start": 62.996,
+        "start": 62.896,
         "end": 64.163,
-        "duration": 1.167,
+        "duration": 1.267,
         "speechUnitCount": 4,
         "wordCount": 4,
         "matchScore": 1,
@@ -2108,10 +2109,10 @@
           137,
           138
         ],
-        "method": "audio-vad-sequential-alignment-with-azure-verification",
+        "method": "manual-admin-adjustment",
         "timingSource": "audio-silence-detection",
         "timingConfidence": "high",
-        "confidence": "high",
+        "confidence": "approved",
         "alignmentIssues": [],
         "alignmentWarnings": [],
         "speechActivity": {
@@ -2132,7 +2133,8 @@
           "note": "Automatically approved by the audio-boundary alignment workflow.",
           "matchScore": 1,
           "asrText": "な れ ま す"
-        }
+        },
+        "reviewedAt": "2026-09-12T13:17:00.662Z"
       }
     },
     {
@@ -2387,9 +2389,9 @@
         "itemIndex": 42,
         "text": "くろうします",
         "label": "苦労します",
-        "start": 71.324,
-        "end": 72.798,
-        "duration": 1.474,
+        "start": 71.14,
+        "end": 72.598,
+        "duration": 1.458,
         "speechUnitCount": 5,
         "wordCount": 5,
         "matchScore": 1,
@@ -2401,10 +2403,10 @@
           159,
           160
         ],
-        "method": "audio-vad-sequential-alignment-with-azure-verification",
+        "method": "manual-admin-adjustment",
         "timingSource": "audio-silence-detection",
         "timingConfidence": "high",
-        "confidence": "high",
+        "confidence": "approved",
         "alignmentIssues": [],
         "alignmentWarnings": [],
         "speechActivity": {
@@ -2425,7 +2427,8 @@
           "note": "Automatically approved by the audio-boundary alignment workflow.",
           "matchScore": 1,
           "asrText": "苦 労 し ま す"
-        }
+        },
+        "reviewedAt": "2026-09-12T13:15:19.796Z"
       }
     },
     {
@@ -2680,9 +2683,9 @@
         "itemIndex": 47,
         "text": "とにかく",
         "label": "とにかく",
-        "start": 80.277,
+        "start": 80.077,
         "end": 81.307,
-        "duration": 1.03,
+        "duration": 1.23,
         "speechUnitCount": 4,
         "wordCount": 4,
         "matchScore": 1,
@@ -2693,10 +2696,10 @@
           181,
           182
         ],
-        "method": "audio-vad-sequential-alignment-with-azure-verification",
+        "method": "manual-admin-adjustment",
         "timingSource": "audio-silence-detection",
         "timingConfidence": "high",
-        "confidence": "high",
+        "confidence": "approved",
         "alignmentIssues": [],
         "alignmentWarnings": [],
         "speechActivity": {
@@ -2717,7 +2720,8 @@
           "note": "Automatically approved by the audio-boundary alignment workflow.",
           "matchScore": 1,
           "asrText": "と に か く"
-        }
+        },
+        "reviewedAt": "2026-09-12T13:15:34.744Z"
       }
     },
     {
@@ -2796,9 +2800,9 @@
         "itemIndex": 49,
         "text": "ぺらぺら",
         "label": "ぺらぺら",
-        "start": 83.768,
+        "start": 83.48,
         "end": 84.73,
-        "duration": 0.962,
+        "duration": 1.25,
         "speechUnitCount": 4,
         "wordCount": 4,
         "matchScore": 1,
@@ -2809,10 +2813,10 @@
           189,
           190
         ],
-        "method": "audio-vad-sequential-alignment-with-azure-verification",
+        "method": "manual-admin-adjustment",
         "timingSource": "audio-silence-detection",
         "timingConfidence": "high",
-        "confidence": "high",
+        "confidence": "approved",
         "alignmentIssues": [],
         "alignmentWarnings": [],
         "speechActivity": {
@@ -2833,7 +2837,8 @@
           "note": "Automatically approved by the audio-boundary alignment workflow.",
           "matchScore": 1,
           "asrText": "ぺ ら ぺ ら"
-        }
+        },
+        "reviewedAt": "2026-09-12T13:18:09.385Z"
       }
     },
     {
@@ -2853,9 +2858,9 @@
         "itemIndex": 50,
         "text": "ワンワン",
         "label": "ワンワン",
-        "start": 85.502,
+        "start": 85.202,
         "end": 86.579,
-        "duration": 1.077,
+        "duration": 1.377,
         "speechUnitCount": 4,
         "wordCount": 4,
         "matchScore": 1,
@@ -2866,10 +2871,10 @@
           193,
           194
         ],
-        "method": "audio-vad-sequential-alignment-with-azure-verification",
+        "method": "manual-admin-adjustment",
         "timingSource": "audio-silence-detection",
         "timingConfidence": "high",
-        "confidence": "high",
+        "confidence": "approved",
         "alignmentIssues": [],
         "alignmentWarnings": [],
         "speechActivity": {
@@ -2890,7 +2895,8 @@
           "note": "Automatically approved by the audio-boundary alignment workflow.",
           "matchScore": 1,
           "asrText": "ワ ン ワ ン"
-        }
+        },
+        "reviewedAt": "2026-09-12T13:16:12.406Z"
       }
     },
     {
@@ -2910,9 +2916,9 @@
         "itemIndex": 51,
         "text": "ザーザー",
         "label": "ザーザー",
-        "start": 86.928,
+        "start": 86.628,
         "end": 88.086,
-        "duration": 1.158,
+        "duration": 1.458,
         "speechUnitCount": 4,
         "wordCount": 4,
         "matchScore": 1,
@@ -2923,10 +2929,10 @@
           197,
           198
         ],
-        "method": "audio-vad-sequential-alignment-with-azure-verification",
+        "method": "manual-admin-adjustment",
         "timingSource": "audio-silence-detection",
         "timingConfidence": "high",
-        "confidence": "high",
+        "confidence": "approved",
         "alignmentIssues": [],
         "alignmentWarnings": [],
         "speechActivity": {
@@ -2947,7 +2953,8 @@
           "note": "Automatically approved by the audio-boundary alignment workflow.",
           "matchScore": 1,
           "asrText": "ザ ー ザ ー"
-        }
+        },
+        "reviewedAt": "2026-09-12T13:16:20.373Z"
       }
     },
     {
@@ -2968,9 +2975,9 @@
         "itemIndex": 52,
         "text": "すやすや",
         "label": "すやすや",
-        "start": 88.609,
+        "start": 88.409,
         "end": 89.839,
-        "duration": 1.23,
+        "duration": 1.43,
         "speechUnitCount": 4,
         "wordCount": 4,
         "matchScore": 1,
@@ -2981,10 +2988,10 @@
           201,
           202
         ],
-        "method": "audio-vad-sequential-alignment-with-azure-verification",
+        "method": "manual-admin-adjustment",
         "timingSource": "audio-silence-detection",
         "timingConfidence": "high",
-        "confidence": "high",
+        "confidence": "approved",
         "alignmentIssues": [],
         "alignmentWarnings": [],
         "speechActivity": {
@@ -3005,7 +3012,8 @@
           "note": "Automatically approved by the audio-boundary alignment workflow.",
           "matchScore": 1,
           "asrText": "す や す や"
-        }
+        },
+        "reviewedAt": "2026-09-12T13:16:30.143Z"
       }
     },
     {
@@ -3026,9 +3034,9 @@
         "itemIndex": 53,
         "text": "くねくね",
         "label": "くねくね",
-        "start": 90.19,
+        "start": 89.9,
         "end": 91.188,
-        "duration": 0.998,
+        "duration": 1.288,
         "speechUnitCount": 4,
         "wordCount": 4,
         "matchScore": 1,
@@ -3039,10 +3047,10 @@
           205,
           206
         ],
-        "method": "audio-vad-sequential-alignment-with-azure-verification",
+        "method": "manual-admin-adjustment",
         "timingSource": "audio-silence-detection",
         "timingConfidence": "high",
-        "confidence": "high",
+        "confidence": "approved",
         "alignmentIssues": [],
         "alignmentWarnings": [],
         "speechActivity": {
@@ -3063,7 +3071,8 @@
           "note": "Automatically approved by the audio-boundary alignment workflow.",
           "matchScore": 1,
           "asrText": "く ね く ね"
-        }
+        },
+        "reviewedAt": "2026-09-12T13:16:41.556Z"
       }
     },
     {
@@ -3083,9 +3092,9 @@
         "itemIndex": 54,
         "text": "メキシコ",
         "label": "メキシコ",
-        "start": 91.6,
+        "start": 91.5,
         "end": 93.265,
-        "duration": 1.665,
+        "duration": 1.765,
         "speechUnitCount": 4,
         "wordCount": 4,
         "matchScore": 1,
@@ -3121,7 +3130,7 @@
           "matchScore": 1,
           "asrText": "メ キ シ コ"
         },
-        "reviewedAt": "2026-09-10T01:31:57.777Z"
+        "reviewedAt": "2026-09-12T13:16:49.493Z"
       }
     },
     {
@@ -3206,5 +3215,5 @@
       }
     ]
   },
-  "updatedAt": "2026-09-11T12:23:36.965Z"
+  "updatedAt": "2026-09-12T13:18:09.386Z"
 }

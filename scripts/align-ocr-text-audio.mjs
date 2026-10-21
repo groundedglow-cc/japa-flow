@@ -307,7 +307,8 @@ function normalizePhrases(phrases) {
 }
 
 function phraseUnits(phrases) {
-  return phrases.flatMap((phrase) => !phrase.words.length ? [phrase] : phrase.words.map((word, index) => ({ index: phrase.index, wordIndex: index, text: word.text, start: word.start, end: word.end, confidence: phrase.confidence })));
+  return phrases.flatMap((phrase) => !phrase.words.length ? [phrase] : phrase.words.map((word, index) => ({ index: phrase.index, wordIndex: index, text: word.text, start: word.start, end: word.end, confidence: phrase.confidence })))
+    .filter((unit) => normalizeText(unit.text));
 }
 
 function alignItems(items, phrases) {

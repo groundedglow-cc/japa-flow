@@ -1,0 +1,18 @@
+/* Position the entry against its own grammar group or sentence, not the page. */
+.inline-notes-container { position:relative; }
+.inline-notes-host { position:relative; width:100%; min-width:0; grid-column:2 / -1; cursor:default; }
+.inline-notes-host .ian-entry { position:absolute; top:-30px; right:2px; bottom:auto; }
+.inline-notes-host .ian-list { margin-top:8px; }
+.inline-notes-host .ian-editor { margin-top:8px; }
+@media (hover:hover) and (pointer:fine) {
+  .inline-notes-host .ian-trigger { opacity:0; pointer-events:none; transition:opacity 120ms ease; }
+  .inline-notes-container:hover > .inline-notes-host .ian-trigger,
+  .inline-notes-container:focus-within > .inline-notes-host .ian-trigger { opacity:1; pointer-events:auto; }
+}
+/* An unused, collapsed editor must not create a grid row or reserved space. */
+.inline-notes-host:not(:has(.is-open, .ian-note, .ian-status:not(:empty))) {
+  position:absolute; right:0; bottom:0; height:0; margin:0; padding:0;
+}
+.inline-notes-host:not(:has(.is-open, .ian-note, .ian-status:not(:empty))) .ian-list { margin:0; }
+
+.inline-notes-host:not(:has(.is-open, .ian-note, .ian-status:not(:empty))) .ian-entry { top:auto; bottom:2px; }

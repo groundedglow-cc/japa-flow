@@ -28,9 +28,9 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
   mod
 ));
 
-// node_modules/react/cjs/react.development.js
+// node_modules/.pnpm/react@19.3.0/node_modules/react/cjs/react.development.js
 var require_react_development = __commonJS({
-  "node_modules/react/cjs/react.development.js"(exports, module) {
+  "node_modules/.pnpm/react@19.3.0/node_modules/react/cjs/react.development.js"(exports, module) {
     "use strict";
     (function() {
       function defineDeprecationWarning(methodName, info) {
@@ -115,6 +115,8 @@ var require_react_development = __commonJS({
             return "SuspenseList";
           case REACT_ACTIVITY_TYPE:
             return "Activity";
+          case REACT_VIEW_TRANSITION_TYPE:
+            return "ViewTransition";
         }
         if ("object" === typeof type)
           switch ("number" === typeof type.tag && console.error(
@@ -371,8 +373,11 @@ var require_react_development = __commonJS({
       }
       function lazyInitializer(payload) {
         if (-1 === payload._status) {
-          var ioInfo = payload._ioInfo;
-          null != ioInfo && (ioInfo.start = ioInfo.end = performance.now());
+          var resolveDebugValue = null, rejectDebugValue = null, ioInfo = payload._ioInfo;
+          null != ioInfo && (ioInfo.start = ioInfo.end = performance.now(), ioInfo.value = new Promise(function(resolve, reject) {
+            resolveDebugValue = resolve;
+            rejectDebugValue = reject;
+          }));
           ioInfo = payload._result;
           var thenable = ioInfo();
           thenable.then(
@@ -381,7 +386,13 @@ var require_react_development = __commonJS({
                 payload._status = 1;
                 payload._result = moduleObject;
                 var _ioInfo = payload._ioInfo;
-                null != _ioInfo && (_ioInfo.end = performance.now());
+                if (null != _ioInfo) {
+                  _ioInfo.end = performance.now();
+                  var debugValue = null == moduleObject ? void 0 : moduleObject.default;
+                  resolveDebugValue(debugValue);
+                  _ioInfo.value.status = "fulfilled";
+                  _ioInfo.value.value = debugValue;
+                }
                 void 0 === thenable.status && (thenable.status = "fulfilled", thenable.value = moduleObject);
               }
             },
@@ -390,14 +401,13 @@ var require_react_development = __commonJS({
                 payload._status = 2;
                 payload._result = error;
                 var _ioInfo2 = payload._ioInfo;
-                null != _ioInfo2 && (_ioInfo2.end = performance.now());
+                null != _ioInfo2 && (_ioInfo2.end = performance.now(), _ioInfo2.value.then(noop, noop), rejectDebugValue(error), _ioInfo2.value.status = "rejected", _ioInfo2.value.reason = error);
                 void 0 === thenable.status && (thenable.status = "rejected", thenable.reason = error);
               }
             }
           );
           ioInfo = payload._ioInfo;
           if (null != ioInfo) {
-            ioInfo.value = thenable;
             var displayName = thenable.displayName;
             "string" === typeof displayName && (ioInfo.name = displayName);
           }
@@ -422,6 +432,35 @@ var require_react_development = __commonJS({
       }
       function releaseAsyncTransition() {
         ReactSharedInternals.asyncTransitions--;
+      }
+      function startTransition(scope) {
+        var prevTransition = ReactSharedInternals.T, currentTransition = {};
+        currentTransition.types = null !== prevTransition ? prevTransition.types : null;
+        currentTransition._updatedFibers = /* @__PURE__ */ new Set();
+        ReactSharedInternals.T = currentTransition;
+        try {
+          var returnValue = scope(), onStartTransitionFinish = ReactSharedInternals.S;
+          null !== onStartTransitionFinish && onStartTransitionFinish(currentTransition, returnValue);
+          "object" === typeof returnValue && null !== returnValue && "function" === typeof returnValue.then && (ReactSharedInternals.asyncTransitions++, returnValue.then(releaseAsyncTransition, releaseAsyncTransition), returnValue.then(noop, reportGlobalError));
+        } catch (error) {
+          reportGlobalError(error);
+        } finally {
+          null === prevTransition && currentTransition._updatedFibers && (scope = currentTransition._updatedFibers.size, currentTransition._updatedFibers.clear(), 10 < scope && console.warn(
+            "Detected a large number of updates inside startTransition. If this is due to a subscription please re-write it to use React provided hooks. Otherwise concurrent mode guarantees are off the table."
+          )), null !== prevTransition && null !== currentTransition.types && (null !== prevTransition.types && prevTransition.types !== currentTransition.types && console.error(
+            "We expected inner Transitions to have transferred the outer types set and that you cannot add to the outer Transition while inside the inner.This is a bug in React."
+          ), prevTransition.types = currentTransition.types), ReactSharedInternals.T = prevTransition;
+        }
+      }
+      function addTransitionType(type) {
+        var transition = ReactSharedInternals.T;
+        if (null !== transition) {
+          var transitionTypes = transition.types;
+          null === transitionTypes ? transition.types = [type] : -1 === transitionTypes.indexOf(type) && transitionTypes.push(type);
+        } else
+          0 === ReactSharedInternals.asyncTransitions && console.error(
+            "addTransitionType can only be called inside a `startTransition()` callback. It must be associated with a specific Transition."
+          ), startTransition(addTransitionType.bind(null, type));
       }
       function enqueueTask(task) {
         if (null === enqueueTaskImpl)
@@ -497,7 +536,7 @@ var require_react_development = __commonJS({
         }
       }
       "undefined" !== typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ && "function" === typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart && __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(Error());
-      var REACT_ELEMENT_TYPE = /* @__PURE__ */ Symbol.for("react.transitional.element"), REACT_PORTAL_TYPE = /* @__PURE__ */ Symbol.for("react.portal"), REACT_FRAGMENT_TYPE = /* @__PURE__ */ Symbol.for("react.fragment"), REACT_STRICT_MODE_TYPE = /* @__PURE__ */ Symbol.for("react.strict_mode"), REACT_PROFILER_TYPE = /* @__PURE__ */ Symbol.for("react.profiler"), REACT_CONSUMER_TYPE = /* @__PURE__ */ Symbol.for("react.consumer"), REACT_CONTEXT_TYPE = /* @__PURE__ */ Symbol.for("react.context"), REACT_FORWARD_REF_TYPE = /* @__PURE__ */ Symbol.for("react.forward_ref"), REACT_SUSPENSE_TYPE = /* @__PURE__ */ Symbol.for("react.suspense"), REACT_SUSPENSE_LIST_TYPE = /* @__PURE__ */ Symbol.for("react.suspense_list"), REACT_MEMO_TYPE = /* @__PURE__ */ Symbol.for("react.memo"), REACT_LAZY_TYPE = /* @__PURE__ */ Symbol.for("react.lazy"), REACT_ACTIVITY_TYPE = /* @__PURE__ */ Symbol.for("react.activity"), MAYBE_ITERATOR_SYMBOL = Symbol.iterator, didWarnStateUpdateForUnmountedComponent = {}, ReactNoopUpdateQueue = {
+      var REACT_ELEMENT_TYPE = /* @__PURE__ */ Symbol.for("react.transitional.element"), REACT_PORTAL_TYPE = /* @__PURE__ */ Symbol.for("react.portal"), REACT_FRAGMENT_TYPE = /* @__PURE__ */ Symbol.for("react.fragment"), REACT_STRICT_MODE_TYPE = /* @__PURE__ */ Symbol.for("react.strict_mode"), REACT_PROFILER_TYPE = /* @__PURE__ */ Symbol.for("react.profiler"), REACT_CONSUMER_TYPE = /* @__PURE__ */ Symbol.for("react.consumer"), REACT_CONTEXT_TYPE = /* @__PURE__ */ Symbol.for("react.context"), REACT_FORWARD_REF_TYPE = /* @__PURE__ */ Symbol.for("react.forward_ref"), REACT_SUSPENSE_TYPE = /* @__PURE__ */ Symbol.for("react.suspense"), REACT_SUSPENSE_LIST_TYPE = /* @__PURE__ */ Symbol.for("react.suspense_list"), REACT_MEMO_TYPE = /* @__PURE__ */ Symbol.for("react.memo"), REACT_LAZY_TYPE = /* @__PURE__ */ Symbol.for("react.lazy"), REACT_ACTIVITY_TYPE = /* @__PURE__ */ Symbol.for("react.activity"), REACT_VIEW_TRANSITION_TYPE = /* @__PURE__ */ Symbol.for("react.view_transition"), MAYBE_ITERATOR_SYMBOL = Symbol.iterator, didWarnStateUpdateForUnmountedComponent = {}, ReactNoopUpdateQueue = {
         isMounted: function() {
           return false;
         },
@@ -632,6 +671,7 @@ var require_react_development = __commonJS({
       exports.PureComponent = PureComponent;
       exports.StrictMode = REACT_STRICT_MODE_TYPE;
       exports.Suspense = REACT_SUSPENSE_TYPE;
+      exports.ViewTransition = REACT_VIEW_TRANSITION_TYPE;
       exports.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE = ReactSharedInternals;
       exports.__COMPILER_RUNTIME = deprecatedAPIs;
       exports.act = function(callback) {
@@ -711,6 +751,7 @@ var require_react_development = __commonJS({
           }
         };
       };
+      exports.addTransitionType = addTransitionType;
       exports.cache = function(fn) {
         return function() {
           return fn.apply(null, arguments);
@@ -787,6 +828,7 @@ var require_react_development = __commonJS({
       exports.createElement = function(type, config, children) {
         for (var i = 2; i < arguments.length; i++)
           validateChildKeys(arguments[i]);
+        var propName;
         i = {};
         var key = null;
         if (null != config)
@@ -809,13 +851,13 @@ var require_react_development = __commonJS({
           i,
           "function" === typeof type ? type.displayName || type.name || "Unknown" : type
         );
-        var propName = 1e4 > ReactSharedInternals.recentlyCreatedOwnerStacks++;
+        (propName = 1e4 > ReactSharedInternals.recentlyCreatedOwnerStacks++) ? (childArray = Error.stackTraceLimit, Error.stackTraceLimit = 10, childrenLength = Error("react-stack-top-frame"), Error.stackTraceLimit = childArray) : childrenLength = unknownOwnerDebugStack;
         return ReactElement(
           type,
           key,
           i,
           getOwner(),
-          propName ? Error("react-stack-top-frame") : unknownOwnerDebugStack,
+          childrenLength,
           propName ? createTask(getTaskName(type)) : unknownOwnerDebugTask
         );
       };
@@ -895,24 +937,7 @@ var require_react_development = __commonJS({
         });
         return compare;
       };
-      exports.startTransition = function(scope) {
-        var prevTransition = ReactSharedInternals.T, currentTransition = {};
-        currentTransition._updatedFibers = /* @__PURE__ */ new Set();
-        ReactSharedInternals.T = currentTransition;
-        try {
-          var returnValue = scope(), onStartTransitionFinish = ReactSharedInternals.S;
-          null !== onStartTransitionFinish && onStartTransitionFinish(currentTransition, returnValue);
-          "object" === typeof returnValue && null !== returnValue && "function" === typeof returnValue.then && (ReactSharedInternals.asyncTransitions++, returnValue.then(releaseAsyncTransition, releaseAsyncTransition), returnValue.then(noop, reportGlobalError));
-        } catch (error) {
-          reportGlobalError(error);
-        } finally {
-          null === prevTransition && currentTransition._updatedFibers && (scope = currentTransition._updatedFibers.size, currentTransition._updatedFibers.clear(), 10 < scope && console.warn(
-            "Detected a large number of updates inside startTransition. If this is due to a subscription please re-write it to use React provided hooks. Otherwise concurrent mode guarantees are off the table."
-          )), null !== prevTransition && null !== currentTransition.types && (null !== prevTransition.types && prevTransition.types !== currentTransition.types && console.error(
-            "We expected inner Transitions to have transferred the outer types set and that you cannot add to the outer Transition while inside the inner.This is a bug in React."
-          ), prevTransition.types = currentTransition.types), ReactSharedInternals.T = prevTransition;
-        }
-      };
+      exports.startTransition = startTransition;
       exports.unstable_useCacheRefresh = function() {
         return resolveDispatcher().useCacheRefresh();
       };
@@ -994,15 +1019,15 @@ var require_react_development = __commonJS({
       exports.useTransition = function() {
         return resolveDispatcher().useTransition();
       };
-      exports.version = "19.2.7";
+      exports.version = "19.3.0";
       "undefined" !== typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ && "function" === typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop && __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop(Error());
     })();
   }
 });
 
-// node_modules/react/index.js
+// node_modules/.pnpm/react@19.3.0/node_modules/react/index.js
 var require_react = __commonJS({
-  "node_modules/react/index.js"(exports, module) {
+  "node_modules/.pnpm/react@19.3.0/node_modules/react/index.js"(exports, module) {
     "use strict";
     if (false) {
       module.exports = null;
@@ -1012,9 +1037,9 @@ var require_react = __commonJS({
   }
 });
 
-// node_modules/scheduler/cjs/scheduler.development.js
+// node_modules/.pnpm/scheduler@0.28.0/node_modules/scheduler/cjs/scheduler.development.js
 var require_scheduler_development = __commonJS({
-  "node_modules/scheduler/cjs/scheduler.development.js"(exports) {
+  "node_modules/.pnpm/scheduler@0.28.0/node_modules/scheduler/cjs/scheduler.development.js"(exports) {
     "use strict";
     (function() {
       function performWorkUntilDeadline() {
@@ -1271,9 +1296,9 @@ var require_scheduler_development = __commonJS({
   }
 });
 
-// node_modules/scheduler/index.js
+// node_modules/.pnpm/scheduler@0.28.0/node_modules/scheduler/index.js
 var require_scheduler = __commonJS({
-  "node_modules/scheduler/index.js"(exports, module) {
+  "node_modules/.pnpm/scheduler@0.28.0/node_modules/scheduler/index.js"(exports, module) {
     "use strict";
     if (false) {
       module.exports = null;
@@ -1283,9 +1308,9 @@ var require_scheduler = __commonJS({
   }
 });
 
-// node_modules/react-dom/cjs/react-dom.development.js
+// node_modules/.pnpm/react-dom@19.3.0_react@19.3.0/node_modules/react-dom/cjs/react-dom.development.js
 var require_react_dom_development = __commonJS({
-  "node_modules/react-dom/cjs/react-dom.development.js"(exports) {
+  "node_modules/.pnpm/react-dom@19.3.0_react@19.3.0/node_modules/react-dom/cjs/react-dom.development.js"(exports) {
     "use strict";
     (function() {
       function noop() {
@@ -1295,19 +1320,24 @@ var require_react_dom_development = __commonJS({
       }
       function createPortal$1(children, containerInfo, implementation) {
         var key = 3 < arguments.length && void 0 !== arguments[3] ? arguments[3] : null;
-        try {
-          testStringCoercion(key);
-          var JSCompiler_inline_result = false;
-        } catch (e) {
-          JSCompiler_inline_result = true;
+        if (null == key) key = null;
+        else if (key === REACT_OPTIMISTIC_KEY) key = REACT_OPTIMISTIC_KEY;
+        else {
+          try {
+            testStringCoercion(key);
+            var JSCompiler_inline_result = false;
+          } catch (e) {
+            JSCompiler_inline_result = true;
+          }
+          JSCompiler_inline_result && (console.error(
+            "The provided key is an unsupported type %s. This value must be coerced to a string before using it here.",
+            "function" === typeof Symbol && Symbol.toStringTag && key[Symbol.toStringTag] || key.constructor.name || "Object"
+          ), testStringCoercion(key));
+          key = "" + key;
         }
-        JSCompiler_inline_result && (console.error(
-          "The provided key is an unsupported type %s. This value must be coerced to a string before using it here.",
-          "function" === typeof Symbol && Symbol.toStringTag && key[Symbol.toStringTag] || key.constructor.name || "Object"
-        ), testStringCoercion(key));
         return {
           $$typeof: REACT_PORTAL_TYPE,
-          key: null == key ? null : "" + key,
+          key,
           children,
           containerInfo,
           implementation
@@ -1332,7 +1362,7 @@ var require_react_dom_development = __commonJS({
         return dispatcher;
       }
       "undefined" !== typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ && "function" === typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart && __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(Error());
-      var React3 = require_react(), Internals = {
+      var React4 = require_react(), Internals = {
         d: {
           f: noop,
           r: function() {
@@ -1350,11 +1380,14 @@ var require_react_dom_development = __commonJS({
         },
         p: 0,
         findDOMNode: null
-      }, REACT_PORTAL_TYPE = /* @__PURE__ */ Symbol.for("react.portal"), ReactSharedInternals = React3.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE;
+      }, REACT_PORTAL_TYPE = /* @__PURE__ */ Symbol.for("react.portal"), REACT_RECOVERABLE_TYPE = /* @__PURE__ */ Symbol.for("react.recoverable"), REACT_OPTIMISTIC_KEY = /* @__PURE__ */ Symbol.for("react.optimistic_key"), ReactSharedInternals = React4.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE;
       "function" === typeof Map && null != Map.prototype && "function" === typeof Map.prototype.forEach && "function" === typeof Set && null != Set.prototype && "function" === typeof Set.prototype.clear && "function" === typeof Set.prototype.forEach || console.error(
         "React depends on Map and Set built-in types. Make sure that you load a polyfill in older browsers. https://reactjs.org/link/react-polyfills"
       );
       exports.__DOM_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE = Internals;
+      exports.browser = function(reason) {
+        return { $$typeof: REACT_RECOVERABLE_TYPE, _reason: reason };
+      };
       exports.createPortal = function(children, container) {
         var key = 2 < arguments.length && void 0 !== arguments[2] ? arguments[2] : null;
         if (!container || 1 !== container.nodeType && 9 !== container.nodeType && 11 !== container.nodeType)
@@ -1461,7 +1494,8 @@ var require_react_dom_development = __commonJS({
               ), Internals.d.M(href, {
                 crossOrigin: encountered,
                 integrity: "string" === typeof options.integrity ? options.integrity : void 0,
-                nonce: "string" === typeof options.nonce ? options.nonce : void 0
+                nonce: "string" === typeof options.nonce ? options.nonce : void 0,
+                fetchPriority: "string" === typeof options.fetchPriority ? options.fetchPriority : void 0
               });
           } else null == options && Internals.d.M(href);
       };
@@ -1506,7 +1540,9 @@ var require_react_dom_development = __commonJS({
         ), Internals.d.m(href, {
           as: "string" === typeof options.as && "script" !== options.as ? options.as : void 0,
           crossOrigin: encountered,
-          integrity: "string" === typeof options.integrity ? options.integrity : void 0
+          integrity: "string" === typeof options.integrity ? options.integrity : void 0,
+          nonce: "string" === typeof options.nonce ? options.nonce : void 0,
+          fetchPriority: "string" === typeof options.fetchPriority ? options.fetchPriority : void 0
         })) : Internals.d.m(href));
       };
       exports.requestFormReset = function(form) {
@@ -1521,15 +1557,15 @@ var require_react_dom_development = __commonJS({
       exports.useFormStatus = function() {
         return resolveDispatcher().useHostTransitionStatus();
       };
-      exports.version = "19.2.7";
+      exports.version = "19.3.0";
       "undefined" !== typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ && "function" === typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop && __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop(Error());
     })();
   }
 });
 
-// node_modules/react-dom/index.js
+// node_modules/.pnpm/react-dom@19.3.0_react@19.3.0/node_modules/react-dom/index.js
 var require_react_dom = __commonJS({
-  "node_modules/react-dom/index.js"(exports, module) {
+  "node_modules/.pnpm/react-dom@19.3.0_react@19.3.0/node_modules/react-dom/index.js"(exports, module) {
     "use strict";
     if (false) {
       checkDCE();
@@ -1540,9 +1576,9 @@ var require_react_dom = __commonJS({
   }
 });
 
-// node_modules/react-dom/cjs/react-dom-client.development.js
+// node_modules/.pnpm/react-dom@19.3.0_react@19.3.0/node_modules/react-dom/cjs/react-dom-client.development.js
 var require_react_dom_client_development = __commonJS({
-  "node_modules/react-dom/cjs/react-dom-client.development.js"(exports) {
+  "node_modules/.pnpm/react-dom@19.3.0_react@19.3.0/node_modules/react-dom/cjs/react-dom-client.development.js"(exports) {
     "use strict";
     (function() {
       function findHook(fiber, id) {
@@ -1640,15 +1676,10 @@ var require_react_dom_client_development = __commonJS({
         return !(!node || 1 !== node.nodeType && 9 !== node.nodeType && 11 !== node.nodeType);
       }
       function getNearestMountedFiber(fiber) {
-        var node = fiber, nearestMounted = fiber;
-        if (fiber.alternate) for (; node.return; ) node = node.return;
-        else {
-          fiber = node;
-          do
-            node = fiber, 0 !== (node.flags & 4098) && (nearestMounted = node.return), fiber = node.return;
-          while (fiber);
-        }
-        return 3 === node.tag ? nearestMounted : null;
+        for (var node = fiber, nextNode = node; nextNode && !nextNode.alternate; )
+          node = nextNode, 0 !== (node.flags & 4098) && (fiber = node.return), nextNode = node.return;
+        for (; node.return; ) node = node.return;
+        return 3 === node.tag ? fiber : null;
       }
       function getSuspenseInstanceFromFiber(fiber) {
         if (13 === fiber.tag) {
@@ -1756,6 +1787,116 @@ var require_react_dom_client_development = __commonJS({
         }
         return null;
       }
+      function traverseFragmentInstancesAndTextInstances(fragmentFiber, fn, a, b, c) {
+        traverseVisibleInstancesAndTextInstances(
+          fragmentFiber.child,
+          false,
+          fn,
+          a,
+          b,
+          c
+        );
+      }
+      function traverseVisibleInstancesAndTextInstances(child, searchWithinHosts, fn, a, b, c) {
+        for (; null !== child; ) {
+          if ((5 === child.tag || 27 === child.tag || 6 === child.tag) && fn(child, a, b, c) || (22 !== child.tag || null === child.memoizedState) && (searchWithinHosts || 5 !== child.tag && 27 !== child.tag) && traverseVisibleInstancesAndTextInstances(
+            child.child,
+            searchWithinHosts,
+            fn,
+            a,
+            b,
+            c
+          ))
+            return true;
+          child = child.sibling;
+        }
+        return false;
+      }
+      function getFragmentParentInstanceOrContainerFiber(fiber) {
+        for (fiber = fiber.return; null !== fiber; ) {
+          if (3 === fiber.tag || 5 === fiber.tag || 27 === fiber.tag)
+            return fiber;
+          fiber = fiber.return;
+        }
+        return null;
+      }
+      function fiberIsPortaledIntoHost(fiber) {
+        var foundPortalParent = false;
+        for (fiber = fiber.return; null !== fiber; ) {
+          4 === fiber.tag && (foundPortalParent = true);
+          if (3 === fiber.tag || 5 === fiber.tag || 27 === fiber.tag) break;
+          fiber = fiber.return;
+        }
+        return foundPortalParent;
+      }
+      function getFragmentInstanceOrTextInstanceSiblings(fiber) {
+        var result = [null, null], parentHostFiber = getFragmentParentInstanceOrContainerFiber(fiber);
+        if (null === parentHostFiber) return result;
+        findFragmentInstanceOrTextInstanceSiblings(
+          result,
+          fiber,
+          parentHostFiber.child,
+          { foundSelf: false }
+        );
+        return result;
+      }
+      function findFragmentInstanceOrTextInstanceSiblings(result, self, child, state) {
+        for (; null !== child; ) {
+          if (child === self) state.foundSelf = true;
+          else if (5 === child.tag || 27 === child.tag || 6 === child.tag) {
+            if (state.foundSelf) return result[1] = child, true;
+            result[0] = child;
+          } else if ((22 !== child.tag || null === child.memoizedState) && findFragmentInstanceOrTextInstanceSiblings(
+            result,
+            self,
+            child.child,
+            state
+          ))
+            return true;
+          child = child.sibling;
+        }
+        return false;
+      }
+      function getInstanceFromHostFiber(fiber) {
+        switch (fiber.tag) {
+          case 5:
+          case 27:
+          case 6:
+            return fiber.stateNode;
+          case 3:
+            return fiber.stateNode.containerInfo;
+          default:
+            throw Error("Expected to find a host node. This is a bug in React.");
+        }
+      }
+      function isFiberPrecedingCheck(child, target, boundary) {
+        return child === boundary ? true : child === target ? (searchTarget = child, true) : false;
+      }
+      function isFiberFollowingCheck(child, target, boundary) {
+        return child === boundary ? (searchBoundary = child, false) : child === target ? (null !== searchBoundary && (searchTarget = child), true) : false;
+      }
+      function getParentForFragmentAncestors(inst) {
+        if (null === inst) return null;
+        do
+          inst = null === inst ? null : inst.return;
+        while (inst && 5 !== inst.tag && 27 !== inst.tag && 3 !== inst.tag);
+        return inst ? inst : null;
+      }
+      function getLowestCommonAncestor(instA, instB, getParent2) {
+        for (var depthA = 0, tempA = instA; tempA; tempA = getParent2(tempA))
+          depthA++;
+        tempA = 0;
+        for (var tempB = instB; tempB; tempB = getParent2(tempB)) tempA++;
+        for (; 0 < depthA - tempA; ) instA = getParent2(instA), depthA--;
+        for (; 0 < tempA - depthA; ) instB = getParent2(instB), tempA--;
+        for (; depthA--; ) {
+          if (instA === instB || null !== instB && instA === instB.alternate)
+            return instA;
+          instA = getParent2(instA);
+          instB = getParent2(instB);
+        }
+        return null;
+      }
       function getIteratorFn(maybeIterable) {
         if (null === maybeIterable || "object" !== typeof maybeIterable)
           return null;
@@ -1780,6 +1921,8 @@ var require_react_dom_client_development = __commonJS({
             return "SuspenseList";
           case REACT_ACTIVITY_TYPE:
             return "Activity";
+          case REACT_VIEW_TRANSITION_TYPE:
+            return "ViewTransition";
         }
         if ("object" === typeof type)
           switch ("number" === typeof type.tag && console.error(
@@ -1843,7 +1986,9 @@ var require_react_dom_client_development = __commonJS({
           case 8:
             return type === REACT_STRICT_MODE_TYPE ? "StrictMode" : "Mode";
           case 22:
-            return "Offscreen";
+            if (null !== fiber.return)
+              return getComponentNameFromFiber(fiber.return);
+            break;
           case 12:
             return "Profiler";
           case 21:
@@ -1854,6 +1999,8 @@ var require_react_dom_client_development = __commonJS({
             return "SuspenseList";
           case 25:
             return "TracingMarker";
+          case 30:
+            return "ViewTransition";
           case 1:
           case 0:
           case 14:
@@ -1938,13 +2085,14 @@ var require_react_dom_client_development = __commonJS({
         return requiredContext(contextStackCursor.current);
       }
       function pushHostContext(fiber) {
-        null !== fiber.memoizedState && push(hostTransitionProviderCursor, fiber, fiber);
-        var context = requiredContext(contextStackCursor.current);
+        var stateHook = fiber.memoizedState;
+        null !== stateHook && (HostTransitionContext._currentValue = stateHook.memoizedState, push(hostTransitionProviderCursor, fiber, fiber));
+        stateHook = requiredContext(contextStackCursor.current);
         var type = fiber.type;
-        var nextContext = getChildHostContextProd(context.context, type);
-        type = updatedAncestorInfoDev(context.ancestorInfo, type);
+        var nextContext = getChildHostContextProd(stateHook.context, type);
+        type = updatedAncestorInfoDev(stateHook.ancestorInfo, type);
         nextContext = { context: nextContext, ancestorInfo: type };
-        context !== nextContext && (push(contextFiberStackCursor, fiber, fiber), push(contextStackCursor, nextContext, fiber));
+        stateHook !== nextContext && (push(contextFiberStackCursor, fiber, fiber), push(contextStackCursor, nextContext, fiber));
       }
       function popHostContext(fiber) {
         contextFiberStackCursor.current === fiber && (pop(contextStackCursor, fiber), pop(contextFiberStackCursor, fiber));
@@ -2063,7 +2211,27 @@ var require_react_dom_client_development = __commonJS({
                     } catch (x$0) {
                       control = x$0;
                     }
-                    fn.call(Fake.prototype);
+                    Fake = false;
+                    try {
+                      var prevProps = Object.getOwnPropertyDescriptor(
+                        fn.prototype,
+                        "props"
+                      );
+                      Object.defineProperty(fn.prototype, "props", {
+                        configurable: true,
+                        set: function() {
+                          throw Error();
+                        }
+                      });
+                      Fake = true;
+                      new fn();
+                    } finally {
+                      Fake && (void 0 !== prevProps ? Object.defineProperty(
+                        fn.prototype,
+                        "props",
+                        prevProps
+                      ) : delete fn.prototype.props);
+                    }
                   }
                 } else {
                   try {
@@ -2151,6 +2319,8 @@ var require_react_dom_client_development = __commonJS({
             return describeNativeComponentFrame(fiber.type, true);
           case 31:
             return describeBuiltInComponentFrame("Activity");
+          case 30:
+            return describeBuiltInComponentFrame("ViewTransition");
           default:
             return "";
         }
@@ -2220,6 +2390,8 @@ var require_react_dom_client_development = __commonJS({
               info += describeBuiltInComponentFrame("Activity");
               break;
             case 30:
+              info += describeBuiltInComponentFrame("ViewTransition");
+              break;
             case 0:
             case 15:
             case 1:
@@ -2367,7 +2539,7 @@ var require_react_dom_client_development = __commonJS({
           case 32768:
           case 65536:
           case 131072:
-            return lanes & 261888;
+            return lanes & -lanes;
           case 262144:
           case 524288:
           case 1048576:
@@ -2405,6 +2577,17 @@ var require_react_dom_client_development = __commonJS({
       }
       function checkIfRootIsPrerendering(root3, renderLanes2) {
         return 0 === (root3.pendingLanes & ~(root3.suspendedLanes & ~root3.pingedLanes) & renderLanes2);
+      }
+      function getEntangledLanes(root3, renderLanes2) {
+        0 !== (renderLanes2 & 8) && (renderLanes2 |= renderLanes2 & 32);
+        var allEntangledLanes = root3.entangledLanes;
+        if (0 !== allEntangledLanes)
+          for (root3 = root3.entanglements, allEntangledLanes &= renderLanes2; 0 < allEntangledLanes; ) {
+            var index = 31 - clz32(allEntangledLanes), lane = 1 << index;
+            renderLanes2 |= root3[index];
+            allEntangledLanes &= ~lane;
+          }
+        return renderLanes2;
       }
       function computeExpirationTime(lane, currentTime) {
         switch (lane) {
@@ -2590,13 +2773,12 @@ var require_react_dom_client_development = __commonJS({
       function detachDeletedInstance(node) {
         delete node[internalInstanceKey];
         delete node[internalPropsKey];
-        delete node[internalEventHandlersKey];
         delete node[internalEventHandlerListenersKey];
         delete node[internalEventHandlesSetKey];
       }
       function getClosestInstanceFromNode(targetNode) {
-        var targetInst = targetNode[internalInstanceKey];
-        if (targetInst) return targetInst;
+        var targetInst;
+        if (targetInst = targetNode[internalInstanceKey]) return targetInst;
         for (var parentNode = targetNode.parentNode; parentNode; ) {
           if (targetInst = parentNode[internalContainerInstanceKey] || parentNode[internalInstanceKey]) {
             parentNode = targetInst.alternate;
@@ -2635,6 +2817,9 @@ var require_react_dom_client_development = __commonJS({
       function markNodeAsHoistable(node) {
         node[internalHoistableMarker] = true;
       }
+      function clearPendingLoadOnNode(node) {
+        node[internalLoadPendingKey] = void 0;
+      }
       function registerTwoPhaseEvent(registrationName, dependencies) {
         registerDirectEvent(registrationName, dependencies);
         registerDirectEvent(registrationName + "Capture", dependencies);
@@ -2672,6 +2857,11 @@ var require_react_dom_client_development = __commonJS({
         console.error("Invalid attribute name: `%s`", attributeName);
         return false;
       }
+      function pushMutationContext() {
+        var prev = viewTransitionMutationContext;
+        viewTransitionMutationContext = false;
+        return prev;
+      }
       function getValueForAttributeOnCustomComponent(node, name, expected) {
         if (isAttributeNameSafe(name)) {
           if (!node.hasAttribute(name)) {
@@ -2686,7 +2876,7 @@ var require_react_dom_client_development = __commonJS({
             }
             return void 0 === expected ? void 0 : null;
           }
-          node = node.getAttribute(name);
+          node = "nonce" === name.toLowerCase() ? node.nonce : node.getAttribute(name);
           if ("" === node && true === expected) return true;
           checkAttributeStringCoercion(expected, name);
           return node === "" + expected ? expected : node;
@@ -2710,7 +2900,7 @@ var require_react_dom_client_development = __commonJS({
                 }
             }
             checkAttributeStringCoercion(value, name);
-            node.setAttribute(name, "" + value);
+            node.setAttribute(name, value);
           }
       }
       function setValueForKnownAttribute(node, name, value) {
@@ -2725,7 +2915,7 @@ var require_react_dom_client_development = __commonJS({
               return;
           }
           checkAttributeStringCoercion(value, name);
-          node.setAttribute(name, "" + value);
+          node.setAttribute(name, value);
         }
       }
       function setValueForNamespacedAttribute(node, namespace, name, value) {
@@ -2740,7 +2930,7 @@ var require_react_dom_client_development = __commonJS({
               return;
           }
           checkAttributeStringCoercion(value, name);
-          node.setAttributeNS(namespace, name, "" + value);
+          node.setAttributeNS(namespace, name, value);
         }
       }
       function getToStringValue(value) {
@@ -2817,15 +3007,6 @@ var require_react_dom_client_development = __commonJS({
         node = value;
         return node !== lastValue ? (tracker.setValue(node), true) : false;
       }
-      function getActiveElement(doc) {
-        doc = doc || ("undefined" !== typeof document ? document : void 0);
-        if ("undefined" === typeof doc) return null;
-        try {
-          return doc.activeElement || doc.body;
-        } catch (e) {
-          return doc.body;
-        }
-      }
       function escapeSelectorAttributeValueInsideDoubleQuotes(value) {
         return value.replace(
           escapeSelectorAttributeValueInsideDoubleQuotesRegex,
@@ -2857,7 +3038,7 @@ var require_react_dom_client_development = __commonJS({
             element.value !== "" + getToStringValue(value) && (element.value = "" + getToStringValue(value));
         else
           "submit" !== type && "reset" !== type || element.removeAttribute("value");
-        null != value ? setDefaultValue(element, type, getToStringValue(value)) : null != defaultValue ? setDefaultValue(element, type, getToStringValue(defaultValue)) : null != lastDefaultValue && element.removeAttribute("value");
+        null != value ? "number" === type && element.value == value ? setDefaultValue(element, getToStringValue(element.value)) : setDefaultValue(element, getToStringValue(value)) : null != defaultValue ? setDefaultValue(element, getToStringValue(defaultValue)) : null != lastDefaultValue && element.removeAttribute("value");
         null == checked && null != defaultChecked && (element.defaultChecked = !!defaultChecked);
         null != checked && (element.checked = checked && "function" !== typeof checked && "symbol" !== typeof checked);
         null != name && "function" !== typeof name && "symbol" !== typeof name && "boolean" !== typeof name ? (checkAttributeStringCoercion(name, "name"), element.name = "" + getToStringValue(name)) : element.removeAttribute("name");
@@ -2881,11 +3062,11 @@ var require_react_dom_client_development = __commonJS({
         null != name && "function" !== typeof name && "symbol" !== typeof name && "boolean" !== typeof name && (checkAttributeStringCoercion(name, "name"), element.name = name);
         track(element);
       }
-      function setDefaultValue(node, type, value) {
-        "number" === type && getActiveElement(node.ownerDocument) === node || node.defaultValue === "" + value || (node.defaultValue = "" + value);
+      function setDefaultValue(node, value) {
+        node.defaultValue !== "" + value && (node.defaultValue = "" + value);
       }
       function validateOptionProps(element, props) {
-        null == props.value && ("object" === typeof props.children && null !== props.children ? React3.Children.forEach(props.children, function(child) {
+        null == props.value && ("object" === typeof props.children && null !== props.children ? React4.Children.forEach(props.children, function(child) {
           null == child || "string" === typeof child || "number" === typeof child || "bigint" === typeof child || didWarnInvalidChild || (didWarnInvalidChild = true, console.error(
             "Cannot infer the option value of complex children. Pass a `value` prop or use a plain string as children to <option>."
           ));
@@ -3269,12 +3450,6 @@ var require_react_dom_client_development = __commonJS({
       }
       function isTagValidWithParent(tag, parentTag, implicitRootScope) {
         switch (parentTag) {
-          case "select":
-            return "hr" === tag || "option" === tag || "optgroup" === tag || "script" === tag || "template" === tag || "#text" === tag;
-          case "optgroup":
-            return "option" === tag || "#text" === tag;
-          case "option":
-            return "#text" === tag;
           case "tr":
             return "th" === tag || "td" === tag || "style" === tag || "script" === tag || "template" === tag;
           case "tbody":
@@ -3309,6 +3484,8 @@ var require_react_dom_client_development = __commonJS({
           case "caption":
           case "col":
           case "colgroup":
+          case "input":
+            return "select" !== parentTag;
           case "frameset":
           case "frame":
           case "tbody":
@@ -3452,15 +3629,15 @@ var require_react_dom_client_development = __commonJS({
         );
         return false;
       }
-      function setTextContent(node, text37) {
-        if (text37) {
+      function setTextContent(node, text39) {
+        if (text39) {
           var firstChild = node.firstChild;
           if (firstChild && firstChild === node.lastChild && 3 === firstChild.nodeType) {
-            firstChild.nodeValue = text37;
+            firstChild.nodeValue = text39;
             return;
           }
         }
-        node.textContent = text37;
+        node.textContent = text39;
       }
       function camelize(string) {
         return string.replace(hyphenPattern, function(_, character) {
@@ -3530,9 +3707,9 @@ var require_react_dom_client_development = __commonJS({
               }
           }
           for (var styleName in prevStyles)
-            !prevStyles.hasOwnProperty(styleName) || null != styles && styles.hasOwnProperty(styleName) || (0 === styleName.indexOf("--") ? node.setProperty(styleName, "") : "float" === styleName ? node.cssFloat = "" : node[styleName] = "");
+            !prevStyles.hasOwnProperty(styleName) || null != styles && styles.hasOwnProperty(styleName) || (0 === styleName.indexOf("--") ? node.setProperty(styleName, "") : "float" === styleName ? node.cssFloat = "" : node[styleName] = "", viewTransitionMutationContext = true);
           for (var _styleName in styles)
-            _key2 = styles[_styleName], styles.hasOwnProperty(_styleName) && prevStyles[_styleName] !== _key2 && setValueForStyle(node, _styleName, _key2);
+            _key2 = styles[_styleName], styles.hasOwnProperty(_styleName) && prevStyles[_styleName] !== _key2 && (setValueForStyle(node, _styleName, _key2), viewTransitionMutationContext = true);
         } else
           for (expandedUpdates in styles)
             styles.hasOwnProperty(expandedUpdates) && setValueForStyle(node, expandedUpdates, styles[expandedUpdates]);
@@ -3701,6 +3878,7 @@ var require_react_dom_client_development = __commonJS({
               case "async":
               case "autoPlay":
               case "controls":
+              case "credentialless":
               case "default":
               case "defer":
               case "disabled":
@@ -3760,6 +3938,7 @@ var require_react_dom_client_development = __commonJS({
                 case "async":
                 case "autoPlay":
                 case "controls":
+                case "credentialless":
                 case "default":
                 case "defer":
                 case "disabled":
@@ -4110,6 +4289,15 @@ var require_react_dom_client_development = __commonJS({
         }
         return true;
       }
+      function getActiveElement(doc) {
+        doc = doc || ("undefined" !== typeof document ? document : void 0);
+        if ("undefined" === typeof doc) return null;
+        try {
+          return doc.activeElement || doc.body;
+        } catch (e$2) {
+          return doc.body;
+        }
+      }
       function getLeafNode(node) {
         for (; node && node.firstChild; ) node = node.firstChild;
         return node;
@@ -4193,8 +4381,35 @@ var require_react_dom_client_development = __commonJS({
         topLevelEventsToReactNames.set(domEventName, reactName);
         registerTwoPhaseEvent(reactName, [domEventName]);
       }
+      function getViewTransitionName(props, instance) {
+        if (null != props.name && "auto" !== props.name) return props.name;
+        if (null !== instance.autoName) return instance.autoName;
+        props = pendingEffectsRoot.identifierPrefix;
+        var globalClientId = globalClientIdCounter$1++;
+        props = "_" + props + "t_" + globalClientId.toString(32) + "_";
+        return instance.autoName = props;
+      }
+      function getClassNameByType(classByType) {
+        if (null == classByType || "string" === typeof classByType)
+          return classByType;
+        var className = null, activeTypes = pendingTransitionTypes;
+        if (null !== activeTypes)
+          for (var i = 0; i < activeTypes.length; i++) {
+            var match = classByType[activeTypes[i]];
+            if (null != match) {
+              if ("none" === match) return "none";
+              className = null == className ? match : className + (" " + match);
+            }
+          }
+        return null == className ? classByType.default : className;
+      }
+      function getViewTransitionClassName(defaultClass, eventClass) {
+        defaultClass = getClassNameByType(defaultClass);
+        eventClass = getClassNameByType(eventClass);
+        return null == eventClass ? "auto" === defaultClass ? null : defaultClass : "auto" === eventClass ? null : eventClass;
+      }
       function getArrayKind(array) {
-        for (var kind = EMPTY_ARRAY, i = 0; i < array.length; i++) {
+        for (var kind = EMPTY_ARRAY, i = 0; i < array.length && i < OBJECT_WIDTH_LIMIT; i++) {
           var value = array[i];
           if ("object" === typeof value && null !== value)
             if (isArrayImpl(value) && 2 === value.length && "string" === typeof value[0]) {
@@ -4203,7 +4418,7 @@ var require_react_dom_client_development = __commonJS({
               kind = ENTRIES_ARRAY;
             } else return COMPLEX_ARRAY;
           else {
-            if ("function" === typeof value || "string" === typeof value && 50 < value.length || kind !== EMPTY_ARRAY && kind !== PRIMITIVE_ARRAY)
+            if ("function" === typeof value || "string" === typeof value && 50 < value.length || kind !== EMPTY_ARRAY && kind !== PRIMITIVE_ARRAY || "bigint" === typeof value)
               return COMPLEX_ARRAY;
             kind = PRIMITIVE_ARRAY;
           }
@@ -4211,8 +4426,20 @@ var require_react_dom_client_development = __commonJS({
         return kind;
       }
       function addObjectToProperties(object, properties, indent, prefix2) {
-        for (var key in object)
-          hasOwnProperty.call(object, key) && "_" !== key[0] && addValueToProperties(key, object[key], properties, indent, prefix2);
+        if (!ArrayBuffer.isView(object)) {
+          var addedProperties = 0, key;
+          for (key in object)
+            if (hasOwnProperty.call(object, key) && "_" !== key[0] && (addedProperties++, addValueToProperties(key, object[key], properties, indent, prefix2), addedProperties >= OBJECT_WIDTH_LIMIT)) {
+              properties.push([
+                prefix2 + "\xA0\xA0".repeat(indent) + "Only " + OBJECT_WIDTH_LIMIT + " properties are shown. React will not log more properties of this object.",
+                ""
+              ]);
+              break;
+            }
+        }
+      }
+      function readReactElementTypeof(value) {
+        return "$$typeof" in value && hasOwnProperty.call(value, "$$typeof") ? value.$$typeof : void 0;
       }
       function addValueToProperties(propertyName, value, properties, indent, prefix2) {
         switch (typeof value) {
@@ -4221,7 +4448,7 @@ var require_react_dom_client_development = __commonJS({
               value = "null";
               break;
             } else {
-              if (value.$$typeof === REACT_ELEMENT_TYPE) {
+              if (readReactElementTypeof(value) === REACT_ELEMENT_TYPE) {
                 var typeName2 = getComponentNameFromType(value.type) || "\u2026", key = value.key;
                 value = value.props;
                 var propsKeys = Object.keys(value), propsLength = propsKeys.length;
@@ -4245,14 +4472,16 @@ var require_react_dom_client_development = __commonJS({
                   prefix2
                 );
                 propertyName = false;
+                key = 0;
                 for (var propKey in value)
-                  "children" === propKey ? null != value.children && (!isArrayImpl(value.children) || 0 < value.children.length) && (propertyName = true) : hasOwnProperty.call(value, propKey) && "_" !== propKey[0] && addValueToProperties(
+                  if (key++, "children" === propKey ? null != value.children && (!isArrayImpl(value.children) || 0 < value.children.length) && (propertyName = true) : hasOwnProperty.call(value, propKey) && "_" !== propKey[0] && addValueToProperties(
                     propKey,
                     value[propKey],
                     properties,
                     indent + 1,
                     prefix2
-                  );
+                  ), key >= OBJECT_WIDTH_LIMIT)
+                    break;
                 properties.push([
                   "",
                   propertyName ? ">\u2026</" + typeName2 + ">" : "/>"
@@ -4261,16 +4490,23 @@ var require_react_dom_client_development = __commonJS({
               }
               typeName2 = Object.prototype.toString.call(value);
               typeName2 = typeName2.slice(8, typeName2.length - 1);
+              if (ArrayBuffer.isView(value)) {
+                value = value.length;
+                value = "number" === typeof value ? typeName2 + "(" + value + ")" : typeName2;
+                break;
+              }
               if ("Array" === typeName2) {
-                if (propKey = getArrayKind(value), propKey === PRIMITIVE_ARRAY || propKey === EMPTY_ARRAY) {
-                  value = JSON.stringify(value);
+                if (propKey = value.length > OBJECT_WIDTH_LIMIT, key = getArrayKind(value), key === PRIMITIVE_ARRAY || key === EMPTY_ARRAY) {
+                  value = JSON.stringify(
+                    propKey ? value.slice(0, OBJECT_WIDTH_LIMIT).concat("\u2026") : value
+                  );
                   break;
-                } else if (propKey === ENTRIES_ARRAY) {
+                } else if (key === ENTRIES_ARRAY) {
                   properties.push([
                     prefix2 + "\xA0\xA0".repeat(indent) + propertyName,
                     ""
                   ]);
-                  for (propertyName = 0; propertyName < value.length; propertyName++)
+                  for (propertyName = 0; propertyName < value.length && propertyName < OBJECT_WIDTH_LIMIT; propertyName++)
                     typeName2 = value[propertyName], addValueToProperties(
                       typeName2[0],
                       typeName2[1],
@@ -4278,6 +4514,13 @@ var require_react_dom_client_development = __commonJS({
                       indent + 1,
                       prefix2
                     );
+                  propKey && addValueToProperties(
+                    OBJECT_WIDTH_LIMIT.toString(),
+                    "\u2026",
+                    properties,
+                    indent + 1,
+                    prefix2
+                  );
                   return;
                 }
               }
@@ -4320,10 +4563,13 @@ var require_react_dom_client_development = __commonJS({
               return;
             }
           case "function":
-            value = "" === value.name ? "() => {}" : value.name + "() {}";
+            value = value.name;
+            value = "" === value || "string" !== typeof value ? "() => {}" : value + "() {}";
             break;
           case "string":
-            value = value === OMITTED_PROP_ERROR ? "\u2026" : JSON.stringify(value);
+            value = value === OMITTED_PROP_ERROR ? "\u2026" : JSON.stringify(
+              1024 <= value.length ? value.slice(0, 1023) + "\u2026" : value
+            );
             break;
           case "undefined":
             value = "undefined";
@@ -4340,67 +4586,88 @@ var require_react_dom_client_development = __commonJS({
         ]);
       }
       function addObjectDiffToProperties(prev, next, properties, indent) {
-        var isDeeplyEqual = true;
-        for (key in prev)
+        var isDeeplyEqual = true, prevPropertiesChecked = 0;
+        for (key in prev) {
+          if (prevPropertiesChecked > OBJECT_WIDTH_LIMIT) {
+            properties.push([
+              "Previous object has more than " + OBJECT_WIDTH_LIMIT + " properties. React will not attempt to diff objects with too many properties.",
+              ""
+            ]);
+            isDeeplyEqual = false;
+            break;
+          }
           key in next || (properties.push([
             REMOVED + "\xA0\xA0".repeat(indent) + key,
             "\u2026"
           ]), isDeeplyEqual = false);
-        for (var _key in next)
+          prevPropertiesChecked++;
+        }
+        prevPropertiesChecked = 0;
+        for (var _key in next) {
+          if (prevPropertiesChecked > OBJECT_WIDTH_LIMIT) {
+            properties.push([
+              "Next object has more than " + OBJECT_WIDTH_LIMIT + " properties. React will not attempt to diff objects with too many properties.",
+              ""
+            ]);
+            isDeeplyEqual = false;
+            break;
+          }
           if (_key in prev) {
             var key = prev[_key];
             var nextValue = next[_key];
             if (key !== nextValue) {
-              if (0 === indent && "children" === _key)
-                isDeeplyEqual = "\xA0\xA0".repeat(indent) + _key, properties.push(
+              if (0 === indent && "children" === _key) {
+                isDeeplyEqual = "\xA0\xA0".repeat(indent) + _key;
+                properties.push(
                   [REMOVED + isDeeplyEqual, "\u2026"],
                   [ADDED + isDeeplyEqual, "\u2026"]
                 );
-              else {
-                if (!(3 <= indent)) {
-                  if ("object" === typeof key && "object" === typeof nextValue && null !== key && null !== nextValue && key.$$typeof === nextValue.$$typeof)
-                    if (nextValue.$$typeof === REACT_ELEMENT_TYPE) {
-                      if (key.type === nextValue.type && key.key === nextValue.key) {
-                        key = getComponentNameFromType(nextValue.type) || "\u2026";
-                        isDeeplyEqual = "\xA0\xA0".repeat(indent) + _key;
-                        key = "<" + key + " \u2026 />";
-                        properties.push(
-                          [REMOVED + isDeeplyEqual, key],
-                          [ADDED + isDeeplyEqual, key]
-                        );
-                        isDeeplyEqual = false;
-                        continue;
-                      }
-                    } else {
-                      var prevKind = Object.prototype.toString.call(key), nextKind = Object.prototype.toString.call(nextValue);
-                      if (prevKind === nextKind && ("[object Object]" === nextKind || "[object Array]" === nextKind)) {
-                        prevKind = [
-                          UNCHANGED + "\xA0\xA0".repeat(indent) + _key,
-                          "[object Array]" === nextKind ? "Array" : ""
-                        ];
-                        properties.push(prevKind);
-                        nextKind = properties.length;
-                        addObjectDiffToProperties(
-                          key,
-                          nextValue,
-                          properties,
-                          indent + 1
-                        ) ? nextKind === properties.length && (prevKind[1] = "Referentially unequal but deeply equal objects. Consider memoization.") : isDeeplyEqual = false;
-                        continue;
-                      }
-                    }
-                  else if ("function" === typeof key && "function" === typeof nextValue && key.name === nextValue.name && key.length === nextValue.length && (prevKind = Function.prototype.toString.call(key), nextKind = Function.prototype.toString.call(nextValue), prevKind === nextKind)) {
-                    key = "" === nextValue.name ? "() => {}" : nextValue.name + "() {}";
-                    properties.push([
-                      UNCHANGED + "\xA0\xA0".repeat(indent) + _key,
-                      key + " Referentially unequal function closure. Consider memoization."
-                    ]);
-                    continue;
-                  }
-                }
-                addValueToProperties(_key, key, properties, indent, REMOVED);
-                addValueToProperties(_key, nextValue, properties, indent, ADDED);
+                isDeeplyEqual = false;
+                continue;
               }
+              if (!(3 <= indent)) {
+                if ("object" === typeof key && "object" === typeof nextValue && null !== key && null !== nextValue && readReactElementTypeof(key) === readReactElementTypeof(nextValue))
+                  if (readReactElementTypeof(nextValue) === REACT_ELEMENT_TYPE) {
+                    if (key.type === nextValue.type && key.key === nextValue.key) {
+                      key = getComponentNameFromType(nextValue.type) || "\u2026";
+                      isDeeplyEqual = "\xA0\xA0".repeat(indent) + _key;
+                      key = "<" + key + " \u2026 />";
+                      properties.push(
+                        [REMOVED + isDeeplyEqual, key],
+                        [ADDED + isDeeplyEqual, key]
+                      );
+                      isDeeplyEqual = false;
+                      continue;
+                    }
+                  } else {
+                    var prevKind = Object.prototype.toString.call(key), nextKind = Object.prototype.toString.call(nextValue);
+                    if (prevKind === nextKind && ("[object Object]" === nextKind || "[object Array]" === nextKind)) {
+                      prevKind = [
+                        UNCHANGED + "\xA0\xA0".repeat(indent) + _key,
+                        "[object Array]" === nextKind ? "Array" : ""
+                      ];
+                      properties.push(prevKind);
+                      nextKind = properties.length;
+                      addObjectDiffToProperties(
+                        key,
+                        nextValue,
+                        properties,
+                        indent + 1
+                      ) ? nextKind === properties.length && (prevKind[1] = "Referentially unequal but deeply equal objects. Consider memoization.") : isDeeplyEqual = false;
+                      continue;
+                    }
+                  }
+                else if ("function" === typeof key && "function" === typeof nextValue && key.name === nextValue.name && key.length === nextValue.length && (prevKind = Function.prototype.toString.call(key), nextKind = Function.prototype.toString.call(nextValue), prevKind === nextKind)) {
+                  key = "" === nextValue.name ? "() => {}" : nextValue.name + "() {}";
+                  properties.push([
+                    UNCHANGED + "\xA0\xA0".repeat(indent) + _key,
+                    key + " Referentially unequal function closure. Consider memoization."
+                  ]);
+                  continue;
+                }
+              }
+              addValueToProperties(_key, key, properties, indent, REMOVED);
+              addValueToProperties(_key, nextValue, properties, indent, ADDED);
               isDeeplyEqual = false;
             }
           } else
@@ -4408,6 +4675,8 @@ var require_react_dom_client_development = __commonJS({
               ADDED + "\xA0\xA0".repeat(indent) + _key,
               "\u2026"
             ]), isDeeplyEqual = false;
+          prevPropertiesChecked++;
+        }
         return isDeeplyEqual;
       }
       function setCurrentTrackFromLanes(lanes) {
@@ -4420,7 +4689,7 @@ var require_react_dom_client_development = __commonJS({
             trigger,
             reusableComponentOptions
           )
-        ) : performance.measure(trigger, reusableComponentOptions));
+        ) : performance.measure(trigger, reusableComponentOptions), performance.clearMeasures(trigger));
       }
       function logComponentReappeared(fiber, startTime, endTime) {
         logComponentTrigger(fiber, startTime, endTime, "Reconnect");
@@ -4432,24 +4701,21 @@ var require_react_dom_client_development = __commonJS({
           if (null === alternate || alternate.child !== fiber.child)
             for (var child = fiber.child; null !== child; child = child.sibling)
               selfTime -= child.actualDuration;
-          wasHydrated = 0.5 > selfTime ? wasHydrated ? "tertiary-light" : "primary-light" : 10 > selfTime ? wasHydrated ? "tertiary" : "primary" : 100 > selfTime ? wasHydrated ? "tertiary-dark" : "primary-dark" : "error";
+          selfTime = 0.5 > selfTime ? wasHydrated ? "tertiary-light" : "primary-light" : 10 > selfTime ? wasHydrated ? "tertiary" : "primary" : 100 > selfTime ? wasHydrated ? "tertiary-dark" : "primary-dark" : "error";
           var props = fiber.memoizedProps;
-          selfTime = fiber._debugTask;
-          null !== props && null !== alternate && alternate.memoizedProps !== props ? (child = [resuableChangedPropsEntry], props = addObjectDiffToProperties(
+          wasHydrated = fiber._debugTask;
+          null !== props && null !== alternate && alternate.memoizedProps !== props ? (child = [reusableChangedPropsEntry], props = addObjectDiffToProperties(
             alternate.memoizedProps,
             props,
             child,
             0
-          ), 1 < child.length && (props && !alreadyWarnedForDeepEquality && 0 === (alternate.lanes & committedLanes) && 100 < fiber.actualDuration ? (alreadyWarnedForDeepEquality = true, child[0] = reusableDeeplyEqualPropsEntry, reusableComponentDevToolDetails.color = "warning", reusableComponentDevToolDetails.tooltipText = DEEP_EQUALITY_WARNING) : (reusableComponentDevToolDetails.color = wasHydrated, reusableComponentDevToolDetails.tooltipText = name), reusableComponentDevToolDetails.properties = child, reusableComponentOptions.start = startTime, reusableComponentOptions.end = endTime, null != selfTime ? selfTime.run(
+          ), 1 < child.length ? (props && !alreadyWarnedForDeepEquality && 0 === (alternate.lanes & committedLanes) && 100 < fiber.actualDuration ? (alreadyWarnedForDeepEquality = true, child[0] = reusableDeeplyEqualPropsEntry, reusableComponentDevToolDetails.color = "warning", reusableComponentDevToolDetails.tooltipText = DEEP_EQUALITY_WARNING) : (reusableComponentDevToolDetails.color = selfTime, reusableComponentDevToolDetails.tooltipText = name), reusableComponentDevToolDetails.properties = child, reusableComponentOptions.start = startTime, reusableComponentOptions.end = endTime, fiber = "\u200B" + name, null != wasHydrated ? wasHydrated.run(
             performance.measure.bind(
               performance,
-              "\u200B" + name,
+              fiber,
               reusableComponentOptions
             )
-          ) : performance.measure(
-            "\u200B" + name,
-            reusableComponentOptions
-          ))) : null != selfTime ? selfTime.run(
+          ) : performance.measure(fiber, reusableComponentOptions), performance.clearMeasures(fiber)) : null != wasHydrated ? wasHydrated.run(
             console.timeStamp.bind(
               console,
               name,
@@ -4457,7 +4723,7 @@ var require_react_dom_client_development = __commonJS({
               endTime,
               COMPONENTS_TRACK,
               void 0,
-              wasHydrated
+              selfTime
             )
           ) : console.timeStamp(
             name,
@@ -4465,7 +4731,24 @@ var require_react_dom_client_development = __commonJS({
             endTime,
             COMPONENTS_TRACK,
             void 0,
-            wasHydrated
+            selfTime
+          )) : null != wasHydrated ? wasHydrated.run(
+            console.timeStamp.bind(
+              console,
+              name,
+              startTime,
+              endTime,
+              COMPONENTS_TRACK,
+              void 0,
+              selfTime
+            )
+          ) : console.timeStamp(
+            name,
+            startTime,
+            endTime,
+            COMPONENTS_TRACK,
+            void 0,
+            selfTime
           );
         }
       }
@@ -4497,9 +4780,9 @@ var require_react_dom_client_development = __commonJS({
                 }
               }
             };
-            debugTask ? debugTask.run(
-              performance.measure.bind(performance, "\u200B" + name, fiber)
-            ) : performance.measure("\u200B" + name, fiber);
+            name = "\u200B" + name;
+            debugTask ? debugTask.run(performance.measure.bind(performance, name, fiber)) : performance.measure(name, fiber);
+            performance.clearMeasures(name);
           }
         }
       }
@@ -4530,13 +4813,12 @@ var require_react_dom_client_development = __commonJS({
                   }
                 }
               };
-              (fiber = fiber._debugTask) ? fiber.run(
-                performance.measure.bind(
-                  performance,
-                  "\u200B" + name,
-                  startTime
-                )
-              ) : performance.measure("\u200B" + name, startTime);
+              fiber = fiber._debugTask;
+              endTime = "\u200B" + name;
+              fiber ? fiber.run(
+                performance.measure.bind(performance, endTime, startTime)
+              ) : performance.measure(endTime, startTime);
+              performance.clearMeasures(endTime);
             }
           }
         } else
@@ -4558,30 +4840,6 @@ var require_react_dom_client_development = __commonJS({
             void 0,
             errors
           ));
-      }
-      function logRenderPhase(startTime, endTime, lanes, debugTask) {
-        if (supportsUserTiming && !(endTime <= startTime)) {
-          var color = (lanes & 738197653) === lanes ? "tertiary-dark" : "primary-dark";
-          lanes = (lanes & 536870912) === lanes ? "Prepared" : (lanes & 201326741) === lanes ? "Hydrated" : "Render";
-          debugTask ? debugTask.run(
-            console.timeStamp.bind(
-              console,
-              lanes,
-              startTime,
-              endTime,
-              currentTrack,
-              LANES_TRACK_GROUP,
-              color
-            )
-          ) : console.timeStamp(
-            lanes,
-            startTime,
-            endTime,
-            currentTrack,
-            LANES_TRACK_GROUP,
-            color
-          );
-        }
       }
       function logSuspendedRenderPhase(startTime, endTime, lanes, debugTask) {
         !supportsUserTiming || endTime <= startTime || (lanes = (lanes & 738197653) === lanes ? "tertiary-dark" : "primary-dark", debugTask ? debugTask.run(
@@ -4622,34 +4880,6 @@ var require_react_dom_client_development = __commonJS({
           LANES_TRACK_GROUP,
           lanes
         ));
-      }
-      function logRecoveredRenderPhase(startTime, endTime, lanes, recoverableErrors, hydrationFailed, debugTask) {
-        if (supportsUserTiming && !(endTime <= startTime)) {
-          lanes = [];
-          for (var i = 0; i < recoverableErrors.length; i++) {
-            var error = recoverableErrors[i].value;
-            lanes.push([
-              "Recoverable Error",
-              "object" === typeof error && null !== error && "string" === typeof error.message ? String(error.message) : String(error)
-            ]);
-          }
-          startTime = {
-            start: startTime,
-            end: endTime,
-            detail: {
-              devtools: {
-                color: "primary-dark",
-                track: currentTrack,
-                trackGroup: LANES_TRACK_GROUP,
-                tooltipText: hydrationFailed ? "Hydration Failed" : "Recovered after Error",
-                properties: lanes
-              }
-            }
-          };
-          debugTask ? debugTask.run(
-            performance.measure.bind(performance, "Recovered", startTime)
-          ) : performance.measure("Recovered", startTime);
-        }
       }
       function logErroredRenderPhase(startTime, endTime, lanes, debugTask) {
         !supportsUserTiming || endTime <= startTime || (debugTask ? debugTask.run(
@@ -4716,7 +4946,28 @@ var require_react_dom_client_development = __commonJS({
           debugTask ? debugTask.run(
             performance.measure.bind(performance, "Errored", startTime)
           ) : performance.measure("Errored", startTime);
+          performance.clearMeasures("Errored");
         }
+      }
+      function logCommitPhase(startTime, endTime, errors, abortedViewTransition, debugTask) {
+        null !== errors ? logCommitErrored(startTime, endTime, errors, false, debugTask) : !supportsUserTiming || endTime <= startTime || (debugTask ? debugTask.run(
+          console.timeStamp.bind(
+            console,
+            abortedViewTransition ? "Commit Interrupted View Transition" : "Commit",
+            startTime,
+            endTime,
+            currentTrack,
+            LANES_TRACK_GROUP,
+            abortedViewTransition ? "error" : "secondary-dark"
+          )
+        ) : console.timeStamp(
+          abortedViewTransition ? "Commit Interrupted View Transition" : "Commit",
+          startTime,
+          endTime,
+          currentTrack,
+          LANES_TRACK_GROUP,
+          abortedViewTransition ? "error" : "secondary-dark"
+        ));
       }
       function logAnimatingPhase(startTime, endTime, debugTask) {
         !supportsUserTiming || endTime <= startTime || (debugTask ? debugTask.run(
@@ -4795,19 +5046,14 @@ var require_react_dom_client_development = __commonJS({
           null === node.alternate && 0 !== (node.flags & 4098) && warnAboutUpdateOnNotYetMountedFiberInDEV(sourceFiber), node = parent, parent = node.return;
         return 3 === node.tag ? node.stateNode : null;
       }
-      function resolveFunctionForHotReloading(type) {
+      function resolveTypeForHotReloading(type) {
         if (null === resolveFamily) return type;
         var family = resolveFamily(type);
         return void 0 === family ? type : family.current;
       }
-      function resolveForwardRefForHotReloading(type) {
-        if (null === resolveFamily) return type;
-        var family = resolveFamily(type);
-        return void 0 === family ? null !== type && void 0 !== type && "function" === typeof type.render && (family = resolveFunctionForHotReloading(type.render), type.render !== family) ? (family = { $$typeof: REACT_FORWARD_REF_TYPE, render: family }, void 0 !== type.displayName && (family.displayName = type.displayName), family) : type : family.current;
-      }
       function isCompatibleFamilyForHotReloading(fiber, element) {
         if (null === resolveFamily) return false;
-        var prevType = fiber.elementType;
+        var resolve = resolveFamily, prevType = fiber.elementType;
         element = element.type;
         var needsCompareFamilies = false, $$typeofNextType = "object" === typeof element && null !== element ? element.$$typeof : null;
         switch (fiber.tag) {
@@ -4827,35 +5073,41 @@ var require_react_dom_client_development = __commonJS({
           default:
             return false;
         }
-        return needsCompareFamilies && (fiber = resolveFamily(prevType), void 0 !== fiber && fiber === resolveFamily(element)) ? true : false;
+        return needsCompareFamilies && (fiber = resolve(prevType), void 0 !== fiber && fiber === resolve(element)) ? true : false;
       }
       function markFailedErrorBoundaryForHotReloading(fiber) {
         null !== resolveFamily && "function" === typeof WeakSet && (null === failedBoundaries && (failedBoundaries = /* @__PURE__ */ new WeakSet()), failedBoundaries.add(fiber));
       }
       function scheduleFibersWithFamiliesRecursively(fiber, updatedFamilies, staleFamilies) {
         do {
-          var _fiber = fiber, alternate = _fiber.alternate, child = _fiber.child, sibling = _fiber.sibling, tag = _fiber.tag;
-          _fiber = _fiber.type;
-          var candidateType = null;
+          var _fiber = fiber, alternate = _fiber.alternate, child = _fiber.child, sibling = _fiber.sibling, tag = _fiber.tag, type = _fiber.type, elementType = _fiber.elementType, candidateType = null;
+          _fiber = null;
           switch (tag) {
             case 0:
-            case 15:
             case 1:
-              candidateType = _fiber;
+              candidateType = type;
+              break;
+            case 15:
+              candidateType = type;
+              _fiber = elementType;
+              break;
+            case 14:
+              _fiber = elementType;
               break;
             case 11:
-              candidateType = _fiber.render;
+              candidateType = type.render, _fiber = elementType;
           }
           if (null === resolveFamily)
             throw Error("Expected resolveFamily to be set during hot reload.");
-          var needsRender = false;
-          _fiber = false;
-          null !== candidateType && (candidateType = resolveFamily(candidateType), void 0 !== candidateType && (staleFamilies.has(candidateType) ? _fiber = true : updatedFamilies.has(candidateType) && (1 === tag ? _fiber = true : needsRender = true)));
-          null !== failedBoundaries && (failedBoundaries.has(fiber) || null !== alternate && failedBoundaries.has(alternate)) && (_fiber = true);
-          _fiber && (fiber._debugNeedsRemount = true);
-          if (_fiber || needsRender)
+          var resolve = resolveFamily;
+          type = elementType = false;
+          null !== candidateType && (candidateType = resolve(candidateType), void 0 !== candidateType && (staleFamilies.has(candidateType) ? type = true : updatedFamilies.has(candidateType) && (1 === tag ? type = true : elementType = true)));
+          type || null === _fiber || (tag = resolve(_fiber), void 0 !== tag && staleFamilies.has(tag) ? type = true : "object" === typeof _fiber && _fiber.$$typeof === REACT_LAZY_TYPE && (tag = _fiber._payload, 1 === tag._status && (tag = resolve(tag._result.default), void 0 !== tag && staleFamilies.has(tag) && (type = true))));
+          null !== failedBoundaries && (failedBoundaries.has(fiber) || null !== alternate && failedBoundaries.has(alternate)) && (type = true);
+          type && (fiber._debugNeedsRemount = true);
+          if (type || elementType)
             alternate = enqueueConcurrentRenderForLane(fiber, 2), null !== alternate && scheduleUpdateOnFiber(alternate, fiber, 2);
-          null === child || _fiber || scheduleFibersWithFamiliesRecursively(
+          null === child || type || scheduleFibersWithFamiliesRecursively(
             child,
             updatedFamilies,
             staleFamilies
@@ -4897,7 +5149,7 @@ var require_react_dom_client_development = __commonJS({
           current2.key,
           current2.mode
         ), workInProgress2.elementType = current2.elementType, workInProgress2.type = current2.type, workInProgress2.stateNode = current2.stateNode, workInProgress2._debugOwner = current2._debugOwner, workInProgress2._debugStack = current2._debugStack, workInProgress2._debugTask = current2._debugTask, workInProgress2._debugHookTypes = current2._debugHookTypes, workInProgress2.alternate = current2, current2.alternate = workInProgress2) : (workInProgress2.pendingProps = pendingProps, workInProgress2.type = current2.type, workInProgress2.flags = 0, workInProgress2.subtreeFlags = 0, workInProgress2.deletions = null, workInProgress2.actualDuration = -0, workInProgress2.actualStartTime = -1.1);
-        workInProgress2.flags = current2.flags & 65011712;
+        workInProgress2.flags = current2.flags & 1206910976;
         workInProgress2.childLanes = current2.childLanes;
         workInProgress2.lanes = current2.lanes;
         workInProgress2.child = current2.child;
@@ -4921,18 +5173,15 @@ var require_react_dom_client_development = __commonJS({
         switch (workInProgress2.tag) {
           case 0:
           case 15:
-            workInProgress2.type = resolveFunctionForHotReloading(current2.type);
-            break;
+          case 14:
           case 1:
-            workInProgress2.type = resolveFunctionForHotReloading(current2.type);
-            break;
           case 11:
-            workInProgress2.type = resolveForwardRefForHotReloading(current2.type);
+            workInProgress2.type = resolveTypeForHotReloading(current2.type);
         }
         return workInProgress2;
       }
       function resetWorkInProgress(workInProgress2, renderLanes2) {
-        workInProgress2.flags &= 65011714;
+        workInProgress2.flags &= 1206910978;
         var current2 = workInProgress2.alternate;
         null === current2 ? (workInProgress2.childLanes = 0, workInProgress2.lanes = renderLanes2, workInProgress2.child = null, workInProgress2.subtreeFlags = 0, workInProgress2.memoizedProps = null, workInProgress2.memoizedState = null, workInProgress2.updateQueue = null, workInProgress2.dependencies = null, workInProgress2.stateNode = null, workInProgress2.selfBaseDuration = 0, workInProgress2.treeBaseDuration = 0) : (workInProgress2.childLanes = current2.childLanes, workInProgress2.lanes = current2.lanes, workInProgress2.child = current2.child, workInProgress2.subtreeFlags = 0, workInProgress2.deletions = null, workInProgress2.memoizedProps = current2.memoizedProps, workInProgress2.memoizedState = current2.memoizedState, workInProgress2.updateQueue = current2.updateQueue, workInProgress2.type = current2.type, renderLanes2 = current2.dependencies, workInProgress2.dependencies = null === renderLanes2 ? null : {
           lanes: renderLanes2.lanes,
@@ -4942,13 +5191,14 @@ var require_react_dom_client_development = __commonJS({
         return workInProgress2;
       }
       function createFiberFromTypeAndProps(type, key, pendingProps, owner, mode, lanes) {
-        var fiberTag = 0, resolvedType = type;
-        if ("function" === typeof type)
-          shouldConstruct(type) && (fiberTag = 1), resolvedType = resolveFunctionForHotReloading(resolvedType);
-        else if ("string" === typeof type)
+        var fiberTag = 0;
+        var resolvedType = resolveTypeForHotReloading(type);
+        if ("function" === typeof resolvedType)
+          shouldConstruct(resolvedType) && (fiberTag = 1);
+        else if ("string" === typeof resolvedType)
           fiberTag = getHostContext(), fiberTag = isHostHoistableType(type, pendingProps, fiberTag) ? 26 : "html" === type || "head" === type || "body" === type ? 27 : 5;
         else
-          a: switch (type) {
+          a: switch (resolvedType) {
             case REACT_ACTIVITY_TYPE:
               return key = createFiber(31, pendingProps, key, mode), key.elementType = REACT_ACTIVITY_TYPE, key.lanes = lanes, key;
             case REACT_FRAGMENT_TYPE:
@@ -4972,9 +5222,17 @@ var require_react_dom_client_development = __commonJS({
               return key = createFiber(13, pendingProps, key, mode), key.elementType = REACT_SUSPENSE_TYPE, key.lanes = lanes, key;
             case REACT_SUSPENSE_LIST_TYPE:
               return key = createFiber(19, pendingProps, key, mode), key.elementType = REACT_SUSPENSE_LIST_TYPE, key.lanes = lanes, key;
+            case REACT_LEGACY_HIDDEN_TYPE:
+            case REACT_VIEW_TRANSITION_TYPE:
+              return type = mode | SuspenseyImagesMode, key = createFiber(30, pendingProps, key, type), key.elementType = REACT_VIEW_TRANSITION_TYPE, key.lanes = lanes, key.stateNode = {
+                autoName: null,
+                paired: null,
+                clones: null,
+                ref: null
+              }, key;
             default:
-              if ("object" === typeof type && null !== type)
-                switch (type.$$typeof) {
+              if ("object" === typeof resolvedType && null !== resolvedType)
+                switch (resolvedType.$$typeof) {
                   case REACT_CONTEXT_TYPE:
                     fiberTag = 10;
                     break a;
@@ -4983,7 +5241,6 @@ var require_react_dom_client_development = __commonJS({
                     break a;
                   case REACT_FORWARD_REF_TYPE:
                     fiberTag = 11;
-                    resolvedType = resolveForwardRefForHotReloading(resolvedType);
                     break a;
                   case REACT_MEMO_TYPE:
                     fiberTag = 14;
@@ -4993,14 +5250,14 @@ var require_react_dom_client_development = __commonJS({
                     resolvedType = null;
                     break a;
                 }
-              resolvedType = "";
+              pendingProps = "";
               if (void 0 === type || "object" === typeof type && null !== type && 0 === Object.keys(type).length)
-                resolvedType += " You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.";
-              null === type ? pendingProps = "null" : isArrayImpl(type) ? pendingProps = "array" : void 0 !== type && type.$$typeof === REACT_ELEMENT_TYPE ? (pendingProps = "<" + (getComponentNameFromType(type.type) || "Unknown") + " />", resolvedType = " Did you accidentally export a JSX literal instead of a component?") : pendingProps = typeof type;
-              (fiberTag = owner ? getComponentNameFromOwner(owner) : null) && (resolvedType += "\n\nCheck the render method of `" + fiberTag + "`.");
+                pendingProps += " You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.";
+              null === type ? resolvedType = "null" : isArrayImpl(type) ? resolvedType = "array" : void 0 !== type && type.$$typeof === REACT_ELEMENT_TYPE ? (resolvedType = "<" + (getComponentNameFromType(type.type) || "Unknown") + " />", pendingProps = " Did you accidentally export a JSX literal instead of a component?") : resolvedType = typeof type;
+              (fiberTag = owner ? getComponentNameFromOwner(owner) : null) && (pendingProps += "\n\nCheck the render method of `" + fiberTag + "`.");
               fiberTag = 29;
               pendingProps = Error(
-                "Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: " + (pendingProps + "." + resolvedType)
+                "Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: " + (resolvedType + "." + pendingProps)
               );
               resolvedType = null;
           }
@@ -5411,7 +5668,12 @@ var require_react_dom_client_development = __commonJS({
               workInProgress2
             );
             nextFiber = null;
-          } else nextFiber = fiber.child;
+          } else
+            13 === fiber.tag && null !== fiber.memoizedState && null === fiber.memoizedState.dehydrated ? (fiber.lanes |= renderLanes2, nextFiber = fiber.alternate, null !== nextFiber && (nextFiber.lanes |= renderLanes2), scheduleContextWorkOnParentPath(
+              fiber.return,
+              renderLanes2,
+              workInProgress2
+            ), nextFiber = fiber.child, nextFiber = null !== nextFiber ? nextFiber.sibling : null) : nextFiber = fiber.child;
           if (null !== nextFiber) nextFiber.return = fiber;
           else
             for (nextFiber = fiber; null !== nextFiber; ) {
@@ -5461,6 +5723,7 @@ var require_react_dom_client_development = __commonJS({
           forcePropagateEntireTree
         );
         workInProgress2.flags |= 262144;
+        return null !== current2;
       }
       function checkIfContextChanged(currentDependencies) {
         for (currentDependencies = currentDependencies.firstContext; null !== currentDependencies; ) {
@@ -5528,6 +5791,21 @@ var require_react_dom_client_development = __commonJS({
         0 === cache.refCount && scheduleCallback$2(NormalPriority, function() {
           cache.controller.abort();
         });
+      }
+      function queueTransitionTypes(root3, transitionTypes) {
+        if (0 !== (root3.pendingLanes & 4194048)) {
+          var queued = root3.transitionTypes;
+          null === queued && (queued = root3.transitionTypes = []);
+          for (root3 = 0; root3 < transitionTypes.length; root3++) {
+            var transitionType = transitionTypes[root3];
+            -1 === queued.indexOf(transitionType) && queued.push(transitionType);
+          }
+        }
+      }
+      function claimQueuedTransitionTypes(root3) {
+        var claimed = root3.transitionTypes;
+        root3.transitionTypes = null;
+        return claimed;
       }
       function startUpdateTimerByLane(lane, method, fiber) {
         if (0 !== (lane & 127))
@@ -5664,7 +5942,7 @@ var require_react_dom_client_development = __commonJS({
         return thenable;
       }
       function pingEngtangledActionScope() {
-        if (0 === --currentEntangledPendingCount && (-1 < transitionUpdateTime || (transitionStartTime = -1.1), null !== currentEntangledListeners)) {
+        if (0 === --currentEntangledPendingCount && (-1 < transitionUpdateTime || (transitionStartTime = -1.1), entangledTransitionTypes = null, null !== currentEntangledListeners)) {
           null !== currentEntangledActionThenable && (currentEntangledActionThenable.status = "fulfilled");
           var listeners = currentEntangledListeners;
           currentEntangledListeners = null;
@@ -5715,7 +5993,7 @@ var require_react_dom_client_development = __commonJS({
         thenable = thenable.status;
         return "fulfilled" === thenable || "rejected" === thenable;
       }
-      function trackUsedThenable(thenableState2, thenable, index) {
+      function trackUsedThenable(thenableState2, thenable, index, fiber) {
         null !== ReactSharedInternals.actQueue && (ReactSharedInternals.didUsePromise = true);
         var trackedThenables = thenableState2.thenables;
         index = trackedThenables[index];
@@ -5740,7 +6018,13 @@ var require_react_dom_client_development = __commonJS({
           case "fulfilled":
             return thenable.value;
           case "rejected":
-            throw thenableState2 = thenable.reason, checkIfUseWrappedInAsyncCatch(thenableState2), thenableState2;
+            fiber = thenable.reason;
+            checkIfUseWrappedInAsyncCatch(fiber);
+            if (void 0 === fiber && !("reason" in thenable))
+              throw Error(
+                "A rejected Promise was passed to React without a `reason` property. React threw a generic error from where the Promise was used to assist in identifying the problematic Promise. Make sure that instrumented Promises correctly set the `reason` property when setting `status` to `'rejected'`."
+              );
+            throw fiber;
           default:
             if ("string" === typeof thenable.status)
               thenable.then(noop$1, noop$1);
@@ -5773,10 +6057,13 @@ var require_react_dom_client_development = __commonJS({
               case "fulfilled":
                 return thenable.value;
               case "rejected":
-                throw thenableState2 = thenable.reason, checkIfUseWrappedInAsyncCatch(thenableState2), thenableState2;
+                throw fiber = thenable.reason, checkIfUseWrappedInAsyncCatch(fiber), fiber;
             }
             suspendedThenable = thenable;
             needsToResetSuspendedThenableDEV = true;
+            didIssueUseWarning || null === fiber || null !== fiber.alternate || (lastSuspendedFiber = fiber, lastSuspendedStack = Error(
+              "This library called use() to suspend in a previous render but did not call use() when it finished. This indicates an incorrect use of use(). Learn more: https://react.dev/warnings/conditional-use-of-use"
+            ));
             throw SuspenseException;
         }
       }
@@ -5805,6 +6092,9 @@ var require_react_dom_client_development = __commonJS({
             "Hooks are not supported inside an async component. This error is often caused by accidentally adding `'use client'` to a module that was originally written for the server."
           );
       }
+      function areSameKeyPath(a, b) {
+        return a === b ? true : a.tag !== b.tag || a.type !== b.type || a.key !== b.key || a.index !== b.index || 3 === a.tag && a.stateNode !== b.stateNode || null === a.return || null === b.return ? false : areSameKeyPath(a.return, b.return);
+      }
       function pushDebugInfo(debugInfo) {
         var previousDebugInfo = currentDebugInfo;
         null != debugInfo && (currentDebugInfo = null === previousDebugInfo ? debugInfo : previousDebugInfo.concat(debugInfo));
@@ -5824,13 +6114,13 @@ var require_react_dom_client_development = __commonJS({
       function validateFragmentProps(element, fiber, returnFiber) {
         for (var keys = Object.keys(element.props), i = 0; i < keys.length; i++) {
           var key = keys[i];
-          if ("children" !== key && "key" !== key) {
+          if ("children" !== key && "key" !== key && "ref" !== key) {
             null === fiber && (fiber = createFiberFromElement(element, returnFiber.mode, 0), fiber._debugInfo = currentDebugInfo, fiber.return = returnFiber);
             runWithFiberInDEV(
               fiber,
               function(erroredKey) {
                 console.error(
-                  "Invalid prop `%s` supplied to `React.Fragment`. React.Fragment can only have `key` and `children` props.",
+                  "Invalid prop `%s` supplied to `React.Fragment`. React.Fragment can only have `key`, `ref`, and `children` props.",
                   erroredKey
                 );
               },
@@ -5844,7 +6134,7 @@ var require_react_dom_client_development = __commonJS({
         var index = thenableIndexCounter$1;
         thenableIndexCounter$1 += 1;
         null === thenableState$1 && (thenableState$1 = createThenableState());
-        return trackUsedThenable(thenableState$1, thenable, index);
+        return trackUsedThenable(thenableState$1, thenable, index, null);
       }
       function coerceRef(workInProgress2, element) {
         element = element.props.ref;
@@ -5921,7 +6211,7 @@ var require_react_dom_client_development = __commonJS({
         }
         function mapRemainingChildren(currentFirstChild) {
           for (var existingChildren = /* @__PURE__ */ new Map(); null !== currentFirstChild; )
-            null !== currentFirstChild.key ? existingChildren.set(currentFirstChild.key, currentFirstChild) : existingChildren.set(currentFirstChild.index, currentFirstChild), currentFirstChild = currentFirstChild.sibling;
+            null === currentFirstChild.key ? existingChildren.set(currentFirstChild.index, currentFirstChild) : existingChildren.set(currentFirstChild.key, currentFirstChild), currentFirstChild = currentFirstChild.sibling;
           return existingChildren;
         }
         function useFiber(fiber, pendingProps) {
@@ -5936,12 +6226,12 @@ var require_react_dom_client_development = __commonJS({
             return newFiber.flags |= 1048576, lastPlacedIndex;
           newIndex = newFiber.alternate;
           if (null !== newIndex)
-            return newIndex = newIndex.index, newIndex < lastPlacedIndex ? (newFiber.flags |= 67108866, lastPlacedIndex) : newIndex;
-          newFiber.flags |= 67108866;
+            return newIndex = newIndex.index, newIndex < lastPlacedIndex ? (newFiber.flags |= 2, lastPlacedIndex) : newIndex;
+          newFiber.flags |= 134217730;
           return lastPlacedIndex;
         }
         function placeSingleChild(newFiber) {
-          shouldTrackSideEffects && null === newFiber.alternate && (newFiber.flags |= 67108866);
+          shouldTrackSideEffects && null === newFiber.alternate && (newFiber.flags |= 134217730);
           return newFiber;
         }
         function updateTextNode(returnFiber, current2, textContent, lanes) {
@@ -5965,7 +6255,7 @@ var require_react_dom_client_development = __commonJS({
               element.props.children,
               lanes,
               element.key
-            ), validateFragmentProps(element, current2, returnFiber), current2;
+            ), coerceRef(current2, element), validateFragmentProps(element, current2, returnFiber), current2;
           if (null !== current2 && (current2.elementType === elementType || isCompatibleFamilyForHotReloading(current2, element) || "object" === typeof elementType && null !== elementType && elementType.$$typeof === REACT_LAZY_TYPE && resolveLazy(elementType) === current2.type))
             return current2 = useFiber(current2, element.props), coerceRef(current2, element), current2.return = returnFiber, current2._debugOwner = element._owner, current2._debugInfo = currentDebugInfo, current2;
           current2 = createFiberFromElement(element, returnFiber.mode, lanes);
@@ -6248,9 +6538,9 @@ var require_react_dom_client_development = __commonJS({
               nextOldFiber,
               newChildren[newIdx],
               knownKeys
-            ), shouldTrackSideEffects && null !== nextOldFiber.alternate && oldFiber.delete(
-              null === nextOldFiber.key ? newIdx : nextOldFiber.key
-            ), currentFirstChild = placeChild(
+            ), shouldTrackSideEffects && (newFiber = nextOldFiber.alternate, null !== newFiber && oldFiber.delete(
+              null === newFiber.key ? newIdx : newFiber.key
+            )), currentFirstChild = placeChild(
               nextOldFiber,
               currentFirstChild,
               newIdx
@@ -6312,9 +6602,7 @@ var require_react_dom_client_development = __commonJS({
               nextOldFiber,
               step.value,
               knownKeys
-            ), shouldTrackSideEffects && null !== nextOldFiber.alternate && oldFiber.delete(
-              null === nextOldFiber.key ? newIdx : nextOldFiber.key
-            ), currentFirstChild = placeChild(
+            ), shouldTrackSideEffects && (step = nextOldFiber.alternate, null !== step && oldFiber.delete(null === step.key ? newIdx : step.key)), currentFirstChild = placeChild(
               nextOldFiber,
               currentFirstChild,
               newIdx
@@ -6326,7 +6614,7 @@ var require_react_dom_client_development = __commonJS({
           return resultingFirstChild;
         }
         function reconcileChildFibersImpl(returnFiber, currentFirstChild, newChild, lanes) {
-          "object" === typeof newChild && null !== newChild && newChild.type === REACT_FRAGMENT_TYPE && null === newChild.key && (validateFragmentProps(newChild, null, returnFiber), newChild = newChild.props.children);
+          "object" === typeof newChild && null !== newChild && newChild.type === REACT_FRAGMENT_TYPE && null === newChild.key && void 0 === newChild.props.ref && (validateFragmentProps(newChild, null, returnFiber), newChild = newChild.props.children);
           if ("object" === typeof newChild && null !== newChild) {
             switch (newChild.$$typeof) {
               case REACT_ELEMENT_TYPE:
@@ -6345,6 +6633,7 @@ var require_react_dom_client_development = __commonJS({
                             currentFirstChild,
                             newChild.props.children
                           );
+                          coerceRef(lanes, newChild);
                           lanes.return = returnFiber;
                           lanes._debugOwner = newChild._owner;
                           lanes._debugInfo = currentDebugInfo;
@@ -6378,7 +6667,7 @@ var require_react_dom_client_development = __commonJS({
                     returnFiber.mode,
                     lanes,
                     newChild.key
-                  ), lanes.return = returnFiber, lanes._debugOwner = returnFiber, lanes._debugTask = returnFiber._debugTask, lanes._debugInfo = currentDebugInfo, validateFragmentProps(newChild, lanes, returnFiber), returnFiber = lanes) : (lanes = createFiberFromElement(
+                  ), coerceRef(lanes, newChild), lanes.return = returnFiber, lanes._debugOwner = returnFiber, lanes._debugTask = returnFiber._debugTask, lanes._debugInfo = currentDebugInfo, validateFragmentProps(newChild, lanes, returnFiber), returnFiber = lanes) : (lanes = createFiberFromElement(
                     newChild,
                     returnFiber.mode,
                     lanes
@@ -6429,37 +6718,35 @@ var require_react_dom_client_development = __commonJS({
                 ), currentDebugInfo = prevDebugInfo, returnFiber;
             }
             if (isArrayImpl(newChild))
-              return prevDebugInfo = pushDebugInfo(newChild._debugInfo), returnFiber = reconcileChildrenArray(
+              return reconcileChildrenArray(
                 returnFiber,
                 currentFirstChild,
                 newChild,
                 lanes
-              ), currentDebugInfo = prevDebugInfo, returnFiber;
+              );
             if (getIteratorFn(newChild)) {
-              prevDebugInfo = pushDebugInfo(newChild._debugInfo);
-              key = getIteratorFn(newChild);
-              if ("function" !== typeof key)
+              prevDebugInfo = newChild;
+              newChild = getIteratorFn(prevDebugInfo);
+              if ("function" !== typeof newChild)
                 throw Error(
                   "An object is not an iterable. This error is likely caused by a bug in React. Please file an issue."
                 );
-              var newChildren = key.call(newChild);
-              if (newChildren === newChild) {
-                if (0 !== returnFiber.tag || "[object GeneratorFunction]" !== Object.prototype.toString.call(returnFiber.type) || "[object Generator]" !== Object.prototype.toString.call(newChildren))
+              key = newChild.call(prevDebugInfo);
+              if (key === prevDebugInfo) {
+                if (0 !== returnFiber.tag || "[object GeneratorFunction]" !== Object.prototype.toString.call(returnFiber.type) || "[object Generator]" !== Object.prototype.toString.call(key))
                   didWarnAboutGenerators || console.error(
                     "Using Iterators as children is unsupported and will likely yield unexpected results because enumerating a generator mutates it. You may convert it to an array with `Array.from()` or the `[...spread]` operator before rendering. You can also use an Iterable that can iterate multiple times over the same items."
                   ), didWarnAboutGenerators = true;
               } else
-                newChild.entries !== key || didWarnAboutMaps || (console.error(
+                prevDebugInfo.entries !== newChild || didWarnAboutMaps || (console.error(
                   "Using Maps as children is not supported. Use an array of keyed ReactElements instead."
                 ), didWarnAboutMaps = true);
-              returnFiber = reconcileChildrenIterator(
+              return reconcileChildrenIterator(
                 returnFiber,
                 currentFirstChild,
-                newChildren,
+                key,
                 lanes
               );
-              currentDebugInfo = prevDebugInfo;
-              return returnFiber;
             }
             if ("function" === typeof newChild.then)
               return prevDebugInfo = pushDebugInfo(newChild._debugInfo), returnFiber = reconcileChildFibersImpl(
@@ -6813,13 +7100,26 @@ var require_react_dom_client_development = __commonJS({
         shellBoundary === fiber && (shellBoundary = null);
         pop(suspenseStackCursor, fiber);
       }
+      function pushSuspenseListContext(fiber, newContext) {
+        push(
+          suspenseHandlerStackCursor,
+          suspenseHandlerStackCursor.current,
+          fiber
+        );
+        push(suspenseStackCursor, newContext, fiber);
+      }
+      function popSuspenseListContext(fiber) {
+        pop(suspenseStackCursor, fiber);
+        pop(suspenseHandlerStackCursor, fiber);
+        shellBoundary === fiber && (shellBoundary = null);
+      }
       function findFirstSuspended(row) {
         for (var node = row; null !== node; ) {
           if (13 === node.tag) {
             var state = node.memoizedState;
             if (null !== state && (state = state.dehydrated, null === state || isSuspenseInstancePending(state) || isSuspenseInstanceFallback(state)))
               return node;
-          } else if (19 === node.tag && ("forwards" === node.memoizedProps.revealOrder || "backwards" === node.memoizedProps.revealOrder || "unstable_legacy-backwards" === node.memoizedProps.revealOrder || "together" === node.memoizedProps.revealOrder)) {
+          } else if (19 === node.tag && "independent" !== node.memoizedProps.revealOrder) {
             if (0 !== (node.flags & 128)) return node;
           } else if (null !== node.child) {
             node.child.return = node;
@@ -6943,18 +7243,20 @@ var require_react_dom_client_development = __commonJS({
           firstContext: null,
           _debugThenableState: thenableState
         }) : workInProgress2.dependencies._debugThenableState = thenableState;
+        var thenableState$jscomp$0 = thenableState;
+        null !== lastSuspendedFiber && areSameKeyPath(lastSuspendedFiber, workInProgress2) && (null !== thenableState$jscomp$0 || null === lastSuspendedStack || didIssueUseWarning || (didIssueUseWarning = true, console.error(lastSuspendedStack)), lastSuspendedStack = lastSuspendedFiber = null);
         ReactSharedInternals.H = ContextOnlyDispatcher;
-        var didRenderTooFewHooks = null !== currentHook && null !== currentHook.next;
+        thenableState$jscomp$0 = null !== currentHook && null !== currentHook.next;
         renderLanes = 0;
         hookTypesDev = currentHookNameInDev = workInProgressHook = currentHook = currentlyRenderingFiber = null;
         hookTypesUpdateIndexDev = -1;
-        null !== current2 && (current2.flags & 65011712) !== (workInProgress2.flags & 65011712) && console.error(
+        null !== current2 && (current2.flags & 1206910976) !== (workInProgress2.flags & 1206910976) && console.error(
           "Internal React error: Expected static flag was missing. Please notify the React team."
         );
         didScheduleRenderPhaseUpdate = false;
         thenableIndexCounter = 0;
         thenableState = null;
-        if (didRenderTooFewHooks)
+        if (thenableState$jscomp$0)
           throw Error(
             "Rendered fewer hooks than expected. This may be caused by an accidental early return statement."
           );
@@ -7005,7 +7307,7 @@ var require_react_dom_client_development = __commonJS({
       }
       function bailoutHooks(current2, workInProgress2, lanes) {
         workInProgress2.updateQueue = current2.updateQueue;
-        workInProgress2.flags = (workInProgress2.mode & StrictEffectsMode) !== NoMode ? workInProgress2.flags & -402655237 : workInProgress2.flags & -2053;
+        workInProgress2.flags = (workInProgress2.mode & StrictEffectsMode) !== NoMode ? workInProgress2.flags & -805308421 : workInProgress2.flags & -2053;
         current2.lanes &= ~lanes;
       }
       function resetHooksOnUnwind(workInProgress2) {
@@ -7071,7 +7373,12 @@ var require_react_dom_client_development = __commonJS({
         var index = thenableIndexCounter;
         thenableIndexCounter += 1;
         null === thenableState && (thenableState = createThenableState());
-        thenable = trackUsedThenable(thenableState, thenable, index);
+        thenable = trackUsedThenable(
+          thenableState,
+          thenable,
+          index,
+          currentlyRenderingFiber
+        );
         index = currentlyRenderingFiber;
         null === (null === workInProgressHook ? index.memoizedState : workInProgressHook.next) && (index = index.alternate, ReactSharedInternals.H = null !== index && null !== index.memoizedState ? HooksDispatcherOnUpdateInDEV : HooksDispatcherOnMountInDEV);
         return thenable;
@@ -7079,6 +7386,7 @@ var require_react_dom_client_development = __commonJS({
       function use(usable) {
         if (null !== usable && "object" === typeof usable) {
           if ("function" === typeof usable.then) return useThenable(usable);
+          if (usable.$$typeof === REACT_RECOVERABLE_TYPE) return;
           if (usable.$$typeof === REACT_CONTEXT_TYPE) return readContext(usable);
         }
         throw Error("An unsupported type was passed to use(): " + String(usable));
@@ -7313,20 +7621,21 @@ var require_react_dom_client_development = __commonJS({
         hook = hook.queue;
         var create = subscribeToStore.bind(null, fiber, hook, subscribe);
         updateEffectImpl(2048, Passive, create, [subscribe]);
-        if (hook.getSnapshot !== getSnapshot || cachedSnapshot || null !== workInProgressHook && workInProgressHook.memoizedState.tag & HasEffect) {
+        subscribe = hook.getSnapshot !== getSnapshot || cachedSnapshot || null !== workInProgressHook && (workInProgressHook.memoizedState.tag & HasEffect) !== NoFlags;
+        pushSimpleEffect(
+          subscribe ? HasEffect | Passive : Passive,
+          { destroy: void 0 },
+          updateStoreInstance.bind(
+            null,
+            fiber,
+            hook,
+            getServerSnapshot,
+            getSnapshot
+          ),
+          null
+        );
+        if (subscribe) {
           fiber.flags |= 2048;
-          pushSimpleEffect(
-            HasEffect | Passive,
-            { destroy: void 0 },
-            updateStoreInstance.bind(
-              null,
-              fiber,
-              hook,
-              getServerSnapshot,
-              getSnapshot
-            ),
-            null
-          );
           if (null === workInProgressRoot)
             throw Error(
               "Expected a work-in-progress root. This is a bug in React. Please file an issue."
@@ -7436,7 +7745,7 @@ var require_react_dom_client_development = __commonJS({
       }
       function dispatchActionState(fiber, actionQueue, setPendingState, setState, payload) {
         if (isRenderPhaseUpdate(fiber))
-          throw Error("Cannot update form state while rendering.");
+          throw Error("Cannot update action state while rendering.");
         fiber = actionQueue.action;
         if (null !== fiber) {
           var actionNode = {
@@ -7462,6 +7771,7 @@ var require_react_dom_client_development = __commonJS({
         var action = node.action, payload = node.payload, prevState = actionQueue.state;
         if (node.isTransition) {
           var prevTransition = ReactSharedInternals.T, currentTransition = {};
+          currentTransition.types = null !== prevTransition ? prevTransition.types : null;
           currentTransition._updatedFibers = /* @__PURE__ */ new Set();
           ReactSharedInternals.T = currentTransition;
           try {
@@ -7480,8 +7790,8 @@ var require_react_dom_client_development = __commonJS({
         } else
           try {
             currentTransition = action(prevState, payload), handleActionReturnValue(actionQueue, node, currentTransition);
-          } catch (error$4) {
-            onActionError(actionQueue, node, error$4);
+          } catch (error$5) {
+            onActionError(actionQueue, node, error$5);
           }
       }
       function handleActionReturnValue(actionQueue, node, returnValue) {
@@ -7683,7 +7993,7 @@ var require_react_dom_client_development = __commonJS({
         ));
       }
       function mountEffect(create, deps) {
-        (currentlyRenderingFiber.mode & StrictEffectsMode) !== NoMode ? mountEffectImpl(276826112, Passive, create, deps) : mountEffectImpl(8390656, Passive, create, deps);
+        (currentlyRenderingFiber.mode & StrictEffectsMode) !== NoMode ? mountEffectImpl(545261568, Passive, create, deps) : mountEffectImpl(8390656, Passive, create, deps);
       }
       function useEffectEventImpl(payload) {
         currentlyRenderingFiber.flags |= 4;
@@ -7719,7 +8029,7 @@ var require_react_dom_client_development = __commonJS({
       }
       function mountLayoutEffect(create, deps) {
         var fiberFlags = 4194308;
-        (currentlyRenderingFiber.mode & StrictEffectsMode) !== NoMode && (fiberFlags |= 134217728);
+        (currentlyRenderingFiber.mode & StrictEffectsMode) !== NoMode && (fiberFlags |= 268435456);
         return mountEffectImpl(fiberFlags, Layout, create, deps);
       }
       function imperativeHandleEffect(create, ref) {
@@ -7745,7 +8055,7 @@ var require_react_dom_client_development = __commonJS({
         );
         deps = null !== deps && void 0 !== deps ? deps.concat([ref]) : null;
         var fiberFlags = 4194308;
-        (currentlyRenderingFiber.mode & StrictEffectsMode) !== NoMode && (fiberFlags |= 134217728);
+        (currentlyRenderingFiber.mode & StrictEffectsMode) !== NoMode && (fiberFlags |= 268435456);
         mountEffectImpl(
           fiberFlags,
           Layout,
@@ -7850,7 +8160,7 @@ var require_react_dom_client_development = __commonJS({
         if (objectIs(value, prevValue)) return value;
         if (null !== currentTreeHiddenStackCursor.current)
           return hook = mountDeferredValueImpl(hook, value, initialValue), objectIs(hook, prevValue) || (didReceiveUpdate = true), hook;
-        if (0 === (renderLanes & 42) || 0 !== (renderLanes & 1073741824) && 0 === (workInProgressRootRenderLanes & 261930))
+        if (0 === (renderLanes & 106) || 0 !== (renderLanes & 1073741824) && 0 === (workInProgressRootRenderLanes & 261930))
           return didReceiveUpdate = true, hook.memoizedState = value;
         hook = requestDeferredLane();
         currentlyRenderingFiber.lanes |= hook;
@@ -7864,6 +8174,7 @@ var require_react_dom_client_development = __commonJS({
         var previousPriority = ReactDOMSharedInternals.p;
         ReactDOMSharedInternals.p = 0 !== previousPriority && previousPriority < ContinuousEventPriority ? previousPriority : ContinuousEventPriority;
         var prevTransition = ReactSharedInternals.T, currentTransition = {};
+        currentTransition.types = null !== prevTransition ? prevTransition.types : null;
         currentTransition._updatedFibers = /* @__PURE__ */ new Set();
         ReactSharedInternals.T = currentTransition;
         dispatchOptimisticSetState(fiber, false, queue, pendingState);
@@ -8280,9 +8591,9 @@ var require_react_dom_client_development = __commonJS({
             var onUncaughtError = root3.onUncaughtError;
             onUncaughtError(error, { componentStack: errorInfo.stack });
           }
-        } catch (e$5) {
+        } catch (e$6) {
           setTimeout(function() {
-            throw e$5;
+            throw e$6;
           });
         }
       }
@@ -8295,9 +8606,9 @@ var require_react_dom_client_development = __commonJS({
             componentStack: errorInfo.stack,
             errorBoundary: 1 === boundary.tag ? boundary.stateNode : null
           });
-        } catch (e$6) {
+        } catch (e$7) {
           setTimeout(function() {
-            throw e$6;
+            throw e$7;
           });
         }
       }
@@ -8368,6 +8679,7 @@ var require_react_dom_client_development = __commonJS({
             switch (sourceFiber.tag) {
               case 31:
               case 13:
+              case 19:
                 return null === shellBoundary ? renderDidSuspendDelayIfPossible() : null === sourceFiber.alternate && workInProgressRootExitStatus === RootInProgress && (workInProgressRootExitStatus = RootSuspended), sourceFiber.flags &= -257, sourceFiber.flags |= 65536, sourceFiber.lanes = rootRenderLanes, value === noopSuspenseyCommitThenable ? sourceFiber.flags |= 16384 : (returnFiber = sourceFiber.updateQueue, null === returnFiber ? sourceFiber.updateQueue = /* @__PURE__ */ new Set([value]) : returnFiber.add(value), attachPingListener(root3, value, rootRenderLanes)), false;
               case 22:
                 return sourceFiber.flags |= 65536, value === noopSuspenseyCommitThenable ? sourceFiber.flags |= 16384 : (returnFiber = sourceFiber.updateQueue, null === returnFiber ? (returnFiber = {
@@ -8385,7 +8697,9 @@ var require_react_dom_client_development = __commonJS({
           return false;
         }
         if (isHydrating)
-          return didSuspendOrErrorDEV = true, returnFiber = suspenseHandlerStackCursor.current, null !== returnFiber ? (0 === (returnFiber.flags & 65536) && (returnFiber.flags |= 256), returnFiber.flags |= 65536, returnFiber.lanes = rootRenderLanes, value !== HydrationMismatchException && queueHydrationError(
+          return didSuspendOrErrorDEV = true, returnFiber = suspenseHandlerStackCursor.current, null !== returnFiber ? (19 === returnFiber.tag && console.error(
+            "SuspenseList should never catch while hydrating. This is a bug in React."
+          ), 0 === (returnFiber.flags & 65536) && (returnFiber.flags |= 256), returnFiber.flags |= 65536, returnFiber.lanes = rootRenderLanes, value !== HydrationMismatchException && queueHydrationError(
             createCapturedValueAtFiber(
               Error(
                 "There was an error while hydrating but React was able to recover by instead client rendering from the nearest Suspense boundary.",
@@ -8427,13 +8741,19 @@ var require_react_dom_client_development = __commonJS({
                 root3
               ), enqueueCapturedUpdate(sourceFiber, root3), false;
             case 1:
-              if (returnFiber = sourceFiber.type, error = sourceFiber.stateNode, 0 === (sourceFiber.flags & 128) && ("function" === typeof returnFiber.getDerivedStateFromError || null !== error && "function" === typeof error.componentDidCatch && (null === legacyErrorBoundariesThatAlreadyFailed || !legacyErrorBoundariesThatAlreadyFailed.has(error))))
+              returnFiber = sourceFiber.type;
+              error = sourceFiber.stateNode;
+              if (0 === (sourceFiber.flags & 128) && ("function" === typeof returnFiber.getDerivedStateFromError || null !== error && "function" === typeof error.componentDidCatch && (null === legacyErrorBoundariesThatAlreadyFailed || !legacyErrorBoundariesThatAlreadyFailed.has(error))))
                 return sourceFiber.flags |= 65536, rootRenderLanes &= -rootRenderLanes, sourceFiber.lanes |= rootRenderLanes, rootRenderLanes = createClassErrorUpdate(rootRenderLanes), initializeClassErrorUpdate(
                   rootRenderLanes,
                   root3,
                   sourceFiber,
                   value
                 ), enqueueCapturedUpdate(sourceFiber, rootRenderLanes), false;
+              break;
+            case 22:
+              if (null !== sourceFiber.memoizedState)
+                return sourceFiber.flags |= 65536, false;
           }
           sourceFiber = sourceFiber.return;
         } while (null !== sourceFiber);
@@ -8449,7 +8769,9 @@ var require_react_dom_client_development = __commonJS({
       }
       function updateForwardRef(current2, workInProgress2, Component, nextProps, renderLanes2) {
         Component = Component.render;
-        var ref = workInProgress2.ref;
+        var resolvedRender = resolveTypeForHotReloading(Component);
+        resolvedRender !== Component && (Component = resolvedRender, null !== current2 && (didReceiveUpdate = true));
+        resolvedRender = workInProgress2.ref;
         if ("ref" in nextProps) {
           var propsWithoutRef = {};
           for (var key in nextProps)
@@ -8461,7 +8783,7 @@ var require_react_dom_client_development = __commonJS({
           workInProgress2,
           Component,
           propsWithoutRef,
-          ref,
+          resolvedRender,
           renderLanes2
         );
         key = checkDidRenderIdHook();
@@ -8476,7 +8798,7 @@ var require_react_dom_client_development = __commonJS({
         if (null === current2) {
           var type = Component.type;
           if ("function" === typeof type && !shouldConstruct(type) && void 0 === type.defaultProps && null === Component.compare)
-            return Component = resolveFunctionForHotReloading(type), workInProgress2.tag = 15, workInProgress2.type = Component, validateFunctionComponentInDev(workInProgress2, type), updateSimpleMemoComponent(
+            return Component = resolveTypeForHotReloading(type), workInProgress2.tag = 15, workInProgress2.type = Component, validateFunctionComponentInDev(workInProgress2, type), updateSimpleMemoComponent(
               current2,
               workInProgress2,
               Component,
@@ -8634,7 +8956,7 @@ var require_react_dom_client_development = __commonJS({
         if (null === current2) {
           if (isHydrating) {
             if ("hidden" === nextProps.mode)
-              return current2 = mountActivityChildren(workInProgress2, nextProps), workInProgress2.lanes = 536870912, bailoutOffscreenComponent(null, current2);
+              return current2 = mountActivityChildren(workInProgress2, nextProps), workInProgress2.lanes = 536870912, current2.memoizedState = { baseLanes: 0, cachePool: null }, bailoutOffscreenComponent(null, current2);
             pushDehydratedActivitySuspenseHandler(workInProgress2);
             (current2 = nextHydratableInstance) ? (renderLanes2 = canHydrateHydrationBoundary(
               current2,
@@ -8675,13 +8997,15 @@ var require_react_dom_client_development = __commonJS({
             renderLanes2,
             false
           ), didSuspend = 0 !== (renderLanes2 & current2.childLanes), didReceiveUpdate || didSuspend) {
-            nextProps = workInProgressRoot;
-            if (null !== nextProps && (activityInstance = getBumpedLaneForHydration(
-              nextProps,
-              renderLanes2
-            ), 0 !== activityInstance && activityInstance !== prevState.retryLane))
-              throw prevState.retryLane = activityInstance, enqueueConcurrentRenderForLane(current2, activityInstance), scheduleUpdateOnFiber(nextProps, current2, activityInstance), SelectiveHydrationException;
-            renderDidSuspendDelayIfPossible();
+            if (null === currentTreeHiddenStackCursor.current) {
+              nextProps = workInProgressRoot;
+              if (null !== nextProps && (activityInstance = getBumpedLaneForHydration(
+                nextProps,
+                renderLanes2
+              ), 0 !== activityInstance && activityInstance !== prevState.retryLane))
+                throw prevState.retryLane = activityInstance, enqueueConcurrentRenderForLane(current2, activityInstance), scheduleUpdateOnFiber(nextProps, current2, activityInstance), SelectiveHydrationException;
+              renderDidSuspendDelayIfPossible();
+            }
             workInProgress2 = retryActivityComponentWithoutHydrating(
               current2,
               workInProgress2,
@@ -8690,7 +9014,7 @@ var require_react_dom_client_development = __commonJS({
           } else
             current2 = prevState.treeContext, nextHydratableInstance = getNextHydratable(
               activityInstance.nextSibling
-            ), hydrationParentFiber = workInProgress2, isHydrating = true, hydrationErrors = null, didSuspendOrErrorDEV = false, hydrationDiffRootDEV = null, rootOrSingletonContext = false, null !== current2 && restoreSuspendedTreeContext(workInProgress2, current2), workInProgress2 = mountActivityChildren(workInProgress2, nextProps), workInProgress2.flags |= 4096;
+            ), hydrationParentFiber = workInProgress2, isHydrating = true, hydrationErrors = null, didSuspendOrErrorDEV = false, hydrationDiffRootDEV = null, rootOrSingletonContext = false, null !== current2 && restoreSuspendedTreeContext(workInProgress2, current2), workInProgress2 = mountActivityChildren(workInProgress2, nextProps), workInProgress2.flags |= 134221824;
           return workInProgress2;
         }
         prevState = current2.child;
@@ -8966,7 +9290,7 @@ var require_react_dom_client_development = __commonJS({
             null
           )), processUpdateQueue(workInProgress2, nextProps, _instance, renderLanes2), suspendIfUpdateReadFromEntangledAsyncAction(), _instance.state = workInProgress2.memoizedState);
           "function" === typeof _instance.componentDidMount && (workInProgress2.flags |= 4194308);
-          (workInProgress2.mode & StrictEffectsMode) !== NoMode && (workInProgress2.flags |= 134217728);
+          (workInProgress2.mode & StrictEffectsMode) !== NoMode && (workInProgress2.flags |= 268435456);
           _instance = true;
         } else if (null === current2) {
           _instance = workInProgress2.stateNode;
@@ -9005,7 +9329,7 @@ var require_react_dom_client_development = __commonJS({
             oldState,
             oldContext,
             state
-          )) ? (foundWillUpdateName || "function" !== typeof _instance.UNSAFE_componentWillMount && "function" !== typeof _instance.componentWillMount || ("function" === typeof _instance.componentWillMount && _instance.componentWillMount(), "function" === typeof _instance.UNSAFE_componentWillMount && _instance.UNSAFE_componentWillMount()), "function" === typeof _instance.componentDidMount && (workInProgress2.flags |= 4194308), (workInProgress2.mode & StrictEffectsMode) !== NoMode && (workInProgress2.flags |= 134217728)) : ("function" === typeof _instance.componentDidMount && (workInProgress2.flags |= 4194308), (workInProgress2.mode & StrictEffectsMode) !== NoMode && (workInProgress2.flags |= 134217728), workInProgress2.memoizedProps = nextProps, workInProgress2.memoizedState = oldContext), _instance.props = nextProps, _instance.state = oldContext, _instance.context = state, _instance = lane) : ("function" === typeof _instance.componentDidMount && (workInProgress2.flags |= 4194308), (workInProgress2.mode & StrictEffectsMode) !== NoMode && (workInProgress2.flags |= 134217728), _instance = false);
+          )) ? (foundWillUpdateName || "function" !== typeof _instance.UNSAFE_componentWillMount && "function" !== typeof _instance.componentWillMount || ("function" === typeof _instance.componentWillMount && _instance.componentWillMount(), "function" === typeof _instance.UNSAFE_componentWillMount && _instance.UNSAFE_componentWillMount()), "function" === typeof _instance.componentDidMount && (workInProgress2.flags |= 4194308), (workInProgress2.mode & StrictEffectsMode) !== NoMode && (workInProgress2.flags |= 268435456)) : ("function" === typeof _instance.componentDidMount && (workInProgress2.flags |= 4194308), (workInProgress2.mode & StrictEffectsMode) !== NoMode && (workInProgress2.flags |= 268435456), workInProgress2.memoizedProps = nextProps, workInProgress2.memoizedState = oldContext), _instance.props = nextProps, _instance.state = oldContext, _instance.context = state, _instance = lane) : ("function" === typeof _instance.componentDidMount && (workInProgress2.flags |= 4194308), (workInProgress2.mode & StrictEffectsMode) !== NoMode && (workInProgress2.flags |= 268435456), _instance = false);
         } else {
           _instance = workInProgress2.stateNode;
           cloneUpdateQueue(current2, workInProgress2);
@@ -9121,216 +9445,92 @@ var require_react_dom_client_development = __commonJS({
         return current2;
       }
       function updateSuspenseComponent(current2, workInProgress2, renderLanes2) {
-        var JSCompiler_object_inline_digest_2724;
-        var JSCompiler_object_inline_stack_2725 = workInProgress2.pendingProps;
+        var nextProps = workInProgress2.pendingProps;
         shouldSuspendImpl(workInProgress2) && (workInProgress2.flags |= 128);
-        var JSCompiler_object_inline_message_2723 = false;
-        var didSuspend = 0 !== (workInProgress2.flags & 128);
-        (JSCompiler_object_inline_digest_2724 = didSuspend) || (JSCompiler_object_inline_digest_2724 = null !== current2 && null === current2.memoizedState ? false : 0 !== (suspenseStackCursor.current & ForceSuspenseFallback));
-        JSCompiler_object_inline_digest_2724 && (JSCompiler_object_inline_message_2723 = true, workInProgress2.flags &= -129);
-        JSCompiler_object_inline_digest_2724 = 0 !== (workInProgress2.flags & 32);
+        var showFallback = false, didSuspend = 0 !== (workInProgress2.flags & 128), JSCompiler_temp;
+        (JSCompiler_temp = didSuspend) || (JSCompiler_temp = null !== current2 && null === current2.memoizedState ? false : 0 !== (suspenseStackCursor.current & ForceSuspenseFallback));
+        JSCompiler_temp && (showFallback = true, workInProgress2.flags &= -129);
+        JSCompiler_temp = 0 !== (workInProgress2.flags & 32);
         workInProgress2.flags &= -33;
         if (null === current2) {
           if (isHydrating) {
-            JSCompiler_object_inline_message_2723 ? pushPrimaryTreeSuspenseHandler(workInProgress2) : reuseSuspenseHandlerOnStack(workInProgress2);
+            showFallback ? pushPrimaryTreeSuspenseHandler(workInProgress2) : reuseSuspenseHandlerOnStack(workInProgress2);
             (current2 = nextHydratableInstance) ? (renderLanes2 = canHydrateHydrationBoundary(
               current2,
               rootOrSingletonContext
-            ), renderLanes2 = null !== renderLanes2 && renderLanes2.data !== ACTIVITY_START_DATA ? renderLanes2 : null, null !== renderLanes2 && (JSCompiler_object_inline_digest_2724 = {
+            ), renderLanes2 = null !== renderLanes2 && renderLanes2.data !== ACTIVITY_START_DATA ? renderLanes2 : null, null !== renderLanes2 && (JSCompiler_temp = {
               dehydrated: renderLanes2,
               treeContext: getSuspendedTreeContext(),
               retryLane: 536870912,
               hydrationErrors: null
-            }, workInProgress2.memoizedState = JSCompiler_object_inline_digest_2724, JSCompiler_object_inline_digest_2724 = createFiberFromDehydratedFragment(renderLanes2), JSCompiler_object_inline_digest_2724.return = workInProgress2, workInProgress2.child = JSCompiler_object_inline_digest_2724, hydrationParentFiber = workInProgress2, nextHydratableInstance = null)) : renderLanes2 = null;
+            }, workInProgress2.memoizedState = JSCompiler_temp, JSCompiler_temp = createFiberFromDehydratedFragment(renderLanes2), JSCompiler_temp.return = workInProgress2, workInProgress2.child = JSCompiler_temp, hydrationParentFiber = workInProgress2, nextHydratableInstance = null)) : renderLanes2 = null;
             if (null === renderLanes2)
               throw warnNonHydratedInstance(workInProgress2, current2), throwOnHydrationMismatch(workInProgress2);
             isSuspenseInstanceFallback(renderLanes2) ? workInProgress2.lanes = 32 : workInProgress2.lanes = 536870912;
             return null;
           }
-          var nextPrimaryChildren = JSCompiler_object_inline_stack_2725.children;
-          JSCompiler_object_inline_stack_2725 = JSCompiler_object_inline_stack_2725.fallback;
-          if (JSCompiler_object_inline_message_2723) {
-            reuseSuspenseHandlerOnStack(workInProgress2);
-            var mode = workInProgress2.mode;
-            nextPrimaryChildren = mountWorkInProgressOffscreenFiber(
-              { mode: "hidden", children: nextPrimaryChildren },
-              mode
-            );
-            JSCompiler_object_inline_stack_2725 = createFiberFromFragment(
-              JSCompiler_object_inline_stack_2725,
-              mode,
+          didSuspend = nextProps.children;
+          nextProps = nextProps.fallback;
+          if (showFallback)
+            return reuseSuspenseHandlerOnStack(workInProgress2), showFallback = workInProgress2.mode, didSuspend = mountWorkInProgressOffscreenFiber(
+              { mode: "hidden", children: didSuspend },
+              showFallback
+            ), nextProps = createFiberFromFragment(
+              nextProps,
+              showFallback,
               renderLanes2,
               null
-            );
-            nextPrimaryChildren.return = workInProgress2;
-            JSCompiler_object_inline_stack_2725.return = workInProgress2;
-            nextPrimaryChildren.sibling = JSCompiler_object_inline_stack_2725;
-            workInProgress2.child = nextPrimaryChildren;
-            JSCompiler_object_inline_stack_2725 = workInProgress2.child;
-            JSCompiler_object_inline_stack_2725.memoizedState = mountSuspenseOffscreenState(renderLanes2);
-            JSCompiler_object_inline_stack_2725.childLanes = getRemainingWorkInPrimaryTree(
+            ), didSuspend.return = workInProgress2, nextProps.return = workInProgress2, didSuspend.sibling = nextProps, workInProgress2.child = didSuspend, nextProps = workInProgress2.child, nextProps.memoizedState = mountSuspenseOffscreenState(renderLanes2), nextProps.childLanes = getRemainingWorkInPrimaryTree(
               current2,
-              JSCompiler_object_inline_digest_2724,
+              JSCompiler_temp,
               renderLanes2
-            );
-            workInProgress2.memoizedState = SUSPENDED_MARKER;
-            return bailoutOffscreenComponent(
-              null,
-              JSCompiler_object_inline_stack_2725
-            );
-          }
+            ), workInProgress2.memoizedState = SUSPENDED_MARKER, bailoutOffscreenComponent(null, nextProps);
           pushPrimaryTreeSuspenseHandler(workInProgress2);
-          return mountSuspensePrimaryChildren(
-            workInProgress2,
-            nextPrimaryChildren
-          );
+          return mountSuspensePrimaryChildren(workInProgress2, didSuspend);
         }
         var prevState = current2.memoizedState;
         if (null !== prevState) {
-          var JSCompiler_object_inline_componentStack_2726 = prevState.dehydrated;
-          if (null !== JSCompiler_object_inline_componentStack_2726) {
-            if (didSuspend)
-              workInProgress2.flags & 256 ? (pushPrimaryTreeSuspenseHandler(workInProgress2), workInProgress2.flags &= -257, workInProgress2 = retrySuspenseComponentWithoutHydrating(
-                current2,
-                workInProgress2,
-                renderLanes2
-              )) : null !== workInProgress2.memoizedState ? (reuseSuspenseHandlerOnStack(workInProgress2), workInProgress2.child = current2.child, workInProgress2.flags |= 128, workInProgress2 = null) : (reuseSuspenseHandlerOnStack(workInProgress2), nextPrimaryChildren = JSCompiler_object_inline_stack_2725.fallback, mode = workInProgress2.mode, JSCompiler_object_inline_stack_2725 = mountWorkInProgressOffscreenFiber(
-                {
-                  mode: "visible",
-                  children: JSCompiler_object_inline_stack_2725.children
-                },
-                mode
-              ), nextPrimaryChildren = createFiberFromFragment(
-                nextPrimaryChildren,
-                mode,
-                renderLanes2,
-                null
-              ), nextPrimaryChildren.flags |= 2, JSCompiler_object_inline_stack_2725.return = workInProgress2, nextPrimaryChildren.return = workInProgress2, JSCompiler_object_inline_stack_2725.sibling = nextPrimaryChildren, workInProgress2.child = JSCompiler_object_inline_stack_2725, reconcileChildFibers(
-                workInProgress2,
-                current2.child,
-                null,
-                renderLanes2
-              ), JSCompiler_object_inline_stack_2725 = workInProgress2.child, JSCompiler_object_inline_stack_2725.memoizedState = mountSuspenseOffscreenState(renderLanes2), JSCompiler_object_inline_stack_2725.childLanes = getRemainingWorkInPrimaryTree(
-                current2,
-                JSCompiler_object_inline_digest_2724,
-                renderLanes2
-              ), workInProgress2.memoizedState = SUSPENDED_MARKER, workInProgress2 = bailoutOffscreenComponent(
-                null,
-                JSCompiler_object_inline_stack_2725
-              ));
-            else if (pushPrimaryTreeSuspenseHandler(workInProgress2), warnIfHydrating(), 0 !== (renderLanes2 & 536870912) && markRenderDerivedCause(workInProgress2), isSuspenseInstanceFallback(
-              JSCompiler_object_inline_componentStack_2726
-            )) {
-              JSCompiler_object_inline_digest_2724 = JSCompiler_object_inline_componentStack_2726.nextSibling && JSCompiler_object_inline_componentStack_2726.nextSibling.dataset;
-              if (JSCompiler_object_inline_digest_2724) {
-                nextPrimaryChildren = JSCompiler_object_inline_digest_2724.dgst;
-                var message = JSCompiler_object_inline_digest_2724.msg;
-                mode = JSCompiler_object_inline_digest_2724.stck;
-                var componentStack = JSCompiler_object_inline_digest_2724.cstck;
-              }
-              JSCompiler_object_inline_message_2723 = message;
-              JSCompiler_object_inline_digest_2724 = nextPrimaryChildren;
-              JSCompiler_object_inline_stack_2725 = mode;
-              JSCompiler_object_inline_componentStack_2726 = componentStack;
-              nextPrimaryChildren = JSCompiler_object_inline_message_2723;
-              mode = JSCompiler_object_inline_componentStack_2726;
-              nextPrimaryChildren = nextPrimaryChildren ? Error(nextPrimaryChildren) : Error(
-                "The server could not finish this Suspense boundary, likely due to an error during server rendering. Switched to client rendering."
-              );
-              nextPrimaryChildren.stack = JSCompiler_object_inline_stack_2725 || "";
-              nextPrimaryChildren.digest = JSCompiler_object_inline_digest_2724;
-              JSCompiler_object_inline_digest_2724 = void 0 === mode ? null : mode;
-              JSCompiler_object_inline_stack_2725 = {
-                value: nextPrimaryChildren,
-                source: null,
-                stack: JSCompiler_object_inline_digest_2724
-              };
-              "string" === typeof JSCompiler_object_inline_digest_2724 && CapturedStacks.set(
-                nextPrimaryChildren,
-                JSCompiler_object_inline_stack_2725
-              );
-              queueHydrationError(JSCompiler_object_inline_stack_2725);
-              workInProgress2 = retrySuspenseComponentWithoutHydrating(
-                current2,
-                workInProgress2,
-                renderLanes2
-              );
-            } else if (didReceiveUpdate || propagateParentContextChanges(
+          var _dehydrated2 = prevState.dehydrated;
+          if (null !== _dehydrated2)
+            return updateDehydratedSuspenseComponent(
               current2,
               workInProgress2,
-              renderLanes2,
-              false
-            ), JSCompiler_object_inline_digest_2724 = 0 !== (renderLanes2 & current2.childLanes), didReceiveUpdate || JSCompiler_object_inline_digest_2724) {
-              JSCompiler_object_inline_digest_2724 = workInProgressRoot;
-              if (null !== JSCompiler_object_inline_digest_2724 && (JSCompiler_object_inline_stack_2725 = getBumpedLaneForHydration(
-                JSCompiler_object_inline_digest_2724,
-                renderLanes2
-              ), 0 !== JSCompiler_object_inline_stack_2725 && JSCompiler_object_inline_stack_2725 !== prevState.retryLane))
-                throw prevState.retryLane = JSCompiler_object_inline_stack_2725, enqueueConcurrentRenderForLane(
-                  current2,
-                  JSCompiler_object_inline_stack_2725
-                ), scheduleUpdateOnFiber(
-                  JSCompiler_object_inline_digest_2724,
-                  current2,
-                  JSCompiler_object_inline_stack_2725
-                ), SelectiveHydrationException;
-              isSuspenseInstancePending(
-                JSCompiler_object_inline_componentStack_2726
-              ) || renderDidSuspendDelayIfPossible();
-              workInProgress2 = retrySuspenseComponentWithoutHydrating(
-                current2,
-                workInProgress2,
-                renderLanes2
-              );
-            } else
-              isSuspenseInstancePending(
-                JSCompiler_object_inline_componentStack_2726
-              ) ? (workInProgress2.flags |= 192, workInProgress2.child = current2.child, workInProgress2 = null) : (current2 = prevState.treeContext, nextHydratableInstance = getNextHydratable(
-                JSCompiler_object_inline_componentStack_2726.nextSibling
-              ), hydrationParentFiber = workInProgress2, isHydrating = true, hydrationErrors = null, didSuspendOrErrorDEV = false, hydrationDiffRootDEV = null, rootOrSingletonContext = false, null !== current2 && restoreSuspendedTreeContext(workInProgress2, current2), workInProgress2 = mountSuspensePrimaryChildren(
-                workInProgress2,
-                JSCompiler_object_inline_stack_2725.children
-              ), workInProgress2.flags |= 4096);
-            return workInProgress2;
-          }
+              didSuspend,
+              JSCompiler_temp,
+              nextProps,
+              _dehydrated2,
+              prevState,
+              renderLanes2
+            );
         }
-        if (JSCompiler_object_inline_message_2723)
-          return reuseSuspenseHandlerOnStack(workInProgress2), nextPrimaryChildren = JSCompiler_object_inline_stack_2725.fallback, mode = workInProgress2.mode, componentStack = current2.child, JSCompiler_object_inline_componentStack_2726 = componentStack.sibling, JSCompiler_object_inline_stack_2725 = createWorkInProgress(
-            componentStack,
-            {
-              mode: "hidden",
-              children: JSCompiler_object_inline_stack_2725.children
-            }
-          ), JSCompiler_object_inline_stack_2725.subtreeFlags = componentStack.subtreeFlags & 65011712, null !== JSCompiler_object_inline_componentStack_2726 ? nextPrimaryChildren = createWorkInProgress(
-            JSCompiler_object_inline_componentStack_2726,
-            nextPrimaryChildren
-          ) : (nextPrimaryChildren = createFiberFromFragment(
-            nextPrimaryChildren,
-            mode,
+        if (showFallback)
+          return reuseSuspenseHandlerOnStack(workInProgress2), showFallback = nextProps.fallback, didSuspend = workInProgress2.mode, prevState = current2.child, _dehydrated2 = prevState.sibling, nextProps = createWorkInProgress(prevState, {
+            mode: "hidden",
+            children: nextProps.children
+          }), nextProps.subtreeFlags = prevState.subtreeFlags & 1206910976, null !== _dehydrated2 ? showFallback = createWorkInProgress(_dehydrated2, showFallback) : (showFallback = createFiberFromFragment(
+            showFallback,
+            didSuspend,
             renderLanes2,
             null
-          ), nextPrimaryChildren.flags |= 2), nextPrimaryChildren.return = workInProgress2, JSCompiler_object_inline_stack_2725.return = workInProgress2, JSCompiler_object_inline_stack_2725.sibling = nextPrimaryChildren, workInProgress2.child = JSCompiler_object_inline_stack_2725, bailoutOffscreenComponent(null, JSCompiler_object_inline_stack_2725), JSCompiler_object_inline_stack_2725 = workInProgress2.child, nextPrimaryChildren = current2.child.memoizedState, null === nextPrimaryChildren ? nextPrimaryChildren = mountSuspenseOffscreenState(renderLanes2) : (mode = nextPrimaryChildren.cachePool, null !== mode ? (componentStack = CacheContext._currentValue, mode = mode.parent !== componentStack ? { parent: componentStack, pool: componentStack } : mode) : mode = getSuspendedCache(), nextPrimaryChildren = {
-            baseLanes: nextPrimaryChildren.baseLanes | renderLanes2,
-            cachePool: mode
-          }), JSCompiler_object_inline_stack_2725.memoizedState = nextPrimaryChildren, JSCompiler_object_inline_stack_2725.childLanes = getRemainingWorkInPrimaryTree(
+          ), showFallback.flags |= 2), showFallback.return = workInProgress2, nextProps.return = workInProgress2, nextProps.sibling = showFallback, workInProgress2.child = nextProps, bailoutOffscreenComponent(null, nextProps), nextProps = workInProgress2.child, showFallback = current2.child.memoizedState, null === showFallback ? showFallback = mountSuspenseOffscreenState(renderLanes2) : (didSuspend = showFallback.cachePool, null !== didSuspend ? (prevState = CacheContext._currentValue, didSuspend = didSuspend.parent !== prevState ? { parent: prevState, pool: prevState } : didSuspend) : didSuspend = getSuspendedCache(), showFallback = {
+            baseLanes: showFallback.baseLanes | renderLanes2,
+            cachePool: didSuspend
+          }), nextProps.memoizedState = showFallback, nextProps.childLanes = getRemainingWorkInPrimaryTree(
             current2,
-            JSCompiler_object_inline_digest_2724,
+            JSCompiler_temp,
             renderLanes2
-          ), workInProgress2.memoizedState = SUSPENDED_MARKER, bailoutOffscreenComponent(
-            current2.child,
-            JSCompiler_object_inline_stack_2725
-          );
+          ), workInProgress2.memoizedState = SUSPENDED_MARKER, bailoutOffscreenComponent(current2.child, nextProps);
         null !== prevState && (renderLanes2 & 62914560) === renderLanes2 && 0 !== (renderLanes2 & current2.lanes) && markRenderDerivedCause(workInProgress2);
         pushPrimaryTreeSuspenseHandler(workInProgress2);
         renderLanes2 = current2.child;
         current2 = renderLanes2.sibling;
         renderLanes2 = createWorkInProgress(renderLanes2, {
           mode: "visible",
-          children: JSCompiler_object_inline_stack_2725.children
+          children: nextProps.children
         });
         renderLanes2.return = workInProgress2;
         renderLanes2.sibling = null;
-        null !== current2 && (JSCompiler_object_inline_digest_2724 = workInProgress2.deletions, null === JSCompiler_object_inline_digest_2724 ? (workInProgress2.deletions = [current2], workInProgress2.flags |= 16) : JSCompiler_object_inline_digest_2724.push(current2));
+        null !== current2 && (JSCompiler_temp = workInProgress2.deletions, null === JSCompiler_temp ? (workInProgress2.deletions = [current2], workInProgress2.flags |= 16) : JSCompiler_temp.push(current2));
         workInProgress2.child = renderLanes2;
         workInProgress2.memoizedState = null;
         return renderLanes2;
@@ -9358,6 +9558,119 @@ var require_react_dom_client_development = __commonJS({
         workInProgress2.memoizedState = null;
         return current2;
       }
+      function updateDehydratedSuspenseComponent(current2, workInProgress2, didSuspend, didPrimaryChildrenDefer, nextProps, suspenseInstance, suspenseState, renderLanes2) {
+        if (didSuspend) {
+          if (workInProgress2.flags & 256)
+            return pushPrimaryTreeSuspenseHandler(workInProgress2), workInProgress2.flags &= -257, retrySuspenseComponentWithoutHydrating(
+              current2,
+              workInProgress2,
+              renderLanes2
+            );
+          if (null !== workInProgress2.memoizedState)
+            return reuseSuspenseHandlerOnStack(workInProgress2), workInProgress2.child = current2.child, workInProgress2.flags |= 128, null;
+          reuseSuspenseHandlerOnStack(workInProgress2);
+          var fallbackChildren = nextProps.fallback, fiberMode = workInProgress2.mode, primaryChildFragment = mountWorkInProgressOffscreenFiber(
+            { mode: "visible", children: nextProps.children },
+            fiberMode
+          );
+          fallbackChildren = createFiberFromFragment(
+            fallbackChildren,
+            fiberMode,
+            renderLanes2,
+            null
+          );
+          fallbackChildren.flags |= 2;
+          primaryChildFragment.return = workInProgress2;
+          fallbackChildren.return = workInProgress2;
+          primaryChildFragment.sibling = fallbackChildren;
+          workInProgress2.child = primaryChildFragment;
+          reconcileChildFibers(workInProgress2, current2.child, null, renderLanes2);
+          fallbackChildren = workInProgress2.child;
+          fallbackChildren.memoizedState = mountSuspenseOffscreenState(renderLanes2);
+          fallbackChildren.childLanes = getRemainingWorkInPrimaryTree(
+            current2,
+            didPrimaryChildrenDefer,
+            renderLanes2
+          );
+          workInProgress2.memoizedState = SUSPENDED_MARKER;
+          return bailoutOffscreenComponent(null, fallbackChildren);
+        }
+        pushPrimaryTreeSuspenseHandler(workInProgress2);
+        warnIfHydrating();
+        0 !== (renderLanes2 & 536870912) && markRenderDerivedCause(workInProgress2);
+        if (isSuspenseInstanceFallback(suspenseInstance)) {
+          didPrimaryChildrenDefer = suspenseInstance.nextSibling && suspenseInstance.nextSibling.dataset;
+          if (didPrimaryChildrenDefer) {
+            fallbackChildren = didPrimaryChildrenDefer.dgst;
+            var message = didPrimaryChildrenDefer.msg;
+            fiberMode = didPrimaryChildrenDefer.stck;
+            primaryChildFragment = didPrimaryChildrenDefer.cstck;
+          }
+          suspenseInstance = message;
+          suspenseState = fallbackChildren;
+          nextProps = fiberMode;
+          didPrimaryChildrenDefer = primaryChildFragment;
+          fallbackChildren = suspenseState;
+          fiberMode = suspenseInstance;
+          primaryChildFragment = nextProps;
+          nextProps = didPrimaryChildrenDefer;
+          fallbackChildren !== REACT_RECOVERABLE_DIGEST && (didPrimaryChildrenDefer = fiberMode ? Error(fiberMode) : Error(
+            "The server could not finish this Suspense boundary, likely due to an error during server rendering. Switched to client rendering."
+          ), didPrimaryChildrenDefer.stack = primaryChildFragment || "", didPrimaryChildrenDefer.digest = fallbackChildren, fallbackChildren = void 0 === nextProps ? null : nextProps, fiberMode = {
+            value: didPrimaryChildrenDefer,
+            source: null,
+            stack: fallbackChildren
+          }, "string" === typeof fallbackChildren && CapturedStacks.set(didPrimaryChildrenDefer, fiberMode), queueHydrationError(fiberMode));
+          return retrySuspenseComponentWithoutHydrating(
+            current2,
+            workInProgress2,
+            renderLanes2
+          );
+        }
+        didReceiveUpdate || propagateParentContextChanges(current2, workInProgress2, renderLanes2, false);
+        didPrimaryChildrenDefer = 0 !== (renderLanes2 & current2.childLanes);
+        if (didReceiveUpdate || didPrimaryChildrenDefer) {
+          if (null !== currentTreeHiddenStackCursor.current)
+            return retrySuspenseComponentWithoutHydrating(
+              current2,
+              workInProgress2,
+              renderLanes2
+            );
+          didPrimaryChildrenDefer = workInProgressRoot;
+          if (null !== didPrimaryChildrenDefer && (fallbackChildren = getBumpedLaneForHydration(
+            didPrimaryChildrenDefer,
+            renderLanes2
+          ), 0 !== fallbackChildren && fallbackChildren !== suspenseState.retryLane))
+            throw suspenseState.retryLane = fallbackChildren, enqueueConcurrentRenderForLane(current2, fallbackChildren), scheduleUpdateOnFiber(
+              didPrimaryChildrenDefer,
+              current2,
+              fallbackChildren
+            ), SelectiveHydrationException;
+          isSuspenseInstancePending(suspenseInstance) || renderDidSuspendDelayIfPossible();
+          return retrySuspenseComponentWithoutHydrating(
+            current2,
+            workInProgress2,
+            renderLanes2
+          );
+        }
+        if (isSuspenseInstancePending(suspenseInstance))
+          return workInProgress2.flags |= 192, workInProgress2.child = current2.child, null;
+        current2 = suspenseState.treeContext;
+        nextHydratableInstance = getNextHydratable(suspenseInstance.nextSibling);
+        hydrationParentFiber = workInProgress2;
+        isHydrating = true;
+        hydrationErrors = null;
+        didSuspendOrErrorDEV = false;
+        hydrationDiffRootDEV = null;
+        rootOrSingletonContext = false;
+        null !== current2 && restoreSuspendedTreeContext(workInProgress2, current2);
+        workInProgress2 = mountSuspensePrimaryChildren(
+          workInProgress2,
+          nextProps.children
+        );
+        workInProgress2.flags |= 134221824;
+        return workInProgress2;
+      }
       function scheduleSuspenseWorkOnFiber(fiber, renderLanes2, propagationRoot) {
         fiber.lanes |= renderLanes2;
         var alternate = fiber.alternate;
@@ -9367,6 +9680,14 @@ var require_react_dom_client_development = __commonJS({
           renderLanes2,
           propagationRoot
         );
+      }
+      function findLastContentRow(firstChild) {
+        for (var lastContentRow = null; null !== firstChild; ) {
+          var currentRow = firstChild.alternate;
+          null !== currentRow && null === findFirstSuspended(currentRow) && (lastContentRow = firstChild);
+          firstChild = firstChild.sibling;
+        }
+        return lastContentRow;
       }
       function initSuspenseListRenderState(workInProgress2, isBackwards, tail, lastContentRow, tailMode, treeForkCount2) {
         var renderState = workInProgress2.memoizedState;
@@ -9380,21 +9701,24 @@ var require_react_dom_client_development = __commonJS({
           treeForkCount: treeForkCount2
         } : (renderState.isBackwards = isBackwards, renderState.rendering = null, renderState.renderingStartTime = 0, renderState.last = lastContentRow, renderState.tail = tail, renderState.tailMode = tailMode, renderState.treeForkCount = treeForkCount2);
       }
+      function reverseChildren(fiber) {
+        var row = fiber.child;
+        for (fiber.child = null; null !== row; ) {
+          var nextRow = row.sibling;
+          row.sibling = fiber.child;
+          fiber.child = row;
+          row = nextRow;
+        }
+      }
       function updateSuspenseListComponent(current2, workInProgress2, renderLanes2) {
         var nextProps = workInProgress2.pendingProps, revealOrder = nextProps.revealOrder, tailMode = nextProps.tail, newChildren = nextProps.children, suspenseContext = suspenseStackCursor.current;
+        if (workInProgress2.flags & 128)
+          return pushSuspenseListContext(workInProgress2, suspenseContext), null;
         (nextProps = 0 !== (suspenseContext & ForceSuspenseFallback)) ? (suspenseContext = suspenseContext & SubtreeSuspenseContextMask | ForceSuspenseFallback, workInProgress2.flags |= 128) : suspenseContext &= SubtreeSuspenseContextMask;
-        push(suspenseStackCursor, suspenseContext, workInProgress2);
+        pushSuspenseListContext(workInProgress2, suspenseContext);
         suspenseContext = null == revealOrder ? "null" : revealOrder;
-        if ("forwards" !== revealOrder && "unstable_legacy-backwards" !== revealOrder && "together" !== revealOrder && "independent" !== revealOrder && !didWarnAboutRevealOrder[suspenseContext])
-          if (didWarnAboutRevealOrder[suspenseContext] = true, null == revealOrder)
-            console.error(
-              'The default for the <SuspenseList revealOrder="..."> prop is changing. To be future compatible you must explictly specify either "independent" (the current default), "together", "forwards" or "legacy_unstable-backwards".'
-            );
-          else if ("backwards" === revealOrder)
-            console.error(
-              'The rendering order of <SuspenseList revealOrder="backwards"> is changing. To be future compatible you must specify revealOrder="legacy_unstable-backwards" instead.'
-            );
-          else if ("string" === typeof revealOrder)
+        if (null != revealOrder && "forwards" !== revealOrder && "backwards" !== revealOrder && "unstable_legacy-backwards" !== revealOrder && "together" !== revealOrder && "independent" !== revealOrder && !didWarnAboutRevealOrder[suspenseContext])
+          if (didWarnAboutRevealOrder[suspenseContext] = true, "string" === typeof revealOrder)
             switch (revealOrder.toLowerCase()) {
               case "together":
               case "forwards":
@@ -9426,21 +9750,14 @@ var require_react_dom_client_development = __commonJS({
               revealOrder
             );
         suspenseContext = null == tailMode ? "null" : tailMode;
-        if (!didWarnAboutTailOptions[suspenseContext])
-          if (null == tailMode) {
-            if ("forwards" === revealOrder || "backwards" === revealOrder || "unstable_legacy-backwards" === revealOrder)
-              didWarnAboutTailOptions[suspenseContext] = true, console.error(
-                'The default for the <SuspenseList tail="..."> prop is changing. To be future compatible you must explictly specify either "visible" (the current default), "collapsed" or "hidden".'
-              );
-          } else
-            "visible" !== tailMode && "collapsed" !== tailMode && "hidden" !== tailMode ? (didWarnAboutTailOptions[suspenseContext] = true, console.error(
-              '"%s" is not a supported value for tail on <SuspenseList />. Did you mean "visible", "collapsed" or "hidden"?',
-              tailMode
-            )) : "forwards" !== revealOrder && "backwards" !== revealOrder && "unstable_legacy-backwards" !== revealOrder && (didWarnAboutTailOptions[suspenseContext] = true, console.error(
-              '<SuspenseList tail="%s" /> is only valid if revealOrder is "forwards" or "backwards". Did you mean to specify revealOrder="forwards"?',
-              tailMode
-            ));
-        a: if (("forwards" === revealOrder || "backwards" === revealOrder || "unstable_legacy-backwards" === revealOrder) && void 0 !== newChildren && null !== newChildren && false !== newChildren)
+        didWarnAboutTailOptions[suspenseContext] || null == tailMode || ("visible" !== tailMode && "collapsed" !== tailMode && "hidden" !== tailMode ? (didWarnAboutTailOptions[suspenseContext] = true, console.error(
+          '"%s" is not a supported value for tail on <SuspenseList />. Did you mean "visible", "collapsed" or "hidden"?',
+          tailMode
+        )) : null != revealOrder && "forwards" !== revealOrder && "backwards" !== revealOrder && "unstable_legacy-backwards" !== revealOrder && (didWarnAboutTailOptions[suspenseContext] = true, console.error(
+          '<SuspenseList tail="%s" /> is only valid if revealOrder is "forwards" (default) or "backwards". Did you mean to specify revealOrder="forwards"?',
+          tailMode
+        )));
+        a: if ((null == revealOrder || "forwards" === revealOrder || "backwards" === revealOrder || "unstable_legacy-backwards" === revealOrder) && void 0 !== newChildren && null !== newChildren && false !== newChildren)
           if (isArrayImpl(newChildren))
             for (suspenseContext = 0; suspenseContext < newChildren.length; suspenseContext++) {
               if (!validateSuspenseListNestedChild(
@@ -9460,7 +9777,7 @@ var require_react_dom_client_development = __commonJS({
               'A single row was passed to a <SuspenseList revealOrder="%s" />. This is not useful since it needs multiple rows. Did you mean to pass multiple children or an array?',
               revealOrder
             );
-        reconcileChildren(current2, workInProgress2, newChildren, renderLanes2);
+        "backwards" === revealOrder && null !== current2 ? (reverseChildren(current2), reconcileChildren(current2, workInProgress2, newChildren, renderLanes2), reverseChildren(current2)) : reconcileChildren(current2, workInProgress2, newChildren, renderLanes2);
         isHydrating ? (warnIfNotHydrating(), newChildren = treeForkCount) : newChildren = 0;
         if (!nextProps && null !== current2 && 0 !== (current2.flags & 128))
           a: for (current2 = workInProgress2.child; null !== current2; ) {
@@ -9483,22 +9800,18 @@ var require_react_dom_client_development = __commonJS({
             current2 = current2.sibling;
           }
         switch (revealOrder) {
-          case "forwards":
-            renderLanes2 = workInProgress2.child;
-            for (revealOrder = null; null !== renderLanes2; )
-              current2 = renderLanes2.alternate, null !== current2 && null === findFirstSuspended(current2) && (revealOrder = renderLanes2), renderLanes2 = renderLanes2.sibling;
-            renderLanes2 = revealOrder;
-            null === renderLanes2 ? (revealOrder = workInProgress2.child, workInProgress2.child = null) : (revealOrder = renderLanes2.sibling, renderLanes2.sibling = null);
+          case "backwards":
+            renderLanes2 = findLastContentRow(workInProgress2.child);
+            null === renderLanes2 ? (revealOrder = workInProgress2.child, workInProgress2.child = null) : (revealOrder = renderLanes2.sibling, renderLanes2.sibling = null, reverseChildren(workInProgress2));
             initSuspenseListRenderState(
               workInProgress2,
-              false,
+              true,
               revealOrder,
-              renderLanes2,
+              null,
               tailMode,
               newChildren
             );
             break;
-          case "backwards":
           case "unstable_legacy-backwards":
             renderLanes2 = null;
             revealOrder = workInProgress2.child;
@@ -9532,9 +9845,33 @@ var require_react_dom_client_development = __commonJS({
               newChildren
             );
             break;
-          default:
+          case "independent":
             workInProgress2.memoizedState = null;
+            break;
+          default:
+            renderLanes2 = findLastContentRow(workInProgress2.child), null === renderLanes2 ? (revealOrder = workInProgress2.child, workInProgress2.child = null) : (revealOrder = renderLanes2.sibling, renderLanes2.sibling = null), initSuspenseListRenderState(
+              workInProgress2,
+              false,
+              revealOrder,
+              renderLanes2,
+              tailMode,
+              newChildren
+            );
         }
+        return workInProgress2.child;
+      }
+      function updateContextProvider(current2, workInProgress2, renderLanes2) {
+        var context = workInProgress2.type, newProps = workInProgress2.pendingProps, newValue = newProps.value;
+        "value" in newProps || hasWarnedAboutUsingNoValuePropOnContextProvider || (hasWarnedAboutUsingNoValuePropOnContextProvider = true, console.error(
+          "The `value` prop is required for the `<Context.Provider>`. Did you misspell it or forget to pass it?"
+        ));
+        pushProvider(workInProgress2, context, newValue);
+        reconcileChildren(
+          current2,
+          workInProgress2,
+          newProps.children,
+          renderLanes2
+        );
         return workInProgress2.child;
       }
       function bailoutOnAlreadyFinishedWork(current2, workInProgress2, renderLanes2) {
@@ -9615,7 +9952,14 @@ var require_react_dom_client_development = __commonJS({
             if (null !== stateNode) {
               if (null !== stateNode.dehydrated)
                 return pushPrimaryTreeSuspenseHandler(workInProgress2), workInProgress2.flags |= 128, null;
-              if (0 !== (renderLanes2 & workInProgress2.child.childLanes))
+              stateNode = propagateParentContextChanges(
+                current2,
+                workInProgress2,
+                renderLanes2,
+                false
+              );
+              var primaryChildLanes = workInProgress2.child.childLanes;
+              if (stateNode || 0 !== (renderLanes2 & primaryChildLanes))
                 return updateSuspenseComponent(
                   current2,
                   workInProgress2,
@@ -9632,7 +9976,13 @@ var require_react_dom_client_development = __commonJS({
             pushPrimaryTreeSuspenseHandler(workInProgress2);
             break;
           case 19:
-            var didSuspendBefore = 0 !== (current2.flags & 128);
+            if (workInProgress2.flags & 128)
+              return updateSuspenseListComponent(
+                current2,
+                workInProgress2,
+                renderLanes2
+              );
+            primaryChildLanes = 0 !== (current2.flags & 128);
             stateNode = 0 !== (renderLanes2 & workInProgress2.childLanes);
             stateNode || (propagateParentContextChanges(
               current2,
@@ -9640,7 +9990,7 @@ var require_react_dom_client_development = __commonJS({
               renderLanes2,
               false
             ), stateNode = 0 !== (renderLanes2 & workInProgress2.childLanes));
-            if (didSuspendBefore) {
+            if (primaryChildLanes) {
               if (stateNode)
                 return updateSuspenseListComponent(
                   current2,
@@ -9649,13 +9999,9 @@ var require_react_dom_client_development = __commonJS({
                 );
               workInProgress2.flags |= 128;
             }
-            didSuspendBefore = workInProgress2.memoizedState;
-            null !== didSuspendBefore && (didSuspendBefore.rendering = null, didSuspendBefore.tail = null, didSuspendBefore.lastEffect = null);
-            push(
-              suspenseStackCursor,
-              suspenseStackCursor.current,
-              workInProgress2
-            );
+            primaryChildLanes = workInProgress2.memoizedState;
+            null !== primaryChildLanes && (primaryChildLanes.rendering = null, primaryChildLanes.tail = null, primaryChildLanes.lastEffect = null);
+            pushSuspenseListContext(workInProgress2, suspenseStackCursor.current);
             if (stateNode) break;
             else return null;
           case 22:
@@ -9677,7 +10023,7 @@ var require_react_dom_client_development = __commonJS({
       function beginWork(current2, workInProgress2, renderLanes2) {
         if (workInProgress2._debugNeedsRemount && null !== current2) {
           renderLanes2 = createFiberFromTypeAndProps(
-            workInProgress2.type,
+            resolveTypeForHotReloading(workInProgress2.elementType),
             workInProgress2.key,
             workInProgress2.pendingProps,
             workInProgress2._debugOwner || null,
@@ -9708,7 +10054,7 @@ var require_react_dom_client_development = __commonJS({
           }
           workInProgress2 = returnFiber.deletions;
           null === workInProgress2 ? (returnFiber.deletions = [current2], returnFiber.flags |= 16) : workInProgress2.push(current2);
-          renderLanes2.flags |= 2;
+          renderLanes2.flags |= 134217730;
           return renderLanes2;
         }
         if (null !== current2)
@@ -9732,17 +10078,17 @@ var require_react_dom_client_development = __commonJS({
         workInProgress2.lanes = 0;
         switch (workInProgress2.tag) {
           case 16:
-            a: if (returnFiber = workInProgress2.pendingProps, current2 = resolveLazy(workInProgress2.elementType), workInProgress2.type = current2, "function" === typeof current2)
+            a: if (returnFiber = workInProgress2.pendingProps, current2 = resolveLazy(workInProgress2.elementType), current2 = resolveTypeForHotReloading(current2), workInProgress2.type = current2, "function" === typeof current2)
               shouldConstruct(current2) ? (returnFiber = resolveClassComponentProps(
                 current2,
                 returnFiber
-              ), workInProgress2.tag = 1, workInProgress2.type = current2 = resolveFunctionForHotReloading(current2), workInProgress2 = updateClassComponent(
+              ), workInProgress2.tag = 1, workInProgress2 = updateClassComponent(
                 null,
                 workInProgress2,
                 current2,
                 returnFiber,
                 renderLanes2
-              )) : (workInProgress2.tag = 0, validateFunctionComponentInDev(workInProgress2, current2), workInProgress2.type = current2 = resolveFunctionForHotReloading(current2), workInProgress2 = updateFunctionComponent(
+              )) : (workInProgress2.tag = 0, validateFunctionComponentInDev(workInProgress2, current2), workInProgress2 = updateFunctionComponent(
                 null,
                 workInProgress2,
                 current2,
@@ -9753,7 +10099,6 @@ var require_react_dom_client_development = __commonJS({
               if (void 0 !== current2 && null !== current2) {
                 if (prevSibling = current2.$$typeof, prevSibling === REACT_FORWARD_REF_TYPE) {
                   workInProgress2.tag = 11;
-                  workInProgress2.type = current2 = resolveForwardRefForHotReloading(current2);
                   workInProgress2 = updateForwardRef(
                     null,
                     workInProgress2,
@@ -9769,6 +10114,15 @@ var require_react_dom_client_development = __commonJS({
                     workInProgress2,
                     current2,
                     returnFiber,
+                    renderLanes2
+                  );
+                  break a;
+                } else if (prevSibling === REACT_CONTEXT_TYPE) {
+                  workInProgress2.tag = 10;
+                  workInProgress2.type = current2;
+                  workInProgress2 = updateContextProvider(
+                    null,
+                    workInProgress2,
                     renderLanes2
                   );
                   break a;
@@ -9878,7 +10232,7 @@ var require_react_dom_client_development = __commonJS({
                     renderLanes2
                   );
                   for (workInProgress2.child = renderLanes2; renderLanes2; )
-                    renderLanes2.flags = renderLanes2.flags & -3 | 4096, renderLanes2 = renderLanes2.sibling;
+                    renderLanes2.flags = renderLanes2.flags & -3 | 134221824, renderLanes2 = renderLanes2.sibling;
                 }
               else {
                 resetHydrationState();
@@ -9906,11 +10260,12 @@ var require_react_dom_client_development = __commonJS({
               null,
               workInProgress2.pendingProps,
               null
-            )) ? workInProgress2.memoizedState = renderLanes2 : isHydrating || (renderLanes2 = workInProgress2.type, current2 = workInProgress2.pendingProps, returnFiber = requiredContext(
-              rootInstanceStackCursor.current
-            ), returnFiber = getOwnerDocumentFromRootContainer(
-              returnFiber
-            ).createElement(renderLanes2), returnFiber[internalInstanceKey] = workInProgress2, returnFiber[internalPropsKey] = current2, setInitialProperties(returnFiber, renderLanes2, current2), markNodeAsHoistable(returnFiber), workInProgress2.stateNode = returnFiber) : workInProgress2.memoizedState = getResource(
+            )) ? workInProgress2.memoizedState = renderLanes2 : isHydrating || (workInProgress2.stateNode = createHoistableInstance(
+              workInProgress2.type,
+              workInProgress2.pendingProps,
+              requiredContext(rootInstanceStackCursor.current),
+              workInProgress2
+            )) : workInProgress2.memoizedState = getResource(
               workInProgress2.type,
               current2.memoizedProps,
               workInProgress2.pendingProps,
@@ -10001,10 +10356,10 @@ var require_react_dom_client_development = __commonJS({
               renderLanes2
             );
           case 7:
-            return reconcileChildren(
+            return returnFiber = workInProgress2.pendingProps, markRef(current2, workInProgress2), reconcileChildren(
               current2,
               workInProgress2,
-              workInProgress2.pendingProps,
+              returnFiber,
               renderLanes2
             ), workInProgress2.child;
           case 8:
@@ -10022,14 +10377,7 @@ var require_react_dom_client_development = __commonJS({
               renderLanes2
             ), workInProgress2.child;
           case 10:
-            return returnFiber = workInProgress2.type, prevSibling = workInProgress2.pendingProps, prevState = prevSibling.value, "value" in prevSibling || hasWarnedAboutUsingNoValuePropOnContextProvider || (hasWarnedAboutUsingNoValuePropOnContextProvider = true, console.error(
-              "The `value` prop is required for the `<Context.Provider>`. Did you misspell it or forget to pass it?"
-            )), pushProvider(workInProgress2, returnFiber, prevState), reconcileChildren(
-              current2,
-              workInProgress2,
-              prevSibling.children,
-              renderLanes2
-            ), workInProgress2.child;
+            return updateContextProvider(current2, workInProgress2, renderLanes2);
           case 9:
             return prevSibling = workInProgress2.type._context, returnFiber = workInProgress2.pendingProps.children, "function" !== typeof returnFiber && console.error(
               "A context consumer was rendered with multiple children, or a child that isn't a function. A context consumer expects a single child that is a function. If you did pass a function, make sure there is no trailing or leading whitespace around it."
@@ -10092,6 +10440,24 @@ var require_react_dom_client_development = __commonJS({
               workInProgress2.pendingProps.children,
               renderLanes2
             ), workInProgress2.child;
+          case 30:
+            return null === workInProgress2.stateNode && (workInProgress2.stateNode = {
+              autoName: null,
+              paired: null,
+              clones: null,
+              ref: null
+            }), returnFiber = workInProgress2.pendingProps, null != returnFiber.name && "auto" !== returnFiber.name ? workInProgress2.flags |= null === current2 ? 18882560 : 18874368 : isHydrating && pushMaterializedTreeId(workInProgress2), void 0 !== returnFiber.className && (prevSibling = "string" === typeof returnFiber.className ? JSON.stringify(returnFiber.className) : "{...}", didWarnAboutClassNameOnViewTransition[prevSibling] || (didWarnAboutClassNameOnViewTransition[prevSibling] = true, console.error(
+              `<ViewTransition> doesn't accept a "className" prop. It has been renamed to "default".
+-   <ViewTransition className=%s>
++   <ViewTransition default=%s>`,
+              prevSibling,
+              prevSibling
+            ))), null !== current2 && current2.memoizedProps.name !== returnFiber.name ? workInProgress2.flags |= 4194816 : markRef(current2, workInProgress2), reconcileChildren(
+              current2,
+              workInProgress2,
+              returnFiber.children,
+              renderLanes2
+            ), workInProgress2.child;
           case 29:
             throw workInProgress2.pendingProps;
         }
@@ -10103,9 +10469,10 @@ var require_react_dom_client_development = __commonJS({
         workInProgress2.flags |= 4;
       }
       function preloadInstanceAndSuspendIfNeeded(workInProgress2, type, oldProps, newProps, renderLanes2) {
-        if (type = (workInProgress2.mode & SuspenseyImagesMode) !== NoMode)
-          type = false;
-        if (type) {
+        var JSCompiler_temp;
+        if (JSCompiler_temp = (workInProgress2.mode & SuspenseyImagesMode) !== NoMode)
+          JSCompiler_temp = null === oldProps ? maySuspendCommit(type, newProps) : maySuspendCommit(type, newProps) && (newProps.src !== oldProps.src || newProps.srcSet !== oldProps.srcSet);
+        if (JSCompiler_temp) {
           if (workInProgress2.flags |= 16777216, (renderLanes2 & 335544128) === renderLanes2)
             if (workInProgress2.stateNode.complete) workInProgress2.flags |= 8192;
             else if (shouldRemainOnPreviousScreen()) workInProgress2.flags |= 8192;
@@ -10128,17 +10495,18 @@ var require_react_dom_client_development = __commonJS({
       function cutOffTailIfNeeded(renderState, hasRenderedATailFallback) {
         if (!isHydrating)
           switch (renderState.tailMode) {
-            case "hidden":
-              hasRenderedATailFallback = renderState.tail;
-              for (var lastTailNode = null; null !== hasRenderedATailFallback; )
-                null !== hasRenderedATailFallback.alternate && (lastTailNode = hasRenderedATailFallback), hasRenderedATailFallback = hasRenderedATailFallback.sibling;
-              null === lastTailNode ? renderState.tail = null : lastTailNode.sibling = null;
+            case "visible":
               break;
             case "collapsed":
-              lastTailNode = renderState.tail;
-              for (var _lastTailNode = null; null !== lastTailNode; )
-                null !== lastTailNode.alternate && (_lastTailNode = lastTailNode), lastTailNode = lastTailNode.sibling;
-              null === _lastTailNode ? hasRenderedATailFallback || null === renderState.tail ? renderState.tail = null : renderState.tail.sibling = null : _lastTailNode.sibling = null;
+              for (var tailNode = renderState.tail, lastTailNode = null; null !== tailNode; )
+                null !== tailNode.alternate && (lastTailNode = tailNode), tailNode = tailNode.sibling;
+              null === lastTailNode ? hasRenderedATailFallback || null === renderState.tail ? renderState.tail = null : renderState.tail.sibling = null : lastTailNode.sibling = null;
+              break;
+            default:
+              hasRenderedATailFallback = renderState.tail;
+              for (tailNode = null; null !== hasRenderedATailFallback; )
+                null !== hasRenderedATailFallback.alternate && (tailNode = hasRenderedATailFallback), hasRenderedATailFallback = hasRenderedATailFallback.sibling;
+              null === tailNode ? renderState.tail = null : tailNode.sibling = null;
           }
       }
       function bubbleProperties(completedWork) {
@@ -10146,11 +10514,11 @@ var require_react_dom_client_development = __commonJS({
         if (didBailout)
           if ((completedWork.mode & ProfileMode) !== NoMode) {
             for (var _treeBaseDuration = completedWork.selfBaseDuration, _child2 = completedWork.child; null !== _child2; )
-              newChildLanes |= _child2.lanes | _child2.childLanes, subtreeFlags |= _child2.subtreeFlags & 65011712, subtreeFlags |= _child2.flags & 65011712, _treeBaseDuration += _child2.treeBaseDuration, _child2 = _child2.sibling;
+              newChildLanes |= _child2.lanes | _child2.childLanes, subtreeFlags |= _child2.subtreeFlags & 1206910976, subtreeFlags |= _child2.flags & 1206910976, _treeBaseDuration += _child2.treeBaseDuration, _child2 = _child2.sibling;
             completedWork.treeBaseDuration = _treeBaseDuration;
           } else
             for (_treeBaseDuration = completedWork.child; null !== _treeBaseDuration; )
-              newChildLanes |= _treeBaseDuration.lanes | _treeBaseDuration.childLanes, subtreeFlags |= _treeBaseDuration.subtreeFlags & 65011712, subtreeFlags |= _treeBaseDuration.flags & 65011712, _treeBaseDuration.return = completedWork, _treeBaseDuration = _treeBaseDuration.sibling;
+              newChildLanes |= _treeBaseDuration.lanes | _treeBaseDuration.childLanes, subtreeFlags |= _treeBaseDuration.subtreeFlags & 1206910976, subtreeFlags |= _treeBaseDuration.flags & 1206910976, _treeBaseDuration.return = completedWork, _treeBaseDuration = _treeBaseDuration.sibling;
         else if ((completedWork.mode & ProfileMode) !== NoMode) {
           _treeBaseDuration = completedWork.actualDuration;
           _child2 = completedWork.selfBaseDuration;
@@ -10228,6 +10596,7 @@ var require_react_dom_client_development = __commonJS({
                     "We must have new props for new mounts. This error is likely caused by a bug in React. Please file an issue."
                   );
                 bubbleProperties(workInProgress2);
+                workInProgress2.subtreeFlags &= -33554433;
                 return null;
               }
               current2 = getHostContext();
@@ -10240,6 +10609,7 @@ var require_react_dom_client_development = __commonJS({
               ), workInProgress2.stateNode = current2, markUpdate(workInProgress2));
             }
             bubbleProperties(workInProgress2);
+            workInProgress2.subtreeFlags &= -33554433;
             return null;
           case 5:
             popHostContext(workInProgress2);
@@ -10253,6 +10623,7 @@ var require_react_dom_client_development = __commonJS({
                     "We must have new props for new mounts. This error is likely caused by a bug in React. Please file an issue."
                   );
                 bubbleProperties(workInProgress2);
+                workInProgress2.subtreeFlags &= -33554433;
                 return null;
               }
               var _currentHostContext = getHostContext();
@@ -10292,6 +10663,9 @@ var require_react_dom_client_development = __commonJS({
                         break;
                       case "script":
                         nextResource = nextResource.createElement("div");
+                        didWarnScriptTags || isScriptDataBlock(newProps) || (console.error(
+                          "Encountered a script tag while rendering React component. Scripts inside React components are never executed when rendering on the client. Consider using template tag instead (https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template)."
+                        ), didWarnScriptTags = true);
                         nextResource.innerHTML = "<script><\/script>";
                         nextResource = nextResource.removeChild(
                           nextResource.firstChild
@@ -10352,6 +10726,7 @@ var require_react_dom_client_development = __commonJS({
               }
             }
             bubbleProperties(workInProgress2);
+            workInProgress2.subtreeFlags &= -33554433;
             preloadInstanceAndSuspendIfNeeded(
               workInProgress2,
               workInProgress2.type,
@@ -10493,11 +10868,11 @@ var require_react_dom_client_development = __commonJS({
           case 4:
             return popHostContainer(workInProgress2), null === current2 && listenToAllSupportedEvents(
               workInProgress2.stateNode.containerInfo
-            ), bubbleProperties(workInProgress2), null;
+            ), workInProgress2.flags |= 67108864, bubbleProperties(workInProgress2), null;
           case 10:
             return popProvider(workInProgress2.type, workInProgress2), bubbleProperties(workInProgress2), null;
           case 19:
-            pop(suspenseStackCursor, workInProgress2);
+            popSuspenseListContext(workInProgress2);
             newProps = workInProgress2.memoizedState;
             if (null === newProps) return bubbleProperties(workInProgress2), null;
             type = 0 !== (workInProgress2.flags & 128);
@@ -10518,10 +10893,9 @@ var require_react_dom_client_development = __commonJS({
                       current2 = renderLanes2;
                       for (renderLanes2 = workInProgress2.child; null !== renderLanes2; )
                         resetWorkInProgress(renderLanes2, current2), renderLanes2 = renderLanes2.sibling;
-                      push(
-                        suspenseStackCursor,
-                        suspenseStackCursor.current & SubtreeSuspenseContextMask | ForceSuspenseFallback,
-                        workInProgress2
+                      pushSuspenseListContext(
+                        workInProgress2,
+                        suspenseStackCursor.current & SubtreeSuspenseContextMask | ForceSuspenseFallback
                       );
                       isHydrating && pushTreeFork(workInProgress2, newProps.treeForkCount);
                       return workInProgress2.child;
@@ -10533,14 +10907,38 @@ var require_react_dom_client_development = __commonJS({
             else {
               if (!type)
                 if (current2 = findFirstSuspended(nextResource), null !== current2) {
-                  if (workInProgress2.flags |= 128, type = true, current2 = current2.updateQueue, workInProgress2.updateQueue = current2, scheduleRetryEffect(workInProgress2, current2), cutOffTailIfNeeded(newProps, true), null === newProps.tail && "hidden" === newProps.tailMode && !nextResource.alternate && !isHydrating)
+                  if (workInProgress2.flags |= 128, type = true, current2 = current2.updateQueue, workInProgress2.updateQueue = current2, scheduleRetryEffect(workInProgress2, current2), cutOffTailIfNeeded(newProps, true), null === newProps.tail && "collapsed" !== newProps.tailMode && "visible" !== newProps.tailMode && !nextResource.alternate && !isHydrating)
                     return bubbleProperties(workInProgress2), null;
                 } else
                   2 * now$1() - newProps.renderingStartTime > workInProgressRootRenderTargetTime && 536870912 !== renderLanes2 && (workInProgress2.flags |= 128, type = true, cutOffTailIfNeeded(newProps, false), workInProgress2.lanes = 4194304);
               newProps.isBackwards ? (nextResource.sibling = workInProgress2.child, workInProgress2.child = nextResource) : (current2 = newProps.last, null !== current2 ? current2.sibling = nextResource : workInProgress2.child = nextResource, newProps.last = nextResource);
             }
-            if (null !== newProps.tail)
-              return current2 = newProps.tail, newProps.rendering = current2, newProps.tail = current2.sibling, newProps.renderingStartTime = now$1(), current2.sibling = null, renderLanes2 = suspenseStackCursor.current, renderLanes2 = type ? renderLanes2 & SubtreeSuspenseContextMask | ForceSuspenseFallback : renderLanes2 & SubtreeSuspenseContextMask, push(suspenseStackCursor, renderLanes2, workInProgress2), isHydrating && pushTreeFork(workInProgress2, newProps.treeForkCount), current2;
+            if (null !== newProps.tail) {
+              current2 = newProps.tail;
+              a: {
+                for (renderLanes2 = current2; null !== renderLanes2; ) {
+                  if (null !== renderLanes2.alternate) {
+                    renderLanes2 = false;
+                    break a;
+                  }
+                  renderLanes2 = renderLanes2.sibling;
+                }
+                renderLanes2 = true;
+              }
+              newProps.rendering = current2;
+              newProps.tail = current2.sibling;
+              newProps.renderingStartTime = now$1();
+              current2.sibling = null;
+              nextResource = suspenseStackCursor.current;
+              nextResource = type ? nextResource & SubtreeSuspenseContextMask | ForceSuspenseFallback : nextResource & SubtreeSuspenseContextMask;
+              "visible" === newProps.tailMode || "collapsed" === newProps.tailMode || !renderLanes2 || isHydrating ? pushSuspenseListContext(workInProgress2, nextResource) : (renderLanes2 = nextResource, push(
+                suspenseHandlerStackCursor,
+                workInProgress2,
+                workInProgress2
+              ), push(suspenseStackCursor, renderLanes2, workInProgress2), null === shellBoundary && (shellBoundary = workInProgress2));
+              isHydrating && pushTreeFork(workInProgress2, newProps.treeForkCount);
+              return current2;
+            }
             bubbleProperties(workInProgress2);
             return null;
           case 22:
@@ -10551,7 +10949,7 @@ var require_react_dom_client_development = __commonJS({
           case 25:
             return null;
           case 30:
-            return null;
+            return workInProgress2.flags |= 33554432, bubbleProperties(workInProgress2), null;
         }
         throw Error(
           "Unknown unit of work tag (" + workInProgress2.tag + "). This error is likely caused by a bug in React. Please file an issue."
@@ -10592,7 +10990,7 @@ var require_react_dom_client_development = __commonJS({
             current2 = workInProgress2.flags;
             return current2 & 65536 ? (workInProgress2.flags = current2 & -65537 | 128, (workInProgress2.mode & ProfileMode) !== NoMode && transferActualDuration(workInProgress2), workInProgress2) : null;
           case 19:
-            return pop(suspenseStackCursor, workInProgress2), null;
+            return popSuspenseListContext(workInProgress2), current2 = workInProgress2.flags, current2 & 65536 ? (workInProgress2.flags = current2 & -65537 | 128, current2 = workInProgress2.memoizedState, null !== current2 && (current2.rendering = null, current2.tail = null), workInProgress2.flags |= 4, workInProgress2) : null;
           case 4:
             return popHostContainer(workInProgress2), null;
           case 10:
@@ -10630,7 +11028,7 @@ var require_react_dom_client_development = __commonJS({
             popSuspenseHandler(interruptedWork);
             break;
           case 19:
-            pop(suspenseStackCursor, interruptedWork);
+            popSuspenseListContext(interruptedWork);
             break;
           case 10:
             popProvider(interruptedWork.type, interruptedWork);
@@ -10827,6 +11225,21 @@ var require_react_dom_client_development = __commonJS({
               break;
             case 30:
               instanceToUse = finishedWork.stateNode;
+              var name = getViewTransitionName(
+                finishedWork.memoizedProps,
+                instanceToUse
+              );
+              if (null === instanceToUse.ref || instanceToUse.ref.name !== name)
+                instanceToUse.ref = createViewTransitionInstance(name);
+              instanceToUse = instanceToUse.ref;
+              break;
+            case 7:
+              null === finishedWork.stateNode && (instanceToUse = new FragmentInstance(finishedWork), traverseFragmentInstancesAndTextInstances(
+                finishedWork,
+                addFragmentHandleToFiber,
+                instanceToUse
+              ), finishedWork.stateNode = instanceToUse);
+              instanceToUse = finishedWork.stateNode;
               break;
             default:
               instanceToUse = finishedWork.stateNode;
@@ -10879,8 +11292,8 @@ var require_react_dom_client_development = __commonJS({
                   recordEffectDuration(current2);
                 }
               else runWithFiberInDEV(current2, ref, null);
-            } catch (error$7) {
-              captureCommitPhaseError(current2, nearestMountedAncestor, error$7);
+            } catch (error$8) {
+              captureCommitPhaseError(current2, nearestMountedAncestor, error$8);
             }
           else ref.current = null;
       }
@@ -10911,6 +11324,34 @@ var require_react_dom_client_development = __commonJS({
           passiveEffectDuration,
           commitStartTime2
         );
+      }
+      function commitNewChildToFragmentInstances(fiber, parentFragmentInstances) {
+        if ((5 === fiber.tag || 27 === fiber.tag || 6 === fiber.tag) && null === fiber.alternate && null !== parentFragmentInstances)
+          for (var i = 0; i < parentFragmentInstances.length; i++)
+            commitNewChildToFragmentInstance(
+              fiber.stateNode,
+              parentFragmentInstances[i]
+            );
+      }
+      function commitFragmentInstanceInsertionEffects(fiber) {
+        for (var parent = fiber.return; null !== parent; ) {
+          isFragmentInstanceParent(parent) && commitNewChildToFragmentInstance(fiber.stateNode, parent.stateNode);
+          if (isFragmentInstanceHostBoundary(parent)) break;
+          parent = parent.return;
+        }
+      }
+      function commitFragmentInstanceDeletionEffects(fiber) {
+        for (var parent = fiber.return; null !== parent; ) {
+          isFragmentInstanceParent(parent) && deleteChildFromFragmentInstance(fiber.stateNode, parent.stateNode);
+          if (isFragmentInstanceHostBoundary(parent)) break;
+          parent = parent.return;
+        }
+      }
+      function isFragmentInstanceHostBoundary(fiber) {
+        return 5 === fiber.tag || 3 === fiber.tag || 27 === fiber.tag;
+      }
+      function isFragmentInstanceParent(fiber) {
+        return fiber && 7 === fiber.tag && null !== fiber.stateNode;
       }
       function commitHostMount(finishedWork) {
         var type = finishedWork.type, props = finishedWork.memoizedProps, instance = finishedWork.stateNode;
@@ -10961,21 +11402,41 @@ var require_react_dom_client_development = __commonJS({
           if (!(fiber.flags & 2)) return fiber.stateNode;
         }
       }
-      function insertOrAppendPlacementNodeIntoContainer(node, before, parent) {
+      function insertOrAppendPlacementNodeIntoContainer(node, before, parent, parentFragmentInstances) {
         var tag = node.tag;
         if (5 === tag || 6 === tag)
-          node = node.stateNode, before ? (warnForReactChildrenConflict(parent), (9 === parent.nodeType ? parent.body : "HTML" === parent.nodeName ? parent.ownerDocument.body : parent).insertBefore(node, before)) : (warnForReactChildrenConflict(parent), before = 9 === parent.nodeType ? parent.body : "HTML" === parent.nodeName ? parent.ownerDocument.body : parent, before.appendChild(node), parent = parent._reactRootContainer, null !== parent && void 0 !== parent || null !== before.onclick || (before.onclick = noop$1));
-        else if (4 !== tag && (27 === tag && isSingletonScope(node.type) && (parent = node.stateNode, before = null), node = node.child, null !== node))
-          for (insertOrAppendPlacementNodeIntoContainer(node, before, parent), node = node.sibling; null !== node; )
-            insertOrAppendPlacementNodeIntoContainer(node, before, parent), node = node.sibling;
+          tag = node.stateNode, before ? (warnForReactChildrenConflict(parent), (9 === parent.nodeType ? parent.body : "HTML" === parent.nodeName ? parent.ownerDocument.body : parent).insertBefore(tag, before)) : (warnForReactChildrenConflict(parent), before = 9 === parent.nodeType ? parent.body : "HTML" === parent.nodeName ? parent.ownerDocument.body : parent, before.appendChild(tag), tag = parent._reactRootContainer, null !== tag && void 0 !== tag || null !== before.onclick || (before.onclick = noop$1)), commitNewChildToFragmentInstances(node, parentFragmentInstances), viewTransitionMutationContext = true;
+        else if (4 !== tag && (27 === tag && (commitNewChildToFragmentInstances(node, parentFragmentInstances), parentFragmentInstances = null, isSingletonScope(node.type) && (parent = node.stateNode, before = null)), node = node.child, null !== node))
+          for (insertOrAppendPlacementNodeIntoContainer(
+            node,
+            before,
+            parent,
+            parentFragmentInstances
+          ), node = node.sibling; null !== node; )
+            insertOrAppendPlacementNodeIntoContainer(
+              node,
+              before,
+              parent,
+              parentFragmentInstances
+            ), node = node.sibling;
       }
-      function insertOrAppendPlacementNode(node, before, parent) {
+      function insertOrAppendPlacementNode(node, before, parent, parentFragmentInstances) {
         var tag = node.tag;
         if (5 === tag || 6 === tag)
-          node = node.stateNode, before ? parent.insertBefore(node, before) : parent.appendChild(node);
-        else if (4 !== tag && (27 === tag && isSingletonScope(node.type) && (parent = node.stateNode), node = node.child, null !== node))
-          for (insertOrAppendPlacementNode(node, before, parent), node = node.sibling; null !== node; )
-            insertOrAppendPlacementNode(node, before, parent), node = node.sibling;
+          tag = node.stateNode, before ? parent.insertBefore(tag, before) : parent.appendChild(tag), commitNewChildToFragmentInstances(node, parentFragmentInstances), viewTransitionMutationContext = true;
+        else if (4 !== tag && (27 === tag && (commitNewChildToFragmentInstances(node, parentFragmentInstances), parentFragmentInstances = null, isSingletonScope(node.type) && (parent = node.stateNode)), node = node.child, null !== node))
+          for (insertOrAppendPlacementNode(
+            node,
+            before,
+            parent,
+            parentFragmentInstances
+          ), node = node.sibling; null !== node; )
+            insertOrAppendPlacementNode(
+              node,
+              before,
+              parent,
+              parentFragmentInstances
+            ), node = node.sibling;
       }
       function commitPlacement(finishedWork) {
         for (var hostParentFiber, parentFiber = finishedWork.return; null !== parentFiber; ) {
@@ -10985,6 +11446,15 @@ var require_react_dom_client_development = __commonJS({
           }
           parentFiber = parentFiber.return;
         }
+        parentFiber = null;
+        for (var parent = finishedWork.return; null !== parent; ) {
+          if (isFragmentInstanceParent(parent)) {
+            var fragmentInstance = parent.stateNode;
+            null === parentFiber ? parentFiber = [fragmentInstance] : parentFiber.push(fragmentInstance);
+          }
+          if (isFragmentInstanceHostBoundary(parent)) break;
+          parent = parent.return;
+        }
         if (null == hostParentFiber)
           throw Error(
             "Expected to find a host parent. This error is likely caused by a bug in React. Please file an issue."
@@ -10992,31 +11462,34 @@ var require_react_dom_client_development = __commonJS({
         switch (hostParentFiber.tag) {
           case 27:
             hostParentFiber = hostParentFiber.stateNode;
-            parentFiber = getHostSibling(finishedWork);
+            parent = getHostSibling(finishedWork);
             insertOrAppendPlacementNode(
               finishedWork,
-              parentFiber,
-              hostParentFiber
+              parent,
+              hostParentFiber,
+              parentFiber
             );
             break;
           case 5:
-            parentFiber = hostParentFiber.stateNode;
-            hostParentFiber.flags & 32 && (resetTextContent(parentFiber), hostParentFiber.flags &= -33);
+            parent = hostParentFiber.stateNode;
+            hostParentFiber.flags & 32 && (resetTextContent(parent), hostParentFiber.flags &= -33);
             hostParentFiber = getHostSibling(finishedWork);
             insertOrAppendPlacementNode(
               finishedWork,
               hostParentFiber,
+              parent,
               parentFiber
             );
             break;
           case 3:
           case 4:
             hostParentFiber = hostParentFiber.stateNode.containerInfo;
-            parentFiber = getHostSibling(finishedWork);
+            parent = getHostSibling(finishedWork);
             insertOrAppendPlacementNodeIntoContainer(
               finishedWork,
-              parentFiber,
-              hostParentFiber
+              parent,
+              hostParentFiber,
+              parentFiber
             );
             break;
           default:
@@ -11040,10 +11513,315 @@ var require_react_dom_client_development = __commonJS({
           captureCommitPhaseError(finishedWork, finishedWork.return, error);
         }
       }
+      function trackEnterViewTransitions(placement) {
+        if (30 === placement.tag || 0 !== (placement.subtreeFlags & 33554432))
+          shouldStartViewTransition = true;
+      }
+      function pushViewTransitionCancelableScope() {
+        var prevChildren = viewTransitionCancelableChildren;
+        viewTransitionCancelableChildren = null;
+        return prevChildren;
+      }
+      function applyViewTransitionToHostInstances(fiber, name, className, collectMeasurements, stopAtNestedViewTransitions) {
+        viewTransitionHostInstanceIdx = 0;
+        (name = applyViewTransitionToHostInstancesRecursive(
+          fiber.child,
+          name,
+          className,
+          collectMeasurements,
+          stopAtNestedViewTransitions
+        )) && null != fiber._debugTask && null === animatingTask && (animatingTask = fiber._debugTask);
+        return name;
+      }
+      function applyViewTransitionToHostInstancesRecursive(child, name, className, collectMeasurements, stopAtNestedViewTransitions) {
+        for (var inViewport = false; null !== child; ) {
+          if (5 === child.tag) {
+            var _instance = child.stateNode;
+            if (null !== collectMeasurements) {
+              var measurement = measureInstance(_instance);
+              collectMeasurements.push(measurement);
+              measurement.view && (inViewport = true);
+            } else
+              inViewport || measureInstance(_instance).view && (inViewport = true);
+            shouldStartViewTransition = true;
+            applyViewTransitionName(
+              _instance,
+              0 === viewTransitionHostInstanceIdx ? name : name + "_" + viewTransitionHostInstanceIdx,
+              className
+            );
+            viewTransitionHostInstanceIdx++;
+          } else if (22 !== child.tag || null === child.memoizedState)
+            30 === child.tag && stopAtNestedViewTransitions || applyViewTransitionToHostInstancesRecursive(
+              child.child,
+              name,
+              className,
+              collectMeasurements,
+              stopAtNestedViewTransitions
+            ) && (inViewport = true);
+          child = child.sibling;
+        }
+        return inViewport;
+      }
+      function restoreViewTransitionOnHostInstances(child, stopAtNestedViewTransitions) {
+        for (; null !== child; ) {
+          if (5 === child.tag)
+            restoreViewTransitionName(child.stateNode, child.memoizedProps);
+          else if (22 !== child.tag || null === child.memoizedState)
+            30 === child.tag && stopAtNestedViewTransitions || restoreViewTransitionOnHostInstances(
+              child.child,
+              stopAtNestedViewTransitions
+            );
+          child = child.sibling;
+        }
+      }
+      function commitAppearingPairViewTransitions(placement) {
+        if (0 !== (placement.subtreeFlags & 18874368))
+          for (placement = placement.child; null !== placement; ) {
+            if (22 !== placement.tag || null === placement.memoizedState) {
+              if (commitAppearingPairViewTransitions(placement), 30 === placement.tag && 0 !== (placement.flags & 18874368) && placement.stateNode.paired) {
+                var props = placement.memoizedProps;
+                if (null == props.name || "auto" === props.name)
+                  throw Error(
+                    "Found a pair with an auto name. This is a bug in React."
+                  );
+                var name = props.name;
+                props = getViewTransitionClassName(props.default, props.share);
+                "none" !== props && (applyViewTransitionToHostInstances(
+                  placement,
+                  name,
+                  props,
+                  null,
+                  false
+                ) || restoreViewTransitionOnHostInstances(placement.child, false));
+              }
+            }
+            placement = placement.sibling;
+          }
+      }
+      function commitEnterViewTransitions(placement, gesture) {
+        if (30 === placement.tag) {
+          var state = placement.stateNode, props = placement.memoizedProps, name = getViewTransitionName(props, state), className = getViewTransitionClassName(
+            props.default,
+            state.paired ? props.share : props.enter
+          );
+          "none" !== className ? applyViewTransitionToHostInstances(
+            placement,
+            name,
+            className,
+            null,
+            false
+          ) ? (commitAppearingPairViewTransitions(placement), state.paired || gesture || scheduleViewTransitionEvent(placement, props.onEnter)) : restoreViewTransitionOnHostInstances(placement.child, false) : commitAppearingPairViewTransitions(placement);
+        } else if (0 !== (placement.subtreeFlags & 33554432))
+          for (placement = placement.child; null !== placement; )
+            commitEnterViewTransitions(placement, gesture), placement = placement.sibling;
+        else commitAppearingPairViewTransitions(placement);
+      }
+      function commitDeletedPairViewTransitions(deletion) {
+        if (null !== appearingViewTransitions && 0 !== appearingViewTransitions.size) {
+          var pairs = appearingViewTransitions;
+          if (0 !== (deletion.subtreeFlags & 18874368))
+            for (deletion = deletion.child; null !== deletion; ) {
+              if (22 !== deletion.tag || null === deletion.memoizedState) {
+                if (30 === deletion.tag && 0 !== (deletion.flags & 18874368)) {
+                  var props = deletion.memoizedProps, name = props.name;
+                  if (null != name && "auto" !== name) {
+                    var pair = pairs.get(name);
+                    if (void 0 !== pair) {
+                      var className = getViewTransitionClassName(
+                        props.default,
+                        props.share
+                      );
+                      "none" !== className && (applyViewTransitionToHostInstances(
+                        deletion,
+                        name,
+                        className,
+                        null,
+                        false
+                      ) ? (className = deletion.stateNode, pair.paired = className, className.paired = pair, scheduleViewTransitionEvent(deletion, props.onShare)) : restoreViewTransitionOnHostInstances(
+                        deletion.child,
+                        false
+                      ));
+                      pairs.delete(name);
+                      if (0 === pairs.size) break;
+                    }
+                  }
+                }
+                commitDeletedPairViewTransitions(deletion);
+              }
+              deletion = deletion.sibling;
+            }
+        }
+      }
+      function commitExitViewTransitions(deletion) {
+        if (30 === deletion.tag) {
+          var props = deletion.memoizedProps, name = getViewTransitionName(props, deletion.stateNode), pair = null !== appearingViewTransitions ? appearingViewTransitions.get(name) : void 0, className = getViewTransitionClassName(
+            props.default,
+            void 0 !== pair ? props.share : props.exit
+          );
+          "none" !== className && (applyViewTransitionToHostInstances(
+            deletion,
+            name,
+            className,
+            null,
+            false
+          ) ? void 0 !== pair ? (className = deletion.stateNode, pair.paired = className, className.paired = pair, appearingViewTransitions.delete(name), scheduleViewTransitionEvent(deletion, props.onShare)) : scheduleViewTransitionEvent(deletion, props.onExit) : restoreViewTransitionOnHostInstances(deletion.child, false));
+          null !== appearingViewTransitions && commitDeletedPairViewTransitions(deletion);
+        } else if (0 !== (deletion.subtreeFlags & 33554432))
+          for (deletion = deletion.child; null !== deletion; )
+            commitExitViewTransitions(deletion), deletion = deletion.sibling;
+        else
+          null !== appearingViewTransitions && commitDeletedPairViewTransitions(deletion);
+      }
+      function commitNestedViewTransitions(changedParent) {
+        for (changedParent = changedParent.child; null !== changedParent; ) {
+          if (30 === changedParent.tag) {
+            var props = changedParent.memoizedProps, name = getViewTransitionName(props, changedParent.stateNode);
+            props = getViewTransitionClassName(props.default, props.update);
+            changedParent.flags &= -5;
+            "none" !== props && applyViewTransitionToHostInstances(
+              changedParent,
+              name,
+              props,
+              changedParent.memoizedState = [],
+              false
+            );
+          } else
+            0 !== (changedParent.subtreeFlags & 33554432) && commitNestedViewTransitions(changedParent);
+          changedParent = changedParent.sibling;
+        }
+      }
+      function restorePairedViewTransitions(parent) {
+        if (0 !== (parent.subtreeFlags & 18874368))
+          for (parent = parent.child; null !== parent; ) {
+            if (22 !== parent.tag || null === parent.memoizedState) {
+              if (30 === parent.tag && 0 !== (parent.flags & 18874368)) {
+                var instance = parent.stateNode;
+                null !== instance.paired && (instance.paired = null, restoreViewTransitionOnHostInstances(parent.child, false));
+              }
+              restorePairedViewTransitions(parent);
+            }
+            parent = parent.sibling;
+          }
+      }
+      function restoreEnterOrExitViewTransitions(fiber) {
+        if (30 === fiber.tag)
+          fiber.stateNode.paired = null, restoreViewTransitionOnHostInstances(fiber.child, false), restorePairedViewTransitions(fiber);
+        else if (0 !== (fiber.subtreeFlags & 33554432))
+          for (fiber = fiber.child; null !== fiber; )
+            restoreEnterOrExitViewTransitions(fiber), fiber = fiber.sibling;
+        else restorePairedViewTransitions(fiber);
+      }
+      function restoreNestedViewTransitions(changedParent) {
+        for (changedParent = changedParent.child; null !== changedParent; )
+          30 === changedParent.tag ? restoreViewTransitionOnHostInstances(changedParent.child, false) : 0 !== (changedParent.subtreeFlags & 33554432) && restoreNestedViewTransitions(changedParent), changedParent = changedParent.sibling;
+      }
+      function measureViewTransitionHostInstancesRecursive(parentViewTransition, child, newName, oldName, className, previousMeasurements, stopAtNestedViewTransitions) {
+        for (var inViewport = false; null !== child; ) {
+          if (5 === child.tag) {
+            var _instance2 = child.stateNode;
+            if (null !== previousMeasurements && viewTransitionHostInstanceIdx < previousMeasurements.length) {
+              var previousMeasurement = previousMeasurements[viewTransitionHostInstanceIdx], nextMeasurement = measureInstance(_instance2);
+              if (previousMeasurement.view || nextMeasurement.view)
+                inViewport = true;
+              var JSCompiler_temp;
+              if (JSCompiler_temp = 0 === (parentViewTransition.flags & 4))
+                if (nextMeasurement.clip) JSCompiler_temp = true;
+                else {
+                  JSCompiler_temp = previousMeasurement.rect;
+                  var newRect = nextMeasurement.rect;
+                  JSCompiler_temp = JSCompiler_temp.y !== newRect.y || JSCompiler_temp.x !== newRect.x || JSCompiler_temp.height !== newRect.height || JSCompiler_temp.width !== newRect.width;
+                }
+              JSCompiler_temp && (parentViewTransition.flags |= 4);
+              nextMeasurement.abs ? nextMeasurement = !previousMeasurement.abs : (previousMeasurement = previousMeasurement.rect, nextMeasurement = nextMeasurement.rect, nextMeasurement = previousMeasurement.height !== nextMeasurement.height || previousMeasurement.width !== nextMeasurement.width);
+              nextMeasurement && (parentViewTransition.flags |= 32);
+            } else parentViewTransition.flags |= 32;
+            0 !== (parentViewTransition.flags & 4) && applyViewTransitionName(
+              _instance2,
+              0 === viewTransitionHostInstanceIdx ? newName : newName + "_" + viewTransitionHostInstanceIdx,
+              className
+            );
+            inViewport && 0 !== (parentViewTransition.flags & 4) || (null === viewTransitionCancelableChildren && (viewTransitionCancelableChildren = []), viewTransitionCancelableChildren.push(
+              _instance2,
+              0 === viewTransitionHostInstanceIdx ? oldName : oldName + "_" + viewTransitionHostInstanceIdx,
+              child.memoizedProps
+            ));
+            viewTransitionHostInstanceIdx++;
+          } else if (22 !== child.tag || null === child.memoizedState)
+            30 === child.tag && stopAtNestedViewTransitions ? parentViewTransition.flags |= child.flags & 32 : measureViewTransitionHostInstancesRecursive(
+              parentViewTransition,
+              child.child,
+              newName,
+              oldName,
+              className,
+              previousMeasurements,
+              stopAtNestedViewTransitions
+            ) && (inViewport = true);
+          child = child.sibling;
+        }
+        return inViewport;
+      }
+      function measureNestedViewTransitions(changedParent, gesture) {
+        for (changedParent = changedParent.child; null !== changedParent; ) {
+          if (30 === changedParent.tag) {
+            var props = changedParent.memoizedProps, state = changedParent.stateNode, name = getViewTransitionName(props, state), className = getViewTransitionClassName(props.default, props.update);
+            if (gesture) {
+              state = state.clones;
+              var previousMeasurements = null === state ? null : state.map(measureClonedInstance);
+            } else
+              previousMeasurements = changedParent.memoizedState, changedParent.memoizedState = null;
+            state = changedParent;
+            var child = changedParent.child, newName = name;
+            viewTransitionHostInstanceIdx = 0;
+            className = measureViewTransitionHostInstancesRecursive(
+              state,
+              child,
+              newName,
+              name,
+              className,
+              previousMeasurements,
+              false
+            );
+            0 !== (changedParent.flags & 4) && className && (gesture || scheduleViewTransitionEvent(changedParent, props.onUpdate));
+          } else
+            0 !== (changedParent.subtreeFlags & 33554432) && measureNestedViewTransitions(changedParent, gesture);
+          changedParent = changedParent.sibling;
+        }
+      }
+      function trackNamedViewTransition(fiber) {
+        var name = fiber.memoizedProps.name;
+        if (null != name && "auto" !== name) {
+          var existing = mountedNamedViewTransitions.get(name);
+          if (void 0 !== existing) {
+            if (existing !== fiber && existing !== fiber.alternate && !didWarnAboutName[name]) {
+              didWarnAboutName[name] = true;
+              var stringifiedName = JSON.stringify(name);
+              runWithFiberInDEV(fiber, function() {
+                console.error(
+                  "There are two <ViewTransition name=%s> components with the same name mounted at the same time. This is not supported and will cause View Transitions to error. Try to use a more unique name e.g. by using a namespace prefix and adding the id of an item to the name.",
+                  stringifiedName
+                );
+              });
+              runWithFiberInDEV(existing, function() {
+                console.error(
+                  "The existing <ViewTransition name=%s> duplicate has this stack trace.",
+                  stringifiedName
+                );
+              });
+            }
+          } else mountedNamedViewTransitions.set(name, fiber);
+        }
+      }
+      function untrackNamedViewTransition(fiber) {
+        var name = fiber.memoizedProps.name;
+        if (null != name && "auto" !== name) {
+          var existing = mountedNamedViewTransitions.get(name);
+          void 0 === existing || existing !== fiber && existing !== fiber.alternate || mountedNamedViewTransitions.delete(name);
+        }
+      }
       function isHydratingParent(current2, finishedWork) {
         return 31 === finishedWork.tag ? (finishedWork = finishedWork.memoizedState, null !== current2.memoizedState && null === finishedWork) : 13 === finishedWork.tag ? (current2 = current2.memoizedState, finishedWork = finishedWork.memoizedState, null !== current2 && null !== current2.dehydrated && (null === finishedWork || null === finishedWork.dehydrated)) : 3 === finishedWork.tag ? current2.memoizedState.isDehydrated && 0 === (finishedWork.flags & 256) : false;
       }
-      function commitBeforeMutationEffects(root3, firstChild) {
+      function commitBeforeMutationEffects(root3, firstChild, committedLanes) {
         root3 = root3.containerInfo;
         eventsEnabled = _enabled;
         root3 = getActiveElementDeep(root3);
@@ -11063,7 +11841,7 @@ var require_react_dom_client_development = __commonJS({
                 selection = selection.focusOffset;
                 try {
                   JSCompiler_temp.nodeType, focusNode.nodeType;
-                } catch (e$2) {
+                } catch (e$3) {
                   JSCompiler_temp = null;
                   break a;
                 }
@@ -11097,63 +11875,96 @@ var require_react_dom_client_development = __commonJS({
           selectionRange: JSCompiler_temp
         };
         _enabled = false;
-        for (nextEffect = firstChild; null !== nextEffect; )
-          if (firstChild = nextEffect, root3 = firstChild.child, 0 !== (firstChild.subtreeFlags & 1028) && null !== root3)
-            root3.return = firstChild, nextEffect = root3;
-          else
-            for (; null !== nextEffect; ) {
-              root3 = firstChild = nextEffect;
-              JSCompiler_temp = root3.alternate;
-              anchorOffset = root3.flags;
-              switch (root3.tag) {
-                case 0:
-                  if (0 !== (anchorOffset & 4) && (root3 = root3.updateQueue, root3 = null !== root3 ? root3.events : null, null !== root3))
-                    for (JSCompiler_temp = 0; JSCompiler_temp < root3.length; JSCompiler_temp++)
-                      anchorOffset = root3[JSCompiler_temp], anchorOffset.ref.impl = anchorOffset.nextImpl;
-                  break;
-                case 11:
-                case 15:
-                  break;
-                case 1:
-                  0 !== (anchorOffset & 1024) && null !== JSCompiler_temp && commitClassSnapshot(root3, JSCompiler_temp);
-                  break;
-                case 3:
-                  if (0 !== (anchorOffset & 1024)) {
-                    if (root3 = root3.stateNode.containerInfo, JSCompiler_temp = root3.nodeType, 9 === JSCompiler_temp)
-                      clearContainerSparingly(root3);
-                    else if (1 === JSCompiler_temp)
-                      switch (root3.nodeName) {
-                        case "HEAD":
-                        case "HTML":
-                        case "BODY":
-                          clearContainerSparingly(root3);
-                          break;
-                        default:
-                          root3.textContent = "";
-                      }
-                  }
-                  break;
-                case 5:
-                case 26:
-                case 27:
-                case 6:
-                case 4:
-                case 17:
-                  break;
-                default:
-                  if (0 !== (anchorOffset & 1024))
-                    throw Error(
-                      "This unit of work tag should not have side-effects. This error is likely caused by a bug in React. Please file an issue."
-                    );
+        committedLanes = (committedLanes & 335544064) === committedLanes;
+        nextEffect = firstChild;
+        for (firstChild = committedLanes ? 9270 : 1024; null !== nextEffect; ) {
+          root3 = nextEffect;
+          if (committedLanes && (JSCompiler_temp = root3.deletions, null !== JSCompiler_temp))
+            for (anchorOffset = 0; anchorOffset < JSCompiler_temp.length; anchorOffset++)
+              committedLanes && commitExitViewTransitions(JSCompiler_temp[anchorOffset]);
+          if (null === root3.alternate && 0 !== (root3.flags & 2))
+            committedLanes && trackEnterViewTransitions(root3), commitBeforeMutationEffects_complete(committedLanes);
+          else {
+            if (22 === root3.tag) {
+              if (JSCompiler_temp = root3.alternate, null !== root3.memoizedState) {
+                null !== JSCompiler_temp && null === JSCompiler_temp.memoizedState && committedLanes && commitExitViewTransitions(JSCompiler_temp);
+                commitBeforeMutationEffects_complete(committedLanes);
+                continue;
+              } else if (null !== JSCompiler_temp && null !== JSCompiler_temp.memoizedState) {
+                committedLanes && trackEnterViewTransitions(root3);
+                commitBeforeMutationEffects_complete(committedLanes);
+                continue;
               }
-              root3 = firstChild.sibling;
-              if (null !== root3) {
-                root3.return = firstChild.return;
-                nextEffect = root3;
-                break;
-              }
-              nextEffect = firstChild.return;
             }
+            JSCompiler_temp = root3.child;
+            0 !== (root3.subtreeFlags & firstChild) && null !== JSCompiler_temp ? (JSCompiler_temp.return = root3, nextEffect = JSCompiler_temp) : (committedLanes && commitNestedViewTransitions(root3), commitBeforeMutationEffects_complete(committedLanes));
+          }
+        }
+        appearingViewTransitions = null;
+      }
+      function commitBeforeMutationEffects_complete(isViewTransitionEligible$jscomp$0) {
+        for (; null !== nextEffect; ) {
+          var fiber = nextEffect, finishedWork = fiber, isViewTransitionEligible = isViewTransitionEligible$jscomp$0, current2 = finishedWork.alternate, flags = finishedWork.flags;
+          switch (finishedWork.tag) {
+            case 0:
+            case 11:
+            case 15:
+              break;
+            case 1:
+              0 !== (flags & 1024) && null !== current2 && commitClassSnapshot(finishedWork, current2);
+              break;
+            case 3:
+              if (0 !== (flags & 1024)) {
+                if (isViewTransitionEligible = finishedWork.stateNode.containerInfo, finishedWork = isViewTransitionEligible.nodeType, 9 === finishedWork)
+                  clearContainerSparingly(isViewTransitionEligible);
+                else if (1 === finishedWork)
+                  switch (isViewTransitionEligible.nodeName) {
+                    case "HEAD":
+                    case "HTML":
+                    case "BODY":
+                      clearContainerSparingly(isViewTransitionEligible);
+                      break;
+                    default:
+                      isViewTransitionEligible.textContent = "";
+                  }
+              }
+              break;
+            case 5:
+            case 26:
+            case 27:
+            case 6:
+            case 4:
+            case 17:
+              break;
+            case 30:
+              isViewTransitionEligible && null !== current2 && (isViewTransitionEligible = current2, current2 = finishedWork, finishedWork = getViewTransitionName(
+                isViewTransitionEligible.memoizedProps,
+                isViewTransitionEligible.stateNode
+              ), current2 = current2.memoizedProps, current2 = getViewTransitionClassName(
+                current2.default,
+                current2.update
+              ), "none" !== current2 && applyViewTransitionToHostInstances(
+                isViewTransitionEligible,
+                finishedWork,
+                current2,
+                isViewTransitionEligible.memoizedState = [],
+                true
+              ));
+              break;
+            default:
+              if (0 !== (flags & 1024))
+                throw Error(
+                  "This unit of work tag should not have side-effects. This error is likely caused by a bug in React. Please file an issue."
+                );
+          }
+          isViewTransitionEligible = fiber.sibling;
+          if (null !== isViewTransitionEligible) {
+            isViewTransitionEligible.return = fiber.return;
+            nextEffect = isViewTransitionEligible;
+            break;
+          }
+          nextEffect = fiber.return;
+        }
       }
       function commitLayoutEffectOnFiber(finishedRoot, current2, finishedWork) {
         var prevEffectStart = pushComponentEffectStart(), prevEffectDuration = pushComponentEffectDuration(), prevEffectErrors = pushComponentEffectErrors(), prevEffectDidSpawnUpdate = pushComponentEffectDidSpawnUpdate(), flags = finishedWork.flags;
@@ -11312,25 +12123,30 @@ var require_react_dom_client_development = __commonJS({
           case 22:
             flags = null !== finishedWork.memoizedState || offscreenSubtreeIsHidden;
             if (!flags) {
-              current2 = null !== current2 && null !== current2.memoizedState || offscreenSubtreeWasHidden;
-              prevProps = offscreenSubtreeIsHidden;
-              var prevOffscreenSubtreeWasHidden = offscreenSubtreeWasHidden;
+              var newOffscreenSubtreeWasHidden = null !== current2 && null !== current2.memoizedState || offscreenSubtreeWasHidden;
+              current2 = offscreenSubtreeIsHidden;
+              prevProps = offscreenSubtreeWasHidden;
               offscreenSubtreeIsHidden = flags;
-              (offscreenSubtreeWasHidden = current2) && !prevOffscreenSubtreeWasHidden ? (recursivelyTraverseReappearLayoutEffects(
+              (offscreenSubtreeWasHidden = newOffscreenSubtreeWasHidden) && !prevProps ? (flags = IncludeHostSingletons, 0 !== (finishedWork.subtreeFlags & 8772) && (flags |= IncludeWorkInProgressEffects), recursivelyTraverseReappearLayoutEffects(
                 finishedRoot,
                 finishedWork,
-                0 !== (finishedWork.subtreeFlags & 8772)
+                flags
               ), (finishedWork.mode & ProfileMode) !== NoMode && 0 <= componentEffectStartTime && 0 <= componentEffectEndTime && 0.05 < componentEffectEndTime - componentEffectStartTime && logComponentReappeared(
                 finishedWork,
                 componentEffectStartTime,
                 componentEffectEndTime
               )) : recursivelyTraverseLayoutEffects(finishedRoot, finishedWork);
-              offscreenSubtreeIsHidden = prevProps;
-              offscreenSubtreeWasHidden = prevOffscreenSubtreeWasHidden;
+              offscreenSubtreeIsHidden = current2;
+              offscreenSubtreeWasHidden = prevProps;
             }
             break;
           case 30:
+            flags & 18874368 && trackNamedViewTransition(finishedWork);
+            recursivelyTraverseLayoutEffects(finishedRoot, finishedWork);
+            flags & 512 && safelyAttachRef(finishedWork, finishedWork.return);
             break;
+          case 7:
+            flags & 512 && safelyAttachRef(finishedWork, finishedWork.return);
           default:
             recursivelyTraverseLayoutEffects(finishedRoot, finishedWork);
         }
@@ -11353,6 +12169,84 @@ var require_react_dom_client_development = __commonJS({
         popComponentEffectDuration(prevEffectDuration);
         componentEffectErrors = prevEffectErrors;
         componentEffectSpawnedUpdate = prevEffectDidSpawnUpdate;
+      }
+      function hideOrUnhideAllChildren(parentFiber, isHidden) {
+        for (parentFiber = parentFiber.child; null !== parentFiber; )
+          hideOrUnhideAllChildrenOnFiber(parentFiber, isHidden), parentFiber = parentFiber.sibling;
+      }
+      function hideOrUnhideAllChildrenOnFiber(fiber, isHidden) {
+        switch (fiber.tag) {
+          case 5:
+          case 26:
+            try {
+              var instance = fiber.stateNode;
+              isHidden ? runWithFiberInDEV(fiber, hideInstance, instance) : runWithFiberInDEV(
+                fiber,
+                unhideInstance,
+                fiber.stateNode,
+                fiber.memoizedProps
+              );
+            } catch (error) {
+              captureCommitPhaseError(fiber, fiber.return, error);
+            }
+            hideOrUnhideNearestPortals(fiber, isHidden);
+            break;
+          case 6:
+            try {
+              var instance$jscomp$0 = fiber.stateNode;
+              isHidden ? runWithFiberInDEV(fiber, hideTextInstance, instance$jscomp$0) : runWithFiberInDEV(
+                fiber,
+                unhideTextInstance,
+                instance$jscomp$0,
+                fiber.memoizedProps
+              );
+              viewTransitionMutationContext = true;
+            } catch (error) {
+              captureCommitPhaseError(fiber, fiber.return, error);
+            }
+            break;
+          case 18:
+            try {
+              var instance$jscomp$1 = fiber.stateNode;
+              isHidden ? runWithFiberInDEV(
+                fiber,
+                hideDehydratedBoundary,
+                instance$jscomp$1
+              ) : runWithFiberInDEV(
+                fiber,
+                unhideDehydratedBoundary,
+                fiber.stateNode
+              );
+            } catch (error) {
+              captureCommitPhaseError(fiber, fiber.return, error);
+            }
+            break;
+          case 22:
+          case 23:
+            null === fiber.memoizedState && hideOrUnhideAllChildren(fiber, isHidden);
+            break;
+          default:
+            hideOrUnhideAllChildren(fiber, isHidden);
+        }
+      }
+      function hideOrUnhideNearestPortals(parentFiber, isHidden$jscomp$0) {
+        if (parentFiber.subtreeFlags & 67108864)
+          for (parentFiber = parentFiber.child; null !== parentFiber; ) {
+            a: {
+              var fiber = parentFiber, isHidden = isHidden$jscomp$0;
+              switch (fiber.tag) {
+                case 4:
+                  hideOrUnhideAllChildrenOnFiber(fiber, isHidden);
+                  break a;
+                case 22:
+                  null === fiber.memoizedState && hideOrUnhideNearestPortals(fiber, isHidden);
+                  break a;
+                default:
+                  hideOrUnhideNearestPortals(fiber, isHidden);
+              }
+            }
+            parentFiber = parentFiber.sibling;
+          }
       }
       function detachFiberAfterEffects(fiber) {
         var alternate = fiber.alternate;
@@ -11398,10 +12292,11 @@ var require_react_dom_client_development = __commonJS({
               nearestMountedAncestor,
               deletedFiber
             );
-            deletedFiber.memoizedState ? deletedFiber.memoizedState.count-- : deletedFiber.stateNode && (finishedRoot = deletedFiber.stateNode, finishedRoot.parentNode.removeChild(finishedRoot));
+            deletedFiber.memoizedState ? deletedFiber.memoizedState.count-- : deletedFiber.stateNode && !offscreenSubtreeWasHidden && (finishedRoot = deletedFiber.stateNode, finishedRoot.parentNode.removeChild(finishedRoot));
             break;
           case 27:
             offscreenSubtreeWasHidden || safelyDetachRef(deletedFiber, nearestMountedAncestor);
+            commitFragmentInstanceDeletionEffects(deletedFiber);
             var prevHostParent = hostParent, prevHostParentIsContainer = hostParentIsContainer;
             isSingletonScope(deletedFiber.type) && (hostParent = deletedFiber.stateNode, hostParentIsContainer = false);
             recursivelyTraverseDeletionEffects(
@@ -11412,14 +12307,17 @@ var require_react_dom_client_development = __commonJS({
             runWithFiberInDEV(
               deletedFiber,
               releaseSingletonInstance,
-              deletedFiber.stateNode
+              deletedFiber.stateNode,
+              deletedFiber.type,
+              deletedFiber.memoizedProps
             );
             hostParent = prevHostParent;
             hostParentIsContainer = prevHostParentIsContainer;
             break;
           case 5:
-            offscreenSubtreeWasHidden || safelyDetachRef(deletedFiber, nearestMountedAncestor);
+            offscreenSubtreeWasHidden || safelyDetachRef(deletedFiber, nearestMountedAncestor), commitFragmentInstanceDeletionEffects(deletedFiber);
           case 6:
+            6 === deletedFiber.tag && commitFragmentInstanceDeletionEffects(deletedFiber);
             prevHostParent = hostParent;
             prevHostParentIsContainer = hostParentIsContainer;
             hostParent = null;
@@ -11438,7 +12336,7 @@ var require_react_dom_client_development = __commonJS({
                     removeChildFromContainer,
                     hostParent,
                     deletedFiber.stateNode
-                  );
+                  ), viewTransitionMutationContext = true;
                 } catch (error) {
                   captureCommitPhaseError(
                     deletedFiber,
@@ -11453,7 +12351,7 @@ var require_react_dom_client_development = __commonJS({
                     removeChild,
                     hostParent,
                     deletedFiber.stateNode
-                  );
+                  ), viewTransitionMutationContext = true;
                 } catch (error) {
                   captureCommitPhaseError(
                     deletedFiber,
@@ -11528,6 +12426,23 @@ var require_react_dom_client_development = __commonJS({
               deletedFiber
             );
             offscreenSubtreeWasHidden = prevHostParent;
+            break;
+          case 30:
+            deletedFiber.flags & 18874368 && untrackNamedViewTransition(deletedFiber);
+            safelyDetachRef(deletedFiber, nearestMountedAncestor);
+            recursivelyTraverseDeletionEffects(
+              finishedRoot,
+              nearestMountedAncestor,
+              deletedFiber
+            );
+            break;
+          case 7:
+            offscreenSubtreeWasHidden || safelyDetachRef(deletedFiber, nearestMountedAncestor);
+            recursivelyTraverseDeletionEffects(
+              finishedRoot,
+              nearestMountedAncestor,
+              deletedFiber
+            );
             break;
           default:
             recursivelyTraverseDeletionEffects(
@@ -11607,7 +12522,7 @@ var require_react_dom_client_development = __commonJS({
           }
         });
       }
-      function recursivelyTraverseMutationEffects(root$jscomp$0, parentFiber) {
+      function recursivelyTraverseMutationEffects(root$jscomp$0, parentFiber, lanes) {
         var deletions = parentFiber.deletions;
         if (null !== deletions)
           for (var i = 0; i < deletions.length; i++) {
@@ -11654,16 +12569,21 @@ var require_react_dom_client_development = __commonJS({
           }
         if (parentFiber.subtreeFlags & 13886)
           for (parentFiber = parentFiber.child; null !== parentFiber; )
-            commitMutationEffectsOnFiber(parentFiber, root$jscomp$0), parentFiber = parentFiber.sibling;
+            commitMutationEffectsOnFiber(parentFiber, root$jscomp$0, lanes), parentFiber = parentFiber.sibling;
       }
-      function commitMutationEffectsOnFiber(finishedWork, root3) {
+      function commitMutationEffectsOnFiber(finishedWork, root3, lanes) {
         var prevEffectStart = pushComponentEffectStart(), prevEffectDuration = pushComponentEffectDuration(), prevEffectErrors = pushComponentEffectErrors(), prevEffectDidSpawnUpdate = pushComponentEffectDidSpawnUpdate(), current2 = finishedWork.alternate, flags = finishedWork.flags;
         switch (finishedWork.tag) {
           case 0:
           case 11:
           case 14:
           case 15:
-            recursivelyTraverseMutationEffects(root3, finishedWork);
+            if (flags & 4 && (current2 = finishedWork.updateQueue, current2 = null !== current2 ? current2.events : null, null !== current2))
+              for (var ii = 0; ii < current2.length; ii++) {
+                var _eventPayloads$ii2 = current2[ii];
+                _eventPayloads$ii2.ref.impl = _eventPayloads$ii2.nextImpl;
+              }
+            recursivelyTraverseMutationEffects(root3, finishedWork, lanes);
             commitReconciliationEffects(finishedWork);
             flags & 4 && (commitHookEffectListUnmount(
               Insertion | HasEffect,
@@ -11676,126 +12596,116 @@ var require_react_dom_client_development = __commonJS({
             ));
             break;
           case 1:
-            recursivelyTraverseMutationEffects(root3, finishedWork);
+            recursivelyTraverseMutationEffects(root3, finishedWork, lanes);
             commitReconciliationEffects(finishedWork);
             flags & 512 && (offscreenSubtreeWasHidden || null === current2 || safelyDetachRef(current2, current2.return));
-            if (flags & 64 && offscreenSubtreeIsHidden && (flags = finishedWork.updateQueue, null !== flags && (current2 = flags.callbacks, null !== current2))) {
-              var existingHiddenCallbacks = flags.shared.hiddenCallbacks;
-              flags.shared.hiddenCallbacks = null === existingHiddenCallbacks ? current2 : existingHiddenCallbacks.concat(current2);
-            }
+            flags & 64 && offscreenSubtreeIsHidden && (root3 = finishedWork.updateQueue, null !== root3 && (lanes = root3.callbacks, null !== lanes && (flags = root3.shared.hiddenCallbacks, root3.shared.hiddenCallbacks = null === flags ? lanes : flags.concat(lanes))));
             break;
           case 26:
-            existingHiddenCallbacks = currentHoistableRoot;
-            recursivelyTraverseMutationEffects(root3, finishedWork);
+            ii = currentHoistableRoot;
+            recursivelyTraverseMutationEffects(root3, finishedWork, lanes);
             commitReconciliationEffects(finishedWork);
             flags & 512 && (offscreenSubtreeWasHidden || null === current2 || safelyDetachRef(current2, current2.return));
-            if (flags & 4) {
-              var currentResource = null !== current2 ? current2.memoizedState : null;
-              flags = finishedWork.memoizedState;
-              if (null === current2)
-                if (null === flags)
-                  if (null === finishedWork.stateNode) {
-                    a: {
-                      flags = finishedWork.type;
-                      current2 = finishedWork.memoizedProps;
-                      existingHiddenCallbacks = existingHiddenCallbacks.ownerDocument || existingHiddenCallbacks;
-                      b: switch (flags) {
-                        case "title":
-                          currentResource = existingHiddenCallbacks.getElementsByTagName(
-                            "title"
-                          )[0];
-                          if (!currentResource || currentResource[internalHoistableMarker] || currentResource[internalInstanceKey] || currentResource.namespaceURI === SVG_NAMESPACE || currentResource.hasAttribute("itemprop"))
-                            currentResource = existingHiddenCallbacks.createElement(flags), existingHiddenCallbacks.head.insertBefore(
-                              currentResource,
-                              existingHiddenCallbacks.querySelector(
-                                "head > title"
-                              )
+            if (flags & 4)
+              if (flags = null !== current2 ? current2.memoizedState : null, lanes = finishedWork.memoizedState, null === current2)
+                if (null === lanes)
+                  if (null === finishedWork.stateNode)
+                    if (offscreenSubtreeIsHidden)
+                      finishedWork.stateNode = createHoistableInstance(
+                        finishedWork.type,
+                        finishedWork.memoizedProps,
+                        root3.containerInfo,
+                        finishedWork
+                      );
+                    else {
+                      a: {
+                        root3 = finishedWork.type;
+                        lanes = finishedWork.memoizedProps;
+                        flags = ii.ownerDocument || ii;
+                        b: switch (root3) {
+                          case "title":
+                            current2 = flags.getElementsByTagName("title")[0];
+                            if (!current2 || current2[internalHoistableMarker] || current2[internalInstanceKey] || current2.namespaceURI === SVG_NAMESPACE || current2.hasAttribute("itemprop"))
+                              current2 = flags.createElement(root3), flags.head.insertBefore(
+                                current2,
+                                flags.querySelector("head > title")
+                              );
+                            setInitialProperties(current2, root3, lanes);
+                            current2[internalInstanceKey] = finishedWork;
+                            markNodeAsHoistable(current2);
+                            root3 = current2;
+                            break a;
+                          case "link":
+                            if (ii = getHydratableHoistableCache(
+                              "link",
+                              "href",
+                              flags
+                            ).get(root3 + (lanes.href || ""))) {
+                              for (_eventPayloads$ii2 = 0; _eventPayloads$ii2 < ii.length; _eventPayloads$ii2++)
+                                if (current2 = ii[_eventPayloads$ii2], current2.getAttribute("href") === (null == lanes.href || "" === lanes.href ? null : lanes.href) && current2.getAttribute("rel") === (null == lanes.rel ? null : lanes.rel) && current2.getAttribute("title") === (null == lanes.title ? null : lanes.title) && current2.getAttribute("crossorigin") === (null == lanes.crossOrigin ? null : lanes.crossOrigin)) {
+                                  ii.splice(_eventPayloads$ii2, 1);
+                                  break b;
+                                }
+                            }
+                            current2 = flags.createElement(root3);
+                            setInitialProperties(current2, root3, lanes);
+                            flags.head.appendChild(current2);
+                            break;
+                          case "meta":
+                            if (ii = getHydratableHoistableCache(
+                              "meta",
+                              "content",
+                              flags
+                            ).get(root3 + (lanes.content || ""))) {
+                              for (_eventPayloads$ii2 = 0; _eventPayloads$ii2 < ii.length; _eventPayloads$ii2++)
+                                if (current2 = ii[_eventPayloads$ii2], checkAttributeStringCoercion(
+                                  lanes.content,
+                                  "content"
+                                ), current2.getAttribute("content") === (null == lanes.content ? null : "" + lanes.content) && current2.getAttribute("name") === (null == lanes.name ? null : lanes.name) && current2.getAttribute("property") === (null == lanes.property ? null : lanes.property) && current2.getAttribute("http-equiv") === (null == lanes.httpEquiv ? null : lanes.httpEquiv) && current2.getAttribute("charset") === (null == lanes.charSet ? null : lanes.charSet)) {
+                                  ii.splice(_eventPayloads$ii2, 1);
+                                  break b;
+                                }
+                            }
+                            current2 = flags.createElement(root3);
+                            setInitialProperties(current2, root3, lanes);
+                            flags.head.appendChild(current2);
+                            break;
+                          default:
+                            throw Error(
+                              'getNodesForType encountered a type it did not expect: "' + root3 + '". This is a bug in React.'
                             );
-                          setInitialProperties(currentResource, flags, current2);
-                          currentResource[internalInstanceKey] = finishedWork;
-                          markNodeAsHoistable(currentResource);
-                          flags = currentResource;
-                          break a;
-                        case "link":
-                          var maybeNodes = getHydratableHoistableCache(
-                            "link",
-                            "href",
-                            existingHiddenCallbacks
-                          ).get(flags + (current2.href || ""));
-                          if (maybeNodes) {
-                            for (var i = 0; i < maybeNodes.length; i++)
-                              if (currentResource = maybeNodes[i], currentResource.getAttribute("href") === (null == current2.href || "" === current2.href ? null : current2.href) && currentResource.getAttribute("rel") === (null == current2.rel ? null : current2.rel) && currentResource.getAttribute("title") === (null == current2.title ? null : current2.title) && currentResource.getAttribute("crossorigin") === (null == current2.crossOrigin ? null : current2.crossOrigin)) {
-                                maybeNodes.splice(i, 1);
-                                break b;
-                              }
-                          }
-                          currentResource = existingHiddenCallbacks.createElement(flags);
-                          setInitialProperties(currentResource, flags, current2);
-                          existingHiddenCallbacks.head.appendChild(
-                            currentResource
-                          );
-                          break;
-                        case "meta":
-                          if (maybeNodes = getHydratableHoistableCache(
-                            "meta",
-                            "content",
-                            existingHiddenCallbacks
-                          ).get(flags + (current2.content || ""))) {
-                            for (i = 0; i < maybeNodes.length; i++)
-                              if (currentResource = maybeNodes[i], checkAttributeStringCoercion(
-                                current2.content,
-                                "content"
-                              ), currentResource.getAttribute("content") === (null == current2.content ? null : "" + current2.content) && currentResource.getAttribute("name") === (null == current2.name ? null : current2.name) && currentResource.getAttribute("property") === (null == current2.property ? null : current2.property) && currentResource.getAttribute("http-equiv") === (null == current2.httpEquiv ? null : current2.httpEquiv) && currentResource.getAttribute("charset") === (null == current2.charSet ? null : current2.charSet)) {
-                                maybeNodes.splice(i, 1);
-                                break b;
-                              }
-                          }
-                          currentResource = existingHiddenCallbacks.createElement(flags);
-                          setInitialProperties(currentResource, flags, current2);
-                          existingHiddenCallbacks.head.appendChild(
-                            currentResource
-                          );
-                          break;
-                        default:
-                          throw Error(
-                            'getNodesForType encountered a type it did not expect: "' + flags + '". This is a bug in React.'
-                          );
+                        }
+                        current2[internalInstanceKey] = finishedWork;
+                        markNodeAsHoistable(current2);
+                        root3 = current2;
                       }
-                      currentResource[internalInstanceKey] = finishedWork;
-                      markNodeAsHoistable(currentResource);
-                      flags = currentResource;
+                      finishedWork.stateNode = root3;
                     }
-                    finishedWork.stateNode = flags;
-                  } else
-                    mountHoistable(
-                      existingHiddenCallbacks,
+                  else
+                    offscreenSubtreeIsHidden || mountHoistable(
+                      ii,
                       finishedWork.type,
                       finishedWork.stateNode
                     );
                 else
                   finishedWork.stateNode = acquireResource(
-                    existingHiddenCallbacks,
-                    flags,
+                    ii,
+                    lanes,
                     finishedWork.memoizedProps
                   );
               else
-                currentResource !== flags ? (null === currentResource ? null !== current2.stateNode && (current2 = current2.stateNode, current2.parentNode.removeChild(current2)) : currentResource.count--, null === flags ? mountHoistable(
-                  existingHiddenCallbacks,
+                flags !== lanes ? (null === flags ? (root3 = current2.stateNode, null === root3 || offscreenSubtreeWasHidden || root3.parentNode.removeChild(root3)) : flags.count--, null === lanes ? offscreenSubtreeIsHidden || mountHoistable(
+                  ii,
                   finishedWork.type,
                   finishedWork.stateNode
-                ) : acquireResource(
-                  existingHiddenCallbacks,
-                  flags,
-                  finishedWork.memoizedProps
-                )) : null === flags && null !== finishedWork.stateNode && commitHostUpdate(
+                ) : acquireResource(ii, lanes, finishedWork.memoizedProps)) : null === lanes && null !== finishedWork.stateNode && commitHostUpdate(
                   finishedWork,
                   finishedWork.memoizedProps,
                   current2.memoizedProps
                 );
-            }
             break;
           case 27:
-            recursivelyTraverseMutationEffects(root3, finishedWork);
+            recursivelyTraverseMutationEffects(root3, finishedWork, lanes);
             commitReconciliationEffects(finishedWork);
             flags & 512 && (offscreenSubtreeWasHidden || null === current2 || safelyDetachRef(current2, current2.return));
             null !== current2 && flags & 4 && commitHostUpdate(
@@ -11805,61 +12715,61 @@ var require_react_dom_client_development = __commonJS({
             );
             break;
           case 5:
-            recursivelyTraverseMutationEffects(root3, finishedWork);
+            ii = offscreenDirectParentIsHidden;
+            offscreenDirectParentIsHidden = false;
+            recursivelyTraverseMutationEffects(root3, finishedWork, lanes);
+            offscreenDirectParentIsHidden = ii;
             commitReconciliationEffects(finishedWork);
             flags & 512 && (offscreenSubtreeWasHidden || null === current2 || safelyDetachRef(current2, current2.return));
             if (finishedWork.flags & 32) {
-              existingHiddenCallbacks = finishedWork.stateNode;
+              root3 = finishedWork.stateNode;
               try {
-                runWithFiberInDEV(
-                  finishedWork,
-                  resetTextContent,
-                  existingHiddenCallbacks
-                );
+                runWithFiberInDEV(finishedWork, resetTextContent, root3), viewTransitionMutationContext = true;
               } catch (error) {
                 captureCommitPhaseError(finishedWork, finishedWork.return, error);
               }
             }
-            flags & 4 && null != finishedWork.stateNode && (existingHiddenCallbacks = finishedWork.memoizedProps, commitHostUpdate(
+            flags & 4 && null != finishedWork.stateNode && (root3 = finishedWork.memoizedProps, commitHostUpdate(
               finishedWork,
-              existingHiddenCallbacks,
-              null !== current2 ? current2.memoizedProps : existingHiddenCallbacks
+              root3,
+              null !== current2 ? current2.memoizedProps : root3
             ));
             flags & 1024 && (needsFormReset = true, "form" !== finishedWork.type && console.error(
               "Unexpected host component type. Expected a form. This is a bug in React."
             ));
             break;
           case 6:
-            recursivelyTraverseMutationEffects(root3, finishedWork);
+            recursivelyTraverseMutationEffects(root3, finishedWork, lanes);
             commitReconciliationEffects(finishedWork);
             if (flags & 4) {
               if (null === finishedWork.stateNode)
                 throw Error(
                   "This should have a text node initialized. This error is likely caused by a bug in React. Please file an issue."
                 );
-              flags = finishedWork.memoizedProps;
-              current2 = null !== current2 ? current2.memoizedProps : flags;
-              existingHiddenCallbacks = finishedWork.stateNode;
+              root3 = finishedWork.memoizedProps;
+              lanes = null !== current2 ? current2.memoizedProps : root3;
+              flags = finishedWork.stateNode;
               try {
                 runWithFiberInDEV(
                   finishedWork,
                   commitTextUpdate,
-                  existingHiddenCallbacks,
-                  current2,
-                  flags
-                );
+                  flags,
+                  lanes,
+                  root3
+                ), viewTransitionMutationContext = true;
               } catch (error) {
                 captureCommitPhaseError(finishedWork, finishedWork.return, error);
               }
             }
             break;
           case 3:
-            existingHiddenCallbacks = pushNestedEffectDurations();
+            ii = pushNestedEffectDurations();
+            viewTransitionMutationContext = false;
             tagCaches = null;
-            currentResource = currentHoistableRoot;
+            _eventPayloads$ii2 = currentHoistableRoot;
             currentHoistableRoot = getHoistableRoot(root3.containerInfo);
-            recursivelyTraverseMutationEffects(root3, finishedWork);
-            currentHoistableRoot = currentResource;
+            recursivelyTraverseMutationEffects(root3, finishedWork, lanes);
+            currentHoistableRoot = _eventPayloads$ii2;
             commitReconciliationEffects(finishedWork);
             if (flags & 4 && null !== current2 && current2.memoizedState.isDehydrated)
               try {
@@ -11872,139 +12782,93 @@ var require_react_dom_client_development = __commonJS({
                 captureCommitPhaseError(finishedWork, finishedWork.return, error);
               }
             needsFormReset && (needsFormReset = false, recursivelyResetForms(finishedWork));
-            root3.effectDuration += popNestedEffectDurations(
-              existingHiddenCallbacks
-            );
+            root3.effectDuration += popNestedEffectDurations(ii);
+            viewTransitionMutationContext = false;
             break;
           case 4:
-            flags = currentHoistableRoot;
+            flags = offscreenDirectParentIsHidden;
+            offscreenDirectParentIsHidden = offscreenSubtreeIsHidden;
+            current2 = pushMutationContext();
+            ii = currentHoistableRoot;
             currentHoistableRoot = getHoistableRoot(
               finishedWork.stateNode.containerInfo
             );
-            recursivelyTraverseMutationEffects(root3, finishedWork);
+            recursivelyTraverseMutationEffects(root3, finishedWork, lanes);
             commitReconciliationEffects(finishedWork);
-            currentHoistableRoot = flags;
+            currentHoistableRoot = ii;
+            viewTransitionMutationContext && inUpdateViewTransition && (rootViewTransitionAffected = true);
+            viewTransitionMutationContext = current2;
+            offscreenDirectParentIsHidden = flags;
             break;
           case 12:
             flags = pushNestedEffectDurations();
-            recursivelyTraverseMutationEffects(root3, finishedWork);
+            recursivelyTraverseMutationEffects(root3, finishedWork, lanes);
             commitReconciliationEffects(finishedWork);
             finishedWork.stateNode.effectDuration += bubbleNestedEffectDurations(flags);
             break;
           case 31:
-            recursivelyTraverseMutationEffects(root3, finishedWork);
+            recursivelyTraverseMutationEffects(root3, finishedWork, lanes);
             commitReconciliationEffects(finishedWork);
-            flags & 4 && (flags = finishedWork.updateQueue, null !== flags && (finishedWork.updateQueue = null, attachSuspenseRetryListeners(finishedWork, flags)));
+            flags & 4 && (root3 = finishedWork.updateQueue, null !== root3 && (finishedWork.updateQueue = null, attachSuspenseRetryListeners(finishedWork, root3)));
             break;
           case 13:
-            recursivelyTraverseMutationEffects(root3, finishedWork);
+            recursivelyTraverseMutationEffects(root3, finishedWork, lanes);
             commitReconciliationEffects(finishedWork);
             finishedWork.child.flags & 8192 && null !== finishedWork.memoizedState !== (null !== current2 && null !== current2.memoizedState) && (globalMostRecentFallbackTime = now$1());
-            flags & 4 && (flags = finishedWork.updateQueue, null !== flags && (finishedWork.updateQueue = null, attachSuspenseRetryListeners(finishedWork, flags)));
+            flags & 4 && (root3 = finishedWork.updateQueue, null !== root3 && (finishedWork.updateQueue = null, attachSuspenseRetryListeners(finishedWork, root3)));
             break;
           case 22:
-            existingHiddenCallbacks = null !== finishedWork.memoizedState;
-            var wasHidden = null !== current2 && null !== current2.memoizedState, prevOffscreenSubtreeIsHidden = offscreenSubtreeIsHidden, prevOffscreenSubtreeWasHidden = offscreenSubtreeWasHidden;
-            offscreenSubtreeIsHidden = prevOffscreenSubtreeIsHidden || existingHiddenCallbacks;
-            offscreenSubtreeWasHidden = prevOffscreenSubtreeWasHidden || wasHidden;
-            recursivelyTraverseMutationEffects(root3, finishedWork);
+            ii = null !== finishedWork.memoizedState;
+            _eventPayloads$ii2 = null !== current2 && null !== current2.memoizedState;
+            var prevOffscreenSubtreeIsHidden = offscreenSubtreeIsHidden, prevOffscreenSubtreeWasHidden = offscreenSubtreeWasHidden, _prevOffscreenDirectParentIsHidden2 = offscreenDirectParentIsHidden;
+            offscreenSubtreeIsHidden = prevOffscreenSubtreeIsHidden || ii;
+            offscreenDirectParentIsHidden = _prevOffscreenDirectParentIsHidden2 || ii;
+            offscreenSubtreeWasHidden = prevOffscreenSubtreeWasHidden || _eventPayloads$ii2;
+            recursivelyTraverseMutationEffects(root3, finishedWork, lanes);
             offscreenSubtreeWasHidden = prevOffscreenSubtreeWasHidden;
+            offscreenDirectParentIsHidden = _prevOffscreenDirectParentIsHidden2;
             offscreenSubtreeIsHidden = prevOffscreenSubtreeIsHidden;
-            wasHidden && !existingHiddenCallbacks && !prevOffscreenSubtreeIsHidden && !prevOffscreenSubtreeWasHidden && (finishedWork.mode & ProfileMode) !== NoMode && 0 <= componentEffectStartTime && 0 <= componentEffectEndTime && 0.05 < componentEffectEndTime - componentEffectStartTime && logComponentReappeared(
+            _eventPayloads$ii2 && !ii && !prevOffscreenSubtreeIsHidden && !prevOffscreenSubtreeWasHidden && (finishedWork.mode & ProfileMode) !== NoMode && 0 <= componentEffectStartTime && 0 <= componentEffectEndTime && 0.05 < componentEffectEndTime - componentEffectStartTime && logComponentReappeared(
               finishedWork,
               componentEffectStartTime,
               componentEffectEndTime
             );
             commitReconciliationEffects(finishedWork);
-            if (flags & 8192)
-              a: for (root3 = finishedWork.stateNode, root3._visibility = existingHiddenCallbacks ? root3._visibility & ~OffscreenVisible : root3._visibility | OffscreenVisible, !existingHiddenCallbacks || null === current2 || wasHidden || offscreenSubtreeIsHidden || offscreenSubtreeWasHidden || (recursivelyTraverseDisappearLayoutEffects(finishedWork), (finishedWork.mode & ProfileMode) !== NoMode && 0 <= componentEffectStartTime && 0 <= componentEffectEndTime && 0.05 < componentEffectEndTime - componentEffectStartTime && logComponentTrigger(
-                finishedWork,
-                componentEffectStartTime,
-                componentEffectEndTime,
-                "Disconnect"
-              )), current2 = null, root3 = finishedWork; ; ) {
-                if (5 === root3.tag || 26 === root3.tag) {
-                  if (null === current2) {
-                    wasHidden = current2 = root3;
-                    try {
-                      currentResource = wasHidden.stateNode, existingHiddenCallbacks ? runWithFiberInDEV(
-                        wasHidden,
-                        hideInstance,
-                        currentResource
-                      ) : runWithFiberInDEV(
-                        wasHidden,
-                        unhideInstance,
-                        wasHidden.stateNode,
-                        wasHidden.memoizedProps
-                      );
-                    } catch (error) {
-                      captureCommitPhaseError(wasHidden, wasHidden.return, error);
-                    }
-                  }
-                } else if (6 === root3.tag) {
-                  if (null === current2) {
-                    wasHidden = root3;
-                    try {
-                      maybeNodes = wasHidden.stateNode, existingHiddenCallbacks ? runWithFiberInDEV(
-                        wasHidden,
-                        hideTextInstance,
-                        maybeNodes
-                      ) : runWithFiberInDEV(
-                        wasHidden,
-                        unhideTextInstance,
-                        maybeNodes,
-                        wasHidden.memoizedProps
-                      );
-                    } catch (error) {
-                      captureCommitPhaseError(wasHidden, wasHidden.return, error);
-                    }
-                  }
-                } else if (18 === root3.tag) {
-                  if (null === current2) {
-                    wasHidden = root3;
-                    try {
-                      i = wasHidden.stateNode, existingHiddenCallbacks ? runWithFiberInDEV(
-                        wasHidden,
-                        hideDehydratedBoundary,
-                        i
-                      ) : runWithFiberInDEV(
-                        wasHidden,
-                        unhideDehydratedBoundary,
-                        wasHidden.stateNode
-                      );
-                    } catch (error) {
-                      captureCommitPhaseError(wasHidden, wasHidden.return, error);
-                    }
-                  }
-                } else if ((22 !== root3.tag && 23 !== root3.tag || null === root3.memoizedState || root3 === finishedWork) && null !== root3.child) {
-                  root3.child.return = root3;
-                  root3 = root3.child;
-                  continue;
-                }
-                if (root3 === finishedWork) break a;
-                for (; null === root3.sibling; ) {
-                  if (null === root3.return || root3.return === finishedWork)
-                    break a;
-                  current2 === root3 && (current2 = null);
-                  root3 = root3.return;
-                }
-                current2 === root3 && (current2 = null);
-                root3.sibling.return = root3.return;
-                root3 = root3.sibling;
-              }
-            flags & 4 && (flags = finishedWork.updateQueue, null !== flags && (current2 = flags.retryQueue, null !== current2 && (flags.retryQueue = null, attachSuspenseRetryListeners(finishedWork, current2))));
+            flags & 8192 && (root3 = finishedWork.stateNode, root3._visibility = ii ? root3._visibility & ~OffscreenVisible : root3._visibility | OffscreenVisible, !ii || null === current2 || _eventPayloads$ii2 || offscreenSubtreeIsHidden || offscreenSubtreeWasHidden || (root3 = IncludeHostSingletons, lanes = _eventPayloads$ii2 || offscreenSubtreeWasHidden, current2 = offscreenSubtreeIsHidden, _eventPayloads$ii2 = offscreenSubtreeWasHidden, offscreenSubtreeIsHidden = ii || offscreenSubtreeIsHidden, offscreenSubtreeWasHidden = lanes, recursivelyTraverseDisappearLayoutEffects(finishedWork, root3), (finishedWork.mode & ProfileMode) !== NoMode && 0 <= componentEffectStartTime && 0 <= componentEffectEndTime && 0.05 < componentEffectEndTime - componentEffectStartTime && logComponentTrigger(
+              finishedWork,
+              componentEffectStartTime,
+              componentEffectEndTime,
+              "Disconnect"
+            ), offscreenSubtreeIsHidden = current2, offscreenSubtreeWasHidden = _eventPayloads$ii2), !ii && offscreenDirectParentIsHidden || hideOrUnhideAllChildren(finishedWork, ii));
+            flags & 4 && (root3 = finishedWork.updateQueue, null !== root3 && (lanes = root3.retryQueue, null !== lanes && (root3.retryQueue = null, attachSuspenseRetryListeners(finishedWork, lanes))));
             break;
           case 19:
-            recursivelyTraverseMutationEffects(root3, finishedWork);
+            recursivelyTraverseMutationEffects(root3, finishedWork, lanes);
             commitReconciliationEffects(finishedWork);
-            flags & 4 && (flags = finishedWork.updateQueue, null !== flags && (finishedWork.updateQueue = null, attachSuspenseRetryListeners(finishedWork, flags)));
+            flags & 4 && (root3 = finishedWork.updateQueue, null !== root3 && (finishedWork.updateQueue = null, attachSuspenseRetryListeners(finishedWork, root3)));
             break;
           case 30:
+            flags & 512 && (offscreenSubtreeWasHidden || null === current2 || safelyDetachRef(current2, current2.return));
+            flags = pushMutationContext();
+            ii = inUpdateViewTransition;
+            _eventPayloads$ii2 = (lanes & 335544064) === lanes;
+            prevOffscreenSubtreeIsHidden = finishedWork.memoizedProps;
+            inUpdateViewTransition = _eventPayloads$ii2 && "none" !== getViewTransitionClassName(
+              prevOffscreenSubtreeIsHidden.default,
+              prevOffscreenSubtreeIsHidden.update
+            );
+            recursivelyTraverseMutationEffects(root3, finishedWork, lanes);
+            commitReconciliationEffects(finishedWork);
+            _eventPayloads$ii2 && null !== current2 && viewTransitionMutationContext && (finishedWork.flags |= 4);
+            inUpdateViewTransition = ii;
+            viewTransitionMutationContext = flags;
             break;
           case 21:
             break;
+          case 7:
+            flags & 512 && (offscreenSubtreeWasHidden || null === current2 || safelyDetachRef(current2, current2.return)), current2 && null !== current2.stateNode && (current2.stateNode._fragmentFiber = finishedWork);
           default:
-            recursivelyTraverseMutationEffects(root3, finishedWork), commitReconciliationEffects(finishedWork);
+            recursivelyTraverseMutationEffects(root3, finishedWork, lanes), commitReconciliationEffects(finishedWork);
         }
         (finishedWork.mode & ProfileMode) !== NoMode && 0 <= componentEffectStartTime && 0 <= componentEffectEndTime && ((componentEffectSpawnedUpdate || 0.05 < componentEffectDuration) && logComponentEffect(
           finishedWork,
@@ -12043,8 +12907,106 @@ var require_react_dom_client_development = __commonJS({
           for (parentFiber = parentFiber.child; null !== parentFiber; ) {
             var fiber = parentFiber;
             recursivelyResetForms(fiber);
-            5 === fiber.tag && fiber.flags & 1024 && fiber.stateNode.reset();
+            5 === fiber.tag && fiber.flags & 1024 && (fiber = fiber.stateNode, _enabled = true, fiber.reset(), _enabled = false);
             parentFiber = parentFiber.sibling;
+          }
+      }
+      function recursivelyTraverseAfterMutationEffects(root3, parentFiber) {
+        if (parentFiber.subtreeFlags & 9270)
+          for (parentFiber = parentFiber.child; null !== parentFiber; )
+            commitAfterMutationEffectsOnFiber(parentFiber, root3), parentFiber = parentFiber.sibling;
+        else measureNestedViewTransitions(parentFiber, false);
+      }
+      function commitAfterMutationEffectsOnFiber(finishedWork, root3) {
+        var current2 = finishedWork.alternate;
+        if (null === current2) commitEnterViewTransitions(finishedWork, false);
+        else
+          switch (finishedWork.tag) {
+            case 3:
+              rootViewTransitionNameCanceled = viewTransitionContextChanged = false;
+              pushViewTransitionCancelableScope();
+              recursivelyTraverseAfterMutationEffects(root3, finishedWork);
+              if (!viewTransitionContextChanged && !rootViewTransitionAffected) {
+                finishedWork = viewTransitionCancelableChildren;
+                if (null !== finishedWork)
+                  for (var i = 0; i < finishedWork.length; i += 3) {
+                    current2 = finishedWork[i];
+                    var oldName = finishedWork[i + 1];
+                    restoreViewTransitionName(current2, finishedWork[i + 2]);
+                    current2 = current2.ownerDocument.documentElement;
+                    null !== current2 && current2.animate(
+                      { opacity: [0, 0], pointerEvents: ["none", "none"] },
+                      {
+                        duration: 0,
+                        fill: "forwards",
+                        pseudoElement: "::view-transition-group(" + oldName + ")"
+                      }
+                    );
+                  }
+                finishedWork = root3.containerInfo;
+                finishedWork = 9 === finishedWork.nodeType ? finishedWork.documentElement : finishedWork.ownerDocument.documentElement;
+                null !== finishedWork && "" === finishedWork.style.viewTransitionName && (finishedWork.style.viewTransitionName = "none", finishedWork.animate(
+                  { opacity: [0, 0], pointerEvents: ["none", "none"] },
+                  {
+                    duration: 0,
+                    fill: "forwards",
+                    pseudoElement: "::view-transition-group(root)"
+                  }
+                ), finishedWork.animate(
+                  { width: [0, 0], height: [0, 0] },
+                  {
+                    duration: 0,
+                    fill: "forwards",
+                    pseudoElement: "::view-transition"
+                  }
+                ));
+                rootViewTransitionNameCanceled = true;
+              }
+              viewTransitionCancelableChildren = null;
+              break;
+            case 5:
+              recursivelyTraverseAfterMutationEffects(root3, finishedWork);
+              break;
+            case 4:
+              i = viewTransitionContextChanged;
+              viewTransitionContextChanged = false;
+              recursivelyTraverseAfterMutationEffects(root3, finishedWork);
+              viewTransitionContextChanged && (rootViewTransitionAffected = true);
+              viewTransitionContextChanged = i;
+              break;
+            case 22:
+              null === finishedWork.memoizedState && (null !== current2.memoizedState ? commitEnterViewTransitions(finishedWork, false) : recursivelyTraverseAfterMutationEffects(root3, finishedWork));
+              break;
+            case 30:
+              i = viewTransitionContextChanged;
+              oldName = pushViewTransitionCancelableScope();
+              viewTransitionContextChanged = false;
+              recursivelyTraverseAfterMutationEffects(root3, finishedWork);
+              viewTransitionContextChanged && (finishedWork.flags |= 4);
+              var props = finishedWork.memoizedProps, state = finishedWork.stateNode;
+              root3 = getViewTransitionName(props, state);
+              state = getViewTransitionName(current2.memoizedProps, state);
+              var className = getViewTransitionClassName(
+                props.default,
+                props.update
+              );
+              "none" === className ? root3 = false : (props = current2.memoizedState, current2.memoizedState = null, current2 = finishedWork.child, viewTransitionHostInstanceIdx = 0, root3 = measureViewTransitionHostInstancesRecursive(
+                finishedWork,
+                current2,
+                root3,
+                state,
+                className,
+                props,
+                true
+              ), viewTransitionHostInstanceIdx !== (null === props ? 0 : props.length) && (finishedWork.flags |= 32));
+              0 !== (finishedWork.flags & 4) && root3 ? (scheduleViewTransitionEvent(
+                finishedWork,
+                finishedWork.memoizedProps.onUpdate
+              ), viewTransitionCancelableChildren = oldName) : null !== oldName && (oldName.push.apply(oldName, viewTransitionCancelableChildren), viewTransitionCancelableChildren = oldName);
+              viewTransitionContextChanged = 0 !== (finishedWork.flags & 32) ? true : i;
+              break;
+            default:
+              recursivelyTraverseAfterMutationEffects(root3, finishedWork);
           }
       }
       function recursivelyTraverseLayoutEffects(root3, parentFiber) {
@@ -12052,7 +13014,7 @@ var require_react_dom_client_development = __commonJS({
           for (parentFiber = parentFiber.child; null !== parentFiber; )
             commitLayoutEffectOnFiber(root3, parentFiber.alternate, parentFiber), parentFiber = parentFiber.sibling;
       }
-      function disappearLayoutEffects(finishedWork) {
+      function disappearLayoutEffects(finishedWork, layoutEffectTraversalFlags) {
         var prevEffectStart = pushComponentEffectStart(), prevEffectDuration = pushComponentEffectDuration(), prevEffectErrors = pushComponentEffectErrors(), prevEffectDidSpawnUpdate = pushComponentEffectDidSpawnUpdate();
         switch (finishedWork.tag) {
           case 0:
@@ -12064,7 +13026,10 @@ var require_react_dom_client_development = __commonJS({
               finishedWork.return,
               Layout
             );
-            recursivelyTraverseDisappearLayoutEffects(finishedWork);
+            recursivelyTraverseDisappearLayoutEffects(
+              finishedWork,
+              layoutEffectTraversalFlags
+            );
             break;
           case 1:
             safelyDetachRef(finishedWork, finishedWork.return);
@@ -12074,27 +13039,60 @@ var require_react_dom_client_development = __commonJS({
               finishedWork.return,
               instance
             );
-            recursivelyTraverseDisappearLayoutEffects(finishedWork);
+            recursivelyTraverseDisappearLayoutEffects(
+              finishedWork,
+              layoutEffectTraversalFlags
+            );
             break;
           case 27:
-            runWithFiberInDEV(
+            (layoutEffectTraversalFlags & IncludeHostSingletons) !== NoLayoutEffectTraversalFlags && runWithFiberInDEV(
               finishedWork,
               releaseSingletonInstance,
-              finishedWork.stateNode
+              finishedWork.stateNode,
+              finishedWork.type,
+              finishedWork.memoizedProps
             );
-          case 26:
           case 5:
             safelyDetachRef(finishedWork, finishedWork.return);
-            recursivelyTraverseDisappearLayoutEffects(finishedWork);
+            5 !== finishedWork.tag && 27 !== finishedWork.tag || commitFragmentInstanceDeletionEffects(finishedWork);
+            recursivelyTraverseDisappearLayoutEffects(
+              finishedWork,
+              layoutEffectTraversalFlags
+            );
+            break;
+          case 6:
+            commitFragmentInstanceDeletionEffects(finishedWork);
+            break;
+          case 26:
+            safelyDetachRef(finishedWork, finishedWork.return);
+            instance = finishedWork.stateNode;
+            null !== finishedWork.memoizedState || null === instance || offscreenSubtreeWasHidden || instance.parentNode.removeChild(instance);
+            recursivelyTraverseDisappearLayoutEffects(
+              finishedWork,
+              layoutEffectTraversalFlags
+            );
             break;
           case 22:
-            null === finishedWork.memoizedState && recursivelyTraverseDisappearLayoutEffects(finishedWork);
+            null === finishedWork.memoizedState && recursivelyTraverseDisappearLayoutEffects(
+              finishedWork,
+              layoutEffectTraversalFlags
+            );
             break;
           case 30:
-            recursivelyTraverseDisappearLayoutEffects(finishedWork);
+            finishedWork.flags & 18874368 && untrackNamedViewTransition(finishedWork);
+            safelyDetachRef(finishedWork, finishedWork.return);
+            recursivelyTraverseDisappearLayoutEffects(
+              finishedWork,
+              layoutEffectTraversalFlags
+            );
             break;
+          case 7:
+            safelyDetachRef(finishedWork, finishedWork.return);
           default:
-            recursivelyTraverseDisappearLayoutEffects(finishedWork);
+            recursivelyTraverseDisappearLayoutEffects(
+              finishedWork,
+              layoutEffectTraversalFlags
+            );
         }
         (finishedWork.mode & ProfileMode) !== NoMode && 0 <= componentEffectStartTime && 0 <= componentEffectEndTime && (componentEffectSpawnedUpdate || 0.05 < componentEffectDuration) && logComponentEffect(
           finishedWork,
@@ -12108,12 +13106,12 @@ var require_react_dom_client_development = __commonJS({
         componentEffectErrors = prevEffectErrors;
         componentEffectSpawnedUpdate = prevEffectDidSpawnUpdate;
       }
-      function recursivelyTraverseDisappearLayoutEffects(parentFiber) {
+      function recursivelyTraverseDisappearLayoutEffects(parentFiber, layoutEffectTraversalFlags) {
         for (parentFiber = parentFiber.child; null !== parentFiber; )
-          disappearLayoutEffects(parentFiber), parentFiber = parentFiber.sibling;
+          disappearLayoutEffects(parentFiber, layoutEffectTraversalFlags), parentFiber = parentFiber.sibling;
       }
-      function reappearLayoutEffects(finishedRoot, current2, finishedWork, includeWorkInProgressEffects) {
-        var prevEffectStart = pushComponentEffectStart(), prevEffectDuration = pushComponentEffectDuration(), prevEffectErrors = pushComponentEffectErrors(), prevEffectDidSpawnUpdate = pushComponentEffectDidSpawnUpdate(), flags = finishedWork.flags;
+      function reappearLayoutEffects(finishedRoot, current2, finishedWork, layoutEffectTraversalFlags) {
+        var prevEffectStart = pushComponentEffectStart(), prevEffectDuration = pushComponentEffectDuration(), prevEffectErrors = pushComponentEffectErrors(), prevEffectDidSpawnUpdate = pushComponentEffectDidSpawnUpdate(), flags = finishedWork.flags, includeWorkInProgressEffects = (layoutEffectTraversalFlags & IncludeWorkInProgressEffects) !== NoLayoutEffectTraversalFlags;
         switch (finishedWork.tag) {
           case 0:
           case 11:
@@ -12121,7 +13119,7 @@ var require_react_dom_client_development = __commonJS({
             recursivelyTraverseReappearLayoutEffects(
               finishedRoot,
               finishedWork,
-              includeWorkInProgressEffects
+              layoutEffectTraversalFlags
             );
             commitHookLayoutEffects(finishedWork, Layout);
             break;
@@ -12129,7 +13127,7 @@ var require_react_dom_client_development = __commonJS({
             recursivelyTraverseReappearLayoutEffects(
               finishedRoot,
               finishedWork,
-              includeWorkInProgressEffects
+              layoutEffectTraversalFlags
             );
             current2 = finishedWork.stateNode;
             "function" === typeof current2.componentDidMount && runWithFiberInDEV(
@@ -12156,13 +13154,31 @@ var require_react_dom_client_development = __commonJS({
             safelyAttachRef(finishedWork, finishedWork.return);
             break;
           case 27:
-            commitHostSingletonAcquisition(finishedWork);
-          case 26:
+            (layoutEffectTraversalFlags & IncludeHostSingletons) !== NoLayoutEffectTraversalFlags && commitHostSingletonAcquisition(finishedWork);
           case 5:
+            5 !== finishedWork.tag && 27 !== finishedWork.tag || commitFragmentInstanceInsertionEffects(finishedWork);
             recursivelyTraverseReappearLayoutEffects(
               finishedRoot,
               finishedWork,
-              includeWorkInProgressEffects
+              layoutEffectTraversalFlags
+            );
+            includeWorkInProgressEffects && null === current2 && flags & 4 && commitHostMount(finishedWork);
+            safelyAttachRef(finishedWork, finishedWork.return);
+            break;
+          case 6:
+            commitFragmentInstanceInsertionEffects(finishedWork);
+            break;
+          case 26:
+            var instance = finishedWork.stateNode;
+            null !== finishedWork.memoizedState || null === instance || offscreenSubtreeIsHidden || mountHoistable(
+              getHoistableRoot(instance.ownerDocument),
+              finishedWork.type,
+              instance
+            );
+            recursivelyTraverseReappearLayoutEffects(
+              finishedRoot,
+              finishedWork,
+              layoutEffectTraversalFlags
             );
             includeWorkInProgressEffects && null === current2 && flags & 4 && commitHostMount(finishedWork);
             safelyAttachRef(finishedWork, finishedWork.return);
@@ -12173,7 +13189,7 @@ var require_react_dom_client_development = __commonJS({
               recursivelyTraverseReappearLayoutEffects(
                 finishedRoot,
                 finishedWork,
-                includeWorkInProgressEffects
+                layoutEffectTraversalFlags
               );
               includeWorkInProgressEffects = finishedWork.stateNode;
               includeWorkInProgressEffects.effectDuration += bubbleNestedEffectDurations(flags);
@@ -12193,14 +13209,14 @@ var require_react_dom_client_development = __commonJS({
               recursivelyTraverseReappearLayoutEffects(
                 finishedRoot,
                 finishedWork,
-                includeWorkInProgressEffects
+                layoutEffectTraversalFlags
               );
             break;
           case 31:
             recursivelyTraverseReappearLayoutEffects(
               finishedRoot,
               finishedWork,
-              includeWorkInProgressEffects
+              layoutEffectTraversalFlags
             );
             includeWorkInProgressEffects && flags & 4 && commitActivityHydrationCallbacks(finishedRoot, finishedWork);
             break;
@@ -12208,7 +13224,7 @@ var require_react_dom_client_development = __commonJS({
             recursivelyTraverseReappearLayoutEffects(
               finishedRoot,
               finishedWork,
-              includeWorkInProgressEffects
+              layoutEffectTraversalFlags
             );
             includeWorkInProgressEffects && flags & 4 && commitSuspenseHydrationCallbacks(finishedRoot, finishedWork);
             break;
@@ -12216,17 +13232,26 @@ var require_react_dom_client_development = __commonJS({
             null === finishedWork.memoizedState && recursivelyTraverseReappearLayoutEffects(
               finishedRoot,
               finishedWork,
-              includeWorkInProgressEffects
+              layoutEffectTraversalFlags
             );
             safelyAttachRef(finishedWork, finishedWork.return);
             break;
           case 30:
+            recursivelyTraverseReappearLayoutEffects(
+              finishedRoot,
+              finishedWork,
+              layoutEffectTraversalFlags
+            );
+            flags & 18874368 && trackNamedViewTransition(finishedWork);
+            safelyAttachRef(finishedWork, finishedWork.return);
             break;
+          case 7:
+            safelyAttachRef(finishedWork, finishedWork.return);
           default:
             recursivelyTraverseReappearLayoutEffects(
               finishedRoot,
               finishedWork,
-              includeWorkInProgressEffects
+              layoutEffectTraversalFlags
             );
         }
         (finishedWork.mode & ProfileMode) !== NoMode && 0 <= componentEffectStartTime && 0 <= componentEffectEndTime && (componentEffectSpawnedUpdate || 0.05 < componentEffectDuration) && logComponentEffect(
@@ -12241,14 +13266,14 @@ var require_react_dom_client_development = __commonJS({
         componentEffectErrors = prevEffectErrors;
         componentEffectSpawnedUpdate = prevEffectDidSpawnUpdate;
       }
-      function recursivelyTraverseReappearLayoutEffects(finishedRoot, parentFiber, includeWorkInProgressEffects) {
-        includeWorkInProgressEffects = includeWorkInProgressEffects && 0 !== (parentFiber.subtreeFlags & 8772);
+      function recursivelyTraverseReappearLayoutEffects(finishedRoot, parentFiber, layoutEffectTraversalFlags) {
+        layoutEffectTraversalFlags = 0 !== (parentFiber.subtreeFlags & 8772) ? layoutEffectTraversalFlags : layoutEffectTraversalFlags & ~IncludeWorkInProgressEffects;
         for (parentFiber = parentFiber.child; null !== parentFiber; )
           reappearLayoutEffects(
             finishedRoot,
             parentFiber.alternate,
             parentFiber,
-            includeWorkInProgressEffects
+            layoutEffectTraversalFlags
           ), parentFiber = parentFiber.sibling;
       }
       function commitOffscreenPassiveMountEffects(current2, finishedWork) {
@@ -12265,21 +13290,23 @@ var require_react_dom_client_development = __commonJS({
         finishedWork !== current2 && (retainCache(finishedWork), null != current2 && releaseCache(current2));
       }
       function recursivelyTraversePassiveMountEffects(root3, parentFiber, committedLanes, committedTransitions, endTime) {
-        if (parentFiber.subtreeFlags & 10256 || 0 !== parentFiber.actualDuration && (null === parentFiber.alternate || parentFiber.alternate.child !== parentFiber.child))
-          for (parentFiber = parentFiber.child; null !== parentFiber; ) {
-            var nextSibling = parentFiber.sibling;
-            commitPassiveMountOnFiber(
+        var isViewTransitionEligible = (committedLanes & 335544064) === committedLanes;
+        if (parentFiber.subtreeFlags & (isViewTransitionEligible ? 10262 : 10256) || 0 !== parentFiber.actualDuration && (null === parentFiber.alternate || parentFiber.alternate.child !== parentFiber.child))
+          for (parentFiber = parentFiber.child; null !== parentFiber; )
+            isViewTransitionEligible = parentFiber.sibling, commitPassiveMountOnFiber(
               root3,
               parentFiber,
               committedLanes,
               committedTransitions,
-              null !== nextSibling ? nextSibling.actualStartTime : endTime
-            );
-            parentFiber = nextSibling;
-          }
+              null !== isViewTransitionEligible ? isViewTransitionEligible.actualStartTime : endTime
+            ), parentFiber = isViewTransitionEligible;
+        else
+          isViewTransitionEligible && restoreNestedViewTransitions(parentFiber);
       }
       function commitPassiveMountOnFiber(finishedRoot, finishedWork, committedLanes, committedTransitions, endTime) {
-        var prevEffectStart = pushComponentEffectStart(), prevEffectDuration = pushComponentEffectDuration(), prevEffectErrors = pushComponentEffectErrors(), prevEffectDidSpawnUpdate = pushComponentEffectDidSpawnUpdate(), prevDeepEquality = alreadyWarnedForDeepEquality, flags = finishedWork.flags;
+        var prevEffectStart = pushComponentEffectStart(), prevEffectDuration = pushComponentEffectDuration(), prevEffectErrors = pushComponentEffectErrors(), prevEffectDidSpawnUpdate = pushComponentEffectDidSpawnUpdate(), prevDeepEquality = alreadyWarnedForDeepEquality, isViewTransitionEligible = (committedLanes & 335544064) === committedLanes;
+        isViewTransitionEligible && null === finishedWork.alternate && null !== finishedWork.return && null !== finishedWork.return.alternate && restoreEnterOrExitViewTransitions(finishedWork);
+        var flags = finishedWork.flags;
         switch (finishedWork.tag) {
           case 0:
           case 11:
@@ -12332,6 +13359,7 @@ var require_react_dom_client_development = __commonJS({
               endTime
             );
             inHydratedSubtree = wasInHydratedSubtree;
+            isViewTransitionEligible && rootViewTransitionNameCanceled && (committedLanes = finishedRoot.containerInfo, committedLanes = 9 === committedLanes.nodeType ? committedLanes.body : "HTML" === committedLanes.nodeName ? committedLanes.ownerDocument.body : committedLanes, "root" === committedLanes.style.viewTransitionName && (committedLanes.style.viewTransitionName = ""), committedLanes = committedLanes.ownerDocument.documentElement, null !== committedLanes && "none" === committedLanes.style.viewTransitionName && (committedLanes.style.viewTransitionName = ""));
             flags & 2048 && (committedLanes = null, null !== finishedWork.alternate && (committedLanes = finishedWork.alternate.memoizedState.cache), committedTransitions = finishedWork.memoizedState.cache, committedTransitions !== committedLanes && (retainCache(committedTransitions), null != committedLanes && releaseCache(committedLanes)));
             finishedRoot.passiveEffectDuration += popNestedEffectDurations(
               prevProfilerEffectDuration
@@ -12373,8 +13401,8 @@ var require_react_dom_client_development = __commonJS({
           case 31:
             flags = inHydratedSubtree;
             prevProfilerEffectDuration = null !== finishedWork.alternate ? finishedWork.alternate.memoizedState : null;
-            wasInHydratedSubtree = finishedWork.memoizedState;
-            null !== prevProfilerEffectDuration && null === wasInHydratedSubtree ? (wasInHydratedSubtree = finishedWork.deletions, null !== wasInHydratedSubtree && 0 < wasInHydratedSubtree.length && 18 === wasInHydratedSubtree[0].tag ? (inHydratedSubtree = false, prevProfilerEffectDuration = prevProfilerEffectDuration.hydrationErrors, null !== prevProfilerEffectDuration && logComponentErrored(
+            isViewTransitionEligible = finishedWork.memoizedState;
+            null !== prevProfilerEffectDuration && null === isViewTransitionEligible ? (isViewTransitionEligible = finishedWork.deletions, null !== isViewTransitionEligible && 0 < isViewTransitionEligible.length && 18 === isViewTransitionEligible[0].tag ? (inHydratedSubtree = false, prevProfilerEffectDuration = prevProfilerEffectDuration.hydrationErrors, null !== prevProfilerEffectDuration && logComponentErrored(
               finishedWork,
               finishedWork.actualStartTime,
               endTime,
@@ -12392,8 +13420,8 @@ var require_react_dom_client_development = __commonJS({
           case 13:
             flags = inHydratedSubtree;
             prevProfilerEffectDuration = null !== finishedWork.alternate ? finishedWork.alternate.memoizedState : null;
-            wasInHydratedSubtree = finishedWork.memoizedState;
-            null === prevProfilerEffectDuration || null === prevProfilerEffectDuration.dehydrated || null !== wasInHydratedSubtree && null !== wasInHydratedSubtree.dehydrated ? inHydratedSubtree = false : (wasInHydratedSubtree = finishedWork.deletions, null !== wasInHydratedSubtree && 0 < wasInHydratedSubtree.length && 18 === wasInHydratedSubtree[0].tag ? (inHydratedSubtree = false, prevProfilerEffectDuration = prevProfilerEffectDuration.hydrationErrors, null !== prevProfilerEffectDuration && logComponentErrored(
+            isViewTransitionEligible = finishedWork.memoizedState;
+            null === prevProfilerEffectDuration || null === prevProfilerEffectDuration.dehydrated || null !== isViewTransitionEligible && null !== isViewTransitionEligible.dehydrated ? inHydratedSubtree = false : (isViewTransitionEligible = finishedWork.deletions, null !== isViewTransitionEligible && 0 < isViewTransitionEligible.length && 18 === isViewTransitionEligible[0].tag ? (inHydratedSubtree = false, prevProfilerEffectDuration = prevProfilerEffectDuration.hydrationErrors, null !== prevProfilerEffectDuration && logComponentErrored(
               finishedWork,
               finishedWork.actualStartTime,
               endTime,
@@ -12413,7 +13441,7 @@ var require_react_dom_client_development = __commonJS({
           case 22:
             wasInHydratedSubtree = finishedWork.stateNode;
             prevProfilerEffectDuration = finishedWork.alternate;
-            null !== finishedWork.memoizedState ? wasInHydratedSubtree._visibility & OffscreenPassiveEffectsConnected ? recursivelyTraversePassiveMountEffects(
+            null !== finishedWork.memoizedState ? (isViewTransitionEligible && null !== prevProfilerEffectDuration && null === prevProfilerEffectDuration.memoizedState && restoreEnterOrExitViewTransitions(prevProfilerEffectDuration), wasInHydratedSubtree._visibility & OffscreenPassiveEffectsConnected ? recursivelyTraversePassiveMountEffects(
               finishedRoot,
               finishedWork,
               committedLanes,
@@ -12425,7 +13453,7 @@ var require_react_dom_client_development = __commonJS({
               committedLanes,
               committedTransitions,
               endTime
-            ) : wasInHydratedSubtree._visibility & OffscreenPassiveEffectsConnected ? recursivelyTraversePassiveMountEffects(
+            )) : (isViewTransitionEligible && null !== prevProfilerEffectDuration && null !== prevProfilerEffectDuration.memoizedState && restoreEnterOrExitViewTransitions(finishedWork), wasInHydratedSubtree._visibility & OffscreenPassiveEffectsConnected ? recursivelyTraversePassiveMountEffects(
               finishedRoot,
               finishedWork,
               committedLanes,
@@ -12438,11 +13466,15 @@ var require_react_dom_client_development = __commonJS({
               committedTransitions,
               0 !== (finishedWork.subtreeFlags & 10256) || 0 !== finishedWork.actualDuration && (null === finishedWork.alternate || finishedWork.alternate.child !== finishedWork.child),
               endTime
-            ), (finishedWork.mode & ProfileMode) === NoMode || inHydratedSubtree || (finishedRoot = finishedWork.actualStartTime, 0 <= finishedRoot && 0.05 < endTime - finishedRoot && logComponentReappeared(finishedWork, finishedRoot, endTime), 0 <= componentEffectStartTime && 0 <= componentEffectEndTime && 0.05 < componentEffectEndTime - componentEffectStartTime && logComponentReappeared(
+            ), (finishedWork.mode & ProfileMode) === NoMode || inHydratedSubtree || (finishedRoot = finishedWork.actualStartTime, 0 <= finishedRoot && 0.05 < endTime - finishedRoot && logComponentReappeared(
+              finishedWork,
+              finishedRoot,
+              endTime
+            ), 0 <= componentEffectStartTime && 0 <= componentEffectEndTime && 0.05 < componentEffectEndTime - componentEffectStartTime && logComponentReappeared(
               finishedWork,
               componentEffectStartTime,
               componentEffectEndTime
-            )));
+            ))));
             flags & 2048 && commitOffscreenPassiveMountEffects(
               prevProfilerEffectDuration,
               finishedWork
@@ -12457,6 +13489,16 @@ var require_react_dom_client_development = __commonJS({
               endTime
             );
             flags & 2048 && commitCachePassiveMountEffect(finishedWork.alternate, finishedWork);
+            break;
+          case 30:
+            isViewTransitionEligible && (flags = finishedWork.alternate, null !== flags && (restoreViewTransitionOnHostInstances(flags.child, true), restoreViewTransitionOnHostInstances(finishedWork.child, true)));
+            recursivelyTraversePassiveMountEffects(
+              finishedRoot,
+              finishedWork,
+              committedLanes,
+              committedTransitions,
+              endTime
+            );
             break;
           default:
             recursivelyTraversePassiveMountEffects(
@@ -12536,8 +13578,8 @@ var require_react_dom_client_development = __commonJS({
           case 23:
             break;
           case 22:
-            var _instance2 = finishedWork.stateNode;
-            null !== finishedWork.memoizedState ? _instance2._visibility & OffscreenPassiveEffectsConnected ? recursivelyTraverseReconnectPassiveEffects(
+            var _instance4 = finishedWork.stateNode;
+            null !== finishedWork.memoizedState ? _instance4._visibility & OffscreenPassiveEffectsConnected ? recursivelyTraverseReconnectPassiveEffects(
               finishedRoot,
               finishedWork,
               committedLanes,
@@ -12550,7 +13592,7 @@ var require_react_dom_client_development = __commonJS({
               committedLanes,
               committedTransitions,
               endTime
-            ) : (_instance2._visibility |= OffscreenPassiveEffectsConnected, recursivelyTraverseReconnectPassiveEffects(
+            ) : (_instance4._visibility |= OffscreenPassiveEffectsConnected, recursivelyTraverseReconnectPassiveEffects(
               finishedRoot,
               finishedWork,
               committedLanes,
@@ -12661,12 +13703,12 @@ var require_react_dom_client_development = __commonJS({
               committedLanes,
               suspendedState
             );
-            fiber.flags & suspenseyCommitFlag && null !== fiber.memoizedState && suspendResource(
+            fiber.flags & suspenseyCommitFlag && (null !== fiber.memoizedState ? suspendResource(
               suspendedState,
               currentHoistableRoot,
               fiber.memoizedState,
               fiber.memoizedProps
-            );
+            ) : (fiber = fiber.stateNode, (committedLanes & 335544128) === committedLanes && suspendInstance(suspendedState, fiber)));
             break;
           case 5:
             recursivelyAccumulateSuspenseyCommit(
@@ -12674,6 +13716,7 @@ var require_react_dom_client_development = __commonJS({
               committedLanes,
               suspendedState
             );
+            fiber.flags & suspenseyCommitFlag && (fiber = fiber.stateNode, (committedLanes & 335544128) === committedLanes && suspendInstance(suspendedState, fiber));
             break;
           case 3:
           case 4:
@@ -12698,6 +13741,19 @@ var require_react_dom_client_development = __commonJS({
               committedLanes,
               suspendedState
             ));
+            break;
+          case 30:
+            if (0 !== (fiber.flags & suspenseyCommitFlag) && (previousHoistableRoot = fiber.memoizedProps.name, null != previousHoistableRoot && "auto" !== previousHoistableRoot)) {
+              var state = fiber.stateNode;
+              state.paired = null;
+              null === appearingViewTransitions && (appearingViewTransitions = /* @__PURE__ */ new Map());
+              appearingViewTransitions.set(previousHoistableRoot, state);
+            }
+            recursivelyAccumulateSuspenseyCommit(
+              fiber,
+              committedLanes,
+              suspendedState
+            );
             break;
           default:
             recursivelyAccumulateSuspenseyCommit(
@@ -12912,7 +13968,11 @@ var require_react_dom_client_development = __commonJS({
         if ((executionContext & RenderContext) !== NoContext && 0 !== workInProgressRootRenderLanes)
           return workInProgressRootRenderLanes & -workInProgressRootRenderLanes;
         var transition = ReactSharedInternals.T;
-        return null !== transition ? (transition._updatedFibers || (transition._updatedFibers = /* @__PURE__ */ new Set()), transition._updatedFibers.add(fiber), requestTransitionLane()) : resolveUpdatePriority();
+        if (null !== transition)
+          return transition._updatedFibers || (transition._updatedFibers = /* @__PURE__ */ new Set()), transition._updatedFibers.add(fiber), null !== lastSuspendedFiber && resolveUpdatePriority() === DiscreteEventPriority && (lastSuspendedFiber = null), requestTransitionLane();
+        fiber = resolveUpdatePriority();
+        fiber === DiscreteEventPriority && (lastSuspendedFiber = null);
+        return fiber;
       }
       function requestDeferredLane() {
         if (0 === workInProgressDeferredLane)
@@ -12925,6 +13985,16 @@ var require_react_dom_client_development = __commonJS({
         lane = suspenseHandlerStackCursor.current;
         null !== lane && (lane.flags |= 32);
         return workInProgressDeferredLane;
+      }
+      function scheduleViewTransitionEvent(fiber, callback) {
+        if (null != callback) {
+          var state = fiber.stateNode, instance = state.ref;
+          null === instance && (instance = state.ref = createViewTransitionInstance(
+            getViewTransitionName(fiber.memoizedProps, state)
+          ));
+          null === pendingViewTransitionEvents && (pendingViewTransitionEvents = []);
+          pendingViewTransitionEvents.push(callback.bind(null, instance));
+        }
       }
       function scheduleUpdateOnFiber(root3, fiber, lane) {
         isRunningInsertionEffect && console.error("useInsertionEffect must not schedule updates.");
@@ -13090,7 +14160,7 @@ var require_react_dom_client_development = __commonJS({
                     errorRetryLanes,
                     false
                   );
-                  if (errorRetryLanes !== RootErrored) {
+                  if (errorRetryLanes !== RootErrored && errorRetryLanes !== RootSuspendedAtTheShell) {
                     if (workInProgressRootDidAttachPingListener && !wasRootDehydrated) {
                       yieldedFiber.errorRecoveryDisabledLanes |= startTime;
                       workInProgressRootInterleavedUpdatedLanes |= startTime;
@@ -13131,7 +14201,8 @@ var require_react_dom_client_development = __commonJS({
                 case RootFatalErrored:
                   throw Error("Root did not complete. This is a bug in React.");
                 case RootSuspendedWithDelay:
-                  if ((lanes & 4194048) !== lanes) break;
+                  if ((lanes & 4194048) !== lanes && (lanes & 62914560) !== lanes)
+                    break;
                 case RootSuspendedAtTheShell:
                   setCurrentTrackFromLanes(lanes);
                   logSuspendedRenderPhase(
@@ -13160,7 +14231,7 @@ var require_react_dom_client_development = __commonJS({
                   throw Error("Unknown root exit status.");
               }
               if (null !== ReactSharedInternals.actQueue)
-                commitRoot(
+                completeRoot(
                   forceSync,
                   yieldEndTime,
                   lanes,
@@ -13170,6 +14241,7 @@ var require_react_dom_client_development = __commonJS({
                   workInProgressDeferredLane,
                   workInProgressRootInterleavedUpdatedLanes,
                   workInProgressSuspendedRetryLanes,
+                  workInProgressRootDidSkipSuspendedSiblings,
                   startTime,
                   null,
                   null,
@@ -13187,7 +14259,7 @@ var require_react_dom_client_development = __commonJS({
                   if (0 !== getNextLanes(forceSync, 0, true)) break a;
                   pendingEffectsLanes = lanes;
                   forceSync.timeoutHandle = scheduleTimeout(
-                    commitRootWhenReady.bind(
+                    completeRootWhenReady.bind(
                       null,
                       forceSync,
                       yieldEndTime,
@@ -13208,7 +14280,7 @@ var require_react_dom_client_development = __commonJS({
                   );
                   break a;
                 }
-                commitRootWhenReady(
+                completeRootWhenReady(
                   forceSync,
                   yieldEndTime,
                   workInProgressRootRecoverableErrors,
@@ -13231,10 +14303,10 @@ var require_react_dom_client_development = __commonJS({
         } while (1);
         ensureRootIsScheduled(root3);
       }
-      function commitRootWhenReady(root3, finishedWork, recoverableErrors, transitions, didIncludeRenderPhaseUpdate, lanes, spawnedLane, updatedLanes, suspendedRetryLanes, didSkipSuspendedSiblings, exitStatus, suspendedCommitReason, completedRenderStartTime, completedRenderEndTime) {
+      function completeRootWhenReady(root3, finishedWork, recoverableErrors, transitions, didIncludeRenderPhaseUpdate, lanes, spawnedLane, updatedLanes, suspendedRetryLanes, didSkipSuspendedSiblings, exitStatus, suspendedCommitReason, completedRenderStartTime, completedRenderEndTime) {
         root3.timeoutHandle = noTimeout;
-        var subtreeFlags = finishedWork.subtreeFlags, suspendedState = null;
-        if (subtreeFlags & 8192 || 16785408 === (subtreeFlags & 16785408)) {
+        var subtreeFlags = finishedWork.subtreeFlags, isViewTransitionEligible = (lanes & 335544064) === lanes, suspendedState = null;
+        if (isViewTransitionEligible || subtreeFlags & 8192 || 16785408 === (subtreeFlags & 16785408)) {
           if (suspendedState = {
             stylesheets: null,
             count: 0,
@@ -13244,10 +14316,13 @@ var require_react_dom_client_development = __commonJS({
             waitingForImages: true,
             waitingForViewTransition: false,
             unsuspend: noop$1
-          }, accumulateSuspenseyCommitOnFiber(finishedWork, lanes, suspendedState), subtreeFlags = (lanes & 62914560) === lanes ? globalMostRecentFallbackTime - now$1() : (lanes & 4194048) === lanes ? globalMostRecentTransitionTime - now$1() : 0, subtreeFlags = waitForCommitToBeReady(suspendedState, subtreeFlags), null !== subtreeFlags) {
+          }, appearingViewTransitions = null, accumulateSuspenseyCommitOnFiber(finishedWork, lanes, suspendedState), isViewTransitionEligible && (subtreeFlags = suspendedState, isViewTransitionEligible = root3.containerInfo, isViewTransitionEligible = (9 === isViewTransitionEligible.nodeType ? isViewTransitionEligible : isViewTransitionEligible.ownerDocument).__reactViewTransition, null != isViewTransitionEligible && (subtreeFlags.count++, subtreeFlags.waitingForViewTransition = true, subtreeFlags = onUnsuspend.bind(subtreeFlags), isViewTransitionEligible.finished.then(
+            subtreeFlags,
+            subtreeFlags
+          ))), subtreeFlags = (lanes & 62914560) === lanes ? globalMostRecentFallbackTime - now$1() : (lanes & 4194048) === lanes ? globalMostRecentTransitionTime - now$1() : 0, subtreeFlags = waitForCommitToBeReady(suspendedState, subtreeFlags), null !== subtreeFlags) {
             pendingEffectsLanes = lanes;
             root3.cancelPendingCommit = subtreeFlags(
-              commitRoot.bind(
+              completeRoot.bind(
                 null,
                 root3,
                 finishedWork,
@@ -13258,6 +14333,7 @@ var require_react_dom_client_development = __commonJS({
                 spawnedLane,
                 updatedLanes,
                 suspendedRetryLanes,
+                didSkipSuspendedSiblings,
                 exitStatus,
                 suspendedState,
                 suspendedState.waitingForViewTransition ? "Waiting for the previous Animation" : 0 < suspendedState.count ? 0 < suspendedState.imgCount ? "Suspended on CSS and Images" : "Suspended on CSS" : 1 === suspendedState.imgCount ? "Suspended on an Image" : 0 < suspendedState.imgCount ? "Suspended on Images" : null,
@@ -13274,7 +14350,7 @@ var require_react_dom_client_development = __commonJS({
             return;
           }
         }
-        commitRoot(
+        completeRoot(
           root3,
           finishedWork,
           lanes,
@@ -13284,6 +14360,7 @@ var require_react_dom_client_development = __commonJS({
           spawnedLane,
           updatedLanes,
           suspendedRetryLanes,
+          didSkipSuspendedSiblings,
           exitStatus,
           suspendedState,
           suspendedCommitReason,
@@ -13320,6 +14397,7 @@ var require_react_dom_client_development = __commonJS({
         return true;
       }
       function markRootSuspended(root3, suspendedLanes, spawnedLane, didAttemptEntireTree) {
+        suspendedLanes = getEntangledLanes(root3, suspendedLanes);
         suspendedLanes &= ~workInProgressRootPingedLanes;
         suspendedLanes &= ~workInProgressRootInterleavedUpdatedLanes;
         root3.suspendedLanes |= suspendedLanes;
@@ -13481,7 +14559,7 @@ var require_react_dom_client_development = __commonJS({
                 isSpawnedUpdate,
                 previousRenderStartTime
               )
-            ) : performance.measure(isSpawnedUpdate, previousRenderStartTime));
+            ) : performance.measure(isSpawnedUpdate, previousRenderStartTime), performance.clearMeasures(isSpawnedUpdate));
           }
           blockingUpdateTime = -1.1;
           blockingUpdateType = 0;
@@ -13547,7 +14625,7 @@ var require_react_dom_client_development = __commonJS({
             debugTask,
             previousRenderStartTime
           )
-        ) : performance.measure(debugTask, previousRenderStartTime))), transitionUpdateTime = transitionStartTime = -1.1, transitionUpdateType = 0, transitionSuspendedTime = -1.1, transitionEventRepeatTime = transitionEventTime, transitionEventTime = -1.1, transitionClampTime = now());
+        ) : performance.measure(debugTask, previousRenderStartTime), performance.clearMeasures(debugTask))), transitionUpdateTime = transitionStartTime = -1.1, transitionUpdateType = 0, transitionSuspendedTime = -1.1, transitionEventRepeatTime = transitionEventTime, transitionEventTime = -1.1, transitionClampTime = now());
         0 !== (lanes & 62914560) && 0 !== (animatingLanes & 62914560) && (setCurrentTrackFromLanes(4194304), logAnimatingPhase(retryClampTime, renderStartTime, animatingTask));
         0 !== (lanes & 2080374784) && 0 !== (animatingLanes & 2080374784) && (setCurrentTrackFromLanes(268435456), logAnimatingPhase(idleClampTime, renderStartTime, animatingTask));
         previousRenderStartTime = root3.timeoutHandle;
@@ -13571,12 +14649,7 @@ var require_react_dom_client_development = __commonJS({
         workInProgressSuspendedRetryLanes = workInProgressDeferredLane = workInProgressRootPingedLanes = workInProgressRootInterleavedUpdatedLanes = workInProgressRootSkippedLanes = 0;
         workInProgressRootRecoverableErrors = workInProgressRootConcurrentErrors = null;
         workInProgressRootDidIncludeRecursiveRenderUpdate = false;
-        0 !== (lanes & 8) && (lanes |= lanes & 32);
-        endTime = root3.entangledLanes;
-        if (0 !== endTime)
-          for (root3 = root3.entanglements, endTime &= lanes; 0 < endTime; )
-            debugTask = 31 - clz32(endTime), color = 1 << debugTask, lanes |= root3[debugTask], endTime &= ~color;
-        entangledRenderLanes = lanes;
+        entangledRenderLanes = getEntangledLanes(root3, lanes);
         finishQueueingConcurrentUpdates();
         root3 = getCurrentTime();
         1e3 < root3 - lastResetTime && (ReactSharedInternals.recentlyCreatedOwnerStacks = 0, lastResetTime = root3);
@@ -13669,8 +14742,8 @@ var require_react_dom_client_development = __commonJS({
             workLoopSync();
             memoizedUpdaters = workInProgressRootExitStatus;
             break;
-          } catch (thrownValue$8) {
-            handleThrow(root3, thrownValue$8);
+          } catch (thrownValue$9) {
+            handleThrow(root3, thrownValue$9);
           }
         while (1);
         lanes && root3.shellSuspendCounter++;
@@ -13799,8 +14872,8 @@ var require_react_dom_client_development = __commonJS({
               }
             null !== ReactSharedInternals.actQueue ? workLoopSync() : workLoopConcurrentByScheduler();
             break;
-          } catch (thrownValue$9) {
-            handleThrow(root3, thrownValue$9);
+          } catch (thrownValue$10) {
+            handleThrow(root3, thrownValue$10);
           }
         while (1);
         resetContextDependencies();
@@ -13867,6 +14940,8 @@ var require_react_dom_client_development = __commonJS({
             break;
           case 5:
             resetHooksOnUnwind(unitOfWork);
+            var fiber = unitOfWork;
+            fiber === hydrationParentFiber && (isHydrating ? (popToNextHostParent(fiber), 5 === fiber.tag && null != fiber.stateNode && (nextHydratableInstance = fiber.stateNode)) : (popToNextHostParent(fiber), isHydrating = true));
           default:
             unwindInterruptedWork(current2, unitOfWork), unitOfWork = workInProgress = resetWorkInProgress(unitOfWork, entangledRenderLanes), current2 = beginWork(current2, unitOfWork, entangledRenderLanes);
         }
@@ -13974,7 +15049,7 @@ var require_react_dom_client_development = __commonJS({
         workInProgressRootExitStatus = RootSuspendedAtTheShell;
         workInProgress = null;
       }
-      function commitRoot(root3, finishedWork, lanes, recoverableErrors, transitions, didIncludeRenderPhaseUpdate, spawnedLane, updatedLanes, suspendedRetryLanes, exitStatus, suspendedState, suspendedCommitReason, completedRenderStartTime, completedRenderEndTime) {
+      function completeRoot(root3, finishedWork, lanes, recoverableErrors, transitions, didIncludeRenderPhaseUpdate, spawnedLane, updatedLanes, suspendedRetryLanes, didSkipSuspendedSiblings, exitStatus, suspendedState, suspendedCommitReason, completedRenderStartTime, completedRenderEndTime) {
         root3.cancelPendingCommit = null;
         do
           flushPendingEffects();
@@ -13984,24 +15059,64 @@ var require_react_dom_client_development = __commonJS({
         if ((executionContext & (RenderContext | CommitContext)) !== NoContext)
           throw Error("Should not already be working.");
         setCurrentTrackFromLanes(lanes);
-        exitStatus === RootErrored ? logErroredRenderPhase(
-          completedRenderStartTime,
-          completedRenderEndTime,
-          lanes,
-          workInProgressUpdateTask
-        ) : null !== recoverableErrors ? logRecoveredRenderPhase(
-          completedRenderStartTime,
-          completedRenderEndTime,
-          lanes,
-          recoverableErrors,
-          null !== finishedWork && null !== finishedWork.alternate && finishedWork.alternate.memoizedState.isDehydrated && 0 !== (finishedWork.flags & 256),
-          workInProgressUpdateTask
-        ) : logRenderPhase(
-          completedRenderStartTime,
-          completedRenderEndTime,
-          lanes,
-          workInProgressUpdateTask
-        );
+        if (exitStatus === RootErrored)
+          logErroredRenderPhase(
+            completedRenderStartTime,
+            completedRenderEndTime,
+            lanes,
+            workInProgressUpdateTask
+          );
+        else if (null !== recoverableErrors) {
+          if (didSkipSuspendedSiblings = null !== finishedWork && null !== finishedWork.alternate && finishedWork.alternate.memoizedState.isDehydrated && 0 !== (finishedWork.flags & 256), didIncludeRenderPhaseUpdate = workInProgressUpdateTask, supportsUserTiming && !(completedRenderEndTime <= completedRenderStartTime)) {
+            exitStatus = [];
+            for (var i = 0; i < recoverableErrors.length; i++) {
+              var error = recoverableErrors[i].value;
+              exitStatus.push([
+                "Recoverable Error",
+                "object" === typeof error && null !== error && "string" === typeof error.message ? String(error.message) : String(error)
+              ]);
+            }
+            completedRenderStartTime = {
+              start: completedRenderStartTime,
+              end: completedRenderEndTime,
+              detail: {
+                devtools: {
+                  color: "primary-dark",
+                  track: currentTrack,
+                  trackGroup: LANES_TRACK_GROUP,
+                  tooltipText: didSkipSuspendedSiblings ? "Hydration Failed" : "Recovered after Error",
+                  properties: exitStatus
+                }
+              }
+            };
+            didIncludeRenderPhaseUpdate ? didIncludeRenderPhaseUpdate.run(
+              performance.measure.bind(
+                performance,
+                "Recovered",
+                completedRenderStartTime
+              )
+            ) : performance.measure("Recovered", completedRenderStartTime);
+            performance.clearMeasures("Recovered");
+          }
+        } else
+          didIncludeRenderPhaseUpdate = workInProgressUpdateTask, !supportsUserTiming || completedRenderEndTime <= completedRenderStartTime || (didSkipSuspendedSiblings = (lanes & 738197653) === lanes ? "tertiary-dark" : "primary-dark", exitStatus = (lanes & 536870912) === lanes ? "Prepared" : (lanes & 201326741) === lanes ? "Hydrated" : "Render", didIncludeRenderPhaseUpdate ? didIncludeRenderPhaseUpdate.run(
+            console.timeStamp.bind(
+              console,
+              exitStatus,
+              completedRenderStartTime,
+              completedRenderEndTime,
+              currentTrack,
+              LANES_TRACK_GROUP,
+              didSkipSuspendedSiblings
+            )
+          ) : console.timeStamp(
+            exitStatus,
+            completedRenderStartTime,
+            completedRenderEndTime,
+            currentTrack,
+            LANES_TRACK_GROUP,
+            didSkipSuspendedSiblings
+          ));
         if (null !== finishedWork) {
           0 === lanes && console.error(
             "finishedLanes should not be empty during a commit. This is a bug in React."
@@ -14010,60 +15125,119 @@ var require_react_dom_client_development = __commonJS({
             throw Error(
               "Cannot commit the same tree as before. This error is likely caused by a bug in React. Please file an issue."
             );
-          didIncludeRenderPhaseUpdate = finishedWork.lanes | finishedWork.childLanes;
-          didIncludeRenderPhaseUpdate |= concurrentlyUpdatedLanes;
-          markRootFinished(
-            root3,
-            lanes,
-            didIncludeRenderPhaseUpdate,
-            spawnedLane,
-            updatedLanes,
-            suspendedRetryLanes
-          );
           root3 === workInProgressRoot && (workInProgress = workInProgressRoot = null, workInProgressRootRenderLanes = 0);
           pendingFinishedWork = finishedWork;
           pendingEffectsRoot = root3;
           pendingEffectsLanes = lanes;
-          pendingEffectsRemainingLanes = didIncludeRenderPhaseUpdate;
           pendingPassiveTransitions = transitions;
           pendingRecoverableErrors = recoverableErrors;
           pendingEffectsRenderEndTime = completedRenderEndTime;
           pendingSuspendedCommitReason = suspendedCommitReason;
           pendingDelayedCommitReason = IMMEDIATE_COMMIT;
           pendingSuspendedViewTransitionReason = null;
-          0 !== finishedWork.actualDuration || 0 !== (finishedWork.subtreeFlags & 10256) || 0 !== (finishedWork.flags & 10256) ? (root3.callbackNode = null, root3.callbackPriority = 0, scheduleCallback$1(NormalPriority$1, function() {
-            schedulerEvent = window.event;
-            pendingDelayedCommitReason === IMMEDIATE_COMMIT && (pendingDelayedCommitReason = DELAYED_PASSIVE_COMMIT);
-            flushPassiveEffects();
-            return null;
-          })) : (root3.callbackNode = null, root3.callbackPriority = 0);
-          commitErrors = null;
-          commitStartTime = now();
-          null !== suspendedCommitReason && logSuspendedCommitPhase(
-            completedRenderEndTime,
-            commitStartTime,
+          commitRoot(
+            root3,
+            finishedWork,
+            lanes,
+            spawnedLane,
+            updatedLanes,
+            suspendedRetryLanes,
+            suspendedState,
             suspendedCommitReason,
-            workInProgressUpdateTask
+            completedRenderEndTime
           );
-          recoverableErrors = 0 !== (finishedWork.flags & 13878);
-          if (0 !== (finishedWork.subtreeFlags & 13878) || recoverableErrors) {
-            recoverableErrors = ReactSharedInternals.T;
-            ReactSharedInternals.T = null;
-            transitions = ReactDOMSharedInternals.p;
-            ReactDOMSharedInternals.p = DiscreteEventPriority;
-            spawnedLane = executionContext;
-            executionContext |= CommitContext;
-            try {
-              commitBeforeMutationEffects(root3, finishedWork, lanes);
-            } finally {
-              executionContext = spawnedLane, ReactDOMSharedInternals.p = transitions, ReactSharedInternals.T = recoverableErrors;
-            }
-          }
-          pendingEffectsStatus = PENDING_MUTATION_PHASE;
-          flushMutationEffects();
-          flushLayoutEffects();
-          flushSpawnedWork();
         }
+      }
+      function commitRoot(root3, finishedWork, lanes, spawnedLane, updatedLanes, suspendedRetryLanes, suspendedState, suspendedCommitReason, completedRenderEndTime) {
+        var remainingLanes = finishedWork.lanes | finishedWork.childLanes;
+        pendingEffectsRemainingLanes = remainingLanes;
+        remainingLanes |= concurrentlyUpdatedLanes;
+        markRootFinished(
+          root3,
+          lanes,
+          remainingLanes,
+          spawnedLane,
+          updatedLanes,
+          suspendedRetryLanes
+        );
+        pendingViewTransitionEvents = null;
+        (lanes & 335544064) === lanes ? (pendingTransitionTypes = claimQueuedTransitionTypes(root3), spawnedLane = 10262) : (pendingTransitionTypes = null, spawnedLane = 10256);
+        0 !== finishedWork.actualDuration || 0 !== (finishedWork.subtreeFlags & spawnedLane) || 0 !== (finishedWork.flags & spawnedLane) ? (root3.callbackNode = null, root3.callbackPriority = 0, scheduleCallback$1(NormalPriority$1, function() {
+          schedulerEvent = window.event;
+          pendingDelayedCommitReason === IMMEDIATE_COMMIT && (pendingDelayedCommitReason = DELAYED_PASSIVE_COMMIT);
+          flushPassiveEffects();
+          return null;
+        })) : (root3.callbackNode = null, root3.callbackPriority = 0);
+        commitErrors = null;
+        commitStartTime = now();
+        null !== suspendedCommitReason && logSuspendedCommitPhase(
+          completedRenderEndTime,
+          commitStartTime,
+          suspendedCommitReason,
+          workInProgressUpdateTask
+        );
+        shouldStartViewTransition = false;
+        suspendedCommitReason = 0 !== (finishedWork.flags & 13878);
+        if (0 !== (finishedWork.subtreeFlags & 13878) || suspendedCommitReason) {
+          suspendedCommitReason = ReactSharedInternals.T;
+          ReactSharedInternals.T = null;
+          completedRenderEndTime = ReactDOMSharedInternals.p;
+          ReactDOMSharedInternals.p = DiscreteEventPriority;
+          spawnedLane = executionContext;
+          executionContext |= CommitContext;
+          try {
+            commitBeforeMutationEffects(root3, finishedWork, lanes);
+          } finally {
+            executionContext = spawnedLane, ReactDOMSharedInternals.p = completedRenderEndTime, ReactSharedInternals.T = suspendedCommitReason;
+          }
+        }
+        pendingEffectsStatus = PENDING_MUTATION_PHASE;
+        shouldStartViewTransition ? (animatingLanes |= lanes, animatingTask = null, pendingViewTransition = startViewTransition(
+          suspendedState,
+          root3.containerInfo,
+          pendingTransitionTypes,
+          flushMutationEffects,
+          flushLayoutEffects,
+          flushAfterMutationEffects,
+          flushSpawnedWork,
+          flushPassiveEffects,
+          reportViewTransitionError,
+          suspendedViewTransition,
+          finishedViewTransition.bind(null, lanes)
+        )) : (flushMutationEffects(), flushLayoutEffects(), flushSpawnedWork());
+      }
+      function reportViewTransitionError(error) {
+        if (pendingEffectsStatus !== NO_PENDING_EFFECTS) {
+          var onRecoverableError = pendingEffectsRoot.onRecoverableError;
+          onRecoverableError(error, makeErrorInfo(null));
+        }
+      }
+      function suspendedViewTransition(reason) {
+        commitEndTime = now();
+        logCommitPhase(
+          null === pendingSuspendedCommitReason ? pendingEffectsRenderEndTime : commitStartTime,
+          commitEndTime,
+          commitErrors,
+          pendingDelayedCommitReason === ABORTED_VIEW_TRANSITION_COMMIT,
+          workInProgressUpdateTask
+        );
+        pendingSuspendedCommitReason = pendingSuspendedViewTransitionReason = reason;
+      }
+      function finishedViewTransition(lanes) {
+        if (0 !== (animatingLanes & lanes)) {
+          var task = animatingTask;
+          animatingLanes &= ~lanes;
+          animatingTask = null;
+          0 !== (lanes & 4194048) && 0 === (workInProgressRootRenderLanes & 4194048) && 0 === (pendingEffectsLanes & 4194048) && (setCurrentTrackFromLanes(256), logAnimatingPhase(transitionClampTime, now$1(), task));
+          0 !== (lanes & 62914560) && 0 === (workInProgressRootRenderLanes & 62914560) && 0 === (pendingEffectsLanes & 62914560) && (setCurrentTrackFromLanes(4194304), logAnimatingPhase(retryClampTime, now$1(), task));
+          0 !== (lanes & 2080374784) && 0 === (workInProgressRootRenderLanes & 2080374784) && 0 === (pendingEffectsLanes & 2080374784) && (setCurrentTrackFromLanes(268435456), logAnimatingPhase(idleClampTime, now$1(), task));
+        }
+      }
+      function flushAfterMutationEffects() {
+        pendingEffectsStatus === PENDING_AFTER_MUTATION_PHASE && (pendingEffectsStatus = NO_PENDING_EFFECTS, commitAfterMutationEffectsOnFiber(
+          pendingFinishedWork,
+          pendingEffectsRoot
+        ), pendingEffectsStatus = PENDING_SPAWNED_WORK);
       }
       function flushMutationEffects() {
         if (pendingEffectsStatus === PENDING_MUTATION_PHASE) {
@@ -14079,8 +15253,9 @@ var require_react_dom_client_development = __commonJS({
             try {
               inProgressLanes = lanes;
               inProgressRoot = root3;
+              inUpdateViewTransition = rootViewTransitionAffected = false;
               resetComponentEffectTimers();
-              commitMutationEffectsOnFiber(finishedWork, root3);
+              commitMutationEffectsOnFiber(finishedWork, root3, lanes);
               inProgressRoot = inProgressLanes = null;
               lanes = selectionInformation;
               var curFocusedElem = getActiveElementDeep(root3.containerInfo), priorFocusedElem = lanes.focusedElem, priorSelectionRange = lanes.selectionRange;
@@ -14194,34 +15369,13 @@ var require_react_dom_client_development = __commonJS({
           suspendedViewTransitionReason = pendingEffectsRenderEndTime;
           startTime = pendingSuspendedCommitReason;
           commitEndTime = now();
-          suspendedViewTransitionReason = null === startTime ? suspendedViewTransitionReason : commitStartTime;
-          startTime = commitEndTime;
-          endTime = pendingDelayedCommitReason === ABORTED_VIEW_TRANSITION_COMMIT;
-          rootHasLayoutEffect = workInProgressUpdateTask;
-          null !== commitErrors ? logCommitErrored(
-            suspendedViewTransitionReason,
-            startTime,
+          logCommitPhase(
+            null === startTime ? suspendedViewTransitionReason : commitStartTime,
+            commitEndTime,
             commitErrors,
-            false,
-            rootHasLayoutEffect
-          ) : !supportsUserTiming || startTime <= suspendedViewTransitionReason || (rootHasLayoutEffect ? rootHasLayoutEffect.run(
-            console.timeStamp.bind(
-              console,
-              endTime ? "Commit Interrupted View Transition" : "Commit",
-              suspendedViewTransitionReason,
-              startTime,
-              currentTrack,
-              LANES_TRACK_GROUP,
-              endTime ? "error" : "secondary-dark"
-            )
-          ) : console.timeStamp(
-            endTime ? "Commit Interrupted View Transition" : "Commit",
-            suspendedViewTransitionReason,
-            startTime,
-            currentTrack,
-            LANES_TRACK_GROUP,
-            endTime ? "error" : "secondary-dark"
-          ));
+            pendingDelayedCommitReason === ABORTED_VIEW_TRANSITION_COMMIT,
+            workInProgressUpdateTask
+          );
           pendingEffectsStatus = PENDING_AFTER_MUTATION_PHASE;
         }
       }
@@ -14252,20 +15406,18 @@ var require_react_dom_client_development = __commonJS({
             pendingDelayedCommitReason !== ABORTED_VIEW_TRANSITION_COMMIT && (pendingDelayedCommitReason = ANIMATION_STARTED_COMMIT);
           }
           pendingEffectsStatus = NO_PENDING_EFFECTS;
+          startViewTransitionStartTime = pendingViewTransition;
+          pendingViewTransition = null;
           requestPaint();
-          startViewTransitionStartTime = pendingEffectsRoot;
+          endTime = pendingEffectsRoot;
           var finishedWork = pendingFinishedWork;
-          endTime = pendingEffectsLanes;
-          abortedViewTransition = pendingRecoverableErrors;
-          var rootDidHavePassiveEffects = 0 !== finishedWork.actualDuration || 0 !== (finishedWork.subtreeFlags & 10256) || 0 !== (finishedWork.flags & 10256);
-          rootDidHavePassiveEffects ? pendingEffectsStatus = PENDING_PASSIVE_PHASE : (pendingEffectsStatus = NO_PENDING_EFFECTS, pendingFinishedWork = pendingEffectsRoot = null, releaseRootPooledCache(
-            startViewTransitionStartTime,
-            startViewTransitionStartTime.pendingLanes
-          ), nestedPassiveUpdateCount = 0, rootWithPassiveNestedUpdates = null);
-          var remainingLanes = startViewTransitionStartTime.pendingLanes;
+          abortedViewTransition = pendingEffectsLanes;
+          var recoverableErrors = pendingRecoverableErrors, passiveSubtreeMask = (abortedViewTransition & 335544064) === abortedViewTransition ? 10262 : 10256;
+          (passiveSubtreeMask = 0 !== finishedWork.actualDuration || 0 !== (finishedWork.subtreeFlags & passiveSubtreeMask) || 0 !== (finishedWork.flags & passiveSubtreeMask)) ? pendingEffectsStatus = PENDING_PASSIVE_PHASE : (pendingEffectsStatus = NO_PENDING_EFFECTS, pendingFinishedWork = pendingEffectsRoot = null, releaseRootPooledCache(endTime, endTime.pendingLanes), nestedPassiveUpdateCount = 0, rootWithPassiveNestedUpdates = null);
+          var remainingLanes = endTime.pendingLanes;
           0 === remainingLanes && (legacyErrorBoundariesThatAlreadyFailed = null);
-          rootDidHavePassiveEffects || commitDoubleInvokeEffectsInDEV(startViewTransitionStartTime);
-          remainingLanes = lanesToEventPriority(endTime);
+          passiveSubtreeMask || commitDoubleInvokeEffectsInDEV(endTime);
+          remainingLanes = lanesToEventPriority(abortedViewTransition);
           finishedWork = finishedWork.stateNode;
           if (injectedHook && "function" === typeof injectedHook.onCommitFiberRoot)
             try {
@@ -14298,17 +15450,17 @@ var require_react_dom_client_development = __commonJS({
                 err
               ));
             }
-          isDevToolsPresent && startViewTransitionStartTime.memoizedUpdaters.clear();
+          isDevToolsPresent && endTime.memoizedUpdaters.clear();
           onCommitRoot();
-          if (null !== abortedViewTransition) {
+          if (null !== recoverableErrors) {
             didError = ReactSharedInternals.T;
             schedulerPriority = ReactDOMSharedInternals.p;
             ReactDOMSharedInternals.p = DiscreteEventPriority;
             ReactSharedInternals.T = null;
             try {
-              var onRecoverableError = startViewTransitionStartTime.onRecoverableError;
-              for (finishedWork = 0; finishedWork < abortedViewTransition.length; finishedWork++) {
-                var recoverableError = abortedViewTransition[finishedWork], errorInfo = makeErrorInfo(recoverableError.stack);
+              var onRecoverableError = endTime.onRecoverableError;
+              for (finishedWork = 0; finishedWork < recoverableErrors.length; finishedWork++) {
+                var recoverableError = recoverableErrors[finishedWork], errorInfo = makeErrorInfo(recoverableError.stack);
                 runWithFiberInDEV(
                   recoverableError.source,
                   onRecoverableError,
@@ -14320,11 +15472,21 @@ var require_react_dom_client_development = __commonJS({
               ReactSharedInternals.T = didError, ReactDOMSharedInternals.p = schedulerPriority;
             }
           }
+          onRecoverableError = pendingViewTransitionEvents;
+          recoverableError = pendingTransitionTypes;
+          pendingTransitionTypes = null;
+          if (null !== onRecoverableError && (pendingViewTransitionEvents = null, null === recoverableError && (recoverableError = []), null !== startViewTransitionStartTime))
+            for (errorInfo = 0; errorInfo < onRecoverableError.length; errorInfo++)
+              recoverableErrors = (0, onRecoverableError[errorInfo])(
+                recoverableError
+              ), void 0 !== recoverableErrors && startViewTransitionStartTime.finished.finally(
+                recoverableErrors
+              );
           0 !== (pendingEffectsLanes & 3) && flushPendingEffects();
-          ensureRootIsScheduled(startViewTransitionStartTime);
-          remainingLanes = startViewTransitionStartTime.pendingLanes;
-          0 !== (endTime & 261930) && 0 !== (remainingLanes & 42) ? (nestedUpdateScheduled = true, startViewTransitionStartTime === rootWithNestedUpdates ? nestedUpdateCount++ : (nestedUpdateCount = 0, rootWithNestedUpdates = startViewTransitionStartTime)) : nestedUpdateCount = 0;
-          rootDidHavePassiveEffects || finalizeRender(endTime, commitEndTime);
+          ensureRootIsScheduled(endTime);
+          remainingLanes = endTime.pendingLanes;
+          0 !== (abortedViewTransition & 261930) && 0 !== (remainingLanes & 42) ? (nestedUpdateScheduled = true, endTime === rootWithNestedUpdates ? nestedUpdateCount++ : (nestedUpdateCount = 0, rootWithNestedUpdates = endTime)) : (nestedUpdateCount = 0, rootWithNestedUpdates = null);
+          passiveSubtreeMask || finalizeRender(abortedViewTransition, commitEndTime);
           flushSyncWorkAcrossRoots_impl(0, false);
         }
       }
@@ -14343,6 +15505,9 @@ var require_react_dom_client_development = __commonJS({
         0 === (root3.pooledCacheLanes &= remainingLanes) && (remainingLanes = root3.pooledCache, null != remainingLanes && (root3.pooledCache = null, releaseCache(remainingLanes)));
       }
       function flushPendingEffects() {
+        null !== pendingViewTransition && (pendingViewTransition.skipTransition(), didWarnAboutInterruptedViewTransitions || (didWarnAboutInterruptedViewTransitions = true, console.warn(
+          "A flushSync update cancelled a View Transition because it was called while the View Transition was still preparing. To preserve the synchronous semantics, React had to skip the View Transition. If you can, try to avoid flushSync() in a scenario that's likely to interfere."
+        )), pendingViewTransition = null, pendingDelayedCommitReason = ABORTED_VIEW_TRANSITION_COMMIT);
         flushMutationEffects();
         flushLayoutEffects();
         flushSpawnedWork();
@@ -14529,7 +15694,7 @@ var require_react_dom_client_development = __commonJS({
         isConcurrentActEnvironment() && null === ReactSharedInternals.actQueue && console.error(
           "A suspended resource finished loading inside a test, but the event was not wrapped in act(...).\n\nWhen testing, code that resolves suspended data should be wrapped into act(...):\n\nact(() => {\n  /* finish loading suspended data */\n});\n/* assert on the output */\n\nThis ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act"
         );
-        workInProgressRoot === root3 && (workInProgressRootRenderLanes & pingedLanes) === pingedLanes && (workInProgressRootExitStatus === RootSuspendedWithDelay || workInProgressRootExitStatus === RootSuspended && (workInProgressRootRenderLanes & 62914560) === workInProgressRootRenderLanes && now$1() - globalMostRecentFallbackTime < FALLBACK_THROTTLE_MS ? (executionContext & RenderContext) === NoContext && prepareFreshStack(root3, 0) : workInProgressRootPingedLanes |= pingedLanes, workInProgressSuspendedRetryLanes === workInProgressRootRenderLanes && (workInProgressSuspendedRetryLanes = 0));
+        workInProgressRoot === root3 && (workInProgressRootRenderLanes & pingedLanes) === pingedLanes && (workInProgressRootExitStatus === RootSuspendedWithDelay || workInProgressRootExitStatus === RootSuspended && (workInProgressRootRenderLanes & 62914560) === workInProgressRootRenderLanes && now$1() - globalMostRecentFallbackTime < FALLBACK_THROTTLE_MS ? (executionContext & RenderContext) === NoContext ? prepareFreshStack(root3, 0) : workInProgressRootPingedLanes |= pingedLanes : workInProgressRootPingedLanes |= pingedLanes, workInProgressSuspendedRetryLanes === workInProgressRootRenderLanes && (workInProgressSuspendedRetryLanes = 0));
         ensureRootIsScheduled(root3);
       }
       function retryTimedOutBoundary(boundaryFiber, retryLane) {
@@ -14566,11 +15731,11 @@ var require_react_dom_client_development = __commonJS({
         retryTimedOutBoundary(boundaryFiber, retryLane);
       }
       function recursivelyTraverseAndDoubleInvokeEffectsInDEV(root$jscomp$0, parentFiber, isInStrictMode) {
-        if (0 !== (parentFiber.subtreeFlags & 67117056))
+        if (0 !== (parentFiber.subtreeFlags & 134225920))
           for (parentFiber = parentFiber.child; null !== parentFiber; ) {
             var root3 = root$jscomp$0, fiber = parentFiber, isStrictModeFiber = fiber.type === REACT_STRICT_MODE_TYPE;
             isStrictModeFiber = isInStrictMode || isStrictModeFiber;
-            22 !== fiber.tag ? fiber.flags & 67108864 ? isStrictModeFiber && runWithFiberInDEV(
+            22 !== fiber.tag ? fiber.flags & 134217728 ? isStrictModeFiber && runWithFiberInDEV(
               fiber,
               doubleInvokeEffectsOnFiber,
               root3,
@@ -14579,12 +15744,12 @@ var require_react_dom_client_development = __commonJS({
               root3,
               fiber,
               isStrictModeFiber
-            ) : null === fiber.memoizedState && (isStrictModeFiber && fiber.flags & 8192 ? runWithFiberInDEV(
+            ) : null === fiber.memoizedState && (isStrictModeFiber && fiber.flags & 134225920 ? runWithFiberInDEV(
               fiber,
               doubleInvokeEffectsOnFiber,
               root3,
               fiber
-            ) : fiber.subtreeFlags & 67108864 && runWithFiberInDEV(
+            ) : fiber.subtreeFlags & 134217728 && runWithFiberInDEV(
               fiber,
               recursivelyTraverseAndDoubleInvokeEffectsInDEV,
               root3,
@@ -14597,7 +15762,12 @@ var require_react_dom_client_development = __commonJS({
       function doubleInvokeEffectsOnFiber(root3, fiber) {
         setIsStrictModeForDevtools(true);
         try {
-          disappearLayoutEffects(fiber), disconnectPassiveEffect(fiber), reappearLayoutEffects(root3, fiber.alternate, fiber, false), reconnectPassiveEffects(root3, fiber, 0, null, false, 0);
+          disappearLayoutEffects(fiber, NoLayoutEffectTraversalFlags), disconnectPassiveEffect(fiber), reappearLayoutEffects(
+            root3,
+            fiber.alternate,
+            fiber,
+            NoLayoutEffectTraversalFlags
+          ), reconnectPassiveEffects(root3, fiber, 0, null, false, 0);
         } finally {
           setIsStrictModeForDevtools(false);
         }
@@ -14805,17 +15975,7 @@ var require_react_dom_client_development = __commonJS({
           return null;
         if ("function" === typeof actionProp) return actionProp;
         checkAttributeStringCoercion(actionProp, "action");
-        return sanitizeURL("" + actionProp);
-      }
-      function createFormDataWithSubmitter(form, submitter) {
-        var temp = submitter.ownerDocument.createElement("input");
-        temp.name = submitter.name;
-        temp.value = submitter.value;
-        form.id && temp.setAttribute("form", form.id);
-        submitter.parentNode.insertBefore(temp, submitter);
-        form = new FormData(form);
-        temp.parentNode.removeChild(temp);
-        return form;
+        return sanitizeURL(actionProp);
       }
       function extractEvents$1(dispatchQueue, domEventName, maybeTargetInst, nativeEvent, nativeEventTarget) {
         if ("submit" === domEventName && maybeTargetInst && maybeTargetInst.stateNode === nativeEventTarget) {
@@ -14838,10 +15998,7 @@ var require_react_dom_client_development = __commonJS({
                 listener: function() {
                   if (nativeEvent.defaultPrevented) {
                     if (0 !== currentEventTransitionLane) {
-                      var formData = submitter ? createFormDataWithSubmitter(
-                        nativeEventTarget,
-                        submitter
-                      ) : new FormData(nativeEventTarget), pendingState = {
+                      var formData = new FormData(nativeEventTarget, submitter), pendingState = {
                         pending: true,
                         data: formData,
                         method: nativeEventTarget.method,
@@ -14856,10 +16013,7 @@ var require_react_dom_client_development = __commonJS({
                       );
                     }
                   } else
-                    "function" === typeof action && (event.preventDefault(), formData = submitter ? createFormDataWithSubmitter(
-                      nativeEventTarget,
-                      submitter
-                    ) : new FormData(nativeEventTarget), pendingState = {
+                    "function" === typeof action && (event.preventDefault(), formData = new FormData(nativeEventTarget, submitter), pendingState = {
                       pending: true,
                       data: formData,
                       method: nativeEventTarget.method,
@@ -15104,6 +16258,9 @@ var require_react_dom_client_development = __commonJS({
                 case "pointerup":
                   SyntheticEventCtor = SyntheticPointerEvent;
                   break;
+                case "submit":
+                  SyntheticEventCtor = SyntheticSubmitEvent;
+                  break;
                 case "toggle":
                 case "beforetoggle":
                   SyntheticEventCtor = SyntheticToggleEvent;
@@ -15138,80 +16295,59 @@ var require_react_dom_client_development = __commonJS({
           }
           if (0 === (eventSystemFlags & 7)) {
             a: {
-              reactName = "mouseover" === domEventName || "pointerover" === domEventName;
-              SyntheticEventCtor = "mouseout" === domEventName || "pointerout" === domEventName;
-              if (reactName && nativeEvent !== currentReplayingEvent && (reactEventType = nativeEvent.relatedTarget || nativeEvent.fromElement) && (getClosestInstanceFromNode(reactEventType) || reactEventType[internalContainerInstanceKey]))
+              SyntheticEventCtor = "mouseover" === domEventName || "pointerover" === domEventName;
+              reactName = "mouseout" === domEventName || "pointerout" === domEventName;
+              if (SyntheticEventCtor && nativeEvent !== currentReplayingEvent && (reactEventType = nativeEvent.relatedTarget || nativeEvent.fromElement) && (getClosestInstanceFromNode(reactEventType) || reactEventType[internalContainerInstanceKey]))
                 break a;
-              if (SyntheticEventCtor || reactName) {
-                reactName = nativeEventTarget.window === nativeEventTarget ? nativeEventTarget : (reactName = nativeEventTarget.ownerDocument) ? reactName.defaultView || reactName.parentWindow : window;
-                if (SyntheticEventCtor) {
-                  if (reactEventType = nativeEvent.relatedTarget || nativeEvent.toElement, SyntheticEventCtor = targetInst, reactEventType = reactEventType ? getClosestInstanceFromNode(reactEventType) : null, null !== reactEventType && (accumulateTargetOnly = getNearestMountedFiber(reactEventType), inCapturePhase = reactEventType.tag, reactEventType !== accumulateTargetOnly || 5 !== inCapturePhase && 27 !== inCapturePhase && 6 !== inCapturePhase))
-                    reactEventType = null;
-                } else SyntheticEventCtor = null, reactEventType = targetInst;
-                if (SyntheticEventCtor !== reactEventType) {
+              if (reactName || SyntheticEventCtor) {
+                reactEventType = nativeEventTarget.window === nativeEventTarget ? nativeEventTarget : (SyntheticEventCtor = nativeEventTarget.ownerDocument) ? SyntheticEventCtor.defaultView || SyntheticEventCtor.parentWindow : window;
+                if (reactName) {
+                  if (SyntheticEventCtor = nativeEvent.relatedTarget || nativeEvent.toElement, reactName = targetInst, SyntheticEventCtor = SyntheticEventCtor ? getClosestInstanceFromNode(SyntheticEventCtor) : null, null !== SyntheticEventCtor && (accumulateTargetOnly = getNearestMountedFiber(SyntheticEventCtor), inCapturePhase = SyntheticEventCtor.tag, SyntheticEventCtor !== accumulateTargetOnly || 5 !== inCapturePhase && 27 !== inCapturePhase && 6 !== inCapturePhase))
+                    SyntheticEventCtor = null;
+                } else reactName = null, SyntheticEventCtor = targetInst;
+                if (reactName !== SyntheticEventCtor) {
                   inCapturePhase = SyntheticMouseEvent;
                   _instance2 = "onMouseLeave";
                   reactEventName = "onMouseEnter";
                   instance = "mouse";
                   if ("pointerout" === domEventName || "pointerover" === domEventName)
                     inCapturePhase = SyntheticPointerEvent, _instance2 = "onPointerLeave", reactEventName = "onPointerEnter", instance = "pointer";
-                  accumulateTargetOnly = null == SyntheticEventCtor ? reactName : getNodeFromInstance(SyntheticEventCtor);
-                  lastHostComponent = null == reactEventType ? reactName : getNodeFromInstance(reactEventType);
-                  reactName = new inCapturePhase(
+                  accumulateTargetOnly = null == reactName ? reactEventType : getNodeFromInstance(reactName);
+                  lastHostComponent = null == SyntheticEventCtor ? reactEventType : getNodeFromInstance(SyntheticEventCtor);
+                  reactEventType = new inCapturePhase(
                     _instance2,
                     instance + "leave",
-                    SyntheticEventCtor,
+                    reactName,
                     nativeEvent,
                     nativeEventTarget
                   );
-                  reactName.target = accumulateTargetOnly;
-                  reactName.relatedTarget = lastHostComponent;
+                  reactEventType.target = accumulateTargetOnly;
+                  reactEventType.relatedTarget = lastHostComponent;
                   _instance2 = null;
                   getClosestInstanceFromNode(nativeEventTarget) === targetInst && (inCapturePhase = new inCapturePhase(
                     reactEventName,
                     instance + "enter",
-                    reactEventType,
+                    SyntheticEventCtor,
                     nativeEvent,
                     nativeEventTarget
                   ), inCapturePhase.target = lastHostComponent, inCapturePhase.relatedTarget = accumulateTargetOnly, _instance2 = inCapturePhase);
                   accumulateTargetOnly = _instance2;
-                  if (SyntheticEventCtor && reactEventType)
-                    b: {
-                      inCapturePhase = getParent;
-                      reactEventName = SyntheticEventCtor;
-                      instance = reactEventType;
-                      lastHostComponent = 0;
-                      for (_instance2 = reactEventName; _instance2; _instance2 = inCapturePhase(_instance2))
-                        lastHostComponent++;
-                      _instance2 = 0;
-                      for (var tempB = instance; tempB; tempB = inCapturePhase(tempB))
-                        _instance2++;
-                      for (; 0 < lastHostComponent - _instance2; )
-                        reactEventName = inCapturePhase(reactEventName), lastHostComponent--;
-                      for (; 0 < _instance2 - lastHostComponent; )
-                        instance = inCapturePhase(instance), _instance2--;
-                      for (; lastHostComponent--; ) {
-                        if (reactEventName === instance || null !== instance && reactEventName === instance.alternate) {
-                          inCapturePhase = reactEventName;
-                          break b;
-                        }
-                        reactEventName = inCapturePhase(reactEventName);
-                        instance = inCapturePhase(instance);
-                      }
-                      inCapturePhase = null;
-                    }
-                  else inCapturePhase = null;
-                  null !== SyntheticEventCtor && accumulateEnterLeaveListenersForEvent(
-                    dispatchQueue,
+                  inCapturePhase = reactName && SyntheticEventCtor ? getLowestCommonAncestor(
                     reactName,
                     SyntheticEventCtor,
+                    getParent
+                  ) : null;
+                  null !== reactName && accumulateEnterLeaveListenersForEvent(
+                    dispatchQueue,
+                    reactEventType,
+                    reactName,
                     inCapturePhase,
                     false
                   );
-                  null !== reactEventType && null !== accumulateTargetOnly && accumulateEnterLeaveListenersForEvent(
+                  null !== SyntheticEventCtor && null !== accumulateTargetOnly && accumulateEnterLeaveListenersForEvent(
                     dispatchQueue,
                     accumulateTargetOnly,
-                    reactEventType,
+                    SyntheticEventCtor,
                     inCapturePhase,
                     true
                   );
@@ -15242,7 +16378,6 @@ var require_react_dom_client_development = __commonJS({
                 break a;
               }
               handleEventFunc && handleEventFunc(domEventName, reactName, targetInst);
-              "focusout" === domEventName && targetInst && "number" === reactName.type && null != targetInst.memoizedProps.value && setDefaultValue(reactName, "number", reactName.value);
             }
             handleEventFunc = targetInst ? getNodeFromInstance(targetInst) : window;
             switch (domEventName) {
@@ -15395,9 +16530,18 @@ var require_react_dom_client_development = __commonJS({
       function warnForPropDifference(propName, serverValue, clientValue, serverDifferences) {
         serverValue !== clientValue && (clientValue = normalizeMarkupForTextOrAttribute(clientValue), normalizeMarkupForTextOrAttribute(serverValue) !== clientValue && (serverDifferences[propName] = serverValue));
       }
+      function hasViewTransition(htmlElement) {
+        return !!(htmlElement.getAttribute("vt-share") || htmlElement.getAttribute("vt-exit") || htmlElement.getAttribute("vt-enter") || htmlElement.getAttribute("vt-update"));
+      }
+      function isExpectedViewTransitionName(htmlElement) {
+        if (!hasViewTransition(htmlElement)) return false;
+        var expectedVtName = htmlElement.getAttribute("vt-name");
+        htmlElement = htmlElement.style["view-transition-name"];
+        return expectedVtName ? expectedVtName === htmlElement : htmlElement.startsWith("_T_");
+      }
       function warnForExtraAttributes(domElement, attributeNames, serverDifferences) {
         attributeNames.forEach(function(attributeName) {
-          serverDifferences[getPropNameFromAttributeName(attributeName)] = "style" === attributeName ? getStylesObjectFromElement(domElement) : domElement.getAttribute(attributeName);
+          "style" === attributeName ? "" !== domElement.getAttribute(attributeName) && (attributeName = domElement.style, (1 === attributeName.length && "view-transition-name" === attributeName[0] || 2 === attributeName.length && "view-transition-class" === attributeName[0] && "view-transition-name" === attributeName[1]) && isExpectedViewTransitionName(domElement) || (serverDifferences.style = getStylesObjectFromElement(domElement))) : serverDifferences[getPropNameFromAttributeName(attributeName)] = domElement.getAttribute(attributeName);
         });
       }
       function warnForInvalidEventListener(registrationName, listener) {
@@ -15438,6 +16582,7 @@ var require_react_dom_client_development = __commonJS({
               validateTextNesting(value, tag, false), "body" === tag || "textarea" === tag && "" === value || setTextContent(domElement, value);
             else if ("number" === typeof value || "bigint" === typeof value)
               validateTextNesting("" + value, tag, false), "body" !== tag && setTextContent(domElement, "" + value);
+            else return;
             break;
           case "className":
             setValueForKnownAttribute(domElement, "class", value);
@@ -15454,7 +16599,7 @@ var require_react_dom_client_development = __commonJS({
             break;
           case "style":
             setValueForStyles(domElement, value, prevValue);
-            break;
+            return;
           case "data":
             if ("object" !== tag) {
               setValueForKnownAttribute(domElement, "data", value);
@@ -15480,7 +16625,7 @@ var require_react_dom_client_development = __commonJS({
               break;
             }
             checkAttributeStringCoercion(value, key);
-            value = sanitizeURL("" + value);
+            value = sanitizeURL(value);
             domElement.setAttribute(key, value);
             break;
           case "action":
@@ -15556,18 +16701,18 @@ var require_react_dom_client_development = __commonJS({
               break;
             }
             checkAttributeStringCoercion(value, key);
-            value = sanitizeURL("" + value);
+            value = sanitizeURL(value);
             domElement.setAttribute(key, value);
             break;
           case "onClick":
             null != value && ("function" !== typeof value && warnForInvalidEventListener(key, value), domElement.onclick = noop$1);
-            break;
+            return;
           case "onScroll":
             null != value && ("function" !== typeof value && warnForInvalidEventListener(key, value), listenToNonDelegatedEvent("scroll", domElement));
-            break;
+            return;
           case "onScrollEnd":
             null != value && ("function" !== typeof value && warnForInvalidEventListener(key, value), listenToNonDelegatedEvent("scrollend", domElement));
-            break;
+            return;
           case "dangerouslySetInnerHTML":
             if (null != value) {
               if ("object" !== typeof value || !("__html" in value))
@@ -15580,7 +16725,7 @@ var require_react_dom_client_development = __commonJS({
                   throw Error(
                     "Can only set one of `children` or `props.dangerouslySetInnerHTML`."
                   );
-                domElement.innerHTML = key;
+                (null != prevValue ? prevValue.__html : void 0) !== key && (domElement.innerHTML = key);
               }
             }
             break;
@@ -15605,7 +16750,7 @@ var require_react_dom_client_development = __commonJS({
               break;
             }
             checkAttributeStringCoercion(value, key);
-            key = sanitizeURL("" + value);
+            key = sanitizeURL(value);
             domElement.setAttributeNS(xlinkNamespace, "xlink:href", key);
             break;
           case "contentEditable":
@@ -15616,7 +16761,7 @@ var require_react_dom_client_development = __commonJS({
           case "externalResourcesRequired":
           case "focusable":
           case "preserveAlpha":
-            null != value && "function" !== typeof value && "symbol" !== typeof value ? (checkAttributeStringCoercion(value, key), domElement.setAttribute(key, "" + value)) : domElement.removeAttribute(key);
+            null != value && "function" !== typeof value && "symbol" !== typeof value ? (checkAttributeStringCoercion(value, key), domElement.setAttribute(key, value)) : domElement.removeAttribute(key);
             break;
           case "inert":
             "" !== value || didWarnForNewBooleanPropsWithEmptyValue[key] || (didWarnForNewBooleanPropsWithEmptyValue[key] = true, console.error(
@@ -15627,6 +16772,7 @@ var require_react_dom_client_development = __commonJS({
           case "async":
           case "autoPlay":
           case "controls":
+          case "credentialless":
           case "default":
           case "defer":
           case "disabled":
@@ -15746,21 +16892,27 @@ var require_react_dom_client_development = __commonJS({
             break;
           case "innerText":
           case "textContent":
-            break;
+            return;
           case "popoverTarget":
             didWarnPopoverTargetObject || null == value || "object" !== typeof value || (didWarnPopoverTargetObject = true, console.error(
               "The `popoverTarget` prop expects the ID of an Element as a string. Received %s instead.",
               value
             ));
           default:
-            !(2 < key.length) || "o" !== key[0] && "O" !== key[0] || "n" !== key[1] && "N" !== key[1] ? (key = getAttributeAlias(key), setValueForAttribute(domElement, key, value)) : registrationNameDependencies.hasOwnProperty(key) && null != value && "function" !== typeof value && warnForInvalidEventListener(key, value);
+            if (!(2 < key.length) || "o" !== key[0] && "O" !== key[0] || "n" !== key[1] && "N" !== key[1])
+              key = getAttributeAlias(key), setValueForAttribute(domElement, key, value);
+            else {
+              registrationNameDependencies.hasOwnProperty(key) && null != value && "function" !== typeof value && warnForInvalidEventListener(key, value);
+              return;
+            }
         }
+        viewTransitionMutationContext = true;
       }
       function setPropOnCustomElement(domElement, tag, key, value, props, prevValue) {
         switch (key) {
           case "style":
             setValueForStyles(domElement, value, prevValue);
-            break;
+            return;
           case "dangerouslySetInnerHTML":
             if (null != value) {
               if ("object" !== typeof value || !("__html" in value))
@@ -15773,43 +16925,49 @@ var require_react_dom_client_development = __commonJS({
                   throw Error(
                     "Can only set one of `children` or `props.dangerouslySetInnerHTML`."
                   );
-                domElement.innerHTML = key;
+                (null != prevValue ? prevValue.__html : void 0) !== key && (domElement.innerHTML = key);
               }
             }
             break;
           case "children":
-            "string" === typeof value ? setTextContent(domElement, value) : ("number" === typeof value || "bigint" === typeof value) && setTextContent(domElement, "" + value);
+            if ("string" === typeof value) setTextContent(domElement, value);
+            else if ("number" === typeof value || "bigint" === typeof value)
+              setTextContent(domElement, "" + value);
+            else return;
             break;
           case "onScroll":
             null != value && ("function" !== typeof value && warnForInvalidEventListener(key, value), listenToNonDelegatedEvent("scroll", domElement));
-            break;
+            return;
           case "onScrollEnd":
             null != value && ("function" !== typeof value && warnForInvalidEventListener(key, value), listenToNonDelegatedEvent("scrollend", domElement));
-            break;
+            return;
           case "onClick":
             null != value && ("function" !== typeof value && warnForInvalidEventListener(key, value), domElement.onclick = noop$1);
-            break;
+            return;
           case "suppressContentEditableWarning":
           case "suppressHydrationWarning":
           case "innerHTML":
           case "ref":
-            break;
+            return;
           case "innerText":
           case "textContent":
-            break;
+            return;
           default:
             if (registrationNameDependencies.hasOwnProperty(key))
               null != value && "function" !== typeof value && warnForInvalidEventListener(key, value);
             else
               a: {
-                if ("o" === key[0] && "n" === key[1] && (props = key.endsWith("Capture"), tag = key.slice(2, props ? key.length - 7 : void 0), prevValue = domElement[internalPropsKey] || null, prevValue = null != prevValue ? prevValue[key] : null, "function" === typeof prevValue && domElement.removeEventListener(tag, prevValue, props), "function" === typeof value)) {
-                  "function" !== typeof prevValue && null !== prevValue && (key in domElement ? domElement[key] = null : domElement.hasAttribute(key) && domElement.removeAttribute(key));
-                  domElement.addEventListener(tag, value, props);
+                if ("o" === key[0] && "n" === key[1] && (props = key.endsWith("Capture"), prevValue = key.slice(2, props ? key.length - 7 : void 0), tag = domElement[internalPropsKey] || null, tag = null != tag ? tag[key] : null, "function" === typeof tag && domElement.removeEventListener(prevValue, tag, props), "function" === typeof value)) {
+                  "function" !== typeof tag && null !== tag && (key in domElement ? domElement[key] = null : domElement.hasAttribute(key) && domElement.removeAttribute(key));
+                  domElement.addEventListener(prevValue, value, props);
                   break a;
                 }
+                viewTransitionMutationContext = true;
                 key in domElement ? domElement[key] = value : true === value ? domElement.setAttribute(key, "") : setValueForAttribute(domElement, key, value);
               }
+            return;
         }
+        viewTransitionMutationContext = true;
       }
       function setInitialProperties(domElement, tag, props) {
         validatePropertiesInDevelopment(tag, props);
@@ -16085,21 +17243,27 @@ var require_react_dom_client_development = __commonJS({
               if (nextProps.hasOwnProperty(_propKey8) && (null != propKey || null != lastProp))
                 switch (_propKey8) {
                   case "type":
+                    propKey !== lastProp && (viewTransitionMutationContext = true);
                     type = propKey;
                     break;
                   case "name":
+                    propKey !== lastProp && (viewTransitionMutationContext = true);
                     name = propKey;
                     break;
                   case "checked":
+                    propKey !== lastProp && (viewTransitionMutationContext = true);
                     checked = propKey;
                     break;
                   case "defaultChecked":
+                    propKey !== lastProp && (viewTransitionMutationContext = true);
                     defaultChecked = propKey;
                     break;
                   case "value":
+                    propKey !== lastProp && (viewTransitionMutationContext = true);
                     value = propKey;
                     break;
                   case "defaultValue":
+                    propKey !== lastProp && (viewTransitionMutationContext = true);
                     defaultValue = propKey;
                     break;
                   case "children":
@@ -16162,13 +17326,15 @@ var require_react_dom_client_development = __commonJS({
               if (type = nextProps[name], lastDefaultValue = lastProps[name], nextProps.hasOwnProperty(name) && (null != type || null != lastDefaultValue))
                 switch (name) {
                   case "value":
+                    type !== lastDefaultValue && (viewTransitionMutationContext = true);
                     _propKey8 = type;
                     break;
                   case "defaultValue":
+                    type !== lastDefaultValue && (viewTransitionMutationContext = true);
                     defaultValue = type;
                     break;
                   case "multiple":
-                    value = type;
+                    type !== lastDefaultValue && (viewTransitionMutationContext = true), value = type;
                   default:
                     type !== lastDefaultValue && setProp(
                       domElement,
@@ -16200,9 +17366,11 @@ var require_react_dom_client_development = __commonJS({
               if (name = nextProps[value], type = lastProps[value], nextProps.hasOwnProperty(value) && (null != name || null != type))
                 switch (value) {
                   case "value":
+                    name !== type && (viewTransitionMutationContext = true);
                     _propKey8 = name;
                     break;
                   case "defaultValue":
+                    name !== type && (viewTransitionMutationContext = true);
                     propKey = name;
                     break;
                   case "children":
@@ -16239,6 +17407,7 @@ var require_react_dom_client_development = __commonJS({
               if (_propKey8 = nextProps[lastDefaultValue], propKey = lastProps[lastDefaultValue], nextProps.hasOwnProperty(lastDefaultValue) && _propKey8 !== propKey && (null != _propKey8 || null != propKey))
                 switch (lastDefaultValue) {
                   case "selected":
+                    _propKey8 !== propKey && (viewTransitionMutationContext = true);
                     domElement.selected = _propKey8 && "function" !== typeof _propKey8 && "symbol" !== typeof _propKey8;
                     break;
                   default:
@@ -16336,11 +17505,9 @@ var require_react_dom_client_development = __commonJS({
         }
       }
       function getStylesObjectFromElement(domElement) {
-        var serverValueInObjectForm = {};
-        domElement = domElement.style;
-        for (var i = 0; i < domElement.length; i++) {
-          var styleName = domElement[i];
-          serverValueInObjectForm[styleName] = domElement.getPropertyValue(styleName);
+        for (var serverValueInObjectForm = {}, style2 = domElement.style, i = 0; i < style2.length; i++) {
+          var styleName = style2[i];
+          "view-transition-name" === styleName && isExpectedViewTransitionName(domElement) || (serverValueInObjectForm[styleName] = style2.getPropertyValue(styleName));
         }
         return serverValueInObjectForm;
       }
@@ -16359,7 +17526,7 @@ var require_react_dom_client_development = __commonJS({
             }
           clientValue = clientValue || null;
           value$jscomp$0 = domElement.getAttribute("style");
-          value$jscomp$0 !== clientValue && (clientValue = normalizeMarkupForTextOrAttribute(clientValue), normalizeMarkupForTextOrAttribute(value$jscomp$0) !== clientValue && (serverDifferences.style = getStylesObjectFromElement(domElement)));
+          value$jscomp$0 !== clientValue && (clientValue = normalizeMarkupForTextOrAttribute(clientValue), value$jscomp$0 = normalizeMarkupForTextOrAttribute(value$jscomp$0), value$jscomp$0 === clientValue || ";" === value$jscomp$0[value$jscomp$0.length - 1] && hasViewTransition(domElement) || (serverDifferences.style = getStylesObjectFromElement(domElement)));
         }
       }
       function hydrateAttribute(domElement, propKey, attributeName, value, extraAttributes, serverDifferences) {
@@ -16482,6 +17649,14 @@ var require_react_dom_client_development = __commonJS({
             case "checked":
               break;
             case "selected":
+              break;
+            case "vt-name":
+            case "vt-update":
+            case "vt-enter":
+            case "vt-exit":
+            case "vt-share":
+            case "vt-parent-enter":
+            case "vt-parent-exit":
               break;
             default:
               extraAttributes.add(attributes[i].name);
@@ -16757,6 +17932,7 @@ var require_react_dom_client_development = __commonJS({
                   case "async":
                   case "autoPlay":
                   case "controls":
+                  case "credentialless":
                   case "default":
                   case "defer":
                   case "disabled":
@@ -17001,7 +18177,7 @@ var require_react_dom_client_development = __commonJS({
                       ) ? possibleStandardNames[attributeName] || null : null, null !== attributeName && attributeName !== value && (attributes = true, extraAttributes.delete(attributeName)), extraAttributes.delete(i));
                       a: if (attributeName = domElement, serverDifferences$jscomp$0 = i, i = propKey, isAttributeNameSafe(serverDifferences$jscomp$0))
                         if (attributeName.hasAttribute(serverDifferences$jscomp$0))
-                          attributeName = attributeName.getAttribute(
+                          attributeName = "nonce" === serverDifferences$jscomp$0.toLowerCase() ? attributeName.nonce : attributeName.getAttribute(
                             serverDifferences$jscomp$0
                           ), checkAttributeStringCoercion(
                             i,
@@ -17105,6 +18281,43 @@ var require_react_dom_client_development = __commonJS({
           }
         return parentNamespace === HostContextNamespaceSvg && "foreignObject" === type ? HostContextNamespaceNone : parentNamespace;
       }
+      function createHoistableInstance(type, props, rootContainerInstance, internalInstanceHandle) {
+        rootContainerInstance = getOwnerDocumentFromRootContainer(
+          rootContainerInstance
+        ).createElement(type);
+        rootContainerInstance[internalInstanceKey] = internalInstanceHandle;
+        rootContainerInstance[internalPropsKey] = props;
+        setInitialProperties(rootContainerInstance, type, props);
+        markNodeAsHoistable(rootContainerInstance);
+        return rootContainerInstance;
+      }
+      function isScriptDataBlock(props) {
+        props = props.type;
+        if ("string" !== typeof props || "" === props) return false;
+        props = props.toLowerCase();
+        if ("module" === props || "importmap" === props || "speculationrules" === props)
+          return false;
+        switch (props) {
+          case "application/ecmascript":
+          case "application/javascript":
+          case "application/x-ecmascript":
+          case "application/x-javascript":
+          case "text/ecmascript":
+          case "text/javascript":
+          case "text/javascript1.0":
+          case "text/javascript1.1":
+          case "text/javascript1.2":
+          case "text/javascript1.3":
+          case "text/javascript1.4":
+          case "text/javascript1.5":
+          case "text/jscript":
+          case "text/livescript":
+          case "text/x-ecmascript":
+          case "text/x-javascript":
+            return false;
+        }
+        return true;
+      }
       function shouldSetTextContent(type, props) {
         return "textarea" === type || "noscript" === type || "string" === typeof props.children || "number" === typeof props.children || "bigint" === typeof props.children || "object" === typeof props.dangerouslySetInnerHTML && null !== props.dangerouslySetInnerHTML && null != props.dangerouslySetInnerHTML.__html;
       }
@@ -17197,19 +18410,21 @@ var require_react_dom_client_development = __commonJS({
             } else if (node === SUSPENSE_START_DATA || node === SUSPENSE_PENDING_START_DATA || node === SUSPENSE_QUEUED_START_DATA || node === SUSPENSE_FALLBACK_START_DATA || node === ACTIVITY_START_DATA)
               depth++;
             else if (node === PREAMBLE_CONTRIBUTION_HTML)
-              releaseSingletonInstance(
+              clearSingletonPreambleContribution(
                 parentInstance.ownerDocument.documentElement
               );
             else if (node === PREAMBLE_CONTRIBUTION_HEAD) {
               node = parentInstance.ownerDocument.head;
-              releaseSingletonInstance(node);
+              clearSingletonPreambleContribution(node);
               for (var node$jscomp$0 = node.firstChild; node$jscomp$0; ) {
                 var nextNode$jscomp$0 = node$jscomp$0.nextSibling, nodeName = node$jscomp$0.nodeName;
                 node$jscomp$0[internalHoistableMarker] || "SCRIPT" === nodeName || "STYLE" === nodeName || "LINK" === nodeName && "stylesheet" === node$jscomp$0.rel.toLowerCase() || node.removeChild(node$jscomp$0);
                 node$jscomp$0 = nextNode$jscomp$0;
               }
             } else
-              node === PREAMBLE_CONTRIBUTION_BODY && releaseSingletonInstance(parentInstance.ownerDocument.body);
+              node === PREAMBLE_CONTRIBUTION_BODY && clearSingletonPreambleContribution(
+                parentInstance.ownerDocument.body
+              );
           node = nextNode;
         } while (node);
         retryIfBlockedOn(hydrationInstance);
@@ -17247,8 +18462,433 @@ var require_react_dom_client_development = __commonJS({
         props = void 0 !== props && null !== props && props.hasOwnProperty("display") ? props.display : null;
         instance.style.display = null == props || "boolean" === typeof props ? "" : ("" + props).trim();
       }
-      function unhideTextInstance(textInstance, text37) {
-        textInstance.nodeValue = text37;
+      function unhideTextInstance(textInstance, text39) {
+        textInstance.nodeValue = text39;
+      }
+      function warnForBlockInsideInline(instance) {
+        for (var nextNode = instance.firstChild; null != nextNode; ) {
+          if (1 === nextNode.nodeType && "block" === getComputedStyle(nextNode).display) {
+            var fiber = getInstanceFromNode(nextNode) || getInstanceFromNode(instance);
+            runWithFiberInDEV(
+              fiber,
+              function(parentTag, childTag) {
+                console.error(
+                  "You're about to start a <ViewTransition> around a display: inline element <%s>, which itself has a display: block element <%s> inside it. This might trigger a bug in Safari which causes the View Transition to be skipped with a duplicate name error.\nhttps://bugs.webkit.org/show_bug.cgi?id=290923",
+                  parentTag.toLocaleLowerCase(),
+                  childTag.toLocaleLowerCase()
+                );
+              },
+              instance.tagName,
+              nextNode.tagName
+            );
+            break;
+          }
+          if (null != nextNode.firstChild) nextNode = nextNode.firstChild;
+          else {
+            if (nextNode === instance) break;
+            for (; null == nextNode.nextSibling && null != nextNode.parentNode && nextNode.parentNode !== instance; )
+              nextNode = nextNode.parentNode;
+            nextNode = nextNode.nextSibling;
+          }
+        }
+      }
+      function applyViewTransitionName(instance, name, className) {
+        name = CSS.escape(name) !== name ? "r-" + btoa(name).replace(/=/g, "") : name;
+        instance.style.viewTransitionName = name;
+        null != className && (instance.style.viewTransitionClass = className);
+        className = getComputedStyle(instance);
+        if ("inline" === className.display) {
+          name = instance.getClientRects();
+          if (1 === name.length) var JSCompiler_inline_result = 1;
+          else
+            for (var i = JSCompiler_inline_result = 0; i < name.length; i++) {
+              var rect = name[i];
+              0 < rect.width && 0 < rect.height && JSCompiler_inline_result++;
+            }
+          1 === JSCompiler_inline_result ? (instance = instance.style, instance.display = 1 === name.length ? "inline-block" : "block", instance.marginTop = "-" + className.paddingTop, instance.marginBottom = "-" + className.paddingBottom) : warnForBlockInsideInline(instance);
+        }
+      }
+      function restoreViewTransitionName(instance, props) {
+        instance = instance.style;
+        props = props[STYLE];
+        var viewTransitionName = null != props ? props.hasOwnProperty("viewTransitionName") ? props.viewTransitionName : props.hasOwnProperty("view-transition-name") ? props["view-transition-name"] : null : null;
+        instance.viewTransitionName = null == viewTransitionName || "boolean" === typeof viewTransitionName ? "" : ("" + viewTransitionName).trim();
+        viewTransitionName = null != props ? props.hasOwnProperty("viewTransitionClass") ? props.viewTransitionClass : props.hasOwnProperty("view-transition-class") ? props["view-transition-class"] : null : null;
+        instance.viewTransitionClass = null == viewTransitionName || "boolean" === typeof viewTransitionName ? "" : ("" + viewTransitionName).trim();
+        "inline-block" === instance.display && (null == props ? instance.display = instance.margin = "" : (viewTransitionName = props.display, instance.display = null == viewTransitionName || "boolean" === typeof viewTransitionName ? "" : viewTransitionName, viewTransitionName = props.margin, null != viewTransitionName ? instance.margin = viewTransitionName : (viewTransitionName = props.hasOwnProperty("marginTop") ? props.marginTop : props["margin-top"], instance.marginTop = null == viewTransitionName || "boolean" === typeof viewTransitionName ? "" : viewTransitionName, props = props.hasOwnProperty("marginBottom") ? props.marginBottom : props["margin-bottom"], instance.marginBottom = null == props || "boolean" === typeof props ? "" : props)));
+      }
+      function createMeasurement(rect, computedStyle, element) {
+        element = element.ownerDocument.defaultView;
+        return {
+          rect,
+          abs: "absolute" === computedStyle.position || "fixed" === computedStyle.position,
+          clip: "none" !== computedStyle.clipPath || "visible" !== computedStyle.overflow || "none" !== computedStyle.filter || "none" !== computedStyle.mask || "none" !== computedStyle.mask || "0px" !== computedStyle.borderRadius,
+          view: 0 <= rect.bottom && 0 <= rect.right && rect.top <= element.innerHeight && rect.left <= element.innerWidth
+        };
+      }
+      function measureInstance(instance) {
+        var rect = instance.getBoundingClientRect(), computedStyle = getComputedStyle(instance);
+        return createMeasurement(rect, computedStyle, instance);
+      }
+      function measureClonedInstance(instance) {
+        var measuredRect = instance.getBoundingClientRect();
+        measuredRect = new DOMRect(
+          measuredRect.x + 2e4,
+          measuredRect.y + 2e4,
+          measuredRect.width,
+          measuredRect.height
+        );
+        var computedStyle = getComputedStyle(instance);
+        return createMeasurement(measuredRect, computedStyle, instance);
+      }
+      function customizeViewTransitionError(error, ignoreAbort) {
+        if ("object" === typeof error && null !== error)
+          switch (error.name) {
+            case "TimeoutError":
+              return Error(
+                "A ViewTransition timed out because a Navigation stalled. This can happen if a Navigation is blocked on React itself. Such as if it's resolved inside useEffect. This can be solved by moving the resolution to useLayoutEffect.",
+                { cause: error }
+              );
+            case "AbortError":
+              return ignoreAbort ? null : Error(
+                "A ViewTransition was aborted early. This might be because you have other View Transition libraries on the page and only one can run at a time. To avoid this, use only React's built-in <ViewTransition> to coordinate.",
+                { cause: error }
+              );
+            case "InvalidStateError":
+              if ("View transition was skipped because document visibility state is hidden." === error.message || "Skipping view transition because document visibility state has become hidden." === error.message || "Skipping view transition because viewport size changed." === error.message || "Transition was aborted because of invalid state" === error.message)
+                return null;
+          }
+        return error;
+      }
+      function forceLayout(ownerDocument) {
+        return ownerDocument.documentElement.clientHeight;
+      }
+      function waitForImageToLoad(resolve) {
+        this.addEventListener("load", resolve);
+        this.addEventListener("error", resolve);
+      }
+      function startViewTransition(suspendedState, rootContainer, transitionTypes, mutationCallback, layoutCallback, afterMutationCallback, spawnedWorkCallback, passiveCallback, errorCallback, blockedCallback, finishedAnimation) {
+        var ownerDocument = 9 === rootContainer.nodeType ? rootContainer : rootContainer.ownerDocument;
+        try {
+          var transition = ownerDocument.startViewTransition({
+            update: function() {
+              var ownerWindow = ownerDocument.defaultView, pendingNavigation = ownerWindow.navigation && ownerWindow.navigation.transition, previousFontLoadingStatus = ownerDocument.fonts.status;
+              mutationCallback();
+              var blockingPromises = [];
+              "loaded" === previousFontLoadingStatus && (forceLayout(ownerDocument), "loading" === ownerDocument.fonts.status && blockingPromises.push(ownerDocument.fonts.ready));
+              previousFontLoadingStatus = blockingPromises.length;
+              if (null !== suspendedState)
+                for (var suspenseyImages = suspendedState.suspenseyImages, imgBytes = 0, i = 0; i < suspenseyImages.length; i++) {
+                  var suspenseyImage = suspenseyImages[i];
+                  if (!suspenseyImage.complete) {
+                    var rect = suspenseyImage.getBoundingClientRect();
+                    if (0 < rect.bottom && 0 < rect.right && rect.top < ownerWindow.innerHeight && rect.left < ownerWindow.innerWidth) {
+                      imgBytes += estimateImageBytes(suspenseyImage);
+                      if (imgBytes > estimatedBytesWithinLimit) {
+                        blockingPromises.length = previousFontLoadingStatus;
+                        break;
+                      }
+                      suspenseyImage = new Promise(
+                        waitForImageToLoad.bind(suspenseyImage)
+                      );
+                      blockingPromises.push(suspenseyImage);
+                    }
+                  }
+                }
+              if (0 < blockingPromises.length)
+                return blockedCallback(
+                  0 < previousFontLoadingStatus ? blockingPromises.length > previousFontLoadingStatus ? "Waiting on Fonts and Images" : "Waiting on Fonts" : "Waiting on Images"
+                ), ownerWindow = Promise.race([
+                  Promise.all(blockingPromises),
+                  new Promise(function(resolve) {
+                    return setTimeout(
+                      resolve,
+                      SUSPENSEY_FONT_AND_IMAGE_TIMEOUT
+                    );
+                  })
+                ]).then(layoutCallback, layoutCallback), (pendingNavigation ? Promise.allSettled([
+                  pendingNavigation.finished,
+                  ownerWindow
+                ]) : ownerWindow).then(afterMutationCallback, afterMutationCallback);
+              layoutCallback();
+              if (pendingNavigation)
+                return pendingNavigation.finished.then(
+                  afterMutationCallback,
+                  afterMutationCallback
+                );
+              afterMutationCallback();
+            },
+            types: transitionTypes
+          });
+          ownerDocument.__reactViewTransition = transition;
+          var viewTransitionAnimations = [];
+          transition.ready.then(
+            function() {
+              for (var animations = ownerDocument.documentElement.getAnimations({
+                subtree: true
+              }), i = 0; i < animations.length; i++) {
+                var animation = animations[i], effect = animation.effect, pseudoElement = effect.pseudoElement;
+                if (null != pseudoElement && pseudoElement.startsWith("::view-transition")) {
+                  viewTransitionAnimations.push(animation);
+                  animation = effect.getKeyframes();
+                  for (var height = pseudoElement = void 0, unchangedDimensions = true, j = 0; j < animation.length; j++) {
+                    var keyframe = animation[j], w = keyframe.width;
+                    if (void 0 === pseudoElement) pseudoElement = w;
+                    else if (pseudoElement !== w) {
+                      unchangedDimensions = false;
+                      break;
+                    }
+                    w = keyframe.height;
+                    if (void 0 === height) height = w;
+                    else if (height !== w) {
+                      unchangedDimensions = false;
+                      break;
+                    }
+                    delete keyframe.width;
+                    delete keyframe.height;
+                    "none" === keyframe.transform && delete keyframe.transform;
+                  }
+                  unchangedDimensions && void 0 !== pseudoElement && void 0 !== height && (effect.setKeyframes(animation), unchangedDimensions = getComputedStyle(
+                    effect.target,
+                    effect.pseudoElement
+                  ), unchangedDimensions.width !== pseudoElement || unchangedDimensions.height !== height) && (unchangedDimensions = animation[0], unchangedDimensions.width = pseudoElement, unchangedDimensions.height = height, unchangedDimensions = animation[animation.length - 1], unchangedDimensions.width = pseudoElement, unchangedDimensions.height = height, effect.setKeyframes(animation));
+                }
+              }
+              spawnedWorkCallback();
+            },
+            function(error) {
+              ownerDocument.__reactViewTransition === transition && (ownerDocument.__reactViewTransition = null);
+              try {
+                error = customizeViewTransitionError(error, false), null !== error && errorCallback(error);
+              } finally {
+                mutationCallback(), layoutCallback(), spawnedWorkCallback(), finishedAnimation();
+              }
+            }
+          );
+          transition.finished.finally(function() {
+            for (var i = 0; i < viewTransitionAnimations.length; i++)
+              viewTransitionAnimations[i].cancel();
+            ownerDocument.__reactViewTransition === transition && (ownerDocument.__reactViewTransition = null);
+            finishedAnimation();
+            passiveCallback();
+          });
+          return transition;
+        } catch (x) {
+          return mutationCallback(), layoutCallback(), finishedAnimation(), spawnedWorkCallback(), null;
+        }
+      }
+      function ViewTransitionPseudoElement(pseudo, name) {
+        this._scope = document.documentElement;
+        this._selector = "::view-transition-" + pseudo + "(" + name + ")";
+      }
+      function createViewTransitionInstance(name) {
+        return {
+          name,
+          group: new ViewTransitionPseudoElement("group", name),
+          imagePair: new ViewTransitionPseudoElement("image-pair", name),
+          old: new ViewTransitionPseudoElement("old", name),
+          new: new ViewTransitionPseudoElement("new", name)
+        };
+      }
+      function FragmentInstance(fragmentFiber) {
+        this._fragmentFiber = fragmentFiber;
+        this._observers = this._eventListeners = null;
+      }
+      function addEventListenerToChild(child, type, listener, optionsOrUseCapture) {
+        getInstanceFromHostFiber(child).addEventListener(
+          type,
+          listener,
+          optionsOrUseCapture
+        );
+        return false;
+      }
+      function removeEventListenerFromChild(child, type, listener, optionsOrUseCapture) {
+        getInstanceFromHostFiber(child).removeEventListener(
+          type,
+          listener,
+          optionsOrUseCapture
+        );
+        return false;
+      }
+      function getAttachOptions(opts) {
+        return null != opts && "boolean" !== typeof opts && (true === opts.once || opts.signal instanceof AbortSignal) ? { capture: opts.capture, passive: opts.passive } : opts;
+      }
+      function normalizeListenerOptions(opts) {
+        return null == opts ? "c=0" : "boolean" === typeof opts ? "c=" + (opts ? "1" : "0") : "c=" + (opts.capture ? "1" : "0");
+      }
+      function indexOfEventListener(eventListeners, type, listener, optionsOrUseCapture) {
+        if (0 === eventListeners.length) return -1;
+        optionsOrUseCapture = normalizeListenerOptions(optionsOrUseCapture);
+        for (var i = 0; i < eventListeners.length; i++) {
+          var item2 = eventListeners[i];
+          if (item2.type === type && item2.listener === listener && normalizeListenerOptions(item2.optionsOrUseCapture) === optionsOrUseCapture)
+            return i;
+        }
+        return -1;
+      }
+      function setFocusOnFiberIfFocusable(fiber, focusOptions) {
+        if (6 === fiber.tag) return false;
+        fiber = getInstanceFromHostFiber(fiber);
+        return setFocusIfFocusable(fiber, focusOptions);
+      }
+      function collectChildren(child, collection) {
+        collection.push(child);
+        return false;
+      }
+      function blurActiveElementWithinFragment(child, activeElement2) {
+        if (6 === child.tag) return false;
+        child = getInstanceFromHostFiber(child);
+        return child === activeElement2 || child.contains(activeElement2) ? (activeElement2.blur(), true) : false;
+      }
+      function observeChild(child, observer) {
+        if (6 === child.tag) return false;
+        child = getInstanceFromHostFiber(child);
+        observer.observe(child);
+        return false;
+      }
+      function unobserveChild(child, observer) {
+        if (6 === child.tag) return false;
+        child = getInstanceFromHostFiber(child);
+        observer.unobserve(child);
+        return false;
+      }
+      function schedulePendingIntersectionUnobserve(fragmentInstance, observer, instance) {
+        pendingIntersectionUnobserves.push({
+          fragmentInstance,
+          observer,
+          instance
+        });
+        intersectionUnobserveScheduled || (intersectionUnobserveScheduled = true, requestPostPaintCallback(function() {
+          intersectionUnobserveScheduled = false;
+          var pending = pendingIntersectionUnobserves;
+          pendingIntersectionUnobserves = [];
+          for (var i = 0; i < pending.length; i++) {
+            var item2 = pending[i];
+            item2.observer.unobserve(item2.instance);
+          }
+        }));
+      }
+      function collectClientRects(child, rects) {
+        if (6 === child.tag) {
+          child = child.stateNode;
+          var range = child.ownerDocument.createRange();
+          range.selectNodeContents(child);
+          rects.push.apply(rects, range.getClientRects());
+        } else
+          child = getInstanceFromHostFiber(child), rects.push.apply(rects, child.getClientRects());
+        return false;
+      }
+      function validateDocumentPositionWithFiberTree(documentPosition, fragmentFiber, precedingBoundaryFiber, followingBoundaryFiber, otherNode) {
+        var otherFiber = getClosestInstanceFromNode(otherNode);
+        if (documentPosition & Node.DOCUMENT_POSITION_CONTAINED_BY) {
+          if (precedingBoundaryFiber = !!otherFiber)
+            a: {
+              for (; null !== otherFiber; ) {
+                if (7 === otherFiber.tag && (otherFiber === fragmentFiber || otherFiber.alternate === fragmentFiber)) {
+                  precedingBoundaryFiber = true;
+                  break a;
+                }
+                otherFiber = otherFiber.return;
+              }
+              precedingBoundaryFiber = false;
+            }
+          return precedingBoundaryFiber;
+        }
+        if (documentPosition & Node.DOCUMENT_POSITION_CONTAINS) {
+          if (null === otherFiber)
+            return otherFiber = otherNode.ownerDocument, otherNode === otherFiber || otherNode === otherFiber.documentElement || otherNode === otherFiber.body;
+          a: {
+            otherFiber = fragmentFiber;
+            for (fragmentFiber = getFragmentParentInstanceOrContainerFiber(fragmentFiber); null !== otherFiber; ) {
+              if (!(5 !== otherFiber.tag && 3 !== otherFiber.tag && 27 !== otherFiber.tag || otherFiber !== fragmentFiber && otherFiber.alternate !== fragmentFiber)) {
+                otherFiber = true;
+                break a;
+              }
+              otherFiber = otherFiber.return;
+            }
+            otherFiber = false;
+          }
+          return otherFiber;
+        }
+        return documentPosition & Node.DOCUMENT_POSITION_PRECEDING ? ((fragmentFiber = !!otherFiber) && !(fragmentFiber = otherFiber === precedingBoundaryFiber) && (fragmentFiber = getLowestCommonAncestor(
+          precedingBoundaryFiber,
+          otherFiber,
+          getParentForFragmentAncestors
+        ), null === fragmentFiber ? fragmentFiber = false : (traverseVisibleInstancesAndTextInstances(
+          fragmentFiber,
+          true,
+          isFiberPrecedingCheck,
+          otherFiber,
+          precedingBoundaryFiber
+        ), otherFiber = searchTarget, searchTarget = null, fragmentFiber = null !== otherFiber)), fragmentFiber) : documentPosition & Node.DOCUMENT_POSITION_FOLLOWING ? ((fragmentFiber = !!otherFiber) && !(fragmentFiber = otherFiber === followingBoundaryFiber) && (fragmentFiber = getLowestCommonAncestor(
+          followingBoundaryFiber,
+          otherFiber,
+          getParentForFragmentAncestors
+        ), null === fragmentFiber ? fragmentFiber = false : (traverseVisibleInstancesAndTextInstances(
+          fragmentFiber,
+          true,
+          isFiberFollowingCheck,
+          otherFiber,
+          followingBoundaryFiber
+        ), otherFiber = searchTarget, searchBoundary = searchTarget = null, fragmentFiber = null !== otherFiber)), fragmentFiber) : false;
+      }
+      function scrollTextNodeIntoView(textNode, resolvedAlignToTop) {
+        var range = textNode.ownerDocument.createRange();
+        range.selectNodeContents(textNode);
+        textNode = range.getBoundingClientRect();
+        window.scrollTo(
+          window.scrollX + textNode.left,
+          resolvedAlignToTop ? window.scrollY + textNode.top : window.scrollY + textNode.bottom - window.innerHeight
+        );
+      }
+      function addFragmentHandleToFiber(child, fragmentInstance) {
+        child = getInstanceFromHostFiber(child);
+        addFragmentHandleToInstance(child, fragmentInstance);
+        return false;
+      }
+      function addFragmentHandleToInstance(instance, fragmentInstance) {
+        null == instance.reactFragments && (instance.reactFragments = /* @__PURE__ */ new Set());
+        instance.reactFragments.add(fragmentInstance);
+      }
+      function commitNewChildToFragmentInstance(childInstance, fragmentInstance) {
+        var eventListeners = fragmentInstance._eventListeners;
+        if (null !== eventListeners)
+          for (var i$jscomp$0 = 0; i$jscomp$0 < eventListeners.length; i$jscomp$0++) {
+            var _eventListeners$i2 = eventListeners[i$jscomp$0];
+            childInstance.addEventListener(
+              _eventListeners$i2.type,
+              _eventListeners$i2.attachedListener,
+              getAttachOptions(_eventListeners$i2.optionsOrUseCapture)
+            );
+          }
+        3 !== childInstance.nodeType && (eventListeners = fragmentInstance._observers, null !== eventListeners && eventListeners.forEach(function(observer) {
+          for (var writeIdx = 0, i = 0; i < pendingIntersectionUnobserves.length; i++) {
+            var pending = pendingIntersectionUnobserves[i];
+            if (pending.fragmentInstance !== fragmentInstance || pending.observer !== observer || pending.instance !== childInstance)
+              pendingIntersectionUnobserves[writeIdx++] = pending;
+          }
+          pendingIntersectionUnobserves.length = writeIdx;
+          observer.observe(childInstance);
+        }), addFragmentHandleToInstance(childInstance, fragmentInstance));
+      }
+      function deleteChildFromFragmentInstance(childInstance, fragmentInstance) {
+        var eventListeners = fragmentInstance._eventListeners;
+        if (null !== eventListeners)
+          for (var i = 0; i < eventListeners.length; i++) {
+            var _eventListeners$i3 = eventListeners[i];
+            childInstance.removeEventListener(
+              _eventListeners$i3.type,
+              _eventListeners$i3.attachedListener,
+              getAttachOptions(_eventListeners$i3.optionsOrUseCapture)
+            );
+          }
+        3 !== childInstance.nodeType && (eventListeners = fragmentInstance._observers, null !== eventListeners && eventListeners.forEach(function(observer) {
+          "string" === typeof observer.rootMargin ? schedulePendingIntersectionUnobserve(
+            fragmentInstance,
+            observer,
+            childInstance
+          ) : observer.unobserve(childInstance);
+        }), null != childInstance.reactFragments && childInstance.reactFragments.delete(fragmentInstance));
       }
       function clearContainerSparingly(container) {
         var nextNode = container.firstChild;
@@ -17313,8 +18953,8 @@ var require_react_dom_client_development = __commonJS({
         }
         return null;
       }
-      function canHydrateTextInstance(instance, text37, inRootOrSingleton) {
-        if ("" === text37) return null;
+      function canHydrateTextInstance(instance, text39, inRootOrSingleton) {
+        if ("" === text39) return null;
         for (; 3 !== instance.nodeType; ) {
           if ((1 !== instance.nodeType || "INPUT" !== instance.nodeName || "hidden" !== instance.type) && !inRootOrSingleton)
             return null;
@@ -17377,8 +19017,8 @@ var require_react_dom_client_development = __commonJS({
         }
         return 8 === instance.nodeType ? instance.data === ACTIVITY_START_DATA ? { type: "Activity", props: {} } : { type: "Suspense", props: {} } : instance.nodeValue;
       }
-      function diffHydratedTextForDevWarnings(textInstance, text37, parentProps) {
-        return null === parentProps || true !== parentProps[SUPPRESS_HYDRATION_WARNING] ? (textInstance.nodeValue === text37 ? textInstance = null : (text37 = normalizeMarkupForTextOrAttribute(text37), textInstance = normalizeMarkupForTextOrAttribute(textInstance.nodeValue) === text37 ? null : textInstance.nodeValue), textInstance) : null;
+      function diffHydratedTextForDevWarnings(textInstance, text39, parentProps) {
+        return null === parentProps || true !== parentProps[SUPPRESS_HYDRATION_WARNING] ? (textInstance.nodeValue === text39 ? textInstance = null : (text39 = normalizeMarkupForTextOrAttribute(text39), textInstance = normalizeMarkupForTextOrAttribute(textInstance.nodeValue) === text39 ? null : textInstance.nodeValue), textInstance) : null;
       }
       function getNextHydratableInstanceAfterHydrationBoundary(hydrationInstance) {
         hydrationInstance = hydrationInstance.nextSibling;
@@ -17419,6 +19059,26 @@ var require_react_dom_client_development = __commonJS({
       }
       function commitHydratedSuspenseInstance(suspenseInstance) {
         retryIfBlockedOn(suspenseInstance);
+      }
+      function setFocusIfFocusable(node, focusOptions) {
+        function handleFocus() {
+          didFocus = true;
+        }
+        if (node.ownerDocument.activeElement === node) return true;
+        var didFocus = false;
+        try {
+          node.ownerDocument.addEventListener("focus", handleFocus, true), (node.focus || HTMLElement.prototype.focus).call(node, focusOptions);
+        } finally {
+          node.ownerDocument.removeEventListener("focus", handleFocus, true);
+        }
+        return didFocus;
+      }
+      function requestPostPaintCallback(callback) {
+        localRequestAnimationFrame(function() {
+          localRequestAnimationFrame(function(time) {
+            return callback(time);
+          });
+        });
       }
       function resolveSingletonInstance(type, props, rootContainerInstance, hostContext, validateDOMNestingDev) {
         validateDOMNestingDev && validateDOMNesting(type, hostContext.ancestorInfo);
@@ -17477,13 +19137,27 @@ var require_react_dom_client_development = __commonJS({
         instance[internalInstanceKey] = internalInstanceHandle;
         instance[internalPropsKey] = props;
       }
-      function releaseSingletonInstance(instance) {
+      function releaseSingletonInstance(instance, type, props) {
+        for (var propKey in props) {
+          var propValue = props[propKey];
+          props.hasOwnProperty(propKey) && null != propValue && setProp(instance, type, propKey, null, emptyProps, propValue);
+        }
+        null != props.dangerouslySetInnerHTML && (instance.textContent = "");
+        instance.onclick === noop$1 && (instance.onclick = null);
+        detachDeletedInstance(instance);
+      }
+      function clearSingletonPreambleContribution(instance) {
         for (var attributes = instance.attributes; attributes.length; )
           instance.removeAttributeNode(attributes[0]);
         detachDeletedInstance(instance);
       }
       function getHoistableRoot(container) {
-        return "function" === typeof container.getRootNode ? container.getRootNode() : 9 === container.nodeType ? container : container.ownerDocument;
+        if ("function" === typeof container.getRootNode) {
+          var rootNode = container.getRootNode();
+          if (9 === rootNode.nodeType || 11 === rootNode.nodeType)
+            return rootNode;
+        }
+        return 9 === container.nodeType ? container : container.ownerDocument;
       }
       function preconnectAs(rel, href, crossOrigin) {
         var ownerDocument = globalDocument;
@@ -17515,32 +19189,28 @@ var require_react_dom_client_development = __commonJS({
             if ("stylesheet" === pendingProps.rel && "string" === typeof pendingProps.href && "string" === typeof pendingProps.precedence) {
               type = getStyleKey(pendingProps.href);
               var _styles = getResourcesFromRoot(resourceRoot).hoistableStyles, _resource = _styles.get(type);
-              if (!_resource && (resourceRoot = resourceRoot.ownerDocument || resourceRoot, _resource = {
+              _resource || (resourceRoot = resourceRoot.ownerDocument || resourceRoot, _resource = {
                 type: "stylesheet",
                 instance: null,
                 count: 0,
                 state: { loading: NotLoaded, preload: null }
               }, _styles.set(type, _resource), (_styles = resourceRoot.querySelector(
                 getStylesheetSelectorFromKey(type)
-              )) && !_styles._p && (_resource.instance = _styles, _resource.state.loading = Loaded | Inserted), !preloadPropsMap.has(type))) {
-                var preloadProps = {
-                  rel: "preload",
-                  as: "style",
-                  href: pendingProps.href,
-                  crossOrigin: pendingProps.crossOrigin,
-                  integrity: pendingProps.integrity,
-                  media: pendingProps.media,
-                  hrefLang: pendingProps.hrefLang,
-                  referrerPolicy: pendingProps.referrerPolicy
-                };
-                preloadPropsMap.set(type, preloadProps);
-                _styles || preloadStylesheet(
-                  resourceRoot,
-                  type,
-                  preloadProps,
-                  _resource.state
-                );
-              }
+              )) ? _styles._p || (_resource.instance = _styles, _resource.state.loading = Loaded | Inserted) : (_styles = preloadPropsMap.get(type), _styles || (_styles = {
+                rel: "preload",
+                as: "style",
+                href: pendingProps.href,
+                crossOrigin: pendingProps.crossOrigin,
+                integrity: pendingProps.integrity,
+                media: pendingProps.media,
+                hrefLang: pendingProps.hrefLang,
+                referrerPolicy: pendingProps.referrerPolicy
+              }, preloadPropsMap.set(type, _styles)), preloadStylesheet(
+                resourceRoot,
+                type,
+                _styles,
+                _resource.state
+              )));
               if (currentProps && null === currentResource)
                 throw pendingProps = "\n\n  - " + describeLinkForResourceErrorDEV(currentProps) + "\n  + " + describeLinkForResourceErrorDEV(pendingProps), Error(
                   "Expected <link> not to update to be updated to a stylesheet with precedence. Check the `rel`, `href`, and `precedence` props of this component. Alternatively, check whether two different <link> components render in the same slot or share the same key." + pendingProps
@@ -17586,13 +19256,22 @@ var require_react_dom_client_development = __commonJS({
         });
       }
       function preloadStylesheet(ownerDocument, key, preloadProps, state) {
-        ownerDocument.querySelector(
+        if (key = ownerDocument.querySelector(
           'link[rel="preload"][as="style"][' + key + "]"
-        ) ? state.loading = Loaded : (key = ownerDocument.createElement("link"), state.preload = key, key.addEventListener("load", function() {
+        )) {
+          if (true !== key[internalLoadPendingKey]) {
+            state.loading = Loaded;
+            return;
+          }
+        } else
+          key = ownerDocument.createElement("link"), key[internalLoadPendingKey] = true, key.onload = key.onerror = clearPendingLoadOnNode.bind(null, key), setInitialProperties(key, "link", preloadProps), markNodeAsHoistable(key), ownerDocument.head.appendChild(key);
+        state.preload = key;
+        key.addEventListener("load", function() {
           return state.loading |= Loaded;
-        }), key.addEventListener("error", function() {
+        });
+        key.addEventListener("error", function() {
           return state.loading |= Errored;
-        }), setInitialProperties(key, "link", preloadProps), markNodeAsHoistable(key), ownerDocument.head.appendChild(key));
+        });
       }
       function getScriptKey(src) {
         return '[src="' + escapeSelectorAttributeValueInsideDoubleQuotes(src) + '"]';
@@ -17791,8 +19470,17 @@ var require_react_dom_client_development = __commonJS({
         }
         return false;
       }
+      function maySuspendCommit(type, props) {
+        return "img" === type && null != props.src && "" !== props.src && null == props.onLoad && "lazy" !== props.loading;
+      }
       function preloadResource(resource) {
         return "stylesheet" === resource.type && (resource.state.loading & Settled) === NotLoaded ? false : true;
+      }
+      function estimateImageBytes(instance) {
+        return (instance.width || 100) * (instance.height || 100) * ("number" === typeof devicePixelRatio ? devicePixelRatio : 1) * 0.25;
+      }
+      function suspendInstance(state, instance) {
+        "function" === typeof instance.decode && (state.imgCount++, instance.complete || (state.imgBytes += estimateImageBytes(instance), state.suspenseyImages.push(instance)), state = onUnsuspendImg.bind(state), instance.decode().then(state, state));
       }
       function suspendResource(state, hoistableRoot, resource, props) {
         if ("stylesheet" === resource.type && ("string" !== typeof props.media || false !== matchMedia(props.media).matches) && (resource.state.loading & Inserted) === NotLoaded) {
@@ -17857,17 +19545,24 @@ var require_react_dom_client_development = __commonJS({
           };
         } : null;
       }
-      function onUnsuspend() {
-        this.count--;
-        if (0 === this.count && (0 === this.imgCount || !this.waitingForImages)) {
-          if (this.stylesheets)
-            insertSuspendedStylesheets(this, this.stylesheets);
-          else if (this.unsuspend) {
-            var unsuspend = this.unsuspend;
-            this.unsuspend = null;
+      function checkIfFullyUnsuspended(state) {
+        if (0 === state.count && (0 === state.imgCount || !state.waitingForImages)) {
+          if (state.stylesheets)
+            insertSuspendedStylesheets(state, state.stylesheets);
+          else if (state.unsuspend) {
+            var unsuspend = state.unsuspend;
+            state.unsuspend = null;
             unsuspend();
           }
         }
+      }
+      function onUnsuspend() {
+        this.count--;
+        checkIfFullyUnsuspended(this);
+      }
+      function onUnsuspendImg() {
+        this.imgCount--;
+        checkIfFullyUnsuspended(this);
       }
       function insertSuspendedStylesheets(state, resources) {
         state.stylesheets = null;
@@ -17920,6 +19615,7 @@ var require_react_dom_client_development = __commonJS({
         this.pooledCache = null;
         this.pooledCacheLanes = 0;
         this.formState = formState;
+        this.transitionTypes = null;
         this.incompleteTransitions = /* @__PURE__ */ new Map();
         this.passiveEffectDuration = this.effectDuration = -0;
         this.memoizedUpdaters = /* @__PURE__ */ new Set();
@@ -18166,7 +19862,6 @@ var require_react_dom_client_development = __commonJS({
           case "pointerup":
           case "ratechange":
           case "reset":
-          case "resize":
           case "seeked":
           case "submit":
           case "toggle":
@@ -18185,6 +19880,7 @@ var require_react_dom_client_development = __commonJS({
           case "beforeinput":
           case "blur":
           case "fullscreenchange":
+          case "fullscreenerror":
           case "focus":
           case "hashchange":
           case "popstate":
@@ -18202,6 +19898,7 @@ var require_react_dom_client_development = __commonJS({
           case "pointermove":
           case "pointerout":
           case "pointerover":
+          case "resize":
           case "scroll":
           case "touchmove":
           case "wheel":
@@ -18517,14 +20214,11 @@ var require_react_dom_client_development = __commonJS({
         ));
       }
       "undefined" !== typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ && "function" === typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart && __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(Error());
-      var Scheduler = require_scheduler(), React3 = require_react(), ReactDOM = require_react_dom(), assign = Object.assign, REACT_LEGACY_ELEMENT_TYPE = /* @__PURE__ */ Symbol.for("react.element"), REACT_ELEMENT_TYPE = /* @__PURE__ */ Symbol.for("react.transitional.element"), REACT_PORTAL_TYPE = /* @__PURE__ */ Symbol.for("react.portal"), REACT_FRAGMENT_TYPE = /* @__PURE__ */ Symbol.for("react.fragment"), REACT_STRICT_MODE_TYPE = /* @__PURE__ */ Symbol.for("react.strict_mode"), REACT_PROFILER_TYPE = /* @__PURE__ */ Symbol.for("react.profiler"), REACT_CONSUMER_TYPE = /* @__PURE__ */ Symbol.for("react.consumer"), REACT_CONTEXT_TYPE = /* @__PURE__ */ Symbol.for("react.context"), REACT_FORWARD_REF_TYPE = /* @__PURE__ */ Symbol.for("react.forward_ref"), REACT_SUSPENSE_TYPE = /* @__PURE__ */ Symbol.for("react.suspense"), REACT_SUSPENSE_LIST_TYPE = /* @__PURE__ */ Symbol.for("react.suspense_list"), REACT_MEMO_TYPE = /* @__PURE__ */ Symbol.for("react.memo"), REACT_LAZY_TYPE = /* @__PURE__ */ Symbol.for("react.lazy");
+      var Scheduler = require_scheduler(), React4 = require_react(), ReactDOM = require_react_dom(), searchTarget = null, searchBoundary = null, assign = Object.assign, REACT_LEGACY_ELEMENT_TYPE = /* @__PURE__ */ Symbol.for("react.element"), REACT_ELEMENT_TYPE = /* @__PURE__ */ Symbol.for("react.transitional.element"), REACT_PORTAL_TYPE = /* @__PURE__ */ Symbol.for("react.portal"), REACT_FRAGMENT_TYPE = /* @__PURE__ */ Symbol.for("react.fragment"), REACT_STRICT_MODE_TYPE = /* @__PURE__ */ Symbol.for("react.strict_mode"), REACT_PROFILER_TYPE = /* @__PURE__ */ Symbol.for("react.profiler"), REACT_CONSUMER_TYPE = /* @__PURE__ */ Symbol.for("react.consumer"), REACT_CONTEXT_TYPE = /* @__PURE__ */ Symbol.for("react.context"), REACT_FORWARD_REF_TYPE = /* @__PURE__ */ Symbol.for("react.forward_ref"), REACT_SUSPENSE_TYPE = /* @__PURE__ */ Symbol.for("react.suspense"), REACT_SUSPENSE_LIST_TYPE = /* @__PURE__ */ Symbol.for("react.suspense_list"), REACT_MEMO_TYPE = /* @__PURE__ */ Symbol.for("react.memo"), REACT_LAZY_TYPE = /* @__PURE__ */ Symbol.for("react.lazy");
       /* @__PURE__ */ Symbol.for("react.scope");
-      var REACT_ACTIVITY_TYPE = /* @__PURE__ */ Symbol.for("react.activity");
-      /* @__PURE__ */ Symbol.for("react.legacy_hidden");
+      var REACT_ACTIVITY_TYPE = /* @__PURE__ */ Symbol.for("react.activity"), REACT_LEGACY_HIDDEN_TYPE = /* @__PURE__ */ Symbol.for("react.legacy_hidden");
       /* @__PURE__ */ Symbol.for("react.tracing_marker");
-      var REACT_MEMO_CACHE_SENTINEL = /* @__PURE__ */ Symbol.for("react.memo_cache_sentinel");
-      /* @__PURE__ */ Symbol.for("react.view_transition");
-      var MAYBE_ITERATOR_SYMBOL = Symbol.iterator, REACT_CLIENT_REFERENCE = /* @__PURE__ */ Symbol.for("react.client.reference"), isArrayImpl = Array.isArray, ReactSharedInternals = React3.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, ReactDOMSharedInternals = ReactDOM.__DOM_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, NotPending = Object.freeze({
+      var REACT_MEMO_CACHE_SENTINEL = /* @__PURE__ */ Symbol.for("react.memo_cache_sentinel"), REACT_VIEW_TRANSITION_TYPE = /* @__PURE__ */ Symbol.for("react.view_transition"), REACT_RECOVERABLE_TYPE = /* @__PURE__ */ Symbol.for("react.recoverable"), MAYBE_ITERATOR_SYMBOL = Symbol.iterator, REACT_CLIENT_REFERENCE = /* @__PURE__ */ Symbol.for("react.client.reference"), isArrayImpl = Array.isArray, ReactSharedInternals = React4.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, ReactDOMSharedInternals = ReactDOM.__DOM_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, NotPending = Object.freeze({
         pending: false,
         data: null,
         method: null,
@@ -18535,7 +20229,7 @@ var require_react_dom_client_development = __commonJS({
       disabledLog.__reactDisabledLog = true;
       var prefix, suffix, reentry = false;
       var componentFrameCache = new ("function" === typeof WeakMap ? WeakMap : Map)();
-      var current = null, isRendering = false, hasOwnProperty = Object.prototype.hasOwnProperty, scheduleCallback$3 = Scheduler.unstable_scheduleCallback, cancelCallback$1 = Scheduler.unstable_cancelCallback, shouldYield = Scheduler.unstable_shouldYield, requestPaint = Scheduler.unstable_requestPaint, now$1 = Scheduler.unstable_now, getCurrentPriorityLevel = Scheduler.unstable_getCurrentPriorityLevel, ImmediatePriority = Scheduler.unstable_ImmediatePriority, UserBlockingPriority = Scheduler.unstable_UserBlockingPriority, NormalPriority$1 = Scheduler.unstable_NormalPriority, LowPriority = Scheduler.unstable_LowPriority, IdlePriority = Scheduler.unstable_IdlePriority, log$1 = Scheduler.log, unstable_setDisableYieldValue = Scheduler.unstable_setDisableYieldValue, rendererID = null, injectedHook = null, hasLoggedError = false, isDevToolsPresent = "undefined" !== typeof __REACT_DEVTOOLS_GLOBAL_HOOK__, clz32 = Math.clz32 ? Math.clz32 : clz32Fallback, log = Math.log, LN2 = Math.LN2, nextTransitionUpdateLane = 256, nextTransitionDeferredLane = 262144, nextRetryLane = 4194304, DiscreteEventPriority = 2, ContinuousEventPriority = 8, DefaultEventPriority = 32, IdleEventPriority = 268435456, randomKey = Math.random().toString(36).slice(2), internalInstanceKey = "__reactFiber$" + randomKey, internalPropsKey = "__reactProps$" + randomKey, internalContainerInstanceKey = "__reactContainer$" + randomKey, internalEventHandlersKey = "__reactEvents$" + randomKey, internalEventHandlerListenersKey = "__reactListeners$" + randomKey, internalEventHandlesSetKey = "__reactHandles$" + randomKey, internalRootNodeResourcesKey = "__reactResources$" + randomKey, internalHoistableMarker = "__reactMarker$" + randomKey, allNativeEvents = /* @__PURE__ */ new Set(), registrationNameDependencies = {}, possibleRegistrationNames = {}, hasReadOnlyValue = {
+      var current = null, isRendering = false, hasOwnProperty = Object.prototype.hasOwnProperty, scheduleCallback$3 = Scheduler.unstable_scheduleCallback, cancelCallback$1 = Scheduler.unstable_cancelCallback, shouldYield = Scheduler.unstable_shouldYield, requestPaint = Scheduler.unstable_requestPaint, now$1 = Scheduler.unstable_now, getCurrentPriorityLevel = Scheduler.unstable_getCurrentPriorityLevel, ImmediatePriority = Scheduler.unstable_ImmediatePriority, UserBlockingPriority = Scheduler.unstable_UserBlockingPriority, NormalPriority$1 = Scheduler.unstable_NormalPriority, LowPriority = Scheduler.unstable_LowPriority, IdlePriority = Scheduler.unstable_IdlePriority, log$1 = Scheduler.log, unstable_setDisableYieldValue = Scheduler.unstable_setDisableYieldValue, rendererID = null, injectedHook = null, hasLoggedError = false, isDevToolsPresent = "undefined" !== typeof __REACT_DEVTOOLS_GLOBAL_HOOK__, clz32 = Math.clz32 ? Math.clz32 : clz32Fallback, log = Math.log, LN2 = Math.LN2, nextTransitionUpdateLane = 256, nextTransitionDeferredLane = 262144, nextRetryLane = 4194304, DiscreteEventPriority = 2, ContinuousEventPriority = 8, DefaultEventPriority = 32, IdleEventPriority = 268435456, randomKey = Math.random().toString(36).slice(2), internalInstanceKey = "__reactFiber$" + randomKey, internalPropsKey = "__reactProps$" + randomKey, internalContainerInstanceKey = "__reactContainer$" + randomKey, internalEventHandlersKey = "__reactEvents$" + randomKey, internalEventHandlerListenersKey = "__reactListeners$" + randomKey, internalEventHandlesSetKey = "__reactHandles$" + randomKey, internalRootNodeResourcesKey = "__reactResources$" + randomKey, internalHoistableMarker = "__reactMarker$" + randomKey, internalLoadPendingKey = "__reactLoad$" + randomKey, allNativeEvents = /* @__PURE__ */ new Set(), registrationNameDependencies = {}, possibleRegistrationNames = {}, hasReadOnlyValue = {
         button: true,
         checkbox: true,
         image: true,
@@ -18545,11 +20239,11 @@ var require_react_dom_client_development = __commonJS({
         submit: true
       }, VALID_ATTRIBUTE_NAME_REGEX = RegExp(
         "^[:A-Z_a-z\\u00C0-\\u00D6\\u00D8-\\u00F6\\u00F8-\\u02FF\\u0370-\\u037D\\u037F-\\u1FFF\\u200C-\\u200D\\u2070-\\u218F\\u2C00-\\u2FEF\\u3001-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFFD][:A-Z_a-z\\u00C0-\\u00D6\\u00D8-\\u00F6\\u00F8-\\u02FF\\u0370-\\u037D\\u037F-\\u1FFF\\u200C-\\u200D\\u2070-\\u218F\\u2C00-\\u2FEF\\u3001-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFFD\\-.0-9\\u00B7\\u0300-\\u036F\\u203F-\\u2040]*$"
-      ), illegalAttributeNameCache = {}, validatedAttributeNameCache = {}, escapeSelectorAttributeValueInsideDoubleQuotesRegex = /[\n"\\]/g, didWarnValueDefaultValue$1 = false, didWarnCheckedDefaultChecked = false, didWarnSelectedSetOnOption = false, didWarnInvalidChild = false, didWarnInvalidInnerHTML = false;
+      ), illegalAttributeNameCache = {}, validatedAttributeNameCache = {}, viewTransitionMutationContext = false, escapeSelectorAttributeValueInsideDoubleQuotesRegex = /[\n"\\]/g, didWarnValueDefaultValue$1 = false, didWarnCheckedDefaultChecked = false, didWarnSelectedSetOnOption = false, didWarnInvalidChild = false, didWarnInvalidInnerHTML = false;
       var didWarnValueDefaultValue = false;
       var valuePropNames = ["value", "defaultValue"], didWarnValDefaultVal = false, needsEscaping = /["'&<>\n\t]|^\s|\s$/, specialTags = "address applet area article aside base basefont bgsound blockquote body br button caption center col colgroup dd details dir div dl dt embed fieldset figcaption figure footer form frame frameset h1 h2 h3 h4 h5 h6 head header hgroup hr html iframe img input isindex li link listing main marquee menu menuitem meta nav noembed noframes noscript object ol p param plaintext pre script section select source style summary table tbody td template textarea tfoot th thead title tr track ul wbr xmp".split(
         " "
-      ), inScopeTags = "applet caption html table td th marquee object template foreignObject desc title".split(
+      ), inScopeTags = "applet caption html table td th marquee object select template foreignObject desc title".split(
         " "
       ), buttonScopeTags = inScopeTags.concat(["button"]), impliedEndTags = "dd dt li option optgroup p rp rt".split(" "), emptyAncestorInfoDev = {
         current: null,
@@ -18573,6 +20267,10 @@ var require_react_dom_client_development = __commonJS({
         border: "borderBottomColor borderBottomStyle borderBottomWidth borderImageOutset borderImageRepeat borderImageSlice borderImageSource borderImageWidth borderLeftColor borderLeftStyle borderLeftWidth borderRightColor borderRightStyle borderRightWidth borderTopColor borderTopStyle borderTopWidth".split(
           " "
         ),
+        borderBlock: "borderBlockEndColor borderBlockEndStyle borderBlockEndWidth borderBlockStartColor borderBlockStartStyle borderBlockStartWidth".split(
+          " "
+        ),
+        borderBlockColor: ["borderBlockEndColor", "borderBlockStartColor"],
         borderBlockEnd: [
           "borderBlockEndColor",
           "borderBlockEndStyle",
@@ -18583,6 +20281,8 @@ var require_react_dom_client_development = __commonJS({
           "borderBlockStartStyle",
           "borderBlockStartWidth"
         ],
+        borderBlockStyle: ["borderBlockEndStyle", "borderBlockStartStyle"],
+        borderBlockWidth: ["borderBlockEndWidth", "borderBlockStartWidth"],
         borderBottom: [
           "borderBottomColor",
           "borderBottomStyle",
@@ -18601,6 +20301,10 @@ var require_react_dom_client_development = __commonJS({
           "borderImageSource",
           "borderImageWidth"
         ],
+        borderInline: "borderInlineEndColor borderInlineEndStyle borderInlineEndWidth borderInlineStartColor borderInlineStartStyle borderInlineStartWidth".split(
+          " "
+        ),
+        borderInlineColor: ["borderInlineEndColor", "borderInlineStartColor"],
         borderInlineEnd: [
           "borderInlineEndColor",
           "borderInlineEndStyle",
@@ -18611,6 +20315,8 @@ var require_react_dom_client_development = __commonJS({
           "borderInlineStartStyle",
           "borderInlineStartWidth"
         ],
+        borderInlineStyle: ["borderInlineEndStyle", "borderInlineStartStyle"],
+        borderInlineWidth: ["borderInlineEndWidth", "borderInlineStartWidth"],
         borderLeft: ["borderLeftColor", "borderLeftStyle", "borderLeftWidth"],
         borderRadius: [
           "borderBottomLeftRadius",
@@ -18636,13 +20342,25 @@ var require_react_dom_client_development = __commonJS({
           "borderRightWidth",
           "borderTopWidth"
         ],
+        colorAdjust: ["printColorAdjust"],
         columnRule: ["columnRuleColor", "columnRuleStyle", "columnRuleWidth"],
         columns: ["columnCount", "columnWidth"],
+        containIntrinsicSize: [
+          "containIntrinsicHeight",
+          "containIntrinsicWidth"
+        ],
+        container: ["containerName", "containerType"],
         flex: ["flexBasis", "flexGrow", "flexShrink"],
         flexFlow: ["flexDirection", "flexWrap"],
         font: "fontFamily fontFeatureSettings fontKerning fontLanguageOverride fontSize fontSizeAdjust fontStretch fontStyle fontVariant fontVariantAlternates fontVariantCaps fontVariantEastAsian fontVariantLigatures fontVariantNumeric fontVariantPosition fontWeight lineHeight".split(
           " "
         ),
+        fontSynthesis: [
+          "fontSynthesisPosition",
+          "fontSynthesisSmallCaps",
+          "fontSynthesisStyle",
+          "fontSynthesisWeight"
+        ],
         fontVariant: "fontVariantAlternates fontVariantCaps fontVariantEastAsian fontVariantLigatures fontVariantNumeric fontVariantPosition".split(
           " "
         ),
@@ -18666,31 +20384,79 @@ var require_react_dom_client_development = __commonJS({
           "gridTemplateColumns",
           "gridTemplateRows"
         ],
+        inset: ["bottom", "left", "right", "top"],
+        insetBlock: ["insetBlockEnd", "insetBlockStart"],
+        insetInline: ["insetInlineEnd", "insetInlineStart"],
         listStyle: ["listStyleImage", "listStylePosition", "listStyleType"],
         margin: ["marginBottom", "marginLeft", "marginRight", "marginTop"],
+        marginBlock: ["marginBlockEnd", "marginBlockStart"],
+        marginInline: ["marginInlineEnd", "marginInlineStart"],
         marker: ["markerEnd", "markerMid", "markerStart"],
         mask: "maskClip maskComposite maskImage maskMode maskOrigin maskPositionX maskPositionY maskRepeat maskSize".split(
           " "
         ),
         maskPosition: ["maskPositionX", "maskPositionY"],
+        offset: [
+          "offsetAnchor",
+          "offsetDistance",
+          "offsetPath",
+          "offsetPosition",
+          "offsetRotate"
+        ],
         outline: ["outlineColor", "outlineStyle", "outlineWidth"],
         overflow: ["overflowX", "overflowY"],
+        overscrollBehavior: ["overscrollBehaviorX", "overscrollBehaviorY"],
         padding: ["paddingBottom", "paddingLeft", "paddingRight", "paddingTop"],
+        paddingBlock: ["paddingBlockEnd", "paddingBlockStart"],
+        paddingInline: ["paddingInlineEnd", "paddingInlineStart"],
+        pageBreakAfter: ["breakAfter"],
+        pageBreakBefore: ["breakBefore"],
+        pageBreakInside: ["breakInside"],
         placeContent: ["alignContent", "justifyContent"],
         placeItems: ["alignItems", "justifyItems"],
         placeSelf: ["alignSelf", "justifySelf"],
+        scrollMargin: [
+          "scrollMarginBottom",
+          "scrollMarginLeft",
+          "scrollMarginRight",
+          "scrollMarginTop"
+        ],
+        scrollMarginBlock: ["scrollMarginBlockEnd", "scrollMarginBlockStart"],
+        scrollMarginInline: [
+          "scrollMarginInlineEnd",
+          "scrollMarginInlineStart"
+        ],
+        scrollPadding: [
+          "scrollPaddingBottom",
+          "scrollPaddingLeft",
+          "scrollPaddingRight",
+          "scrollPaddingTop"
+        ],
+        scrollPaddingBlock: [
+          "scrollPaddingBlockEnd",
+          "scrollPaddingBlockStart"
+        ],
+        scrollPaddingInline: [
+          "scrollPaddingInlineEnd",
+          "scrollPaddingInlineStart"
+        ],
         textDecoration: [
           "textDecorationColor",
           "textDecorationLine",
-          "textDecorationStyle"
+          "textDecorationStyle",
+          "textDecorationThickness"
         ],
         textEmphasis: ["textEmphasisColor", "textEmphasisStyle"],
+        textWrap: ["textWrapMode", "textWrapStyle"],
         transition: [
+          "transitionBehavior",
           "transitionDelay",
           "transitionDuration",
           "transitionProperty",
           "transitionTimingFunction"
         ],
+        verticalAlign: ["alignmentBaseline", "baselineShift", "baselineSource"],
+        whiteSpace: ["textWrapMode", "whiteSpaceCollapse"],
         wordWrap: ["overflowWrap"]
       }, uppercasePattern = /([A-Z])/g, msPattern$1 = /^ms-/, badVendoredStyleNamePattern = /^(?:webkit|moz|o)[A-Z]/, msPattern = /^-ms-/, hyphenPattern = /-(.)/g, badStyleValueWithSemicolonPattern = /;\s*$/, warnedStyleNames = {}, warnedStyleValues = {}, warnedForNaNValue = false, warnedForInfinityValue = false, unitlessNumbers = new Set(
         "animationIterationCount aspectRatio borderImageOutset borderImageSlice borderImageWidth boxFlex boxFlexGroup boxOrdinalGroup columnCount columns flex flexGrow flexPositive flexShrink flexNegative flexOrder gridArea gridRow gridRowEnd gridRowSpan gridRowStart gridColumn gridColumnEnd gridColumnSpan gridColumnStart fontWeight lineClamp lineHeight opacity order orphans scale tabSize widows zIndex zoom fillOpacity floodOpacity stopOpacity strokeDasharray strokeDashoffset strokeMiterlimit strokeOpacity strokeWidth MozAnimationIterationCount MozBoxFlex MozBoxFlexGroup MozLineClamp msAnimationIterationCount msFlex msZoom msFlexGrow msFlexNegative msFlexOrder msFlexPositive msFlexShrink msGridColumn msGridColumnSpan msGridRow msGridRowSpan WebkitAnimationIterationCount WebkitBoxFlex WebKitBoxFlexGroup WebkitBoxOrdinalGroup WebkitColumnCount WebkitColumns WebkitFlex WebkitFlexGrow WebkitFlexPositive WebkitFlexShrink WebkitLineClamp".split(
@@ -18736,6 +20502,7 @@ var require_react_dom_client_development = __commonJS({
         ["markerEnd", "marker-end"],
         ["markerMid", "marker-mid"],
         ["markerStart", "marker-start"],
+        ["maskType", "mask-type"],
         ["overlinePosition", "overline-position"],
         ["overlineThickness", "overline-thickness"],
         ["paintOrder", "paint-order"],
@@ -18810,6 +20577,7 @@ var require_react_dom_client_development = __commonJS({
         controls: "controls",
         controlslist: "controlsList",
         coords: "coords",
+        credentialless: "credentialless",
         crossorigin: "crossOrigin",
         dangerouslysetinnerhtml: "dangerouslySetInnerHTML",
         data: "data",
@@ -19078,6 +20846,7 @@ var require_react_dom_client_development = __commonJS({
         markerwidth: "markerWidth",
         mask: "mask",
         maskcontentunits: "maskContentUnits",
+        masktype: "maskType",
         maskunits: "maskUnits",
         mathematical: "mathematical",
         mode: "mode",
@@ -19480,7 +21249,7 @@ var require_react_dom_client_development = __commonJS({
         twist: 0,
         pointerType: 0,
         isPrimary: 0
-      }), SyntheticPointerEvent = createSyntheticEvent(PointerEventInterface), TouchEventInterface = assign({}, UIEventInterface, {
+      }), SyntheticPointerEvent = createSyntheticEvent(PointerEventInterface), SubmitEventInterface = assign({}, EventInterface, { submitter: 0 }), SyntheticSubmitEvent = createSyntheticEvent(SubmitEventInterface), TouchEventInterface = assign({}, UIEventInterface, {
         touches: 0,
         targetTouches: 0,
         changedTouches: 0,
@@ -19504,7 +21273,8 @@ var require_react_dom_client_development = __commonJS({
         deltaMode: 0
       }), SyntheticWheelEvent = createSyntheticEvent(WheelEventInterface), ToggleEventInterface = assign({}, EventInterface, {
         newState: 0,
-        oldState: 0
+        oldState: 0,
+        source: 0
       }), SyntheticToggleEvent = createSyntheticEvent(ToggleEventInterface), END_KEYCODES = [9, 13, 27, 32], START_KEYCODE = 229, canUseCompositionEvent = canUseDOM && "CompositionEvent" in window, documentMode = null;
       canUseDOM && "documentMode" in document && (documentMode = document.documentMode);
       var canUseTextInputEvent = canUseDOM && "TextEvent" in window && !documentMode, useFallbackCompositionData = canUseDOM && (!canUseCompositionEvent || documentMode && 8 < documentMode && 11 >= documentMode), SPACEBAR_CODE = 32, SPACEBAR_CHAR = String.fromCharCode(SPACEBAR_CODE), hasSpaceKeypress = false, isComposing = false, supportedInputTypes = {
@@ -19535,11 +21305,11 @@ var require_react_dom_client_development = __commonJS({
         transitionend: makePrefixMap("Transition", "TransitionEnd")
       }, prefixedEventNames = {}, style = {};
       canUseDOM && (style = document.createElement("div").style, "AnimationEvent" in window || (delete vendorPrefixes.animationend.animation, delete vendorPrefixes.animationiteration.animation, delete vendorPrefixes.animationstart.animation), "TransitionEvent" in window || delete vendorPrefixes.transitionend.transition);
-      var ANIMATION_END = getVendorPrefixedEventName("animationend"), ANIMATION_ITERATION = getVendorPrefixedEventName("animationiteration"), ANIMATION_START = getVendorPrefixedEventName("animationstart"), TRANSITION_RUN = getVendorPrefixedEventName("transitionrun"), TRANSITION_START = getVendorPrefixedEventName("transitionstart"), TRANSITION_CANCEL = getVendorPrefixedEventName("transitioncancel"), TRANSITION_END = getVendorPrefixedEventName("transitionend"), topLevelEventsToReactNames = /* @__PURE__ */ new Map(), simpleEventPluginEvents = "abort auxClick beforeToggle cancel canPlay canPlayThrough click close contextMenu copy cut drag dragEnd dragEnter dragExit dragLeave dragOver dragStart drop durationChange emptied encrypted ended error gotPointerCapture input invalid keyDown keyPress keyUp load loadedData loadedMetadata loadStart lostPointerCapture mouseDown mouseMove mouseOut mouseOver mouseUp paste pause play playing pointerCancel pointerDown pointerMove pointerOut pointerOver pointerUp progress rateChange reset resize seeked seeking stalled submit suspend timeUpdate touchCancel touchEnd touchStart volumeChange scroll toggle touchMove waiting wheel".split(
+      var ANIMATION_END = getVendorPrefixedEventName("animationend"), ANIMATION_ITERATION = getVendorPrefixedEventName("animationiteration"), ANIMATION_START = getVendorPrefixedEventName("animationstart"), TRANSITION_RUN = getVendorPrefixedEventName("transitionrun"), TRANSITION_START = getVendorPrefixedEventName("transitionstart"), TRANSITION_CANCEL = getVendorPrefixedEventName("transitioncancel"), TRANSITION_END = getVendorPrefixedEventName("transitionend"), topLevelEventsToReactNames = /* @__PURE__ */ new Map(), simpleEventPluginEvents = "abort auxClick beforeToggle cancel canPlay canPlayThrough click close contextMenu copy cut drag dragEnd dragEnter dragExit dragLeave dragOver dragStart drop durationChange emptied encrypted ended error fullscreenChange fullscreenError gotPointerCapture input invalid keyDown keyPress keyUp load loadedData loadedMetadata loadStart lostPointerCapture mouseDown mouseMove mouseOut mouseOver mouseUp paste pause play playing pointerCancel pointerDown pointerMove pointerOut pointerOver pointerUp progress rateChange reset resize seeked seeking stalled submit suspend timeUpdate touchCancel touchEnd touchStart volumeChange scroll toggle touchMove waiting wheel".split(
         " "
       );
       simpleEventPluginEvents.push("scrollEnd");
-      var lastResetTime = 0;
+      var globalClientIdCounter$1 = 0, lastResetTime = 0;
       if ("object" === typeof performance && "function" === typeof performance.now) {
         var localPerformance = performance;
         var getCurrentTime = function() {
@@ -19565,7 +21335,7 @@ var require_react_dom_client_development = __commonJS({
           return;
         }
         console.error(error);
-      }, OMITTED_PROP_ERROR = "This object has been omitted by React in the console log to avoid sending too much data from the server. Try logging smaller or more specific objects.", EMPTY_ARRAY = 0, COMPLEX_ARRAY = 1, PRIMITIVE_ARRAY = 2, ENTRIES_ARRAY = 3, REMOVED = "\u2013\xA0", ADDED = "+\xA0", UNCHANGED = "\u2007\xA0", supportsUserTiming = "undefined" !== typeof console && "function" === typeof console.timeStamp && "undefined" !== typeof performance && "function" === typeof performance.measure, COMPONENTS_TRACK = "Components \u269B", LANES_TRACK_GROUP = "Scheduler \u269B", currentTrack = "Blocking", alreadyWarnedForDeepEquality = false, reusableComponentDevToolDetails = {
+      }, OMITTED_PROP_ERROR = "This object has been omitted by React in the console log to avoid sending too much data from the server. Try logging smaller or more specific objects.", EMPTY_ARRAY = 0, COMPLEX_ARRAY = 1, PRIMITIVE_ARRAY = 2, ENTRIES_ARRAY = 3, OBJECT_WIDTH_LIMIT = 100, REMOVED = "-\xA0", ADDED = "+\xA0", UNCHANGED = "\u2007\xA0", supportsUserTiming = "undefined" !== typeof console && "function" === typeof console.timeStamp && "undefined" !== typeof performance && "function" === typeof performance.measure, COMPONENTS_TRACK = "Components \u269B", LANES_TRACK_GROUP = "Scheduler \u269B", currentTrack = "Blocking", alreadyWarnedForDeepEquality = false, reusableComponentDevToolDetails = {
         color: "primary",
         properties: null,
         tooltipText: "",
@@ -19574,7 +21344,7 @@ var require_react_dom_client_development = __commonJS({
         start: -0,
         end: -0,
         detail: { devtools: reusableComponentDevToolDetails }
-      }, resuableChangedPropsEntry = ["Changed Props", ""], DEEP_EQUALITY_WARNING = "This component received deeply equal props. It might benefit from useMemo or the React Compiler in its owner.", reusableDeeplyEqualPropsEntry = ["Changed Props", DEEP_EQUALITY_WARNING], OffscreenVisible = 1, OffscreenPassiveEffectsConnected = 2, concurrentQueues = [], concurrentQueuesIndex = 0, concurrentlyUpdatedLanes = 0, emptyContextObject = {};
+      }, reusableChangedPropsEntry = ["Changed Props", ""], DEEP_EQUALITY_WARNING = "This component received deeply equal props. It might benefit from useMemo or the React Compiler in its owner.", reusableDeeplyEqualPropsEntry = ["Changed Props", DEEP_EQUALITY_WARNING], OffscreenVisible = 1, OffscreenPassiveEffectsConnected = 2, concurrentQueues = [], concurrentQueuesIndex = 0, concurrentlyUpdatedLanes = 0, emptyContextObject = {};
       Object.freeze(emptyContextObject);
       var resolveFamily = null, failedBoundaries = null, NoMode = 0, ConcurrentMode = 1, ProfileMode = 2, StrictLegacyMode = 8, StrictEffectsMode = 16, SuspenseyImagesMode = 32;
       var hasBadMapPolyfill = false;
@@ -19582,7 +21352,7 @@ var require_react_dom_client_development = __commonJS({
         var nonExtensibleObject = Object.preventExtensions({});
         /* @__PURE__ */ new Map([[nonExtensibleObject, null]]);
         /* @__PURE__ */ new Set([nonExtensibleObject]);
-      } catch (e$3) {
+      } catch (e$4) {
         hasBadMapPolyfill = true;
       }
       var CapturedStacks = /* @__PURE__ */ new WeakMap(), forkStack = [], forkStackIndex = 0, treeForkProvider = null, treeForkCount = 0, idStack = [], idStackIndex = 0, treeContextProvider = null, treeContextId = 1, treeContextOverflow = "", hydrationParentFiber = null, nextHydratableInstance = null, isHydrating = false, didSuspendOrErrorDEV = false, hydrationDiffRootDEV = null, hydrationErrors = null, rootOrSingletonContext = false, HydrationMismatchException = Error(
@@ -19612,7 +21382,7 @@ var require_react_dom_client_development = __commonJS({
         _threadCount: 0,
         _currentRenderer: null,
         _currentRenderer2: null
-      }, now = Scheduler.unstable_now, createTask = console.createTask ? console.createTask : function() {
+      }, entangledTransitionTypes = null, now = Scheduler.unstable_now, createTask = console.createTask ? console.createTask : function() {
         return null;
       }, SPAWNED_UPDATE = 1, PINGED_UPDATE = 2, renderStartTime = -0, commitStartTime = -0, commitEndTime = -0, commitErrors = null, profilerStartTime = -1.1, profilerEffectDuration = -0, componentEffectDuration = -0, componentEffectStartTime = -1.1, componentEffectEndTime = -1.1, componentEffectErrors = null, componentEffectSpawnedUpdate = false, blockingClampTime = -0, blockingUpdateTime = -1.1, blockingUpdateTask = null, blockingUpdateType = 0, blockingUpdateMethodName = null, blockingUpdateComponentName = null, blockingEventTime = -1.1, blockingEventType = null, blockingEventRepeatTime = -1.1, blockingSuspendedTime = -1.1, transitionClampTime = -0, transitionStartTime = -1.1, transitionUpdateTime = -1.1, transitionUpdateType = 0, transitionUpdateTask = null, transitionUpdateMethodName = null, transitionUpdateComponentName = null, transitionEventTime = -1.1, transitionEventType = null, transitionEventRepeatTime = -1.1, transitionSuspendedTime = -1.1, retryClampTime = -0, idleClampTime = -0, animatingLanes = 0, animatingTask = null, yieldReason = 0, yieldStartTime = -1.1, currentUpdateIsNested = false, nestedUpdateScheduled = false, currentEntangledListeners = null, currentEntangledPendingCount = 0, currentEntangledLane = 0, currentEntangledActionThenable = null, prevOnStartTransitionFinish = ReactSharedInternals.S;
       ReactSharedInternals.S = function(transition, returnValue) {
@@ -19627,6 +21397,22 @@ var require_react_dom_client_development = __commonJS({
             transitionEventType = newEventType;
           }
           entangleAsyncAction(transition, returnValue);
+        }
+        if (null !== entangledTransitionTypes)
+          for (newEventTime = firstScheduledRoot; null !== newEventTime; )
+            queueTransitionTypes(newEventTime, entangledTransitionTypes), newEventTime = newEventTime.next;
+        newEventTime = transition.types;
+        if (null !== newEventTime) {
+          for (newEventType = firstScheduledRoot; null !== newEventType; )
+            queueTransitionTypes(newEventType, newEventTime), newEventType = newEventType.next;
+          if (0 !== currentEntangledLane) {
+            newEventType = entangledTransitionTypes;
+            null === newEventType && (newEventType = entangledTransitionTypes = []);
+            for (var i = 0; i < newEventTime.length; i++) {
+              var transitionType = newEventTime[i];
+              -1 === newEventType.indexOf(transitionType) && newEventType.push(transitionType);
+            }
+          }
         }
         null !== prevOnStartTransitionFinish && prevOnStartTransitionFinish(transition, returnValue);
       };
@@ -19762,7 +21548,7 @@ var require_react_dom_client_development = __commonJS({
         pendingUNSAFE_ComponentWillUpdateWarnings = [];
         pendingLegacyContextWarning = /* @__PURE__ */ new Map();
       };
-      var callComponent = {
+      var REACT_RECOVERABLE_DIGEST = "", callComponent = {
         react_stack_bottom_frame: function(Component, props, secondArg) {
           var wasRendering = isRendering;
           isRendering = true;
@@ -19853,7 +21639,7 @@ var require_react_dom_client_development = __commonJS({
             'Internal React error: A listener was unexpectedly attached to a "noop" thenable. This is a bug in React. Please file an issue.'
           );
         }
-      }, suspendedThenable = null, needsToResetSuspendedThenableDEV = false, thenableState$1 = null, thenableIndexCounter$1 = 0, currentDebugInfo = null, didWarnAboutMaps;
+      }, lastSuspendedFiber = null, lastSuspendedStack = null, didIssueUseWarning = false, suspendedThenable = null, needsToResetSuspendedThenableDEV = false, thenableState$1 = null, thenableIndexCounter$1 = 0, currentDebugInfo = null, didWarnAboutMaps;
       var didWarnAboutGenerators = didWarnAboutMaps = false;
       var ownerHasKeyUseWarning = {};
       var ownerHasFunctionTypeWarning = {};
@@ -19916,10 +21702,9 @@ var require_react_dom_client_development = __commonJS({
         useActionState: throwInvalidHookError,
         useOptimistic: throwInvalidHookError,
         useMemoCache: throwInvalidHookError,
-        useCacheRefresh: throwInvalidHookError
-      };
-      ContextOnlyDispatcher.useEffectEvent = throwInvalidHookError;
-      var HooksDispatcherOnMountInDEV = null, HooksDispatcherOnMountWithHookTypesInDEV = null, HooksDispatcherOnUpdateInDEV = null, HooksDispatcherOnRerenderInDEV = null, InvalidNestedHooksDispatcherOnMountInDEV = null, InvalidNestedHooksDispatcherOnUpdateInDEV = null, InvalidNestedHooksDispatcherOnRerenderInDEV = null;
+        useCacheRefresh: throwInvalidHookError,
+        useEffectEvent: throwInvalidHookError
+      }, HooksDispatcherOnMountInDEV = null, HooksDispatcherOnMountWithHookTypesInDEV = null, HooksDispatcherOnUpdateInDEV = null, HooksDispatcherOnRerenderInDEV = null, InvalidNestedHooksDispatcherOnMountInDEV = null, InvalidNestedHooksDispatcherOnUpdateInDEV = null, InvalidNestedHooksDispatcherOnRerenderInDEV = null;
       HooksDispatcherOnMountInDEV = {
         readContext: function(context) {
           return readContext(context);
@@ -20959,6 +22744,7 @@ var require_react_dom_client_development = __commonJS({
       var didWarnAboutReassigningProps = false;
       var didWarnAboutRevealOrder = {};
       var didWarnAboutTailOptions = {};
+      var didWarnAboutClassNameOnViewTransition = {};
       var SUSPENDED_MARKER = {
         dehydrated: null,
         treeContext: null,
@@ -20966,7 +22752,7 @@ var require_react_dom_client_development = __commonJS({
         hydrationErrors: null
       }, hasWarnedAboutUsingNoValuePropOnContextProvider = false, didWarnAboutUndefinedSnapshotBeforeUpdate = null;
       didWarnAboutUndefinedSnapshotBeforeUpdate = /* @__PURE__ */ new Set();
-      var offscreenSubtreeIsHidden = false, offscreenSubtreeWasHidden = false, needsFormReset = false, PossiblyWeakSet = "function" === typeof WeakSet ? WeakSet : Set, nextEffect = null, inProgressLanes = null, inProgressRoot = null, hostParent = null, hostParentIsContainer = false, currentHoistableRoot = null, inHydratedSubtree = false, suspenseyCommitFlag = 8192, DefaultAsyncDispatcher = {
+      var shouldStartViewTransition = false, appearingViewTransitions = null, viewTransitionCancelableChildren = null, viewTransitionHostInstanceIdx = 0, mountedNamedViewTransitions = /* @__PURE__ */ new Map(), didWarnAboutName = {}, NoLayoutEffectTraversalFlags = 0, IncludeWorkInProgressEffects = 1, IncludeHostSingletons = 2, offscreenSubtreeIsHidden = false, offscreenSubtreeWasHidden = false, offscreenDirectParentIsHidden = false, needsFormReset = false, PossiblyWeakSet = "function" === typeof WeakSet ? WeakSet : Set, nextEffect = null, inProgressLanes = null, inProgressRoot = null, viewTransitionContextChanged = false, inUpdateViewTransition = false, rootViewTransitionAffected = false, rootViewTransitionNameCanceled = false, hostParent = null, hostParentIsContainer = false, currentHoistableRoot = null, inHydratedSubtree = false, suspenseyCommitFlag = 8192, DefaultAsyncDispatcher = {
         getCacheForType: function(resourceType) {
           var cache = readContext(CacheContext), cacheForType = cache.data.get(resourceType);
           void 0 === cacheForType && (cacheForType = resourceType(), cache.data.set(resourceType, cacheForType));
@@ -20987,7 +22773,7 @@ var require_react_dom_client_development = __commonJS({
         symbolFor("selector.test_id");
         symbolFor("selector.text");
       }
-      var commitHooks = [], PossiblyWeakMap = "function" === typeof WeakMap ? WeakMap : Map, NoContext = 0, RenderContext = 2, CommitContext = 4, RootInProgress = 0, RootFatalErrored = 1, RootErrored = 2, RootSuspended = 3, RootSuspendedWithDelay = 4, RootSuspendedAtTheShell = 6, RootCompleted = 5, executionContext = NoContext, workInProgressRoot = null, workInProgress = null, workInProgressRootRenderLanes = 0, NotSuspended = 0, SuspendedOnError = 1, SuspendedOnData = 2, SuspendedOnImmediate = 3, SuspendedOnInstance = 4, SuspendedOnInstanceAndReadyToContinue = 5, SuspendedOnDeprecatedThrowPromise = 6, SuspendedAndReadyToContinue = 7, SuspendedOnHydration = 8, SuspendedOnAction = 9, workInProgressSuspendedReason = NotSuspended, workInProgressThrownValue = null, workInProgressRootDidSkipSuspendedSiblings = false, workInProgressRootIsPrerendering = false, workInProgressRootDidAttachPingListener = false, entangledRenderLanes = 0, workInProgressRootExitStatus = RootInProgress, workInProgressRootSkippedLanes = 0, workInProgressRootInterleavedUpdatedLanes = 0, workInProgressRootPingedLanes = 0, workInProgressDeferredLane = 0, workInProgressSuspendedRetryLanes = 0, workInProgressRootConcurrentErrors = null, workInProgressRootRecoverableErrors = null, workInProgressRootDidIncludeRecursiveRenderUpdate = false, globalMostRecentFallbackTime = 0, globalMostRecentTransitionTime = 0, FALLBACK_THROTTLE_MS = 300, workInProgressRootRenderTargetTime = Infinity, RENDER_TIMEOUT_MS = 500, workInProgressTransitions = null, workInProgressUpdateTask = null, legacyErrorBoundariesThatAlreadyFailed = null, IMMEDIATE_COMMIT = 0, ABORTED_VIEW_TRANSITION_COMMIT = 1, DELAYED_PASSIVE_COMMIT = 2, ANIMATION_STARTED_COMMIT = 3, NO_PENDING_EFFECTS = 0, PENDING_MUTATION_PHASE = 1, PENDING_LAYOUT_PHASE = 2, PENDING_AFTER_MUTATION_PHASE = 3, PENDING_SPAWNED_WORK = 4, PENDING_PASSIVE_PHASE = 5, pendingEffectsStatus = 0, pendingEffectsRoot = null, pendingFinishedWork = null, pendingEffectsLanes = 0, pendingEffectsRemainingLanes = 0, pendingEffectsRenderEndTime = -0, pendingPassiveTransitions = null, pendingRecoverableErrors = null, pendingSuspendedCommitReason = null, pendingDelayedCommitReason = IMMEDIATE_COMMIT, pendingSuspendedViewTransitionReason = null, NESTED_UPDATE_LIMIT = 50, nestedUpdateCount = 0, rootWithNestedUpdates = null, isFlushingPassiveEffects = false, didScheduleUpdateDuringPassiveEffects = false, NESTED_PASSIVE_UPDATE_LIMIT = 50, nestedPassiveUpdateCount = 0, rootWithPassiveNestedUpdates = null, isRunningInsertionEffect = false, didWarnStateUpdateForNotYetMountedComponent = null, didWarnAboutUpdateInRender = false;
+      var commitHooks = [], PossiblyWeakMap = "function" === typeof WeakMap ? WeakMap : Map, NoContext = 0, RenderContext = 2, CommitContext = 4, RootInProgress = 0, RootFatalErrored = 1, RootErrored = 2, RootSuspended = 3, RootSuspendedWithDelay = 4, RootSuspendedAtTheShell = 6, RootCompleted = 5, executionContext = NoContext, workInProgressRoot = null, workInProgress = null, workInProgressRootRenderLanes = 0, NotSuspended = 0, SuspendedOnError = 1, SuspendedOnData = 2, SuspendedOnImmediate = 3, SuspendedOnInstance = 4, SuspendedOnInstanceAndReadyToContinue = 5, SuspendedOnDeprecatedThrowPromise = 6, SuspendedAndReadyToContinue = 7, SuspendedOnHydration = 8, SuspendedOnAction = 9, workInProgressSuspendedReason = NotSuspended, workInProgressThrownValue = null, workInProgressRootDidSkipSuspendedSiblings = false, workInProgressRootIsPrerendering = false, workInProgressRootDidAttachPingListener = false, entangledRenderLanes = 0, workInProgressRootExitStatus = RootInProgress, workInProgressRootSkippedLanes = 0, workInProgressRootInterleavedUpdatedLanes = 0, workInProgressRootPingedLanes = 0, workInProgressDeferredLane = 0, workInProgressSuspendedRetryLanes = 0, workInProgressRootConcurrentErrors = null, workInProgressRootRecoverableErrors = null, workInProgressRootDidIncludeRecursiveRenderUpdate = false, globalMostRecentFallbackTime = 0, globalMostRecentTransitionTime = 0, FALLBACK_THROTTLE_MS = 300, workInProgressRootRenderTargetTime = Infinity, RENDER_TIMEOUT_MS = 500, workInProgressTransitions = null, workInProgressUpdateTask = null, legacyErrorBoundariesThatAlreadyFailed = null, IMMEDIATE_COMMIT = 0, ABORTED_VIEW_TRANSITION_COMMIT = 1, DELAYED_PASSIVE_COMMIT = 2, ANIMATION_STARTED_COMMIT = 3, NO_PENDING_EFFECTS = 0, PENDING_MUTATION_PHASE = 1, PENDING_LAYOUT_PHASE = 2, PENDING_AFTER_MUTATION_PHASE = 3, PENDING_SPAWNED_WORK = 4, PENDING_PASSIVE_PHASE = 5, pendingEffectsStatus = 0, pendingEffectsRoot = null, pendingFinishedWork = null, pendingEffectsLanes = 0, pendingEffectsRemainingLanes = 0, pendingEffectsRenderEndTime = -0, pendingPassiveTransitions = null, pendingRecoverableErrors = null, pendingViewTransition = null, pendingViewTransitionEvents = null, pendingTransitionTypes = null, pendingSuspendedCommitReason = null, pendingDelayedCommitReason = IMMEDIATE_COMMIT, pendingSuspendedViewTransitionReason = null, NESTED_UPDATE_LIMIT = 50, nestedUpdateCount = 0, rootWithNestedUpdates = null, isFlushingPassiveEffects = false, didScheduleUpdateDuringPassiveEffects = false, NESTED_PASSIVE_UPDATE_LIMIT = 50, nestedPassiveUpdateCount = 0, rootWithPassiveNestedUpdates = null, isRunningInsertionEffect = false, didWarnAboutInterruptedViewTransitions = false, didWarnStateUpdateForNotYetMountedComponent = null, didWarnAboutUpdateInRender = false;
       var didWarnAboutUpdateInRenderForAnotherComponent = /* @__PURE__ */ new Set();
       var fakeActCallbackNode$1 = {}, firstScheduledRoot = null, lastScheduledRoot = null, didScheduleMicrotask = false, didScheduleMicrotask_act = false, mightHavePendingSyncWork = false, isFlushingWork = false, currentEventTransitionLane = 0, fakeActCallbackNode = {};
       (function() {
@@ -21047,9 +22833,313 @@ var require_react_dom_client_development = __commonJS({
         "beforetoggle cancel close invalid load scroll scrollend toggle".split(" ").concat(mediaEventTypes)
       ), listeningMarker = "_reactListening" + Math.random().toString(36).slice(2), didWarnControlledToUncontrolled = false, didWarnUncontrolledToControlled = false, didWarnFormActionType = false, didWarnFormActionName = false, didWarnFormActionTarget = false, didWarnFormActionMethod = false, didWarnPopoverTargetObject = false;
       var didWarnForNewBooleanPropsWithEmptyValue = {};
-      var NORMALIZE_NEWLINES_REGEX = /\r\n?/g, NORMALIZE_NULL_AND_REPLACEMENT_REGEX = /\u0000|\uFFFD/g, xlinkNamespace = "http://www.w3.org/1999/xlink", xmlNamespace = "http://www.w3.org/XML/1998/namespace", EXPECTED_FORM_ACTION_URL = "javascript:throw new Error('React form unexpectedly submitted.')", SUPPRESS_HYDRATION_WARNING = "suppressHydrationWarning", ACTIVITY_START_DATA = "&", ACTIVITY_END_DATA = "/&", SUSPENSE_START_DATA = "$", SUSPENSE_END_DATA = "/$", SUSPENSE_PENDING_START_DATA = "$?", SUSPENSE_QUEUED_START_DATA = "$~", SUSPENSE_FALLBACK_START_DATA = "$!", PREAMBLE_CONTRIBUTION_HTML = "html", PREAMBLE_CONTRIBUTION_BODY = "body", PREAMBLE_CONTRIBUTION_HEAD = "head", FORM_STATE_IS_MATCHING = "F!", FORM_STATE_IS_NOT_MATCHING = "F", DOCUMENT_READY_STATE_LOADING = "loading", STYLE = "style", HostContextNamespaceNone = 0, HostContextNamespaceSvg = 1, HostContextNamespaceMath = 2, eventsEnabled = null, selectionInformation = null, warnedUnknownTags = { dialog: true, webview: true }, currentPopstateTransitionEvent = null, schedulerEvent = void 0, scheduleTimeout = "function" === typeof setTimeout ? setTimeout : void 0, cancelTimeout = "function" === typeof clearTimeout ? clearTimeout : void 0, noTimeout = -1, localPromise = "function" === typeof Promise ? Promise : void 0, scheduleMicrotask = "function" === typeof queueMicrotask ? queueMicrotask : "undefined" !== typeof localPromise ? function(callback) {
+      var NORMALIZE_NEWLINES_REGEX = /\r\n?/g, NORMALIZE_NULL_AND_REPLACEMENT_REGEX = /\u0000|\uFFFD/g, xlinkNamespace = "http://www.w3.org/1999/xlink", xmlNamespace = "http://www.w3.org/XML/1998/namespace", emptyProps = {}, EXPECTED_FORM_ACTION_URL = "javascript:throw new Error('React form unexpectedly submitted.')", SUPPRESS_HYDRATION_WARNING = "suppressHydrationWarning", ACTIVITY_START_DATA = "&", ACTIVITY_END_DATA = "/&", SUSPENSE_START_DATA = "$", SUSPENSE_END_DATA = "/$", SUSPENSE_PENDING_START_DATA = "$?", SUSPENSE_QUEUED_START_DATA = "$~", SUSPENSE_FALLBACK_START_DATA = "$!", PREAMBLE_CONTRIBUTION_HTML = "html", PREAMBLE_CONTRIBUTION_BODY = "body", PREAMBLE_CONTRIBUTION_HEAD = "head", FORM_STATE_IS_MATCHING = "F!", FORM_STATE_IS_NOT_MATCHING = "F", DOCUMENT_READY_STATE_LOADING = "loading", STYLE = "style", HostContextNamespaceNone = 0, HostContextNamespaceSvg = 1, HostContextNamespaceMath = 2, eventsEnabled = null, selectionInformation = null, didWarnScriptTags = false, warnedUnknownTags = { dialog: true, webview: true }, currentPopstateTransitionEvent = null, schedulerEvent = void 0, scheduleTimeout = "function" === typeof setTimeout ? setTimeout : void 0, cancelTimeout = "function" === typeof clearTimeout ? clearTimeout : void 0, noTimeout = -1, localPromise = "function" === typeof Promise ? Promise : void 0, localRequestAnimationFrame = "function" === typeof requestAnimationFrame ? requestAnimationFrame : scheduleTimeout, scheduleMicrotask = "function" === typeof queueMicrotask ? queueMicrotask : "undefined" !== typeof localPromise ? function(callback) {
         return localPromise.resolve(null).then(callback).catch(handleErrorInNextTick);
-      } : scheduleTimeout, previousHydratableOnEnteringScopedSingleton = null, NotLoaded = 0, Loaded = 1, Errored = 2, Settled = 3, Inserted = 4, preloadPropsMap = /* @__PURE__ */ new Map(), preconnectsSet = /* @__PURE__ */ new Set(), previousDispatcher = ReactDOMSharedInternals.d;
+      } : scheduleTimeout, SUSPENSEY_FONT_AND_IMAGE_TIMEOUT = 500;
+      ViewTransitionPseudoElement.prototype.animate = function(keyframes, options) {
+        options = "number" === typeof options ? { duration: options } : assign({}, options);
+        options.pseudoElement = this._selector;
+        return this._scope.animate(keyframes, options);
+      };
+      ViewTransitionPseudoElement.prototype.getAnimations = function() {
+        for (var scope = this._scope, selector = this._selector, animations = scope.getAnimations({ subtree: true }), result = [], i = 0; i < animations.length; i++) {
+          var effect = animations[i].effect;
+          null !== effect && effect.target === scope && effect.pseudoElement === selector && result.push(animations[i]);
+        }
+        return result;
+      };
+      ViewTransitionPseudoElement.prototype.getComputedStyle = function() {
+        return getComputedStyle(this._scope, this._selector);
+      };
+      FragmentInstance.prototype.addEventListener = function(type, listener, optionsOrUseCapture) {
+        var signal = null, cleanup = null;
+        if (null != optionsOrUseCapture && "boolean" !== typeof optionsOrUseCapture && (signal = optionsOrUseCapture.signal || null, null !== signal && signal.aborted))
+          return;
+        null === this._eventListeners && (this._eventListeners = []);
+        var listeners = this._eventListeners;
+        if (-1 === indexOfEventListener(listeners, type, listener, optionsOrUseCapture)) {
+          var fragmentInstance = this, attachedListener = listener;
+          null != optionsOrUseCapture && "boolean" !== typeof optionsOrUseCapture && true === optionsOrUseCapture.once && (attachedListener = function(event) {
+            fragmentInstance.removeEventListener(
+              type,
+              listener,
+              optionsOrUseCapture
+            );
+            "function" === typeof listener ? listener.call(this, event) : listener.handleEvent(event);
+          });
+          null !== signal && (cleanup = fragmentInstance.removeEventListener.bind(
+            fragmentInstance,
+            type,
+            listener,
+            optionsOrUseCapture
+          ), signal.addEventListener("abort", cleanup, { once: true }), cleanup = signal.removeEventListener.bind(
+            signal,
+            "abort",
+            cleanup
+          ));
+          signal = getAttachOptions(optionsOrUseCapture);
+          listeners.push({
+            type,
+            listener,
+            optionsOrUseCapture,
+            attachedListener,
+            cleanup
+          });
+          traverseFragmentInstancesAndTextInstances(
+            this._fragmentFiber,
+            addEventListenerToChild,
+            type,
+            attachedListener,
+            signal
+          );
+        }
+        this._eventListeners = listeners;
+      };
+      FragmentInstance.prototype.removeEventListener = function(type, listener, optionsOrUseCapture) {
+        var listeners = this._eventListeners;
+        if (null !== listeners && (listener = indexOfEventListener(
+          listeners,
+          type,
+          listener,
+          optionsOrUseCapture
+        ), -1 !== listener)) {
+          var _listeners$index = listeners[listener];
+          optionsOrUseCapture = _listeners$index.attachedListener;
+          var cleanup = _listeners$index.cleanup;
+          _listeners$index = getAttachOptions(
+            _listeners$index.optionsOrUseCapture
+          );
+          traverseFragmentInstancesAndTextInstances(
+            this._fragmentFiber,
+            removeEventListenerFromChild,
+            type,
+            optionsOrUseCapture,
+            _listeners$index
+          );
+          listeners.splice(listener, 1);
+          null !== cleanup && cleanup();
+        }
+      };
+      FragmentInstance.prototype.dispatchEvent = function(event) {
+        var parentHostFiber = getFragmentParentInstanceOrContainerFiber(
+          this._fragmentFiber
+        );
+        if (null === parentHostFiber) return true;
+        parentHostFiber = getInstanceFromHostFiber(parentHostFiber);
+        var eventListeners = this._eventListeners;
+        if (null !== eventListeners && 0 < eventListeners.length || !event.bubbles) {
+          var temp = 9 === parentHostFiber.nodeType ? parentHostFiber.createComment("") : document.createTextNode("");
+          if (eventListeners)
+            for (var i = 0; i < eventListeners.length; i++) {
+              var _eventListeners$i = eventListeners[i];
+              temp.addEventListener(
+                _eventListeners$i.type,
+                _eventListeners$i.attachedListener,
+                getAttachOptions(_eventListeners$i.optionsOrUseCapture)
+              );
+            }
+          parentHostFiber.appendChild(temp);
+          event = temp.dispatchEvent(event);
+          if (eventListeners)
+            for (i = 0; i < eventListeners.length; i++)
+              _eventListeners$i = eventListeners[i], temp.removeEventListener(
+                _eventListeners$i.type,
+                _eventListeners$i.attachedListener,
+                getAttachOptions(_eventListeners$i.optionsOrUseCapture)
+              );
+          parentHostFiber.removeChild(temp);
+          return event;
+        }
+        return parentHostFiber.dispatchEvent(event);
+      };
+      FragmentInstance.prototype.focus = function(focusOptions) {
+        traverseVisibleInstancesAndTextInstances(
+          this._fragmentFiber.child,
+          true,
+          setFocusOnFiberIfFocusable,
+          focusOptions,
+          void 0,
+          void 0
+        );
+      };
+      FragmentInstance.prototype.focusLast = function(focusOptions) {
+        var children = [];
+        traverseVisibleInstancesAndTextInstances(
+          this._fragmentFiber.child,
+          true,
+          collectChildren,
+          children,
+          void 0,
+          void 0
+        );
+        for (var i = children.length - 1; 0 <= i && !setFocusOnFiberIfFocusable(children[i], focusOptions); i--) ;
+      };
+      FragmentInstance.prototype.blur = function() {
+        var parentHostFiber = getFragmentParentInstanceOrContainerFiber(
+          this._fragmentFiber
+        );
+        null !== parentHostFiber && (parentHostFiber = getInstanceFromHostFiber(parentHostFiber), parentHostFiber = getOwnerDocumentFromRootContainer(parentHostFiber).activeElement, null !== parentHostFiber && traverseFragmentInstancesAndTextInstances(
+          this._fragmentFiber,
+          blurActiveElementWithinFragment,
+          parentHostFiber
+        ));
+      };
+      FragmentInstance.prototype.observeUsing = function(observer) {
+        var hasText = false, hasElement = false;
+        traverseFragmentInstancesAndTextInstances(
+          this._fragmentFiber,
+          function(child) {
+            if (6 === child.tag) hasText = true;
+            else return hasElement = true;
+            return false;
+          }
+        );
+        hasText && !hasElement && console.error(
+          "observeUsing() was called on a FragmentInstance with only text children. Observers do not work on text nodes."
+        );
+        null === this._observers && (this._observers = /* @__PURE__ */ new Set());
+        this._observers.add(observer);
+        traverseFragmentInstancesAndTextInstances(
+          this._fragmentFiber,
+          observeChild,
+          observer
+        );
+      };
+      FragmentInstance.prototype.unobserveUsing = function(observer) {
+        var observers = this._observers;
+        if (null !== observers && observers.has(observer)) {
+          observers.delete(observer);
+          traverseFragmentInstancesAndTextInstances(
+            this._fragmentFiber,
+            unobserveChild,
+            observer
+          );
+          for (var i = observers = 0; i < pendingIntersectionUnobserves.length; i++) {
+            var pending = pendingIntersectionUnobserves[i];
+            pending.fragmentInstance === this && pending.observer === observer ? observer.unobserve(pending.instance) : pendingIntersectionUnobserves[observers++] = pending;
+          }
+          pendingIntersectionUnobserves.length = observers;
+        } else
+          console.error(
+            "You are calling unobserveUsing() with an observer that is not being observed with this fragment instance. First attach the observer with observeUsing()"
+          );
+      };
+      var pendingIntersectionUnobserves = [], intersectionUnobserveScheduled = false;
+      FragmentInstance.prototype.getClientRects = function() {
+        var rects = [];
+        traverseFragmentInstancesAndTextInstances(
+          this._fragmentFiber,
+          collectClientRects,
+          rects
+        );
+        return rects;
+      };
+      FragmentInstance.prototype.getRootNode = function(getRootNodeOptions) {
+        var parentHostFiber = getFragmentParentInstanceOrContainerFiber(
+          this._fragmentFiber
+        );
+        return null === parentHostFiber ? this : getInstanceFromHostFiber(parentHostFiber).getRootNode(
+          getRootNodeOptions
+        );
+      };
+      FragmentInstance.prototype.compareDocumentPosition = function(otherNode) {
+        var parentHostFiber = getFragmentParentInstanceOrContainerFiber(
+          this._fragmentFiber
+        );
+        if (null === parentHostFiber) return Node.DOCUMENT_POSITION_DISCONNECTED;
+        var children = [];
+        traverseFragmentInstancesAndTextInstances(
+          this._fragmentFiber,
+          collectChildren,
+          children
+        );
+        var parentHostInstance = getInstanceFromHostFiber(parentHostFiber);
+        if (0 === children.length) {
+          parentHostFiber = parentHostInstance;
+          if (fiberIsPortaledIntoHost(this._fragmentFiber)) {
+            a: {
+              for (children = this._fragmentFiber.return; null !== children; ) {
+                if (4 === children.tag) {
+                  children = children.stateNode.containerInfo;
+                  break a;
+                }
+                if (3 === children.tag || 5 === children.tag || 27 === children.tag)
+                  break;
+                children = children.return;
+              }
+              children = null;
+            }
+            null != children && (parentHostFiber = children);
+          }
+          children = this._fragmentFiber;
+          var result = parentHostInstance = parentHostFiber.compareDocumentPosition(otherNode);
+          parentHostFiber === otherNode ? result = Node.DOCUMENT_POSITION_CONTAINS : parentHostInstance & Node.DOCUMENT_POSITION_CONTAINED_BY && (children = getFragmentInstanceOrTextInstanceSiblings(children)[1], null === children ? result = Node.DOCUMENT_POSITION_PRECEDING : (otherNode = getInstanceFromHostFiber(children).compareDocumentPosition(
+            otherNode
+          ), result = 0 === otherNode || otherNode & Node.DOCUMENT_POSITION_FOLLOWING ? Node.DOCUMENT_POSITION_FOLLOWING : Node.DOCUMENT_POSITION_PRECEDING));
+          return result |= Node.DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC;
+        }
+        parentHostFiber = getInstanceFromHostFiber(children[0]);
+        result = getInstanceFromHostFiber(children[children.length - 1]);
+        var parentHostInstanceFromDOM = fiberIsPortaledIntoHost(
+          this._fragmentFiber
+        ) ? parentHostFiber.parentElement : parentHostInstance;
+        if (null == parentHostInstanceFromDOM)
+          return Node.DOCUMENT_POSITION_DISCONNECTED;
+        parentHostInstance = parentHostInstanceFromDOM.compareDocumentPosition(parentHostFiber) & Node.DOCUMENT_POSITION_CONTAINED_BY;
+        parentHostInstanceFromDOM = parentHostInstanceFromDOM.compareDocumentPosition(result) & Node.DOCUMENT_POSITION_CONTAINED_BY;
+        var firstResult = parentHostFiber.compareDocumentPosition(otherNode), lastResult = result.compareDocumentPosition(otherNode), otherNodeIsWithinFirstOrLastChild = firstResult & Node.DOCUMENT_POSITION_CONTAINED_BY || lastResult & Node.DOCUMENT_POSITION_CONTAINED_BY;
+        lastResult = parentHostInstance && parentHostInstanceFromDOM && firstResult & Node.DOCUMENT_POSITION_FOLLOWING && lastResult & Node.DOCUMENT_POSITION_PRECEDING;
+        parentHostFiber = parentHostInstance && parentHostFiber === otherNode || parentHostInstanceFromDOM && result === otherNode || otherNodeIsWithinFirstOrLastChild || lastResult ? Node.DOCUMENT_POSITION_CONTAINED_BY : !parentHostInstance && parentHostFiber === otherNode || !parentHostInstanceFromDOM && result === otherNode ? Node.DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC : firstResult;
+        return parentHostFiber & Node.DOCUMENT_POSITION_DISCONNECTED || parentHostFiber & Node.DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC || validateDocumentPositionWithFiberTree(
+          parentHostFiber,
+          this._fragmentFiber,
+          children[0],
+          children[children.length - 1],
+          otherNode
+        ) ? parentHostFiber : Node.DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC;
+      };
+      FragmentInstance.prototype.scrollIntoView = function(alignToTop) {
+        if ("object" === typeof alignToTop)
+          throw Error(
+            "FragmentInstance.scrollIntoView() does not support scrollIntoViewOptions. Use the alignToTop boolean instead."
+          );
+        var children = [];
+        traverseFragmentInstancesAndTextInstances(
+          this._fragmentFiber,
+          collectChildren,
+          children
+        );
+        var resolvedAlignToTop = false !== alignToTop;
+        if (0 === children.length) {
+          var hostSiblings = getFragmentInstanceOrTextInstanceSiblings(
+            this._fragmentFiber
+          );
+          hostSiblings = resolvedAlignToTop ? hostSiblings[1] || hostSiblings[0] || getFragmentParentInstanceOrContainerFiber(this._fragmentFiber) : hostSiblings[0] || hostSiblings[1];
+          if (null === hostSiblings) return;
+          if (6 === hostSiblings.tag) {
+            alignToTop = getInstanceFromHostFiber(hostSiblings);
+            scrollTextNodeIntoView(alignToTop, resolvedAlignToTop);
+            return;
+          }
+          hostSiblings = getInstanceFromHostFiber(hostSiblings);
+          if (9 !== hostSiblings.nodeType) {
+            if (11 === hostSiblings.nodeType) {
+              resolvedAlignToTop = "host" in hostSiblings ? hostSiblings.host : null;
+              null !== resolvedAlignToTop ? resolvedAlignToTop.scrollIntoView(alignToTop) : console.warn(
+                "You are attempting to scroll a FragmentInstance that is only mounted inside a detached DocumentFragment. No scroll was performed."
+              );
+              return;
+            }
+            hostSiblings.scrollIntoView(alignToTop);
+          }
+        }
+        for (hostSiblings = resolvedAlignToTop ? children.length - 1 : 0; hostSiblings !== (resolvedAlignToTop ? -1 : children.length); ) {
+          var child = children[hostSiblings];
+          6 === child.tag ? (child = getInstanceFromHostFiber(child), scrollTextNodeIntoView(child, resolvedAlignToTop)) : getInstanceFromHostFiber(child).scrollIntoView(alignToTop);
+          hostSiblings += resolvedAlignToTop ? -1 : 1;
+        }
+      };
+      var previousHydratableOnEnteringScopedSingleton = null, NotLoaded = 0, Loaded = 1, Errored = 2, Settled = 3, Inserted = 4, preloadPropsMap = /* @__PURE__ */ new Map(), preconnectsSet = /* @__PURE__ */ new Set(), previousDispatcher = ReactDOMSharedInternals.d;
       ReactDOMSharedInternals.d = {
         f: function() {
           var previousWasRendering = previousDispatcher.f(), wasRendering = flushSyncWork$1();
@@ -21085,7 +23175,7 @@ var require_react_dom_client_development = __commonJS({
               case "script":
                 key = getScriptKey(href);
             }
-            preloadPropsMap.has(key) || (href = assign(
+            if (!(preloadPropsMap.has(key) || (href = assign(
               {
                 rel: "preload",
                 href: "image" === as && options && options.imageSrcSet ? void 0 : href,
@@ -21094,7 +23184,15 @@ var require_react_dom_client_development = __commonJS({
               options
             ), preloadPropsMap.set(key, href), null !== ownerDocument.querySelector(preloadSelector) || "style" === as && ownerDocument.querySelector(
               getStylesheetSelectorFromKey(key)
-            ) || "script" === as && ownerDocument.querySelector(getScriptSelectorFromKey(key)) || (as = ownerDocument.createElement("link"), setInitialProperties(as, "link", href), markNodeAsHoistable(as), ownerDocument.head.appendChild(as)));
+            ) || "script" === as && ownerDocument.querySelector(getScriptSelectorFromKey(key))))) {
+              var instance = ownerDocument.createElement("link");
+              setInitialProperties(instance, "link", href);
+              "style" === as && (instance[internalLoadPendingKey] = true, instance.onload = instance.onerror = function() {
+                clearPendingLoadOnNode(instance);
+              });
+              markNodeAsHoistable(instance);
+              ownerDocument.head.appendChild(instance);
+            }
           }
         },
         m: function(href, options) {
@@ -21312,10 +23410,10 @@ var require_react_dom_client_development = __commonJS({
         }
       };
       (function() {
-        var isomorphicReactPackageVersion = React3.version;
-        if ("19.2.7" !== isomorphicReactPackageVersion)
+        var isomorphicReactPackageVersion = React4.version;
+        if ("19.3.0" !== isomorphicReactPackageVersion)
           throw Error(
-            'Incompatible React versions: The "react" and "react-dom" packages must have the exact same version. Instead got:\n  - react:      ' + (isomorphicReactPackageVersion + "\n  - react-dom:  19.2.7\nLearn more: https://react.dev/warnings/version-mismatch")
+            'Incompatible React versions: The "react" and "react-dom" packages must have the exact same version. Instead got:\n  - react:      ' + (isomorphicReactPackageVersion + "\n  - react-dom:  19.3.0\nLearn more: https://react.dev/warnings/version-mismatch")
           );
       })();
       "function" === typeof Map && null != Map.prototype && "function" === typeof Map.prototype.forEach && "function" === typeof Set && null != Set.prototype && "function" === typeof Set.prototype.clear && "function" === typeof Set.prototype.forEach || console.error(
@@ -21339,10 +23437,10 @@ var require_react_dom_client_development = __commonJS({
       if (!(function() {
         var internals = {
           bundleType: 1,
-          version: "19.2.7",
+          version: "19.3.0",
           rendererPackageName: "react-dom",
           currentDispatcherRef: ReactSharedInternals,
-          reconcilerVersion: "19.2.7"
+          reconcilerVersion: "19.3.0"
         };
         internals.overrideHookState = overrideHookState;
         internals.overrideHookStateDeletePath = overrideHookStateDeletePath;
@@ -21433,15 +23531,15 @@ var require_react_dom_client_development = __commonJS({
         listenToAllSupportedEvents(container);
         return new ReactDOMHydrationRoot(initialChildren);
       };
-      exports.version = "19.2.7";
+      exports.version = "19.3.0";
       "undefined" !== typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ && "function" === typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop && __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop(Error());
     })();
   }
 });
 
-// node_modules/react-dom/client.js
+// node_modules/.pnpm/react-dom@19.3.0_react@19.3.0/node_modules/react-dom/client.js
 var require_client = __commonJS({
-  "node_modules/react-dom/client.js"(exports, module) {
+  "node_modules/.pnpm/react-dom@19.3.0_react@19.3.0/node_modules/react-dom/client.js"(exports, module) {
     "use strict";
     if (false) {
       checkDCE();
@@ -21452,9 +23550,9 @@ var require_client = __commonJS({
   }
 });
 
-// node_modules/react/cjs/react-jsx-runtime.development.js
+// node_modules/.pnpm/react@19.3.0/node_modules/react/cjs/react-jsx-runtime.development.js
 var require_react_jsx_runtime_development = __commonJS({
-  "node_modules/react/cjs/react-jsx-runtime.development.js"(exports) {
+  "node_modules/.pnpm/react@19.3.0/node_modules/react/cjs/react-jsx-runtime.development.js"(exports) {
     "use strict";
     (function() {
       function getComponentNameFromType(type) {
@@ -21475,6 +23573,8 @@ var require_react_jsx_runtime_development = __commonJS({
             return "SuspenseList";
           case REACT_ACTIVITY_TYPE:
             return "Activity";
+          case REACT_VIEW_TRANSITION_TYPE:
+            return "ViewTransition";
         }
         if ("object" === typeof type)
           switch ("number" === typeof type.tag && console.error(
@@ -21666,18 +23766,18 @@ var require_react_jsx_runtime_development = __commonJS({
       function isValidElement(object) {
         return "object" === typeof object && null !== object && object.$$typeof === REACT_ELEMENT_TYPE;
       }
-      var React3 = require_react(), REACT_ELEMENT_TYPE = /* @__PURE__ */ Symbol.for("react.transitional.element"), REACT_PORTAL_TYPE = /* @__PURE__ */ Symbol.for("react.portal"), REACT_FRAGMENT_TYPE = /* @__PURE__ */ Symbol.for("react.fragment"), REACT_STRICT_MODE_TYPE = /* @__PURE__ */ Symbol.for("react.strict_mode"), REACT_PROFILER_TYPE = /* @__PURE__ */ Symbol.for("react.profiler"), REACT_CONSUMER_TYPE = /* @__PURE__ */ Symbol.for("react.consumer"), REACT_CONTEXT_TYPE = /* @__PURE__ */ Symbol.for("react.context"), REACT_FORWARD_REF_TYPE = /* @__PURE__ */ Symbol.for("react.forward_ref"), REACT_SUSPENSE_TYPE = /* @__PURE__ */ Symbol.for("react.suspense"), REACT_SUSPENSE_LIST_TYPE = /* @__PURE__ */ Symbol.for("react.suspense_list"), REACT_MEMO_TYPE = /* @__PURE__ */ Symbol.for("react.memo"), REACT_LAZY_TYPE = /* @__PURE__ */ Symbol.for("react.lazy"), REACT_ACTIVITY_TYPE = /* @__PURE__ */ Symbol.for("react.activity"), REACT_CLIENT_REFERENCE = /* @__PURE__ */ Symbol.for("react.client.reference"), ReactSharedInternals = React3.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, hasOwnProperty = Object.prototype.hasOwnProperty, isArrayImpl = Array.isArray, createTask = console.createTask ? console.createTask : function() {
+      var React4 = require_react(), REACT_ELEMENT_TYPE = /* @__PURE__ */ Symbol.for("react.transitional.element"), REACT_PORTAL_TYPE = /* @__PURE__ */ Symbol.for("react.portal"), REACT_FRAGMENT_TYPE = /* @__PURE__ */ Symbol.for("react.fragment"), REACT_STRICT_MODE_TYPE = /* @__PURE__ */ Symbol.for("react.strict_mode"), REACT_PROFILER_TYPE = /* @__PURE__ */ Symbol.for("react.profiler"), REACT_CONSUMER_TYPE = /* @__PURE__ */ Symbol.for("react.consumer"), REACT_CONTEXT_TYPE = /* @__PURE__ */ Symbol.for("react.context"), REACT_FORWARD_REF_TYPE = /* @__PURE__ */ Symbol.for("react.forward_ref"), REACT_SUSPENSE_TYPE = /* @__PURE__ */ Symbol.for("react.suspense"), REACT_SUSPENSE_LIST_TYPE = /* @__PURE__ */ Symbol.for("react.suspense_list"), REACT_MEMO_TYPE = /* @__PURE__ */ Symbol.for("react.memo"), REACT_LAZY_TYPE = /* @__PURE__ */ Symbol.for("react.lazy"), REACT_ACTIVITY_TYPE = /* @__PURE__ */ Symbol.for("react.activity"), REACT_VIEW_TRANSITION_TYPE = /* @__PURE__ */ Symbol.for("react.view_transition"), REACT_CLIENT_REFERENCE = /* @__PURE__ */ Symbol.for("react.client.reference"), ReactSharedInternals = React4.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, hasOwnProperty = Object.prototype.hasOwnProperty, isArrayImpl = Array.isArray, createTask = console.createTask ? console.createTask : function() {
         return null;
       };
-      React3 = {
+      React4 = {
         react_stack_bottom_frame: function(callStackForError) {
           return callStackForError();
         }
       };
       var specialPropKeyWarningShown;
       var didWarnAboutElementRef = {};
-      var unknownOwnerDebugStack = React3.react_stack_bottom_frame.bind(
-        React3,
+      var unknownOwnerDebugStack = React4.react_stack_bottom_frame.bind(
+        React4,
         UnknownOwner
       )();
       var unknownOwnerDebugTask = createTask(getTaskName(UnknownOwner));
@@ -21685,23 +23785,35 @@ var require_react_jsx_runtime_development = __commonJS({
       exports.Fragment = REACT_FRAGMENT_TYPE;
       exports.jsx = function(type, config, maybeKey) {
         var trackActualOwner = 1e4 > ReactSharedInternals.recentlyCreatedOwnerStacks++;
+        if (trackActualOwner) {
+          var previousStackTraceLimit = Error.stackTraceLimit;
+          Error.stackTraceLimit = 10;
+          var debugStackDEV = Error("react-stack-top-frame");
+          Error.stackTraceLimit = previousStackTraceLimit;
+        } else debugStackDEV = unknownOwnerDebugStack;
         return jsxDEVImpl(
           type,
           config,
           maybeKey,
           false,
-          trackActualOwner ? Error("react-stack-top-frame") : unknownOwnerDebugStack,
+          debugStackDEV,
           trackActualOwner ? createTask(getTaskName(type)) : unknownOwnerDebugTask
         );
       };
       exports.jsxs = function(type, config, maybeKey) {
         var trackActualOwner = 1e4 > ReactSharedInternals.recentlyCreatedOwnerStacks++;
+        if (trackActualOwner) {
+          var previousStackTraceLimit = Error.stackTraceLimit;
+          Error.stackTraceLimit = 10;
+          var debugStackDEV = Error("react-stack-top-frame");
+          Error.stackTraceLimit = previousStackTraceLimit;
+        } else debugStackDEV = unknownOwnerDebugStack;
         return jsxDEVImpl(
           type,
           config,
           maybeKey,
           true,
-          trackActualOwner ? Error("react-stack-top-frame") : unknownOwnerDebugStack,
+          debugStackDEV,
           trackActualOwner ? createTask(getTaskName(type)) : unknownOwnerDebugTask
         );
       };
@@ -21709,9 +23821,9 @@ var require_react_jsx_runtime_development = __commonJS({
   }
 });
 
-// node_modules/react/jsx-runtime.js
+// node_modules/.pnpm/react@19.3.0/node_modules/react/jsx-runtime.js
 var require_jsx_runtime = __commonJS({
-  "node_modules/react/jsx-runtime.js"(exports, module) {
+  "node_modules/.pnpm/react@19.3.0/node_modules/react/jsx-runtime.js"(exports, module) {
     "use strict";
     if (false) {
       module.exports = null;
@@ -21722,11 +23834,233 @@ var require_jsx_runtime = __commonJS({
 });
 
 // practice/react/entry.jsx
-var import_react2 = __toESM(require_react(), 1);
+var import_react3 = __toESM(require_react(), 1);
 var import_client = __toESM(require_client(), 1);
 
 // practice/react/PracticePreview.jsx
+var import_react2 = __toESM(require_react(), 1);
+
+// shared/notes/InlineAiNotes.jsx
 var import_react = __toESM(require_react(), 1);
+
+// shared/notes/noteModel.js
+function noteFields(note) {
+  if (typeof note.question === "string") return { draft: note.question, answer: note.answer || "" };
+  const text39 = note.text || "";
+  const match = note.kind === "ai" && text39.match(/^问：([\s\S]*?)\n答：([\s\S]*)$/);
+  return match ? { draft: match[1], answer: match[2] } : { draft: text39, answer: "" };
+}
+function savedNote(previous, draft, answer3) {
+  const question = draft.trim();
+  const reply = answer3.trim();
+  return {
+    ...previous,
+    id: previous?.id || crypto.randomUUID(),
+    question,
+    answer: reply,
+    text: reply ? `\u95EE\uFF1A${question}
+\u7B54\uFF1A${reply}` : question,
+    kind: reply ? "ai" : "note",
+    color: previous?.color || "green"
+  };
+}
+
+// shared/notes/InlineAiNotes.jsx
+var import_jsx_runtime = __toESM(require_jsx_runtime(), 1);
+function InlineAiNotes({ loadNotes, saveNotes, askAi }) {
+  const [notes, setNotes] = (0, import_react.useState)(loadNotes);
+  const [open, setOpen] = (0, import_react.useState)(false);
+  const [editingId, setEditingId] = (0, import_react.useState)("");
+  const [draft, setDraft] = (0, import_react.useState)("");
+  const [answer3, setAnswer] = (0, import_react.useState)("");
+  const [busy, setBusy] = (0, import_react.useState)(false);
+  const [status, setStatus] = (0, import_react.useState)("");
+  const [expanded, setExpanded] = (0, import_react.useState)({});
+  const [deleted, setDeleted] = (0, import_react.useState)(null);
+  const [highlight, setHighlight] = (0, import_react.useState)("");
+  const drafts = (0, import_react.useRef)(/* @__PURE__ */ new Map());
+  const request = (0, import_react.useRef)(null);
+  const input = (0, import_react.useRef)(null);
+  const answerInput = (0, import_react.useRef)(null);
+  const editor = (0, import_react.useRef)(null);
+  (0, import_react.useEffect)(() => () => request.current?.abort(), []);
+  (0, import_react.useLayoutEffect)(() => {
+    if (!open || !input.current) return;
+    input.current.style.height = "auto";
+    input.current.style.height = `${Math.min(224, Math.max(60, input.current.scrollHeight))}px`;
+  }, [draft, open, editingId]);
+  (0, import_react.useLayoutEffect)(() => {
+    if (!open || !answerInput.current) return;
+    answerInput.current.style.height = "auto";
+    answerInput.current.style.height = `${Math.min(224, Math.max(40, answerInput.current.scrollHeight))}px`;
+  }, [answer3, open, editingId]);
+  (0, import_react.useEffect)(() => {
+    if (open) {
+      input.current?.focus();
+      editor.current?.scrollIntoView({ block: "nearest" });
+    }
+  }, [open, editingId]);
+  const cancel = () => {
+    request.current?.abort();
+    request.current = null;
+    setBusy(false);
+  };
+  const persist = (next) => {
+    try {
+      saveNotes(next);
+      setNotes(next);
+      return true;
+    } catch {
+      setStatus("\u4FDD\u5B58\u5931\u8D25\uFF0C\u8BF7\u68C0\u67E5\u6D4F\u89C8\u5668\u5B58\u50A8\u7A7A\u95F4\u540E\u91CD\u8BD5\u3002");
+      return false;
+    }
+  };
+  const edit = (note) => {
+    drafts.current.set(editingId, { draft, answer: answer3 });
+    cancel();
+    const id = note?.id || "";
+    const fields = drafts.current.get(id) || (note ? noteFields(note) : { draft: "", answer: "" });
+    setEditingId(id);
+    setDraft(fields.draft);
+    setAnswer(fields.answer);
+    setStatus("");
+    setOpen(true);
+  };
+  const save = (includeAnswer = true) => {
+    if (!draft.trim()) return;
+    const record = savedNote(notes.find((n) => n.id === editingId), draft, includeAnswer ? answer3 : "");
+    const next = editingId ? notes.map((n) => n.id === editingId ? record : n) : [record, ...notes];
+    if (!persist(next)) return;
+    cancel();
+    drafts.current.delete(editingId);
+    setEditingId("");
+    setDraft("");
+    setAnswer("");
+    setOpen(false);
+    setStatus("\u5DF2\u4FDD\u5B58");
+    setHighlight(record.id);
+  };
+  const ask = async () => {
+    if (!draft.trim() || busy) return;
+    const controller = new AbortController();
+    request.current = controller;
+    const question = draft.trim();
+    setBusy(true);
+    setStatus("\u6B63\u5728\u56DE\u7B54\u2026");
+    const timer = setTimeout(() => {
+      if (request.current === controller) {
+        cancel();
+        setStatus("\u7B49\u5F85\u8D85\u65F6\uFF0C\u8BF7\u91CD\u8BD5\uFF1B\u4E5F\u53EF\u4EE5\u76F4\u63A5\u4FDD\u5B58\u7B14\u8BB0\u3002");
+      }
+    }, 14e4);
+    try {
+      const reply = await askAi(question, { signal: controller.signal });
+      if (request.current !== controller) return;
+      if (!reply?.trim()) throw new Error("AI \u672A\u8FD4\u56DE\u5185\u5BB9\uFF0C\u8BF7\u91CD\u8BD5\u3002");
+      setAnswer(reply);
+      setStatus("");
+    } catch (error) {
+      if (request.current === controller) setStatus(error.message || "\u8BF7\u6C42\u5931\u8D25\uFF0C\u8BF7\u91CD\u8BD5\u3002");
+    } finally {
+      clearTimeout(timer);
+      if (request.current === controller) {
+        request.current = null;
+        setBusy(false);
+      }
+    }
+  };
+  const remove = (note) => {
+    if (!persist(notes.filter((n) => n.id !== note.id))) return;
+    setDeleted({ note, index: notes.findIndex((n) => n.id === note.id) });
+    drafts.current.delete(note.id);
+    if (editingId === note.id) {
+      cancel();
+      setEditingId("");
+      setDraft("");
+      setAnswer("");
+      setOpen(false);
+    }
+    setStatus("\u5DF2\u5220\u9664\u7B14\u8BB0");
+  };
+  return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", { className: `inline-ai-notes${open ? " is-open" : ""}`, "aria-label": "\u9898\u76EE\u7B14\u8BB0", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "ian-entry", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { type: "button", className: `ian-trigger ${open ? "active" : ""}`, "aria-label": "\u8BB0\u7B14\u8BB0 / \u95EE AI", title: "\u8BB0\u7B14\u8BB0 / \u95EE AI", "aria-expanded": open, onClick: () => open ? setOpen(false) : setOpen(true), children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("svg", { width: "16", height: "16", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "1.6", strokeLinecap: "round", strokeLinejoin: "round", "aria-hidden": "true", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("path", { d: "M13.5 5.5l5 5M4 20l4.5-1 12-12a2.1 2.1 0 0 0-5-3l-12 12L4 20Z" }),
+        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("path", { d: "M12 20h8" })
+      ] }) }),
+      !open && (draft || busy) ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("small", { children: busy ? "\u6B63\u5728\u56DE\u7B54\u2026" : "\u6709\u672A\u4FDD\u5B58\u7684\u8349\u7A3F" }) : null
+    ] }),
+    open && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "ian-editor", ref: editor, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("header", { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("strong", { children: editingId ? "\u7F16\u8F91\u7B14\u8BB0" : "\u968F\u624B\u8BB0" }),
+        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [
+          editingId && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { type: "button", onClick: () => edit(null), children: "\u65B0\u5EFA\u7B14\u8BB0" }),
+          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { type: "button", onClick: () => setOpen(false), children: "\u6536\u8D77" })
+        ] })
+      ] }),
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("textarea", { ref: input, "aria-label": "\u7B14\u8BB0\u6216\u95EE\u9898", placeholder: "\u5199\u4E0B\u4F60\u7684\u7406\u89E3\uFF0C\u6216\u60F3\u95EE AI \u7684\u95EE\u9898\u2026", value: draft, rows: 2, onChange: (e) => {
+        cancel();
+        setDraft(e.target.value);
+        setAnswer("");
+        setStatus(answer3 ? "\u95EE\u9898\u5DF2\u4FEE\u6539\uFF0C\u8BF7\u91CD\u65B0\u95EE AI\u3002" : "");
+      } }),
+      answer3 && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { className: "ian-answer", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { children: [
+          "\u2726 AI \u56DE\u7B54 ",
+          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("small", { children: "\u53EF\u7F16\u8F91\u6574\u7406" })
+        ] }),
+        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("textarea", { ref: answerInput, "aria-label": "AI \u56DE\u7B54", value: answer3, onChange: (e) => setAnswer(e.target.value), rows: 1 })
+      ] }),
+      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "ian-actions", children: [
+        busy ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { type: "button", onClick: () => {
+          cancel();
+          setStatus("\u5DF2\u53D6\u6D88\uFF0C\u53EF\u7EE7\u7EED\u7F16\u8F91\u6216\u4FDD\u5B58\u3002");
+        }, children: "\u53D6\u6D88\u56DE\u7B54" }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { type: "button", disabled: !draft.trim(), onClick: ask, children: answer3 ? "\u91CD\u65B0\u56DE\u7B54" : "\u2726 \u95EE AI" }),
+        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [
+          answer3 && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { type: "button", disabled: !draft.trim(), onClick: () => save(false), children: "\u4EC5\u4FDD\u5B58\u8F93\u5165" }),
+          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { type: "button", className: "ian-primary", disabled: !draft.trim(), onClick: () => save(), children: answer3 ? "\u4FDD\u5B58\u95EE\u7B54\u7B14\u8BB0" : "\u4FDD\u5B58\u7B14\u8BB0" })
+        ] })
+      ] })
+    ] }),
+    /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "ian-status", role: "status", children: [
+      status,
+      deleted && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { type: "button", onClick: () => {
+        const next = [...notes];
+        next.splice(deleted.index, 0, deleted.note);
+        if (persist(next)) {
+          setDeleted(null);
+          setStatus("\u5DF2\u6062\u590D\u7B14\u8BB0");
+        }
+      }, children: "\u64A4\u9500\u5220\u9664" })
+    ] }),
+    /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "ian-list", children: notes.map((note) => {
+      const fields = noteFields(note);
+      return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("article", { className: `ian-note ian-${note.color || "yellow"} ${highlight === note.id ? "ian-saved" : ""} ${editingId === note.id && open ? "ian-editing" : ""}`, onDoubleClick: (e) => {
+        if (!e.target.closest("button, select")) edit(note);
+      }, children: [
+        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("header", { children: [
+          /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("small", { children: [
+            fields.answer ? "\u95EE\u7B54\u7B14\u8BB0" : "\u7B14\u8BB0",
+            editingId === note.id && open ? " \xB7 \u7F16\u8F91\u4E2D" : ""
+          ] }),
+          /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "ian-colors", role: "group", "aria-label": "\u7B14\u8BB0\u989C\u8272", children: [["yellow", "\u9EC4\u8272"], ["purple", "\u7D2B\u8272"], ["green", "\u7EFF\u8272"], ["blue", "\u84DD\u8272"], ["pink", "\u7C89\u8272"]].map(([value, label]) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { type: "button", className: `ian-swatch ian-swatch-${value}`, title: label, "aria-label": label, "aria-pressed": (note.color || "yellow") === value, onClick: () => persist(notes.map((n) => n.id === note.id ? { ...n, color: value } : n)) }, value)) }),
+            /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { type: "button", onClick: () => edit(note), children: "\u7F16\u8F91" }),
+            /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { type: "button", onClick: () => remove(note), children: "\u5220\u9664" })
+          ] })
+        ] }),
+        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: expanded[note.id] ? "ian-content" : "ian-content ian-clamped", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { children: fields.draft }),
+          fields.answer && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "ian-saved-answer", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime.jsx)("small", { children: "\u2726 AI \u56DE\u7B54" }),
+            /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { children: fields.answer })
+          ] })
+        ] }),
+        (fields.answer || fields.draft.length > 120 || fields.draft.split("\n").length > 3) && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { type: "button", className: "ian-expand", onClick: () => setExpanded({ ...expanded, [note.id]: !expanded[note.id] }), children: expanded[note.id] ? "\u6536\u8D77\u5185\u5BB9" : "\u5C55\u5F00\u5185\u5BB9" })
+      ] }, note.id);
+    }) })
+  ] });
+}
 
 // practice/react/practiceSessionApi.js
 var STORAGE_PREFIX = "japaflow.practice.session.v1";
@@ -21886,8 +24220,8 @@ function mergeLegacyLessonRecords(lessonId2, record) {
     const key = window.localStorage.key(index);
     if (!key || key === currentKey || !mightContainLegacyPracticeRecord(key, lessonId2)) continue;
     const value = safeJsonParse(window.localStorage.getItem(key), null);
-    const activities36 = extractLegacyActivities(value, lessonId2, activityIdPattern, key, activityIdInKeyPattern);
-    Object.entries(activities36).forEach(([activityId, legacyRecord]) => {
+    const activities38 = extractLegacyActivities(value, lessonId2, activityIdPattern, key, activityIdInKeyPattern);
+    Object.entries(activities38).forEach(([activityId, legacyRecord]) => {
       if (!activityIdPattern?.test(activityId) || !legacyRecord || typeof legacyRecord !== "object") return;
       const currentRecord = merged.activities[activityId] || {};
       merged.activities[activityId] = {
@@ -21913,11 +24247,11 @@ function extractLegacyActivities(value, lessonId2, activityIdPattern, storageKey
   if (value.lessonId === lessonId2 && value.activityId) return { [value.activityId]: value };
   const activityIdFromKey = storageKeyName.match(activityIdInKeyPattern || /$^/)?.[0];
   if (activityIdFromKey) return { [activityIdFromKey]: value };
-  const activities36 = {};
+  const activities38 = {};
   Object.entries(value).forEach(([key, entry]) => {
-    if (activityIdPattern?.test(key)) activities36[key] = entry;
+    if (activityIdPattern?.test(key)) activities38[key] = entry;
   });
-  return activities36;
+  return activities38;
 }
 function lessonNumber(lessonId2) {
   const match = String(lessonId2).match(/lesson(\d+)/i);
@@ -22109,7 +24443,7 @@ var practiceSessionApi = {
 };
 
 // practice/react/PracticePreview.jsx
-var import_jsx_runtime = __toESM(require_jsx_runtime(), 1);
+var import_jsx_runtime2 = __toESM(require_jsx_runtime(), 1);
 var sectionLabel = {
   practice_1: "\u7EC3\u4E60 I",
   practice_2: "\u7EC3\u4E60 II",
@@ -22198,16 +24532,16 @@ var sortedAnswerLexicalVariantGroups = [...answerLexicalVariantGroups].map((grou
 function PracticePreview({ practice, localPractice: localPractice2 = null }) {
   const search = typeof window === "undefined" ? "" : window.location.search;
   const admin = new URLSearchParams(search).get("admin") === "1";
-  const activities36 = practice.activities;
+  const activities38 = practice.activities;
   const practiceSetId = practice.practiceSetId || null;
   const preview = Boolean(practice.preview);
-  const [session, setSession] = (0, import_react.useState)({ lessonId: practice.lessonId, activities: {} });
-  const [sessionLoadKey, setSessionLoadKey] = (0, import_react.useState)(0);
-  const [isReady, setIsReady] = (0, import_react.useState)(false);
-  const [answerAlternatives, setAnswerAlternatives] = (0, import_react.useState)({});
+  const [session, setSession] = (0, import_react2.useState)({ lessonId: practice.lessonId, activities: {} });
+  const [sessionLoadKey, setSessionLoadKey] = (0, import_react2.useState)(0);
+  const [isReady, setIsReady] = (0, import_react2.useState)(false);
+  const [answerAlternatives, setAnswerAlternatives] = (0, import_react2.useState)({});
   const vocabularyOccurrences = useLessonVocabularyOccurrences(practice.lessonId);
-  const [currentActivityId, setCurrentActivityId] = (0, import_react.useState)(() => activityIdFromHash(window.location.hash, activities36[0]?.id));
-  (0, import_react.useEffect)(() => {
+  const [currentActivityId, setCurrentActivityId] = (0, import_react2.useState)(() => activityIdFromHash(window.location.hash, activities38[0]?.id));
+  (0, import_react2.useEffect)(() => {
     let mounted = true;
     setIsReady(false);
     practiceSessionApi.loadLessonSession(practice.lessonId).then((record) => {
@@ -22229,12 +24563,12 @@ function PracticePreview({ practice, localPractice: localPractice2 = null }) {
       mounted = false;
     };
   }, [practice.lessonId]);
-  (0, import_react.useEffect)(() => {
+  (0, import_react2.useEffect)(() => {
     if (admin) document.body.dataset.admin = "1";
     else delete document.body.dataset.admin;
   }, [admin]);
-  (0, import_react.useEffect)(() => {
-    const fallbackId = activities36[0]?.id;
+  (0, import_react2.useEffect)(() => {
+    const fallbackId = activities38[0]?.id;
     const syncFromHash = () => {
       const nextId = activityIdFromHash(window.location.hash, fallbackId);
       setCurrentActivityId(nextId);
@@ -22242,22 +24576,22 @@ function PracticePreview({ practice, localPractice: localPractice2 = null }) {
     syncFromHash();
     window.addEventListener("hashchange", syncFromHash);
     return () => window.removeEventListener("hashchange", syncFromHash);
-  }, [activities36]);
-  (0, import_react.useEffect)(() => {
-    if (!activities36.some((activity) => activity.id === currentActivityId) && activities36[0]?.id) {
-      setCurrentActivityId(activities36[0].id);
-      if (typeof window !== "undefined") window.location.hash = activities36[0].id;
+  }, [activities38]);
+  (0, import_react2.useEffect)(() => {
+    if (!activities38.some((activity) => activity.id === currentActivityId) && activities38[0]?.id) {
+      setCurrentActivityId(activities38[0].id);
+      if (typeof window !== "undefined") window.location.hash = activities38[0].id;
     }
-  }, [activities36, currentActivityId]);
-  const currentIndex = Math.max(0, activities36.findIndex((activity) => activity.id === currentActivityId));
-  const currentActivity = activities36[currentIndex] || activities36[0];
-  const previousActivity = currentIndex > 0 ? activities36[currentIndex - 1] : null;
-  const nextActivity = currentIndex < activities36.length - 1 ? activities36[currentIndex + 1] : null;
+  }, [activities38, currentActivityId]);
+  const currentIndex = Math.max(0, activities38.findIndex((activity) => activity.id === currentActivityId));
+  const currentActivity = activities38[currentIndex] || activities38[0];
+  const previousActivity = currentIndex > 0 ? activities38[currentIndex - 1] : null;
+  const nextActivity = currentIndex < activities38.length - 1 ? activities38[currentIndex + 1] : null;
   const currentRecord = normalizeActivityRecord(currentActivity, session.activities?.[currentActivity?.id]);
   const isPublished = Boolean(practiceSetId);
-  (0, import_react.useEffect)(() => {
+  (0, import_react2.useEffect)(() => {
     if (!isReady) return;
-    const progress = activities36.reduce((total, activity) => {
+    const progress = activities38.reduce((total, activity) => {
       const record = normalizeActivityRecord(activity, session.activities?.[activity.id]);
       const activityProgress = activityProgressSummary(activity, record);
       return {
@@ -22271,17 +24605,17 @@ function PracticePreview({ practice, localPractice: localPractice2 = null }) {
       ...progress,
       updatedAt: (/* @__PURE__ */ new Date()).toISOString()
     }));
-  }, [activities36, isReady, practice.lessonId, practiceSetId, session]);
-  (0, import_react.useEffect)(() => {
+  }, [activities38, isReady, practice.lessonId, practiceSetId, session]);
+  (0, import_react2.useEffect)(() => {
     window.initPracticeAnswerFormatter?.();
   }, [currentActivity?.id, sessionLoadKey, admin]);
-  (0, import_react.useEffect)(() => {
+  (0, import_react2.useEffect)(() => {
     if (!currentActivity?.id || typeof window === "undefined") return;
     window.requestAnimationFrame(() => {
       window.scrollTo({ top: 0, left: 0, behavior: "auto" });
     });
   }, [currentActivity?.id]);
-  (0, import_react.useEffect)(() => {
+  (0, import_react2.useEffect)(() => {
     let mounted = true;
     loadAcceptedAnswerAlternatives(practice.lessonId).then((alternatives) => {
       if (mounted) setAnswerAlternatives(alternatives);
@@ -22317,53 +24651,53 @@ function PracticePreview({ practice, localPractice: localPractice2 = null }) {
     }));
     notifyPracticeProgressChanged({ lessonId: practice.lessonId, practiceSetId, activityId });
   };
-  return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("main", { className: "practice-shell", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("aside", { className: "practice-sidebar", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "practice-brand", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "\u7DF4" }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("strong", { children: practice.title })
+  return /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("main", { className: "practice-shell", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("aside", { className: "practice-sidebar", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "practice-brand", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", { children: "\u7DF4" }),
+        /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("strong", { children: practice.title })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("nav", { className: "activity-nav", "aria-label": "\u7EC3\u4E60\u6D3B\u52A8", children: activities36.map((activity) => {
+      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("nav", { className: "activity-nav", "aria-label": "\u7EC3\u4E60\u6D3B\u52A8", children: activities38.map((activity) => {
         const record = normalizeActivityRecord(activity, session.activities?.[activity.id]);
         const progress = activityProgressSummary(activity, record);
-        return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+        return /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(
           "a",
           {
             href: `#${activity.id}`,
             className: activity.id === currentActivity?.id ? "active" : "",
             title: activity.title,
             children: [
-              /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("small", { children: [
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("small", { children: [
                 sectionLabel[activity.section],
                 " \xB7 ",
                 activity.order,
-                /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("em", { className: `activity-nav-mobile-count${progress.percent === 100 ? " complete" : ""}`, children: [
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("em", { className: `activity-nav-mobile-count${progress.percent === 100 ? " complete" : ""}`, children: [
                   " \xB7 ",
                   progress.completed,
                   "/",
                   progress.total
                 ] })
               ] }),
-              /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: activity.title }),
-              /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "activity-nav-progress", "aria-label": `\u5B8C\u6210\u5EA6 ${progress.percent}%${progress.incorrect ? `\uFF0C\u9519\u9898 ${progress.incorrect} \u9898` : ""}`, children: [
-                /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "activity-progress-meta", children: [
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("em", { children: [
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", { children: activity.title }),
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "activity-nav-progress", "aria-label": `\u5B8C\u6210\u5EA6 ${progress.percent}%${progress.incorrect ? `\uFF0C\u9519\u9898 ${progress.incorrect} \u9898` : ""}`, children: [
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "activity-progress-meta", children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("em", { children: [
                     "\u5DF2\u505A ",
                     progress.completed,
                     "/",
                     progress.total,
-                    progress.incorrect ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { className: "activity-progress-wrong", children: [
+                    progress.incorrect ? /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("span", { className: "activity-progress-wrong", children: [
                       "\uFF08\u9519 ",
                       progress.incorrect,
                       "\uFF09"
                     ] }) : null
                   ] }),
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("strong", { children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("strong", { children: [
                     progress.percent,
                     "%"
                   ] })
                 ] }),
-                /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                   "div",
                   {
                     className: "activity-progress-track",
@@ -22371,7 +24705,7 @@ function PracticePreview({ practice, localPractice: localPractice2 = null }) {
                     "aria-valuemin": "0",
                     "aria-valuemax": "100",
                     "aria-valuenow": progress.percent,
-                    children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("i", { style: { width: `${progress.percent}%` } })
+                    children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("i", { style: { width: `${progress.percent}%` } })
                   }
                 )
               ] })
@@ -22380,11 +24714,11 @@ function PracticePreview({ practice, localPractice: localPractice2 = null }) {
           activity.id
         );
       }) }),
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "practice-progress-dots", "aria-label": `\u5F53\u524D\u7B2C ${Math.max(0, activities36.findIndex((activity) => activity.id === currentActivity?.id) + 1)} \u9898\uFF0C\u5171 ${activities36.length} \u9898`, children: activities36.map((activity, index) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("i", { className: activity.id === currentActivity?.id ? "active" : "", title: `\u7B2C ${index + 1} \u9898` }, activity.id)) })
+      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("div", { className: "practice-progress-dots", "aria-label": `\u5F53\u524D\u7B2C ${Math.max(0, activities38.findIndex((activity) => activity.id === currentActivity?.id) + 1)} \u9898\uFF0C\u5171 ${activities38.length} \u9898`, children: activities38.map((activity, index) => /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("i", { className: activity.id === currentActivity?.id ? "active" : "", title: `\u7B2C ${index + 1} \u9898` }, activity.id)) })
     ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", { className: "practice-content", children: [
-      admin ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(PracticePublishPanel, { lessonId: practice.lessonId, practice, localPractice: localPractice2 }) : null,
-      admin ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+    /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("section", { className: "practice-content", children: [
+      admin ? /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(PracticePublishPanel, { lessonId: practice.lessonId, practice, localPractice: localPractice2 }) : null,
+      admin ? /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
         PracticeAlternativeSyncPanel,
         {
           lessonId: practice.lessonId,
@@ -22392,7 +24726,7 @@ function PracticePreview({ practice, localPractice: localPractice2 = null }) {
           answerAlternatives
         }
       ) : null,
-      !admin && !isPublished && !preview ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(UnpublishedPracticeNotice, {}) : currentActivity ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+      !admin && !isPublished && !preview ? /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(UnpublishedPracticeNotice, {}) : currentActivity ? /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
         PracticeActivity,
         {
           activity: currentActivity,
@@ -22410,9 +24744,9 @@ function PracticePreview({ practice, localPractice: localPractice2 = null }) {
         },
         `${currentActivity.id}:${sessionLoadKey}:${admin ? "admin" : "user"}`
       ) : null,
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("section", { className: "source-page-strip", "aria-label": "\u6559\u6750\u539F\u9875", children: practice.sourcePages.map((sourcePage) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("a", { href: sourcePage.imagePath, target: "_blank", rel: "noreferrer", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", { src: sourcePage.imagePath, alt: `\u6559\u6750\u7B2C ${sourcePage.pageNo} \u9875` }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("section", { className: "source-page-strip", "aria-label": "\u6559\u6750\u539F\u9875", children: practice.sourcePages.map((sourcePage) => /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("a", { href: sourcePage.imagePath, target: "_blank", rel: "noreferrer", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("img", { src: sourcePage.imagePath, alt: `\u6559\u6750\u7B2C ${sourcePage.pageNo} \u9875` }),
+        /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("span", { children: [
           "p.",
           sourcePage.pageNo
         ] })
@@ -22440,10 +24774,10 @@ function notifyPracticeProgressChanged(detail) {
   }, window.location.origin);
 }
 function UnpublishedPracticeNotice() {
-  return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", { className: "practice-blocked-panel", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { className: "practice-blocked-kicker", children: "\u7EC3\u4E60\u6682\u4E0D\u53EF\u7528" }),
-    /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h1", { children: "\u672C\u8BFE\u7EC3\u4E60\u5C1A\u672A\u53D1\u5E03\u5230\u6570\u636E\u5E93" }),
-    /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { children: "\u5F53\u524D\u9875\u9762\u53EA\u6709\u672C\u5730\u7EC3\u4E60\u8349\u7A3F\uFF0C\u8FD8\u6CA1\u6709\u53EF\u4FDD\u5B58\u63D0\u4EA4\u8BB0\u5F55\u7684\u6570\u636E\u5E93\u7248\u672C\u3002\u8BF7\u8054\u7CFB\u7BA1\u7406\u5458\u53D1\u5E03\u672C\u8BFE\u7EC3\u4E60\u6570\u636E\u540E\u518D\u5F00\u59CB\u7EC3\u4E60\u3002" })
+  return /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("section", { className: "practice-blocked-panel", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("p", { className: "practice-blocked-kicker", children: "\u7EC3\u4E60\u6682\u4E0D\u53EF\u7528" }),
+    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("h1", { children: "\u672C\u8BFE\u7EC3\u4E60\u5C1A\u672A\u53D1\u5E03\u5230\u6570\u636E\u5E93" }),
+    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("p", { children: "\u5F53\u524D\u9875\u9762\u53EA\u6709\u672C\u5730\u7EC3\u4E60\u8349\u7A3F\uFF0C\u8FD8\u6CA1\u6709\u53EF\u4FDD\u5B58\u63D0\u4EA4\u8BB0\u5F55\u7684\u6570\u636E\u5E93\u7248\u672C\u3002\u8BF7\u8054\u7CFB\u7BA1\u7406\u5458\u53D1\u5E03\u672C\u8BFE\u7EC3\u4E60\u6570\u636E\u540E\u518D\u5F00\u59CB\u7EC3\u4E60\u3002" })
   ] });
 }
 function practiceContentSignature2(practice) {
@@ -22460,9 +24794,9 @@ function canonicalPracticeContent(value) {
   return value;
 }
 function PracticePublishPanel({ lessonId: lessonId2, practice, localPractice: localPractice2 }) {
-  const [status, setStatus] = (0, import_react.useState)({ state: "idle", message: "" });
-  const [publishedLocalSignature, setPublishedLocalSignature] = (0, import_react.useState)(null);
-  const [publishedVersion, setPublishedVersion] = (0, import_react.useState)(practice.practiceVersion || null);
+  const [status, setStatus] = (0, import_react2.useState)({ state: "idle", message: "" });
+  const [publishedLocalSignature, setPublishedLocalSignature] = (0, import_react2.useState)(null);
+  const [publishedVersion, setPublishedVersion] = (0, import_react2.useState)(practice.practiceVersion || null);
   const lessonNo = String(lessonId2 || "").match(/\d+/)?.[0] || "";
   const generateCommand = lessonNo ? `practise-generete-prompt-v3.md generate lesson ${lessonNo} data` : "practise-generete-prompt-v3.md generate lesson N data";
   const canPublish = Boolean(localPractice2?.activities?.length);
@@ -22483,19 +24817,19 @@ function PracticePublishPanel({ lessonId: lessonId2, practice, localPractice: lo
       setStatus({ state: "error", message: String(error.message || error) });
     }
   };
-  return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", { className: "admin-publish-panel", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("strong", { children: "\u672C\u5730\u7EC3\u4E60\u6570\u636E" }),
-      canPublish ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [
-        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", { children: [
+  return /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("section", { className: "admin-publish-panel", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("strong", { children: "\u672C\u5730\u7EC3\u4E60\u6570\u636E" }),
+      canPublish ? /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(import_jsx_runtime2.Fragment, { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("p", { children: [
           localPractice2.title,
           " \xB7 ",
           localPractice2.activities.length,
           " \u9898",
           databaseVersion ? ` \xB7 \u5F53\u524D\u6570\u636E\u5E93 version ${databaseVersion}` : " \xB7 \u5F53\u524D\u672A\u52A0\u8F7D\u6570\u636E\u5E93\u7248\u672C"
         ] }),
-        hasUnpublishedLocalChanges ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { className: "admin-publish-diff-notice", children: "\u68C0\u6D4B\u5230\u672C\u5730\u9898\u76EE\u6570\u636E\u4E0E\u5DF2\u53D1\u5E03\u7248\u672C\u4E0D\u4E00\u81F4\uFF1B\u91CD\u65B0\u53D1\u5E03\u540E\uFF0C\u6B63\u5F0F\u7528\u6237\u624D\u4F1A\u52A0\u8F7D\u8FD9\u4E9B\u6539\u52A8\u3002" }) : databaseVersion ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { className: "admin-publish-sync-notice", children: "\u672C\u5730\u9898\u76EE\u6570\u636E\u4E0E\u5DF2\u53D1\u5E03\u7248\u672C\u4E00\u81F4\u3002" }) : null
-      ] }) : /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", { children: [
+        hasUnpublishedLocalChanges ? /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("p", { className: "admin-publish-diff-notice", children: "\u68C0\u6D4B\u5230\u672C\u5730\u9898\u76EE\u6570\u636E\u4E0E\u5DF2\u53D1\u5E03\u7248\u672C\u4E0D\u4E00\u81F4\uFF1B\u91CD\u65B0\u53D1\u5E03\u540E\uFF0C\u6B63\u5F0F\u7528\u6237\u624D\u4F1A\u52A0\u8F7D\u8FD9\u4E9B\u6539\u52A8\u3002" }) : databaseVersion ? /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("p", { className: "admin-publish-sync-notice", children: "\u672C\u5730\u9898\u76EE\u6570\u636E\u4E0E\u5DF2\u53D1\u5E03\u7248\u672C\u4E00\u81F4\u3002" }) : null
+      ] }) : /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("p", { children: [
         "\u672A\u627E\u5230\u672C\u8BFE\u672C\u5730\u7EC3\u4E60\u6570\u636E\u3002\u8BF7\u5148\u751F\u6210 `practice/lesson",
         lessonNo || "N",
         "-practice-data.ts`\uFF0C\u4F8B\u5982\uFF1A`",
@@ -22503,17 +24837,17 @@ function PracticePublishPanel({ lessonId: lessonId2, practice, localPractice: lo
         "`\u3002"
       ] })
     ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "admin-publish-actions", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { type: "button", className: "secondary-action", onClick: handlePublish, disabled: !canPublish || status.state === "pending" || Boolean(databaseVersion && !hasUnpublishedLocalChanges), children: databaseVersion ? hasUnpublishedLocalChanges ? "\u53D1\u5E03\u672C\u5730\u6539\u52A8\u4E3A\u65B0\u7248\u672C" : "\u5DF2\u540C\u6B65\u5230\u6570\u636E\u5E93" : "\u53D1\u5E03\u5230\u6570\u636E\u5E93" }),
-      status.message ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: `admin-publish-status ${status.state}`, children: status.message }) : null
+    /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "admin-publish-actions", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("button", { type: "button", className: "secondary-action", onClick: handlePublish, disabled: !canPublish || status.state === "pending" || Boolean(databaseVersion && !hasUnpublishedLocalChanges), children: databaseVersion ? hasUnpublishedLocalChanges ? "\u53D1\u5E03\u672C\u5730\u6539\u52A8\u4E3A\u65B0\u7248\u672C" : "\u5DF2\u540C\u6B65\u5230\u6570\u636E\u5E93" : "\u53D1\u5E03\u5230\u6570\u636E\u5E93" }),
+      status.message ? /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", { className: `admin-publish-status ${status.state}`, children: status.message }) : null
     ] })
   ] });
 }
 function PracticeAlternativeSyncPanel({ lessonId: lessonId2, practice, answerAlternatives }) {
-  const [status, setStatus] = (0, import_react.useState)({ state: "idle", message: "" });
-  const [syncedVersion, setSyncedVersion] = (0, import_react.useState)(null);
-  const [expanded, setExpanded] = (0, import_react.useState)(false);
-  const syncPlan = (0, import_react.useMemo)(
+  const [status, setStatus] = (0, import_react2.useState)({ state: "idle", message: "" });
+  const [syncedVersion, setSyncedVersion] = (0, import_react2.useState)(null);
+  const [expanded, setExpanded] = (0, import_react2.useState)(false);
+  const syncPlan = (0, import_react2.useMemo)(
     () => buildAcceptedAnswerAlternativeSyncPlan(practice, answerAlternatives),
     [practice, answerAlternatives]
   );
@@ -22534,14 +24868,14 @@ function PracticeAlternativeSyncPanel({ lessonId: lessonId2, practice, answerAlt
       setStatus({ state: "error", message: String(error.message || error) });
     }
   };
-  return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", { className: "admin-publish-panel admin-alternative-sync-panel", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("strong", { children: "\u5019\u9009\u7B54\u6848\u540C\u6B65" }),
-      syncedVersion ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", { children: [
+  return /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("section", { className: "admin-publish-panel admin-alternative-sync-panel", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("strong", { children: "\u5019\u9009\u7B54\u6848\u540C\u6B65" }),
+      syncedVersion ? /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("p", { children: [
         "\u5019\u9009\u7B54\u6848\u5DF2\u5199\u5165\u6570\u636E\u5E93 version ",
         syncedVersion,
         "\u3002"
-      ] }) : /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", { children: [
+      ] }) : /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("p", { children: [
         "\u6709 ",
         syncPlan.itemCount,
         " \u4E2A\u7EC3\u4E60\u9898\u5B58\u5728 ",
@@ -22549,8 +24883,8 @@ function PracticeAlternativeSyncPanel({ lessonId: lessonId2, practice, answerAlt
         " \u4E2A\u5019\u9009\u7B54\u6848\uFF0C\u5EFA\u8BAE\u540C\u6B65\u5230\u6570\u636E\u5E93\u3002"
       ] })
     ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "admin-publish-actions", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+    /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "admin-publish-actions", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
         "button",
         {
           type: "button",
@@ -22560,7 +24894,7 @@ function PracticeAlternativeSyncPanel({ lessonId: lessonId2, practice, answerAlt
           children: expanded ? "\u6536\u8D77\u660E\u7EC6" : "\u67E5\u770B\u660E\u7EC6"
         }
       ),
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
         "button",
         {
           type: "button",
@@ -22570,25 +24904,25 @@ function PracticeAlternativeSyncPanel({ lessonId: lessonId2, practice, answerAlt
           children: "\u540C\u6B65\u5230\u6570\u636E\u5E93"
         }
       ),
-      status.message ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: `admin-publish-status ${status.state}`, children: status.message }) : null
+      status.message ? /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", { className: `admin-publish-status ${status.state}`, children: status.message }) : null
     ] }),
-    expanded && syncPlan.details.length ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "admin-alternative-details", children: syncPlan.details.map((detail) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("article", { className: "admin-alternative-detail", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "admin-alternative-detail-head", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("strong", { children: detail.activityTitle }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { children: [
+    expanded && syncPlan.details.length ? /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("div", { className: "admin-alternative-details", children: syncPlan.details.map((detail) => /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("article", { className: "admin-alternative-detail", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "admin-alternative-detail-head", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("strong", { children: detail.activityTitle }),
+        /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("span", { children: [
           detail.itemNumber ? `\u9898\u53F7 ${detail.itemNumber}` : detail.itemId,
           detail.slotId !== "answer" ? ` \xB7 ${detail.slotId}` : ""
         ] })
       ] }),
-      detail.promptText ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { className: "admin-alternative-prompt", children: detail.promptText }) : null,
-      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "admin-answer-columns", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("em", { children: "\u5F53\u524D\u6570\u636E\u5E93\u7B54\u6848" }),
-          detail.standardAnswers.map((answer3, index) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("code", { children: answer3 }, index))
+      detail.promptText ? /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("p", { className: "admin-alternative-prompt", children: detail.promptText }) : null,
+      /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "admin-answer-columns", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { children: [
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("em", { children: "\u5F53\u524D\u6570\u636E\u5E93\u7B54\u6848" }),
+          detail.standardAnswers.map((answer3, index) => /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("code", { children: answer3 }, index))
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("em", { children: "\u5F85\u540C\u6B65\u5019\u9009\u7B54\u6848" }),
-          detail.candidateAnswers.map((answer3, index) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("code", { children: answer3 }, index))
+        /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { children: [
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("em", { children: "\u5F85\u540C\u6B65\u5019\u9009\u7B54\u6848" }),
+          detail.candidateAnswers.map((answer3, index) => /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("code", { children: answer3 }, index))
         ] })
       ] })
     ] }, `${detail.itemId}:${detail.slotId}`)) }) : null
@@ -22596,12 +24930,12 @@ function PracticeAlternativeSyncPanel({ lessonId: lessonId2, practice, answerAlt
 }
 function PracticeActivity({ activity, practice, wordIds, admin, record, isReady, answerAlternatives, onAnswerAlternativesChange, onSave, previousActivity, nextActivity, onNavigate }) {
   const layout = activity.layout || [];
-  const assetMap = (0, import_react.useMemo)(() => activityAssetMap(activity), [activity]);
+  const assetMap = (0, import_react2.useMemo)(() => activityAssetMap(activity), [activity]);
   const audioUrl2 = resolveActivityAudioUrl(practice, activity);
-  const formRef = (0, import_react.useRef)(null);
+  const formRef = (0, import_react2.useRef)(null);
   const summary = record?.grading?.summary || null;
-  const [isAnswerSheetOpen, setIsAnswerSheetOpen] = (0, import_react.useState)(false);
-  const [submitStatus, setSubmitStatus] = (0, import_react.useState)({ state: "idle", message: "" });
+  const [isAnswerSheetOpen, setIsAnswerSheetOpen] = (0, import_react2.useState)(false);
+  const [submitStatus, setSubmitStatus] = (0, import_react2.useState)({ state: "idle", message: "" });
   const activityResponseScopeHint = resolveResponseScopeHint(activity.responseScope, activity.responseScopeHint);
   const vocabulary = useLessonVocabulary(practice.lessonId);
   const handleSubmit = async () => {
@@ -22635,29 +24969,29 @@ function PracticeActivity({ activity, practice, wordIds, admin, record, isReady,
       setSubmitStatus({ state: "error", message: String(error.message || error) });
     }
   };
-  return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("article", { className: "practice-activity practice-activity-single", id: activity.id, children: [
-    /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "activity-head", children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { className: "activity-kicker", children: [
+  return /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("article", { className: "practice-activity practice-activity-single", id: activity.id, children: [
+    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("div", { className: "activity-head", children: /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("span", { className: "activity-kicker", children: [
         sectionLabel[activity.section],
         " \xB7 ",
         activity.order
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("h2", { children: [
-        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { className: "activity-kicker-inline", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("h2", { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("span", { className: "activity-kicker-inline", children: [
           sectionLabel[activity.section],
           " \xB7 ",
           activity.order
         ] }),
         activity.title
       ] }),
-      activity.instruction ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { children: activity.instruction }) : null
+      activity.instruction ? /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("p", { children: activity.instruction }) : null
     ] }) }),
-    /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ActivityLearningContext, { wordIds, vocabulary, activity, audioUrl: audioUrl2 }),
-    /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ActivityResources, { activity, assetMap }),
-    /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("form", { ref: formRef, className: "activity-form", onSubmit: (event) => event.preventDefault(), children: [
-      layout.length ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "layout-blocks", children: layout.map((block, index) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(LayoutBlockView, { block }, index)) }) : null,
-      activityResponseScopeHint ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "response-scope-callout", children: activityResponseScopeHint }) : null,
-      activity.itemGroups?.length ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "practice-item-groups", children: activity.itemGroups.map((group) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(ActivityLearningContext, { wordIds, vocabulary, activity, audioUrl: audioUrl2 }),
+    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(ActivityResources, { activity, assetMap }),
+    /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("form", { ref: formRef, className: "activity-form", onSubmit: (event) => event.preventDefault(), children: [
+      layout.length ? /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("div", { className: "layout-blocks", children: layout.map((block, index) => /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(LayoutBlockView, { block }, index)) }) : null,
+      activityResponseScopeHint ? /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("div", { className: "response-scope-callout", children: activityResponseScopeHint }) : null,
+      activity.itemGroups?.length ? /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("div", { className: "practice-item-groups", children: activity.itemGroups.map((group) => /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
         PracticeItemGroupView,
         {
           group,
@@ -22669,7 +25003,7 @@ function PracticeActivity({ activity, practice, wordIds, admin, record, isReady,
           activityResponseScopeHint: activity.responseScopeHint
         },
         group.id
-      )) }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "practice-items", children: activity.items.map((item2) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+      )) }) : /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("div", { className: "practice-items", children: activity.items.map((item2) => /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
         PracticeItemView,
         {
           item: item2,
@@ -22682,39 +25016,39 @@ function PracticeActivity({ activity, practice, wordIds, admin, record, isReady,
         item2.id
       )) })
     ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("footer", { className: "activity-footer", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "activity-submit-block", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { type: "button", className: "primary-action", onClick: handleSubmit, disabled: !isReady, children: "\u63D0\u4EA4\u672C\u9898" }),
-        summary?.submittedAt ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "submission-summary", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("strong", { children: [
+    /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("footer", { className: "activity-footer", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "activity-submit-block", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("button", { type: "button", className: "primary-action", onClick: handleSubmit, disabled: !isReady, children: "\u63D0\u4EA4\u672C\u9898" }),
+        summary?.submittedAt ? /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "submission-summary", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("strong", { children: [
             summary.correctCount,
             "/",
             summary.gradedCount || summary.totalCount
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { children: [
-            summary.incorrectCount ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("button", { type: "button", className: "inline-answer-sheet-trigger", onClick: () => setIsAnswerSheetOpen(true), children: [
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("span", { children: [
+            summary.incorrectCount ? /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("button", { type: "button", className: "inline-answer-sheet-trigger", onClick: () => setIsAnswerSheetOpen(true), children: [
               summary.incorrectCount,
               " \u9898\u9519\u8BEF"
             ] }) : "\u5DF2\u5224\u9898",
             summary.ungradedCount ? ` \xB7 ${summary.ungradedCount} \u9898\u672A\u81EA\u52A8\u5224\u5206` : ""
           ] })
-        ] }) : /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "submission-summary pending", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("strong", { children: "\u672A\u63D0\u4EA4" }),
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "\u63D0\u4EA4\u540E\u4F1A\u672C\u5730\u4FDD\u5B58\u5E76\u6062\u590D\u4F60\u7684\u4F5C\u7B54\u8BB0\u5F55" })
+        ] }) : /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "submission-summary pending", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("strong", { children: "\u672A\u63D0\u4EA4" }),
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", { children: "\u63D0\u4EA4\u540E\u4F1A\u672C\u5730\u4FDD\u5B58\u5E76\u6062\u590D\u4F60\u7684\u4F5C\u7B54\u8BB0\u5F55" })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "activity-nav-actions activity-nav-actions-mobile", children: [
-          previousActivity ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { type: "button", className: "secondary-action", onClick: () => onNavigate(previousActivity.id), children: "\u4E0A\u4E00\u9898" }) : null,
-          nextActivity ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { type: "button", className: "secondary-action", onClick: () => onNavigate(nextActivity.id), children: "\u4E0B\u4E00\u9898" }) : null
+        /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "activity-nav-actions activity-nav-actions-mobile", children: [
+          previousActivity ? /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("button", { type: "button", className: "secondary-action", onClick: () => onNavigate(previousActivity.id), children: "\u4E0A\u4E00\u9898" }) : null,
+          nextActivity ? /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("button", { type: "button", className: "secondary-action", onClick: () => onNavigate(nextActivity.id), children: "\u4E0B\u4E00\u9898" }) : null
         ] }),
-        activity.requiresAudio || activity.audio ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { className: "submit-audio-hint", children: "\u63D0\u793A\uFF1A\u5F55\u97F3\u8F6C\u5199\u53EF\u80FD\u4E0D\u51C6\u786E\uFF0C\u63D0\u4EA4\u524D\u8BF7\u4EBA\u5DE5\u6838\u5BF9\u3002" }) : null,
-        submitStatus.message ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { className: `submit-status-message ${submitStatus.state}`, children: submitStatus.message }) : null
+        activity.requiresAudio || activity.audio ? /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("p", { className: "submit-audio-hint", children: "\u63D0\u793A\uFF1A\u5F55\u97F3\u8F6C\u5199\u53EF\u80FD\u4E0D\u51C6\u786E\uFF0C\u63D0\u4EA4\u524D\u8BF7\u4EBA\u5DE5\u6838\u5BF9\u3002" }) : null,
+        submitStatus.message ? /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("p", { className: `submit-status-message ${submitStatus.state}`, children: submitStatus.message }) : null
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "activity-nav-actions activity-nav-actions-desktop", children: [
-        previousActivity ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { type: "button", className: "secondary-action", onClick: () => onNavigate(previousActivity.id), children: "\u4E0A\u4E00\u9898" }) : null,
-        nextActivity ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { type: "button", className: "secondary-action", onClick: () => onNavigate(nextActivity.id), children: "\u4E0B\u4E00\u9898" }) : null
+      /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "activity-nav-actions activity-nav-actions-desktop", children: [
+        previousActivity ? /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("button", { type: "button", className: "secondary-action", onClick: () => onNavigate(previousActivity.id), children: "\u4E0A\u4E00\u9898" }) : null,
+        nextActivity ? /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("button", { type: "button", className: "secondary-action", onClick: () => onNavigate(nextActivity.id), children: "\u4E0B\u4E00\u9898" }) : null
       ] })
     ] }),
-    isAnswerSheetOpen ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+    isAnswerSheetOpen ? /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
       IncorrectAnswerModal,
       {
         activity,
@@ -22726,8 +25060,8 @@ function PracticeActivity({ activity, practice, wordIds, admin, record, isReady,
   ] });
 }
 function useLessonVocabulary(lessonId2) {
-  const [vocabulary, setVocabulary] = (0, import_react.useState)(() => lessonVocabularyCache.get(lessonId2) || null);
-  (0, import_react.useEffect)(() => {
+  const [vocabulary, setVocabulary] = (0, import_react2.useState)(() => lessonVocabularyCache.get(lessonId2) || null);
+  (0, import_react2.useEffect)(() => {
     let active = true;
     if (!lessonId2) return () => {
       active = false;
@@ -22760,8 +25094,8 @@ function useLessonVocabulary(lessonId2) {
   return vocabulary;
 }
 function useLessonVocabularyOccurrences(lessonId2) {
-  const [occurrences, setOccurrences] = (0, import_react.useState)(() => lessonVocabularyOccurrencesCache.get(lessonId2) || null);
-  (0, import_react.useEffect)(() => {
+  const [occurrences, setOccurrences] = (0, import_react2.useState)(() => lessonVocabularyOccurrencesCache.get(lessonId2) || null);
+  (0, import_react2.useEffect)(() => {
     let active = true;
     if (!lessonId2) return () => {
       active = false;
@@ -22795,9 +25129,9 @@ function useLessonVocabularyOccurrences(lessonId2) {
 function ActivityLearningContext({ wordIds, vocabulary, activity, audioUrl: audioUrl2 }) {
   const words = Array.isArray(wordIds) && Array.isArray(vocabulary) ? wordIds.map((wordId) => vocabulary[Number(wordId) - 1]).filter(Boolean) : [];
   const hasWords = words.length > 0;
-  const vocabularyRef = (0, import_react.useRef)(null);
-  const [vocabularyHeight, setVocabularyHeight] = (0, import_react.useState)(0);
-  (0, import_react.useLayoutEffect)(() => {
+  const vocabularyRef = (0, import_react2.useRef)(null);
+  const [vocabularyHeight, setVocabularyHeight] = (0, import_react2.useState)(0);
+  (0, import_react2.useLayoutEffect)(() => {
     if (!hasWords) {
       setVocabularyHeight(0);
       return void 0;
@@ -22810,13 +25144,13 @@ function ActivityLearningContext({ wordIds, vocabulary, activity, audioUrl: audi
       observer.disconnect();
     };
   }, [hasWords]);
-  return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "activity-learning-context", children: [
-    hasWords ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "activity-vocabulary-sticky", ref: vocabularyRef, children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(LessonWordList, { wordIds, vocabulary }) }) : null,
-    /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ActivityAudio, { activity, audioUrl: audioUrl2, sticky: true, stickyOffset: hasWords ? vocabularyHeight : 0 })
+  return /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "activity-learning-context", children: [
+    hasWords ? /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("div", { className: "activity-vocabulary-sticky", ref: vocabularyRef, children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(LessonWordList, { wordIds, vocabulary }) }) : null,
+    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(ActivityAudio, { activity, audioUrl: audioUrl2, sticky: true, stickyOffset: hasWords ? vocabularyHeight : 0 })
   ] });
 }
 function LessonWordList({ wordIds, vocabulary }) {
-  const [collapsed, setCollapsed] = (0, import_react.useState)(() => window.localStorage.getItem(VOCABULARY_COLLAPSED_STORAGE_KEY) !== "false");
+  const [collapsed, setCollapsed] = (0, import_react2.useState)(() => window.localStorage.getItem(VOCABULARY_COLLAPSED_STORAGE_KEY) !== "false");
   const toggleCollapsed = () => {
     setCollapsed((current) => {
       const next = !current;
@@ -22827,15 +25161,15 @@ function LessonWordList({ wordIds, vocabulary }) {
   if (!Array.isArray(wordIds) || !wordIds.length || !Array.isArray(vocabulary)) return null;
   const words = wordIds.map((wordId) => vocabulary[Number(wordId) - 1]).filter(Boolean);
   if (!words.length) return null;
-  return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", { className: "lesson-word-list", "aria-label": "\u672C\u9898\u751F\u8BCD", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("button", { className: "lesson-word-list-toggle", type: "button", onClick: toggleCollapsed, "aria-expanded": !collapsed, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("strong", { children: [
+  return /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("section", { className: "lesson-word-list", "aria-label": "\u672C\u9898\u751F\u8BCD", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("button", { className: "lesson-word-list-toggle", type: "button", onClick: toggleCollapsed, "aria-expanded": !collapsed, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("strong", { children: [
         "\u672C\u9898\u751F\u8BCD \xB7 ",
         words.length
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: collapsed ? "\u25B8" : "\u25BE" })
+      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", { children: collapsed ? "\u25B8" : "\u25BE" })
     ] }),
-    !collapsed ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "lesson-word-list-items", children: words.map((word, index) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+    !collapsed ? /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("div", { className: "lesson-word-list-items", children: words.map((word, index) => /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(
       "button",
       {
         className: "lesson-word-chip",
@@ -22843,9 +25177,9 @@ function LessonWordList({ wordIds, vocabulary }) {
         onClick: () => playVocabularyAudio(word),
         title: `\u64AD\u653E ${word.writing || word.kanjiOrTerm || word.kana || "\u5355\u8BCD"} \u7684\u53D1\u97F3`,
         children: [
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "lesson-word-japanese", children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(LessonWordJapanese, { word }) }),
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "lesson-word-meaning", children: wordMeaning(word) }),
-          word?.partOfSpeech ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "lesson-word-pos", children: word.partOfSpeech }) : null
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", { className: "lesson-word-japanese", children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(LessonWordJapanese, { word }) }),
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", { className: "lesson-word-meaning", children: wordMeaning(word) }),
+          word?.partOfSpeech ? /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", { className: "lesson-word-pos", children: word.partOfSpeech }) : null
         ]
       },
       `${word.id || word.writing || word.kana}-${index}`
@@ -22853,60 +25187,60 @@ function LessonWordList({ wordIds, vocabulary }) {
   ] });
 }
 function LessonWordJapanese({ word }) {
-  const text37 = word?.writing || word?.kanjiOrTerm || word?.kana || "";
-  return /[\u3400-\u9fff々〆ヵヶ]/u.test(text37) ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(RubyText, { text: text37, kana: word?.kana }) : text37;
+  const text39 = word?.writing || word?.kanjiOrTerm || word?.kana || "";
+  return /[\u3400-\u9fff々〆ヵヶ]/u.test(text39) ? /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(RubyText, { text: text39, kana: word?.kana }) : text39;
 }
 function wordMeaning(word) {
   if (Array.isArray(word?.meaningZh)) return word.meaningZh.filter(Boolean).join("\uFF1B");
   return word?.chinese || word?.cn || "";
 }
 function playVocabularyAudio(word) {
-  const text37 = word?.writing || word?.kanjiOrTerm || word?.kana || "";
+  const text39 = word?.writing || word?.kanjiOrTerm || word?.kana || "";
   const segment = word?.audioSegment;
   const source = segment?.sourceUrl || (segment?.localAudioPath ? `/${String(segment.localAudioPath).replace(/^\/+/, "")}` : "");
   if (!source) {
-    speakVocabularyWord(text37);
+    speakVocabularyWord(text39);
     return;
   }
-  const audio36 = new Audio(source);
+  const audio38 = new Audio(source);
   const start = Math.max(0, Number(segment.start) || 0);
   const end = Math.max(start, Number(segment.end) || 0);
   let stopped = false;
   const stop = () => {
     if (stopped) return;
     stopped = true;
-    audio36.pause();
+    audio38.pause();
   };
-  audio36.addEventListener("loadedmetadata", () => {
-    audio36.currentTime = start;
-    audio36.play().catch(() => speakVocabularyWord(text37));
+  audio38.addEventListener("loadedmetadata", () => {
+    audio38.currentTime = start;
+    audio38.play().catch(() => speakVocabularyWord(text39));
   }, { once: true });
-  audio36.addEventListener("timeupdate", () => {
-    if (end && audio36.currentTime >= end) stop();
+  audio38.addEventListener("timeupdate", () => {
+    if (end && audio38.currentTime >= end) stop();
   });
-  audio36.addEventListener("error", () => speakVocabularyWord(text37), { once: true });
-  audio36.load();
+  audio38.addEventListener("error", () => speakVocabularyWord(text39), { once: true });
+  audio38.load();
 }
-function speakVocabularyWord(text37) {
-  if (!text37 || !("speechSynthesis" in window)) return;
+function speakVocabularyWord(text39) {
+  if (!text39 || !("speechSynthesis" in window)) return;
   window.speechSynthesis.cancel();
-  const utterance = new SpeechSynthesisUtterance(text37);
+  const utterance = new SpeechSynthesisUtterance(text39);
   utterance.lang = "ja-JP";
   window.speechSynthesis.speak(utterance);
 }
 function ActivityAudio({ activity, audioUrl: audioUrl2, sticky = false, stickyOffset = 0 }) {
-  const [transcriptOpen, setTranscriptOpen] = (0, import_react.useState)(false);
+  const [transcriptOpen, setTranscriptOpen] = (0, import_react2.useState)(false);
   const hasAudio = activity.requiresAudio || activity.audio;
   if (!hasAudio) return null;
   const audioGuidance = hasAudio ? resolveAudioGuidance(activity) : "";
   const transcript = activity.audio?.transcript;
   const hasTranscript = Boolean(transcript?.text || transcript?.translation);
   const transcriptId = `${activity.id}-audio-transcript`;
-  return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [
-    /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: `audio-placeholder ${audioUrl2 ? "ready" : "pending"}${sticky ? " sticky" : ""}`, style: sticky ? { "--activity-audio-sticky-top": `${stickyOffset}px` } : void 0, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "audio-row", children: [
-        audioUrl2 ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("audio", { controls: true, src: audioUrl2 }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "\u5F55\u97F3\u5F85\u8865\u5145" }),
-        hasTranscript ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+  return /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(import_jsx_runtime2.Fragment, { children: [
+    /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: `audio-placeholder ${audioUrl2 ? "ready" : "pending"}${sticky ? " sticky" : ""}`, style: sticky ? { "--activity-audio-sticky-top": `${stickyOffset}px` } : void 0, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "audio-row", children: [
+        audioUrl2 ? /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("audio", { controls: true, src: audioUrl2 }) : /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", { children: "\u5F55\u97F3\u5F85\u8865\u5145" }),
+        hasTranscript ? /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
           "button",
           {
             type: "button",
@@ -22915,22 +25249,22 @@ function ActivityAudio({ activity, audioUrl: audioUrl2, sticky = false, stickyOf
             "aria-expanded": transcriptOpen,
             "aria-controls": transcriptId,
             onClick: () => setTranscriptOpen((value) => !value),
-            children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { "aria-hidden": "true", children: "\u25A4" })
+            children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", { "aria-hidden": "true", children: "\u25A4" })
           }
         ) : null
       ] }),
-      hasTranscript && transcriptOpen ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "audio-transcript-panel", id: transcriptId, children: [
-        transcript.text ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "audio-transcript-block", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("strong", { children: "\u539F\u6587" }),
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { children: transcript.text })
+      hasTranscript && transcriptOpen ? /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "audio-transcript-panel", id: transcriptId, children: [
+        transcript.text ? /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "audio-transcript-block", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("strong", { children: "\u539F\u6587" }),
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("p", { children: transcript.text })
         ] }) : null,
-        transcript.translation ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "audio-transcript-block", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("strong", { children: "\u7FFB\u8BD1" }),
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { children: transcript.translation })
+        transcript.translation ? /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "audio-transcript-block", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("strong", { children: "\u7FFB\u8BD1" }),
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("p", { children: transcript.translation })
         ] }) : null
       ] }) : null
     ] }),
-    audioGuidance ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { className: "audio-guidance", children: audioGuidance }) : null
+    audioGuidance ? /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("p", { className: "audio-guidance", children: audioGuidance }) : null
   ] });
 }
 function ActivityResources({ activity, assetMap }) {
@@ -22938,20 +25272,20 @@ function ActivityResources({ activity, assetMap }) {
   const activityAssetIds = (activity.displayAssets || []).filter((assetId) => !groupAssetIds.has(assetId));
   const hasAssets = Boolean(activityAssetIds.length);
   if (!hasAssets) return null;
-  return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "activity-resource-panel", children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(DisplayAssets, { assetIds: activityAssetIds, assetMap }) });
+  return /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("div", { className: "activity-resource-panel", children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(DisplayAssets, { assetIds: activityAssetIds, assetMap }) });
 }
 function PracticeItemGroupView({ group, assetMap, admin, answerRecord, gradingRecord, activityResponseScope, activityResponseScopeHint }) {
-  return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", { className: "practice-item-group", id: group.id, children: [
-    group.displayAssets?.length ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(DisplayAssets, { assetIds: group.displayAssets, assetMap }) : null,
-    /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "example-practice-block", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "group-head", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [
-          group.title ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", { children: group.title }) : null,
-          group.instruction ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { children: group.instruction }) : null
+  return /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("section", { className: "practice-item-group", id: group.id, children: [
+    group.displayAssets?.length ? /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(DisplayAssets, { assetIds: group.displayAssets, assetMap }) : null,
+    /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "example-practice-block", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "group-head", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { children: [
+          group.title ? /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("h3", { children: group.title }) : null,
+          group.instruction ? /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("p", { children: group.instruction }) : null
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ExampleBlockView, { example: group.example, noteKey: `${group.id}:example` })
+        /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(ExampleBlockView, { example: group.example, noteKey: `${group.id}:example` })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "practice-items", children: group.items.map((item2) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("div", { className: "practice-items", children: group.items.map((item2) => /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
         PracticeItemView,
         {
           item: item2,
@@ -22968,36 +25302,36 @@ function PracticeItemGroupView({ group, assetMap, admin, answerRecord, gradingRe
   ] });
 }
 function LayoutBlockView({ block }) {
-  if (block.type === "text") return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "layout-text", children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(RichTextList, { parts: block.text }) });
-  if (block.type === "example") return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ExampleBlockView, { example: block.content, noteKey: `layout-example:${examplePlainText(block.content)}` });
+  if (block.type === "text") return /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("div", { className: "layout-text", children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(RichTextList, { parts: block.text }) });
+  if (block.type === "example") return /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(ExampleBlockView, { example: block.content, noteKey: `layout-example:${examplePlainText(block.content)}` });
   if (block.type === "dialogue") {
-    return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "dialogue-block", children: block.lines.map((line2, index) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "dialogue-line", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: line2.speaker }),
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Prompt, { parts: line2.parts, kana: line2.kana }) })
+    return /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("div", { className: "dialogue-block", children: block.lines.map((line2, index) => /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "dialogue-line", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", { children: line2.speaker }),
+      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("p", { children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(Prompt, { parts: line2.parts, kana: line2.kana }) })
     ] }, index)) });
   }
   if (block.type === "image_grid") {
-    return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "asset-grid", style: { "--columns": block.columns || 2 }, children: block.assets.map((asset) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ImageAssetView, { asset }, asset.id)) });
+    return /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("div", { className: "asset-grid", style: { "--columns": block.columns || 2 }, children: block.assets.map((asset) => /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(ImageAssetView, { asset }, asset.id)) });
   }
   if (block.type === "map") {
-    return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "map-block", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ImageAssetView, { asset: block.image }),
-      (block.labels || []).map((label, index) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "map-label", style: { left: `${label.x}%`, top: `${label.y}%` }, children: label.text }, index))
+    return /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "map-block", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(ImageAssetView, { asset: block.image }),
+      (block.labels || []).map((label, index) => /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", { className: "map-label", style: { left: `${label.x}%`, top: `${label.y}%` }, children: label.text }, index))
     ] });
   }
   if (block.type === "word_bank") {
-    return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "word-bank", children: block.words.map((word, index) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(RichText, { part: word }) }, index)) });
+    return /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("div", { className: "word-bank", children: block.words.map((word, index) => /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", { children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(RichText, { part: word }) }, index)) });
   }
-  return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "passage-block", children: [
-    block.title ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", { children: block.title }) : null,
-    block.lines.map((line2, index) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(RichText, { part: line2 }) }, index))
+  return /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "passage-block", children: [
+    block.title ? /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("h3", { children: block.title }) : null,
+    block.lines.map((line2, index) => /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("p", { children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(RichText, { part: line2 }) }, index))
   ] });
 }
 function ExampleBlockView({ example, noteKey = "" }) {
   if (!example) return null;
-  return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "example-block-with-ai", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ExampleBlockContent, { example }),
-    /* @__PURE__ */ (0, import_jsx_runtime.jsx)(PracticeAiNote, { item: { id: noteKey || `example:${examplePlainText(example)}` }, slot: { id: "example" } })
+  return /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "example-block-with-ai", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(ExampleBlockContent, { example }),
+    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(PracticeAiNote, { item: { id: noteKey || `example:${examplePlainText(example)}` }, slot: { id: "example" } })
   ] });
 }
 function ExampleBlockContent({ example }) {
@@ -23009,45 +25343,45 @@ function ExampleBlockContent({ example }) {
   const explicitPairedRows = example.pairedRows || [];
   const continuationDialogueLines = explicitPairedRows.length ? exampleDialogueLines(example.after, example.afterKana) : null;
   if (explicitPairedRows.length) {
-    return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "example-block paired-example", ...formatHintProps, children: [
-      example.label ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "example-label", children: example.label }) : null,
-      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { className: "example-pair-list", children: [
-        explicitPairedRows.map((row, index) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { className: "example-pair-row", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "example-before", children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Prompt, { parts: row.before }) }),
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "example-arrow", children: "\u2192" }),
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "example-after", children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Prompt, { parts: row.after }) })
+    return /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "example-block paired-example", ...formatHintProps, children: [
+      example.label ? /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", { className: "example-label", children: example.label }) : null,
+      /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("span", { className: "example-pair-list", children: [
+        explicitPairedRows.map((row, index) => /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("span", { className: "example-pair-row", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", { className: "example-before", children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(Prompt, { parts: row.before }) }),
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", { className: "example-arrow", children: "\u2192" }),
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", { className: "example-after", children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(Prompt, { parts: row.after }) })
         ] }, index)),
-        continuationDialogueLines ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "example-after dialogue-lines example-dialogue-continuation", children: continuationDialogueLines.map((line2, index) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { className: "dialogue-line", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: line2.speaker }),
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Prompt, { parts: line2.parts, kana: line2.kana }) })
+        continuationDialogueLines ? /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", { className: "example-after dialogue-lines example-dialogue-continuation", children: continuationDialogueLines.map((line2, index) => /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("span", { className: "dialogue-line", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", { children: line2.speaker }),
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("p", { children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(Prompt, { parts: line2.parts, kana: line2.kana }) })
         ] }, index)) }) : null
       ] })
     ] });
   }
   const pairedRows = pairedExampleRows(example);
   if (pairedRows.length) {
-    return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "example-block paired-example", ...formatHintProps, children: [
-      example.label ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "example-label", children: example.label }) : null,
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "example-pair-list", children: pairedRows.map((row, index) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { className: "example-pair-row", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "example-before", children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(RubyText, { text: row.before, kana: row.beforeKana }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "example-arrow", children: "\u2192" }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "example-after", children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(RubyText, { text: row.after, kana: row.afterKana }) })
+    return /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "example-block paired-example", ...formatHintProps, children: [
+      example.label ? /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", { className: "example-label", children: example.label }) : null,
+      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", { className: "example-pair-list", children: pairedRows.map((row, index) => /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("span", { className: "example-pair-row", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", { className: "example-before", children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(RubyText, { text: row.before, kana: row.beforeKana }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", { className: "example-arrow", children: "\u2192" }),
+        /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", { className: "example-after", children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(RubyText, { text: row.after, kana: row.afterKana }) })
       ] }, index)) })
     ] });
   }
   const dialogueLines = exampleDialogueLines(example.after, example.afterKana);
   const tripCompositionLines = example.renderHint === "trip_composition" ? splitExampleTextLines(promptPartsPlainText(example.after || [])) : [];
   const tripCompositionKanaLines = example.renderHint === "trip_composition" ? splitExampleTextLines(example.afterKana || "") : [];
-  return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: `example-block ${dialogueLines ? "dialogue-example" : ""}`, ...formatHintProps, children: [
-    /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { className: "example-head", children: [
-      example.label ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "example-label", children: example.label }) : null,
-      example.beforeParts?.length ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "example-before", children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Prompt, { parts: example.beforeParts, kana: example.beforeKana }) }) : example.before ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "example-before", children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(RubyText, { text: example.before, kana: example.beforeKana }) }) : null,
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "example-arrow", children: "\u2192" })
+  return /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: `example-block ${dialogueLines ? "dialogue-example" : ""}`, ...formatHintProps, children: [
+    /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("span", { className: "example-head", children: [
+      example.label ? /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", { className: "example-label", children: example.label }) : null,
+      example.beforeParts?.length ? /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", { className: "example-before", children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(Prompt, { parts: example.beforeParts, kana: example.beforeKana }) }) : example.before ? /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", { className: "example-before", children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(RubyText, { text: example.before, kana: example.beforeKana }) }) : null,
+      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", { className: "example-arrow", children: "\u2192" })
     ] }),
-    dialogueLines ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "example-after dialogue-lines", children: dialogueLines.map((line2, index) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { className: "dialogue-line", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: line2.speaker }),
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Prompt, { parts: line2.parts, kana: line2.kana }) })
-    ] }, index)) }) : tripCompositionLines.length ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "example-after trip-composition-lines", children: tripCompositionLines.map((line2, index) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(RubyText, { text: line2, kana: tripCompositionKanaLines[index] || "" }) }, index)) }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "example-after", children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Prompt, { parts: example.after, kana: example.afterKana }) })
+    dialogueLines ? /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", { className: "example-after dialogue-lines", children: dialogueLines.map((line2, index) => /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("span", { className: "dialogue-line", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", { children: line2.speaker }),
+      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("p", { children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(Prompt, { parts: line2.parts, kana: line2.kana }) })
+    ] }, index)) }) : tripCompositionLines.length ? /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", { className: "example-after trip-composition-lines", children: tripCompositionLines.map((line2, index) => /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", { children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(RubyText, { text: line2, kana: tripCompositionKanaLines[index] || "" }) }, index)) }) : /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", { className: "example-after", children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(Prompt, { parts: example.after, kana: example.afterKana }) })
   ] });
 }
 function pairedExampleRows(example) {
@@ -23068,7 +25402,7 @@ function splitExampleTextLines(value) {
 }
 function IncorrectAnswerModal({ activity, answers, grading, onClose }) {
   const incorrectItems = flattenActivityItems2(activity).map((item2) => ({ item: item2, result: grading?.[item2.id], answer: answers?.[item2.id] })).filter(({ result }) => result?.status === "incorrect");
-  return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "answer-sheet-modal-backdrop", role: "presentation", onClick: onClose, children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+  return /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("div", { className: "answer-sheet-modal-backdrop", role: "presentation", onClick: onClose, children: /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(
     "section",
     {
       className: "answer-sheet-modal",
@@ -23077,14 +25411,14 @@ function IncorrectAnswerModal({ activity, answers, grading, onClose }) {
       "aria-label": "\u9519\u8BEF\u9898\u76EE\u4E0E\u53C2\u8003\u7B54\u6848",
       onClick: (event) => event.stopPropagation(),
       children: [
-        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("header", { className: "answer-sheet-head", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [
-            /* @__PURE__ */ (0, import_jsx_runtime.jsx)("strong", { children: "\u9519\u8BEF\u9898\u76EE\u4E0E\u53C2\u8003\u7B54\u6848" }),
-            /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { children: "\u4EE5\u4E0B\u5185\u5BB9\u4EC5\u5C55\u793A\u672C\u6B21\u63D0\u4EA4\u91CC\u81EA\u52A8\u5224\u9519\u7684\u9898\u76EE\u3002" })
+        /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("header", { className: "answer-sheet-head", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("strong", { children: "\u9519\u8BEF\u9898\u76EE\u4E0E\u53C2\u8003\u7B54\u6848" }),
+            /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("p", { children: "\u4EE5\u4E0B\u5185\u5BB9\u4EC5\u5C55\u793A\u672C\u6B21\u63D0\u4EA4\u91CC\u81EA\u52A8\u5224\u9519\u7684\u9898\u76EE\u3002" })
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { type: "button", className: "modal-close-btn", onClick: onClose, children: "\u5173\u95ED" })
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("button", { type: "button", className: "modal-close-btn", onClick: onClose, children: "\u5173\u95ED" })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "answer-sheet-list", children: incorrectItems.map(({ item: item2, answer: answer3, result }) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+        /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("div", { className: "answer-sheet-list", children: incorrectItems.map(({ item: item2, answer: answer3, result }) => /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
           IncorrectAnswerDetails,
           {
             item: item2,
@@ -23099,32 +25433,32 @@ function IncorrectAnswerModal({ activity, answers, grading, onClose }) {
   ) });
 }
 function IncorrectAnswerDetails({ item: item2, answer: answer3, result, className = "incorrect-answer-details", showPrompt = true }) {
-  return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("article", { className, children: [
-    showPrompt ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("h4", { children: [
+  return /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("article", { className, children: [
+    showPrompt ? /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("h4", { children: [
       item2.number,
       ". ",
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Prompt, { parts: item2.prompt, kana: item2.promptKana })
+      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(Prompt, { parts: item2.prompt, kana: item2.promptKana })
     ] }) : null,
-    item2.evaluationMode === "open_response" ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { children: "\u56DE\u7B54\u672A\u6EE1\u8DB3\u672C\u9898\u8981\u6C42\u7684\u65F6\u95F4\u3001\u8303\u56F4\u6216\u53E5\u578B\u7ED3\u6784\uFF0C\u8BF7\u68C0\u67E5\u540E\u91CD\u65B0\u4F5C\u7B54\u3002" }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(AnswerComparison, { item: item2, answer: answer3, result }),
-    result?.status === "incorrect" && item2.evaluationMode === "acceptable_answers" ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("small", { children: "\u672C\u9898\u652F\u6301\u591A\u4E2A\u53EF\u63A5\u53D7\u7B54\u6848\uFF0C\u5DF2\u5728\u201C\u6B63\u786E\u7B54\u6848\u201D\u4E2D\u5408\u5E76\u5C55\u793A\u3002" }) : null
+    item2.evaluationMode === "open_response" ? /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("p", { children: "\u56DE\u7B54\u672A\u6EE1\u8DB3\u672C\u9898\u8981\u6C42\u7684\u65F6\u95F4\u3001\u8303\u56F4\u6216\u53E5\u578B\u7ED3\u6784\uFF0C\u8BF7\u68C0\u67E5\u540E\u91CD\u65B0\u4F5C\u7B54\u3002" }) : /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(AnswerComparison, { item: item2, answer: answer3, result }),
+    result?.status === "incorrect" && item2.evaluationMode === "acceptable_answers" ? /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("small", { children: "\u672C\u9898\u652F\u6301\u591A\u4E2A\u53EF\u63A5\u53D7\u7B54\u6848\uFF0C\u5DF2\u5728\u201C\u6B63\u786E\u7B54\u6848\u201D\u4E2D\u5408\u5E76\u5C55\u793A\u3002" }) : null
   ] });
 }
 function AnswerComparisonBlock({ tone, label, value }) {
-  return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: `answer-comparison-block ${tone}`, children: [
-    /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: label }),
-    /* @__PURE__ */ (0, import_jsx_runtime.jsx)("code", { children: value })
+  return /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: `answer-comparison-block ${tone}`, children: [
+    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", { children: label }),
+    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("code", { children: value })
   ] });
 }
 function AnswerComparison({ item: item2, answer: answer3, result }) {
   const actual = formatAttemptSummary(item2, answer3);
   const expected = formatExpectedAnswerSummary(item2);
-  return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "answer-diff answer-comparison", "aria-label": "\u7B54\u6848\u5BF9\u6BD4", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "answer-diff-head", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("strong", { children: "\u7B54\u6848\u53C2\u8003" }),
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "\u7B26\u5408\u8BED\u6CD5\u548C\u60C5\u5883\u7684\u5176\u4ED6\u8868\u8FBE\u4E5F\u53EF\u5224\u4E3A\u6B63\u786E" })
+  return /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "answer-diff answer-comparison", "aria-label": "\u7B54\u6848\u5BF9\u6BD4", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "answer-diff-head", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("strong", { children: "\u7B54\u6848\u53C2\u8003" }),
+      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", { children: "\u7B26\u5408\u8BED\u6CD5\u548C\u60C5\u5883\u7684\u5176\u4ED6\u8868\u8FBE\u4E5F\u53EF\u5224\u4E3A\u6B63\u786E" })
     ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime.jsx)(AnswerComparisonBlock, { tone: "user", label: "\u4F60\u7684\u7B54\u6848", value: actual || (item2.choices?.length ? "\u672A\u9009\u62E9" : "\u672A\u4F5C\u7B54") }),
-    /* @__PURE__ */ (0, import_jsx_runtime.jsx)(AnswerComparisonBlock, { tone: "expected", label: "\u53C2\u8003\u6B63\u786E\u7B54\u6848\uFF08\u4EC5\u4F9B\u53C2\u8003\uFF09", value: expected || "\u6682\u65E0" })
+    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(AnswerComparisonBlock, { tone: "user", label: "\u4F60\u7684\u7B54\u6848", value: actual || (item2.choices?.length ? "\u672A\u9009\u62E9" : "\u672A\u4F5C\u7B54") }),
+    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(AnswerComparisonBlock, { tone: "expected", label: "\u53C2\u8003\u6B63\u786E\u7B54\u6848\uFF08\u4EC5\u4F9B\u53C2\u8003\uFF09", value: expected || "\u6682\u65E0" })
   ] });
 }
 function answerComparisonRows(item2, answer3) {
@@ -23150,19 +25484,21 @@ function answerComparisonRows(item2, answer3) {
 function PracticeItemView({ item: item2, admin, storedAnswer, gradingResult, activityResponseScope, activityResponseScopeHint }) {
   const itemResponseScopeHint = resolveItemResponseScopeHint(item2, activityResponseScope, activityResponseScopeHint);
   const hasMultipleInputSlots = (item2.inputSlots?.length || 0) > 1;
-  return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", { className: `practice-item ${item2.renderHint || "inline"}`, "data-item-status": gradingResult?.status || "idle", children: [
-    gradingResult?.status === "incorrect" && item2.evaluationMode !== "open_response" ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(IncorrectReasonPopover, { item: item2, answer: storedAnswer, result: gradingResult }) : null,
-    gradingResult?.status === "correct" && item2.answerSource !== "personal" && item2.evaluationMode !== "open_response" ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(CorrectAnswerComparisonPopover, { item: item2, answer: storedAnswer }) : null,
-    /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "item-main", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "item-number", children: item2.number }),
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "item-prompt", children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Prompt, { parts: item2.prompt, kana: item2.promptKana }) })
+  return /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("section", { className: `practice-item ${item2.renderHint || "inline"}`, "data-item-status": gradingResult?.status || "idle", children: [
+    gradingResult?.status === "incorrect" && item2.evaluationMode !== "open_response" ? /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(IncorrectReasonPopover, { item: item2, answer: storedAnswer, result: gradingResult }) : null,
+    gradingResult?.status === "correct" && item2.answerSource !== "personal" && item2.evaluationMode !== "open_response" ? /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(CorrectAnswerComparisonPopover, { item: item2, answer: storedAnswer }) : null,
+    /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "item-main", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", { className: "item-number", children: item2.number }),
+      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("div", { className: "item-prompt", children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(Prompt, { parts: item2.prompt, kana: item2.promptKana }) })
     ] }),
-    item2.evaluationMode ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "evaluation-mode", children: evaluationModeLabel[item2.evaluationMode] }) : null,
-    item2.instruction ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { className: "item-instruction", children: item2.instruction }) : null,
-    itemResponseScopeHint ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { className: "item-response-scope", children: itemResponseScopeHint }) : null,
-    item2.choices?.length ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Choices, { choices: item2.choices, item: item2, admin, storedAnswer, gradingResult }) : null,
-    item2.inputSlots?.length ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: `slot-row${hasMultipleInputSlots ? " multi-slot-row" : ""}`, children: [
-      item2.inputSlots.map((slot2) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+    item2.evaluationMode || itemResponseScopeHint ? /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "item-meta", children: [
+      item2.evaluationMode ? /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", { className: "evaluation-mode", children: evaluationModeLabel[item2.evaluationMode] }) : null,
+      itemResponseScopeHint ? /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", { className: "item-response-scope", children: itemResponseScopeHint }) : null
+    ] }) : null,
+    item2.instruction ? /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("p", { className: "item-instruction", children: item2.instruction }) : null,
+    item2.choices?.length ? /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(Choices, { choices: item2.choices, item: item2, admin, storedAnswer, gradingResult }) : null,
+    item2.inputSlots?.length ? /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: `slot-row${hasMultipleInputSlots ? " multi-slot-row" : ""}`, children: [
+      item2.inputSlots.map((slot2) => /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
         InputSlotView,
         {
           item: item2,
@@ -23174,15 +25510,15 @@ function PracticeItemView({ item: item2, admin, storedAnswer, gradingResult, act
         },
         slot2.id
       )),
-      hasMultipleInputSlots ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(PracticeAiNote, { item: item2, slot: { id: "answer" } }) : null
+      hasMultipleInputSlots ? /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(PracticeAiNote, { item: item2, slot: { id: "answer" } }) : null
     ] }) : null
   ] });
 }
 function IncorrectReasonPopover({ item: item2, answer: answer3, result }) {
-  const [isOpen, setIsOpen] = (0, import_react.useState)(false);
+  const [isOpen, setIsOpen] = (0, import_react2.useState)(false);
   const popoverId = `${item2.id}-incorrect-reason`;
-  return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "incorrect-reason-popover", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+  return /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "incorrect-reason-popover", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
       "button",
       {
         type: "button",
@@ -23194,8 +25530,8 @@ function IncorrectReasonPopover({ item: item2, answer: answer3, result }) {
         children: "?"
       }
     ),
-    isOpen ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+    isOpen ? /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(import_jsx_runtime2.Fragment, { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
         "button",
         {
           type: "button",
@@ -23204,7 +25540,7 @@ function IncorrectReasonPopover({ item: item2, answer: answer3, result }) {
           onClick: () => setIsOpen(false)
         }
       ),
-      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+      /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(
         "div",
         {
           className: "incorrect-reason-panel",
@@ -23213,11 +25549,11 @@ function IncorrectReasonPopover({ item: item2, answer: answer3, result }) {
           "aria-label": `\u7B2C ${item2.number} \u9898\u9519\u8BEF\u539F\u56E0`,
           onClick: (event) => event.stopPropagation(),
           children: [
-            /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "incorrect-reason-head", children: [
-              /* @__PURE__ */ (0, import_jsx_runtime.jsx)("strong", { children: "\u9519\u8BEF\u539F\u56E0" }),
-              /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { type: "button", onClick: () => setIsOpen(false), "aria-label": "\u5173\u95ED\u9519\u8BEF\u539F\u56E0", children: "\xD7" })
+            /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "incorrect-reason-head", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("strong", { children: "\u9519\u8BEF\u539F\u56E0" }),
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("button", { type: "button", onClick: () => setIsOpen(false), "aria-label": "\u5173\u95ED\u9519\u8BEF\u539F\u56E0", children: "\xD7" })
             ] }),
-            /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+            /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
               IncorrectAnswerDetails,
               {
                 item: item2,
@@ -23234,12 +25570,12 @@ function IncorrectReasonPopover({ item: item2, answer: answer3, result }) {
   ] });
 }
 function CorrectAnswerComparisonPopover({ item: item2, answer: answer3 }) {
-  const [isOpen, setIsOpen] = (0, import_react.useState)(false);
+  const [isOpen, setIsOpen] = (0, import_react2.useState)(false);
   const popoverId = `${item2.id}-answer-comparison`;
   const exact = isExactCorrectAnswer(item2, answer3);
   const resultLabel = exact ? "\u5B8C\u5168\u6B63\u786E" : "\u7B54\u6848\u7B49\u4EF7";
-  return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "incorrect-reason-popover correct-answer-popover", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+  return /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "incorrect-reason-popover correct-answer-popover", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
       "button",
       {
         type: "button",
@@ -23252,17 +25588,17 @@ function CorrectAnswerComparisonPopover({ item: item2, answer: answer3 }) {
         children: "\u2713"
       }
     ),
-    isOpen ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { className: "incorrect-reason-backdrop", type: "button", "aria-label": "\u5173\u95ED\u7B54\u6848\u5BF9\u6BD4", onClick: () => setIsOpen(false) }),
-      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "incorrect-reason-panel correct-answer-panel", id: popoverId, role: "dialog", "aria-label": `\u7B2C ${item2.number} \u9898\u7B54\u6848\u5BF9\u6BD4`, onClick: (event) => event.stopPropagation(), children: [
-        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "incorrect-reason-head correct-answer-head", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("strong", { children: [
+    isOpen ? /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(import_jsx_runtime2.Fragment, { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("button", { className: "incorrect-reason-backdrop", type: "button", "aria-label": "\u5173\u95ED\u7B54\u6848\u5BF9\u6BD4", onClick: () => setIsOpen(false) }),
+      /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "incorrect-reason-panel correct-answer-panel", id: popoverId, role: "dialog", "aria-label": `\u7B2C ${item2.number} \u9898\u7B54\u6848\u5BF9\u6BD4`, onClick: (event) => event.stopPropagation(), children: [
+        /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "incorrect-reason-head correct-answer-head", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("strong", { children: [
             resultLabel,
             " \xB7 \u7B54\u6848\u5BF9\u6BD4"
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { type: "button", onClick: () => setIsOpen(false), "aria-label": "\u5173\u95ED\u7B54\u6848\u5BF9\u6BD4", children: "\xD7" })
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("button", { type: "button", onClick: () => setIsOpen(false), "aria-label": "\u5173\u95ED\u7B54\u6848\u5BF9\u6BD4", children: "\xD7" })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)(CorrectAnswerComparison, { item: item2, answer: answer3 })
+        /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(CorrectAnswerComparison, { item: item2, answer: answer3 })
       ] })
     ] }) : null
   ] });
@@ -23287,10 +25623,10 @@ function primaryAnswerValueForSlot(item2, slotId) {
 function CorrectAnswerComparison({ item: item2, answer: answer3 }) {
   const rows = answerComparisonRows(item2, answer3);
   if (!rows.length) return null;
-  return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "answer-diff answer-comparison", "aria-label": "\u7B54\u6848\u5BF9\u6BD4", children: rows.map((row) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "answer-comparison-row", children: [
-    row.label ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("strong", { children: row.label }) : null,
-    /* @__PURE__ */ (0, import_jsx_runtime.jsx)(AnswerComparisonBlock, { tone: "user", label: "\u6211\u7684\u7B54\u6848", value: row.actual || "\u672A\u4F5C\u7B54" }),
-    /* @__PURE__ */ (0, import_jsx_runtime.jsx)(AnswerComparisonBlock, { tone: "expected", label: "\u6807\u51C6\u7B54\u6848", value: row.expected || "\u6682\u65E0" })
+  return /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("div", { className: "answer-diff answer-comparison", "aria-label": "\u7B54\u6848\u5BF9\u6BD4", children: rows.map((row) => /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "answer-comparison-row", children: [
+    row.label ? /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("strong", { children: row.label }) : null,
+    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(AnswerComparisonBlock, { tone: "user", label: "\u6211\u7684\u7B54\u6848", value: row.actual || "\u672A\u4F5C\u7B54" }),
+    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(AnswerComparisonBlock, { tone: "expected", label: "\u6807\u51C6\u7B54\u6848", value: row.expected || "\u6682\u65E0" })
   ] }, row.id)) });
 }
 function Choices({ choices, item: item2, admin, storedAnswer, gradingResult }) {
@@ -23299,9 +25635,9 @@ function Choices({ choices, item: item2, admin, storedAnswer, gradingResult }) {
   const currentChoiceIdSet = new Set(currentChoiceIds);
   const isMultiChoice = (item2.answer?.choiceIds || []).length > 1;
   const choiceResult = gradingResult?.fieldResults?.[CHOICE_RESULT_KEY] || gradingResult?.status;
-  return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [
-    /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "choice-row", children: choices.map((choice) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { "data-result": currentChoiceIdSet.has(choice.id) ? choiceResult || void 0 : void 0, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+  return /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(import_jsx_runtime2.Fragment, { children: [
+    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("div", { className: "choice-row", children: choices.map((choice) => /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("label", { "data-result": currentChoiceIdSet.has(choice.id) ? choiceResult || void 0 : void 0, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
         "input",
         {
           type: isMultiChoice ? "checkbox" : "radio",
@@ -23310,9 +25646,9 @@ function Choices({ choices, item: item2, admin, storedAnswer, gradingResult }) {
           defaultChecked: currentChoiceIdSet.has(choice.id)
         }
       ),
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: choice.label })
+      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", { children: choice.label })
     ] }, choice.id)) }),
-    /* @__PURE__ */ (0, import_jsx_runtime.jsx)(PracticeAiNote, { item: item2, slot: { id: "choice" } })
+    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(PracticeAiNote, { item: item2, slot: { id: "choice" } })
   ] });
 }
 function InputSlotView({ item: item2, slot: slot2, admin, storedAnswer, gradingResult, showAiNote = true }) {
@@ -23324,152 +25660,56 @@ function InputSlotView({ item: item2, slot: slot2, admin, storedAnswer, gradingR
   const shouldShowAiNote = showAiNote && slot2.showAiNote !== false && (item2.id !== "l31-p2-a3-q1" || slot2.id === "e");
   if (slot2.choices?.length) {
     const fieldName = slotFieldName(item2.id, slot2.id);
-    return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("fieldset", { className: "slot-choice-group", "data-result": result || void 0, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("legend", { children: slot2.label || `${item2.number} ${slot2.id}` }),
-      slot2.choices.map((choice) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { children: [
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("input", { type: "radio", name: fieldName, value: choice.label, defaultChecked: defaultValue === choice.label }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: choice.label })
+    return /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("fieldset", { className: "slot-choice-group", "data-result": result || void 0, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("legend", { children: slot2.label || `${item2.number} ${slot2.id}` }),
+      slot2.choices.map((choice) => /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("label", { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("input", { type: "radio", name: fieldName, value: choice.label, defaultChecked: defaultValue === choice.label }),
+        /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", { children: choice.label })
       ] }, choice.id))
     ] });
   }
   if (slot2.multiline || slot2.expectedUnit === "dialogue") {
-    return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "practice-input-with-notes", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("textarea", { name: slotFieldName(item2.id, slot2.id), className, rows: slot2.rows || 3, "aria-label": label, placeholder, defaultValue, "data-result": result || void 0 }),
-      shouldShowAiNote ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(PracticeAiNote, { item: item2, slot: slot2 }) : null
+    return /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "practice-input-with-notes rich-input", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("textarea", { name: slotFieldName(item2.id, slot2.id), className, rows: slot2.rows || 3, "aria-label": label, placeholder, defaultValue, "data-result": result || void 0 }),
+      shouldShowAiNote ? /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(PracticeAiNote, { item: item2, slot: slot2 }) : null
     ] });
   }
-  return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "practice-input-with-notes", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime.jsx)("input", { name: slotFieldName(item2.id, slot2.id), className, "aria-label": label, placeholder, defaultValue, "data-result": result || void 0 }),
-    shouldShowAiNote ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(PracticeAiNote, { item: item2, slot: slot2 }) : null
+  return /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "practice-input-with-notes", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("input", { name: slotFieldName(item2.id, slot2.id), className, "aria-label": label, placeholder, defaultValue, "data-result": result || void 0 }),
+    shouldShowAiNote ? /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(PracticeAiNote, { item: item2, slot: slot2 }) : null
   ] });
 }
 var PRACTICE_AI_NOTES_KEY = "japaflow.practice.aiNotes.v1";
 function PracticeAiNote({ item: item2, slot: slot2 }) {
   const key = `${item2.id}:${slot2.id}`;
-  const [open, setOpen] = (0, import_react.useState)(false);
-  const [closing, setClosing] = (0, import_react.useState)(false);
-  const [draft, setDraft] = (0, import_react.useState)("");
-  const [answer3, setAnswer] = (0, import_react.useState)("");
-  const [savedNotes, setSavedNotes] = (0, import_react.useState)(() => notesForPracticeAiKey(key));
-  const [status, setStatus] = (0, import_react.useState)("");
-  const [colorPickerId, setColorPickerId] = (0, import_react.useState)("");
-  const [editingId, setEditingId] = (0, import_react.useState)("");
-  const [editingText, setEditingText] = (0, import_react.useState)("");
-  const addSavedNote = ({ text: text37, kind = "note", color }) => {
-    const all = readPracticeAiNotes();
-    const next = [...notesForPracticeAiKey(key), { id: `${Date.now()}-${Math.random().toString(16).slice(2)}`, text: text37, kind, color: color || (kind === "ai" ? "purple" : "yellow") }];
-    all[key] = next;
-    writePracticeAiNotes(all);
-    setSavedNotes(next);
-  };
-  const ask = async () => {
-    if (!draft.trim()) return setStatus("\u8BF7\u8F93\u5165\u95EE\u9898\u3002");
-    setStatus("\u601D\u8003\u4E2D\u2026");
-    setAnswer("");
-    try {
-      const response = await fetch("/api/grammar/notebook-ai", { method: "POST", headers: { "Content-Type": "application/json", Authorization: `Bearer ${localStorage.getItem("light_blog_token") || ""}` }, body: JSON.stringify({ question: draft, lessonId: item2.id, pageNo: slot2.id }) });
-      const data = await response.json().catch(() => ({}));
-      if (response.status === 401 || response.status === 403) {
-        notifyPracticeAiAuthExpired();
-        throw new Error("\u767B\u5F55\u5DF2\u5931\u6548\uFF0C\u6B63\u5728\u8DF3\u8F6C\u767B\u5F55\u9875\u3002");
+  return /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
+    InlineAiNotes,
+    {
+      loadNotes: () => notesForPracticeAiKey(key),
+      saveNotes: (notes) => {
+        const all = readPracticeAiNotes();
+        if (notes.length) all[key] = notes;
+        else delete all[key];
+        writePracticeAiNotes(all);
+      },
+      askAi: async (question, { signal }) => {
+        const response = await fetch("/api/grammar/notebook-ai", {
+          method: "POST",
+          signal,
+          headers: { "Content-Type": "application/json", Authorization: `Bearer ${localStorage.getItem("light_blog_token") || ""}` },
+          body: JSON.stringify({ question, lessonId: item2.id, pageNo: slot2.id })
+        });
+        const data = await response.json().catch(() => ({}));
+        if (response.status === 401 || response.status === 403) {
+          notifyPracticeAiAuthExpired();
+          throw new Error("\u767B\u5F55\u5DF2\u5931\u6548\uFF0C\u6B63\u5728\u8DF3\u8F6C\u767B\u5F55\u9875\u3002");
+        }
+        if (!response.ok) throw new Error(data.error || data.message || "AI \u8BF7\u6C42\u5931\u8D25\u3002");
+        return practiceAiAnswerFromResponse(data);
       }
-      if (!response.ok) throw new Error(data.error || data.message || "AI \u8BF7\u6C42\u5931\u8D25\u3002");
-      const nextAnswer = practiceAiAnswerFromResponse(data);
-      if (!nextAnswer) return setStatus("AI \u672A\u8FD4\u56DE\u53EF\u4FDD\u5B58\u7684\u56DE\u7B54\uFF0C\u8BF7\u91CD\u8BD5\u3002");
-      setAnswer(nextAnswer);
-      setStatus("\u56DE\u7B54\u5DF2\u751F\u6210\u3002");
-    } catch (error) {
-      setStatus(error.message || "AI \u8BF7\u6C42\u5931\u8D25\u3002");
-    }
-  };
-  const closePanel = () => {
-    if (!open || closing) return;
-    setClosing(true);
-    window.setTimeout(() => {
-      setOpen(false);
-      setClosing(false);
-      setDraft("");
-      setAnswer("");
-      setStatus("");
-    }, 180);
-  };
-  const saveDraft = () => {
-    const text37 = answer3 ? `\u95EE\uFF1A${draft.trim()}
-\u7B54\uFF1A${answer3.trim()}` : draft.trim();
-    if (!text37) return;
-    addSavedNote({ text: text37, kind: answer3 ? "ai" : "note" });
-    closePanel();
-  };
-  const erase = (noteId) => {
-    const all = readPracticeAiNotes();
-    const next = notesForPracticeAiKey(key).filter((note) => note.id !== noteId);
-    if (next.length) all[key] = next;
-    else delete all[key];
-    writePracticeAiNotes(all);
-    setSavedNotes(next);
-  };
-  const changeColor = (noteId, color) => {
-    const all = readPracticeAiNotes();
-    const next = notesForPracticeAiKey(key).map((note) => note.id === noteId ? { ...note, color } : note);
-    all[key] = next;
-    writePracticeAiNotes(all);
-    setSavedNotes(next);
-    setColorPickerId("");
-  };
-  const saveEdit = (noteId) => {
-    const text37 = editingText.trim();
-    if (!text37) return;
-    const all = readPracticeAiNotes();
-    const next = notesForPracticeAiKey(key).map((note) => note.id === noteId ? { ...note, text: text37 } : note);
-    all[key] = next;
-    writePracticeAiNotes(all);
-    setSavedNotes(next);
-    setEditingId("");
-    setEditingText("");
-  };
-  const autoResize = (event) => {
-    const textarea = event.currentTarget;
-    textarea.style.height = "auto";
-    textarea.style.height = `${Math.max(38, textarea.scrollHeight)}px`;
-  };
-  return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "practice-ai-note", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "practice-note-tools", children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { type: "button", className: `practice-note-trigger${open ? " active" : ""}`, onClick: () => open ? closePanel() : (setClosing(false), setOpen(true)), "aria-expanded": open, "aria-pressed": open, title: "\u95EE AI \u6216\u8BB0\u7B14\u8BB0", children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "\u2726" }) }) }),
-    open || closing ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: `practice-note-panel${closing ? " closing" : ""}`, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("textarea", { value: draft, onChange: (event) => setDraft(event.target.value), onInput: autoResize, placeholder: "\u5199\u4E0B\u7B14\u8BB0\uFF0C\u6216\u8F93\u5165\u60F3\u95EE AI \u7684\u95EE\u9898\u2026", rows: "1", autoFocus: true }),
-      answer3 ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "practice-ai-answer", "aria-label": "AI \u56DE\u7B54", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("strong", { children: "AI \u56DE\u7B54" }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { children: answer3 })
-      ] }) : null,
-      status ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("small", { children: status }) : null,
-      draft.trim() ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "practice-note-actions", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { type: "button", onClick: saveDraft, children: "\u4FDD\u5B58\u7B14\u8BB0" }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { type: "button", onClick: ask, children: "\u95EE AI" })
-      ] }) : null
-    ] }) : null,
-    savedNotes.length ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "practice-ai-saved-list", children: savedNotes.map((note) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("article", { className: `practice-ai-saved note-color-${note.color || (note.kind === "ai" ? "purple" : "yellow")}`, title: "\u70B9\u51FB\u66F4\u6539\u989C\u8272\uFF0C\u53CC\u51FB\u7F16\u8F91\u7B14\u8BB0", onClick: (event) => {
-      if (event.target.closest("textarea, button") || editingId) return;
-      setColorPickerId((value) => value === note.id ? "" : note.id);
-    }, onDoubleClick: (event) => {
-      event.preventDefault();
-      event.stopPropagation();
-      setEditingId(note.id);
-      setEditingText(note.text);
-      setColorPickerId("");
-    }, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { type: "button", className: "practice-ai-erase", onClick: (event) => {
-        event.stopPropagation();
-        erase(note.id);
-      }, "aria-label": "\u5220\u9664\u7B14\u8BB0", title: "\u5220\u9664\u7B14\u8BB0", children: "\u232B" }),
-      editingId === note.id ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "practice-note-edit", onClick: (event) => event.stopPropagation(), children: [
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("textarea", { value: editingText, onChange: (event) => setEditingText(event.target.value), onInput: autoResize, rows: "2", autoFocus: true }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { type: "button", onClick: (event) => {
-          event.stopPropagation();
-          saveEdit(note.id);
-        }, children: "\u4FDD\u5B58\u4FEE\u6539" })
-      ] }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)("pre", { children: note.text }),
-      colorPickerId === note.id ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "practice-note-color-picker", onClick: (event) => event.stopPropagation(), children: ["yellow", "purple", "green", "blue", "pink"].map((color) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { className: `note-color-choice ${color}`, type: "button", onClick: () => changeColor(note.id, color), "aria-label": `\u6807\u8BB0\u4E3A${color}` }, color)) }) : null
-    ] }, note.id)) }) : null
-  ] });
+    },
+    key
+  );
 }
 function practiceAiAnswerFromResponse(data) {
   return String([data?.answer, data?.data?.answer, data?.content, data?.data?.content].find((value) => typeof value === "string" && value.trim()) || "").trim();
@@ -23500,13 +25740,13 @@ function notesForPracticeAiKey(key) {
   return entries.map((note, index) => typeof note === "string" ? { id: `legacy-${index}`, text: note, kind: "note", color: "yellow" } : { ...note, kind: note.kind || "note", color: note.color || (note.kind === "ai" ? "purple" : "yellow") });
 }
 function DisplayAssets({ assetIds, assetMap }) {
-  return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "related-asset-strip", children: assetIds.map((id) => {
+  return /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("div", { className: "related-asset-strip", children: assetIds.map((id) => {
     const asset = assetMap.get(id);
-    return asset ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ImageAssetView, { asset }, id) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(MissingAssetNotice, { id }, id);
+    return asset ? /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(ImageAssetView, { asset }, id) : /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(MissingAssetNotice, { id }, id);
   }) });
 }
 function MissingAssetNotice({ id }) {
-  return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "asset-config-warning", "data-missing-asset": id, children: "\u6682\u672A\u6B63\u786E\u914D\u7F6E\u597D\u56FE\u7247\uFF0C\u8BF7\u8054\u7CFB\u7BA1\u7406\u5458\u3002" });
+  return /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("div", { className: "asset-config-warning", "data-missing-asset": id, children: "\u6682\u672A\u6B63\u786E\u914D\u7F6E\u597D\u56FE\u7247\uFF0C\u8BF7\u8054\u7CFB\u7BA1\u7406\u5458\u3002" });
 }
 function ImageAssetView({ asset }) {
   if (asset.crop && asset.imagePath) {
@@ -23521,51 +25761,51 @@ function ImageAssetView({ asset }) {
       "--crop-pos-y": `${posY}%`,
       backgroundImage: `url('${asset.imagePath}')`
     };
-    return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("figure", { className: `image-asset ${asset.kind} cropped`, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "crop-window", role: "img", "aria-label": asset.label || asset.id, style }),
-      asset.label ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("figcaption", { children: asset.label }) : null
+    return /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("figure", { className: `image-asset ${asset.kind} cropped`, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("div", { className: "crop-window", role: "img", "aria-label": asset.label || asset.id, style }),
+      asset.label ? /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("figcaption", { children: asset.label }) : null
     ] });
   }
-  return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("figure", { className: `image-asset ${asset.kind}`, children: [
-    asset.imagePath ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", { src: asset.imagePath, alt: asset.label || asset.id }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "empty-asset", children: "\u56FE\u7247\u5F85\u8865\u5145" }),
-    asset.label ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("figcaption", { children: asset.label }) : null
+  return /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("figure", { className: `image-asset ${asset.kind}`, children: [
+    asset.imagePath ? /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("img", { src: asset.imagePath, alt: asset.label || asset.id }) : /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("div", { className: "empty-asset", children: "\u56FE\u7247\u5F85\u8865\u5145" }),
+    asset.label ? /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("figcaption", { children: asset.label }) : null
   ] });
 }
 function Prompt({ parts, kana: kana2 }) {
   if (shouldRenderWholePrompt(parts, kana2)) {
-    return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(RubyText, { text: parts.map((part) => part.text).join(""), kana: kana2 });
+    return /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(RubyText, { text: parts.map((part) => part.text).join(""), kana: kana2 });
   }
   const partsWithKana = applyPromptKanaToTextParts(parts, kana2);
-  return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(import_jsx_runtime.Fragment, { children: partsWithKana.map((part, index) => {
-    if (part.type === "text") return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(RichText, { part }, index);
+  return /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(import_jsx_runtime2.Fragment, { children: partsWithKana.map((part, index) => {
+    if (part.type === "text") return /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(RichText, { part }, index);
     if (part.type === "blank") {
       if (part.display === "parentheses") {
-        return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "inline-blank parentheses-blank", "data-slot-id": part.slotId, children: "\uFF08\u3000\uFF09" }, index);
+        return /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", { className: "inline-blank parentheses-blank", "data-slot-id": part.slotId, children: "\uFF08\u3000\uFF09" }, index);
       }
-      return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "inline-blank", "data-slot-id": part.slotId }, index);
+      return /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", { className: "inline-blank", "data-slot-id": part.slotId }, index);
     }
-    if (part.type === "choice_ref") return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "choice-ref", children: part.choiceIds.join(" / ") }, index);
-    return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "asset-ref", children: part.assetId }, index);
+    if (part.type === "choice_ref") return /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", { className: "choice-ref", children: part.choiceIds.join(" / ") }, index);
+    return /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", { className: "asset-ref", children: part.assetId }, index);
   }) });
 }
 function RichTextList({ parts }) {
-  return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(import_jsx_runtime.Fragment, { children: parts.map((part, index) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(RichText, { part }, index)) });
+  return /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(import_jsx_runtime2.Fragment, { children: parts.map((part, index) => /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(RichText, { part }, index)) });
 }
 function RichText({ part }) {
-  const content = /* @__PURE__ */ (0, import_jsx_runtime.jsx)(RubyText, { text: part.text, kana: part.kana });
-  return part.underline ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "underlined", "data-substitution-key": part.substitutionKey || void 0, children: content }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(import_jsx_runtime.Fragment, { children: content });
+  const content = /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(RubyText, { text: part.text, kana: part.kana });
+  return part.underline ? /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", { className: "underlined", "data-substitution-key": part.substitutionKey || void 0, children: content }) : /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(import_jsx_runtime2.Fragment, { children: content });
 }
-function RubyText({ text: text37, kana: kana2 }) {
-  if (!kana2) return text37;
-  const segments = splitRubySegments(text37, kana2);
-  return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(import_jsx_runtime.Fragment, { children: segments.map((segment, index) => {
+function RubyText({ text: text39, kana: kana2 }) {
+  if (!kana2) return text39;
+  const segments = splitRubySegments(text39, kana2);
+  return /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(import_jsx_runtime2.Fragment, { children: segments.map((segment, index) => {
     if (segment.type === "ruby") {
-      return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("ruby", { children: [
+      return /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("ruby", { children: [
         segment.text,
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("rt", { children: segment.kana })
+        /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("rt", { children: segment.kana })
       ] }, index);
     }
-    return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(import_react.default.Fragment, { children: segment.text }, index);
+    return /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(import_react2.default.Fragment, { children: segment.text }, index);
   }) });
 }
 function shouldRenderWholePrompt(parts, kana2) {
@@ -23921,7 +26161,7 @@ function buildAcceptedAnswerAlternativeSyncPlan(practice, alternatives = {}) {
   let answerCount = 0;
   const itemIds = /* @__PURE__ */ new Set();
   const details = [];
-  const activities36 = (practice.activities || []).map((activity) => {
+  const activities38 = (practice.activities || []).map((activity) => {
     let activityChanged = false;
     const mergeItem = (item2) => {
       const result = mergePracticeItemAcceptedAlternatives(item2, alternatives?.[item2.id]);
@@ -23960,7 +26200,7 @@ function buildAcceptedAnswerAlternativeSyncPlan(practice, alternatives = {}) {
     return activity;
   });
   return {
-    practice: answerCount > 0 ? { ...practice, activities: activities36 } : practice,
+    practice: answerCount > 0 ? { ...practice, activities: activities38 } : practice,
     itemCount: itemIds.size,
     answerCount,
     details
@@ -24279,9 +26519,9 @@ function formatExpectedAnswerSummary(item2) {
 }
 function exampleDialogueLines(parts, kana2) {
   if (!parts?.length) return null;
-  const text37 = promptPartsPlainText(parts).trim();
-  if (!/甲：|乙/.test(text37)) return null;
-  const textLines = splitDialogueContent(text37);
+  const text39 = promptPartsPlainText(parts).trim();
+  if (!/甲：|乙/.test(text39)) return null;
+  const textLines = splitDialogueContent(text39);
   if (!textLines.length) return null;
   const kanaLines = splitDialogueKanaLines(kana2, textLines.length);
   const partsLines = splitPromptPartsByDialogueLines(parts, textLines);
@@ -24296,17 +26536,17 @@ function exampleDialogueLines(parts, kana2) {
   }));
 }
 function splitDialogueContent(value) {
-  const text37 = String(value || "").replace(/\s+/g, " ").trim();
-  if (!text37) return [];
+  const text39 = String(value || "").replace(/\s+/g, " ").trim();
+  if (!text39) return [];
   const speakerPattern = /((?:甲|乙[12一二]?|丙|丁|A|B|C|D|こう|おつ(?:いち|に|[12一二])?|コウ|オツ(?:イチ|ニ|[12一二])?))：/g;
-  const matches = Array.from(text37.matchAll(speakerPattern));
+  const matches = Array.from(text39.matchAll(speakerPattern));
   return matches.map((match, index) => {
     const speaker = match[1];
     const bodyStart = (match.index || 0) + match[0].length;
-    const bodyEnd = matches[index + 1]?.index ?? text37.length;
+    const bodyEnd = matches[index + 1]?.index ?? text39.length;
     return {
       speaker,
-      body: text37.slice(bodyStart, bodyEnd).trim(),
+      body: text39.slice(bodyStart, bodyEnd).trim(),
       start: bodyStart,
       end: bodyEnd
     };
@@ -24346,12 +26586,12 @@ function splitPromptPartsByDialogueLines(parts, textLines) {
   }
   return result;
 }
-function slicePromptPart(part, text37) {
+function slicePromptPart(part, text39) {
   if (part.type !== "text") return part;
-  return { ...part, text: text37 };
+  return { ...part, text: text39 };
 }
-function splitRubySegments(text37, kana2) {
-  const sourceText = String(text37 || "");
+function splitRubySegments(text39, kana2) {
+  const sourceText = String(text39 || "");
   const sourceKana = String(kana2 || "");
   if (!sourceText || !sourceKana || sourceText === sourceKana || isKanaOnly(sourceText)) {
     return [{ type: "text", text: sourceText }];
@@ -24450,15 +26690,15 @@ function consumePlainText(remainingKana, plainText) {
 function findWhitespaceTolerantIndex(value, query) {
   const normalizedQuery = normalizeRubyAnchor(query);
   if (!normalizedQuery) return -1;
-  const { text: text37, indexMap } = normalizeRubyAnchorWithMap(value);
-  const normalizedIndex = text37.indexOf(normalizedQuery);
+  const { text: text39, indexMap } = normalizeRubyAnchorWithMap(value);
+  const normalizedIndex = text39.indexOf(normalizedQuery);
   return normalizedIndex > -1 ? indexMap[normalizedIndex] : -1;
 }
 function consumeWhitespaceTolerantPrefix(value, prefix) {
   const normalizedPrefix = normalizeRubyAnchor(prefix);
   if (!normalizedPrefix) return null;
-  const { text: text37, endIndexMap } = normalizeRubyAnchorWithMap(value);
-  if (!text37.startsWith(normalizedPrefix)) return null;
+  const { text: text39, endIndexMap } = normalizeRubyAnchorWithMap(value);
+  if (!text39.startsWith(normalizedPrefix)) return null;
   const endIndex = endIndexMap[normalizedPrefix.length - 1];
   return value.slice(endIndex);
 }
@@ -24468,18 +26708,18 @@ function normalizeRubyAnchor(value) {
 function normalizeRubyAnchorWithMap(value) {
   const chars = Array.from(String(value || ""));
   let originalIndex = 0;
-  let text37 = "";
+  let text39 = "";
   const indexMap = [];
   const endIndexMap = [];
   chars.forEach((char) => {
     const startIndex = originalIndex;
     originalIndex += char.length;
     if (isRubyWhitespace(char)) return;
-    text37 += char;
+    text39 += char;
     indexMap.push(startIndex);
     endIndexMap.push(originalIndex);
   });
-  return { text: text37, indexMap, endIndexMap };
+  return { text: text39, indexMap, endIndexMap };
 }
 function isRubyWhitespace(char) {
   return /[\s　]/.test(String(char || ""));
@@ -40038,8 +42278,3038 @@ var activities35 = [
 ];
 var lesson36Practice = { lessonId: "lesson36", title: "\u7B2C36\u8BFE \u9045\u304F\u306A\u3063\u3066\u3001\u3059\u307F\u307E\u305B\u3093", sourcePages: [{ pageNo: 132, imagePath: page37(132) }, { pageNo: 133, imagePath: page37(133) }, { pageNo: 134, imagePath: page37(134) }], activities: activities35 };
 
+// practice/lesson37-practice-data.ts
+var page38 = (pageNo) => `../course-assets/by-lesson/lesson37/page${pageNo}.webp`;
+var audio36 = (exerciseNo, order) => `https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson37/Exe${exerciseNo}_${order}.mp3`;
+var text37 = (value, options = {}) => ({ type: "text", text: value, ...options });
+var blank33 = (slotId = "answer") => ({ type: "blank", slotId });
+var sentenceSlot35 = (placeholder = "\u8F93\u5165\u5B8C\u6574\u53E5\u5B50") => [{ id: "answer", expectedUnit: "sentence", width: "long", placeholder }];
+var phraseSlot3 = () => [{ id: "answer", expectedUnit: "phrase", width: "long", placeholder: "\u8F93\u5165\u7B54\u6848" }];
+var wordSlot10 = () => [{ id: "answer", expectedUnit: "word", width: "medium", placeholder: "\u8F93\u5165\u7B54\u6848" }];
+var dialogueSlot32 = () => [{ id: "answer", expectedUnit: "dialogue", width: "long", multiline: true, rows: 4, placeholder: "\u8F93\u5165\u5B8C\u6574\u4F1A\u8BDD" }];
+var sentenceItem9 = (id, number, prompt, promptKana, answer3, answerSource = "example_transform") => ({
+  id,
+  number,
+  prompt: [text37(prompt)],
+  promptKana,
+  instruction: "",
+  answerSource,
+  evaluationMode: "exact",
+  responseScope: "sentence_only",
+  responseScopeHint: "\u5199\u51FA\u5B8C\u6574\u53E5\u5B50\u3002",
+  inputSlots: sentenceSlot35(),
+  answer: { slotValues: { answer: answer3 } }
+});
+var phraseItem2 = (id, number, prompt, promptKana, answer3) => ({
+  id,
+  number,
+  prompt: [text37(prompt)],
+  promptKana,
+  instruction: "",
+  answerSource: "example_transform",
+  evaluationMode: "exact",
+  responseScope: "phrase_only",
+  responseScopeHint: "\u5199\u51FA\u53D8\u5F62\u540E\u7684\u8BCD\u7EC4\u3002",
+  inputSlots: phraseSlot3(),
+  answer: { slotValues: { answer: answer3 } }
+});
+var dialogueItem31 = (id, number, prompt, promptKana, answer3, answerSource = "audio") => ({
+  id,
+  number,
+  prompt: [text37(prompt)],
+  promptKana,
+  instruction: "",
+  answerSource,
+  evaluationMode: "exact",
+  responseScope: "dialogue_only",
+  responseScopeHint: "\u5199\u51FA\u5B8C\u6574\u4F1A\u8BDD\u3002",
+  inputSlots: dialogueSlot32(),
+  answer: { slotValues: { answer: answer3 } },
+  renderHint: "dialogue"
+});
+var wordItem6 = (id, number, prompt, promptKana, answer3) => ({
+  id,
+  number,
+  prompt,
+  promptKana,
+  instruction: "",
+  answerSource: "prompt",
+  evaluationMode: "exact",
+  responseScope: "word_only",
+  responseScopeHint: "\u586B\u5199\u62EC\u53F7\u4E2D\u7684\u8BCD\u8BED\u3002",
+  inputSlots: wordSlot10(),
+  answer: { slotValues: { answer: answer3 } }
+});
+var choiceItem17 = (id, number, prompt, promptKana, choices, answerIndex, answerSource = "prompt") => ({
+  id,
+  number,
+  prompt: [text37(prompt)],
+  promptKana,
+  instruction: "",
+  answerSource,
+  evaluationMode: "exact",
+  responseScope: "choice_only",
+  responseScopeHint: "\u9009\u62E9\u6B63\u786E\u7B54\u6848\u3002",
+  choices: choices.map((label, index) => ({ id: `${id}-c${index + 1}`, label })),
+  answer: { choiceIds: [`${id}-c${answerIndex}`] }
+});
+var activities36 = [
+  {
+    id: "l37-p1-a1",
+    section: "practice_1",
+    order: 1,
+    title: "\u4EFF\u7167\u4F8B\u53E5\u8FDB\u884C\u7EC3\u4E60\u3002",
+    instruction: "",
+    interaction: "pattern_substitution",
+    answerUnit: "phrase",
+    responseScope: "phrase_only",
+    layout: [],
+    itemGroups: [
+      { id: "l37-p1-a1-g1", example: { label: "[\u4F8B 1]", before: "\u4E2D\u56FD\u3078\u884C\u304D\u307E\u3059", beforeKana: "\u3061\u3085\u3046\u3054\u304F\u3078\u3044\u304D\u307E\u3059", after: [text37("\u4E2D\u56FD\u3078\u884C\u3051\u3070 \u2192 \u4E2D\u56FD\u3078\u884C\u304B\u306A\u3051\u308C\u3070", { kana: "\u3061\u3085\u3046\u3054\u304F\u3078\u3044\u3051\u3070 \u2192 \u3061\u3085\u3046\u3054\u304F\u3078\u3044\u304B\u306A\u3051\u308C\u3070" })] }, items: [
+        phraseItem2("l37-p1-a1-q1", "1", "\u624B\u7D19\u3092\u66F8\u304D\u307E\u3059", "\u3066\u304C\u307F\u3092\u304B\u304D\u307E\u3059", "\u624B\u7D19\u3092\u66F8\u3051\u3070 \u2192 \u624B\u7D19\u3092\u66F8\u304B\u306A\u3051\u308C\u3070"),
+        phraseItem2("l37-p1-a1-q2", "2", "\u8AB2\u9577\u306B\u8A71\u3057\u307E\u3059", "\u304B\u3061\u3087\u3046\u306B\u306F\u306A\u3057\u307E\u3059", "\u8AB2\u9577\u306B\u8A71\u305B\u3070 \u2192 \u8AB2\u9577\u306B\u8A71\u3055\u306A\u3051\u308C\u3070"),
+        phraseItem2("l37-p1-a1-q3", "3", "\u98DB\u884C\u6A5F\u304C\u98DB\u3073\u307E\u3059", "\u3072\u3053\u3046\u304D\u304C\u3068\u3073\u307E\u3059", "\u98DB\u884C\u6A5F\u304C\u98DB\u3079\u3070 \u2192 \u98DB\u884C\u6A5F\u304C\u98DB\u3070\u306A\u3051\u308C\u3070"),
+        phraseItem2("l37-p1-a1-q4", "4", "\u5DDD\u3092\u6E21\u308A\u307E\u3059", "\u304B\u308F\u3092\u308F\u305F\u308A\u307E\u3059", "\u5DDD\u3092\u6E21\u308C\u3070 \u2192 \u5DDD\u3092\u6E21\u3089\u306A\u3051\u308C\u3070"),
+        phraseItem2("l37-p1-a1-q5", "5", "\u51FA\u767A\u304C\u9045\u308C\u307E\u3059", "\u3057\u3085\u3063\u3071\u3064\u304C\u304A\u304F\u308C\u307E\u3059", "\u51FA\u767A\u304C\u9045\u308C\u308C\u3070 \u2192 \u51FA\u767A\u304C\u9045\u308C\u306A\u3051\u308C\u3070"),
+        phraseItem2("l37-p1-a1-q6", "6", "\u30D1\u30BD\u30B3\u30F3\u3092\u4F7F\u3044\u307E\u3059", "\u30D1\u30BD\u30B3\u30F3\u3092\u3064\u304B\u3044\u307E\u3059", "\u30D1\u30BD\u30B3\u30F3\u3092\u4F7F\u3048\u3070 \u2192 \u30D1\u30BD\u30B3\u30F3\u3092\u4F7F\u308F\u306A\u3051\u308C\u3070"),
+        phraseItem2("l37-p1-a1-q7", "7", "\u5207\u7B26\u3092\u898B\u305B\u307E\u3059", "\u304D\u3063\u3077\u3092\u307F\u305B\u307E\u3059", "\u5207\u7B26\u3092\u898B\u305B\u308C\u3070 \u2192 \u5207\u7B26\u3092\u898B\u305B\u306A\u3051\u308C\u3070"),
+        phraseItem2("l37-p1-a1-q8", "8", "\u96FB\u8A71\u3092\u304B\u3051\u307E\u3059", "\u3067\u3093\u308F\u3092\u304B\u3051\u307E\u3059", "\u96FB\u8A71\u3092\u304B\u3051\u308C\u3070 \u2192 \u96FB\u8A71\u3092\u304B\u3051\u306A\u3051\u308C\u3070"),
+        phraseItem2("l37-p1-a1-q9", "9", "\u8A08\u753B\u3092\u6C7A\u3081\u307E\u3059", "\u3051\u3044\u304B\u304F\u3092\u304D\u3081\u307E\u3059", "\u8A08\u753B\u3092\u6C7A\u3081\u308C\u3070 \u2192 \u8A08\u753B\u3092\u6C7A\u3081\u306A\u3051\u308C\u3070"),
+        phraseItem2("l37-p1-a1-q10", "10", "\u6BCE\u65E5\u5FA9\u7FD2\u3057\u307E\u3059", "\u307E\u3044\u306B\u3061\u3075\u304F\u3057\u3085\u3046\u3057\u307E\u3059", "\u6BCE\u65E5\u5FA9\u7FD2\u3059\u308C\u3070 \u2192 \u6BCE\u65E5\u5FA9\u7FD2\u3057\u306A\u3051\u308C\u3070"),
+        phraseItem2("l37-p1-a1-q11", "11", "\u4F1A\u8B70\u3067\u767A\u8A00\u3057\u307E\u3059", "\u304B\u3044\u304E\u3067\u306F\u3064\u3052\u3093\u3057\u307E\u3059", "\u4F1A\u8B70\u3067\u767A\u8A00\u3059\u308C\u3070 \u2192 \u4F1A\u8B70\u3067\u767A\u8A00\u3057\u306A\u3051\u308C\u3070"),
+        phraseItem2("l37-p1-a1-q12", "12", "\u660E\u65E5\u6765\u307E\u3059", "\u3042\u3057\u305F\u304D\u307E\u3059", "\u660E\u65E5\u6765\u308C\u3070 \u2192 \u660E\u65E5\u6765\u306A\u3051\u308C\u3070")
+      ] },
+      { id: "l37-p1-a1-g2", example: { label: "[\u4F8B 2]", before: "\u6691\u3044\u3067\u3059", beforeKana: "\u3042\u3064\u3044\u3067\u3059", after: [text37("\u6691\u3051\u308C\u3070 \u2192 \u6691\u304F\u306A\u3051\u308C\u3070", { kana: "\u3042\u3064\u3051\u308C\u3070 \u2192 \u3042\u3064\u304F\u306A\u3051\u308C\u3070" })] }, items: [
+        phraseItem2("l37-p1-a1-q13", "13", "\u82E5\u3044\u3067\u3059", "\u308F\u304B\u3044\u3067\u3059", "\u82E5\u3051\u308C\u3070 \u2192 \u82E5\u304F\u306A\u3051\u308C\u3070"),
+        phraseItem2("l37-p1-a1-q14", "14", "\u91CD\u3044\u3067\u3059", "\u304A\u3082\u3044\u3067\u3059", "\u91CD\u3051\u308C\u3070 \u2192 \u91CD\u304F\u306A\u3051\u308C\u3070"),
+        phraseItem2("l37-p1-a1-q15", "15", "\u7720\u3044\u3067\u3059", "\u306D\u3080\u3044\u3067\u3059", "\u7720\u3051\u308C\u3070 \u2192 \u7720\u304F\u306A\u3051\u308C\u3070"),
+        phraseItem2("l37-p1-a1-q16", "16", "\u5F31\u3044\u3067\u3059", "\u3088\u308F\u3044\u3067\u3059", "\u5F31\u3051\u308C\u3070 \u2192 \u5F31\u304F\u306A\u3051\u308C\u3070"),
+        phraseItem2("l37-p1-a1-q17", "17", "\u53B3\u3057\u3044\u3067\u3059", "\u304D\u3073\u3057\u3044\u3067\u3059", "\u53B3\u3057\u3051\u308C\u3070 \u2192 \u53B3\u3057\u304F\u306A\u3051\u308C\u3070"),
+        phraseItem2("l37-p1-a1-q18", "18", "\u60B2\u3057\u3044\u3067\u3059", "\u304B\u306A\u3057\u3044\u3067\u3059", "\u60B2\u3057\u3051\u308C\u3070 \u2192 \u60B2\u3057\u304F\u306A\u3051\u308C\u3070")
+      ] },
+      { id: "l37-p1-a1-g3", example: { label: "[\u4F8B 3]", before: "\u96E8\u304C\u964D\u308A\u307E\u3059\uFF0F\u5BD2\u3044\u3067\u3059\uFF0F\u4FBF\u5229\u3067\u3059", beforeKana: "\u3042\u3081\u304C\u3075\u308A\u307E\u3059\uFF0F\u3055\u3080\u3044\u3067\u3059\uFF0F\u3079\u3093\u308A\u3067\u3059", after: [text37("\u96E8\u304C\u964D\u308B\u306A\u3089 \u2192 \u96E8\u304C\u964D\u3089\u306A\u3044\u306A\u3089\n\u5BD2\u3044\u306A\u3089 \u2192 \u5BD2\u304F\u306A\u3044\u306A\u3089\n\u4FBF\u5229\u306A\u3089 \u2192 \u4FBF\u5229\u3067\u306A\u3044\u306A\u3089", { kana: "\u3042\u3081\u304C\u3075\u308B\u306A\u3089 \u2192 \u3042\u3081\u304C\u3075\u3089\u306A\u3044\u306A\u3089\n\u3055\u3080\u3044\u306A\u3089 \u2192 \u3055\u3080\u304F\u306A\u3044\u306A\u3089\n\u3079\u3093\u308A\u306A\u3089 \u2192 \u3079\u3093\u308A\u3067\u306A\u3044\u306A\u3089" })] }, items: [
+        phraseItem2("l37-p1-a1-q19", "19", "\u6642\u9593\u304C\u3042\u308A\u307E\u3059", "\u3058\u304B\u3093\u304C\u3042\u308A\u307E\u3059", "\u6642\u9593\u304C\u3042\u308B\u306A\u3089 \u2192 \u6642\u9593\u304C\u306A\u3044\u306A\u3089"),
+        phraseItem2("l37-p1-a1-q20", "20", "\u97F3\u304C\u3044\u3044\u3067\u3059", "\u304A\u3068\u304C\u3044\u3044\u3067\u3059", "\u97F3\u304C\u3044\u3044\u306A\u3089 \u2192 \u97F3\u304C\u3088\u304F\u306A\u3044\u306A\u3089"),
+        phraseItem2("l37-p1-a1-q21", "21", "\u7C21\u5358\u3067\u3059", "\u304B\u3093\u305F\u3093\u3067\u3059", "\u7C21\u5358\u306A\u3089 \u2192 \u7C21\u5358\u3067\u306A\u3044\u306A\u3089")
+      ] }
+    ],
+    items: []
+  },
+  {
+    id: "l37-p1-a2",
+    section: "practice_1",
+    order: 2,
+    title: "\u4EFF\u7167\u4F8B\u53E5\uFF0C\u7528\u201C\u301C\u3070\u201D\u9020\u53E5\u3002",
+    instruction: "",
+    interaction: "pattern_substitution",
+    answerUnit: "sentence",
+    responseScope: "sentence_only",
+    layout: [],
+    itemGroups: [
+      { id: "l37-p1-a2-g1", example: { label: "[\u4F8B 1]", before: "\u6D17\u3044\u307E\u3059\uFF0F\u304D\u308C\u3044\u306B\u306A\u308A\u307E\u3059\n\u6025\u304E\u307E\u305B\u3093\uFF0F\u9045\u308C\u307E\u3059", beforeKana: "\u3042\u3089\u3044\u307E\u3059\uFF0F\u304D\u308C\u3044\u306B\u306A\u308A\u307E\u3059\n\u3044\u305D\u304E\u307E\u305B\u3093\uFF0F\u304A\u304F\u308C\u307E\u3059", after: [text37("\u6D17\u3048\u3070\u3001\u304D\u308C\u3044\u306B\u306A\u308A\u307E\u3059\u3002\n\u6025\u304C\u306A\u3051\u308C\u3070\u3001\u9045\u308C\u307E\u3059\u3002", { kana: "\u3042\u3089\u3048\u3070\u3001\u304D\u308C\u3044\u306B\u306A\u308A\u307E\u3059\u3002\n\u3044\u305D\u304C\u306A\u3051\u308C\u3070\u3001\u304A\u304F\u308C\u307E\u3059\u3002" })] }, items: [
+        sentenceItem9("l37-p1-a2-q1", "1", "\u898B\u307E\u3059\uFF0F\u6B32\u3057\u304F\u306A\u308A\u307E\u3059", "\u307F\u307E\u3059\uFF0F\u307B\u3057\u304F\u306A\u308A\u307E\u3059", "\u898B\u308C\u3070\u3001\u6B32\u3057\u304F\u306A\u308A\u307E\u3059\u3002"),
+        sentenceItem9("l37-p1-a2-q2", "2", "\u79CB\u306B\u306A\u308A\u307E\u3059\uFF0F\u6DBC\u3057\u304F\u306A\u308A\u307E\u3059", "\u3042\u304D\u306B\u306A\u308A\u307E\u3059\uFF0F\u3059\u305A\u3057\u304F\u306A\u308A\u307E\u3059", "\u79CB\u306B\u306A\u308C\u3070\u3001\u6DBC\u3057\u304F\u306A\u308A\u307E\u3059\u3002"),
+        sentenceItem9("l37-p1-a2-q3", "3", "\u6025\u304E\u307E\u3059\uFF0F\u9593\u306B\u5408\u3046\u3067\u3057\u3087\u3046", "\u3044\u305D\u304E\u307E\u3059\uFF0F\u307E\u306B\u3042\u3046\u3067\u3057\u3087\u3046", "\u6025\u3052\u3070\u3001\u9593\u306B\u5408\u3046\u3067\u3057\u3087\u3046\u3002"),
+        sentenceItem9("l37-p1-a2-q4", "4", "\u4E00\u751F\u61F8\u547D\u3084\u308A\u307E\u3059\uFF0F\u6210\u529F\u3059\u308B\u3067\u3057\u3087\u3046", "\u3044\u3063\u3057\u3087\u3046\u3051\u3093\u3081\u3044\u3084\u308A\u307E\u3059\uFF0F\u305B\u3044\u3053\u3046\u3059\u308B\u3067\u3057\u3087\u3046", "\u4E00\u751F\u61F8\u547D\u3084\u308C\u3070\u3001\u6210\u529F\u3059\u308B\u3067\u3057\u3087\u3046\u3002"),
+        sentenceItem9("l37-p1-a2-q5", "5", "\u8CEA\u554F\u304C\u3042\u308A\u307E\u305B\u3093\uFF0F\u3053\u308C\u3067\u7D42\u308F\u308A\u307E\u3059", "\u3057\u3064\u3082\u3093\u304C\u3042\u308A\u307E\u305B\u3093\uFF0F\u3053\u308C\u3067\u304A\u308F\u308A\u307E\u3059", "\u8CEA\u554F\u304C\u306A\u3051\u308C\u3070\u3001\u3053\u308C\u3067\u7D42\u308F\u308A\u307E\u3059\u3002"),
+        sentenceItem9("l37-p1-a2-q6", "6", "\u7DF4\u7FD2\u3057\u307E\u305B\u3093\uFF0F\u4E0A\u624B\u306B\u306A\u308A\u307E\u305B\u3093", "\u308C\u3093\u3057\u3085\u3046\u3057\u307E\u305B\u3093\uFF0F\u3058\u3087\u3046\u305A\u306B\u306A\u308A\u307E\u305B\u3093", "\u7DF4\u7FD2\u3057\u306A\u3051\u308C\u3070\u3001\u4E0A\u624B\u306B\u306A\u308A\u307E\u305B\u3093\u3002"),
+        sentenceItem9("l37-p1-a2-q7", "7", "\u4ECA\u3059\u3050\u59CB\u3081\u307E\u305B\u3093\uFF0F\u9593\u306B\u5408\u3044\u307E\u305B\u3093", "\u3044\u307E\u3059\u3050\u306F\u3058\u3081\u307E\u305B\u3093\uFF0F\u307E\u306B\u3042\u3044\u307E\u305B\u3093", "\u4ECA\u3059\u3050\u59CB\u3081\u306A\u3051\u308C\u3070\u3001\u9593\u306B\u5408\u3044\u307E\u305B\u3093\u3002"),
+        sentenceItem9("l37-p1-a2-q8", "8", "\u898F\u5247\u3092\u5B88\u308A\u307E\u305B\u3093\uFF0F\u4EA4\u901A\u4E8B\u6545\u304C\u8D77\u304D\u307E\u3059", "\u304D\u305D\u304F\u3092\u307E\u3082\u308A\u307E\u305B\u3093\uFF0F\u3053\u3046\u3064\u3046\u3058\u3053\u304C\u304A\u304D\u307E\u3059", "\u898F\u5247\u3092\u5B88\u3089\u306A\u3051\u308C\u3070\u3001\u4EA4\u901A\u4E8B\u6545\u304C\u8D77\u304D\u307E\u3059\u3002")
+      ] },
+      { id: "l37-p1-a2-g2", example: { label: "[\u4F8B 2]", before: "\u5FD9\u3057\u3044\u3067\u3059\uFF0F\u624B\u4F1D\u3044\u307E\u3057\u3087\u3046\u304B\n\u5B89\u304F\u306A\u3044\u3067\u3059\uFF0F\u8CB7\u3044\u307E\u305B\u3093", beforeKana: "\u3044\u305D\u304C\u3057\u3044\u3067\u3059\uFF0F\u3066\u3064\u3060\u3044\u307E\u3057\u3087\u3046\u304B\n\u3084\u3059\u304F\u306A\u3044\u3067\u3059\uFF0F\u304B\u3044\u307E\u305B\u3093", after: [text37("\u5FD9\u3057\u3051\u308C\u3070\u3001\u624B\u4F1D\u3044\u307E\u3057\u3087\u3046\u304B\u3002\n\u5B89\u304F\u306A\u3051\u308C\u3070\u3001\u8CB7\u3044\u307E\u305B\u3093\u3002", { kana: "\u3044\u305D\u304C\u3057\u3051\u308C\u3070\u3001\u3066\u3064\u3060\u3044\u307E\u3057\u3087\u3046\u304B\u3002\n\u3084\u3059\u304F\u306A\u3051\u308C\u3070\u3001\u304B\u3044\u307E\u305B\u3093\u3002" })] }, items: [
+        sentenceItem9("l37-p1-a2-q9", "9", "\u91CD\u3044\u3067\u3059\uFF0F\u6301\u3061\u307E\u3057\u3087\u3046\u304B", "\u304A\u3082\u3044\u3067\u3059\uFF0F\u3082\u3061\u307E\u3057\u3087\u3046\u304B", "\u91CD\u3051\u308C\u3070\u3001\u6301\u3061\u307E\u3057\u3087\u3046\u304B\u3002"),
+        sentenceItem9("l37-p1-a2-q10", "10", "\u5E97\u306E\u30B5\u30FC\u30D3\u30B9\u304C\u60AA\u3044\u3067\u3059\uFF0F\u884C\u304D\u307E\u305B\u3093", "\u307F\u305B\u306E\u30B5\u30FC\u30D3\u30B9\u304C\u308F\u308B\u3044\u3067\u3059\uFF0F\u3044\u304D\u307E\u305B\u3093", "\u5E97\u306E\u30B5\u30FC\u30D3\u30B9\u304C\u60AA\u3051\u308C\u3070\u3001\u884C\u304D\u307E\u305B\u3093\u3002"),
+        sentenceItem9("l37-p1-a2-q11", "11", "\u6691\u3044\u3067\u3059\uFF0F\u7A93\u3092\u958B\u3051\u3066\u304F\u3060\u3055\u3044", "\u3042\u3064\u3044\u3067\u3059\uFF0F\u307E\u3069\u3092\u3042\u3051\u3066\u304F\u3060\u3055\u3044", "\u6691\u3051\u308C\u3070\u3001\u7A93\u3092\u958B\u3051\u3066\u304F\u3060\u3055\u3044\u3002"),
+        sentenceItem9("l37-p1-a2-q12", "12", "\u8CBB\u7528\u304C\u9AD8\u304F\u306A\u3044\u3067\u3059\uFF0F\u53C2\u52A0\u3057\u307E\u3059", "\u3072\u3088\u3046\u304C\u305F\u304B\u304F\u306A\u3044\u3067\u3059\uFF0F\u3055\u3093\u304B\u3057\u307E\u3059", "\u8CBB\u7528\u304C\u9AD8\u304F\u306A\u3051\u308C\u3070\u3001\u53C2\u52A0\u3057\u307E\u3059\u3002"),
+        sentenceItem9("l37-p1-a2-q13", "13", "\u9060\u304F\u306A\u3044\u3067\u3059\uFF0F\u884C\u304D\u305F\u3044\u3067\u3059", "\u3068\u304A\u304F\u306A\u3044\u3067\u3059\uFF0F\u3044\u304D\u305F\u3044\u3067\u3059", "\u9060\u304F\u306A\u3051\u308C\u3070\u3001\u884C\u304D\u305F\u3044\u3067\u3059\u3002"),
+        sentenceItem9("l37-p1-a2-q14", "14", "\u5929\u6C17\u304C\u3088\u304F\u306A\u3044\u3067\u3059\uFF0F\u51FA\u304B\u3051\u307E\u305B\u3093", "\u3066\u3093\u304D\u304C\u3088\u304F\u306A\u3044\u3067\u3059\uFF0F\u3067\u304B\u3051\u307E\u305B\u3093", "\u5929\u6C17\u304C\u3088\u304F\u306A\u3051\u308C\u3070\u3001\u51FA\u304B\u3051\u307E\u305B\u3093\u3002")
+      ] }
+    ],
+    items: []
+  },
+  {
+    id: "l37-p1-a3",
+    section: "practice_1",
+    order: 3,
+    title: "\u4EFF\u7167\u4F8B\u53E5\u66FF\u6362\u753B\u7EBF\u90E8\u5206\u8FDB\u884C\u7EC3\u4E60\u3002",
+    instruction: "",
+    interaction: "pattern_substitution",
+    answerUnit: "sentence",
+    responseScope: "sentence_only",
+    layout: [{ type: "example", content: { label: "[\u4F8B]", before: "\u3042\u306A\u305F\u304C\u884C\u304D\u307E\u3059\uFF0F\u308F\u305F\u3057\u306F\u3053\u3053\u3067\u5F85\u3061\u307E\u3059", beforeKana: "\u3042\u306A\u305F\u304C\u3044\u304D\u307E\u3059\uFF0F\u308F\u305F\u3057\u306F\u3053\u3053\u3067\u307E\u3061\u307E\u3059", after: [text37("\u3042\u306A\u305F\u304C\u884C\u304F\u306A\u3089\u3001\u308F\u305F\u3057\u306F\u3053\u3053\u3067\u5F85\u3061\u307E\u3059\u3002", { kana: "\u3042\u306A\u305F\u304C\u3044\u304F\u306A\u3089\u3001\u308F\u305F\u3057\u306F\u3053\u3053\u3067\u307E\u3061\u307E\u3059\u3002" })] } }],
+    items: [
+      sentenceItem9("l37-p1-a3-q1", "1", "\u30D1\u30BD\u30B3\u30F3\u3067\u7D75\u3092\u304B\u304D\u307E\u3059\uFF0F\u3053\u306E\u30BD\u30D5\u30C8\u304C\u3044\u3044\u3067\u3059", "\u30D1\u30BD\u30B3\u30F3\u3067\u3048\u3092\u304B\u304D\u307E\u3059\uFF0F\u3053\u306E\u30BD\u30D5\u30C8\u304C\u3044\u3044\u3067\u3059", "\u30D1\u30BD\u30B3\u30F3\u3067\u7D75\u3092\u304B\u304F\u306A\u3089\u3001\u3053\u306E\u30BD\u30D5\u30C8\u304C\u3044\u3044\u3067\u3059\u3002"),
+      sentenceItem9("l37-p1-a3-q2", "2", "\u3042\u306A\u305F\u304C\u884C\u304D\u307E\u305B\u3093\uFF0F\u308F\u305F\u3057\u304C\u884C\u304D\u307E\u3059", "\u3042\u306A\u305F\u304C\u3044\u304D\u307E\u305B\u3093\uFF0F\u308F\u305F\u3057\u304C\u3044\u304D\u307E\u3059", "\u3042\u306A\u305F\u304C\u884C\u304B\u306A\u3044\u306A\u3089\u3001\u308F\u305F\u3057\u304C\u884C\u304D\u307E\u3059\u3002"),
+      sentenceItem9("l37-p1-a3-q3", "3", "\u5BD2\u3044\u3067\u3059\uFF0F\u7A93\u3092\u9589\u3081\u3066\u3082\u3044\u3044\u3067\u3059\u3088", "\u3055\u3080\u3044\u3067\u3059\uFF0F\u307E\u3069\u3092\u3057\u3081\u3066\u3082\u3044\u3044\u3067\u3059\u3088", "\u5BD2\u3044\u306A\u3089\u3001\u7A93\u3092\u9589\u3081\u3066\u3082\u3044\u3044\u3067\u3059\u3088\u3002"),
+      sentenceItem9("l37-p1-a3-q4", "4", "\u30E9\u30B8\u30AA\u304C\u3046\u308B\u3055\u3044\u3067\u3059\uFF0F\u30DC\u30EA\u30E5\u30FC\u30E0\u3092\u4E0B\u3052\u307E\u3057\u3087\u3046\u304B", "\u30E9\u30B8\u30AA\u304C\u3046\u308B\u3055\u3044\u3067\u3059\uFF0F\u30DC\u30EA\u30E5\u30FC\u30E0\u3092\u3055\u3052\u307E\u3057\u3087\u3046\u304B", "\u30E9\u30B8\u30AA\u304C\u3046\u308B\u3055\u3044\u306A\u3089\u3001\u30DC\u30EA\u30E5\u30FC\u30E0\u3092\u4E0B\u3052\u307E\u3057\u3087\u3046\u304B\u3002"),
+      sentenceItem9("l37-p1-a3-q5", "5", "\u660E\u65E5\u6687\u3067\u3059\uFF0F\u3044\u3063\u3057\u3087\u306B\u8CB7\u3044\u7269\u306B\u884C\u304D\u307E\u305B\u3093\u304B", "\u3042\u3057\u305F\u3072\u307E\u3067\u3059\uFF0F\u3044\u3063\u3057\u3087\u306B\u304B\u3044\u3082\u306E\u306B\u3044\u304D\u307E\u305B\u3093\u304B", "\u660E\u65E5\u6687\u306A\u3089\u3001\u3044\u3063\u3057\u3087\u306B\u8CB7\u3044\u7269\u306B\u884C\u304D\u307E\u305B\u3093\u304B\u3002"),
+      sentenceItem9("l37-p1-a3-q6", "6", "\u65E5\u66DC\u65E5\u3067\u3059\uFF0F\u6642\u9593\u304C\u3042\u308A\u307E\u3059", "\u306B\u3061\u3088\u3046\u3073\u3067\u3059\uFF0F\u3058\u304B\u3093\u304C\u3042\u308A\u307E\u3059", "\u65E5\u66DC\u65E5\u306A\u3089\u3001\u6642\u9593\u304C\u3042\u308A\u307E\u3059\u3002")
+    ]
+  },
+  {
+    id: "l37-p1-a4",
+    section: "practice_1",
+    order: 4,
+    title: "\u4EFF\u7167\u4F8B\u53E5\u56DE\u7B54\u63D0\u95EE\u3002\u7136\u540E\u542C\u5F55\u97F3\u7EC3\u4E60\u4F1A\u8BDD\u3002",
+    instruction: "",
+    interaction: "dialogue_practice",
+    answerUnit: "sentence",
+    responseScope: "answer_only",
+    responseScopeHint: "\u53EA\u5199\u56DE\u7B54\u53E5\u3002",
+    requiresAudio: true,
+    audio: { source: "textbook_exercise", url: audio36(1, 4), label: "\u7B2C37\u8BFE \u7EC3\u4E60I-4", transcript: { source: "asr", confidenceNote: "ASR \u8986\u76D6\u4F8B\u53E5\u548C\u5168\u90E84\u9898\uFF1B\u6309\u6559\u6750\u62EC\u53F7\u4E2D\u7684 \u306F\u3044/\u3044\u3044\u3048 \u4E0E\u4F8B\u53E5\u89C4\u5219\u6574\u7406\u6807\u51C6\u7B54\u6848\u3002", text: "\u9AD8\u3051\u308C\u3070\u8CB7\u3044\u307E\u305B\u3093\u304B\u3002\u306F\u3044\u3002\u9AD8\u3051\u308C\u3070\u8CB7\u3044\u307E\u305B\u3093\u3002\u3044\u3044\u3048\u3002\u9AD8\u304F\u3066\u3082\u8CB7\u3044\u307E\u3059\u30021 \u9060\u3051\u308C\u3070\u884C\u304D\u307E\u305B\u3093\u304B\u3002\u306F\u3044\u3002\u9060\u3051\u308C\u3070\u884C\u304D\u307E\u305B\u3093\u30022 \u805E\u304B\u306A\u3051\u308C\u3070\u5206\u304B\u308A\u307E\u305B\u3093\u304B\u3002\u3044\u3044\u3048\u3002\u805E\u304B\u306A\u304F\u3066\u3082\u5206\u304B\u308A\u307E\u3059\u30023 \u96E8\u306A\u3089\u904B\u52D5\u4F1A\u306F\u4E2D\u6B62\u3067\u3059\u304B\u3002\u306F\u3044\u3002\u96E8\u306A\u3089\u904B\u52D5\u4F1A\u306F\u4E2D\u6B62\u3067\u3059\u30024 \u6642\u9593\u304C\u306A\u3051\u308C\u3070\u52C9\u5F37\u3057\u307E\u305B\u3093\u304B\u3002\u3044\u3044\u3048\u3002\u6642\u9593\u304C\u306A\u304F\u3066\u3082\u52C9\u5F37\u3057\u307E\u3059\u3002", segments: [
+      { itemNumber: "1", text: "\u9060\u3051\u308C\u3070\u884C\u304D\u307E\u305B\u3093\u3002" },
+      { itemNumber: "2", text: "\u805E\u304B\u306A\u304F\u3066\u3082\u5206\u304B\u308A\u307E\u3059\u3002" },
+      { itemNumber: "3", text: "\u96E8\u306A\u3089\u904B\u52D5\u4F1A\u306F\u4E2D\u6B62\u3067\u3059\u3002" },
+      { itemNumber: "4", text: "\u6642\u9593\u304C\u306A\u304F\u3066\u3082\u52C9\u5F37\u3057\u307E\u3059\u3002" }
+    ] } },
+    layout: [{ type: "example", content: { label: "[\u4F8B]", before: "\u9AD8\u3051\u308C\u3070\u3001\u8CB7\u3044\u307E\u305B\u3093\u304B\u3002\uFF08\u306F\u3044\uFF09\n\u9AD8\u3051\u308C\u3070\u3001\u8CB7\u3044\u307E\u305B\u3093\u304B\u3002\uFF08\u3044\u3044\u3048\uFF09", beforeKana: "\u305F\u304B\u3051\u308C\u3070\u3001\u304B\u3044\u307E\u305B\u3093\u304B\u3002\uFF08\u306F\u3044\uFF09\n\u305F\u304B\u3051\u308C\u3070\u3001\u304B\u3044\u307E\u305B\u3093\u304B\u3002\uFF08\u3044\u3044\u3048\uFF09", after: [text37("\u306F\u3044\u3001\u9AD8\u3051\u308C\u3070\u3001\u8CB7\u3044\u307E\u305B\u3093\u3002\n\u3044\u3044\u3048\u3001\u9AD8\u304F\u3066\u3082\u3001\u8CB7\u3044\u307E\u3059\u3002", { kana: "\u306F\u3044\u3001\u305F\u304B\u3051\u308C\u3070\u3001\u304B\u3044\u307E\u305B\u3093\u3002\n\u3044\u3044\u3048\u3001\u305F\u304B\u304F\u3066\u3082\u3001\u304B\u3044\u307E\u3059\u3002" })] } }],
+    items: [
+      sentenceItem9("l37-p1-a4-q1", "1", "\u9060\u3051\u308C\u3070\u3001\u884C\u304D\u307E\u305B\u3093\u304B\u3002\uFF08\u306F\u3044\uFF09", "\u3068\u304A\u3051\u308C\u3070\u3001\u3044\u304D\u307E\u305B\u3093\u304B\u3002\uFF08\u306F\u3044\uFF09", "\u306F\u3044\u3001\u9060\u3051\u308C\u3070\u3001\u884C\u304D\u307E\u305B\u3093\u3002", "audio"),
+      sentenceItem9("l37-p1-a4-q2", "2", "\u805E\u304B\u306A\u3051\u308C\u3070\u3001\u5206\u304B\u308A\u307E\u305B\u3093\u304B\u3002\uFF08\u3044\u3044\u3048\uFF09", "\u304D\u304B\u306A\u3051\u308C\u3070\u3001\u308F\u304B\u308A\u307E\u305B\u3093\u304B\u3002\uFF08\u3044\u3044\u3048\uFF09", "\u3044\u3044\u3048\u3001\u805E\u304B\u306A\u304F\u3066\u3082\u3001\u5206\u304B\u308A\u307E\u3059\u3002", "audio"),
+      sentenceItem9("l37-p1-a4-q3", "3", "\u96E8\u306A\u3089\u3001\u904B\u52D5\u4F1A\u306F\u4E2D\u6B62\u3067\u3059\u304B\u3002\uFF08\u306F\u3044\uFF09", "\u3042\u3081\u306A\u3089\u3001\u3046\u3093\u3069\u3046\u304B\u3044\u306F\u3061\u3085\u3046\u3057\u3067\u3059\u304B\u3002\uFF08\u306F\u3044\uFF09", "\u306F\u3044\u3001\u96E8\u306A\u3089\u3001\u904B\u52D5\u4F1A\u306F\u4E2D\u6B62\u3067\u3059\u3002", "audio"),
+      sentenceItem9("l37-p1-a4-q4", "4", "\u6642\u9593\u304C\u306A\u3051\u308C\u3070\u3001\u52C9\u5F37\u3057\u307E\u305B\u3093\u304B\u3002\uFF08\u3044\u3044\u3048\uFF09", "\u3058\u304B\u3093\u304C\u306A\u3051\u308C\u3070\u3001\u3079\u3093\u304D\u3087\u3046\u3057\u307E\u305B\u3093\u304B\u3002\uFF08\u3044\u3044\u3048\uFF09", "\u3044\u3044\u3048\u3001\u6642\u9593\u304C\u306A\u304F\u3066\u3082\u3001\u52C9\u5F37\u3057\u307E\u3059\u3002", "audio")
+    ].map((item2) => ({ ...item2, responseScope: "answer_only", responseScopeHint: "\u53EA\u5199\u56DE\u7B54\u53E5\u3002" }))
+  },
+  {
+    id: "l37-p1-a5",
+    section: "practice_1",
+    order: 5,
+    title: "\u542C\u5F55\u97F3\uFF0C\u4EFF\u7167\u4F8B\u53E5\u66FF\u6362\u753B\u7EBF\u90E8\u5206\u7EC3\u4E60\u4F1A\u8BDD\u3002",
+    instruction: "",
+    interaction: "dialogue_practice",
+    answerUnit: "dialogue",
+    responseScope: "dialogue_only",
+    requiresAudio: true,
+    audio: { source: "textbook_exercise", url: audio36(1, 5), label: "\u7B2C37\u8BFE \u7EC3\u4E60I-5", transcript: { source: "asr", confidenceNote: "ASR \u5206\u6BB5\u8986\u76D6\u4F8B\u53E51\u30011\u20143\u9898\u3001\u4F8B\u53E52\u30014\u20146\u9898\uFF1B\u636E\u6559\u6750\u66FF\u6362\u8BCD\u6821\u6B63\u4E13\u540D\u548C\u7247\u5047\u540D\u3002", text: "\u4F8B1 \u304A\u8336\u3092\u98F2\u307F\u307E\u3059\u3002\u304A\u4E45\u3057\u3076\u308A\u3067\u3059\u306D\u3002\u304A\u5143\u6C17\u3067\u3059\u304B\u3002\u3048\u3048\u3001\u76F8\u5909\u308F\u3089\u305A\u3067\u3059\u3002\u3082\u3057\u6642\u9593\u304C\u3042\u308B\u306A\u3089\u3001\u3061\u3087\u3063\u3068\u304A\u8336\u3067\u3082\u98F2\u307F\u307E\u305B\u3093\u304B\u3002\u3044\u3044\u3067\u3059\u306D\u3002\u305D\u3046\u3057\u307E\u3057\u3087\u3046\u30021 \u30D3\u30FC\u30EB\u3092\u98F2\u307F\u307E\u3059\u30022 \u663C\u3054\u98EF\u3092\u98DF\u3079\u307E\u3059\u30023 \u8A71\u3092\u3057\u307E\u3059\u3002\u4F8B2 \u4F55\u3092\u8CB7\u3044\u307E\u3057\u305F\u304B\u3002T\u30B7\u30E3\u30C4\u3001\u30B5\u30F3\u30C0\u30EB\u3002\u4F55\u3092\u8CB7\u3063\u305F\u3093\u3067\u3059\u304B\u3002T\u30B7\u30E3\u30C4\u3068\u304B\u30B5\u30F3\u30C0\u30EB\u3068\u304B\u3001\u3044\u308D\u3044\u308D\u8CB7\u3044\u307E\u3057\u305F\u3002\u305A\u3044\u3076\u3093\u305F\u304F\u3055\u3093\u8CB7\u3063\u305F\u3093\u3067\u3059\u306D\u30024 \u3069\u3093\u306A\u304A\u571F\u7523\u3092\u8CB7\u3044\u307E\u3057\u305F\u304B\u3002\u30B7\u30EB\u30AF\u306E\u30CF\u30F3\u30AB\u30C1\u3001\u30CD\u30AF\u30BF\u30A4\u30025 \u4F55\u3092\u98DF\u3079\u307E\u3057\u305F\u304B\u3002\u5BFF\u53F8\u3001\u5929\u3077\u3089\u30026 \u3069\u3053\u3078\u884C\u304D\u307E\u3057\u305F\u304B\u3002\u5929\u5B89\u9580\u3001\u4E07\u91CC\u306E\u9577\u57CE\u3002", segments: [] } },
+    layout: [],
+    itemGroups: [
+      { id: "l37-p1-a5-g1", example: { label: "[\u4F8B 1]", before: "\u304A\u8336\u3092\u98F2\u307F\u307E\u3059", beforeKana: "\u304A\u3061\u3083\u3092\u306E\u307F\u307E\u3059", after: [text37("\u7532\uFF1A\u304A\u4E45\u3057\u3076\u308A\u3067\u3059\u306D\u3002\u304A\u5143\u6C17\u3067\u3059\u304B\u3002\n\u4E59\uFF1A\u3048\u3048\u3001\u76F8\u5909\u308F\u3089\u305A\u3067\u3059\u3002\n\u7532\uFF1A\u3082\u3057\u3001\u6642\u9593\u304C\u3042\u308B\u306A\u3089\u3001\u3061\u3087\u3063\u3068\u304A\u8336\u3067\u3082\u98F2\u307F\u307E\u305B\u3093\u304B\u3002\n\u4E59\uFF1A\u3044\u3044\u3067\u3059\u306D\u3002\u305D\u3046\u3057\u307E\u3057\u3087\u3046\u3002", { kana: "\u3053\u3046\uFF1A\u304A\u3072\u3055\u3057\u3076\u308A\u3067\u3059\u306D\u3002\u304A\u3052\u3093\u304D\u3067\u3059\u304B\u3002\n\u304A\u3064\uFF1A\u3048\u3048\u3001\u3042\u3044\u304B\u308F\u3089\u305A\u3067\u3059\u3002\n\u3053\u3046\uFF1A\u3082\u3057\u3001\u3058\u304B\u3093\u304C\u3042\u308B\u306A\u3089\u3001\u3061\u3087\u3063\u3068\u304A\u3061\u3083\u3067\u3082\u306E\u307F\u307E\u305B\u3093\u304B\u3002\n\u304A\u3064\uFF1A\u3044\u3044\u3067\u3059\u306D\u3002\u305D\u3046\u3057\u307E\u3057\u3087\u3046\u3002" })] }, items: [
+        dialogueItem31("l37-p1-a5-q1", "1", "\u30D3\u30FC\u30EB\u3092\u98F2\u307F\u307E\u3059", "\u30D3\u30FC\u30EB\u3092\u306E\u307F\u307E\u3059", "\u7532\uFF1A\u304A\u4E45\u3057\u3076\u308A\u3067\u3059\u306D\u3002\u304A\u5143\u6C17\u3067\u3059\u304B\u3002\n\u4E59\uFF1A\u3048\u3048\u3001\u76F8\u5909\u308F\u3089\u305A\u3067\u3059\u3002\n\u7532\uFF1A\u3082\u3057\u3001\u6642\u9593\u304C\u3042\u308B\u306A\u3089\u3001\u3061\u3087\u3063\u3068\u30D3\u30FC\u30EB\u3067\u3082\u98F2\u307F\u307E\u305B\u3093\u304B\u3002\n\u4E59\uFF1A\u3044\u3044\u3067\u3059\u306D\u3002\u305D\u3046\u3057\u307E\u3057\u3087\u3046\u3002"),
+        dialogueItem31("l37-p1-a5-q2", "2", "\u663C\u3054\u98EF\u3092\u98DF\u3079\u307E\u3059", "\u3072\u308B\u3054\u306F\u3093\u3092\u305F\u3079\u307E\u3059", "\u7532\uFF1A\u304A\u4E45\u3057\u3076\u308A\u3067\u3059\u306D\u3002\u304A\u5143\u6C17\u3067\u3059\u304B\u3002\n\u4E59\uFF1A\u3048\u3048\u3001\u76F8\u5909\u308F\u3089\u305A\u3067\u3059\u3002\n\u7532\uFF1A\u3082\u3057\u3001\u6642\u9593\u304C\u3042\u308B\u306A\u3089\u3001\u3061\u3087\u3063\u3068\u663C\u3054\u98EF\u3067\u3082\u98DF\u3079\u307E\u305B\u3093\u304B\u3002\n\u4E59\uFF1A\u3044\u3044\u3067\u3059\u306D\u3002\u305D\u3046\u3057\u307E\u3057\u3087\u3046\u3002"),
+        dialogueItem31("l37-p1-a5-q3", "3", "\u8A71\u3092\u3057\u307E\u3059", "\u306F\u306A\u3057\u3092\u3057\u307E\u3059", "\u7532\uFF1A\u304A\u4E45\u3057\u3076\u308A\u3067\u3059\u306D\u3002\u304A\u5143\u6C17\u3067\u3059\u304B\u3002\n\u4E59\uFF1A\u3048\u3048\u3001\u76F8\u5909\u308F\u3089\u305A\u3067\u3059\u3002\n\u7532\uFF1A\u3082\u3057\u3001\u6642\u9593\u304C\u3042\u308B\u306A\u3089\u3001\u3061\u3087\u3063\u3068\u8A71\u3067\u3082\u3057\u307E\u305B\u3093\u304B\u3002\n\u4E59\uFF1A\u3044\u3044\u3067\u3059\u306D\u3002\u305D\u3046\u3057\u307E\u3057\u3087\u3046\u3002")
+      ] },
+      { id: "l37-p1-a5-g2", example: { label: "[\u4F8B 2]", before: "\u4F55\u3092\u8CB7\u3044\u307E\u3057\u305F\u304B\uFF0FT\u30B7\u30E3\u30C4\uFF0F\u30B5\u30F3\u30C0\u30EB", beforeKana: "\u306A\u306B\u3092\u304B\u3044\u307E\u3057\u305F\u304B\uFF0F\u30C6\u30A3\u30FC\u30B7\u30E3\u30C4\uFF0F\u30B5\u30F3\u30C0\u30EB", after: [text37("\u7532\uFF1A\u4F55\u3092\u8CB7\u3063\u305F\u3093\u3067\u3059\u304B\u3002\n\u4E59\uFF1AT\u30B7\u30E3\u30C4\u3068\u304B\u30B5\u30F3\u30C0\u30EB\u3068\u304B\u3001\u3044\u308D\u3044\u308D\u8CB7\u3044\u307E\u3057\u305F\u3002\n\u7532\uFF1A\u305A\u3044\u3076\u3093\u305F\u304F\u3055\u3093\u8CB7\u3063\u305F\u3093\u3067\u3059\u306D\u3002", { kana: "\u3053\u3046\uFF1A\u306A\u306B\u3092\u304B\u3063\u305F\u3093\u3067\u3059\u304B\u3002\n\u304A\u3064\uFF1A\u30C6\u30A3\u30FC\u30B7\u30E3\u30C4\u3068\u304B\u30B5\u30F3\u30C0\u30EB\u3068\u304B\u3001\u3044\u308D\u3044\u308D\u304B\u3044\u307E\u3057\u305F\u3002\n\u3053\u3046\uFF1A\u305A\u3044\u3076\u3093\u305F\u304F\u3055\u3093\u304B\u3063\u305F\u3093\u3067\u3059\u306D\u3002" })] }, items: [
+        dialogueItem31("l37-p1-a5-q4", "4", "\u3069\u3093\u306A\u304A\u571F\u7523\u3092\u8CB7\u3044\u307E\u3057\u305F\u304B\uFF0F\u30B7\u30EB\u30AF\u306E\u30CF\u30F3\u30AB\u30C1\uFF0F\u30CD\u30AF\u30BF\u30A4", "\u3069\u3093\u306A\u304A\u307F\u3084\u3052\u3092\u304B\u3044\u307E\u3057\u305F\u304B\uFF0F\u30B7\u30EB\u30AF\u306E\u30CF\u30F3\u30AB\u30C1\uFF0F\u30CD\u30AF\u30BF\u30A4", "\u7532\uFF1A\u3069\u3093\u306A\u304A\u571F\u7523\u3092\u8CB7\u3063\u305F\u3093\u3067\u3059\u304B\u3002\n\u4E59\uFF1A\u30B7\u30EB\u30AF\u306E\u30CF\u30F3\u30AB\u30C1\u3068\u304B\u30CD\u30AF\u30BF\u30A4\u3068\u304B\u3001\u3044\u308D\u3044\u308D\u8CB7\u3044\u307E\u3057\u305F\u3002\n\u7532\uFF1A\u305A\u3044\u3076\u3093\u305F\u304F\u3055\u3093\u8CB7\u3063\u305F\u3093\u3067\u3059\u306D\u3002"),
+        dialogueItem31("l37-p1-a5-q5", "5", "\u4F55\u3092\u98DF\u3079\u307E\u3057\u305F\u304B\uFF0F\u5BFF\u53F8\uFF0F\u5929\u3077\u3089", "\u306A\u306B\u3092\u305F\u3079\u307E\u3057\u305F\u304B\uFF0F\u3059\u3057\uFF0F\u3066\u3093\u3077\u3089", "\u7532\uFF1A\u4F55\u3092\u98DF\u3079\u305F\u3093\u3067\u3059\u304B\u3002\n\u4E59\uFF1A\u5BFF\u53F8\u3068\u304B\u5929\u3077\u3089\u3068\u304B\u3001\u3044\u308D\u3044\u308D\u98DF\u3079\u307E\u3057\u305F\u3002\n\u7532\uFF1A\u305A\u3044\u3076\u3093\u305F\u304F\u3055\u3093\u98DF\u3079\u305F\u3093\u3067\u3059\u306D\u3002"),
+        dialogueItem31("l37-p1-a5-q6", "6", "\u3069\u3053\u3078\u884C\u304D\u307E\u3057\u305F\u304B\uFF0F\u5929\u5B89\u9580\uFF0F\u4E07\u91CC\u306E\u9577\u57CE", "\u3069\u3053\u3078\u3044\u304D\u307E\u3057\u305F\u304B\uFF0F\u3066\u3093\u3042\u3093\u3082\u3093\uFF0F\u3070\u3093\u308A\u306E\u3061\u3087\u3046\u3058\u3087\u3046", "\u7532\uFF1A\u3069\u3053\u3078\u884C\u3063\u305F\u3093\u3067\u3059\u304B\u3002\n\u4E59\uFF1A\u5929\u5B89\u9580\u3068\u304B\u4E07\u91CC\u306E\u9577\u57CE\u3068\u304B\u3001\u3044\u308D\u3044\u308D\u884C\u304D\u307E\u3057\u305F\u3002\n\u7532\uFF1A\u305A\u3044\u3076\u3093\u305F\u304F\u3055\u3093\u884C\u3063\u305F\u3093\u3067\u3059\u306D\u3002")
+      ] }
+    ],
+    items: []
+  },
+  {
+    id: "l37-p2-a1",
+    section: "practice_2",
+    order: 1,
+    title: "\u7ED9\u6B63\u786E\u7684\u7B54\u6848\u753B\u25CB\u3002",
+    instruction: "",
+    interaction: "single_choice",
+    answerUnit: "choice",
+    responseScope: "choice_only",
+    layout: [{ type: "example", content: { label: "[\u4F8B]", beforeParts: [text37("\u4EAC\u90FD\u3078\uFF08", { kana: "\u304D\u3087\u3046\u3068\u3078\uFF08" }), text37("\u884C\u3051\u3070", { kana: "\u3044\u3051\u3070" }), text37("\u30FB", { kana: "\u30FB" }), text37("\u884C\u3063\u305F\u3089", { kana: "\u3044\u3063\u305F\u3089", underline: true }), text37("\uFF09\u3001\u308F\u305F\u3057\u306E\u53CB\u9054\u306B\u4F1A\u3063\u3066\u304F\u3060\u3055\u3044\u3002", { kana: "\uFF09\u3001\u308F\u305F\u3057\u306E\u3068\u3082\u3060\u3061\u306B\u3042\u3063\u3066\u304F\u3060\u3055\u3044\u3002" })], after: [] } }],
+    items: [
+      choiceItem17("l37-p2-a1-q1", "1", "\u3053\u306E\u30DC\u30BF\u30F3\u3092\uFF08\u62BC\u3059\u3068\u30FB\u62BC\u3059\u306A\u3089\uFF09\u3001\u96FB\u6C17\u304C\u3064\u304D\u307E\u3059\u3002", "\u3053\u306E\u30DC\u30BF\u30F3\u3092\uFF08\u304A\u3059\u3068\u30FB\u304A\u3059\u306A\u3089\uFF09\u3001\u3067\u3093\u304D\u304C\u3064\u304D\u307E\u3059\u3002", ["\u62BC\u3059\u3068", "\u62BC\u3059\u306A\u3089"], 1),
+      choiceItem17("l37-p2-a1-q2", "2", "\u660E\u65E5\uFF08\u3044\u3044\u5929\u6C17\u306A\u3089\u30FB\u3044\u3044\u5929\u6C17\u3060\u3068\uFF09\u3001\u30D4\u30AF\u30CB\u30C3\u30AF\u306B\u884C\u304D\u305F\u3044\u3067\u3059\u3002", "\u3042\u3057\u305F\uFF08\u3044\u3044\u3066\u3093\u304D\u306A\u3089\u30FB\u3044\u3044\u3066\u3093\u304D\u3060\u3068\uFF09\u3001\u30D4\u30AF\u30CB\u30C3\u30AF\u306B\u3044\u304D\u305F\u3044\u3067\u3059\u3002", ["\u3044\u3044\u5929\u6C17\u306A\u3089", "\u3044\u3044\u5929\u6C17\u3060\u3068"], 1),
+      choiceItem17("l37-p2-a1-q3", "3", "\uFF08\u56F0\u3063\u305F\u3089\u30FB\u56F0\u308B\u3068\uFF09\u3001\u308F\u305F\u3057\u306B\u76F8\u8AC7\u3057\u3066\u304F\u3060\u3055\u3044\u3002", "\uFF08\u3053\u307E\u3063\u305F\u3089\u30FB\u3053\u307E\u308B\u3068\uFF09\u3001\u308F\u305F\u3057\u306B\u305D\u3046\u3060\u3093\u3057\u3066\u304F\u3060\u3055\u3044\u3002", ["\u56F0\u3063\u305F\u3089", "\u56F0\u308B\u3068"], 1),
+      choiceItem17("l37-p2-a1-q4", "4", "\u554F\u984C\u304C\uFF08\u306A\u3051\u308C\u3070\u30FB\u306A\u3044\u3068\uFF09\u3001\u4F1A\u8B70\u3092\u7D42\u308F\u308A\u307E\u3059\u3002", "\u3082\u3093\u3060\u3044\u304C\uFF08\u306A\u3051\u308C\u3070\u30FB\u306A\u3044\u3068\uFF09\u3001\u304B\u3044\u304E\u3092\u304A\u308F\u308A\u307E\u3059\u3002", ["\u306A\u3051\u308C\u3070", "\u306A\u3044\u3068"], 1),
+      choiceItem17("l37-p2-a1-q5", "5", "\uFF08\u6691\u3044\u3068\u30FB\u6691\u3044\u306A\u3089\uFF09\u3001\u30AF\u30FC\u30E9\u30FC\u3092\u3064\u3051\u3066\u304F\u3060\u3055\u3044\u3002", "\uFF08\u3042\u3064\u3044\u3068\u30FB\u3042\u3064\u3044\u306A\u3089\uFF09\u3001\u30AF\u30FC\u30E9\u30FC\u3092\u3064\u3051\u3066\u304F\u3060\u3055\u3044\u3002", ["\u6691\u3044\u3068", "\u6691\u3044\u306A\u3089"], 2),
+      choiceItem17("l37-p2-a1-q6", "6", "\u96E8\uFF08\u3067\u3082\u30FB\u3060\u3063\u305F\u3089\uFF09\u3001\u53C2\u52A0\u3057\u306A\u304F\u3066\u3082\u3044\u3044\u3067\u3059\u304B\u3002\u2014\u2014\u3044\u3044\u3048\u3001\u96E8\uFF08\u306A\u3089\u30FB\u3067\u3082\uFF09\u3001\u53C2\u52A0\u3057\u306A\u3044\u3068\u3044\u3051\u307E\u305B\u3093\u3002", "\u3042\u3081\uFF08\u3067\u3082\u30FB\u3060\u3063\u305F\u3089\uFF09\u3001\u3055\u3093\u304B\u3057\u306A\u304F\u3066\u3082\u3044\u3044\u3067\u3059\u304B\u3002\u2014\u2014\u3044\u3044\u3048\u3001\u3042\u3081\uFF08\u306A\u3089\u30FB\u3067\u3082\uFF09\u3001\u3055\u3093\u304B\u3057\u306A\u3044\u3068\u3044\u3051\u307E\u305B\u3093\u3002", ["\u3060\u3063\u305F\u3089\uFF0F\u3067\u3082", "\u3067\u3082\uFF0F\u306A\u3089"], 1)
+    ]
+  },
+  {
+    id: "l37-p2-a2",
+    section: "practice_2",
+    order: 2,
+    title: "\u4ECE\u25A1\u4E2D\u9009\u62E9\u9002\u5F53\u7684\u8BCD\u8BED\u586B\u5165\uFF08\u3000\uFF09\u4E2D\u3002",
+    instruction: "",
+    interaction: "fill_blank",
+    answerUnit: "word",
+    responseScope: "word_only",
+    layout: [{ type: "example", content: { label: "[\u4F8B]", beforeParts: [text37("\u30BB\u30FC\u30BF\u30FC\u3084\u9774\u3084\u304B\u3070\u3093\uFF08", { kana: "\u30BB\u30FC\u30BF\u30FC\u3084\u304F\u3064\u3084\u304B\u3070\u3093\uFF08" }), text37("\u306A\u3069", { kana: "\u306A\u3069", underline: true }), text37("\uFF09\u3001\u3044\u308D\u3044\u308D\u58F2\u3063\u3066\u3044\u307E\u3059\u3002", { kana: "\uFF09\u3001\u3044\u308D\u3044\u308D\u3046\u3063\u3066\u3044\u307E\u3059\u3002" })], after: [] } }, { type: "word_bank", words: ["\u3067\u3082", "\u3057\u304B", "\u306A\u3069", "\u3068\u304B", "\u3060\u3051", "\u3067\u3082", "\u3068\u304B"].map((value) => text37(value)) }],
+    items: [
+      wordItem6("l37-p2-a2-q1", "1", [text37("\u90E8\u5C4B\u306B\u306F\u673A\u3068\u3044\u3059\uFF08", { kana: "\u3078\u3084\u306B\u306F\u3064\u304F\u3048\u3068\u3044\u3059\uFF08" }), blank33(), text37("\uFF09\u3042\u308A\u307E\u305B\u3093\u3002")], "\u3078\u3084\u306B\u306F\u3064\u304F\u3048\u3068\u3044\u3059\uFF08____\uFF09\u3042\u308A\u307E\u305B\u3093\u3002", "\u3057\u304B"),
+      wordItem6("l37-p2-a2-q2", "2", [text37("30\u5206\uFF08", { kana: "\u3055\u3093\u3058\u3085\u3063\u3077\u3093\uFF08" }), blank33(), text37("\uFF09\u306A\u3089\u30C6\u30EC\u30D3\u3092\u898B\u3066\u3082\u3044\u3044\u3067\u3059\u3002", { kana: "\uFF09\u306A\u3089\u30C6\u30EC\u30D3\u3092\u307F\u3066\u3082\u3044\u3044\u3067\u3059\u3002" })], "\u3055\u3093\u3058\u3085\u3063\u3077\u3093\uFF08____\uFF09\u306A\u3089\u30C6\u30EC\u30D3\u3092\u307F\u3066\u3082\u3044\u3044\u3067\u3059\u3002", "\u3060\u3051"),
+      wordItem6("l37-p2-a2-q3", "3", [text37("\u305D\u308C\u306F\u7C21\u5358\u3060\u304B\u3089\u3001\u5B50\u4F9B\uFF08", { kana: "\u305D\u308C\u306F\u304B\u3093\u305F\u3093\u3060\u304B\u3089\u3001\u3053\u3069\u3082\uFF08" }), blank33(), text37("\uFF09\u3067\u304D\u308B\u3067\u3057\u3087\u3046\u3002")], "\u305D\u308C\u306F\u304B\u3093\u305F\u3093\u3060\u304B\u3089\u3001\u3053\u3069\u3082\uFF08____\uFF09\u3067\u304D\u308B\u3067\u3057\u3087\u3046\u3002", "\u3067\u3082"),
+      wordItem6("l37-p2-a2-q4", "4", [text37("CD\uFF08"), blank33(), text37("\uFF09\u30C6\u30FC\u30D7\uFF08"), { type: "blank", slotId: "answer2" }, text37("\uFF09\u3092\u805E\u3044\u3066\u3001\u52C9\u5F37\u3057\u3066\u3044\u307E\u3059\u3002", { kana: "\uFF09\u3092\u304D\u3044\u3066\u3001\u3079\u3093\u304D\u3087\u3046\u3057\u3066\u3044\u307E\u3059\u3002" })], "\u30B7\u30FC\u30C7\u30A3\u30FC\uFF08____\uFF09\u30C6\u30FC\u30D7\uFF08____\uFF09\u3092\u304D\u3044\u3066\u3001\u3079\u3093\u304D\u3087\u3046\u3057\u3066\u3044\u307E\u3059\u3002", "\u3068\u304B"),
+      wordItem6("l37-p2-a2-q5", "5", [text37("\u674E\u3055\u3093\u306A\u3089\u3001\u5C0F\u91CE\u3055\u3093\u3068\u304A\u8336\uFF08", { kana: "\u308A\u3055\u3093\u306A\u3089\u3001\u304A\u306E\u3055\u3093\u3068\u304A\u3061\u3083\uFF08" }), blank33(), text37("\uFF09\u98F2\u307F\u306B\u884C\u3063\u305F\u3093\u3058\u3083\u306A\u3044\u3067\u3057\u3087\u3046\u304B\u3002", { kana: "\uFF09\u306E\u307F\u306B\u3044\u3063\u305F\u3093\u3058\u3083\u306A\u3044\u3067\u3057\u3087\u3046\u304B\u3002" })], "\u308A\u3055\u3093\u306A\u3089\u3001\u304A\u306E\u3055\u3093\u3068\u304A\u3061\u3083\uFF08____\uFF09\u306E\u307F\u306B\u3044\u3063\u305F\u3093\u3058\u3083\u306A\u3044\u3067\u3057\u3087\u3046\u304B\u3002", "\u3067\u3082")
+    ].map((item2) => item2.id === "l37-p2-a2-q4" ? { ...item2, renderHint: "dual_word", inputSlots: [{ id: "answer", expectedUnit: "word", width: "medium", placeholder: "\u8F93\u5165\u7B54\u6848" }, { id: "answer2", expectedUnit: "word", width: "medium", placeholder: "\u8F93\u5165\u7B54\u6848" }], answer: { slotValues: { answer: "\u3068\u304B", answer2: "\u3068\u304B" } } } : item2)
+  },
+  {
+    id: "l37-p2-a3",
+    section: "practice_2",
+    order: 3,
+    title: "\u542C\u5F55\u97F3\uFF0C\u7ED9\u6B63\u786E\u7B54\u6848\u753B\u25CB\u3002",
+    instruction: "",
+    interaction: "single_choice",
+    answerUnit: "choice",
+    responseScope: "choice_only",
+    requiresAudio: true,
+    audio: { source: "textbook_exercise", url: audio36(2, 3), label: "\u7B2C37\u8BFE \u7EC3\u4E60II-3", transcript: { source: "asr", confidenceNote: "ASR \u5206\u6BB5\u8986\u76D6\u4F8B\u53E5\u53CA2\u9898\uFF1B\u7B2C1\u9898\u7B54\u6848\u4E3A\u300C\u99AC\u3055\u3093\u306B\u805E\u3051\u3070\u5206\u304B\u308A\u307E\u3059\u300D\uFF0C\u7B2C2\u9898\u7B54\u6848\u4E3A\u300C\u3044\u3044\u3048\u3001\u96E8\u3060\u3063\u305F\u3089\u884C\u304D\u307E\u305B\u3093\u300D\u3002", text: "\u4F8B \u65B0\u3057\u3044\u30D1\u30BD\u30B3\u30F3\u3001\u5B89\u3051\u308C\u3070\u8CB7\u3044\u307E\u3059\u304B\u3002\u305D\u3046\u3067\u3059\u306D\u3002\u4ECA\u4F7F\u3063\u3066\u3044\u308B\u306E\u3092\u3082\u3046\u5C11\u3057\u4F7F\u3063\u3066\u307F\u307E\u3059\u3002\u3053\u306E\u4EBA\u306F\u65B0\u3057\u3044\u30D1\u30BD\u30B3\u30F3\u3092\u8CB7\u3044\u307E\u3059\u304B\u30021 \u306F\u3044\u3001\u8CB7\u3044\u307E\u3059\u30022 \u3044\u3044\u3048\u3001\u8CB7\u3044\u307E\u305B\u3093\u30021 \u6B53\u8FCE\u4F1A\u306E\u305F\u3081\u306B\u4E88\u7D04\u3057\u305F\u30EC\u30B9\u30C8\u30E9\u30F3\u306E\u884C\u304D\u65B9\u3001\u5206\u304B\u308A\u307E\u3059\u304B\u3002\u68EE\u3055\u3093\u306B\u805E\u3051\u3070\u5206\u304B\u308B\u304B\u3082\u3057\u308C\u307E\u305B\u3093\u3088\u3002\u305D\u308C\u304C\u77E5\u3089\u306A\u3044\u3093\u3067\u3059\u3063\u3066\u3002\u3058\u3083\u3042\u3001\u99AC\u3055\u3093\u306A\u3089\u7D76\u5BFE\u306B\u77E5\u3063\u3066\u3044\u307E\u3059\u3088\u3002\u99AC\u3055\u3093\u304C\u3088\u304F\u884C\u304F\u30EC\u30B9\u30C8\u30E9\u30F3\u3067\u3059\u304B\u3089\u3002\u8AB0\u306B\u805E\u3044\u305F\u3089\u5206\u304B\u308A\u307E\u3059\u304B\u30021 \u68EE\u3055\u3093\u306B\u805E\u3051\u3070\u5206\u304B\u308A\u307E\u3059\u30022 \u99AC\u3055\u3093\u306B\u805E\u3051\u3070\u5206\u304B\u308A\u307E\u3059\u30022 \u65E5\u66DC\u65E5\u3001\u5929\u6C17\u304C\u3088\u3051\u308C\u3070\u30D4\u30AF\u30CB\u30C3\u30AF\u306B\u884C\u304D\u307E\u305B\u3093\u304B\u3002\u3044\u3044\u3067\u3059\u306D\u3002\u96E8\u3060\u3063\u305F\u3089\u3069\u3046\u3057\u307E\u3059\u304B\u3002\u305D\u3046\u3067\u3059\u306D\u3002\u96E8\u3060\u3063\u305F\u3089\u6765\u6708\u306B\u3057\u307E\u3057\u3087\u3046\u3002\u65E5\u66DC\u65E5\u3001\u96E8\u3067\u3082\u30D4\u30AF\u30CB\u30C3\u30AF\u306B\u884C\u304D\u307E\u3059\u304B\u30021 \u306F\u3044\u3001\u96E8\u3067\u3082\u884C\u304D\u307E\u3059\u30022 \u3044\u3044\u3048\u3001\u96E8\u3060\u3063\u305F\u3089\u884C\u304D\u307E\u305B\u3093\u3002", segments: [{ itemNumber: "1", text: "\u99AC\u3055\u3093\u306B\u805E\u3051\u3070\u5206\u304B\u308A\u307E\u3059\u3002" }, { itemNumber: "2", text: "\u3044\u3044\u3048\u3001\u96E8\u3060\u3063\u305F\u3089\u884C\u304D\u307E\u305B\u3093\u3002" }] } },
+    layout: [{ type: "example", content: { label: "[\u4F8B]", before: "\u3053\u306E\u4EBA\u306F\u65B0\u3057\u3044\u30D1\u30BD\u30B3\u30F3\u3092\u8CB7\u3044\u307E\u3059\u304B\u3002", beforeKana: "\u3053\u306E\u3072\u3068\u306F\u3042\u305F\u3089\u3057\u3044\u30D1\u30BD\u30B3\u30F3\u3092\u304B\u3044\u307E\u3059\u304B\u3002", after: [text37("\u2460 \u306F\u3044\u3001\u8CB7\u3044\u307E\u3059\u3002\n\u2461 \u3044\u3044\u3048\u3001\u8CB7\u3044\u307E\u305B\u3093\u3002", { kana: "\u3044\u3061 \u306F\u3044\u3001\u304B\u3044\u307E\u3059\u3002\n\u306B \u3044\u3044\u3048\u3001\u304B\u3044\u307E\u305B\u3093\u3002" })] } }],
+    items: [
+      choiceItem17("l37-p2-a3-q1", "1", "\u8AB0\u306B\u805E\u3044\u305F\u3089\u5206\u304B\u308A\u307E\u3059\u304B\u3002", "\u3060\u308C\u306B\u304D\u3044\u305F\u3089\u308F\u304B\u308A\u307E\u3059\u304B\u3002", ["\u68EE\u3055\u3093\u306B\u805E\u3051\u3070\u5206\u304B\u308A\u307E\u3059\u3002", "\u99AC\u3055\u3093\u306B\u805E\u3051\u3070\u5206\u304B\u308A\u307E\u3059\u3002"], 2, "audio"),
+      choiceItem17("l37-p2-a3-q2", "2", "\u65E5\u66DC\u65E5\u3001\u96E8\u3067\u3082\u30D4\u30AF\u30CB\u30C3\u30AF\u306B\u884C\u304D\u307E\u3059\u304B\u3002", "\u306B\u3061\u3088\u3046\u3073\u3001\u3042\u3081\u3067\u3082\u30D4\u30AF\u30CB\u30C3\u30AF\u306B\u3044\u304D\u307E\u3059\u304B\u3002", ["\u306F\u3044\u3001\u96E8\u3067\u3082\u884C\u304D\u307E\u3059\u3002", "\u3044\u3044\u3048\u3001\u96E8\u3060\u3063\u305F\u3089\u884C\u304D\u307E\u305B\u3093\u3002"], 2, "audio")
+    ]
+  },
+  {
+    id: "l37-p2-a4",
+    section: "practice_2",
+    order: 4,
+    title: "\u5C06\u4E0B\u9762\u7684\u53E5\u5B50\u8BD1\u6210\u65E5\u8BED\u3002",
+    instruction: "",
+    interaction: "translation",
+    answerUnit: "sentence",
+    responseScope: "sentence_only",
+    layout: [],
+    items: [
+      sentenceItem9("l37-p2-a4-q1", "1", "\u5982\u679C\u83B7\u80DC\uFF0C\u5C31\u80FD\u591F\u53C2\u52A0\u5965\u8FD0\u4F1A\u3002", "", "\u512A\u52DD\u3059\u308C\u3070\u3001\u30AA\u30EA\u30F3\u30D4\u30C3\u30AF\u306B\u51FA\u5834\u3059\u308B\u3053\u3068\u304C\u3067\u304D\u307E\u3059\u3002", "prompt"),
+      sentenceItem9("l37-p2-a4-q2", "2", "\u5982\u679C\u53BB\u5929\u5B89\u95E8\uFF0C\u5750\u5730\u94C1\u5F88\u65B9\u4FBF\u3002", "", "\u5929\u5B89\u9580\u3078\u884C\u304F\u306A\u3089\u3001\u5730\u4E0B\u9244\u304C\u4FBF\u5229\u3067\u3059\u3002", "prompt"),
+      sentenceItem9("l37-p2-a4-q3", "3", "\u6700\u8FD1\u6709\u70B9\u80D6\u4E86\u3002\u2014\u2014\u90A3\u5C31\u8FD0\u52A8\u8FD0\u52A8\u600E\u4E48\u6837\uFF1F", "", "\u6700\u8FD1\u3061\u3087\u3063\u3068\u592A\u308A\u307E\u3057\u305F\u3002\u2014\u2014\u3058\u3083\u3042\u3001\u904B\u52D5\u3067\u3082\u3057\u305F\u3089\u3069\u3046\u3067\u3059\u304B\u3002", "prompt")
+    ]
+  }
+];
+var lesson37Practice = {
+  lessonId: "lesson37",
+  title: "\u7B2C37\u8BFE \u512A\u52DD\u3059\u308C\u3070\u3001\u30AA\u30EA\u30F3\u30D4\u30C3\u30AF\u306B\u51FA\u5834\u3059\u308B\u3053\u3068\u304C\u3067\u304D\u307E\u3059",
+  sourcePages: [{ pageNo: 148, imagePath: page38(148) }, { pageNo: 149, imagePath: page38(149) }, { pageNo: 150, imagePath: page38(150) }],
+  activities: activities36
+};
+
+// practice/lesson38-practice-data.ts
+var page39 = (pageNo) => `../course-assets/by-lesson/lesson38/page${pageNo}.webp`;
+var audio37 = (exerciseNo, order) => `https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson38/Exe${exerciseNo}_${order}.mp3`;
+var text38 = (value, options = {}) => ({ type: "text", text: value, ...options });
+var substitution = (value, kana2, key) => text38(value, { kana: kana2, underline: true, substitutionKey: key });
+var blank34 = (slotId = "answer") => ({ type: "blank", slotId });
+var sentenceSlot36 = () => [{ id: "answer", expectedUnit: "sentence", width: "long", placeholder: "\u8F93\u5165\u5B8C\u6574\u53E5\u5B50" }];
+var wordSlot11 = () => [{ id: "answer", expectedUnit: "word", width: "medium", placeholder: "\u8F93\u5165\u7B54\u6848" }];
+var dialogueSlot33 = () => [{ id: "answer", expectedUnit: "dialogue", width: "long", multiline: true, rows: 4, placeholder: "\u8F93\u5165\u5B8C\u6574\u4F1A\u8BDD" }];
+var sentenceItem10 = (id, number, prompt, promptKana, answer3, answerSource = "example_transform") => ({
+  id,
+  number,
+  prompt: [text38(prompt)],
+  promptKana,
+  instruction: "",
+  answerSource,
+  evaluationMode: "exact",
+  responseScope: "sentence_only",
+  responseScopeHint: "\u5199\u51FA\u5B8C\u6574\u53E5\u5B50\u3002",
+  inputSlots: sentenceSlot36(),
+  answer: { slotValues: { answer: answer3 } }
+});
+var wordItem7 = (id, number, prompt, promptKana, answer3, answerSource = "prompt") => ({
+  id,
+  number,
+  prompt,
+  promptKana,
+  instruction: "",
+  answerSource,
+  evaluationMode: "exact",
+  responseScope: "word_only",
+  responseScopeHint: "\u586B\u5199\u62EC\u53F7\u4E2D\u7684\u8BCD\u8BED\u3002",
+  inputSlots: wordSlot11(),
+  answer: { slotValues: { answer: answer3 } }
+});
+var dialogueItem32 = (id, number, prompt, promptKana, answer3) => ({
+  id,
+  number,
+  prompt: [text38(prompt)],
+  promptKana,
+  instruction: "",
+  answerSource: "audio",
+  evaluationMode: "exact",
+  responseScope: "dialogue_only",
+  responseScopeHint: "\u5199\u51FA\u5B8C\u6574\u4F1A\u8BDD\u3002",
+  inputSlots: dialogueSlot33(),
+  answer: { slotValues: { answer: answer3 } },
+  renderHint: "dialogue"
+});
+var booleanItem = (id, number, prompt, promptKana, value) => ({
+  id,
+  number,
+  prompt: [text38(prompt)],
+  promptKana,
+  instruction: "",
+  answerSource: "prompt",
+  evaluationMode: "exact",
+  responseScope: "boolean_only",
+  responseScopeHint: "\u5224\u65AD\u5185\u5BB9\u662F\u5426\u4E0E\u4E66\u4FE1\u4E00\u81F4\u3002",
+  choices: [{ id: `${id}-true`, label: "\u25CB" }, { id: `${id}-false`, label: "\xD7" }],
+  answer: { boolean: value }
+});
+var activities37 = [
+  {
+    id: "l38-p1-a1",
+    section: "practice_1",
+    order: 1,
+    title: "\u4EFF\u7167\u4F8B\u53E5\uFF0C\u5C06\uFF08\u3000\uFF09\u4E2D\u7684\u52A8\u8BCD\u53D8\u6210\u53EF\u80FD\u5F62\u5F0F\u3002",
+    instruction: "",
+    interaction: "fill_blank",
+    answerUnit: "word",
+    responseScope: "word_only",
+    itemGroups: [
+      { id: "l38-p1-a1-g1", example: { label: "[\u4F8B 1]", before: "\u82F1\u8A9E\u304C\uFF08\u8A71\u3057\u307E\u3059 \u2192 \u8A71\u305B\u307E\u3059\uFF09\u3002", beforeKana: "\u3048\u3044\u3054\u304C\uFF08\u306F\u306A\u3057\u307E\u3059 \u2192 \u306F\u306A\u305B\u307E\u3059\uFF09\u3002", after: [] }, items: [
+        wordItem7("l38-p1-a1-q1", "1", [text38("\u65E5\u672C\u306E\u65B0\u805E\u304C\uFF08\u8AAD\u307F\u307E\u3059 \u2192 ", { kana: "\u306B\u307B\u3093\u306E\u3057\u3093\u3076\u3093\u304C\uFF08\u3088\u307F\u307E\u3059 \u2192 " }), blank34(), text38("\uFF09\u3002")], "\u306B\u307B\u3093\u306E\u3057\u3093\u3076\u3093\u304C\uFF08\u3088\u307F\u307E\u3059 \u2192 ____\uFF09\u3002", "\u8AAD\u3081\u307E\u3059"),
+        wordItem7("l38-p1-a1-q2", "2", [text38("500\u30E1\u30FC\u30C8\u30EB\uFF08\u6CF3\u304E\u307E\u3059 \u2192 ", { kana: "\u3054\u3072\u3083\u304F\u30E1\u30FC\u30C8\u30EB\uFF08\u304A\u3088\u304E\u307E\u3059 \u2192 " }), blank34(), text38("\uFF09\u3002")], "\u3054\u3072\u3083\u304F\u30E1\u30FC\u30C8\u30EB\uFF08\u304A\u3088\u304E\u307E\u3059 \u2192 ____\uFF09\u3002", "\u6CF3\u3052\u307E\u3059"),
+        wordItem7("l38-p1-a1-q3", "3", [text38("\u6B69\u3044\u3066\uFF08\u884C\u304D\u307E\u3059 \u2192 ", { kana: "\u3042\u308B\u3044\u3066\uFF08\u3044\u304D\u307E\u3059 \u2192 " }), blank34(), text38("\uFF09\u3002")], "\u3042\u308B\u3044\u3066\uFF08\u3044\u304D\u307E\u3059 \u2192 ____\uFF09\u3002", "\u884C\u3051\u307E\u3059"),
+        wordItem7("l38-p1-a1-q4", "4", [text38("\u5199\u771F\u304C\uFF08\u64AE\u308A\u307E\u3059 \u2192 ", { kana: "\u3057\u3083\u3057\u3093\u304C\uFF08\u3068\u308A\u307E\u3059 \u2192 " }), blank34(), text38("\uFF09\u3002")], "\u3057\u3083\u3057\u3093\u304C\uFF08\u3068\u308A\u307E\u3059 \u2192 ____\uFF09\u3002", "\u64AE\u308C\u307E\u3059"),
+        wordItem7("l38-p1-a1-q5", "5", [text38("1\u4EBA\u3067\u7740\u7269\u304C\uFF08\u7740\u307E\u3059 \u2192 ", { kana: "\u3072\u3068\u308A\u3067\u304D\u3082\u306E\u304C\uFF08\u304D\u307E\u3059 \u2192 " }), blank34(), text38("\uFF09\u3002")], "\u3072\u3068\u308A\u3067\u304D\u3082\u306E\u304C\uFF08\u304D\u307E\u3059 \u2192 ____\uFF09\u3002", "\u7740\u3089\u308C\u307E\u3059"),
+        wordItem7("l38-p1-a1-q6", "6", [text38("\u9903\u5B50\u304C\u4E0A\u624B\u306B\uFF08\u4F5C\u308A\u307E\u3059 \u2192 ", { kana: "\u30AE\u30E7\u30FC\u30B6\u304C\u3058\u3087\u3046\u305A\u306B\uFF08\u3064\u304F\u308A\u307E\u3059 \u2192 " }), blank34(), text38("\uFF09\u3002")], "\u30AE\u30E7\u30FC\u30B6\u304C\u3058\u3087\u3046\u305A\u306B\uFF08\u3064\u304F\u308A\u307E\u3059 \u2192 ____\uFF09\u3002", "\u4F5C\u308C\u307E\u3059"),
+        wordItem7("l38-p1-a1-q7", "7", [text38("\u885B\u661F\u653E\u9001\u304C\uFF08\u898B\u307E\u3059 \u2192 ", { kana: "\u3048\u3044\u305B\u3044\u307B\u3046\u305D\u3046\u304C\uFF08\u307F\u307E\u3059 \u2192 " }), blank34(), text38("\uFF09\u3002")], "\u3048\u3044\u305B\u3044\u307B\u3046\u305D\u3046\u304C\uFF08\u307F\u307E\u3059 \u2192 ____\uFF09\u3002", "\u898B\u3089\u308C\u307E\u3059"),
+        wordItem7("l38-p1-a1-q8", "8", [text38("\u8ECA\u304C\uFF08\u501F\u308A\u307E\u3059 \u2192 ", { kana: "\u304F\u308B\u307E\u304C\uFF08\u304B\u308A\u307E\u3059 \u2192 " }), blank34(), text38("\uFF09\u3002")], "\u304F\u308B\u307E\u304C\uFF08\u304B\u308A\u307E\u3059 \u2192 ____\uFF09\u3002", "\u501F\u308A\u3089\u308C\u307E\u3059"),
+        wordItem7("l38-p1-a1-q9", "9", [text38("\u96FB\u8A71\u3067\uFF08\u4E88\u7D04\u3057\u307E\u3059 \u2192 ", { kana: "\u3067\u3093\u308F\u3067\uFF08\u3088\u3084\u304F\u3057\u307E\u3059 \u2192 " }), blank34(), text38("\uFF09\u3002")], "\u3067\u3093\u308F\u3067\uFF08\u3088\u3084\u304F\u3057\u307E\u3059 \u2192 ____\uFF09\u3002", "\u4E88\u7D04\u3067\u304D\u307E\u3059"),
+        wordItem7("l38-p1-a1-q10", "10", [text38("1\u4EBA\u3067\uFF08\u6765\u307E\u3059 \u2192 ", { kana: "\u3072\u3068\u308A\u3067\uFF08\u304D\u307E\u3059 \u2192 " }), blank34(), text38("\uFF09\u3002")], "\u3072\u3068\u308A\u3067\uFF08\u304D\u307E\u3059 \u2192 ____\uFF09\u3002", "\u6765\u3089\u308C\u307E\u3059")
+      ] },
+      { id: "l38-p1-a1-g2", example: { label: "[\u4F8B 2]", before: "\u8F9E\u66F8\u306F\uFF08\u8CB8\u3057\u307E\u305B\u3093 \u2192 \u8CB8\u305B\u307E\u305B\u3093\uFF09\u3002", beforeKana: "\u3058\u3057\u3087\u306F\uFF08\u304B\u3057\u307E\u305B\u3093 \u2192 \u304B\u305B\u307E\u305B\u3093\uFF09\u3002", after: [] }, items: [
+        wordItem7("l38-p1-a1-q11", "11", [text38("\u304A\u9152\u306F\uFF08\u98F2\u307F\u307E\u305B\u3093 \u2192 ", { kana: "\u304A\u3055\u3051\u306F\uFF08\u306E\u307F\u307E\u305B\u3093 \u2192 " }), blank34(), text38("\uFF09\u3002")], "\u304A\u3055\u3051\u306F\uFF08\u306E\u307F\u307E\u305B\u3093 \u2192 ____\uFF09\u3002", "\u98F2\u3081\u307E\u305B\u3093"),
+        wordItem7("l38-p1-a1-q12", "12", [text38("\u7573\u306B\uFF08\u5EA7\u308A\u307E\u305B\u3093 \u2192 ", { kana: "\u305F\u305F\u307F\u306B\uFF08\u3059\u308F\u308A\u307E\u305B\u3093 \u2192 " }), blank34(), text38("\uFF09\u3002")], "\u305F\u305F\u307F\u306B\uFF08\u3059\u308F\u308A\u307E\u305B\u3093 \u2192 ____\uFF09\u3002", "\u5EA7\u308C\u307E\u305B\u3093"),
+        wordItem7("l38-p1-a1-q13", "13", [text38("\u4ECA\u3001\u90E8\u5C4B\u306B\uFF08\u5165\u308A\u307E\u305B\u3093 \u2192 ", { kana: "\u3044\u307E\u3001\u3078\u3084\u306B\uFF08\u306F\u3044\u308A\u307E\u305B\u3093 \u2192 " }), blank34(), text38("\uFF09\u3002")], "\u3044\u307E\u3001\u3078\u3084\u306B\uFF08\u306F\u3044\u308A\u307E\u305B\u3093 \u2192 ____\uFF09\u3002", "\u5165\u308C\u307E\u305B\u3093"),
+        wordItem7("l38-p1-a1-q14", "14", [text38("3\u6642\u9593\u3057\u304B\uFF08\u3044\u307E\u305B\u3093 \u2192 ", { kana: "\u3055\u3093\u3058\u304B\u3093\u3057\u304B\uFF08\u3044\u307E\u305B\u3093 \u2192 " }), blank34(), text38("\uFF09\u3002")], "\u3055\u3093\u3058\u304B\u3093\u3057\u304B\uFF08\u3044\u307E\u305B\u3093 \u2192 ____\uFF09\u3002", "\u3044\u3089\u308C\u307E\u305B\u3093"),
+        wordItem7("l38-p1-a1-q15", "15", [text38("\u53E4\u304F\u3066\u3001\uFF08\u4F7F\u3044\u307E\u305B\u3093 \u2192 ", { kana: "\u3075\u308B\u304F\u3066\u3001\uFF08\u3064\u304B\u3044\u307E\u305B\u3093 \u2192 " }), blank34(), text38("\uFF09\u3002")], "\u3075\u308B\u304F\u3066\u3001\uFF08\u3064\u304B\u3044\u307E\u305B\u3093 \u2192 ____\uFF09\u3002", "\u4F7F\u3048\u307E\u305B\u3093"),
+        wordItem7("l38-p1-a1-q16", "16", [text38("\u5927\u304D\u304F\u3066\u3001\uFF08\u904B\u3073\u307E\u305B\u3093 \u2192 ", { kana: "\u304A\u304A\u304D\u304F\u3066\u3001\uFF08\u306F\u3053\u3073\u307E\u305B\u3093 \u2192 " }), blank34(), text38("\uFF09\u3002")], "\u304A\u304A\u304D\u304F\u3066\u3001\uFF08\u306F\u3053\u3073\u307E\u305B\u3093 \u2192 ____\uFF09\u3002", "\u904B\u3079\u307E\u305B\u3093"),
+        wordItem7("l38-p1-a1-q17", "17", [text38("\u8AB2\u9577\u306F\uFF08\u6765\u307E\u305B\u3093 \u2192 ", { kana: "\u304B\u3061\u3087\u3046\u306F\uFF08\u304D\u307E\u305B\u3093 \u2192 " }), blank34(), text38("\uFF09\u3002")], "\u304B\u3061\u3087\u3046\u306F\uFF08\u304D\u307E\u305B\u3093 \u2192 ____\uFF09\u3002", "\u6765\u3089\u308C\u307E\u305B\u3093"),
+        wordItem7("l38-p1-a1-q18", "18", [text38("\u30AA\u30EA\u30F3\u30D4\u30C3\u30AF\u306B\uFF08\u51FA\u307E\u305B\u3093 \u2192 ", { kana: "\u30AA\u30EA\u30F3\u30D4\u30C3\u30AF\u306B\uFF08\u3067\u307E\u305B\u3093 \u2192 " }), blank34(), text38("\uFF09\u3002")], "\u30AA\u30EA\u30F3\u30D4\u30C3\u30AF\u306B\uFF08\u3067\u307E\u305B\u3093 \u2192 ____\uFF09\u3002", "\u51FA\u3089\u308C\u307E\u305B\u3093"),
+        wordItem7("l38-p1-a1-q19", "19", [text38("\u3053\u3053\u306B\u306F\u8ECA\u3092\uFF08\u6B62\u3081\u307E\u305B\u3093 \u2192 ", { kana: "\u3053\u3053\u306B\u306F\u304F\u308B\u307E\u3092\uFF08\u3068\u3081\u307E\u305B\u3093 \u2192 " }), blank34(), text38("\uFF09\u3002")], "\u3053\u3053\u306B\u306F\u304F\u308B\u307E\u3092\uFF08\u3068\u3081\u307E\u305B\u3093 \u2192 ____\uFF09\u3002", "\u6B62\u3081\u3089\u308C\u307E\u305B\u3093"),
+        wordItem7("l38-p1-a1-q20", "20", [text38("\u3053\u3093\u306A\u306B\u305F\u304F\u3055\u3093\uFF08\u899A\u3048\u307E\u305B\u3093 \u2192 ", { kana: "\u3053\u3093\u306A\u306B\u305F\u304F\u3055\u3093\uFF08\u304A\u307C\u3048\u307E\u305B\u3093 \u2192 " }), blank34(), text38("\uFF09\u3002")], "\u3053\u3093\u306A\u306B\u305F\u304F\u3055\u3093\uFF08\u304A\u307C\u3048\u307E\u305B\u3093 \u2192 ____\uFF09\u3002", "\u899A\u3048\u3089\u308C\u307E\u305B\u3093")
+      ] }
+    ]
+  },
+  {
+    id: "l38-p1-a2",
+    section: "practice_1",
+    order: 2,
+    title: "\u4EFF\u7167\u4F8B\u53E5\u66FF\u6362\u753B\u7EBF\u90E8\u5206\u8FDB\u884C\u7EC3\u4E60\u3002",
+    instruction: "",
+    interaction: "pattern_substitution",
+    answerUnit: "sentence",
+    responseScope: "sentence_only",
+    itemGroups: [
+      { id: "l38-p1-a2-g1", example: { label: "[\u4F8B 1]", before: "\u3053\u306E\u56F3\u66F8\u9928\u306F\u591A\u304F\u306E\u4EBA\u304C\u5229\u7528\u3067\u304D\u307E\u3059\uFF0F\u591C9\u6642\u307E\u3067\u958B\u3044\u3066\u3044\u307E\u3059", beforeKana: "\u3053\u306E\u3068\u3057\u3087\u304B\u3093\u306F\u304A\u304A\u304F\u306E\u3072\u3068\u304C\u308A\u3088\u3046\u3067\u304D\u307E\u3059\uFF0F\u3088\u308B\u304F\u3058\u307E\u3067\u3042\u3044\u3066\u3044\u307E\u3059", after: [text38("\u3053\u306E\u56F3\u66F8\u9928\u306F"), substitution("\u591A\u304F\u306E\u4EBA\u304C\u5229\u7528\u3067\u304D\u308B\u3088\u3046\u306B", "\u304A\u304A\u304F\u306E\u3072\u3068\u304C\u308A\u3088\u3046\u3067\u304D\u308B\u3088\u3046\u306B", "\u5229\u7528"), text38("\u3001\u591C9\u6642\u307E\u3067\u958B\u3044\u3066\u3044\u307E\u3059\u3002", { kana: "\u3001\u3088\u308B\u304F\u3058\u307E\u3067\u3042\u3044\u3066\u3044\u307E\u3059\u3002" })] }, items: [
+        sentenceItem10("l38-p1-a2-q1", "1", "\u6700\u7D42\u306E\u65B0\u5E79\u7DDA\u306B\u9593\u306B\u5408\u3044\u307E\u3059\uFF0F\u6025\u3044\u3067\u51FA\u304B\u3051\u307E\u3057\u3087\u3046", "\u3055\u3044\u3057\u3085\u3046\u306E\u3057\u3093\u304B\u3093\u305B\u3093\u306B\u307E\u306B\u3042\u3044\u307E\u3059\uFF0F\u3044\u305D\u3044\u3067\u3067\u304B\u3051\u307E\u3057\u3087\u3046", "\u6700\u7D42\u306E\u65B0\u5E79\u7DDA\u306B\u9593\u306B\u5408\u3046\u3088\u3046\u306B\u3001\u6025\u3044\u3067\u51FA\u304B\u3051\u307E\u3057\u3087\u3046\u3002"),
+        sentenceItem10("l38-p1-a2-q2", "2", "\u304A\u5E74\u5BC4\u308A\u3082\u4F7F\u3048\u307E\u3059\uFF0F\u64CD\u4F5C\u304C\u7C21\u5358\u306B\u306A\u3063\u3066\u3044\u307E\u3059", "\u304A\u3068\u3057\u3088\u308A\u3082\u3064\u304B\u3048\u307E\u3059\uFF0F\u305D\u3046\u3055\u304C\u304B\u3093\u305F\u3093\u306B\u306A\u3063\u3066\u3044\u307E\u3059", "\u304A\u5E74\u5BC4\u308A\u3082\u4F7F\u3048\u308B\u3088\u3046\u306B\u3001\u64CD\u4F5C\u304C\u7C21\u5358\u306B\u306A\u3063\u3066\u3044\u307E\u3059\u3002"),
+        sentenceItem10("l38-p1-a2-q3", "3", "\u307F\u3093\u306A\u306B\u805E\u3053\u3048\u307E\u3059\uFF0F\u5927\u304D\u306A\u58F0\u3067\u8A71\u3057\u3066\u304F\u3060\u3055\u3044", "\u307F\u3093\u306A\u306B\u304D\u3053\u3048\u307E\u3059\uFF0F\u304A\u304A\u304D\u306A\u3053\u3048\u3067\u306F\u306A\u3057\u3066\u304F\u3060\u3055\u3044", "\u307F\u3093\u306A\u306B\u805E\u3053\u3048\u308B\u3088\u3046\u306B\u3001\u5927\u304D\u306A\u58F0\u3067\u8A71\u3057\u3066\u304F\u3060\u3055\u3044\u3002"),
+        {
+          ...sentenceItem10("l38-p1-a2-q6", "6", "\u65E5\u672C\u306B\u7559\u5B66\u3067\u304D\u307E\u3059\uFF0F\u4E00\u751F\u61F8\u547D\u52C9\u5F37\u3057\u3066\u3044\u307E\u3059", "\u306B\u307B\u3093\u306B\u308A\u3085\u3046\u304C\u304F\u3067\u304D\u307E\u3059\uFF0F\u3044\u3063\u3057\u3087\u3046\u3051\u3093\u3081\u3044\u3079\u3093\u304D\u3087\u3046\u3057\u3066\u3044\u307E\u3059", "\u65E5\u672C\u306B\u7559\u5B66\u3067\u304D\u308B\u3088\u3046\u306B\u3001\u4E00\u751F\u61F8\u547D\u52C9\u5F37\u3057\u3066\u3044\u307E\u3059\u3002"),
+          prompt: [text38("\u65E5\u672C", { kana: "\u306B\u307B\u3093" }), text38("\u306B"), text38("\u7559\u5B66", { kana: "\u308A\u3085\u3046\u304C\u304F" }), text38("\u3067\u304D\u307E\u3059\uFF0F"), text38("\u4E00\u751F\u61F8\u547D", { kana: "\u3044\u3063\u3057\u3087\u3046\u3051\u3093\u3081\u3044" }), text38("\u52C9\u5F37", { kana: "\u3079\u3093\u304D\u3087\u3046" }), text38("\u3057\u3066\u3044\u307E\u3059")]
+        }
+      ] },
+      { id: "l38-p1-a2-g2", example: { label: "[\u4F8B 2]", before: "\u5FD8\u308C\u307E\u305B\u3093\uFF0F\u30E1\u30E2\u3057\u3066\u304A\u304D\u307E\u3057\u3087\u3046", beforeKana: "\u308F\u3059\u308C\u307E\u305B\u3093\uFF0F\u30E1\u30E2\u3057\u3066\u304A\u304D\u307E\u3057\u3087\u3046", after: [substitution("\u5FD8\u308C\u306A\u3044\u3088\u3046\u306B", "\u308F\u3059\u308C\u306A\u3044\u3088\u3046\u306B", "\u5FD8\u308C"), text38("\u3001\u30E1\u30E2\u3057\u3066\u304A\u304D\u307E\u3057\u3087\u3046\u3002", { kana: "\u3001\u30E1\u30E2\u3057\u3066\u304A\u304D\u307E\u3057\u3087\u3046\u3002" })] }, items: [
+        sentenceItem10("l38-p1-a2-q4", "4", "\u98A8\u90AA\u3092\u5F15\u304D\u307E\u305B\u3093\uFF0F\u6C17\u3092\u3064\u3051\u3066\u304F\u3060\u3055\u3044", "\u304B\u305C\u3092\u3072\u304D\u307E\u305B\u3093\uFF0F\u304D\u3092\u3064\u3051\u3066\u304F\u3060\u3055\u3044", "\u98A8\u90AA\u3092\u5F15\u304B\u306A\u3044\u3088\u3046\u306B\u3001\u6C17\u3092\u3064\u3051\u3066\u304F\u3060\u3055\u3044\u3002"),
+        sentenceItem10("l38-p1-a2-q5", "5", "\u8EE2\u3073\u307E\u305B\u3093\uFF0F\u3086\u3063\u304F\u308A\u6B69\u304D\u307E\u3057\u3087\u3046", "\u3053\u308D\u3073\u307E\u305B\u3093\uFF0F\u3086\u3063\u304F\u308A\u3042\u308B\u304D\u307E\u3057\u3087\u3046", "\u8EE2\u3070\u306A\u3044\u3088\u3046\u306B\u3001\u3086\u3063\u304F\u308A\u6B69\u304D\u307E\u3057\u3087\u3046\u3002")
+      ] }
+    ]
+  },
+  {
+    id: "l38-p1-a3",
+    section: "practice_1",
+    order: 3,
+    title: "\u4EFF\u7167\u4F8B\u53E5\u66FF\u6362\u753B\u7EBF\u90E8\u5206\u8FDB\u884C\u7EC3\u4E60\u3002",
+    instruction: "",
+    interaction: "dialogue_practice",
+    answerUnit: "dialogue",
+    responseScope: "dialogue_only",
+    layout: [{ type: "example", content: { label: "[\u4F8B]", before: "\u8DB3\u306E\u5177\u5408\u306F\u3044\u304B\u304C\u3067\u3059\u304B\uFF0F\u6628\u65E5\u304B\u3089\u5C11\u3057\u6B69\u304D\u307E\u3059", beforeKana: "\u3042\u3057\u306E\u3050\u3042\u3044\u306F\u3044\u304B\u304C\u3067\u3059\u304B\uFF0F\u304D\u306E\u3046\u304B\u3089\u3059\u3053\u3057\u3042\u308B\u304D\u307E\u3059", after: [text38("\u7532\uFF1A"), substitution("\u8DB3\u306E\u5177\u5408\u306F\u3044\u304B\u304C\u3067\u3059\u304B\u3002", "\u3042\u3057\u306E\u3050\u3042\u3044\u306F\u3044\u304B\u304C\u3067\u3059\u304B\u3002", "\u8CEA\u554F"), text38("\n\u4E59\uFF1A\u3084\u3063\u3068\u3001"), substitution("\u6628\u65E5\u304B\u3089\u5C11\u3057\u6B69\u3051\u308B\u3088\u3046\u306B\u306A\u308A\u307E\u3057\u305F\u3002", "\u304D\u306E\u3046\u304B\u3089\u3059\u3053\u3057\u3042\u308B\u3051\u308B\u3088\u3046\u306B\u306A\u308A\u307E\u3057\u305F\u3002", "\u56DE\u7B54"), text38("\n\u7532\uFF1A\u305D\u308C\u306F\u3088\u304B\u3063\u305F\u3067\u3059\u306D\u3002", { kana: "\n\u3053\u3046\uFF1A\u305D\u308C\u306F\u3088\u304B\u3063\u305F\u3067\u3059\u306D\u3002" })] } }],
+    items: [
+      dialogueItem32("l38-p1-a3-q1", "1", "\u30D4\u30A2\u30CE\u306E\u7DF4\u7FD2\u306F\u3069\u3046\u3067\u3059\u304B\uFF0F1\u66F2\u5F3E\u304D\u307E\u3059", "\u30D4\u30A2\u30CE\u306E\u308C\u3093\u3057\u3085\u3046\u306F\u3069\u3046\u3067\u3059\u304B\uFF0F\u3044\u3063\u304D\u3087\u304F\u3072\u304D\u307E\u3059", "\u7532\uFF1A\u30D4\u30A2\u30CE\u306E\u7DF4\u7FD2\u306F\u3069\u3046\u3067\u3059\u304B\u3002\n\u4E59\uFF1A\u3084\u3063\u3068\u30011\u66F2\u5F3E\u3051\u308B\u3088\u3046\u306B\u306A\u308A\u307E\u3057\u305F\u3002\n\u7532\uFF1A\u305D\u308C\u306F\u3088\u304B\u3063\u305F\u3067\u3059\u306D\u3002"),
+      dialogueItem32("l38-p1-a3-q2", "2", "\u65E5\u672C\u8A9E\u306E\u52C9\u5F37\u306F\u3069\u3046\u3067\u3059\u304B\uFF0F\u65E5\u672C\u8A9E\u3067\u30EC\u30DD\u30FC\u30C8\u3092\u66F8\u304D\u307E\u3059", "\u306B\u307B\u3093\u3054\u306E\u3079\u3093\u304D\u3087\u3046\u306F\u3069\u3046\u3067\u3059\u304B\uFF0F\u306B\u307B\u3093\u3054\u3067\u30EC\u30DD\u30FC\u30C8\u3092\u304B\u304D\u307E\u3059", "\u7532\uFF1A\u65E5\u672C\u8A9E\u306E\u52C9\u5F37\u306F\u3069\u3046\u3067\u3059\u304B\u3002\n\u4E59\uFF1A\u3084\u3063\u3068\u3001\u65E5\u672C\u8A9E\u3067\u30EC\u30DD\u30FC\u30C8\u3092\u66F8\u3051\u308B\u3088\u3046\u306B\u306A\u308A\u307E\u3057\u305F\u3002\n\u7532\uFF1A\u305D\u308C\u306F\u3088\u304B\u3063\u305F\u3067\u3059\u306D\u3002"),
+      dialogueItem32("l38-p1-a3-q3", "3", "\u65E5\u672C\u98DF\u306B\u306F\u6163\u308C\u307E\u3057\u305F\u304B\uFF0F\u523A\u3057\u8EAB\u3082\u98DF\u3079\u307E\u3059", "\u306B\u307B\u3093\u3057\u3087\u304F\u306B\u306F\u306A\u308C\u307E\u3057\u305F\u304B\uFF0F\u3055\u3057\u307F\u3082\u305F\u3079\u307E\u3059", "\u7532\uFF1A\u65E5\u672C\u98DF\u306B\u306F\u6163\u308C\u307E\u3057\u305F\u304B\u3002\n\u4E59\uFF1A\u3084\u3063\u3068\u3001\u523A\u3057\u8EAB\u3082\u98DF\u3079\u3089\u308C\u308B\u3088\u3046\u306B\u306A\u308A\u307E\u3057\u305F\u3002\n\u7532\uFF1A\u305D\u308C\u306F\u3088\u304B\u3063\u305F\u3067\u3059\u306D\u3002"),
+      dialogueItem32("l38-p1-a3-q4", "4", "\u6A5F\u68B0\u306E\u64CD\u4F5C\u306F\u6163\u308C\u307E\u3057\u305F\u304B\uFF0F1\u4EBA\u3067\u52D5\u304B\u3057\u307E\u3059", "\u304D\u304B\u3044\u306E\u305D\u3046\u3055\u306F\u306A\u308C\u307E\u3057\u305F\u304B\uFF0F\u3072\u3068\u308A\u3067\u3046\u3054\u304B\u3057\u307E\u3059", "\u7532\uFF1A\u6A5F\u68B0\u306E\u64CD\u4F5C\u306F\u6163\u308C\u307E\u3057\u305F\u304B\u3002\n\u4E59\uFF1A\u3084\u3063\u3068\u30011\u4EBA\u3067\u52D5\u304B\u305B\u308B\u3088\u3046\u306B\u306A\u308A\u307E\u3057\u305F\u3002\n\u7532\uFF1A\u305D\u308C\u306F\u3088\u304B\u3063\u305F\u3067\u3059\u306D\u3002")
+    ]
+  },
+  {
+    id: "l38-p1-a4",
+    section: "practice_1",
+    order: 4,
+    title: "\u4EFF\u7167\u4F8B\u53E5\u66FF\u6362\u753B\u7EBF\u90E8\u5206\u8FDB\u884C\u7EC3\u4E60\u3002",
+    instruction: "",
+    interaction: "pattern_substitution",
+    answerUnit: "sentence",
+    responseScope: "sentence_only",
+    itemGroups: [
+      { id: "l38-p1-a4-g1", example: { label: "[\u4F8B 1]", before: "\u7814\u4FEE\u306B\u5168\u54E1\u53C2\u52A0\u3057\u307E\u3059", beforeKana: "\u3051\u3093\u3057\u3085\u3046\u306B\u305C\u3093\u3044\u3093\u3055\u3093\u304B\u3057\u307E\u3059", after: [text38("\u7814\u4FEE\u306B"), substitution("\u5168\u54E1\u53C2\u52A0\u3059\u308B\u3088\u3046\u306B", "\u305C\u3093\u3044\u3093\u3055\u3093\u304B\u3059\u308B\u3088\u3046\u306B", "\u53C2\u52A0"), text38("\u3057\u3066\u304F\u3060\u3055\u3044\u3002", { kana: "\u3057\u3066\u304F\u3060\u3055\u3044\u3002" })] }, items: [
+        sentenceItem10("l38-p1-a4-q1", "1", "\u6BCE\u65E5\u30E1\u30FC\u30EB\u3092\u30C1\u30A7\u30C3\u30AF\u3057\u307E\u3059", "\u307E\u3044\u306B\u3061\u30E1\u30FC\u30EB\u3092\u30C1\u30A7\u30C3\u30AF\u3057\u307E\u3059", "\u6BCE\u65E5\u30E1\u30FC\u30EB\u3092\u30C1\u30A7\u30C3\u30AF\u3059\u308B\u3088\u3046\u306B\u3057\u3066\u304F\u3060\u3055\u3044\u3002"),
+        sentenceItem10("l38-p1-a4-q2", "2", "\u5FC5\u305A\u304B\u304E\u3092\u304B\u3051\u307E\u3059", "\u304B\u306A\u3089\u305A\u304B\u304E\u3092\u304B\u3051\u307E\u3059", "\u5FC5\u305A\u304B\u304E\u3092\u304B\u3051\u308B\u3088\u3046\u306B\u3057\u3066\u304F\u3060\u3055\u3044\u3002")
+      ] },
+      { id: "l38-p1-a4-g2", example: { label: "[\u4F8B 2]", before: "\u96FB\u8A71\u756A\u53F7\u3092\u9593\u9055\u3048\u307E\u305B\u3093", beforeKana: "\u3067\u3093\u308F\u3070\u3093\u3054\u3046\u3092\u307E\u3061\u304C\u3048\u307E\u305B\u3093", after: [text38("\u96FB\u8A71\u756A\u53F7\u3092"), substitution("\u9593\u9055\u3048\u306A\u3044\u3088\u3046\u306B", "\u307E\u3061\u304C\u3048\u306A\u3044\u3088\u3046\u306B", "\u9593\u9055\u3048"), text38("\u3057\u3066\u304F\u3060\u3055\u3044\u3002", { kana: "\u3057\u3066\u304F\u3060\u3055\u3044\u3002" })] }, items: [
+        sentenceItem10("l38-p1-a4-q3", "3", "\u7D04\u675F\u306E\u6642\u9593\u3092\u5FD8\u308C\u307E\u305B\u3093", "\u3084\u304F\u305D\u304F\u306E\u3058\u304B\u3093\u3092\u308F\u3059\u308C\u307E\u305B\u3093", "\u7D04\u675F\u306E\u6642\u9593\u3092\u5FD8\u308C\u306A\u3044\u3088\u3046\u306B\u3057\u3066\u304F\u3060\u3055\u3044\u3002"),
+        sentenceItem10("l38-p1-a4-q4", "4", "\u3053\u306E\u3054\u307F\u7BB1\u306B\u30DA\u30C3\u30C8\u30DC\u30C8\u30EB\u3092\u6368\u3066\u307E\u305B\u3093", "\u3053\u306E\u3054\u307F\u3070\u3053\u306B\u30DA\u30C3\u30C8\u30DC\u30C8\u30EB\u3092\u3059\u3066\u307E\u305B\u3093", "\u3053\u306E\u3054\u307F\u7BB1\u306B\u30DA\u30C3\u30C8\u30DC\u30C8\u30EB\u3092\u6368\u3066\u306A\u3044\u3088\u3046\u306B\u3057\u3066\u304F\u3060\u3055\u3044\u3002")
+      ] }
+    ]
+  },
+  {
+    id: "l38-p1-a5",
+    section: "practice_1",
+    order: 5,
+    title: "\u542C\u5F55\u97F3\uFF0C\u4EFF\u7167\u4F8B\u53E5\u66FF\u6362\u753B\u7EBF\u90E8\u5206\u56DE\u7B54\u63D0\u95EE\u3002",
+    instruction: "",
+    interaction: "listening_answer",
+    answerUnit: "sentence",
+    responseScope: "answer_only",
+    responseScopeHint: "\u53EA\u5199\u56DE\u7B54\u53E5\u3002",
+    requiresAudio: true,
+    audio: { source: "textbook_exercise", url: audio37(1, 5), label: "\u7B2C38\u8BFE \u7EC3\u4E60I-5", transcript: { source: "asr", confidenceNote: "ASR \u5206\u6BB5\u8986\u76D6\u4F8B\u53E5\u548C1\u20145\u9898\uFF1B\u7B2C6\u9898\u6309\u6559\u6750\u63D0\u793A\u4E0E\u76F8\u540C\u5F55\u97F3\u6A21\u5F0F\u8865\u5168\u3002", text: "\u5065\u5EB7\u306E\u305F\u3081\u306B\u4F55\u3092\u3057\u3066\u3044\u307E\u3059\u304B\u30021\u9031\u9593\u306B2\u56DE\u30D7\u30FC\u30EB\u3067\u6CF3\u304E\u307E\u3059\u30021\u9031\u9593\u306B2\u56DE\u30D7\u30FC\u30EB\u3067\u6CF3\u3050\u3088\u3046\u306B\u3057\u3066\u3044\u307E\u3059\u3002\u5BDD\u308B\u524D\u306B\u98DF\u3079\u307E\u305B\u3093\u3002\u5BDD\u308B\u524D\u306B\u98DF\u3079\u306A\u3044\u3088\u3046\u306B\u3057\u3066\u3044\u307E\u3059\u30021 \u6BCE\u65E530\u5206\u6B69\u304D\u307E\u3059\u30022 \u5341\u5206\u7761\u7720\u3092\u53D6\u308A\u307E\u3059\u30023 \u304A\u9152\u3092\u305F\u304F\u3055\u3093\u98F2\u307F\u307E\u305B\u3093\u30024 \u3067\u304D\u308B\u3060\u3051\u904B\u52D5\u3057\u307E\u3059\u30025 \u30B9\u30C8\u30EC\u30B9\u3092\u305F\u3081\u307E\u305B\u3093\u30026 \u91CE\u83DC\u3092\u305F\u304F\u3055\u3093\u98DF\u3079\u307E\u3059\u3002", segments: [
+      { itemNumber: "1", text: "\u6BCE\u65E530\u5206\u6B69\u304F\u3088\u3046\u306B\u3057\u3066\u3044\u307E\u3059\u3002" },
+      { itemNumber: "2", text: "\u5341\u5206\u7761\u7720\u3092\u53D6\u308B\u3088\u3046\u306B\u3057\u3066\u3044\u307E\u3059\u3002" },
+      { itemNumber: "3", text: "\u304A\u9152\u3092\u305F\u304F\u3055\u3093\u98F2\u307E\u306A\u3044\u3088\u3046\u306B\u3057\u3066\u3044\u307E\u3059\u3002" },
+      { itemNumber: "4", text: "\u3067\u304D\u308B\u3060\u3051\u904B\u52D5\u3059\u308B\u3088\u3046\u306B\u3057\u3066\u3044\u307E\u3059\u3002" },
+      { itemNumber: "5", text: "\u30B9\u30C8\u30EC\u30B9\u3092\u305F\u3081\u306A\u3044\u3088\u3046\u306B\u3057\u3066\u3044\u307E\u3059\u3002" },
+      { itemNumber: "6", text: "\u91CE\u83DC\u3092\u305F\u304F\u3055\u3093\u98DF\u3079\u308B\u3088\u3046\u306B\u3057\u3066\u3044\u307E\u3059\u3002" }
+    ] } },
+    layout: [{ type: "example", content: { label: "[\u4F8B]", before: "\u5065\u5EB7\u306E\u305F\u3081\u306B\u3001\u4F55\u3092\u3057\u3066\u3044\u307E\u3059\u304B\u3002", beforeKana: "\u3051\u3093\u3053\u3046\u306E\u305F\u3081\u306B\u3001\u306A\u306B\u3092\u3057\u3066\u3044\u307E\u3059\u304B\u3002", after: [text38("\uFF081\u9031\u9593\u306B2\u56DE\u30D7\u30FC\u30EB\u3067\u6CF3\u304E\u307E\u3059\uFF09 \u2192 ", { kana: "\uFF08\u3044\u3063\u3057\u3085\u3046\u304B\u3093\u306B\u306B\u304B\u3044\u30D7\u30FC\u30EB\u3067\u304A\u3088\u304E\u307E\u3059\uFF09 \u2192 " }), substitution("1\u9031\u9593\u306B2\u56DE\u30D7\u30FC\u30EB\u3067\u6CF3\u3050\u3088\u3046\u306B\u3057\u3066\u3044\u307E\u3059\u3002", "\u3044\u3063\u3057\u3085\u3046\u304B\u3093\u306B\u306B\u304B\u3044\u30D7\u30FC\u30EB\u3067\u304A\u3088\u3050\u3088\u3046\u306B\u3057\u3066\u3044\u307E\u3059\u3002", "\u7FD2\u61631"), text38("\n\uFF08\u5BDD\u308B\u524D\u306B\u98DF\u3079\u307E\u305B\u3093\uFF09 \u2192 ", { kana: "\n\uFF08\u306D\u308B\u307E\u3048\u306B\u305F\u3079\u307E\u305B\u3093\uFF09 \u2192 " }), substitution("\u5BDD\u308B\u524D\u306B\u98DF\u3079\u306A\u3044\u3088\u3046\u306B\u3057\u3066\u3044\u307E\u3059\u3002", "\u306D\u308B\u307E\u3048\u306B\u305F\u3079\u306A\u3044\u3088\u3046\u306B\u3057\u3066\u3044\u307E\u3059\u3002", "\u7FD2\u61632")] } }],
+    items: [
+      sentenceItem10("l38-p1-a5-q1", "1", "\u6BCE\u65E530\u5206\u6B69\u304D\u307E\u3059", "\u307E\u3044\u306B\u3061\u3055\u3093\u3058\u3085\u3063\u3077\u3093\u3042\u308B\u304D\u307E\u3059", "\u6BCE\u65E530\u5206\u6B69\u304F\u3088\u3046\u306B\u3057\u3066\u3044\u307E\u3059\u3002", "audio"),
+      sentenceItem10("l38-p1-a5-q2", "2", "\u5341\u5206\u7761\u7720\u3092\u3068\u308A\u307E\u3059", "\u3058\u3085\u3046\u3076\u3093\u3059\u3044\u307F\u3093\u3092\u3068\u308A\u307E\u3059", "\u5341\u5206\u7761\u7720\u3092\u3068\u308B\u3088\u3046\u306B\u3057\u3066\u3044\u307E\u3059\u3002", "audio"),
+      sentenceItem10("l38-p1-a5-q3", "3", "\u304A\u9152\u3092\u305F\u304F\u3055\u3093\u98F2\u307F\u307E\u305B\u3093", "\u304A\u3055\u3051\u3092\u305F\u304F\u3055\u3093\u306E\u307F\u307E\u305B\u3093", "\u304A\u9152\u3092\u305F\u304F\u3055\u3093\u98F2\u307E\u306A\u3044\u3088\u3046\u306B\u3057\u3066\u3044\u307E\u3059\u3002", "audio"),
+      sentenceItem10("l38-p1-a5-q4", "4", "\u3067\u304D\u308B\u3060\u3051\u904B\u52D5\u3057\u307E\u3059", "\u3067\u304D\u308B\u3060\u3051\u3046\u3093\u3069\u3046\u3057\u307E\u3059", "\u3067\u304D\u308B\u3060\u3051\u904B\u52D5\u3059\u308B\u3088\u3046\u306B\u3057\u3066\u3044\u307E\u3059\u3002", "audio"),
+      sentenceItem10("l38-p1-a5-q5", "5", "\u30B9\u30C8\u30EC\u30B9\u3092\u305F\u3081\u307E\u305B\u3093", "\u30B9\u30C8\u30EC\u30B9\u3092\u305F\u3081\u307E\u305B\u3093", "\u30B9\u30C8\u30EC\u30B9\u3092\u305F\u3081\u306A\u3044\u3088\u3046\u306B\u3057\u3066\u3044\u307E\u3059\u3002", "audio"),
+      sentenceItem10("l38-p1-a5-q6", "6", "\u91CE\u83DC\u3092\u305F\u304F\u3055\u3093\u98DF\u3079\u307E\u3059", "\u3084\u3055\u3044\u3092\u305F\u304F\u3055\u3093\u305F\u3079\u307E\u3059", "\u91CE\u83DC\u3092\u305F\u304F\u3055\u3093\u98DF\u3079\u308B\u3088\u3046\u306B\u3057\u3066\u3044\u307E\u3059\u3002", "audio")
+    ].map((item2) => ({ ...item2, responseScope: "answer_only", responseScopeHint: "\u53EA\u5199\u56DE\u7B54\u53E5\u3002" }))
+  },
+  {
+    id: "l38-p1-a6",
+    section: "practice_1",
+    order: 6,
+    title: "\u542C\u5F55\u97F3\uFF0C\u4EFF\u7167\u4F8B\u53E5\u66FF\u6362\u753B\u7EBF\u90E8\u5206\u7EC3\u4E60\u4F1A\u8BDD\u3002",
+    instruction: "",
+    interaction: "dialogue_practice",
+    answerUnit: "dialogue",
+    responseScope: "dialogue_only",
+    requiresAudio: true,
+    audio: { source: "textbook_exercise", url: audio37(1, 6), label: "\u7B2C38\u8BFE \u7EC3\u4E60I-6", transcript: { source: "asr", confidenceNote: "ASR \u8986\u76D6\u4F8B\u53E5\u548C\u5168\u90E83\u9898\uFF1B\u5C06\u8BEF\u8BC6\u522B\u7684\u300C\u96E2\u305B\u308B\u300D\u6309\u6559\u6750\u4E0E\u8BED\u5883\u6821\u6B63\u4E3A\u300C\u8A71\u305B\u308B\u300D\u3002", text: "\u82F1\u8A9E\u304C\u3046\u307E\u304F\u8A71\u305B\u306A\u3044\u3093\u3067\u3059\u304C\u3002\u6BCE\u65E5\u30C6\u30FC\u30D7\u3092\u805E\u304D\u307E\u3059\u3001\u8A71\u3057\u307E\u3059\u3002\u6BCE\u65E5\u30C6\u30FC\u30D7\u3092\u805E\u3051\u3070\u3001\u8A71\u305B\u308B\u3088\u3046\u306B\u306A\u308B\u3068\u601D\u3044\u307E\u3059\u3088\u30021 \u3053\u306E\u81EA\u8EE2\u8ECA\u306F\u307E\u3060\u4E57\u308C\u307E\u3059\u304B\u3002\u30BF\u30A4\u30E4\u3092\u53D6\u308A\u66FF\u3048\u307E\u3059\u3001\u4E57\u308A\u307E\u3059\u30022 \u306A\u304B\u306A\u304B\u8A66\u5408\u3067\u52DD\u3066\u306A\u3044\u3093\u3067\u3059\u304C\u3002\u3082\u3063\u3068\u7DF4\u7FD2\u3057\u307E\u3059\u3001\u52DD\u3061\u307E\u3059\u30023 \u3053\u306E\u5546\u54C1\u306F\u58F2\u308C\u308B\u3067\u3057\u3087\u3046\u304B\u3002\u3082\u3046\u5C11\u3057\u5B89\u304F\u3057\u307E\u3059\u3001\u58F2\u308A\u307E\u3059\u3002", segments: [
+      { itemNumber: "1", text: "\u3053\u306E\u81EA\u8EE2\u8ECA\u306F\u307E\u3060\u4E57\u308C\u307E\u3059\u304B\u3002\u30BF\u30A4\u30E4\u3092\u53D6\u308A\u66FF\u3048\u308C\u3070\u3001\u4E57\u308C\u308B\u3088\u3046\u306B\u306A\u308B\u3068\u601D\u3044\u307E\u3059\u3088\u3002\u3058\u3083\u3042\u3001\u3084\u3063\u3066\u307F\u307E\u3059\u3002" },
+      { itemNumber: "2", text: "\u306A\u304B\u306A\u304B\u8A66\u5408\u3067\u52DD\u3066\u306A\u3044\u3093\u3067\u3059\u304C\u3002\u3082\u3063\u3068\u7DF4\u7FD2\u3059\u308C\u3070\u3001\u52DD\u3066\u308B\u3088\u3046\u306B\u306A\u308B\u3068\u601D\u3044\u307E\u3059\u3088\u3002\u3058\u3083\u3042\u3001\u3084\u3063\u3066\u307F\u307E\u3059\u3002" },
+      { itemNumber: "3", text: "\u3053\u306E\u5546\u54C1\u306F\u58F2\u308C\u308B\u3067\u3057\u3087\u3046\u304B\u3002\u3082\u3046\u5C11\u3057\u5B89\u304F\u3059\u308C\u3070\u3001\u58F2\u308C\u308B\u3088\u3046\u306B\u306A\u308B\u3068\u601D\u3044\u307E\u3059\u3088\u3002\u3058\u3083\u3042\u3001\u3084\u3063\u3066\u307F\u307E\u3059\u3002" }
+    ] } },
+    layout: [{ type: "example", content: { label: "[\u4F8B]", before: "\u82F1\u8A9E\u304C\u3046\u307E\u304F\u8A71\u305B\u306A\u3044\u3093\u3067\u3059\u304C\u2026\u3002\uFF0F\u6BCE\u65E5\u30C6\u30FC\u30D7\u3092\u805E\u304D\u307E\u3059\uFF0F\u8A71\u3057\u307E\u3059", beforeKana: "\u3048\u3044\u3054\u304C\u3046\u307E\u304F\u306F\u306A\u305B\u306A\u3044\u3093\u3067\u3059\u304C\u2026\u3002\uFF0F\u307E\u3044\u306B\u3061\u30C6\u30FC\u30D7\u3092\u304D\u304D\u307E\u3059\uFF0F\u306F\u306A\u3057\u307E\u3059", after: [text38("\u7532\uFF1A\u82F1\u8A9E\u304C\u3046\u307E\u304F\u8A71\u305B\u306A\u3044\u3093\u3067\u3059\u304C\u2026\u3002\n\u4E59\uFF1A"), substitution("\u6BCE\u65E5\u30C6\u30FC\u30D7\u3092\u805E\u3051\u3070", "\u307E\u3044\u306B\u3061\u30C6\u30FC\u30D7\u3092\u304D\u3051\u3070", "\u6761\u4EF6"), text38("\u3001"), substitution("\u8A71\u305B\u308B\u3088\u3046\u306B\u306A\u308B", "\u306F\u306A\u305B\u308B\u3088\u3046\u306B\u306A\u308B", "\u7D50\u679C"), text38("\u3068\u601D\u3044\u307E\u3059\u3088\u3002\n\u7532\uFF1A\u3058\u3083\u3042\u3001\u3084\u3063\u3066\u307F\u307E\u3059\u3002", { kana: "\u3068\u304A\u3082\u3044\u307E\u3059\u3088\u3002\n\u3053\u3046\uFF1A\u3058\u3083\u3042\u3001\u3084\u3063\u3066\u307F\u307E\u3059\u3002" })] } }],
+    items: [
+      dialogueItem32("l38-p1-a6-q1", "1", "\u3053\u306E\u81EA\u8EE2\u8ECA\u306F\u307E\u3060\u4E57\u308C\u307E\u3059\u304B\u3002\uFF0F\u30BF\u30A4\u30E4\u3092\u53D6\u308A\u66FF\u3048\u307E\u3059\uFF0F\u4E57\u308A\u307E\u3059", "\u3053\u306E\u3058\u3066\u3093\u3057\u3083\u306F\u307E\u3060\u306E\u308C\u307E\u3059\u304B\u3002\uFF0F\u30BF\u30A4\u30E4\u3092\u3068\u308A\u304B\u3048\u307E\u3059\uFF0F\u306E\u308A\u307E\u3059", "\u7532\uFF1A\u3053\u306E\u81EA\u8EE2\u8ECA\u306F\u307E\u3060\u4E57\u308C\u307E\u3059\u304B\u3002\n\u4E59\uFF1A\u30BF\u30A4\u30E4\u3092\u53D6\u308A\u66FF\u3048\u308C\u3070\u3001\u4E57\u308C\u308B\u3088\u3046\u306B\u306A\u308B\u3068\u601D\u3044\u307E\u3059\u3088\u3002\n\u7532\uFF1A\u3058\u3083\u3042\u3001\u3084\u3063\u3066\u307F\u307E\u3059\u3002"),
+      dialogueItem32("l38-p1-a6-q2", "2", "\u306A\u304B\u306A\u304B\u8A66\u5408\u3067\u52DD\u3066\u306A\u3044\u3093\u3067\u3059\u304C\u2026\u3002\uFF0F\u3082\u3063\u3068\u7DF4\u7FD2\u3057\u307E\u3059\uFF0F\u52DD\u3061\u307E\u3059", "\u306A\u304B\u306A\u304B\u3057\u3042\u3044\u3067\u304B\u3066\u306A\u3044\u3093\u3067\u3059\u304C\u2026\u3002\uFF0F\u3082\u3063\u3068\u308C\u3093\u3057\u3085\u3046\u3057\u307E\u3059\uFF0F\u304B\u3061\u307E\u3059", "\u7532\uFF1A\u306A\u304B\u306A\u304B\u8A66\u5408\u3067\u52DD\u3066\u306A\u3044\u3093\u3067\u3059\u304C\u2026\u3002\n\u4E59\uFF1A\u3082\u3063\u3068\u7DF4\u7FD2\u3059\u308C\u3070\u3001\u52DD\u3066\u308B\u3088\u3046\u306B\u306A\u308B\u3068\u601D\u3044\u307E\u3059\u3088\u3002\n\u7532\uFF1A\u3058\u3083\u3042\u3001\u3084\u3063\u3066\u307F\u307E\u3059\u3002"),
+      dialogueItem32("l38-p1-a6-q3", "3", "\u3053\u306E\u5546\u54C1\u306F\u58F2\u308C\u308B\u3067\u3057\u3087\u3046\u304B\u3002\uFF0F\u3082\u3046\u5C11\u3057\u5B89\u304F\u3057\u307E\u3059\uFF0F\u58F2\u308A\u307E\u3059", "\u3053\u306E\u3057\u3087\u3046\u3072\u3093\u306F\u3046\u308C\u308B\u3067\u3057\u3087\u3046\u304B\u3002\uFF0F\u3082\u3046\u3059\u3053\u3057\u3084\u3059\u304F\u3057\u307E\u3059\uFF0F\u3046\u308A\u307E\u3059", "\u7532\uFF1A\u3053\u306E\u5546\u54C1\u306F\u58F2\u308C\u308B\u3067\u3057\u3087\u3046\u304B\u3002\n\u4E59\uFF1A\u3082\u3046\u5C11\u3057\u5B89\u304F\u3059\u308C\u3070\u3001\u58F2\u308C\u308B\u3088\u3046\u306B\u306A\u308B\u3068\u601D\u3044\u307E\u3059\u3088\u3002\n\u7532\uFF1A\u3058\u3083\u3042\u3001\u3084\u3063\u3066\u307F\u307E\u3059\u3002")
+    ]
+  },
+  {
+    id: "l38-p2-a1",
+    section: "practice_2",
+    order: 1,
+    title: "\u5C06\uFF08\u3000\uFF09\u4E2D\u7684\u8BCD\u8BED\u53D8\u6210\u9002\u5F53\u7684\u53EF\u80FD\u5F62\u5F0F\uFF0C\u5B8C\u6210\u53E5\u5B50\u3002",
+    instruction: "",
+    interaction: "fill_blank",
+    answerUnit: "word",
+    responseScope: "word_only",
+    layout: [{ type: "example", content: { label: "[\u4F8B]", before: "\u30AD\u30E0\u3055\u3093\u306F1\u30AD\u30ED\u30E1\u30FC\u30C8\u30EB\u3050\u3089\u3044\uFF08\u6CF3\u304E\u307E\u3059 \u2192 \u6CF3\u3052\u307E\u3059\uFF09\u3002", beforeKana: "\u30AD\u30E0\u3055\u3093\u306F\u3044\u3061\u30AD\u30ED\u30E1\u30FC\u30C8\u30EB\u3050\u3089\u3044\uFF08\u304A\u3088\u304E\u307E\u3059 \u2192 \u304A\u3088\u3052\u307E\u3059\uFF09\u3002", after: [] } }],
+    items: [
+      wordItem7("l38-p2-a1-q1", "1", [text38("\u3053\u306E\u672C\u306F\u6765\u9031\u306E\u6728\u66DC\u65E5\u307E\u3067\uFF08\u501F\u308A\u307E\u3059 \u2192 ", { kana: "\u3053\u306E\u307B\u3093\u306F\u3089\u3044\u3057\u3085\u3046\u306E\u3082\u304F\u3088\u3046\u3073\u307E\u3067\uFF08\u304B\u308A\u307E\u3059 \u2192 " }), blank34(), text38("\uFF09\u3002")], "\u3053\u306E\u307B\u3093\u306F\u3089\u3044\u3057\u3085\u3046\u306E\u3082\u304F\u3088\u3046\u3073\u307E\u3067\uFF08\u304B\u308A\u307E\u3059 \u2192 ____\uFF09\u3002", "\u501F\u308A\u3089\u308C\u307E\u3059"),
+      wordItem7("l38-p2-a1-q2", "2", [text38("\u793E\u54E1\u306E\u540D\u524D\u304C\u306A\u304B\u306A\u304B\uFF08\u899A\u3048\u307E\u3059 \u2192 ", { kana: "\u3057\u3083\u3044\u3093\u306E\u306A\u307E\u3048\u304C\u306A\u304B\u306A\u304B\uFF08\u304A\u307C\u3048\u307E\u3059 \u2192 " }), blank34(), text38("\uFF09\u3002")], "\u3057\u3083\u3044\u3093\u306E\u306A\u307E\u3048\u304C\u306A\u304B\u306A\u304B\uFF08\u304A\u307C\u3048\u307E\u3059 \u2192 ____\uFF09\u3002", "\u899A\u3048\u3089\u308C\u307E\u305B\u3093"),
+      wordItem7("l38-p2-a1-q3", "3", [text38("\u51AC\u3067\u3082\u30B9\u30A4\u30AB\u304C\uFF08\u98DF\u3079\u307E\u3059 \u2192 ", { kana: "\u3075\u3086\u3067\u3082\u30B9\u30A4\u30AB\u304C\uFF08\u305F\u3079\u307E\u3059 \u2192 " }), blank34(), text38("\uFF09\u3088\u3046\u306B\u306A\u308A\u307E\u3057\u305F\u3002")], "\u3075\u3086\u3067\u3082\u30B9\u30A4\u30AB\u304C\uFF08\u305F\u3079\u307E\u3059 \u2192 ____\uFF09\u3088\u3046\u306B\u306A\u308A\u307E\u3057\u305F\u3002", "\u98DF\u3079\u3089\u308C\u308B"),
+      wordItem7("l38-p2-a1-q4", "4", [text38("\u4ECA\u4ED5\u4E8B\u304C\u3068\u3066\u3082\u5FD9\u3057\u3044\u306E\u3067\u3001\u65E5\u66DC\u65E5\u3067\u3082\uFF08\u4F11\u307F\u307E\u3059 \u2192 ", { kana: "\u3044\u307E\u3057\u3054\u3068\u304C\u3068\u3066\u3082\u3044\u305D\u304C\u3057\u3044\u306E\u3067\u3001\u306B\u3061\u3088\u3046\u3073\u3067\u3082\uFF08\u3084\u3059\u307F\u307E\u3059 \u2192 " }), blank34(), text38("\uFF09\u3002")], "\u3044\u307E\u3057\u3054\u3068\u304C\u3068\u3066\u3082\u3044\u305D\u304C\u3057\u3044\u306E\u3067\u3001\u306B\u3061\u3088\u3046\u3073\u3067\u3082\uFF08\u3084\u3059\u307F\u307E\u3059 \u2192 ____\uFF09\u3002", "\u4F11\u3081\u307E\u305B\u3093"),
+      wordItem7("l38-p2-a1-q5", "5", [text38("\u99C5\u524D\u306E\u672C\u5C4B\u3067\u65E5\u672C\u8A9E\u306E\u30C6\u30FC\u30D7\u304C\uFF08\u8CB7\u3044\u307E\u3059 \u2192 ", { kana: "\u3048\u304D\u307E\u3048\u306E\u307B\u3093\u3084\u3067\u306B\u307B\u3093\u3054\u306E\u30C6\u30FC\u30D7\u304C\uFF08\u304B\u3044\u307E\u3059 \u2192 " }), blank34(), text38("\uFF09\u3067\u3057\u3087\u3046\u3002")], "\u3048\u304D\u307E\u3048\u306E\u307B\u3093\u3084\u3067\u306B\u307B\u3093\u3054\u306E\u30C6\u30FC\u30D7\u304C\uFF08\u304B\u3044\u307E\u3059 \u2192 ____\uFF09\u3067\u3057\u3087\u3046\u3002", "\u8CB7\u3048\u308B"),
+      wordItem7("l38-p2-a1-q6", "6", [text38("\u30CB\u30E5\u30FC\u30B9\u306B\u3088\u308B\u3068\u3001\u98DB\u884C\u6A5F\u306F\u96EA\u3067\uFF08\u98DB\u3073\u307E\u3059 \u2192 ", { kana: "\u30CB\u30E5\u30FC\u30B9\u306B\u3088\u308B\u3068\u3001\u3072\u3053\u3046\u304D\u306F\u3086\u304D\u3067\uFF08\u3068\u3073\u307E\u3059 \u2192 " }), blank34(), text38("\uFF09\u305D\u3046\u3067\u3059\u3002")], "\u30CB\u30E5\u30FC\u30B9\u306B\u3088\u308B\u3068\u3001\u3072\u3053\u3046\u304D\u306F\u3086\u304D\u3067\uFF08\u3068\u3073\u307E\u3059 \u2192 ____\uFF09\u305D\u3046\u3067\u3059\u3002", "\u98DB\u3079\u306A\u3044")
+    ]
+  },
+  {
+    id: "l38-p2-a2",
+    section: "practice_2",
+    order: 2,
+    title: "\u542C\u5F55\u97F3\uFF0C\u56DE\u7B54\u63D0\u95EE\u3002",
+    instruction: "",
+    interaction: "listening_answer",
+    answerUnit: "sentence",
+    responseScope: "answer_only",
+    responseScopeHint: "\u53EA\u5199\u56DE\u7B54\u53E5\u3002",
+    requiresAudio: true,
+    audio: { source: "textbook_exercise", url: audio37(2, 2), label: "\u7B2C38\u8BFE \u7EC3\u4E60II-2", transcript: { source: "asr", confidenceNote: "ASR \u8986\u76D6\u5168\u90E8\u9898\u53F7\u548C\u56DE\u7B54\uFF1B\u7B2C2\u9898\u5C06\u8BEF\u8BC6\u522B\u7684\u300C21\u6708\u300D\u6309\u8BED\u5883\u6821\u6B63\u4E3A\u300C\u51AC\u3067\u3082\u300D\u3002", text: "\u3082\u3046\u51FA\u304B\u3051\u3089\u308C\u307E\u3059\u304B\u3002\u306F\u3044\u3001\u51FA\u304B\u3051\u3089\u308C\u307E\u3059\u30021 \u82F1\u8A9E\u304C\u8A71\u305B\u307E\u3059\u304B\u3002\u3044\u3044\u3048\u30022 \u51AC\u3067\u3082\u5C71\u306B\u767B\u308C\u307E\u3059\u304B\u3002\u306F\u3044\u30023 \u660E\u65E5\u3001\u6765\u3089\u308C\u307E\u3059\u304B\u3002\u306F\u3044\u30024 \u3053\u306E\u30DB\u30C6\u30EB\u306F\u885B\u661F\u653E\u9001\u304C\u898B\u3089\u308C\u307E\u3059\u304B\u3002\u3044\u3044\u3048\u3002", segments: [
+      { itemNumber: "1", text: "\u3044\u3044\u3048\u3001\u8A71\u305B\u307E\u305B\u3093\u3002" },
+      { itemNumber: "2", text: "\u306F\u3044\u3001\u767B\u308C\u307E\u3059\u3002" },
+      { itemNumber: "3", text: "\u306F\u3044\u3001\u6765\u3089\u308C\u307E\u3059\u3002" },
+      { itemNumber: "4", text: "\u3044\u3044\u3048\u3001\u898B\u3089\u308C\u307E\u305B\u3093\u3002" }
+    ] } },
+    layout: [{ type: "example", content: { label: "[\u4F8B]", before: "\u3082\u3046\u51FA\u304B\u3051\u3089\u308C\u307E\u3059\u304B\u3002\uFF08\u306F\u3044\uFF09", beforeKana: "\u3082\u3046\u3067\u304B\u3051\u3089\u308C\u307E\u3059\u304B\u3002\uFF08\u306F\u3044\uFF09", after: [text38("\u306F\u3044\u3001\u51FA\u304B\u3051\u3089\u308C\u307E\u3059\u3002", { kana: "\u306F\u3044\u3001\u3067\u304B\u3051\u3089\u308C\u307E\u3059\u3002" })] } }],
+    items: [
+      sentenceItem10("l38-p2-a2-q1", "1", "\u82F1\u8A9E\u304C\u8A71\u305B\u307E\u3059\u304B\u3002\uFF08\u3044\u3044\u3048\uFF09", "\u3048\u3044\u3054\u304C\u306F\u306A\u305B\u307E\u3059\u304B\u3002\uFF08\u3044\u3044\u3048\uFF09", "\u3044\u3044\u3048\u3001\u8A71\u305B\u307E\u305B\u3093\u3002", "audio"),
+      sentenceItem10("l38-p2-a2-q2", "2", "\u51AC\u3067\u3082\u5C71\u306B\u767B\u308C\u307E\u3059\u304B\u3002\uFF08\u306F\u3044\uFF09", "\u3075\u3086\u3067\u3082\u3084\u307E\u306B\u306E\u307C\u308C\u307E\u3059\u304B\u3002\uFF08\u306F\u3044\uFF09", "\u306F\u3044\u3001\u767B\u308C\u307E\u3059\u3002", "audio"),
+      sentenceItem10("l38-p2-a2-q3", "3", "\u660E\u65E5\u3001\u6765\u3089\u308C\u307E\u3059\u304B\u3002\uFF08\u306F\u3044\uFF09", "\u3042\u3057\u305F\u3001\u3053\u3089\u308C\u307E\u3059\u304B\u3002\uFF08\u306F\u3044\uFF09", "\u306F\u3044\u3001\u6765\u3089\u308C\u307E\u3059\u3002", "audio"),
+      sentenceItem10("l38-p2-a2-q4", "4", "\u3053\u306E\u30DB\u30C6\u30EB\u306F\u885B\u661F\u653E\u9001\u304C\u898B\u3089\u308C\u307E\u3059\u304B\u3002\uFF08\u3044\u3044\u3048\uFF09", "\u3053\u306E\u30DB\u30C6\u30EB\u306F\u3048\u3044\u305B\u3044\u307B\u3046\u305D\u3046\u304C\u307F\u3089\u308C\u307E\u3059\u304B\u3002\uFF08\u3044\u3044\u3048\uFF09", "\u3044\u3044\u3048\u3001\u898B\u3089\u308C\u307E\u305B\u3093\u3002", "audio")
+    ].map((item2) => ({ ...item2, responseScope: "answer_only", responseScopeHint: "\u53EA\u5199\u56DE\u7B54\u53E5\u3002" }))
+  },
+  {
+    id: "l38-p2-a3",
+    section: "practice_2",
+    order: 3,
+    title: "\u8BFB\u4E0B\u9762\u7684\u4E66\u4FE1\uFF0C\u4E0E\u4E66\u4FE1\u5185\u5BB9\u4E00\u81F4\u7684\u5728\uFF08\u3000\uFF09\u4E2D\u753B\u25CB\uFF0C\u4E0D\u4E00\u81F4\u7684\u753B\xD7\u3002",
+    instruction: "",
+    interaction: "true_false",
+    answerUnit: "boolean",
+    responseScope: "boolean_only",
+    layout: [{ type: "passage", title: "", lines: [
+      text38("\u7530\u4E2D\u3055\u3093\u3001\u304A\u5143\u6C17\u3067\u3059\u304B\u3002", { kana: "\u305F\u306A\u304B\u3055\u3093\u3001\u304A\u3052\u3093\u304D\u3067\u3059\u304B\u3002" }),
+      text38("\u6771\u4EAC\u306B\u6765\u30661\u304B\u6708\u3067\u3059\u3002\u4ED5\u4E8B\u306B\u3082\u305A\u3044\u3076\u3093\u6163\u308C\u3066\u3001\u4F1A\u793E\u306E\u4EBA\u3068\u65E5\u672C\u8A9E\u3067\u8A71\u305B\u308B\u3088\u3046\u306B\u306A\u308A\u307E\u3057\u305F\u3002\u3067\u3082\u3001\u4E00\u4EBA\u66AE\u3089\u3057\u306F\u5C11\u3057\u5BC2\u3057\u3044\u3067\u3059\u3002", { kana: "\u3068\u3046\u304D\u3087\u3046\u306B\u304D\u3066\u3044\u3063\u304B\u3052\u3064\u3067\u3059\u3002\u3057\u3054\u3068\u306B\u3082\u305A\u3044\u3076\u3093\u306A\u308C\u3066\u3001\u304B\u3044\u3057\u3083\u306E\u3072\u3068\u3068\u306B\u307B\u3093\u3054\u3067\u306F\u306A\u305B\u308B\u3088\u3046\u306B\u306A\u308A\u307E\u3057\u305F\u3002\u3067\u3082\u3001\u3072\u3068\u308A\u3050\u3089\u3057\u306F\u3059\u3053\u3057\u3055\u3073\u3057\u3044\u3067\u3059\u3002" }),
+      text38("\u5148\u9031\u98A8\u90AA\u3092\u5F15\u3044\u3066\u3057\u307E\u3044\u307E\u3057\u305F\u3002\u9AD8\u3044\u71B1\u304C\u3042\u3063\u3066\u3001\u4F55\u3082\u98DF\u3079\u3089\u308C\u307E\u305B\u3093\u3067\u3057\u305F\u3002\u65E9\u304F\u6CBB\u308B\u3088\u3046\u306B\u3001\u75C5\u9662\u306B\u884C\u3063\u3066\u85AC\u3092\u3082\u3089\u3044\u307E\u3057\u305F\u304C\u30013\u65E5\u9593\u4F1A\u793E\u3092\u4F11\u3093\u3067\u3057\u307E\u3044\u307E\u3057\u305F\u3002", { kana: "\u305B\u3093\u3057\u3085\u3046\u304B\u305C\u3092\u3072\u3044\u3066\u3057\u307E\u3044\u307E\u3057\u305F\u3002\u305F\u304B\u3044\u306D\u3064\u304C\u3042\u3063\u3066\u3001\u306A\u306B\u3082\u305F\u3079\u3089\u308C\u307E\u305B\u3093\u3067\u3057\u305F\u3002\u306F\u3084\u304F\u306A\u304A\u308B\u3088\u3046\u306B\u3001\u3073\u3087\u3046\u3044\u3093\u306B\u3044\u3063\u3066\u304F\u3059\u308A\u3092\u3082\u3089\u3044\u307E\u3057\u305F\u304C\u3001\u307F\u3063\u304B\u304B\u3093\u304B\u3044\u3057\u3083\u3092\u3084\u3059\u3093\u3067\u3057\u307E\u3044\u307E\u3057\u305F\u3002" }),
+      text38("\u3053\u308C\u304B\u3089\u306F\u5065\u5EB7\u306B\u3082\u5341\u5206\u6C17\u3092\u3064\u3051\u308B\u3088\u3046\u306B\u3057\u305F\u3044\u3068\u601D\u3044\u307E\u3059\u3002\u7530\u4E2D\u3055\u3093\u3082\u304A\u4F53\u3092\u5927\u5207\u306B\u3057\u3066\u304F\u3060\u3055\u3044\u3002", { kana: "\u3053\u308C\u304B\u3089\u306F\u3051\u3093\u3053\u3046\u306B\u3082\u3058\u3085\u3046\u3076\u3093\u304D\u3092\u3064\u3051\u308B\u3088\u3046\u306B\u3057\u305F\u3044\u3068\u304A\u3082\u3044\u307E\u3059\u3002\u305F\u306A\u304B\u3055\u3093\u3082\u304A\u304B\u3089\u3060\u3092\u305F\u3044\u305B\u3064\u306B\u3057\u3066\u304F\u3060\u3055\u3044\u3002" }),
+      text38("\u307E\u305F\u624B\u7D19\u3092\u66F8\u304D\u307E\u3059\u3002\u5289\u82F1", { kana: "\u307E\u305F\u3066\u304C\u307F\u3092\u304B\u304D\u307E\u3059\u3002\u308A\u3085\u3046\u3048\u3044" })
+    ] }, { type: "example", content: { label: "[\u4F8B]", before: "\u5289\u3055\u3093\u306F\u7530\u4E2D\u3055\u3093\u306B\u624B\u7D19\u3092\u66F8\u304D\u307E\u3057\u305F\u3002", beforeKana: "\u308A\u3085\u3046\u3055\u3093\u306F\u305F\u306A\u304B\u3055\u3093\u306B\u3066\u304C\u307F\u3092\u304B\u304D\u307E\u3057\u305F\u3002", after: [text38("\u25CB")] } }],
+    items: [
+      booleanItem("l38-p2-a3-q1", "1", "\u5289\u3055\u3093\u306F\u4E2D\u56FD\u306B\u3044\u307E\u3059\u3002", "\u308A\u3085\u3046\u3055\u3093\u306F\u3061\u3085\u3046\u3054\u304F\u306B\u3044\u307E\u3059\u3002", false),
+      booleanItem("l38-p2-a3-q2", "2", "\u75C5\u9662\u306B\u884C\u3063\u305F\u306E\u3067\u3001\u98A8\u90AA\u306F\u3059\u3050\u6CBB\u308A\u307E\u3057\u305F\u3002", "\u3073\u3087\u3046\u3044\u3093\u306B\u3044\u3063\u305F\u306E\u3067\u3001\u304B\u305C\u306F\u3059\u3050\u306A\u304A\u308A\u307E\u3057\u305F\u3002", false),
+      booleanItem("l38-p2-a3-q3", "3", "\u5289\u3055\u3093\u306F\u4F1A\u793E\u306E\u4EBA\u3068\u65E5\u672C\u8A9E\u3067\u8A71\u3057\u307E\u3059\u3002", "\u308A\u3085\u3046\u3055\u3093\u306F\u304B\u3044\u3057\u3083\u306E\u3072\u3068\u3068\u306B\u307B\u3093\u3054\u3067\u306F\u306A\u3057\u307E\u3059\u3002", true),
+      booleanItem("l38-p2-a3-q4", "4", "\u3053\u308C\u304B\u3089\u5289\u3055\u3093\u306F\u5065\u5EB7\u306B\u6C17\u3092\u3064\u3051\u3088\u3046\u3068\u601D\u3063\u3066\u3044\u307E\u3059\u3002", "\u3053\u308C\u304B\u3089\u308A\u3085\u3046\u3055\u3093\u306F\u3051\u3093\u3053\u3046\u306B\u304D\u3092\u3064\u3051\u3088\u3046\u3068\u304A\u3082\u3063\u3066\u3044\u307E\u3059\u3002", true)
+    ]
+  },
+  {
+    id: "l38-p2-a4",
+    section: "practice_2",
+    order: 4,
+    title: "\u5C06\u4E0B\u9762\u7684\u53E5\u5B50\u8BD1\u6210\u65E5\u8BED\u3002",
+    instruction: "",
+    interaction: "translation",
+    answerUnit: "sentence",
+    responseScope: "sentence_only",
+    layout: [],
+    items: [
+      sentenceItem10("l38-p2-a4-q1", "1", "\u5C0F\u6234\u4F1A\u8BF4\u82F1\u8BED\u3002", "", "\u6234\u3055\u3093\u306F\u82F1\u8A9E\u304C\u8A71\u305B\u307E\u3059\u3002", "prompt"),
+      sentenceItem10("l38-p2-a4-q2", "2", "\u4F24\u5DF2\u7ECF\u75CA\u6108\uFF0C\u80FD\u591F\u8D70\u8DEF\u4E86\u3002", "", "\u3051\u304C\u306F\u3082\u3046\u6CBB\u3063\u3066\u3001\u6B69\u3051\u308B\u3088\u3046\u306B\u306A\u308A\u307E\u3057\u305F\u3002", "prompt"),
+      sentenceItem10("l38-p2-a4-q3", "3", "\u4E3A\u4E86\u4FDD\u6301\u8EAB\u4F53\u5065\u5EB7\uFF0C\uFF08\u4F60\u5E73\u65F6\uFF09\u505A\u70B9\u4EC0\u4E48\u5417\uFF1F\u2014\u2014\u662F\u7684\uFF0C\uFF08\u6211\uFF09\u6BCF\u5929\u65E9\u6668\u575A\u6301\u6563\u6B651\u4E2A\u5C0F\u65F6\u3002", "", "\u5065\u5EB7\u306E\u305F\u3081\u306B\u3001\u4F55\u304B\u3057\u3066\u3044\u307E\u3059\u304B\u3002\u2014\u2014\u306F\u3044\u3001\u6BCE\u671D1\u6642\u9593\u6563\u6B69\u3059\u308B\u3088\u3046\u306B\u3057\u3066\u3044\u307E\u3059\u3002", "prompt")
+    ]
+  }
+];
+var lesson38Practice = {
+  lessonId: "lesson38",
+  title: "\u7B2C38\u8BFE \u6234\u3055\u3093\u306F\u82F1\u8A9E\u304C\u8A71\u305B\u307E\u3059",
+  sourcePages: [{ pageNo: 158, imagePath: page39(158) }, { pageNo: 159, imagePath: page39(159) }, { pageNo: 160, imagePath: page39(160) }],
+  activities: activities37
+};
+
+// practice/lesson39-practice-data.ts
+var lesson39Practice = {
+  "lessonId": "lesson39",
+  "title": "\u7B2C39\u8BFE \u7EC3\u4E60",
+  "sourcePages": [
+    {
+      "pageNo": 168,
+      "imagePath": "../course-assets/by-lesson/lesson39/page168.webp"
+    },
+    {
+      "pageNo": 169,
+      "imagePath": "../course-assets/by-lesson/lesson39/page169.webp"
+    },
+    {
+      "pageNo": 170,
+      "imagePath": "../course-assets/by-lesson/lesson39/page170.webp"
+    }
+  ],
+  "activities": [
+    {
+      "id": "l39-p1-a1",
+      "section": "practice_1",
+      "order": 1,
+      "title": "\u4EFF\u7167\u4F8B\u53E5\uFF0C\u5C06\uFF08\u3000\u3000\uFF09\u4E2D\u7684\u52A8\u8BCD\u53D8\u6210\u9002\u5F53\u7684\u5F62\u5F0F\u8FDB\u884C\u7EC3\u4E60\u3002",
+      "instruction": "",
+      "interaction": "fill_blank",
+      "answerUnit": "word",
+      "responseScope": "word_only",
+      "layout": [],
+      "items": [],
+      "itemGroups": [
+        {
+          "id": "l39-p1-a1-g1",
+          "example": {
+            "label": "[\u4F8B1]",
+            "after": [
+              {
+                "type": "text",
+                "text": "\u68EE\u3055\u3093\u306F\u5098\u3092\uFF08\u6301\u3061\u307E\u3059 \u2192 \u6301\u3063\u3066\uFF09\u51FA\u304B\u3051\u307E\u3057\u305F\u3002",
+                "kana": "\u3082\u308A\u3055\u3093\u306F\u304B\u3055\u3092\uFF08\u3082\u3061\u307E\u3059 \u2192 \u3082\u3063\u3066\uFF09\u3067\u304B\u3051\u307E\u3057\u305F\u3002"
+              }
+            ],
+            "afterKana": "\u3082\u308A\u3055\u3093\u306F\u304B\u3055\u3092\uFF08\u3082\u3061\u307E\u3059 \u2192 \u3082\u3063\u3066\uFF09\u3067\u304B\u3051\u307E\u3057\u305F\u3002"
+          },
+          "items": [
+            {
+              "id": "l39-p1-a1-q1",
+              "number": "1",
+              "prompt": [
+                {
+                  "type": "text",
+                  "text": "\u51AC\u306F\u5E3D\u5B50\u3092\uFF08\u304B\u3076\u308A\u307E\u3059 \u2192 ",
+                  "kana": "\u3075\u3086\u306F\u307C\u3046\u3057\u3092\uFF08\u304B\u3076\u308A\u307E\u3059 \u2192 "
+                },
+                {
+                  "type": "blank",
+                  "slotId": "answer",
+                  "display": "underline"
+                },
+                {
+                  "type": "text",
+                  "text": "\uFF09\u51FA\u304B\u3051\u307E\u3059\u3002",
+                  "kana": "\uFF09\u3067\u304B\u3051\u307E\u3059\u3002"
+                }
+              ],
+              "inputSlots": [
+                {
+                  "id": "answer",
+                  "expectedUnit": "conjugated_form",
+                  "width": "medium",
+                  "placeholder": "\u586B\u5199\u53D8\u5F62\u540E\u7684\u8BCD\u8BED"
+                }
+              ],
+              "answerSource": "prompt",
+              "evaluationMode": "exact",
+              "answer": {
+                "slotValues": {
+                  "answer": "\u304B\u3076\u3063\u3066"
+                }
+              },
+              "exampleGroupId": "l39-p1-a1-g1"
+            },
+            {
+              "id": "l39-p1-a1-q2",
+              "number": "2",
+              "prompt": [
+                {
+                  "type": "text",
+                  "text": "\u6BCD\u306B\u3082\u3089\u3063\u305F\u30CD\u30C3\u30AF\u30EC\u30B9\u3092\uFF08\u3057\u307E\u3059 \u2192 ",
+                  "kana": "\u306F\u306F\u306B\u3082\u3089\u3063\u305F\u30CD\u30C3\u30AF\u30EC\u30B9\u3092\uFF08\u3057\u307E\u3059 \u2192 "
+                },
+                {
+                  "type": "blank",
+                  "slotId": "answer",
+                  "display": "underline"
+                },
+                {
+                  "type": "text",
+                  "text": "\uFF09\u30D1\u30FC\u30C6\u30A3\u30FC\u306B\u884C\u304D\u307E\u3057\u305F\u3002",
+                  "kana": "\uFF09\u30D1\u30FC\u30C6\u30A3\u30FC\u306B\u3044\u304D\u307E\u3057\u305F\u3002"
+                }
+              ],
+              "inputSlots": [
+                {
+                  "id": "answer",
+                  "expectedUnit": "conjugated_form",
+                  "width": "medium",
+                  "placeholder": "\u586B\u5199\u53D8\u5F62\u540E\u7684\u8BCD\u8BED"
+                }
+              ],
+              "answerSource": "prompt",
+              "evaluationMode": "exact",
+              "answer": {
+                "slotValues": {
+                  "answer": "\u3057\u3066"
+                }
+              },
+              "exampleGroupId": "l39-p1-a1-g1"
+            },
+            {
+              "id": "l39-p1-a1-q3",
+              "number": "3",
+              "prompt": [
+                {
+                  "type": "text",
+                  "text": "\u6642\u9593\u304C\u306A\u304B\u3063\u305F\u306E\u3067\u3001\u30BF\u30AF\u30B7\u30FC\u306B\uFF08\u4E57\u308A\u307E\u3059 \u2192 ",
+                  "kana": "\u3058\u304B\u3093\u304C\u306A\u304B\u3063\u305F\u306E\u3067\u3001\u30BF\u30AF\u30B7\u30FC\u306B\uFF08\u306E\u308A\u307E\u3059 \u2192 "
+                },
+                {
+                  "type": "blank",
+                  "slotId": "answer",
+                  "display": "underline"
+                },
+                {
+                  "type": "text",
+                  "text": "\uFF09\u6765\u307E\u3057\u305F\u3002",
+                  "kana": "\uFF09\u304D\u307E\u3057\u305F\u3002"
+                }
+              ],
+              "inputSlots": [
+                {
+                  "id": "answer",
+                  "expectedUnit": "conjugated_form",
+                  "width": "medium",
+                  "placeholder": "\u586B\u5199\u53D8\u5F62\u540E\u7684\u8BCD\u8BED"
+                }
+              ],
+              "answerSource": "prompt",
+              "evaluationMode": "exact",
+              "answer": {
+                "slotValues": {
+                  "answer": "\u4E57\u3063\u3066"
+                }
+              },
+              "exampleGroupId": "l39-p1-a1-g1"
+            },
+            {
+              "id": "l39-p1-a1-q4",
+              "number": "4",
+              "prompt": [
+                {
+                  "type": "text",
+                  "text": "\u4ECA\u65E5\u306F\u8377\u7269\u304C\u5C11\u306A\u3044\u306E\u3067\u3001\uFF08\u6B69\u304D\u307E\u3059 \u2192 ",
+                  "kana": "\u304D\u3087\u3046\u306F\u306B\u3082\u3064\u304C\u3059\u304F\u306A\u3044\u306E\u3067\u3001\uFF08\u3042\u308B\u304D\u307E\u3059 \u2192 "
+                },
+                {
+                  "type": "blank",
+                  "slotId": "answer",
+                  "display": "underline"
+                },
+                {
+                  "type": "text",
+                  "text": "\uFF09\u5E30\u308A\u307E\u3059\u3002",
+                  "kana": "\uFF09\u304B\u3048\u308A\u307E\u3059\u3002"
+                }
+              ],
+              "inputSlots": [
+                {
+                  "id": "answer",
+                  "expectedUnit": "conjugated_form",
+                  "width": "medium",
+                  "placeholder": "\u586B\u5199\u53D8\u5F62\u540E\u7684\u8BCD\u8BED"
+                }
+              ],
+              "answerSource": "prompt",
+              "evaluationMode": "exact",
+              "answer": {
+                "slotValues": {
+                  "answer": "\u6B69\u3044\u3066"
+                }
+              },
+              "exampleGroupId": "l39-p1-a1-g1"
+            }
+          ]
+        },
+        {
+          "id": "l39-p1-a1-g2",
+          "example": {
+            "label": "[\u4F8B2]",
+            "after": [
+              {
+                "type": "text",
+                "text": "\u68EE\u3055\u3093\u306F\u5098\u3092\uFF08\u6301\u3061\u307E\u305B\u3093 \u2192 \u6301\u305F\u306A\u3044\u3067\uFF09\u884C\u304D\u307E\u3057\u305F\u3002",
+                "kana": "\u3082\u308A\u3055\u3093\u306F\u304B\u3055\u3092\uFF08\u3082\u3061\u307E\u305B\u3093 \u2192 \u3082\u305F\u306A\u3044\u3067\uFF09\u3044\u304D\u307E\u3057\u305F\u3002"
+              }
+            ],
+            "afterKana": "\u3082\u308A\u3055\u3093\u306F\u304B\u3055\u3092\uFF08\u3082\u3061\u307E\u305B\u3093 \u2192 \u3082\u305F\u306A\u3044\u3067\uFF09\u3044\u304D\u307E\u3057\u305F\u3002"
+          },
+          "items": [
+            {
+              "id": "l39-p1-a1-q5",
+              "number": "5",
+              "prompt": [
+                {
+                  "type": "text",
+                  "text": "\u7956\u6BCD\u306F70\u6B73\u3067\u3059\u304C\u3001\u773C\u93E1\u3092\uFF08\u304B\u3051\u307E\u305B\u3093 \u2192 ",
+                  "kana": "\u305D\u307C\u306F\u306A\u306A\u3058\u3085\u3063\u3055\u3044\u3067\u3059\u304C\u3001\u3081\u304C\u306D\u3092\uFF08\u304B\u3051\u307E\u305B\u3093 \u2192 "
+                },
+                {
+                  "type": "blank",
+                  "slotId": "answer",
+                  "display": "underline"
+                },
+                {
+                  "type": "text",
+                  "text": "\uFF09\u672C\u3092\u8AAD\u307F\u307E\u3059\u3002",
+                  "kana": "\uFF09\u307B\u3093\u3092\u3088\u307F\u307E\u3059\u3002"
+                }
+              ],
+              "inputSlots": [
+                {
+                  "id": "answer",
+                  "expectedUnit": "conjugated_form",
+                  "width": "medium",
+                  "placeholder": "\u586B\u5199\u53D8\u5F62\u540E\u7684\u8BCD\u8BED"
+                }
+              ],
+              "answerSource": "prompt",
+              "evaluationMode": "exact",
+              "answer": {
+                "slotValues": {
+                  "answer": "\u304B\u3051\u306A\u3044\u3067"
+                }
+              },
+              "exampleGroupId": "l39-p1-a1-g2"
+            },
+            {
+              "id": "l39-p1-a1-q6",
+              "number": "6",
+              "prompt": [
+                {
+                  "type": "text",
+                  "text": "\u7802\u7CD6\u3092\uFF08\u5165\u308C\u307E\u305B\u3093 \u2192 ",
+                  "kana": "\u3055\u3068\u3046\u3092\uFF08\u3044\u308C\u307E\u305B\u3093 \u2192 "
+                },
+                {
+                  "type": "blank",
+                  "slotId": "answer",
+                  "display": "underline"
+                },
+                {
+                  "type": "text",
+                  "text": "\uFF09\u30B3\u30FC\u30D2\u30FC\u3092\u98F2\u3093\u3067\u307F\u307E\u3059\u3002",
+                  "kana": "\uFF09\u30B3\u30FC\u30D2\u30FC\u3092\u306E\u3093\u3067\u307F\u307E\u3059\u3002"
+                }
+              ],
+              "inputSlots": [
+                {
+                  "id": "answer",
+                  "expectedUnit": "conjugated_form",
+                  "width": "medium",
+                  "placeholder": "\u586B\u5199\u53D8\u5F62\u540E\u7684\u8BCD\u8BED"
+                }
+              ],
+              "answerSource": "prompt",
+              "evaluationMode": "exact",
+              "answer": {
+                "slotValues": {
+                  "answer": "\u5165\u308C\u306A\u3044\u3067"
+                }
+              },
+              "exampleGroupId": "l39-p1-a1-g2"
+            },
+            {
+              "id": "l39-p1-a1-q7",
+              "number": "7",
+              "prompt": [
+                {
+                  "type": "text",
+                  "text": "\u8A71\u3092\u3088\u304F\uFF08\u805E\u304D\u307E\u305B\u3093 \u2192 ",
+                  "kana": "\u306F\u306A\u3057\u3092\u3088\u304F\uFF08\u304D\u304D\u307E\u305B\u3093 \u2192 "
+                },
+                {
+                  "type": "blank",
+                  "slotId": "answer",
+                  "display": "underline"
+                },
+                {
+                  "type": "text",
+                  "text": "\uFF09\u66F8\u3044\u305F\u306E\u3067\u3001\u9593\u9055\u3048\u307E\u3057\u305F\u3002",
+                  "kana": "\uFF09\u304B\u3044\u305F\u306E\u3067\u3001\u307E\u3061\u304C\u3048\u307E\u3057\u305F\u3002"
+                }
+              ],
+              "inputSlots": [
+                {
+                  "id": "answer",
+                  "expectedUnit": "conjugated_form",
+                  "width": "medium",
+                  "placeholder": "\u586B\u5199\u53D8\u5F62\u540E\u7684\u8BCD\u8BED"
+                }
+              ],
+              "answerSource": "prompt",
+              "evaluationMode": "exact",
+              "answer": {
+                "slotValues": {
+                  "answer": "\u805E\u304B\u306A\u3044\u3067"
+                }
+              },
+              "exampleGroupId": "l39-p1-a1-g2"
+            },
+            {
+              "id": "l39-p1-a1-q8",
+              "number": "8",
+              "prompt": [
+                {
+                  "type": "text",
+                  "text": "\u660E\u65E5\u306E\u30B9\u30D4\u30FC\u30C1\u306F\u539F\u7A3F\u3092\uFF08\u898B\u307E\u305B\u3093 \u2192 ",
+                  "kana": "\u3042\u3057\u305F\u306E\u30B9\u30D4\u30FC\u30C1\u306F\u3052\u3093\u3053\u3046\u3092\uFF08\u307F\u307E\u305B\u3093 \u2192 "
+                },
+                {
+                  "type": "blank",
+                  "slotId": "answer",
+                  "display": "underline"
+                },
+                {
+                  "type": "text",
+                  "text": "\uFF09\u3059\u308B\u3064\u3082\u308A\u3067\u3059\u3002",
+                  "kana": "\uFF09\u3059\u308B\u3064\u3082\u308A\u3067\u3059\u3002"
+                }
+              ],
+              "inputSlots": [
+                {
+                  "id": "answer",
+                  "expectedUnit": "conjugated_form",
+                  "width": "medium",
+                  "placeholder": "\u586B\u5199\u53D8\u5F62\u540E\u7684\u8BCD\u8BED"
+                }
+              ],
+              "answerSource": "prompt",
+              "evaluationMode": "exact",
+              "answer": {
+                "slotValues": {
+                  "answer": "\u898B\u306A\u3044\u3067"
+                }
+              },
+              "exampleGroupId": "l39-p1-a1-g2"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l39-p1-a2",
+      "section": "practice_1",
+      "order": 2,
+      "title": "\u4EFF\u7167\u4F8B\u53E5\u66FF\u6362\u753B\u7EBF\u90E8\u5206\u8FDB\u884C\u7EC3\u4E60\u3002",
+      "instruction": "",
+      "interaction": "pattern_substitution",
+      "answerUnit": "sentence",
+      "responseScope": "sentence_only",
+      "layout": [],
+      "items": [],
+      "itemGroups": [
+        {
+          "id": "l39-p1-a2-g1",
+          "example": {
+            "label": "[\u4F8B1]",
+            "after": [
+              {
+                "type": "text",
+                "text": "\u9053\u8DEF\u5DE5\u4E8B",
+                "kana": "\u3069\u3046\u308D\u3053\u3046\u3058",
+                "underline": true,
+                "substitutionKey": "part1"
+              },
+              {
+                "type": "text",
+                "text": "\u306E\u305F\u3081\u306B\u3001"
+              },
+              {
+                "type": "text",
+                "text": "\u9053\u304C\u8FBC\u3093\u3067\u3044\u307E\u3059",
+                "kana": "\u307F\u3061\u304C\u3053\u3093\u3067\u3044\u307E\u3059",
+                "underline": true,
+                "substitutionKey": "part2"
+              },
+              {
+                "type": "text",
+                "text": "\u3002"
+              }
+            ],
+            "before": "\u9053\u8DEF\u5DE5\u4E8B\uFF0F\u9053\u304C\u8FBC\u3093\u3067\u3044\u307E\u3059",
+            "beforeKana": "\u3069\u3046\u308D\u3053\u3046\u3058\uFF0F\u307F\u3061\u304C\u3053\u3093\u3067\u3044\u307E\u3059",
+            "afterKana": "\u3069\u3046\u308D\u3053\u3046\u3058\u306E\u305F\u3081\u306B\u3001\u307F\u3061\u304C\u3053\u3093\u3067\u3044\u307E\u3059\u3002"
+          },
+          "items": [
+            {
+              "id": "l39-p1-a2-q1",
+              "number": "1",
+              "prompt": [
+                {
+                  "type": "text",
+                  "text": "\u75C5\u6C17\uFF0F\u6B20\u5E2D\u3057\u307E\u3057\u305F"
+                }
+              ],
+              "answerSource": "example_transform",
+              "evaluationMode": "exact",
+              "inputSlots": [
+                {
+                  "id": "answer",
+                  "expectedUnit": "sentence",
+                  "width": "long",
+                  "placeholder": "\u586B\u5199\u5B8C\u6574\u53E5\u5B50"
+                }
+              ],
+              "answer": {
+                "slotValues": {
+                  "answer": "\u75C5\u6C17\u306E\u305F\u3081\u306B\u3001\u6B20\u5E2D\u3057\u307E\u3057\u305F\u3002"
+                }
+              },
+              "promptKana": "\u3073\u3087\u3046\u304D\uFF0F\u3051\u3063\u305B\u304D\u3057\u307E\u3057\u305F",
+              "exampleGroupId": "l39-p1-a2-g1"
+            },
+            {
+              "id": "l39-p1-a2-q2",
+              "number": "2",
+              "prompt": [
+                {
+                  "type": "text",
+                  "text": "\u6545\u969C\uFF0F\u3053\u306E\u96FB\u8A71\u306F\u4F7F\u3048\u307E\u305B\u3093"
+                }
+              ],
+              "answerSource": "example_transform",
+              "evaluationMode": "exact",
+              "inputSlots": [
+                {
+                  "id": "answer",
+                  "expectedUnit": "sentence",
+                  "width": "long",
+                  "placeholder": "\u586B\u5199\u5B8C\u6574\u53E5\u5B50"
+                }
+              ],
+              "answer": {
+                "slotValues": {
+                  "answer": "\u6545\u969C\u306E\u305F\u3081\u306B\u3001\u3053\u306E\u96FB\u8A71\u306F\u4F7F\u3048\u307E\u305B\u3093\u3002"
+                }
+              },
+              "promptKana": "\u3053\u3057\u3087\u3046\uFF0F\u3053\u306E\u3067\u3093\u308F\u306F\u3064\u304B\u3048\u307E\u305B\u3093",
+              "exampleGroupId": "l39-p1-a2-g1"
+            },
+            {
+              "id": "l39-p1-a2-q3",
+              "number": "3",
+              "prompt": [
+                {
+                  "type": "text",
+                  "text": "\u8CB8\u3057\u5207\u308A\uFF0F\u4E00\u822C\u306E\u4EBA\u306F\u5165\u308C\u307E\u305B\u3093"
+                }
+              ],
+              "answerSource": "example_transform",
+              "evaluationMode": "exact",
+              "inputSlots": [
+                {
+                  "id": "answer",
+                  "expectedUnit": "sentence",
+                  "width": "long",
+                  "placeholder": "\u586B\u5199\u5B8C\u6574\u53E5\u5B50"
+                }
+              ],
+              "answer": {
+                "slotValues": {
+                  "answer": "\u8CB8\u3057\u5207\u308A\u306E\u305F\u3081\u306B\u3001\u4E00\u822C\u306E\u4EBA\u306F\u5165\u308C\u307E\u305B\u3093\u3002"
+                }
+              },
+              "promptKana": "\u304B\u3057\u304D\u308A\uFF0F\u3044\u3063\u3071\u3093\u306E\u3072\u3068\u306F\u306F\u3044\u308C\u307E\u305B\u3093",
+              "exampleGroupId": "l39-p1-a2-g1"
+            },
+            {
+              "id": "l39-p1-a2-q4",
+              "number": "4",
+              "prompt": [
+                {
+                  "type": "text",
+                  "text": "\u53F0\u98A8\uFF0F\u97F3\u697D\u4F1A\u306F\u4E2D\u6B62\u3067\u3059"
+                }
+              ],
+              "answerSource": "example_transform",
+              "evaluationMode": "exact",
+              "inputSlots": [
+                {
+                  "id": "answer",
+                  "expectedUnit": "sentence",
+                  "width": "long",
+                  "placeholder": "\u586B\u5199\u5B8C\u6574\u53E5\u5B50"
+                }
+              ],
+              "answer": {
+                "slotValues": {
+                  "answer": "\u53F0\u98A8\u306E\u305F\u3081\u306B\u3001\u97F3\u697D\u4F1A\u306F\u4E2D\u6B62\u3067\u3059\u3002"
+                }
+              },
+              "promptKana": "\u305F\u3044\u3075\u3046\uFF0F\u304A\u3093\u304C\u304F\u304B\u3044\u306F\u3061\u3085\u3046\u3057\u3067\u3059",
+              "exampleGroupId": "l39-p1-a2-g1"
+            },
+            {
+              "id": "l39-p1-a2-q5",
+              "number": "5",
+              "prompt": [
+                {
+                  "type": "text",
+                  "text": "\u5730\u9707\uFF0F\u5BB6\u304C\u58CA\u308C\u307E\u3057\u305F"
+                }
+              ],
+              "answerSource": "example_transform",
+              "evaluationMode": "exact",
+              "inputSlots": [
+                {
+                  "id": "answer",
+                  "expectedUnit": "sentence",
+                  "width": "long",
+                  "placeholder": "\u586B\u5199\u5B8C\u6574\u53E5\u5B50"
+                }
+              ],
+              "answer": {
+                "slotValues": {
+                  "answer": "\u5730\u9707\u306E\u305F\u3081\u306B\u3001\u5BB6\u304C\u58CA\u308C\u307E\u3057\u305F\u3002"
+                }
+              },
+              "promptKana": "\u3058\u3057\u3093\uFF0F\u3044\u3048\u304C\u3053\u308F\u308C\u307E\u3057\u305F",
+              "exampleGroupId": "l39-p1-a2-g1"
+            },
+            {
+              "id": "l39-p1-a2-q6",
+              "number": "6",
+              "prompt": [
+                {
+                  "type": "text",
+                  "text": "\u96EA\uFF0F\u30D0\u30B9\u304C\u9045\u308C\u3066\u3044\u307E\u3059"
+                }
+              ],
+              "answerSource": "example_transform",
+              "evaluationMode": "exact",
+              "inputSlots": [
+                {
+                  "id": "answer",
+                  "expectedUnit": "sentence",
+                  "width": "long",
+                  "placeholder": "\u586B\u5199\u5B8C\u6574\u53E5\u5B50"
+                }
+              ],
+              "answer": {
+                "slotValues": {
+                  "answer": "\u96EA\u306E\u305F\u3081\u306B\u3001\u30D0\u30B9\u304C\u9045\u308C\u3066\u3044\u307E\u3059\u3002"
+                }
+              },
+              "promptKana": "\u3086\u304D\uFF0F\u30D0\u30B9\u304C\u304A\u304F\u308C\u3066\u3044\u307E\u3059",
+              "exampleGroupId": "l39-p1-a2-g1"
+            }
+          ]
+        },
+        {
+          "id": "l39-p1-a2-g2",
+          "example": {
+            "label": "[\u4F8B2]",
+            "after": [
+              {
+                "type": "text",
+                "text": "\u4E8B\u6545\u304C\u3042\u3063\u305F",
+                "kana": "\u3058\u3053\u304C\u3042\u3063\u305F",
+                "underline": true,
+                "substitutionKey": "part1"
+              },
+              {
+                "type": "text",
+                "text": "\u305F\u3081\u306B\u3001"
+              },
+              {
+                "type": "text",
+                "text": "\u96FB\u8ECA\u304C\u6B62\u307E\u308A\u307E\u3057\u305F",
+                "kana": "\u3067\u3093\u3057\u3083\u304C\u3068\u307E\u308A\u307E\u3057\u305F",
+                "underline": true,
+                "substitutionKey": "part2"
+              },
+              {
+                "type": "text",
+                "text": "\u3002"
+              }
+            ],
+            "before": "\u4E8B\u6545\u304C\u3042\u308A\u307E\u3057\u305F\uFF0F\u96FB\u8ECA\u304C\u6B62\u307E\u308A\u307E\u3057\u305F",
+            "beforeKana": "\u3058\u3053\u304C\u3042\u308A\u307E\u3057\u305F\uFF0F\u3067\u3093\u3057\u3083\u304C\u3068\u307E\u308A\u307E\u3057\u305F",
+            "afterKana": "\u3058\u3053\u304C\u3042\u3063\u305F\u305F\u3081\u306B\u3001\u3067\u3093\u3057\u3083\u304C\u3068\u307E\u308A\u307E\u3057\u305F\u3002"
+          },
+          "items": [
+            {
+              "id": "l39-p1-a2-q7",
+              "number": "7",
+              "prompt": [
+                {
+                  "type": "text",
+                  "text": "\u5927\u96E8\u304C\u964D\u308A\u307E\u3057\u305F\uFF0F\u91CE\u7403\u306F\u4E2D\u6B62\u306B\u306A\u308A\u307E\u3057\u305F"
+                }
+              ],
+              "answerSource": "example_transform",
+              "evaluationMode": "exact",
+              "inputSlots": [
+                {
+                  "id": "answer",
+                  "expectedUnit": "sentence",
+                  "width": "long",
+                  "placeholder": "\u586B\u5199\u5B8C\u6574\u53E5\u5B50"
+                }
+              ],
+              "answer": {
+                "slotValues": {
+                  "answer": "\u5927\u96E8\u304C\u964D\u3063\u305F\u305F\u3081\u306B\u3001\u91CE\u7403\u306F\u4E2D\u6B62\u306B\u306A\u308A\u307E\u3057\u305F\u3002"
+                }
+              },
+              "promptKana": "\u304A\u304A\u3042\u3081\u304C\u3075\u308A\u307E\u3057\u305F\uFF0F\u3084\u304D\u3085\u3046\u306F\u3061\u3085\u3046\u3057\u306B\u306A\u308A\u307E\u3057\u305F",
+              "exampleGroupId": "l39-p1-a2-g2"
+            },
+            {
+              "id": "l39-p1-a2-q8",
+              "number": "8",
+              "prompt": [
+                {
+                  "type": "text",
+                  "text": "\u5186\u9AD8\u304C\u7D9A\u304D\u307E\u3057\u305F\uFF0F\u8F38\u51FA\u306B\u5F71\u97FF\u304C\u51FA\u3066\u3044\u307E\u3059"
+                }
+              ],
+              "answerSource": "example_transform",
+              "evaluationMode": "exact",
+              "inputSlots": [
+                {
+                  "id": "answer",
+                  "expectedUnit": "sentence",
+                  "width": "long",
+                  "placeholder": "\u586B\u5199\u5B8C\u6574\u53E5\u5B50"
+                }
+              ],
+              "answer": {
+                "slotValues": {
+                  "answer": "\u5186\u9AD8\u304C\u7D9A\u3044\u305F\u305F\u3081\u306B\u3001\u8F38\u51FA\u306B\u5F71\u97FF\u304C\u51FA\u3066\u3044\u307E\u3059\u3002"
+                }
+              },
+              "promptKana": "\u3048\u3093\u3060\u304B\u304C\u3064\u3065\u304D\u307E\u3057\u305F\uFF0F\u3086\u3057\u3085\u3064\u306B\u3048\u3044\u304D\u3087\u3046\u304C\u3067\u3066\u3044\u307E\u3059",
+              "exampleGroupId": "l39-p1-a2-g2"
+            },
+            {
+              "id": "l39-p1-a2-q9",
+              "number": "9",
+              "prompt": [
+                {
+                  "type": "text",
+                  "text": "\u8ECA\u304C\u6025\u306B\u5897\u3048\u307E\u3057\u305F\uFF0F\u4EA4\u901A\u4E8B\u6545\u304C\u5897\u3048\u307E\u3057\u305F"
+                }
+              ],
+              "answerSource": "example_transform",
+              "evaluationMode": "exact",
+              "inputSlots": [
+                {
+                  "id": "answer",
+                  "expectedUnit": "sentence",
+                  "width": "long",
+                  "placeholder": "\u586B\u5199\u5B8C\u6574\u53E5\u5B50"
+                }
+              ],
+              "answer": {
+                "slotValues": {
+                  "answer": "\u8ECA\u304C\u6025\u306B\u5897\u3048\u305F\u305F\u3081\u306B\u3001\u4EA4\u901A\u4E8B\u6545\u304C\u5897\u3048\u307E\u3057\u305F\u3002"
+                }
+              },
+              "promptKana": "\u304F\u308B\u307E\u304C\u304D\u3085\u3046\u306B\u3075\u3048\u307E\u3057\u305F\uFF0F\u3053\u3046\u3064\u3046\u3058\u3053\u304C\u3075\u3048\u307E\u3057\u305F",
+              "exampleGroupId": "l39-p1-a2-g2"
+            }
+          ]
+        },
+        {
+          "id": "l39-p1-a2-g3",
+          "example": {
+            "label": "[\u4F8B2]",
+            "after": [
+              {
+                "type": "text",
+                "text": "\u98A8\u304C\u975E\u5E38\u306B\u5F37\u3044",
+                "kana": "\u304B\u305C\u304C\u3072\u3058\u3087\u3046\u306B\u3064\u3088\u3044",
+                "underline": true,
+                "substitutionKey": "part1"
+              },
+              {
+                "type": "text",
+                "text": "\u305F\u3081\u306B\u3001"
+              },
+              {
+                "type": "text",
+                "text": "\u91CE\u5916\u30B3\u30F3\u30B5\u30FC\u30C8\u306F\u4E2D\u6B62\u3067\u3059",
+                "kana": "\u3084\u304C\u3044\u30B3\u30F3\u30B5\u30FC\u30C8\u306F\u3061\u3085\u3046\u3057\u3067\u3059",
+                "underline": true,
+                "substitutionKey": "part2"
+              },
+              {
+                "type": "text",
+                "text": "\u3002"
+              }
+            ],
+            "before": "\u98A8\u304C\u975E\u5E38\u306B\u5F37\u3044\u3067\u3059\uFF0F\u91CE\u5916\u30B3\u30F3\u30B5\u30FC\u30C8\u306F\u4E2D\u6B62\u3067\u3059",
+            "beforeKana": "\u304B\u305C\u304C\u3072\u3058\u3087\u3046\u306B\u3064\u3088\u3044\u3067\u3059\uFF0F\u3084\u304C\u3044\u30B3\u30F3\u30B5\u30FC\u30C8\u306F\u3061\u3085\u3046\u3057\u3067\u3059",
+            "afterKana": "\u304B\u305C\u304C\u3072\u3058\u3087\u3046\u306B\u3064\u3088\u3044\u305F\u3081\u306B\u3001\u3084\u304C\u3044\u30B3\u30F3\u30B5\u30FC\u30C8\u306F\u3061\u3085\u3046\u3057\u3067\u3059\u3002"
+          },
+          "items": [
+            {
+              "id": "l39-p1-a2-q10",
+              "number": "10",
+              "prompt": [
+                {
+                  "type": "text",
+                  "text": "\u65E5\u672C\u306F\u8CC7\u6E90\u304C\u5C11\u306A\u3044\u3067\u3059\uFF0F\u8CC7\u6E90\u306E\u307B\u3068\u3093\u3069\u3092\u6D77\u5916\u304B\u3089\u8F38\u5165\u3057\u3066\u3044\u307E\u3059"
+                }
+              ],
+              "answerSource": "example_transform",
+              "evaluationMode": "exact",
+              "inputSlots": [
+                {
+                  "id": "answer",
+                  "expectedUnit": "sentence",
+                  "width": "long",
+                  "placeholder": "\u586B\u5199\u5B8C\u6574\u53E5\u5B50"
+                }
+              ],
+              "answer": {
+                "slotValues": {
+                  "answer": "\u65E5\u672C\u306F\u8CC7\u6E90\u304C\u5C11\u306A\u3044\u305F\u3081\u306B\u3001\u8CC7\u6E90\u306E\u307B\u3068\u3093\u3069\u3092\u6D77\u5916\u304B\u3089\u8F38\u5165\u3057\u3066\u3044\u307E\u3059\u3002"
+                }
+              },
+              "promptKana": "\u306B\u307B\u3093\u306F\u3057\u3052\u3093\u304C\u3059\u304F\u306A\u3044\u3067\u3059\uFF0F\u3057\u3052\u3093\u306E\u307B\u3068\u3093\u3069\u3092\u304B\u3044\u304C\u3044\u304B\u3089\u3086\u306B\u3085\u3046\u3057\u3066\u3044\u307E\u3059",
+              "exampleGroupId": "l39-p1-a2-g3"
+            },
+            {
+              "id": "l39-p1-a2-q11",
+              "number": "11",
+              "prompt": [
+                {
+                  "type": "text",
+                  "text": "\u601D\u3063\u305F\u3088\u308A\u9AD8\u304B\u3063\u305F\u3067\u3059\uFF0F\u8CB7\u3046\u3053\u3068\u304C\u3067\u304D\u307E\u305B\u3093\u3067\u3057\u305F"
+                }
+              ],
+              "answerSource": "example_transform",
+              "evaluationMode": "exact",
+              "inputSlots": [
+                {
+                  "id": "answer",
+                  "expectedUnit": "sentence",
+                  "width": "long",
+                  "placeholder": "\u586B\u5199\u5B8C\u6574\u53E5\u5B50"
+                }
+              ],
+              "answer": {
+                "slotValues": {
+                  "answer": "\u601D\u3063\u305F\u3088\u308A\u9AD8\u304B\u3063\u305F\u305F\u3081\u306B\u3001\u8CB7\u3046\u3053\u3068\u304C\u3067\u304D\u307E\u305B\u3093\u3067\u3057\u305F\u3002"
+                }
+              },
+              "promptKana": "\u304A\u3082\u3063\u305F\u3088\u308A\u305F\u304B\u304B\u3063\u305F\u3067\u3059\uFF0F\u304B\u3046\u3053\u3068\u304C\u3067\u304D\u307E\u305B\u3093\u3067\u3057\u305F",
+              "exampleGroupId": "l39-p1-a2-g3"
+            },
+            {
+              "id": "l39-p1-a2-q12",
+              "number": "12",
+              "prompt": [
+                {
+                  "type": "text",
+                  "text": "\u4ECA\u5E74\u306E\u590F\u306F\u6C17\u6E29\u304C\u4F4E\u304B\u3063\u305F\u3067\u3059\uFF0F\u7A32\u304C\u3088\u304F\u80B2\u3061\u307E\u305B\u3093\u3067\u3057\u305F"
+                }
+              ],
+              "answerSource": "example_transform",
+              "evaluationMode": "exact",
+              "inputSlots": [
+                {
+                  "id": "answer",
+                  "expectedUnit": "sentence",
+                  "width": "long",
+                  "placeholder": "\u586B\u5199\u5B8C\u6574\u53E5\u5B50"
+                }
+              ],
+              "answer": {
+                "slotValues": {
+                  "answer": "\u4ECA\u5E74\u306E\u590F\u306F\u6C17\u6E29\u304C\u4F4E\u304B\u3063\u305F\u305F\u3081\u306B\u3001\u7A32\u304C\u3088\u304F\u80B2\u3061\u307E\u305B\u3093\u3067\u3057\u305F\u3002"
+                }
+              },
+              "promptKana": "\u3053\u3068\u3057\u306E\u306A\u3064\u306F\u304D\u304A\u3093\u304C\u3072\u304F\u304B\u3063\u305F\u3067\u3059\uFF0F\u3044\u306D\u304C\u3088\u304F\u305D\u3060\u3061\u307E\u305B\u3093\u3067\u3057\u305F",
+              "exampleGroupId": "l39-p1-a2-g3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l39-p1-a3",
+      "section": "practice_1",
+      "order": 3,
+      "title": "\u4EFF\u7167\u4F8B\u53E5\u66FF\u6362\u753B\u7EBF\u90E8\u5206\u8FDB\u884C\u7EC3\u4E60\u3002",
+      "instruction": "",
+      "interaction": "pattern_substitution",
+      "answerUnit": "sentence",
+      "responseScope": "sentence_only",
+      "layout": [],
+      "items": [],
+      "itemGroups": [
+        {
+          "id": "l39-p1-a3-g1",
+          "example": {
+            "label": "[\u4F8B1]",
+            "after": [
+              {
+                "type": "text",
+                "text": "\u99C5\u307E\u3067\u8D70\u3063\u3066",
+                "kana": "\u3048\u304D\u307E\u3067\u306F\u3057\u3063\u3066",
+                "underline": true,
+                "substitutionKey": "part1"
+              },
+              {
+                "type": "text",
+                "text": "\u3044\u304D\u307E\u3059\u3002"
+              }
+            ],
+            "before": "\u99C5\u307E\u3067\u8D70\u308A\u307E\u3059",
+            "beforeKana": "\u3048\u304D\u307E\u3067\u306F\u3057\u308A\u307E\u3059",
+            "afterKana": "\u3048\u304D\u307E\u3067\u306F\u3057\u3063\u3066\u3044\u304D\u307E\u3059\u3002"
+          },
+          "items": [
+            {
+              "id": "l39-p1-a3-q1",
+              "number": "1",
+              "prompt": [
+                {
+                  "type": "text",
+                  "text": "\u5730\u4E0B\u9244\u306B\u4E57\u308A\u307E\u3059"
+                }
+              ],
+              "answerSource": "example_transform",
+              "evaluationMode": "exact",
+              "inputSlots": [
+                {
+                  "id": "answer",
+                  "expectedUnit": "sentence",
+                  "width": "long",
+                  "placeholder": "\u586B\u5199\u5B8C\u6574\u53E5\u5B50"
+                }
+              ],
+              "answer": {
+                "slotValues": {
+                  "answer": "\u5730\u4E0B\u9244\u306B\u4E57\u3063\u3066\u3044\u304D\u307E\u3059\u3002"
+                }
+              },
+              "promptKana": "\u3061\u304B\u3066\u3064\u306B\u306E\u308A\u307E\u3059",
+              "exampleGroupId": "l39-p1-a3-g1"
+            },
+            {
+              "id": "l39-p1-a3-q2",
+              "number": "2",
+              "prompt": [
+                {
+                  "type": "text",
+                  "text": "\u99AC\u3055\u3093\u304C\u81EA\u8EE2\u8ECA\u3067\u5E30\u308A\u307E\u3059"
+                }
+              ],
+              "answerSource": "example_transform",
+              "evaluationMode": "exact",
+              "inputSlots": [
+                {
+                  "id": "answer",
+                  "expectedUnit": "sentence",
+                  "width": "long",
+                  "placeholder": "\u586B\u5199\u5B8C\u6574\u53E5\u5B50"
+                }
+              ],
+              "answer": {
+                "slotValues": {
+                  "answer": "\u99AC\u3055\u3093\u304C\u81EA\u8EE2\u8ECA\u3067\u5E30\u3063\u3066\u3044\u304D\u307E\u3059\u3002"
+                }
+              },
+              "promptKana": "\u3070\u3055\u3093\u304C\u3058\u3066\u3093\u3057\u3083\u3067\u304B\u3048\u308A\u307E\u3059",
+              "exampleGroupId": "l39-p1-a3-g1"
+            },
+            {
+              "id": "l39-p1-a3-q3",
+              "number": "3",
+              "prompt": [
+                {
+                  "type": "text",
+                  "text": "\u30AF\u30B8\u30E9\u304C\u6C96\u3078\u6CF3\u304E\u307E\u3059"
+                }
+              ],
+              "answerSource": "example_transform",
+              "evaluationMode": "exact",
+              "inputSlots": [
+                {
+                  "id": "answer",
+                  "expectedUnit": "sentence",
+                  "width": "long",
+                  "placeholder": "\u586B\u5199\u5B8C\u6574\u53E5\u5B50"
+                }
+              ],
+              "answer": {
+                "slotValues": {
+                  "answer": "\u30AF\u30B8\u30E9\u304C\u6C96\u3078\u6CF3\u3044\u3067\u3044\u304D\u307E\u3059\u3002"
+                }
+              },
+              "promptKana": "\u30AF\u30B8\u30E9\u304C\u304A\u304D\u3078\u304A\u3088\u304E\u307E\u3059",
+              "exampleGroupId": "l39-p1-a3-g1"
+            },
+            {
+              "id": "l39-p1-a3-q4",
+              "number": "4",
+              "prompt": [
+                {
+                  "type": "text",
+                  "text": "\u9CE5\u304C\u5C71\u306E\u65B9\u3078\u98DB\u3073\u307E\u3059"
+                }
+              ],
+              "answerSource": "example_transform",
+              "evaluationMode": "exact",
+              "inputSlots": [
+                {
+                  "id": "answer",
+                  "expectedUnit": "sentence",
+                  "width": "long",
+                  "placeholder": "\u586B\u5199\u5B8C\u6574\u53E5\u5B50"
+                }
+              ],
+              "answer": {
+                "slotValues": {
+                  "answer": "\u9CE5\u304C\u5C71\u306E\u65B9\u3078\u98DB\u3093\u3067\u3044\u304D\u307E\u3059\u3002"
+                }
+              },
+              "promptKana": "\u3068\u308A\u304C\u3084\u307E\u306E\u307B\u3046\u3078\u3068\u3073\u307E\u3059",
+              "exampleGroupId": "l39-p1-a3-g1"
+            }
+          ]
+        },
+        {
+          "id": "l39-p1-a3-g2",
+          "example": {
+            "label": "[\u4F8B2]",
+            "after": [
+              {
+                "type": "text",
+                "text": "\u3053\u3061\u3089\u306B"
+              },
+              {
+                "type": "text",
+                "text": "\u6B69\u3044\u3066",
+                "kana": "\u3042\u308B\u3044\u3066",
+                "underline": true,
+                "substitutionKey": "part1"
+              },
+              {
+                "type": "text",
+                "text": "\u304F\u308B\u306E\u306F"
+              },
+              {
+                "type": "text",
+                "text": "\u6709\u540D\u306A\u6B4C\u624B",
+                "kana": "\u3086\u3046\u3081\u3044\u306A\u304B\u3057\u3085",
+                "underline": true,
+                "substitutionKey": "part2"
+              },
+              {
+                "type": "text",
+                "text": "\u3058\u3083\u3042\u308A\u307E\u305B\u3093\u304B\u3002"
+              }
+            ],
+            "before": "\u3053\u3061\u3089\u306B\u6B69\u304D\u307E\u3059\uFF0F\u6709\u540D\u306A\u6B4C\u624B",
+            "beforeKana": "\u3053\u3061\u3089\u306B\u3042\u308B\u304D\u307E\u3059\uFF0F\u3086\u3046\u3081\u3044\u306A\u304B\u3057\u3085",
+            "afterKana": "\u3053\u3061\u3089\u306B\u3042\u308B\u3044\u3066\u304F\u308B\u306E\u306F\u3086\u3046\u3081\u3044\u306A\u304B\u3057\u3085\u3058\u3083\u3042\u308A\u307E\u305B\u3093\u304B\u3002"
+          },
+          "items": [
+            {
+              "id": "l39-p1-a3-q5",
+              "number": "5",
+              "prompt": [
+                {
+                  "type": "text",
+                  "text": "\u8D70\u308A\u307E\u3059\uFF0F\u68EE\u3055\u3093"
+                }
+              ],
+              "answerSource": "example_transform",
+              "evaluationMode": "exact",
+              "inputSlots": [
+                {
+                  "id": "answer",
+                  "expectedUnit": "sentence",
+                  "width": "long",
+                  "placeholder": "\u586B\u5199\u5B8C\u6574\u53E5\u5B50"
+                }
+              ],
+              "answer": {
+                "slotValues": {
+                  "answer": "\u3053\u3061\u3089\u306B\u8D70\u3063\u3066\u304F\u308B\u306E\u306F\u68EE\u3055\u3093\u3058\u3083\u3042\u308A\u307E\u305B\u3093\u304B\u3002"
+                }
+              },
+              "promptKana": "\u306F\u3057\u308A\u307E\u3059\uFF0F\u3082\u308A\u3055\u3093",
+              "exampleGroupId": "l39-p1-a3-g2"
+            },
+            {
+              "id": "l39-p1-a3-q6",
+              "number": "6",
+              "prompt": [
+                {
+                  "type": "text",
+                  "text": "\u98DB\u3073\u307E\u3059\uFF0FUFO"
+                }
+              ],
+              "answerSource": "example_transform",
+              "evaluationMode": "exact",
+              "inputSlots": [
+                {
+                  "id": "answer",
+                  "expectedUnit": "sentence",
+                  "width": "long",
+                  "placeholder": "\u586B\u5199\u5B8C\u6574\u53E5\u5B50"
+                }
+              ],
+              "answer": {
+                "slotValues": {
+                  "answer": "\u3053\u3061\u3089\u306B\u98DB\u3093\u3067\u304F\u308B\u306E\u306FUFO\u3058\u3083\u3042\u308A\u307E\u305B\u3093\u304B\u3002"
+                }
+              },
+              "promptKana": "\u3068\u3073\u307E\u3059\uFF0F\u30E6\u30FC\u30D5\u30A9\u30FC",
+              "exampleGroupId": "l39-p1-a3-g2"
+            },
+            {
+              "id": "l39-p1-a3-q7",
+              "number": "7",
+              "prompt": [
+                {
+                  "type": "text",
+                  "text": "\u6CF3\u304E\u307E\u3059\uFF0F\u30B5\u30E1"
+                }
+              ],
+              "answerSource": "example_transform",
+              "evaluationMode": "exact",
+              "inputSlots": [
+                {
+                  "id": "answer",
+                  "expectedUnit": "sentence",
+                  "width": "long",
+                  "placeholder": "\u586B\u5199\u5B8C\u6574\u53E5\u5B50"
+                }
+              ],
+              "answer": {
+                "slotValues": {
+                  "answer": "\u3053\u3061\u3089\u306B\u6CF3\u3044\u3067\u304F\u308B\u306E\u306F\u30B5\u30E1\u3058\u3083\u3042\u308A\u307E\u305B\u3093\u304B\u3002"
+                }
+              },
+              "promptKana": "\u304A\u3088\u304E\u307E\u3059\uFF0F\u30B5\u30E1",
+              "exampleGroupId": "l39-p1-a3-g2"
+            },
+            {
+              "id": "l39-p1-a3-q8",
+              "number": "8",
+              "prompt": [
+                {
+                  "type": "text",
+                  "text": "\u6B69\u304D\u307E\u3059\uFF0F\u68EE\u3055\u3093\u306E\u304A\u6BCD\u3055\u3093"
+                }
+              ],
+              "answerSource": "example_transform",
+              "evaluationMode": "exact",
+              "inputSlots": [
+                {
+                  "id": "answer",
+                  "expectedUnit": "sentence",
+                  "width": "long",
+                  "placeholder": "\u586B\u5199\u5B8C\u6574\u53E5\u5B50"
+                }
+              ],
+              "answer": {
+                "slotValues": {
+                  "answer": "\u3053\u3061\u3089\u306B\u6B69\u3044\u3066\u304F\u308B\u306E\u306F\u68EE\u3055\u3093\u306E\u304A\u6BCD\u3055\u3093\u3058\u3083\u3042\u308A\u307E\u305B\u3093\u304B\u3002"
+                }
+              },
+              "promptKana": "\u3042\u308B\u304D\u307E\u3059\uFF0F\u3082\u308A\u3055\u3093\u306E\u304A\u304B\u3042\u3055\u3093",
+              "exampleGroupId": "l39-p1-a3-g2"
+            }
+          ]
+        },
+        {
+          "id": "l39-p1-a3-g3",
+          "example": {
+            "label": "[\u4F8B3]",
+            "after": [
+              {
+                "type": "text",
+                "text": "\u65B0\u805E\u3092\u8CB7\u3063\u3066",
+                "kana": "\u3057\u3093\u3076\u3093\u3092\u304B\u3063\u3066",
+                "underline": true,
+                "substitutionKey": "part1"
+              },
+              {
+                "type": "text",
+                "text": "\u304D\u307E\u3059\u3002"
+              }
+            ],
+            "before": "\u65B0\u805E\u3092\u8CB7\u3044\u307E\u3059",
+            "beforeKana": "\u3057\u3093\u3076\u3093\u3092\u304B\u3044\u307E\u3059",
+            "afterKana": "\u3057\u3093\u3076\u3093\u3092\u304B\u3063\u3066\u304D\u307E\u3059\u3002"
+          },
+          "items": [
+            {
+              "id": "l39-p1-a3-q9",
+              "number": "9",
+              "prompt": [
+                {
+                  "type": "text",
+                  "text": "\u624B\u7D19\u3092\u51FA\u3057\u307E\u3059"
+                }
+              ],
+              "answerSource": "example_transform",
+              "evaluationMode": "exact",
+              "inputSlots": [
+                {
+                  "id": "answer",
+                  "expectedUnit": "sentence",
+                  "width": "long",
+                  "placeholder": "\u586B\u5199\u5B8C\u6574\u53E5\u5B50"
+                }
+              ],
+              "answer": {
+                "slotValues": {
+                  "answer": "\u624B\u7D19\u3092\u51FA\u3057\u3066\u304D\u307E\u3059\u3002"
+                }
+              },
+              "promptKana": "\u3066\u304C\u307F\u3092\u3060\u3057\u307E\u3059",
+              "exampleGroupId": "l39-p1-a3-g3"
+            },
+            {
+              "id": "l39-p1-a3-q10",
+              "number": "10",
+              "prompt": [
+                {
+                  "type": "text",
+                  "text": "\u624B\u3092\u6D17\u3044\u307E\u3059"
+                }
+              ],
+              "answerSource": "example_transform",
+              "evaluationMode": "exact",
+              "inputSlots": [
+                {
+                  "id": "answer",
+                  "expectedUnit": "sentence",
+                  "width": "long",
+                  "placeholder": "\u586B\u5199\u5B8C\u6574\u53E5\u5B50"
+                }
+              ],
+              "answer": {
+                "slotValues": {
+                  "answer": "\u624B\u3092\u6D17\u3063\u3066\u304D\u307E\u3059\u3002"
+                }
+              },
+              "promptKana": "\u3066\u3092\u3042\u3089\u3044\u307E\u3059",
+              "exampleGroupId": "l39-p1-a3-g3"
+            },
+            {
+              "id": "l39-p1-a3-q11",
+              "number": "11",
+              "prompt": [
+                {
+                  "type": "text",
+                  "text": "\u56F3\u66F8\u9928\u3067\u8ABF\u3079\u307E\u3059"
+                }
+              ],
+              "answerSource": "example_transform",
+              "evaluationMode": "exact",
+              "inputSlots": [
+                {
+                  "id": "answer",
+                  "expectedUnit": "sentence",
+                  "width": "long",
+                  "placeholder": "\u586B\u5199\u5B8C\u6574\u53E5\u5B50"
+                }
+              ],
+              "answer": {
+                "slotValues": {
+                  "answer": "\u56F3\u66F8\u9928\u3067\u8ABF\u3079\u3066\u304D\u307E\u3059\u3002"
+                }
+              },
+              "promptKana": "\u3068\u3057\u3087\u304B\u3093\u3067\u3057\u3089\u3079\u307E\u3059",
+              "exampleGroupId": "l39-p1-a3-g3"
+            },
+            {
+              "id": "l39-p1-a3-q12",
+              "number": "12",
+              "prompt": [
+                {
+                  "type": "text",
+                  "text": "\u53CB\u9054\u306B\u4F1A\u3044\u307E\u3059"
+                }
+              ],
+              "answerSource": "example_transform",
+              "evaluationMode": "exact",
+              "inputSlots": [
+                {
+                  "id": "answer",
+                  "expectedUnit": "sentence",
+                  "width": "long",
+                  "placeholder": "\u586B\u5199\u5B8C\u6574\u53E5\u5B50"
+                }
+              ],
+              "answer": {
+                "slotValues": {
+                  "answer": "\u53CB\u9054\u306B\u4F1A\u3063\u3066\u304D\u307E\u3059\u3002"
+                }
+              },
+              "promptKana": "\u3068\u3082\u3060\u3061\u306B\u3042\u3044\u307E\u3059",
+              "exampleGroupId": "l39-p1-a3-g3"
+            },
+            {
+              "id": "l39-p1-a3-q13",
+              "number": "13",
+              "prompt": [
+                {
+                  "type": "text",
+                  "text": "\u96FB\u8A71\u3092\u3057\u307E\u3059"
+                }
+              ],
+              "answerSource": "example_transform",
+              "evaluationMode": "exact",
+              "inputSlots": [
+                {
+                  "id": "answer",
+                  "expectedUnit": "sentence",
+                  "width": "long",
+                  "placeholder": "\u586B\u5199\u5B8C\u6574\u53E5\u5B50"
+                }
+              ],
+              "answer": {
+                "slotValues": {
+                  "answer": "\u96FB\u8A71\u3092\u3057\u3066\u304D\u307E\u3059\u3002"
+                }
+              },
+              "promptKana": "\u3067\u3093\u308F\u3092\u3057\u307E\u3059",
+              "exampleGroupId": "l39-p1-a3-g3"
+            },
+            {
+              "id": "l39-p1-a3-q14",
+              "number": "14",
+              "prompt": [
+                {
+                  "type": "text",
+                  "text": "\u5148\u751F\u306B\u5831\u544A\u3057\u307E\u3059"
+                }
+              ],
+              "answerSource": "example_transform",
+              "evaluationMode": "exact",
+              "inputSlots": [
+                {
+                  "id": "answer",
+                  "expectedUnit": "sentence",
+                  "width": "long",
+                  "placeholder": "\u586B\u5199\u5B8C\u6574\u53E5\u5B50"
+                }
+              ],
+              "answer": {
+                "slotValues": {
+                  "answer": "\u5148\u751F\u306B\u5831\u544A\u3057\u3066\u304D\u307E\u3059\u3002"
+                }
+              },
+              "promptKana": "\u305B\u3093\u305B\u3044\u306B\u307B\u3046\u3053\u304F\u3057\u307E\u3059",
+              "exampleGroupId": "l39-p1-a3-g3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l39-p1-a4",
+      "section": "practice_1",
+      "order": 4,
+      "title": "\u542C\u5F55\u97F3\uFF0C\u4EFF\u7167\u4F8B\u53E5\u66FF\u6362\u753B\u7EBF\u90E8\u5206\u7EC3\u4E60\u4F1A\u8BDD\u3002",
+      "instruction": "",
+      "interaction": "dialogue_practice",
+      "answerUnit": "dialogue",
+      "responseScope": "dialogue_only",
+      "layout": [],
+      "items": [],
+      "responseScopeHint": "\u586B\u5199\u5B8C\u6574\u4F1A\u8BDD\uFF0C\u4FDD\u7559\u7532\u3001\u4E59\u5404\u8F6E\u53F0\u8BCD\u3002",
+      "itemGroups": [
+        {
+          "id": "l39-p1-a4-g1",
+          "example": {
+            "label": "[\u4F8B1]",
+            "after": [
+              {
+                "type": "text",
+                "text": "\u7532\uFF1A"
+              },
+              {
+                "type": "text",
+                "text": "\u304A\u8336\u304C\u306A\u304F\u306A\u308A\u307E\u3057\u305F",
+                "kana": "\u304A\u3061\u3083\u304C\u306A\u304F\u306A\u308A\u307E\u3057\u305F",
+                "underline": true,
+                "substitutionKey": "part1"
+              },
+              {
+                "type": "text",
+                "text": "\u306D\u3002\n\u4E59\uFF1A\u3058\u3083\u3042\u3001"
+              },
+              {
+                "type": "text",
+                "text": "\u8CB7\u3063\u3066",
+                "kana": "\u304B\u3063\u3066",
+                "underline": true,
+                "substitutionKey": "part2"
+              },
+              {
+                "type": "text",
+                "text": "\u304D\u307E\u3057\u3087\u3046\u304B\u3002\n\u7532\uFF1A\u3048\u3048\u3001\u304A\u9858\u3044\u3057\u307E\u3059\u3002"
+              }
+            ],
+            "before": "\u304A\u8336\u304C\u306A\u304F\u306A\u308A\u307E\u3057\u305F\uFF0F\u8CB7\u3044\u307E\u3059",
+            "beforeKana": "\u304A\u3061\u3083\u304C\u306A\u304F\u306A\u308A\u307E\u3057\u305F\uFF0F\u304B\u3044\u307E\u3059",
+            "afterKana": "\u3053\u3046\uFF1A\u304A\u3061\u3083\u304C\u306A\u304F\u306A\u308A\u307E\u3057\u305F\u306D\u3002\n\u304A\u3064\uFF1A\u3058\u3083\u3042\u3001\u304B\u3063\u3066\u304D\u307E\u3057\u3087\u3046\u304B\u3002\n\u3053\u3046\uFF1A\u3048\u3048\u3001\u304A\u306D\u304C\u3044\u3057\u307E\u3059\u3002"
+          },
+          "items": [
+            {
+              "id": "l39-p1-a4-q1",
+              "number": "1",
+              "prompt": [
+                {
+                  "type": "text",
+                  "text": "\u9234\u6728\u3055\u3093\u306E\u5BB6\u306E\u96FB\u8A71\u756A\u53F7\u304C\u5206\u304B\u308A\u307E\u305B\u3093\uFF0F\u805E\u304D\u307E\u3059"
+                }
+              ],
+              "answerSource": "audio",
+              "evaluationMode": "exact",
+              "inputSlots": [
+                {
+                  "id": "answer",
+                  "expectedUnit": "dialogue",
+                  "width": "long",
+                  "multiline": true,
+                  "rows": 4,
+                  "placeholder": "\u586B\u5199\u5B8C\u6574\u5BF9\u8BDD"
+                }
+              ],
+              "answer": {
+                "slotValues": {
+                  "answer": "\u7532\uFF1A\u9234\u6728\u3055\u3093\u306E\u5BB6\u306E\u96FB\u8A71\u756A\u53F7\u304C\u5206\u304B\u308A\u307E\u305B\u3093\u306D\u3002\n\u4E59\uFF1A\u3058\u3083\u3042\u3001\u805E\u3044\u3066\u304D\u307E\u3057\u3087\u3046\u304B\u3002\n\u7532\uFF1A\u3048\u3048\u3001\u304A\u9858\u3044\u3057\u307E\u3059\u3002"
+                }
+              },
+              "promptKana": "\u3059\u305A\u304D\u3055\u3093\u306E\u3044\u3048\u306E\u3067\u3093\u308F\u3070\u3093\u3054\u3046\u304C\u308F\u304B\u308A\u307E\u305B\u3093\uFF0F\u304D\u304D\u307E\u3059",
+              "exampleGroupId": "l39-p1-a4-g1"
+            },
+            {
+              "id": "l39-p1-a4-q2",
+              "number": "2",
+              "prompt": [
+                {
+                  "type": "text",
+                  "text": "\u68EE\u3055\u3093\u304C\u6765\u307E\u305B\u3093\uFF0F\u96FB\u8A71\u3092\u304B\u3051\u307E\u3059"
+                }
+              ],
+              "answerSource": "audio",
+              "evaluationMode": "exact",
+              "inputSlots": [
+                {
+                  "id": "answer",
+                  "expectedUnit": "dialogue",
+                  "width": "long",
+                  "multiline": true,
+                  "rows": 4,
+                  "placeholder": "\u586B\u5199\u5B8C\u6574\u5BF9\u8BDD"
+                }
+              ],
+              "answer": {
+                "slotValues": {
+                  "answer": "\u7532\uFF1A\u68EE\u3055\u3093\u304C\u6765\u307E\u305B\u3093\u306D\u3002\n\u4E59\uFF1A\u3058\u3083\u3042\u3001\u96FB\u8A71\u3092\u304B\u3051\u3066\u304D\u307E\u3057\u3087\u3046\u304B\u3002\n\u7532\uFF1A\u3048\u3048\u3001\u304A\u9858\u3044\u3057\u307E\u3059\u3002"
+                }
+              },
+              "promptKana": "\u3082\u308A\u3055\u3093\u304C\u304D\u307E\u305B\u3093\uFF0F\u3067\u3093\u308F\u3092\u304B\u3051\u307E\u3059",
+              "exampleGroupId": "l39-p1-a4-g1"
+            },
+            {
+              "id": "l39-p1-a4-q3",
+              "number": "3",
+              "prompt": [
+                {
+                  "type": "text",
+                  "text": "\u306E\u3069\u304C\u6E07\u304D\u307E\u3057\u305F\uFF0F\u98F2\u307F\u7269\u3092\u8CB7\u3044\u307E\u3059"
+                }
+              ],
+              "answerSource": "audio",
+              "evaluationMode": "exact",
+              "inputSlots": [
+                {
+                  "id": "answer",
+                  "expectedUnit": "dialogue",
+                  "width": "long",
+                  "multiline": true,
+                  "rows": 4,
+                  "placeholder": "\u586B\u5199\u5B8C\u6574\u5BF9\u8BDD"
+                }
+              ],
+              "answer": {
+                "slotValues": {
+                  "answer": "\u7532\uFF1A\u306E\u3069\u304C\u6E07\u304D\u307E\u3057\u305F\u306D\u3002\n\u4E59\uFF1A\u3058\u3083\u3042\u3001\u98F2\u307F\u7269\u3092\u8CB7\u3063\u3066\u304D\u307E\u3057\u3087\u3046\u304B\u3002\n\u7532\uFF1A\u3048\u3048\u3001\u304A\u9858\u3044\u3057\u307E\u3059\u3002"
+                }
+              },
+              "promptKana": "\u306E\u3069\u304C\u304B\u308F\u304D\u307E\u3057\u305F\uFF0F\u306E\u307F\u3082\u306E\u3092\u304B\u3044\u307E\u3059",
+              "exampleGroupId": "l39-p1-a4-g1"
+            },
+            {
+              "id": "l39-p1-a4-q4",
+              "number": "4",
+              "prompt": [
+                {
+                  "type": "text",
+                  "text": "\u30B3\u30C3\u30D7\u304C\u6C5A\u3044\u3067\u3059\uFF0F\u6D17\u3044\u307E\u3059"
+                }
+              ],
+              "answerSource": "audio",
+              "evaluationMode": "exact",
+              "inputSlots": [
+                {
+                  "id": "answer",
+                  "expectedUnit": "dialogue",
+                  "width": "long",
+                  "multiline": true,
+                  "rows": 4,
+                  "placeholder": "\u586B\u5199\u5B8C\u6574\u5BF9\u8BDD"
+                }
+              ],
+              "answer": {
+                "slotValues": {
+                  "answer": "\u7532\uFF1A\u30B3\u30C3\u30D7\u304C\u6C5A\u3044\u3067\u3059\u306D\u3002\n\u4E59\uFF1A\u3058\u3083\u3042\u3001\u6D17\u3063\u3066\u304D\u307E\u3057\u3087\u3046\u304B\u3002\n\u7532\uFF1A\u3048\u3048\u3001\u304A\u9858\u3044\u3057\u307E\u3059\u3002"
+                }
+              },
+              "promptKana": "\u30B3\u30C3\u30D7\u304C\u304D\u305F\u306A\u3044\u3067\u3059\uFF0F\u3042\u3089\u3044\u307E\u3059",
+              "exampleGroupId": "l39-p1-a4-g1"
+            }
+          ]
+        },
+        {
+          "id": "l39-p1-a4-g2",
+          "example": {
+            "label": "[\u4F8B2]",
+            "after": [
+              {
+                "type": "text",
+                "text": "\u7532\uFF1A\u304A\u5E30\u308A\u306A\u3055\u3044\u3002\u3069\u3053\u306B\u884C\u3063\u3066\u3044\u305F\u3093\u3067\u3059\u304B\u3002\n\u4E59\uFF1A"
+              },
+              {
+                "type": "text",
+                "text": "\u5199\u771F\u5C55\u3092\u898B\u3066",
+                "kana": "\u3057\u3083\u3057\u3093\u3066\u3093\u3092\u307F\u3066",
+                "underline": true,
+                "substitutionKey": "part1"
+              },
+              {
+                "type": "text",
+                "text": "\u304D\u307E\u3057\u305F\u3002\n\u7532\uFF1A\u3088\u304B\u3063\u305F\u3067\u3059\u304B\u3002\n\u4E59\uFF1A\u3048\u3048\u3001\u307E\u3042\u307E\u3042\u3067\u3057\u305F\u3002"
+              }
+            ],
+            "before": "\u5199\u771F\u5C55\u3092\u898B\u307E\u3057\u305F",
+            "beforeKana": "\u3057\u3083\u3057\u3093\u3066\u3093\u3092\u307F\u307E\u3057\u305F",
+            "afterKana": "\u3053\u3046\uFF1A\u304A\u304B\u3048\u308A\u306A\u3055\u3044\u3002\u3069\u3053\u306B\u3044\u3063\u3066\u3044\u305F\u3093\u3067\u3059\u304B\u3002\n\u304A\u3064\uFF1A\u3057\u3083\u3057\u3093\u3066\u3093\u3092\u307F\u3066\u304D\u307E\u3057\u305F\u3002\n\u3053\u3046\uFF1A\u3088\u304B\u3063\u305F\u3067\u3059\u304B\u3002\n\u304A\u3064\uFF1A\u3048\u3048\u3001\u307E\u3042\u307E\u3042\u3067\u3057\u305F\u3002"
+          },
+          "items": [
+            {
+              "id": "l39-p1-a4-q5",
+              "number": "5",
+              "prompt": [
+                {
+                  "type": "text",
+                  "text": "\u6620\u753B\u3092\u898B\u307E\u3057\u305F"
+                }
+              ],
+              "answerSource": "audio",
+              "evaluationMode": "exact",
+              "inputSlots": [
+                {
+                  "id": "answer",
+                  "expectedUnit": "dialogue",
+                  "width": "long",
+                  "multiline": true,
+                  "rows": 4,
+                  "placeholder": "\u586B\u5199\u5B8C\u6574\u5BF9\u8BDD"
+                }
+              ],
+              "answer": {
+                "slotValues": {
+                  "answer": "\u7532\uFF1A\u304A\u5E30\u308A\u306A\u3055\u3044\u3002\u3069\u3053\u306B\u884C\u3063\u3066\u3044\u305F\u3093\u3067\u3059\u304B\u3002\n\u4E59\uFF1A\u6620\u753B\u3092\u898B\u3066\u304D\u307E\u3057\u305F\u3002\n\u7532\uFF1A\u3088\u304B\u3063\u305F\u3067\u3059\u304B\u3002\n\u4E59\uFF1A\u3048\u3048\u3001\u307E\u3042\u307E\u3042\u3067\u3057\u305F\u3002"
+                }
+              },
+              "promptKana": "\u3048\u3044\u304C\u3092\u307F\u307E\u3057\u305F",
+              "exampleGroupId": "l39-p1-a4-g2"
+            },
+            {
+              "id": "l39-p1-a4-q6",
+              "number": "6",
+              "prompt": [
+                {
+                  "type": "text",
+                  "text": "\u30B8\u30E3\u30BA\u3092\u805E\u304D\u307E\u3057\u305F"
+                }
+              ],
+              "answerSource": "audio",
+              "evaluationMode": "exact",
+              "inputSlots": [
+                {
+                  "id": "answer",
+                  "expectedUnit": "dialogue",
+                  "width": "long",
+                  "multiline": true,
+                  "rows": 4,
+                  "placeholder": "\u586B\u5199\u5B8C\u6574\u5BF9\u8BDD"
+                }
+              ],
+              "answer": {
+                "slotValues": {
+                  "answer": "\u7532\uFF1A\u304A\u5E30\u308A\u306A\u3055\u3044\u3002\u3069\u3053\u306B\u884C\u3063\u3066\u3044\u305F\u3093\u3067\u3059\u304B\u3002\n\u4E59\uFF1A\u30B8\u30E3\u30BA\u3092\u805E\u3044\u3066\u304D\u307E\u3057\u305F\u3002\n\u7532\uFF1A\u3088\u304B\u3063\u305F\u3067\u3059\u304B\u3002\n\u4E59\uFF1A\u3048\u3048\u3001\u307E\u3042\u307E\u3042\u3067\u3057\u305F\u3002"
+                }
+              },
+              "promptKana": "\u30B8\u30E3\u30BA\u3092\u304D\u304D\u307E\u3057\u305F",
+              "exampleGroupId": "l39-p1-a4-g2"
+            },
+            {
+              "id": "l39-p1-a4-q7",
+              "number": "7",
+              "prompt": [
+                {
+                  "type": "text",
+                  "text": "\u97F3\u697D\u4F1A\u306B\u884C\u304D\u307E\u3057\u305F"
+                }
+              ],
+              "answerSource": "audio",
+              "evaluationMode": "exact",
+              "inputSlots": [
+                {
+                  "id": "answer",
+                  "expectedUnit": "dialogue",
+                  "width": "long",
+                  "multiline": true,
+                  "rows": 4,
+                  "placeholder": "\u586B\u5199\u5B8C\u6574\u5BF9\u8BDD"
+                }
+              ],
+              "answer": {
+                "slotValues": {
+                  "answer": "\u7532\uFF1A\u304A\u5E30\u308A\u306A\u3055\u3044\u3002\u3069\u3053\u306B\u884C\u3063\u3066\u3044\u305F\u3093\u3067\u3059\u304B\u3002\n\u4E59\uFF1A\u97F3\u697D\u4F1A\u306B\u884C\u3063\u3066\u304D\u307E\u3057\u305F\u3002\n\u7532\uFF1A\u3088\u304B\u3063\u305F\u3067\u3059\u304B\u3002\n\u4E59\uFF1A\u3048\u3048\u3001\u307E\u3042\u307E\u3042\u3067\u3057\u305F\u3002"
+                }
+              },
+              "promptKana": "\u304A\u3093\u304C\u304F\u304B\u3044\u306B\u3044\u304D\u307E\u3057\u305F",
+              "exampleGroupId": "l39-p1-a4-g2"
+            }
+          ]
+        }
+      ],
+      "requiresAudio": true,
+      "audio": {
+        "source": "textbook_exercise",
+        "transcript": {
+          "source": "asr",
+          "text": "\u96F6\u3001\u4E00\u3002\u304A\u8336\u304C\u306A\u304F\u306A\u308A\u307E\u3057\u305F\u3002\u8CB7\u3044\u307E\u3059\u3002\u304A\u8336\u304C\u306A\u304F\u306A\u308A\u307E\u3057\u305F\u306D\u3002\u3058\u3083\u3042\u8CB7\u3063\u3066\u304D\u307E\u3057\u3087\u3046\u304B\u3002\u3048\u3048\u3001\u304A\u9858\u3044\u3057\u307E\u3059\u3002\u4E00\u3002\u9234\u6728\u3055\u3093\u306E\u5BB6\u306E\u96FB\u8A71\u756A\u53F7\u304C\u308F\u304B\u308A\u307E\u305B\u3093\u3002\u805E\u304D\u307E\u3059\u3002\u9234\u6728\u3055\u3093\u306E\u5BB6\u306E\u96FB\u8A71\u756A\u53F7\u304C\u3002\u308F\u304B\u308A\u307E\u305B\u3093\u306D\u3002\u3058\u3083\u3042\u805E\u3044\u3066\u304D\u307E\u3057\u3087\u3046\u304B\u3002\u3048\u3048\u3001\u304A\u9858\u3044\u3057\u307E\u3059\u3002\u4E8C\u68EE\u3055\u3093\u304C\u6765\u307E\u305B\u3093\u3002\u96FB\u8A71\u3092\u304B\u3051\u307E\u3059\u3002\u68EE\u3055\u3093\u304C\u6765\u307E\u305B\u3093\u306D\u3002\u3058\u3083\u3042\u3001\u96FB\u8A71\u3092\u304B\u3051\u3066\u304D\u307E\u3057\u3087\u3046\u304B\u3002\u3048\u3048\u3002\u304A\u9858\u3044\u3057\u307E\u3059\u3002\u4E09\u3002\u5589\u304C\u6E07\u304D\u307E\u3057\u305F\u3002\u98F2\u307F\u7269\u3092\u8CB7\u3044\u307E\u3059\u3002\u5589\u304C\u6E07\u304D\u307E\u3057\u305F\u306D\u3002\u3058\u3083\u3042\u3001\u98F2\u307F\u7269\u3092\u8CB7\u3063\u3066\u304D\u307E\u3057\u3087\u3046\u304B\u3002\n\u6765\u307E\u305B\u3093\u3002\u96FB\u8A71\u3092\u304B\u3051\u307E\u3059\u3002\u68EE\u3055\u3093\u304C\u6765\u307E\u305B\u3093\u306D\u3002\u3058\u3083\u3042\u3001\u96FB\u8A71\u3092\u304B\u3051\u3066\u304D\u307E\u3057\u3087\u3046\u304B\u3002\u3048\u3048\u3002\u304A\u9858\u3044\u3057\u307E\u3059\u3002\u4E09\u3002\u5589\u304C\u6E07\u304D\u307E\u3057\u305F\u3002\u98F2\u307F\u7269\u3092\u8CB7\u3044\u307E\u3059\u3002\u5589\u304C\u6E07\u304D\u307E\u3057\u305F\u306D\u3002\u3058\u3083\u3042\u3001\u98F2\u307F\u7269\u3092\u8CB7\u3063\u3066\u304D\u307E\u3057\u3087\u3046\u304B\u3002\u3048\u3048\u3001\u304A\u9858\u3044\u3057\u307E\u3059\u3002\u56DB\u3001\u30B3\u30C3\u30D7\u304C\u6C5A\u3044\u3067\u3059\u3002\u6D17\u3044\u307E\u3059\u3002\u30B3\u30C3\u30D7\u304C\u6C5A\u3044\u3067\u3059\u306D\u3002\u3058\u3083\u3042\u6D17\u3063\u3066\u304D\u307E\u3057\u3087\u3046\u304B\u3002\u3048\uFF1F\n\u6C5A\u3044\u3067\u3059\u306D\u3002\u3058\u3083\u3042\u3001\u6D17\u3063\u3066\u304D\u307E\u3057\u3087\u3046\u304B\u3002\u3048\u3048\u3002\u304A\u9858\u3044\u3057\u307E\u3059\u3002\u96F6\u3002\u5199\u771F\u5C55\u3092\u898B\u307E\u3057\u305F\u3002\u304A\u304B\u3048\u308A\u306A\u3055\u3044\u3002\u3069\u3053\u306B\u884C\u3063\u3066\u3044\u305F\u3093\u3067\u3059\u304B\uFF1F\u5199\u771F\u5C55\u3092\u898B\u3066\u304D\u307E\u3057\u305F\u3002\u3088\u304B\u3063\u305F\u3067\u3059\u304B\uFF1F\u3048\u3048\u3001\u307E\u3042\u307E\u3042\u3067\u3057\u305F\u3002\u4E94\u3001\u6620\u753B\u3092\u898B\u307E\u3057\u305F\u3002\u304A\u304B\u3048\u308A\u306A\u3055\u3044\u3002\u3069\u3053\u306B\u884C\u3063\u3066\u3044\u305F\u3093\u3067\u3059\u304B\u3002\u6620\u753B\u3092\u898B\u3066\u304D\u307E\u3057\u305F\u3002\u826F\u304B\u3063\u305F\u3067\u3059\u304B\uFF1F\u3048\u3048\u3001\u307E\u3042\u307E\u3042\u3067\u3057\u305F\u3002\u516D\u3002\u30B8\u30E3\u30BA\u3092\u805E\u304D\u307E\u3057\u305F\u3002\u304A\u304B\u3048\u308A\u306A\u3055\u3044\u3002\n\u516D\u3002\u30B8\u30E3\u30BA\u3092\u805E\u304D\u307E\u3057\u305F\u3002\u304A\u304B\u3048\u308A\u306A\u3055\u3044\u3002\u3069\u3053\u306B\u884C\u3063\u3066\u3044\u305F\u3093\u3067\u3059\u304B\uFF1F\u30B8\u30E3\u30BA\u3092\u805E\u3044\u3066\u304D\u307E\u3057\u305F\u3002\u3088\u304B\u3063\u305F\u3067\u3059\u304B\uFF1F\u3048\u3048\u3001\u307E\u3042\u307E\u3042\u3067\u3057\u305F\u3002\u4E03\u3001\u97F3\u697D\u4F1A\u306B\u884C\u304D\u307E\u3057\u305F\u3002\u304A\u304B\u3048\u308A\u306A\u3055\u3044\u3002\u3069\u3053\u306B\u884C\u3063\u3066\u3044\u305F\u3093\u3067\u3059\u304B\u3002\u97F3\u697D\u4F1A\u306B\u884C\u3063\u3066\u304D\u307E\u3057\u305F\u3002\u3088\u304B\u3063\u305F\u3002\u3067\u3059\u304B\uFF1F\u3048\u3048\u3001\u307E\u3042\u307E\u3042\u3067\u3057\u305F\u3002",
+          "confidenceNote": "\u63090\u79D2\u300135\u79D2\u300170\u79D2\u3001108\u79D2\u5206\u6BB5\u8F6C\u5199\uFF0C\u539F\u59CB\u6587\u672C\u4FDD\u7559\u91CD\u53E0\u3002segments\u6309\u6559\u6750\u7F16\u53F7\u6574\u7406\uFF0C\u7EDF\u4E00\u6807\u70B9\u53CA\u6C49\u5B57\u5199\u6CD5\uFF1BASR\u5C06\u300C\u4F8B\u300D\u8BC6\u522B\u4E3A\u300C\u96F6\u300D\u3002",
+          "segments": [
+            {
+              "itemNumber": "1",
+              "text": "\u7532\uFF1A\u9234\u6728\u3055\u3093\u306E\u5BB6\u306E\u96FB\u8A71\u756A\u53F7\u304C\u5206\u304B\u308A\u307E\u305B\u3093\u306D\u3002\n\u4E59\uFF1A\u3058\u3083\u3042\u3001\u805E\u3044\u3066\u304D\u307E\u3057\u3087\u3046\u304B\u3002\n\u7532\uFF1A\u3048\u3048\u3001\u304A\u9858\u3044\u3057\u307E\u3059\u3002"
+            },
+            {
+              "itemNumber": "2",
+              "text": "\u7532\uFF1A\u68EE\u3055\u3093\u304C\u6765\u307E\u305B\u3093\u306D\u3002\n\u4E59\uFF1A\u3058\u3083\u3042\u3001\u96FB\u8A71\u3092\u304B\u3051\u3066\u304D\u307E\u3057\u3087\u3046\u304B\u3002\n\u7532\uFF1A\u3048\u3048\u3001\u304A\u9858\u3044\u3057\u307E\u3059\u3002"
+            },
+            {
+              "itemNumber": "3",
+              "text": "\u7532\uFF1A\u306E\u3069\u304C\u6E07\u304D\u307E\u3057\u305F\u306D\u3002\n\u4E59\uFF1A\u3058\u3083\u3042\u3001\u98F2\u307F\u7269\u3092\u8CB7\u3063\u3066\u304D\u307E\u3057\u3087\u3046\u304B\u3002\n\u7532\uFF1A\u3048\u3048\u3001\u304A\u9858\u3044\u3057\u307E\u3059\u3002"
+            },
+            {
+              "itemNumber": "4",
+              "text": "\u7532\uFF1A\u30B3\u30C3\u30D7\u304C\u6C5A\u3044\u3067\u3059\u306D\u3002\n\u4E59\uFF1A\u3058\u3083\u3042\u3001\u6D17\u3063\u3066\u304D\u307E\u3057\u3087\u3046\u304B\u3002\n\u7532\uFF1A\u3048\u3048\u3001\u304A\u9858\u3044\u3057\u307E\u3059\u3002"
+            },
+            {
+              "itemNumber": "5",
+              "text": "\u7532\uFF1A\u304A\u5E30\u308A\u306A\u3055\u3044\u3002\u3069\u3053\u306B\u884C\u3063\u3066\u3044\u305F\u3093\u3067\u3059\u304B\u3002\n\u4E59\uFF1A\u6620\u753B\u3092\u898B\u3066\u304D\u307E\u3057\u305F\u3002\n\u7532\uFF1A\u3088\u304B\u3063\u305F\u3067\u3059\u304B\u3002\n\u4E59\uFF1A\u3048\u3048\u3001\u307E\u3042\u307E\u3042\u3067\u3057\u305F\u3002"
+            },
+            {
+              "itemNumber": "6",
+              "text": "\u7532\uFF1A\u304A\u5E30\u308A\u306A\u3055\u3044\u3002\u3069\u3053\u306B\u884C\u3063\u3066\u3044\u305F\u3093\u3067\u3059\u304B\u3002\n\u4E59\uFF1A\u30B8\u30E3\u30BA\u3092\u805E\u3044\u3066\u304D\u307E\u3057\u305F\u3002\n\u7532\uFF1A\u3088\u304B\u3063\u305F\u3067\u3059\u304B\u3002\n\u4E59\uFF1A\u3048\u3048\u3001\u307E\u3042\u307E\u3042\u3067\u3057\u305F\u3002"
+            },
+            {
+              "itemNumber": "7",
+              "text": "\u7532\uFF1A\u304A\u5E30\u308A\u306A\u3055\u3044\u3002\u3069\u3053\u306B\u884C\u3063\u3066\u3044\u305F\u3093\u3067\u3059\u304B\u3002\n\u4E59\uFF1A\u97F3\u697D\u4F1A\u306B\u884C\u3063\u3066\u304D\u307E\u3057\u305F\u3002\n\u7532\uFF1A\u3088\u304B\u3063\u305F\u3067\u3059\u304B\u3002\n\u4E59\uFF1A\u3048\u3048\u3001\u307E\u3042\u307E\u3042\u3067\u3057\u305F\u3002"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "l39-p2-a1",
+      "section": "practice_2",
+      "order": 1,
+      "title": "\u5C06\uFF08\u3000\u3000\uFF09\u4E2D\u7684\u8BCD\u8BED\u53D8\u6210\u9002\u5F53\u7684\u5F62\u5F0F\u5B8C\u6210\u53E5\u5B50\u3002",
+      "instruction": "",
+      "interaction": "fill_blank",
+      "answerUnit": "word",
+      "responseScope": "word_only",
+      "layout": [
+        {
+          "type": "example",
+          "content": {
+            "label": "[\u4F8B]",
+            "after": [
+              {
+                "type": "text",
+                "text": "\u305D\u306E\u30CB\u30E5\u30FC\u30B9\u3092\uFF08\u805E\u304D\u307E\u3059 \u2192 \u805E\u3044\u3066\uFF09\u3001\u3073\u3063\u304F\u308A\u3057\u307E\u3057\u305F\u3002",
+                "kana": "\u305D\u306E\u30CB\u30E5\u30FC\u30B9\u3092\uFF08\u304D\u304D\u307E\u3059 \u2192 \u304D\u3044\u3066\uFF09\u3001\u3073\u3063\u304F\u308A\u3057\u307E\u3057\u305F\u3002"
+              }
+            ],
+            "afterKana": "\u305D\u306E\u30CB\u30E5\u30FC\u30B9\u3092\uFF08\u304D\u304D\u307E\u3059 \u2192 \u304D\u3044\u3066\uFF09\u3001\u3073\u3063\u304F\u308A\u3057\u307E\u3057\u305F\u3002"
+          }
+        }
+      ],
+      "items": [
+        {
+          "id": "l39-p2-a1-q1",
+          "number": "1",
+          "prompt": [
+            {
+              "type": "text",
+              "text": "\u643A\u5E2F\u96FB\u8A71\u3067\uFF08\u8A71\u3057\u307E\u3059 \u2192 ",
+              "kana": "\u3051\u3044\u305F\u3044\u3067\u3093\u308F\u3067\uFF08\u306F\u306A\u3057\u307E\u3059 \u2192 "
+            },
+            {
+              "type": "blank",
+              "slotId": "answer",
+              "display": "underline"
+            },
+            {
+              "type": "text",
+              "text": "\uFF09\u306A\u304C\u3089\u6B69\u304B\u306A\u3044\u3067\u304F\u3060\u3055\u3044\u3002",
+              "kana": "\uFF09\u306A\u304C\u3089\u3042\u308B\u304B\u306A\u3044\u3067\u304F\u3060\u3055\u3044\u3002"
+            }
+          ],
+          "inputSlots": [
+            {
+              "id": "answer",
+              "expectedUnit": "conjugated_form",
+              "width": "medium",
+              "placeholder": "\u586B\u5199\u53D8\u5F62\u540E\u7684\u8BCD\u8BED"
+            }
+          ],
+          "answerSource": "prompt",
+          "evaluationMode": "exact",
+          "answer": {
+            "slotValues": {
+              "answer": "\u8A71\u3057"
+            }
+          }
+        },
+        {
+          "id": "l39-p2-a1-q2",
+          "number": "2",
+          "prompt": [
+            {
+              "type": "text",
+              "text": "\u5BD2\u3044\u306E\u3067\u3001\u30B3\u30FC\u30C8\u3092\uFF08\u7740\u307E\u3059 \u2192 ",
+              "kana": "\u3055\u3080\u3044\u306E\u3067\u3001\u30B3\u30FC\u30C8\u3092\uFF08\u304D\u307E\u3059 \u2192 "
+            },
+            {
+              "type": "blank",
+              "slotId": "answer",
+              "display": "underline"
+            },
+            {
+              "type": "text",
+              "text": "\uFF09\u51FA\u304B\u3051\u307E\u3059\u3002",
+              "kana": "\uFF09\u3067\u304B\u3051\u307E\u3059\u3002"
+            }
+          ],
+          "inputSlots": [
+            {
+              "id": "answer",
+              "expectedUnit": "conjugated_form",
+              "width": "medium",
+              "placeholder": "\u586B\u5199\u53D8\u5F62\u540E\u7684\u8BCD\u8BED"
+            }
+          ],
+          "answerSource": "prompt",
+          "evaluationMode": "exact",
+          "answer": {
+            "slotValues": {
+              "answer": "\u7740\u3066"
+            }
+          }
+        },
+        {
+          "id": "l39-p2-a1-q3",
+          "number": "3",
+          "prompt": [
+            {
+              "type": "text",
+              "text": "\u304A\u5F01\u5F53\u3092\uFF08\u8CB7\u3044\u307E\u3059 \u2192 ",
+              "kana": "\u304A\u3079\u3093\u3068\u3046\u3092\uFF08\u304B\u3044\u307E\u3059 \u2192 "
+            },
+            {
+              "type": "blank",
+              "slotId": "answer",
+              "display": "underline"
+            },
+            {
+              "type": "text",
+              "text": "\uFF09\u5E30\u3063\u3066\u3001\u5BB6\u3067\u98DF\u3079\u307E\u3057\u305F\u3002",
+              "kana": "\uFF09\u304B\u3048\u3063\u3066\u3001\u3044\u3048\u3067\u305F\u3079\u307E\u3057\u305F\u3002"
+            }
+          ],
+          "inputSlots": [
+            {
+              "id": "answer",
+              "expectedUnit": "conjugated_form",
+              "width": "medium",
+              "placeholder": "\u586B\u5199\u53D8\u5F62\u540E\u7684\u8BCD\u8BED"
+            }
+          ],
+          "answerSource": "prompt",
+          "evaluationMode": "exact",
+          "answer": {
+            "slotValues": {
+              "answer": "\u8CB7\u3063\u3066"
+            }
+          }
+        },
+        {
+          "id": "l39-p2-a1-q4",
+          "number": "4",
+          "prompt": [
+            {
+              "type": "text",
+              "text": "\uFF08\u98F2\u307F\u307E\u3059 \u2192 ",
+              "kana": "\uFF08\u306E\u307F\u307E\u3059 \u2192 "
+            },
+            {
+              "type": "blank",
+              "slotId": "answer1",
+              "display": "underline"
+            },
+            {
+              "type": "text",
+              "text": "\uFF09\u3060\u3089\u4E57\u308B\u306A\u3002\uFF08\u4E57\u308A\u307E\u3059 \u2192 ",
+              "kana": "\uFF09\u3060\u3089\u306E\u308B\u306A\u3002\uFF08\u306E\u308A\u307E\u3059 \u2192 "
+            },
+            {
+              "type": "blank",
+              "slotId": "answer2",
+              "display": "underline"
+            },
+            {
+              "type": "text",
+              "text": "\uFF09\u306A\u3089\u98F2\u3080\u306A\u3002",
+              "kana": "\uFF09\u306A\u3089\u306E\u3080\u306A\u3002"
+            }
+          ],
+          "inputSlots": [
+            {
+              "id": "answer1",
+              "expectedUnit": "conjugated_form",
+              "width": "medium",
+              "placeholder": "\u586B\u5199\u53D8\u5F62\u540E\u7684\u8BCD\u8BED"
+            },
+            {
+              "id": "answer2",
+              "expectedUnit": "conjugated_form",
+              "width": "medium",
+              "placeholder": "\u586B\u5199\u53D8\u5F62\u540E\u7684\u8BCD\u8BED"
+            }
+          ],
+          "answerSource": "prompt",
+          "evaluationMode": "exact",
+          "answer": {
+            "slotValues": {
+              "answer1": "\u98F2\u3093",
+              "answer2": "\u4E57\u308B"
+            }
+          }
+        },
+        {
+          "id": "l39-p2-a1-q5",
+          "number": "5",
+          "prompt": [
+            {
+              "type": "text",
+              "text": "\u3064\u307E\u3089\u306A\u3044\u672C\u3067\u3059\u3002\u2014\u2014\u3058\u3083\u3042\u3001\uFF08\u8AAD\u307F\u307E\u305B\u3093 \u2192 ",
+              "kana": "\u3064\u307E\u3089\u306A\u3044\u307B\u3093\u3067\u3059\u3002\u2014\u2014\u3058\u3083\u3042\u3001\uFF08\u3088\u307F\u307E\u305B\u3093 \u2192 "
+            },
+            {
+              "type": "blank",
+              "slotId": "answer",
+              "display": "underline"
+            },
+            {
+              "type": "text",
+              "text": "\uFF09\u3053\u3068\u306B\u3057\u307E\u3059\u3002",
+              "kana": "\uFF09\u3053\u3068\u306B\u3057\u307E\u3059\u3002"
+            }
+          ],
+          "inputSlots": [
+            {
+              "id": "answer",
+              "expectedUnit": "conjugated_form",
+              "width": "medium",
+              "placeholder": "\u586B\u5199\u53D8\u5F62\u540E\u7684\u8BCD\u8BED"
+            }
+          ],
+          "answerSource": "prompt",
+          "evaluationMode": "exact",
+          "answer": {
+            "slotValues": {
+              "answer": "\u8AAD\u307E\u306A\u3044"
+            }
+          }
+        },
+        {
+          "id": "l39-p2-a1-q6",
+          "number": "6",
+          "prompt": [
+            {
+              "type": "text",
+              "text": "\u660E\u65E5\u3001\u30D4\u30AF\u30CB\u30C3\u30AF\u306B\uFF08\u884C\u3051\u307E\u305B\u3093 \u2192 ",
+              "kana": "\u3042\u3057\u305F\u3001\u30D4\u30AF\u30CB\u30C3\u30AF\u306B\uFF08\u3044\u3051\u307E\u305B\u3093 \u2192 "
+            },
+            {
+              "type": "blank",
+              "slotId": "answer",
+              "display": "underline"
+            },
+            {
+              "type": "text",
+              "text": "\uFF09\u304B\u3082\u3057\u308C\u307E\u305B\u3093\u3002",
+              "kana": "\uFF09\u304B\u3082\u3057\u308C\u307E\u305B\u3093\u3002"
+            }
+          ],
+          "inputSlots": [
+            {
+              "id": "answer",
+              "expectedUnit": "conjugated_form",
+              "width": "medium",
+              "placeholder": "\u586B\u5199\u53D8\u5F62\u540E\u7684\u8BCD\u8BED"
+            }
+          ],
+          "answerSource": "prompt",
+          "evaluationMode": "exact",
+          "answer": {
+            "slotValues": {
+              "answer": "\u884C\u3051\u306A\u3044"
+            }
+          }
+        },
+        {
+          "id": "l39-p2-a1-q7",
+          "number": "7",
+          "prompt": [
+            {
+              "type": "text",
+              "text": "\u3053\u306E\u85AC\u3092\uFF08\u98F2\u307F\u307E\u3059 \u2192 ",
+              "kana": "\u3053\u306E\u304F\u3059\u308A\u3092\uFF08\u306E\u307F\u307E\u3059 \u2192 "
+            },
+            {
+              "type": "blank",
+              "slotId": "answer",
+              "display": "underline"
+            },
+            {
+              "type": "text",
+              "text": "\uFF09\u3070\u3001\u3059\u3050\u6CBB\u308A\u307E\u3059\u3088\u3002",
+              "kana": "\uFF09\u3070\u3001\u3059\u3050\u306A\u304A\u308A\u307E\u3059\u3088\u3002"
+            }
+          ],
+          "inputSlots": [
+            {
+              "id": "answer",
+              "expectedUnit": "conjugated_form",
+              "width": "medium",
+              "placeholder": "\u586B\u5199\u53D8\u5F62\u540E\u7684\u8BCD\u8BED"
+            }
+          ],
+          "answerSource": "prompt",
+          "evaluationMode": "exact",
+          "answer": {
+            "slotValues": {
+              "answer": "\u98F2\u3081"
+            }
+          }
+        },
+        {
+          "id": "l39-p2-a1-q8",
+          "number": "8",
+          "prompt": [
+            {
+              "type": "text",
+              "text": "\u5348\u524D\u4E2D\u306B\u4E88\u7D04\u3092\uFF08\u3057\u307E\u3059 \u2192 ",
+              "kana": "\u3054\u305C\u3093\u3061\u3085\u3046\u306B\u3088\u3084\u304F\u3092\uFF08\u3057\u307E\u3059 \u2192 "
+            },
+            {
+              "type": "blank",
+              "slotId": "answer",
+              "display": "underline"
+            },
+            {
+              "type": "text",
+              "text": "\uFF09\u3053\u3088\u3046\u3068\u601D\u3044\u307E\u3059\u3002",
+              "kana": "\uFF09\u3053\u3088\u3046\u3068\u304A\u3082\u3044\u307E\u3059\u3002"
+            }
+          ],
+          "inputSlots": [
+            {
+              "id": "answer",
+              "expectedUnit": "conjugated_form",
+              "width": "medium",
+              "placeholder": "\u586B\u5199\u53D8\u5F62\u540E\u7684\u8BCD\u8BED"
+            }
+          ],
+          "answerSource": "prompt",
+          "evaluationMode": "exact",
+          "answer": {
+            "slotValues": {
+              "answer": "\u3057\u3066"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "l39-p2-a2",
+      "section": "practice_2",
+      "order": 2,
+      "title": "\u4ECEa\uFF5Ee\u4E2D\u9009\u62E9\u5408\u9002\u7684\u7B54\u6848\uFF0C\u5C06\u5B57\u6BCD\u586B\u5165\uFF08\u3000\u3000\uFF09\u4E2D\u3002",
+      "instruction": "",
+      "interaction": "single_choice",
+      "answerUnit": "choice",
+      "responseScope": "choice_only",
+      "layout": [
+        {
+          "type": "example",
+          "content": {
+            "label": "[\u4F8B]",
+            "after": [
+              {
+                "type": "text",
+                "text": "\u99AC\u3055\u3093\u306F\u96E8\u306E\u4E2D\u3001\u5098\u3092\u6301\u305F\u306A\u3044\u3067\u51FA\u304B\u3051\u307E\u3057\u305F\u3002\uFF08b\uFF09",
+                "kana": "\u3070\u3055\u3093\u306F\u3042\u3081\u306E\u306A\u304B\u3001\u304B\u3055\u3092\u3082\u305F\u306A\u3044\u3067\u3067\u304B\u3051\u307E\u3057\u305F\u3002\uFF08b\uFF09"
+              }
+            ],
+            "afterKana": "\u3070\u3055\u3093\u306F\u3042\u3081\u306E\u306A\u304B\u3001\u304B\u3055\u3092\u3082\u305F\u306A\u3044\u3067\u3067\u304B\u3051\u307E\u3057\u305F\u3002\uFF08b\uFF09"
+          }
+        },
+        {
+          "type": "word_bank",
+          "words": [
+            {
+              "type": "text",
+              "text": "a \u99AC\u3055\u3093\u306F\u3053\u3053\u306B\u3044\u307E\u305B\u3093\u3002",
+              "kana": "a \u3070\u3055\u3093\u306F\u3053\u3053\u306B\u3044\u307E\u305B\u3093\u3002"
+            },
+            {
+              "type": "text",
+              "text": "b \u99AC\u3055\u3093\u306F\u306C\u308C\u307E\u3057\u305F\u3002",
+              "kana": "b \u3070\u3055\u3093\u306F\u306C\u308C\u307E\u3057\u305F\u3002"
+            },
+            {
+              "type": "text",
+              "text": "c \u99AC\u3055\u3093\u306E\u5B50\u4F9B\u306F\u3001\u3053\u3053\u306B\u3044\u307E\u305B\u3093\u3002",
+              "kana": "c \u3070\u3055\u3093\u306E\u3053\u3069\u3082\u306F\u3001\u3053\u3053\u306B\u3044\u307E\u305B\u3093\u3002"
+            },
+            {
+              "type": "text",
+              "text": "d \u99AC\u3055\u3093\u306F\u3053\u3053\u306B\u3044\u307E\u3059\u3002",
+              "kana": "d \u3070\u3055\u3093\u306F\u3053\u3053\u306B\u3044\u307E\u3059\u3002"
+            },
+            {
+              "type": "text",
+              "text": "e \u99AC\u3055\u3093\u306E\u5B50\u4F9B\u306F\u3001\u4ECA\u3001\u3053\u3053\u306B\u3044\u307E\u3059\u3002",
+              "kana": "e \u3070\u3055\u3093\u306E\u3053\u3069\u3082\u306F\u3001\u3044\u307E\u3001\u3053\u3053\u306B\u3044\u307E\u3059\u3002"
+            }
+          ]
+        }
+      ],
+      "items": [
+        {
+          "id": "l39-p2-a2-q1",
+          "number": "1",
+          "prompt": [
+            {
+              "type": "text",
+              "text": "\u99AC\u3055\u3093\u306F\u624B\u7D19\u3092\u51FA\u3057\u3066\u304D\u307E\u3057\u305F\u3002"
+            }
+          ],
+          "promptKana": "\u3070\u3055\u3093\u306F\u3066\u304C\u307F\u3092\u3060\u3057\u3066\u304D\u307E\u3057\u305F\u3002",
+          "choices": [
+            {
+              "id": "a",
+              "label": "a"
+            },
+            {
+              "id": "b",
+              "label": "b"
+            },
+            {
+              "id": "c",
+              "label": "c"
+            },
+            {
+              "id": "d",
+              "label": "d"
+            },
+            {
+              "id": "e",
+              "label": "e"
+            }
+          ],
+          "answer": {
+            "choiceIds": [
+              "d"
+            ]
+          },
+          "answerSource": "prompt",
+          "evaluationMode": "exact"
+        },
+        {
+          "id": "l39-p2-a2-q2",
+          "number": "2",
+          "prompt": [
+            {
+              "type": "text",
+              "text": "\u99AC\u3055\u3093\u306F\u624B\u7D19\u3092\u51FA\u3057\u306B\u884C\u304D\u307E\u3057\u305F\u3002"
+            }
+          ],
+          "promptKana": "\u3070\u3055\u3093\u306F\u3066\u304C\u307F\u3092\u3060\u3057\u306B\u3044\u304D\u307E\u3057\u305F\u3002",
+          "choices": [
+            {
+              "id": "a",
+              "label": "a"
+            },
+            {
+              "id": "b",
+              "label": "b"
+            },
+            {
+              "id": "c",
+              "label": "c"
+            },
+            {
+              "id": "d",
+              "label": "d"
+            },
+            {
+              "id": "e",
+              "label": "e"
+            }
+          ],
+          "answer": {
+            "choiceIds": [
+              "a"
+            ]
+          },
+          "answerSource": "prompt",
+          "evaluationMode": "exact"
+        },
+        {
+          "id": "l39-p2-a2-q3",
+          "number": "3",
+          "prompt": [
+            {
+              "type": "text",
+              "text": "\u99AC\u3055\u3093\u306F\u5B50\u4F9B\u3092\u9023\u308C\u3066\u304D\u307E\u3057\u305F\u3002"
+            }
+          ],
+          "promptKana": "\u3070\u3055\u3093\u306F\u3053\u3069\u3082\u3092\u3064\u308C\u3066\u304D\u307E\u3057\u305F\u3002",
+          "choices": [
+            {
+              "id": "a",
+              "label": "a"
+            },
+            {
+              "id": "b",
+              "label": "b"
+            },
+            {
+              "id": "c",
+              "label": "c"
+            },
+            {
+              "id": "d",
+              "label": "d"
+            },
+            {
+              "id": "e",
+              "label": "e"
+            }
+          ],
+          "answer": {
+            "choiceIds": [
+              "e"
+            ]
+          },
+          "answerSource": "prompt",
+          "evaluationMode": "exact"
+        },
+        {
+          "id": "l39-p2-a2-q4",
+          "number": "4",
+          "prompt": [
+            {
+              "type": "text",
+              "text": "\u99AC\u3055\u3093\u306F\u5B50\u4F9B\u3092\u9023\u308C\u3066\u304D\u307E\u305B\u3093\u3067\u3057\u305F\u3002"
+            }
+          ],
+          "promptKana": "\u3070\u3055\u3093\u306F\u3053\u3069\u3082\u3092\u3064\u308C\u3066\u304D\u307E\u305B\u3093\u3067\u3057\u305F\u3002",
+          "choices": [
+            {
+              "id": "a",
+              "label": "a"
+            },
+            {
+              "id": "b",
+              "label": "b"
+            },
+            {
+              "id": "c",
+              "label": "c"
+            },
+            {
+              "id": "d",
+              "label": "d"
+            },
+            {
+              "id": "e",
+              "label": "e"
+            }
+          ],
+          "answer": {
+            "choiceIds": [
+              "c"
+            ]
+          },
+          "answerSource": "prompt",
+          "evaluationMode": "exact"
+        }
+      ]
+    },
+    {
+      "id": "l39-p2-a3",
+      "section": "practice_2",
+      "order": 3,
+      "title": "\u7ED9\u6B63\u786E\u7684\u7B54\u6848\u753B\u25CB\u3002",
+      "instruction": "",
+      "interaction": "single_choice",
+      "answerUnit": "choice",
+      "responseScope": "choice_only",
+      "layout": [
+        {
+          "type": "example",
+          "content": {
+            "label": "[\u4F8B]",
+            "after": [
+              {
+                "type": "text",
+                "text": "\u3053\u306E\u672C\u306F\uFF08"
+              },
+              {
+                "type": "text",
+                "text": "\u304A\u3082\u3057\u308D\u3044\u304B\u3089",
+                "underline": true,
+                "substitutionKey": "part1"
+              },
+              {
+                "type": "text",
+                "text": "\u30FB\u304A\u3082\u3057\u308D\u304F\u3066\uFF09\u3001\u8AAD\u3093\u3067\u304F\u3060\u3055\u3044\u3002"
+              }
+            ],
+            "afterKana": "\u3053\u306E\u307B\u3093\u306F\uFF08\u304A\u3082\u3057\u308D\u3044\u304B\u3089\u30FB\u304A\u3082\u3057\u308D\u304F\u3066\uFF09\u3001\u3088\u3093\u3067\u304F\u3060\u3055\u3044\u3002"
+          }
+        }
+      ],
+      "items": [
+        {
+          "id": "l39-p2-a3-q1",
+          "number": "1",
+          "prompt": [
+            {
+              "type": "text",
+              "text": "\u6691\u304F\u3066\u3001\uFF08\u5BDD\u307E\u305B\u3093\u30FB\u5168\u7136\u5BDD\u3089\u308C\u307E\u305B\u3093\uFF09\u3002"
+            }
+          ],
+          "promptKana": "\u3042\u3064\u304F\u3066\u3001\uFF08\u306D\u307E\u305B\u3093\u30FB\u305C\u3093\u305C\u3093\u306D\u3089\u308C\u307E\u305B\u3093\uFF09\u3002",
+          "choices": [
+            {
+              "id": "choice1",
+              "label": "\u5BDD\u307E\u305B\u3093"
+            },
+            {
+              "id": "choice2",
+              "label": "\u5168\u7136\u5BDD\u3089\u308C\u307E\u305B\u3093"
+            }
+          ],
+          "answer": {
+            "choiceIds": [
+              "choice2"
+            ]
+          },
+          "answerSource": "prompt",
+          "evaluationMode": "exact"
+        },
+        {
+          "id": "l39-p2-a3-q2",
+          "number": "2",
+          "prompt": [
+            {
+              "type": "text",
+              "text": "\uFF08\u6687\u3067\u30FB\u6687\u3060\u304B\u3089\uFF09\u3001\u884C\u304D\u307E\u3059\u3002"
+            }
+          ],
+          "promptKana": "\uFF08\u3072\u307E\u3067\u30FB\u3072\u307E\u3060\u304B\u3089\uFF09\u3001\u3044\u304D\u307E\u3059\u3002",
+          "choices": [
+            {
+              "id": "choice1",
+              "label": "\u6687\u3067"
+            },
+            {
+              "id": "choice2",
+              "label": "\u6687\u3060\u304B\u3089"
+            }
+          ],
+          "answer": {
+            "choiceIds": [
+              "choice2"
+            ]
+          },
+          "answerSource": "prompt",
+          "evaluationMode": "exact"
+        },
+        {
+          "id": "l39-p2-a3-q3",
+          "number": "3",
+          "prompt": [
+            {
+              "type": "text",
+              "text": "\u4E8B\u6545\u304C\uFF08\u3042\u3063\u305F\u305F\u3081\u306B\u30FB\u3042\u308B\u305F\u3081\u306B\uFF09\u3001\u9045\u308C\u307E\u3057\u305F\u3002"
+            }
+          ],
+          "promptKana": "\u3058\u3053\u304C\uFF08\u3042\u3063\u305F\u305F\u3081\u306B\u30FB\u3042\u308B\u305F\u3081\u306B\uFF09\u3001\u304A\u304F\u308C\u307E\u3057\u305F\u3002",
+          "choices": [
+            {
+              "id": "choice1",
+              "label": "\u3042\u3063\u305F\u305F\u3081\u306B"
+            },
+            {
+              "id": "choice2",
+              "label": "\u3042\u308B\u305F\u3081\u306B"
+            }
+          ],
+          "answer": {
+            "choiceIds": [
+              "choice1"
+            ]
+          },
+          "answerSource": "prompt",
+          "evaluationMode": "exact"
+        },
+        {
+          "id": "l39-p2-a3-q4",
+          "number": "4",
+          "prompt": [
+            {
+              "type": "text",
+              "text": "\uFF08\u304A\u3044\u3057\u304F\u3066\u30FB\u304A\u3044\u3057\u304F\u3066\u3082\uFF09\u3001\u305F\u304F\u3055\u3093\u98DF\u3079\u3066\u3057\u307E\u3044\u307E\u3057\u305F\u3002"
+            }
+          ],
+          "promptKana": "\uFF08\u304A\u3044\u3057\u304F\u3066\u30FB\u304A\u3044\u3057\u304F\u3066\u3082\uFF09\u3001\u305F\u304F\u3055\u3093\u305F\u3079\u3066\u3057\u307E\u3044\u307E\u3057\u305F\u3002",
+          "choices": [
+            {
+              "id": "choice1",
+              "label": "\u304A\u3044\u3057\u304F\u3066"
+            },
+            {
+              "id": "choice2",
+              "label": "\u304A\u3044\u3057\u304F\u3066\u3082"
+            }
+          ],
+          "answer": {
+            "choiceIds": [
+              "choice1"
+            ]
+          },
+          "answerSource": "prompt",
+          "evaluationMode": "exact"
+        },
+        {
+          "id": "l39-p2-a3-q5",
+          "number": "5",
+          "prompt": [
+            {
+              "type": "text",
+              "text": "\u3053\u308C\u306F\u97F3\u304C\uFF08\u60AA\u3044\u305F\u3081\u306B\u30FB\u60AA\u3044\u304B\u3089\uFF09\u3001\u4F1A\u8B70\u3067\u306F\u4F7F\u308F\u306A\u3044\u3067\u304F\u3060\u3055\u3044\u3002"
+            }
+          ],
+          "promptKana": "\u3053\u308C\u306F\u304A\u3068\u304C\uFF08\u308F\u308B\u3044\u305F\u3081\u306B\u30FB\u308F\u308B\u3044\u304B\u3089\uFF09\u3001\u304B\u3044\u304E\u3067\u306F\u3064\u304B\u308F\u306A\u3044\u3067\u304F\u3060\u3055\u3044\u3002",
+          "choices": [
+            {
+              "id": "choice1",
+              "label": "\u60AA\u3044\u305F\u3081\u306B"
+            },
+            {
+              "id": "choice2",
+              "label": "\u60AA\u3044\u304B\u3089"
+            }
+          ],
+          "answer": {
+            "choiceIds": [
+              "choice2"
+            ]
+          },
+          "answerSource": "prompt",
+          "evaluationMode": "exact"
+        }
+      ]
+    },
+    {
+      "id": "l39-p2-a4",
+      "section": "practice_2",
+      "order": 4,
+      "title": "\u5C06\u4E0B\u9762\u7684\u53E5\u5B50\u8BD1\u6210\u65E5\u8BED\u3002",
+      "instruction": "",
+      "interaction": "translation",
+      "answerUnit": "sentence",
+      "responseScope": "sentence_only",
+      "layout": [],
+      "items": [
+        {
+          "id": "l39-p2-a4-q1",
+          "number": "1",
+          "prompt": [
+            {
+              "type": "text",
+              "text": "\u68EE\u5148\u751F\u5E26\u4F1E\u4E86\u5417\uFF1F\u2014\u2014\u6CA1\u6709\u3002\u6CA1\u5E26\u3008\u5C31\u51FA\u53BB\u4E86\u3009\u3002"
+            }
+          ],
+          "answerSource": "prompt",
+          "evaluationMode": "exact",
+          "inputSlots": [
+            {
+              "id": "answer",
+              "expectedUnit": "dialogue",
+              "width": "long",
+              "multiline": true,
+              "rows": 4,
+              "placeholder": "\u586B\u5199\u5B8C\u6574\u5BF9\u8BDD"
+            }
+          ],
+          "answer": {
+            "slotValues": {
+              "answer": "\u7532\uFF1A\u68EE\u3055\u3093\u306F\u5098\u3092\u6301\u3063\u3066\u3044\u304D\u307E\u3057\u305F\u304B\u3002\n\u4E59\uFF1A\u3044\u3044\u3048\u3001\u6301\u305F\u306A\u3044\u3067\u51FA\u304B\u3051\u307E\u3057\u305F\u3002"
+            }
+          },
+          "responseScope": "question_and_answer",
+          "responseScopeHint": "\u586B\u5199\u95EE\u53E5\u548C\u56DE\u7B54\u4E24\u884C\u5B8C\u6574\u5BF9\u8BDD\u3002"
+        },
+        {
+          "id": "l39-p2-a4-q2",
+          "number": "2",
+          "prompt": [
+            {
+              "type": "text",
+              "text": "\u56E0\u4E3A\u3008\u9053\u8DEF\u3009\u65BD\u5DE5\uFF0C\u9053\u8DEF\u975E\u5E38\u62E5\u5835\u3002"
+            }
+          ],
+          "answerSource": "prompt",
+          "evaluationMode": "exact",
+          "inputSlots": [
+            {
+              "id": "answer",
+              "expectedUnit": "sentence",
+              "width": "long",
+              "placeholder": "\u586B\u5199\u5B8C\u6574\u53E5\u5B50"
+            }
+          ],
+          "answer": {
+            "slotValues": {
+              "answer": "\u9053\u8DEF\u5DE5\u4E8B\u306E\u305F\u3081\u306B\u3001\u9053\u304C\u8FBC\u3093\u3067\u3044\u307E\u3059\u3002"
+            }
+          }
+        },
+        {
+          "id": "l39-p2-a4-q3",
+          "number": "3",
+          "prompt": [
+            {
+              "type": "text",
+              "text": "\u53BB\u5E74\uFF0C\u5728\u65E5\u672C\u770B\u4E86\u6B4C\u821E\u4F0E\u3002"
+            }
+          ],
+          "answerSource": "prompt",
+          "evaluationMode": "exact",
+          "inputSlots": [
+            {
+              "id": "answer",
+              "expectedUnit": "sentence",
+              "width": "long",
+              "placeholder": "\u586B\u5199\u5B8C\u6574\u53E5\u5B50"
+            }
+          ],
+          "answer": {
+            "slotValues": {
+              "answer": "\u53BB\u5E74\u3001\u65E5\u672C\u3067\u6B4C\u821E\u4F0E\u3092\u898B\u3066\u304D\u307E\u3057\u305F\u3002"
+            }
+          }
+        }
+      ]
+    }
+  ]
+};
+
 // practice/react/entry.jsx
-var import_jsx_runtime2 = __toESM(require_jsx_runtime(), 1);
+var import_jsx_runtime3 = __toESM(require_jsx_runtime(), 1);
 var practices = {
   lesson1: lesson1Practice,
   lesson2: lesson2Practice,
@@ -40076,7 +45346,10 @@ var practices = {
   lesson33: lesson33Practice,
   lesson34: lesson34Practice,
   lesson35: lesson35Practice,
-  lesson36: lesson36Practice
+  lesson36: lesson36Practice,
+  lesson37: lesson37Practice,
+  lesson38: lesson38Practice,
+  lesson39: lesson39Practice
 };
 function lessonIdFromPage() {
   const explicit = document.body.dataset.lessonId;
@@ -40110,7 +45383,7 @@ async function bootstrap() {
     return;
   }
   const { practice } = await practiceSessionApi.loadPublishedPractice(lessonId, fallbackPractice);
-  (0, import_client.createRoot)(root).render(/* @__PURE__ */ (0, import_jsx_runtime2.jsx)(PracticePreview, { practice, localPractice }));
+  (0, import_client.createRoot)(root).render(/* @__PURE__ */ (0, import_jsx_runtime3.jsx)(PracticePreview, { practice, localPractice }));
 }
 bootstrap().catch((error) => {
   root.textContent = error?.message || "\u7EC3\u4E60\u52A0\u8F7D\u5931\u8D25\uFF0C\u8BF7\u7A0D\u540E\u91CD\u8BD5\u3002";

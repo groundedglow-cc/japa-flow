@@ -34,7 +34,7 @@
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       }
 
-      header {
+      body > header {
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -422,6 +422,34 @@
         color: var(--accent);
       }
 
+      /* A dialogue is one group: its label occupies the left column while
+         all turns stay together in the right column. */
+      .dialogue {
+        display: grid;
+        grid-template-columns: 24px minmax(0, 1fr);
+        gap: 10px;
+        align-items: stretch;
+      }
+
+      .dialogue-label {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        align-self: stretch;
+        min-height: 34px;
+        padding: 5px 3px;
+        border-radius: 1px;
+        background: #4b5054;
+        color: #fff;
+        font-size: 14px;
+        font-weight: 750;
+        line-height: 1;
+      }
+
+      .dialogue-lines {
+        min-width: 0;
+      }
+
       .line {
         display: grid;
         grid-template-columns: 52px 1fr auto;
@@ -433,7 +461,7 @@
 
       .text-cell {
         display: grid;
-        gap: 8px;
+        gap: 4px;
         min-width: 0;
       }
 
@@ -478,123 +506,23 @@
         align-items: center;
       }
 
-      .segment-actions .audio-button,
-      .segment-actions .text-ai-button {
+      /* This wrapper is transparent to the desktop grid. On touch layouts it
+         becomes one action row, keeping playback and notes side by side. */
+      .sentence-tools { display: contents; }
+
+      .segment-actions .audio-button {
         opacity: 0;
         pointer-events: none;
         transition: opacity 0.16s ease;
       }
 
       .sentence:hover .segment-actions .audio-button,
-      .line:hover .segment-actions .audio-button,
-      .sentence:hover .segment-actions .text-ai-button,
-      .line:hover .segment-actions .text-ai-button {
+      .line:hover .segment-actions .audio-button {
         opacity: 1;
         pointer-events: auto;
       }
 
-      .text-ai-button {
-        border-color: #d8ccec;
-        background: #fbf8ff;
-        color: #6b4c9a;
-        cursor: pointer;
-        font-size: 10px;
-        font-weight: 900;
-      }
 
-      .text-ai-button.active {
-        border-color: #b79bdd;
-        background: #f0e9fb;
-        color: #533579;
-      }
-
-      .text-ai-panel {
-        display: grid;
-        gap: 7px;
-        max-width: 620px;
-      }
-
-      .text-ai-panel textarea {
-        width: 100%;
-        min-height: 38px;
-        padding: 8px;
-        border: 1px solid #bdd7c9;
-        border-radius: 7px;
-        resize: none;
-        overflow: hidden;
-        font: inherit;
-        font-size: 13px;
-        line-height: 1.55;
-      }
-
-      .text-ai-actions {
-        display: flex;
-        justify-content: flex-end;
-        gap: 7px;
-      }
-
-      .text-ai-actions button {
-        min-height: 30px;
-        padding: 5px 9px;
-        border: 1px solid #a8cdbc;
-        border-radius: 6px;
-        background: #fff;
-        cursor: pointer;
-        font: inherit;
-        font-size: 12px;
-      }
-
-      .text-ai-actions button:disabled {
-        cursor: default;
-        opacity: 0.45;
-      }
-
-      .text-ai-panel small {
-        color: var(--muted);
-      }
-
-      .text-ai-answer {
-        padding: 8px;
-        border: 1px solid #d9cbed;
-        border-radius: 7px;
-        background: #faf7ff;
-        color: #43345e;
-        font-size: 12px;
-        line-height: 1.55;
-      }
-
-      .text-ai-answer p,
-      .text-ai-saved pre {
-        margin: 0;
-        white-space: pre-wrap;
-        font: 13px/1.55 inherit;
-      }
-
-      .text-ai-saved-list {
-        display: grid;
-        gap: 7px;
-      }
-
-      .text-ai-saved {
-        position: relative;
-        display: grid;
-        gap: 7px;
-        padding: 10px 34px 10px 12px;
-        border: 1px solid #ddd3ea;
-        border-radius: 8px;
-        background: #faf7fd;
-      }
-
-      .text-ai-saved button {
-        position: absolute;
-        top: 7px;
-        right: 7px;
-        padding: 0;
-        border: 0;
-        background: transparent;
-        color: #8d5e58;
-        cursor: pointer;
-      }
 
       .audio-review-status {
         max-width: 92px;
@@ -745,7 +673,7 @@
         background: #fff;
       }
 
-      html.embedded header,
+      html.embedded body > header,
       html.embedded .data-panel > .toolbar,
       html.embedded .data-panel > .lesson-row,
       html.embedded .data-panel > details {
@@ -783,32 +711,47 @@
         }
       }
 
-      @media (max-width: 640px) {
+      @media (max-width: 640px) and (hover: none), (max-width: 640px) and (pointer: coarse) {
         html.embedded .image-panel { display: none; }
         .section-head { align-items: flex-start; gap: 8px; padding: 10px 11px; }
         .section-head h3 { margin: 0; font-size: 16px; line-height: 1.35; }
         .section-actions { gap: 4px; }
         .section-label { display: none; }
         .section-toggle, .section-display-toggle { min-width: 48px; padding: 3px 6px; font-size: 11px; }
-        .dialogue { padding: 9px 11px; }
+        .dialogue { grid-template-columns: 21px minmax(0, 1fr); gap: 7px; padding: 9px 11px; }
         .sentence, .line { grid-template-columns: 32px minmax(0, 1fr) auto; gap: 6px; padding: 6px 0; }
         .speaker { font-size: 12px; }
         .sentence .jp, .sentence .jp .base-text, .line .jp, .line .jp .base-text { font-size: 14px; line-height: 1.38; }
         .sentence .kana, .sentence .cn, .line .kana, .line .cn { margin-top: 2px; font-size: 13px; line-height: 1.35; }
-        .sentence .segment-actions, .line .segment-actions { gap: 3px; }
-        .sentence .segment-actions button, .line .segment-actions button { min-width: 26px; width: 26px; height: 26px; padding: 0; font-size: 11px; }
+        .sentence-tools { display: flex; grid-column: 3; grid-row: 1; align-items: center; flex-wrap: wrap; gap: 5px; min-width: 0; }
+        .sentence-tools .segment-actions { gap: 4px; }
+        .sentence-tools .segment-actions button { min-width: 26px; width: 26px; height: 26px; padding: 0; font-size: 11px; }
+        /* A tap on the sentence already plays its audio. Keep that interaction
+           direct and reserve the visible control slot for notes / AI. */
+        .sentence-tools .segment-actions > .audio-button:not(.segment-settings) { display: none; }
+        .sentence-tools .inline-notes-host,
+        .sentence-tools .inline-notes-host:not(:has(.is-open, .ian-note, .ian-status:not(:empty))) { position: static; width: auto; height: auto; margin: 0; padding: 0; }
+        .sentence-tools .inline-notes-host .ian-entry,
+        .sentence-tools .inline-notes-host:not(:has(.is-open, .ian-note, .ian-status:not(:empty))) .ian-entry { position: static; min-height: 28px; }
+        .sentence-tools .inline-notes-host .ian-trigger { width: 32px; height: 32px; min-height: 32px; }
+        .sentence-tools:has(.inline-notes-host .is-open),
+        .sentence-tools:has(.inline-notes-host .ian-note),
+        .sentence-tools:has(.inline-notes-host .ian-status:not(:empty)) { grid-column: 2 / -1; grid-row: 2; }
+        .sentence-tools .inline-notes-host:has(.is-open, .ian-note, .ian-status:not(:empty)) { flex: 1 0 100%; }
+        .sentence-tools .inline-notes-host .ian-editor { margin-top: 4px; }
         .block.scene, .block.narration { margin: 8px 11px 2px; }
         .block.scene .cn, .block.narration .cn { margin-top: 0; font-size: 11px; line-height: 1.4; }
       }
 
       @media (hover: none) {
-        .segment-actions .audio-button,
-        .segment-actions .text-ai-button {
+        .segment-actions .audio-button {
           opacity: 1;
           pointer-events: auto;
         }
       }
     </style>
+    <link rel="stylesheet" href="/shared/notes/dist/inline-notes.css?v=040ef87305ef">
+    <script type="module" src="/shared/notes/dist/inline-notes.js?v=040ef87305ef"></script>
   </head>
   <body>
     <header>
@@ -881,10 +824,6 @@
         samples: [],
         selectedSample: null,
         editing: null,
-        textAiOpenId: "",
-        textAiDraft: "",
-        textAiAnswer: "",
-        textAiStatus: "",
         vocabularyContext: { words: [], occurrences: null, status: "尚未读取" },
         expandedTextSections: { basic: true, application: false },
         textDisplayModes: { basic: "both", application: "both" }
@@ -924,7 +863,6 @@
         state.data = normalizePayload(payload);
         state.expandedTextSections = { basic: true, application: false };
         state.textDisplayModes = { basic: "both", application: "both" };
-        resetTextAiPanel();
         $("#jsonInput").value = JSON.stringify(state.data, null, 2);
         setStatus(`${sourceLabel} 已加载。`);
         render();
@@ -1054,6 +992,7 @@
         const pendingCount = audioSegments.filter((segment) => segment.review?.status !== "approved").length;
         $("#summary").textContent = data ? `${data.lessonId || "unknown"} · 基本句 ${sentenceCount} · 对话 ${basicDialogueLines + appLines} 行${audioSegments.length ? ` · 已通过 ${audioSegments.length - pendingCount} · 待核对 ${pendingCount}` : ""}` : "未加载";
         $("#textPreview").innerHTML = data ? `${renderBasic(data.basicText)}${renderApplication(data.applicationText)}` : "";
+        window.mountInlineNotes?.();
         bindSegmentButtons();
         renderImages(data);
       }
@@ -1070,18 +1009,23 @@
           const segmentId = registerSegment(sentence.audioSegment);
           registerItem(sentence);
           return `
-            <div class="sentence${segmentId ? " has-audio" : ""}${state.textAiOpenId === sentence.id ? " ai-open" : ""}" data-item-id="${escapeHtml(sentence.id || "")}" ${segmentId ? `data-play-segment-id="${escapeHtml(segmentId)}"` : ""}>
+            <div class="sentence inline-notes-container${segmentId ? " has-audio" : ""}" data-item-id="${escapeHtml(sentence.id || "")}" ${segmentId ? `data-play-segment-id="${escapeHtml(segmentId)}"` : ""}>
               <div class="num">${escapeHtml(sentence.order || "")}</div>
-              <div class="text-cell">${renderTextContent(sentence, mode)}${renderTextAiPanel(sentence)}</div>
-              <div>${segmentActions(sentence, segmentId, sentence.audioSegment)}</div>
+              <div class="text-cell">${renderTextContent(sentence, mode)}</div>
+              <div class="sentence-tools">
+                ${segmentActions(sentence, segmentId, sentence.audioSegment)}
+                ${renderTextAiPanel(sentence)}
+              </div>
             </div>
           `;
         }).join("");
 
         const dialogues = (basicText.dialogues || []).map((dialogue) => `
           <div class="dialogue">
-            <h3 class="dialogue-title">对话 ${escapeHtml(dialogue.label || "")}</h3>
-            ${(dialogue.lines || []).map((line) => renderLine(line, mode)).join("")}
+            ${dialogue.label ? `<span class="dialogue-label">${escapeHtml(dialogue.label)}</span>` : "<span aria-hidden=\"true\"></span>"}
+            <div class="dialogue-lines">
+              ${(dialogue.lines || []).map((line) => renderLine(line, mode)).join("")}
+            </div>
           </div>
         `).join("");
 
@@ -1113,7 +1057,14 @@
         };
         (applicationText.blocks || []).forEach((block) => {
           if (block.type === "dialogue") {
-            currentSceneGroup.push(`<div class="dialogue">${(block.lines || []).map((line) => renderLine(line, mode)).join("")}</div>`);
+            currentSceneGroup.push(`
+              <div class="dialogue">
+                ${block.label ? `<span class="dialogue-label">${escapeHtml(block.label)}</span>` : "<span aria-hidden=\"true\"></span>"}
+                <div class="dialogue-lines">
+                  ${(block.lines || []).map((line) => renderLine(line, mode)).join("")}
+                </div>
+              </div>
+            `);
             return;
           }
           flushSceneGroup();
@@ -1154,10 +1105,13 @@
         const segmentId = registerSegment(line.audioSegment);
         registerItem(line);
         return `
-          <div class="line${segmentId ? " has-audio" : ""}${state.textAiOpenId === line.id ? " ai-open" : ""}" data-item-id="${escapeHtml(line.id || "")}" ${segmentId ? `data-play-segment-id="${escapeHtml(segmentId)}"` : ""}>
+          <div class="line inline-notes-container${segmentId ? " has-audio" : ""}" data-item-id="${escapeHtml(line.id || "")}" ${segmentId ? `data-play-segment-id="${escapeHtml(segmentId)}"` : ""}>
             <div><span class="speaker">${escapeHtml(line.speaker || "?")}</span></div>
-            <div class="text-cell">${renderTextContent(line, mode)}${renderTextAiPanel(line)}</div>
-            <div>${segmentActions(line, segmentId, line.audioSegment)}</div>
+            <div class="text-cell">${renderTextContent(line, mode)}</div>
+            <div class="sentence-tools">
+              ${segmentActions(line, segmentId, line.audioSegment)}
+              ${renderTextAiPanel(line)}
+            </div>
           </div>
         `;
       }
@@ -1195,7 +1149,6 @@
         return `
           <div class="segment-actions">
             ${segmentButton(segmentId, segment)}
-            ${item?.id ? `<button class="audio-button text-ai-button ${state.textAiOpenId === item.id ? "active" : ""}" type="button" data-text-ai-toggle="${escapeHtml(item.id)}" title="问 AI" aria-label="问 AI">AI</button>` : ""}
             ${segmentReviewStatus(segment)}
             ${item?.id && segment ? `<button class="audio-button segment-settings" type="button" data-edit-item-id="${escapeHtml(item.id)}" title="设置音频区间" aria-label="设置音频区间">⚙</button>` : ""}
           </div>
@@ -1203,100 +1156,10 @@
       }
 
       function renderTextAiPanel(item) {
-        if (!item?.id || state.textAiOpenId !== item.id) return "";
-        const notes = readTextAiNotes(item.id);
-        return `
-          <div class="text-ai-panel" data-text-ai-panel="${escapeHtml(item.id)}">
-            <textarea data-text-ai-draft="${escapeHtml(item.id)}" rows="1" placeholder="写下笔记，或输入想问 AI 的问题...">${escapeHtml(state.textAiDraft || "")}</textarea>
-            ${state.textAiAnswer ? `<div class="text-ai-answer" aria-label="AI 回答"><strong>AI 回答</strong><p>${escapeHtml(state.textAiAnswer)}</p></div>` : ""}
-            ${state.textAiStatus ? `<small>${escapeHtml(state.textAiStatus)}</small>` : ""}
-            <div class="text-ai-actions">
-              <button type="button" data-text-ai-save="${escapeHtml(item.id)}" ${(state.textAiDraft || "").trim() ? "" : "disabled"}>保存笔记</button>
-              <button type="button" data-text-ai-ask="${escapeHtml(item.id)}" ${(state.textAiDraft || "").trim() ? "" : "disabled"}>问 AI</button>
-            </div>
-            ${notes.length ? `
-              <div class="text-ai-saved-list">
-                ${notes.map((note) => `
-                  <article class="text-ai-saved">
-                    <button type="button" data-text-ai-erase="${escapeHtml(item.id)}" data-note-id="${escapeHtml(note.id)}" aria-label="删除笔记" title="删除笔记">⌫</button>
-                    <pre>${escapeHtml(note.text)}</pre>
-                  </article>
-                `).join("")}
-              </div>
-            ` : ""}
-          </div>
-        `;
-      }
-
-      function resetTextAiPanel() {
-        state.textAiOpenId = "";
-        state.textAiDraft = "";
-        state.textAiAnswer = "";
-        state.textAiStatus = "";
-      }
-
-      function textAiStorageKey(itemId) {
+        if (!item?.id) return "";
         const lessonId = state.data?.lessonId || state.selectedSample?.lessonNo || "unknown";
-        return `japaflow.tools.textPreview.aiNotes.v1:${lessonId}:${itemId}`;
-      }
-
-      function readTextAiNotes(itemId) {
-        try {
-          const value = JSON.parse(window.localStorage.getItem(textAiStorageKey(itemId)) || "[]");
-          return Array.isArray(value) ? value : [];
-        } catch {
-          return [];
-        }
-      }
-
-      function writeTextAiNotes(itemId, notes) {
-        window.localStorage.setItem(textAiStorageKey(itemId), JSON.stringify(notes));
-      }
-
-      function saveTextAiNote(itemId) {
-        const draft = String(state.textAiDraft || "").trim();
-        if (!draft) return;
-        const answer = String(state.textAiAnswer || "").trim();
-        const notes = readTextAiNotes(itemId);
-        writeTextAiNotes(itemId, [...notes, { id: `${Date.now()}-${Math.random().toString(16).slice(2)}`, text: answer ? `问：${draft}\n答：${answer}` : draft }]);
-        resetTextAiPanel();
-        render();
-      }
-
-      function eraseTextAiNote(itemId, noteId) {
-        writeTextAiNotes(itemId, readTextAiNotes(itemId).filter((note) => note.id !== noteId));
-        render();
-      }
-
-      async function askTextAi(itemId) {
-        const item = state.itemMap.get(itemId);
-        const draft = String(state.textAiDraft || "").trim();
-        if (!item || !draft) return;
-        state.textAiStatus = "思考中...";
-        state.textAiAnswer = "";
-        render();
-        try {
-          const response = await fetch("/api/grammar/notebook-ai", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${window.localStorage.getItem("light_blog_token") || ""}`
-            },
-            body: JSON.stringify({
-              question: `${copyTextForJapanese(item)}\n\n${draft}`,
-              lessonId: state.data?.lessonId || state.selectedSample?.lessonNo || "",
-              pageNo: itemId
-            })
-          });
-          const data = await response.json().catch(() => ({}));
-          if (!response.ok) throw new Error(data.error || data.message || "AI 请求失败。");
-          const answer = String([data?.answer, data?.data?.answer, data?.content, data?.data?.content].find((value) => typeof value === "string" && value.trim()) || "").trim();
-          state.textAiAnswer = answer;
-          state.textAiStatus = answer ? "回答已生成。" : "AI 未返回可保存的回答，请重试。";
-        } catch (error) {
-          state.textAiStatus = error.message || "AI 请求失败。";
-        }
-        render();
+        const key = `japaflow.tools.textPreview.aiNotes.v1:${lessonId}:${item.id}`;
+        return `<div class="inline-notes-host" data-inline-notes-key="${escapeHtml(key)}" data-notes-lesson="${escapeHtml(lessonId)}" data-notes-item="${escapeHtml(item.id)}" data-notes-context="${escapeHtml(copyTextForJapanese(item))}"></div>`;
       }
 
       function segmentReviewStatus(segment) {
@@ -1367,11 +1230,11 @@
       }
 
       function rubyTextSegments(text, ruby) {
-        if (!text || !ruby || !hasKanji(text)) return [{ text }];
+        if (!text || !ruby || !/[\u3400-\u9fff々〆ヵヶ0-9０-９]/u.test(text)) return [{ text }];
 
         const tokens = [];
         for (const char of [...text]) {
-          const kind = isKanjiChar(char) ? "kanji" : "plain";
+          const kind = isKanjiChar(char) || /[0-9０-９]/u.test(char) ? "kanji" : "plain";
           const last = tokens[tokens.length - 1];
           if (last?.kind === kind) last.text += char;
           else tokens.push({ kind, text: char });
@@ -1448,8 +1311,7 @@
           button.addEventListener("click", () => {
             const section = button.dataset.toggleSection;
             if (!section) return;
-            resetTextAiPanel();
-            state.expandedTextSections = { ...state.expandedTextSections, [section]: !state.expandedTextSections[section] };
+                state.expandedTextSections = { ...state.expandedTextSections, [section]: !state.expandedTextSections[section] };
             render();
           });
         });
@@ -1459,58 +1321,19 @@
             if (!section) return;
             const current = state.textDisplayModes[section] || "both";
             const next = textDisplayModeOrder[(textDisplayModeOrder.indexOf(current) + 1) % textDisplayModeOrder.length];
-            resetTextAiPanel();
-            state.textDisplayModes = { ...state.textDisplayModes, [section]: next };
+                state.textDisplayModes = { ...state.textDisplayModes, [section]: next };
             render();
-          });
-        });
-        $("#textPreview").querySelectorAll("[data-text-ai-toggle]").forEach((button) => {
-          button.addEventListener("click", (event) => {
-            event.stopPropagation();
-            const itemId = button.dataset.textAiToggle;
-            const opening = state.textAiOpenId !== itemId;
-            state.textAiOpenId = opening ? itemId : "";
-            state.textAiDraft = "";
-            state.textAiAnswer = "";
-            state.textAiStatus = "";
-            render();
-          });
-        });
-        $("#textPreview").querySelectorAll("[data-text-ai-draft]").forEach((textarea) => {
-          textarea.addEventListener("click", (event) => event.stopPropagation());
-          textarea.addEventListener("input", () => {
-            state.textAiDraft = textarea.value;
-            textarea.style.height = "auto";
-            textarea.style.height = `${Math.max(38, textarea.scrollHeight)}px`;
-            $("#textPreview").querySelectorAll("[data-text-ai-save], [data-text-ai-ask]").forEach((button) => {
-              button.disabled = !state.textAiDraft.trim();
-            });
-          });
-        });
-        $("#textPreview").querySelectorAll("[data-text-ai-ask]").forEach((button) => {
-          button.addEventListener("click", (event) => {
-            event.stopPropagation();
-            askTextAi(button.dataset.textAiAsk);
-          });
-        });
-        $("#textPreview").querySelectorAll("[data-text-ai-save]").forEach((button) => {
-          button.addEventListener("click", (event) => {
-            event.stopPropagation();
-            saveTextAiNote(button.dataset.textAiSave);
-          });
-        });
-        $("#textPreview").querySelectorAll("[data-text-ai-erase]").forEach((button) => {
-          button.addEventListener("click", (event) => {
-            event.stopPropagation();
-            eraseTextAiNote(button.dataset.textAiErase, button.dataset.noteId);
           });
         });
         $("#textPreview").querySelectorAll(".sentence[data-play-segment-id], .line[data-play-segment-id]").forEach((row) => {
           row.addEventListener("click", (event) => {
-            if (event.target.closest("button, textarea")) return;
+            if (event.target.closest("button, textarea, .inline-notes-host")) return;
+            // A drag or double click creates a selection before the click
+            // event fires. Preserve that selection so the text can be copied
+            // instead of treating the interaction as a playback request.
+            if (window.getSelection()?.toString()) return;
             const segmentId = row.dataset.playSegmentId;
             if (!segmentId) return;
-            if (state.textAiOpenId) resetTextAiPanel();
             playSegment(state.segmentMap.get(segmentId));
             render();
           });

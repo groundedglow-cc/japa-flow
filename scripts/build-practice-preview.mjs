@@ -45,7 +45,11 @@ const bundle = await build({
 const bundleOutput = bundle.outputFiles.find((file) => file.path.endsWith("practice-preview-react.js"));
 if (!bundleOutput) throw new Error("Practice preview bundle was not generated.");
 
-const cssContent = await readFile(join(practiceDir, "lesson1-practice-preview.css"));
+const cssContent = Buffer.concat([
+  await readFile(join(practiceDir, "lesson1-practice-preview.css")),
+  Buffer.from("\n"),
+  await readFile(join(root, "shared/notes/inline-ai-notes.css"))
+]);
 const bundleFile = `practice-preview-react.${hash(bundleOutput.contents)}.js`;
 const cssFile = `lesson1-practice-preview.${hash(cssContent)}.css`;
 

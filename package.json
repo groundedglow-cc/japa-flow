@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "node server.mjs",
     "export:catalog": "node scripts/export-catalog.mjs",
-    "build:practice": "node scripts/build-practice-preview.mjs",
+    "build:practice": "node scripts/build-practice-preview.mjs && npm run build:notes",
     "build:app": "node scripts/export-catalog.mjs && node scripts/build-practice-preview.mjs && node scripts/build-app-dist.mjs",
     "align:ocr-text-audio": "node scripts/align-ocr-text-audio.mjs",
     "align:ocr-text-audio:auto": "node scripts/auto-align-ocr-text-audio.mjs",
@@ -20,9 +20,12 @@
     "generate:vocabulary-occurrences": "node scripts/generate-lesson-vocabulary-occurrences.mjs",
     "generate:grammar-vocabulary": "node scripts/generate-grammar-vocabulary-occurrences.mjs",
     "generate:grammar-vocabulary:native-ocr": "node scripts/generate-grammar-vocabulary-native-ocr.mjs",
+    "initialize:vocabulary-context": "node scripts/initialize-vocabulary-context.mjs",
+    "report:vocabulary-initialization": "node scripts/report-vocabulary-initialization.mjs",
     "migrate:exercise-images": "node scripts/migrate-practice-exercise-images.mjs",
     "sync:ios": "npm run build:app && npx cap sync ios",
-    "open:ios": "npx cap open ios"
+    "open:ios": "npx cap open ios",
+    "build:notes": "node scripts/build-inline-notes.mjs"
   },
   "dependencies": {
     "@capacitor/cli": "^8.3.4",

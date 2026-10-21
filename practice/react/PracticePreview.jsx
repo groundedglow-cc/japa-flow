@@ -1,4 +1,5 @@
 import React, { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+import InlineAiNotes from "../../shared/notes/InlineAiNotes.jsx";
 import { practiceSessionApi } from "./practiceSessionApi.js";
 
 const sectionLabel = {
@@ -1229,9 +1230,13 @@ function PracticeItemView({ item, admin, storedAnswer, gradingResult, activityRe
         <span className="item-number">{item.number}</span>
         <div className="item-prompt"><Prompt parts={item.prompt} kana={item.promptKana} /></div>
       </div>
-      {item.evaluationMode ? <span className="evaluation-mode">{evaluationModeLabel[item.evaluationMode]}</span> : null}
+      {(item.evaluationMode || itemResponseScopeHint) ? (
+        <div className="item-meta">
+          {item.evaluationMode ? <span className="evaluation-mode">{evaluationModeLabel[item.evaluationMode]}</span> : null}
+          {itemResponseScopeHint ? <span className="item-response-scope">{itemResponseScopeHint}</span> : null}
+        </div>
+      ) : null}
       {item.instruction ? <p className="item-instruction">{item.instruction}</p> : null}
-      {itemResponseScopeHint ? <p className="item-response-scope">{itemResponseScopeHint}</p> : null}
       {item.choices?.length ? <Choices choices={item.choices} item={item} admin={admin} storedAnswer={storedAnswer} gradingResult={gradingResult} /> : null}
       {item.inputSlots?.length ? (
         <div className={`slot-row${hasMultipleInputSlots ? " multi-slot-row" : ""}`}>
@@ -1423,14 +1428,14 @@ function InputSlotView({ item, slot, admin, storedAnswer, gradingResult, showAiN
 
   if (slot.multiline || slot.expectedUnit === "dialogue") {
     return (
-      <div className="practice-input-with-notes">
+      <div className="practice-input-with-notes rich-input">
         <textarea name={slotFieldName(item.id, slot.id)} className={className} rows={slot.rows || 3} aria-label={label} placeholder={placeholder} defaultValue={defaultValue} data-result={result || undefined} />
         {shouldShowAiNote ? <PracticeAiNote item={item} slot={slot} /> : null}
       </div>
     );
   }
   return (
-    <div className="practice-input-with-notes">
+      <div className="practice-input-with-notes">
       <input name={slotFieldName(item.id, slot.id)} className={className} aria-label={label} placeholder={placeholder} defaultValue={defaultValue} data-result={result || undefined} />
       {shouldShowAiNote ? <PracticeAiNote item={item} slot={slot} /> : null}
     </div>
@@ -1441,79 +1446,27 @@ const PRACTICE_AI_NOTES_KEY = "japaflow.practice.aiNotes.v1";
 
 function PracticeAiNote({ item, slot }) {
   const key = `${item.id}:${slot.id}`;
-  const [open, setOpen] = useState(false);
-  const [closing, setClosing] = useState(false);
-  const [draft, setDraft] = useState("");
-  const [answer, setAnswer] = useState("");
-  const [savedNotes, setSavedNotes] = useState(() => notesForPracticeAiKey(key));
-  const [status, setStatus] = useState("");
-  const [colorPickerId, setColorPickerId] = useState("");
-  const [editingId, setEditingId] = useState("");
-  const [editingText, setEditingText] = useState("");
-  const addSavedNote = ({ text, kind = "note", color }) => {
-    const all = readPracticeAiNotes();
-    const next = [...notesForPracticeAiKey(key), { id: `${Date.now()}-${Math.random().toString(16).slice(2)}`, text, kind, color: color || (kind === "ai" ? "purple" : "yellow") }];
-    all[key] = next;
-    writePracticeAiNotes(all);
-    setSavedNotes(next);
-  };
-  const ask = async () => {
-    if (!draft.trim()) return setStatus("请输入问题。");
-    setStatus("思考中…"); setAnswer("");
-    try {
-      const response = await fetch("/api/grammar/notebook-ai", { method: "POST", headers: { "Content-Type": "application/json", Authorization: `Bearer ${localStorage.getItem("light_blog_token") || ""}` }, body: JSON.stringify({ question: draft, lessonId: item.id, pageNo: slot.id }) });
+  return <InlineAiNotes key={key}
+    loadNotes={() => notesForPracticeAiKey(key)}
+    saveNotes={notes => {
+      const all = readPracticeAiNotes();
+      if (notes.length) all[key] = notes; else delete all[key];
+      writePracticeAiNotes(all);
+    }}
+    askAi={async (question, { signal }) => {
+      const response = await fetch("/api/grammar/notebook-ai", {
+        method: "POST", signal,
+        headers: { "Content-Type": "application/json", Authorization: `Bearer ${localStorage.getItem("light_blog_token") || ""}` },
+        body: JSON.stringify({ question, lessonId: item.id, pageNo: slot.id })
+      });
       const data = await response.json().catch(() => ({}));
       if (response.status === 401 || response.status === 403) {
         notifyPracticeAiAuthExpired();
         throw new Error("登录已失效，正在跳转登录页。");
       }
       if (!response.ok) throw new Error(data.error || data.message || "AI 请求失败。");
-      const nextAnswer = practiceAiAnswerFromResponse(data);
-      if (!nextAnswer) return setStatus("AI 未返回可保存的回答，请重试。");
-      setAnswer(nextAnswer); setStatus("回答已生成。");
-    } catch (error) { setStatus(error.message || "AI 请求失败。"); }
-  };
-  const closePanel = () => {
-    if (!open || closing) return;
-    setClosing(true);
-    window.setTimeout(() => { setOpen(false); setClosing(false); setDraft(""); setAnswer(""); setStatus(""); }, 180);
-  };
-  const saveDraft = () => {
-    const text = answer ? `问：${draft.trim()}\n答：${answer.trim()}` : draft.trim();
-    if (!text) return;
-    addSavedNote({ text, kind: answer ? "ai" : "note" });
-    closePanel();
-  };
-  const erase = (noteId) => {
-    const all = readPracticeAiNotes();
-    const next = notesForPracticeAiKey(key).filter((note) => note.id !== noteId);
-    if (next.length) all[key] = next; else delete all[key];
-    writePracticeAiNotes(all); setSavedNotes(next);
-  };
-  const changeColor = (noteId, color) => {
-    const all = readPracticeAiNotes();
-    const next = notesForPracticeAiKey(key).map((note) => note.id === noteId ? { ...note, color } : note);
-    all[key] = next; writePracticeAiNotes(all); setSavedNotes(next); setColorPickerId("");
-  };
-  const saveEdit = (noteId) => {
-    const text = editingText.trim();
-    if (!text) return;
-    const all = readPracticeAiNotes();
-    const next = notesForPracticeAiKey(key).map((note) => note.id === noteId ? { ...note, text } : note);
-    all[key] = next; writePracticeAiNotes(all); setSavedNotes(next); setEditingId(""); setEditingText("");
-  };
-  const autoResize = (event) => { const textarea = event.currentTarget; textarea.style.height = "auto"; textarea.style.height = `${Math.max(38, textarea.scrollHeight)}px`; };
-  return <div className="practice-ai-note">
-    <div className="practice-note-tools">
-      <button type="button" className={`practice-note-trigger${open ? " active" : ""}`} onClick={() => open ? closePanel() : (setClosing(false), setOpen(true))} aria-expanded={open} aria-pressed={open} title="问 AI 或记笔记"><span>✦</span></button>
-    </div>
-    {open || closing ? <div className={`practice-note-panel${closing ? " closing" : ""}`}><textarea value={draft} onChange={(event) => setDraft(event.target.value)} onInput={autoResize} placeholder="写下笔记，或输入想问 AI 的问题…" rows="1" autoFocus />{answer ? <div className="practice-ai-answer" aria-label="AI 回答"><strong>AI 回答</strong><p>{answer}</p></div> : null}{status ? <small>{status}</small> : null}{draft.trim() ? <div className="practice-note-actions"><button type="button" onClick={saveDraft}>保存笔记</button><button type="button" onClick={ask}>问 AI</button></div> : null}</div> : null}
-    {savedNotes.length ? <div className="practice-ai-saved-list">{savedNotes.map((note) => <article className={`practice-ai-saved note-color-${note.color || (note.kind === "ai" ? "purple" : "yellow")}`} key={note.id} title="点击更改颜色，双击编辑笔记" onClick={(event) => { if (event.target.closest("textarea, button") || editingId) return; setColorPickerId((value) => value === note.id ? "" : note.id); }} onDoubleClick={(event) => { event.preventDefault(); event.stopPropagation(); setEditingId(note.id); setEditingText(note.text); setColorPickerId(""); }}>
-      <button type="button" className="practice-ai-erase" onClick={(event) => { event.stopPropagation(); erase(note.id); }} aria-label="删除笔记" title="删除笔记">⌫</button>
-      {editingId === note.id ? <div className="practice-note-edit" onClick={(event) => event.stopPropagation()}><textarea value={editingText} onChange={(event) => setEditingText(event.target.value)} onInput={autoResize} rows="2" autoFocus /><button type="button" onClick={(event) => { event.stopPropagation(); saveEdit(note.id); }}>保存修改</button></div> : <pre>{note.text}</pre>}
-      {colorPickerId === note.id ? <div className="practice-note-color-picker" onClick={(event) => event.stopPropagation()}>{["yellow", "purple", "green", "blue", "pink"].map((color) => <button className={`note-color-choice ${color}`} type="button" key={color} onClick={() => changeColor(note.id, color)} aria-label={`标记为${color}`}/>)}</div> : null}
-    </article>)}</div> : null}
-  </div>;
+      return practiceAiAnswerFromResponse(data);
+    }} />;
 }
 
 function practiceAiAnswerFromResponse(data) { return String([data?.answer, data?.data?.answer, data?.content, data?.data?.content].find((value) => typeof value === "string" && value.trim()) || "").trim(); }

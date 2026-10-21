@@ -1,4 +1,5 @@
 import { createServer, request as httpRequest } from "node:http";
+import { randomUUID } from "node:crypto";
 import { spawn } from "node:child_process";
 import { existsSync, readFileSync } from "node:fs";
 import { mkdir, mkdtemp, readFile, readdir, rm, writeFile } from "node:fs/promises";
@@ -38,14 +39,40 @@ const sampleText = "子供の時、大きな地震がありました。";
 const generationDelayMs = Number(process.env.MINIMAX_DELAY_MS || 200);
 const quotaApiBaseUrl = String(process.env.JAPAFLOW_QUOTA_API_URL || `http://127.0.0.1:${japaflowApiPort}`).replace(/\/+$/, "");
 
-async function reserveAiQuota(authHeader, capability) {
+// Keep the deadline active until the response body has been consumed.
+async function notebookFetch(trace, stage, url, options, timeoutMs) {
+  const started = Date.now();
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), timeoutMs);
+  trace(stage, "start", { timeoutMs });
+  try {
+    const response = await fetch(url, { ...options, signal: controller.signal });
+    trace(stage, "headers", { status: response.status, elapsedMs: Date.now() - started });
+    const raw = await response.text();
+    let body = {};
+    try { body = JSON.parse(raw); } catch { /* Preserve existing non-JSON handling. */ }
+    trace(stage, "done", { status: response.status, elapsedMs: Date.now() - started });
+    return { ok: response.ok, status: response.status, json: async () => body };
+  } catch (cause) {
+    const timedOut = controller.signal.aborted;
+    trace(stage, timedOut ? "timeout" : "error", { elapsedMs: Date.now() - started, errorName: cause.name });
+    const error = new Error(timedOut ? `AI 请求超时（${stage}），请稍后重试。` : `AI 上游请求失败（${stage}）。`, { cause });
+    error.status = timedOut ? 504 : 502;
+    throw error;
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
+async function reserveAiQuota(authHeader, capability, trace) {
   if (!authHeader) {
     const error = new Error("请先登录后再使用 AI 功能。");
     error.status = 401;
     error.payload = { code: "AUTH_REQUIRED", message: error.message };
     throw error;
   }
-  const response = await fetch(`${quotaApiBaseUrl}/api/japaflow/ai-quota/reserve`, {
+  const request = trace ? (url, options) => notebookFetch(trace, "quota.reserve", url, options, 10000) : fetch;
+  const response = await request(`${quotaApiBaseUrl}/api/japaflow/ai-quota/reserve`, {
     method: "POST",
     headers: { Authorization: authHeader, "Content-Type": "application/json" },
     body: JSON.stringify({ capability })
@@ -60,13 +87,15 @@ async function reserveAiQuota(authHeader, capability) {
   return body;
 }
 
-async function completeAiQuota(authHeader, requestId, success) {
+async function completeAiQuota(authHeader, requestId, success, trace) {
   if (!authHeader || !requestId) return;
   try {
-    await fetch(`${quotaApiBaseUrl}/api/japaflow/ai-quota/complete/${encodeURIComponent(requestId)}?success=${success ? "true" : "false"}`, {
+    const request = trace ? (url, options) => notebookFetch(trace, "quota.complete", url, options, 5000) : fetch;
+    const response = await request(`${quotaApiBaseUrl}/api/japaflow/ai-quota/complete/${encodeURIComponent(requestId)}?success=${success ? "true" : "false"}`, {
       method: "POST",
       headers: { Authorization: authHeader }
     });
+    if (trace && !response.ok) trace("quota.complete", "http_error", { status: response.status });
   } catch (error) {
     console.error("AI quota completion failed:", error.message || error);
   }
@@ -1404,14 +1433,14 @@ function hasSamePracticeAnswerContent(inputText, formattedText) {
   return Boolean(inputFingerprint) && inputFingerprint === formattedFingerprint;
 }
 
-async function askNotebookAi({ question, lessonId, pageNo, authHeader }) {
+async function askNotebookAi({ question, lessonId, pageNo, authHeader, trace }) {
   const key = process.env.DEEPSEEK_API_KEY;
   const baseUrl = (process.env.DEEPSEEK_BASE_URL || "https://api.deepseek.com").replace(/\/+$/, "");
   const model = process.env.DEEPSEEK_MODEL || "deepseek-v4-flash";
   const cleanQuestion = compactPracticeText(question, 1200);
   if (!cleanQuestion) throw new Error("请输入问题。");
-  if (!key) throw new Error("未配置 DeepSeek 服务。");
-  const quota = await reserveAiQuota(authHeader, "deepseek_format");
+  if (!key) throw new Error("未配置 DeepSeek 服务，请在 .env 中设置 DEEPSEEK_API_KEY 后重启服务。");
+  const quota = await reserveAiQuota(authHeader, "deepseek_format", trace);
   let response;
   const messages = [
     {
@@ -1420,45 +1449,49 @@ async function askNotebookAi({ question, lessonId, pageNo, authHeader }) {
         "你是面向中文母语者的日语学习助手。",
         "用户可以自由提问：日语句子、单词、语法、翻译、用法或学习建议；直接回答问题，不依赖课程编号或题目编号。",
         "若用户只输入日语句子，默认简洁说明它的中文意思、读法或关键语法，而不是留空。",
-        "回答必须非常简洁：最多 3 条短句；不要寒暄，只输出纯文本，不要使用任何 Markdown 语法，尤其不得使用 ** 或 __ 加粗标记；信息不足时说明需要什么信息。"
+        "回答要简洁但完整：通常用 3-5 条短句或一个短段落。解释要像老师自然讲解一样连贯，不要套用固定模板、不要机械罗列‘语法点/变形/答案/整句’等标签，也不要重复已经说过的内容。",
+        "如果用户询问填空题、变形题或‘解释解答思路’，要在自然的说明中带出相关语法点及其作用，并解释为什么这样变形或接续；需要时顺带给出答案和整句意思。题目涉及多个语法点时，只解释实际用到且有助于理解的部分。",
+        "例如「話します→話しながら」可以自然说明为：这里用「～ながら」表示同时进行两个动作，前面的动词要用ます形去掉「ます」，所以「話します」变成「話し」。不要把同一内容拆成重复的固定栏目。",
+        "遇到复合形式时要从内到外看清每一层，不要只解释最靠近空格的接续。例如「予約をしてこようと思います」应同时看出「します→して」构成「～てくる」（去做某事后回来/回到说话视点），「来る→こよう」是意志形，再由「～ようと思います」表达打算；把这些合并成自然的短说明，不必逐条列标题。",
+        "不要寒暄，只输出纯文本，不要使用任何 Markdown 语法，尤其不得使用 ** 或 __ 加粗标记；信息不足时说明需要什么信息。"
       ].join("\n")
     },
     { role: "user", content: cleanQuestion }
   ];
   try {
-    response = await fetch(`${baseUrl}/chat/completions`, {
+    response = await notebookFetch(trace, "model.first", `${baseUrl}/chat/completions`, {
       method: "POST",
       headers: { "Content-Type": "application/json", Authorization: `Bearer ${key}` },
       body: JSON.stringify({
         model,
         temperature: 0.2,
-        max_tokens: 320,
+        max_tokens: 520,
         messages,
         thinking: { type: "disabled" },
         stream: false
       })
-    });
+    }, 60000);
   } catch (error) {
-    await completeAiQuota(authHeader, quota.requestId, false);
+    await completeAiQuota(authHeader, quota.requestId, false, trace);
     throw error;
   }
   let body = await response.json().catch(() => ({}));
   let answer = plainNotebookAiAnswer(body.choices?.[0]?.message?.content || "");
   if (response.ok && !answer) {
     try {
-      response = await fetch(`${baseUrl}/chat/completions`, {
+      response = await notebookFetch(trace, "model.retry", `${baseUrl}/chat/completions`, {
         method: "POST",
         headers: { "Content-Type": "application/json", Authorization: `Bearer ${key}` },
-        body: JSON.stringify({ model, temperature: 0.2, max_tokens: 320, messages: [...messages, { role: "user", content: "请直接给出简洁的学习回答，不要留空。" }], thinking: { type: "disabled" }, stream: false })
-      });
+        body: JSON.stringify({ model, temperature: 0.2, max_tokens: 520, messages: [...messages, { role: "user", content: "请直接给出自然、简洁且有帮助的学习回答，不要留空；解释填空或变形题时，把关键语法和变形原因融入连贯说明，避免固定模板和重复。" }], thinking: { type: "disabled" }, stream: false })
+      }, 60000);
       body = await response.json().catch(() => ({}));
       answer = plainNotebookAiAnswer(body.choices?.[0]?.message?.content || "");
     } catch (error) {
-      await completeAiQuota(authHeader, quota.requestId, false);
+      await completeAiQuota(authHeader, quota.requestId, false, trace);
       throw error;
     }
   }
-  await completeAiQuota(authHeader, quota.requestId, response.ok);
+  await completeAiQuota(authHeader, quota.requestId, response.ok && Boolean(answer), trace);
   if (!response.ok) throw new Error(body?.error?.message || `模型服务请求失败（${response.status}）。`);
   if (!answer) {
     console.warn("[grammar/notebook-ai] empty model response", {
@@ -2410,9 +2443,21 @@ async function handleApi(req, res, url) {
       return true;
     }
     if (url.pathname === "/api/grammar/notebook-ai" && req.method === "POST") {
-      const body = await readJson(req);
-      const result = await askNotebookAi({ ...body, authHeader: req.headers.authorization });
-      sendJson(res, 200, result);
+      const requestId = randomUUID();
+      const started = Date.now();
+      const trace = (stage, event, details = {}) => console.info("[grammar/notebook-ai]", JSON.stringify({ requestId, stage, event, totalMs: Date.now() - started, ...details }));
+      res.setHeader("X-Request-Id", requestId);
+      trace("request", "start");
+      res.once("close", () => trace("request", res.writableFinished ? "finished" : "client_disconnected"));
+      try {
+        const body = await readJson(req);
+        trace("request.body", "done");
+        const result = await askNotebookAi({ ...body, authHeader: req.headers.authorization, trace });
+        sendJson(res, 200, { ...result, requestId });
+      } catch (error) {
+        trace("request", "error", { status: Number(error.status || 500), errorName: error.name });
+        sendJson(res, Number(error.status || 500), { ...(error.payload || { error: String(error.message || error) }), requestId });
+      }
       return true;
     }
     if (url.pathname === "/api/practice/answer-alternatives" && req.method === "GET") {

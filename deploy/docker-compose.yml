@@ -10,4 +10,10 @@ services:
     environment:
       AZURE_SPEECH_KEY: ${AZURE_SPEECH_KEY:?AZURE_SPEECH_KEY is required}
       AZURE_SPEECH_REGION: ${AZURE_SPEECH_REGION:?AZURE_SPEECH_REGION is required}
+      # Required by /api/grammar/notebook-ai and the practice AI endpoints.
+      # The value comes from /home/ubuntu/japaflow/.env on the server;
+      # never bake it into the image.
+      DEEPSEEK_API_KEY: ${DEEPSEEK_API_KEY:?DEEPSEEK_API_KEY is required}
+      DEEPSEEK_BASE_URL: ${DEEPSEEK_BASE_URL:-https://api.deepseek.com}
+      DEEPSEEK_MODEL: ${DEEPSEEK_MODEL:-deepseek-v4-flash}
       JAPAFLOW_QUOTA_API_URL: https://groundedglow.cc

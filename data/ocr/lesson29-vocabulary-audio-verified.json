@@ -2195,9 +2195,9 @@
         "itemIndex": 39,
         "text": "しつれい",
         "label": "失礼",
-        "start": 70.364,
+        "start": 70.064,
         "end": 71.388,
-        "duration": 1.024,
+        "duration": 1.324,
         "speechUnitCount": 2,
         "wordCount": 2,
         "matchScore": 1,
@@ -2206,10 +2206,10 @@
           138,
           139
         ],
-        "method": "audio-vad-sequential-alignment-with-azure-verification",
+        "method": "manual-admin-adjustment",
         "timingSource": "audio-silence-detection",
         "timingConfidence": "high",
-        "confidence": "high",
+        "confidence": "approved",
         "alignmentIssues": [],
         "alignmentWarnings": [],
         "speechActivity": {
@@ -2230,7 +2230,8 @@
           "note": "Automatically approved by the audio-boundary alignment workflow.",
           "matchScore": 1,
           "asrText": "失 礼"
-        }
+        },
+        "reviewedAt": "2026-10-16T02:57:43.802Z"
       }
     },
     {
@@ -2307,9 +2308,9 @@
         "itemIndex": 41,
         "text": "きけん",
         "label": "危険",
-        "start": 72.612,
+        "start": 72.912,
         "end": 74.53,
-        "duration": 1.918,
+        "duration": 1.618,
         "speechUnitCount": 2,
         "wordCount": 2,
         "matchScore": 1,
@@ -2343,7 +2344,7 @@
           "matchScore": 1,
           "asrText": "危 険"
         },
-        "reviewedAt": "2026-08-23T00:49:54.337Z"
+        "reviewedAt": "2026-10-16T02:58:37.534Z"
       }
     },
     {
@@ -2942,5 +2943,5 @@
       }
     ]
   },
-  "updatedAt": "2026-08-23T01:16:25.984Z"
+  "updatedAt": "2026-10-16T02:58:37.535Z"
 }

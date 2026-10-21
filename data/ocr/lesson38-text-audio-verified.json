@@ -22,27 +22,61 @@
         "translationZh": "戴先生会说英语。",
         "confidence": "high",
         "rawText": "1. 戴さんは英語が話せます。",
+        "kana": "たいさんはえいごがはなせます。",
+        "segments": [
+          {
+            "text": "戴",
+            "ruby": "たい"
+          },
+          {
+            "text": "さんは"
+          },
+          {
+            "text": "英語",
+            "ruby": "えいご"
+          },
+          {
+            "text": "が"
+          },
+          {
+            "text": "話せます",
+            "ruby": "はなせます"
+          },
+          {
+            "text": "。"
+          }
+        ],
         "audioSegment": {
           "id": "l38-basic-s001",
           "trackId": "lesson_basic",
           "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson38/lesson_basic.mp3",
+          "itemIndex": 1,
           "speaker": "",
           "text": "戴さんは英語が話せます。",
-          "start": 2.89,
-          "end": 5.11,
-          "duration": 2.22,
+          "start": 2.7,
+          "end": 5.15,
+          "duration": 2.45,
+          "rawAzureTiming": {
+            "start": 2.95,
+            "end": 5.03,
+            "duration": 2.08
+          },
+          "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+          "speechActivity": null,
           "speechUnitCount": 1,
           "matchScore": 0.909,
+          "asrConfidence": 0.736,
           "asrText": "イ さ ん は 英 語 が 話 せ ま す",
           "phraseIndexes": [
             0
           ],
-          "method": "legacy-asr-alignment-range-converted",
-          "confidence": "approved",
+          "method": "azure-speech-sentence-alignment-with-boundary-padding",
+          "confidence": "high",
+          "alignmentIssues": [],
           "review": {
             "status": "approved",
-            "reviewedAt": "2026-08-05T10:20:37.854Z",
-            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-09-16T11:37:22.817Z",
+            "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
             "matchScore": 0.909,
             "asrText": "イ さ ん は 英 語 が 話 せ ま す"
           }
@@ -55,28 +89,62 @@
         "translationZh": "为了看得清楚，写得大一些。",
         "confidence": "high",
         "rawText": "2. よく見えるように、大きく書きました。",
+        "kana": "よくみえるように、おおきくかきました。",
+        "segments": [
+          {
+            "text": "よく"
+          },
+          {
+            "text": "見える",
+            "ruby": "みえる"
+          },
+          {
+            "text": "ように、"
+          },
+          {
+            "text": "大きく",
+            "ruby": "おおきく"
+          },
+          {
+            "text": "書きました",
+            "ruby": "かきました"
+          },
+          {
+            "text": "。"
+          }
+        ],
         "audioSegment": {
           "id": "l38-basic-s002",
           "trackId": "lesson_basic",
           "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson38/lesson_basic.mp3",
+          "itemIndex": 2,
           "speaker": "",
           "text": "よく見えるように、大きく書きました。",
-          "start": 7.17,
-          "end": 10.55,
-          "duration": 3.38,
+          "start": 6.98,
+          "end": 10.59,
+          "duration": 3.61,
+          "rawAzureTiming": {
+            "start": 7.23,
+            "end": 10.47,
+            "duration": 3.24
+          },
+          "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+          "speechActivity": null,
           "speechUnitCount": 2,
           "matchScore": 1,
+          "asrConfidence": 0.883,
           "asrText": "よ く 見 え る よ う に 大 き く 書 き ま し た",
           "phraseIndexes": [
             1,
             2
           ],
-          "method": "legacy-asr-alignment-range-converted",
-          "confidence": "approved",
+          "method": "azure-speech-sentence-alignment-with-boundary-padding",
+          "confidence": "high",
+          "alignmentIssues": [],
           "review": {
             "status": "approved",
-            "reviewedAt": "2026-08-05T10:20:37.854Z",
-            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-09-16T11:37:22.817Z",
+            "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
             "matchScore": 1,
             "asrText": "よ く 見 え る よ う に 大 き く 書 き ま し た"
           }
@@ -89,27 +157,63 @@
         "translationZh": "伤好了，能走路了。",
         "confidence": "high",
         "rawText": "3. けがが治って、歩けるようになりました。",
+        "kana": "けががなおって、あるけるようになりました。",
+        "segments": [
+          {
+            "text": "けがが"
+          },
+          {
+            "text": "治って",
+            "ruby": "なおって"
+          },
+          {
+            "text": "、"
+          },
+          {
+            "text": "歩ける",
+            "ruby": "あるける"
+          },
+          {
+            "text": "ようになりました。"
+          }
+        ],
         "audioSegment": {
           "id": "l38-basic-s003",
           "trackId": "lesson_basic",
           "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson38/lesson_basic.mp3",
+          "itemIndex": 3,
           "speaker": "",
           "text": "けがが治って、歩けるようになりました。",
-          "start": 13.21,
-          "end": 16.15,
-          "duration": 2.94,
+          "start": 13.02,
+          "end": 16.219,
+          "duration": 3.199,
+          "rawAzureTiming": {
+            "start": 13.27,
+            "end": 15.71,
+            "duration": 2.44
+          },
+          "timingSource": "azure-speech-boundary-with-local-vad-refinement",
+          "speechActivity": {
+            "start": 14.864,
+            "end": 16.099,
+            "duration": 1.235
+          },
           "speechUnitCount": 1,
           "matchScore": 1,
+          "asrConfidence": 0.858,
           "asrText": "け が が 治 っ て 歩 け る よ う に な り ま し た",
           "phraseIndexes": [
             3
           ],
-          "method": "legacy-asr-alignment-range-converted",
-          "confidence": "approved",
+          "method": "azure-speech-sentence-alignment-with-boundary-padding",
+          "confidence": "high",
+          "alignmentIssues": [
+            "ASR boundary ended before the final local speech region; verify this sentence."
+          ],
           "review": {
             "status": "approved",
-            "reviewedAt": "2026-08-05T10:20:37.854Z",
-            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-09-16T11:37:22.817Z",
+            "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
             "matchScore": 1,
             "asrText": "け が が 治 っ て 歩 け る よ う に な り ま し た"
           }
@@ -122,27 +226,68 @@
         "translationZh": "陈先生坚持每天读英文报纸。",
         "confidence": "high",
         "rawText": "4. 陳さんは毎日、英字新聞を読むようにしています。",
+        "kana": "ちんさんはまいにち、えいじしんぶんをよむようにしています。",
+        "segments": [
+          {
+            "text": "陳",
+            "ruby": "ちん"
+          },
+          {
+            "text": "さんは"
+          },
+          {
+            "text": "毎日",
+            "ruby": "まいにち"
+          },
+          {
+            "text": "、"
+          },
+          {
+            "text": "英字新聞",
+            "ruby": "えいじしんぶん"
+          },
+          {
+            "text": "を"
+          },
+          {
+            "text": "読む",
+            "ruby": "よむ"
+          },
+          {
+            "text": "ようにしています。"
+          }
+        ],
         "audioSegment": {
           "id": "l38-basic-s004",
           "trackId": "lesson_basic",
           "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson38/lesson_basic.mp3",
+          "itemIndex": 4,
           "speaker": "",
           "text": "陳さんは毎日、英字新聞を読むようにしています。",
-          "start": 18.61,
-          "end": 23.23,
-          "duration": 4.62,
+          "start": 18.42,
+          "end": 23.27,
+          "duration": 4.85,
+          "rawAzureTiming": {
+            "start": 18.67,
+            "end": 23.15,
+            "duration": 4.48
+          },
+          "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+          "speechActivity": null,
           "speechUnitCount": 1,
           "matchScore": 0.952,
+          "asrConfidence": 0.912,
           "asrText": "ン さ ん は 毎 日 英 字 新 聞 を 読 む よ う に し て い ま す",
           "phraseIndexes": [
             5
           ],
-          "method": "legacy-asr-alignment-range-converted",
-          "confidence": "approved",
+          "method": "azure-speech-sentence-alignment-with-boundary-padding",
+          "confidence": "high",
+          "alignmentIssues": [],
           "review": {
             "status": "approved",
-            "reviewedAt": "2026-08-05T10:20:37.854Z",
-            "note": "Automatically approved by the bulk alignment workflow.",
+            "reviewedAt": "2026-09-16T11:37:22.817Z",
+            "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
             "matchScore": 0.952,
             "asrText": "ン さ ん は 毎 日 英 字 新 聞 を 読 む よ う に し て い ま す"
           }
@@ -161,30 +306,65 @@
             "translationZh": "戴先生能吃寿司吗？",
             "confidence": "high",
             "rawText": "甲：戴さんはお寿司が食べられますか。",
+            "kana": "たいさんはおすしがたべられますか。",
+            "segments": [
+              {
+                "text": "戴",
+                "ruby": "たい"
+              },
+              {
+                "text": "さんはお"
+              },
+              {
+                "text": "寿司",
+                "ruby": "すし"
+              },
+              {
+                "text": "が"
+              },
+              {
+                "text": "食べられます",
+                "ruby": "たべられます"
+              },
+              {
+                "text": "か。"
+              }
+            ],
             "audioSegment": {
               "id": "l38-basic-dialogue-001-line-001",
               "trackId": "lesson_basic",
               "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson38/lesson_basic.mp3",
+              "itemIndex": 5,
               "speaker": "甲",
               "text": "戴さんはお寿司が食べられますか。",
-              "start": 26.26,
-              "end": 28.76,
-              "duration": 2.5,
+              "start": 25.97,
+              "end": 28.8,
+              "duration": 2.83,
+              "rawAzureTiming": {
+                "start": 26.32,
+                "end": 28.68,
+                "duration": 2.36
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
               "speechUnitCount": 1,
               "matchScore": 0.933,
+              "asrConfidence": 0.876,
               "asrText": "イ さ ん は お 寿 司 が 食 べ ら れ ま す か",
               "phraseIndexes": [
                 6
               ],
-              "method": "legacy-asr-alignment-range-converted",
+              "method": "manual-admin-adjustment",
               "confidence": "approved",
+              "alignmentIssues": [],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-05T10:20:37.854Z",
-                "note": "Automatically approved by the bulk alignment workflow.",
+                "reviewedAt": "2026-09-17T01:32:15.187Z",
+                "note": "Manually verified and adjusted in the text audio preview.",
                 "matchScore": 0.933,
                 "asrText": "イ さ ん は お 寿 司 が 食 べ ら れ ま す か"
-              }
+              },
+              "reviewedAt": "2026-09-17T01:32:15.187Z"
             }
           },
           {
@@ -194,30 +374,65 @@
             "translationZh": "嗯，没问题。我什么都能吃。",
             "confidence": "high",
             "rawText": "乙：ええ、大丈夫ですよ。わたしは何でも食べられます。",
+            "kana": "ええ、だいじょうぶですよ。わたしはなんでもたべられます。",
+            "segments": [
+              {
+                "text": "ええ、"
+              },
+              {
+                "text": "大丈夫",
+                "ruby": "だいじょうぶ"
+              },
+              {
+                "text": "ですよ。わたしは"
+              },
+              {
+                "text": "何でも",
+                "ruby": "なんでも"
+              },
+              {
+                "text": "食べられます",
+                "ruby": "たべられます"
+              },
+              {
+                "text": "。"
+              }
+            ],
             "audioSegment": {
               "id": "l38-basic-dialogue-001-line-002",
               "trackId": "lesson_basic",
               "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson38/lesson_basic.mp3",
+              "itemIndex": 6,
               "speaker": "乙",
               "text": "ええ、大丈夫ですよ。わたしは何でも食べられます。",
-              "start": 30.22,
-              "end": 33.24,
-              "duration": 3.02,
+              "start": 29.53,
+              "end": 33.32,
+              "duration": 3.79,
+              "rawAzureTiming": {
+                "start": 30.28,
+                "end": 33.2,
+                "duration": 2.92
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
               "speechUnitCount": 1,
               "matchScore": 0.857,
+              "asrConfidence": 0.888,
               "asrText": "え え 大 丈 夫 で す よ 私 は 何 で も 食 べ ら れ ま す",
               "phraseIndexes": [
                 7
               ],
-              "method": "legacy-asr-alignment-range-converted",
+              "method": "manual-admin-adjustment",
               "confidence": "approved",
+              "alignmentIssues": [],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-05T10:20:37.854Z",
-                "note": "Automatically approved by the bulk alignment workflow.",
+                "reviewedAt": "2026-09-16T11:46:33.545Z",
+                "note": "Manually verified and adjusted in the text audio preview.",
                 "matchScore": 0.857,
                 "asrText": "え え 大 丈 夫 で す よ 私 は 何 で も 食 べ ら れ ま す"
-              }
+              },
+              "reviewedAt": "2026-09-16T11:46:33.545Z"
             }
           }
         ]
@@ -233,30 +448,78 @@
             "translationZh": "小李，大约两点钟要离开公司。",
             "confidence": "high",
             "rawText": "甲：李さん、２時ごろ会社を出ますよ。",
+            "kana": "りさん、にじごろかいしゃをでますよ。",
+            "segments": [
+              {
+                "text": "李",
+                "ruby": "り"
+              },
+              {
+                "text": "さん、"
+              },
+              {
+                "text": "２",
+                "ruby": "に"
+              },
+              {
+                "text": "時",
+                "ruby": "じ"
+              },
+              {
+                "text": "ごろ"
+              },
+              {
+                "text": "会社",
+                "ruby": "かいしゃ"
+              },
+              {
+                "text": "を"
+              },
+              {
+                "text": "出ます",
+                "ruby": "でます"
+              },
+              {
+                "text": "よ。"
+              }
+            ],
             "audioSegment": {
               "id": "l38-basic-dialogue-002-line-001",
               "trackId": "lesson_basic",
               "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson38/lesson_basic.mp3",
+              "itemIndex": 7,
               "speaker": "甲",
               "text": "李さん、２時ごろ会社を出ますよ。",
-              "start": 34.37,
-              "end": 38.79,
-              "duration": 4.42,
+              "start": 35.3,
+              "end": 38.83,
+              "duration": 3.53,
+              "rawAzureTiming": {
+                "start": 34.43,
+                "end": 38.71,
+                "duration": 4.28
+              },
+              "timingSource": "asr-with-boundary-review",
+              "speechActivity": null,
               "speechUnitCount": 1,
               "matchScore": 0.714,
-              "asrText": "b 三 二 時 ご ろ 会 社 を 出 ま す よ",
+              "asrConfidence": 0.785,
+              "asrText": "ba 二 時 ご ろ 会 社 を 出 ま す よ",
               "phraseIndexes": [
                 8
               ],
-              "method": "legacy-asr-alignment-range-converted",
+              "method": "manual-admin-adjustment",
               "confidence": "approved",
+              "alignmentIssues": [
+                "Moderate ASR text similarity."
+              ],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-05T10:20:37.854Z",
-                "note": "Automatically approved by the bulk alignment workflow.",
+                "reviewedAt": "2026-09-16T11:46:54.290Z",
+                "note": "Manually verified and adjusted in the text audio preview.",
                 "matchScore": 0.714,
-                "asrText": "b 三 二 時 ご ろ 会 社 を 出 ま す よ"
-              }
+                "asrText": "ba 二 時 ご ろ 会 社 を 出 ま す よ"
+              },
+              "reviewedAt": "2026-09-16T11:46:54.290Z"
             }
           },
           {
@@ -266,27 +529,57 @@
             "translationZh": "好的。已经准备好了，随时都可以出发。",
             "confidence": "high",
             "rawText": "乙：はい。いつでも出られるように、準備してあります。",
+            "kana": "はい。いつでもでられるように、じゅんびしてあります。",
+            "segments": [
+              {
+                "text": "はい。いつでも"
+              },
+              {
+                "text": "出られる",
+                "ruby": "でられる"
+              },
+              {
+                "text": "ように、"
+              },
+              {
+                "text": "準備",
+                "ruby": "じゅんび"
+              },
+              {
+                "text": "してあります。"
+              }
+            ],
             "audioSegment": {
               "id": "l38-basic-dialogue-002-line-002",
               "trackId": "lesson_basic",
               "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson38/lesson_basic.mp3",
+              "itemIndex": 8,
               "speaker": "乙",
               "text": "はい。いつでも出られるように、準備してあります。",
-              "start": 39.49,
-              "end": 42.95,
-              "duration": 3.46,
+              "start": 39.3,
+              "end": 42.99,
+              "duration": 3.69,
+              "rawAzureTiming": {
+                "start": 39.55,
+                "end": 42.87,
+                "duration": 3.32
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
               "speechUnitCount": 1,
               "matchScore": 1,
+              "asrConfidence": 0.912,
               "asrText": "は い い つ で も 出 ら れ る よ う に 準 備 し て あ り ま す",
               "phraseIndexes": [
                 9
               ],
-              "method": "legacy-asr-alignment-range-converted",
-              "confidence": "approved",
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-05T10:20:37.854Z",
-                "note": "Automatically approved by the bulk alignment workflow.",
+                "reviewedAt": "2026-09-16T11:37:22.817Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
                 "matchScore": 1,
                 "asrText": "は い い つ で も 出 ら れ る よ う に 準 備 し て あ り ま す"
               }
@@ -305,28 +598,69 @@
             "translationZh": "小野女士，你能自己穿和服吗？",
             "confidence": "high",
             "rawText": "甲：小野さん、着物を自分で着ることができますか。",
+            "kana": "おのさん、きものをじぶんできることができますか。",
+            "segments": [
+              {
+                "text": "小野",
+                "ruby": "おの"
+              },
+              {
+                "text": "さん、"
+              },
+              {
+                "text": "着物",
+                "ruby": "きもの"
+              },
+              {
+                "text": "を"
+              },
+              {
+                "text": "自分",
+                "ruby": "じぶん"
+              },
+              {
+                "text": "で"
+              },
+              {
+                "text": "着る",
+                "ruby": "きる"
+              },
+              {
+                "text": "ことができますか。"
+              }
+            ],
             "audioSegment": {
               "id": "l38-basic-dialogue-003-line-001",
               "trackId": "lesson_basic",
               "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson38/lesson_basic.mp3",
+              "itemIndex": 9,
               "speaker": "甲",
               "text": "小野さん、着物を自分で着ることができますか。",
-              "start": 45.29,
-              "end": 48.87,
-              "duration": 3.58,
+              "start": 45.1,
+              "end": 48.91,
+              "duration": 3.81,
+              "rawAzureTiming": {
+                "start": 45.35,
+                "end": 48.79,
+                "duration": 3.44
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
               "speechUnitCount": 2,
               "matchScore": 1,
+              "asrConfidence": 0.909,
               "asrText": "小 野 さ ん 着 物 を 自 分 で 着 る こ と が で き ま す か",
               "phraseIndexes": [
                 10,
                 11
               ],
-              "method": "legacy-asr-alignment-range-converted",
-              "confidence": "approved",
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-05T10:20:37.854Z",
-                "note": "Automatically approved by the bulk alignment workflow.",
+                "reviewedAt": "2026-09-16T11:37:22.817Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
                 "matchScore": 1,
                 "asrText": "小 野 さ ん 着 物 を 自 分 で 着 る こ と が で き ま す か"
               }
@@ -339,27 +673,64 @@
             "translationZh": "嗯，跟母亲学了以后，已经会穿了。",
             "confidence": "high",
             "rawText": "乙：ええ、母に習って、着られるようになりました。",
+            "kana": "ええ、ははにならって、きられるようになりました。",
+            "segments": [
+              {
+                "text": "ええ、"
+              },
+              {
+                "text": "母",
+                "ruby": "はは"
+              },
+              {
+                "text": "に"
+              },
+              {
+                "text": "習って",
+                "ruby": "ならって"
+              },
+              {
+                "text": "、"
+              },
+              {
+                "text": "着られる",
+                "ruby": "きられる"
+              },
+              {
+                "text": "ようになりました。"
+              }
+            ],
             "audioSegment": {
               "id": "l38-basic-dialogue-003-line-002",
               "trackId": "lesson_basic",
               "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson38/lesson_basic.mp3",
+              "itemIndex": 10,
               "speaker": "乙",
               "text": "ええ、母に習って、着られるようになりました。",
-              "start": 49.53,
-              "end": 52.95,
-              "duration": 3.42,
+              "start": 49.34,
+              "end": 52.99,
+              "duration": 3.65,
+              "rawAzureTiming": {
+                "start": 49.59,
+                "end": 52.87,
+                "duration": 3.28
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
               "speechUnitCount": 1,
               "matchScore": 0.9,
+              "asrConfidence": 0.885,
               "asrText": "え え 母 に な ら っ て 着 ら れ る よ う に な り ま し た",
               "phraseIndexes": [
                 12
               ],
-              "method": "legacy-asr-alignment-range-converted",
-              "confidence": "approved",
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-05T10:20:37.854Z",
-                "note": "Automatically approved by the bulk alignment workflow.",
+                "reviewedAt": "2026-09-16T11:37:22.817Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
                 "matchScore": 0.9,
                 "asrText": "え え 母 に な ら っ て 着 ら れ る よ う に な り ま し た"
               }
@@ -378,27 +749,54 @@
             "translationZh": "为了健康，你做些什么吗？",
             "confidence": "high",
             "rawText": "甲：健康のために何かしていますか。",
+            "kana": "けんこうのためになにかしていますか。",
+            "segments": [
+              {
+                "text": "健康",
+                "ruby": "けんこう"
+              },
+              {
+                "text": "のために"
+              },
+              {
+                "text": "何か",
+                "ruby": "なにか"
+              },
+              {
+                "text": "していますか。"
+              }
+            ],
             "audioSegment": {
               "id": "l38-basic-dialogue-004-line-001",
               "trackId": "lesson_basic",
               "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson38/lesson_basic.mp3",
+              "itemIndex": 11,
               "speaker": "甲",
               "text": "健康のために何かしていますか。",
-              "start": 55.64,
-              "end": 58.1,
-              "duration": 2.46,
+              "start": 55.45,
+              "end": 58.11,
+              "duration": 2.66,
+              "rawAzureTiming": {
+                "start": 55.7,
+                "end": 57.66,
+                "duration": 1.96
+              },
+              "timingSource": "asr-with-boundary-review",
+              "speechActivity": null,
               "speechUnitCount": 1,
               "matchScore": 1,
+              "asrConfidence": 0.853,
               "asrText": "健 康 の た め に 何 か し て い ま す か",
               "phraseIndexes": [
                 13
               ],
-              "method": "legacy-asr-alignment-range-converted",
-              "confidence": "approved",
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-05T10:20:37.854Z",
-                "note": "Automatically approved by the bulk alignment workflow.",
+                "reviewedAt": "2026-09-16T11:37:22.817Z",
+                "note": "Included the final speech region ending at 57.990 seconds.",
                 "matchScore": 1,
                 "asrText": "健 康 の た め に 何 か し て い ま す か"
               }
@@ -411,30 +809,66 @@
             "translationZh": "嗯，我坚持每天早晨散步一小时。",
             "confidence": "high",
             "rawText": "乙：ええ、毎朝１時間散歩するようにしています。",
+            "kana": "ええ、まいあさいちじかんさんぽするようにしています。",
+            "segments": [
+              {
+                "text": "ええ、"
+              },
+              {
+                "text": "毎朝",
+                "ruby": "まいあさ"
+              },
+              {
+                "text": "１",
+                "ruby": "いち"
+              },
+              {
+                "text": "時間",
+                "ruby": "じかん"
+              },
+              {
+                "text": "散歩",
+                "ruby": "さんぽ"
+              },
+              {
+                "text": "するようにしています。"
+              }
+            ],
             "audioSegment": {
               "id": "l38-basic-dialogue-004-line-002",
               "trackId": "lesson_basic",
               "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson38/lesson_basic.mp3",
+              "itemIndex": 12,
               "speaker": "乙",
               "text": "ええ、毎朝１時間散歩するようにしています。",
-              "start": 58.81,
-              "end": 63.19,
-              "duration": 4.38,
+              "start": 59.35,
+              "end": 63.23,
+              "duration": 3.88,
+              "rawAzureTiming": {
+                "start": 58.87,
+                "end": 63.11,
+                "duration": 4.24
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
               "speechUnitCount": 1,
               "matchScore": 0.947,
+              "asrConfidence": 0.923,
               "asrText": "え え 毎 朝 一 時 間 散 歩 す る よ う に し て い ま す",
               "phraseIndexes": [
                 14
               ],
-              "method": "legacy-asr-alignment-range-converted",
+              "method": "manual-admin-adjustment",
               "confidence": "approved",
+              "alignmentIssues": [],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-05T10:20:37.854Z",
-                "note": "Automatically approved by the bulk alignment workflow.",
+                "reviewedAt": "2026-09-16T11:48:43.309Z",
+                "note": "Manually verified and adjusted in the text audio preview.",
                 "matchScore": 0.947,
                 "asrText": "え え 毎 朝 一 時 間 散 歩 す る よ う に し て い ま す"
-              }
+              },
+              "reviewedAt": "2026-09-16T11:48:43.309Z"
             }
           }
         ]
@@ -463,28 +897,58 @@
             "translationZh": "这条小巷就是“胡同”啊。",
             "confidence": "high",
             "rawText": "小野：この路地が「胡同」ですね。",
+            "kana": "このろじが「フートン」ですね。",
+            "segments": [
+              {
+                "text": "この"
+              },
+              {
+                "text": "路地",
+                "ruby": "ろじ"
+              },
+              {
+                "text": "が「"
+              },
+              {
+                "text": "胡同",
+                "ruby": "フートン"
+              },
+              {
+                "text": "」ですね。"
+              }
+            ],
             "audioSegment": {
               "id": "l38-app-block-002-line-001",
               "trackId": "lesson_apps",
               "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson38/lesson_apps.mp3",
+              "itemIndex": 1,
               "speaker": "小野",
               "text": "この路地が「胡同」ですね。",
-              "start": 9.14,
-              "end": 11.36,
-              "duration": 2.22,
+              "start": 8.95,
+              "end": 11.4,
+              "duration": 2.45,
+              "rawAzureTiming": {
+                "start": 9.2,
+                "end": 11.28,
+                "duration": 2.08
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
               "speechUnitCount": 1,
-              "matchScore": 0.667,
+              "matchScore": 0.833,
+              "asrConfidence": 0.854,
               "asrText": "こ の 路 地 が フ ー ト ン で す ね",
               "phraseIndexes": [
                 2
               ],
-              "method": "legacy-asr-alignment-range-converted",
-              "confidence": "approved",
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-05T10:21:28.305Z",
-                "note": "Automatically approved by the bulk alignment workflow.",
-                "matchScore": 0.667,
+                "reviewedAt": "2026-09-16T11:37:22.817Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "matchScore": 0.833,
                 "asrText": "こ の 路 地 が フ ー ト ン で す ね"
               }
             }
@@ -496,28 +960,114 @@
             "translationZh": "是的，这一带是北京传统的街区。因为这里是人们实际生活的地方，请不要拍照。",
             "confidence": "high",
             "rawText": "李：ええ、この辺は北京の伝統的な町です。人が実際に生活している所ですから、写真は撮らないようにしてくださいね。",
+            "kana": "ええ、このへんはペキンのでんとうてきなまちです。ひとがじっさいにせいかつしているところですから、しゃしんはとらないようにしてくださいね。",
+            "segments": [
+              {
+                "text": "ええ、この"
+              },
+              {
+                "text": "辺",
+                "ruby": "へん"
+              },
+              {
+                "text": "は"
+              },
+              {
+                "text": "北京",
+                "ruby": "ペキン"
+              },
+              {
+                "text": "の"
+              },
+              {
+                "text": "伝統的",
+                "ruby": "でんとうてき"
+              },
+              {
+                "text": "な"
+              },
+              {
+                "text": "町",
+                "ruby": "まち"
+              },
+              {
+                "text": "です。"
+              },
+              {
+                "text": "人",
+                "ruby": "ひと"
+              },
+              {
+                "text": "が"
+              },
+              {
+                "text": "実際",
+                "ruby": "じっさい"
+              },
+              {
+                "text": "に"
+              },
+              {
+                "text": "生活",
+                "ruby": "せいかつ"
+              },
+              {
+                "text": "している"
+              },
+              {
+                "text": "所",
+                "ruby": "ところ"
+              },
+              {
+                "text": "ですから、"
+              },
+              {
+                "text": "写真",
+                "ruby": "しゃしん"
+              },
+              {
+                "text": "は"
+              },
+              {
+                "text": "撮らない",
+                "ruby": "とらない"
+              },
+              {
+                "text": "ようにしてくださいね。"
+              }
+            ],
             "audioSegment": {
               "id": "l38-app-block-002-line-002",
               "trackId": "lesson_apps",
               "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson38/lesson_apps.mp3",
+              "itemIndex": 2,
               "speaker": "李",
               "text": "ええ、この辺は北京の伝統的な町です。人が実際に生活している所ですから、写真は撮らないようにしてくださいね。",
-              "start": 12.01,
-              "end": 21.35,
-              "duration": 9.34,
+              "start": 11.82,
+              "end": 21.39,
+              "duration": 9.57,
+              "rawAzureTiming": {
+                "start": 12.07,
+                "end": 21.27,
+                "duration": 9.2
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
               "speechUnitCount": 2,
               "matchScore": 0.941,
+              "asrConfidence": 0.892,
               "asrText": "え え こ の 辺 は 北 京 の 伝 統 的 な 町 で す 人 が 実 際 に 生 活 し て い る と こ ろ で す か ら 写 真 は 撮 ら な い よ う に し て く だ さ い ね",
               "phraseIndexes": [
                 3,
                 4
               ],
-              "method": "legacy-asr-alignment-range-converted",
-              "confidence": "approved",
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-05T10:21:28.305Z",
-                "note": "Automatically approved by the bulk alignment workflow.",
+                "reviewedAt": "2026-09-16T11:37:22.817Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
                 "matchScore": 0.941,
                 "asrText": "え え こ の 辺 は 北 京 の 伝 統 的 な 町 で す 人 が 実 際 に 生 活 し て い る と こ ろ で す か ら 写 真 は 撮 ら な い よ う に し て く だ さ い ね"
               }
@@ -530,28 +1080,62 @@
             "translationZh": "明白了。不过，这条路能走出去吗？",
             "confidence": "high",
             "rawText": "小野：分かりました。ところで、この道は通り抜けられますか。",
+            "kana": "わかりました。ところで、このみちはとおりぬけられますか。",
+            "segments": [
+              {
+                "text": "分かりました",
+                "ruby": "わかりました"
+              },
+              {
+                "text": "。ところで、この"
+              },
+              {
+                "text": "道",
+                "ruby": "みち"
+              },
+              {
+                "text": "は"
+              },
+              {
+                "text": "通り抜けられます",
+                "ruby": "とおりぬけられます"
+              },
+              {
+                "text": "か。"
+              }
+            ],
             "audioSegment": {
               "id": "l38-app-block-002-line-003",
               "trackId": "lesson_apps",
               "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson38/lesson_apps.mp3",
+              "itemIndex": 3,
               "speaker": "小野",
               "text": "分かりました。ところで、この道は通り抜けられますか。",
-              "start": 21.81,
-              "end": 26.87,
-              "duration": 5.06,
+              "start": 21.62,
+              "end": 26.91,
+              "duration": 5.29,
+              "rawAzureTiming": {
+                "start": 21.87,
+                "end": 26.79,
+                "duration": 4.92
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
               "speechUnitCount": 2,
               "matchScore": 0.957,
+              "asrConfidence": 0.914,
               "asrText": "わ か り ま し た と こ ろ で こ の 道 は 通 り 抜 け ら れ ま す か",
               "phraseIndexes": [
                 4,
                 5
               ],
-              "method": "legacy-asr-alignment-range-converted",
-              "confidence": "approved",
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-05T10:21:28.305Z",
-                "note": "Automatically approved by the bulk alignment workflow.",
+                "reviewedAt": "2026-09-16T11:37:22.817Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
                 "matchScore": 0.957,
                 "asrText": "わ か り ま し た と こ ろ で こ の 道 は 通 り 抜 け ら れ ま す か"
               }
@@ -564,27 +1148,61 @@
             "translationZh": "没问题。虽然道路错综复杂，但能穿过去。",
             "confidence": "high",
             "rawText": "李：大丈夫です。入り組んでいますが、通り抜けられますよ。",
+            "kana": "だいじょうぶです。いりくんでいますが、とおりぬけられますよ。",
+            "segments": [
+              {
+                "text": "大丈夫",
+                "ruby": "だいじょうぶ"
+              },
+              {
+                "text": "です。"
+              },
+              {
+                "text": "入り組んでいます",
+                "ruby": "いりくんでいます"
+              },
+              {
+                "text": "が、"
+              },
+              {
+                "text": "通り抜けられます",
+                "ruby": "とおりぬけられます"
+              },
+              {
+                "text": "よ。"
+              }
+            ],
             "audioSegment": {
               "id": "l38-app-block-002-line-004",
               "trackId": "lesson_apps",
               "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson38/lesson_apps.mp3",
+              "itemIndex": 4,
               "speaker": "李",
               "text": "大丈夫です。入り組んでいますが、通り抜けられますよ。",
-              "start": 27.09,
-              "end": 30.99,
-              "duration": 3.9,
+              "start": 26.93,
+              "end": 31.03,
+              "duration": 4.1,
+              "rawAzureTiming": {
+                "start": 27.15,
+                "end": 30.91,
+                "duration": 3.76
+              },
+              "timingSource": "asr-with-boundary-review",
+              "speechActivity": null,
               "speechUnitCount": 1,
               "matchScore": 1,
+              "asrConfidence": 0.917,
               "asrText": "大 丈 夫 で す 入 り 組 ん で い ま す が 通 り 抜 け ら れ ま す よ",
               "phraseIndexes": [
                 5
               ],
-              "method": "legacy-asr-alignment-range-converted",
-              "confidence": "approved",
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-05T10:21:28.305Z",
-                "note": "Automatically approved by the bulk alignment workflow.",
+                "reviewedAt": "2026-09-16T11:37:22.817Z",
+                "note": "Separated adjacent padding; speech starts at 27.15 seconds.",
                 "matchScore": 1,
                 "asrText": "大 丈 夫 で す 入 り 組 ん で い ま す が 通 り 抜 け ら れ ま す よ"
               }
@@ -611,27 +1229,78 @@
             "translationZh": "在胡同里能感受到老北京，真有意思啊。",
             "confidence": "high",
             "rawText": "小野：胡同は、古い北京が感じられて、楽しいですね。",
+            "kana": "フートンは、ふるいペキンがかんじられて、たのしいですね。",
+            "segments": [
+              {
+                "text": "胡同",
+                "ruby": "フートン"
+              },
+              {
+                "text": "は、"
+              },
+              {
+                "text": "古い",
+                "ruby": "ふるい"
+              },
+              {
+                "text": "北京",
+                "ruby": "ペキン"
+              },
+              {
+                "text": "が"
+              },
+              {
+                "text": "感じられて",
+                "ruby": "かんじられて"
+              },
+              {
+                "text": "、"
+              },
+              {
+                "text": "楽しい",
+                "ruby": "たのしい"
+              },
+              {
+                "text": "ですね。"
+              }
+            ],
             "audioSegment": {
               "id": "l38-app-block-004-line-001",
               "trackId": "lesson_apps",
               "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson38/lesson_apps.mp3",
+              "itemIndex": 5,
               "speaker": "小野",
               "text": "胡同は、古い北京が感じられて、楽しいですね。",
-              "start": 35.08,
-              "end": 38.82,
-              "duration": 3.74,
+              "start": 34.89,
+              "end": 38.962,
+              "duration": 4.072,
+              "rawAzureTiming": {
+                "start": 35.14,
+                "end": 38.74,
+                "duration": 3.6
+              },
+              "timingSource": "azure-speech-boundary-with-local-vad-refinement",
+              "speechActivity": {
+                "start": 37.844,
+                "end": 38.842,
+                "duration": 0.998
+              },
               "speechUnitCount": 1,
               "matchScore": 0.895,
+              "asrConfidence": 0.876,
               "asrText": "ト ン は 古 い 北 京 が 感 じ ら れ て 楽 し い で す ね",
               "phraseIndexes": [
                 6
               ],
-              "method": "legacy-asr-alignment-range-converted",
-              "confidence": "approved",
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [
+                "ASR boundary ended before the final local speech region; verify this sentence."
+              ],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-05T10:21:28.305Z",
-                "note": "Automatically approved by the bulk alignment workflow.",
+                "reviewedAt": "2026-09-16T11:37:22.817Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
                 "matchScore": 0.895,
                 "asrText": "ト ン は 古 い 北 京 が 感 じ ら れ て 楽 し い で す ね"
               }
@@ -644,27 +1313,103 @@
             "translationZh": "是啊。所以有时间时，或者外国朋友来的时候，我都会到胡同里走走。",
             "confidence": "high",
             "rawText": "李：ええ。だから、時間がある時や、外国人の友達が来た時は、胡同を歩くようにしているんですよ。",
+            "kana": "ええ。だから、じかんがあるときや、がいこくじんのともだちがきたときは、フートンをあるくようにしているんですよ。",
+            "segments": [
+              {
+                "text": "ええ。だから、"
+              },
+              {
+                "text": "時間",
+                "ruby": "じかん"
+              },
+              {
+                "text": "がある"
+              },
+              {
+                "text": "時",
+                "ruby": "とき"
+              },
+              {
+                "text": "や、"
+              },
+              {
+                "text": "外国人",
+                "ruby": "がいこくじん"
+              },
+              {
+                "text": "の"
+              },
+              {
+                "text": "友達",
+                "ruby": "ともだち"
+              },
+              {
+                "text": "が"
+              },
+              {
+                "text": "来た",
+                "ruby": "きた"
+              },
+              {
+                "text": "時",
+                "ruby": "とき"
+              },
+              {
+                "text": "は、"
+              },
+              {
+                "text": "胡同",
+                "ruby": "フートン"
+              },
+              {
+                "text": "を"
+              },
+              {
+                "text": "歩く",
+                "ruby": "あるく"
+              },
+              {
+                "text": "ようにしているんですよ。"
+              }
+            ],
             "audioSegment": {
               "id": "l38-app-block-004-line-002",
               "trackId": "lesson_apps",
               "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson38/lesson_apps.mp3",
+              "itemIndex": 6,
               "speaker": "李",
               "text": "ええ。だから、時間がある時や、外国人の友達が来た時は、胡同を歩くようにしているんですよ。",
-              "start": 40.22,
-              "end": 46.32,
-              "duration": 6.1,
+              "start": 40.03,
+              "end": 46.514,
+              "duration": 6.484,
+              "rawAzureTiming": {
+                "start": 40.28,
+                "end": 46.24,
+                "duration": 5.96
+              },
+              "timingSource": "azure-speech-boundary-with-local-vad-refinement",
+              "speechActivity": {
+                "start": 44.207,
+                "end": 46.394,
+                "duration": 2.187
+              },
               "speechUnitCount": 1,
               "matchScore": 0.814,
+              "asrConfidence": 0.854,
               "asrText": "え え だ か ら 時 間 が あ る と き や 外 国 人 の 友 達 が 来 た と き は ク ー ト ン を 歩 く よ う に し て い る ん で す よ",
               "phraseIndexes": [
                 7
               ],
-              "method": "legacy-asr-alignment-range-converted",
-              "confidence": "approved",
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "medium",
+              "alignmentIssues": [
+                "ASR boundary ended before the final local speech region; verify this sentence.",
+                "Moderate ASR text similarity."
+              ],
               "review": {
-                "status": "approved",
-                "reviewedAt": "2026-08-05T10:21:28.305Z",
-                "note": "Automatically approved by the bulk alignment workflow.",
+                "status": "pending",
+                "reviewedAt": null,
+                "note": "ASR boundary ended before the final local speech region; verify this sentence. Moderate ASR text similarity.",
                 "matchScore": 0.814,
                 "asrText": "え え だ か ら 時 間 が あ る と き や 外 国 人 の 友 達 が 来 た と き は ク ー ト ン を 歩 く よ う に し て い る ん で す よ"
               }
@@ -691,29 +1436,65 @@
             "translationZh": "小野女士，你能吃油条吗？",
             "confidence": "high",
             "rawText": "李：小野さん、「油条」は食べられますか。",
+            "kana": "おのさん、「ヨウティアオ」はたべられますか。",
+            "segments": [
+              {
+                "text": "小野",
+                "ruby": "おの"
+              },
+              {
+                "text": "さん、「"
+              },
+              {
+                "text": "油条",
+                "ruby": "ヨウティアオ"
+              },
+              {
+                "text": "」は"
+              },
+              {
+                "text": "食べられます",
+                "ruby": "たべられます"
+              },
+              {
+                "text": "か。"
+              }
+            ],
             "audioSegment": {
               "id": "l38-app-block-006-line-001",
               "trackId": "lesson_apps",
               "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson38/lesson_apps.mp3",
+              "itemIndex": 7,
               "speaker": "李",
               "text": "小野さん、「油条」は食べられますか。",
-              "start": 53.97,
-              "end": 57.55,
-              "duration": 3.58,
+              "start": 53.78,
+              "end": 56.69,
+              "duration": 2.91,
+              "rawAzureTiming": {
+                "start": 54.03,
+                "end": 56.71,
+                "duration": 2.68
+              },
+              "timingSource": "azure-speech-word-timestamp-with-boundary-padding",
+              "speechActivity": null,
               "speechUnitCount": 1,
               "matchScore": 0.706,
-              "asrText": "小 野 さ ん よ う ち ゃ お は 食 べ ら れ ま す か",
+              "asrConfidence": 0.785,
+              "asrText": "小 野 さ ん ヨ ン チ ャ オ は 食 べ ら れ ま す か",
               "phraseIndexes": [
                 8
               ],
-              "method": "legacy-asr-alignment-range-converted",
-              "confidence": "approved",
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "medium",
+              "alignmentIssues": [
+                "Moderate ASR text similarity."
+              ],
               "review": {
-                "status": "approved",
-                "reviewedAt": "2026-08-05T10:21:28.305Z",
-                "note": "Automatically approved by the bulk alignment workflow.",
+                "status": "pending",
+                "reviewedAt": null,
+                "note": "Moderate ASR text similarity.",
                 "matchScore": 0.706,
-                "asrText": "小 野 さ ん よ う ち ゃ お は 食 べ ら れ ま す か"
+                "asrText": "小 野 さ ん ヨ ン チ ャ オ は 食 べ ら れ ま す か"
               }
             }
           },
@@ -724,27 +1505,56 @@
             "translationZh": "嗯，我很喜欢。",
             "confidence": "high",
             "rawText": "小野：ええ、大好きです。",
+            "kana": "ええ、だいすきです。",
+            "segments": [
+              {
+                "text": "ええ、"
+              },
+              {
+                "text": "大好き",
+                "ruby": "だいすき"
+              },
+              {
+                "text": "です。"
+              }
+            ],
             "audioSegment": {
               "id": "l38-app-block-006-line-002",
               "trackId": "lesson_apps",
               "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson38/lesson_apps.mp3",
+              "itemIndex": 8,
               "speaker": "小野",
               "text": "ええ、大好きです。",
-              "start": 57.41,
-              "end": 58.79,
-              "duration": 1.38,
+              "start": 56.73,
+              "end": 58.91,
+              "duration": 2.18,
+              "rawAzureTiming": {
+                "start": 56.71,
+                "end": 57.95,
+                "duration": 1.24
+              },
+              "timingSource": "asr-with-boundary-review",
+              "speechActivity": {
+                "start": 48.372,
+                "end": 64.037,
+                "duration": 15.665
+              },
               "speechUnitCount": 1,
               "matchScore": 1,
+              "asrConfidence": 0.785,
               "asrText": "え え 大 好 き で す",
               "phraseIndexes": [
                 8
               ],
-              "method": "legacy-asr-alignment-range-converted",
-              "confidence": "approved",
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "needs-review",
+              "alignmentIssues": [
+                "ASR boundary ended before the final local speech region; verify this sentence."
+              ],
               "review": {
-                "status": "approved",
-                "reviewedAt": "2026-08-05T10:21:28.305Z",
-                "note": "Automatically approved by the bulk alignment workflow.",
+                "status": "pending",
+                "reviewedAt": null,
+                "note": "Background sound falsely extended VAD to 64.037 seconds. Restored the prior sentence-end anchor with padding; requires listening review.",
                 "matchScore": 1,
                 "asrText": "え え 大 好 き で す"
               }
@@ -771,29 +1581,69 @@
             "translationZh": "很烫，请注意别烫着。",
             "confidence": "high",
             "rawText": "李：熱いですから、火傷しないように気をつけてくださいね。",
+            "kana": "あついですから、やけどしないようにきをつけてくださいね。",
+            "segments": [
+              {
+                "text": "熱い",
+                "ruby": "あつい"
+              },
+              {
+                "text": "ですから、"
+              },
+              {
+                "text": "火傷",
+                "ruby": "やけど"
+              },
+              {
+                "text": "しないように"
+              },
+              {
+                "text": "気",
+                "ruby": "き"
+              },
+              {
+                "text": "をつけてくださいね。"
+              }
+            ],
             "audioSegment": {
               "id": "l38-app-block-008-line-001",
               "trackId": "lesson_apps",
               "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson38/lesson_apps.mp3",
+              "itemIndex": 9,
               "speaker": "李",
               "text": "熱いですから、火傷しないように気をつけてくださいね。",
-              "start": 66.64,
-              "end": 70.1,
-              "duration": 3.46,
+              "start": 66.53,
+              "end": 70.253,
+              "duration": 3.723,
+              "rawAzureTiming": {
+                "start": 66.78,
+                "end": 69.66,
+                "duration": 2.88
+              },
+              "timingSource": "azure-speech-boundary-with-local-vad-refinement",
+              "speechActivity": {
+                "start": 67.808,
+                "end": 70.133,
+                "duration": 2.325
+              },
               "speechUnitCount": 1,
-              "matchScore": 0.8,
-              "asrText": "暑 い で す か ら や け ど し な い よ う に 気 を 付 け て く だ さ い ね",
+              "matchScore": 1,
+              "asrConfidence": 0.918,
+              "asrText": "熱 い で す か ら 火 傷 し な い よ う に 気 を つ け て く だ さ い ね",
               "phraseIndexes": [
                 9
               ],
-              "method": "legacy-asr-alignment-range-converted",
-              "confidence": "approved",
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [
+                "ASR boundary ended before the final local speech region; verify this sentence."
+              ],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-05T10:21:28.305Z",
-                "note": "Automatically approved by the bulk alignment workflow.",
-                "matchScore": 0.8,
-                "asrText": "暑 い で す か ら や け ど し な い よ う に 気 を 付 け て く だ さ い ね"
+                "reviewedAt": "2026-09-16T11:37:22.817Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "matchScore": 1,
+                "asrText": "熱 い で す か ら 火 傷 し な い よ う に 気 を つ け て く だ さ い ね"
               }
             }
           }
@@ -818,27 +1668,74 @@
             "translationZh": "最近公寓和高楼盖起来了，胡同已经减少了很多。",
             "confidence": "high",
             "rawText": "李：最近は、マンションやビルが建って、胡同がだいぶ減ってしまいました。",
+            "kana": "さいきんは、マンションやビルがたって、フートンがだいぶへってしまいました。",
+            "segments": [
+              {
+                "text": "最近",
+                "ruby": "さいきん"
+              },
+              {
+                "text": "は、マンションやビルが"
+              },
+              {
+                "text": "建って",
+                "ruby": "たって"
+              },
+              {
+                "text": "、"
+              },
+              {
+                "text": "胡同",
+                "ruby": "フートン"
+              },
+              {
+                "text": "がだいぶ"
+              },
+              {
+                "text": "減って",
+                "ruby": "へって"
+              },
+              {
+                "text": "しまいました。"
+              }
+            ],
             "audioSegment": {
               "id": "l38-app-block-010-line-001",
               "trackId": "lesson_apps",
               "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson38/lesson_apps.mp3",
+              "itemIndex": 10,
               "speaker": "李",
               "text": "最近は、マンションやビルが建って、胡同がだいぶ減ってしまいました。",
-              "start": 75.12,
-              "end": 79.98,
-              "duration": 4.86,
+              "start": 74.93,
+              "end": 80.112,
+              "duration": 5.182,
+              "rawAzureTiming": {
+                "start": 75.18,
+                "end": 79.9,
+                "duration": 4.72
+              },
+              "timingSource": "azure-speech-boundary-with-local-vad-refinement",
+              "speechActivity": {
+                "start": 77.477,
+                "end": 79.992,
+                "duration": 2.516
+              },
               "speechUnitCount": 1,
               "matchScore": 0.875,
+              "asrConfidence": 0.902,
               "asrText": "最 近 は マ ン シ ョ ン や ビ ル が 建 っ て ク ー ト ン が だ い ぶ 減 っ て し ま い ま し た",
               "phraseIndexes": [
                 10
               ],
-              "method": "legacy-asr-alignment-range-converted",
-              "confidence": "approved",
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [
+                "ASR boundary ended before the final local speech region; verify this sentence."
+              ],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-05T10:21:28.305Z",
-                "note": "Automatically approved by the bulk alignment workflow.",
+                "reviewedAt": "2026-09-16T11:37:22.817Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
                 "matchScore": 0.875,
                 "asrText": "最 近 は マ ン シ ョ ン や ビ ル が 建 っ て ク ー ト ン が だ い ぶ 減 っ て し ま い ま し た"
               }
@@ -851,27 +1748,56 @@
             "translationZh": "总觉得很遗憾啊。",
             "confidence": "high",
             "rawText": "小野：なんだか残念ですね。",
+            "kana": "なんだかざんねんですね。",
+            "segments": [
+              {
+                "text": "なんだか"
+              },
+              {
+                "text": "残念",
+                "ruby": "ざんねん"
+              },
+              {
+                "text": "ですね。"
+              }
+            ],
             "audioSegment": {
               "id": "l38-app-block-010-line-002",
               "trackId": "lesson_apps",
               "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson38/lesson_apps.mp3",
+              "itemIndex": 11,
               "speaker": "小野",
               "text": "なんだか残念ですね。",
-              "start": 81.34,
-              "end": 82.48,
-              "duration": 1.14,
+              "start": 81.15,
+              "end": 82.633,
+              "duration": 1.483,
+              "rawAzureTiming": {
+                "start": 81.4,
+                "end": 82.24,
+                "duration": 0.84
+              },
+              "timingSource": "azure-speech-boundary-with-local-vad-refinement",
+              "speechActivity": {
+                "start": 81.485,
+                "end": 82.513,
+                "duration": 1.028
+              },
               "speechUnitCount": 1,
               "matchScore": 1,
+              "asrConfidence": 0.903,
               "asrText": "な ん だ か 残 念 で す ね",
               "phraseIndexes": [
                 11
               ],
-              "method": "legacy-asr-alignment-range-converted",
-              "confidence": "approved",
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [
+                "ASR boundary ended before the final local speech region; verify this sentence."
+              ],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-05T10:21:28.305Z",
-                "note": "Automatically approved by the bulk alignment workflow.",
+                "reviewedAt": "2026-09-16T11:37:22.817Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
                 "matchScore": 1,
                 "asrText": "な ん だ か 残 念 で す ね"
               }
@@ -884,29 +1810,90 @@
             "translationZh": "是啊。如今能看到胡同的地方真的很少了。",
             "confidence": "high",
             "rawText": "李：そうなんです。今では胡同が見られる場所は本当に少なくなりました。",
+            "kana": "そうなんです。いまではフートンがみられるばしょはほんとうにすくなくなりました。",
+            "segments": [
+              {
+                "text": "そうなんです。"
+              },
+              {
+                "text": "今",
+                "ruby": "いま"
+              },
+              {
+                "text": "では"
+              },
+              {
+                "text": "胡同",
+                "ruby": "フートン"
+              },
+              {
+                "text": "が"
+              },
+              {
+                "text": "見られる",
+                "ruby": "みられる"
+              },
+              {
+                "text": "場所",
+                "ruby": "ばしょ"
+              },
+              {
+                "text": "は"
+              },
+              {
+                "text": "本当",
+                "ruby": "ほんとう"
+              },
+              {
+                "text": "に"
+              },
+              {
+                "text": "少なくなりました",
+                "ruby": "すくなくなりました"
+              },
+              {
+                "text": "。"
+              }
+            ],
             "audioSegment": {
               "id": "l38-app-block-010-line-003",
               "trackId": "lesson_apps",
               "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson38/lesson_apps.mp3",
+              "itemIndex": 12,
               "speaker": "李",
               "text": "そうなんです。今では胡同が見られる場所は本当に少なくなりました。",
-              "start": 83.33,
-              "end": 88.79,
-              "duration": 5.46,
+              "start": 83.14,
+              "end": 89.023,
+              "duration": 5.883,
+              "rawAzureTiming": {
+                "start": 83.39,
+                "end": 88.11,
+                "duration": 4.72
+              },
+              "timingSource": "azure-speech-boundary-with-local-vad-refinement",
+              "speechActivity": {
+                "start": 84.776,
+                "end": 88.903,
+                "duration": 4.127
+              },
               "speechUnitCount": 1,
-              "matchScore": 0.875,
-              "asrText": "そ う な ん で す 今 で は フ ー ト ン が 見 ら れ る 場 所 は 本 当 に 少 な く な り ま し た",
+              "matchScore": 1,
+              "asrConfidence": 0.874,
+              "asrText": "そ う な ん で す 今 で は 胡 同 が 見 ら れ る 場 所 は 本 当 に 少 な く な り ま し た",
               "phraseIndexes": [
                 12
               ],
-              "method": "legacy-asr-alignment-range-converted",
-              "confidence": "approved",
+              "method": "azure-speech-sentence-alignment-with-boundary-padding",
+              "confidence": "high",
+              "alignmentIssues": [
+                "ASR boundary ended before the final local speech region; verify this sentence."
+              ],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-05T10:21:28.305Z",
-                "note": "Automatically approved by the bulk alignment workflow.",
-                "matchScore": 0.875,
-                "asrText": "そ う な ん で す 今 で は フ ー ト ン が 見 ら れ る 場 所 は 本 当 に 少 な く な り ま し た"
+                "reviewedAt": "2026-09-16T11:37:22.817Z",
+                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "matchScore": 1,
+                "asrText": "そ う な ん で す 今 で は 胡 同 が 見 ら れ る 場 所 は 本 当 に 少 な く な り ま し た"
               }
             }
           }
@@ -919,26 +1906,35 @@
     "应用课文的场景说明在教材中以中文排印，按原文保留在 text 字段中。"
   ],
   "audioAlignment": {
-    "schemaVersion": 1,
+    "schemaVersion": 2,
     "lessonId": "lesson38",
-    "convertedAt": "2026-08-14T00:17:07.688Z",
-    "method": "legacy-asr-alignment-range-converted",
+    "generatedAt": "2026-09-16T11:37:22.817Z",
+    "method": "azure-speech-sentence-alignment-with-boundary-padding",
+    "reviewStatus": "pending",
     "tracks": [
       {
         "id": "lesson_basic",
         "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson38/lesson_basic.mp3",
         "sourceAudioSha256": "d6f87db20608179ff72f01973eb3b785fa385139b9f1e6929f4b646e893d832e",
         "expectedItems": 12,
-        "alignedItems": 12
+        "alignedItems": 12,
+        "detectedUnitCount": 14,
+        "warnings": [
+          "1 item(s) require manual verification."
+        ]
       },
       {
         "id": "lesson_apps",
         "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit10/lesson38/lesson_apps.mp3",
         "sourceAudioSha256": "515aa4c94de71a1fc3294c8e311d1ca237b854a21a98afeda6157c46dec5d86b",
         "expectedItems": 12,
-        "alignedItems": 12
+        "alignedItems": 12,
+        "detectedUnitCount": 14,
+        "warnings": [
+          "3 item(s) require manual verification."
+        ]
       }
     ]
   },
-  "updatedAt": "2026-08-14T00:17:07.688Z"
+  "updatedAt": "2026-09-17T01:32:15.188Z"
 }

@@ -1,40 +1,442 @@
 {
   "lessonId": "lesson38",
   "sourceImages": [
-    { "section": "basic", "path": "course-assets/by-lesson/lesson38/page152.webp", "pageNo": 152 },
-    { "section": "application", "path": "course-assets/by-lesson/lesson38/page157.webp", "pageNo": 157 }
+    {
+      "section": "basic",
+      "path": "course-assets/by-lesson/lesson38/page152.webp",
+      "pageNo": 152
+    },
+    {
+      "section": "application",
+      "path": "course-assets/by-lesson/lesson38/page157.webp",
+      "pageNo": 157
+    }
   ],
   "basicText": {
     "title": "基本课文",
     "basicSentences": [
-      { "id": "l38-basic-s001", "order": 1, "text": "戴さんは英語が話せます。", "translationZh": "戴先生会说英语。", "confidence": "high", "rawText": "1. 戴さんは英語が話せます。" },
-      { "id": "l38-basic-s002", "order": 2, "text": "よく見えるように、大きく書きました。", "translationZh": "为了看得清楚，写得大一些。", "confidence": "high", "rawText": "2. よく見えるように、大きく書きました。" },
-      { "id": "l38-basic-s003", "order": 3, "text": "けがが治って、歩けるようになりました。", "translationZh": "伤好了，能走路了。", "confidence": "high", "rawText": "3. けがが治って、歩けるようになりました。" },
-      { "id": "l38-basic-s004", "order": 4, "text": "陳さんは毎日、英字新聞を読むようにしています。", "translationZh": "陈先生坚持每天读英文报纸。", "confidence": "high", "rawText": "4. 陳さんは毎日、英字新聞を読むようにしています。" }
+      {
+        "id": "l38-basic-s001",
+        "order": 1,
+        "text": "戴さんは英語が話せます。",
+        "translationZh": "戴先生会说英语。",
+        "confidence": "high",
+        "rawText": "1. 戴さんは英語が話せます。",
+        "kana": "たいさんはえいごがはなせます。",
+        "segments": [
+          {
+            "text": "戴",
+            "ruby": "たい"
+          },
+          {
+            "text": "さんは"
+          },
+          {
+            "text": "英語",
+            "ruby": "えいご"
+          },
+          {
+            "text": "が"
+          },
+          {
+            "text": "話せます",
+            "ruby": "はなせます"
+          },
+          {
+            "text": "。"
+          }
+        ]
+      },
+      {
+        "id": "l38-basic-s002",
+        "order": 2,
+        "text": "よく見えるように、大きく書きました。",
+        "translationZh": "为了看得清楚，写得大一些。",
+        "confidence": "high",
+        "rawText": "2. よく見えるように、大きく書きました。",
+        "kana": "よくみえるように、おおきくかきました。",
+        "segments": [
+          {
+            "text": "よく"
+          },
+          {
+            "text": "見える",
+            "ruby": "みえる"
+          },
+          {
+            "text": "ように、"
+          },
+          {
+            "text": "大きく",
+            "ruby": "おおきく"
+          },
+          {
+            "text": "書きました",
+            "ruby": "かきました"
+          },
+          {
+            "text": "。"
+          }
+        ]
+      },
+      {
+        "id": "l38-basic-s003",
+        "order": 3,
+        "text": "けがが治って、歩けるようになりました。",
+        "translationZh": "伤好了，能走路了。",
+        "confidence": "high",
+        "rawText": "3. けがが治って、歩けるようになりました。",
+        "kana": "けががなおって、あるけるようになりました。",
+        "segments": [
+          {
+            "text": "けがが"
+          },
+          {
+            "text": "治って",
+            "ruby": "なおって"
+          },
+          {
+            "text": "、"
+          },
+          {
+            "text": "歩ける",
+            "ruby": "あるける"
+          },
+          {
+            "text": "ようになりました。"
+          }
+        ]
+      },
+      {
+        "id": "l38-basic-s004",
+        "order": 4,
+        "text": "陳さんは毎日、英字新聞を読むようにしています。",
+        "translationZh": "陈先生坚持每天读英文报纸。",
+        "confidence": "high",
+        "rawText": "4. 陳さんは毎日、英字新聞を読むようにしています。",
+        "kana": "ちんさんはまいにち、えいじしんぶんをよむようにしています。",
+        "segments": [
+          {
+            "text": "陳",
+            "ruby": "ちん"
+          },
+          {
+            "text": "さんは"
+          },
+          {
+            "text": "毎日",
+            "ruby": "まいにち"
+          },
+          {
+            "text": "、"
+          },
+          {
+            "text": "英字新聞",
+            "ruby": "えいじしんぶん"
+          },
+          {
+            "text": "を"
+          },
+          {
+            "text": "読む",
+            "ruby": "よむ"
+          },
+          {
+            "text": "ようにしています。"
+          }
+        ]
+      }
     ],
     "dialogues": [
       {
-        "id": "l38-basic-dialogue-001", "label": "A", "lines": [
-          { "id": "l38-basic-dialogue-001-line-001", "speaker": "甲", "text": "戴さんはお寿司が食べられますか。", "translationZh": "戴先生能吃寿司吗？", "confidence": "high", "rawText": "甲：戴さんはお寿司が食べられますか。" },
-          { "id": "l38-basic-dialogue-001-line-002", "speaker": "乙", "text": "ええ、大丈夫ですよ。わたしは何でも食べられます。", "translationZh": "嗯，没问题。我什么都能吃。", "confidence": "high", "rawText": "乙：ええ、大丈夫ですよ。わたしは何でも食べられます。" }
+        "id": "l38-basic-dialogue-001",
+        "label": "A",
+        "lines": [
+          {
+            "id": "l38-basic-dialogue-001-line-001",
+            "speaker": "甲",
+            "text": "戴さんはお寿司が食べられますか。",
+            "translationZh": "戴先生能吃寿司吗？",
+            "confidence": "high",
+            "rawText": "甲：戴さんはお寿司が食べられますか。",
+            "kana": "たいさんはおすしがたべられますか。",
+            "segments": [
+              {
+                "text": "戴",
+                "ruby": "たい"
+              },
+              {
+                "text": "さんはお"
+              },
+              {
+                "text": "寿司",
+                "ruby": "すし"
+              },
+              {
+                "text": "が"
+              },
+              {
+                "text": "食べられます",
+                "ruby": "たべられます"
+              },
+              {
+                "text": "か。"
+              }
+            ]
+          },
+          {
+            "id": "l38-basic-dialogue-001-line-002",
+            "speaker": "乙",
+            "text": "ええ、大丈夫ですよ。わたしは何でも食べられます。",
+            "translationZh": "嗯，没问题。我什么都能吃。",
+            "confidence": "high",
+            "rawText": "乙：ええ、大丈夫ですよ。わたしは何でも食べられます。",
+            "kana": "ええ、だいじょうぶですよ。わたしはなんでもたべられます。",
+            "segments": [
+              {
+                "text": "ええ、"
+              },
+              {
+                "text": "大丈夫",
+                "ruby": "だいじょうぶ"
+              },
+              {
+                "text": "ですよ。わたしは"
+              },
+              {
+                "text": "何でも",
+                "ruby": "なんでも"
+              },
+              {
+                "text": "食べられます",
+                "ruby": "たべられます"
+              },
+              {
+                "text": "。"
+              }
+            ]
+          }
         ]
       },
       {
-        "id": "l38-basic-dialogue-002", "label": "B", "lines": [
-          { "id": "l38-basic-dialogue-002-line-001", "speaker": "甲", "text": "李さん、２時ごろ会社を出ますよ。", "translationZh": "小李，大约两点钟要离开公司。", "confidence": "high", "rawText": "甲：李さん、２時ごろ会社を出ますよ。" },
-          { "id": "l38-basic-dialogue-002-line-002", "speaker": "乙", "text": "はい。いつでも出られるように、準備してあります。", "translationZh": "好的。已经准备好了，随时都可以出发。", "confidence": "high", "rawText": "乙：はい。いつでも出られるように、準備してあります。" }
+        "id": "l38-basic-dialogue-002",
+        "label": "B",
+        "lines": [
+          {
+            "id": "l38-basic-dialogue-002-line-001",
+            "speaker": "甲",
+            "text": "李さん、２時ごろ会社を出ますよ。",
+            "translationZh": "小李，大约两点钟要离开公司。",
+            "confidence": "high",
+            "rawText": "甲：李さん、２時ごろ会社を出ますよ。",
+            "kana": "りさん、にじごろかいしゃをでますよ。",
+            "segments": [
+              {
+                "text": "李",
+                "ruby": "り"
+              },
+              {
+                "text": "さん、"
+              },
+              {
+                "text": "２",
+                "ruby": "に"
+              },
+              {
+                "text": "時",
+                "ruby": "じ"
+              },
+              {
+                "text": "ごろ"
+              },
+              {
+                "text": "会社",
+                "ruby": "かいしゃ"
+              },
+              {
+                "text": "を"
+              },
+              {
+                "text": "出ます",
+                "ruby": "でます"
+              },
+              {
+                "text": "よ。"
+              }
+            ]
+          },
+          {
+            "id": "l38-basic-dialogue-002-line-002",
+            "speaker": "乙",
+            "text": "はい。いつでも出られるように、準備してあります。",
+            "translationZh": "好的。已经准备好了，随时都可以出发。",
+            "confidence": "high",
+            "rawText": "乙：はい。いつでも出られるように、準備してあります。",
+            "kana": "はい。いつでもでられるように、じゅんびしてあります。",
+            "segments": [
+              {
+                "text": "はい。いつでも"
+              },
+              {
+                "text": "出られる",
+                "ruby": "でられる"
+              },
+              {
+                "text": "ように、"
+              },
+              {
+                "text": "準備",
+                "ruby": "じゅんび"
+              },
+              {
+                "text": "してあります。"
+              }
+            ]
+          }
         ]
       },
       {
-        "id": "l38-basic-dialogue-003", "label": "C", "lines": [
-          { "id": "l38-basic-dialogue-003-line-001", "speaker": "甲", "text": "小野さん、着物を自分で着ることができますか。", "translationZh": "小野女士，你能自己穿和服吗？", "confidence": "high", "rawText": "甲：小野さん、着物を自分で着ることができますか。" },
-          { "id": "l38-basic-dialogue-003-line-002", "speaker": "乙", "text": "ええ、母に習って、着られるようになりました。", "translationZh": "嗯，跟母亲学了以后，已经会穿了。", "confidence": "high", "rawText": "乙：ええ、母に習って、着られるようになりました。" }
+        "id": "l38-basic-dialogue-003",
+        "label": "C",
+        "lines": [
+          {
+            "id": "l38-basic-dialogue-003-line-001",
+            "speaker": "甲",
+            "text": "小野さん、着物を自分で着ることができますか。",
+            "translationZh": "小野女士，你能自己穿和服吗？",
+            "confidence": "high",
+            "rawText": "甲：小野さん、着物を自分で着ることができますか。",
+            "kana": "おのさん、きものをじぶんできることができますか。",
+            "segments": [
+              {
+                "text": "小野",
+                "ruby": "おの"
+              },
+              {
+                "text": "さん、"
+              },
+              {
+                "text": "着物",
+                "ruby": "きもの"
+              },
+              {
+                "text": "を"
+              },
+              {
+                "text": "自分",
+                "ruby": "じぶん"
+              },
+              {
+                "text": "で"
+              },
+              {
+                "text": "着る",
+                "ruby": "きる"
+              },
+              {
+                "text": "ことができますか。"
+              }
+            ]
+          },
+          {
+            "id": "l38-basic-dialogue-003-line-002",
+            "speaker": "乙",
+            "text": "ええ、母に習って、着られるようになりました。",
+            "translationZh": "嗯，跟母亲学了以后，已经会穿了。",
+            "confidence": "high",
+            "rawText": "乙：ええ、母に習って、着られるようになりました。",
+            "kana": "ええ、ははにならって、きられるようになりました。",
+            "segments": [
+              {
+                "text": "ええ、"
+              },
+              {
+                "text": "母",
+                "ruby": "はは"
+              },
+              {
+                "text": "に"
+              },
+              {
+                "text": "習って",
+                "ruby": "ならって"
+              },
+              {
+                "text": "、"
+              },
+              {
+                "text": "着られる",
+                "ruby": "きられる"
+              },
+              {
+                "text": "ようになりました。"
+              }
+            ]
+          }
         ]
       },
       {
-        "id": "l38-basic-dialogue-004", "label": "D", "lines": [
-          { "id": "l38-basic-dialogue-004-line-001", "speaker": "甲", "text": "健康のために何かしていますか。", "translationZh": "为了健康，你做些什么吗？", "confidence": "high", "rawText": "甲：健康のために何かしていますか。" },
-          { "id": "l38-basic-dialogue-004-line-002", "speaker": "乙", "text": "ええ、毎朝１時間散歩するようにしています。", "translationZh": "嗯，我坚持每天早晨散步一小时。", "confidence": "high", "rawText": "乙：ええ、毎朝１時間散歩するようにしています。" }
+        "id": "l38-basic-dialogue-004",
+        "label": "D",
+        "lines": [
+          {
+            "id": "l38-basic-dialogue-004-line-001",
+            "speaker": "甲",
+            "text": "健康のために何かしていますか。",
+            "translationZh": "为了健康，你做些什么吗？",
+            "confidence": "high",
+            "rawText": "甲：健康のために何かしていますか。",
+            "kana": "けんこうのためになにかしていますか。",
+            "segments": [
+              {
+                "text": "健康",
+                "ruby": "けんこう"
+              },
+              {
+                "text": "のために"
+              },
+              {
+                "text": "何か",
+                "ruby": "なにか"
+              },
+              {
+                "text": "していますか。"
+              }
+            ]
+          },
+          {
+            "id": "l38-basic-dialogue-004-line-002",
+            "speaker": "乙",
+            "text": "ええ、毎朝１時間散歩するようにしています。",
+            "translationZh": "嗯，我坚持每天早晨散步一小时。",
+            "confidence": "high",
+            "rawText": "乙：ええ、毎朝１時間散歩するようにしています。",
+            "kana": "ええ、まいあさいちじかんさんぽするようにしています。",
+            "segments": [
+              {
+                "text": "ええ、"
+              },
+              {
+                "text": "毎朝",
+                "ruby": "まいあさ"
+              },
+              {
+                "text": "１",
+                "ruby": "いち"
+              },
+              {
+                "text": "時間",
+                "ruby": "じかん"
+              },
+              {
+                "text": "散歩",
+                "ruby": "さんぽ"
+              },
+              {
+                "text": "するようにしています。"
+              }
+            ]
+          }
         ]
       }
     ]
@@ -42,41 +444,558 @@
   "applicationText": {
     "title": "胡同",
     "blocks": [
-      { "id": "l38-app-block-001", "type": "scene", "text": "走在胡同中", "translationZh": "走在胡同中。", "confidence": "high", "rawText": "（走在胡同中）" },
       {
-        "id": "l38-app-block-002", "type": "dialogue", "lines": [
-          { "id": "l38-app-block-002-line-001", "speaker": "小野", "text": "この路地が「胡同」ですね。", "translationZh": "这条小巷就是“胡同”啊。", "confidence": "high", "rawText": "小野：この路地が「胡同」ですね。" },
-          { "id": "l38-app-block-002-line-002", "speaker": "李", "text": "ええ、この辺は北京の伝統的な町です。人が実際に生活している所ですから、写真は撮らないようにしてくださいね。", "translationZh": "是的，这一带是北京传统的街区。因为这里是人们实际生活的地方，请不要拍照。", "confidence": "high", "rawText": "李：ええ、この辺は北京の伝統的な町です。人が実際に生活している所ですから、写真は撮らないようにしてくださいね。" },
-          { "id": "l38-app-block-002-line-003", "speaker": "小野", "text": "分かりました。ところで、この道は通り抜けられますか。", "translationZh": "明白了。不过，这条路能走出去吗？", "confidence": "high", "rawText": "小野：分かりました。ところで、この道は通り抜けられますか。" },
-          { "id": "l38-app-block-002-line-004", "speaker": "李", "text": "大丈夫です。入り組んでいますが、通り抜けられますよ。", "translationZh": "没问题。虽然道路错综复杂，但能穿过去。", "confidence": "high", "rawText": "李：大丈夫です。入り組んでいますが、通り抜けられますよ。" }
+        "id": "l38-app-block-001",
+        "type": "scene",
+        "text": "走在胡同中",
+        "translationZh": "走在胡同中。",
+        "confidence": "high",
+        "rawText": "（走在胡同中）"
+      },
+      {
+        "id": "l38-app-block-002",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l38-app-block-002-line-001",
+            "speaker": "小野",
+            "text": "この路地が「胡同」ですね。",
+            "translationZh": "这条小巷就是“胡同”啊。",
+            "confidence": "high",
+            "rawText": "小野：この路地が「胡同」ですね。",
+            "kana": "このろじが「フートン」ですね。",
+            "segments": [
+              {
+                "text": "この"
+              },
+              {
+                "text": "路地",
+                "ruby": "ろじ"
+              },
+              {
+                "text": "が「"
+              },
+              {
+                "text": "胡同",
+                "ruby": "フートン"
+              },
+              {
+                "text": "」ですね。"
+              }
+            ]
+          },
+          {
+            "id": "l38-app-block-002-line-002",
+            "speaker": "李",
+            "text": "ええ、この辺は北京の伝統的な町です。人が実際に生活している所ですから、写真は撮らないようにしてくださいね。",
+            "translationZh": "是的，这一带是北京传统的街区。因为这里是人们实际生活的地方，请不要拍照。",
+            "confidence": "high",
+            "rawText": "李：ええ、この辺は北京の伝統的な町です。人が実際に生活している所ですから、写真は撮らないようにしてくださいね。",
+            "kana": "ええ、このへんはペキンのでんとうてきなまちです。ひとがじっさいにせいかつしているところですから、しゃしんはとらないようにしてくださいね。",
+            "segments": [
+              {
+                "text": "ええ、この"
+              },
+              {
+                "text": "辺",
+                "ruby": "へん"
+              },
+              {
+                "text": "は"
+              },
+              {
+                "text": "北京",
+                "ruby": "ペキン"
+              },
+              {
+                "text": "の"
+              },
+              {
+                "text": "伝統的",
+                "ruby": "でんとうてき"
+              },
+              {
+                "text": "な"
+              },
+              {
+                "text": "町",
+                "ruby": "まち"
+              },
+              {
+                "text": "です。"
+              },
+              {
+                "text": "人",
+                "ruby": "ひと"
+              },
+              {
+                "text": "が"
+              },
+              {
+                "text": "実際",
+                "ruby": "じっさい"
+              },
+              {
+                "text": "に"
+              },
+              {
+                "text": "生活",
+                "ruby": "せいかつ"
+              },
+              {
+                "text": "している"
+              },
+              {
+                "text": "所",
+                "ruby": "ところ"
+              },
+              {
+                "text": "ですから、"
+              },
+              {
+                "text": "写真",
+                "ruby": "しゃしん"
+              },
+              {
+                "text": "は"
+              },
+              {
+                "text": "撮らない",
+                "ruby": "とらない"
+              },
+              {
+                "text": "ようにしてくださいね。"
+              }
+            ]
+          },
+          {
+            "id": "l38-app-block-002-line-003",
+            "speaker": "小野",
+            "text": "分かりました。ところで、この道は通り抜けられますか。",
+            "translationZh": "明白了。不过，这条路能走出去吗？",
+            "confidence": "high",
+            "rawText": "小野：分かりました。ところで、この道は通り抜けられますか。",
+            "kana": "わかりました。ところで、このみちはとおりぬけられますか。",
+            "segments": [
+              {
+                "text": "分かりました",
+                "ruby": "わかりました"
+              },
+              {
+                "text": "。ところで、この"
+              },
+              {
+                "text": "道",
+                "ruby": "みち"
+              },
+              {
+                "text": "は"
+              },
+              {
+                "text": "通り抜けられます",
+                "ruby": "とおりぬけられます"
+              },
+              {
+                "text": "か。"
+              }
+            ]
+          },
+          {
+            "id": "l38-app-block-002-line-004",
+            "speaker": "李",
+            "text": "大丈夫です。入り組んでいますが、通り抜けられますよ。",
+            "translationZh": "没问题。虽然道路错综复杂，但能穿过去。",
+            "confidence": "high",
+            "rawText": "李：大丈夫です。入り組んでいますが、通り抜けられますよ。",
+            "kana": "だいじょうぶです。いりくんでいますが、とおりぬけられますよ。",
+            "segments": [
+              {
+                "text": "大丈夫",
+                "ruby": "だいじょうぶ"
+              },
+              {
+                "text": "です。"
+              },
+              {
+                "text": "入り組んでいます",
+                "ruby": "いりくんでいます"
+              },
+              {
+                "text": "が、"
+              },
+              {
+                "text": "通り抜けられます",
+                "ruby": "とおりぬけられます"
+              },
+              {
+                "text": "よ。"
+              }
+            ]
+          }
         ]
       },
-      { "id": "l38-app-block-003", "type": "scene", "text": "边走边感受老北京的风情", "translationZh": "边走边感受老北京的风情。", "confidence": "high", "rawText": "（边走边感受老北京的风情）" },
       {
-        "id": "l38-app-block-004", "type": "dialogue", "lines": [
-          { "id": "l38-app-block-004-line-001", "speaker": "小野", "text": "胡同は、古い北京が感じられて、楽しいですね。", "translationZh": "在胡同里能感受到老北京，真有意思啊。", "confidence": "high", "rawText": "小野：胡同は、古い北京が感じられて、楽しいですね。" },
-          { "id": "l38-app-block-004-line-002", "speaker": "李", "text": "ええ。だから、時間がある時や、外国人の友達が来た時は、胡同を歩くようにしているんですよ。", "translationZh": "是啊。所以有时间时，或者外国朋友来的时候，我都会到胡同里走走。", "confidence": "high", "rawText": "李：ええ。だから、時間がある時や、外国人の友達が来た時は、胡同を歩くようにしているんですよ。" }
+        "id": "l38-app-block-003",
+        "type": "scene",
+        "text": "边走边感受老北京的风情",
+        "translationZh": "边走边感受老北京的风情。",
+        "confidence": "high",
+        "rawText": "（边走边感受老北京的风情）"
+      },
+      {
+        "id": "l38-app-block-004",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l38-app-block-004-line-001",
+            "speaker": "小野",
+            "text": "胡同は、古い北京が感じられて、楽しいですね。",
+            "translationZh": "在胡同里能感受到老北京，真有意思啊。",
+            "confidence": "high",
+            "rawText": "小野：胡同は、古い北京が感じられて、楽しいですね。",
+            "kana": "フートンは、ふるいペキンがかんじられて、たのしいですね。",
+            "segments": [
+              {
+                "text": "胡同",
+                "ruby": "フートン"
+              },
+              {
+                "text": "は、"
+              },
+              {
+                "text": "古い",
+                "ruby": "ふるい"
+              },
+              {
+                "text": "北京",
+                "ruby": "ペキン"
+              },
+              {
+                "text": "が"
+              },
+              {
+                "text": "感じられて",
+                "ruby": "かんじられて"
+              },
+              {
+                "text": "、"
+              },
+              {
+                "text": "楽しい",
+                "ruby": "たのしい"
+              },
+              {
+                "text": "ですね。"
+              }
+            ]
+          },
+          {
+            "id": "l38-app-block-004-line-002",
+            "speaker": "李",
+            "text": "ええ。だから、時間がある時や、外国人の友達が来た時は、胡同を歩くようにしているんですよ。",
+            "translationZh": "是啊。所以有时间时，或者外国朋友来的时候，我都会到胡同里走走。",
+            "confidence": "high",
+            "rawText": "李：ええ。だから、時間がある時や、外国人の友達が来た時は、胡同を歩くようにしているんですよ。",
+            "kana": "ええ。だから、じかんがあるときや、がいこくじんのともだちがきたときは、フートンをあるくようにしているんですよ。",
+            "segments": [
+              {
+                "text": "ええ。だから、"
+              },
+              {
+                "text": "時間",
+                "ruby": "じかん"
+              },
+              {
+                "text": "がある"
+              },
+              {
+                "text": "時",
+                "ruby": "とき"
+              },
+              {
+                "text": "や、"
+              },
+              {
+                "text": "外国人",
+                "ruby": "がいこくじん"
+              },
+              {
+                "text": "の"
+              },
+              {
+                "text": "友達",
+                "ruby": "ともだち"
+              },
+              {
+                "text": "が"
+              },
+              {
+                "text": "来た",
+                "ruby": "きた"
+              },
+              {
+                "text": "時",
+                "ruby": "とき"
+              },
+              {
+                "text": "は、"
+              },
+              {
+                "text": "胡同",
+                "ruby": "フートン"
+              },
+              {
+                "text": "を"
+              },
+              {
+                "text": "歩く",
+                "ruby": "あるく"
+              },
+              {
+                "text": "ようにしているんですよ。"
+              }
+            ]
+          }
         ]
       },
-      { "id": "l38-app-block-005", "type": "scene", "text": "小李看到了一家卖油条的店铺", "translationZh": "小李看到了一家卖油条的店铺。", "confidence": "high", "rawText": "（小李看到了一家卖油条的店铺）" },
       {
-        "id": "l38-app-block-006", "type": "dialogue", "lines": [
-          { "id": "l38-app-block-006-line-001", "speaker": "李", "text": "小野さん、「油条」は食べられますか。", "translationZh": "小野女士，你能吃油条吗？", "confidence": "high", "rawText": "李：小野さん、「油条」は食べられますか。" },
-          { "id": "l38-app-block-006-line-002", "speaker": "小野", "text": "ええ、大好きです。", "translationZh": "嗯，我很喜欢。", "confidence": "high", "rawText": "小野：ええ、大好きです。" }
+        "id": "l38-app-block-005",
+        "type": "scene",
+        "text": "小李看到了一家卖油条的店铺",
+        "translationZh": "小李看到了一家卖油条的店铺。",
+        "confidence": "high",
+        "rawText": "（小李看到了一家卖油条的店铺）"
+      },
+      {
+        "id": "l38-app-block-006",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l38-app-block-006-line-001",
+            "speaker": "李",
+            "text": "小野さん、「油条」は食べられますか。",
+            "translationZh": "小野女士，你能吃油条吗？",
+            "confidence": "high",
+            "rawText": "李：小野さん、「油条」は食べられますか。",
+            "kana": "おのさん、「ヨウティアオ」はたべられますか。",
+            "segments": [
+              {
+                "text": "小野",
+                "ruby": "おの"
+              },
+              {
+                "text": "さん、「"
+              },
+              {
+                "text": "油条",
+                "ruby": "ヨウティアオ"
+              },
+              {
+                "text": "」は"
+              },
+              {
+                "text": "食べられます",
+                "ruby": "たべられます"
+              },
+              {
+                "text": "か。"
+              }
+            ]
+          },
+          {
+            "id": "l38-app-block-006-line-002",
+            "speaker": "小野",
+            "text": "ええ、大好きです。",
+            "translationZh": "嗯，我很喜欢。",
+            "confidence": "high",
+            "rawText": "小野：ええ、大好きです。",
+            "kana": "ええ、だいすきです。",
+            "segments": [
+              {
+                "text": "ええ、"
+              },
+              {
+                "text": "大好き",
+                "ruby": "だいすき"
+              },
+              {
+                "text": "です。"
+              }
+            ]
+          }
         ]
       },
-      { "id": "l38-app-block-007", "type": "scene", "text": "买了油条递给小野", "translationZh": "买了油条递给小野。", "confidence": "high", "rawText": "（买了油条递给小野）" },
       {
-        "id": "l38-app-block-008", "type": "dialogue", "lines": [
-          { "id": "l38-app-block-008-line-001", "speaker": "李", "text": "熱いですから、火傷しないように気をつけてくださいね。", "translationZh": "很烫，请注意别烫着。", "confidence": "high", "rawText": "李：熱いですから、火傷しないように気をつけてくださいね。" }
+        "id": "l38-app-block-007",
+        "type": "scene",
+        "text": "买了油条递给小野",
+        "translationZh": "买了油条递给小野。",
+        "confidence": "high",
+        "rawText": "（买了油条递给小野）"
+      },
+      {
+        "id": "l38-app-block-008",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l38-app-block-008-line-001",
+            "speaker": "李",
+            "text": "熱いですから、火傷しないように気をつけてくださいね。",
+            "translationZh": "很烫，请注意别烫着。",
+            "confidence": "high",
+            "rawText": "李：熱いですから、火傷しないように気をつけてくださいね。",
+            "kana": "あついですから、やけどしないようにきをつけてくださいね。",
+            "segments": [
+              {
+                "text": "熱い",
+                "ruby": "あつい"
+              },
+              {
+                "text": "ですから、"
+              },
+              {
+                "text": "火傷",
+                "ruby": "やけど"
+              },
+              {
+                "text": "しないように"
+              },
+              {
+                "text": "気",
+                "ruby": "き"
+              },
+              {
+                "text": "をつけてくださいね。"
+              }
+            ]
+          }
         ]
       },
-      { "id": "l38-app-block-009", "type": "scene", "text": "过了一会儿", "translationZh": "过了一会儿。", "confidence": "high", "rawText": "（过了一会儿）" },
       {
-        "id": "l38-app-block-010", "type": "dialogue", "lines": [
-          { "id": "l38-app-block-010-line-001", "speaker": "李", "text": "最近は、マンションやビルが建って、胡同がだいぶ減ってしまいました。", "translationZh": "最近公寓和高楼盖起来了，胡同已经减少了很多。", "confidence": "high", "rawText": "李：最近は、マンションやビルが建って、胡同がだいぶ減ってしまいました。" },
-          { "id": "l38-app-block-010-line-002", "speaker": "小野", "text": "なんだか残念ですね。", "translationZh": "总觉得很遗憾啊。", "confidence": "high", "rawText": "小野：なんだか残念ですね。" },
-          { "id": "l38-app-block-010-line-003", "speaker": "李", "text": "そうなんです。今では胡同が見られる場所は本当に少なくなりました。", "translationZh": "是啊。如今能看到胡同的地方真的很少了。", "confidence": "high", "rawText": "李：そうなんです。今では胡同が見られる場所は本当に少なくなりました。" }
+        "id": "l38-app-block-009",
+        "type": "scene",
+        "text": "过了一会儿",
+        "translationZh": "过了一会儿。",
+        "confidence": "high",
+        "rawText": "（过了一会儿）"
+      },
+      {
+        "id": "l38-app-block-010",
+        "type": "dialogue",
+        "lines": [
+          {
+            "id": "l38-app-block-010-line-001",
+            "speaker": "李",
+            "text": "最近は、マンションやビルが建って、胡同がだいぶ減ってしまいました。",
+            "translationZh": "最近公寓和高楼盖起来了，胡同已经减少了很多。",
+            "confidence": "high",
+            "rawText": "李：最近は、マンションやビルが建って、胡同がだいぶ減ってしまいました。",
+            "kana": "さいきんは、マンションやビルがたって、フートンがだいぶへってしまいました。",
+            "segments": [
+              {
+                "text": "最近",
+                "ruby": "さいきん"
+              },
+              {
+                "text": "は、マンションやビルが"
+              },
+              {
+                "text": "建って",
+                "ruby": "たって"
+              },
+              {
+                "text": "、"
+              },
+              {
+                "text": "胡同",
+                "ruby": "フートン"
+              },
+              {
+                "text": "がだいぶ"
+              },
+              {
+                "text": "減って",
+                "ruby": "へって"
+              },
+              {
+                "text": "しまいました。"
+              }
+            ]
+          },
+          {
+            "id": "l38-app-block-010-line-002",
+            "speaker": "小野",
+            "text": "なんだか残念ですね。",
+            "translationZh": "总觉得很遗憾啊。",
+            "confidence": "high",
+            "rawText": "小野：なんだか残念ですね。",
+            "kana": "なんだかざんねんですね。",
+            "segments": [
+              {
+                "text": "なんだか"
+              },
+              {
+                "text": "残念",
+                "ruby": "ざんねん"
+              },
+              {
+                "text": "ですね。"
+              }
+            ]
+          },
+          {
+            "id": "l38-app-block-010-line-003",
+            "speaker": "李",
+            "text": "そうなんです。今では胡同が見られる場所は本当に少なくなりました。",
+            "translationZh": "是啊。如今能看到胡同的地方真的很少了。",
+            "confidence": "high",
+            "rawText": "李：そうなんです。今では胡同が見られる場所は本当に少なくなりました。",
+            "kana": "そうなんです。いまではフートンがみられるばしょはほんとうにすくなくなりました。",
+            "segments": [
+              {
+                "text": "そうなんです。"
+              },
+              {
+                "text": "今",
+                "ruby": "いま"
+              },
+              {
+                "text": "では"
+              },
+              {
+                "text": "胡同",
+                "ruby": "フートン"
+              },
+              {
+                "text": "が"
+              },
+              {
+                "text": "見られる",
+                "ruby": "みられる"
+              },
+              {
+                "text": "場所",
+                "ruby": "ばしょ"
+              },
+              {
+                "text": "は"
+              },
+              {
+                "text": "本当",
+                "ruby": "ほんとう"
+              },
+              {
+                "text": "に"
+              },
+              {
+                "text": "少なくなりました",
+                "ruby": "すくなくなりました"
+              },
+              {
+                "text": "。"
+              }
+            ]
+          }
         ]
       }
     ]

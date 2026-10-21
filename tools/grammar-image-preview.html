@@ -213,11 +213,12 @@
 
       .image-stack {
         display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-columns: minmax(0, 1fr);
         gap: 16px;
       }
 
       .image-frame {
+        display: block;
         width: 100%;
         margin: 0;
         overflow: hidden;
@@ -225,6 +226,27 @@
         border-radius: 8px;
         background: #fff;
       }
+
+      .grammar-source, .grammar-interaction { min-width: 0; }
+      .grammar-page-mode { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; padding: 8px; border-bottom: 1px solid var(--line); background: #f8fbf9; }
+      .grammar-page-mode button { min-height: 36px; border: 1px solid var(--line); border-radius: 7px; background: #fff; color: var(--muted); font-size: 13px; font-weight: 760; }
+      .grammar-page-mode button.active { border-color: var(--accent); background: var(--accent-soft); color: var(--accent); }
+      .image-frame[data-page-mode="source"] .grammar-interaction,
+      .image-frame[data-page-mode="listen"] .grammar-source { display: none; }
+      .grammar-examples { padding: 18px; }
+      .grammar-group + .grammar-group { margin-top: 32px; padding-top: 24px; border-top: 2px solid var(--line); }
+      .grammar-group h3 { margin: 0 0 10px; font-size: 16px; color: var(--accent); }
+      .grammar-example + .grammar-example { margin-top: 3px; }
+      .grammar-note, .grammar-empty { color: var(--muted); font-size: 12px; line-height: 1.7; }
+      .grammar-example.incorrect { border-left: 3px solid #b34c35; padding-left: 10px; }
+      .grammar-example.incorrect .grammar-note { color: #a13d27; }
+      .grammar-sentence { display: block; width: 100%; padding: 2px 8px; border-radius: 6px; background: transparent; color: var(--ink); text-align: left; overflow-wrap: anywhere; }
+      .grammar-sentence:hover, .grammar-sentence.playing { background: var(--accent-soft); }
+      .grammar-sentence:focus-visible { outline: 2px solid var(--accent); }
+      .grammar-sentence .jp { font-size: 17px; line-height: 1.65; }
+      .grammar-sentence ruby { ruby-align: center; }
+      .grammar-sentence, .grammar-sentence .jp { user-select:text; -webkit-user-select:text; cursor:text; }
+      .grammar-sentence rt { color: var(--muted); font-size: 11px; font-weight: 500; }
 
       .grammar-vocabulary {
         padding: 10px 12px;
@@ -381,7 +403,7 @@
         }
       }
 
-      @media (max-width: 560px) {
+      @media (max-width: 920px) and (hover: none), (max-width: 920px) and (pointer: coarse) {
         .lesson-grid {
           grid-template-columns: repeat(3, minmax(0, 1fr));
         }
@@ -403,6 +425,8 @@
         .image-lightbox-stage img { display: block; width: min(100%, 760px); max-width: none; height: auto; transform-origin: center center; transition: transform 150ms ease; }
       }
     </style>
+    <link rel="stylesheet" href="/shared/notes/dist/inline-notes.css?v=040ef87305ef">
+    <script type="module" src="/shared/notes/dist/inline-notes.js?v=040ef87305ef"></script>
   </head>
   <body>
     <main class="shell">
@@ -459,11 +483,108 @@
       const imageLightboxImage = document.querySelector("#imageLightboxImage");
       let imageZoom = 1;
       const grammarVocabularyCache = new Map();
+      const grammarExamplesCache = new Map();
+      let grammarAudioManifest = null;
+      let sentenceAudio = null;
+      let sentencePlaybackVersion = 0;
+      let activeSentenceButton = null;
+
+      function speechStatus(message) {
+        const status = document.querySelector("#speechStatus");
+        if (status) status.textContent = message;
+      }
+
+      function stopSentence() {
+        sentencePlaybackVersion++;
+        if (sentenceAudio) {
+          sentenceAudio.pause();
+          sentenceAudio.removeAttribute("src");
+          sentenceAudio.load();
+          sentenceAudio = null;
+        }
+        if (activeSentenceButton) {
+          activeSentenceButton.classList.remove("playing");
+          activeSentenceButton.setAttribute("aria-pressed", "false");
+        }
+        activeSentenceButton = null;
+      }
+
+      async function playSentence(button) {
+        const same = activeSentenceButton === button;
+        stopSentence();
+        vocabularyAudio.pause();
+        document.querySelectorAll(".grammar-vocabulary-chip.playing").forEach((item) => item.classList.remove("playing"));
+        if (same) { speechStatus("已停止朗读。"); return; }
+        const url = grammarAudioManifest?.sentences?.[button.dataset.sentence];
+        if (!url || !/^\/audio\/grammar\/lesson\d+\/(?:azure-[a-z0-9-]+\/)?[a-f0-9]{64}\.mp3$/.test(url)) {
+          speechStatus("这句话的标准例句音频尚未生成。");
+          return;
+        }
+        const version = sentencePlaybackVersion;
+        const audio = new Audio(url);
+        sentenceAudio = audio;
+        activeSentenceButton = button;
+        button.classList.add("playing");
+        button.setAttribute("aria-pressed", "true");
+        speechStatus("正在加载标准例句音频…");
+        const finish = (message) => {
+          if (version !== sentencePlaybackVersion) return;
+          stopSentence();
+          speechStatus(message);
+        };
+        audio.addEventListener("ended", () => finish("标准例句音频播放结束，点击句子可再次播放。"), { once: true });
+        audio.addEventListener("error", () => finish("标准例句音频加载失败，请稍后重试。"), { once: true });
+        try {
+          await audio.play();
+          if (version === sentencePlaybackVersion) speechStatus("正在播放标准例句音频（再次点击停止）");
+        } catch { finish("播放未能开始，请再次点击。"); }
+      }
+      window.addEventListener("pagehide", () => { stopSentence(); vocabularyAudio.pause(); });
+      document.addEventListener("visibilitychange", () => {
+        if (document.hidden) { stopSentence(); vocabularyAudio.pause(); }
+      });
+
+      async function loadGrammarExamples(lessonNo) {
+        if (!grammarExamplesCache.has(lessonNo)) {
+          grammarExamplesCache.set(lessonNo, fetch(`../data/ocr/lesson${lessonNo}-grammar-examples.json`)
+            .then(async (response) => response.ok ? response.json() : null).catch(() => null));
+        }
+        return grammarExamplesCache.get(lessonNo);
+      }
+
+      function sentenceParts(value) {
+        return String(value).split(/([\u3400-\u9fff々０-９0-9]+)\[([^\[\]]+)\]/g);
+      }
+
+      function renderSentence(value) {
+        const parts = sentenceParts(sentenceText(value));
+        return parts.map((part, index) => index % 3 === 1
+          ? `<ruby>${escapeHtml(part)}<rt>${escapeHtml(parts[index + 1])}</rt></ruby>`
+          : index % 3 === 2 ? "" : escapeHtml(part)).join("");
+      }
+
+      function sentenceText(value) {
+        const text = value && typeof value === "object" ? (value.jp || value.text || "") : value;
+        return String(text || "").replace(/\[[^\[\]]+\]/g, "");
+      }
+
+      function renderGrammarExamples(pageNo, data) {
+        const page = data?.pages?.[pageNo];
+        if (!page?.groups?.length) return `<div class="grammar-examples grammar-empty">${escapeHtml(page?.emptyMessage || "本页例句尚未整理，待站点维护者批量升级后查看。")}</div>`;
+        return `<div class="grammar-examples">${page.groups.map((group, groupIndex) => `<section class="grammar-group inline-notes-container">
+          <h3>${escapeHtml(group.title)}</h3>
+          ${group.examples.map((example) => `<div class="grammar-example ${example.incorrect ? "incorrect" : ""}">
+            ${example.note ? `<div class="grammar-note">${escapeHtml(example.note)}</div>` : ""}
+            ${example.sentences.map((sentence) => `<div role="button" tabindex="0" class="grammar-sentence text-cell" data-sentence="${escapeHtml(sentenceText(sentence))}" aria-label="朗读：${escapeHtml(sentenceText(sentence))}"><span class="jp" lang="ja">${renderSentence(sentence)}</span></div>`).join("")}
+          </div>`).join("")}
+          <div class="inline-notes-host" data-inline-notes-key="japaflow.grammar.groupNotes.v1:${selectedLessonNo()}:${pageNo}:${escapeHtml(group.id || groupIndex)}" data-notes-lesson="${selectedLessonNo()}" data-notes-item="${pageNo}:${escapeHtml(group.id || groupIndex)}" data-notes-context="${escapeHtml([group.title, ...group.examples.flatMap(example => example.sentences.map(sentenceText))].join('\n'))}"></div>
+        </section>`).join("")}</div>`;
+      }
       const vocabularyAudio = new Audio();
       let vocabularyStopHandler = null;
       const grammarVocabularyCollapsePrefix = "japaflow:grammar-vocabulary-collapsed:";
 
-      function isMobileImageViewer() { return window.matchMedia("(max-width: 560px)").matches; }
+      function isMobileImageViewer() { return window.matchMedia("(max-width: 920px) and (hover: none), (max-width: 920px) and (pointer: coarse)").matches; }
       function updateImageZoom() { imageLightboxImage.style.transform = `scale(${imageZoom})`; }
       function closeImageLightbox() { imageLightbox.classList.remove("open"); imageLightbox.setAttribute("aria-hidden", "true"); imageLightboxImage.removeAttribute("src"); }
       function openImageLightbox(image) {
@@ -512,6 +633,14 @@
         return `${grammarVocabularyCollapsePrefix}lesson${lessonNo}:page${pageNo}`;
       }
 
+      function pageModeKey(lessonNo, pageNo) {
+        return `japaflow:grammar-page-mode:lesson${lessonNo}:page${pageNo}`;
+      }
+
+      function pageMode(lessonNo, pageNo) {
+        return localStorage.getItem(pageModeKey(lessonNo, pageNo)) === "listen" ? "listen" : "source";
+      }
+
       function isVocabularyCollapsed(lessonNo, pageNo) {
         return localStorage.getItem(collapseKey(lessonNo, pageNo)) !== "false";
       }
@@ -548,6 +677,7 @@
       }
 
       function playVocabularyWord(word, button) {
+        stopSentence();
         const segment = word?.audioSegment;
         const url = segment?.sourceUrl;
         if (!url) return;
@@ -580,21 +710,40 @@
       }
 
       async function renderViewer(activeLessonNo) {
+        stopSentence();
+        vocabularyAudio.pause();
         const lesson = lessons[activeLessonNo - 1];
-        const vocabularyData = await loadGrammarVocabulary(activeLessonNo);
+        const [vocabularyData, examplesData, audioManifest] = await Promise.all([
+          loadGrammarVocabulary(activeLessonNo), loadGrammarExamples(activeLessonNo),
+          fetch(`../data/ocr/lesson${activeLessonNo}-grammar-audio.json`).then((response) => response.ok ? response.json() : null).catch(() => null)
+        ]);
         if (activeLessonNo !== selectedLessonNo()) return;
+        grammarAudioManifest = audioManifest;
         summary.textContent = `第 ${activeLessonNo} 课 · ${lesson.pages.length} 张`;
         viewer.innerHTML = `
+          <div class="grammar-note">
+            <div id="speechStatus" role="status" aria-live="polite">${audioManifest ? "标准例句音频已就绪。点击句子播放，再次点击停止。" : "本课标准例句音频尚未生成。"}</div>
+          </div>
           <div class="image-stack">
             ${lesson.pages.map((pageNo, index) => `
-              <figure class="image-frame">
-                ${renderGrammarVocabulary(activeLessonNo, pageNo, vocabularyData)}
+              <figure class="image-frame" data-page-mode="${pageMode(activeLessonNo, pageNo)}">
+                <div class="grammar-page-mode" role="group" aria-label="第 ${pageNo} 页查看模式">
+                  <button type="button" class="${pageMode(activeLessonNo, pageNo) === "source" ? "active" : ""}" data-page-mode="source" data-page-no="${pageNo}" aria-pressed="${pageMode(activeLessonNo, pageNo) === "source"}">看语法</button>
+                  <button type="button" class="${pageMode(activeLessonNo, pageNo) === "listen" ? "active" : ""}" data-page-mode="listen" data-page-no="${pageNo}" aria-pressed="${pageMode(activeLessonNo, pageNo) === "listen"}">读句子</button>
+                </div>
+                <div class="grammar-source">
                 <img src="${imagePath(activeLessonNo, pageNo)}" alt="第${activeLessonNo}课 Page ${pageNo}" loading="lazy" onerror="this.closest('.image-frame').classList.add('missing')" />
                 <div class="image-error">图片不存在：lesson${activeLessonNo}/page${pageNo}.webp</div>
+                </div>
+                <div class="grammar-interaction" aria-label="第 ${pageNo} 页交互区域">
+                  ${renderGrammarVocabulary(activeLessonNo, pageNo, vocabularyData)}
+                  ${renderGrammarExamples(pageNo, examplesData)}
+                </div>
               </figure>
             `).join("")}
           </div>
         `;
+        window.mountInlineNotes?.();
       }
 
       function render() {
@@ -610,6 +759,18 @@
       });
 
       viewer.addEventListener("click", (event) => {
+        const pageModeButton = event.target.closest("button[data-page-mode]");
+        if (pageModeButton) {
+          const lesson = selectedLessonNo();
+          localStorage.setItem(pageModeKey(lesson, pageModeButton.dataset.pageNo), pageModeButton.dataset.pageMode);
+          renderViewer(lesson);
+          return;
+        }
+        const sentence = event.target.closest("[data-sentence]");
+        if (sentence) {
+          if (window.getSelection()?.toString() || event.detail > 1) return;
+          playSentence(sentence); return;
+        }
         const toggle = event.target.closest("[data-toggle-vocabulary]");
         if (toggle) {
           const lesson = selectedLessonNo();
@@ -627,6 +788,25 @@
         }
         const image = event.target.closest(".image-frame img");
         if (image) openImageLightbox(image);
+      });
+      viewer.addEventListener("keydown", (event) => {
+        const sentence = event.target.closest(".grammar-sentence");
+        if (!sentence || !["Enter", " "].includes(event.key)) return;
+        event.preventDefault();
+        playSentence(sentence);
+      });
+      viewer.addEventListener("copy", (event) => {
+        const selection = window.getSelection();
+        if (!selection?.rangeCount || selection.isCollapsed || !event.clipboardData) return;
+        const range = selection.getRangeAt(0);
+        const element = node => node.nodeType === Node.ELEMENT_NODE ? node : node.parentElement;
+        if (!element(range.startContainer)?.closest('.grammar-examples') || !element(range.endContainer)?.closest('.grammar-examples')) return;
+        if (element(range.startContainer)?.closest('.inline-notes-host') || element(range.endContainer)?.closest('.inline-notes-host')) return;
+        const fragment = range.cloneContents();
+        fragment.querySelectorAll('rt, rp').forEach(node => node.remove());
+        fragment.querySelectorAll('.grammar-sentence').forEach(node => node.append('\n'));
+        event.clipboardData.setData('text/plain', fragment.textContent.trim());
+        event.preventDefault();
       });
       imageLightbox.addEventListener("click", (event) => {
         const zoom = event.target.closest("[data-image-zoom]");

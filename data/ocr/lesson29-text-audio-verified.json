@@ -459,18 +459,18 @@
           {
             "id": "l29-basic-dialogue-002-line-001",
             "speaker": "甲",
-            "text": "戴、早くお風呂に入りなさい。",
-            "kana": "たい、はやく おふろに はいりなさい。",
-            "translationZh": "小戴，快点去洗澡。",
+            "text": "誠、早くお風呂に入りなさい。",
+            "kana": "まこと、はやく おふろに はいりなさい。",
+            "translationZh": "阿诚，快点去洗澡。",
             "confidence": "high",
-            "rawText": "甲：戴、早くお風呂に入りなさい。",
+            "rawText": "甲：誠、早くお風呂に入りなさい。",
             "audioSegment": {
               "id": "l29-basic-dialogue-002-line-001",
               "trackId": "lesson_basic",
               "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit8/lesson29/lesson_basic.mp3",
               "itemIndex": 7,
               "speaker": "甲",
-              "text": "戴、早くお風呂に入りなさい。",
+              "text": "誠、早くお風呂に入りなさい。",
               "start": 32.99,
               "end": 36.28,
               "duration": 3.29,
@@ -501,8 +501,8 @@
             },
             "segments": [
               {
-                "text": "戴",
-                "ruby": "たい"
+                "text": "誠",
+                "ruby": "まこと"
               },
               {
                 "text": "、早",
@@ -962,8 +962,8 @@
               "speaker": "加藤",
               "text": "森君、次、歌いなさいよ！",
               "start": 40.52,
-              "end": 43,
-              "duration": 2.48,
+              "end": 42.9,
+              "duration": 2.38,
               "rawAzureTiming": {
                 "start": 7.72,
                 "end": 43.15,
@@ -991,12 +991,12 @@
               ],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-24T02:19:37.957Z",
+                "reviewedAt": "2026-10-16T02:59:39.918Z",
                 "note": "Manually verified and adjusted in the text audio preview.",
                 "matchScore": 1,
                 "asrText": " 森 君 次 歌 い な さ い よ"
               },
-              "reviewedAt": "2026-08-24T02:19:37.957Z"
+              "reviewedAt": "2026-10-16T02:59:39.918Z"
             },
             "segments": [
               {
@@ -1214,9 +1214,9 @@
               "itemIndex": 4,
               "speaker": "加藤",
               "text": "そうだね。この場合は「歌ってください」と言わないとね。",
-              "start": 53.14,
+              "start": 53.2,
               "end": 57.31,
-              "duration": 4.17,
+              "duration": 4.11,
               "rawAzureTiming": {
                 "start": 53.39,
                 "end": 57.19,
@@ -1231,16 +1231,17 @@
               "phraseIndexes": [
                 4
               ],
-              "method": "azure-speech-sentence-alignment-with-boundary-padding",
-              "confidence": "high",
+              "method": "manual-admin-adjustment",
+              "confidence": "approved",
               "alignmentIssues": [],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-23T00:31:56.694Z",
-                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "reviewedAt": "2026-10-16T03:05:17.739Z",
+                "note": "Manually verified and adjusted in the text audio preview.",
                 "matchScore": 1,
                 "asrText": "そ う だ ね こ の 場 合 は 歌 っ て く だ さ い と 言 わ な い と ね"
-              }
+              },
+              "reviewedAt": "2026-10-16T03:05:17.739Z"
             },
             "segments": [
               {
@@ -1364,8 +1365,8 @@
               "speaker": "李",
               "text": "日本にいる時、日本人の男性が友達に、「来い」「遠慮するな」などと言っているのをよく聞きました。これは親しい人に使うんですね。",
               "start": 63.74,
-              "end": 74.51,
-              "duration": 10.77,
+              "end": 74.41,
+              "duration": 10.67,
               "rawAzureTiming": {
                 "start": 63.99,
                 "end": 74.39,
@@ -1380,16 +1381,17 @@
               "phraseIndexes": [
                 7
               ],
-              "method": "azure-speech-sentence-alignment-with-boundary-padding",
-              "confidence": "high",
+              "method": "manual-admin-adjustment",
+              "confidence": "approved",
               "alignmentIssues": [],
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-23T00:31:56.694Z",
-                "note": "Automatically approved after phrase-guided ASR alignment and boundary padding.",
+                "reviewedAt": "2026-10-16T03:05:51.314Z",
+                "note": "Manually verified and adjusted in the text audio preview.",
                 "matchScore": 0.963,
                 "asrText": "日 本 に い る 時 日 本 人 の 男 性 が 友 達 に 恋 遠 慮 す る な な ど と 言 っ て い る の を よ く 聞 き ま し た こ れ は 親 し い 人 に 使 う ん で す ね"
-              }
+              },
+              "reviewedAt": "2026-10-16T03:05:51.314Z"
             },
             "segments": [
               {
@@ -2032,5 +2034,5 @@
       }
     ]
   },
-  "updatedAt": "2026-08-24T02:41:50.830Z"
+  "updatedAt": "2026-10-16T03:05:51.314Z"
 }

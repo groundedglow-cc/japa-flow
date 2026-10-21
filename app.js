@@ -1693,6 +1693,7 @@ const state = {
   playbackRate: 1,
   answer: "",
   submitted: false,
+  adminWordAudioEditor: null,
   modal: null
 };
 
@@ -3321,6 +3322,75 @@ async function ocrVocabularyAudioSegment(word) {
   if (matched?.audioSegment) return matched.audioSegment;
   const wordIndex = lesson.vocabulary.findIndex((item) => item.id === word.id);
   return words[wordIndex]?.audioSegment || null;
+}
+
+async function ocrVocabularyAudioItem(word) {
+  if (!word) return null;
+  const data = await loadOcrVocabularyAudio();
+  const words = Array.isArray(data?.vocabulary) ? data.vocabulary : [];
+  if (!words.length) return null;
+  const matched = words.find((item) => ocrVocabularyWordMatches(word, item));
+  if (matched) return matched;
+  const wordIndex = lesson.vocabulary.findIndex((item) => item.id === word.id);
+  return words[wordIndex] || null;
+}
+
+async function openAdminWordAudioEditor(wordId) {
+  if (!ADMIN_MODE || !wordId) return;
+  const word = wordById(wordId);
+  if (!word) return;
+  state.adminWordAudioEditor = { wordId, loading: true, error: "", saved: "" };
+  state.modal = { type: "adminWordAudio", wordId };
+  render();
+  const item = await ocrVocabularyAudioItem(word);
+  const segment = item?.audioSegment || null;
+  state.adminWordAudioEditor = {
+    wordId,
+    itemId: item?.id || "",
+    start: segment ? String(segment.start ?? "") : "",
+    end: segment ? String(segment.end ?? "") : "",
+    sourceUrl: audioSegmentSource(segment),
+    loading: false,
+    error: segment ? "" : "没有找到可编辑的 OCR 单词音频区间。",
+    saved: ""
+  };
+  render();
+}
+
+async function saveAdminWordAudioEditor() {
+  const editor = state.adminWordAudioEditor;
+  if (!ADMIN_MODE || !editor?.wordId || !editor.itemId) return;
+  const start = Number(editor.start);
+  const end = Number(editor.end);
+  if (!Number.isFinite(start) || !Number.isFinite(end) || start < 0 || end <= start) {
+    state.adminWordAudioEditor = { ...editor, error: "请输入有效区间：结束时间必须大于开始时间。", saved: "" };
+    render();
+    return;
+  }
+  state.adminWordAudioEditor = { ...editor, saving: true, error: "", saved: "" };
+  render();
+  try {
+    const response = await fetch("/api/ocr/vocabulary-audio-segment", {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ lessonId: lesson.id, itemId: editor.itemId, start, end })
+    });
+    const result = await response.json().catch(() => ({}));
+    if (!response.ok || result.error) throw new Error(result.error || "保存失败");
+    delete ocrVocabularyAudioCache[String(lesson.id)];
+    state.adminWordAudioEditor = {
+      ...editor,
+      start: String(result.audioSegment?.start ?? start),
+      end: String(result.audioSegment?.end ?? end),
+      sourceUrl: audioSegmentSource(result.audioSegment) || editor.sourceUrl,
+      saving: false,
+      error: "",
+      saved: "已保存区间。"
+    };
+  } catch (error) {
+    state.adminWordAudioEditor = { ...editor, saving: false, error: error.message || "保存失败", saved: "" };
+  }
+  render();
 }
 
 function normalizeOcrVocabularyText(value) {
@@ -5527,8 +5597,8 @@ function vocab() {
           `}
         </article>
         ${testing ? "" : `<div class="rail">
-          ${vocabWords.map((item, index) => `
-            <button class="${index === state.currentWord ? "current" : ""} ${wordLearningState(item.id).mainStatus === "mastered" ? "done" : ""}" data-word-index="${index}" ${wordRecordingBusy ? "disabled" : ""}>
+        ${vocabWords.map((item, index) => `
+            <button class="${index === state.currentWord ? "current" : ""} ${wordLearningState(item.id).mainStatus === "mastered" ? "done" : ""}" data-word-index="${index}" data-admin-word-audio="${item.id}" ${wordRecordingBusy ? "disabled" : ""}>
               ${item.jp}
             </button>
           `).join("")}
@@ -5546,7 +5616,7 @@ function vocab() {
           </div>
           <div class="status-list">
             ${vocabWords.map((item, index) => `
-              <button class="status-item ${index === state.currentWord ? "current" : ""}" data-word-index="${index}" ${wordRecordingBusy ? "disabled" : ""}>
+              <button class="status-item ${index === state.currentWord ? "current" : ""}" data-word-index="${index}" data-admin-word-audio="${item.id}" ${wordRecordingBusy ? "disabled" : ""}>
                 <span>${item.jp} · ${item.cn}</span>
                 <strong class="status-${state.wordProgress[item.id]}">${wordStatusLabel(item)}</strong>
               </button>
@@ -6025,9 +6095,8 @@ function renderTextSentenceTools(sentence, aiOpen) {
 }
 
 function renderTextSentenceAiPanel(sentence, open) {
-  if (!open) return "";
   const savedNotes = readTextAiNotes(sentence.id);
-  return `
+  const editor = open ? `
     <div class="text-ai-panel" data-text-ai-panel="${escapeHtml(sentence.id)}">
       <textarea data-text-ai-draft="${escapeHtml(sentence.id)}" rows="1" placeholder="写下笔记，或输入想问 AI 的问题...">${escapeHtml(state.textAiDraft || "")}</textarea>
       ${state.textAiAnswer ? `<div class="text-ai-answer" aria-label="AI 回答"><strong>AI 回答</strong><p>${escapeHtml(state.textAiAnswer)}</p></div>` : ""}
@@ -6036,18 +6105,19 @@ function renderTextSentenceAiPanel(sentence, open) {
         <button type="button" data-text-ai-save="${escapeHtml(sentence.id)}" ${(state.textAiDraft || "").trim() ? "" : "disabled"}>保存笔记</button>
         <button type="button" data-text-ai-ask="${escapeHtml(sentence.id)}" ${(state.textAiDraft || "").trim() ? "" : "disabled"}>问 AI</button>
       </div>
-      ${savedNotes.length ? `
-        <div class="text-ai-saved-list">
-          ${savedNotes.map((note) => `
-            <article class="text-ai-saved">
-              <button type="button" data-text-ai-erase="${escapeHtml(sentence.id)}" data-note-id="${escapeHtml(note.id)}" aria-label="删除笔记" title="删除笔记">⌫</button>
-              <pre>${escapeHtml(note.text)}</pre>
-            </article>
-          `).join("")}
-        </div>
-      ` : ""}
     </div>
-  `;
+  ` : "";
+  const notes = savedNotes.length ? `
+    <div class="text-ai-saved-list" aria-label="已保存笔记">
+      ${savedNotes.map((note) => `
+        <article class="text-ai-saved">
+          <button type="button" data-text-ai-erase="${escapeHtml(sentence.id)}" data-note-id="${escapeHtml(note.id)}" aria-label="删除笔记" title="删除笔记">⌫</button>
+          <pre>${escapeHtml(note.text)}</pre>
+        </article>
+      `).join("")}
+    </div>
+  ` : "";
+  return `${editor}${notes}`;
 }
 
 function textAiStorageKey(sentenceId) {
@@ -6358,7 +6428,7 @@ function renderTextVocabularyList(section) {
       <span class="text-vocabulary-list-label">生词</span>
       <div class="text-vocabulary-list-items">
         ${words.map((word) => `
-          <button class="text-vocabulary-chip" type="button" data-speak="${escapeHtml(word.jp)}" data-audio="${escapeHtml(audioUrl("word", word.id))}" title="播放 ${escapeHtml(word.jp)} 的发音">
+          <button class="text-vocabulary-chip" type="button" data-speak="${escapeHtml(word.jp)}" data-audio="${escapeHtml(audioUrl("word", word.id))}" data-admin-word-audio="${word.id}" title="${ADMIN_MODE ? "单击播放，双击调整音频区间" : `播放 ${escapeHtml(word.jp)} 的发音`}">
             <span class="text-vocabulary-japanese">${renderJapaneseText(word.jp, { kana: word.kana })}</span>
             <span class="text-vocabulary-meaning">${escapeHtml(word.cn || "")}</span>
             ${word.partOfSpeech ? `<span class="text-vocabulary-pos">${escapeHtml(word.partOfSpeech)}</span>` : ""}
@@ -7663,6 +7733,41 @@ function modal(data) {
           ${meta("中文释义", word.cn)}
           ${meta("当前状态", statusText(state.wordProgress[word.id]))}
           <div class="button-row"><button class="primary" data-speak="${word.jp}" data-audio="${audioUrl("word", word.id)}">播放发音</button><button class="secondary" data-close-modal>关闭</button></div>
+        </article>
+      </div>
+    `;
+  }
+  if (data.type === "adminWordAudio") {
+    const editor = state.adminWordAudioEditor || {};
+    const word = wordById(data.wordId || editor.wordId);
+    const disabled = editor.loading || editor.saving || !editor.itemId;
+    return `
+      <div class="dialog-backdrop" data-close-modal>
+        <article class="panel dialog admin-audio-editor-dialog" data-dialog>
+          <h2>调整当前单词时间区间</h2>
+          ${word ? `
+            <div class="admin-audio-editor-word">
+              <strong>${renderJapaneseText(word.jp, { kana: word.kana })}</strong>
+              <span>${escapeHtml(word.cn || "")}</span>
+            </div>
+          ` : ""}
+          ${editor.loading ? `<p class="muted">正在读取当前音频区间...</p>` : `
+            <label class="admin-audio-editor-field">
+              <span>开始时间（秒）</span>
+              <input type="number" min="0" step="0.001" data-admin-word-audio-start value="${escapeHtml(editor.start || "")}" ${disabled ? "disabled" : ""} />
+            </label>
+            <label class="admin-audio-editor-field">
+              <span>结束时间（秒）</span>
+              <input type="number" min="0" step="0.001" data-admin-word-audio-end value="${escapeHtml(editor.end || "")}" ${disabled ? "disabled" : ""} />
+            </label>
+            <div class="button-row">
+              <button class="secondary" data-admin-word-audio-preview="${escapeHtml(editor.wordId || "")}" ${editor.sourceUrl ? "" : "disabled"}>试听当前区间</button>
+              <button class="primary" data-admin-word-audio-save ${disabled ? "disabled" : ""}>${editor.saving ? "保存中..." : "保存区间"}</button>
+              <button class="secondary" data-close-modal>关闭</button>
+            </div>
+            ${editor.saved ? `<p class="hint success-text">${escapeHtml(editor.saved)}</p>` : ""}
+            ${editor.error ? `<p class="hint danger-text">${escapeHtml(editor.error)}</p>` : ""}
+          `}
         </article>
       </div>
     `;
@@ -9411,6 +9516,28 @@ function bind() {
   app.querySelectorAll("[data-speak]").forEach((button) => {
     button.addEventListener("click", () => playAudio(button.dataset.speak, button.dataset.audio));
   });
+  if (ADMIN_MODE) {
+    app.querySelectorAll("[data-admin-word-audio]").forEach((button) => {
+      button.addEventListener("dblclick", (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        openAdminWordAudioEditor(button.dataset.adminWordAudio);
+      });
+    });
+    app.querySelector("[data-admin-word-audio-start]")?.addEventListener("input", (event) => {
+      state.adminWordAudioEditor = { ...(state.adminWordAudioEditor || {}), start: event.target.value, saved: "" };
+    });
+    app.querySelector("[data-admin-word-audio-end]")?.addEventListener("input", (event) => {
+      state.adminWordAudioEditor = { ...(state.adminWordAudioEditor || {}), end: event.target.value, saved: "" };
+    });
+    app.querySelector("[data-admin-word-audio-preview]")?.addEventListener("click", () => {
+      const editor = state.adminWordAudioEditor;
+      const word = wordById(editor?.wordId);
+      if (!word || !editor?.sourceUrl) return;
+      playAudioSegment(word.jp, { sourceUrl: editor.sourceUrl, start: Number(editor.start), end: Number(editor.end) });
+    });
+    app.querySelector("[data-admin-word-audio-save]")?.addEventListener("click", saveAdminWordAudioEditor);
+  }
   app.querySelectorAll("[data-word-standard-audio]").forEach((button) => {
     button.addEventListener("click", () => {
       const word = wordById(button.dataset.wordStandardAudio);
@@ -9776,6 +9903,7 @@ function bind() {
   app.querySelectorAll("[data-close-modal]").forEach((item) => item.addEventListener("click", (event) => {
     if (event.target.closest("[data-dialog]") && !event.target.matches("[data-close-modal]")) return;
     state.modal = null;
+    state.adminWordAudioEditor = null;
     render();
   }));
 }

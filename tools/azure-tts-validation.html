@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Azure 日语 TTS 验证</title>
+  <style>
+    body { margin: 0; padding: 28px; color: #18231e; background: #f5f7f6; font-family: system-ui, sans-serif; }
+    main { width: min(100%, 980px); margin: auto; }
+    h1 { margin: 0 0 8px; font-size: 26px; }
+    .intro { color: #65736c; margin: 0 0 22px; }
+    .sample { margin: 14px 0; padding: 16px; border: 1px solid #d9e2dd; border-radius: 10px; background: #fff; }
+    .jp { margin: 0 0 12px; font-size: 20px; }
+    .players { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+    label { display: grid; gap: 5px; color: #65736c; font-size: 12px; font-weight: 700; }
+    audio { width: 100%; }
+    .note { margin-top: 22px; color: #65736c; font-size: 13px; line-height: 1.65; }
+    @media (max-width: 700px) { body { padding: 16px; } .players { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+<main>
+  <h1>日语 TTS 对照试听</h1>
+  <p class="intro">相同句子：Azure Nanami、Azure Keita、当前 MiniMax。重点听「李さん」的高低音走向和句子衔接。</p>
+  <div id="samples"></div>
+  <p class="note">教材原音只作为听感参照，来自现有课程音频。Azure 样本通过 SSML 以 <code>ja-JP-NanamiNeural</code> 和 <code>ja-JP-KeitaNeural</code> 生成；MiniMax 使用当前已缓存的第 39 课音频。</p>
+</main>
+<script>
+  const samples = [
+    ['李さんは中国人です。', '/audio/validation/azure-japanese/ja-JP-NanamiNeural_lesson1-li-wa.mp3', '/audio/validation/azure-japanese/ja-JP-KeitaNeural_lesson1-li-wa.mp3', null, 'lesson1-li-wa'],
+    ['李さんが来てくれて、わたしはうれしかったです。', '/audio/validation/azure-japanese/ja-JP-NanamiNeural_lesson39-li-ga.mp3', '/audio/validation/azure-japanese/ja-JP-KeitaNeural_lesson39-li-ga.mp3', null, 'lesson39-li-ga'],
+    ['眼鏡をかけて本を読みます。', '/audio/validation/azure-japanese/ja-JP-NanamiNeural_lesson39-glasses.mp3', '/audio/validation/azure-japanese/ja-JP-KeitaNeural_lesson39-glasses.mp3', null, 'lesson39-glasses'],
+    ['道路工事のために、道が込んでいます。', '/audio/validation/azure-japanese/ja-JP-NanamiNeural_lesson39-road.mp3', '/audio/validation/azure-japanese/ja-JP-KeitaNeural_lesson39-road.mp3', null, 'lesson39-road'],
+    ['李さんは急いで帰っていきました。', '/audio/validation/azure-japanese/ja-JP-NanamiNeural_lesson39-return.mp3', '/audio/validation/azure-japanese/ja-JP-KeitaNeural_lesson39-return.mp3', null, 'lesson39-return']
+  ];
+  const root = document.querySelector('#samples');
+  function esc(value) { return String(value).replace(/[&<>"']/g, (c) => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#039;' }[c])); }
+  function row(text, nanami, keita, minimax) { return `<section class="sample"><p class="jp">${esc(text)}</p><div class="players"><label>Azure · Nanami<audio controls preload="none" src="${nanami}"></audio></label><label>Azure · Keita<audio controls preload="none" src="${keita}"></audio></label><label>MiniMax<audio controls preload="none" src="${minimax || ''}"></audio></label></div></section>`; }
+  fetch('../data/ocr/lesson39-grammar-audio.json').then((r) => r.ok ? r.json() : null).then((manifest) => {
+    for (const item of samples) {
+      const text = item[0];
+      const url = manifest?.sentences?.[text] || '';
+      root.insertAdjacentHTML('beforeend', row(text, item[1], item[2], url));
+    }
+  }).catch(() => { for (const item of samples) root.insertAdjacentHTML('beforeend', row(item[0], item[1], item[2], '')); });
+</script>
+</body>
+</html>

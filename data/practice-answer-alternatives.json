@@ -1869,6 +1869,18 @@
           "model": "deepseek-v4-flash",
           "modelNormalizedAnswer": "诚、早くお風呂に入れ",
           "addedAt": "2026-08-23T03:32:51.415Z"
+        },
+        {
+          "answer": "诚、早くお風呂に入なさい",
+          "normalizedAnswer": "诚早くお風呂に入なさい",
+          "expectedAnswers": [
+            "誠，早くお風呂に入りなさい。"
+          ],
+          "reason": "用户答案将「誠」误写为「诚」，属于汉字写法差异，不影响意思；动词「入なさい」漏写「り」，但结合参考答案可唯一还原为「入りなさい」，语法功能一致，符合题目要求。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "誠、早くお風呂に入りなさい",
+          "addedAt": "2026-10-16T02:55:50.521Z"
         }
       ]
     },
@@ -2259,6 +2271,22 @@
           "model": "deepseek-v4-flash",
           "modelNormalizedAnswer": "明日、病院に行こうと思っています",
           "addedAt": "2026-08-26T14:25:13.342Z"
+        }
+      ]
+    },
+    "l30-p1-a6-q1": {
+      "answer": [
+        {
+          "answer": "甲：週末に何をしますか。\n乙：山に登ろと思っています。\n甲：わたしも山に登ろと思っています。\n乙：じゃあ、いっしょに登りませんか。",
+          "normalizedAnswer": "甲週末に何をしますか乙山に登ろと思っています甲わたしも山に登ろと思っています乙じゃあいっしょに登りませんか",
+          "expectedAnswers": [
+            "甲：週末に何をしますか。\n乙：山に登ろうと思っています。\n甲：わたしも山に登ろうと思っています。\n乙：じゃあ、いっしょに登りませんか。"
+          ],
+          "reason": "用户答案将「登ろう」误写为「登ろ」，属于轻微口误/书写遗漏，结合参考答案可唯一还原为「登ろう」，不改变意思、语法功能和回答范围，其余部分与要求一致，故可采纳。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "甲：週末に何をしますか。乙：山に登ろうと思っています。甲：わたしも山に登ろうと思っています。乙：じゃあ、いっしょに登りませんか。",
+          "addedAt": "2026-10-17T04:40:39.133Z"
         }
       ]
     }
@@ -2783,6 +2811,458 @@
           "model": "deepseek-v4-flash",
           "modelNormalizedAnswer": "三千万",
           "addedAt": "2026-09-12T03:06:28.483Z"
+        }
+      ]
+    }
+  },
+  "lesson37": {
+    "l37-p1-a1-q1": {
+      "answer": [
+        {
+          "answer": "手紙を書けば。手紙を書かなければ。",
+          "normalizedAnswer": "手紙を書けば手紙を書かなければ",
+          "expectedAnswers": [
+            "手紙を書けば → 手紙を書かなければ"
+          ],
+          "reason": "用户正确将「手紙を書きます」变为假定形「手紙を書けば」和否定假定形「手紙を書かなければ」，符合题目要求的变形，标点不影响判断。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "手紙を書けば。手紙を書かなければ。",
+          "addedAt": "2026-09-13T02:28:43.989Z"
+        }
+      ]
+    },
+    "l37-p1-a1-q2": {
+      "answer": [
+        {
+          "answer": "課長に話せば。課長に話さなければ。",
+          "normalizedAnswer": "課長に話せば課長に話さなければ",
+          "expectedAnswers": [
+            "課長に話せば → 課長に話さなければ"
+          ],
+          "reason": "用户正确将「課長に話します」变为假定形「課長に話せば」和否定假定形「課長に話さなければ」，符合题目要求的变形，标点不影响判断。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "課長に話せば。課長に話さなければ。",
+          "addedAt": "2026-09-13T02:28:45.225Z"
+        }
+      ]
+    },
+    "l37-p1-a1-q3": {
+      "answer": [
+        {
+          "answer": "飛行機が飛べば。飛行機が飛ばなければ。",
+          "normalizedAnswer": "飛行機が飛べば飛行機が飛ばなければ",
+          "expectedAnswers": [
+            "飛行機が飛べば → 飛行機が飛ばなければ"
+          ],
+          "reason": "用户答案正确地将「飛びます」变为假定形「飛べば」和否定假定形「飛ばなければ」，与参考答案一致，仅添加了句号，不影响语法和意思。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "飛行機が飛べば。飛行機が飛ばなければ。",
+          "addedAt": "2026-09-13T02:28:46.363Z"
+        }
+      ]
+    },
+    "l37-p1-a1-q4": {
+      "answer": [
+        {
+          "answer": "川を渡れば。川を渡らなければ。",
+          "normalizedAnswer": "川を渡れば川を渡らなければ",
+          "expectedAnswers": [
+            "川を渡れば → 川を渡らなければ"
+          ],
+          "reason": "用户答案正确地将「川を渡ります」变为假定形「川を渡れば」和否定假定形「川を渡らなければ」，与参考答案一致，符合题目要求。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "川を渡れば。川を渡らなければ。",
+          "addedAt": "2026-09-13T02:28:47.591Z"
+        }
+      ]
+    },
+    "l37-p1-a1-q6": {
+      "answer": [
+        {
+          "answer": "パソコンを使えば。 パソコンを使わなければ。",
+          "normalizedAnswer": "パソコンを使えばパソコンを使わなければ",
+          "expectedAnswers": [
+            "パソコンを使えば → パソコンを使わなければ"
+          ],
+          "reason": "答案正确使用了「使う」的假定形「使えば」和否定假定形「使わなければ」，与题目要求的变形一致，标点不影响判断。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "パソコンを使えば。 パソコンを使わなければ。",
+          "addedAt": "2026-09-13T02:28:50.707Z"
+        }
+      ]
+    },
+    "l37-p1-a1-q12": {
+      "answer": [
+        {
+          "answer": "明日来れば。明日来なければ。",
+          "normalizedAnswer": "明日来れば明日来なければ",
+          "expectedAnswers": [
+            "明日来れば → 明日来なければ"
+          ],
+          "reason": "用户答案正确地将「明日来ます」变为假定形「明日来れば」和否定假定形「明日来なければ」，符合题目要求的变形，标点不影响采纳。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "明日来れば。明日来なければ。",
+          "addedAt": "2026-09-13T02:28:57.092Z"
+        }
+      ]
+    },
+    "l37-p1-a1-q13": {
+      "answer": [
+        {
+          "answer": "若ければ",
+          "normalizedAnswer": "若ければ",
+          "expectedAnswers": [
+            "若ければ → 若くなければ"
+          ],
+          "reason": "题目要求写出变形后的词组，参考答案包含肯定和否定两种形式，用户只写出肯定形式「若ければ」，符合题目要求，语法正确。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "若ければ",
+          "addedAt": "2026-09-13T02:28:58.932Z"
+        }
+      ]
+    },
+    "l37-p1-a1-q14": {
+      "answer": [
+        {
+          "answer": "重ければ",
+          "normalizedAnswer": "重ければ",
+          "expectedAnswers": [
+            "重ければ → 重くなければ"
+          ],
+          "reason": "题目要求写出变形后的词组，参考答案包含肯定和否定两种形式。用户只写出肯定形式「重ければ」，与参考答案的肯定部分一致，语法正确，符合题目要求，可以采纳。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "重ければ",
+          "addedAt": "2026-09-13T02:28:59.993Z"
+        }
+      ]
+    },
+    "l37-p1-a1-q15": {
+      "answer": [
+        {
+          "answer": "眠ければ",
+          "normalizedAnswer": "眠ければ",
+          "expectedAnswers": [
+            "眠ければ → 眠くなければ"
+          ],
+          "reason": "题目要求写出变形后的词组，参考答案为「眠ければ → 眠くなければ」，用户答案「眠ければ」是正确变形之一，符合回答范围。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "眠ければ",
+          "addedAt": "2026-09-13T02:29:01.118Z"
+        }
+      ]
+    },
+    "l37-p1-a1-q16": {
+      "answer": [
+        {
+          "answer": "弱ければ",
+          "normalizedAnswer": "弱ければ",
+          "expectedAnswers": [
+            "弱ければ → 弱くなければ"
+          ],
+          "reason": "题目要求写出变形后的词组，参考答案为「弱ければ → 弱くなければ」，用户答案「弱ければ」是其中第一个正确变形，符合回答范围。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "弱ければ",
+          "addedAt": "2026-09-13T02:29:02.306Z"
+        }
+      ]
+    },
+    "l37-p1-a1-q17": {
+      "answer": [
+        {
+          "answer": "厳しければ",
+          "normalizedAnswer": "厳しければ",
+          "expectedAnswers": [
+            "厳しければ → 厳しくなければ"
+          ],
+          "reason": "题目要求写出变形后的词组，参考答案为「厳しければ → 厳しくなければ」。用户只写出「厳しければ」，属于回答不完整，但该部分变形正确，符合题目要求的语法变换。根据回答范围 phrase_only，应视为部分正确，可采纳。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "厳しければ",
+          "addedAt": "2026-09-13T02:29:03.650Z"
+        }
+      ]
+    },
+    "l37-p1-a1-q18": {
+      "answer": [
+        {
+          "answer": "悲しければ",
+          "normalizedAnswer": "悲しければ",
+          "expectedAnswers": [
+            "悲しければ → 悲しくなければ"
+          ],
+          "reason": "题目要求写出变形后的词组，参考答案为「悲しければ → 悲しくなければ」。用户只写出「悲しければ」，属于回答范围内的部分正确内容，符合形容词假定形变形要求，语法正确，因此可采纳。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "悲しければ",
+          "addedAt": "2026-09-13T02:29:04.628Z"
+        }
+      ]
+    },
+    "l37-p1-a1-q19": {
+      "answer": [
+        {
+          "answer": "時間があるなら。時間がないなら。",
+          "normalizedAnswer": "時間があるなら時間がないなら",
+          "expectedAnswers": [
+            "時間があるなら → 時間がないなら"
+          ],
+          "reason": "答案正确使用了「なら」的肯定与否定形式，与题目要求的变形一致，标点不影响采纳。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "時間があるなら。時間がないなら。",
+          "addedAt": "2026-09-13T02:29:05.796Z"
+        }
+      ]
+    },
+    "l37-p1-a1-q21": {
+      "answer": [
+        {
+          "answer": "簡単なら。簡単ではないなら。",
+          "normalizedAnswer": "簡単なら簡単ではないなら",
+          "expectedAnswers": [
+            "簡単なら → 簡単でないなら"
+          ],
+          "reason": "用户正确将「簡単です」变为条件形「簡単なら」及其否定「簡単ではないなら」，与参考答案「簡単でないなら」意思和语法功能一致，仅否定表达形式略有不同，可以采纳。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "簡単なら。簡単ではないなら。",
+          "addedAt": "2026-09-13T02:29:08.463Z"
+        }
+      ]
+    },
+    "l37-p1-a5-q1": {
+      "answer": [
+        {
+          "answer": "甲：お久しぶりですね。お元気ですか。\n乙：ええ、相変わらずです。\n甲：もし、時間があるなら、ちょっとビールを飲みませんか。\n乙：いいですね。そうしましょう。",
+          "normalizedAnswer": "甲お久しぶりですねお元気ですか乙ええ相変わらずです甲もし時間があるならちょっとビールを飲みませんか乙いいですねそうしましょう",
+          "expectedAnswers": [
+            "甲：お久しぶりですね。お元気ですか。\n乙：ええ、相変わらずです。\n甲：もし、時間があるなら、ちょっとビールでも飲みませんか。\n乙：いいですね。そうしましょう。"
+          ],
+          "reason": "用户将替换部分「お茶」改为「ビール」，但未使用例句中的「でも」。题目要求替换画线部分，画线部分为「お茶を飲みます」，替换后应为「ビールを飲みます」。用户使用了「ビールを飲みませんか」，虽然与参考答案「ビールでも飲みませんか」在助词「でも」上有差异，但「を」在此语境中语法正确，且「ビールを飲みませんか」是自然且符合邀请语气的表达，不改变句义和语法功能，因此可以采纳。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "甲：お久しぶりですね。お元気ですか。\n乙：ええ、相変わらずです。\n甲：もし、時間があるなら、ちょっとビールを飲みませんか。\n乙：いいですね。そうしましょう。",
+          "addedAt": "2026-09-14T02:42:57.781Z"
+        }
+      ]
+    },
+    "l37-p1-a5-q2": {
+      "answer": [
+        {
+          "answer": "甲：お久しぶりですね。お元気ですか。\n乙：ええ、相変わらずです。\n甲：もし、時間があるなら、ちょっと昼ご飯を食べませんか。\n乙：いいですね。そうしましょう。",
+          "normalizedAnswer": "甲お久しぶりですねお元気ですか乙ええ相変わらずです甲もし時間があるならちょっと昼ご飯を食べませんか乙いいですねそうしましょう",
+          "expectedAnswers": [
+            "甲：お久しぶりですね。お元気ですか。\n乙：ええ、相変わらずです。\n甲：もし、時間があるなら、ちょっと昼ご飯でも食べませんか。\n乙：いいですね。そうしましょう。"
+          ],
+          "reason": "用户将替换部分「お茶を飲みます」正确替换为「昼ご飯を食べます」，并构成邀请句式「昼ご飯を食べませんか」。虽然省略了「でも」，但语法正确、意思与题目要求一致，符合会话情境，可以采纳。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "甲：お久しぶりですね。お元気ですか。\n乙：ええ、相変わらずです。\n甲：もし、時間があるなら、ちょっと昼ご飯を食べませんか。\n乙：いいですね。そうしましょう。",
+          "addedAt": "2026-09-14T02:42:59.110Z"
+        }
+      ]
+    },
+    "l37-p2-a4-q1": {
+      "answer": [
+        {
+          "answer": "四章すれば、オリンピくーに諸津城っすることができます",
+          "normalizedAnswer": "四章すればオリンピくーに諸津城っすることができます",
+          "expectedAnswers": [
+            "優勝すれば、オリンピックに出場することができます。"
+          ],
+          "reason": "用户答案存在明显的语音识别错误（如“四章”应为“優勝”，“オリンピくー”应为“オリンピック”，“諸津城っ”应为“出場”），但结合参考答案可唯一还原，且语法、时态、意思均与题目要求一致，故可采纳。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "優勝すれば、オリンピックに出場することができます",
+          "addedAt": "2026-09-15T02:08:29.857Z"
+        }
+      ]
+    }
+  },
+  "lesson38": {
+    "l38-p1-a1-q8": {
+      "answer": [
+        {
+          "answer": "借れます",
+          "normalizedAnswer": "借れます",
+          "expectedAnswers": [
+            "借りられます"
+          ],
+          "reason": "题目要求将「借ります」变为可能形式。该动词属于五段动词，可能形式为「借れます」，与参考答案「借りられます」意思和语法功能一致，只是可能形式表达方式不同，可以采纳。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "借れます",
+          "addedAt": "2026-09-17T01:45:10.492Z"
+        }
+      ]
+    },
+    "l38-p1-a4-q1": {
+      "answer": [
+        {
+          "answer": "毎日メールをチェックするよにしてください",
+          "normalizedAnswer": "毎日メールをチェックするよにしてください",
+          "expectedAnswers": [
+            "毎日メールをチェックするようにしてください。"
+          ],
+          "reason": "用户答案将「ように」误写为「よに」，属于轻微笔误，不影响语法和语义，可还原为正确形式，符合题目要求。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "毎日メールをチェックするようにしてください",
+          "addedAt": "2026-09-17T02:19:14.882Z"
+        }
+      ]
+    },
+    "l38-p1-a4-q2": {
+      "answer": [
+        {
+          "answer": "必ずかぎをかけるよにしてください",
+          "normalizedAnswer": "必ずかぎをかけるよにしてください",
+          "expectedAnswers": [
+            "必ずかぎをかけるようにしてください。"
+          ],
+          "reason": "用户答案将「ように」误写为「よに」，属于轻微拼写错误，不影响语法和语义，可以采纳。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "必ずかぎをかけるようにしてください",
+          "addedAt": "2026-09-17T02:19:15.962Z"
+        }
+      ]
+    },
+    "l38-p1-a3-q1": {
+      "answer": [
+        {
+          "answer": "甲：ピアノの練習はどうですか？\n乙：やっと。1曲弾けるようになりました\n甲：それは良かったですね。",
+          "normalizedAnswer": "甲ピアノの練習はどうですか乙やっと1曲弾けるようになりました甲それは良かったですね",
+          "expectedAnswers": [
+            "甲：ピアノの練習はどうですか。\n乙：やっと、1曲弾けるようになりました。\n甲：それはよかったですね。"
+          ],
+          "reason": "用户答案与参考答案意思一致，语法正确，仅标点、汉字写法（良かった）和句尾标点略有不同，不影响采纳。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "甲：ピアノの練習はどうですか。乙：やっと、1曲弾けるようになりました。甲：それは良かったですね。",
+          "addedAt": "2026-09-17T02:34:40.917Z"
+        }
+      ]
+    },
+    "l38-p1-a3-q3": {
+      "answer": [
+        {
+          "answer": "甲：日本の食は慣れましたか？\n乙：やった。刺身も食べられるようになりました。\n甲：それはよかったですね。",
+          "normalizedAnswer": "甲日本の食は慣れましたか乙やった刺身も食べられるようになりました甲それはよかったですね",
+          "expectedAnswers": [
+            "甲：日本食には慣れましたか。\n乙：やっと、刺し身も食べられるようになりました。\n甲：それはよかったですね。"
+          ],
+          "reason": "用户使用了「日本の食は慣れましたか」，虽然与参考答案「日本食には慣れましたか」在助词和表达上略有不同，但意思和语法功能一致，符合题目要求。乙的回答正确使用了「刺し身も食べられるようになりました」，表达了“变得能吃生鱼片了”的意思，与参考答案一致。整体会话完整，符合题目情境。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "甲：日本の食は慣れましたか？\n乙：やった。刺身も食べられるようになりました。\n甲：それはよかったですね。",
+          "addedAt": "2026-09-17T02:34:43.679Z"
+        }
+      ]
+    },
+    "l38-p1-a3-q4": {
+      "answer": [
+        {
+          "answer": "甲：機械の操作は慣れましたか？\n乙：やった。一人で動かできるようになりました。\n甲：それはよかったですね。",
+          "normalizedAnswer": "甲機械の操作は慣れましたか乙やった一人で動かできるようになりました甲それはよかったですね",
+          "expectedAnswers": [
+            "甲：機械の操作は慣れましたか。\n乙：やっと、1人で動かせるようになりました。\n甲：それはよかったですね。"
+          ],
+          "reason": "用户答案符合题目要求，正确使用了「～ようになりました」表示能力变化，语法正确，会话完整。虽然乙的回答中「やった」与参考答案的「やっと」不同，但意思相近且符合情境，不影响整体正确性。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "甲：機械の操作は慣れましたか。乙：やった。一人で動かせるようになりました。甲：それはよかったですね。",
+          "addedAt": "2026-09-17T02:34:47.030Z"
+        }
+      ]
+    },
+    "l38-p2-a2-q1": {
+      "answer": [
+        {
+          "answer": "話せません",
+          "normalizedAnswer": "話せません",
+          "expectedAnswers": [
+            "いいえ、話せません。"
+          ],
+          "reason": "回答句仅需表达否定，与参考答案意思一致，语法正确，符合题目要求。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "話せません",
+          "addedAt": "2026-09-17T12:16:36.131Z"
+        }
+      ]
+    },
+    "l38-p2-a2-q2": {
+      "answer": [
+        {
+          "answer": "登れます",
+          "normalizedAnswer": "登れます",
+          "expectedAnswers": [
+            "はい、登れます。"
+          ],
+          "reason": "回答句省略「はい」但意思完整，符合题目要求，语法正确。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "登れます",
+          "addedAt": "2026-09-17T12:16:36.934Z"
+        }
+      ]
+    },
+    "l38-p2-a2-q3": {
+      "answer": [
+        {
+          "answer": "来られます",
+          "normalizedAnswer": "来られます",
+          "expectedAnswers": [
+            "はい、来られます。"
+          ],
+          "reason": "回答句省略「はい」但意思完整，语法正确，符合题目要求。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "来られます",
+          "addedAt": "2026-09-17T12:16:37.855Z"
+        }
+      ]
+    },
+    "l38-p2-a2-q4": {
+      "answer": [
+        {
+          "answer": "見られません",
+          "normalizedAnswer": "見られません",
+          "expectedAnswers": [
+            "いいえ、見られません。"
+          ],
+          "reason": "回答句正确表达了否定，符合题目要求，省略「いいえ」不影响语法和语义。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "見られません",
+          "addedAt": "2026-09-17T12:16:39.082Z"
+        }
+      ]
+    },
+    "l38-p2-a4-q2": {
+      "answer": [
+        {
+          "answer": "けがが治って、歩けるようになりました",
+          "normalizedAnswer": "けがが治って歩けるようになりました",
+          "expectedAnswers": [
+            "けがはもう治って、歩けるようになりました。"
+          ],
+          "reason": "意思与题目一致，语法正确，使用了「治って」和「歩けるようになりました」，助词「が」与参考答案的「は」不同但不影响语法和语义，可以采纳。",
+          "provider": "deepseek",
+          "model": "deepseek-v4-flash",
+          "modelNormalizedAnswer": "けがが治って、歩けるようになりました",
+          "addedAt": "2026-09-17T12:24:10.496Z"
         }
       ]
     }

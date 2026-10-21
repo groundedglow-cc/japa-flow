@@ -535,8 +535,8 @@ figcaption {
 .practice-item-group {
   display: grid;
   gap: 12px;
-  padding: 18px;
-  border: 1px solid #dfe8e4;
+  padding: 0;
+  border: 0;
   border-radius: 16px;
   background: #fbfdfc;
 }
@@ -705,7 +705,7 @@ figcaption {
 }
 
 .underlined {
-  border-bottom: 2px solid var(--warn);
+  border-bottom: 2px solid #9aa3ad;
 }
 
 rt {
@@ -877,16 +877,24 @@ rt {
 }
 
 .item-response-scope {
-  margin: -2px 0 0;
-  padding-left: 46px;
+  margin: 0;
   color: var(--accent);
   font-size: 13px;
   font-weight: 760;
 }
 
-.evaluation-mode {
-  justify-self: start;
+.item-meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  min-height: 28px;
   margin-left: 46px;
+}
+
+.evaluation-mode {
+  display: inline-flex;
+  align-items: center;
   padding: 3px 8px;
   border-radius: 8px;
   background: #eef5f1;
@@ -1547,7 +1555,10 @@ rt {
   transform: translate(-50%, -50%);
 }
 
-.practice-input-with-notes { display: grid; flex: 1 0 100%; gap: 7px; width: 100%; min-width: 0; }
+.practice-input-with-notes { position: relative; display: grid; flex: 1 0 100%; gap: 7px; width: 100%; min-width: 0; }
+.practice-input-with-notes > .practice-ai-note { position: static; }
+.practice-input-with-notes > .practice-ai-note .practice-note-tools { position: absolute; top: 50%; right: 7px; z-index: 2; transform: translateY(-50%); }
+.practice-input-with-notes.rich-input > .practice-ai-note .practice-note-tools { top: auto; bottom: 7px; transform: none; }
 .practice-ai-note { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 7px; width: 100%; }
 .practice-note-tools { display: flex; flex: 0 0 auto; gap: 6px; }
 .practice-note-trigger { position: relative; display: grid; width: 27px; height: 27px; place-items: center; overflow: visible; border: 0; border-radius: 50%; background: radial-gradient(circle at 35% 28%, #f1ecfb, #bca9de 58%, #8d76b4); color: #fff; cursor: pointer; box-shadow: 0 2px 6px rgba(112, 77, 180, 0.18); transition: transform 160ms ease, box-shadow 160ms ease; animation: practice-ai-breathe 3s ease-in-out infinite; }
@@ -1977,6 +1988,10 @@ rt {
   .slot-row,
   .choice-row {
     padding-left: 0;
+  }
+
+  .item-meta {
+    margin-left: 0;
   }
 
   .source-page-strip {

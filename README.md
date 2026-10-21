@@ -58,6 +58,9 @@ AZURE_SPEECH_REGION=eastasia
 # MiniMax TTS（管理端音频生成）
 MINIMAX_API_KEY=your-key
 
+# DeepSeek（问 AI；生产环境通过 deploy/.env 注入容器）
+DEEPSEEK_API_KEY=your-key
+
 # 阿里云 OSS（音频存储，生产环境启用）
 OSS_ENABLED=false
 OSS_ACCESS_KEY_ID=your-key

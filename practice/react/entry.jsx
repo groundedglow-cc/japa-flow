@@ -38,6 +38,9 @@ import { lesson33Practice } from "../lesson33-practice-data.ts";
 import { lesson34Practice } from "../lesson34-practice-data.ts";
 import { lesson35Practice } from "../lesson35-practice-data.ts";
 import { lesson36Practice } from "../lesson36-practice-data.ts";
+import { lesson37Practice } from "../lesson37-practice-data.ts";
+import { lesson38Practice } from "../lesson38-practice-data.ts";
+import { lesson39Practice } from "../lesson39-practice-data.ts";
 
 const practices = {
   lesson1: lesson1Practice,
@@ -75,7 +78,10 @@ const practices = {
   lesson33: lesson33Practice,
   lesson34: lesson34Practice,
   lesson35: lesson35Practice,
-  lesson36: lesson36Practice
+  lesson36: lesson36Practice,
+  lesson37: lesson37Practice,
+  lesson38: lesson38Practice,
+  lesson39: lesson39Practice
 };
 
 function lessonIdFromPage() {

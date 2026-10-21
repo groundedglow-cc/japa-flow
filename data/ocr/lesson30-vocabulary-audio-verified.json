@@ -1905,9 +1905,9 @@
         "itemIndex": 34,
         "text": "ペキンしょくぶつえん",
         "label": "北京植物園",
-        "start": 61.289,
+        "start": 61.089,
         "end": 63.221,
-        "duration": 1.932,
+        "duration": 2.132,
         "speechUnitCount": 5,
         "wordCount": 5,
         "matchScore": 1,
@@ -1919,10 +1919,10 @@
           119,
           120
         ],
-        "method": "audio-vad-sequential-alignment-with-azure-verification",
+        "method": "manual-admin-adjustment",
         "timingSource": "audio-silence-detection",
         "timingConfidence": "high",
-        "confidence": "high",
+        "confidence": "approved",
         "alignmentIssues": [],
         "alignmentWarnings": [],
         "speechActivity": {
@@ -1943,7 +1943,8 @@
           "note": "Automatically approved by the audio-boundary alignment workflow.",
           "matchScore": 1,
           "asrText": "北 京 植 物 園"
-        }
+        },
+        "reviewedAt": "2026-10-17T03:27:39.905Z"
       }
     },
     {
@@ -2028,5 +2029,6 @@
         "provider": "azure-speech-sdk-continuous-recognition"
       }
     ]
-  }
+  },
+  "updatedAt": "2026-10-17T03:27:39.905Z"
 }

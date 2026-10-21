@@ -1,0 +1,646 @@
+{
+  "schemaVersion": 1,
+  "purpose": "Tracks vocabulary context shown on lesson practice and grammar pages.",
+  "criteria": {
+    "initialized": "Verified vocabulary, practice data, practice occurrence index, and an approved grammar occurrence index are all present.",
+    "partial": "At least one prerequisite exists, but the lesson cannot yet show vocabulary context on both pages.",
+    "unavailable": "No vocabulary-context prerequisites were found."
+  },
+  "refreshCommand": "npm run report:vocabulary-initialization",
+  "initializeCommand": "node scripts/initialize-vocabulary-context.mjs --lesson <number>",
+  "generatedAt": "2026-10-21T15:14:58.489Z",
+  "summary": {
+    "initialized": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39
+    ],
+    "partial": [
+      40
+    ],
+    "unavailable": [
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48
+    ]
+  },
+  "lessons": [
+    {
+      "lessonNo": 1,
+      "status": "initialized",
+      "assets": {
+        "vocabulary": true,
+        "practiceData": true,
+        "practiceOccurrences": true,
+        "grammarOccurrences": true,
+        "grammarReviewStatus": "approved"
+      },
+      "nextStep": "Ready for practice and grammar vocabulary context."
+    },
+    {
+      "lessonNo": 2,
+      "status": "initialized",
+      "assets": {
+        "vocabulary": true,
+        "practiceData": true,
+        "practiceOccurrences": true,
+        "grammarOccurrences": true,
+        "grammarReviewStatus": "approved"
+      },
+      "nextStep": "Ready for practice and grammar vocabulary context."
+    },
+    {
+      "lessonNo": 3,
+      "status": "initialized",
+      "assets": {
+        "vocabulary": true,
+        "practiceData": true,
+        "practiceOccurrences": true,
+        "grammarOccurrences": true,
+        "grammarReviewStatus": "approved"
+      },
+      "nextStep": "Ready for practice and grammar vocabulary context."
+    },
+    {
+      "lessonNo": 4,
+      "status": "initialized",
+      "assets": {
+        "vocabulary": true,
+        "practiceData": true,
+        "practiceOccurrences": true,
+        "grammarOccurrences": true,
+        "grammarReviewStatus": "approved"
+      },
+      "nextStep": "Ready for practice and grammar vocabulary context."
+    },
+    {
+      "lessonNo": 5,
+      "status": "initialized",
+      "assets": {
+        "vocabulary": true,
+        "practiceData": true,
+        "practiceOccurrences": true,
+        "grammarOccurrences": true,
+        "grammarReviewStatus": "approved"
+      },
+      "nextStep": "Ready for practice and grammar vocabulary context."
+    },
+    {
+      "lessonNo": 6,
+      "status": "initialized",
+      "assets": {
+        "vocabulary": true,
+        "practiceData": true,
+        "practiceOccurrences": true,
+        "grammarOccurrences": true,
+        "grammarReviewStatus": "approved"
+      },
+      "nextStep": "Ready for practice and grammar vocabulary context."
+    },
+    {
+      "lessonNo": 7,
+      "status": "initialized",
+      "assets": {
+        "vocabulary": true,
+        "practiceData": true,
+        "practiceOccurrences": true,
+        "grammarOccurrences": true,
+        "grammarReviewStatus": "approved"
+      },
+      "nextStep": "Ready for practice and grammar vocabulary context."
+    },
+    {
+      "lessonNo": 8,
+      "status": "initialized",
+      "assets": {
+        "vocabulary": true,
+        "practiceData": true,
+        "practiceOccurrences": true,
+        "grammarOccurrences": true,
+        "grammarReviewStatus": "approved"
+      },
+      "nextStep": "Ready for practice and grammar vocabulary context."
+    },
+    {
+      "lessonNo": 9,
+      "status": "initialized",
+      "assets": {
+        "vocabulary": true,
+        "practiceData": true,
+        "practiceOccurrences": true,
+        "grammarOccurrences": true,
+        "grammarReviewStatus": "approved"
+      },
+      "nextStep": "Ready for practice and grammar vocabulary context."
+    },
+    {
+      "lessonNo": 10,
+      "status": "initialized",
+      "assets": {
+        "vocabulary": true,
+        "practiceData": true,
+        "practiceOccurrences": true,
+        "grammarOccurrences": true,
+        "grammarReviewStatus": "approved"
+      },
+      "nextStep": "Ready for practice and grammar vocabulary context."
+    },
+    {
+      "lessonNo": 11,
+      "status": "initialized",
+      "assets": {
+        "vocabulary": true,
+        "practiceData": true,
+        "practiceOccurrences": true,
+        "grammarOccurrences": true,
+        "grammarReviewStatus": "approved"
+      },
+      "nextStep": "Ready for practice and grammar vocabulary context."
+    },
+    {
+      "lessonNo": 12,
+      "status": "initialized",
+      "assets": {
+        "vocabulary": true,
+        "practiceData": true,
+        "practiceOccurrences": true,
+        "grammarOccurrences": true,
+        "grammarReviewStatus": "approved"
+      },
+      "nextStep": "Ready for practice and grammar vocabulary context."
+    },
+    {
+      "lessonNo": 13,
+      "status": "initialized",
+      "assets": {
+        "vocabulary": true,
+        "practiceData": true,
+        "practiceOccurrences": true,
+        "grammarOccurrences": true,
+        "grammarReviewStatus": "approved"
+      },
+      "nextStep": "Ready for practice and grammar vocabulary context."
+    },
+    {
+      "lessonNo": 14,
+      "status": "initialized",
+      "assets": {
+        "vocabulary": true,
+        "practiceData": true,
+        "practiceOccurrences": true,
+        "grammarOccurrences": true,
+        "grammarReviewStatus": "approved"
+      },
+      "nextStep": "Ready for practice and grammar vocabulary context."
+    },
+    {
+      "lessonNo": 15,
+      "status": "initialized",
+      "assets": {
+        "vocabulary": true,
+        "practiceData": true,
+        "practiceOccurrences": true,
+        "grammarOccurrences": true,
+        "grammarReviewStatus": "approved"
+      },
+      "nextStep": "Ready for practice and grammar vocabulary context."
+    },
+    {
+      "lessonNo": 16,
+      "status": "initialized",
+      "assets": {
+        "vocabulary": true,
+        "practiceData": true,
+        "practiceOccurrences": true,
+        "grammarOccurrences": true,
+        "grammarReviewStatus": "approved"
+      },
+      "nextStep": "Ready for practice and grammar vocabulary context."
+    },
+    {
+      "lessonNo": 17,
+      "status": "initialized",
+      "assets": {
+        "vocabulary": true,
+        "practiceData": true,
+        "practiceOccurrences": true,
+        "grammarOccurrences": true,
+        "grammarReviewStatus": "approved"
+      },
+      "nextStep": "Ready for practice and grammar vocabulary context."
+    },
+    {
+      "lessonNo": 18,
+      "status": "initialized",
+      "assets": {
+        "vocabulary": true,
+        "practiceData": true,
+        "practiceOccurrences": true,
+        "grammarOccurrences": true,
+        "grammarReviewStatus": "approved"
+      },
+      "nextStep": "Ready for practice and grammar vocabulary context."
+    },
+    {
+      "lessonNo": 19,
+      "status": "initialized",
+      "assets": {
+        "vocabulary": true,
+        "practiceData": true,
+        "practiceOccurrences": true,
+        "grammarOccurrences": true,
+        "grammarReviewStatus": "approved"
+      },
+      "nextStep": "Ready for practice and grammar vocabulary context."
+    },
+    {
+      "lessonNo": 20,
+      "status": "initialized",
+      "assets": {
+        "vocabulary": true,
+        "practiceData": true,
+        "practiceOccurrences": true,
+        "grammarOccurrences": true,
+        "grammarReviewStatus": "approved"
+      },
+      "nextStep": "Ready for practice and grammar vocabulary context."
+    },
+    {
+      "lessonNo": 21,
+      "status": "initialized",
+      "assets": {
+        "vocabulary": true,
+        "practiceData": true,
+        "practiceOccurrences": true,
+        "grammarOccurrences": true,
+        "grammarReviewStatus": "approved"
+      },
+      "nextStep": "Ready for practice and grammar vocabulary context."
+    },
+    {
+      "lessonNo": 22,
+      "status": "initialized",
+      "assets": {
+        "vocabulary": true,
+        "practiceData": true,
+        "practiceOccurrences": true,
+        "grammarOccurrences": true,
+        "grammarReviewStatus": "approved"
+      },
+      "nextStep": "Ready for practice and grammar vocabulary context."
+    },
+    {
+      "lessonNo": 23,
+      "status": "initialized",
+      "assets": {
+        "vocabulary": true,
+        "practiceData": true,
+        "practiceOccurrences": true,
+        "grammarOccurrences": true,
+        "grammarReviewStatus": "approved"
+      },
+      "nextStep": "Ready for practice and grammar vocabulary context."
+    },
+    {
+      "lessonNo": 24,
+      "status": "initialized",
+      "assets": {
+        "vocabulary": true,
+        "practiceData": true,
+        "practiceOccurrences": true,
+        "grammarOccurrences": true,
+        "grammarReviewStatus": "approved"
+      },
+      "nextStep": "Ready for practice and grammar vocabulary context."
+    },
+    {
+      "lessonNo": 25,
+      "status": "initialized",
+      "assets": {
+        "vocabulary": true,
+        "practiceData": true,
+        "practiceOccurrences": true,
+        "grammarOccurrences": true,
+        "grammarReviewStatus": "approved"
+      },
+      "nextStep": "Ready for practice and grammar vocabulary context."
+    },
+    {
+      "lessonNo": 26,
+      "status": "initialized",
+      "assets": {
+        "vocabulary": true,
+        "practiceData": true,
+        "practiceOccurrences": true,
+        "grammarOccurrences": true,
+        "grammarReviewStatus": "approved"
+      },
+      "nextStep": "Ready for practice and grammar vocabulary context."
+    },
+    {
+      "lessonNo": 27,
+      "status": "initialized",
+      "assets": {
+        "vocabulary": true,
+        "practiceData": true,
+        "practiceOccurrences": true,
+        "grammarOccurrences": true,
+        "grammarReviewStatus": "approved"
+      },
+      "nextStep": "Ready for practice and grammar vocabulary context."
+    },
+    {
+      "lessonNo": 28,
+      "status": "initialized",
+      "assets": {
+        "vocabulary": true,
+        "practiceData": true,
+        "practiceOccurrences": true,
+        "grammarOccurrences": true,
+        "grammarReviewStatus": "approved"
+      },
+      "nextStep": "Ready for practice and grammar vocabulary context."
+    },
+    {
+      "lessonNo": 29,
+      "status": "initialized",
+      "assets": {
+        "vocabulary": true,
+        "practiceData": true,
+        "practiceOccurrences": true,
+        "grammarOccurrences": true,
+        "grammarReviewStatus": "approved"
+      },
+      "nextStep": "Ready for practice and grammar vocabulary context."
+    },
+    {
+      "lessonNo": 30,
+      "status": "initialized",
+      "assets": {
+        "vocabulary": true,
+        "practiceData": true,
+        "practiceOccurrences": true,
+        "grammarOccurrences": true,
+        "grammarReviewStatus": "approved"
+      },
+      "nextStep": "Ready for practice and grammar vocabulary context."
+    },
+    {
+      "lessonNo": 31,
+      "status": "initialized",
+      "assets": {
+        "vocabulary": true,
+        "practiceData": true,
+        "practiceOccurrences": true,
+        "grammarOccurrences": true,
+        "grammarReviewStatus": "approved"
+      },
+      "nextStep": "Ready for practice and grammar vocabulary context."
+    },
+    {
+      "lessonNo": 32,
+      "status": "initialized",
+      "assets": {
+        "vocabulary": true,
+        "practiceData": true,
+        "practiceOccurrences": true,
+        "grammarOccurrences": true,
+        "grammarReviewStatus": "approved"
+      },
+      "nextStep": "Ready for practice and grammar vocabulary context."
+    },
+    {
+      "lessonNo": 33,
+      "status": "initialized",
+      "assets": {
+        "vocabulary": true,
+        "practiceData": true,
+        "practiceOccurrences": true,
+        "grammarOccurrences": true,
+        "grammarReviewStatus": "approved"
+      },
+      "nextStep": "Ready for practice and grammar vocabulary context."
+    },
+    {
+      "lessonNo": 34,
+      "status": "initialized",
+      "assets": {
+        "vocabulary": true,
+        "practiceData": true,
+        "practiceOccurrences": true,
+        "grammarOccurrences": true,
+        "grammarReviewStatus": "approved"
+      },
+      "nextStep": "Ready for practice and grammar vocabulary context."
+    },
+    {
+      "lessonNo": 35,
+      "status": "initialized",
+      "assets": {
+        "vocabulary": true,
+        "practiceData": true,
+        "practiceOccurrences": true,
+        "grammarOccurrences": true,
+        "grammarReviewStatus": "approved"
+      },
+      "nextStep": "Ready for practice and grammar vocabulary context."
+    },
+    {
+      "lessonNo": 36,
+      "status": "initialized",
+      "assets": {
+        "vocabulary": true,
+        "practiceData": true,
+        "practiceOccurrences": true,
+        "grammarOccurrences": true,
+        "grammarReviewStatus": "approved"
+      },
+      "nextStep": "Ready for practice and grammar vocabulary context."
+    },
+    {
+      "lessonNo": 37,
+      "status": "initialized",
+      "assets": {
+        "vocabulary": true,
+        "practiceData": true,
+        "practiceOccurrences": true,
+        "grammarOccurrences": true,
+        "grammarReviewStatus": "approved"
+      },
+      "nextStep": "Ready for practice and grammar vocabulary context."
+    },
+    {
+      "lessonNo": 38,
+      "status": "initialized",
+      "assets": {
+        "vocabulary": true,
+        "practiceData": true,
+        "practiceOccurrences": true,
+        "grammarOccurrences": true,
+        "grammarReviewStatus": "approved"
+      },
+      "nextStep": "Ready for practice and grammar vocabulary context."
+    },
+    {
+      "lessonNo": 39,
+      "status": "initialized",
+      "assets": {
+        "vocabulary": true,
+        "practiceData": true,
+        "practiceOccurrences": true,
+        "grammarOccurrences": true,
+        "grammarReviewStatus": "approved"
+      },
+      "nextStep": "Ready for practice and grammar vocabulary context."
+    },
+    {
+      "lessonNo": 40,
+      "status": "partial",
+      "assets": {
+        "vocabulary": true,
+        "practiceData": false,
+        "practiceOccurrences": false,
+        "grammarOccurrences": false,
+        "grammarReviewStatus": null
+      },
+      "nextStep": "Run the vocabulary-context initializer after the missing source data is available."
+    },
+    {
+      "lessonNo": 41,
+      "status": "unavailable",
+      "assets": {
+        "vocabulary": false,
+        "practiceData": false,
+        "practiceOccurrences": false,
+        "grammarOccurrences": false,
+        "grammarReviewStatus": null
+      },
+      "nextStep": "Prepare verified vocabulary, practice data, and grammar page images before initialization."
+    },
+    {
+      "lessonNo": 42,
+      "status": "unavailable",
+      "assets": {
+        "vocabulary": false,
+        "practiceData": false,
+        "practiceOccurrences": false,
+        "grammarOccurrences": false,
+        "grammarReviewStatus": null
+      },
+      "nextStep": "Prepare verified vocabulary, practice data, and grammar page images before initialization."
+    },
+    {
+      "lessonNo": 43,
+      "status": "unavailable",
+      "assets": {
+        "vocabulary": false,
+        "practiceData": false,
+        "practiceOccurrences": false,
+        "grammarOccurrences": false,
+        "grammarReviewStatus": null
+      },
+      "nextStep": "Prepare verified vocabulary, practice data, and grammar page images before initialization."
+    },
+    {
+      "lessonNo": 44,
+      "status": "unavailable",
+      "assets": {
+        "vocabulary": false,
+        "practiceData": false,
+        "practiceOccurrences": false,
+        "grammarOccurrences": false,
+        "grammarReviewStatus": null
+      },
+      "nextStep": "Prepare verified vocabulary, practice data, and grammar page images before initialization."
+    },
+    {
+      "lessonNo": 45,
+      "status": "unavailable",
+      "assets": {
+        "vocabulary": false,
+        "practiceData": false,
+        "practiceOccurrences": false,
+        "grammarOccurrences": false,
+        "grammarReviewStatus": null
+      },
+      "nextStep": "Prepare verified vocabulary, practice data, and grammar page images before initialization."
+    },
+    {
+      "lessonNo": 46,
+      "status": "unavailable",
+      "assets": {
+        "vocabulary": false,
+        "practiceData": false,
+        "practiceOccurrences": false,
+        "grammarOccurrences": false,
+        "grammarReviewStatus": null
+      },
+      "nextStep": "Prepare verified vocabulary, practice data, and grammar page images before initialization."
+    },
+    {
+      "lessonNo": 47,
+      "status": "unavailable",
+      "assets": {
+        "vocabulary": false,
+        "practiceData": false,
+        "practiceOccurrences": false,
+        "grammarOccurrences": false,
+        "grammarReviewStatus": null
+      },
+      "nextStep": "Prepare verified vocabulary, practice data, and grammar page images before initialization."
+    },
+    {
+      "lessonNo": 48,
+      "status": "unavailable",
+      "assets": {
+        "vocabulary": false,
+        "practiceData": false,
+        "practiceOccurrences": false,
+        "grammarOccurrences": false,
+        "grammarReviewStatus": null
+      },
+      "nextStep": "Prepare verified vocabulary, practice data, and grammar page images before initialization."
+    }
+  ]
+}
