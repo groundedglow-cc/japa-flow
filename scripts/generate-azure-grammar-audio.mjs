@@ -27,7 +27,15 @@ if (!/^ja-JP-[A-Za-z]+Neural$/.test(voice)) throw Error(`Unsupported Japanese Az
 const sourcePath = `data/ocr/lesson${lesson}-grammar-examples.json`;
 const manifestPath = `data/ocr/lesson${lesson}-grammar-audio.json`;
 const data = JSON.parse(readFileSync(sourcePath, "utf8"));
-const texts = [...new Set(Object.values(data.pages || {}).flatMap((page) => (page.groups || []).flatMap((group) => (group.examples || []).flatMap((example) => (example.sentences || []).map((sentence) => String(sentence).replace(/\[[^\[\]]+\]/g, ""))))))];
+if (data.reviewStatus !== "approved") throw Error("Image-reviewed, approved grammar data is required before generating audio.");
+const rawSentences = Object.values(data.pages || {}).flatMap(page => (page.groups || []).flatMap(group => (group.examples || []).flatMap(example => example.sentences || [])));
+for (const sentence of rawSentences) {
+  if (typeof sentence !== "string" || !sentence.trim() || sentence.includes("[object Object]")) {
+    throw Error("Invalid sentence: expected a non-empty Japanese string, not an object. No Azure request was sent.");
+  }
+}
+const texts = [...new Set(rawSentences.map(sentence => sentence.replace(/\[[^\[\]]+\]/g, "")))];
+if (!texts.length) throw Error("No sentences found. No Azure request was sent.");
 const endpoint = `https://${region}.tts.speech.microsoft.com/cognitiveservices/v1`;
 const voiceFolder = `azure-${voice.replace(/^ja-JP-/, "").replace(/Neural$/, "").toLowerCase()}`;
 const folder = `audio/grammar/lesson${lesson}/${voiceFolder}`;
@@ -50,16 +58,17 @@ for (const text of texts) {
     const buffer = Buffer.from(await response.arrayBuffer());
     if (!response.ok) throw Error(`Azure Speech rejected request: HTTP ${response.status}. Check key, region, voice and quota.`);
     const hasMp3Header = buffer.subarray(0, 3).toString() === "ID3" || (buffer[0] === 0xff && (buffer[1] & 0xe0) === 0xe0);
-    // Azure may return a raw MPEG frame without an ID3 tag. Content-Type is the
-    // authoritative signal; retain the frame check only as a guard for HTML/JSON.
     const looksLikeError = /json|html|text\//.test(contentType) || buffer.subarray(0, 120).toString("utf8").trimStart().startsWith("<");
-    if (buffer.length < 1000 || looksLikeError || (!hasMp3Header && !contentType.includes("audio/mpeg"))) throw Error("Azure Speech returned an invalid MP3 response.");
+    if (buffer.length < 1000 || looksLikeError || !hasMp3Header) throw Error(`Azure Speech returned an invalid MP3 response (bytes=${buffer.length}, content-type=${contentType}).`);
     await writeFile(`${path}.tmp`, buffer);
     await rename(`${path}.tmp`, path);
     generated += 1;
     console.log(`Generated ${generated}: ${text}`);
   }
   manifest.sentences[text] = `/${path}`;
+}
+// Publish only a complete manifest. Cached MP3s retain progress after interruption.
+if (Object.keys(manifest.sentences).length === texts.length) {
   await writeFile(`${manifestPath}.tmp`, `${JSON.stringify(manifest, null, 2)}\n`);
   await rename(`${manifestPath}.tmp`, manifestPath);
 }
