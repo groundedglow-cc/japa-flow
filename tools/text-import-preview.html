@@ -548,8 +548,6 @@
         transition: opacity 0.16s ease;
       }
 
-      .sentence-tools > .text-ai-trigger { grid-column: 3; grid-row: 2; }
-
       .sentence:hover .text-ai-trigger,
       .line:hover .text-ai-trigger,
       .sentence:focus-within .text-ai-trigger,
@@ -796,8 +794,7 @@
         .sentence-tools { display: flex; grid-column: 3; grid-row: 1; flex-direction: column; align-items: flex-end; flex-wrap: wrap; gap: 5px; min-width: 0; }
         .sentence-tools { position: relative; z-index: 3; }
         .sentence-tools .segment-actions { gap: 4px; flex-wrap: wrap; }
-        .sentence-tools > .text-ai-trigger { width: 32px; height: 32px; min-height: 32px; }
-        .sentence-tools > .text-ai-trigger { opacity: 1; pointer-events: auto; }
+        .sentence-tools .segment-actions > .text-ai-trigger { width: 32px; height: 32px; min-height: 32px; opacity: 1; pointer-events: auto; }
         .sentence-tools .segment-actions button { min-width: 26px; width: 26px; height: 26px; padding: 0; font-size: 11px; }
         /* A tap on the sentence already plays its audio. Keep that interaction
            direct and reserve the visible control slot for notes / AI. */
@@ -1089,7 +1086,6 @@
               <div class="text-cell">${renderTextContent(sentence, mode)}${renderTextAiPanel(sentence)}</div>
               <div class="sentence-tools">
                 ${segmentActions(sentence, segmentId, sentence.audioSegment)}
-                ${renderTextAiTrigger()}
               </div>
             </div>
           `;
@@ -1185,7 +1181,6 @@
             <div class="text-cell">${renderTextContent(line, mode)}${renderTextAiPanel(line)}</div>
             <div class="sentence-tools">
               ${segmentActions(line, segmentId, line.audioSegment)}
-              ${renderTextAiTrigger()}
             </div>
           </div>
         `;
@@ -1226,6 +1221,7 @@
             ${segmentButton(segmentId, segment)}
             ${segmentReviewStatus(segment)}
             ${item?.id && segment ? `<button class="audio-button segment-settings" type="button" data-edit-item-id="${escapeHtml(item.id)}" title="设置音频区间" aria-label="设置音频区间">⚙</button>` : ""}
+            ${renderTextAiTrigger()}
           </div>
         `;
       }
