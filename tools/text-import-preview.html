@@ -530,6 +530,41 @@
         pointer-events: auto;
       }
 
+      .text-ai-trigger {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 28px;
+        height: 28px;
+        padding: 0;
+        border: 1px solid #dbe8e3;
+        border-radius: 7px;
+        color: #547b73;
+        background: #f3f8f6;
+        cursor: pointer;
+        font-size: 15px;
+      }
+
+      .sentence-tools > .text-ai-trigger { grid-column: 3; grid-row: 2; }
+
+      .text-cell > .inline-notes-host {
+        position: static;
+        width: 100%;
+        height: auto;
+        margin: 6px 0 0;
+        padding: 0;
+      }
+
+      .text-cell > .inline-notes-host:not(:has(.is-open, .ian-note, .ian-status:not(:empty))) {
+        position: static;
+        width: 100%;
+        height: auto;
+        margin: 6px 0 0;
+        padding: 0;
+      }
+
+      .text-cell > .inline-notes-host .ian-entry { display: none; }
+
       /* This wrapper is transparent to the desktop grid. On touch layouts it
          becomes one action row, keeping playback and notes side by side. */
       .sentence-tools { display: contents; }
@@ -747,9 +782,10 @@
         .speaker { font-size: 12px; }
         .sentence .jp, .sentence .jp .base-text, .line .jp, .line .jp .base-text { font-size: 14px; line-height: 1.38; }
         .sentence .kana, .sentence .cn, .line .kana, .line .cn { margin-top: 2px; font-size: 13px; line-height: 1.35; }
-        .sentence-tools { display: flex; grid-column: 3; grid-row: 1; align-items: center; flex-wrap: wrap; gap: 5px; min-width: 0; }
+        .sentence-tools { display: flex; grid-column: 3; grid-row: 1; flex-direction: column; align-items: flex-end; flex-wrap: wrap; gap: 5px; min-width: 0; }
         .sentence-tools { position: relative; z-index: 3; }
         .sentence-tools .segment-actions { gap: 4px; flex-wrap: wrap; }
+        .sentence-tools > .text-ai-trigger { width: 32px; height: 32px; min-height: 32px; }
         .sentence-tools .segment-actions button { min-width: 26px; width: 26px; height: 26px; padding: 0; font-size: 11px; }
         /* A tap on the sentence already plays its audio. Keep that interaction
            direct and reserve the visible control slot for notes / AI. */
@@ -1038,9 +1074,10 @@
           return `
             <div class="sentence inline-notes-container${segmentId ? " has-audio" : ""}" data-item-id="${escapeHtml(sentence.id || "")}" ${segmentId ? `data-play-segment-id="${escapeHtml(segmentId)}"` : ""}>
               <div class="num">${escapeHtml(sentence.order || "")}</div>
-              <div class="text-cell">${renderTextContent(sentence, mode)}</div>
+              <div class="text-cell">${renderTextContent(sentence, mode)}${renderTextAiPanel(sentence)}</div>
               <div class="sentence-tools">
                 ${segmentActions(sentence, segmentId, sentence.audioSegment)}
+                ${renderTextAiTrigger()}
               </div>
             </div>
           `;
@@ -1133,9 +1170,10 @@
         return `
           <div class="line inline-notes-container${segmentId ? " has-audio" : ""}" data-item-id="${escapeHtml(line.id || "")}" ${segmentId ? `data-play-segment-id="${escapeHtml(segmentId)}"` : ""}>
             <div><span class="speaker">${escapeHtml(line.speaker || "?")}</span></div>
-            <div class="text-cell">${renderTextContent(line, mode)}</div>
+            <div class="text-cell">${renderTextContent(line, mode)}${renderTextAiPanel(line)}</div>
             <div class="sentence-tools">
               ${segmentActions(line, segmentId, line.audioSegment)}
+              ${renderTextAiTrigger()}
             </div>
           </div>
         `;
@@ -1176,9 +1214,12 @@
             ${segmentButton(segmentId, segment)}
             ${segmentReviewStatus(segment)}
             ${item?.id && segment ? `<button class="audio-button segment-settings" type="button" data-edit-item-id="${escapeHtml(item.id)}" title="设置音频区间" aria-label="设置音频区间">⚙</button>` : ""}
-            ${renderTextAiPanel(item)}
           </div>
         `;
+      }
+
+      function renderTextAiTrigger() {
+        return `<button class="text-ai-trigger" type="button" data-open-text-ai title="问 AI" aria-label="问 AI">✎</button>`;
       }
 
       function renderTextAiPanel(item) {
@@ -1349,6 +1390,12 @@
             const next = textDisplayModeOrder[(textDisplayModeOrder.indexOf(current) + 1) % textDisplayModeOrder.length];
                 state.textDisplayModes = { ...state.textDisplayModes, [section]: next };
             render();
+          });
+        });
+        $("#textPreview").querySelectorAll("[data-open-text-ai]").forEach((button) => {
+          button.addEventListener("click", (event) => {
+            event.stopPropagation();
+            button.closest(".sentence, .line")?.querySelector(".inline-notes-host .ian-trigger")?.click();
           });
         });
         $("#textPreview").querySelectorAll(".sentence[data-play-segment-id], .line[data-play-segment-id]").forEach((row) => {
