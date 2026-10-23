@@ -7,7 +7,7 @@
     "dev": "node server.mjs",
     "export:catalog": "node scripts/export-catalog.mjs",
     "build:practice": "node scripts/build-practice-preview.mjs && npm run build:notes",
-    "build:app": "node scripts/export-catalog.mjs && node scripts/build-practice-preview.mjs && node scripts/build-app-dist.mjs",
+    "build:app": "node scripts/export-catalog.mjs && npm run build:practice && node scripts/build-app-dist.mjs",
     "align:ocr-text-audio": "node scripts/align-ocr-text-audio.mjs",
     "align:ocr-text-audio:auto": "node scripts/auto-align-ocr-text-audio.mjs",
     "backfill:ocr-text-ruby": "node scripts/backfill-text-ruby.mjs",

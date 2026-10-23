@@ -121,6 +121,10 @@ async function main() {
   const practiceFrom = join(root, practiceDir);
   if (existsSync(practiceFrom)) await cp(practiceFrom, join(out, practiceDir), { recursive: true });
 
+  // Grammar and text pages mount their notes UI from this shared browser bundle.
+  // Keep this required: missing build output must fail packaging, not ship empty hosts.
+  await cp(join(root, "shared/notes/dist"), join(out, "shared/notes/dist"), { recursive: true });
+
   await copyConfigStubs();
 
   console.log(`✓ Built app-dist at ${out}`);
