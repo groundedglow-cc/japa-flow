@@ -213,7 +213,7 @@
 
       .image-stack {
         display: grid;
-        grid-template-columns: minmax(0, 1fr);
+        grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 16px;
       }
 
@@ -228,11 +228,7 @@
       }
 
       .grammar-source, .grammar-interaction { min-width: 0; }
-      .grammar-page-mode { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; padding: 8px; border-bottom: 1px solid var(--line); background: #f8fbf9; }
-      .grammar-page-mode button { min-height: 36px; border: 1px solid var(--line); border-radius: 7px; background: #fff; color: var(--muted); font-size: 13px; font-weight: 760; }
-      .grammar-page-mode button.active { border-color: var(--accent); background: var(--accent-soft); color: var(--accent); }
-      .image-frame[data-page-mode="source"] .grammar-interaction,
-      .image-frame[data-page-mode="listen"] .grammar-source { display: none; }
+      .grammar-page-mode { display: none; }
       .grammar-examples { padding: 18px; }
       .grammar-group + .grammar-group { margin-top: 32px; padding-top: 24px; border-top: 2px solid var(--line); }
       .grammar-group h3 { margin: 0 0 10px; font-size: 16px; color: var(--accent); }
@@ -393,6 +389,12 @@
         .image-stack {
           grid-template-columns: 1fr;
         }
+
+        .grammar-page-mode { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; padding: 8px; border-bottom: 1px solid var(--line); background: #f8fbf9; }
+        .grammar-page-mode button { min-height: 36px; border: 1px solid var(--line); border-radius: 7px; background: #fff; color: var(--muted); font-size: 13px; font-weight: 760; }
+        .grammar-page-mode button.active { border-color: var(--accent); background: var(--accent-soft); color: var(--accent); }
+        .image-frame[data-page-mode="source"] .grammar-interaction,
+        .image-frame[data-page-mode="listen"] .grammar-source { display: none; }
 
         .lesson-entry {
           min-height: 46px;
