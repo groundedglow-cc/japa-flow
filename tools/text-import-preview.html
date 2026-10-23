@@ -711,7 +711,7 @@
         }
       }
 
-      @media (max-width: 640px) and (hover: none), (max-width: 640px) and (pointer: coarse) {
+      @media (max-width: 640px) {
         html.embedded .image-panel { display: none; }
         .section-head { align-items: flex-start; gap: 8px; padding: 10px 11px; }
         .section-head h3 { margin: 0; font-size: 16px; line-height: 1.35; }
@@ -734,6 +734,7 @@
         .sentence-tools .inline-notes-host .ian-entry,
         .sentence-tools .inline-notes-host:not(:has(.is-open, .ian-note, .ian-status:not(:empty))) .ian-entry { position: static; min-height: 28px; }
         .sentence-tools .inline-notes-host .ian-trigger { width: 32px; height: 32px; min-height: 32px; }
+        .sentence-tools .inline-notes-host .ian-trigger { opacity: 1; pointer-events: auto; }
         .sentence-tools:has(.inline-notes-host .is-open),
         .sentence-tools:has(.inline-notes-host .ian-note),
         .sentence-tools:has(.inline-notes-host .ian-status:not(:empty)) { grid-column: 2 / -1; grid-row: 2; }
