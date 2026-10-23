@@ -537,10 +537,10 @@
         width: 28px;
         height: 28px;
         padding: 0;
-        border: 1px solid #dbe8e3;
+        border: 1px solid var(--accent);
         border-radius: 7px;
-        color: #547b73;
-        background: #f3f8f6;
+        color: var(--accent);
+        background: var(--accent-soft);
         cursor: pointer;
         font-size: 15px;
         opacity: 0;
@@ -1227,7 +1227,7 @@
       }
 
       function renderTextAiTrigger() {
-        return `<button class="text-ai-trigger" type="button" data-open-text-ai title="问 AI" aria-label="问 AI">✎</button>`;
+        return `<button class="text-ai-trigger" type="button" data-open-text-ai title="问 AI" aria-label="问 AI">✦</button>`;
       }
 
       function renderTextAiPanel(item) {
