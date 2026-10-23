@@ -75,7 +75,7 @@ export default function InlineAiNotes({ loadNotes, saveNotes, askAi }) {
     setStatus('已删除笔记');
   };
   return <section className={`inline-ai-notes${open ? " is-open" : ""}`} aria-label="题目笔记">
-    <div className="ian-entry"><button type="button" className={`ian-trigger ${open ? 'active' : ''}`} aria-label="记笔记 / 问 AI" title="记笔记 / 问 AI" aria-expanded={open} onClick={() => open ? setOpen(false) : setOpen(true)}><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M13.5 5.5l5 5M4 20l4.5-1 12-12a2.1 2.1 0 0 0-5-3l-12 12L4 20Z"/><path d="M12 20h8"/></svg></button>
+    <div className="ian-entry"><button type="button" className={`ian-trigger ${open ? 'active' : ''}`} aria-label="记笔记 / 问 AI" title="记笔记 / 问 AI" aria-expanded={open} onClick={() => open ? setOpen(false) : setOpen(true)}><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25Zm17.71-10.04a1 1 0 0 0 0-1.42l-2.5-2.5a1 1 0 0 0-1.42 0l-1.17 1.17 3.75 3.75 1.34-1Z"/><path d="m19 13 .72 1.78L21.5 15.5l-1.78.72L19 18l-.72-1.78-1.78-.72L19 13Z"/></svg></button>
       {!open && (draft || busy) ? <small>{busy ? '正在回答…' : '有未保存的草稿'}</small> : null}
     </div>
     {open && <div className="ian-editor" ref={editor}>
