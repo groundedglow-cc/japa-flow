@@ -25167,7 +25167,10 @@ function LessonWordList({ wordIds, vocabulary }) {
         "\u672C\u9898\u751F\u8BCD \xB7 ",
         words.length
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", { children: collapsed ? "\u25B8" : "\u25BE" })
+      /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("span", { className: "text-vocabulary-toggle-action", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", { className: "text-vocabulary-toggle-icon", "aria-hidden": "true", children: collapsed ? "\u25B8" : "\u25BE" }),
+        collapsed ? "\u5C55\u5F00\u751F\u8BCD" : "\u6536\u8D77\u751F\u8BCD"
+      ] })
     ] }),
     !collapsed ? /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("div", { className: "lesson-word-list-items", children: words.map((word, index) => /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(
       "button",

@@ -788,7 +788,7 @@ function LessonWordList({ wordIds, vocabulary }) {
   return (
     <section className="lesson-word-list" aria-label="本题生词">
       <button className="lesson-word-list-toggle" type="button" onClick={toggleCollapsed} aria-expanded={!collapsed}>
-        <strong>本题生词 · {words.length}</strong><span>{collapsed ? "▸" : "▾"}</span>
+        <strong>本题生词 · {words.length}</strong><span className="text-vocabulary-toggle-action"><span className="text-vocabulary-toggle-icon" aria-hidden="true">{collapsed ? "▸" : "▾"}</span>{collapsed ? "展开生词" : "收起生词"}</span>
       </button>
       {!collapsed ? (
       <div className="lesson-word-list-items">

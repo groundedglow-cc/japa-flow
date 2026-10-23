@@ -251,6 +251,22 @@
       .text-vocabulary-toggle:hover strong,
       .text-vocabulary-toggle:focus-visible strong { text-decoration: underline; }
 
+      .text-vocabulary-toggle-action {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        color: var(--muted);
+        font-size: 11px;
+        font-weight: 400;
+      }
+
+      .text-vocabulary-toggle-icon {
+        position: relative;
+        top: -1px;
+        font-size: 18px;
+        line-height: 1;
+      }
+
       .text-vocabulary-items {
         display: flex;
         flex-wrap: wrap;
@@ -1211,7 +1227,7 @@
         const collapsed = window.localStorage.getItem(VOCABULARY_COLLAPSED_STORAGE_KEY) !== "false";
         return `<div class="text-vocabulary-debug" data-text-vocabulary-section="${section}">
           <button class="text-vocabulary-toggle" type="button" data-toggle-vocabulary="${section}" aria-expanded="${!collapsed}">
-            <strong>本段生词 · ${words.length}</strong><span>${collapsed ? "▸" : "▾"}</span>
+            <strong>本段生词 · ${words.length}</strong><span class="text-vocabulary-toggle-action"><span class="text-vocabulary-toggle-icon" aria-hidden="true">${collapsed ? "▸" : "▾"}</span>${collapsed ? "展开生词" : "收起生词"}</span>
           </button>
           ${collapsed ? "" : `<div class="text-vocabulary-items">${chips}</div>`}
         </div>`;
