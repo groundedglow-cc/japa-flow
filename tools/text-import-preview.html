@@ -724,6 +724,7 @@
         .sentence .jp, .sentence .jp .base-text, .line .jp, .line .jp .base-text { font-size: 14px; line-height: 1.38; }
         .sentence .kana, .sentence .cn, .line .kana, .line .cn { margin-top: 2px; font-size: 13px; line-height: 1.35; }
         .sentence-tools { display: flex; grid-column: 3; grid-row: 1; align-items: center; flex-wrap: wrap; gap: 5px; min-width: 0; }
+        .sentence-tools { position: relative; z-index: 3; }
         .sentence-tools .segment-actions { gap: 4px; }
         .sentence-tools .segment-actions button { min-width: 26px; width: 26px; height: 26px; padding: 0; font-size: 11px; }
         /* A tap on the sentence already plays its audio. Keep that interaction
@@ -734,7 +735,8 @@
         .sentence-tools .inline-notes-host .ian-entry,
         .sentence-tools .inline-notes-host:not(:has(.is-open, .ian-note, .ian-status:not(:empty))) .ian-entry { position: static; min-height: 28px; }
         .sentence-tools .inline-notes-host .ian-trigger { width: 32px; height: 32px; min-height: 32px; }
-        .sentence-tools .inline-notes-host .ian-trigger { opacity: 1; pointer-events: auto; }
+        .sentence-tools .inline-notes-host { position: relative !important; z-index: 4; height: auto !important; overflow: visible; }
+        .sentence-tools .inline-notes-host .ian-trigger { position: relative; z-index: 5; opacity: 1 !important; pointer-events: auto !important; touch-action: manipulation; }
         .sentence-tools:has(.inline-notes-host .is-open),
         .sentence-tools:has(.inline-notes-host .ian-note),
         .sentence-tools:has(.inline-notes-host .ian-status:not(:empty)) { grid-column: 2 / -1; grid-row: 2; }
