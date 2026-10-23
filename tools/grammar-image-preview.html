@@ -730,9 +730,7 @@
         grammarAudioManifest = audioManifest;
         summary.textContent = `第 ${activeLessonNo} 课 · ${lesson.pages.length} 张`;
         viewer.innerHTML = `
-          <div class="grammar-note">
-            <div id="speechStatus" role="status" aria-live="polite">${audioManifest ? "标准例句音频已就绪。点击句子播放，再次点击停止。" : "本课标准例句音频尚未生成。"}</div>
-          </div>
+          ${audioManifest ? "" : `<div class="grammar-note"><div id="speechStatus" role="status" aria-live="polite">本课标准例句音频尚未生成。</div></div>`}
           <div class="image-stack">
             ${lesson.pages.map((pageNo, index) => `
               <figure class="image-frame" data-page-mode="${pageMode(activeLessonNo, pageNo)}">
