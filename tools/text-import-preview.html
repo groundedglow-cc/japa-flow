@@ -524,6 +524,12 @@
 
       .segment-actions .inline-notes-host .ian-entry { position: static; }
 
+      .inline-notes-container:hover .segment-actions .inline-notes-host .ian-trigger,
+      .inline-notes-container:focus-within .segment-actions .inline-notes-host .ian-trigger {
+        opacity: 1;
+        pointer-events: auto;
+      }
+
       /* This wrapper is transparent to the desktop grid. On touch layouts it
          becomes one action row, keeping playback and notes side by side. */
       .sentence-tools { display: contents; }
