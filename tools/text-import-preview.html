@@ -543,9 +543,20 @@
         background: #f3f8f6;
         cursor: pointer;
         font-size: 15px;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.16s ease;
       }
 
       .sentence-tools > .text-ai-trigger { grid-column: 3; grid-row: 2; }
+
+      .sentence:hover .text-ai-trigger,
+      .line:hover .text-ai-trigger,
+      .sentence:focus-within .text-ai-trigger,
+      .line:focus-within .text-ai-trigger {
+        opacity: 1;
+        pointer-events: auto;
+      }
 
       .text-cell > .inline-notes-host {
         position: static;
@@ -786,6 +797,7 @@
         .sentence-tools { position: relative; z-index: 3; }
         .sentence-tools .segment-actions { gap: 4px; flex-wrap: wrap; }
         .sentence-tools > .text-ai-trigger { width: 32px; height: 32px; min-height: 32px; }
+        .sentence-tools > .text-ai-trigger { opacity: 1; pointer-events: auto; }
         .sentence-tools .segment-actions button { min-width: 26px; width: 26px; height: 26px; padding: 0; font-size: 11px; }
         /* A tap on the sentence already plays its audio. Keep that interaction
            direct and reserve the visible control slot for notes / AI. */
