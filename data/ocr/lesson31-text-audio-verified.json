@@ -299,23 +299,24 @@
               "speaker": "乙",
               "text": "この道をまっすぐ行くと、デパートがあります。市役所はその隣ですよ。",
               "start": 29.41,
-              "end": 35.71,
-              "duration": 6.3,
+              "end": 35.51,
+              "duration": 6.1,
               "speechUnitCount": 1,
               "matchScore": 1,
               "asrText": "こ の 道 を ま っ す ぐ 行 く と デ パ ー ト が あ り ま す 市 役 所 は そ の 隣 で す よ",
               "phraseIndexes": [
                 6
               ],
-              "method": "legacy-asr-alignment-range-converted",
+              "method": "manual-admin-adjustment",
               "confidence": "approved",
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-05T10:10:17.883Z",
-                "note": "Automatically approved by the bulk alignment workflow.",
+                "reviewedAt": "2026-10-23T11:02:00.371Z",
+                "note": "Manually verified and adjusted in the text audio preview.",
                 "matchScore": 1,
                 "asrText": "こ の 道 を ま っ す ぐ 行 く と デ パ ー ト が あ り ま す 市 役 所 は そ の 隣 で す よ"
-              }
+              },
+              "reviewedAt": "2026-10-23T11:02:00.371Z"
             },
             "kana": "このみちをまっすぐいくと、でぱーとがあります。しやくしょはそのとなりですよ。",
             "segments": [
@@ -418,23 +419,24 @@
               "speaker": "甲",
               "text": "朝ご飯は毎日きちんと食べますか。",
               "start": 40.65,
-              "end": 43.95,
-              "duration": 3.3,
+              "end": 43.5,
+              "duration": 2.85,
               "speechUnitCount": 1,
               "matchScore": 0.875,
               "asrText": "朝 ご は ん は 毎 日 き ち ん と 食 べ ま す か",
               "phraseIndexes": [
                 8
               ],
-              "method": "legacy-asr-alignment-range-converted",
+              "method": "manual-admin-adjustment",
               "confidence": "approved",
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-05T10:10:17.883Z",
-                "note": "Automatically approved by the bulk alignment workflow.",
+                "reviewedAt": "2026-10-23T11:02:21.253Z",
+                "note": "Manually verified and adjusted in the text audio preview.",
                 "matchScore": 0.875,
                 "asrText": "朝 ご は ん は 毎 日 き ち ん と 食 べ ま す か"
-              }
+              },
+              "reviewedAt": "2026-10-23T11:02:21.253Z"
             },
             "kana": "あさごはんはまいにちきちんとたべますか。",
             "segments": [
@@ -984,24 +986,25 @@
               "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit8/lesson31/lesson_apps.mp3",
               "speaker": "森",
               "text": "コンクリートの卓球台？ へえ、おもしろいですね。",
-              "start": 38.21,
+              "start": 38.021,
               "end": 42.23,
-              "duration": 4.02,
+              "duration": 4.209,
               "speechUnitCount": 1,
               "matchScore": 0.8,
               "asrText": "コ ン ク リ ー ト の 卓 球 台 へ え 面 白 い で す ね",
               "phraseIndexes": [
                 6
               ],
-              "method": "legacy-asr-alignment-range-converted",
+              "method": "manual-admin-adjustment",
               "confidence": "approved",
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-05T10:11:21.193Z",
-                "note": "Automatically approved by the bulk alignment workflow.",
+                "reviewedAt": "2026-10-23T11:04:58.786Z",
+                "note": "Manually verified and adjusted in the text audio preview.",
                 "matchScore": 0.8,
                 "asrText": "コ ン ク リ ー ト の 卓 球 台 へ え 面 白 い で す ね"
-              }
+              },
+              "reviewedAt": "2026-10-23T11:04:58.786Z"
             },
             "kana": "こんくりーとのたっきゅうだい？ へえ、おもしろいですね。",
             "segments": [
@@ -1291,24 +1294,25 @@
               "sourceUrl": "https://japaflow-audio-bucket.oss-cn-shanghai.aliyuncs.com/textbook-audio/book1-unit8/lesson31/lesson_apps.mp3",
               "speaker": "森",
               "text": "馬さんもよく利用するんですか。",
-              "start": 70.5,
+              "start": 70,
               "end": 72.48,
-              "duration": 1.98,
+              "duration": 2.48,
               "speechUnitCount": 1,
               "matchScore": 1,
               "asrText": "馬 さ ん も よ く 利 用 す る ん で す か",
               "phraseIndexes": [
                 11
               ],
-              "method": "legacy-asr-alignment-range-converted",
+              "method": "manual-admin-adjustment",
               "confidence": "approved",
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-08-05T10:11:21.193Z",
-                "note": "Automatically approved by the bulk alignment workflow.",
+                "reviewedAt": "2026-10-23T11:05:49.155Z",
+                "note": "Manually verified and adjusted in the text audio preview.",
                 "matchScore": 1,
                 "asrText": "馬 さ ん も よ く 利 用 す る ん で す か"
-              }
+              },
+              "reviewedAt": "2026-10-23T11:05:49.155Z"
             },
             "kana": "マーさんもよくりようするんですか。",
             "segments": [
@@ -1639,8 +1643,8 @@
               "speaker": "馬",
               "text": "もうすぐ1時15分になります。",
               "start": 96.1,
-              "end": 99.35,
-              "duration": 3.25,
+              "end": 98.5,
+              "duration": 2.4,
               "speechUnitCount": 1,
               "matchScore": 0.786,
               "asrText": "も う す ぐ 一 時 十 五 分 に な り ま す",
@@ -1651,12 +1655,12 @@
               "confidence": "approved",
               "review": {
                 "status": "approved",
-                "reviewedAt": "2026-09-06T08:26:59.124Z",
+                "reviewedAt": "2026-10-23T11:07:22.557Z",
                 "note": "Manually verified and adjusted in the text audio preview.",
                 "matchScore": 0.786,
                 "asrText": "も う す ぐ 一 時 十 五 分 に な り ま す"
               },
-              "reviewedAt": "2026-09-06T08:26:59.124Z"
+              "reviewedAt": "2026-10-23T11:07:22.557Z"
             },
             "kana": "もうすぐいちじじゅうごふんになります。",
             "segments": [
@@ -1793,5 +1797,5 @@
       }
     ]
   },
-  "updatedAt": "2026-09-06T08:27:07.455Z"
+  "updatedAt": "2026-10-23T11:07:22.558Z"
 }

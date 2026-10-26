@@ -450,8 +450,10 @@
         .image-lightbox-stage img { display: block; width: min(100%, 760px); max-width: none; height: auto; transform-origin: center center; transition: transform 150ms ease; }
       }
     </style>
-    <link rel="stylesheet" href="/shared/notes/dist/inline-notes.css?v=28199f7d1380">
-    <script type="module" src="/shared/notes/dist/inline-notes.js?v=28199f7d1380"></script>
+    <script src="/japaflow-config.local.js"></script>
+    <script src="/japaflow-config.example.js"></script>
+    <link rel="stylesheet" href="/shared/notes/dist/inline-notes.css?v=a09d7590b31d">
+    <script type="module" src="/shared/notes/dist/inline-notes.js?v=a09d7590b31d"></script>
   </head>
   <body>
     <main class="shell">
@@ -537,7 +539,7 @@
       async function playSentence(button) {
         const same = activeSentenceButton === button;
         stopSentence();
-        vocabularyAudio.pause();
+        stopVocabularyPlayback();
         document.querySelectorAll(".grammar-vocabulary-chip.playing").forEach((item) => item.classList.remove("playing"));
         if (same) { speechStatus("已停止朗读。"); return; }
         const url = grammarAudioManifest?.sentences?.[button.dataset.sentence];
@@ -546,7 +548,11 @@
           return;
         }
         const version = sentencePlaybackVersion;
-        const audio = new Audio(url);
+        const config = window.JAPAFLOW_CONFIG || {};
+        const audioUrl = config.OSS_ENABLED && config.OSS_BASE_URL
+          ? `${config.OSS_BASE_URL.replace(/\/$/, "")}${url}`
+          : url;
+        const audio = new Audio(audioUrl);
         sentenceAudio = audio;
         activeSentenceButton = button;
         button.classList.add("playing");
@@ -564,9 +570,9 @@
           if (version === sentencePlaybackVersion) speechStatus("正在播放标准例句音频（再次点击停止）");
         } catch { finish("播放未能开始，请再次点击。"); }
       }
-      window.addEventListener("pagehide", () => { stopSentence(); vocabularyAudio.pause(); });
+      window.addEventListener("pagehide", () => { stopSentence(); stopVocabularyPlayback(); });
       document.addEventListener("visibilitychange", () => {
-        if (document.hidden) { stopSentence(); vocabularyAudio.pause(); }
+        if (document.hidden) { stopSentence(); stopVocabularyPlayback(); }
       });
 
       async function loadGrammarExamples(lessonNo) {
@@ -606,7 +612,6 @@
         </section>`).join("")}</div>`;
       }
       const vocabularyAudio = new Audio();
-      let vocabularyStopHandler = null;
       const grammarVocabularyCollapsePrefix = "japaflow:grammar-vocabulary-collapsed:";
 
       function isMobileImageViewer() { return window.matchMedia("(max-width: 920px) and (hover: none), (max-width: 920px) and (pointer: coarse)").matches; }
@@ -701,25 +706,42 @@
         </section>`;
       }
 
+      let vocabularyRequestVersion = 0;
+      let vocabularyTimer;
+      function stopVocabularyPlayback() {
+        ++vocabularyRequestVersion;
+        clearInterval(vocabularyTimer);
+        vocabularyAudio.onloadedmetadata = null;
+        vocabularyAudio.pause();
+        document.querySelectorAll(".grammar-vocabulary-chip.playing").forEach(item => item.classList.remove("playing"));
+      }
       function playVocabularyWord(word, button) {
         stopSentence();
         const segment = word?.audioSegment;
-        const url = segment?.sourceUrl;
-        if (!url) return;
+        if (!segment?.sourceUrl) return;
+        const version = vocabularyRequestVersion;
         vocabularyAudio.pause();
-        if (vocabularyStopHandler) vocabularyAudio.removeEventListener("timeupdate", vocabularyStopHandler);
-        vocabularyAudio.src = url;
-        vocabularyAudio.currentTime = Number(segment.start) || 0;
-        document.querySelectorAll(".grammar-vocabulary-chip.playing").forEach((item) => item.classList.remove("playing"));
+        clearInterval(vocabularyTimer);
+        vocabularyAudio.src = segment.sourceUrl;
+        document.querySelectorAll(".grammar-vocabulary-chip.playing").forEach(item => item.classList.remove("playing"));
         button.classList.add("playing");
-        const stopAt = Number(segment.end) || 0;
-        const stop = () => {
-          if (stopAt && vocabularyAudio.currentTime >= stopAt) { vocabularyAudio.pause(); vocabularyAudio.removeEventListener("timeupdate", stop); vocabularyStopHandler = null; button.classList.remove("playing"); }
+        const finish = () => {
+          if (version !== vocabularyRequestVersion) return;
+          clearInterval(vocabularyTimer);
+          vocabularyAudio.pause();
+          button.classList.remove("playing");
         };
-        vocabularyStopHandler = stop;
-        vocabularyAudio.addEventListener("timeupdate", stop);
-        vocabularyAudio.addEventListener("ended", () => button.classList.remove("playing"), { once: true });
-        vocabularyAudio.play().catch(() => button.classList.remove("playing"));
+        vocabularyAudio.onloadedmetadata = () => {
+          if (version !== vocabularyRequestVersion) return;
+          vocabularyAudio.currentTime = Number(segment.start) || 0;
+          vocabularyTimer = setInterval(() => {
+            if (segment.end && vocabularyAudio.currentTime >= Number(segment.end)) finish();
+          }, 15);
+          vocabularyAudio.play().catch(finish);
+        };
+        vocabularyAudio.onended = finish;
+        vocabularyAudio.onerror = finish;
+        vocabularyAudio.load();
       }
 
       function renderLessons(activeLessonNo) {
@@ -736,7 +758,7 @@
 
       async function renderViewer(activeLessonNo) {
         stopSentence();
-        vocabularyAudio.pause();
+        stopVocabularyPlayback();
         const lesson = lessons[activeLessonNo - 1];
         const [vocabularyData, examplesData, audioManifest] = await Promise.all([
           loadGrammarVocabulary(activeLessonNo), loadGrammarExamples(activeLessonNo),
@@ -806,7 +828,11 @@
         const vocabularyButton = event.target.closest("[data-vocabulary-index]");
         if (vocabularyButton) {
           const lesson = selectedLessonNo();
-          loadGrammarVocabulary(lesson).then((data) => playVocabularyWord(data?.words?.[Number(vocabularyButton.dataset.vocabularyIndex) - 1], vocabularyButton));
+          stopVocabularyPlayback();
+          const version = vocabularyRequestVersion;
+          loadGrammarVocabulary(lesson).then((data) => {
+            if (version === vocabularyRequestVersion) playVocabularyWord(data?.words?.[Number(vocabularyButton.dataset.vocabularyIndex) - 1], vocabularyButton);
+          });
           return;
         }
         const image = event.target.closest(".image-frame img");

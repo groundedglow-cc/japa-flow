@@ -821,33 +821,48 @@ function wordMeaning(word) {
   return word?.chinese || word?.cn || "";
 }
 
+let stopActiveVocabulary = () => {};
 function playVocabularyAudio(word) {
+  stopActiveVocabulary();
+  window.speechSynthesis?.cancel();
   const text = word?.writing || word?.kanjiOrTerm || word?.kana || "";
   const segment = word?.audioSegment;
   const source = segment?.sourceUrl || (segment?.localAudioPath ? `/${String(segment.localAudioPath).replace(/^\/+/, "")}` : "");
-  if (!source) {
+  let stopped = false;
+  let timer;
+  let audio;
+  const stop = () => {
+    stopped = true;
+    clearInterval(timer);
+    audio?.pause();
+    window.speechSynthesis?.cancel();
+  };
+  stopActiveVocabulary = stop;
+  const fallback = () => {
+    if (stopped) return;
+    audio?.pause();
+    clearInterval(timer);
     speakVocabularyWord(text);
-    return;
-  }
-  const audio = new Audio(source);
+    stopped = true;
+  };
+  if (!source) { fallback(); return; }
+  audio = new Audio(source);
   const start = Math.max(0, Number(segment.start) || 0);
   const end = Math.max(start, Number(segment.end) || 0);
-  let stopped = false;
-  const stop = () => {
-    if (stopped) return;
-    stopped = true;
-    audio.pause();
-  };
   audio.addEventListener("loadedmetadata", () => {
+    if (stopped) return;
     audio.currentTime = start;
-    audio.play().catch(() => speakVocabularyWord(text));
+    timer = window.setInterval(() => {
+      if (end && audio.currentTime >= end) stop();
+    }, 15);
+    audio.play().catch(fallback);
   }, { once: true });
-  audio.addEventListener("timeupdate", () => {
-    if (end && audio.currentTime >= end) stop();
-  });
-  audio.addEventListener("error", () => speakVocabularyWord(text), { once: true });
+  audio.addEventListener("ended", stop, { once: true });
+  audio.addEventListener("error", fallback, { once: true });
   audio.load();
 }
+window.addEventListener("pagehide", () => stopActiveVocabulary());
+document.addEventListener("visibilitychange", () => { if (document.hidden) stopActiveVocabulary(); });
 
 function speakVocabularyWord(text) {
   if (!text || !("speechSynthesis" in window)) return;

@@ -25,8 +25,8 @@ const dialoguePromptParts = (prompt: string): PromptPart[] => {
   };
   return parts[prompt] || [text(prompt)];
 };
-const sentenceItem = (id: string, number: string, prompt: string, kana: string, answer: string, source: "audio" | "prompt" | "example_transform" = "example_transform"): PracticeItem => ({
-  id, number, prompt: [text(prompt)], promptKana: kana, instruction: "", answerSource: source, evaluationMode: "exact", responseScope: "sentence_only", responseScopeHint: "写出完整句子。", inputSlots: sentenceSlot(), answer: { slotValues: { answer } }
+const sentenceItem = (id: string, number: string, prompt: string, kana: string, answer: string, source: "audio" | "prompt" | "example_transform" = "example_transform", promptParts?: RichText[]): PracticeItem => ({
+  id, number, prompt: promptParts || [text(prompt)], promptKana: kana, instruction: "", answerSource: source, evaluationMode: "exact", responseScope: "sentence_only", responseScopeHint: "写出完整句子。", inputSlots: sentenceSlot(), answer: { slotValues: { answer } }
 });
 const dialogueItem = (id: string, number: string, prompt: string, kana: string, answer: string, source: "audio" | "prompt" = "prompt"): PracticeItem => ({
   id, number, prompt: dialoguePromptParts(prompt), promptKana: kana, instruction: "", answerSource: source, evaluationMode: "exact", responseScope: "dialogue_only", responseScopeHint: "写出完整会话。", inputSlots: dialogueSlot(), answer: { slotValues: { answer } }, renderHint: "dialogue"
@@ -68,7 +68,7 @@ const activities: PracticeActivity[] = [
   },
   {
     id: "l31-p1-a3", section: "practice_1", order: 3, title: "仿照例句替换画线部分进行练习。", instruction: "", interaction: "pattern_substitution", answerUnit: "sentence", responseScope: "sentence_only", layout: [{ type: "example", content: { label: "[例]", before: "このパソコンは、たまにフリーズします。", beforeKana: "このパソコンは、たまにフリーズします。", after: [text("このパソコンは、たまにフリーズすることがあります。", { kana: "このパソコンは、たまにフリーズすることがあります。" })] } }], items: [
-      sentenceItem("l31-p1-a3-q1", "1", "この車は時々故障します", "このくるまはときどきこしょうします", "この車は、時々故障することがあります。"), sentenceItem("l31-p1-a3-q2", "2", "父はたまに怒ります", "ちちはたまにおこります", "父は、たまに怒ることがあります。"), sentenceItem("l31-p1-a3-q3", "3", "わたしは1年に1、2回風邪を引きます", "わたしはいちねんにいち、にかいかぜをひきます", "わたしは1年に1、2回風邪を引くことがあります。"), sentenceItem("l31-p1-a3-q4", "4", "母は時々財布を忘れます", "はははときどきさいふをわすれます", "母は、時々財布を忘れることがあります。")
+      sentenceItem("l31-p1-a3-q1", "1", "この車は時々故障します", "このくるまはときどきこしょうします", "この車は、時々故障することがあります。"), sentenceItem("l31-p1-a3-q2", "2", "父はたまに怒ります", "ちちはたまにおこります", "父は、たまに怒ることがあります。"), sentenceItem("l31-p1-a3-q3", "3", "わたしは1年に1、2回風邪を引きます", "わたしはいちねんにいち、にかいかぜをひきます", "わたしは1年に1、2回風邪を引くことがあります。"), sentenceItem("l31-p1-a3-q4", "4", "母は時々財布を忘れます", "はははときどきさいふをわすれます", "母は、時々財布を忘れることがあります。", "example_transform", [text("母", { kana: "はは" }), text("は"), text("時々", { kana: "ときどき" }), text("財布", { kana: "さいふ" }), text("を"), text("忘", { kana: "わす" }), text("れます")])
     ]
   },
   {

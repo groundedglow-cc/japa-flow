@@ -1,4 +1,4 @@
-import { existsSync, readFileSync } from "node:fs";
+import { appendFileSync, existsSync, readFileSync } from "node:fs";
 import { mkdir, rename, writeFile } from "node:fs/promises";
 import { createHash } from "node:crypto";
 import { join } from "node:path";
@@ -15,6 +15,13 @@ if (existsSync(".env")) {
 }
 
 const arg = (name, fallback = "") => process.argv.find((value) => value.startsWith(`--${name}=`))?.slice(name.length + 3) || fallback;
+const timingPath = arg("timing");
+const timingStarted = Date.now();
+const timing = (event, details = {}) => {
+  if (timingPath) appendFileSync(timingPath, JSON.stringify({ event, at: new Date().toISOString(), elapsedMs: Date.now() - timingStarted, ...details }) + "\n");
+};
+timing("start");
+process.on("exit", code => timing("exit", { code }));
 const lesson = Number(arg("lesson"));
 const limit = Number(arg("limit", "0"));
 const voice = arg("voice", process.env.AZURE_TTS_VOICE_ID || "ja-JP-KeitaNeural");
@@ -50,10 +57,15 @@ for (const text of texts) {
   if (!existsSync(path)) {
     if (limit && generated >= limit) continue;
     const ssml = `<speak version="1.0" xml:lang="ja-JP"><voice name="${voice}">${xmlEscape(text)}</voice></speak>`;
+    const requestStarted = Date.now();
+    timing("request-start", { hash });
     let response;
     try {
       response = await fetch(endpoint, { method: "POST", signal: AbortSignal.timeout(60000), headers: { "Ocp-Apim-Subscription-Key": key, "Content-Type": "application/ssml+xml", "X-Microsoft-OutputFormat": manifest.outputFormat, "User-Agent": "japa-flow-azure-grammar-audio" }, body: ssml });
-    } catch { throw Error("Azure Speech network request failed or timed out; credential was not printed."); }
+    } catch {
+      timing("request-error", { hash, durationMs: Date.now() - requestStarted });
+      throw Error("Azure Speech network request failed or timed out; credential was not printed.");
+    }
     const contentType = String(response.headers.get("content-type") || "").toLowerCase();
     const buffer = Buffer.from(await response.arrayBuffer());
     if (!response.ok) throw Error(`Azure Speech rejected request: HTTP ${response.status}. Check key, region, voice and quota.`);
@@ -62,6 +74,7 @@ for (const text of texts) {
     if (buffer.length < 1000 || looksLikeError || !hasMp3Header) throw Error(`Azure Speech returned an invalid MP3 response (bytes=${buffer.length}, content-type=${contentType}).`);
     await writeFile(`${path}.tmp`, buffer);
     await rename(`${path}.tmp`, path);
+    timing("request-complete", { hash, durationMs: Date.now() - requestStarted, bytes: buffer.length });
     generated += 1;
     console.log(`Generated ${generated}: ${text}`);
   }
@@ -69,6 +82,11 @@ for (const text of texts) {
 }
 // Publish only a complete manifest. Cached MP3s retain progress after interruption.
 if (Object.keys(manifest.sentences).length === texts.length) {
+  for (const path of Object.values(manifest.sentences)) {
+    const buffer = readFileSync(path.slice(1));
+    if (buffer.length < 1000 || !(buffer.subarray(0, 3).toString() === "ID3" || (buffer[0] === 0xff && (buffer[1] & 0xe0) === 0xe0))) throw Error("Invalid cached grammar MP3.");
+  }
+  timing("verified", { records: rawSentences.length, files: texts.length });
   await writeFile(`${manifestPath}.tmp`, `${JSON.stringify(manifest, null, 2)}\n`);
   await rename(`${manifestPath}.tmp`, manifestPath);
 }

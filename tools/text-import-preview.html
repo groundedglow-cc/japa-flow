@@ -840,8 +840,8 @@
         }
       }
     </style>
-    <link rel="stylesheet" href="/shared/notes/dist/inline-notes.css?v=28199f7d1380">
-    <script type="module" src="/shared/notes/dist/inline-notes.js?v=28199f7d1380"></script>
+    <link rel="stylesheet" href="/shared/notes/dist/inline-notes.css?v=a09d7590b31d">
+    <script type="module" src="/shared/notes/dist/inline-notes.js?v=a09d7590b31d"></script>
   </head>
   <body>
     <header>
@@ -1474,7 +1474,16 @@
         return `${Number(segment.start || 0).toFixed(3)}s - ${Number(segment.end || 0).toFixed(3)}s`;
       }
 
+      let segmentPlaybackVersion = 0;
+      const stopSegmentPlayback = () => {
+        ++segmentPlaybackVersion;
+        clearInterval(state.stopTimer);
+        state.audio.pause();
+      };
+      window.addEventListener("pagehide", stopSegmentPlayback);
+      document.addEventListener("visibilitychange", () => { if (document.hidden) stopSegmentPlayback(); });
       async function playSegment(segment) {
+        const version = ++segmentPlaybackVersion;
         if (!segment?.sourceUrl) {
           setStatus("当前句子没有音频片段。", true);
           return;
@@ -1484,15 +1493,17 @@
         state.audio.src = segment.sourceUrl;
         try {
           await waitForAudioMetadata();
+          if (version !== segmentPlaybackVersion) return;
           state.audio.currentTime = Math.max(0, Number(segment.start) || 0);
           state.stopTimer = window.setInterval(() => {
             if (state.audio.currentTime >= Number(segment.end || 0)) {
               state.audio.pause();
               clearInterval(state.stopTimer);
             }
-          }, 30);
+          }, 15);
           await state.audio.play();
         } catch (error) {
+          if (version !== segmentPlaybackVersion) return;
           clearInterval(state.stopTimer);
           setStatus(`播放失败：${error.message}`, true);
         }

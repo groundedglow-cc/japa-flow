@@ -1,7 +1,9 @@
 {
   "permissions": {
     "allow": [
-      "Bash(git remote *)"
+      "Bash(git remote *)",
+      "Bash(grep -iE \"\\\\.\\(png|jpg|jpeg|webp\\)$\")",
+      "Bash(grep -rn \"買い物に行ったり\\\\|散歩したり\\\\|かどうか\\\\|によって\\\\|あっ、そうだ\" --include=*.json --include=*.ts --include=*.mjs .)"
     ]
   }
 }

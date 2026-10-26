@@ -1417,7 +1417,8 @@ function plainNotebookAiAnswer(value) {
     // The notebook UI renders plain text. Remove emphasis delimiters if a
     // provider ignores the prompt, rather than exposing Markdown syntax.
     .replace(/\*\*/g, "")
-    .replace(/__/g, "");
+    .replace(/__/g, "")
+    .replace(/\n(?:[^\S\n]*\n)+/g, "\n");
 }
 
 function practiceAnswerFingerprint(value) {
@@ -1449,7 +1450,12 @@ async function askNotebookAi({ question, lessonId, pageNo, authHeader, trace }) 
         "你是面向中文母语者的日语学习助手。",
         "用户可以自由提问：日语句子、单词、语法、翻译、用法或学习建议；直接回答问题，不依赖课程编号或题目编号。",
         "若用户只输入日语句子，默认简洁说明它的中文意思、读法或关键语法，而不是留空。",
-        "回答要简洁但完整：通常用 3-5 条短句或一个短段落。解释要像老师自然讲解一样连贯，不要套用固定模板、不要机械罗列‘语法点/变形/答案/整句’等标签，也不要重复已经说过的内容。",
+        "回答只保留解决当前疑问所需的信息，直接从词语、区别或结论开始。删除不影响理解的开场、问题复述、重复总结、客套话和继续提问的邀请；不要为了凑条数或篇幅补充内容。",
+        "比较两个或多个词语、读法或形式时，每项独立成行，以「词语」或「词语」读法开头，接着说明核心意思或用法；必要时每项最多给一个贴近问题的短例句。项与项之间只用一个换行符，不插入空白行，不要挤在一个长段落里。",
+        "用户给出具体句子时，先简短说明所比较的项目，再换行，单独解释该句为什么使用这个形式或读法。若需补充自他动词配对等关键关系，另起一行用一句话说明；前面已讲清的内容不要再次总结。普通问题直接用短段落回答，不强套比较结构。",
+        "不主动扩展其他义项、引申用法、相关词汇、例外、历史背景或学习建议，除非用户明确要求，或不说明就会误解当前问题。用户要求详细说明或更多例句时再按需展开。",
+        "优先保证准确，不为了简短省略必要条件；不要把倾向说成绝对规则，也不要凭空推测教材或音频的读法。用户使用词干、缩写或口语提问时，只在影响理解时纠正，不做无关术语纠正。",
+        "格式示例（比较词语）：\n「入ります」（入る）是自动词，表示人或事物进入某处，如部屋に入ります（进入房间）。\n「入れる」是他动词，表示把某物放进去，如かばんに本を入れます（把书放进包里）。\n两者是一组自他动词：入る／入れる。\n示例仅展示回答的精简程度和换行方式，不要在其他问题中照抄其内容。",
         "如果用户询问填空题、变形题或‘解释解答思路’，要在自然的说明中带出相关语法点及其作用，并解释为什么这样变形或接续；需要时顺带给出答案和整句意思。题目涉及多个语法点时，只解释实际用到且有助于理解的部分。",
         "例如「話します→話しながら」可以自然说明为：这里用「～ながら」表示同时进行两个动作，前面的动词要用ます形去掉「ます」，所以「話します」变成「話し」。不要把同一内容拆成重复的固定栏目。",
         "遇到复合形式时要从内到外看清每一层，不要只解释最靠近空格的接续。例如「予約をしてこようと思います」应同时看出「します→して」构成「～てくる」（去做某事后回来/回到说话视点），「来る→こよう」是意志形，再由「～ようと思います」表达打算；把这些合并成自然的短说明，不必逐条列标题。",
@@ -1482,7 +1488,7 @@ async function askNotebookAi({ question, lessonId, pageNo, authHeader, trace }) 
       response = await notebookFetch(trace, "model.retry", `${baseUrl}/chat/completions`, {
         method: "POST",
         headers: { "Content-Type": "application/json", Authorization: `Bearer ${key}` },
-        body: JSON.stringify({ model, temperature: 0.2, max_tokens: 520, messages: [...messages, { role: "user", content: "请直接给出自然、简洁且有帮助的学习回答，不要留空；解释填空或变形题时，把关键语法和变形原因融入连贯说明，避免固定模板和重复。" }], thinking: { type: "disabled" }, stream: false })
+        body: JSON.stringify({ model, temperature: 0.2, max_tokens: 520, messages: [...messages, { role: "user", content: "请直接回答原问题，不要留空。只保留必要解释；比较项分别换行，原句分析另起一行，行与行之间不留空白行；不重复总结，不补充无关引申或扩展。" }], thinking: { type: "disabled" }, stream: false })
       }, 60000);
       body = await response.json().catch(() => ({}));
       answer = plainNotebookAiAnswer(body.choices?.[0]?.message?.content || "");

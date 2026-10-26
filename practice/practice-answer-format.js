@@ -463,7 +463,7 @@
       activePracticeRecording = null;
       recordButton.classList.remove("recording");
       recordButton.setAttribute("aria-label", "录音输入");
-      recordButton.title = shouldFormat ? "录音后自动转写并整理为对话格式" : "录音后自动转写到输入框";
+      recordButton.title = "推荐试试 Typeless 语音输入，日语转写可能更准确，也能减少模型整理时的改写。点击此按钮仍可使用本站录音输入。";
       try { processor.disconnect(); source.disconnect(); } catch {}
       try { stream.getTracks().forEach((track) => track.stop()); } catch {}
       try { await audioContext.close(); } catch {}
@@ -552,7 +552,7 @@
     recordButton.className = "speech-input-btn";
     recordButton.innerHTML = speakerIcon();
     recordButton.setAttribute("aria-label", "录音输入");
-    recordButton.title = isDialogueField(field) ? "录音后自动转写并整理为对话格式" : "录音后自动转写到输入框";
+    recordButton.title = "推荐试试 Typeless 语音输入，日语转写可能更准确，也能减少模型整理时的改写。点击此按钮仍可使用本站录音输入。";
 
     recordButton.addEventListener("click", () => startSpeechInput(field, status, recordButton));
     wrapper.append(recordButton);

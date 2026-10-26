@@ -637,9 +637,9 @@ figcaption {
 }
 
 .example-head {
-  display: inline-grid;
-  grid-auto-flow: column;
-  width: max-content;
+  display: inline-flex;
+  min-width: 0;
+  max-width: 100%;
   column-gap: 6px;
   align-items: baseline;
   justify-self: start;
@@ -657,8 +657,15 @@ figcaption {
   line-height: 1;
 }
 
-.example-head .example-before,
+.example-head .example-before {
+  min-width: 0;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+.example-head .example-label,
 .example-head .example-arrow {
+  flex-shrink: 0;
   white-space: nowrap;
 }
 

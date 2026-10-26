@@ -25197,33 +25197,54 @@ function wordMeaning(word) {
   if (Array.isArray(word?.meaningZh)) return word.meaningZh.filter(Boolean).join("\uFF1B");
   return word?.chinese || word?.cn || "";
 }
+var stopActiveVocabulary = () => {
+};
 function playVocabularyAudio(word) {
+  stopActiveVocabulary();
+  window.speechSynthesis?.cancel();
   const text39 = word?.writing || word?.kanjiOrTerm || word?.kana || "";
   const segment = word?.audioSegment;
   const source = segment?.sourceUrl || (segment?.localAudioPath ? `/${String(segment.localAudioPath).replace(/^\/+/, "")}` : "");
-  if (!source) {
+  let stopped = false;
+  let timer;
+  let audio38;
+  const stop = () => {
+    stopped = true;
+    clearInterval(timer);
+    audio38?.pause();
+    window.speechSynthesis?.cancel();
+  };
+  stopActiveVocabulary = stop;
+  const fallback = () => {
+    if (stopped) return;
+    audio38?.pause();
+    clearInterval(timer);
     speakVocabularyWord(text39);
+    stopped = true;
+  };
+  if (!source) {
+    fallback();
     return;
   }
-  const audio38 = new Audio(source);
+  audio38 = new Audio(source);
   const start = Math.max(0, Number(segment.start) || 0);
   const end = Math.max(start, Number(segment.end) || 0);
-  let stopped = false;
-  const stop = () => {
-    if (stopped) return;
-    stopped = true;
-    audio38.pause();
-  };
   audio38.addEventListener("loadedmetadata", () => {
+    if (stopped) return;
     audio38.currentTime = start;
-    audio38.play().catch(() => speakVocabularyWord(text39));
+    timer = window.setInterval(() => {
+      if (end && audio38.currentTime >= end) stop();
+    }, 15);
+    audio38.play().catch(fallback);
   }, { once: true });
-  audio38.addEventListener("timeupdate", () => {
-    if (end && audio38.currentTime >= end) stop();
-  });
-  audio38.addEventListener("error", () => speakVocabularyWord(text39), { once: true });
+  audio38.addEventListener("ended", stop, { once: true });
+  audio38.addEventListener("error", fallback, { once: true });
   audio38.load();
 }
+window.addEventListener("pagehide", () => stopActiveVocabulary());
+document.addEventListener("visibilitychange", () => {
+  if (document.hidden) stopActiveVocabulary();
+});
 function speakVocabularyWord(text39) {
   if (!text39 || !("speechSynthesis" in window)) return;
   window.speechSynthesis.cancel();
@@ -41163,10 +41184,10 @@ var dialoguePromptParts = (prompt) => {
   };
   return parts[prompt] || [text31(prompt)];
 };
-var sentenceItem3 = (id, number, prompt, kana2, answer3, source = "example_transform") => ({
+var sentenceItem3 = (id, number, prompt, kana2, answer3, source = "example_transform", promptParts) => ({
   id,
   number,
-  prompt: [text31(prompt)],
+  prompt: promptParts || [text31(prompt)],
   promptKana: kana2,
   instruction: "",
   answerSource: source,
@@ -41268,7 +41289,7 @@ var activities30 = [
       sentenceItem3("l31-p1-a3-q1", "1", "\u3053\u306E\u8ECA\u306F\u6642\u3005\u6545\u969C\u3057\u307E\u3059", "\u3053\u306E\u304F\u308B\u307E\u306F\u3068\u304D\u3069\u304D\u3053\u3057\u3087\u3046\u3057\u307E\u3059", "\u3053\u306E\u8ECA\u306F\u3001\u6642\u3005\u6545\u969C\u3059\u308B\u3053\u3068\u304C\u3042\u308A\u307E\u3059\u3002"),
       sentenceItem3("l31-p1-a3-q2", "2", "\u7236\u306F\u305F\u307E\u306B\u6012\u308A\u307E\u3059", "\u3061\u3061\u306F\u305F\u307E\u306B\u304A\u3053\u308A\u307E\u3059", "\u7236\u306F\u3001\u305F\u307E\u306B\u6012\u308B\u3053\u3068\u304C\u3042\u308A\u307E\u3059\u3002"),
       sentenceItem3("l31-p1-a3-q3", "3", "\u308F\u305F\u3057\u306F1\u5E74\u306B1\u30012\u56DE\u98A8\u90AA\u3092\u5F15\u304D\u307E\u3059", "\u308F\u305F\u3057\u306F\u3044\u3061\u306D\u3093\u306B\u3044\u3061\u3001\u306B\u304B\u3044\u304B\u305C\u3092\u3072\u304D\u307E\u3059", "\u308F\u305F\u3057\u306F1\u5E74\u306B1\u30012\u56DE\u98A8\u90AA\u3092\u5F15\u304F\u3053\u3068\u304C\u3042\u308A\u307E\u3059\u3002"),
-      sentenceItem3("l31-p1-a3-q4", "4", "\u6BCD\u306F\u6642\u3005\u8CA1\u5E03\u3092\u5FD8\u308C\u307E\u3059", "\u306F\u306F\u306F\u3068\u304D\u3069\u304D\u3055\u3044\u3075\u3092\u308F\u3059\u308C\u307E\u3059", "\u6BCD\u306F\u3001\u6642\u3005\u8CA1\u5E03\u3092\u5FD8\u308C\u308B\u3053\u3068\u304C\u3042\u308A\u307E\u3059\u3002")
+      sentenceItem3("l31-p1-a3-q4", "4", "\u6BCD\u306F\u6642\u3005\u8CA1\u5E03\u3092\u5FD8\u308C\u307E\u3059", "\u306F\u306F\u306F\u3068\u304D\u3069\u304D\u3055\u3044\u3075\u3092\u308F\u3059\u308C\u307E\u3059", "\u6BCD\u306F\u3001\u6642\u3005\u8CA1\u5E03\u3092\u5FD8\u308C\u308B\u3053\u3068\u304C\u3042\u308A\u307E\u3059\u3002", "example_transform", [text31("\u6BCD", { kana: "\u306F\u306F" }), text31("\u306F"), text31("\u6642\u3005", { kana: "\u3068\u304D\u3069\u304D" }), text31("\u8CA1\u5E03", { kana: "\u3055\u3044\u3075" }), text31("\u3092"), text31("\u5FD8", { kana: "\u308F\u3059" }), text31("\u308C\u307E\u3059")])
     ]
   },
   {

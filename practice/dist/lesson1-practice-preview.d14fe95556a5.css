@@ -637,9 +637,9 @@ figcaption {
 }
 
 .example-head {
-  display: inline-grid;
-  grid-auto-flow: column;
-  width: max-content;
+  display: inline-flex;
+  min-width: 0;
+  max-width: 100%;
   column-gap: 6px;
   align-items: baseline;
   justify-self: start;
@@ -657,8 +657,15 @@ figcaption {
   line-height: 1;
 }
 
-.example-head .example-before,
+.example-head .example-before {
+  min-width: 0;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+.example-head .example-label,
 .example-head .example-arrow {
+  flex-shrink: 0;
   white-space: nowrap;
 }
 
@@ -2024,6 +2031,7 @@ rt {
 .inline-ai-notes :focus-visible { outline:2px solid #90b5ad; outline-offset:1px; }
 .ian-entry { display:flex; align-items:center; justify-content:flex-end; gap:6px; min-height:28px; }
 .inline-ai-notes .ian-trigger { position:relative; display:grid; place-items:center; width:28px; height:28px; padding:0; border:1px solid #547b73; border-radius:7px; color:#547b73; background:#f3f8f6; font-size:16px; }
+.inline-ai-notes .ian-trigger svg { display:block; width:16px; height:16px; flex-shrink:0; fill:currentColor; }
 .ian-trigger span { position:absolute; top:0; right:3px; font-size:11px; }
 .inline-ai-notes.is-open .ian-entry { display:none; }
 .ian-editor { width:100%; margin-top:2px; padding:10px 12px; border:1px solid #dce7e2; border-radius:9px; background:#f8fbf9; box-shadow:none; }
@@ -2061,6 +2069,7 @@ rt {
 .ian-saved { animation:ian-saved-flash 1.2s ease-out; }
 @keyframes ian-saved-flash { from { box-shadow:0 0 0 3px #91b29d; } to { box-shadow:0 0 0 0 transparent; } }
 @media(max-width:480px) { .ian-editor { padding:9px 10px; } .inline-ai-notes button { min-height:36px; } }
+@media(max-width:720px) { .inline-ai-notes .ian-trigger { width:32px; height:32px; min-height:32px; } }
 @media(prefers-reduced-motion:reduce) { .ian-saved { animation:none; } }
 
 .inline-ai-notes textarea:focus-visible { outline:none; border-color:#82aaa0; box-shadow:0 0 0 1px #82aaa026; }

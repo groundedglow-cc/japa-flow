@@ -3,12 +3,15 @@
 // Usage:
 //   node scripts/upload-audio-to-oss.mjs           # upload all
 //   node scripts/upload-audio-to-oss.mjs --dry-run # list files without uploading
+//   node scripts/upload-audio-to-oss.mjs --dir audio/grammar --dry-run
+//   node scripts/upload-audio-to-oss.mjs --dir audio/grammar
 //
 // Requires OSS_ENABLED=true and valid OSS_* env vars in .env.
 
 import { existsSync, readFileSync } from "node:fs";
-import { readFile, readdir } from "node:fs/promises";
-import { relative, resolve, join } from "node:path";
+import { readFile, readdir, realpath, stat } from "node:fs/promises";
+import { relative, resolve, join, isAbsolute, sep } from "node:path";
+import { parseArgs } from "node:util";
 import { isOSSEnabled, getOSSClient, ossFileExists, uploadToOSS } from "./oss-utils.mjs";
 
 // Load .env (same pattern as server.mjs)
@@ -31,11 +34,15 @@ import { isOSSEnabled, getOSSClient, ossFileExists, uploadToOSS } from "./oss-ut
   }
 })();
 
-const dryRun = process.argv.includes("--dry-run");
+const { values } = parseArgs({ options: {
+  "dry-run": { type: "boolean", default: false },
+  dir: { type: "string", default: "audio" }
+} });
+const dryRun = values["dry-run"];
 const concurrency = 5;
-const audioDir = resolve("audio");
+const audioDir = resolve(values.dir);
 
-if (!isOSSEnabled()) {
+if (!dryRun && !isOSSEnabled()) {
   console.error("OSS_ENABLED is not true. Set OSS_ENABLED=true in .env to proceed.");
   process.exit(1);
 }
@@ -46,13 +53,20 @@ async function* collectMp3Files(dir) {
     const full = join(dir, entry.name);
     if (entry.isDirectory()) {
       yield* collectMp3Files(full);
-    } else if (entry.name.endsWith(".mp3")) {
+    } else if (entry.isFile() && entry.name.endsWith(".mp3")) {
       yield full;
     }
   }
 }
 
 async function main() {
+  const audioRoot = await realpath(resolve("audio"));
+  const selected = await realpath(audioDir);
+  const withinAudio = relative(audioRoot, selected);
+  if (withinAudio === ".." || withinAudio.startsWith(`..${sep}`) || isAbsolute(withinAudio)) {
+    throw new Error("--dir must be audio/ or a directory inside audio/.");
+  }
+  if (!(await stat(audioDir)).isDirectory()) throw new Error("--dir must be a directory.");
   console.log(`${dryRun ? "[DRY RUN] " : ""}Gathering MP3 files from ${audioDir}...`);
   const files = [];
   for await (const f of collectMp3Files(audioDir)) {
@@ -61,7 +75,7 @@ async function main() {
   console.log(`Found ${files.length} MP3 files.`);
 
   if (dryRun) {
-    console.log("\nFiles to upload:");
+    console.log("\nFiles in selected scope (OSS existence is not checked in dry run):");
     for (const f of files) {
       const ossKey = relative(resolve("."), f);
       console.log(`  ${f}  ->  ${ossKey}`);
@@ -119,6 +133,7 @@ async function main() {
   await Promise.all(workers);
 
   console.log(`\nDone: uploaded=${uploaded} skipped=${skipped} errors=${errors} total=${files.length}`);
+  if (errors) process.exitCode = 1;
 }
 
 main().catch((err) => {
