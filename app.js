@@ -2568,9 +2568,13 @@ async function loadVocabularyOccurrences(lessonId) {
   const lessonNo = String(lessonId || "").match(/\d+/)?.[0];
   if (!lessonNo) return {};
   try {
-    const response = await fetch(`/data/ocr/lesson${encodeURIComponent(lessonNo)}-vocabulary-occurrences.json`);
-    if (!response.ok) return {};
-    return await response.json();
+    const [textResponse, grammarResponse] = await Promise.all([
+      fetch(`/data/ocr/lesson${encodeURIComponent(lessonNo)}-vocabulary-occurrences.json`),
+      fetch(`/data/ocr/lesson${encodeURIComponent(lessonNo)}-grammar-vocabulary-occurrences.json`)
+    ]);
+    const text = textResponse.ok ? await textResponse.json() : {};
+    const grammar = grammarResponse.ok ? await grammarResponse.json() : null;
+    return grammar ? { ...text, grammar } : text;
   } catch {
     return {};
   }
@@ -6552,24 +6556,45 @@ function grammarPage() {
 }
 
 function isGrammarPattern(item) {
-  return !item.pattern.startsWith("表达：") && !item.pattern.startsWith("词语：");
+  return !/^(?:表达|词语|寒暄语|对比|参考)[:：]/.test(String(item?.pattern || ""));
 }
 
 function grammarNavGroup(title, entries) {
   return `
     <div class="grammar-nav-group">
       <div class="grammar-nav-title">${title}</div>
-      ${entries.map(({ item, index }, groupIndex) => `
+      ${entries.map(({ item, index }, groupIndex) => {
+        const number = grammarNavNumber(item, groupIndex + 1, title === "表达及词语讲解");
+        return `
         <button class="numbered-nav-item ${grammarNavProgress(item).statusClass} ${index === state.currentGrammar ? "active" : ""}" data-grammar-index="${index}">
-          <span class="nav-number">${groupIndex + 1}</span>
+          <span class="nav-number">${number}.</span>
           <span class="nav-content">
-            <span class="nav-title">${item.pattern}</span>
+            <span class="nav-title">${escapeHtml(grammarNavTitle(item))}</span>
             ${grammarNavStatus(item)}
           </span>
         </button>
-      `).join("")}
+      `;
+      }).join("")}
     </div>
   `;
+}
+
+// The navigation lists are filtered into two groups, so groupIndex is not a
+// reliable source of the textbook number. Prefer the stable gN/eN data id;
+// older imported records may only carry a numbered pattern title.
+function grammarNavNumber(item, fallback, expression = false) {
+  const patternMatch = String(item?.pattern || "").match(/^\s*(\d+)\s*[.．、)]/);
+  if (patternMatch) return Number(patternMatch[1]);
+  const idMatch = String(item?.id || "").match(/^[ge](\d+)/i);
+  if (idMatch && !expression) return Number(idMatch[1]);
+  return fallback;
+}
+
+function grammarNavTitle(item) {
+  return String(item?.pattern || "")
+    .replace(/^\s*\d+\s*[.．、)]\s*/, "")
+    .replace(/^\s*(?:表达|词语|寒暄语|对比|参考)\s*[:：]\s*/, "")
+    .trim();
 }
 
 function grammarNavProgress(grammar) {
@@ -6630,6 +6655,38 @@ function grammarPracticeSummary(grammar) {
   return { completed, total: items.length };
 }
 
+function grammarVocabularyWordIds() {
+  const pages = runtimeVocabularyOccurrences?.grammar?.pages;
+  if (!pages || typeof pages !== "object") return [];
+  return [...new Set(Object.entries(pages)
+    .sort(([left], [right]) => Number(left) - Number(right))
+    .flatMap(([, page]) => Array.isArray(page?.wordIds) ? page.wordIds : []))];
+}
+
+function grammarVocabularyList() {
+  const wordIds = grammarVocabularyWordIds();
+  const words = wordIds
+    .map((wordId) => lesson.vocabulary[Number(wordId) - 1])
+    .filter(Boolean);
+  if (!words.length) return "";
+  return `
+    <div class="meta-line">
+      <span class="label">本课语法页生词</span>
+      <div class="text-vocabulary-list grammar-vocabulary-list" aria-label="本课语法页生词">
+        <span class="text-vocabulary-list-label">${words.length} 个</span>
+        <div class="text-vocabulary-list-items">
+          ${words.map((word) => `
+            <button class="text-vocabulary-chip" type="button" data-speak="${escapeHtml(word.jp)}" data-audio="${escapeHtml(audioUrl("word", word.id))}" data-admin-word-audio="${escapeHtml(word.id)}" title="播放 ${escapeHtml(word.jp)} 的发音">
+              <span class="text-vocabulary-japanese">${renderJapaneseText(word.jp, { kana: word.kana })}</span>
+              <span class="text-vocabulary-meaning">${escapeHtml(word.cn || "")}</span>
+            </button>
+          `).join("")}
+        </div>
+      </div>
+    </div>
+  `;
+}
+
 function grammarExampleStatus(practice) {
   if (!practice.submitted) return "待练";
   return practice.correct ? "已会" : "需复习";
@@ -6668,6 +6725,7 @@ function grammarDetail(grammar) {
     </div>
     <p class="muted grammar-progress">${progress.total ? `核心例句完成 ${progress.completed}/${progress.total}` : "当前语法点暂无核心例句"}</p>
     <div class="meta-list">
+      ${grammarVocabularyList()}
       ${meta("简要解释", grammar.meaning)}
       ${meta("结构", grammar.structure)}
       ${meta("当前课文中的用法", grammar.usage)}

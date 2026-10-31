@@ -8,7 +8,7 @@
   },
   "refreshCommand": "npm run report:vocabulary-initialization",
   "initializeCommand": "node scripts/initialize-vocabulary-context.mjs --lesson <number>",
-  "generatedAt": "2026-10-21T15:14:58.489Z",
+  "generatedAt": "2026-10-31T09:57:27.700Z",
   "summary": {
     "initialized": [
       1,
@@ -52,9 +52,7 @@
       39
     ],
     "partial": [
-      40
-    ],
-    "unavailable": [
+      40,
       41,
       42,
       43,
@@ -63,7 +61,8 @@
       46,
       47,
       48
-    ]
+    ],
+    "unavailable": []
   },
   "lessons": [
     {
@@ -541,106 +540,106 @@
         "vocabulary": true,
         "practiceData": false,
         "practiceOccurrences": false,
-        "grammarOccurrences": false,
-        "grammarReviewStatus": null
+        "grammarOccurrences": true,
+        "grammarReviewStatus": "approved"
       },
       "nextStep": "Run the vocabulary-context initializer after the missing source data is available."
     },
     {
       "lessonNo": 41,
-      "status": "unavailable",
+      "status": "partial",
       "assets": {
         "vocabulary": false,
         "practiceData": false,
         "practiceOccurrences": false,
-        "grammarOccurrences": false,
-        "grammarReviewStatus": null
+        "grammarOccurrences": true,
+        "grammarReviewStatus": "approved"
       },
-      "nextStep": "Prepare verified vocabulary, practice data, and grammar page images before initialization."
+      "nextStep": "Run the vocabulary-context initializer after the missing source data is available."
     },
     {
       "lessonNo": 42,
-      "status": "unavailable",
+      "status": "partial",
       "assets": {
         "vocabulary": false,
         "practiceData": false,
         "practiceOccurrences": false,
-        "grammarOccurrences": false,
-        "grammarReviewStatus": null
+        "grammarOccurrences": true,
+        "grammarReviewStatus": "approved"
       },
-      "nextStep": "Prepare verified vocabulary, practice data, and grammar page images before initialization."
+      "nextStep": "Run the vocabulary-context initializer after the missing source data is available."
     },
     {
       "lessonNo": 43,
-      "status": "unavailable",
+      "status": "partial",
       "assets": {
         "vocabulary": false,
         "practiceData": false,
         "practiceOccurrences": false,
-        "grammarOccurrences": false,
-        "grammarReviewStatus": null
+        "grammarOccurrences": true,
+        "grammarReviewStatus": "approved"
       },
-      "nextStep": "Prepare verified vocabulary, practice data, and grammar page images before initialization."
+      "nextStep": "Run the vocabulary-context initializer after the missing source data is available."
     },
     {
       "lessonNo": 44,
-      "status": "unavailable",
+      "status": "partial",
       "assets": {
         "vocabulary": false,
         "practiceData": false,
         "practiceOccurrences": false,
-        "grammarOccurrences": false,
-        "grammarReviewStatus": null
+        "grammarOccurrences": true,
+        "grammarReviewStatus": "approved"
       },
-      "nextStep": "Prepare verified vocabulary, practice data, and grammar page images before initialization."
+      "nextStep": "Run the vocabulary-context initializer after the missing source data is available."
     },
     {
       "lessonNo": 45,
-      "status": "unavailable",
+      "status": "partial",
       "assets": {
         "vocabulary": false,
         "practiceData": false,
         "practiceOccurrences": false,
-        "grammarOccurrences": false,
-        "grammarReviewStatus": null
+        "grammarOccurrences": true,
+        "grammarReviewStatus": "approved"
       },
-      "nextStep": "Prepare verified vocabulary, practice data, and grammar page images before initialization."
+      "nextStep": "Run the vocabulary-context initializer after the missing source data is available."
     },
     {
       "lessonNo": 46,
-      "status": "unavailable",
+      "status": "partial",
       "assets": {
         "vocabulary": false,
         "practiceData": false,
         "practiceOccurrences": false,
-        "grammarOccurrences": false,
-        "grammarReviewStatus": null
+        "grammarOccurrences": true,
+        "grammarReviewStatus": "approved"
       },
-      "nextStep": "Prepare verified vocabulary, practice data, and grammar page images before initialization."
+      "nextStep": "Run the vocabulary-context initializer after the missing source data is available."
     },
     {
       "lessonNo": 47,
-      "status": "unavailable",
+      "status": "partial",
       "assets": {
         "vocabulary": false,
         "practiceData": false,
         "practiceOccurrences": false,
-        "grammarOccurrences": false,
-        "grammarReviewStatus": null
+        "grammarOccurrences": true,
+        "grammarReviewStatus": "approved"
       },
-      "nextStep": "Prepare verified vocabulary, practice data, and grammar page images before initialization."
+      "nextStep": "Run the vocabulary-context initializer after the missing source data is available."
     },
     {
       "lessonNo": 48,
-      "status": "unavailable",
+      "status": "partial",
       "assets": {
         "vocabulary": false,
         "practiceData": false,
         "practiceOccurrences": false,
-        "grammarOccurrences": false,
-        "grammarReviewStatus": null
+        "grammarOccurrences": true,
+        "grammarReviewStatus": "approved"
       },
-      "nextStep": "Prepare verified vocabulary, practice data, and grammar page images before initialization."
+      "nextStep": "Run the vocabulary-context initializer after the missing source data is available."
     }
   ]
 }

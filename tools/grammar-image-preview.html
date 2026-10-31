@@ -599,15 +599,70 @@
         return String(text || "").replace(/\[[^\[\]]+\]/g, "");
       }
 
+      function grammarExampleTitle(group, number = null) {
+        const rawTitle = String(group?.title || "").trim();
+        const titleMatch = rawTitle.match(/^\s*(\d+)\s*[.．、)]\s*(.*)$/);
+        const title = sentenceText((titleMatch ? titleMatch[2] : rawTitle)
+          .replace(/^\s*(?:表达|词语|寒暄语|对比)\s*[:：]\s*/, "")
+          .trim());
+        const resolvedNumber = number ?? (titleMatch ? Number(titleMatch[1]) : null);
+        return resolvedNumber ? `${resolvedNumber}.${title}` : title;
+      }
+
+      function grammarExamplePageKeys(data) {
+        return Object.keys(data?.pages || {})
+          .sort((a, b) => Number(a) - Number(b));
+      }
+
+      function grammarExampleNumberMap(data) {
+        const pageKeys = grammarExamplePageKeys(data);
+        const numbers = new Map();
+        let expressionNumber = 0;
+        let grammarNumber = 0;
+        for (const [pageIndex, pageNo] of pageKeys.entries()) {
+          const groups = data.pages?.[pageNo]?.groups || [];
+          const expressionPage = pageIndex >= 2;
+          for (const [groupIndex, group] of groups.entries()) {
+            const key = `${pageNo}:${group.id || groupIndex}`;
+            const rawTitle = String(group?.title || "").trim();
+            const titleMatch = rawTitle.match(/^\s*(\d+)\s*[.．、)]/);
+            const idMatch = String(group?.id || "").match(/^[ge](\d+)/i);
+            const continuation = /(?:^|-)cont(?:$|-)/i.test(String(group?.id || ""));
+            let number = titleMatch ? Number(titleMatch[1]) : null;
+            if (number == null && idMatch && /^e/i.test(String(group?.id || ""))) number = Number(idMatch[1]);
+            if (number == null && continuation) {
+              const base = String(group?.id || "").replace(/-cont.*$/i, "");
+              number = numbers.get(`${pageNo}:${base}`) || null;
+              if (number == null) {
+                for (const [knownKey, knownNumber] of numbers) {
+                  if (knownKey.endsWith(`:${base}`)) { number = knownNumber; break; }
+                }
+              }
+            }
+            if (number == null) {
+              if (expressionPage) number = ++expressionNumber;
+              else number = ++grammarNumber;
+            } else if (expressionPage) {
+              expressionNumber = Math.max(expressionNumber, number);
+            } else {
+              grammarNumber = Math.max(grammarNumber, number);
+            }
+            numbers.set(key, number);
+          }
+        }
+        return numbers;
+      }
+
       function renderGrammarExamples(pageNo, data) {
         const page = data?.pages?.[pageNo];
         if (!page?.groups?.length) return `<div class="grammar-examples grammar-empty">${escapeHtml(page?.emptyMessage || "本页例句尚未整理，待站点维护者批量升级后查看。")}</div>`;
+        const numberMap = grammarExampleNumberMap(data);
         return `<div class="grammar-examples">${page.groups.map((group, groupIndex) => `<section class="grammar-group inline-notes-container">
-          <h3>${escapeHtml(group.title)}</h3>
-          ${group.examples.map((example) => `<div class="grammar-example ${example.incorrect ? "incorrect" : ""}">
+          <h3>${escapeHtml(grammarExampleTitle(group, numberMap.get(`${pageNo}:${group.id || groupIndex}`)))}</h3>
+          ${(group.examples || []).some((example) => (example.sentences || []).length) ? group.examples.map((example) => `<div class="grammar-example ${example.incorrect ? "incorrect" : ""}">
             ${example.note ? `<div class="grammar-note">${escapeHtml(example.note)}</div>` : ""}
-            ${example.sentences.map((sentence) => `<div role="button" tabindex="0" class="grammar-sentence text-cell" data-sentence="${escapeHtml(sentenceText(sentence))}" aria-label="朗读：${escapeHtml(sentenceText(sentence))}"><span class="jp" lang="ja">${renderSentence(sentence)}</span></div>`).join("")}
-          </div>`).join("")}
+            ${(example.sentences || []).map((sentence) => `<div role="button" tabindex="0" class="grammar-sentence text-cell" data-sentence="${escapeHtml(sentenceText(sentence))}" aria-label="朗读：${escapeHtml(sentenceText(sentence))}"><span class="jp" lang="ja">${renderSentence(sentence)}</span></div>`).join("")}
+          </div>`).join("") : `<div class="grammar-empty">该语法或表达下没有例句。</div>`}
           <div class="inline-notes-host" data-inline-notes-key="japaflow.grammar.groupNotes.v1:${selectedLessonNo()}:${pageNo}:${escapeHtml(group.id || groupIndex)}" data-notes-lesson="${selectedLessonNo()}" data-notes-item="${pageNo}:${escapeHtml(group.id || groupIndex)}" data-notes-context="${escapeHtml([group.title, ...group.examples.flatMap(example => example.sentences.map(sentenceText))].join('\n'))}"></div>
         </section>`).join("")}</div>`;
       }
@@ -653,6 +708,10 @@
         return `../data/ocr/lesson${lessonNo}-vocabulary-audio-verified.json`;
       }
 
+      function vocabularyFallbackListPath(lessonNo) {
+        return `../data/ocr/lesson${lessonNo}-vocabulary.json`;
+      }
+
       function escapeHtml(value) {
         return String(value ?? "").replace(/[&<>\"']/g, (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;", "'": "&#039;" })[char]);
       }
@@ -672,15 +731,19 @@
       }
 
       function isVocabularyCollapsed(lessonNo, pageNo) {
-        return localStorage.getItem(collapseKey(lessonNo, pageNo)) !== "false";
+        return localStorage.getItem(collapseKey(lessonNo, pageNo)) === "true";
       }
 
       async function loadGrammarVocabulary(lessonNo) {
         if (grammarVocabularyCache.has(lessonNo)) return grammarVocabularyCache.get(lessonNo);
         const promise = Promise.all([fetch(vocabularyDataPath(lessonNo)), fetch(vocabularyListPath(lessonNo))])
           .then(async ([occurrencesResponse, vocabularyResponse]) => {
-            if (!occurrencesResponse.ok || !vocabularyResponse.ok) return null;
-            return { occurrences: await occurrencesResponse.json(), words: (await vocabularyResponse.json()).vocabulary || [] };
+            if (!occurrencesResponse.ok) return null;
+            const vocabularyJson = vocabularyResponse.ok
+              ? await vocabularyResponse.json()
+              : await fetch(vocabularyFallbackListPath(lessonNo)).then((response) => response.ok ? response.json() : null);
+            if (!vocabularyJson) return null;
+            return { occurrences: await occurrencesResponse.json(), words: vocabularyJson.vocabulary || [] };
           })
           .catch(() => null);
         grammarVocabularyCache.set(lessonNo, promise);
